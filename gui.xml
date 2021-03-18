@@ -1,0 +1,26 @@
+<Window>
+	<Label id="calc" text="Hello" alignment="Right"/>
+	<Row>
+		<Button onclick="pressedKey" label="7"/>
+		<Button onclick="pressedKey" label="8"/>
+		<Button onclick="pressedKey" label="9"/>
+		<Button onclick="pressedKey" label="+"/>
+	</Row>
+	<Row>
+		<Button onclick="pressedKey" label="4"/>
+		<Button onclick="pressedKey" label="5"/>
+		<Button onclick="pressedKey" label="6"/>
+		<Button onclick="pressedKey" label="-"/>
+	</Row>
+	<Row>
+		<Button onclick="pressedKey" label="1"/>
+		<Button onclick="pressedKey" label="2"/>
+		<Button onclick="pressedKey" label="3"/>
+		<Button onclick="pressedKey" label="*"/>
+	</Row>
+	<Row>
+		<Button onclick="pressedKey" label="/"/>
+		<Button onclick="pressedKey" label="0"/>
+		<Button onclick="pressedKey" label="="/>
+	</Row>
+</Window>
