@@ -12,7 +12,7 @@ pub fn run() !void {
         try Column(.{}, .{
             TextField(.{ .text = "something here" }),
             try Expanded(try Row(.{}, .{
-
+                Button(.{ .label = "Hello, World !" })
             }))
         })
     );

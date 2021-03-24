@@ -38,7 +38,7 @@ pub fn Events(comptime T: type) type {
         }
 
         pub fn show_events(self: *T) !void {
-            self.peer.?.data = @ptrToInt(self);
+            self.peer.?.setUserData(self);
             try self.peer.?.setCallback(.Click, clickHandler);
         }
 

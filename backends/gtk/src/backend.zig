@@ -3,7 +3,7 @@ const c = @cImport({
     @cInclude("gtk/gtk.h");
 });
 
-const GtkError = error {
+const GtkError = std.mem.Allocator.Error || error {
     UnknownError,
     InitializationError
 };
@@ -89,39 +89,74 @@ pub const EventType = enum {
     Click
 };
 
+/// user data used for handling events
+const EventUserData = struct {
+    clickHandler: ?fn(data: usize) void = null,
+    userdata: usize = 0
+};
+
+fn getEventUserData(peer: *c.GtkWidget) callconv(.Inline) *EventUserData {
+    return @ptrCast(*EventUserData, 
+        @alignCast(@alignOf(EventUserData),
+        c.g_object_get_data(@ptrCast(*c.GObject, peer), "eventUserData").?));
+}
+
+export fn gtkClicked(peer: *c.GtkWidget, userdata: usize) void {
+    const data = getEventUserData(peer);
+
+    if (data.clickHandler) |handler| {
+        handler(data.userdata);
+    }
+}
+
+pub fn Events(comptime T: type) type {
+    return struct {
+        const Self = @This();
+
+        pub fn setupEvents(widget: *c.GtkWidget) GtkError!void {
+            _ = c.g_signal_connect_data(widget, "clicked", @ptrCast(c.GCallback, gtkClicked),
+                null, @as(c.GClosureNotify, null), @intToEnum(c.GConnectFlags, 0));
+
+            const allocator = std.heap.page_allocator; // TODO: global allocator
+            c.g_object_set_data(@ptrCast(*c.GObject, widget), "eventUserData", try allocator.create(EventUserData));
+        }
+
+        pub fn setUserData(self: *T, data: anytype) callconv(.Inline) void {
+            comptime {
+                if (!std.meta.trait.isSingleItemPtr(@TypeOf(data))) {
+                    @compileError(std.fmt.comptimePrint("Expected single item pointer, got {s}", .{@typeName(@TypeOf(data))}));
+                }
+            }
+
+            getEventUserData(self.peer).userdata = @ptrToInt(data);
+        }
+
+        pub fn setCallback(self: *T, eType: EventType, cb: fn(data: usize) void) !void {
+            const data = getEventUserData(self.peer);
+            switch (eType) {
+                .Click => {
+                    data.clickHandler = cb;
+                }
+            }
+        }
+
+    };
+}
+
 const HandlerList = std.ArrayList(fn(data: usize) void);
 
 pub const Button = struct {
     peer: *c.GtkWidget,
-    data: usize = 0,
-    clickHandler: ?fn(data: usize) void = null,
-    registeredClick: bool = false,
 
-    export fn clicked(peer: *c.GtkWidget, self: *Button) void {
-        if (self.clickHandler) |handler| {
-            handler(self.data);
-        }
-    }
+    pub usingnamespace Events(Button);
 
     pub fn create() GtkError!Button {
         const button = c.gtk_button_new_with_label("") orelse return GtkError.UnknownError;
         c.gtk_widget_show(button);
+        try Button.setupEvents(button);
         return Button {
             .peer = button
         };
-    }
-
-    pub fn setCallback(self: *Button, eType: EventType, cb: fn(data: usize) void) !void {
-        switch (eType) {
-            .Click => {
-                if (!self.registeredClick) {
-                    _ = c.g_signal_connect_data(self.peer, "clicked", @ptrCast(c.GCallback, Button.clicked),
-                        self, @as(c.GClosureNotify, null), @intToEnum(c.GConnectFlags, 0));
-                    self.registeredClick = true;
-                }
-                self.clickHandler = cb;
-            }
-        }
     }
 
     pub fn setLabel(self: *const Button, label: [:0]const u8) void {
@@ -130,36 +165,23 @@ pub const Button = struct {
 
     pub fn getLabel(self: *const Button) [:0]const u8 {
         const label = c.gtk_button_get_label(@ptrCast(*c.GtkButton, self.peer));
-        return label[0..std.mem.lenZ(label) :0];
+        return std.mem.spanZ(label);
     }
 
 };
 
 pub const Label = struct {
     peer: *c.GtkWidget,
-    data: usize = 0,
-    clickHandler: ?fn(data: usize) void = null,
-    registeredClick: bool = false,
+
+    pub usingnamespace Events(Label);
 
     pub fn create() GtkError!Label {
         const label = c.gtk_label_new("") orelse return GtkError.UnknownError;
         c.gtk_widget_show(label);
+        try Label.setupEvents(label);
         return Label {
             .peer = label
         };
-    }
-
-    pub fn setCallback(self: *Label, eType: EventType, cb: fn(data: usize) void) !void {
-        switch (eType) {
-            .Click => {
-                if (!self.registeredClick) {
-                    _ = c.g_signal_connect_data(self.peer, "clicked", @ptrCast(c.GCallback, clicked),
-                        self, @as(c.GClosureNotify, null), @intToEnum(c.GConnectFlags, 0));
-                    self.registeredClick = true;
-                }
-                self.clickHandler = cb;
-            }
-        }
     }
 
     pub fn setAlignment(self: *Label, alignment: f32) void {
@@ -172,7 +194,7 @@ pub const Label = struct {
 
     pub fn getText(self: *Label) [:0]const u8 {
         const text = c.gtk_label_get_text(@ptrCast(*c.GtkLabel, self.peer)).?;
-        return text[0..std.mem.lenZ(text) :0];
+        return std.mem.spanZ(text);
     }
 
 };
@@ -181,9 +203,8 @@ pub const TextArea = struct {
     /// This is not actually the GtkTextView but this is the GtkScrolledWindow
     peer: *c.GtkWidget,
     textView: *c.GtkWidget,
-    data: usize = 0,
-    clickHandler: ?fn(data: usize) void = null,
-    registeredClick: bool = false,
+
+    pub usingnamespace Events(TextArea);
 
     pub fn create() GtkError!TextArea {
         const textArea = c.gtk_text_view_new() orelse return GtkError.UnknownError;
@@ -191,23 +212,11 @@ pub const TextArea = struct {
         c.gtk_container_add(@ptrCast(*c.GtkContainer, scrolledWindow), textArea);
         c.gtk_widget_show(textArea);
         c.gtk_widget_show(scrolledWindow);
+        try TextArea.setupEvents(textArea);
         return TextArea {
             .peer = scrolledWindow,
             .textView = textArea
         };
-    }
-
-    pub fn setCallback(self: *TextArea, eType: EventType, cb: fn(data: usize) void) !void {
-        switch (eType) {
-            .Click => {
-                if (!self.registeredClick) {
-                    _ = c.g_signal_connect_data(self.peer, "clicked", @ptrCast(c.GCallback, clicked),
-                        self, @as(c.GClosureNotify, null), @intToEnum(c.GConnectFlags, 0));
-                    self.registeredClick = true;
-                }
-                self.clickHandler = cb;
-            }
-        }
     }
 
     pub fn setText(self: *TextArea, text: []const u8) void {
@@ -222,36 +231,23 @@ pub const TextArea = struct {
         c.gtk_text_buffer_get_bounds(buffer, &start, &end);
 
         const text = c.gtk_text_buffer_get_text(buffer, &start, &end, 1);
-        return text[0..std.mem.lenZ(text) :0];
+        return std.mem.spanZ(text);
     }
 
 };
 
 pub const TextField = struct {
     peer: *c.GtkWidget,
-    data: usize = 0,
-    clickHandler: ?fn(data: usize) void = null,
-    registeredClick: bool = false,
+
+    pub usingnamespace Events(TextField);
 
     pub fn create() GtkError!TextField {
         const textField = c.gtk_entry_new() orelse return GtkError.UnknownError;
         c.gtk_widget_show(textField);
+        try setupEvents(textField);
         return TextField {
             .peer = textField
         };
-    }
-
-    pub fn setCallback(self: *TextField, eType: EventType, cb: fn(data: usize) void) !void {
-        switch (eType) {
-            .Click => {
-                if (!self.registeredClick) {
-                    _ = c.g_signal_connect_data(self.peer, "clicked", @ptrCast(c.GCallback, clicked),
-                        self, @as(c.GClosureNotify, null), @intToEnum(c.GConnectFlags, 0));
-                    self.registeredClick = true;
-                }
-                self.clickHandler = cb;
-            }
-        }
     }
 
     pub fn setText(self: *TextField, text: []const u8) void {
@@ -262,7 +258,7 @@ pub const TextField = struct {
     pub fn getText(self: *TextField) [:0]const u8 {
         const buffer = c.gtk_entry_get_buffer(@ptrCast(*c.GtkTextView, self.peer));
         const text = c.gtk_entry_buffer_get_text(buffer);
-        return text[0..std.mem.lenZ(text) :0];
+        return std.mem.spanZ(text);
     }
 
 };
