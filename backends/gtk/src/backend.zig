@@ -227,6 +227,46 @@ pub const TextArea = struct {
 
 };
 
+pub const TextField = struct {
+    peer: *c.GtkWidget,
+    data: usize = 0,
+    clickHandler: ?fn(data: usize) void = null,
+    registeredClick: bool = false,
+
+    pub fn create() GtkError!TextField {
+        const textField = c.gtk_entry_new() orelse return GtkError.UnknownError;
+        c.gtk_widget_show(textField);
+        return TextField {
+            .peer = textField
+        };
+    }
+
+    pub fn setCallback(self: *TextField, eType: EventType, cb: fn(data: usize) void) !void {
+        switch (eType) {
+            .Click => {
+                if (!self.registeredClick) {
+                    _ = c.g_signal_connect_data(self.peer, "clicked", @ptrCast(c.GCallback, clicked),
+                        self, @as(c.GClosureNotify, null), @intToEnum(c.GConnectFlags, 0));
+                    self.registeredClick = true;
+                }
+                self.clickHandler = cb;
+            }
+        }
+    }
+
+    pub fn setText(self: *TextField, text: []const u8) void {
+        const buffer = c.gtk_entry_get_buffer(@ptrCast(*c.GtkEntry, self.peer));
+        c.gtk_entry_buffer_set_text(buffer, text.ptr, @intCast(c_int, text.len));
+    }
+
+    pub fn getText(self: *TextField) [:0]const u8 {
+        const buffer = c.gtk_entry_get_buffer(@ptrCast(*c.GtkTextView, self.peer));
+        const text = c.gtk_entry_buffer_get_text(buffer);
+        return text[0..std.mem.lenZ(text) :0];
+    }
+
+};
+
 pub const Stack = struct {
     peer: *c.GtkWidget,
 
