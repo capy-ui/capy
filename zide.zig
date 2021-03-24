@@ -10,7 +10,7 @@ pub fn run() !void {
 
     var window = try Window.init();
 
-    var file = try std.fs.cwd().openFileZ("zide.zig", .{ .read = true });
+    var file = try std.fs.cwd().openFileZ("example.zig", .{ .read = true });
     defer file.close();
     const text = try file.readToEndAlloc(allocator, std.math.maxInt(usize));
     defer allocator.free(text);
