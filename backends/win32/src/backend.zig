@@ -1,34 +1,6 @@
 const std = @import("std");
 
-usingnamespace std.os.windows.user32;
-usingnamespace std.os.windows.kernel32;
-const HINSTANCE = std.os.windows.HINSTANCE;
-const HWND = std.os.windows.HWND;
-const WPARAM = std.os.windows.WPARAM;
-const LPARAM = std.os.windows.LPARAM;
-const LRESULT = std.os.windows.LRESULT;
-const RECT = std.os.windows.RECT;
-const LPRECT = *RECT;
-const WINAPI = std.os.windows.WINAPI;
-
-const BS_DEFPUSHBUTTON = 1;
-const BS_FLAT = 0x00008000;
-
-const SWP_NOACTIVATE = 0x0010;
-const SWP_NOOWNERZORDER = 0x0200;
-const SWP_NOZORDER = 0x0004;
-
-const WNDENUMPROC = fn(hwnd: HWND, lParam: LPARAM) callconv(WINAPI) c_int;
-
-extern "user32" fn SetParent(child: HWND, newParent: HWND) callconv(WINAPI) HWND;
-extern "user32" fn SetWindowTextW(hWnd: HWND, lpString: [*:0]const u16) callconv(WINAPI) c_int;
-extern "user32" fn GetWindowTextW(hWnd: HWND, lpString: [*:0]const u16, nMaxCount: c_int) callconv(WINAPI) c_int;
-extern "user32" fn GetWindowTextLengthW(hWnd: HWND) callconv(WINAPI) c_int;
-extern "user32" fn EnumChildWindows(hWndParent: HWND, lpEnumFunc: WNDENUMPROC, lParam: LPARAM) callconv(WINAPI) c_int;
-extern "user32" fn GetParent(hWnd: HWND) callconv(WINAPI) HWND;
-extern "user32" fn GetWindowRect(hWnd: HWND, lpRect: LPRECT) callconv(WINAPI) c_int;
-extern "user32" fn SetWindowPos(hWnd: HWND, hWndInsertAfter: HWND, X: c_int, Y: c_int, cx: c_int, cy: c_int, uFlags: c_uint) callconv(WINAPI) c_int;
-extern "user32" fn MoveWindow(hWnd: HWND, X: c_int, Y: c_int, nWidth: c_int, nHeight: c_int, repaint: c_int) callconv(WINAPI) c_int;
+usingnamespace @import("win32.zig");
 
 const Win32Error = error {
     UnknownError,
@@ -42,7 +14,6 @@ pub const Capabilities = .{
 pub const PeerType = HWND;
 
 var hInst: HINSTANCE = undefined;
-var windows: std.ArrayList(HWND) = std.ArrayList(HWND).init(std.heap.page_allocator);
 
 pub const public = struct {
 

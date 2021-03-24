@@ -1,6 +1,7 @@
 const std = @import("std");
 const backend = @import("backend");
 const Widget = @import("widget.zig").Widget;
+usingnamespace @import("internal.zig");
 
 const Stack_Impl = struct {
     peer: backend.Stack,
@@ -101,12 +102,11 @@ const Column_Impl = struct {
 
 /// Create a generic Widget struct from the given component.
 fn genericWidgetFrom(component: anytype) !Widget {
-    const allocator = std.heap.page_allocator; // TODO: custom global allocator for this
     const componentType = @TypeOf(component);
     if (componentType == Widget) return component;
 
     var cp = if (comptime std.meta.trait.isSingleItemPtr(componentType)) component else blk: {
-        var copy = try allocator.create(componentType);
+        var copy = try lasting_allocator.create(componentType);
         copy.* = component;
         break :blk copy;
     };
@@ -116,9 +116,8 @@ fn genericWidgetFrom(component: anytype) !Widget {
 }
 
 fn abstractContainerConstructor(comptime T: type, childrens: anytype, config: anytype) !T {
-    const allocator = std.heap.page_allocator; // TODO: custom global allocator for this
     const fields = std.meta.fields(@TypeOf(childrens));
-    var list = std.ArrayList(Widget).init(allocator);
+    var list = std.ArrayList(Widget).init(lasting_allocator);
 
     inline for (fields) |field| {
         const child = @field(childrens, field.name);
