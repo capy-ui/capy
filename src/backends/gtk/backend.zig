@@ -29,7 +29,7 @@ pub const MessageType = enum {
     Error
 };
 
-pub fn showNativeMessageDialog(msgType: MessageType, comptime fmt: []const u8, args: anytype) void {
+pub fn showNativeMessageDialog(msgType: MessageType, comptime fmt: []const u8, args: anytype) callconv(.Inline) void {
     const msg = std.fmt.allocPrintZ(std.heap.page_allocator, fmt, args) catch {
         std.log.err("Could not launch message dialog, original text: " ++ fmt, args);
         return;
@@ -86,12 +86,14 @@ pub const Window = struct {
 };
 
 pub const EventType = enum {
-    Click
+    Click,
+    Draw
 };
 
 /// user data used for handling events
 const EventUserData = struct {
     clickHandler: ?fn(data: usize) void = null,
+    drawHandler: ?fn(ctx: Canvas.DrawContext, data: usize) void = null,
     userdata: usize = 0
 };
 
@@ -118,7 +120,9 @@ pub fn Events(comptime T: type) type {
                 null, @as(c.GClosureNotify, null), @intToEnum(c.GConnectFlags, 0));
 
             const allocator = std.heap.page_allocator; // TODO: global allocator
-            c.g_object_set_data(@ptrCast(*c.GObject, widget), "eventUserData", try allocator.create(EventUserData));
+            var data = try allocator.create(EventUserData);
+            data.* = EventUserData {}; // ensure that it uses default values
+            c.g_object_set_data(@ptrCast(*c.GObject, widget), "eventUserData", data);
         }
 
         pub fn setUserData(self: *T, data: anytype) callconv(.Inline) void {
@@ -131,12 +135,11 @@ pub fn Events(comptime T: type) type {
             getEventUserData(self.peer).userdata = @ptrToInt(data);
         }
 
-        pub fn setCallback(self: *T, eType: EventType, cb: fn(data: usize) void) !void {
+        pub fn setCallback(self: *T, comptime eType: EventType, cb: anytype) callconv(.Inline) !void {
             const data = getEventUserData(self.peer);
             switch (eType) {
-                .Click => {
-                    data.clickHandler = cb;
-                }
+                .Click => data.clickHandler = cb,
+                .Draw  => data.drawHandler  = cb
             }
         }
 
@@ -259,6 +262,55 @@ pub const TextField = struct {
         const buffer = c.gtk_entry_get_buffer(@ptrCast(*c.GtkTextView, self.peer));
         const text = c.gtk_entry_buffer_get_text(buffer);
         return std.mem.spanZ(text);
+    }
+
+};
+
+pub const Canvas = struct {
+    peer: *c.GtkWidget,
+
+    pub usingnamespace Events(Canvas);
+
+    pub const DrawContext = struct {
+        cr: *c.cairo_t,
+
+        pub fn setColor(self: *const DrawContext, r: f64, g: f64, b: f64) void {
+            self.setColorRGBA(r, g, b, 1);
+        }
+
+        pub fn setColorRGBA(self: *const DrawContext, r: f64, g: f64, b: f64, a: f64) void {
+            const color = c.GdkRGBA { .red = r, .green = g, .blue = b, .alpha = a };
+            c.gdk_cairo_set_source_rgba(self.cr, &color);
+        }
+
+        /// Add a rectangle to the current path
+        pub fn rectangle(self: *const DrawContext, x: f64, y: f64, w: f64, h: f64) void {
+            c.cairo_rectangle(self.cr, x, y, w, h);
+        }
+
+        /// Fill the current path and reset the path.
+        pub fn fill(self: *const DrawContext) void {
+            c.cairo_fill(self.cr);
+        }
+    };
+
+    export fn gtkCanvasDraw(peer: *c.GtkWidget, cr: *c.cairo_t, userdata: usize) c_int {
+        const data = getEventUserData(peer);
+        if (data.drawHandler) |handler| {
+            handler(DrawContext { .cr = cr }, data.userdata);
+        }
+        return 0; // propagate the event further
+    }
+
+    pub fn create() GtkError!Canvas {
+        const canvas = c.gtk_drawing_area_new() orelse return GtkError.UnknownError;
+        c.gtk_widget_show(canvas);
+        try setupEvents(canvas);
+        _ = c.g_signal_connect_data(canvas, "draw", @ptrCast(c.GCallback, gtkCanvasDraw),
+                null, @as(c.GClosureNotify, null), @intToEnum(c.GConnectFlags, 0));
+        return Canvas {
+            .peer = canvas
+        };
     }
 
 };

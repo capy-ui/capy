@@ -5,7 +5,7 @@ pub const Button_Impl = struct {
     pub usingnamespace @import("events.zig").Events(Button_Impl);
 
     peer: ?backend.Button = null,
-    clickHandlers: Button_Impl.HandlerList = undefined,
+    handlers: Button_Impl.Handlers = undefined,
     label: [:0]const u8 = "",
 
     pub fn init() Button_Impl {

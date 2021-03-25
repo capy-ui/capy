@@ -5,7 +5,7 @@ pub const TextArea_Impl = struct {
     pub usingnamespace @import("events.zig").Events(TextArea_Impl);
 
     peer: ?backend.TextArea = null,
-    clickHandlers: TextArea_Impl.HandlerList = undefined,
+    handlers: Handlers = undefined,
     _text: []const u8,
 
     pub fn init(text: []const u8) TextArea_Impl {
@@ -43,7 +43,7 @@ pub const TextField_Impl = struct {
     pub usingnamespace @import("events.zig").Events(TextField_Impl);
 
     peer: ?backend.TextField = null,
-    clickHandlers: TextField_Impl.HandlerList = undefined,
+    handlers: TextField_Impl.Handlers = undefined,
     _text: []const u8,
 
     pub fn init(text: []const u8) TextField_Impl {
