@@ -273,6 +273,32 @@ pub const Canvas = struct {
 
     pub const DrawContext = struct {
         cr: *c.cairo_t,
+        widget: *c.GtkWidget,
+
+        pub const Font = struct {
+            face: [:0]const u8,
+            size: f64,
+        };
+
+        pub const TextLayout = struct {
+            _layout: *c.PangoLayout,
+            /// If null, no text wrapping is applied, otherwise the text is wrapping as if this was the maximum width.
+            wrap: ?f64 = null,
+
+            pub fn setFont(self: *TextLayout, font: Font) void {
+                const fontDescription = c.pango_font_description_from_string(font.face) orelse unreachable;
+                c.pango_font_description_set_size(fontDescription,
+                    @floatToInt(c_int, @floor(font.size * c.PANGO_SCALE)));
+                c.pango_layout_set_font_description(self._layout, fontDescription);
+                c.pango_font_description_free(fontDescription);
+            }
+
+            pub fn init(ctx: DrawContext) TextLayout {
+                return TextLayout {
+                    ._layout = c.pango_cairo_create_layout(ctx.cr).?
+                };
+            }
+        };
 
         pub fn setColor(self: *const DrawContext, r: f64, g: f64, b: f64) void {
             self.setColorRGBA(r, g, b, 1);
@@ -288,6 +314,28 @@ pub const Canvas = struct {
             c.cairo_rectangle(self.cr, x, y, w, h);
         }
 
+        pub fn clear(self: *const DrawContext, x: f64, y: f64, w: f64, h: f64) void {
+            const styleContext = c.gtk_widget_get_style_context(self.widget);
+            c.gtk_render_background(styleContext, self.cr, x, y, w, h);
+        }
+
+        pub fn text(self: *const DrawContext, x: f64, y: f64, layout: TextLayout, str: []const u8) void {
+            const pangoLayout = layout._layout;
+            var inkRect: c.PangoRectangle = undefined;
+            c.pango_layout_get_pixel_extents(pangoLayout, null, &inkRect);
+
+            const dx = @intToFloat(f64, inkRect.x);
+            const dy = @intToFloat(f64, inkRect.y);
+            c.cairo_move_to(self.cr, x + dx, y + dy);
+            c.pango_layout_set_width(pangoLayout,
+                if (layout.wrap) |w| @floatToInt(c_int, @floor(w*c.PANGO_SCALE))
+                else -1
+            );
+            c.pango_layout_set_text(pangoLayout, str.ptr, @intCast(c_int, str.len));
+            c.pango_cairo_update_layout(self.cr, pangoLayout);
+            c.pango_cairo_show_layout(self.cr, pangoLayout);
+        }
+
         /// Fill the current path and reset the path.
         pub fn fill(self: *const DrawContext) void {
             c.cairo_fill(self.cr);
@@ -297,7 +345,7 @@ pub const Canvas = struct {
     export fn gtkCanvasDraw(peer: *c.GtkWidget, cr: *c.cairo_t, userdata: usize) c_int {
         const data = getEventUserData(peer);
         if (data.drawHandler) |handler| {
-            handler(DrawContext { .cr = cr }, data.userdata);
+            handler(DrawContext { .cr = cr, .widget = peer }, data.userdata);
         }
         return 0; // propagate the event further
     }

@@ -2,8 +2,15 @@ usingnamespace @import("zgt");
 const std = @import("std");
 
 fn draw(ctx: DrawContext, widget: *Canvas_Impl) !void {
-    ctx.setColorRGBA(0, 0, 0, 1);
-    ctx.rectangle(100, 100, 200, 100);
+    ctx.setColor(0, 0, 0);
+    ctx.rectangle(120, 320, 50, 50);
+    ctx.fill();
+
+    ctx.setColor(1, 1, 1);
+    var layout = DrawContext.TextLayout.init(ctx);
+    layout.setFont(.{ .face = "Liberation Sans", .size = 12.0 });
+    layout.wrap = 50;
+    ctx.text(120, 320, layout, "Hello, World !");
     ctx.fill();
 }
 
