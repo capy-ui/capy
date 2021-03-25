@@ -1,5 +1,5 @@
 const std = @import("std");
-const backend = @import("backend");
+const backend = @import("backend.zig");
 
 pub const Window = struct {
     /// The DPI the GUI has been developed against

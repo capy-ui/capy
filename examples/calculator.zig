@@ -76,35 +76,35 @@ pub fn run() !void {
 
     var window = try Window.init();
     computationLabel = Label(.{ .text = "", .alignment = .Left });
-    try window.set(try Column(.{}, .{
+    try window.set(try Column(.{ .expand = .Fill }, .{
         &computationLabel,
-        try Row(.{}, .{
-            Button(.{ .label = "7", .onclick = pressedKey }),
-            Button(.{ .label = "8", .onclick = pressedKey }),
-            Button(.{ .label = "9", .onclick = pressedKey }),
-            Button(.{ .label = "+", .onclick = pressedKey }),
-        }),
-        try Row(.{}, .{
-            Button(.{ .label = "4", .onclick = pressedKey }),
-            Button(.{ .label = "5", .onclick = pressedKey }),
-            Button(.{ .label = "6", .onclick = pressedKey }),
-            Button(.{ .label = "-", .onclick = pressedKey }),
-        }),
-        try Row(.{}, .{
-            Button(.{ .label = "1", .onclick = pressedKey }),
-            Button(.{ .label = "2", .onclick = pressedKey }),
-            Button(.{ .label = "3", .onclick = pressedKey }),
-            Button(.{ .label = "*", .onclick = pressedKey }),
-        }),
-        try Row(.{}, .{
-            Button(.{ .label = "/" , .onclick = pressedKey }),
-            Button(.{ .label = "0" , .onclick = pressedKey }),
-            Button(.{ .label = "CE", .onclick = erase      }),
-            Button(.{ .label = "." , .onclick = pressedKey })
-        }),
-        Button(.{ .label = "=", .onclick = compute })
+        try Expanded(try Row(.{ .expand = .Fill }, .{
+            try Expanded(Button(.{ .label = "7", .onclick = pressedKey })),
+            try Expanded(Button(.{ .label = "8", .onclick = pressedKey })),
+            try Expanded(Button(.{ .label = "9", .onclick = pressedKey })),
+            try Expanded(Button(.{ .label = "+", .onclick = pressedKey })),
+        })),
+        try Expanded(try Row(.{ .expand = .Fill }, .{
+            try Expanded(Button(.{ .label = "4", .onclick = pressedKey })),
+            try Expanded(Button(.{ .label = "5", .onclick = pressedKey })),
+            try Expanded(Button(.{ .label = "6", .onclick = pressedKey })),
+            try Expanded(Button(.{ .label = "-", .onclick = pressedKey })),
+        })),
+        try Expanded(try Row(.{ .expand = .Fill }, .{
+            try Expanded(Button(.{ .label = "1", .onclick = pressedKey })),
+            try Expanded(Button(.{ .label = "2", .onclick = pressedKey })),
+            try Expanded(Button(.{ .label = "3", .onclick = pressedKey })),
+            try Expanded(Button(.{ .label = "*", .onclick = pressedKey })),
+        })),
+        try Expanded(try Row(.{ .expand = .Fill }, .{
+            try Expanded(Button(.{ .label = "/" , .onclick = pressedKey })),
+            try Expanded(Button(.{ .label = "0" , .onclick = pressedKey })),
+            try Expanded(Button(.{ .label = "CE", .onclick = erase      })),
+            try Expanded(Button(.{ .label = "." , .onclick = pressedKey }))
+        })),
+        try Expanded(Button(.{ .label = "=", .onclick = compute }))
     }));
-    // try window.resize(400, 500);
+    try window.resize(400, 500);
     window.show();
     window.run();
 }

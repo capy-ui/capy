@@ -1,5 +1,5 @@
 const std = @import("std");
-const backend = @import("backend");
+const backend = @import("backend.zig");
 
 pub const Label_Impl = struct {
     pub usingnamespace @import("events.zig").Events(Label_Impl);

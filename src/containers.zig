@@ -1,5 +1,5 @@
 const std = @import("std");
-const backend = @import("backend");
+const backend = @import("backend.zig");
 const Widget = @import("widget.zig").Widget;
 usingnamespace @import("internal.zig");
 
@@ -134,6 +134,7 @@ const Expand = enum {
     /// The grid should expand to its maximum size by padding non-expanded childrens
     Fill,
 };
+
 const GridConfig = struct {
     expand: Expand = .No,
 };

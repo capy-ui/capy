@@ -1,5 +1,5 @@
 const std = @import("std");
-const backend = @import("backend");
+const backend = @import("backend.zig");
 
 pub fn Events(comptime T: type) type {
     return struct {
@@ -32,7 +32,6 @@ pub fn Events(comptime T: type) type {
                     }
                     writer.writeAll("Please check the log.") catch unreachable;
                     backend.showNativeMessageDialog(.Error, "{s}", .{stream.getWritten()});
-
                 };
             }
         }

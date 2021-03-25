@@ -4,6 +4,8 @@ Zig GUI Toolkit
 
 **As of now, zgt is NOT ready for any non-toy use as i'm still making breaking changes**
 
+Example of using zgt:
+
 ```zig
 usingnamespace @import("zgt");
 const std = @import("std");

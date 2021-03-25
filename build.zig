@@ -2,12 +2,7 @@ const std = @import("std");
 
 pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !void {
     step.subsystem = .Native;
-
-    const backendPath = prefix ++ "/backends/gtk/";
-    const backend = std.build.Pkg {
-        .name = "backend",
-        .path = backendPath ++ "/src/backend.zig",
-    };
+    
     switch (step.target.getOsTag()) {
         .linux => {
             step.linkLibC();
@@ -35,7 +30,7 @@ pub fn build(b: *std.build.Builder) !void {
     const target = b.standardTargetOptions(.{});
     const mode = b.standardReleaseOptions();
 
-    const exe = b.addExecutable("example", "examples/entry.zig");
+    const exe = b.addExecutable("example", "examples/editor.zig");
     exe.setTarget(target);
     exe.setBuildMode(mode);
     try install(exe, ".");

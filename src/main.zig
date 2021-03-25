@@ -10,4 +10,4 @@ pub usingnamespace
     if (@hasDecl(@import("root"), "main")) // do not import a main function if the root file already has one
         struct {}
     else
-        @import("backend").public;
+        @import("backend.zig").public;
