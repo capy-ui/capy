@@ -13,16 +13,20 @@ const std = @import("std");
 pub fn run() !void {
     var window = try Window.init();
     try window.set(
-        try Column(.{}, .{
-            try Row(.{}, .{
+        Column(.{}, .{
+            Row(.{}, .{
                 Button(.{ .label = "Save", .onclick = buttonClicked }),
                 Button(.{ .label = "Run",  .onclick = buttonClicked })
             }),
-            try Expanded(TextArea(.{ .text = "Hello World!" }))
+            // Expanded means the widget will take all the space it can
+            // in the parent container
+            Expanded(
+                TextArea(.{ .text = "Hello World!" })
+            )
         })
     );
 
-    try window.resize(800, 600);
+    window.resize(800, 600);
     window.show();
     window.run();
 }
