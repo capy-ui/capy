@@ -115,12 +115,24 @@ fn genericWidgetFrom(component: anytype) !Widget {
     return Widget { .data = @ptrToInt(cp), .peer = cp.peer.?.peer };
 }
 
-fn abstractContainerConstructor(comptime T: type, childrens: anytype, config: anytype) !T {
+fn isErrorUnion(comptime T: type) bool {
+    return switch (@typeInfo(T)) {
+        .ErrorUnion => true,
+        else => false
+    };
+}
+
+fn abstractContainerConstructor(comptime T: type, childrens: anytype, config: anytype) anyerror!T {
     const fields = std.meta.fields(@TypeOf(childrens));
     var list = std.ArrayList(Widget).init(lasting_allocator);
 
     inline for (fields) |field| {
-        const child = @field(childrens, field.name);
+        const element = @field(childrens, field.name);
+        const child = 
+            if (comptime isErrorUnion(@TypeOf(element))) // if it is an error union, unwrap it
+                try element
+            else
+                element;
         const widget = try genericWidgetFrom(child);
         try list.append(widget);
     }
@@ -140,20 +152,24 @@ const GridConfig = struct {
 };
 
 /// Set the style of the child to expanded by creating and showing the widget early.
-pub fn Expanded(child: anytype) callconv(.Inline) !Widget {
-    var widget = try genericWidgetFrom(child);
+pub fn Expanded(child: anytype) callconv(.Inline) anyerror!Widget {
+    var widget = try genericWidgetFrom(
+        if (comptime isErrorUnion(@TypeOf(child)))
+            try child
+        else
+            child);
     widget.container_expanded = true;
     return widget;
 }
 
-pub fn Stack(childrens: anytype) callconv(.Inline) !Stack_Impl {
+pub fn Stack(childrens: anytype) callconv(.Inline) anyerror!Stack_Impl {
     return try abstractContainerConstructor(Stack_Impl, childrens, .{});
 }
 
-pub fn Row(config: GridConfig, childrens: anytype) callconv(.Inline) !Row_Impl {
+pub fn Row(config: GridConfig, childrens: anytype) callconv(.Inline) anyerror!Row_Impl {
     return try abstractContainerConstructor(Row_Impl, childrens, config);
 }
 
-pub fn Column(config: GridConfig, childrens: anytype) callconv(.Inline) !Column_Impl {
+pub fn Column(config: GridConfig, childrens: anytype) callconv(.Inline) anyerror!Column_Impl {
     return try abstractContainerConstructor(Column_Impl, childrens, config);
 }

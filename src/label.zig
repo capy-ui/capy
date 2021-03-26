@@ -5,7 +5,7 @@ pub const Label_Impl = struct {
     pub usingnamespace @import("events.zig").Events(Label_Impl);
 
     peer: ?backend.Label = null,
-    clickHandlers: Label_Impl.HandlerList = undefined,
+    handlers: Label_Impl.Handlers = undefined,
     _text: [:0]const u8,
     _align: TextAlignment,
 

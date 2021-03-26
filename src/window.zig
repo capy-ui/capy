@@ -21,21 +21,29 @@ pub const Window = struct {
         return self.peer.close();
     }
 
-    pub fn set(self: *Window, container: anytype) callconv(.Inline) !void {
-        if (comptime std.meta.trait.isPtrTo(.Struct)(@TypeOf(container))) {
-            try container.show();
-            self.peer.setChild(container.peer.?.peer);
-        } else {
-            var cont = container;
-            try cont.show();
-            self.peer.setChild(cont.peer.?.peer);
-        }
+    fn isErrorUnion(comptime T: type) bool {
+        return switch (@typeInfo(T)) {
+            .ErrorUnion => true,
+            else => false
+        };
     }
 
-    pub fn resize(self: *Window, width: usize, height: usize) !void {
+    /// wrappedContainer can be an error union, a pointer to the container or the container itself.
+    pub fn set(self: *Window, wrappedContainer: anytype) callconv(.Inline) anyerror!void {
+        var container = 
+            if (comptime isErrorUnion(@TypeOf(wrappedContainer)))
+                try wrappedContainer
+            else
+                wrappedContainer;
+
+        try container.show();
+        self.peer.setChild(container.peer.?.peer);
+    }
+
+    pub fn resize(self: *Window, width: u32, height: u32) void {
         self.peer.resize(
-            try std.math.cast(c_int, width),
-            try std.math.cast(c_int, height)
+            @intCast(c_int, width),
+            @intCast(c_int, height)
         );
     }
 

@@ -24,15 +24,15 @@ pub fn run() !void {
     try canvas.addDrawHandler(draw);
 
     try window.set(
-        try Column(.{}, .{
+        Column(.{}, .{
             TextField(.{ .text = "gemini://gemini.circumlunar.space/" }),
-            try Expanded(
+            Expanded(
                 &canvas
             )
         })
     );
 
-    try window.resize(800, 600);
+    window.resize(800, 600);
     window.show();
     window.run();
 }
