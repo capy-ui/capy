@@ -1,6 +1,9 @@
 usingnamespace @import("zgt");
 const std = @import("std");
 
+var gpa = std.heap.GeneralPurposeAllocator(.{}) {};
+pub const zgtAllocator = &gpa.allocator;
+
 fn draw(ctx: DrawContext, widget: *Canvas_Impl) !void {
     ctx.setColor(0, 0, 0);
     ctx.rectangle(120, 320, 50, 50);
@@ -14,14 +17,17 @@ fn draw(ctx: DrawContext, widget: *Canvas_Impl) !void {
     ctx.fill();
 }
 
+fn scroll(dx: f64, dy: f64, widget: *Canvas_Impl) !void {
+    std.log.info("Scroll by {d}, {d}", .{dx, dy});
+}
+
 pub fn run() !void {
-    var gpa = std.heap.GeneralPurposeAllocator(.{}) {};
-    const allocator = &gpa.allocator;
     defer _ = gpa.deinit();
 
     var window = try Window.init();
     var canvas = Canvas(.{});
     try canvas.addDrawHandler(draw);
+    try canvas.addScrollHandler(scroll);
 
     try window.set(
         Column(.{}, .{

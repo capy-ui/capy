@@ -4,20 +4,29 @@ usingnamespace @import("internal.zig");
 
 pub fn Events(comptime T: type) type {
     return struct {
-        pub const Callback    = fn(widget: *T) anyerror!void;
-        pub const HandlerList = std.ArrayList(Callback);
-        const DrawHandlerList = std.ArrayList(fn(ctx: backend.Canvas.DrawContext, widget: *T) anyerror!void);
+        pub const Callback       = fn(widget: *T) anyerror!void;
+        pub const DrawCallback   = fn(ctx: backend.Canvas.DrawContext, widget: *T) anyerror!void;
+        pub const ButtonCallback = fn(pressed: bool, x: f64, y: f64, widget: *T) anyerror!void;
+        pub const ScrollCallback = fn(dx: f64, dy: f64, widget: *T) anyerror!void;
+        pub const HandlerList    = std.ArrayList(Callback);
+        const DrawHandlerList    = std.ArrayList(DrawCallback);
+        const ButtonHandlerList  = std.ArrayList(ButtonCallback);
+        const ScrollHandlerList  = std.ArrayList(ScrollCallback);
 
         pub const Handlers = struct {
             clickHandlers: HandlerList,
-            drawHandlers: DrawHandlerList
+            drawHandlers: DrawHandlerList,
+            buttonHandlers: ButtonHandlerList,
+            scrollHandlers: ScrollHandlerList
         };
 
         pub fn init_events(self: T) T {
             var obj = self;
             obj.handlers = .{
                 .clickHandlers = HandlerList.init(lasting_allocator),
-                .drawHandlers = DrawHandlerList.init(lasting_allocator)
+                .drawHandlers = DrawHandlerList.init(lasting_allocator),
+                .buttonHandlers = ButtonHandlerList.init(lasting_allocator),
+                .scrollHandlers = ScrollHandlerList.init(lasting_allocator)
             };
             return obj;
         }
@@ -54,18 +63,42 @@ pub fn Events(comptime T: type) type {
             }
         }
 
+        fn buttonHandler(pressed: bool, x: f64, y: f64, data: usize) void {
+            const self = @intToPtr(*T, data);
+            for (self.handlers.buttonHandlers.items) |func| {
+                func(pressed, x, y, self) catch |err| errorHandler(err);
+            }
+        }
+
+        fn scrollHandler(dx: f64, dy: f64, data: usize) void {
+            const self = @intToPtr(*T, data);
+            for (self.handlers.scrollHandlers.items) |func| {
+                func(dx, dy, self) catch |err| errorHandler(err);
+            }
+        }
+
         pub fn show_events(self: *T) !void {
             self.peer.?.setUserData(self);
-            try self.peer.?.setCallback(.Click, clickHandler);
-            try self.peer.?.setCallback(.Draw,  drawHandler);
+            try self.peer.?.setCallback(.Click ,  clickHandler);
+            try self.peer.?.setCallback(.Draw  ,  drawHandler);
+            try self.peer.?.setCallback(.Button,  buttonHandler);
+            try self.peer.?.setCallback(.Scroll,  scrollHandler);
         }
 
         pub fn addClickHandler(self: *T, handler: Callback) !void {
             try self.handlers.clickHandlers.append(handler);
         }
 
-        pub fn addDrawHandler(self: *T, handler: fn(ctx: backend.Canvas.DrawContext, widget: *T) anyerror!void) !void {
+        pub fn addDrawHandler(self: *T, handler: DrawCallback) !void {
             try self.handlers.drawHandlers.append(handler);
+        }
+
+        pub fn addButtonHandler(self: *T, handler: ButtonCallback) !void {
+            try self.handlers.buttonHandlers.append(handler);
+        }
+
+        pub fn addScrollHandler(self: *T, handler: ScrollCallback) !void {
+            try self.handlers.scrollHandlers.append(handler);
         }
     };
 }
