@@ -5,12 +5,14 @@ var gpa = std.heap.GeneralPurposeAllocator(.{}) {};
 pub const zgtAllocator = &gpa.allocator;
 
 fn draw(ctx: DrawContext, widget: *Canvas_Impl) !void {
+    std.log.info("drawing widget", .{});
     ctx.setColor(0, 0, 0);
     ctx.rectangle(120, 320, 50, 50);
     ctx.fill();
 
+    var layout = DrawContext.TextLayout.init();
+    defer layout.deinit();
     ctx.setColor(1, 1, 1);
-    var layout = DrawContext.TextLayout.init(ctx);
     layout.setFont(.{ .face = "Liberation Sans", .size = 12.0 });
     layout.wrap = 50;
     ctx.text(120, 320, layout, "Hello, World !");
@@ -19,6 +21,7 @@ fn draw(ctx: DrawContext, widget: *Canvas_Impl) !void {
 
 fn scroll(dx: f64, dy: f64, widget: *Canvas_Impl) !void {
     std.log.info("Scroll by {d}, {d}", .{dx, dy});
+    try widget.requestDraw();
 }
 
 pub fn run() !void {

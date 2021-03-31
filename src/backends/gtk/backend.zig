@@ -88,7 +88,7 @@ pub const Window = struct {
 pub const EventType = enum {
     Click,
     Draw,
-    Button,
+    MouseButton,
     Scroll
 };
 
@@ -103,7 +103,7 @@ pub const MouseButton = enum(c_uint) {
 const EventUserData = struct {
     /// Only works for buttons
     clickHandler: ?fn(data: usize) void = null,
-    buttonHandler: ?fn(pressed: bool, x: f64, y: f64, data: usize) void = null,
+    mouseButtonHandler: ?fn(button: MouseButton, pressed: bool, x: f64, y: f64, data: usize) void = null,
     scrollHandler: ?fn(dx: f64, dy: f64, data: usize) void = null,
     /// Only works for canvas (althought technically it isn't required to)
     drawHandler: ?fn(ctx: Canvas.DrawContext, data: usize) void = null,
@@ -118,7 +118,7 @@ fn getEventUserData(peer: *c.GtkWidget) callconv(.Inline) *EventUserData {
 
 export fn gtkButtonPress(peer: *c.GtkWidget, event: *c.GdkEventButton, userdata: usize) void {
     const data = getEventUserData(peer);
-    if (data.buttonHandler) |handler| {
+    if (data.mouseButtonHandler) |handler| {
         const pressed = switch (event.type) {
             c.GdkEventType.GDK_BUTTON_PRESS => true,
             c.GdkEventType.GDK_BUTTON_RELEASE => false,
@@ -126,7 +126,7 @@ export fn gtkButtonPress(peer: *c.GtkWidget, event: *c.GdkEventButton, userdata:
             else => return
         };
 
-        handler(pressed, event.x, event.y, data.userdata);
+        handler(@intToEnum(MouseButton, event.button), pressed, event.x, event.y, data.userdata);
     }
 }
 
@@ -201,11 +201,16 @@ pub fn Events(comptime T: type) type {
         pub fn setCallback(self: *T, comptime eType: EventType, cb: anytype) callconv(.Inline) !void {
             const data = getEventUserData(self.peer);
             switch (eType) {
-                .Click  => data.clickHandler  = cb,
-                .Draw   => data.drawHandler   = cb,
-                .Button => data.buttonHandler = cb,
-                .Scroll => data.scrollHandler = cb
+                .Click       => data.clickHandler       = cb,
+                .Draw        => data.drawHandler        = cb,
+                .MouseButton => data.mouseButtonHandler = cb,
+                .Scroll      => data.scrollHandler      = cb,
             }
+        }
+
+        /// Requests a redraw
+        pub fn requestDraw(self: *T) !void {
+            c.gtk_widget_queue_draw(self.peer);
         }
 
     };
@@ -357,6 +362,7 @@ pub const Canvas = struct {
 
         pub const TextLayout = struct {
             _layout: *c.PangoLayout,
+            _context: *c.PangoContext,
             /// If null, no text wrapping is applied, otherwise the text is wrapping as if this was the maximum width.
             wrap: ?f64 = null,
 
@@ -368,9 +374,16 @@ pub const Canvas = struct {
                 c.pango_font_description_free(fontDescription);
             }
 
-            pub fn init(ctx: DrawContext) TextLayout {
+            pub fn deinit(self: *TextLayout) void {
+                c.g_object_unref(self._layout);
+                c.g_object_unref(self._context);
+            }
+
+            pub fn init() TextLayout {
+                const context = c.gdk_pango_context_get().?;
                 return TextLayout {
-                    ._layout = c.pango_cairo_create_layout(ctx.cr).?
+                    ._context = context,
+                    ._layout = c.pango_layout_new(context).?
                 };
             }
         };

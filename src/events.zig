@@ -2,11 +2,15 @@ const std = @import("std");
 const backend = @import("backend.zig");
 usingnamespace @import("internal.zig");
 
+pub const RedrawError = error {
+    MissingPeer
+};
+
 pub fn Events(comptime T: type) type {
     return struct {
         pub const Callback       = fn(widget: *T) anyerror!void;
         pub const DrawCallback   = fn(ctx: backend.Canvas.DrawContext, widget: *T) anyerror!void;
-        pub const ButtonCallback = fn(pressed: bool, x: f64, y: f64, widget: *T) anyerror!void;
+        pub const ButtonCallback = fn(button: backend.MouseButton, pressed: bool, x: f64, y: f64, widget: *T) anyerror!void;
         pub const ScrollCallback = fn(dx: f64, dy: f64, widget: *T) anyerror!void;
         pub const HandlerList    = std.ArrayList(Callback);
         const DrawHandlerList    = std.ArrayList(DrawCallback);
@@ -63,10 +67,10 @@ pub fn Events(comptime T: type) type {
             }
         }
 
-        fn buttonHandler(pressed: bool, x: f64, y: f64, data: usize) void {
+        fn buttonHandler(button: backend.MouseButton, pressed: bool, x: f64, y: f64, data: usize) void {
             const self = @intToPtr(*T, data);
             for (self.handlers.buttonHandlers.items) |func| {
-                func(pressed, x, y, self) catch |err| errorHandler(err);
+                func(button, pressed, x, y, self) catch |err| errorHandler(err);
             }
         }
 
@@ -79,10 +83,10 @@ pub fn Events(comptime T: type) type {
 
         pub fn show_events(self: *T) !void {
             self.peer.?.setUserData(self);
-            try self.peer.?.setCallback(.Click ,  clickHandler);
-            try self.peer.?.setCallback(.Draw  ,  drawHandler);
-            try self.peer.?.setCallback(.Button,  buttonHandler);
-            try self.peer.?.setCallback(.Scroll,  scrollHandler);
+            try self.peer.?.setCallback(.Click      , clickHandler);
+            try self.peer.?.setCallback(.Draw       , drawHandler);
+            try self.peer.?.setCallback(.MouseButton, buttonHandler);
+            try self.peer.?.setCallback(.Scroll     , scrollHandler);
         }
 
         pub fn addClickHandler(self: *T, handler: Callback) !void {
@@ -99,6 +103,14 @@ pub fn Events(comptime T: type) type {
 
         pub fn addScrollHandler(self: *T, handler: ScrollCallback) !void {
             try self.handlers.scrollHandlers.append(handler);
+        }
+
+        pub fn requestDraw(self: *T) !void {
+            if (self.peer) |*peer| {
+                try peer.requestDraw();
+            } else {
+                return RedrawError.MissingPeer;
+            }
         }
     };
 }
