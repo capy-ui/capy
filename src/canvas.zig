@@ -4,7 +4,7 @@ const backend = @import("backend.zig");
 pub const DrawContext = backend.Canvas.DrawContext;
 
 pub const Canvas_Impl = struct {
-    pub usingnamespace @import("events.zig").Events(Canvas_Impl);
+    pub usingnamespace @import("internal.zig").All(Canvas_Impl);
 
     peer: ?backend.Canvas = null,
     handlers: Canvas_Impl.Handlers = undefined,

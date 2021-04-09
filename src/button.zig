@@ -2,7 +2,7 @@ const std = @import("std");
 const backend = @import("backend.zig");
 
 pub const Button_Impl = struct {
-    pub usingnamespace @import("events.zig").Events(Button_Impl);
+    pub usingnamespace @import("internal.zig").All(Button_Impl);
 
     peer: ?backend.Button = null,
     handlers: Button_Impl.Handlers = undefined,
@@ -17,7 +17,7 @@ pub const Button_Impl = struct {
         button.setLabel(label);
         return button;
     }
-    
+
     pub fn show(self: *Button_Impl) !void {
         if (self.peer == null) {
             self.peer = try backend.Button.create();

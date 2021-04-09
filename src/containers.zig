@@ -3,6 +3,14 @@ const backend = @import("backend.zig");
 const Widget = @import("widget.zig").Widget;
 usingnamespace @import("internal.zig");
 
+pub const Layout = struct {
+
+    pub fn layout() void {
+        
+    }
+    
+};
+
 const Stack_Impl = struct {
     peer: backend.Stack,
     childrens: std.ArrayList(Widget),
@@ -27,7 +35,10 @@ const Stack_Impl = struct {
 };
 
 const Row_Impl = struct {
+    pub usingnamespace @import("internal.zig").All(Row_Impl);
+
     peer: ?backend.Row,
+    handlers: Row_Impl.Handlers = undefined,
     childrens: std.ArrayList(Widget),
     expand: bool,
 
@@ -43,9 +54,9 @@ const Row_Impl = struct {
         if (self.peer == null) {
             var peer = try backend.Row.create();
             peer.expand = self.expand;
-            for (self.childrens.items) |widget| {
-                // TODO: use comptime vtable to show widgets
-                peer.add(widget.peer, widget.container_expanded);
+            for (self.childrens.items) |*widget| {
+                try widget.show();
+                peer.add(widget.peer.?, widget.container_expanded);
             }
             self.peer = peer;
         }
@@ -64,7 +75,10 @@ const Row_Impl = struct {
 };
 
 const Column_Impl = struct {
+    pub usingnamespace @import("internal.zig").All(Column_Impl);
+
     peer: ?backend.Column,
+    handlers: Column_Impl.Handlers = undefined,
     childrens: std.ArrayList(Widget),
     expand: bool,
 
@@ -80,9 +94,9 @@ const Column_Impl = struct {
         if (self.peer == null) {
             var peer = try backend.Column.create();
             peer.expand = self.expand;
-            for (self.childrens.items) |widget| {
-                // TODO: use comptime vtable to show widgets
-                peer.add(widget.peer, widget.container_expanded);
+            for (self.childrens.items) |*widget| {
+                try widget.show();
+                peer.add(widget.peer.?, widget.container_expanded);
             }
             self.peer = peer;
         }
@@ -101,18 +115,22 @@ const Column_Impl = struct {
 };
 
 /// Create a generic Widget struct from the given component.
-fn genericWidgetFrom(component: anytype) !Widget {
-    const componentType = @TypeOf(component);
-    if (componentType == Widget) return component;
+fn genericWidgetFrom(component: anytype) anyerror!Widget {
+    const ComponentType = @TypeOf(component);
+    if (ComponentType == Widget) return component;
 
-    var cp = if (comptime std.meta.trait.isSingleItemPtr(componentType)) component else blk: {
-        var copy = try lasting_allocator.create(componentType);
+    var cp = if (comptime std.meta.trait.isSingleItemPtr(ComponentType)) component else blk: {
+        var copy = try lasting_allocator.create(ComponentType);
         copy.* = component;
         break :blk copy;
     };
-    try cp.show();
 
-    return Widget { .data = @ptrToInt(cp), .peer = cp.peer.?.peer };
+    const DereferencedType = 
+        if (comptime std.meta.trait.isSingleItemPtr(ComponentType))
+            @TypeOf(component.*)
+        else
+            @TypeOf(component);
+    return Widget { .data = @ptrToInt(cp), .showFn = DereferencedType.showWidget };
 }
 
 fn isErrorUnion(comptime T: type) bool {
@@ -125,7 +143,6 @@ fn isErrorUnion(comptime T: type) bool {
 fn abstractContainerConstructor(comptime T: type, childrens: anytype, config: anytype) anyerror!T {
     const fields = std.meta.fields(@TypeOf(childrens));
     var list = std.ArrayList(Widget).init(lasting_allocator);
-
     inline for (fields) |field| {
         const element = @field(childrens, field.name);
         const child = 
@@ -133,6 +150,7 @@ fn abstractContainerConstructor(comptime T: type, childrens: anytype, config: an
                 try element
             else
                 element;
+        
         const widget = try genericWidgetFrom(child);
         try list.append(widget);
     }

@@ -2,7 +2,7 @@ const std = @import("std");
 const backend = @import("backend.zig");
 
 pub const TextArea_Impl = struct {
-    pub usingnamespace @import("events.zig").Events(TextArea_Impl);
+    pub usingnamespace @import("internal.zig").All(TextArea_Impl);
 
     peer: ?backend.TextArea = null,
     handlers: Handlers = undefined,
@@ -40,7 +40,7 @@ pub const TextArea_Impl = struct {
 };
 
 pub const TextField_Impl = struct {
-    pub usingnamespace @import("events.zig").Events(TextField_Impl);
+    pub usingnamespace @import("internal.zig").All(TextField_Impl);
 
     peer: ?backend.TextField = null,
     handlers: TextField_Impl.Handlers = undefined,

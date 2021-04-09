@@ -2,7 +2,7 @@ const std = @import("std");
 const backend = @import("backend.zig");
 
 pub const Label_Impl = struct {
-    pub usingnamespace @import("events.zig").Events(Label_Impl);
+    pub usingnamespace @import("internal.zig").All(Label_Impl);
 
     peer: ?backend.Label = null,
     handlers: Label_Impl.Handlers = undefined,

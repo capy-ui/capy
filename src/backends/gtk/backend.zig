@@ -339,7 +339,7 @@ pub const TextField = struct {
     }
 
     pub fn getText(self: *TextField) [:0]const u8 {
-        const buffer = c.gtk_entry_get_buffer(@ptrCast(*c.GtkTextView, self.peer));
+        const buffer = c.gtk_entry_get_buffer(@ptrCast(*c.GtkEntry, self.peer));
         const text = c.gtk_entry_buffer_get_text(buffer);
         return std.mem.spanZ(text);
     }
@@ -369,7 +369,7 @@ pub const Canvas = struct {
             pub fn setFont(self: *TextLayout, font: Font) void {
                 const fontDescription = c.pango_font_description_from_string(font.face) orelse unreachable;
                 c.pango_font_description_set_size(fontDescription,
-                    @floatToInt(c_int, @floor(font.size * c.PANGO_SCALE)));
+                    @floatToInt(c_int, @floor(font.size * @as(f64, c.PANGO_SCALE))));
                 c.pango_layout_set_font_description(self._layout, fontDescription);
                 c.pango_font_description_free(fontDescription);
             }
@@ -416,7 +416,7 @@ pub const Canvas = struct {
             const dy = @intToFloat(f64, inkRect.y);
             c.cairo_move_to(self.cr, x + dx, y + dy);
             c.pango_layout_set_width(pangoLayout,
-                if (layout.wrap) |w| @floatToInt(c_int, @floor(w*c.PANGO_SCALE))
+                if (layout.wrap) |w| @floatToInt(c_int, @floor(w*@as(f64, c.PANGO_SCALE)))
                 else -1
             );
             c.pango_layout_set_text(pangoLayout, str.ptr, @intCast(c_int, str.len));
@@ -454,6 +454,8 @@ pub const Canvas = struct {
 pub const Stack = struct {
     peer: *c.GtkWidget,
 
+    pub usingnamespace Events(Canvas);
+
     pub fn create() GtkError!Stack {
         const layout = c.gtk_overlay_new() orelse return GtkError.UnknownError;
         c.gtk_widget_show(layout);
@@ -470,6 +472,8 @@ pub const Stack = struct {
 pub const Row = struct {
     peer: *c.GtkWidget,
     expand: bool = false,
+
+    pub usingnamespace Events(Canvas);
 
     pub fn create() GtkError!Row {
         const layout = c.gtk_box_new(c.GtkOrientation.GTK_ORIENTATION_HORIZONTAL, 0) orelse return GtkError.UnknownError;
@@ -488,6 +492,8 @@ pub const Row = struct {
 pub const Column = struct {
     peer: *c.GtkWidget,
     expand: bool = false,
+
+    pub usingnamespace Events(Canvas);
 
     pub fn create() GtkError!Column {
         const layout = c.gtk_box_new(c.GtkOrientation.GTK_ORIENTATION_VERTICAL, 0) orelse return GtkError.UnknownError;

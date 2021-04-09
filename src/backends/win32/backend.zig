@@ -212,7 +212,7 @@ pub const Button = struct {
         }
     }
 
-    pub fn setLabel(self: *Button, label: [:0]const u8) void {
+    pub fn setLabel(self: *Button, label: []const u8) void {
         const allocator = std.heap.page_allocator;
         const wide = std.unicode.utf8ToUtf16LeWithNull(allocator, label) catch return; // invalid utf8 or not enough memory
         defer allocator.free(wide);
@@ -221,14 +221,14 @@ pub const Button = struct {
         }
     }
 
-    pub fn getLabel(self: *Button) [:0]const u8 {
+    pub fn getLabel(self: *Button) []const u8 {
         const allocator = &self.arena.allocator;
         const len = GetWindowTextLengthW(self.peer);
         var buf = allocator.allocSentinel(u16, @intCast(usize, len), 0) catch unreachable; // TODO return error
         defer allocator.free(buf);
         const realLen = @intCast(usize, GetWindowTextW(self.peer, buf.ptr, len + 1));
         const utf16Slice = buf[0..realLen];
-        const text = std.unicode.utf16leToUtf8AllocZ(allocator, utf16Slice) catch unreachable; // TODO return error
+        const text = std.unicode.utf16leToUtf8Alloc(allocator, utf16Slice) catch unreachable; // TODO return error
         return text;
     }
 
