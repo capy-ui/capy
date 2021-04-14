@@ -4,6 +4,7 @@ pub usingnamespace @import("label.zig");
 pub usingnamespace @import("text.zig");
 pub usingnamespace @import("canvas.zig");
 pub usingnamespace @import("containers.zig");
+pub usingnamespace @import("data.zig");
 pub const zgtInternal = @import("internal.zig");
 
 // TODO: widget types with comptime reflection (some sort of vtable)

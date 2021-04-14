@@ -1,5 +1,6 @@
 const std = @import("std");
 const backend = @import("backend.zig");
+usingnamespace @import("data.zig");
 
 pub const TextArea_Impl = struct {
     pub usingnamespace @import("internal.zig").All(TextArea_Impl);
@@ -44,36 +45,46 @@ pub const TextField_Impl = struct {
 
     peer: ?backend.TextField = null,
     handlers: TextField_Impl.Handlers = undefined,
-    _text: []const u8,
+    text: StringDataWrapper,
 
     pub fn init(text: []const u8) TextField_Impl {
         return TextField_Impl.init_events(TextField_Impl {
-            ._text = text
+            .text = StringDataWrapper.of(text)
         });
     }
 
+    fn textChanged(newValue: []const u8, userdata: usize) void {
+        const peer = @intToPtr(*backend.TextField, userdata);
+        peer.setText(newValue);
+    }
+
+    // TODO : handle text changed event from peer and set self.text
     pub fn show(self: *TextField_Impl) !void {
         if (self.peer == null) {
             var peer = try backend.TextField.create();
-            peer.setText(self._text);
+            peer.setText(self.text.get());
             self.peer = peer;
+
+            self.text.userdata = @ptrToInt(&self.peer);
+            self.text.onChangeFn = textChanged;
+            std.log.info("set change fn", .{});
         }
     }
 
     pub fn setText(self: *TextField_Impl, text: []const u8) void {
-        if (self.peer) |*peer| {
-            peer.setText(text);
-        } else {
-            self._text = text;
-        }
+        self.text.set(text);
     }
 
     pub fn getText(self: *TextField_Impl) []const u8 {
-        if (self.peer) |*peer| {
-            return peer.getText();
-        } else {
-            return self._text;
-        }
+        return self.text.get();
+    }
+
+    pub fn setTextWrapper(self: *TextField_Impl, text: StringDataWrapper) TextField_Impl {
+        const oldUserdata = self.text.userdata;
+        self.text = text;
+        self.text.userdata = oldUserdata;
+        self.text.onChangeFn = textChanged;
+        return self.*;
     }
 };
 

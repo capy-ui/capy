@@ -30,7 +30,7 @@ pub fn build(b: *std.build.Builder) !void {
     const target = b.standardTargetOptions(.{});
     const mode = b.standardReleaseOptions();
 
-    const exe = b.addExecutable("example", "examples/entry.zig");
+    const exe = b.addExecutable("example", "examples/7gui/counter.zig");
     exe.setTarget(target);
     exe.setBuildMode(mode);
     try install(exe, ".");
