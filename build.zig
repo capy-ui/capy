@@ -11,6 +11,7 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
         .windows => {
             step.enable_wine = true;
             step.subsystem = .Windows;
+            step.linkSystemLibrary("comctl32");
         },
         else => {
             return error.UnsupportedOs;

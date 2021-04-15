@@ -33,3 +33,12 @@ pub extern "user32" fn GetParent(hWnd: HWND) callconv(WINAPI) HWND;
 pub extern "user32" fn GetWindowRect(hWnd: HWND, lpRect: LPRECT) callconv(WINAPI) c_int;
 pub extern "user32" fn SetWindowPos(hWnd: HWND, hWndInsertAfter: HWND, X: c_int, Y: c_int, cx: c_int, cy: c_int, uFlags: c_uint) callconv(WINAPI) c_int;
 pub extern "user32" fn MoveWindow(hWnd: HWND, X: c_int, Y: c_int, nWidth: c_int, nHeight: c_int, repaint: c_int) callconv(WINAPI) c_int;
+
+// Common Controls
+pub extern "comctl32" fn InitCommonControlsEx(picce: [*c]const INITCOMMONCONTROLSEX) callconv(WINAPI) c_int;
+pub const INITCOMMONCONTROLSEX = extern struct {
+    dwSize: c_uint,
+    dwICC: c_uint
+};
+
+pub const ICC_STANDARD_CLASSES = 0x00004000;

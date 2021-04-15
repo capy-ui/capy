@@ -22,6 +22,17 @@ pub const public = struct {
             GetModuleHandleW(null).?));
         const lpCmdLine = GetCommandLineW();
 
+        const init = INITCOMMONCONTROLSEX {
+            .dwSize = @sizeOf(INITCOMMONCONTROLSEX),
+            .dwICC = ICC_STANDARD_CLASSES
+        };
+        const code = InitCommonControlsEx(&init);
+        if (code == 0) {
+            std.log.scoped(.win32).warn("Failed to initialize Common Controls.", .{});
+        } else {
+            std.log.scoped(.win32).info("Success with {} !", .{code});
+        }
+
         try @import("root").run();
     }
 
