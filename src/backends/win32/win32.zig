@@ -1,3 +1,5 @@
+const std = @import("std");
+
 pub usingnamespace std.os.windows.user32;
 pub usingnamespace std.os.windows.kernel32;
 
