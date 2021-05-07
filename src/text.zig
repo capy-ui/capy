@@ -59,9 +59,19 @@ pub const TextField_Impl = struct {
         self.text.updateBinders();
     }
 
-    fn textChanged(newValue: []const u8, userdata: usize) void {
+    /// When the text is changed in the StringDataWrapper
+    fn wrapperTextChanged(newValue: []const u8, userdata: usize) void {
         const peer = @intToPtr(*backend.TextField, userdata);
         peer.setText(newValue);
+    }
+
+    fn textChanged(userdata: usize) void {
+        const self = @intToPtr(*TextField_Impl, userdata);
+        const text = self.peer.?.getText();
+
+        self.text.onChangeFn = null; // temporary solution
+        self.text.set(text);
+        self.text.onChangeFn = wrapperTextChanged;
     }
 
     // TODO : handle text changed event from peer and set self.text
@@ -70,8 +80,10 @@ pub const TextField_Impl = struct {
             var peer = try backend.TextField.create();
             peer.setText(self.text.get());
             self.peer = peer;
+            try self.show_events();
+            try peer.setCallback(.TextChanged, textChanged);
             self.text.userdata = @ptrToInt(&self.peer);
-            self.text.onChangeFn = textChanged;
+            self.text.onChangeFn = wrapperTextChanged;
             std.log.info("set change fn", .{});
         }
     }

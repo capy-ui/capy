@@ -13,6 +13,10 @@ pub const Canvas_Impl = struct {
         return Canvas_Impl.init_events(Canvas_Impl {});
     }
 
+    /// Internal function used at initialization.
+    /// It is used to move some pointers so things do not break.
+    pub fn pointerMoved(self: *Canvas_Impl) void {}
+
     pub fn show(self: *Canvas_Impl) !void {
         if (self.peer == null) {
             self.peer = try backend.Canvas.create();
