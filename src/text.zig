@@ -53,6 +53,12 @@ pub const TextField_Impl = struct {
         });
     }
 
+    /// Internal function used at initialization.
+    /// It is used to move some pointers so things do not break.
+    pub fn pointerMoved(self: *TextField_Impl) void {
+        self.text.updateBinders();
+    }
+
     fn textChanged(newValue: []const u8, userdata: usize) void {
         const peer = @intToPtr(*backend.TextField, userdata);
         peer.setText(newValue);
@@ -64,7 +70,6 @@ pub const TextField_Impl = struct {
             var peer = try backend.TextField.create();
             peer.setText(self.text.get());
             self.peer = peer;
-
             self.text.userdata = @ptrToInt(&self.peer);
             self.text.onChangeFn = textChanged;
             std.log.info("set change fn", .{});
@@ -79,11 +84,9 @@ pub const TextField_Impl = struct {
         return self.text.get();
     }
 
-    pub fn setTextWrapper(self: *TextField_Impl, text: StringDataWrapper) TextField_Impl {
-        const oldUserdata = self.text.userdata;
-        self.text = text;
-        self.text.userdata = oldUserdata;
-        self.text.onChangeFn = textChanged;
+    /// Bind the 'text' property to argument.
+    pub fn bindText(self: *TextField_Impl, other: *StringDataWrapper) TextField_Impl {
+        self.text.bind(other);
         return self.*;
     }
 };

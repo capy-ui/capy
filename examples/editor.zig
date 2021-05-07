@@ -17,16 +17,16 @@ pub fn run() !void {
 
     area = TextArea(.{ .text = text });
     try window.set(
-        try Column(.{}, .{
-            try Row(.{}, .{
+        Column(.{}, .{
+            Row(.{}, .{
                 Button(.{ .label = "Save" }),
                 Button(.{ .label = "Run"  })
             }),
-            try Expanded(&area)
+            Expanded(&area)
         })
     );
 
-    try window.resize(800, 600);
+    window.resize(800, 600);
     window.show();
     window.run();
 }

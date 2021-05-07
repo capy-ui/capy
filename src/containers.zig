@@ -50,6 +50,10 @@ const Row_Impl = struct {
         };
     }
 
+    /// Internal function used at initialization.
+    /// It is used to move some pointers so things do not break.
+    pub fn pointerMoved(self: *Row_Impl) void {}
+
     pub fn show(self: *Row_Impl) !void {
         if (self.peer == null) {
             var peer = try backend.Row.create();
@@ -90,6 +94,10 @@ const Column_Impl = struct {
         };
     }
 
+    /// Internal function used at initialization.
+    /// It is used to move some pointers so things do not break.
+    pub fn pointerMoved(self: *Column_Impl) void {}
+
     pub fn show(self: *Column_Impl) !void {
         if (self.peer == null) {
             var peer = try backend.Column.create();
@@ -124,6 +132,10 @@ fn genericWidgetFrom(component: anytype) anyerror!Widget {
         copy.* = component;
         break :blk copy;
     };
+
+    // used to update things like data wrappers, this happens once, at initialization,
+    // after that the component isn't moved in memory anymore
+    cp.pointerMoved();
 
     const DereferencedType = 
         if (comptime std.meta.trait.isSingleItemPtr(ComponentType))
