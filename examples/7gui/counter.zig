@@ -4,7 +4,7 @@ const std = @import("std");
 var label = StringDataWrapper.of("0");
 
 fn count(button: *Button_Impl) !void {
-    var num = try std.fmt.parseInt(u64, label.get(), 10);
+    var num = try std.fmt.parseInt(i64, label.get(), 10);
     // TODO: fix memory leak
     label.set(try std.fmt.allocPrintZ(zgtInternal.lasting_allocator, "{d}", .{num + 1}));
 }

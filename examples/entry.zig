@@ -4,7 +4,7 @@ const std = @import("std");
 var gpa = std.heap.GeneralPurposeAllocator(.{}) {};
 pub const zgtAllocator = &gpa.allocator;
 
-fn draw(ctx: DrawContext, widget: *Canvas_Impl) !void {
+fn draw(widget: *Canvas_Impl, ctx: DrawContext) !void {
     std.log.info("drawing widget", .{});
     ctx.setColor(0, 0, 0);
     ctx.rectangle(120, 320, 50, 50);
@@ -19,7 +19,7 @@ fn draw(ctx: DrawContext, widget: *Canvas_Impl) !void {
     ctx.fill();
 }
 
-fn scroll(dx: f64, dy: f64, widget: *Canvas_Impl) !void {
+fn scroll(widget: *Canvas_Impl, dx: f64, dy: f64) !void {
     std.log.info("Scroll by {d}, {d}", .{dx, dy});
     try widget.requestDraw();
 }

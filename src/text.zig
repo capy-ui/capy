@@ -42,6 +42,7 @@ pub const TextArea_Impl = struct {
 
 pub const TextField_Impl = struct {
     pub usingnamespace @import("internal.zig").All(TextField_Impl);
+    pub usingnamespace @import("internal.zig").Property(TextField_Impl, "text");
 
     peer: ?backend.TextField = null,
     handlers: TextField_Impl.Handlers = undefined,
@@ -74,7 +75,6 @@ pub const TextField_Impl = struct {
         self.text.onChangeFn = wrapperTextChanged;
     }
 
-    // TODO : handle text changed event from peer and set self.text
     pub fn show(self: *TextField_Impl) !void {
         if (self.peer == null) {
             var peer = try backend.TextField.create();
@@ -84,7 +84,6 @@ pub const TextField_Impl = struct {
             try peer.setCallback(.TextChanged, textChanged);
             self.text.userdata = @ptrToInt(&self.peer);
             self.text.onChangeFn = wrapperTextChanged;
-            std.log.info("set change fn", .{});
         }
     }
 
@@ -99,6 +98,7 @@ pub const TextField_Impl = struct {
     /// Bind the 'text' property to argument.
     pub fn bindText(self: *TextField_Impl, other: *StringDataWrapper) TextField_Impl {
         self.text.bind(other);
+        self.text.set(other.get());
         return self.*;
     }
 };

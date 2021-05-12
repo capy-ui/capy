@@ -373,6 +373,11 @@ pub const Canvas = struct {
             size: f64,
         };
 
+        pub const TextSize = struct {
+            width: f64,
+            height: f64
+        };
+
         pub const TextLayout = struct {
             _layout: *c.PangoLayout,
             _context: *c.PangoContext,
@@ -390,6 +395,18 @@ pub const Canvas = struct {
             pub fn deinit(self: *TextLayout) void {
                 c.g_object_unref(self._layout);
                 c.g_object_unref(self._context);
+            }
+
+            pub fn getTextSize(self: *TextLayout, str: []const u8) TextSize {
+                var width: c_int = undefined;
+                var height: c_int = undefined;
+                c.pango_layout_set_text(self._layout, str.ptr, @intCast(c_int, str.len));
+                c.pango_layout_get_pixel_size(self._layout, &width, &height);
+
+                return TextSize {
+                    .width = @intToFloat(f64, width),
+                    .height = @intToFloat(f64, height)
+                };
             }
 
             pub fn init() TextLayout {
@@ -433,6 +450,7 @@ pub const Canvas = struct {
                 else -1
             );
             c.pango_layout_set_text(pangoLayout, str.ptr, @intCast(c_int, str.len));
+            c.pango_layout_set_single_paragraph_mode(pangoLayout, 1); // used for coherence with other backends
             c.pango_cairo_update_layout(self.cr, pangoLayout);
             c.pango_cairo_show_layout(self.cr, pangoLayout);
         }
