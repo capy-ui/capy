@@ -11,6 +11,11 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
         .windows => {
             step.enable_wine = true;
             step.subsystem = .Windows;
+            step.linkSystemLibrary("comctl32");
+            switch (step.target.toTarget().cpu.arch) {
+                .x86_64 => step.addObjectFile("src/backends/win32/res/x86_64.o"),
+                else => return error.UnsupportedArch
+            }
         },
         else => {
             return error.UnsupportedOs;
@@ -30,7 +35,7 @@ pub fn build(b: *std.build.Builder) !void {
     const target = b.standardTargetOptions(.{});
     const mode = b.standardReleaseOptions();
 
-    const exe = b.addExecutable("example", "examples/7gui/counter.zig");
+    const exe = b.addExecutable("example", "examples/calculator.zig");
     exe.setTarget(target);
     exe.setBuildMode(mode);
     try install(exe, ".");

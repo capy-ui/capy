@@ -22,6 +22,17 @@ pub const public = struct {
             GetModuleHandleW(null).?));
         const lpCmdLine = GetCommandLineW();
 
+        const init = INITCOMMONCONTROLSEX {
+            .dwSize = @sizeOf(INITCOMMONCONTROLSEX),
+            .dwICC = ICC_STANDARD_CLASSES
+        };
+        const code = InitCommonControlsEx(&init);
+        if (code == 0) {
+            std.log.scoped(.win32).warn("Failed to initialize Common Controls.", .{});
+        } else {
+            std.log.scoped(.win32).info("Success with {} !", .{code});
+        }
+
         try @import("root").run();
     }
 
@@ -141,6 +152,10 @@ pub const Window = struct {
         _ = UpdateWindow(hwnd);
     }
 
+    pub fn resize(self: *Window, width: c_int, height: c_int) void {
+        // TODO
+    }
+
     pub fn show(self: *Window) void {
         _ = showWindow(self.hwnd, SW_SHOWDEFAULT);
         _ = UpdateWindow(self.hwnd);
@@ -154,7 +169,23 @@ pub const Window = struct {
 };
 
 pub const EventType = enum {
-    Click
+    Click,
+    Draw,
+    MouseButton,
+    Scroll
+};
+
+pub const MouseButton = enum {
+    Left,
+    Middle,
+    Right
+};
+
+pub const Canvas = struct {
+    peer: HWND,
+    data: usize = 0,
+
+    pub const DrawContext = struct {};
 };
 
 pub const Button = struct {
@@ -199,20 +230,24 @@ pub const Button = struct {
         };
     }
 
-    pub fn setCallback(self: *Button, eType: EventType, cb: fn(data: usize) void) !void {
-        switch (eType) {
-            .Click => {
-                _ = try setWindowLongPtrA(self.peer, GWL_USERDATA, @bitCast(isize, @ptrToInt(self)));
-                if (self.oldWndProc == null) {
-                    self.oldWndProc = @intToPtr(WNDPROC, @bitCast(usize,
-                        try setWindowLongPtrA(self.peer, GWL_WNDPROC, @bitCast(isize, @ptrToInt(process)))));
-                }
-                self.clickHandler = cb;
-            }
-        }
+    pub fn setCallback(self: *Button, eType: EventType, cb: anytype) !void {
+        // switch (eType) {
+        //     .Click => {
+        //         _ = try setWindowLongPtrA(self.peer, GWL_USERDATA, @bitCast(isize, @ptrToInt(self)));
+        //         if (self.oldWndProc == null) {
+        //             self.oldWndProc = @intToPtr(WNDPROC, @bitCast(usize,
+        //                 try setWindowLongPtrA(self.peer, GWL_WNDPROC, @bitCast(isize, @ptrToInt(process)))));
+        //         }
+        //         self.clickHandler = cb;
+        //     }
+        // }
     }
 
-    pub fn setLabel(self: *Button, label: []const u8) void {
+    pub fn setUserData(self: *Button, t: anytype) void {
+        // TODO
+    }
+
+    pub fn setLabel(self: *Button, label: [:0]const u8) void {
         const allocator = std.heap.page_allocator;
         const wide = std.unicode.utf8ToUtf16LeWithNull(allocator, label) catch return; // invalid utf8 or not enough memory
         defer allocator.free(wide);
@@ -221,14 +256,14 @@ pub const Button = struct {
         }
     }
 
-    pub fn getLabel(self: *Button) []const u8 {
+    pub fn getLabel(self: *Button) [:0]const u8 {
         const allocator = &self.arena.allocator;
         const len = GetWindowTextLengthW(self.peer);
         var buf = allocator.allocSentinel(u16, @intCast(usize, len), 0) catch unreachable; // TODO return error
         defer allocator.free(buf);
         const realLen = @intCast(usize, GetWindowTextW(self.peer, buf.ptr, len + 1));
         const utf16Slice = buf[0..realLen];
-        const text = std.unicode.utf16leToUtf8Alloc(allocator, utf16Slice) catch unreachable; // TODO return error
+        const text = std.unicode.utf16leToUtf8AllocZ(allocator, utf16Slice) catch unreachable; // TODO return error
         return text;
     }
 
@@ -263,11 +298,7 @@ pub const Label = struct {
     }
 
     pub fn setCallback(self: *Label, eType: EventType, cb: fn(data: usize) void) !void {
-        switch (eType) {
-            .Click => {
 
-            }
-        }
     }
 
     pub fn setAlignment(self: *Label, alignment: f32) void {
@@ -300,6 +331,7 @@ pub const Label = struct {
 
 pub const Row = struct {
     peer: HWND,
+    expand: bool = true, // TODO
 
     var classRegistered = false;
 
@@ -395,7 +427,7 @@ pub const Row = struct {
         };
     }
 
-    pub fn add(self: *Row, peer: PeerType) void {
+    pub fn add(self: *Row, peer: PeerType, b: bool) void {
         _ = SetParent(peer, self.peer);
         _ = showWindow(peer, SW_SHOWDEFAULT);
         _ = UpdateWindow(peer);
@@ -411,6 +443,7 @@ const ContainerStruct = struct {
 
 pub const Column = struct {
     peer: HWND,
+    expand: bool = true, // TODO
 
     var classRegistered = false;
 
@@ -506,7 +539,7 @@ pub const Column = struct {
         };
     }
 
-    pub fn add(self: *Column, peer: PeerType) void {
+    pub fn add(self: *Column, peer: PeerType, b: bool) void {
         _ = SetParent(peer, self.peer);
         _ = showWindow(peer, SW_SHOWDEFAULT);
         _ = UpdateWindow(peer);
