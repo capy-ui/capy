@@ -1,4 +1,5 @@
 const root = @import("root");
+const builtin = @import("builtin");
 const std = @import("std");
 const backend = @import("backend.zig");
 const style = @import("style.zig");
@@ -25,8 +26,6 @@ pub fn All(comptime T: type) type {
     };
 }
 
-
-
 // Styling
 pub fn Styling(comptime T: type) type {
     return struct {
@@ -46,6 +45,13 @@ pub fn Widgeting(comptime T: type) type {
     };
 }
 
+pub fn Property(comptime T: type, comptime name: []const u8) type {
+    // Depends on #6709
+    return struct {
+
+    };
+}
+
 // Events
 pub const RedrawError = error {
     MissingPeer
@@ -54,9 +60,9 @@ pub const RedrawError = error {
 pub fn Events(comptime T: type) type {
     return struct {
         pub const Callback       = fn(widget: *T) anyerror!void;
-        pub const DrawCallback   = fn(ctx: backend.Canvas.DrawContext, widget: *T) anyerror!void;
-        pub const ButtonCallback = fn(button: backend.MouseButton, pressed: bool, x: f64, y: f64, widget: *T) anyerror!void;
-        pub const ScrollCallback = fn(dx: f64, dy: f64, widget: *T) anyerror!void;
+        pub const DrawCallback   = fn(widget: *T, ctx: backend.Canvas.DrawContext) anyerror!void;
+        pub const ButtonCallback = fn(widget: *T, button: backend.MouseButton, pressed: bool, x: f64, y: f64) anyerror!void;
+        pub const ScrollCallback = fn(widget: *T, dx: f64, dy: f64) anyerror!void;
         pub const HandlerList    = std.ArrayList(Callback);
         const DrawHandlerList    = std.ArrayList(DrawCallback);
         const ButtonHandlerList  = std.ArrayList(ButtonCallback);
@@ -109,21 +115,21 @@ pub fn Events(comptime T: type) type {
         fn drawHandler(ctx: backend.Canvas.DrawContext, data: usize) void {
             const self = @intToPtr(*T, data);
             for (self.handlers.drawHandlers.items) |func| {
-                func(ctx, self) catch |err| errorHandler(err);
+                func(self, ctx) catch |err| errorHandler(err);
             }
         }
 
         fn buttonHandler(button: backend.MouseButton, pressed: bool, x: f64, y: f64, data: usize) void {
             const self = @intToPtr(*T, data);
             for (self.handlers.buttonHandlers.items) |func| {
-                func(button, pressed, x, y, self) catch |err| errorHandler(err);
+                func(self, button, pressed, x, y) catch |err| errorHandler(err);
             }
         }
 
         fn scrollHandler(dx: f64, dy: f64, data: usize) void {
             const self = @intToPtr(*T, data);
             for (self.handlers.scrollHandlers.items) |func| {
-                func(dx, dy, self) catch |err| errorHandler(err);
+                func(self, dx, dy) catch |err| errorHandler(err);
             }
         }
 

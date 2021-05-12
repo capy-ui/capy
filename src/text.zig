@@ -1,5 +1,6 @@
 const std = @import("std");
 const backend = @import("backend.zig");
+usingnamespace @import("data.zig");
 
 pub const TextArea_Impl = struct {
     pub usingnamespace @import("internal.zig").All(TextArea_Impl);
@@ -41,39 +42,64 @@ pub const TextArea_Impl = struct {
 
 pub const TextField_Impl = struct {
     pub usingnamespace @import("internal.zig").All(TextField_Impl);
+    pub usingnamespace @import("internal.zig").Property(TextField_Impl, "text");
 
     peer: ?backend.TextField = null,
     handlers: TextField_Impl.Handlers = undefined,
-    _text: []const u8,
+    text: StringDataWrapper,
 
     pub fn init(text: []const u8) TextField_Impl {
         return TextField_Impl.init_events(TextField_Impl {
-            ._text = text
+            .text = StringDataWrapper.of(text)
         });
+    }
+
+    /// Internal function used at initialization.
+    /// It is used to move some pointers so things do not break.
+    pub fn pointerMoved(self: *TextField_Impl) void {
+        self.text.updateBinders();
+    }
+
+    /// When the text is changed in the StringDataWrapper
+    fn wrapperTextChanged(newValue: []const u8, userdata: usize) void {
+        const peer = @intToPtr(*backend.TextField, userdata);
+        peer.setText(newValue);
+    }
+
+    fn textChanged(userdata: usize) void {
+        const self = @intToPtr(*TextField_Impl, userdata);
+        const text = self.peer.?.getText();
+
+        self.text.onChangeFn = null; // temporary solution
+        self.text.set(text);
+        self.text.onChangeFn = wrapperTextChanged;
     }
 
     pub fn show(self: *TextField_Impl) !void {
         if (self.peer == null) {
             var peer = try backend.TextField.create();
-            peer.setText(self._text);
+            peer.setText(self.text.get());
             self.peer = peer;
+            try self.show_events();
+            try peer.setCallback(.TextChanged, textChanged);
+            self.text.userdata = @ptrToInt(&self.peer);
+            self.text.onChangeFn = wrapperTextChanged;
         }
     }
 
     pub fn setText(self: *TextField_Impl, text: []const u8) void {
-        if (self.peer) |*peer| {
-            peer.setText(text);
-        } else {
-            self._text = text;
-        }
+        self.text.set(text);
     }
 
     pub fn getText(self: *TextField_Impl) []const u8 {
-        if (self.peer) |*peer| {
-            return peer.getText();
-        } else {
-            return self._text;
-        }
+        return self.text.get();
+    }
+
+    /// Bind the 'text' property to argument.
+    pub fn bindText(self: *TextField_Impl, other: *StringDataWrapper) TextField_Impl {
+        self.text.bind(other);
+        self.text.set(other.get());
+        return self.*;
     }
 };
 

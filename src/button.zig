@@ -18,6 +18,10 @@ pub const Button_Impl = struct {
         return button;
     }
 
+    /// Internal function used at initialization.
+    /// It is used to move some pointers so things do not break.
+    pub fn pointerMoved(self: *Button_Impl) void {}
+
     pub fn show(self: *Button_Impl) !void {
         if (self.peer == null) {
             self.peer = try backend.Button.create();

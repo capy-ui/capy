@@ -89,7 +89,8 @@ pub const EventType = enum {
     Click,
     Draw,
     MouseButton,
-    Scroll
+    Scroll,
+    TextChanged
 };
 
 pub const MouseButton = enum(c_uint) {
@@ -107,6 +108,7 @@ const EventUserData = struct {
     scrollHandler: ?fn(dx: f64, dy: f64, data: usize) void = null,
     /// Only works for canvas (althought technically it isn't required to)
     drawHandler: ?fn(ctx: Canvas.DrawContext, data: usize) void = null,
+    changedTextHandler: ?fn(data: usize) void = null,
     userdata: usize = 0
 };
 
@@ -205,6 +207,7 @@ pub fn Events(comptime T: type) type {
                 .Draw        => data.drawHandler        = cb,
                 .MouseButton => data.mouseButtonHandler = cb,
                 .Scroll      => data.scrollHandler      = cb,
+                .TextChanged => data.changedTextHandler = cb,
             }
         }
 
@@ -324,10 +327,19 @@ pub const TextField = struct {
 
     pub usingnamespace Events(TextField);
 
+    export fn gtkTextChanged(peer: *c.GtkWidget, userdata: usize) void {
+        const data = getEventUserData(peer);
+        if (data.changedTextHandler) |handler| {
+            handler(data.userdata);
+        }
+    }
+
     pub fn create() GtkError!TextField {
         const textField = c.gtk_entry_new() orelse return GtkError.UnknownError;
         c.gtk_widget_show(textField);
         try setupEvents(textField);
+        _ = c.g_signal_connect_data(textField, "changed", @ptrCast(c.GCallback, gtkTextChanged),
+                null, @as(c.GClosureNotify, null), c.GConnectFlags.G_CONNECT_AFTER);
         return TextField {
             .peer = textField
         };
@@ -341,7 +353,8 @@ pub const TextField = struct {
     pub fn getText(self: *TextField) [:0]const u8 {
         const buffer = c.gtk_entry_get_buffer(@ptrCast(*c.GtkEntry, self.peer));
         const text = c.gtk_entry_buffer_get_text(buffer);
-        return std.mem.spanZ(text);
+        const length = c.gtk_entry_buffer_get_length(buffer);
+        return text[0..length :0];
     }
 
 };
@@ -358,6 +371,11 @@ pub const Canvas = struct {
         pub const Font = struct {
             face: [:0]const u8,
             size: f64,
+        };
+
+        pub const TextSize = struct {
+            width: f64,
+            height: f64
         };
 
         pub const TextLayout = struct {
@@ -377,6 +395,18 @@ pub const Canvas = struct {
             pub fn deinit(self: *TextLayout) void {
                 c.g_object_unref(self._layout);
                 c.g_object_unref(self._context);
+            }
+
+            pub fn getTextSize(self: *TextLayout, str: []const u8) TextSize {
+                var width: c_int = undefined;
+                var height: c_int = undefined;
+                c.pango_layout_set_text(self._layout, str.ptr, @intCast(c_int, str.len));
+                c.pango_layout_get_pixel_size(self._layout, &width, &height);
+
+                return TextSize {
+                    .width = @intToFloat(f64, width),
+                    .height = @intToFloat(f64, height)
+                };
             }
 
             pub fn init() TextLayout {
@@ -420,6 +450,7 @@ pub const Canvas = struct {
                 else -1
             );
             c.pango_layout_set_text(pangoLayout, str.ptr, @intCast(c_int, str.len));
+            c.pango_layout_set_single_paragraph_mode(pangoLayout, 1); // used for coherence with other backends
             c.pango_cairo_update_layout(self.cr, pangoLayout);
             c.pango_cairo_show_layout(self.cr, pangoLayout);
         }
