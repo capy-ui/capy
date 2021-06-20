@@ -29,24 +29,15 @@ pub fn init() !void {
         GetModuleHandleW(null).?));
     const lpCmdLine = GetCommandLineW();
 
-    const init = INITCOMMONCONTROLSEX {
+    const initEx = INITCOMMONCONTROLSEX {
         .dwSize = @sizeOf(INITCOMMONCONTROLSEX),
         .dwICC = ICC_STANDARD_CLASSES
     };
-    const code = InitCommonControlsEx(&init);
+    const code = InitCommonControlsEx(&initEx);
     if (code == 0) {
         std.log.scoped(.win32).warn("Failed to initialize Common Controls.", .{});
     } else {
-        std.log.scoped(.win32).info("Success with {} !", .{code});
-    }
-}
-
-pub fn run() void {
-    var msg: MSG = undefined;
-
-    while (GetMessageA(&msg, null, 0, 0) > 0) {
-        _ = TranslateMessage(&msg);
-        _ = DispatchMessageA(&msg);
+        std.log.scoped(.win32).debug("Success with {} !", .{code});
     }
 }
 
@@ -88,10 +79,10 @@ pub const Window = struct {
         }
 
         var rect: RECT = undefined;
-        _ = GetWindowRect(parent, &rect);
+        _ = GetClientRect(parent, &rect);
 
-        const style = @intCast(u32, GetWindowLongPtrA(hwnd, GWL_STYLE));
-        const exStyle = @intCast(u32, GetWindowLongPtrA(hwnd, GWL_EXSTYLE));
+        const style = @intCast(u32, GetWindowLongPtr(hwnd, GWL_STYLE));
+        const exStyle = @intCast(u32, GetWindowLongPtr(hwnd, GWL_EXSTYLE));
         _ = MoveWindow(hwnd, 0, 0, rect.right - rect.left, rect.bottom - rect.top, 1);
         return 1;
     }
@@ -149,14 +140,16 @@ pub const Window = struct {
 
     pub fn setChild(self: *Window, hwnd: anytype) void {
         _ = SetParent(hwnd, self.hwnd);
-        const style = GetWindowLongPtrA(hwnd, GWL_STYLE);
-        _ = SetWindowLongPtrA(hwnd, GWL_STYLE, style | WS_CHILD);
+        const style = GetWindowLongPtr(hwnd, GWL_STYLE);
+        SetWindowLongPtr(hwnd, GWL_STYLE, style | WS_CHILD);
         _ = showWindow(hwnd, SW_SHOWDEFAULT);
         _ = UpdateWindow(hwnd);
     }
 
     pub fn resize(self: *Window, width: c_int, height: c_int) void {
-        // TODO
+        var rect: RECT = undefined;
+        _ = GetWindowRect(self.hwnd, &rect);
+        _ = MoveWindow(self.hwnd, rect.left, rect.top, @intCast(c_int, width), @intCast(c_int, height), 1);
     }
 
     pub fn show(self: *Window) void {
@@ -175,8 +168,112 @@ pub const EventType = enum {
     Click,
     Draw,
     MouseButton,
-    Scroll
+    Scroll,
+    TextChanged,
+    Resize
 };
+
+const EventUserData = struct {
+    /// Only works for buttons
+    clickHandler: ?fn(data: usize) void = null,
+    mouseButtonHandler: ?fn(button: MouseButton, pressed: bool, x: f64, y: f64, data: usize) void = null,
+    scrollHandler: ?fn(dx: f64, dy: f64, data: usize) void = null,
+    resizeHandler: ?fn(width: u32, height: u32, data: usize) void = null,
+    /// Only works for canvas (althought technically it isn't required to)
+    drawHandler: ?fn(ctx: Canvas.DrawContext, data: usize) void = null,
+    changedTextHandler: ?fn(data: usize) void = null,
+    userdata: usize = 0
+};
+
+fn getEventUserData(peer: HWND) callconv(.Inline) *EventUserData {
+    return @intToPtr(*EventUserData, GetWindowLongPtr(peer, GWL_USERDATA));
+}
+
+pub fn Events(comptime T: type) type {
+    return struct {
+        const Self = @This();
+
+        pub fn process(hwnd: HWND, wm: c_uint, wp: WPARAM, lp: LPARAM) callconv(WINAPI) LRESULT {
+            if (GetWindowLongPtr(hwnd, GWL_USERDATA) == 0) return DefWindowProcA(hwnd, wm, wp, lp);
+            switch (wm) {
+                WM_COMMAND => {
+                    const code = @intCast(u16, wp << 16);
+                    const data = getEventUserData(@intToPtr(HWND, @bitCast(usize, lp)));
+                    switch (code) {
+                        BN_CLICKED => {
+                            if (data.clickHandler) |handler| {
+                                handler(data.userdata);
+                            }
+                        },
+                        else => {}
+                    }
+                },
+                WM_SIZE => {
+                    const data = getEventUserData(hwnd);
+                    if (data.resizeHandler) |handler| {
+                        var rect: RECT = undefined;
+                        _ = GetWindowRect(hwnd, &rect);
+                        handler(
+                            @intCast(u32, rect.right - rect.left),
+                            @intCast(u32, rect.bottom - rect.top),
+                            data.userdata
+                        );
+                    }
+                },
+                else => {}
+            }
+            return DefWindowProcA(hwnd, wm, wp, lp);
+        }
+
+        pub fn setupEvents(peer: HWND) !void {
+            const allocator = std.heap.page_allocator; // TODO: global allocator
+            var data = try allocator.create(EventUserData);
+            data.* = EventUserData {}; // ensure that it uses default values
+            SetWindowLongPtr(peer, GWL_USERDATA, @ptrToInt(data));
+        }
+
+        pub fn setUserData(self: *T, data: anytype) callconv(.Inline) void {
+            comptime {
+                if (!std.meta.trait.isSingleItemPtr(@TypeOf(data))) {
+                    @compileError(std.fmt.comptimePrint("Expected single item pointer, got {s}", .{@typeName(@TypeOf(data))}));
+                }
+            }
+            getEventUserData(self.peer).userdata = @ptrToInt(data);
+        }
+
+        pub fn setCallback(self: *T, comptime eType: EventType, cb: anytype) callconv(.Inline) !void {
+            const data = getEventUserData(self.peer);
+            switch (eType) {
+                .Click       => data.clickHandler       = cb,
+                .Draw        => data.drawHandler        = cb,
+                .MouseButton => data.mouseButtonHandler = cb,
+                .Scroll      => data.scrollHandler      = cb,
+                .TextChanged => data.changedTextHandler = cb,
+                .Resize      => data.resizeHandler      = cb
+            }
+        }
+
+        /// Requests a redraw
+        pub fn requestDraw(self: *T) !void {
+            if (c.UpdateWindow(self.peer) == 0) {
+                return Win32Error.UnknownError;
+            }
+        }
+
+        pub fn getWidth(self: *const T) c_int {
+            var rect: RECT = undefined;
+            _ = GetWindowRect(self.peer, &rect);
+            return rect.right - rect.left;
+        }
+
+        pub fn getHeight(self: *const T) c_int {
+            var rect: RECT = undefined;
+            _ = GetWindowRect(self.peer, &rect);
+            return rect.bottom - rect.top;
+        }
+
+    };
+}
 
 pub const MouseButton = enum {
     Left,
@@ -198,18 +295,9 @@ pub const Button = struct {
     oldWndProc: ?WNDPROC = null,
     arena: std.heap.ArenaAllocator,
 
-    var classRegistered = false;
+    pub usingnamespace Events(Button);
 
-    fn process(hwnd: HWND, wm: c_uint, wp: WPARAM, lp: LPARAM) callconv(WINAPI) LRESULT {
-        const userdata = GetWindowLongPtrA(hwnd, GWL_USERDATA);
-        const btn = @intToPtr(*Button, @bitCast(usize, userdata));
-        if (wm == WM_LBUTTONUP) {
-            if (btn.clickHandler) |func| {
-                func(btn.data);
-            }
-        }
-        return btn.oldWndProc.?(hwnd, wm, wp, lp);
-    }
+    var classRegistered = false;
 
     pub fn create() !Button {
         const hwnd = try createWindowExA(
@@ -226,28 +314,12 @@ pub const Button = struct {
             hInst,                                    // hInstance
             null                                      // lpParam
         );
+        try setupEvents(hwnd);
 
         return Button {
             .peer = hwnd,
             .arena = std.heap.ArenaAllocator.init(std.heap.page_allocator)
         };
-    }
-
-    pub fn setCallback(self: *Button, eType: EventType, cb: anytype) !void {
-        // switch (eType) {
-        //     .Click => {
-        //         _ = try setWindowLongPtrA(self.peer, GWL_USERDATA, @bitCast(isize, @ptrToInt(self)));
-        //         if (self.oldWndProc == null) {
-        //             self.oldWndProc = @intToPtr(WNDPROC, @bitCast(usize,
-        //                 try setWindowLongPtrA(self.peer, GWL_WNDPROC, @bitCast(isize, @ptrToInt(process)))));
-        //         }
-        //         self.clickHandler = cb;
-        //     }
-        // }
-    }
-
-    pub fn setUserData(self: *Button, t: anytype) void {
-        // TODO
     }
 
     pub fn setLabel(self: *Button, label: [:0]const u8) void {
@@ -332,174 +404,20 @@ pub const Label = struct {
 
 };
 
-pub const Row = struct {
-    peer: HWND,
-    expand: bool = true, // TODO
-
-    var classRegistered = false;
-
-    fn relayoutChild(hwnd: HWND, lp: LPARAM) callconv(WINAPI) c_int {
-        const str = @intToPtr(*ContainerStruct, @bitCast(usize, lp));
-        const count = @intCast(i32, str.count);
-        const parent = str.hwnd;
-        if (GetParent(hwnd) != parent) {
-            return 1; // ignore recursive childrens
-        }
-
-        var rect: RECT = undefined;
-        _ = GetWindowRect(parent, &rect);
-
-        const style = @intCast(u32, GetWindowLongPtrA(hwnd, GWL_STYLE));
-        const exStyle = @intCast(u32, GetWindowLongPtrA(hwnd, GWL_EXSTYLE));
-        const width = rect.right - rect.left;
-        const height = rect.bottom - rect.top;
-        const incr = @divTrunc(width, count);
-
-        str.index -= 1;
-        _ = MoveWindow(hwnd, incr * @intCast(i32, str.index), 0, incr, height, 1);
-        return 1;
-    }
-
-    fn countChild(hwnd: HWND, lp: LPARAM) callconv(WINAPI) c_int {
-        const str = @intToPtr(*ContainerStruct, @bitCast(usize, lp));
-        const parent = str.hwnd;
-        if (GetParent(hwnd) != parent) {
-            return 1; // ignore recursive childrens
-        }
-        str.count += 1;
-        return 1;
-    }
-
-    fn process(hwnd: HWND, wm: c_uint, wp: WPARAM, lp: LPARAM) callconv(WINAPI) LRESULT {
-        switch (wm) {
-            WM_SIZE => {
-                var str = ContainerStruct {
-                    .hwnd = hwnd,
-                    .count = 0,
-                    .index = 0
-                };
-                _ = EnumChildWindows(hwnd, countChild, @bitCast(isize, @ptrToInt(&str)));
-                str.index = str.count;
-                _ = EnumChildWindows(hwnd, relayoutChild, @bitCast(isize, @ptrToInt(&str)));
-            },
-            else => {}
-        }
-        return DefWindowProcA(hwnd, wm, wp, lp);
-    }
-
-    pub fn create() !Row {
-        if (!classRegistered) {
-            var wc: WNDCLASSEXA = .{
-                .style = 0,
-                .lpfnWndProc = process,
-                .cbClsExtra = 0,
-                .cbWndExtra = 0,
-                .hInstance = hInst,
-                .hIcon = null, // TODO: LoadIcon
-                .hCursor = null, // TODO: LoadCursor
-                .hbrBackground = null,
-                .lpszMenuName = null,
-                .lpszClassName = "zgtRowClass",
-                .hIconSm = null
-            };
-
-            if ((try registerClassExA(&wc)) == 0) {
-                showNativeMessageDialog(.Error, "Could not register window class {s}", .{"zgtRowClass"});
-                return Win32Error.InitializationError;
-            }
-            classRegistered = true;
-        }
-
-        const hwnd = try createWindowExA(
-            WS_EX_LEFT,                               // dwExtStyle
-            "zgtRowClass",                                       // lpClassName
-            "",                                       // lpWindowName
-            WS_TABSTOP | WS_CHILD, // dwStyle
-            10,                                       // X
-            10,                                       // Y
-            100,                                      // nWidth
-            100,                                      // nHeight
-            defaultWHWND,                             // hWindParent
-            null,                                     // hMenu
-            hInst,                                    // hInstance
-            null                                      // lpParam
-        );
-
-        return Row {
-            .peer = hwnd
-        };
-    }
-
-    pub fn add(self: *Row, peer: PeerType, b: bool) void {
-        _ = SetParent(peer, self.peer);
-        _ = showWindow(peer, SW_SHOWDEFAULT);
-        _ = UpdateWindow(peer);
-        // TODO: trigger relayout
-    }
-};
-
 const ContainerStruct = struct {
     hwnd: HWND,
     count: usize,
     index: usize
 };
 
-pub const Column = struct {
+pub const Container = struct {
     peer: HWND,
-    expand: bool = true, // TODO
+
+    pub usingnamespace Events(Container);
 
     var classRegistered = false;
 
-    fn relayoutChild(hwnd: HWND, lp: LPARAM) callconv(WINAPI) c_int {
-        const str = @intToPtr(*ContainerStruct, @bitCast(usize, lp));
-        const count = @intCast(i32, str.count);
-        const parent = str.hwnd;
-        if (GetParent(hwnd) != parent) {
-            return 1; // ignore recursive childrens
-        }
-
-        var rect: RECT = undefined;
-        _ = GetWindowRect(parent, &rect);
-
-        const style = @intCast(u32, GetWindowLongPtrA(hwnd, GWL_STYLE));
-        const exStyle = @intCast(u32, GetWindowLongPtrA(hwnd, GWL_EXSTYLE));
-        const width = rect.right - rect.left;
-        const height = rect.bottom - rect.top;
-        const incr = @divTrunc(height, count);
-
-        str.index -= 1;
-        _ = MoveWindow(hwnd, 0, incr * @intCast(i32, str.index), width, incr, 1);
-        return 1;
-    }
-
-    fn countChild(hwnd: HWND, lp: LPARAM) callconv(WINAPI) c_int {
-        const str = @intToPtr(*ContainerStruct, @bitCast(usize, lp));
-        const parent = str.hwnd;
-        if (GetParent(hwnd) != parent) {
-            return 1; // ignore recursive childrens
-        }
-        str.count += 1;
-        return 1;
-    }
-
-    fn process(hwnd: HWND, wm: c_uint, wp: WPARAM, lp: LPARAM) callconv(WINAPI) LRESULT {
-        switch (wm) {
-            WM_SIZE => {
-                var str = ContainerStruct {
-                    .hwnd = hwnd,
-                    .count = 0,
-                    .index = 0
-                };
-                _ = EnumChildWindows(hwnd, countChild, @bitCast(isize, @ptrToInt(&str)));
-                str.index = str.count;
-                _ = EnumChildWindows(hwnd, relayoutChild, @bitCast(isize, @ptrToInt(&str)));
-            },
-            else => {}
-        }
-        return DefWindowProcA(hwnd, wm, wp, lp);
-    }
-
-    pub fn create() !Column {
+    pub fn create() !Container {
         if (!classRegistered) {
             var wc: WNDCLASSEXA = .{
                 .style = 0,
@@ -511,12 +429,12 @@ pub const Column = struct {
                 .hCursor = null, // TODO: LoadCursor
                 .hbrBackground = null,
                 .lpszMenuName = null,
-                .lpszClassName = "zgtColumnClass",
+                .lpszClassName = "zgtContainerClass",
                 .hIconSm = null
             };
 
             if ((try registerClassExA(&wc)) == 0) {
-                showNativeMessageDialog(.Error, "Could not register window class {s}", .{"zgtColumnClass"});
+                showNativeMessageDialog(.Error, "Could not register window class {s}", .{"zgtContainerClass"});
                 return Win32Error.InitializationError;
             }
             classRegistered = true;
@@ -524,7 +442,7 @@ pub const Column = struct {
 
         const hwnd = try createWindowExA(
             WS_EX_LEFT,                               // dwExtStyle
-            "zgtColumnClass",                                       // lpClassName
+            "zgtContainerClass",                      // lpClassName
             "",                                       // lpWindowName
             WS_TABSTOP | WS_CHILD, // dwStyle
             10,                                       // X
@@ -536,16 +454,40 @@ pub const Column = struct {
             hInst,                                    // hInstance
             null                                      // lpParam
         );
+        try setupEvents(hwnd);
 
-        return Column {
+        return Container {
             .peer = hwnd
         };
     }
 
-    pub fn add(self: *Column, peer: PeerType, b: bool) void {
+    pub fn add(self: *Container, peer: PeerType) void {
         _ = SetParent(peer, self.peer);
         _ = showWindow(peer, SW_SHOWDEFAULT);
         _ = UpdateWindow(peer);
-        // TODO: trigger relayout
+    }
+
+    pub fn move(self: *const Container, peer: PeerType, x: u32, y: u32) void {
+        var rect: RECT = undefined;
+        _ = GetWindowRect(peer, &rect);
+        _ = MoveWindow(peer, @intCast(c_int, x), @intCast(c_int, y), rect.right - rect.left, rect.bottom - rect.top, 1);
+    }
+
+    pub fn resize(self: *const Container, peer: PeerType, width: u32, height: u32) void {
+        var rect: RECT = undefined;
+        _ = GetWindowRect(peer, &rect);
+        var parent: RECT = undefined;
+        _ = GetWindowRect(self.peer, &parent);
+
+        _ = MoveWindow(peer, rect.left - parent.left, rect.top - parent.top, @intCast(c_int, width), @intCast(c_int, height), 1);
     }
 };
+
+pub fn run() void {
+    var msg: MSG = undefined;
+
+    while (GetMessageA(&msg, null, 0, 0) > 0) {
+        _ = TranslateMessage(&msg);
+        _ = DispatchMessageA(&msg);
+    }
+}

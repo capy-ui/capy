@@ -11,7 +11,7 @@ pub fn ColumnLayout(peer: backend.Container, widgets: []Widget) void {
     const childHeight = @intCast(u32, peer.getHeight()) / count;
     for (widgets) |widget, idx| {
         if (widget.peer) |widgetPeer| {
-            peer.move(widgetPeer, 
+            peer.move(widgetPeer,
                 0, 
                 @intCast(u32, childHeight * idx) // this cannot be higher than the container's height so it shouldn't overflow
             );
@@ -19,7 +19,6 @@ pub fn ColumnLayout(peer: backend.Container, widgets: []Widget) void {
                 .width = @intCast(u32, peer.getWidth()), // self.width
                 .height = childHeight
             };
-            //std.log.info("Allocate {any}", .{size});
             peer.resize(widgetPeer, size.width, size.height);
         }
     }
@@ -30,7 +29,7 @@ pub fn RowLayout(peer: backend.Container, widgets: []Widget) void {
     const childWidth = @intCast(u32, peer.getWidth()) / count;
     for (widgets) |widget, idx| {
         if (widget.peer) |widgetPeer| {
-            peer.move(widgetPeer, 
+            peer.move(widgetPeer,
                 @intCast(u32, childWidth * idx), // this cannot be higher than the container's width so it shouldn't overflow
                 0
             );
@@ -38,7 +37,6 @@ pub fn RowLayout(peer: backend.Container, widgets: []Widget) void {
                 .width = childWidth, // self.width
                 .height = @intCast(u32, peer.getHeight())
             };
-            //std.log.info("Allocate {any}", .{size});
             peer.resize(widgetPeer, size.width, size.height);
         }
     }

@@ -14,7 +14,8 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
             step.linkSystemLibrary("comctl32");
             switch (step.target.toTarget().cpu.arch) {
                 .x86_64 => step.addObjectFile("src/backends/win32/res/x86_64.o"),
-                else => return error.UnsupportedArch
+                //.i386 => step.addObjectFile("src/backends/win32/res/i386.o"), // currently disabled due to problems with safe SEH
+                else => {} // not much of a problem as it'll just lack styling
             }
         },
         else => {
@@ -39,7 +40,6 @@ pub fn build(b: *std.build.Builder) !void {
     exe.setTarget(target);
     exe.setBuildMode(mode);
     try install(exe, ".");
-    exe.single_threaded = true;
     exe.install();
 
     const run_cmd = exe.run();
