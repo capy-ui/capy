@@ -1,5 +1,6 @@
 const std = @import("std");
 const backend = @import("backend.zig");
+usingnamespace @import("data.zig");
 
 pub const Button_Impl = struct {
     pub usingnamespace @import("internal.zig").All(Button_Impl);
@@ -28,6 +29,10 @@ pub const Button_Impl = struct {
             self.peer.?.setLabel(self.label);
             try self.show_events();
         }
+    }
+
+    pub fn getPreferredSize(self: *Button_Impl) Size {
+        return Size { .width = 500.0, .height = 200.0 };
     }
 
     pub fn setLabel(self: *Button_Impl, label: [:0]const u8) void {

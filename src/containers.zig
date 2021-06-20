@@ -2,14 +2,47 @@ const std = @import("std");
 const backend = @import("backend.zig");
 const Widget = @import("widget.zig").Widget;
 usingnamespace @import("internal.zig");
+usingnamespace @import("data.zig");
 
-pub const Layout = struct {
+pub const Layout = fn(peer: backend.Container, widgets: []Widget) void;
 
-    pub fn layout() void {
-        
+pub fn ColumnLayout(peer: backend.Container, widgets: []Widget) void {
+    const count = @intCast(u32, widgets.len);
+    const childHeight = @intCast(u32, peer.getHeight()) / count;
+    for (widgets) |widget, idx| {
+        if (widget.peer) |widgetPeer| {
+            peer.move(widgetPeer, 
+                0, 
+                @intCast(u32, childHeight * idx) // this cannot be higher than the container's height so it shouldn't overflow
+            );
+            const size = Size {
+                .width = @intCast(u32, peer.getWidth()), // self.width
+                .height = childHeight
+            };
+            //std.log.info("Allocate {any}", .{size});
+            peer.resize(widgetPeer, size.width, size.height);
+        }
     }
-    
-};
+}
+
+pub fn RowLayout(peer: backend.Container, widgets: []Widget) void {
+    const count = @intCast(u32, widgets.len);
+    const childWidth = @intCast(u32, peer.getWidth()) / count;
+    for (widgets) |widget, idx| {
+        if (widget.peer) |widgetPeer| {
+            peer.move(widgetPeer, 
+                @intCast(u32, childWidth * idx), // this cannot be higher than the container's width so it shouldn't overflow
+                0
+            );
+            const size = Size {
+                .width = childWidth, // self.width
+                .height = @intCast(u32, peer.getHeight())
+            };
+            //std.log.info("Allocate {any}", .{size});
+            peer.resize(widgetPeer, size.width, size.height);
+        }
+    }
+}
 
 const Stack_Impl = struct {
     peer: backend.Stack,
@@ -34,83 +67,63 @@ const Stack_Impl = struct {
     }
 };
 
-const Row_Impl = struct {
-    pub usingnamespace @import("internal.zig").All(Row_Impl);
+const Container_Impl = struct {
+    pub usingnamespace @import("internal.zig").All(Container_Impl);
 
-    peer: ?backend.Row,
-    handlers: Row_Impl.Handlers = undefined,
+    peer: ?backend.Container,
+    handlers: Container_Impl.Handlers = undefined,
     childrens: std.ArrayList(Widget),
     expand: bool,
+    relayouting: bool = false,
+    layout: Layout,
 
-    pub fn init(childrens: std.ArrayList(Widget), config: GridConfig) !Row_Impl {
-        return Row_Impl {
+    pub fn init(childrens: std.ArrayList(Widget), config: GridConfig, layout: Layout) !Container_Impl {
+        var column = Container_Impl.init_events(Container_Impl {
             .peer = null,
             .childrens = childrens,
-            .expand = config.expand == .Fill
-        };
+            .expand = config.expand == .Fill,
+            .layout = layout
+        });
+        try column.addResizeHandler(onResize);
+        return column;
     }
 
     /// Internal function used at initialization.
     /// It is used to move some pointers so things do not break.
-    pub fn pointerMoved(self: *Row_Impl) void {}
+    pub fn pointerMoved(self: *Container_Impl) void {}
 
-    pub fn show(self: *Row_Impl) !void {
+    pub fn onResize(self: *Container_Impl, size: Size) !void {
+        try self.relayout();
+    }
+
+    pub fn getPreferredSize(self: *Container_Impl) Size {
+        return Size { .width = 500.0, .height = 200.0 };
+    }
+
+    pub fn show(self: *Container_Impl) !void {
         if (self.peer == null) {
-            var peer = try backend.Row.create();
-            peer.expand = self.expand;
+            var peer = try backend.Container.create();
+            //peer.expand = self.expand;
             for (self.childrens.items) |*widget| {
                 try widget.show();
-                peer.add(widget.peer.?, widget.container_expanded);
+                peer.add(widget.peer.?);
             }
             self.peer = peer;
+            try self.show_events();
+            try self.relayout();
         }
     }
 
-    pub fn add(self: *Row_Impl, widget: anytype) !void {
-        const allocator = self.childrens.allocator;
-        const genericWidget = genericWidgetFrom(widget);
-
-        if (self.peer) |*peer| {
-            peer.add(genericWidget.peer, genericWidget.container_expanded);
-        }
-
-        try self.childrens.append(genericWidget);
-    }
-};
-
-const Column_Impl = struct {
-    pub usingnamespace @import("internal.zig").All(Column_Impl);
-
-    peer: ?backend.Column,
-    handlers: Column_Impl.Handlers = undefined,
-    childrens: std.ArrayList(Widget),
-    expand: bool,
-
-    pub fn init(childrens: std.ArrayList(Widget), config: GridConfig) !Column_Impl {
-        return Column_Impl {
-            .peer = null,
-            .childrens = childrens,
-            .expand = config.expand == .Fill
-        };
-    }
-
-    /// Internal function used at initialization.
-    /// It is used to move some pointers so things do not break.
-    pub fn pointerMoved(self: *Column_Impl) void {}
-
-    pub fn show(self: *Column_Impl) !void {
-        if (self.peer == null) {
-            var peer = try backend.Column.create();
-            peer.expand = self.expand;
-            for (self.childrens.items) |*widget| {
-                try widget.show();
-                peer.add(widget.peer.?, widget.container_expanded);
-            }
-            self.peer = peer;
+    pub fn relayout(self: *Container_Impl) !void {
+        if (self.relayouting) return;
+        if (self.peer) |peer| {
+            self.relayouting = true;
+            self.layout(peer, self.childrens.items);
+            self.relayouting = false;
         }
     }
 
-    pub fn add(self: *Column_Impl, widget: anytype) !void {
+    pub fn add(self: *Container_Impl, widget: anytype) !void {
         const allocator = self.childrens.allocator;
         const genericWidget = genericWidgetFrom(widget);
 
@@ -142,7 +155,10 @@ fn genericWidgetFrom(component: anytype) anyerror!Widget {
             @TypeOf(component.*)
         else
             @TypeOf(component);
-    return Widget { .data = @ptrToInt(cp), .showFn = DereferencedType.showWidget };
+    return Widget {
+        .data = @ptrToInt(cp),
+        .class = &DereferencedType.WidgetClass
+    };
 }
 
 fn isErrorUnion(comptime T: type) bool {
@@ -152,7 +168,7 @@ fn isErrorUnion(comptime T: type) bool {
     };
 }
 
-fn abstractContainerConstructor(comptime T: type, childrens: anytype, config: anytype) anyerror!T {
+fn abstractContainerConstructor(comptime T: type, childrens: anytype, config: anytype, layout: Layout) anyerror!T {
     const fields = std.meta.fields(@TypeOf(childrens));
     var list = std.ArrayList(Widget).init(lasting_allocator);
     inline for (fields) |field| {
@@ -167,7 +183,7 @@ fn abstractContainerConstructor(comptime T: type, childrens: anytype, config: an
         try list.append(widget);
     }
 
-    return try T.init(list, config);
+    return try T.init(list, config, layout);
 } 
 
 const Expand = enum {
@@ -196,10 +212,10 @@ pub fn Stack(childrens: anytype) callconv(.Inline) anyerror!Stack_Impl {
     return try abstractContainerConstructor(Stack_Impl, childrens, .{});
 }
 
-pub fn Row(config: GridConfig, childrens: anytype) callconv(.Inline) anyerror!Row_Impl {
-    return try abstractContainerConstructor(Row_Impl, childrens, config);
+pub fn Row(config: GridConfig, childrens: anytype) callconv(.Inline) anyerror!Container_Impl {
+    return try abstractContainerConstructor(Container_Impl, childrens, config, RowLayout);
 }
 
-pub fn Column(config: GridConfig, childrens: anytype) callconv(.Inline) anyerror!Column_Impl {
-    return try abstractContainerConstructor(Column_Impl, childrens, config);
+pub fn Column(config: GridConfig, childrens: anytype) callconv(.Inline) anyerror!Container_Impl {
+    return try abstractContainerConstructor(Container_Impl, childrens, config, ColumnLayout);
 }

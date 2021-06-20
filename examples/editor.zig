@@ -3,6 +3,54 @@ const std = @import("std");
 
 var area: FlatText_Impl = undefined;
 
+const Color = struct {
+    r: f64, g: f64, b: f64
+};
+
+const KeywordType = enum {
+    /// Type declarations (enum, struct, fn)
+    Type,
+    /// Basically the rest
+    ControlFlow,
+    Identifier,
+    Value,
+    String,
+    Comment,
+    None,
+
+    pub fn getColor(self: KeywordType) Color {
+        return switch (self) {
+            .Type        => Color { .r = 0, .g = 0.6, .b = 0.8 },
+            .ControlFlow => Color { .r = 1, .g = 0, .b = 0 },
+            .Identifier  => Color { .r = 0, .g = 1, .b = 0 },
+            else        => Color { .r = 0, .g = 0, .b = 0 }
+        };
+    }
+};
+
+const tagArray = std.enums.directEnumArrayDefault(std.zig.Token.Tag, KeywordType, .None, 0, .{
+    .keyword_return = .ControlFlow,
+    .keyword_try = .ControlFlow,
+    .keyword_if = .ControlFlow,
+    .keyword_else = .ControlFlow,
+    .keyword_defer = .ControlFlow,
+    .keyword_while = .ControlFlow,
+    .keyword_switch = .ControlFlow,
+    .keyword_catch = .ControlFlow,
+    .builtin = .ControlFlow,
+
+    .keyword_pub = .ControlFlow, // TODO: .Modifier ?
+    .keyword_usingnamespace = .ControlFlow,
+
+    .keyword_fn = .Type,
+    .keyword_struct = .Type,
+    .keyword_enum = .Type,
+
+    .keyword_var = .ControlFlow,
+    .keyword_const = .ControlFlow,
+
+});
+
 pub const FlatText_Impl = struct {
     pub usingnamespace zgtInternal.All(FlatText_Impl);
 
@@ -18,8 +66,9 @@ pub const FlatText_Impl = struct {
     }
 
     pub fn draw(self: *FlatText_Impl, ctx: DrawContext) !void {
-        const width = 800;
-        const height = 400;
+        const width = self.getWidth();
+        const height = self.getHeight();
+
         ctx.setColor(1, 1, 1);
         ctx.rectangle(0, 0, width, height);
         ctx.fill();
@@ -28,17 +77,20 @@ pub const FlatText_Impl = struct {
         defer layout.deinit();
         ctx.setColor(0, 0, 0);
         layout.setFont(.{ .face = "Fira Code", .size = 10.0 });
-        layout.wrap = width;
 
         const source = self.text.get();
         var tokenizer = std.zig.Tokenizer.init(self.text.get());
         var lines = std.mem.split(source, "\n");
-        var y: f64 = 0;
+        var y: u32 = 0;
         var chars: usize = 0;
         var lastStart: usize = 0;
+
+        // TODO: just use native rendering's api styling
+        // as doing it manually can break ligatures and non-Latin scripts
+
         while (lines.next()) |line| {
             if (y > height) break;
-            var x: f64 = 0;
+            var x: u32 = 0;
             chars += line.len + 1;
             while (true) {
                 var token = tokenizer.next();
@@ -46,16 +98,23 @@ pub const FlatText_Impl = struct {
                     tokenizer.index = token.loc.start;
                     break;
                 }
-                const tokSize = layout.getTextSize(source[lastStart..token.loc.end]);
-                ctx.text(x, y, layout, source[lastStart..token.loc.end]);
-                x += tokSize.width;
+                const behindSize = layout.getTextSize(source[lastStart..token.loc.start]);
+                ctx.setColor(0, 0, 0);
+                ctx.text(x, y, layout, source[lastStart..token.loc.start]);
+                x += behindSize.width;
+
+                const tokenSize = layout.getTextSize(source[token.loc.start..token.loc.end]);
+                const color = tagArray[@enumToInt(token.tag)].getColor();
+                ctx.setColor(color.r, color.g, color.b);
+                ctx.text(x, y, layout, source[token.loc.start..token.loc.end]);
+                x += tokenSize.width;
 
                 lastStart = token.loc.end;
                 while (lastStart < source.len-1 and source[lastStart] == '\n' or source[lastStart] == '\r') {
                     lastStart += 1;
                 }
             }
-            const size = layout.getTextSize("abcdefghi");
+            const size = layout.getTextSize(line);
             y += size.height;
         }
     }
@@ -107,9 +166,9 @@ pub const FlatText_Impl = struct {
 };
 
 pub fn FlatText(config: struct { text: []const u8 = "" }) !FlatText_Impl {
-    var btn = FlatText_Impl.init(config.text);
-    try btn.addDrawHandler(FlatText_Impl.draw);
-    return btn;
+    var textEditor = FlatText_Impl.init(config.text);
+    try textEditor.addDrawHandler(FlatText_Impl.draw);
+    return textEditor;
 }
 
 pub fn run() !void {

@@ -1,5 +1,6 @@
 const std = @import("std");
 const backend = @import("backend.zig");
+usingnamespace @import("data.zig");
 
 pub const Label_Impl = struct {
     pub usingnamespace @import("internal.zig").All(Label_Impl);
@@ -16,6 +17,10 @@ pub const Label_Impl = struct {
         });
     }
 
+    /// Internal function used at initialization.
+    /// It is used to move some pointers so things do not break.
+    pub fn pointerMoved(self: *Label_Impl) void {}
+
     pub fn show(self: *Label_Impl) !void {
         if (self.peer == null) {
             var peer = try backend.Label.create();
@@ -27,6 +32,10 @@ pub const Label_Impl = struct {
             });
             self.peer = peer;
         }
+    }
+
+    pub fn getPreferredSize(self: *Label_Impl) Size {
+        return Size { .width = 500.0, .height = 200.0 };
     }
 
     pub fn setText(self: *Label_Impl, text: [:0]const u8) void {

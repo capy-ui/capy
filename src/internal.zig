@@ -4,6 +4,8 @@ const std = @import("std");
 const backend = @import("backend.zig");
 const style = @import("style.zig");
 const Widget = @import("widget.zig").Widget;
+const Class  = @import("widget.zig").Class;
+usingnamespace @import("data.zig");
 
 /// Allocator used for small, short-lived and repetitive allocations.
 /// You can change this by setting the `zgtScratchAllocator` field in your main file
@@ -36,10 +38,30 @@ pub fn Styling(comptime T: type) type {
 pub fn Widgeting(comptime T: type) type {
     return struct {
 
+        pub const WidgetClass = Class {
+            .showFn = showWidget,
+            .preferredSizeFn = getPreferredSizeWidget
+        };
+
         pub fn showWidget(widget: *Widget) anyerror!void {
             const component = @intToPtr(*T, widget.data);
             try component.show();
             widget.peer = component.peer.?.peer;
+        }
+
+        pub fn getPreferredSizeWidget(widget: *Widget) Size {
+            const component = @intToPtr(*T, widget.data);
+            return component.getPreferredSize();
+        }
+
+        pub fn getWidth(self: *T) u32 {
+            if (self.peer == null) return 0;
+            return @intCast(u32, self.peer.?.getWidth());
+        }
+
+        pub fn getHeight(self: *T) u32 {
+            if (self.peer == null) return 0;
+            return @intCast(u32, self.peer.?.getHeight());
         }
 
     };
@@ -63,16 +85,19 @@ pub fn Events(comptime T: type) type {
         pub const DrawCallback   = fn(widget: *T, ctx: backend.Canvas.DrawContext) anyerror!void;
         pub const ButtonCallback = fn(widget: *T, button: backend.MouseButton, pressed: bool, x: f64, y: f64) anyerror!void;
         pub const ScrollCallback = fn(widget: *T, dx: f64, dy: f64) anyerror!void;
-        pub const HandlerList    = std.ArrayList(Callback);
+        pub const ResizeCallback = fn(widget: *T, size: Size) anyerror!void;
+        const HandlerList        = std.ArrayList(Callback);
         const DrawHandlerList    = std.ArrayList(DrawCallback);
         const ButtonHandlerList  = std.ArrayList(ButtonCallback);
         const ScrollHandlerList  = std.ArrayList(ScrollCallback);
+        const ResizeHandlerList  = std.ArrayList(ResizeCallback);
 
         pub const Handlers = struct {
             clickHandlers: HandlerList,
             drawHandlers: DrawHandlerList,
             buttonHandlers: ButtonHandlerList,
-            scrollHandlers: ScrollHandlerList
+            scrollHandlers: ScrollHandlerList,
+            resizeHandlers: ResizeHandlerList
         };
 
         pub fn init_events(self: T) T {
@@ -81,7 +106,8 @@ pub fn Events(comptime T: type) type {
                 .clickHandlers = HandlerList.init(lasting_allocator),
                 .drawHandlers = DrawHandlerList.init(lasting_allocator),
                 .buttonHandlers = ButtonHandlerList.init(lasting_allocator),
-                .scrollHandlers = ScrollHandlerList.init(lasting_allocator)
+                .scrollHandlers = ScrollHandlerList.init(lasting_allocator),
+                .resizeHandlers = ResizeHandlerList.init(lasting_allocator)
             };
             return obj;
         }
@@ -133,12 +159,21 @@ pub fn Events(comptime T: type) type {
             }
         }
 
+        fn resizeHandler(width: u32, height: u32, data: usize) void {
+            const self = @intToPtr(*T, data);
+            const size = Size { .width = width, .height = height };
+            for (self.handlers.resizeHandlers.items) |func| {
+                func(self, size) catch |err| errorHandler(err);
+            }
+        }
+
         pub fn show_events(self: *T) callconv(.Inline) !void {
             self.peer.?.setUserData(self);
             try self.peer.?.setCallback(.Click      , clickHandler);
             try self.peer.?.setCallback(.Draw       , drawHandler);
             try self.peer.?.setCallback(.MouseButton, buttonHandler);
             try self.peer.?.setCallback(.Scroll     , scrollHandler);
+            try self.peer.?.setCallback(.Resize     , resizeHandler);
         }
 
         pub fn addClickHandler(self: *T, handler: Callback) !void {
@@ -155,6 +190,10 @@ pub fn Events(comptime T: type) type {
 
         pub fn addScrollHandler(self: *T, handler: ScrollCallback) !void {
             try self.handlers.scrollHandlers.append(handler);
+        }
+
+        pub fn addResizeHandler(self: *T, handler: ResizeCallback) !void {
+            try self.handlers.resizeHandlers.append(handler);
         }
 
         pub fn requestDraw(self: *T) !void {

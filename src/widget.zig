@@ -1,10 +1,16 @@
 const backend = @import("backend.zig");
+const data = @import("data.zig");
+
+pub const Class = struct {
+    showFn: fn(widget: *Widget) anyerror!void,
+    preferredSizeFn: fn(widget: *Widget) data.Size,
+};
 
 pub const Widget = struct {
     data: usize,
     peer: ?backend.PeerType = null,
     container_expanded: bool = false,
-    showFn: fn(widget: *Widget) anyerror!void,
+    class: *const Class,
     // layouting
     x: f64 = 0,
     y: f64 = 0,
@@ -12,7 +18,11 @@ pub const Widget = struct {
     height: f64 = 0,
 
     pub fn show(self: *Widget) anyerror!void {
-        try self.showFn(self);
+        try self.class.showFn(self);
+    }
+
+    pub fn getPreferredSize(self: *Widget) data.Size {
+        return self.class.preferredSizeFn(self);
     }
 
     pub fn as(self: *Widget, comptime T: type) *T {

@@ -15,13 +15,17 @@ pub const Capabilities = .{
 pub const public = struct {
 
     pub fn main() !void {
-        if (c.gtk_init_check(0, null) == 0) {
-            return GtkError.InitializationError;
-        }
+        try init();
         try @import("root").run();
     }
 
 };
+
+pub fn init() !void {
+    if (c.gtk_init_check(0, null) == 0) {
+        return GtkError.InitializationError;
+    }
+}
 
 pub const MessageType = enum {
     Information,
@@ -29,7 +33,7 @@ pub const MessageType = enum {
     Error
 };
 
-pub fn showNativeMessageDialog(msgType: MessageType, comptime fmt: []const u8, args: anytype) callconv(.Inline) void {
+pub fn showNativeMessageDialog(msgType: MessageType, comptime fmt: []const u8, args: anytype) void {
     const msg = std.fmt.allocPrintZ(std.heap.page_allocator, fmt, args) catch {
         std.log.err("Could not launch message dialog, original text: " ++ fmt, args);
         return;
@@ -72,7 +76,11 @@ pub const Window = struct {
     }
 
     pub fn setChild(self: *Window, peer: anytype) void {
-        c.gtk_container_add(@ptrCast(*c.GtkContainer, self.peer), peer);
+        const scrolledWindow = c.gtk_scrolled_window_new(null, null) orelse unreachable;
+        c.gtk_scrolled_window_set_propagate_natural_width(@ptrCast(*c.GtkScrolledWindow, scrolledWindow), 1);
+        c.gtk_container_add(@ptrCast(*c.GtkContainer, scrolledWindow), peer);
+        c.gtk_widget_show(scrolledWindow);
+        c.gtk_container_add(@ptrCast(*c.GtkContainer, self.peer), scrolledWindow);
     }
 
     pub fn show(self: *Window) void {
@@ -90,7 +98,8 @@ pub const EventType = enum {
     Draw,
     MouseButton,
     Scroll,
-    TextChanged
+    TextChanged,
+    Resize
 };
 
 pub const MouseButton = enum(c_uint) {
@@ -106,6 +115,7 @@ const EventUserData = struct {
     clickHandler: ?fn(data: usize) void = null,
     mouseButtonHandler: ?fn(button: MouseButton, pressed: bool, x: f64, y: f64, data: usize) void = null,
     scrollHandler: ?fn(dx: f64, dy: f64, data: usize) void = null,
+    resizeHandler: ?fn(width: u32, height: u32, data: usize) void = null,
     /// Only works for canvas (althought technically it isn't required to)
     drawHandler: ?fn(ctx: Canvas.DrawContext, data: usize) void = null,
     changedTextHandler: ?fn(data: usize) void = null,
@@ -116,6 +126,13 @@ fn getEventUserData(peer: *c.GtkWidget) callconv(.Inline) *EventUserData {
     return @ptrCast(*EventUserData, 
         @alignCast(@alignOf(EventUserData),
         c.g_object_get_data(@ptrCast(*c.GObject, peer), "eventUserData").?));
+}
+
+export fn gtkSizeAllocate(peer: *c.GtkWidget, allocation: *c.GdkRectangle, userdata: usize) void {
+    const data = getEventUserData(peer);
+    if (data.resizeHandler) |handler| {
+        handler(@intCast(u32, allocation.width), @intCast(u32, allocation.height), data.userdata);
+    }
 }
 
 export fn gtkButtonPress(peer: *c.GtkWidget, event: *c.GdkEventButton, userdata: usize) void {
@@ -180,6 +197,8 @@ pub fn Events(comptime T: type) type {
                 null, @as(c.GClosureNotify, null), c.GConnectFlags.G_CONNECT_AFTER);
             _ = c.g_signal_connect_data(widget, "scroll-event", @ptrCast(c.GCallback, gtkMouseScroll),
                 null, @as(c.GClosureNotify, null), c.GConnectFlags.G_CONNECT_AFTER);
+            _ = c.g_signal_connect_data(widget, "size-allocate", @ptrCast(c.GCallback, gtkSizeAllocate),
+                null, @as(c.GClosureNotify, null), c.GConnectFlags.G_CONNECT_AFTER);
             c.gtk_widget_add_events(widget,
                 c.GDK_SCROLL_MASK | c.GDK_BUTTON_PRESS_MASK
                 | c.GDK_BUTTON_RELEASE_MASK);
@@ -208,12 +227,21 @@ pub fn Events(comptime T: type) type {
                 .MouseButton => data.mouseButtonHandler = cb,
                 .Scroll      => data.scrollHandler      = cb,
                 .TextChanged => data.changedTextHandler = cb,
+                .Resize      => data.resizeHandler      = cb
             }
         }
 
         /// Requests a redraw
         pub fn requestDraw(self: *T) !void {
             c.gtk_widget_queue_draw(self.peer);
+        }
+
+        pub fn getWidth(self: *const T) c_int {
+            return c.gtk_widget_get_allocated_width(self.peer);
+        }
+
+        pub fn getHeight(self: *const T) c_int {
+            return c.gtk_widget_get_allocated_height(self.peer);
         }
 
     };
@@ -374,8 +402,8 @@ pub const Canvas = struct {
         };
 
         pub const TextSize = struct {
-            width: f64,
-            height: f64
+            width: u32,
+            height: u32
         };
 
         pub const TextLayout = struct {
@@ -404,8 +432,8 @@ pub const Canvas = struct {
                 c.pango_layout_get_pixel_size(self._layout, &width, &height);
 
                 return TextSize {
-                    .width = @intToFloat(f64, width),
-                    .height = @intToFloat(f64, height)
+                    .width = @intCast(u32, width),
+                    .height = @intCast(u32, height)
                 };
             }
 
@@ -428,23 +456,25 @@ pub const Canvas = struct {
         }
 
         /// Add a rectangle to the current path
-        pub fn rectangle(self: *const DrawContext, x: f64, y: f64, w: f64, h: f64) void {
-            c.cairo_rectangle(self.cr, x, y, w, h);
+        pub fn rectangle(self: *const DrawContext, x: u32, y: u32, w: u32, h: u32) void {
+            c.cairo_rectangle(self.cr, @intToFloat(f64, x), @intToFloat(f64, y),
+                @intToFloat(f64, w), @intToFloat(f64, h));
         }
 
-        pub fn clear(self: *const DrawContext, x: f64, y: f64, w: f64, h: f64) void {
+        pub fn clear(self: *const DrawContext, x: u32, y: u32, w: u32, h: u32) void {
             const styleContext = c.gtk_widget_get_style_context(self.widget);
-            c.gtk_render_background(styleContext, self.cr, x, y, w, h);
+            c.gtk_render_background(styleContext, self.cr, @intToFloat(f64, x), @intToFloat(f64, y),
+                @intToFloat(f64, w), @intToFloat(f64, h));
         }
 
-        pub fn text(self: *const DrawContext, x: f64, y: f64, layout: TextLayout, str: []const u8) void {
+        pub fn text(self: *const DrawContext, x: u32, y: u32, layout: TextLayout, str: []const u8) void {
             const pangoLayout = layout._layout;
             var inkRect: c.PangoRectangle = undefined;
             c.pango_layout_get_pixel_extents(pangoLayout, null, &inkRect);
 
             const dx = @intToFloat(f64, inkRect.x);
             const dy = @intToFloat(f64, inkRect.y);
-            c.cairo_move_to(self.cr, x + dx, y + dy);
+            c.cairo_move_to(self.cr, @intToFloat(f64, x) + dx, @intToFloat(f64, y) + dy);
             c.pango_layout_set_width(pangoLayout,
                 if (layout.wrap) |w| @floatToInt(c_int, @floor(w*@as(f64, c.PANGO_SCALE)))
                 else -1
@@ -482,61 +512,33 @@ pub const Canvas = struct {
 
 };
 
-pub const Stack = struct {
+pub const Container = struct {
     peer: *c.GtkWidget,
 
-    pub usingnamespace Events(Canvas);
+    pub usingnamespace Events(Container);
 
-    pub fn create() GtkError!Stack {
-        const layout = c.gtk_overlay_new() orelse return GtkError.UnknownError;
+    pub fn create() GtkError!Container {
+        const layout = c.gtk_fixed_new() orelse return GtkError.UnknownError;
         c.gtk_widget_show(layout);
-        return Stack {
+        try setupEvents(layout);
+        return Container {
             .peer = layout
         };
     }
 
-    pub fn add(self: *const Stack, peer: PeerType) void {
-        c.gtk_overlay_add_overlay(@ptrCast(*c.GtkOverlay, self.peer), peer);
-    }
-};
-
-pub const Row = struct {
-    peer: *c.GtkWidget,
-    expand: bool = false,
-
-    pub usingnamespace Events(Canvas);
-
-    pub fn create() GtkError!Row {
-        const layout = c.gtk_box_new(c.GtkOrientation.GTK_ORIENTATION_HORIZONTAL, 0) orelse return GtkError.UnknownError;
-        c.gtk_widget_show(layout);
-        return Row {
-            .peer = layout
-        };
+    pub fn add(self: *const Container, peer: PeerType) void {
+        c.gtk_fixed_put(@ptrCast(*c.GtkFixed, self.peer), peer, 0, 0);
     }
 
-    pub fn add(self: *const Row, peer: PeerType, fill: bool) void {
-        c.gtk_box_pack_start(@ptrCast(*c.GtkBox, self.peer), peer,
-            @boolToInt(self.expand or fill), @boolToInt(fill), 0);
-    }
-};
-
-pub const Column = struct {
-    peer: *c.GtkWidget,
-    expand: bool = false,
-
-    pub usingnamespace Events(Canvas);
-
-    pub fn create() GtkError!Column {
-        const layout = c.gtk_box_new(c.GtkOrientation.GTK_ORIENTATION_VERTICAL, 0) orelse return GtkError.UnknownError;
-        c.gtk_widget_show(layout);
-        return Column {
-            .peer = layout
-        };
+    pub fn move(self: *const Container, peer: PeerType, x: u32, y: u32) void {
+        c.gtk_fixed_move(@ptrCast(*c.GtkFixed, self.peer), peer, @intCast(c_int, x), @intCast(c_int, y));
     }
 
-    pub fn add(self: *const Column, peer: PeerType, fill: bool) void {
-        c.gtk_box_pack_start(@ptrCast(*c.GtkBox, self.peer), peer,
-            @boolToInt(self.expand or fill), @boolToInt(fill), 0);
+    pub fn resize(self: *const Container, peer: PeerType, w: u32, h: u32) void {
+        //var alloc = c.GtkAllocation { .x = 0, .y = 0, .width = @intCast(c_int, w), .height = @intCast(c_int, h) };
+        c.gtk_widget_set_size_request(peer, @intCast(c_int, w), @intCast(c_int, h));
+        //c.gtk_widget_size_allocate(peer, &alloc);
+        c.gtk_container_resize_children(@ptrCast(*c.GtkContainer, self.peer));
     }
 };
 

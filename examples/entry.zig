@@ -31,13 +31,14 @@ pub fn run() !void {
     var canvas = Canvas(.{});
     try canvas.addDrawHandler(draw);
     try canvas.addScrollHandler(scroll);
-
+    std.log.info("{}", .{TextField_Impl.WidgetClass});
     try window.set(
         Column(.{}, .{
             TextField(.{ .text = "gemini://gemini.circumlunar.space/" }),
-            Expanded(
-                &canvas
-            )
+            TextField(.{ .text = "other text" }),
+            //Expanded(
+            //    &canvas
+            //)
         })
     );
 

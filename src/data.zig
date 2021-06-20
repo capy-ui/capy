@@ -79,3 +79,27 @@ pub fn DataWrapper(comptime T: type) type {
 }
 
 pub const StringDataWrapper = DataWrapper([]const u8);
+
+/// The size expressed in display pixels.
+pub const Size = struct {
+    width: u32,
+    height: u32,
+
+    /// Returns the size with the least area
+    pub fn min(a: Size, b: Size) Size {
+        if (a.width * a.height < b.width * b.height) {
+            return a;
+        } else {
+            return b;
+        }
+    }
+
+    /// Returns the size with the most area
+    pub fn max(a: Size, b: Size) Size {
+        if (a.width * a.height > b.width * b.height) {
+            return a;
+        } else {
+            return b;
+        }
+    }
+};
