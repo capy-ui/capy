@@ -9,12 +9,16 @@ pub const Layout = fn(peer: backend.Container, widgets: []Widget) void;
 pub fn ColumnLayout(peer: backend.Container, widgets: []Widget) void {
     const count = @intCast(u32, widgets.len);
     const childHeight = @intCast(u32, peer.getHeight()) / count;
+    // Floats are used to avoid the layouting only changing in increments of count
+    // For example, in a column with 8 childrens, widgets would only move every 8 pixels which would leave noticeable gaps.
+    var childY: f32 = 0.0;
     for (widgets) |widget, idx| {
         if (widget.peer) |widgetPeer| {
             peer.move(widgetPeer,
                 0, 
-                @intCast(u32, childHeight * idx) // this cannot be higher than the container's height so it shouldn't overflow
+                @floatToInt(u32, @floor(childY))
             );
+            childY += @intToFloat(f32, peer.getHeight()) / @intToFloat(f32, count);
             const size = Size {
                 .width = @intCast(u32, peer.getWidth()), // self.width
                 .height = childHeight
@@ -27,18 +31,39 @@ pub fn ColumnLayout(peer: backend.Container, widgets: []Widget) void {
 pub fn RowLayout(peer: backend.Container, widgets: []Widget) void {
     const count = @intCast(u32, widgets.len);
     const childWidth = @intCast(u32, peer.getWidth()) / count;
+    var childX: f32 = 0.0;
     for (widgets) |widget, idx| {
         if (widget.peer) |widgetPeer| {
             peer.move(widgetPeer,
-                @intCast(u32, childWidth * idx), // this cannot be higher than the container's width so it shouldn't overflow
+                @floatToInt(u32, @floor(childX)),
                 0
             );
+            childX += @intToFloat(f32, peer.getWidth()) / @intToFloat(f32, count);
+            // TODO: use this size instead of preferred size only if the widget is Expanded
             const size = Size {
                 .width = childWidth, // self.width
                 .height = @intCast(u32, peer.getHeight())
             };
             peer.resize(widgetPeer, size.width, size.height);
         }
+    }
+}
+
+pub fn MarginLayout(peer: backend.Container, widgets: []Widget) void {
+    const margin = Rectangle { .left = 5, .top = 5, .right = 5, .bottom = 5 };
+    if (widgets.len > 1) {
+        std.log.scoped(.zgt).warn("Margin container has more than one widget!", .{});
+        return;
+    }
+
+    const widget = widgets[0];
+    if (widgets[0].peer) |widgetPeer| {
+        peer.move(widgetPeer, margin.left, margin.top);
+        const size = Size {
+            .width = std.math.max(@intCast(u32, peer.getWidth()), margin.left + margin.right) - margin.left - margin.right,
+            .height = std.math.max(@intCast(u32, peer.getHeight()), margin.top + margin.bottom) - margin.top - margin.bottom
+        };
+        peer.resize(widgetPeer, size.width, size.height);
     }
 }
 
@@ -206,9 +231,9 @@ pub fn Expanded(child: anytype) callconv(.Inline) anyerror!Widget {
     return widget;
 }
 
-pub fn Stack(childrens: anytype) callconv(.Inline) anyerror!Stack_Impl {
-    return try abstractContainerConstructor(Stack_Impl, childrens, .{});
-}
+// pub fn Stack(childrens: anytype) callconv(.Inline) anyerror!Stack_Impl {
+//     return try abstractContainerConstructor(Stack_Impl, childrens, .{});
+// }
 
 pub fn Row(config: GridConfig, childrens: anytype) callconv(.Inline) anyerror!Container_Impl {
     return try abstractContainerConstructor(Container_Impl, childrens, config, RowLayout);
@@ -216,4 +241,8 @@ pub fn Row(config: GridConfig, childrens: anytype) callconv(.Inline) anyerror!Co
 
 pub fn Column(config: GridConfig, childrens: anytype) callconv(.Inline) anyerror!Container_Impl {
     return try abstractContainerConstructor(Container_Impl, childrens, config, ColumnLayout);
+}
+
+pub fn Margin(child: anytype) callconv(.Inline) anyerror!Container_Impl {
+    return try abstractContainerConstructor(Container_Impl, .{ child }, GridConfig { }, MarginLayout);
 }

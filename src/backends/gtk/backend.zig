@@ -76,11 +76,11 @@ pub const Window = struct {
     }
 
     pub fn setChild(self: *Window, peer: anytype) void {
-        const scrolledWindow = c.gtk_scrolled_window_new(null, null) orelse unreachable;
-        c.gtk_scrolled_window_set_propagate_natural_width(@ptrCast(*c.GtkScrolledWindow, scrolledWindow), 1);
-        c.gtk_container_add(@ptrCast(*c.GtkContainer, scrolledWindow), peer);
-        c.gtk_widget_show(scrolledWindow);
-        c.gtk_container_add(@ptrCast(*c.GtkContainer, self.peer), scrolledWindow);
+        //const scrolledWindow = c.gtk_scrolled_window_new(null, null) orelse unreachable;
+        //c.gtk_scrolled_window_set_propagate_natural_width(@ptrCast(*c.GtkScrolledWindow, scrolledWindow), 1);
+        //c.gtk_container_add(@ptrCast(*c.GtkContainer, scrolledWindow), peer);
+        //c.gtk_widget_show(scrolledWindow);
+        c.gtk_container_add(@ptrCast(*c.GtkContainer, self.peer), peer);
     }
 
     pub fn show(self: *Window) void {

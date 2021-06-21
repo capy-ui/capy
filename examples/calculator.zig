@@ -60,6 +60,9 @@ pub fn compute(button: *Button_Impl) !void {
 
             pos = end;
         } else {
+            if (pos == 0) {
+                result = std.fmt.parseFloat(FloatType, computation) catch std.math.nan(FloatType);
+            }
             break;
         }
     }
@@ -79,28 +82,28 @@ pub fn run() !void {
     try window.set(Column(.{ .expand = .Fill }, .{
         &computationLabel,
         Expanded(Row(.{ .expand = .Fill }, .{
-            Expanded(Button(.{ .label = "7", .onclick = pressedKey })),
-            Expanded(Button(.{ .label = "8", .onclick = pressedKey })),
-            Expanded(Button(.{ .label = "9", .onclick = pressedKey })),
-            Expanded(Button(.{ .label = "+", .onclick = pressedKey })),
+            Margin(Button(.{ .label = "7", .onclick = pressedKey })),
+            Margin(Button(.{ .label = "8", .onclick = pressedKey })),
+            Margin(Button(.{ .label = "9", .onclick = pressedKey })),
+            Margin(Button(.{ .label = "+", .onclick = pressedKey })),
         })),
         Expanded(Row(.{ .expand = .Fill }, .{
-            Expanded(Button(.{ .label = "4", .onclick = pressedKey })),
-            Expanded(Button(.{ .label = "5", .onclick = pressedKey })),
-            Expanded(Button(.{ .label = "6", .onclick = pressedKey })),
-            Expanded(Button(.{ .label = "-", .onclick = pressedKey })),
+            Margin(Button(.{ .label = "4", .onclick = pressedKey })),
+            Margin(Button(.{ .label = "5", .onclick = pressedKey })),
+            Margin(Button(.{ .label = "6", .onclick = pressedKey })),
+            Margin(Button(.{ .label = "-", .onclick = pressedKey })),
         })),
         Expanded(Row(.{ .expand = .Fill }, .{
-            Expanded(Button(.{ .label = "1", .onclick = pressedKey })),
-            Expanded(Button(.{ .label = "2", .onclick = pressedKey })),
-            Expanded(Button(.{ .label = "3", .onclick = pressedKey })),
-            Expanded(Button(.{ .label = "*", .onclick = pressedKey })),
+            Margin(Button(.{ .label = "1", .onclick = pressedKey })),
+            Margin(Button(.{ .label = "2", .onclick = pressedKey })),
+            Margin(Button(.{ .label = "3", .onclick = pressedKey })),
+            Margin(Button(.{ .label = "*", .onclick = pressedKey })),
         })),
         Expanded(Row(.{ .expand = .Fill }, .{
-            Expanded(Button(.{ .label = "/" , .onclick = pressedKey })),
-            Expanded(Button(.{ .label = "0" , .onclick = pressedKey })),
-            Expanded(Button(.{ .label = "CE", .onclick = erase      })),
-            Expanded(Button(.{ .label = "." , .onclick = pressedKey }))
+            Margin(Button(.{ .label = "/" , .onclick = pressedKey })),
+            Margin(Button(.{ .label = "0" , .onclick = pressedKey })),
+            Margin(Button(.{ .label = "CE", .onclick = erase      })),
+            Margin(Button(.{ .label = "." , .onclick = pressedKey }))
         })),
         Expanded(Button(.{ .label = "=", .onclick = compute }))
     }));

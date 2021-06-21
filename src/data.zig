@@ -103,3 +103,10 @@ pub const Size = struct {
         }
     }
 };
+
+pub const Rectangle = struct {
+    left: u32,
+    top: u32,
+    right: u32,
+    bottom: u32
+};
