@@ -112,7 +112,7 @@ pub fn Events(comptime T: type) type {
             return obj;
         }
 
-        fn errorHandler(err: anyerror) callconv(.Inline) void {
+        fn errorHandler(err: anyerror) void {
             std.log.err("{s}", .{@errorName(err)});
             var streamBuf: [16384]u8 = undefined;
             var stream = std.io.fixedBufferStream(&streamBuf);
@@ -121,11 +121,15 @@ pub fn Events(comptime T: type) type {
             if (@errorReturnTrace()) |trace| {
                 std.debug.dumpStackTrace(trace.*);
                 std.log.info("dumped", .{});
-                if (std.debug.getSelfDebugInfo()) |debug_info| {
-                    var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
-                    defer arena.deinit();
-                    std.debug.writeStackTrace(trace.*, writer, &arena.allocator, debug_info, .no_color) catch {};
-                } else |e| {}
+                if (std.io.is_async) {
+                    // can't use writeStackTrace as it is async but errorHandler should not be async!
+                } else {
+                    if (std.debug.getSelfDebugInfo()) |debug_info| {
+                        var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
+                        defer arena.deinit();
+                        std.debug.writeStackTrace(trace.*, writer, &arena.allocator, debug_info, .no_color) catch {};
+                    } else |e| {}
+                }
             }
             writer.print("Please check the log.", .{}) catch {};
             backend.showNativeMessageDialog(.Error, "{s}", .{stream.getWritten()});
@@ -167,7 +171,7 @@ pub fn Events(comptime T: type) type {
             }
         }
 
-        pub fn show_events(self: *T) callconv(.Inline) !void {
+        pub fn show_events(self: *T) !void {
             self.peer.?.setUserData(self);
             try self.peer.?.setCallback(.Click      , clickHandler);
             try self.peer.?.setCallback(.Draw       , drawHandler);

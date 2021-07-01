@@ -485,6 +485,16 @@ pub const Canvas = struct {
             c.pango_cairo_show_layout(self.cr, pangoLayout);
         }
 
+        pub fn line(self: *const DrawContext, x1: i32, y1: i32, x2: i32, y2: i32) void {
+            c.cairo_move_to(self.cr, @intToFloat(f64, x1), @intToFloat(f64, y1));
+            c.cairo_line_to(self.cr, @intToFloat(f64, x2), @intToFloat(f64, y2));
+        }
+
+        /// Stroke the current path and reset the path.
+        pub fn stroke(self: *const DrawContext) void {
+            c.cairo_stroke(self.cr);
+        }
+
         /// Fill the current path and reset the path.
         pub fn fill(self: *const DrawContext) void {
             c.cairo_fill(self.cr);

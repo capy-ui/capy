@@ -25,7 +25,7 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
 
     const zgt = std.build.Pkg {
         .name = "zgt",
-        .path = prefix ++ "/src/main.zig",
+        .path = std.build.FileSource.relative(prefix ++ "/src/main.zig"),
         .dependencies = &[_]std.build.Pkg{}
     };
 

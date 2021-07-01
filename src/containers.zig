@@ -90,7 +90,7 @@ const Stack_Impl = struct {
     }
 };
 
-const Container_Impl = struct {
+pub const Container_Impl = struct {
     pub usingnamespace @import("internal.zig").All(Container_Impl);
 
     peer: ?backend.Container,
@@ -148,13 +148,15 @@ const Container_Impl = struct {
 
     pub fn add(self: *Container_Impl, widget: anytype) !void {
         const allocator = self.childrens.allocator;
-        const genericWidget = genericWidgetFrom(widget);
+        var genericWidget = try genericWidgetFrom(widget);
 
         if (self.peer) |*peer| {
-            peer.add(genericWidget.peer, genericWidget.container_expanded);
+            try genericWidget.show();
+            peer.add(genericWidget.peer.?);
         }
 
         try self.childrens.append(genericWidget);
+        try self.relayout();
     }
 };
 
