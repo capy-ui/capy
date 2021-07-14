@@ -15,7 +15,9 @@ pub const Canvas_Impl = struct {
 
     /// Internal function used at initialization.
     /// It is used to move some pointers so things do not break.
-    pub fn pointerMoved(self: *Canvas_Impl) void {}
+    pub fn pointerMoved(self: *Canvas_Impl) void {
+        _ = self;
+    }
 
     pub fn show(self: *Canvas_Impl) !void {
         if (self.peer == null) {

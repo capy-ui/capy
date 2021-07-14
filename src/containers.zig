@@ -12,7 +12,7 @@ pub fn ColumnLayout(peer: backend.Container, widgets: []Widget) void {
     // Floats are used to avoid the layouting only changing in increments of count
     // For example, in a column with 8 childrens, widgets would only move every 8 pixels which would leave noticeable gaps.
     var childY: f32 = 0.0;
-    for (widgets) |widget, idx| {
+    for (widgets) |widget| {
         if (widget.peer) |widgetPeer| {
             peer.move(widgetPeer,
                 0, 
@@ -32,7 +32,7 @@ pub fn RowLayout(peer: backend.Container, widgets: []Widget) void {
     const count = @intCast(u32, widgets.len);
     const childWidth = @intCast(u32, peer.getWidth()) / count;
     var childX: f32 = 0.0;
-    for (widgets) |widget, idx| {
+    for (widgets) |widget| {
         if (widget.peer) |widgetPeer| {
             peer.move(widgetPeer,
                 @floatToInt(u32, @floor(childX)),
@@ -56,7 +56,6 @@ pub fn MarginLayout(peer: backend.Container, widgets: []Widget) void {
         return;
     }
 
-    const widget = widgets[0];
     if (widgets[0].peer) |widgetPeer| {
         peer.move(widgetPeer, margin.left, margin.top);
         const size = Size {
@@ -82,12 +81,12 @@ const Stack_Impl = struct {
         };
     }
 
-    pub fn add(self: *Stack_Impl, widget: anytype) !void {
-        // self.peer.put(widget.peer, 
-        //     try std.math.cast(c_int, x),
-        //     try std.math.cast(c_int, y)
-        // );
-    }
+    // pub fn add(self: *Stack_Impl, widget: anytype) !void {
+    //     self.peer.put(widget.peer, 
+    //         try std.math.cast(c_int, x),
+    //         try std.math.cast(c_int, y)
+    //     );
+    // }
 };
 
 pub const Container_Impl = struct {
@@ -113,13 +112,17 @@ pub const Container_Impl = struct {
 
     /// Internal function used at initialization.
     /// It is used to move some pointers so things do not break.
-    pub fn pointerMoved(self: *Container_Impl) void {}
+    pub fn pointerMoved(self: *Container_Impl) void {
+        _ = self;
+    }
 
     pub fn onResize(self: *Container_Impl, size: Size) !void {
+        _ = size;
         try self.relayout();
     }
 
     pub fn getPreferredSize(self: *Container_Impl) Size {
+        _ = self;
         return Size { .width = 500.0, .height = 200.0 };
     }
 
@@ -147,7 +150,6 @@ pub const Container_Impl = struct {
     }
 
     pub fn add(self: *Container_Impl, widget: anytype) !void {
-        const allocator = self.childrens.allocator;
         var genericWidget = try genericWidgetFrom(widget);
 
         if (self.peer) |*peer| {

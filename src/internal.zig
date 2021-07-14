@@ -29,11 +29,11 @@ pub fn All(comptime T: type) type {
 }
 
 // Styling
-pub fn Styling(comptime T: type) type {
-    return struct {
-        //pub usingnamespace Measurement(T);
-    };
-}
+// pub fn Styling(comptime T: type) type {
+//     return struct {
+//         pub usingnamespace Measurement(T);
+//     };
+// }
 
 pub fn Widgeting(comptime T: type) type {
     return struct {
@@ -67,12 +67,12 @@ pub fn Widgeting(comptime T: type) type {
     };
 }
 
-pub fn Property(comptime T: type, comptime name: []const u8) type {
-    // Depends on #6709
-    return struct {
+// pub fn Property(comptime T: type, comptime name: []const u8) type {
+     // Depends on #6709
+//     return struct {
 
-    };
-}
+//     };
+// }
 
 // Events
 pub const RedrawError = error {
@@ -120,7 +120,6 @@ pub fn Events(comptime T: type) type {
             writer.print("Internal error: {s}.\n", .{@errorName(err)}) catch {};
             if (@errorReturnTrace()) |trace| {
                 std.debug.dumpStackTrace(trace.*);
-                std.log.info("dumped", .{});
                 if (std.io.is_async) {
                     // can't use writeStackTrace as it is async but errorHandler should not be async!
                 } else {
@@ -128,7 +127,7 @@ pub fn Events(comptime T: type) type {
                         var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
                         defer arena.deinit();
                         std.debug.writeStackTrace(trace.*, writer, &arena.allocator, debug_info, .no_color) catch {};
-                    } else |e| {}
+                    } else |_| { }
                 }
             }
             writer.print("Please check the log.", .{}) catch {};

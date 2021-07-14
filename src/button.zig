@@ -21,7 +21,9 @@ pub const Button_Impl = struct {
 
     /// Internal function used at initialization.
     /// It is used to move some pointers so things do not break.
-    pub fn pointerMoved(self: *Button_Impl) void {}
+    pub fn pointerMoved(self: *Button_Impl) void {
+        _ = self;
+    }
 
     pub fn show(self: *Button_Impl) !void {
         if (self.peer == null) {
@@ -32,6 +34,7 @@ pub const Button_Impl = struct {
     }
 
     pub fn getPreferredSize(self: *Button_Impl) Size {
+        _ = self;
         return Size { .width = 500.0, .height = 200.0 };
     }
 

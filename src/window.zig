@@ -48,6 +48,7 @@ pub const Window = struct {
     }
 
     pub fn run(self: *Window) void {
+        _ = self;
         backend.run();
     }
 

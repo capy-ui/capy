@@ -42,7 +42,7 @@ pub const TextArea_Impl = struct {
 
 pub const TextField_Impl = struct {
     pub usingnamespace @import("internal.zig").All(TextField_Impl);
-    pub usingnamespace @import("internal.zig").Property(TextField_Impl, "text");
+    //pub usingnamespace @import("internal.zig").Property(TextField_Impl, "text");
 
     peer: ?backend.TextField = null,
     handlers: TextField_Impl.Handlers = undefined,
@@ -88,6 +88,7 @@ pub const TextField_Impl = struct {
     }
 
     pub fn getPreferredSize(self: *TextField_Impl) Size {
+        _ = self;
         return Size { .width = 500.0, .height = 200.0 };
     }
 

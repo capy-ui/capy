@@ -27,7 +27,7 @@ pub const public = struct {
 pub fn init() !void {
     const hInstance = @ptrCast(HINSTANCE, @alignCast(@alignOf(HINSTANCE),
         GetModuleHandleW(null).?));
-    const lpCmdLine = GetCommandLineW();
+    hInst = hInstance;
 
     const initEx = INITCOMMONCONTROLSEX {
         .dwSize = @sizeOf(INITCOMMONCONTROLSEX),
@@ -80,9 +80,6 @@ pub const Window = struct {
 
         var rect: RECT = undefined;
         _ = GetClientRect(parent, &rect);
-
-        const style = @intCast(u32, GetWindowLongPtr(hwnd, GWL_STYLE));
-        const exStyle = @intCast(u32, GetWindowLongPtr(hwnd, GWL_EXSTYLE));
         _ = MoveWindow(hwnd, 0, 0, rect.right - rect.left, rect.bottom - rect.top, 1);
         return 1;
     }
@@ -373,11 +370,14 @@ pub const Label = struct {
     }
 
     pub fn setCallback(self: *Label, eType: EventType, cb: fn(data: usize) void) !void {
-
+        _ = self;
+        _ = eType;
+        _ = cb;
     }
 
     pub fn setAlignment(self: *Label, alignment: f32) void {
-
+        _ = self;
+        _ = alignment;
     }
 
     pub fn setText(self: *Label, text: [:0]const u8) void {
@@ -463,13 +463,17 @@ pub const Container = struct {
 
     pub fn add(self: *Container, peer: PeerType) void {
         _ = SetParent(peer, self.peer);
+        const style = GetWindowLongPtr(peer, GWL_STYLE);
+        SetWindowLongPtr(peer, GWL_STYLE, style | WS_CHILD);
         _ = showWindow(peer, SW_SHOWDEFAULT);
         _ = UpdateWindow(peer);
     }
 
     pub fn move(self: *const Container, peer: PeerType, x: u32, y: u32) void {
+        _ = self;
         var rect: RECT = undefined;
         _ = GetWindowRect(peer, &rect);
+        std.log.info("pos: {d},{d}", .{x, y});
         _ = MoveWindow(peer, @intCast(c_int, x), @intCast(c_int, y), rect.right - rect.left, rect.bottom - rect.top, 1);
     }
 
@@ -479,6 +483,7 @@ pub const Container = struct {
         var parent: RECT = undefined;
         _ = GetWindowRect(self.peer, &parent);
 
+        std.log.info("size: {d}x{d}", .{width, height});
         _ = MoveWindow(peer, rect.left - parent.left, rect.top - parent.top, @intCast(c_int, width), @intCast(c_int, height), 1);
     }
 };
