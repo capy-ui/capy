@@ -3,7 +3,7 @@ const data = @import("data.zig");
 
 pub const Class = struct {
     showFn: fn(widget: *Widget) anyerror!void,
-    preferredSizeFn: fn(widget: *Widget) data.Size,
+    preferredSizeFn: fn(widget: *const Widget, available: data.Size) data.Size,
 };
 
 pub const Widget = struct {
@@ -21,8 +21,8 @@ pub const Widget = struct {
         try self.class.showFn(self);
     }
 
-    pub fn getPreferredSize(self: *Widget) data.Size {
-        return self.class.preferredSizeFn(self);
+    pub fn getPreferredSize(self: *const Widget, available: data.Size) data.Size {
+        return self.class.preferredSizeFn(self, available);
     }
 
     pub fn as(self: *Widget, comptime T: type) *T {

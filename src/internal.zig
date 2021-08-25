@@ -49,9 +49,9 @@ pub fn Widgeting(comptime T: type) type {
             widget.peer = component.peer.?.peer;
         }
 
-        pub fn getPreferredSizeWidget(widget: *Widget) Size {
+        pub fn getPreferredSizeWidget(widget: *const Widget, available: Size) Size {
             const component = @intToPtr(*T, widget.data);
-            return component.getPreferredSize();
+            return component.getPreferredSize(available);
         }
 
         pub fn getWidth(self: *T) u32 {

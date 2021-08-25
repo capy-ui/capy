@@ -30,7 +30,31 @@ pub fn ColumnLayout(peer: backend.Container, widgets: []Widget) void {
 
 pub fn RowLayout(peer: backend.Container, widgets: []Widget) void {
     const count = @intCast(u32, widgets.len);
-    const childWidth = @intCast(u32, peer.getWidth()) / count;
+    const expandedCount = blk: {
+        var expandedCount: u32 = 0;
+        for (widgets) |widget| {
+            if (widget.container_expanded) expandedCount += 1;
+        }
+        break :blk expandedCount;
+    };
+
+    var childWidth = if (expandedCount == 0) 0
+        else @intCast(u32, peer.getWidth()) / expandedCount;
+    for (widgets) |widget| {
+        if (!widget.container_expanded) {
+            const available = Size {
+                .width = @intCast(u32, peer.getWidth()),
+                .height = @intCast(u32, peer.getHeight())
+            };
+            const takenWidth = widget.getPreferredSize(available).width / expandedCount;
+            if (childWidth >= takenWidth) {
+                childWidth -= takenWidth;
+            } else {
+                childWidth = 0;
+            }
+        }
+    }
+
     var childX: f32 = 0.0;
     for (widgets) |widget| {
         if (widget.peer) |widgetPeer| {
@@ -38,12 +62,21 @@ pub fn RowLayout(peer: backend.Container, widgets: []Widget) void {
                 @floatToInt(u32, @floor(childX)),
                 0
             );
-            childX += @intToFloat(f32, peer.getWidth()) / @intToFloat(f32, count);
-            // TODO: use this size instead of preferred size only if the widget is Expanded
-            const size = Size {
-                .width = childWidth, // self.width
+            const available = Size {
+                .width = if (widget.container_expanded) childWidth
+                    else @intCast(u32, peer.getWidth()) / count,
                 .height = @intCast(u32, peer.getHeight())
             };
+            const preferred = widget.getPreferredSize(available);
+
+            const size = Size {
+                .width = if (widget.container_expanded) available.width
+                    else std.math.min(preferred.width, available.width),
+                .height = if (widget.container_expanded) available.height
+                    else std.math.min(preferred.height, available.height)
+            };
+            childX += @intToFloat(f32, size.width);
+
             peer.resize(widgetPeer, size.width, size.height);
         }
     }

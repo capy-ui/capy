@@ -33,9 +33,11 @@ pub const Button_Impl = struct {
         }
     }
 
-    pub fn getPreferredSize(self: *Button_Impl) Size {
+    pub fn getPreferredSize(self: *Button_Impl, available: Size) Size {
         _ = self;
-        return Size { .width = 500.0, .height = 200.0 };
+        _ = available;
+        // TODO getting hint from native peer
+        return Size { .width = 100.0, .height = 100.0 };
     }
 
     pub fn setLabel(self: *Button_Impl, label: [:0]const u8) void {
