@@ -15,12 +15,26 @@ pub const TextArea_Impl = struct {
         });
     }
 
+    /// Internal function used at initialization.
+    /// It is used to move some pointers so things do not break.
+    pub fn pointerMoved(self: *TextArea_Impl) void {
+        _ = self;
+        //self.text.updateBinders();
+    }
+
     pub fn show(self: *TextArea_Impl) !void {
         if (self.peer == null) {
             var peer = try backend.TextArea.create();
             peer.setText(self._text);
             self.peer = peer;
         }
+    }
+
+    pub fn getPreferredSize(self: *TextArea_Impl, available: Size) Size {
+        _ = self;
+        _ = available;
+        // TODO getting hint from native peer
+        return Size { .width = 100.0, .height = 100.0 };
     }
 
     pub fn setText(self: *TextArea_Impl, text: []const u8) void {
