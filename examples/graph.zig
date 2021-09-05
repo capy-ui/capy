@@ -1,15 +1,14 @@
-usingnamespace @import("zgt");
+const zgt = @import("zgt");
 const std = @import("std");
 
 var graph: LineGraph_Impl = undefined;
 
 pub const LineGraph_Impl = struct {
-    pub usingnamespace zgtInternal.All(LineGraph_Impl);
+    pub usingnamespace zgt.internal.All(LineGraph_Impl);
 
-    peer: ?zgtBackend.Canvas = null,
+    peer: ?zgt.backend.Canvas = null,
     handlers: LineGraph_Impl.Handlers = undefined,
     dataFn: fn(x: f32) f32,
-    tree: std.zig.ast.Tree = undefined,
 
     pub fn init(dataFn: fn(x: f32) f32) LineGraph_Impl {
         return LineGraph_Impl.init_events(LineGraph_Impl {
@@ -17,7 +16,7 @@ pub const LineGraph_Impl = struct {
         });
     }
 
-    pub fn draw(self: *LineGraph_Impl, ctx: DrawContext) !void {
+    pub fn draw(self: *LineGraph_Impl, ctx: zgt.DrawContext) !void {
         const width = self.getWidth();
         const height = self.getHeight();
         ctx.clear(0, 0, width, height);
@@ -39,17 +38,21 @@ pub const LineGraph_Impl = struct {
 
     /// Internal function used at initialization.
     /// It is used to move some pointers so things do not break.
-    pub fn pointerMoved(self: *LineGraph_Impl) void {}
+    pub fn pointerMoved(self: *LineGraph_Impl) void {
+        _ = self;
+    }
 
     pub fn show(self: *LineGraph_Impl) !void {
         if (self.peer == null) {
-            self.peer = try zgtBackend.Canvas.create();
+            self.peer = try zgt.backend.Canvas.create();
             try self.show_events();
         }
     }
 
-    pub fn getPreferredSize(self: *LineGraph_Impl) Size {
-        return Size { .width = 500.0, .height = 200.0 };
+    pub fn getPreferredSize(self: *LineGraph_Impl, available: zgt.Size) zgt.Size {
+        _ = self;
+        _ = available;
+        return zgt.Size { .width = 500.0, .height = 200.0 };
     }
 };
 
@@ -95,20 +98,18 @@ fn stdNormDev(x: f32) f32 {
 
 var rand = std.rand.DefaultPrng.init(0);
 fn randf(x: f32) f32 {
+    _ = x;
     return rand.random.float(f32);
 }
 
-pub fn run() !void {
-    var gpa = std.heap.GeneralPurposeAllocator(.{}) {};
-    const allocator = &gpa.allocator;
-    defer _ = gpa.deinit();
+pub fn main() !void {
+    try zgt.backend.init();
 
-    var window = try Window.init();
-
+    var window = try zgt.Window.init();
     graph = try LineGraph(.{ .dataFn = myDataFunction });
     try window.set(
-        Column(.{}, .{
-            Expanded(&graph)
+        zgt.Column(.{}, .{
+            zgt.Expanded(&graph)
         })
     );
 

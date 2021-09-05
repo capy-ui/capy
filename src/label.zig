@@ -1,6 +1,6 @@
 const std = @import("std");
 const backend = @import("backend.zig");
-usingnamespace @import("data.zig");
+const Size = @import("data.zig").Size;
 
 pub const Label_Impl = struct {
     pub usingnamespace @import("internal.zig").All(Label_Impl);
@@ -36,8 +36,9 @@ pub const Label_Impl = struct {
         }
     }
 
-    pub fn getPreferredSize(self: *Label_Impl) Size {
+    pub fn getPreferredSize(self: *Label_Impl, available: Size) Size {
         _ = self;
+        _ = available;
         return Size { .width = 500.0, .height = 200.0 };
     }
 

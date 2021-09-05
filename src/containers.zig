@@ -1,8 +1,9 @@
 const std = @import("std");
 const backend = @import("backend.zig");
 const Widget = @import("widget.zig").Widget;
-usingnamespace @import("internal.zig");
-usingnamespace @import("data.zig");
+const lasting_allocator = @import("internal.zig").lasting_allocator;
+const Size = @import("data.zig").Size;
+const Rectangle = @import("data.zig").Rectangle;
 
 pub const Layout = fn(peer: backend.Container, widgets: []Widget) void;
 
@@ -46,7 +47,8 @@ pub fn RowLayout(peer: backend.Container, widgets: []Widget) void {
                 .width = @intCast(u32, peer.getWidth()),
                 .height = @intCast(u32, peer.getHeight())
             };
-            const takenWidth = widget.getPreferredSize(available).width / expandedCount;
+            const divider = if (expandedCount == 0) 1 else expandedCount;
+            const takenWidth = widget.getPreferredSize(available).width / divider;
             if (childWidth >= takenWidth) {
                 childWidth -= takenWidth;
             } else {
@@ -154,8 +156,10 @@ pub const Container_Impl = struct {
         try self.relayout();
     }
 
-    pub fn getPreferredSize(self: *Container_Impl) Size {
+    pub fn getPreferredSize(self: *Container_Impl, available: Size) Size {
         _ = self;
+        _ = available;
+        // TODO: compute!
         return Size { .width = 500.0, .height = 200.0 };
     }
 

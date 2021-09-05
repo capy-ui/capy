@@ -21,6 +21,9 @@ pub const Widget = struct {
         try self.class.showFn(self);
     }
 
+    /// Get the preferred size for the given available space.
+    /// With this system, minimum size is widget.getPreferredSize(Size { .width = 0, .height = 0 }),
+    /// and maximum size is widget.getPreferredSize(Size { .width = std.math.maxInt(u32), .height = std.math.maxInt(u32) })
     pub fn getPreferredSize(self: *const Widget, available: data.Size) data.Size {
         return self.class.preferredSizeFn(self, available);
     }

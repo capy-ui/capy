@@ -7,22 +7,24 @@ Zig GUI Toolkit
 Example of using zgt:
 
 ```zig
-usingnamespace @import("zgt");
+const zgt = @import("zgt");
 const std = @import("std");
 
-pub fn run() !void {
+pub fn main() !void {
+    try zgt.backend.init();
+    
     var window = try Window.init();
     try window.set(
         Column(.{}, .{
-            Row(.{}, .{
-                Button(.{ .label = "Save", .onclick = buttonClicked }),
-                Button(.{ .label = "Run",  .onclick = buttonClicked })
+            zgt.Row(.{}, .{
+                zgt.Button(.{ .label = "Save", .onclick = buttonClicked }),
+                zgt.Button(.{ .label = "Run",  .onclick = buttonClicked })
             }),
-            // Expanded means the widget will take all the space it can
-            // in the parent container
-            Expanded(
-                TextArea(.{ .text = "Hello World!" })
-            )
+            // Expanded means the widget will take all the space it can
+            // in the parent container
+            zgt.Expanded(
+                zgt.TextArea(.{ .text = "Hello World!" })
+            )
         })
     );
 

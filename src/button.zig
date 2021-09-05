@@ -1,6 +1,6 @@
 const std = @import("std");
 const backend = @import("backend.zig");
-usingnamespace @import("data.zig");
+const Size = @import("data.zig").Size;
 
 pub const Button_Impl = struct {
     pub usingnamespace @import("internal.zig").All(Button_Impl);

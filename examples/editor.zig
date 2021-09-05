@@ -1,4 +1,4 @@
-usingnamespace @import("zgt");
+const zgt = @import("zgt");
 const std = @import("std");
 
 var area: FlatText_Impl = undefined;
@@ -52,20 +52,20 @@ const tagArray = std.enums.directEnumArrayDefault(std.zig.Token.Tag, KeywordType
 });
 
 pub const FlatText_Impl = struct {
-    pub usingnamespace zgtInternal.All(FlatText_Impl);
+    pub usingnamespace zgt.internal.All(FlatText_Impl);
 
-    peer: ?zgtBackend.Canvas = null,
+    peer: ?zgt.backend.Canvas = null,
     handlers: FlatText_Impl.Handlers = undefined,
-    text: StringDataWrapper,
+    text: zgt.StringDataWrapper,
     tree: std.zig.ast.Tree = undefined,
 
     pub fn init(text: []const u8) FlatText_Impl {
         return FlatText_Impl.init_events(FlatText_Impl {
-            .text = StringDataWrapper.of(text)
+            .text = zgt.StringDataWrapper.of(text)
         });
     }
 
-    pub fn draw(self: *FlatText_Impl, ctx: DrawContext) !void {
+    pub fn draw(self: *FlatText_Impl, ctx: zgt.DrawContext) !void {
         const width = self.getWidth();
         const height = self.getHeight();
 
@@ -73,7 +73,7 @@ pub const FlatText_Impl = struct {
         ctx.rectangle(0, 0, width, height);
         ctx.fill();
 
-        var layout = DrawContext.TextLayout.init();
+        var layout = zgt.DrawContext.TextLayout.init();
         defer layout.deinit();
         ctx.setColor(0, 0, 0);
         layout.setFont(.{ .face = "Fira Code", .size = 10.0 });
@@ -140,7 +140,7 @@ pub const FlatText_Impl = struct {
 
     pub fn show(self: *FlatText_Impl) !void {
         if (self.peer == null) {
-            self.peer = try zgtBackend.Canvas.create();
+            self.peer = try zgt.backend.Canvas.create();
             try self.show_events();
 
             self.text.userdata = @ptrToInt(&self.peer);
@@ -158,7 +158,7 @@ pub const FlatText_Impl = struct {
     }
 
     /// Bind the 'text' property to argument.
-    pub fn bindText(self: *FlatText_Impl, other: *StringDataWrapper) FlatText_Impl {
+    pub fn bindText(self: *FlatText_Impl, other: *zgt.StringDataWrapper) FlatText_Impl {
         self.text.set(other.get());
         self.text.bind(other);
         return self.*;
@@ -171,12 +171,14 @@ pub fn FlatText(config: struct { text: []const u8 = "" }) !FlatText_Impl {
     return textEditor;
 }
 
-pub fn run() !void {
+pub fn main() !void {
+    try zgt.backend.init();
+    
     var gpa = std.heap.GeneralPurposeAllocator(.{}) {};
     const allocator = &gpa.allocator;
     defer _ = gpa.deinit();
 
-    var window = try Window.init();
+    var window = try zgt.Window.init();
 
     var file = try std.fs.cwd().openFileZ("examples/editor.zig", .{ .read = true });
     defer file.close();
@@ -185,12 +187,12 @@ pub fn run() !void {
 
     area = try FlatText(.{ .text = text });
     try window.set(
-        Column(.{}, .{
-            Row(.{}, .{
-                Button(.{ .label = "Save" }),
-                Button(.{ .label = "Run"  })
+        zgt.Column(.{}, .{
+            zgt.Row(.{}, .{
+                zgt.Button(.{ .label = "Save" }),
+                zgt.Button(.{ .label = "Run"  })
             }),
-            Expanded(&area)
+            zgt.Expanded(&area)
         })
     );
 

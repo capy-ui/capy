@@ -2,7 +2,7 @@ const std = @import("std");
 pub const c = @cImport({
     @cInclude("gtk/gtk.h");
 });
-usingnamespace @import("windowbin.zig");
+const wbin_new = @import("windowbin.zig").wbin_new;
 
 const GtkError = std.mem.Allocator.Error || error {
     UnknownError,
@@ -372,7 +372,7 @@ pub const TextField = struct {
     pub fn create() GtkError!TextField {
         const textField = c.gtk_entry_new() orelse return GtkError.UnknownError;
         c.gtk_widget_show(textField);
-        try setupEvents(textField);
+        try TextField.setupEvents(textField);
         _ = c.g_signal_connect_data(textField, "changed", @ptrCast(c.GCallback, gtkTextChanged),
                 null, @as(c.GClosureNotify, null), c.G_CONNECT_AFTER);
         return TextField {
@@ -520,9 +520,9 @@ pub const Canvas = struct {
     pub fn create() GtkError!Canvas {
         const canvas = c.gtk_drawing_area_new() orelse return GtkError.UnknownError;
         c.gtk_widget_show(canvas);
-        try setupEvents(canvas);
+        try Canvas.setupEvents(canvas);
         _ = c.g_signal_connect_data(canvas, "draw", @ptrCast(c.GCallback, gtkCanvasDraw),
-                null, @as(c.GClosureNotify, null), @intToEnum(c.GConnectFlags, 0));
+                null, @as(c.GClosureNotify, null), 0);
         return Canvas {
             .peer = canvas
         };
@@ -538,7 +538,7 @@ pub const Container = struct {
     pub fn create() GtkError!Container {
         const layout = c.gtk_fixed_new() orelse return GtkError.UnknownError;
         c.gtk_widget_show(layout);
-        try setupEvents(layout);
+        try Container.setupEvents(layout);
         return Container {
             .peer = layout
         };

@@ -1,15 +1,16 @@
-usingnamespace @import("zgt");
+const zgt = @import("zgt");
 
-pub fn run() !void {
-    var window = try Window.init();
+pub fn main() !void {
+    try zgt.backend.init();
 
+    var window = try zgt.Window.init();
     try window.set(
-        Row(.{}, .{
-            Button(.{ .label = "Tree" }),
-            Expanded(
-                Button(.{ .label = "Main" })
+        zgt.Row(.{}, .{
+            zgt.Button(.{ .label = "Tree" }),
+            zgt.Expanded(
+                zgt.Button(.{ .label = "Main" })
             ),
-            Button(.{ .label = "Misc" })
+            zgt.Button(.{ .label = "Misc" })
         })
     );
 

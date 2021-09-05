@@ -5,7 +5,7 @@ const backend = @import("backend.zig");
 const style = @import("style.zig");
 const Widget = @import("widget.zig").Widget;
 const Class  = @import("widget.zig").Class;
-usingnamespace @import("data.zig");
+const Size = @import("data.zig").Size;
 
 /// Allocator used for small, short-lived and repetitive allocations.
 /// You can change this by setting the `zgtScratchAllocator` field in your main file

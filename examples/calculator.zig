@@ -1,12 +1,18 @@
 const std = @import("std");
-usingnamespace @import("zgt");
+const zgt = @import("zgt");
+
+// Short names to avoid writing 'zgt.' each time
+const Button = zgt.Button;
+const Margin = zgt.Margin;
+const Expanded = zgt.Expanded;
+const Row = zgt.Row;
 
 const Allocator = std.mem.Allocator;
 
-var computationLabel: Label_Impl = undefined;
+var computationLabel: zgt.Label_Impl = undefined;
 var allocator: *Allocator = undefined;
 
-pub fn pressedKey(button: *Button_Impl) !void {
+pub fn pressedKey(button: *zgt.Button_Impl) !void {
     const buttonLabel = button.getLabel();
     const labelText = computationLabel.getText();
 
@@ -19,7 +25,8 @@ pub fn pressedKey(button: *Button_Impl) !void {
     allocator.free(larger);
 }
 
-pub fn erase(button: *Button_Impl) !void {
+pub fn erase(button: *zgt.Button_Impl) !void {
+    _ = button;
     computationLabel.setText("");
 }
 
@@ -30,7 +37,8 @@ fn findOperator(computation: []const u8, pos: usize) ?usize {
         orelse std.mem.indexOfScalarPos(u8, computation, pos, '/');
 }
 
-pub fn compute(button: *Button_Impl) !void {
+pub fn compute(button: *zgt.Button_Impl) !void {
+    _ = button;
     const rawText = computationLabel.getText();
     const computation = rawText[0..std.mem.lenZ(rawText)];
 
@@ -71,15 +79,16 @@ pub fn compute(button: *Button_Impl) !void {
     computationLabel.setText(text);
 }
 
-pub fn run() !void {
+pub fn main() !void {
+    try zgt.backend.init();
     //var gpa = std.heap.GeneralPurposeAllocator(.{}) {};
     //defer _ = gpa.deinit();
     //allocator = &gpa.allocator;
     allocator = std.heap.page_allocator;
 
-    var window = try Window.init();
-    computationLabel = Label(.{ .text = "", .alignment = .Left });
-    try window.set(Column(.{ .expand = .Fill }, .{
+    var window = try zgt.Window.init();
+    computationLabel = zgt.Label(.{ .text = "", .alignment = .Left });
+    try window.set(zgt.Column(.{ .expand = .Fill }, .{
         &computationLabel,
         Expanded(Row(.{ .expand = .Fill }, .{
             Margin(Button(.{ .label = "7", .onclick = pressedKey })),

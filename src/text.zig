@@ -1,12 +1,14 @@
 const std = @import("std");
 const backend = @import("backend.zig");
-usingnamespace @import("data.zig");
+const dataStructures = @import("data.zig");
+const Size = dataStructures.Size;
+const StringDataWrapper = dataStructures.StringDataWrapper;
 
 pub const TextArea_Impl = struct {
     pub usingnamespace @import("internal.zig").All(TextArea_Impl);
 
     peer: ?backend.TextArea = null,
-    handlers: Handlers = undefined,
+    handlers: TextArea_Impl.Handlers = undefined,
     _text: []const u8,
 
     pub fn init(text: []const u8) TextArea_Impl {
@@ -101,8 +103,9 @@ pub const TextField_Impl = struct {
         }
     }
 
-    pub fn getPreferredSize(self: *TextField_Impl) Size {
+    pub fn getPreferredSize(self: *TextField_Impl, available: Size) Size {
         _ = self;
+        _ = available;
         return Size { .width = 500.0, .height = 200.0 };
     }
 

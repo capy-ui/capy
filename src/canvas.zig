@@ -1,5 +1,5 @@
-const std = @import("std");
 const backend = @import("backend.zig");
+const Size = @import("data.zig").Size;
 
 pub const DrawContext = backend.Canvas.DrawContext;
 
@@ -17,6 +17,14 @@ pub const Canvas_Impl = struct {
     /// It is used to move some pointers so things do not break.
     pub fn pointerMoved(self: *Canvas_Impl) void {
         _ = self;
+    }
+
+    pub fn getPreferredSize(self: *Canvas_Impl, available: Size) Size {
+        _ = self;
+        _ = available;
+
+        // As it's a canvas, by default it should take the available space
+        return available;
     }
 
     pub fn show(self: *Canvas_Impl) !void {
