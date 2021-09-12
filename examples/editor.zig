@@ -198,5 +198,5 @@ pub fn main() !void {
 
     window.resize(800, 600);
     window.show();
-    window.run();
+    zgt.runEventLoop();
 }

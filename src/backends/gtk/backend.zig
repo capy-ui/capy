@@ -1,4 +1,5 @@
 const std = @import("std");
+const lib = @import("../../main.zig");
 pub const c = @cImport({
     @cInclude("gtk/gtk.h");
 });
@@ -12,6 +13,8 @@ const GtkError = std.mem.Allocator.Error || error {
 pub const Capabilities = .{
     .useEventLoop = true
 };
+
+var activeWindows = std.atomic.Atomic(usize).init(0);
 
 pub const public = struct {
 
@@ -35,11 +38,11 @@ pub const MessageType = enum {
 };
 
 pub fn showNativeMessageDialog(msgType: MessageType, comptime fmt: []const u8, args: anytype) void {
-    const msg = std.fmt.allocPrintZ(std.heap.page_allocator, fmt, args) catch {
+    const msg = std.fmt.allocPrintZ(lib.internal.scratch_allocator, fmt, args) catch {
         std.log.err("Could not launch message dialog, original text: " ++ fmt, args);
         return;
     };
-    defer std.heap.page_allocator.free(msg);
+    defer lib.internal.scratch_allocator.free(msg);
 
     const cType = @intCast(c_uint, switch (msgType) {
         .Information => c.GTK_MESSAGE_INFO,
@@ -60,6 +63,13 @@ pub fn showNativeMessageDialog(msgType: MessageType, comptime fmt: []const u8, a
 
 pub const PeerType = *c.GtkWidget;
 
+export fn gtkWindowHidden(peer: *c.GtkWidget, userdata: usize) void {
+    _ = peer;
+    _ = userdata;
+    
+    _ = activeWindows.fetchSub(1, .Release);
+}
+
 pub const Window = struct {
     peer: *c.GtkWidget,
     wbin: *c.GtkWidget,
@@ -71,6 +81,9 @@ pub const Window = struct {
         const wbin = wbin_new() orelse unreachable;
         c.gtk_container_add(@ptrCast(*c.GtkContainer, window), wbin);
         c.gtk_widget_show(wbin);
+
+        _ = c.g_signal_connect_data(window, "hide", @ptrCast(c.GCallback, gtkWindowHidden),
+            null, null, c.G_CONNECT_AFTER);
         return Window {
             .peer = window,
             .wbin = wbin
@@ -87,6 +100,7 @@ pub const Window = struct {
 
     pub fn show(self: *Window) void {
         c.gtk_widget_show(self.peer);
+        _ = activeWindows.fetchAdd(1, .Release);
     }
 
     pub fn close(self: *Window) void {
@@ -197,19 +211,18 @@ pub fn Events(comptime T: type) type {
 
         pub fn setupEvents(widget: *c.GtkWidget) GtkError!void {
             _ = c.g_signal_connect_data(widget, "button-press-event", @ptrCast(c.GCallback, gtkButtonPress),
-                null, @as(c.GClosureNotify, null), c.G_CONNECT_AFTER);
+                null, null, c.G_CONNECT_AFTER);
             _ = c.g_signal_connect_data(widget, "button-release-event", @ptrCast(c.GCallback, gtkButtonPress),
-                null, @as(c.GClosureNotify, null), c.G_CONNECT_AFTER);
+                null, null, c.G_CONNECT_AFTER);
             _ = c.g_signal_connect_data(widget, "scroll-event", @ptrCast(c.GCallback, gtkMouseScroll),
-                null, @as(c.GClosureNotify, null), c.G_CONNECT_AFTER);
+                null, null, c.G_CONNECT_AFTER);
             _ = c.g_signal_connect_data(widget, "size-allocate", @ptrCast(c.GCallback, gtkSizeAllocate),
-                null, @as(c.GClosureNotify, null), c.G_CONNECT_AFTER);
+                null, null, c.G_CONNECT_AFTER);
             c.gtk_widget_add_events(widget,
                 c.GDK_SCROLL_MASK | c.GDK_BUTTON_PRESS_MASK
                 | c.GDK_BUTTON_RELEASE_MASK);
 
-            const allocator = std.heap.page_allocator; // TODO: global allocator
-            var data = try allocator.create(EventUserData);
+            var data = try lib.internal.lasting_allocator.create(EventUserData);
             data.* = EventUserData {}; // ensure that it uses default values
             c.g_object_set_data(@ptrCast(*c.GObject, widget), "eventUserData", data);
         }
@@ -435,6 +448,10 @@ pub const Canvas = struct {
             pub fn getTextSize(self: *TextLayout, str: []const u8) TextSize {
                 var width: c_int = undefined;
                 var height: c_int = undefined;
+                c.pango_layout_set_width(self._layout,
+                    if (self.wrap) |w| @floatToInt(c_int, @floor(w*@as(f64, c.PANGO_SCALE)))
+                    else -1
+                );
                 c.pango_layout_set_text(self._layout, str.ptr, @intCast(c_int, str.len));
                 c.pango_layout_get_pixel_size(self._layout, &width, &height);
 
@@ -453,11 +470,11 @@ pub const Canvas = struct {
             }
         };
 
-        pub fn setColor(self: *const DrawContext, r: f64, g: f64, b: f64) void {
+        pub fn setColor(self: *const DrawContext, r: f32, g: f32, b: f32) void {
             self.setColorRGBA(r, g, b, 1);
         }
 
-        pub fn setColorRGBA(self: *const DrawContext, r: f64, g: f64, b: f64, a: f64) void {
+        pub fn setColorRGBA(self: *const DrawContext, r: f32, g: f32, b: f32, a: f32) void {
             const color = c.GdkRGBA { .red = r, .green = g, .blue = b, .alpha = a };
             c.gdk_cairo_set_source_rgba(self.cr, &color);
         }
@@ -558,11 +575,14 @@ pub const Container = struct {
         _ = self;
 
         // temporary fix and should be replaced by a proper way to resize down
-        c.gtk_widget_set_size_request(peer, @intCast(c_int, w) - 5, @intCast(c_int, h) - 5);
+        c.gtk_widget_set_size_request(peer, 
+            std.math.max(@intCast(c_int, w) - 5, 0),
+            std.math.max(@intCast(c_int, h) - 5, 0));
         c.gtk_container_resize_children(@ptrCast(*c.GtkContainer, self.peer));
     }
 };
 
-pub fn run() void {
-    c.gtk_main();
+pub fn runStep(step: lib.EventLoopStep) bool {
+    _ = c.gtk_main_iteration_do(@boolToInt(step == .Blocking));
+    return activeWindows.load(.Acquire) == 0;
 }

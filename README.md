@@ -2,7 +2,7 @@
 
 Zig GUI Toolkit
 
-**As of now, zgt is NOT ready for any non-toy use as i'm still making breaking changes**
+**As of now, zgt is NOT ready for use in production as i'm still making breaking changes**
 
 Example of using zgt:
 
@@ -13,9 +13,9 @@ const std = @import("std");
 pub fn main() !void {
     try zgt.backend.init();
     
-    var window = try Window.init();
+    var window = try zgt.Window.init();
     try window.set(
-        Column(.{}, .{
+        zgt.Column(.{}, .{
             zgt.Row(.{}, .{
                 zgt.Button(.{ .label = "Save", .onclick = buttonClicked }),
                 zgt.Button(.{ .label = "Run",  .onclick = buttonClicked })
@@ -30,7 +30,7 @@ pub fn main() !void {
 
     window.resize(800, 600);
     window.show();
-    window.run();
+    zgt.runEventLoop();
 }
 
 fn buttonClicked(button: *Button_Impl) !void {

@@ -15,5 +15,5 @@ pub fn main() !void {
     );
 
     window.show();
-    window.run();
+    zgt.runEventLoop();
 }

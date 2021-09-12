@@ -1,4 +1,5 @@
 const std = @import("std");
+const lib = @import("../../main.zig");
 
 const win32 = @import("win32.zig");
 const HWND = win32.HWND;
@@ -54,11 +55,11 @@ pub const MessageType = enum {
 };
 
 pub fn showNativeMessageDialog(msgType: MessageType, comptime fmt: []const u8, args: anytype) void {
-    const msg = std.fmt.allocPrintZ(std.heap.page_allocator, fmt, args) catch {
+    const msg = std.fmt.allocPrintZ(lib.internal.scratch_allocator, fmt, args) catch {
         std.log.err("Could not launch message dialog, original text: " ++ fmt, args);
         return;
     };
-    defer std.heap.page_allocator.free(msg);
+    defer lib.internal.scratch_allocator.free(msg);
 
     const icon: u32 = switch (msgType) {
         .Information => win32.MB_ICONINFORMATION,
@@ -229,8 +230,7 @@ pub fn Events(comptime T: type) type {
         }
 
         pub fn setupEvents(peer: HWND) !void {
-            const allocator = std.heap.page_allocator; // TODO: global allocator
-            var data = try allocator.create(EventUserData);
+            var data = try lib.internal.lasting_allocator.create(EventUserData);
             data.* = EventUserData {}; // ensure that it uses default values
             win32.SetWindowLongPtr(peer, win32.GWL_USERDATA, @ptrToInt(data));
         }
@@ -321,12 +321,12 @@ pub const Button = struct {
 
         return Button {
             .peer = hwnd,
-            .arena = std.heap.ArenaAllocator.init(std.heap.page_allocator)
+            .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator)
         };
     }
 
     pub fn setLabel(self: *Button, label: [:0]const u8) void {
-        const allocator = std.heap.page_allocator;
+        const allocator = lib.internal.scratch_allocator;
         const wide = std.unicode.utf8ToUtf16LeWithNull(allocator, label) catch return; // invalid utf8 or not enough memory
         defer allocator.free(wide);
         if (win32.SetWindowTextW(self.peer, wide) == 0) {
@@ -371,7 +371,7 @@ pub const Label = struct {
 
         return Label {
             .peer = hwnd,
-            .arena = std.heap.ArenaAllocator.init(std.heap.page_allocator)
+            .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator)
         };
     }
 
@@ -387,7 +387,7 @@ pub const Label = struct {
     }
 
     pub fn setText(self: *Label, text: [:0]const u8) void {
-        const allocator = std.heap.page_allocator;
+        const allocator = lib.internal.scratch_allocator;
         const wide = std.unicode.utf8ToUtf16LeWithNull(allocator, text) catch return; // invalid utf8 or not enough memory
         defer allocator.free(wide);
         if (win32.SetWindowTextW(self.peer, wide) == 0) {
@@ -491,11 +491,24 @@ pub const Container = struct {
     }
 };
 
-pub fn run() void {
+pub fn runStep(step: lib.EventLoopStep) bool {
     var msg: MSG = undefined;
-
-    while (win32.GetMessageA(&msg, null, 0, 0) > 0) {
-        _ = win32.TranslateMessage(&msg);
-        _ = win32.DispatchMessageA(&msg);
+    switch (step) {
+        .Blocking => {
+            if (win32.GetMessageA(&msg, null, 0, 0) <= 0) {
+                return true; // error or WM_QUIT message
+            }
+        },
+        .Asynchronous => {
+            if (win32.PeekMessageA(&msg, null, 0, 0, 1) == 0) {
+                return false; // no message available
+            }
+        }
     }
+    if (msg.message == 0x012) { // WM_QUIT
+        return true;
+    }
+    _ = win32.TranslateMessage(&msg);
+    _ = win32.DispatchMessageA(&msg);
+    return false;
 }
