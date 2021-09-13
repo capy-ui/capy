@@ -200,8 +200,8 @@ pub const Container_Impl = struct {
     fn fakeSize(data: usize) Size {
         _ = data;
         return Size {
-            .width = std.math.maxInt(u32),
-            .height = std.math.maxInt(u32)
+            .width = std.math.maxInt(u32) / 2, // divide by 2 to leave some room
+            .height = std.math.maxInt(u32) / 2
         };
     }
 

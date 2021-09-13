@@ -1,12 +1,11 @@
 const std = @import("std");
+const lasting_allocator = @import("internal.zig").lasting_allocator;
 
 pub fn DataWrapper(comptime T: type) type {
     return struct {
         value: T,
         lock: std.Thread.Mutex = .{},
-        // TODO: multiple on change functions
-        onChangeFn: ?fn(newValue: T, userdata: usize) void = null,
-        userdata: usize = 0,
+        onChange: std.ArrayList(ChangeListener),
         // TODO: multiple bindings and binders
         /// The object this wrapper is binded by
         binderWrapper: ?*Self = null,
@@ -20,13 +19,25 @@ pub fn DataWrapper(comptime T: type) type {
         /// When A is set, it acquires its lock and sets B. Since B is set, it will set A too.
         /// A notices it already acquired the binding lock, and thus returns.
         bindLock: std.Thread.Mutex = .{},
+        allocator: ?*std.mem.Allocator = null,
 
         const Self = @This();
 
+        pub const ChangeListener = struct {
+            function: fn(newValue: T, userdata: usize) void,
+            userdata: usize = 0
+        };
+
         pub fn of(value: T) Self {
             return Self {
-                .value = value
+                .value = value,
+                .onChange = std.ArrayList(ChangeListener).init(lasting_allocator)
             };
+        }
+
+        pub fn addChangeListener(self: *Self, listener: ChangeListener) !usize {
+            try self.onChange.append(listener);
+            return self.onChange.items.len - 1; // index of the listener
         }
 
         /// All writes to sender will also change the value of receiver
@@ -59,14 +70,32 @@ pub fn DataWrapper(comptime T: type) type {
         /// Thread-safe set operation. If doing a read-modify-write operation
         /// manually changing the value and acquiring the lock is recommended.
         pub fn set(self: *Self, value: T) void {
+            self.extendedSet(value, true);
+        }
+
+        /// Thread-safe set operation without calling change listeners
+        /// This should only be used in widget implementations when calling
+        /// change listeners would cause an infinite recursion.
+        ///
+        /// Example: A text field listens for data wrapper changes in order to
+        /// change its text. When the user edits the text, it wants to
+        /// change the data wrapper, but without setNoListen, it would
+        /// cause an infinite recursion.
+        pub fn setNoListen(self: *Self, value: T) void {
+            self.extendedSet(value, false);
+        }
+
+        fn extendedSet(self: *Self, value: T, comptime callHandlers: bool) void {
             if (self.bindLock.tryAcquire()) |bindLock| {
                 defer bindLock.release();
 
                 const lock = self.lock.acquire();
-                defer lock.release();
                 self.value = value;
-                if (self.onChangeFn) |func| {
-                    func(self.value, self.userdata);
+                lock.release();
+                if (callHandlers) {
+                    for (self.onChange.items) |listener| {
+                        listener.function(self.value, listener.userdata);
+                    }
                 }
                 if (self.bindWrapper) |binding| {
                     binding.set(value);
@@ -75,7 +104,66 @@ pub fn DataWrapper(comptime T: type) type {
                 // Do nothing ...
             }
         }
+
+        pub fn deinit(self: *Self) void {
+            self.onChange.deinit();
+            if (self.allocator) |allocator| {
+                allocator.destroy(self);
+            }
+        }
     };
+}
+
+pub fn FormatDataWrapper(allocator: *std.mem.Allocator, comptime fmt: []const u8, childs: anytype) !*StringDataWrapper {
+    const Self = struct {
+        wrapper: StringDataWrapper,
+        childs: @TypeOf(childs)
+    };
+    var self = try allocator.create(Self);
+    const empty = try allocator.alloc(u8, 0); // alloc an empty string so it can be freed
+    self.* = Self {
+        .wrapper = StringDataWrapper.of(empty),
+        .childs = childs
+    };
+    self.wrapper.allocator = allocator;
+
+    const childTypes = comptime blk: {
+        var types: []const type = &[_]type {};
+        for (childs) |child| {
+            const T = @TypeOf(child.value);
+            types = types ++ &[_]type { T };
+        }
+        break :blk types;
+    };
+    const format = struct {
+        fn format(ptr: *Self) void {
+            const TupleType = std.meta.Tuple(childTypes);
+            var tuple: TupleType = undefined;
+            inline for (ptr.childs) |child, i| {
+                tuple[i] = child.get();
+            }
+
+            var str = std.fmt.allocPrint(ptr.wrapper.allocator.?, fmt, tuple) catch unreachable;
+            ptr.wrapper.allocator.?.free(ptr.wrapper.get());
+            ptr.wrapper.set(str);
+        }
+    }.format;
+    format(self);
+
+    inline for (childs) |child| {
+        const T = @TypeOf(child.value);
+        _ = try child.addChangeListener(.{
+            .userdata = @ptrToInt(self),
+            .function = struct {
+                fn callback(newValue: T, userdata: usize) void {
+                    _ = newValue;
+                    const ptr = @intToPtr(*Self, userdata);
+                    format(ptr);
+                }
+            }.callback
+        });
+    }
+    return &self.wrapper;
 }
 
 pub const StringDataWrapper = DataWrapper([]const u8);

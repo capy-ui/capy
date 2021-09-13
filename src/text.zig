@@ -86,9 +86,7 @@ pub const TextField_Impl = struct {
         const self = @intToPtr(*TextField_Impl, userdata);
         const text = self.peer.?.getText();
 
-        self.text.onChangeFn = null; // temporary solution
-        self.text.set(text);
-        self.text.onChangeFn = wrapperTextChanged;
+        self.text.setNoListen(text);
     }
 
     pub fn show(self: *TextField_Impl) !void {
@@ -98,15 +96,17 @@ pub const TextField_Impl = struct {
             self.peer = peer;
             try self.show_events();
             try peer.setCallback(.TextChanged, textChanged);
-            self.text.userdata = @ptrToInt(&self.peer);
-            self.text.onChangeFn = wrapperTextChanged;
+            _ = try self.text.addChangeListener(.{
+                .function = wrapperTextChanged,
+                .userdata = @ptrToInt(&self.peer)
+            });
         }
     }
 
     pub fn getPreferredSize(self: *TextField_Impl, available: Size) Size {
         _ = self;
         _ = available;
-        return Size { .width = 500.0, .height = 200.0 };
+        return Size { .width = 100.0, .height = 40.0 };
     }
 
     pub fn setText(self: *TextField_Impl, text: []const u8) void {
