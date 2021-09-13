@@ -10,6 +10,8 @@ pub usingnamespace @import("data.zig");
 pub const internal = @import("internal.zig");
 pub const backend  = @import("backend.zig");
 
+pub const MouseButton = backend.MouseButton;
+
 pub const EventLoopStep = enum {
     Blocking,
     Asynchronous

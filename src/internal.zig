@@ -83,21 +83,24 @@ pub fn Events(comptime T: type) type {
     return struct {
         pub const Callback       = fn(widget: *T) anyerror!void;
         pub const DrawCallback   = fn(widget: *T, ctx: backend.Canvas.DrawContext) anyerror!void;
-        pub const ButtonCallback = fn(widget: *T, button: backend.MouseButton, pressed: bool, x: f64, y: f64) anyerror!void;
-        pub const ScrollCallback = fn(widget: *T, dx: f64, dy: f64) anyerror!void;
+        pub const ButtonCallback = fn(widget: *T, button: backend.MouseButton, pressed: bool, x: u32, y: u32) anyerror!void;
+        pub const ScrollCallback = fn(widget: *T, dx: f32, dy: f32) anyerror!void;
         pub const ResizeCallback = fn(widget: *T, size: Size) anyerror!void;
+        pub const KeyTypeCallback= fn(widget: *T, key: []const u8) anyerror!void;
         const HandlerList        = std.ArrayList(Callback);
         const DrawHandlerList    = std.ArrayList(DrawCallback);
         const ButtonHandlerList  = std.ArrayList(ButtonCallback);
         const ScrollHandlerList  = std.ArrayList(ScrollCallback);
         const ResizeHandlerList  = std.ArrayList(ResizeCallback);
+        const KeyTypeHandlerList = std.ArrayList(KeyTypeCallback);
 
         pub const Handlers = struct {
             clickHandlers: HandlerList,
             drawHandlers: DrawHandlerList,
             buttonHandlers: ButtonHandlerList,
             scrollHandlers: ScrollHandlerList,
-            resizeHandlers: ResizeHandlerList
+            resizeHandlers: ResizeHandlerList,
+            keyTypeHandlers: KeyTypeHandlerList,
         };
 
         pub fn init_events(self: T) T {
@@ -107,7 +110,8 @@ pub fn Events(comptime T: type) type {
                 .drawHandlers = DrawHandlerList.init(lasting_allocator),
                 .buttonHandlers = ButtonHandlerList.init(lasting_allocator),
                 .scrollHandlers = ScrollHandlerList.init(lasting_allocator),
-                .resizeHandlers = ResizeHandlerList.init(lasting_allocator)
+                .resizeHandlers = ResizeHandlerList.init(lasting_allocator),
+                .keyTypeHandlers = KeyTypeHandlerList.init(lasting_allocator)
             };
             return obj;
         }
@@ -148,14 +152,21 @@ pub fn Events(comptime T: type) type {
             }
         }
 
-        fn buttonHandler(button: backend.MouseButton, pressed: bool, x: f64, y: f64, data: usize) void {
+        fn buttonHandler(button: backend.MouseButton, pressed: bool, x: u32, y: u32, data: usize) void {
             const self = @intToPtr(*T, data);
             for (self.handlers.buttonHandlers.items) |func| {
                 func(self, button, pressed, x, y) catch |err| errorHandler(err);
             }
         }
 
-        fn scrollHandler(dx: f64, dy: f64, data: usize) void {
+        fn keyTypeHandler(str: []const u8, data: usize) void {
+            const self = @intToPtr(*T, data);
+            for (self.handlers.keyTypeHandlers.items) |func| {
+                func(self, str) catch |err| errorHandler(err);
+            }
+        }
+
+        fn scrollHandler(dx: f32, dy: f32, data: usize) void {
             const self = @intToPtr(*T, data);
             for (self.handlers.scrollHandlers.items) |func| {
                 func(self, dx, dy) catch |err| errorHandler(err);
@@ -177,6 +188,7 @@ pub fn Events(comptime T: type) type {
             try self.peer.?.setCallback(.MouseButton, buttonHandler);
             try self.peer.?.setCallback(.Scroll     , scrollHandler);
             try self.peer.?.setCallback(.Resize     , resizeHandler);
+            try self.peer.?.setCallback(.KeyType    , keyTypeHandler);
         }
 
         pub fn addClickHandler(self: *T, handler: Callback) !void {
@@ -187,7 +199,7 @@ pub fn Events(comptime T: type) type {
             try self.handlers.drawHandlers.append(handler);
         }
 
-        pub fn addButtonHandler(self: *T, handler: ButtonCallback) !void {
+        pub fn addMouseButtonHandler(self: *T, handler: ButtonCallback) !void {
             try self.handlers.buttonHandlers.append(handler);
         }
 
@@ -197,6 +209,11 @@ pub fn Events(comptime T: type) type {
 
         pub fn addResizeHandler(self: *T, handler: ResizeCallback) !void {
             try self.handlers.resizeHandlers.append(handler);
+        }
+
+        pub fn addKeyTypeHandler(self: *T, handler: KeyTypeCallback) !void {
+            std.log.info("add", .{});
+            try self.handlers.keyTypeHandlers.append(handler);
         }
 
         pub fn requestDraw(self: *T) !void {

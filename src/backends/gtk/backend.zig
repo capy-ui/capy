@@ -115,7 +115,8 @@ pub const EventType = enum {
     MouseButton,
     Scroll,
     TextChanged,
-    Resize
+    Resize,
+    KeyType
 };
 
 pub const MouseButton = enum(c_uint) {
@@ -129,8 +130,9 @@ pub const MouseButton = enum(c_uint) {
 const EventUserData = struct {
     /// Only works for buttons
     clickHandler: ?fn(data: usize) void = null,
-    mouseButtonHandler: ?fn(button: MouseButton, pressed: bool, x: f64, y: f64, data: usize) void = null,
-    scrollHandler: ?fn(dx: f64, dy: f64, data: usize) void = null,
+    mouseButtonHandler: ?fn(button: MouseButton, pressed: bool, x: u32, y: u32, data: usize) void = null,
+    keyTypeHandler: ?fn(str: []const u8, data: usize) void = null,
+    scrollHandler: ?fn(dx: f32, dy: f32, data: usize) void = null,
     resizeHandler: ?fn(width: u32, height: u32, data: usize) void = null,
     /// Only works for canvas (althought technically it isn't required to)
     drawHandler: ?fn(ctx: Canvas.DrawContext, data: usize) void = null,
@@ -152,7 +154,34 @@ export fn gtkSizeAllocate(peer: *c.GtkWidget, allocation: *c.GdkRectangle, userd
     }
 }
 
-export fn gtkButtonPress(peer: *c.GtkWidget, event: *c.GdkEventButton, userdata: usize) void {
+const GdkEventKey = extern struct {
+    type: c.GdkEventType,
+    window: *c.GdkWindow,
+    send_event: c.gint8,
+    time: c.guint32,
+    state: *c.GdkModifierType,
+    keyval: c.guint,
+    length: c.gint,
+    string: [*:0]c.gchar,
+    hardware_keycode: c.guint16,
+    group: c.guint8,
+    is_modifier: c.guint,
+};
+
+export fn gtkKeyPress(peer: *c.GtkWidget, event: *GdkEventKey, userdata: usize) c.gboolean {
+    _ = userdata;
+    const data = getEventUserData(peer);
+    if (data.keyTypeHandler) |handler| {
+        // TODO: use GtkIMContext for accessibility !
+        const str = std.mem.span(event.string);
+        if (str.len != 0) {
+            handler(str, data.userdata);
+        }
+    }
+    return 0;
+}
+
+export fn gtkButtonPress(peer: *c.GtkWidget, event: *c.GdkEventButton, userdata: usize) c.gboolean {
     _ = userdata;
     const data = getEventUserData(peer);
     if (data.mouseButtonHandler) |handler| {
@@ -160,11 +189,13 @@ export fn gtkButtonPress(peer: *c.GtkWidget, event: *c.GdkEventButton, userdata:
             c.GDK_BUTTON_PRESS => true,
             c.GDK_BUTTON_RELEASE => false,
             // don't send released button in case of GDK_2BUTTON_PRESS, GDK_3BUTTON_PRESS, ...
-            else => return
+            else => return 0
         };
+        c.gtk_widget_grab_focus(peer); // seems to be necessary for the canvas
 
-        handler(@intToEnum(MouseButton, event.button), pressed, event.x, event.y, data.userdata);
+        handler(@intToEnum(MouseButton, event.button), pressed, @floatToInt(u32, @floor(event.x)), @floatToInt(u32, @floor(event.y)), data.userdata);
     }
+    return 0;
 }
 
 /// Temporary hack until translate-c can translate this struct
@@ -201,7 +232,7 @@ export fn gtkMouseScroll(peer: *c.GtkWidget, event: *GdkEventScroll, userdata: u
             else => event.delta_y
         };
 
-        handler(dx, dy, data.userdata);
+        handler(@floatCast(f32, dx), @floatCast(f32, dy), data.userdata);
     }
 }
 
@@ -218,9 +249,11 @@ pub fn Events(comptime T: type) type {
                 null, null, c.G_CONNECT_AFTER);
             _ = c.g_signal_connect_data(widget, "size-allocate", @ptrCast(c.GCallback, gtkSizeAllocate),
                 null, null, c.G_CONNECT_AFTER);
+            _ = c.g_signal_connect_data(widget, "key-press-event", @ptrCast(c.GCallback, gtkKeyPress),
+                null, null, c.G_CONNECT_AFTER);
             c.gtk_widget_add_events(widget,
                 c.GDK_SCROLL_MASK | c.GDK_BUTTON_PRESS_MASK
-                | c.GDK_BUTTON_RELEASE_MASK);
+                | c.GDK_BUTTON_RELEASE_MASK | c.GDK_KEY_PRESS_MASK);
 
             var data = try lib.internal.lasting_allocator.create(EventUserData);
             data.* = EventUserData {}; // ensure that it uses default values
@@ -245,7 +278,8 @@ pub fn Events(comptime T: type) type {
                 .MouseButton => data.mouseButtonHandler = cb,
                 .Scroll      => data.scrollHandler      = cb,
                 .TextChanged => data.changedTextHandler = cb,
-                .Resize      => data.resizeHandler      = cb
+                .Resize      => data.resizeHandler      = cb,
+                .KeyType     => data.keyTypeHandler     = cb
             }
         }
 
@@ -509,9 +543,10 @@ pub const Canvas = struct {
             c.pango_cairo_show_layout(self.cr, pangoLayout);
         }
 
-        pub fn line(self: *const DrawContext, x1: i32, y1: i32, x2: i32, y2: i32) void {
+        pub fn line(self: *const DrawContext, x1: u32, y1: u32, x2: u32, y2: u32) void {
             c.cairo_move_to(self.cr, @intToFloat(f64, x1), @intToFloat(f64, y1));
             c.cairo_line_to(self.cr, @intToFloat(f64, x2), @intToFloat(f64, y2));
+            c.cairo_stroke(self.cr);
         }
 
         /// Stroke the current path and reset the path.
@@ -537,6 +572,7 @@ pub const Canvas = struct {
     pub fn create() GtkError!Canvas {
         const canvas = c.gtk_drawing_area_new() orelse return GtkError.UnknownError;
         c.gtk_widget_show(canvas);
+        c.gtk_widget_set_can_focus(canvas, 1);
         try Canvas.setupEvents(canvas);
         _ = c.g_signal_connect_data(canvas, "draw", @ptrCast(c.GCallback, gtkCanvasDraw),
                 null, @as(c.GClosureNotify, null), 0);
