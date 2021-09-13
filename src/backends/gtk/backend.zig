@@ -620,5 +620,5 @@ pub const Container = struct {
 
 pub fn runStep(step: lib.EventLoopStep) bool {
     _ = c.gtk_main_iteration_do(@boolToInt(step == .Blocking));
-    return activeWindows.load(.Acquire) == 0;
+    return activeWindows.load(.Acquire) != 0;
 }

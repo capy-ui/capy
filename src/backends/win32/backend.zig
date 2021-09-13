@@ -496,19 +496,19 @@ pub fn runStep(step: lib.EventLoopStep) bool {
     switch (step) {
         .Blocking => {
             if (win32.GetMessageA(&msg, null, 0, 0) <= 0) {
-                return true; // error or WM_QUIT message
+                return false; // error or WM_QUIT message
             }
         },
         .Asynchronous => {
             if (win32.PeekMessageA(&msg, null, 0, 0, 1) == 0) {
-                return false; // no message available
+                return true; // no message available
             }
         }
     }
     if (msg.message == 0x012) { // WM_QUIT
-        return true;
+        return false;
     }
     _ = win32.TranslateMessage(&msg);
     _ = win32.DispatchMessageA(&msg);
-    return false;
+    return true;
 }

@@ -64,6 +64,36 @@ pub fn Widgeting(comptime T: type) type {
             return @intCast(u32, self.peer.?.getHeight());
         }
 
+        pub fn asWidget(self: *T) anyerror!Widget {
+            return try genericWidgetFrom(self);
+        }
+
+    };
+}
+
+/// Create a generic Widget struct from the given component.
+fn genericWidgetFrom(component: anytype) anyerror!Widget {
+    const ComponentType = @TypeOf(component);
+    if (ComponentType == Widget) return component;
+
+    var cp = if (comptime std.meta.trait.isSingleItemPtr(ComponentType)) component else blk: {
+        var copy = try lasting_allocator.create(ComponentType);
+        copy.* = component;
+        break :blk copy;
+    };
+
+    // used to update things like data wrappers, this happens once, at initialization,
+    // after that the component isn't moved in memory anymore
+    cp.pointerMoved();
+
+    const DereferencedType = 
+        if (comptime std.meta.trait.isSingleItemPtr(ComponentType))
+            @TypeOf(component.*)
+        else
+            @TypeOf(component);
+    return Widget {
+        .data = @ptrToInt(cp),
+        .class = &DereferencedType.WidgetClass
     };
 }
 

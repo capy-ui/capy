@@ -5,48 +5,70 @@ const lasting_allocator = @import("internal.zig").lasting_allocator;
 const Size = @import("data.zig").Size;
 const Rectangle = @import("data.zig").Rectangle;
 
-pub const Layout = fn(peer: backend.Container, widgets: []Widget) void;
+pub const Layout = fn(peer: Callbacks, widgets: []Widget) void;
+const Callbacks = struct {
+    userdata: usize,
+    moveResize: fn(data: usize, peer: backend.PeerType, x: u32, y: u32, w: u32, h: u32) void,
+    getSize: fn(data: usize) Size
+};
 
-pub fn ColumnLayout(peer: backend.Container, widgets: []Widget) void {
-    const count = @intCast(u32, widgets.len);
-    const childHeight = @intCast(u32, peer.getHeight()) / count;
-    // Floats are used to avoid the layouting only changing in increments of count
-    // For example, in a column with 8 childrens, widgets would only move every 8 pixels which would leave noticeable gaps.
+fn getExpandedCount(widgets: []Widget) u32 {
+    var expandedCount: u32 = 0;
+    for (widgets) |widget| {
+        if (widget.container_expanded) expandedCount += 1;
+    }
+
+    return expandedCount;
+}
+
+pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
+    //const count = @intCast(u32, widgets.len);
+    const expandedCount = getExpandedCount(widgets);
+
+    var childHeight = if (expandedCount == 0) 0
+        else @intCast(u32, peer.getSize(peer.userdata).height) / expandedCount;
+    for (widgets) |widget| {
+        if (!widget.container_expanded) {
+            const available = peer.getSize(peer.userdata);
+            const divider = if (expandedCount == 0) 1 else expandedCount;
+            const takenHeight = widget.getPreferredSize(available).width / divider;
+            if (childHeight >= takenHeight) {
+                childHeight -= takenHeight;
+            } else {
+                childHeight = 0;
+            }
+        }
+    }
+
     var childY: f32 = 0.0;
     for (widgets) |widget| {
         if (widget.peer) |widgetPeer| {
-            peer.move(widgetPeer,
-                0, 
-                @floatToInt(u32, @floor(childY))
-            );
-            childY += @intToFloat(f32, peer.getHeight()) / @intToFloat(f32, count);
-            const size = Size {
-                .width = @intCast(u32, peer.getWidth()), // self.width
-                .height = childHeight
+            const available = Size {
+                .width = @intCast(u32, peer.getSize(peer.userdata).width),
+                .height = if (widget.container_expanded) childHeight
+                    else (@intCast(u32, peer.getSize(peer.userdata).height) - @floatToInt(u32, childY))
             };
-            peer.resize(widgetPeer, size.width, size.height);
+            const preferred = widget.getPreferredSize(available);
+            const size = if (widget.container_expanded) available
+                else Size.intersect(available, preferred);
+
+            peer.moveResize(peer.userdata, widgetPeer,
+                0, @floatToInt(u32, @floor(childY)),
+                size.width, size.height);
+            childY += @intToFloat(f32, size.height);
         }
     }
 }
 
-pub fn RowLayout(peer: backend.Container, widgets: []Widget) void {
-    const count = @intCast(u32, widgets.len);
-    const expandedCount = blk: {
-        var expandedCount: u32 = 0;
-        for (widgets) |widget| {
-            if (widget.container_expanded) expandedCount += 1;
-        }
-        break :blk expandedCount;
-    };
+pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
+    //const count = @intCast(u32, widgets.len);
+    const expandedCount = getExpandedCount(widgets);
 
     var childWidth = if (expandedCount == 0) 0
-        else @intCast(u32, peer.getWidth()) / expandedCount;
+        else @intCast(u32, peer.getSize(peer.userdata).width) / expandedCount;
     for (widgets) |widget| {
         if (!widget.container_expanded) {
-            const available = Size {
-                .width = @intCast(u32, peer.getWidth()),
-                .height = @intCast(u32, peer.getHeight())
-            };
+            const available = peer.getSize(peer.userdata);
             const divider = if (expandedCount == 0) 1 else expandedCount;
             const takenWidth = widget.getPreferredSize(available).width / divider;
             if (childWidth >= takenWidth) {
@@ -60,26 +82,19 @@ pub fn RowLayout(peer: backend.Container, widgets: []Widget) void {
     var childX: f32 = 0.0;
     for (widgets) |widget| {
         if (widget.peer) |widgetPeer| {
-            peer.move(widgetPeer,
-                @floatToInt(u32, @floor(childX)),
-                0
-            );
             const available = Size {
                 .width = if (widget.container_expanded) childWidth
-                    else @intCast(u32, peer.getWidth()) / count,
-                .height = @intCast(u32, peer.getHeight())
+                    else (@intCast(u32, peer.getSize(peer.userdata).width) - @floatToInt(u32, childX)),
+                .height = @intCast(u32, peer.getSize(peer.userdata).height)
             };
             const preferred = widget.getPreferredSize(available);
+            const size = if (widget.container_expanded) available
+                else Size.intersect(available, preferred);
 
-            const size = Size {
-                .width = if (widget.container_expanded) available.width
-                    else std.math.min(preferred.width, available.width),
-                .height = if (widget.container_expanded) available.height
-                    else std.math.min(preferred.height, available.height)
-            };
+            peer.moveResize(peer.userdata, widgetPeer,
+                @floatToInt(u32, @floor(childX)), 0,
+                size.width, size.height);
             childX += @intToFloat(f32, size.width);
-
-            peer.resize(widgetPeer, size.width, size.height);
         }
     }
 }
@@ -157,16 +172,21 @@ pub const Container_Impl = struct {
     }
 
     pub fn getPreferredSize(self: *Container_Impl, available: Size) Size {
-        _ = self;
         _ = available;
-        // TODO: compute!
-        return Size { .width = 500.0, .height = 200.0 };
+
+        var size: Size = Size { .width = 0, .height = 0 };
+        const callbacks = Callbacks {
+            .userdata = @ptrToInt(&size),
+            .moveResize = fakeResMove,
+            .getSize = fakeSize
+        };
+        self.layout(callbacks, self.childrens.items);
+        return size;
     }
 
     pub fn show(self: *Container_Impl) !void {
         if (self.peer == null) {
             var peer = try backend.Container.create();
-            //peer.expand = self.expand;
             for (self.childrens.items) |*widget| {
                 try widget.show();
                 peer.add(widget.peer.?);
@@ -177,11 +197,44 @@ pub const Container_Impl = struct {
         }
     }
 
+    fn fakeSize(data: usize) Size {
+        _ = data;
+        return Size {
+            .width = std.math.maxInt(u32),
+            .height = std.math.maxInt(u32)
+        };
+    }
+
+    fn fakeResMove(data: usize, widget: backend.PeerType, x: u32, y: u32, w: u32, h: u32) void {
+        const size = @intToPtr(*Size, data);
+        _ = widget;
+        size.width = std.math.max(size.width, x + w);
+        size.height = std.math.max(size.height, y + h);
+    }
+
+    fn getSize(data: usize) Size {
+        const peer = @intToPtr(*backend.Container, data);
+        return Size {
+            .width = @intCast(u32, peer.getWidth()),
+            .height = @intCast(u32, peer.getHeight())
+        };
+    }
+
+    fn moveResize(data: usize, widget: backend.PeerType, x: u32, y: u32, w: u32, h: u32) void {
+        @intToPtr(*backend.Container, data).move(widget, x, y);
+        @intToPtr(*backend.Container, data).resize(widget, w, h);
+    }
+
     pub fn relayout(self: *Container_Impl) !void {
         if (self.relayouting) return;
         if (self.peer) |peer| {
             self.relayouting = true;
-            self.layout(peer, self.childrens.items);
+            const callbacks = Callbacks {
+                .userdata = @ptrToInt(&peer),
+                .moveResize = moveResize,
+                .getSize = getSize
+            };
+            self.layout(callbacks, self.childrens.items);
             self.relayouting = false;
         }
     }
@@ -195,7 +248,7 @@ pub const Container_Impl = struct {
         }
 
         try self.childrens.append(genericWidget);
-        try self.relayout();
+        //try self.relayout();
     }
 };
 
@@ -203,6 +256,7 @@ pub const Container_Impl = struct {
 fn genericWidgetFrom(component: anytype) anyerror!Widget {
     const ComponentType = @TypeOf(component);
     if (ComponentType == Widget) return component;
+    if (ComponentType == *Widget) return component.*;
 
     var cp = if (comptime std.meta.trait.isSingleItemPtr(ComponentType)) component else blk: {
         var copy = try lasting_allocator.create(ComponentType);

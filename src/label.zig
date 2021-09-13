@@ -37,9 +37,12 @@ pub const Label_Impl = struct {
     }
 
     pub fn getPreferredSize(self: *Label_Impl, available: Size) Size {
-        _ = self;
         _ = available;
-        return Size { .width = 500.0, .height = 200.0 };
+        const len = std.mem.lenZ(self._text);
+        return Size {
+            .width = @intCast(u32, 10 * len), // TODO: saturating multiply instead
+            .height = 40.0
+        };
     }
 
     pub fn setText(self: *Label_Impl, text: [:0]const u8) void {

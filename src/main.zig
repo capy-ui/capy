@@ -1,4 +1,5 @@
 pub const Window = @import("window.zig").Window;
+pub const Widget = @import("widget.zig").Widget;
 
 pub usingnamespace @import("button.zig");
 pub usingnamespace @import("label.zig");
@@ -17,7 +18,7 @@ pub const EventLoopStep = enum {
     Asynchronous
 };
 
-/// Returns true if the last window has been closed.
+/// Returns false if the last window has been closed.
 pub fn stepEventLoop(stepType: EventLoopStep) bool {
     return backend.runStep(stepType);
 }
@@ -25,7 +26,7 @@ pub fn stepEventLoop(stepType: EventLoopStep) bool {
 pub fn runEventLoop() void {
     while (true) {
         if (@import("std").io.is_async) {
-            if (backend.runStep(.Asynchronous)) {
+            if (!backend.runStep(.Asynchronous)) {
                 break;
             }
             
@@ -33,7 +34,7 @@ pub fn runEventLoop() void {
                 loop.yield();
             }
         } else {
-            if (backend.runStep(.Blocking)) {
+            if (!backend.runStep(.Blocking)) {
                 break;
             }
         }

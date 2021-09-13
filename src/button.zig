@@ -37,7 +37,7 @@ pub const Button_Impl = struct {
         _ = self;
         _ = available;
         // TODO getting hint from native peer
-        return Size { .width = 100.0, .height = 100.0 };
+        return Size { .width = 100.0, .height = 40.0 };
     }
 
     pub fn setLabel(self: *Button_Impl, label: [:0]const u8) void {

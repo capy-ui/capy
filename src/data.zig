@@ -85,6 +85,10 @@ pub const Size = struct {
     width: u32,
     height: u32,
 
+    pub fn init(width: u32, height: u32) Size {
+        return Size { .width = width, .height = height };
+    }
+
     /// Returns the size with the least area
     pub fn min(a: Size, b: Size) Size {
         if (a.width * a.height < b.width * b.height) {
@@ -101,6 +105,20 @@ pub const Size = struct {
         } else {
             return b;
         }
+    }
+
+    pub fn combine(a: Size, b: Size) Size {
+        return Size {
+            .width = std.math.max(a.width, b.width),
+            .height = std.math.max(a.height, b.height)
+        };
+    }
+
+    pub fn intersect(a: Size, b: Size) Size {
+        return Size {
+            .width = std.math.min(a.width, b.width),
+            .height = std.math.min(a.height, b.height)
+        };
     }
 };
 
