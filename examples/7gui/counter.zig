@@ -30,5 +30,12 @@ pub fn main() !void {
 
     window.resize(250, 100);
     window.show();
-    zgt.runEventLoop();
+
+    // Count to 100 in 2000ms
+    count.animate(zgt.LinearAnimation, 100, 2000);
+
+    while (zgt.stepEventLoop(.Asynchronous)) {
+        _ = count.update();
+        std.time.sleep(16);
+    }
 }

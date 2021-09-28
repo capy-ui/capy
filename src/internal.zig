@@ -131,6 +131,7 @@ pub fn Events(comptime T: type) type {
             scrollHandlers: ScrollHandlerList,
             resizeHandlers: ResizeHandlerList,
             keyTypeHandlers: KeyTypeHandlerList,
+            userdata: usize = 0,
         };
 
         pub fn init_events(self: T) T {

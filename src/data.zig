@@ -1,6 +1,56 @@
 const std = @import("std");
 const lasting_allocator = @import("internal.zig").lasting_allocator;
 
+pub fn LinearAnimation(t: f64) f64 {
+    return t;
+}
+
+pub fn Animation(comptime T: type) type {
+    return struct {
+        start: i64,
+        end: i64,
+        min: T,
+        max: T,
+        animFn: fn(t: f64) f64,
+
+        /// Get the current value from the animation
+        pub fn get(self: *@This()) T {
+            const maxDiff = @intToFloat(f64, self.end - self.start);
+            const diff = @intToFloat(f64, std.time.milliTimestamp() - self.start);
+            var t = diff / maxDiff;
+            //std.log.info("{d}", .{diff / maxDiff});
+            // Clamp t to [0, 1]
+            if (t > 1.0) t = 1.0;
+            if (t < 0.0) t = 0.0;
+            t = self.animFn(t); // transform 't' using the animation function
+
+            const min = comptime blk: {
+                if (std.meta.trait.isIntegral(T)) {
+                    break :blk @intToFloat(f64, self.min);
+                } else {
+                    break :blk self.min;
+                }
+            };
+
+            const max = comptime blk: {
+                if (std.meta.trait.isIntegral(T)) {
+                    break :blk @intToFloat(f64, self.max);
+                } else {
+                    break :blk self.max;
+                }
+            };
+
+            // Do a linear interpolation
+            const result = max * t + min * (1 - t);
+            if (comptime std.meta.trait.isIntegral(T)) {
+                return @floatToInt(T, @round(result));
+            } else {
+                return result;
+            }
+        }
+    };
+}
+
 pub fn DataWrapper(comptime T: type) type {
     return struct {
         value: T,
@@ -20,8 +70,10 @@ pub fn DataWrapper(comptime T: type) type {
         /// A notices it already acquired the binding lock, and thus returns.
         bindLock: std.Thread.Mutex = .{},
         allocator: ?*std.mem.Allocator = null,
+        animation: ?Animation(T) = null,
 
         const Self = @This();
+        const IsNumber = std.meta.trait.isNumber(T);
 
         pub const ChangeListener = struct {
             function: fn(newValue: T, userdata: usize) void,
@@ -32,6 +84,33 @@ pub fn DataWrapper(comptime T: type) type {
             return Self {
                 .value = value,
                 .onChange = std.ArrayList(ChangeListener).init(lasting_allocator)
+            };
+        }
+
+        /// This function updates any current animation.
+        /// It returns true if the animation isn't done, false otherwises.
+        pub fn update(self: *Self) bool {
+            if (self.animation) |*anim| {
+                self.extendedSet(anim.get(), true, false);
+                if (std.time.milliTimestamp() >= anim.end) {
+                    self.animation = null;
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                return false;
+            }
+        }
+
+        pub fn animate(self: *Self, anim: fn(f64) f64, target: T, duration: i64) void {
+            const time = std.time.milliTimestamp();
+            self.animation = Animation(T) {
+                .start = time,
+                .end = time + duration,
+                .min = self.value,
+                .max = target,
+                .animFn = anim
             };
         }
 
@@ -69,28 +148,33 @@ pub fn DataWrapper(comptime T: type) type {
 
         /// Thread-safe set operation. If doing a read-modify-write operation
         /// manually changing the value and acquiring the lock is recommended.
+        /// This also removes any previously set animation!
         pub fn set(self: *Self, value: T) void {
-            self.extendedSet(value, true);
+            self.extendedSet(value, true, true);
         }
 
         /// Thread-safe set operation without calling change listeners
         /// This should only be used in widget implementations when calling
         /// change listeners would cause an infinite recursion.
+        /// This also removes any previously set animation!
         ///
         /// Example: A text field listens for data wrapper changes in order to
         /// change its text. When the user edits the text, it wants to
         /// change the data wrapper, but without setNoListen, it would
         /// cause an infinite recursion.
         pub fn setNoListen(self: *Self, value: T) void {
-            self.extendedSet(value, false);
+            self.extendedSet(value, false, true);
         }
 
-        fn extendedSet(self: *Self, value: T, comptime callHandlers: bool) void {
+        fn extendedSet(self: *Self, value: T, comptime callHandlers: bool, comptime resetAnimation: bool) void {
             if (self.bindLock.tryAcquire()) |bindLock| {
                 defer bindLock.release();
 
                 const lock = self.lock.acquire();
                 self.value = value;
+                if (resetAnimation) {
+                    self.animation = null;
+                }
                 lock.release();
                 if (callHandlers) {
                     for (self.onChange.items) |listener| {

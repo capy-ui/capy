@@ -16,15 +16,6 @@ pub const Capabilities = .{
 
 var activeWindows = std.atomic.Atomic(usize).init(0);
 
-pub const public = struct {
-
-    pub fn main() !void {
-        try init();
-        try @import("root").run();
-    }
-
-};
-
 pub fn init() !void {
     if (c.gtk_init_check(0, null) == 0) {
         return GtkError.InitializationError;

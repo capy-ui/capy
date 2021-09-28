@@ -6,6 +6,7 @@ pub const Class = struct {
     preferredSizeFn: fn(widget: *const Widget, available: data.Size) data.Size,
 };
 
+/// A widget is a unique representation and constant size of any view.
 pub const Widget = struct {
     data: usize,
     peer: ?backend.PeerType = null,

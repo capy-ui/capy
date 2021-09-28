@@ -41,7 +41,7 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
     }
 
     var childY: f32 = 0.0;
-    for (widgets) |widget| {
+    for (widgets) |*widget| {
         if (widget.peer) |widgetPeer| {
             const available = Size {
                 .width = @intCast(u32, peer.getSize(peer.userdata).width),
@@ -82,6 +82,9 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
     var childX: f32 = 0.0;
     for (widgets) |widget| {
         if (widget.peer) |widgetPeer| {
+            if (@floatToInt(u32, childX) >= peer.getSize(peer.userdata).width) {
+                break;
+            }
             const available = Size {
                 .width = if (widget.container_expanded) childWidth
                     else (@intCast(u32, peer.getSize(peer.userdata).width) - @floatToInt(u32, childX)),
@@ -99,7 +102,7 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
     }
 }
 
-pub fn MarginLayout(peer: backend.Container, widgets: []Widget) void {
+pub fn MarginLayout(peer: Callbacks, widgets: []Widget) void {
     const margin = Rectangle { .left = 5, .top = 5, .right = 5, .bottom = 5 };
     if (widgets.len > 1) {
         std.log.scoped(.zgt).warn("Margin container has more than one widget!", .{});
@@ -107,12 +110,20 @@ pub fn MarginLayout(peer: backend.Container, widgets: []Widget) void {
     }
 
     if (widgets[0].peer) |widgetPeer| {
-        peer.move(widgetPeer, margin.left, margin.top);
-        const size = Size {
-            .width = std.math.max(@intCast(u32, peer.getWidth()), margin.left + margin.right) - margin.left - margin.right,
-            .height = std.math.max(@intCast(u32, peer.getHeight()), margin.top + margin.bottom) - margin.top - margin.bottom
-        };
-        peer.resize(widgetPeer, size.width, size.height);
+        const available = peer.getSize(peer.userdata);
+        const preferredSize = widgets[0].getPreferredSize(.{ .width = 0, .height = 0 });
+        
+        // const size = Size {
+        //     .width = std.math.max(@intCast(u32, preferredSize.width), margin.left + margin.right) - margin.left - margin.right,
+        //     .height = std.math.max(@intCast(u32, preferredSize.height), margin.top + margin.bottom) - margin.top - margin.bottom
+        // };
+        // _ = size;
+        //const finalSize = Size.combine(preferredSize, available);
+        _ = widgetPeer;
+        _ = preferredSize;
+        _ = margin;
+        //peer.moveResize(peer.userdata, widgetPeer, margin.left, margin.top, finalSize.width, finalSize.height);
+        peer.moveResize(peer.userdata, widgetPeer, 0, 0, available.width, available.height);
     }
 }
 
@@ -188,6 +199,9 @@ pub const Container_Impl = struct {
         if (self.peer == null) {
             var peer = try backend.Container.create();
             for (self.childrens.items) |*widget| {
+                if (self.expand) {
+                    widget.container_expanded = true;
+                }
                 try widget.show();
                 peer.add(widget.peer.?);
             }
@@ -241,6 +255,9 @@ pub const Container_Impl = struct {
 
     pub fn add(self: *Container_Impl, widget: anytype) !void {
         var genericWidget = try genericWidgetFrom(widget);
+        if (self.expand) {
+            genericWidget.container_expanded = true;
+        }
 
         if (self.peer) |*peer| {
             try genericWidget.show();
@@ -248,7 +265,7 @@ pub const Container_Impl = struct {
         }
 
         try self.childrens.append(genericWidget);
-        //try self.relayout();
+        try self.relayout();
     }
 };
 
