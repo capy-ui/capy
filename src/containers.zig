@@ -155,6 +155,7 @@ pub const Container_Impl = struct {
 
     peer: ?backend.Container,
     handlers: Container_Impl.Handlers = undefined,
+    dataWrappers: Container_Impl.DataWrappers = .{},
     childrens: std.ArrayList(Widget),
     expand: bool,
     relayouting: bool = false,
@@ -169,12 +170,6 @@ pub const Container_Impl = struct {
         });
         try column.addResizeHandler(onResize);
         return column;
-    }
-
-    /// Internal function used at initialization.
-    /// It is used to move some pointers so things do not break.
-    pub fn pointerMoved(self: *Container_Impl) void {
-        _ = self;
     }
 
     pub fn onResize(self: *Container_Impl, size: Size) !void {

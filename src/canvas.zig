@@ -8,15 +8,10 @@ pub const Canvas_Impl = struct {
 
     peer: ?backend.Canvas = null,
     handlers: Canvas_Impl.Handlers = undefined,
+    dataWrappers: Canvas_Impl.DataWrappers = .{},
 
     pub fn init() Canvas_Impl {
         return Canvas_Impl.init_events(Canvas_Impl {});
-    }
-
-    /// Internal function used at initialization.
-    /// It is used to move some pointers so things do not break.
-    pub fn pointerMoved(self: *Canvas_Impl) void {
-        _ = self;
     }
 
     pub fn getPreferredSize(self: *Canvas_Impl, available: Size) Size {

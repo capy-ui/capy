@@ -6,6 +6,7 @@ const style = @import("style.zig");
 const Widget = @import("widget.zig").Widget;
 const Class  = @import("widget.zig").Class;
 const Size = @import("data.zig").Size;
+const DataWrapper = @import("data.zig").DataWrapper;
 
 /// Allocator used for small, short-lived and repetitive allocations.
 /// You can change this by setting the `zgtScratchAllocator` field in your main file
@@ -43,10 +44,21 @@ pub fn Widgeting(comptime T: type) type {
             .preferredSizeFn = getPreferredSizeWidget
         };
 
+        pub const DataWrappers = struct {
+            opacity: DataWrapper(f64) = DataWrapper(f64).of(1.0)
+        };
+
         pub fn showWidget(widget: *Widget) anyerror!void {
             const component = @intToPtr(*T, widget.data);
             try component.show();
             widget.peer = component.peer.?.peer;
+        }
+
+        pub fn pointerMoved(self: *T) void {
+            self.dataWrappers.opacity.updateBinders();
+            if (@hasDecl(T, "_pointerMoved")) {
+                self._pointerMoved();
+            }
         }
 
         pub fn getPreferredSizeWidget(widget: *const Widget, available: Size) Size {
@@ -66,6 +78,24 @@ pub fn Widgeting(comptime T: type) type {
 
         pub fn asWidget(self: *T) anyerror!Widget {
             return try genericWidgetFrom(self);
+        }
+
+        // Properties
+        // TODO: pub usingnamespace Property(f64, "opacity");
+
+        pub fn setOpacity(self: *T, opacity: f64) void {
+            self.dataWrappers.opacity.set(opacity);
+        }
+
+        pub fn getOpacity(self: *T) f64 {
+            return self.dataWrappers.opacity.get();
+        }
+
+        /// Bind the 'opacity' property to argument.
+        pub fn bindOpacity(self: *T, other: *DataWrapper(f64)) T {
+            self.dataWrappers.opacity.bind(other);
+            self.dataWrappers.opacity.set(other.get());
+            return self.*;
         }
 
     };
@@ -212,6 +242,14 @@ pub fn Events(comptime T: type) type {
             }
         }
 
+        /// When the value is changed in the opacity data wrapper
+        fn opacityChanged(newValue: f64, userdata: usize) void {
+            const widget = @intToPtr(*T, userdata);
+            if (widget.peer) |*peer| {
+                peer.setOpacity(newValue);
+            }
+        }
+
         pub fn show_events(self: *T) !void {
             self.peer.?.setUserData(self);
             try self.peer.?.setCallback(.Click      , clickHandler);
@@ -220,6 +258,12 @@ pub fn Events(comptime T: type) type {
             try self.peer.?.setCallback(.Scroll     , scrollHandler);
             try self.peer.?.setCallback(.Resize     , resizeHandler);
             try self.peer.?.setCallback(.KeyType    , keyTypeHandler);
+
+            _ = try self.dataWrappers.opacity.addChangeListener(.{
+                .function = opacityChanged,
+                .userdata = @ptrToInt(self)
+            });
+            opacityChanged(self.dataWrappers.opacity.get(), @ptrToInt(self)); // call it so it's updated
         }
 
         pub fn addClickHandler(self: *T, handler: Callback) !void {

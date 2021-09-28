@@ -274,6 +274,10 @@ pub fn Events(comptime T: type) type {
             }
         }
 
+        pub fn setOpacity(self: *T, opacity: f64) void {
+            c.gtk_widget_set_opacity(self.peer, opacity);
+        }
+
         /// Requests a redraw
         pub fn requestDraw(self: *T) !void {
             c.gtk_widget_queue_draw(self.peer);

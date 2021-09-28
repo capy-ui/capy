@@ -1,12 +1,14 @@
 const std = @import("std");
 const backend = @import("backend.zig");
 const Size = @import("data.zig").Size;
+const DataWrapper = @import("data.zig").DataWrapper;
 
 pub const Label_Impl = struct {
     pub usingnamespace @import("internal.zig").All(Label_Impl);
 
     peer: ?backend.Label = null,
     handlers: Label_Impl.Handlers = undefined,
+    dataWrappers: Label_Impl.DataWrappers = .{},
     _text: [:0]const u8,
     _align: TextAlignment,
 
@@ -15,12 +17,6 @@ pub const Label_Impl = struct {
             ._text = text,
             ._align = alignment
         });
-    }
-
-    /// Internal function used at initialization.
-    /// It is used to move some pointers so things do not break.
-    pub fn pointerMoved(self: *Label_Impl) void {
-        _ = self;
     }
 
     pub fn show(self: *Label_Impl) !void {
@@ -33,6 +29,7 @@ pub const Label_Impl = struct {
                 .Right  => 1
             });
             self.peer = peer;
+            try self.show_events();
         }
     }
 

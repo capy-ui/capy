@@ -9,19 +9,13 @@ pub const TextArea_Impl = struct {
 
     peer: ?backend.TextArea = null,
     handlers: TextArea_Impl.Handlers = undefined,
+    dataWrappers: TextArea_Impl.DataWrappers = .{},
     _text: []const u8,
 
     pub fn init(text: []const u8) TextArea_Impl {
         return TextArea_Impl.init_events(TextArea_Impl {
             ._text = text
         });
-    }
-
-    /// Internal function used at initialization.
-    /// It is used to move some pointers so things do not break.
-    pub fn pointerMoved(self: *TextArea_Impl) void {
-        _ = self;
-        //self.text.updateBinders();
     }
 
     pub fn show(self: *TextArea_Impl) !void {
@@ -62,6 +56,7 @@ pub const TextField_Impl = struct {
 
     peer: ?backend.TextField = null,
     handlers: TextField_Impl.Handlers = undefined,
+    dataWrappers: TextField_Impl.DataWrappers = .{},
     text: StringDataWrapper,
 
     pub fn init(text: []const u8) TextField_Impl {
@@ -72,7 +67,7 @@ pub const TextField_Impl = struct {
 
     /// Internal function used at initialization.
     /// It is used to move some pointers so things do not break.
-    pub fn pointerMoved(self: *TextField_Impl) void {
+    pub fn _pointerMoved(self: *TextField_Impl) void {
         self.text.updateBinders();
     }
 

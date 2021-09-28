@@ -7,6 +7,7 @@ pub const Button_Impl = struct {
 
     peer: ?backend.Button = null,
     handlers: Button_Impl.Handlers = undefined,
+    dataWrappers: Button_Impl.DataWrappers = .{},
     label: [:0]const u8 = "",
 
     pub fn init() Button_Impl {
@@ -17,12 +18,6 @@ pub const Button_Impl = struct {
         var button = Button_Impl.init();
         button.setLabel(label);
         return button;
-    }
-
-    /// Internal function used at initialization.
-    /// It is used to move some pointers so things do not break.
-    pub fn pointerMoved(self: *Button_Impl) void {
-        _ = self;
     }
 
     pub fn show(self: *Button_Impl) !void {

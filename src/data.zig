@@ -119,6 +119,11 @@ pub fn DataWrapper(comptime T: type) type {
             }
         }
 
+        /// Returns true if there is currently an animation playing.
+        pub fn hasAnimation(self: *Self) bool {
+            return self.animation != null;
+        }
+
         pub fn animate(self: *Self, anim: fn(f64) f64, target: T, duration: i64) void {
             const time = std.time.milliTimestamp();
             self.animation = Animation(T) {
