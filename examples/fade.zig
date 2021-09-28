@@ -22,12 +22,18 @@ pub fn main() !void {
     try zgt.backend.init();
 
     var window = try zgt.Window.init();
+    const imageData = try zgt.ImageData.fromFile(zgt.internal.lasting_allocator, "grass.png");
     
     try window.set(
         zgt.Column(.{ .expand = .Fill }, .{
             zgt.Row(.{}, .{
                 zgt.Expanded(
-                    zgt.Label(.{ .text = "Hello Zig" })
+                    (try zgt.Row(.{}, .{
+                        zgt.Expanded(
+                            zgt.Label(.{ .text = "Hello Zig" })
+                        ),
+                        zgt.Image(.{ .data = imageData }),
+                    }))
                         .bindOpacity(&opacity)
                 ),
                 zgt.Button(.{ .label = "Show", .onclick = startAnimation })
@@ -35,7 +41,7 @@ pub fn main() !void {
         })
     );
 
-    window.resize(250, 100);
+    window.resize(800, 450);
     window.show();
 
     while (zgt.stepEventLoop(.Asynchronous)) {

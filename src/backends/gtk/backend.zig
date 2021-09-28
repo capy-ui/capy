@@ -613,6 +613,47 @@ pub const Container = struct {
     }
 };
 
+pub const ImageData = struct {
+    peer: *c.GdkPixbuf,
+
+    pub fn from(width: usize, height: usize, stride: usize, cs: lib.Colorspace, bytes: []const u8) !ImageData {
+        const pixbuf = c.gdk_pixbuf_new_from_data(
+            bytes.ptr,
+            c.GDK_COLORSPACE_RGB,
+            @boolToInt(cs == .RGBA),
+            8,
+            @intCast(c_int, width),
+            @intCast(c_int, height),
+            @intCast(c_int, stride),
+            null,
+            null
+        ) orelse return GtkError.UnknownError;
+
+        return ImageData {
+            .peer = pixbuf
+        };
+    }
+};
+
+pub const Image = struct {
+    peer: *c.GtkWidget,
+
+    pub usingnamespace Events(Image);
+
+    pub fn create() GtkError!Image {
+        const image = c.gtk_image_new() orelse return GtkError.UnknownError;
+        c.gtk_widget_show(image);
+        try Image.setupEvents(image);
+        return Image {
+            .peer = image
+        };
+    }
+
+    pub fn setData(self: *Image, data: ImageData) void {
+        c.gtk_image_set_from_pixbuf(@ptrCast(*c.GtkImage, self.peer), data.peer);
+    }
+};
+
 pub fn runStep(step: lib.EventLoopStep) bool {
     _ = c.gtk_main_iteration_do(@boolToInt(step == .Blocking));
     return activeWindows.load(.Acquire) != 0;
