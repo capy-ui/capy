@@ -22,7 +22,7 @@ pub fn main() !void {
     try zgt.backend.init();
 
     var window = try zgt.Window.init();
-    const imageData = try zgt.ImageData.fromFile(zgt.internal.lasting_allocator, "grass.png");
+    const imageData = try zgt.ImageData.fromFile(zgt.internal.lasting_allocator, "ziglogo.png");
     
     try window.set(
         zgt.Column(.{ .expand = .Fill }, .{

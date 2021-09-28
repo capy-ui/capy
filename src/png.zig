@@ -242,7 +242,7 @@ pub fn read(allocator: *Allocator, unbufferedReader: anytype) !ImageData {
         }
 
         return ImageData.fromBytes(ihdr.width, ihdr.height, bytesPerLine, .RGB, imageData);
-    } else if (ihdr.colorType == .TruecolorAlpha and false) {
+    } else if (ihdr.colorType == .TruecolorAlpha) {
         const bytesPerLine = ihdr.width * bpp;
         var line = try allocator.alloc(u8, bytesPerLine);
         defer allocator.free(line);
@@ -265,7 +265,7 @@ pub fn read(allocator: *Allocator, unbufferedReader: anytype) !ImageData {
             y += 1;
         }
 
-        return ImageData.fromBytes(ihdr.width, ihdr.height, ihdr.width, .RGBA, imageData);
+        return ImageData.fromBytes(ihdr.width, ihdr.height, bytesPerLine, .RGBA, imageData);
     } else {
         std.log.scoped(.png).err("Unsupported PNG format: {}", .{ihdr.colorType});
         return PngError.UnsupportedFormat;
