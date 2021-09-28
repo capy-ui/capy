@@ -1,4 +1,5 @@
-# zgt
+<h1 align="center">zgt: a GUI library for Zig</h1>
+<h5 align="center">GUIs in Zig, but idiomatic</h5>
 
 **As of now, zgt is NOT ready for use in production as I'm still making breaking changes**
 
@@ -7,6 +8,9 @@
 ## Introduction
 
 zgt is a **graphical user interface library for Zig**. It is mainly intended for creating applications using native controls from the operating system.
+zgt is a declarative UI library aiming to be easy to write for and versatile.
+
+It has been made with the goal to empower standalone UI applications, integration in games or any other rendering process is a non-goal.
 
 ## Usage
 
@@ -49,7 +53,6 @@ fn buttonClicked(button: *zgt.Button_Impl) !void {
     std.log.info("You clicked button with text {s}", .{button.getLabel()});
 }
 ```
+It is easy to add something like a button or a text area. The example can already be used to notice a widget's parameters are usually enclosed in anonymous
+structs (`.{ .label = "Save" }`). You can also see that simply wrapping a widget with `zgt.Expanded( ... )` will tell it to take all the space it can.
 
-### Goals
-
-- Create the OpenGL ES backend, which would be the equivalent to other 'lightweight' GUIs
