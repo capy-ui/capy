@@ -1,9 +1,25 @@
 const std = @import("std");
 const lasting_allocator = @import("internal.zig").lasting_allocator;
 
-pub fn LinearAnimation(t: f64) f64 {
-    return t;
-}
+pub const Easings = struct {
+
+    pub fn Linear(t: f64) f64 {
+        return t;
+    }
+
+    pub fn In(t: f64) f64 {
+        return t * t;
+    }
+
+    pub fn Out(t: f64) f64 {
+        return 1 - (1 - t) * (1 - t);
+    }
+
+    pub fn InOut(t: f64) f64 {
+        return In(t) * (1 - t) + Out(t) * t;
+    }
+
+};
 
 pub fn Animation(comptime T: type) type {
     return struct {
@@ -18,7 +34,7 @@ pub fn Animation(comptime T: type) type {
             const maxDiff = @intToFloat(f64, self.end - self.start);
             const diff = @intToFloat(f64, std.time.milliTimestamp() - self.start);
             var t = diff / maxDiff;
-            //std.log.info("{d}", .{diff / maxDiff});
+            
             // Clamp t to [0, 1]
             if (t > 1.0) t = 1.0;
             if (t < 0.0) t = 0.0;

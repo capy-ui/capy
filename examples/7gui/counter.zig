@@ -32,7 +32,7 @@ pub fn main() !void {
     window.show();
 
     // Count to 100 in 2000ms
-    count.animate(zgt.LinearAnimation, 100, 2000);
+    count.animate(zgt.Easings.InOut, 100, 2000);
 
     while (zgt.stepEventLoop(.Asynchronous)) {
         _ = count.update();
