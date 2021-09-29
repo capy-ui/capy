@@ -115,7 +115,7 @@ fn easing(x: f32) f32 {
 fn SetEasing(comptime Easing: fn(x: f64) f64) fn(*zgt.Button_Impl) anyerror!void {
     const func = struct {
         pub fn function(x: f32) f32 {
-            return @floatCast(f32, Easing(x / 10.0)) * 5.0;
+            return @floatCast(f32, Easing(x / 10.0));
         }
     }.function;
 
