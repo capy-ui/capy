@@ -9,7 +9,8 @@ pub const Layout = fn(peer: Callbacks, widgets: []Widget) void;
 const Callbacks = struct {
     userdata: usize,
     moveResize: fn(data: usize, peer: backend.PeerType, x: u32, y: u32, w: u32, h: u32) void,
-    getSize: fn(data: usize) Size
+    getSize: fn(data: usize) Size,
+    computingPreferredSize: bool,
 };
 
 fn getExpandedCount(widgets: []Widget) u32 {
@@ -53,9 +54,9 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
                 else Size.intersect(available, preferred);
             var x = @floatToInt(u32, @floor(
                 widget.alignY * @intToFloat(f32, @subWithSaturation(peer.getSize(peer.userdata).height, preferred.height))));
-            if (widget.container_expanded) x = 0;
+            if (widget.container_expanded or peer.computingPreferredSize) x = 0;
             peer.moveResize(peer.userdata, widgetPeer,
-                x, @floatToInt(u32, @floor(childY)),
+                0, @floatToInt(u32, @floor(childY)),
                 size.width, size.height);
             childY += @intToFloat(f32, size.height);
         }
@@ -97,7 +98,7 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
                 else Size.intersect(available, preferred);
             var y = @floatToInt(u32, @floor(
                 widget.alignY * @intToFloat(f32, @subWithSaturation(peer.getSize(peer.userdata).height, preferred.height))));
-            if (widget.container_expanded) y = 0;
+            if (widget.container_expanded or peer.computingPreferredSize) y = 0;
             peer.moveResize(peer.userdata, widgetPeer,
                 @floatToInt(u32, @floor(childX)), y,
                 size.width, size.height);
@@ -165,7 +166,8 @@ pub const Container_Impl = struct {
         const callbacks = Callbacks {
             .userdata = @ptrToInt(&size),
             .moveResize = fakeResMove,
-            .getSize = fakeSize
+            .getSize = fakeSize,
+            .computingPreferredSize = true
         };
         self.layout(callbacks, self.childrens.items);
         return size;
@@ -222,7 +224,8 @@ pub const Container_Impl = struct {
             const callbacks = Callbacks {
                 .userdata = @ptrToInt(&peer),
                 .moveResize = moveResize,
-                .getSize = getSize
+                .getSize = getSize,
+                .computingPreferredSize = false
             };
             self.layout(callbacks, self.childrens.items);
             self.relayouting = false;
