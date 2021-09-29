@@ -63,8 +63,8 @@ pub const LineGraph_Impl = struct {
 };
 
 pub fn LineGraph(config: struct { dataFn: fn(x: f32) f32 }) !LineGraph_Impl {
-    var lineGraph = LineGraph_Impl.init(config.dataFn);
-    try lineGraph.addDrawHandler(LineGraph_Impl.draw);
+    var lineGraph = try LineGraph_Impl.init(config.dataFn)
+                                      .addDrawHandler(LineGraph_Impl.draw);
     return lineGraph;
 }
 
@@ -109,7 +109,7 @@ fn randf(x: f32) f32 {
 }
 
 fn easing(x: f32) f32 {
-    return @floatCast(f32, zgt.Easings.Out(x / 10.0)) * 5.0;
+    return @floatCast(f32, zgt.Easings.Linear(x / 10.0)) * 5.0;
 }
 
 fn SetEasing(comptime Easing: fn(x: f64) f64) fn(*zgt.Button_Impl) anyerror!void {
@@ -129,6 +129,13 @@ fn SetEasing(comptime Easing: fn(x: f64) f64) fn(*zgt.Button_Impl) anyerror!void
     return callback;
 }
 
+fn drawRectangle(widget: *zgt.Canvas_Impl, ctx: zgt.Canvas_Impl.DrawContext) !void {
+    _ = widget;
+    ctx.setColor(0, 0, 0);
+    ctx.rectangle(0, 0, 100, 100);
+    ctx.fill();
+}
+
 pub fn main() !void {
     try zgt.backend.init();
 
@@ -142,7 +149,12 @@ pub fn main() !void {
                 zgt.Button(.{ .label = "Out"   , .onclick = SetEasing(zgt.Easings.Out)    }),
                 zgt.Button(.{ .label = "In Out", .onclick = SetEasing(zgt.Easings.InOut)  })
             }),
-            zgt.Expanded(&graph)
+            zgt.Expanded(&graph),
+            zgt.Row(.{}, .{
+                zgt.Canvas(.{})
+                    .setPreferredSize(zgt.Size { .width = 100, .height = 100 })
+                    .addDrawHandler(drawRectangle)
+            })
         })
     );
 

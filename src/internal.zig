@@ -270,8 +270,9 @@ pub fn Events(comptime T: type) type {
             try self.handlers.clickHandlers.append(handler);
         }
 
-        pub fn addDrawHandler(self: *T, handler: DrawCallback) !void {
+        pub fn addDrawHandler(self: *T, handler: DrawCallback) !T {
             try self.handlers.drawHandlers.append(handler);
+            return self.*;
         }
 
         pub fn addMouseButtonHandler(self: *T, handler: ButtonCallback) !void {

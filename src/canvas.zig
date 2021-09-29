@@ -9,6 +9,9 @@ pub const Canvas_Impl = struct {
     peer: ?backend.Canvas = null,
     handlers: Canvas_Impl.Handlers = undefined,
     dataWrappers: Canvas_Impl.DataWrappers = .{},
+    preferredSize: ?Size = null,
+
+    pub const DrawContext = backend.Canvas.DrawContext;
 
     pub fn init() Canvas_Impl {
         return Canvas_Impl.init_events(Canvas_Impl {});
@@ -19,7 +22,12 @@ pub const Canvas_Impl = struct {
         _ = available;
 
         // As it's a canvas, by default it should take the available space
-        return available;
+        return self.preferredSize orelse available;
+    }
+
+    pub fn setPreferredSize(self: *Canvas_Impl, preferred: Size) Canvas_Impl {
+        self.preferredSize = preferred;
+        return self.*;
     }
 
     pub fn show(self: *Canvas_Impl) !void {

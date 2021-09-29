@@ -51,9 +51,11 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
             const preferred = widget.getPreferredSize(available);
             const size = if (widget.container_expanded) available
                 else Size.intersect(available, preferred);
-
+            var x = @floatToInt(u32, @floor(
+                widget.alignY * @intToFloat(f32, @subWithSaturation(peer.getSize(peer.userdata).height, preferred.height))));
+            if (widget.container_expanded) x = 0;
             peer.moveResize(peer.userdata, widgetPeer,
-                0, @floatToInt(u32, @floor(childY)),
+                x, @floatToInt(u32, @floor(childY)),
                 size.width, size.height);
             childY += @intToFloat(f32, size.height);
         }
@@ -93,9 +95,11 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
             const preferred = widget.getPreferredSize(available);
             const size = if (widget.container_expanded) available
                 else Size.intersect(available, preferred);
-
+            var y = @floatToInt(u32, @floor(
+                widget.alignY * @intToFloat(f32, @subWithSaturation(peer.getSize(peer.userdata).height, preferred.height))));
+            if (widget.container_expanded) y = 0;
             peer.moveResize(peer.userdata, widgetPeer,
-                @floatToInt(u32, @floor(childX)), 0,
+                @floatToInt(u32, @floor(childX)), y,
                 size.width, size.height);
             childX += @intToFloat(f32, size.width);
         }
@@ -126,29 +130,6 @@ pub fn MarginLayout(peer: Callbacks, widgets: []Widget) void {
         peer.moveResize(peer.userdata, widgetPeer, 0, 0, available.width, available.height);
     }
 }
-
-const Stack_Impl = struct {
-    peer: backend.Stack,
-    childrens: std.ArrayList(Widget),
-
-    pub fn init(childrens: std.ArrayList(Widget)) !Stack_Impl {
-        const peer = try backend.Stack.create();
-        for (childrens.items) |widget| {
-            peer.add(widget.peer);
-        }
-        return Stack_Impl {
-            .peer = peer,
-            .childrens = childrens
-        };
-    }
-
-    // pub fn add(self: *Stack_Impl, widget: anytype) !void {
-    //     self.peer.put(widget.peer, 
-    //         try std.math.cast(c_int, x),
-    //         try std.math.cast(c_int, y)
-    //     );
-    // }
-};
 
 pub const Container_Impl = struct {
     pub usingnamespace @import("internal.zig").All(Container_Impl);
