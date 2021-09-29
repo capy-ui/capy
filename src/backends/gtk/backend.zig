@@ -184,6 +184,7 @@ export fn gtkButtonPress(peer: *c.GtkWidget, event: *c.GdkEventButton, userdata:
         };
         c.gtk_widget_grab_focus(peer); // seems to be necessary for the canvas
 
+        if (event.x < 0 or event.y < 0) return 0;
         handler(@intToEnum(MouseButton, event.button), pressed, @floatToInt(u32, @floor(event.x)), @floatToInt(u32, @floor(event.y)), data.userdata);
     }
     return 0;

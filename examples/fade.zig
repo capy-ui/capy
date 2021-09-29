@@ -25,7 +25,7 @@ pub fn main() !void {
     const imageData = try zgt.ImageData.fromFile(zgt.internal.lasting_allocator, "ziglogo.png");
     
     try window.set(
-        zgt.Column(.{ .expand = .Fill }, .{
+        zgt.Column(.{}, .{
             zgt.Row(.{}, .{
                 zgt.Expanded(
                     (try zgt.Row(.{}, .{

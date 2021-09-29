@@ -31,7 +31,7 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
         if (!widget.container_expanded) {
             const available = peer.getSize(peer.userdata);
             const divider = if (expandedCount == 0) 1 else expandedCount;
-            const takenHeight = widget.getPreferredSize(available).width / divider;
+            const takenHeight = widget.getPreferredSize(available).height / divider;
             if (childHeight >= takenHeight) {
                 childHeight -= takenHeight;
             } else {

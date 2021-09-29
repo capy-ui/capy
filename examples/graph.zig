@@ -8,6 +8,7 @@ pub const LineGraph_Impl = struct {
 
     peer: ?zgt.backend.Canvas = null,
     handlers: LineGraph_Impl.Handlers = undefined,
+    dataWrappers: LineGraph_Impl.DataWrappers = .{},
     dataFn: fn(x: f32) f32,
 
     pub fn init(dataFn: fn(x: f32) f32) LineGraph_Impl {
@@ -19,27 +20,32 @@ pub const LineGraph_Impl = struct {
     pub fn draw(self: *LineGraph_Impl, ctx: zgt.DrawContext) !void {
         const width = self.getWidth();
         const height = self.getHeight();
-        ctx.clear(0, 0, width, height);
+        ctx.setColor(1, 1, 1);
+        ctx.rectangle(0, 0, width, height);
+        ctx.fill();
 
         var x: f32 = 0;
-        var oldX: i32 = 0;
-        var oldY: i32 = 0;
+        var maxValue: f32 = 0;
         while (x < 10) : (x += 0.1) {
-            const y = self.dataFn(x - 5) + 1;
-            const dy = @intCast(i32, height) - @floatToInt(i32, @floor(y * 100));
-            const dx = @floatToInt(i32, @floor(x * 100));
+            maxValue = std.math.max(maxValue, self.dataFn(x));
+        }
+
+        x = 0;
+        var oldX: u32 = 0;
+        var oldY: u32 = 0;
+        while (x < 10) : (x += 0.1) {
+            const y = self.dataFn(x) + 0;
+            var dy = @intCast(i32, height) - @floatToInt(i32,
+                @floor(y * (@intToFloat(f32, height) / maxValue)));
+            var dx = @floatToInt(i32, @floor(x * 100));
+            if (dy < 0) dy = 0;
+            if (dx < 0) dx = 0;
 
             ctx.setColor(0, 0, 0);
-            ctx.line(oldX, oldY, dx, dy);
+            ctx.line(oldX, oldY, @intCast(u32, dx), @intCast(u32, dy));
             ctx.stroke();
-            oldX = dx; oldY = dy;
+            oldX = @intCast(u32, dx); oldY = @intCast(u32, dy);
         }
-    }
-
-    /// Internal function used at initialization.
-    /// It is used to move some pointers so things do not break.
-    pub fn pointerMoved(self: *LineGraph_Impl) void {
-        _ = self;
     }
 
     pub fn show(self: *LineGraph_Impl) !void {
@@ -102,13 +108,40 @@ fn randf(x: f32) f32 {
     return rand.random.float(f32);
 }
 
+fn easing(x: f32) f32 {
+    return @floatCast(f32, zgt.Easings.Out(x / 10.0)) * 5.0;
+}
+
+fn SetEasing(comptime Easing: fn(x: f64) f64) fn(*zgt.Button_Impl) anyerror!void {
+    const func = struct {
+        pub fn function(x: f32) f32 {
+            return @floatCast(f32, Easing(x / 10.0)) * 5.0;
+        }
+    }.function;
+
+    const callback = struct {
+        pub fn callback(btn: *zgt.Button_Impl) anyerror!void {
+            _ = btn;
+            graph.dataFn = func;
+            try graph.requestDraw();
+        }
+    }.callback;
+    return callback;
+}
+
 pub fn main() !void {
     try zgt.backend.init();
 
     var window = try zgt.Window.init();
-    graph = try LineGraph(.{ .dataFn = myDataFunction });
+    graph = try LineGraph(.{ .dataFn = easing });
     try window.set(
         zgt.Column(.{}, .{
+            zgt.Row(.{}, .{
+                zgt.Button(.{ .label = "Linear", .onclick = SetEasing(zgt.Easings.Linear) }),
+                zgt.Button(.{ .label = "In"    , .onclick = SetEasing(zgt.Easings.In)     }),
+                zgt.Button(.{ .label = "Out"   , .onclick = SetEasing(zgt.Easings.Out)    }),
+                zgt.Button(.{ .label = "In Out", .onclick = SetEasing(zgt.Easings.InOut)  })
+            }),
             zgt.Expanded(&graph)
         })
     );
