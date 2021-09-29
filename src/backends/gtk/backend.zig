@@ -65,6 +65,8 @@ pub const Window = struct {
     peer: *c.GtkWidget,
     wbin: *c.GtkWidget,
 
+    pub usingnamespace Events(Window);
+
     pub fn create() GtkError!Window {
         const window = c.gtk_window_new(c.GTK_WINDOW_TOPLEVEL) orelse return GtkError.UnknownError;
         //const screen = c.gtk_window_get_screen(@ptrCast(*c.GtkWindow, window));

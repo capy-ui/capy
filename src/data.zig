@@ -273,6 +273,9 @@ pub fn FormatDataWrapper(allocator: *std.mem.Allocator, comptime fmt: []const u8
 
 pub const StringDataWrapper = DataWrapper([]const u8);
 
+pub const FloatDataWrapper  = DataWrapper(f32);
+pub const DoubleDataWrapper = DataWrapper(f64);
+
 /// The size expressed in display pixels.
 pub const Size = struct {
     width: u32,

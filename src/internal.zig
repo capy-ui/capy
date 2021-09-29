@@ -45,7 +45,10 @@ pub fn Widgeting(comptime T: type) type {
         };
 
         pub const DataWrappers = struct {
-            opacity: DataWrapper(f64) = DataWrapper(f64).of(1.0)
+            opacity: DataWrapper(f64) = DataWrapper(f64).of(1.0),
+            alignX: DataWrapper(f32) = DataWrapper(f32).of(0.5),
+            alignY: DataWrapper(f32) = DataWrapper(f32).of(0.5),
+            name: ?[]const u8 = null
         };
 
         pub fn showWidget(widget: *Widget) anyerror!void {
@@ -56,6 +59,8 @@ pub fn Widgeting(comptime T: type) type {
 
         pub fn pointerMoved(self: *T) void {
             self.dataWrappers.opacity.updateBinders();
+            self.dataWrappers.alignX.updateBinders();
+            self.dataWrappers.alignY.updateBinders();
             if (@hasDecl(T, "_pointerMoved")) {
                 self._pointerMoved();
             }
@@ -98,11 +103,25 @@ pub fn Widgeting(comptime T: type) type {
             return self.*;
         }
 
+        /// Bind the 'alignX' property to argument.
+        pub fn bindAlignX(self: *T, other: *DataWrapper(f32)) T {
+            self.dataWrappers.alignX.bind(other);
+            self.dataWrappers.alignX.set(other.get());
+            return self.*;
+        }
+
+        /// Bind the 'alignY' property to argument.
+        pub fn bindAlignY(self: *T, other: *DataWrapper(f32)) T {
+            self.dataWrappers.alignY.bind(other);
+            self.dataWrappers.alignY.set(other.get());
+            return self.*;
+        }
+
     };
 }
 
 /// Create a generic Widget struct from the given component.
-fn genericWidgetFrom(component: anytype) anyerror!Widget {
+pub fn genericWidgetFrom(component: anytype) anyerror!Widget {
     const ComponentType = @TypeOf(component);
     if (ComponentType == Widget) return component;
 
@@ -123,7 +142,10 @@ fn genericWidgetFrom(component: anytype) anyerror!Widget {
             @TypeOf(component);
     return Widget {
         .data = @ptrToInt(cp),
-        .class = &DereferencedType.WidgetClass
+        .class = &DereferencedType.WidgetClass,
+        .name = &cp.dataWrappers.name,
+        .alignX = &cp.dataWrappers.alignX,
+        .alignY = &cp.dataWrappers.alignY
     };
 }
 

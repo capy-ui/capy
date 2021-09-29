@@ -109,7 +109,7 @@ fn randf(x: f32) f32 {
 }
 
 fn easing(x: f32) f32 {
-    return @floatCast(f32, zgt.Easings.Linear(x / 10.0)) * 5.0;
+    return @floatCast(f32, zgt.Easings.Linear(x / 10.0));
 }
 
 fn SetEasing(comptime Easing: fn(x: f64) f64) fn(*zgt.Button_Impl) anyerror!void {
@@ -136,11 +136,21 @@ fn drawRectangle(widget: *zgt.Canvas_Impl, ctx: zgt.Canvas_Impl.DrawContext) !vo
     ctx.fill();
 }
 
+var rectangleX = zgt.DataWrapper(f32).of(0.1);
+var animStart: i64 = 0;
 pub fn main() !void {
     try zgt.backend.init();
 
     var window = try zgt.Window.init();
     graph = try LineGraph(.{ .dataFn = easing });
+
+    var rectangle = (try zgt.Column(.{}, .{
+        zgt.Canvas(.{})
+            .setPreferredSize(zgt.Size { .width = 100, .height = 100 })
+            .addDrawHandler(drawRectangle)
+    }))
+        .bindAlignX(&rectangleX);
+
     try window.set(
         zgt.Column(.{}, .{
             zgt.Row(.{}, .{
@@ -150,15 +160,23 @@ pub fn main() !void {
                 zgt.Button(.{ .label = "In Out", .onclick = SetEasing(zgt.Easings.InOut)  })
             }),
             zgt.Expanded(&graph),
-            zgt.Row(.{}, .{
-                zgt.Canvas(.{})
-                    .setPreferredSize(zgt.Size { .width = 100, .height = 100 })
-                    .addDrawHandler(drawRectangle)
-            })
+            &rectangle
         })
     );
 
     window.resize(800, 600);
     window.show();
-    zgt.runEventLoop();
+    
+
+    while (zgt.stepEventLoop(.Asynchronous)) {
+        const dt = std.time.milliTimestamp() - animStart;
+        if (dt > 1000) {
+            animStart = std.time.milliTimestamp();
+            continue;
+        }
+        const t = @intToFloat(f32, dt) / 1000;
+        rectangleX.set(graph.dataFn(t * 10.0));
+        try rectangle.relayout(); // TODO: changing alignX should automatically trigger a relayout
+        std.time.sleep(30);
+    }
 }

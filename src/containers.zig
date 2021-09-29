@@ -53,10 +53,10 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
             const size = if (widget.container_expanded) available
                 else Size.intersect(available, preferred);
             var x = @floatToInt(u32, @floor(
-                widget.alignY * @intToFloat(f32, @subWithSaturation(peer.getSize(peer.userdata).height, preferred.height))));
+                widget.alignX.get() * @intToFloat(f32, @subWithSaturation(peer.getSize(peer.userdata).width, preferred.width))));
             if (widget.container_expanded or peer.computingPreferredSize) x = 0;
             peer.moveResize(peer.userdata, widgetPeer,
-                0, @floatToInt(u32, @floor(childY)),
+                x, @floatToInt(u32, @floor(childY)),
                 size.width, size.height);
             childY += @intToFloat(f32, size.height);
         }
@@ -97,7 +97,7 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
             const size = if (widget.container_expanded) available
                 else Size.intersect(available, preferred);
             var y = @floatToInt(u32, @floor(
-                widget.alignY * @intToFloat(f32, @subWithSaturation(peer.getSize(peer.userdata).height, preferred.height))));
+                widget.alignY.get() * @intToFloat(f32, @subWithSaturation(peer.getSize(peer.userdata).height, preferred.height))));
             if (widget.container_expanded or peer.computingPreferredSize) y = 0;
             peer.moveResize(peer.userdata, widgetPeer,
                 @floatToInt(u32, @floor(childX)), y,
@@ -157,6 +157,23 @@ pub const Container_Impl = struct {
     pub fn onResize(self: *Container_Impl, size: Size) !void {
         _ = size;
         try self.relayout();
+    }
+
+    pub fn getAt(self: *Container_Impl, index: usize) !*Widget {
+        if (index >= self.childrens.items.len) return error.OutOfBounds;
+        return &self.childrens.items[index];
+    }
+
+    pub fn get(self: *Container_Impl, name: []const u8) ?*Widget {
+        // TODO: use hash map for performance
+        for (self.childrens.items) |*widget| {
+            if (widget.name.*) |widgetName| {
+                if (std.mem.eql(u8, name, widgetName)) {
+                    return widget;
+                }
+            }
+        }
+        return null;
     }
 
     pub fn getPreferredSize(self: *Container_Impl, available: Size) Size {
@@ -233,7 +250,7 @@ pub const Container_Impl = struct {
     }
 
     pub fn add(self: *Container_Impl, widget: anytype) !void {
-        var genericWidget = try genericWidgetFrom(widget);
+        var genericWidget = try @import("internal.zig").genericWidgetFrom(widget);
         if (self.expand) {
             genericWidget.container_expanded = true;
         }
@@ -247,33 +264,6 @@ pub const Container_Impl = struct {
         try self.relayout();
     }
 };
-
-/// Create a generic Widget struct from the given component.
-fn genericWidgetFrom(component: anytype) anyerror!Widget {
-    const ComponentType = @TypeOf(component);
-    if (ComponentType == Widget) return component;
-    if (ComponentType == *Widget) return component.*;
-
-    var cp = if (comptime std.meta.trait.isSingleItemPtr(ComponentType)) component else blk: {
-        var copy = try lasting_allocator.create(ComponentType);
-        copy.* = component;
-        break :blk copy;
-    };
-
-    // used to update things like data wrappers, this happens once, at initialization,
-    // after that the component isn't moved in memory anymore
-    cp.pointerMoved();
-
-    const DereferencedType = 
-        if (comptime std.meta.trait.isSingleItemPtr(ComponentType))
-            @TypeOf(component.*)
-        else
-            @TypeOf(component);
-    return Widget {
-        .data = @ptrToInt(cp),
-        .class = &DereferencedType.WidgetClass
-    };
-}
 
 fn isErrorUnion(comptime T: type) bool {
     return switch (@typeInfo(T)) {
@@ -293,7 +283,7 @@ fn abstractContainerConstructor(comptime T: type, childrens: anytype, config: an
             else
                 element;
         
-        const widget = try genericWidgetFrom(child);
+        const widget = try @import("internal.zig").genericWidgetFrom(child);
         try list.append(widget);
     }
 
@@ -313,7 +303,7 @@ const GridConfig = struct {
 
 /// Set the style of the child to expanded by creating and showing the widget early.
 pub fn Expanded(child: anytype) callconv(.Inline) anyerror!Widget {
-    var widget = try genericWidgetFrom(
+    var widget = try @import("internal.zig").genericWidgetFrom(
         if (comptime isErrorUnion(@TypeOf(child)))
             try child
         else

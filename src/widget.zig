@@ -12,14 +12,15 @@ pub const Widget = struct {
     peer: ?backend.PeerType = null,
     container_expanded: bool = false,
     class: *const Class,
+    name: *?[]const u8,
 
     /// If there is more available size than preferred size and the widget is not expanded,
     /// this will determine where will the widget be located horizontally.
-    alignX: f32 = 0.5,
+    alignX: *data.DataWrapper(f32),
 
     /// If there is more available size than preferred size and the widget is not expanded,
     /// this will determine where will the widget be located vertically.
-    alignY: f32 = 0.5,
+    alignY: *data.DataWrapper(f32),
 
     pub fn show(self: *Widget) anyerror!void {
         try self.class.showFn(self);
