@@ -103,6 +103,11 @@ pub fn Widgeting(comptime T: type) type {
             return self.*;
         }
 
+        pub fn setAlignX(self: *T, alignX: f32) T {
+            self.dataWrappers.alignX.set(alignX);
+            return self.*;
+        }
+
         /// Bind the 'alignX' property to argument.
         pub fn bindAlignX(self: *T, other: *DataWrapper(f32)) T {
             self.dataWrappers.alignX.bind(other);

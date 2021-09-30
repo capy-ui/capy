@@ -52,8 +52,9 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
             const preferred = widget.getPreferredSize(available);
             const size = if (widget.container_expanded) available
                 else Size.intersect(available, preferred);
+            const alignX = std.math.clamp(widget.alignX.get(), 0, 1);
             var x = @floatToInt(u32, @floor(
-                widget.alignX.get() * @intToFloat(f32, @subWithSaturation(peer.getSize(peer.userdata).width, preferred.width))));
+                alignX * @intToFloat(f32, @subWithSaturation(peer.getSize(peer.userdata).width, preferred.width))));
             if (widget.container_expanded or peer.computingPreferredSize) x = 0;
             peer.moveResize(peer.userdata, widgetPeer,
                 x, @floatToInt(u32, @floor(childY)),
@@ -96,8 +97,9 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
             const preferred = widget.getPreferredSize(available);
             const size = if (widget.container_expanded) available
                 else Size.intersect(available, preferred);
+            const alignY = std.math.clamp(widget.alignY.get(), 0, 1);
             var y = @floatToInt(u32, @floor(
-                widget.alignY.get() * @intToFloat(f32, @subWithSaturation(peer.getSize(peer.userdata).height, preferred.height))));
+                alignY * @intToFloat(f32, @subWithSaturation(peer.getSize(peer.userdata).height, preferred.height))));
             if (widget.container_expanded or peer.computingPreferredSize) y = 0;
             peer.moveResize(peer.userdata, widgetPeer,
                 @floatToInt(u32, @floor(childX)), y,
@@ -140,7 +142,7 @@ pub const Container_Impl = struct {
     dataWrappers: Container_Impl.DataWrappers = .{},
     childrens: std.ArrayList(Widget),
     expand: bool,
-    relayouting: bool = false,
+    relayouting: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
     layout: Layout,
 
     pub fn init(childrens: std.ArrayList(Widget), config: GridConfig, layout: Layout) !Container_Impl {
@@ -235,9 +237,9 @@ pub const Container_Impl = struct {
     }
 
     pub fn relayout(self: *Container_Impl) !void {
-        if (self.relayouting) return;
+        if (self.relayouting.load(.Acquire) == true) return;
         if (self.peer) |peer| {
-            self.relayouting = true;
+            self.relayouting.store(true, .Release);
             const callbacks = Callbacks {
                 .userdata = @ptrToInt(&peer),
                 .moveResize = moveResize,
@@ -245,7 +247,7 @@ pub const Container_Impl = struct {
                 .computingPreferredSize = false
             };
             self.layout(callbacks, self.childrens.items);
-            self.relayouting = false;
+            self.relayouting.store(false, .Release);
         }
     }
 
