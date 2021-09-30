@@ -517,6 +517,29 @@ pub const Canvas = struct {
                 @intToFloat(f64, w), @intToFloat(f64, h));
         }
 
+        pub fn ellipse(self: *const DrawContext, x: u32, y: u32, w: f32, h: f32) void {
+            if (w == h) { // if it is a circle, we can use something slightly faster
+                c.cairo_arc(self.cr,
+                    @intToFloat(f64, x),
+                    @intToFloat(f64, y),
+                    w,
+                    0,
+                    2 * std.math.pi);
+                return;
+            }
+            var matrix: c.cairo_matrix_t = undefined;
+            c.cairo_get_matrix(self.cr, &matrix);
+            const scale = w + h;
+            c.cairo_scale(self.cr, w / scale, h / scale);
+            c.cairo_arc(self.cr,
+                @intToFloat(f64, x),
+                @intToFloat(f64, y),
+                scale,
+                0,
+                2 * std.math.pi);
+            c.cairo_set_matrix(self.cr, &matrix);
+        }
+
         pub fn clear(self: *const DrawContext, x: u32, y: u32, w: u32, h: u32) void {
             const styleContext = c.gtk_widget_get_style_context(self.widget);
             c.gtk_render_background(styleContext, self.cr, @intToFloat(f64, x), @intToFloat(f64, y),
