@@ -202,7 +202,6 @@ pub fn main() !void {
         }
         const t = @intToFloat(f32, dt) / 1000;
         rectangleX.set(graph.dataFn(t * 10.0));
-        try rectangle.relayout(); // TODO: changing alignX should automatically trigger a relayout
         std.time.sleep(30);
     }
 }
