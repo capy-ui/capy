@@ -115,6 +115,10 @@ pub fn Widgeting(comptime T: type) type {
             return self.dataWrappers.opacity.get();
         }
 
+        pub fn getName(self: *T) ?[]const u8 {
+            return self.dataWrappers.name;
+        }
+
         /// Bind the 'opacity' property to argument.
         pub fn bindOpacity(self: *T, other: *DataWrapper(f64)) T {
             self.dataWrappers.opacity.bind(other);
@@ -124,6 +128,11 @@ pub fn Widgeting(comptime T: type) type {
 
         pub fn setAlignX(self: *T, alignX: f32) T {
             self.dataWrappers.alignX.set(alignX);
+            return self.*;
+        }
+
+        pub fn setName(self: *T, name: ?[]const u8) T {
+            self.dataWrappers.name = name;
             return self.*;
         }
 

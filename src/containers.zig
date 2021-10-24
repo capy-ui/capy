@@ -154,7 +154,8 @@ pub const Container_Impl = struct {
             .childrens = childrens,
             .expand = config.expand == .Fill,
             .layout = layout
-        });
+        })
+            .setName(config.name);
         try column.addResizeHandler(onResize);
         return column;
     }
@@ -170,12 +171,16 @@ pub const Container_Impl = struct {
     }
 
     pub fn get(self: *Container_Impl, name: []const u8) ?*Widget {
-        // TODO: use hash map for performance
+        // TODO: use hash map (maybe acting as cache?) for performance
         for (self.childrens.items) |*widget| {
             if (widget.name.*) |widgetName| {
                 if (std.mem.eql(u8, name, widgetName)) {
                     return widget;
                 }
+            }
+
+            if (widget.cast(Container_Impl)) |container| {
+                return container.get(name);
             }
         }
         return null;
@@ -271,12 +276,14 @@ pub const Container_Impl = struct {
             widget.parent = parent;
         }
 
+        const slot = try self.childrens.addOne();
+        slot.* = genericWidget;
+
         if (self.peer) |*peer| {
-            try genericWidget.show();
-            peer.add(genericWidget.peer.?);
+            try slot.show();
+            peer.add(slot.peer.?);
         }
 
-        try self.childrens.append(genericWidget);
         try self.relayout();
     }
 };
@@ -315,6 +322,7 @@ const Expand = enum {
 
 const GridConfig = struct {
     expand: Expand = .No,
+    name: ?[]const u8 = null,
 };
 
 /// Set the style of the child to expanded by creating and showing the widget early.

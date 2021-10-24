@@ -1,10 +1,12 @@
 const std = @import("std");
 const backend = @import("backend.zig");
+const Widget = @import("widget.zig").Widget;
 
 pub const Window = struct {
     /// The DPI the GUI has been developed against
     source_dpi: u32 = 96,
     peer: backend.Window,
+    child: ?Widget = null,
 
     pub fn init() !Window {
         const peer = try backend.Window.create();
@@ -36,7 +38,9 @@ pub const Window = struct {
             else
                 wrappedContainer;
 
-        try container.show();
+        self.child = try @import("internal.zig").genericWidgetFrom(&container);
+        try self.child.?.show();
+
         self.peer.setChild(container.peer.?.peer);
     }
 

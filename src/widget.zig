@@ -35,7 +35,22 @@ pub const Widget = struct {
         return self.class.preferredSizeFn(self, available);
     }
 
+    /// Asserts widget data is of type T
     pub fn as(self: *Widget, comptime T: type) *T {
         return @intToPtr(*T, self.data);
+    }
+
+    /// Returns if the class of the widget corresponds to T
+    pub fn is(self: *Widget, comptime T: type) bool {
+        return self.class == &T.WidgetClass;
+    }
+
+    /// If widget is an instance of T, returns widget.as(T), otherwise return null
+    pub fn cast(self: *Widget, comptime T: type) ?*T {
+        if (self.is(T)) {
+            return self.as(T);
+        } else {
+            return null;
+        }
     }
 };
