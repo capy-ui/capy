@@ -12,6 +12,8 @@ pub const Widget = struct {
     peer: ?backend.PeerType = null,
     container_expanded: bool = false,
     class: *const Class,
+    /// A widget can ONLY be parented by a Container
+    parent: ?*Widget = null,
     name: *?[]const u8,
 
     /// If there is more available size than preferred size and the widget is not expanded,

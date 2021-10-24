@@ -145,6 +145,9 @@ pub const Container_Impl = struct {
     relayouting: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
     layout: Layout,
 
+    /// The widget associated to this Container_Impl
+    widget: ?*Widget = null,
+
     pub fn init(childrens: std.ArrayList(Widget), config: GridConfig, layout: Layout) !Container_Impl {
         var column = Container_Impl.init_events(Container_Impl {
             .peer = null,
@@ -208,6 +211,13 @@ pub const Container_Impl = struct {
         }
     }
 
+    pub fn _showWidget(widget: *Widget, self: *Container_Impl) !void {
+        self.widget = widget;
+        for (self.childrens.items) |*child| {
+            child.parent = widget;
+        }
+    }
+
     fn fakeSize(data: usize) Size {
         _ = data;
         return Size {
@@ -255,6 +265,10 @@ pub const Container_Impl = struct {
         var genericWidget = try @import("internal.zig").genericWidgetFrom(widget);
         if (self.expand) {
             genericWidget.container_expanded = true;
+        }
+
+        if (self.widget) |parent| {
+            widget.parent = parent;
         }
 
         if (self.peer) |*peer| {

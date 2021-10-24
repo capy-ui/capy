@@ -51,10 +51,29 @@ pub fn Widgeting(comptime T: type) type {
             name: ?[]const u8 = null
         };
 
+        /// When alignX or alignY is changed, this will trigger a parent relayout
+        fn alignChanged(new: f32, userdata: usize) void {
+            _ = new;
+
+            const widget = @intToPtr(*Widget, userdata);
+            if (widget.parent) |parent| {
+                const container = parent.as(@import("containers.zig").Container_Impl);
+                container.relayout() catch {};
+            }
+        }
+
         pub fn showWidget(widget: *Widget) anyerror!void {
             const component = @intToPtr(*T, widget.data);
             try component.show();
             widget.peer = component.peer.?.peer;
+
+            _ = try component.dataWrappers.alignX.addChangeListener(.{ .function = alignChanged, .userdata = @ptrToInt(widget) });
+            _ = try component.dataWrappers.alignY.addChangeListener(.{ .function = alignChanged, .userdata = @ptrToInt(widget) });
+
+            // if the widget wants to do some operations on showWidget
+            if (@hasDecl(T, "_showWidget")) {
+                try T._showWidget(widget, component);
+            }
         }
 
         pub fn pointerMoved(self: *T) void {
