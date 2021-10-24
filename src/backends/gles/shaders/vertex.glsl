@@ -1,4 +1,4 @@
-layout (location = 0 in vec2 a_position;
+attribute vec2 a_position;
 /* uniform vec2 u_resolution;
 
 void main() {

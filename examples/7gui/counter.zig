@@ -4,6 +4,10 @@ const zgt = @import("zgt");
 var count = zgt.DataWrapper(i64).of(0);
 var label = zgt.StringDataWrapper.of("0");
 
+
+pub var event_loop_ = @import("custom.zig").CustomLoop.init();
+//pub const zgtBackend = zgt.GlBackend;
+
 fn increment(button: *zgt.Button_Impl) !void {
     _ = button;
     count.set(count.get() + 1);

@@ -546,7 +546,7 @@ pub const Canvas = struct {
                 @intToFloat(f64, w), @intToFloat(f64, h));
         }
 
-        pub fn text(self: *const DrawContext, x: u32, y: u32, layout: TextLayout, str: []const u8) void {
+        pub fn text(self: *const DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
             const pangoLayout = layout._layout;
             var inkRect: c.PangoRectangle = undefined;
             c.pango_layout_get_pixel_extents(pangoLayout, null, &inkRect);

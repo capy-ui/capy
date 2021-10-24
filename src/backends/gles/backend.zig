@@ -48,27 +48,65 @@ pub fn init() !void {
     }
 }
 
-pub fn compileShader(shader: c.GLuint) !void {
-    c.glCompileShader(shader);
-    var result: c.GLint = undefined;
-    var infoLogLen: c_int = 0;
-
-    c.glGetShaderiv(shader, c.GL_COMPILE_STATUS, &result);
-    c.glGetShaderiv(shader, c.GL_INFO_LOG_LENGTH, &infoLogLen);
-    if (infoLogLen > 0) {
-        std.log.crit("info ?", .{});
-        return error.ShaderError;
+pub fn unexpectedGlError() !void {
+    switch (c.glGetError()) {
+        c.GL_INVALID_OPERATION => {
+            return error.InvalidOperation;
+        },
+        c.GL_INVALID_ENUM => {
+            return error.InvalidEnum;
+        },
+        else => |id| {
+            std.log.warn("Unknown GL error: {d}",.{ id });
+            return error.Unexpected;
+        }
     }
 }
+
+const Shader = struct {
+    id: c.GLuint,
+
+    pub fn create(shaderType: c.GLenum, source: [:0]const u8) !Shader {
+        const id = c.glCreateShader(shaderType);
+        if (id == 0) {
+            try unexpectedGlError();
+        }
+
+        c.glShaderSource(id, 1, &[_][*c]const u8 { source }, null);
+        return Shader { .id = id };
+    }
+
+    pub fn compile(self: Shader) !void {
+        c.glCompileShader(self.id);
+        var result: c.GLint = undefined;
+        var infoLogLen: c_int = 0;
+
+        c.glGetShaderiv(self.id, c.GL_COMPILE_STATUS, &result);
+        c.glGetShaderiv(self.id, c.GL_INFO_LOG_LENGTH, &infoLogLen);
+        if (infoLogLen > 0) {
+            const infoLog = try lib.internal.scratch_allocator.allocSentinel(u8, @intCast(usize, infoLogLen), 0);
+            defer lib.internal.scratch_allocator.free(infoLog);
+            c.glGetShaderInfoLog(self.id, infoLogLen, null, infoLog.ptr);
+            std.log.crit("shader compile error:\n{s}", .{ infoLog });
+            return error.ShaderError;
+        }
+    }
+};
 
 pub const Window = struct {
     window: *c.GLFWwindow,
 
     pub fn create() !Window {
         c.glfwWindowHint(c.GLFW_CLIENT_API, c.GLFW_OPENGL_ES_API);
+        c.glfwWindowHint(c.GLFW_CONTEXT_VERSION_MAJOR, 3);
+        c.glfwWindowHint(c.GLFW_CONTEXT_VERSION_MINOR, 0);
+        c.glfwWindowHint(c.GLFW_OPENGL_PROFILE, c.GLFW_OPENGL_ANY_PROFILE);
+        c.glfwWindowHint(c.GLFW_VISIBLE, c.GLFW_FALSE);
+        //c.glfwWindowHint(c.GLFW_CONTEXT_ROBUSTNESS, c.GLFW_LOSE_CONTEXT_ON_RESET);
         const window = c.glfwCreateWindow(640, 400, "", null, null) orelse return error.InitializationError;
         c.glfwMakeContextCurrent(window);
-        c.glfwSwapInterval(1);
+        c.glfwSwapInterval(0);
+        _ = c.glfwSetWindowRefreshCallback(window, drawWindow);
 
         var vao: c.GLuint = undefined;
         c.glGenVertexArrays(1, &vao);
@@ -76,7 +114,7 @@ pub const Window = struct {
         const bufferData = [_]f32 {
             -1.0, -1.0,
              1.0, -1.0,
-             0.0,  1.0,
+            -1.0,  1.0,
         };
         var vbo: c.GLuint = undefined;
         c.glGenBuffers(1, &vbo);
@@ -89,17 +127,15 @@ pub const Window = struct {
 
         std.log.info("vbo: {d}", .{vbo});
 
-        const vertex = c.glCreateShader(c.GL_VERTEX_SHADER);
-        c.glShaderSource(vertex, 1, &[_][*c]const u8 {@embedFile("shaders/vertex.glsl")}, null);
-        try compileShader(vertex);
+        const vertex = try Shader.create(c.GL_VERTEX_SHADER, @embedFile("shaders/vertex.glsl"));
+        try vertex.compile();
 
-        const fragment = c.glCreateShader(c.GL_FRAGMENT_SHADER);
-        c.glShaderSource(fragment, 1, &[_][*c]const u8 {@embedFile("shaders/fragment.glsl")}, null);
-        try compileShader(fragment);
+        const fragment = try Shader.create(c.GL_FRAGMENT_SHADER, @embedFile("shaders/fragment.glsl"));
+        try fragment.compile();
 
         const program = c.glCreateProgram();
-        c.glAttachShader(program, vertex);
-        c.glAttachShader(program, fragment);
+        c.glAttachShader(program, vertex.id);
+        c.glAttachShader(program, fragment.id);
         c.glLinkProgram(program);
         c.glUseProgram(program);
         std.log.info("program: {d}", .{program});
@@ -111,13 +147,11 @@ pub const Window = struct {
     }
 
     pub fn show(self: *Window) void {
-        _ = self;
+        c.glfwShowWindow(self.window);
     }
 
     pub fn resize(self: *Window, width: c_int, height: c_int) void {
-        _ = self;
-        _ = width;
-        _ = height;
+        c.glfwSetWindowSize(self.window, width, height);
     }
 
     pub fn setChild(self: *Window, peer: PeerType) void {
@@ -168,6 +202,11 @@ pub fn Events(comptime T: type) type {
                 .Resize      => {},
                 .KeyType     => {}
             }
+        }
+
+        pub fn setOpacity(self: *T, opacity: f64) void {
+            _ = self;
+            _ = opacity;
         }
 
         /// Requests a redraw
@@ -266,8 +305,26 @@ pub const Canvas = struct {
     pub const DrawContext = struct {};
 };
 
+fn drawWindow(cWindow: ?*c.GLFWwindow) callconv(.C) void {
+    const window = cWindow.?;
+
+    var width: c_int = undefined;
+    var height: c_int = undefined;
+    c.glfwGetFramebufferSize(window, &width, &height);
+
+    c.glViewport(0, 0, width, height);
+    c.glClear(c.GL_COLOR_BUFFER_BIT | c.GL_DEPTH_BUFFER_BIT);
+
+    c.glUseProgram(3);
+    c.glEnableVertexAttribArray(0);
+    c.glVertexAttribPointer(0, 2, c.GL_FLOAT, c.GL_FALSE, 0, null);
+    c.glBindBuffer(c.GL_ARRAY_BUFFER, 1);
+    c.glDrawArrays(c.GL_TRIANGLES, 0, 3);
+
+    c.glfwSwapBuffers(window);
+}
+
 pub fn runStep(step: lib.EventLoopStep) bool {
-    _ = step;
     for (activeWindows.items) |window| {
         c.glfwMakeContextCurrent(window);
         if (c.glfwWindowShouldClose(window) != 0) {
@@ -275,21 +332,12 @@ pub fn runStep(step: lib.EventLoopStep) bool {
             c.glfwDestroyWindow(window);
             return false;
         } else {
-            var width: c_int = undefined;
-            var height: c_int = undefined;
-            c.glfwGetFramebufferSize(window, &width, &height);
-
-            c.glViewport(0, 0, width, height);
-            c.glClear(c.GL_COLOR_BUFFER_BIT | c.GL_DEPTH_BUFFER_BIT);
-
-            c.glUseProgram(0);
-            c.glEnableVertexAttribArray(0);
-            c.glVertexAttribPointer(0, 2, c.GL_FLOAT, c.GL_FALSE, 0, null);
-            c.glBindBuffer(c.GL_ARRAY_BUFFER, 1);
-            c.glDrawArrays(c.GL_TRIANGLES, 0, 3);
-
-            c.glfwSwapBuffers(window);
-            c.glfwPollEvents();
+            switch (step) {
+                .Asynchronous => c.glfwPollEvents(),
+                .Blocking     => c.glfwWaitEvents()
+            }
+            // TODO: check if something changed before drawing
+            drawWindow(window);
         }
     }
     return activeWindows.items.len > 0;

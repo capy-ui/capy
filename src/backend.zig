@@ -1,5 +1,5 @@
 const std = @import("std");
-const builtin = std.builtin;
+const builtin = @import("builtin");
 
 pub usingnamespace 
     if (@hasDecl(@import("root"), "zgtBackend")) @import("root").zgtBackend

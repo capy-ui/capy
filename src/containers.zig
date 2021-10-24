@@ -54,7 +54,7 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
                 else Size.intersect(available, preferred);
             const alignX = std.math.clamp(widget.alignX.get(), 0, 1);
             var x = @floatToInt(u32, @floor(
-                alignX * @intToFloat(f32, @subWithSaturation(peer.getSize(peer.userdata).width, preferred.width))));
+                alignX * @intToFloat(f32, peer.getSize(peer.userdata).width -| preferred.width)));
             if (widget.container_expanded or peer.computingPreferredSize) x = 0;
             peer.moveResize(peer.userdata, widgetPeer,
                 x, @floatToInt(u32, @floor(childY)),
@@ -99,7 +99,7 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
                 else Size.intersect(available, preferred);
             const alignY = std.math.clamp(widget.alignY.get(), 0, 1);
             var y = @floatToInt(u32, @floor(
-                alignY * @intToFloat(f32, @subWithSaturation(peer.getSize(peer.userdata).height, preferred.height))));
+                alignY * @intToFloat(f32, peer.getSize(peer.userdata).height -| preferred.height)));
             if (widget.container_expanded or peer.computingPreferredSize) y = 0;
             peer.moveResize(peer.userdata, widgetPeer,
                 @floatToInt(u32, @floor(childX)), y,
