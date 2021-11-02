@@ -47,7 +47,7 @@ pub fn build(b: *std.build.Builder) !void {
     const target = b.standardTargetOptions(.{});
     const mode = b.standardReleaseOptions();
 
-    const examplePath = "examples/calculator.zig";
+    const examplePath = "examples/7gui/counter.zig";
     if (target.toTarget().isWasm()) {
         const obj = b.addSharedLibrary("example", examplePath, .unversioned);
         obj.setTarget(target);

@@ -9,6 +9,7 @@ pub extern fn setPos(element: ElementId, x: usize, y: usize) void;
 pub extern fn setSize(element: ElementId, w: usize, h: usize) void;
 pub extern fn getWidth(element: ElementId) c_int;
 pub extern fn getHeight(element: ElementId) c_int;
+pub extern fn now() f64;
 
 pub fn print(msg: []const u8) void {
     jsPrint(msg.ptr, msg.len);

@@ -1,6 +1,7 @@
 const std = @import("std");
 const Container_Impl = @import("containers.zig").Container_Impl;
 const lasting_allocator = @import("internal.zig").lasting_allocator;
+const milliTimestamp = @import("internal.zig").milliTimestamp;
 
 pub const Easings = struct {
 
@@ -33,7 +34,7 @@ pub fn Animation(comptime T: type) type {
         /// Get the current value from the animation
         pub fn get(self: *@This()) T {
             const maxDiff = @intToFloat(f64, self.end - self.start);
-            const diff = @intToFloat(f64, std.time.milliTimestamp() - self.start);
+            const diff = @intToFloat(f64, milliTimestamp() - self.start);
             var t = diff / maxDiff;
             
             // Clamp t to [0, 1]
@@ -142,7 +143,7 @@ pub fn DataWrapper(comptime T: type) type {
         pub fn update(self: *Self) bool {
             if (self.animation) |*anim| {
                 self.extendedSet(anim.get(), true, false);
-                if (std.time.milliTimestamp() >= anim.end) {
+                if (milliTimestamp() >= anim.end) {
                     self.animation = null;
                     return false;
                 } else {
@@ -163,7 +164,7 @@ pub fn DataWrapper(comptime T: type) type {
                 @compileError("animate only supported on numbers");
             }
 
-            const time = std.time.milliTimestamp();
+            const time = milliTimestamp();
             self.animation = Animation(T) {
                 .start = time,
                 .end = time + duration,

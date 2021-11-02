@@ -155,8 +155,7 @@ pub const TextField = struct {
     }
 
     pub fn setText(self: *TextField, text: []const u8) void {
-        _ = self;
-        _ = text;
+        js.setText(self.peer.element, text.ptr, text.len);
     }
 
     pub fn getText(self: *TextField) [:0]const u8 {
@@ -245,25 +244,28 @@ pub const Container = struct {
 
 };
 
+pub fn milliTimestamp() i64 {
+    return @floatToInt(i64, @floor(js.now()));
+}
+
+/// Precision DEFINITELY not guarenteed (can have up to 20ms delays)
+pub fn sleep(duration: u64) void {
+    const start = milliTimestamp();
+
+    while (milliTimestamp() < start + @intCast(i64, duration)) {
+        suspending = true;
+        suspend {
+            resumePtr = @frame();
+        }
+    }
+}
+
 fn executeMain() anyerror!void {
     try mainFn();
 }
 
-const writer = std.io.Writer(void, error {}, js.write) { .context = {} };
-
-pub fn panic(msg: []const u8, error_return_trace: ?*std.builtin.StackTrace) noreturn {
+pub fn panic(msg: []const u8, _: ?*std.builtin.StackTrace) noreturn {
     js.print(msg);
-    _ = error_return_trace;
-    if (!@import("builtin").strip_debug_info) {
-        const debug_info = std.debug.getSelfDebugInfo() catch unreachable;
-        std.debug.writeStackTrace(
-            error_return_trace.?.*,
-            writer,
-            lasting_allocator,
-            debug_info,
-            .no_color
-        ) catch unreachable;
-    }
     
     @breakpoint();
     while (true) {}
@@ -271,14 +273,13 @@ pub fn panic(msg: []const u8, error_return_trace: ?*std.builtin.StackTrace) nore
 
 const mainFn = @import("root").main;
 var frame: @Frame(executeMain) = undefined;
-var framePtr: anyframe->anyerror!void = undefined;
 var result: anyerror!void = error.None;
 var suspending: bool = false;
 
 var resumePtr: anyframe = undefined;
 
 pub export fn _start() callconv(.C) void {
-    framePtr = @asyncCall(&frame, &result, executeMain, .{ });
+    _ = @asyncCall(&frame, &result, executeMain, .{ });
 }
 
 pub export fn _zgtContinue() callconv(.C) void {

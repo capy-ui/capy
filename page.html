@@ -54,7 +54,12 @@
 						domObjects[root].style.height = "100%";
 					},
 					setText: function(element, textPtr, textLen) {
-						domObjects[element].innerText = readString(textPtr, textLen);
+						const elem = domObjects[element];
+						if (elem.nodeName === "INPUT") {
+							elem.value = readString(textPtr, textLen);
+						} else {
+							elem.innerText = readString(textPtr, textLen);
+						}
 					},
 					setPos: function(element, x, y) {
 						domObjects[element].style.left = x + "px";
@@ -70,6 +75,9 @@
 					},
 					getHeight: function(element) {
 						return domObjects[element].clientHeight;
+					},
+					now: function() {
+						return Date.now();
 					}
 				}
 			};
