@@ -174,14 +174,16 @@ pub const EventType = enum {
     MouseButton,
     Scroll,
     TextChanged,
-    Resize
+    Resize,
+    KeyType
 };
 
 const EventUserData = struct {
     /// Only works for buttons
     clickHandler: ?fn(data: usize) void = null,
-    mouseButtonHandler: ?fn(button: MouseButton, pressed: bool, x: f64, y: f64, data: usize) void = null,
-    scrollHandler: ?fn(dx: f64, dy: f64, data: usize) void = null,
+    mouseButtonHandler: ?fn(button: MouseButton, pressed: bool, x: u32, y: u32, data: usize) void = null,
+    keyTypeHandler: ?fn(str: []const u8, data: usize) void = null,
+    scrollHandler: ?fn(dx: f32, dy: f32, data: usize) void = null,
     resizeHandler: ?fn(width: u32, height: u32, data: usize) void = null,
     /// Only works for canvas (althought technically it isn't required to)
     drawHandler: ?fn(ctx: Canvas.DrawContext, data: usize) void = null,
@@ -252,7 +254,8 @@ pub fn Events(comptime T: type) type {
                 .MouseButton => data.mouseButtonHandler = cb,
                 .Scroll      => data.scrollHandler      = cb,
                 .TextChanged => data.changedTextHandler = cb,
-                .Resize      => data.resizeHandler      = cb
+                .Resize      => data.resizeHandler      = cb,
+                .KeyType     => data.keyTypeHandler     = cb
             }
         }
 
@@ -273,6 +276,11 @@ pub fn Events(comptime T: type) type {
             var rect: RECT = undefined;
             _ = win32.GetWindowRect(self.peer, &rect);
             return rect.bottom - rect.top;
+        }
+
+        pub fn setOpacity(self: *const T, opacity: f64) void {
+            _ = self; _ = opacity;
+            // TODO
         }
 
     };
@@ -350,8 +358,9 @@ pub const Button = struct {
 pub const Label = struct {
     peer: HWND,
     data: usize = 0,
-    clickHandler: ?fn(data: usize) void = null,
     arena: std.heap.ArenaAllocator,
+
+    pub usingnamespace Events(Label);
 
     pub fn create() !Label {
         const hwnd = try win32.createWindowExA(
@@ -368,17 +377,12 @@ pub const Label = struct {
             hInst,                                    // hInstance
             null                                      // lpParam
         );
+        try Label.setupEvents(hwnd);
 
         return Label {
             .peer = hwnd,
             .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator)
         };
-    }
-
-    pub fn setCallback(self: *Label, eType: EventType, cb: fn(data: usize) void) !void {
-        _ = self;
-        _ = eType;
-        _ = cb;
     }
 
     pub fn setAlignment(self: *Label, alignment: f32) void {
@@ -505,7 +509,8 @@ pub fn runStep(step: lib.EventLoopStep) bool {
             }
         }
     }
-    if (msg.message == 0x012) { // WM_QUIT
+
+    if ((msg.message & 0xFF) == 0x012) { // WM_QUIT
         return false;
     }
     _ = win32.TranslateMessage(&msg);

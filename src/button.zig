@@ -1,6 +1,8 @@
 const std = @import("std");
 const backend = @import("backend.zig");
 const Size = @import("data.zig").Size;
+const DataWrapper = @import("data.zig").DataWrapper;
+const Container_Impl = @import("containers.zig").Container_Impl;
 
 pub const Button_Impl = struct {
     pub usingnamespace @import("internal.zig").All(Button_Impl);
@@ -9,15 +11,22 @@ pub const Button_Impl = struct {
     handlers: Button_Impl.Handlers = undefined,
     dataWrappers: Button_Impl.DataWrappers = .{},
     label: [:0]const u8 = "",
+    enabled: DataWrapper(bool),
 
     pub fn init() Button_Impl {
-        return Button_Impl.init_events(Button_Impl {});
+        return Button_Impl.init_events(Button_Impl {
+            .enabled = DataWrapper(bool).of(true)
+        });
     }
 
     pub fn initLabeled(label: [:0]const u8) Button_Impl {
         var button = Button_Impl.init();
         button.setLabel(label);
         return button;
+    }
+
+    pub fn _pointerMoved(self: *Button_Impl) void {
+        self.enabled.updateBinders();
     }
 
     pub fn show(self: *Button_Impl) !void {
@@ -49,6 +58,11 @@ pub const Button_Impl = struct {
         } else {
             return self.label;
         }
+    }
+
+    pub fn setEnabledUpdater(self: *Button_Impl, updater: fn(*Container_Impl) bool) Button_Impl {
+        self.enabled.updater = updater;
+        return self.*;
     }
 };
 

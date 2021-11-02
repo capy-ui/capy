@@ -4,6 +4,8 @@ const data = @import("data.zig");
 pub const Class = struct {
     showFn: fn(widget: *Widget) anyerror!void,
     preferredSizeFn: fn(widget: *const Widget, available: data.Size) data.Size,
+    // offset into a list of updater optional pointers
+    //updaters: []const usize,
 };
 
 /// A widget is a unique representation and constant size of any view.
@@ -36,17 +38,17 @@ pub const Widget = struct {
     }
 
     /// Asserts widget data is of type T
-    pub fn as(self: *Widget, comptime T: type) *T {
+    pub fn as(self: *const Widget, comptime T: type) *T {
         return @intToPtr(*T, self.data);
     }
 
     /// Returns if the class of the widget corresponds to T
-    pub fn is(self: *Widget, comptime T: type) bool {
+    pub fn is(self: *const Widget, comptime T: type) bool {
         return self.class == &T.WidgetClass;
     }
 
     /// If widget is an instance of T, returns widget.as(T), otherwise return null
-    pub fn cast(self: *Widget, comptime T: type) ?*T {
+    pub fn cast(self: *const Widget, comptime T: type) ?*T {
         if (self.is(T)) {
             return self.as(T);
         } else {

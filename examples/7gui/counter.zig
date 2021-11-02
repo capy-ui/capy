@@ -4,13 +4,19 @@ const zgt = @import("zgt");
 var count = zgt.DataWrapper(i64).of(0);
 var label = zgt.StringDataWrapper.of("0");
 
-
-pub var event_loop_ = @import("custom.zig").CustomLoop.init();
 //pub const zgtBackend = zgt.GlBackend;
 
 fn increment(button: *zgt.Button_Impl) !void {
     _ = button;
     count.set(count.get() + 1);
+}
+
+// 'updater' functions are executed once a first time in order to know
+// on which properties and which objects does it depends on, and
+// automatically call this function when needed.
+fn buttonEnabled(root: *zgt.Container_Impl) bool {
+    const field = root.get("text-field").?.as(zgt.TextField_Impl);
+    return field.getText().len > 0;
 }
 
 pub fn main() !void {
@@ -25,9 +31,11 @@ pub fn main() !void {
             zgt.Row(.{}, .{
                 zgt.Expanded(
                     zgt.TextField(.{})
+                        .setName("text-field")
                         .bindText(format)
                 ),
                 zgt.Button(.{ .label = "Count", .onclick = increment })
+                    .setEnabledUpdater(buttonEnabled)
             })
         })
     );

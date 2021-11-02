@@ -20,7 +20,16 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
                 else => {} // not much of a problem as it'll just lack styling
             }
         },
+        .freestanding => {
+            if (step.target.toTarget().cpu.arch == .wasm32) {
+                // supported
+            } else {
+                return error.UnsupportedOs;
+            }
+        },
         else => {
+            // TODO: use the GLES backend as long as the windowing system is supported
+            // but the UI library isn't
             return error.UnsupportedOs;
         }
     }
@@ -38,18 +47,29 @@ pub fn build(b: *std.build.Builder) !void {
     const target = b.standardTargetOptions(.{});
     const mode = b.standardReleaseOptions();
 
-    const exe = b.addExecutable("example", "examples/graph.zig");
-    exe.setTarget(target);
-    exe.setBuildMode(mode);
-    try install(exe, ".");
-    exe.install();
+    const examplePath = "examples/calculator.zig";
+    if (target.toTarget().isWasm()) {
+        const obj = b.addSharedLibrary("example", examplePath, .unversioned);
+        obj.setTarget(target);
+        obj.setBuildMode(mode);
+        try install(obj, ".");
+        obj.install();
 
-    const run_cmd = exe.run();
-    run_cmd.step.dependOn(b.getInstallStep());
-    if (b.args) |args| {
-        run_cmd.addArgs(args);
+
+    } else {
+        const exe = b.addExecutable("example", examplePath);
+        exe.setTarget(target);
+        exe.setBuildMode(mode);
+        try install(exe, ".");
+        exe.install();
+
+        const run_cmd = exe.run();
+        run_cmd.step.dependOn(b.getInstallStep());
+        if (b.args) |args| {
+            run_cmd.addArgs(args);
+        }
+
+        const run_step = b.step("run", "Run the example");
+        run_step.dependOn(&run_cmd.step);
     }
-
-    const run_step = b.step("run", "Run the example");
-    run_step.dependOn(&run_cmd.step);
 }

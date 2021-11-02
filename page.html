@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>zgt application</title>
+		<style>
+			html, body {
+				margin: 0;
+				padding: 0;
+				width: 100%;
+				height: 100%;
+			}
+			#application {
+				width: 100%;
+				height: 100%;
+			}
+
+			div {
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="application"></div>
+		<script async>
+			let obj = null;
+			let domObjects = [];
+
+			function readString(addr, len) {
+				let string = "";
+				let view = new Uint8Array(obj.instance.exports.memory.buffer);
+				for (let i = 0; i < len; i++) {
+					string = string + String.fromCodePoint(view[addr]);
+					addr += 1;
+				}
+				
+				return string;
+			}
+			const importObj = {
+				env: {
+					jsPrint: function(arg, len) {
+						console.log(readString(arg, len));
+					},
+					jsCreateElement: function(name, nameLen) {
+						const elem = document.createElement(readString(name, nameLen));
+						const idx = domObjects.push(elem) - 1;
+						return idx;
+					},
+					appendElement: function(parent, child) {
+						domObjects[parent].appendChild(domObjects[child]);
+					},
+					setRoot: function(root) {
+						document.querySelector("#application").appendChild(domObjects[root]);
+						domObjects[root].style.width  = "100%";
+						domObjects[root].style.height = "100%";
+					},
+					setText: function(element, textPtr, textLen) {
+						domObjects[element].innerText = readString(textPtr, textLen);
+					},
+					setPos: function(element, x, y) {
+						domObjects[element].style.left = x + "px";
+						domObjects[element].style.top  = y + "px";
+						domObjects[element].style.position = "absolute";
+					},
+					setSize: function(element, w, h) {
+						domObjects[element].style.width  = w + "px";
+						domObjects[element].style.height = h + "px";
+					},
+					getWidth: function(element) {
+						return domObjects[element].clientWidth;
+					},
+					getHeight: function(element) {
+						return domObjects[element].clientHeight;
+					}
+				}
+			};
+
+			(async function() {
+				obj = await WebAssembly.instantiateStreaming(fetch("zig-out/lib/example.wasm"), importObj);
+				obj.instance.exports._start();
+
+				// TODO: when we're in blocking mode, avoid updating so often
+				setInterval(function() {
+					obj.instance.exports._zgtContinue();
+				}, 20);
+			})();
+		</script>
+	</body>
+</html>

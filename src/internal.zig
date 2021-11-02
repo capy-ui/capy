@@ -153,6 +153,14 @@ pub fn Widgeting(comptime T: type) type {
     };
 }
 
+pub fn DereferencedType(comptime T: type) type {
+    return
+        if (comptime std.meta.trait.isSingleItemPtr(T))
+            std.meta.Child(T)
+        else
+            T;
+}
+
 /// Create a generic Widget struct from the given component.
 pub fn genericWidgetFrom(component: anytype) anyerror!Widget {
     const ComponentType = @TypeOf(component);
@@ -163,19 +171,15 @@ pub fn genericWidgetFrom(component: anytype) anyerror!Widget {
         copy.* = component;
         break :blk copy;
     };
-
+    
     // used to update things like data wrappers, this happens once, at initialization,
     // after that the component isn't moved in memory anymore
     cp.pointerMoved();
 
-    const DereferencedType = 
-        if (comptime std.meta.trait.isSingleItemPtr(ComponentType))
-            @TypeOf(component.*)
-        else
-            @TypeOf(component);
+    const Dereferenced = DereferencedType(ComponentType);
     return Widget {
         .data = @ptrToInt(cp),
-        .class = &DereferencedType.WidgetClass,
+        .class = &Dereferenced.WidgetClass,
         .name = &cp.dataWrappers.name,
         .alignX = &cp.dataWrappers.alignX,
         .alignY = &cp.dataWrappers.alignY

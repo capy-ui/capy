@@ -1,4 +1,5 @@
 const std = @import("std");
+const Container_Impl = @import("containers.zig").Container_Impl;
 const lasting_allocator = @import("internal.zig").lasting_allocator;
 
 pub const Easings = struct {
@@ -67,6 +68,38 @@ pub fn Animation(comptime T: type) type {
     };
 }
 
+const Updater = struct {
+    /// Pointer to some function
+    fnPtr: usize,
+    // TODO: list of data wrappers that it called
+};
+
+// Atomic stack with list of current 'updater' that are being proned
+// this would allow for it to work with external data wrappers, and in fact with all data wrappers
+// with minimal change
+const UpdaterQueue = std.atomic.Queue(Updater);
+var pronedUpdaterQueue = UpdaterQueue.init();
+
+/// This is used for tracking whether a data wrapper's value has been accessed or not.
+/// This is mostly used for the 'updater' pattern to automatically detect on
+/// which properties an updater depends.
+pub fn proneUpdater(updater: anytype, root: *Container_Impl) !void {
+    var node = try lasting_allocator.create(UpdaterQueue.Node);
+    defer lasting_allocator.destroy(node);
+    node.data = .{ .fnPtr = @ptrToInt(updater) };
+
+    pronedUpdaterQueue.put(node);
+    defer _ = pronedUpdaterQueue.remove(node);
+
+    _ = updater(root);
+}
+
+pub fn isDataWrapper(comptime T: type) bool {
+    if (!comptime std.meta.trait.is(.Struct)(T))
+        return false;
+    return @hasField(T, "bindLock"); // TODO: check all properties using comptime
+}
+
 pub fn DataWrapper(comptime T: type) type {
     return struct {
         value: T,
@@ -86,7 +119,8 @@ pub fn DataWrapper(comptime T: type) type {
         /// A notices it already acquired the binding lock, and thus returns.
         bindLock: std.Thread.Mutex = .{},
         allocator: ?*std.mem.Allocator = null,
-        animation: ?Animation(T) = null,
+        animation: if (IsNumber) ?Animation(T) else void = if (IsNumber) null else {},
+        updater: ?fn(*Container_Impl) T = null,
 
         const Self = @This();
         const IsNumber = std.meta.trait.isNumber(T);
@@ -125,6 +159,10 @@ pub fn DataWrapper(comptime T: type) type {
         }
 
         pub fn animate(self: *Self, anim: fn(f64) f64, target: T, duration: i64) void {
+            if (!IsNumber) {
+                @compileError("animate only supported on numbers");
+            }
+
             const time = std.time.milliTimestamp();
             self.animation = Animation(T) {
                 .start = time,
@@ -193,7 +231,7 @@ pub fn DataWrapper(comptime T: type) type {
 
                 const lock = self.lock.acquire();
                 self.value = value;
-                if (resetAnimation) {
+                if (IsNumber and resetAnimation) {
                     self.animation = null;
                 }
                 lock.release();

@@ -139,7 +139,7 @@ fn getEventUserData(peer: *c.GtkWidget) callconv(.Inline) *EventUserData {
         c.g_object_get_data(@ptrCast(*c.GObject, peer), "eventUserData").?));
 }
 
-export fn gtkSizeAllocate(peer: *c.GtkWidget, allocation: *c.GdkRectangle, userdata: usize) void {
+fn gtkSizeAllocate(peer: *c.GtkWidget, allocation: *c.GdkRectangle, userdata: usize) callconv(.C) void {
     _ = userdata;
     const data = getEventUserData(peer);
     if (data.resizeHandler) |handler| {
@@ -161,7 +161,7 @@ const GdkEventKey = extern struct {
     is_modifier: c.guint,
 };
 
-export fn gtkKeyPress(peer: *c.GtkWidget, event: *GdkEventKey, userdata: usize) c.gboolean {
+fn gtkKeyPress(peer: *c.GtkWidget, event: *GdkEventKey, userdata: usize) callconv(.C) c.gboolean {
     _ = userdata;
     const data = getEventUserData(peer);
     if (data.keyTypeHandler) |handler| {
@@ -169,12 +169,13 @@ export fn gtkKeyPress(peer: *c.GtkWidget, event: *GdkEventKey, userdata: usize) 
         const str = std.mem.span(event.string);
         if (str.len != 0) {
             handler(str, data.userdata);
+            return 1;
         }
     }
     return 0;
 }
 
-export fn gtkButtonPress(peer: *c.GtkWidget, event: *c.GdkEventButton, userdata: usize) c.gboolean {
+fn gtkButtonPress(peer: *c.GtkWidget, event: *c.GdkEventButton, userdata: usize) callconv(.C) c.gboolean {
     _ = userdata;
     const data = getEventUserData(peer);
     if (data.mouseButtonHandler) |handler| {
@@ -210,7 +211,7 @@ const GdkEventScroll = extern struct {
     is_stop: c.guint
 };
 
-export fn gtkMouseScroll(peer: *c.GtkWidget, event: *GdkEventScroll, userdata: usize) void {
+fn gtkMouseScroll(peer: *c.GtkWidget, event: *GdkEventScroll, userdata: usize) callconv(.C) void {
     _ = userdata;
     const data = getEventUserData(peer);
     if (data.scrollHandler) |handler| {
@@ -304,7 +305,7 @@ pub const Button = struct {
 
     pub usingnamespace Events(Button);
 
-    export fn gtkClicked(peer: *c.GtkWidget, userdata: usize) void {
+    fn gtkClicked(peer: *c.GtkWidget, userdata: usize) callconv(.C) void {
         _ = userdata;
         const data = getEventUserData(peer);
 
@@ -406,7 +407,7 @@ pub const TextField = struct {
 
     pub usingnamespace Events(TextField);
 
-    export fn gtkTextChanged(peer: *c.GtkWidget, userdata: usize) void {
+    fn gtkTextChanged(peer: *c.GtkWidget, userdata: usize) callconv(.C) void {
         _ = userdata;
         const data = getEventUserData(peer);
         if (data.changedTextHandler) |handler| {
@@ -581,7 +582,7 @@ pub const Canvas = struct {
         }
     };
 
-    export fn gtkCanvasDraw(peer: *c.GtkWidget, cr: *c.cairo_t, userdata: usize) c_int {
+    fn gtkCanvasDraw(peer: *c.GtkWidget, cr: *c.cairo_t, userdata: usize) callconv(.C) c_int {
         _ = userdata;
         const data = getEventUserData(peer);
         if (data.drawHandler) |handler| {

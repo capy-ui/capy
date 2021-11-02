@@ -3,9 +3,6 @@ const std = @import("std");
 pub usingnamespace std.os.windows.user32;
 pub usingnamespace std.os.windows.kernel32;
 
-// Variables & functions that aren't yet declared in Zig's user32 API
-// I will submit them for merge soon.
-
 pub const HINSTANCE = std.os.windows.HINSTANCE;
 pub const HWND = std.os.windows.HWND;
 pub const WPARAM = std.os.windows.WPARAM;
