@@ -1,6 +1,9 @@
 const zgt = @import("zgt");
 const std = @import("std");
 
+// Small block needed for correct WebAssembly support
+comptime { _ = zgt.backend; }
+
 var graph: LineGraph_Impl = undefined;
 
 pub const LineGraph_Impl = struct {
@@ -37,16 +40,17 @@ pub const LineGraph_Impl = struct {
 
         var legendValue: f32 = minValue;
         var legendBuf: [100]u8 = undefined; // the program can't handle a number that is 100 digits long so it's enough
-        var legendLayout = zgt.DrawContext.TextLayout.init();
-        legendLayout.setFont(.{ .face = "Arial", .size = 12.0 });
+        //var legendLayout = zgt.DrawContext.TextLayout.init();
+        //legendLayout.setFont(.{ .face = "Arial", .size = 12.0 });
 
         while (legendValue < maxValue) : (legendValue += (maxValue - minValue) / 10) {
             const y = @intCast(i32, height) - @floatToInt(i32,
                 @floor((legendValue - minValue) * (@intToFloat(f32, height) / (maxValue - minValue))));
             const text = try std.fmt.bufPrint(&legendBuf, "{d:.1}", .{ legendValue });
+            _ = text;
 
             ctx.setColor(0, 0, 0);
-            ctx.text(0, y, legendLayout, text);
+            //ctx.text(0, y, legendLayout, text);
             ctx.line(0, @intCast(u32, y), width, @intCast(u32, y));
             ctx.stroke();
         }
@@ -193,15 +197,17 @@ pub fn main() !void {
     
 
     while (zgt.stepEventLoop(.Asynchronous)) {
-        var dt = std.time.milliTimestamp() - animStart;
+        var dt = zgt.internal.milliTimestamp() - animStart;
         if (dt > 1500) {
-            animStart = std.time.milliTimestamp();
+            animStart = zgt.internal.milliTimestamp(); // std.time.milliTimestamp();
             continue;
         } else if (dt > 1000) {
             dt = 1000;
         }
         const t = @intToFloat(f32, dt) / 1000;
         rectangleX.set(graph.dataFn(t * 10.0));
-        std.time.sleep(30);
+        try graph.requestDraw();
+        //std.time.sleep(30);
+        zgt.backend.sleep(30);
     }
 }

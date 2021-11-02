@@ -113,11 +113,14 @@ pub fn Events(comptime T: type) type {
             //const data = getEventUserData(self.peer);
             switch (eType) {
                 .Click       => {},
-                .Draw        => {},
+                .Draw        => self.peer.drawHandler = cb,
                 .MouseButton => {},
                 .Scroll      => {},
                 .TextChanged => {},
-                .Resize      => self.peer.resizeHandler = cb,
+                .Resize      => {
+                    self.peer.resizeHandler = cb;
+                    self.requestDraw() catch {};
+                },
                 .KeyType     => {}
             }
         }
@@ -130,6 +133,10 @@ pub fn Events(comptime T: type) type {
         /// Requests a redraw
         pub fn requestDraw(self: *T) !void {
             _ = self;
+            js.print("request draw");
+            if (@hasDecl(T, "_requestDraw")) {
+                try self._requestDraw();
+            }
         }
 
         pub fn getWidth(self: *const T) c_int {
@@ -214,6 +221,67 @@ pub const Button = struct {
 
 };
 
+pub const Canvas = struct {
+    peer: *GuiWidget,
+
+    pub usingnamespace Events(Canvas);
+
+    pub const DrawContext = struct {
+        ctx: js.CanvasContextId,
+
+        pub fn setColor(self: *const DrawContext, r: f32, g: f32, b: f32) void {
+            self.setColorRGBA(r, g, b, 1);
+        }
+
+        pub fn setColorRGBA(self: *const DrawContext, r: f32, g: f32, b: f32, a: f32) void {
+            js.setColor(self.ctx,
+                @floatToInt(u8, r * 255),
+                @floatToInt(u8, g * 255),
+                @floatToInt(u8, b * 255),
+                @floatToInt(u8, a * 255)
+            );
+        }
+
+        pub fn rectangle(self: *const DrawContext, x: u32, y: u32, w: u32, h: u32) void {
+            js.rectPath(self.ctx, x, y, w, h);
+        }
+
+        pub fn line(self: *const DrawContext, x1: u32, y1: u32, x2: u32, y2: u32) void {
+            js.moveTo(self.ctx, x1, y1);
+            js.lineTo(self.ctx, x2, y2);
+            js.stroke(self.ctx);
+        }
+
+        pub fn ellipse(self: *const DrawContext, x: u32, y: u32, w: f32, h: f32) void {
+            // TODO
+            _ = self; _ = x; _ = y; _ = w; _ = h;
+        }
+
+        pub fn stroke(self: *const DrawContext) void {
+            js.stroke(self.ctx);
+        }
+
+        pub fn fill(self: *const DrawContext) void {
+            js.fill(self.ctx);
+        }
+
+    };
+
+    pub fn create() !Canvas {
+        return Canvas {
+            .peer = try GuiWidget.init(lasting_allocator, "canvas")
+        };
+    }
+
+    pub fn _requestDraw(self: *Canvas) !void {
+        const ctxId = js.openContext(self.peer.element);
+        const ctx = DrawContext { .ctx = ctxId };
+        if (self.peer.drawHandler) |handler| {
+            handler(ctx, self.peer.userdata);
+        }
+    }
+};
+
 pub const Container = struct {
     peer: *GuiWidget,
 
@@ -288,10 +356,6 @@ pub export fn _zgtContinue() callconv(.C) void {
         resume resumePtr;
     }
 }
-
-pub const Canvas = struct {
-    pub const DrawContext = struct {};
-};
 
 pub fn runStep(step: lib.EventLoopStep) callconv(.Async) bool {
     _ = step;

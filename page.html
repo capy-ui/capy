@@ -24,6 +24,7 @@
 		<script async>
 			let obj = null;
 			let domObjects = [];
+			let canvasContexts = [];
 
 			function readString(addr, len) {
 				let string = "";
@@ -78,6 +79,38 @@
 					},
 					now: function() {
 						return Date.now();
+					},
+
+					// Canvas
+					openContext: function(element) {
+						const canvas = domObjects[element];
+						canvas.width = canvas.clientWidth;
+						canvas.height = canvas.clientHeight;
+						const ctx = canvas.getContext("2d");
+						ctx.lineWidth = 2.5;
+						ctx.beginPath();
+						return canvasContexts.push(ctx) - 1;
+					},
+					setColor: function(ctx, r, g, b, a) {
+						canvasContexts[ctx].fillStyle = "rgba(" + r + "," + g + "," + b + "," + a + ")";
+						canvasContexts[ctx].strokeStyle = canvasContexts[ctx].fillStyle;
+					},
+					rectPath: function(ctx, x, y, w, h) {
+						canvasContexts[ctx].rect(x, y, w, h);
+					},
+					moveTo: function(ctx, x, y) {
+						canvasContexts[ctx].moveTo(x, y);
+					},
+					lineTo: function(ctx, x, y) {
+						canvasContexts[ctx].lineTo(x, y);
+					},
+					fill: function(ctx) {
+						canvasContexts[ctx].fill();
+						canvasContexts[ctx].beginPath();
+					},
+					stroke: function(ctx) {
+						canvasContexts[ctx].stroke();
+						canvasContexts[ctx].beginPath();
 					}
 				}
 			};
@@ -89,7 +122,7 @@
 				// TODO: when we're in blocking mode, avoid updating so often
 				setInterval(function() {
 					obj.instance.exports._zgtContinue();
-				}, 20);
+				}, 1);
 			})();
 		</script>
 	</body>

@@ -2,7 +2,7 @@ const std = @import("std");
 const zgt = @import("zgt");
 
 // Small block needed for correct WebAssembly support
-comptime { _ = zgt; }
+comptime { _ = zgt.backend; }
 
 var count = zgt.DataWrapper(i64).of(0);
 var label = zgt.StringDataWrapper.of("0");
