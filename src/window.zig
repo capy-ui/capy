@@ -38,7 +38,7 @@ pub const Window = struct {
             else
                 wrappedContainer;
 
-        self.child = try @import("internal.zig").genericWidgetFrom(&container);
+        self.child = try @import("internal.zig").genericWidgetFrom(container);
         try self.child.?.show();
 
         self.peer.setChild(container.peer.?.peer);

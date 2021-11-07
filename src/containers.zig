@@ -273,7 +273,7 @@ pub const Container_Impl = struct {
         }
 
         if (self.widget) |parent| {
-            widget.parent = parent;
+            genericWidget.parent = parent;
         }
 
         const slot = try self.childrens.addOne();

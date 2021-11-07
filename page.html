@@ -8,14 +8,11 @@
 				padding: 0;
 				width: 100%;
 				height: 100%;
+				overflow: hidden;
 			}
 			#application {
 				width: 100%;
 				height: 100%;
-			}
-
-			div {
-				overflow: hidden;
 			}
 		</style>
 	</head>
@@ -122,7 +119,7 @@
 				// TODO: when we're in blocking mode, avoid updating so often
 				setInterval(function() {
 					obj.instance.exports._zgtContinue();
-				}, 1);
+				}, 20);
 			})();
 		</script>
 	</body>
