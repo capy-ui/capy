@@ -1,5 +1,6 @@
 const std = @import("std");
 const zgt = @import("zgt");
+pub usingnamespace zgt.cross_platform;
 
 var opacity = zgt.DataWrapper(f64).of(0);
 

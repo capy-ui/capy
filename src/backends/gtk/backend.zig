@@ -87,7 +87,7 @@ pub const Window = struct {
         c.gtk_window_resize(@ptrCast(*c.GtkWindow, self.peer), width, height);
     }
 
-    pub fn setChild(self: *Window, peer: anytype) void {
+    pub fn setChild(self: *Window, peer: ?*c.GtkWidget) void {
         c.gtk_container_add(@ptrCast(*c.GtkContainer, self.wbin), peer);
     }
 

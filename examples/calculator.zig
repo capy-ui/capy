@@ -1,5 +1,6 @@
 const std = @import("std");
 const zgt = @import("zgt");
+pub usingnamespace zgt.cross_platform;
 
 // Short names to avoid writing 'zgt.' each time
 const Button = zgt.Button;

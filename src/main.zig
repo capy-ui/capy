@@ -12,6 +12,11 @@ pub usingnamespace @import("image.zig");
 pub const internal = @import("internal.zig");
 pub const backend  = @import("backend.zig");
 
+pub const cross_platform = if (@hasDecl(backend, "backendExport"))
+    backend.backendExport
+else
+    struct {};
+
 pub const GlBackend = @import("backends/gles/backend.zig");
 
 pub const MouseButton = backend.MouseButton;

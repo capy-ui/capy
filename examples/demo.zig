@@ -1,4 +1,5 @@
 const zgt = @import("zgt");
+pub usingnamespace zgt.cross_platform;
 
 pub fn main() !void {
     try zgt.backend.init();

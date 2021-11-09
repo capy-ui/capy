@@ -2,7 +2,7 @@ const zgt = @import("zgt");
 const std = @import("std");
 
 // Small block needed for correct WebAssembly support
-comptime { _ = zgt.backend; }
+pub usingnamespace zgt.cross_platform;
 
 var graph: LineGraph_Impl = undefined;
 
@@ -40,8 +40,8 @@ pub const LineGraph_Impl = struct {
 
         var legendValue: f32 = minValue;
         var legendBuf: [100]u8 = undefined; // the program can't handle a number that is 100 digits long so it's enough
-        var legendLayout = zgt.DrawContext.TextLayout.init();
-        legendLayout.setFont(.{ .face = "Arial", .size = 12.0 });
+        //var legendLayout = zgt.DrawContext.TextLayout.init();
+        //legendLayout.setFont(.{ .face = "Arial", .size = 12.0 });
 
         while (legendValue < maxValue) : (legendValue += (maxValue - minValue) / 10) {
             const y = @intCast(i32, height) - @floatToInt(i32,
@@ -50,7 +50,7 @@ pub const LineGraph_Impl = struct {
             _ = text;
 
             ctx.setColor(0, 0, 0);
-            ctx.text(0, y, legendLayout, text);
+            //ctx.text(0, y, legendLayout, text);
             ctx.line(0, @intCast(u32, y), width, @intCast(u32, y));
             ctx.stroke();
         }

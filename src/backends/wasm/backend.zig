@@ -72,9 +72,13 @@ pub const Window = struct {
         // TODO
     }
 
-    pub fn setChild(self: *Window, peer: PeerType) void {
-        js.setRoot(peer.element);
-        self.child = peer;
+    pub fn setChild(self: *Window, peer: ?PeerType) void {
+        if (peer) |p| {
+            js.setRoot(p.element);
+            self.child = peer;
+        } else {
+            // TODO: js.clearRoot();
+        }
     }
 
 };
@@ -316,27 +320,8 @@ pub fn milliTimestamp() i64 {
     return @floatToInt(i64, @floor(js.now()));
 }
 
-/// Precision DEFINITELY not guarenteed (can have up to 20ms delays)
-pub fn sleep(duration: u64) void {
-    const start = milliTimestamp();
-
-    while (milliTimestamp() < start + @intCast(i64, duration)) {
-        suspending = true;
-        suspend {
-            resumePtr = @frame();
-        }
-    }
-}
-
 fn executeMain() anyerror!void {
     try mainFn();
-}
-
-pub fn panic(msg: []const u8, _: ?*std.builtin.StackTrace) noreturn {
-    js.print(msg);
-    
-    @breakpoint();
-    while (true) {}
 }
 
 const mainFn = @import("root").main;
@@ -346,16 +331,70 @@ var suspending: bool = false;
 
 var resumePtr: anyframe = undefined;
 
-pub export fn _start() callconv(.C) void {
-    _ = @asyncCall(&frame, &result, executeMain, .{ });
-}
+pub const backendExport = struct {
+    pub const os = struct {
+        pub const system = struct {
 
-pub export fn _zgtContinue() callconv(.C) void {
-    if (suspending) {
-        suspending = false;
-        resume resumePtr;
+            pub const E = enum(u8) {
+                SUCCESS = 0,
+                INVAL = 1,
+                INTR = 2,
+                FAULT = 3,
+            };
+
+            pub const timespec = struct {
+                tv_sec: isize,
+                tv_nsec: isize
+            };
+
+            pub fn getErrno(r: usize) E {
+                if (r & ~@as(usize, 0xFF) == ~@as(usize, 0xFF)) {
+                    return @intToEnum(E, r & 0xFF);
+                } else {
+                    return E.SUCCESS;
+                }
+            }
+
+            pub fn nanosleep(req: *const timespec, rem: ?*timespec) usize {
+                _ = rem;
+                const ms = @intCast(u64, req.tv_sec) * 1000 + @intCast(u64, req.tv_nsec) / 1000;
+                sleep(ms);
+                return 0;
+            }
+
+        };
+    };
+
+    /// Precision DEFINITELY not guarenteed (can have up to 20ms delays)
+    pub fn sleep(duration: u64) void {
+        const start = milliTimestamp();
+
+        while (milliTimestamp() < start + @intCast(i64, duration)) {
+            suspending = true;
+            suspend {
+                resumePtr = @frame();
+            }
+        }
     }
-}
+
+    pub fn panic(msg: []const u8, _: ?*std.builtin.StackTrace) noreturn {
+        js.print(msg);
+        
+        @breakpoint();
+        while (true) {}
+    }
+
+    pub export fn _start() callconv(.C) void {
+        _ = @asyncCall(&frame, &result, executeMain, .{ });
+    }
+
+    pub export fn _zgtContinue() callconv(.C) void {
+        if (suspending) {
+            suspending = false;
+            resume resumePtr;
+        }
+    }
+};
 
 pub fn runStep(step: lib.EventLoopStep) callconv(.Async) bool {
     _ = step;

@@ -1,8 +1,6 @@
 const std = @import("std");
 const zgt = @import("zgt");
-
-// Small block needed for correct WebAssembly support
-comptime { _ = zgt.backend; }
+pub usingnamespace zgt.cross_platform;
 
 var count = zgt.DataWrapper(i64).of(0);
 var label = zgt.StringDataWrapper.of("0");
@@ -51,7 +49,6 @@ pub fn main() !void {
 
     while (zgt.stepEventLoop(.Asynchronous)) {
         _ = count.update();
-        //std.time.sleep(16);
-        zgt.backend.sleep(16);
+        std.time.sleep(16);
     }
 }

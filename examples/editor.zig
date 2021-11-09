@@ -1,5 +1,6 @@
 const zgt = @import("zgt");
 const std = @import("std");
+pub usingnamespace zgt.cross_platform;
 
 var area: FlatText_Impl = undefined;
 
