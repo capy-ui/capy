@@ -41,7 +41,7 @@ pub const Window = struct {
         self.child = try @import("internal.zig").genericWidgetFrom(container);
         try self.child.?.show();
 
-        self.peer.setChild(container.peer.?.peer);
+        self.peer.setChild(self.child.?.peer);
     }
 
     pub fn resize(self: *Window, width: u32, height: u32) void {
