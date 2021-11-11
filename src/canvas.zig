@@ -47,3 +47,52 @@ pub fn Canvas(config: struct {
     }
     return btn;
 }
+
+const Color = @import("color.zig").Color;
+
+pub const Rect_Impl = struct {
+    pub usingnamespace @import("internal.zig").All(Rect_Impl);
+
+    peer: ?backend.Canvas = null,
+    handlers: Rect_Impl.Handlers = undefined,
+    dataWrappers: Rect_Impl.DataWrappers = .{},
+    preferredSize: ?Size = null,
+    color: Color = Color.black,
+
+    pub fn init() Rect_Impl {
+        return Rect_Impl.init_events(Rect_Impl {});
+    }
+
+    pub fn getPreferredSize(self: *Rect_Impl, available: Size) Size {
+        return self.preferredSize orelse available;
+    }
+
+    pub fn setPreferredSize(self: *Rect_Impl, preferred: Size) Rect_Impl {
+        self.preferredSize = preferred;
+        return self.*;
+    }
+
+    pub fn draw(self: *Rect_Impl, ctx: Canvas_Impl.DrawContext) !void {
+        ctx.setColorByte(self.color);
+        ctx.rectangle(0, 0, self.getWidth(), self.getHeight());
+        ctx.fill();
+    }
+
+    pub fn show(self: *Rect_Impl) !void {
+        if (self.peer == null) {
+            self.peer = try backend.Canvas.create();
+            try self.show_events();
+        }
+    }
+};
+
+pub fn Rect(config: struct {
+    size: ?Size = null,
+    color: Color = Color.black
+}) Rect_Impl {
+    var btn = Rect_Impl.init();
+    _ = btn.addDrawHandler(Rect_Impl.draw) catch unreachable;
+    btn.preferredSize = config.size;
+    btn.color = config.color;
+    return btn;
+}

@@ -201,8 +201,8 @@ pub fn DataWrapper(comptime T: type) type {
         /// Thread-safe get operation. If doing a read-modify-write operation
         /// manually changing the value and acquiring the lock is recommended.
         pub fn get(self: *Self) T {
-            const lock = self.lock.acquire();
-            defer lock.release();
+            self.lock.lock();
+            defer self.lock.unlock();
             return self.value;
         }
 
@@ -227,15 +227,15 @@ pub fn DataWrapper(comptime T: type) type {
         }
 
         fn extendedSet(self: *Self, value: T, comptime callHandlers: bool, comptime resetAnimation: bool) void {
-            if (self.bindLock.tryAcquire()) |bindLock| {
-                defer bindLock.release();
+            if (self.bindLock.tryLock()) {
+                defer self.bindLock.unlock();
 
-                const lock = self.lock.acquire();
+                self.lock.lock();
                 self.value = value;
                 if (IsNumber and resetAnimation) {
                     self.animation = null;
                 }
-                lock.release();
+                self.lock.unlock();
                 if (callHandlers) {
                     for (self.onChange.items) |listener| {
                         listener.function(self.value, listener.userdata);

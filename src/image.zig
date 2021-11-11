@@ -2,10 +2,7 @@ const std = @import("std");
 const backend = @import("backend.zig");
 const Size = @import("data.zig").Size;
 
-pub const Colorspace = enum {
-    RGB,
-    RGBA
-};
+const Colorspace = @import("color").Colorspace;
 
 /// As of now, zgt only supports RGBA images
 pub const ImageData = struct {

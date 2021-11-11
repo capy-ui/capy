@@ -8,6 +8,7 @@ pub usingnamespace @import("canvas.zig");
 pub usingnamespace @import("containers.zig");
 pub usingnamespace @import("data.zig");
 pub usingnamespace @import("image.zig");
+pub usingnamespace @import("color.zig");
 
 pub const internal = @import("internal.zig");
 pub const backend  = @import("backend.zig");

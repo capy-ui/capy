@@ -11,6 +11,7 @@ const Callbacks = struct {
     moveResize: fn(data: usize, peer: backend.PeerType, x: u32, y: u32, w: u32, h: u32) void,
     getSize: fn(data: usize) Size,
     computingPreferredSize: bool,
+    availableSize: ?Size = null,
 };
 
 fn getExpandedCount(widgets: []Widget) u32 {
@@ -30,7 +31,7 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
         else @intCast(u32, peer.getSize(peer.userdata).height) / expandedCount;
     for (widgets) |widget| {
         if (!widget.container_expanded) {
-            const available = peer.getSize(peer.userdata);
+            const available = if (expandedCount > 0) Size.init(0, 0) else peer.getSize(peer.userdata);
             const divider = if (expandedCount == 0) 1 else expandedCount;
             const takenHeight = widget.getPreferredSize(available).height / divider;
             if (childHeight >= takenHeight) {
@@ -134,6 +135,17 @@ pub fn MarginLayout(peer: Callbacks, widgets: []Widget) void {
     }
 }
 
+pub fn StackLayout(peer: Callbacks, widgets: []Widget) void {
+    const size = peer.getSize(peer.userdata);
+    for (widgets) |widget| {
+        if (widget.peer) |widgetPeer| {
+            const widgetSize = if (peer.computingPreferredSize) widget.getPreferredSize(peer.availableSize.?)
+                else size;
+            peer.moveResize(peer.userdata, widgetPeer, 0, 0, widgetSize.width, widgetSize.height);
+        }
+    }
+}
+
 pub const Container_Impl = struct {
     pub usingnamespace @import("internal.zig").All(Container_Impl);
 
@@ -194,7 +206,8 @@ pub const Container_Impl = struct {
             .userdata = @ptrToInt(&size),
             .moveResize = fakeResMove,
             .getSize = fakeSize,
-            .computingPreferredSize = true
+            .computingPreferredSize = true,
+            .availableSize = available
         };
         self.layout(callbacks, self.childrens.items);
         return size;
@@ -286,6 +299,14 @@ pub const Container_Impl = struct {
 
         try self.relayout();
     }
+
+    pub fn deinit(self: *Container_Impl, widget: *Widget) void {
+        _ = widget;
+        for (self.childrens.items) |*child| {
+            child.deinit();
+        }
+        self.childrens.deinit();
+    }
 };
 
 fn isErrorUnion(comptime T: type) bool {
@@ -350,9 +371,9 @@ pub fn Expanded(child: anytype) callconv(.Inline) anyerror!Widget {
     return widget;
 }
 
-// pub fn Stack(childrens: anytype) callconv(.Inline) anyerror!Stack_Impl {
-//     return try abstractContainerConstructor(Stack_Impl, childrens, .{});
-// }
+pub fn Stack(childrens: anytype) callconv(.Inline) anyerror!Container_Impl {
+    return try abstractContainerConstructor(Container_Impl, childrens, .{}, StackLayout);
+}
 
 pub fn Row(config: GridConfig, childrens: anytype) callconv(.Inline) anyerror!Container_Impl {
     return try abstractContainerConstructor(Container_Impl, childrens, config, RowLayout);

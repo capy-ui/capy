@@ -21,7 +21,7 @@ fn draw(widget: *zgt.Canvas_Impl, ctx: zgt.DrawContext) !void {
     ctx.fill();
 }
 
-fn scroll(widget: *zgt.Canvas_Impl, dx: f64, dy: f64) !void {
+fn scroll(widget: *zgt.Canvas_Impl, dx: f32, dy: f32) !void {
     std.log.info("Scroll by {d}, {d}", .{dx, dy});
     try widget.requestDraw();
 }
@@ -31,9 +31,10 @@ pub fn main() !void {
     defer _ = gpa.deinit();
 
     var window = try zgt.Window.init();
+    defer window.deinit();
 
     var canvas = zgt.Canvas(.{});
-    try canvas.addDrawHandler(draw);
+    _ = try canvas.addDrawHandler(draw);
     try canvas.addScrollHandler(scroll);
     
     try window.set(

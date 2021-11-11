@@ -255,6 +255,12 @@ pub fn Events(comptime T: type) type {
             c.g_object_set_data(@ptrCast(*c.GObject, widget), "eventUserData", data);
         }
 
+        pub fn deinit(self: *const T) void {
+            std.log.info("peer = {} width = {d}", .{ self, self.getWidth() });
+            const data = getEventUserData(self.peer);
+            lib.internal.lasting_allocator.destroy(data);
+        }
+
         pub fn setUserData(self: *T, data: anytype) callconv(.Inline) void {
             comptime {
                 if (!std.meta.trait.isSingleItemPtr(@TypeOf(data))) {
@@ -502,6 +508,15 @@ pub const Canvas = struct {
                 };
             }
         };
+
+        pub fn setColorByte(self: *const DrawContext, color: lib.Color) void {
+            self.setColorRGBA(
+                @intToFloat(f32, color.red)   / 255.0,
+                @intToFloat(f32, color.green) / 255.0,
+                @intToFloat(f32, color.blue)  / 255.0,
+                @intToFloat(f32, color.alpha) / 255.0
+            );
+        }
 
         pub fn setColor(self: *const DrawContext, r: f32, g: f32, b: f32) void {
             self.setColorRGBA(r, g, b, 1);

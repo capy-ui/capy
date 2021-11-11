@@ -41,6 +41,7 @@ pub fn Widgeting(comptime T: type) type {
 
         pub const WidgetClass = Class {
             .showFn = showWidget,
+            .deinitFn = deinitWidget,
             .preferredSizeFn = getPreferredSizeWidget
         };
 
@@ -74,6 +75,18 @@ pub fn Widgeting(comptime T: type) type {
             if (@hasDecl(T, "_showWidget")) {
                 try T._showWidget(widget, component);
             }
+        }
+
+        pub fn deinitWidget(widget: *Widget) void {
+            const component = @intToPtr(*T, widget.data);
+            std.log.info("deinit {s}", .{ @typeName(T) });
+            std.log.info("a {}", .{ component });
+
+            if (component.peer) |peer| peer.deinit();
+            if (@hasDecl(T, "deinit")) {
+                T.deinit(component, widget);
+            }
+            if (widget.allocator) |allocator| allocator.destroy(component);
         }
 
         pub fn pointerMoved(self: *T) void {
@@ -182,7 +195,8 @@ pub fn genericWidgetFrom(component: anytype) anyerror!Widget {
         .class = &Dereferenced.WidgetClass,
         .name = &cp.dataWrappers.name,
         .alignX = &cp.dataWrappers.alignX,
-        .alignY = &cp.dataWrappers.alignY
+        .alignY = &cp.dataWrappers.alignY,
+        .allocator = if (comptime std.meta.trait.isSingleItemPtr(ComponentType)) null else lasting_allocator,
     };
 }
 

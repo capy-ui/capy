@@ -1,8 +1,12 @@
+const std = @import("std");
 const backend = @import("backend.zig");
 const data = @import("data.zig");
 
+const Allocator = std.mem.Allocator;
+
 pub const Class = struct {
     showFn: fn(widget: *Widget) anyerror!void,
+    deinitFn: fn(widget: *Widget) void,
     preferredSizeFn: fn(widget: *const Widget, available: data.Size) data.Size,
     // offset into a list of updater optional pointers
     //updaters: []const usize,
@@ -11,6 +15,8 @@ pub const Class = struct {
 /// A widget is a unique representation and constant size of any view.
 pub const Widget = struct {
     data: usize,
+    /// The allocator that can be used to free 'data'
+    allocator: ?*Allocator = null,
     peer: ?backend.PeerType = null,
     container_expanded: bool = false,
     class: *const Class,
@@ -55,4 +61,9 @@ pub const Widget = struct {
             return null;
         }
     }
+
+    pub fn deinit(self: *Widget) void {
+        self.class.deinitFn(self);
+    }
+
 };

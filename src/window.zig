@@ -51,4 +51,10 @@ pub const Window = struct {
         );
     }
 
+    pub fn deinit(self: *Window) void {
+        if (self.child) |*child| {
+            child.deinit();
+        }
+    }
+
 };
