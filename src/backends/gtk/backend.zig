@@ -15,6 +15,7 @@ pub const Capabilities = .{
 };
 
 var activeWindows = std.atomic.Atomic(usize).init(0);
+var randomWindow: *c.GtkWidget = undefined;
 
 pub fn init() !void {
     if (c.gtk_init_check(0, null) == 0) {
@@ -77,6 +78,7 @@ pub const Window = struct {
 
         _ = c.g_signal_connect_data(window, "hide", @ptrCast(c.GCallback, gtkWindowHidden),
             null, null, c.G_CONNECT_AFTER);
+        randomWindow = window;
         return Window {
             .peer = window,
             .wbin = wbin
@@ -695,6 +697,29 @@ pub const Image = struct {
         c.gtk_image_set_from_pixbuf(@ptrCast(*c.GtkImage, self.peer), data.peer);
     }
 };
+
+// downcasting to [*]u8 due to translate-c bugs which won't even accept
+// pointer to an event.
+extern fn gdk_event_new(type: c_int) [*]align(8) u8;
+extern fn gtk_main_do_event(event: [*c]u8) void;
+
+pub fn postEmptyEvent() void {
+    // const event = gdk_event_new(c.GDK_DAMAGE);
+    // const expose = @ptrCast(*c.GdkEventExpose, event);
+    // expose.window = c.gtk_widget_get_window(randomWindow);
+    // expose.send_event = 1;
+    // expose.count = 0;
+    // expose.area = c.GdkRectangle {
+    //     .x = 0, .y = 0, .width = 1000, .height = 1000
+    // };
+    // gtk_main_do_event(event);
+    var rect = c.GdkRectangle { .x = 0, .y = 0, .width = 100, .height = 100};
+    c.gdk_window_invalidate_rect(
+        c.gtk_widget_get_window(randomWindow),
+        &rect,
+        0
+    );
+}
 
 pub fn runStep(step: lib.EventLoopStep) bool {
     _ = c.gtk_main_iteration_do(@boolToInt(step == .Blocking));

@@ -64,7 +64,8 @@ pub const Rect_Impl = struct {
     }
 
     pub fn getPreferredSize(self: *Rect_Impl, available: Size) Size {
-        return self.preferredSize orelse available;
+        return self.preferredSize orelse 
+            available.intersect(Size.init(0, 0));
     }
 
     pub fn setPreferredSize(self: *Rect_Impl, preferred: Size) Rect_Impl {

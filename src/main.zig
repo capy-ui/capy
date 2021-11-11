@@ -27,6 +27,11 @@ pub const EventLoopStep = enum {
     Asynchronous
 };
 
+/// Posts an empty event to finish the current step started in zgt.stepEventLoop
+pub fn wakeEventLoop() void {
+    backend.postEmptyEvent();
+}
+
 /// Returns false if the last window has been closed.
 pub fn stepEventLoop(stepType: EventLoopStep) bool {
     return backend.runStep(stepType);
