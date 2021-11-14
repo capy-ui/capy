@@ -22,6 +22,16 @@ pub const GlBackend = @import("backends/gles/backend.zig");
 
 pub const MouseButton = backend.MouseButton;
 
+pub const BackendEventType = enum {
+    Click,
+    Draw,
+    MouseButton,
+    Scroll,
+    TextChanged,
+    Resize,
+    KeyType
+};
+
 pub const EventLoopStep = enum {
     Blocking,
     Asynchronous

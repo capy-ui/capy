@@ -117,6 +117,23 @@ pub fn Widgeting(comptime T: type) type {
             return try genericWidgetFrom(self);
         }
 
+        // TODO: consider using something like https://github.com/MasterQ32/any-pointer for userdata
+        // to get some safety
+
+        pub fn setUserdata(self: *T, userdata: anytype) T {
+            if (comptime std.meta.trait.isIntegral(@TypeOf(userdata))) {
+                self.handlers.userdata = userdata;
+            } else {
+                self.handlers.userdata = @ptrToInt(userdata);
+            }
+
+            return self.*;
+        }
+
+        pub fn getUserdata(self: *T, comptime U: type) U {
+            return @intToPtr(U, self.handlers.userdata);
+        }
+
         // Properties
         // TODO: pub usingnamespace Property(f64, "opacity");
 

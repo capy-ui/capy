@@ -5,6 +5,8 @@ pub const c = @cImport({
 });
 const wbin_new = @import("windowbin.zig").wbin_new;
 
+const EventType = lib.BackendEventType;
+
 const GtkError = std.mem.Allocator.Error || error {
     UnknownError,
     InitializationError
@@ -104,16 +106,6 @@ pub const Window = struct {
 
 };
 
-pub const EventType = enum {
-    Click,
-    Draw,
-    MouseButton,
-    Scroll,
-    TextChanged,
-    Resize,
-    KeyType
-};
-
 pub const MouseButton = enum(c_uint) {
     Left = 1,
     Middle = 2,
@@ -141,98 +133,6 @@ fn getEventUserData(peer: *c.GtkWidget) callconv(.Inline) *EventUserData {
         c.g_object_get_data(@ptrCast(*c.GObject, peer), "eventUserData").?));
 }
 
-fn gtkSizeAllocate(peer: *c.GtkWidget, allocation: *c.GdkRectangle, userdata: usize) callconv(.C) void {
-    _ = userdata;
-    const data = getEventUserData(peer);
-    if (data.resizeHandler) |handler| {
-        handler(@intCast(u32, allocation.width), @intCast(u32, allocation.height), data.userdata);
-    }
-}
-
-const GdkEventKey = extern struct {
-    type: c.GdkEventType,
-    window: *c.GdkWindow,
-    send_event: c.gint8,
-    time: c.guint32,
-    state: *c.GdkModifierType,
-    keyval: c.guint,
-    length: c.gint,
-    string: [*:0]c.gchar,
-    hardware_keycode: c.guint16,
-    group: c.guint8,
-    is_modifier: c.guint,
-};
-
-fn gtkKeyPress(peer: *c.GtkWidget, event: *GdkEventKey, userdata: usize) callconv(.C) c.gboolean {
-    _ = userdata;
-    const data = getEventUserData(peer);
-    if (data.keyTypeHandler) |handler| {
-        // TODO: use GtkIMContext for accessibility !
-        const str = std.mem.span(event.string);
-        if (str.len != 0) {
-            handler(str, data.userdata);
-            return 1;
-        }
-    }
-    return 0;
-}
-
-fn gtkButtonPress(peer: *c.GtkWidget, event: *c.GdkEventButton, userdata: usize) callconv(.C) c.gboolean {
-    _ = userdata;
-    const data = getEventUserData(peer);
-    if (data.mouseButtonHandler) |handler| {
-        const pressed = switch (event.type) {
-            c.GDK_BUTTON_PRESS => true,
-            c.GDK_BUTTON_RELEASE => false,
-            // don't send released button in case of GDK_2BUTTON_PRESS, GDK_3BUTTON_PRESS, ...
-            else => return 0
-        };
-        c.gtk_widget_grab_focus(peer); // seems to be necessary for the canvas
-
-        if (event.x < 0 or event.y < 0) return 0;
-        handler(@intToEnum(MouseButton, event.button), pressed, @floatToInt(u32, @floor(event.x)), @floatToInt(u32, @floor(event.y)), data.userdata);
-    }
-    return 0;
-}
-
-/// Temporary hack until translate-c can translate this struct
-const GdkEventScroll = extern struct {
-    type: c.GdkEventType,
-    window: *c.GdkWindow,
-    send_event: c.gint8,
-    time: c.guint32,
-    x: c.gdouble,
-    y: c.gdouble,
-    state: c.guint,
-    direction: c.GdkScrollDirection,
-    device: *c.GdkDevice,
-    x_root: c.gdouble,
-    y_root: c.gdouble,
-    delta_x: c.gdouble,
-    delta_y: c.gdouble,
-    is_stop: c.guint
-};
-
-fn gtkMouseScroll(peer: *c.GtkWidget, event: *GdkEventScroll, userdata: usize) callconv(.C) void {
-    _ = userdata;
-    const data = getEventUserData(peer);
-    if (data.scrollHandler) |handler| {
-        const dx: c.gdouble = switch (event.direction) {
-            c.GDK_SCROLL_LEFT => -1,
-            c.GDK_SCROLL_RIGHT => 1,
-            else => event.delta_x
-        };
-
-        const dy: c.gdouble = switch (event.direction) {
-            c.GDK_SCROLL_UP => -1,
-            c.GDK_SCROLL_DOWN => 1,
-            else => event.delta_y
-        };
-
-        handler(@floatCast(f32, dx), @floatCast(f32, dy), data.userdata);
-    }
-}
-
 pub fn Events(comptime T: type) type {
     return struct {
         const Self = @This();
@@ -242,6 +142,8 @@ pub fn Events(comptime T: type) type {
                 null, null, c.G_CONNECT_AFTER);
             _ = c.g_signal_connect_data(widget, "button-release-event", @ptrCast(c.GCallback, gtkButtonPress),
                 null, null, c.G_CONNECT_AFTER);
+            _ = c.g_signal_connect_data(widget, "motion-notify-event", @ptrCast(c.GCallback, gtkMouseMotion),
+                null, null, c.G_CONNECT_AFTER);
             _ = c.g_signal_connect_data(widget, "scroll-event", @ptrCast(c.GCallback, gtkMouseScroll),
                 null, null, c.G_CONNECT_AFTER);
             _ = c.g_signal_connect_data(widget, "size-allocate", @ptrCast(c.GCallback, gtkSizeAllocate),
@@ -250,11 +152,111 @@ pub fn Events(comptime T: type) type {
                 null, null, c.G_CONNECT_AFTER);
             c.gtk_widget_add_events(widget,
                 c.GDK_SCROLL_MASK | c.GDK_BUTTON_PRESS_MASK
-                | c.GDK_BUTTON_RELEASE_MASK | c.GDK_KEY_PRESS_MASK);
+                | c.GDK_BUTTON_RELEASE_MASK | c.GDK_KEY_PRESS_MASK | c.GDK_POINTER_MOTION_MASK);
 
             var data = try lib.internal.lasting_allocator.create(EventUserData);
             data.* = EventUserData {}; // ensure that it uses default values
             c.g_object_set_data(@ptrCast(*c.GObject, widget), "eventUserData", data);
+        }
+
+        fn gtkSizeAllocate(peer: *c.GtkWidget, allocation: *c.GdkRectangle, userdata: usize) callconv(.C) void {
+            _ = userdata;
+            const data = getEventUserData(peer);
+            if (data.resizeHandler) |handler| {
+                handler(@intCast(u32, allocation.width), @intCast(u32, allocation.height), data.userdata);
+            }
+        }
+
+        const GdkEventKey = extern struct {
+            type: c.GdkEventType,
+            window: *c.GdkWindow,
+            send_event: c.gint8,
+            time: c.guint32,
+            state: *c.GdkModifierType,
+            keyval: c.guint,
+            length: c.gint,
+            string: [*:0]c.gchar,
+            hardware_keycode: c.guint16,
+            group: c.guint8,
+            is_modifier: c.guint,
+        };
+
+        fn gtkKeyPress(peer: *c.GtkWidget, event: *GdkEventKey, userdata: usize) callconv(.C) c.gboolean {
+            _ = userdata;
+            const data = getEventUserData(peer);
+            if (data.keyTypeHandler) |handler| {
+                // TODO: use GtkIMContext for accessibility !
+                const str = std.mem.span(event.string);
+                if (str.len != 0) {
+                    handler(str, data.userdata);
+                    return 1;
+                }
+            }
+            return 0;
+        }
+
+        fn gtkButtonPress(peer: *c.GtkWidget, event: *c.GdkEventButton, userdata: usize) callconv(.C) c.gboolean {
+            _ = userdata;
+            const data = getEventUserData(peer);
+            if (data.mouseButtonHandler) |handler| {
+                const pressed = switch (event.type) {
+                    c.GDK_BUTTON_PRESS => true,
+                    c.GDK_BUTTON_RELEASE => false,
+                    // don't send released button in case of GDK_2BUTTON_PRESS, GDK_3BUTTON_PRESS, ...
+                    else => return 0
+                };
+                c.gtk_widget_grab_focus(peer); // seems to be necessary for the canvas
+
+                if (event.x < 0 or event.y < 0) return 0;
+                handler(@intToEnum(MouseButton, event.button), pressed, @floatToInt(u32, @floor(event.x)), @floatToInt(u32, @floor(event.y)), data.userdata);
+            }
+            return 0;
+        }
+
+        fn gtkMouseMotion(peer: *c.GtkWidget, event: *c.GdkEventMotion, userdata: usize) callconv(.C) c.gboolean {
+            _ = userdata;
+            const data = getEventUserData(peer);
+            _ = data;
+            std.log.info("motion: {}", .{ event });
+            return 0;
+        }
+
+        /// Temporary hack until translate-c can translate this struct
+        const GdkEventScroll = extern struct {
+            type: c.GdkEventType,
+            window: *c.GdkWindow,
+            send_event: c.gint8,
+            time: c.guint32,
+            x: c.gdouble,
+            y: c.gdouble,
+            state: c.guint,
+            direction: c.GdkScrollDirection,
+            device: *c.GdkDevice,
+            x_root: c.gdouble,
+            y_root: c.gdouble,
+            delta_x: c.gdouble,
+            delta_y: c.gdouble,
+            is_stop: c.guint
+        };
+
+        fn gtkMouseScroll(peer: *c.GtkWidget, event: *GdkEventScroll, userdata: usize) callconv(.C) void {
+            _ = userdata;
+            const data = getEventUserData(peer);
+            if (data.scrollHandler) |handler| {
+                const dx: c.gdouble = switch (event.direction) {
+                    c.GDK_SCROLL_LEFT => -1,
+                    c.GDK_SCROLL_RIGHT => 1,
+                    else => event.delta_x
+                };
+
+                const dy: c.gdouble = switch (event.direction) {
+                    c.GDK_SCROLL_UP => -1,
+                    c.GDK_SCROLL_DOWN => 1,
+                    else => event.delta_y
+                };
+
+                handler(@floatCast(f32, dx), @floatCast(f32, dy), data.userdata);
+            }
         }
 
         pub fn deinit(self: *const T) void {
