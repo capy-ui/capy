@@ -1,9 +1,6 @@
 const std = @import("std");
 
-pub const Colorspace = enum {
-    RGB,
-    RGBA
-};
+pub const Colorspace = enum { RGB, RGBA };
 
 pub const Color = packed struct {
     red: u8,
@@ -11,12 +8,12 @@ pub const Color = packed struct {
     blue: u8,
     alpha: u8 = 255,
 
-    pub const black  = Color.comptimeFromString("#000000");
-    pub const red    = Color.comptimeFromString("#ff0000");
-    pub const green  = Color.comptimeFromString("#00ff00");
-    pub const blue   = Color.comptimeFromString("#0000ff");
+    pub const black = Color.comptimeFromString("#000000");
+    pub const red = Color.comptimeFromString("#ff0000");
+    pub const green = Color.comptimeFromString("#00ff00");
+    pub const blue = Color.comptimeFromString("#0000ff");
     pub const yellow = Color.comptimeFromString("#ffff00");
-    pub const white  = Color.comptimeFromString("#ffffff");
+    pub const white = Color.comptimeFromString("#ffffff");
 
     pub const transparent = Color.comptimeFromString("#00000000");
 
@@ -35,7 +32,7 @@ pub const Color = packed struct {
         if (string.len == 9) {
             a = try std.fmt.parseInt(u8, string[7..9], 16);
         }
-        return Color { .red = r, .green = g, .blue = b, .alpha = a };
+        return Color{ .red = r, .green = g, .blue = b, .alpha = a };
     }
 
     pub fn comptimeFromString(comptime string: []const u8) Color {

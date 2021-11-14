@@ -10,9 +10,7 @@ pub const Window = struct {
 
     pub fn init() !Window {
         const peer = try backend.Window.create();
-        return Window {
-            .peer = peer
-        };
+        return Window{ .peer = peer };
     }
 
     pub fn show(self: *Window) void {
@@ -26,17 +24,17 @@ pub const Window = struct {
     fn isErrorUnion(comptime T: type) bool {
         return switch (@typeInfo(T)) {
             .ErrorUnion => true,
-            else => false
+            else => false,
         };
     }
 
     /// wrappedContainer can be an error union, a pointer to the container or the container itself.
-    pub fn set(self: *Window, wrappedContainer: anytype) callconv(.Inline) anyerror!void {
-        var container = 
+    pub inline fn set(self: *Window, wrappedContainer: anytype) anyerror!void {
+        var container =
             if (comptime isErrorUnion(@TypeOf(wrappedContainer)))
-                try wrappedContainer
-            else
-                wrappedContainer;
+            try wrappedContainer
+        else
+            wrappedContainer;
 
         self.child = try @import("internal.zig").genericWidgetFrom(container);
         try self.child.?.show();
@@ -45,10 +43,7 @@ pub const Window = struct {
     }
 
     pub fn resize(self: *Window, width: u32, height: u32) void {
-        self.peer.resize(
-            @intCast(c_int, width),
-            @intCast(c_int, height)
-        );
+        self.peer.resize(@intCast(c_int, width), @intCast(c_int, height));
     }
 
     pub fn deinit(self: *Window) void {
@@ -56,5 +51,4 @@ pub const Window = struct {
             child.deinit();
         }
     }
-
 };

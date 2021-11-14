@@ -13,10 +13,7 @@ pub const Label_Impl = struct {
     _align: TextAlignment,
 
     pub fn init(text: [:0]const u8, alignment: TextAlignment) Label_Impl {
-        return Label_Impl.init_events(Label_Impl {
-            ._text = text,
-            ._align = alignment
-        });
+        return Label_Impl.init_events(Label_Impl{ ._text = text, ._align = alignment });
     }
 
     pub fn show(self: *Label_Impl) !void {
@@ -24,9 +21,9 @@ pub const Label_Impl = struct {
             var peer = try backend.Label.create();
             peer.setText(self._text);
             peer.setAlignment(switch (self._align) {
-                .Left   => 0,
+                .Left => 0,
                 .Center => 0.5,
-                .Right  => 1
+                .Right => 1,
             });
             self.peer = peer;
             try self.show_events();
@@ -36,9 +33,9 @@ pub const Label_Impl = struct {
     pub fn getPreferredSize(self: *Label_Impl, available: Size) Size {
         _ = available;
         const len = std.mem.lenZ(self._text);
-        return Size {
+        return Size{
             .width = @intCast(u32, 10 * len), // TODO: saturating multiply instead
-            .height = 40.0
+            .height = 40.0,
         };
     }
 
@@ -59,15 +56,8 @@ pub const Label_Impl = struct {
     }
 };
 
-pub const TextAlignment = enum {
-    Left,
-    Center,
-    Right
-};
+pub const TextAlignment = enum { Left, Center, Right };
 
-pub fn Label(config: struct {
-    text: [:0]const u8 = "",
-    alignment: TextAlignment = .Center
-}) Label_Impl {
+pub fn Label(config: struct { text: [:0]const u8 = "", alignment: TextAlignment = .Center }) Label_Impl {
     return Label_Impl.init(config.text, config.alignment);
 }

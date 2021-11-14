@@ -2,9 +2,7 @@
 const std = @import("std");
 const c = @import("backend.zig").c;
 
-pub const WBin = extern struct {
-    bin: c.GtkBin
-};
+pub const WBin = extern struct { bin: c.GtkBin };
 
 // Parent class is GtkContainerClass. But it and GtkWidgetClass fail to be translated by translate-c
 const GtkBinClass = extern struct {
@@ -15,26 +13,14 @@ const GtkBinClass = extern struct {
     _gtk_reserved4: ?fn () callconv(.C) void,
 };
 
-pub const WBinClass = extern struct {
-    parent_class: GtkBinClass
-};
+pub const WBinClass = extern struct { parent_class: GtkBinClass };
 
 var wbin_type: c.GType = 0;
 
 export fn wbin_get_type() c.GType {
     if (wbin_type == 0) {
-        const wbin_info = std.mem.zeroInit(c.GTypeInfo, .{
-            .class_size = @sizeOf(WBinClass),
-            .class_init = @ptrCast(c.GClassInitFunc, wbin_class_init),
-            .instance_size = @sizeOf(WBin),
-            .instance_init = @ptrCast(c.GInstanceInitFunc, wbin_init)
-        });
-        wbin_type = c.g_type_register_static(
-            c.gtk_bin_get_type(),
-            "WBin",
-            &wbin_info,
-            0
-        );
+        const wbin_info = std.mem.zeroInit(c.GTypeInfo, .{ .class_size = @sizeOf(WBinClass), .class_init = @ptrCast(c.GClassInitFunc, wbin_class_init), .instance_size = @sizeOf(WBin), .instance_init = @ptrCast(c.GInstanceInitFunc, wbin_init) });
+        wbin_type = c.g_type_register_static(c.gtk_bin_get_type(), "WBin", &wbin_info, 0);
     }
     return wbin_type;
 }
@@ -106,6 +92,5 @@ export fn wbin_init(wbin: *WBin, class: *WBinClass) void {
 }
 
 pub fn wbin_new() ?*c.GtkWidget {
-    return @ptrCast(?*c.GtkWidget, 
-        @alignCast(@alignOf(c.GtkWidget), c.g_object_new(wbin_get_type(), null)));
+    return @ptrCast(?*c.GtkWidget, @alignCast(@alignOf(c.GtkWidget), c.g_object_new(wbin_get_type(), null)));
 }

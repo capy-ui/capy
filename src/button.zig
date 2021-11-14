@@ -14,9 +14,7 @@ pub const Button_Impl = struct {
     enabled: DataWrapper(bool),
 
     pub fn init() Button_Impl {
-        return Button_Impl.init_events(Button_Impl {
-            .enabled = DataWrapper(bool).of(true)
-        });
+        return Button_Impl.init_events(Button_Impl{ .enabled = DataWrapper(bool).of(true) });
     }
 
     pub fn initLabeled(label: [:0]const u8) Button_Impl {
@@ -41,7 +39,7 @@ pub const Button_Impl = struct {
         _ = self;
         _ = available;
         // TODO getting hint from native peer
-        return Size { .width = 100.0, .height = 40.0 };
+        return Size{ .width = 100.0, .height = 40.0 };
     }
 
     pub fn setLabel(self: *Button_Impl, label: [:0]const u8) void {
@@ -60,16 +58,13 @@ pub const Button_Impl = struct {
         }
     }
 
-    pub fn setEnabledUpdater(self: *Button_Impl, updater: fn(*Container_Impl) bool) Button_Impl {
+    pub fn setEnabledUpdater(self: *Button_Impl, updater: fn (*Container_Impl) bool) Button_Impl {
         self.enabled.updater = updater;
         return self.*;
     }
 };
 
-pub fn Button(config: struct {
-    label: [:0]const u8 = "",
-    onclick: ?Button_Impl.Callback = null
-}) Button_Impl {
+pub fn Button(config: struct { label: [:0]const u8 = "", onclick: ?Button_Impl.Callback = null }) Button_Impl {
     var btn = Button_Impl.initLabeled(config.label);
     if (config.onclick) |onclick| {
         btn.addClickHandler(onclick) catch unreachable; // TODO: improve

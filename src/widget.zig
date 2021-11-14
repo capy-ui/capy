@@ -5,9 +5,9 @@ const data = @import("data.zig");
 const Allocator = std.mem.Allocator;
 
 pub const Class = struct {
-    showFn: fn(widget: *Widget) anyerror!void,
-    deinitFn: fn(widget: *Widget) void,
-    preferredSizeFn: fn(widget: *const Widget, available: data.Size) data.Size,
+    showFn: fn (widget: *Widget) anyerror!void,
+    deinitFn: fn (widget: *Widget) void,
+    preferredSizeFn: fn (widget: *const Widget, available: data.Size) data.Size,
     // offset into a list of updater optional pointers
     //updaters: []const usize,
 };
@@ -65,5 +65,4 @@ pub const Widget = struct {
     pub fn deinit(self: *Widget) void {
         self.class.deinitFn(self);
     }
-
 };

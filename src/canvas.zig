@@ -14,7 +14,7 @@ pub const Canvas_Impl = struct {
     pub const DrawContext = backend.Canvas.DrawContext;
 
     pub fn init() Canvas_Impl {
-        return Canvas_Impl.init_events(Canvas_Impl {});
+        return Canvas_Impl.init_events(Canvas_Impl{});
     }
 
     pub fn getPreferredSize(self: *Canvas_Impl, available: Size) Size {
@@ -38,9 +38,7 @@ pub const Canvas_Impl = struct {
     }
 };
 
-pub fn Canvas(config: struct {
-    onclick: ?Canvas_Impl.Callback = null
-}) Canvas_Impl {
+pub fn Canvas(config: struct { onclick: ?Canvas_Impl.Callback = null }) Canvas_Impl {
     var btn = Canvas_Impl.init();
     if (config.onclick) |onclick| {
         btn.addClickHandler(onclick) catch unreachable; // TODO: improve
@@ -60,11 +58,11 @@ pub const Rect_Impl = struct {
     color: Color = Color.black,
 
     pub fn init() Rect_Impl {
-        return Rect_Impl.init_events(Rect_Impl {});
+        return Rect_Impl.init_events(Rect_Impl{});
     }
 
     pub fn getPreferredSize(self: *Rect_Impl, available: Size) Size {
-        return self.preferredSize orelse 
+        return self.preferredSize orelse
             available.intersect(Size.init(0, 0));
     }
 
@@ -87,10 +85,7 @@ pub const Rect_Impl = struct {
     }
 };
 
-pub fn Rect(config: struct {
-    size: ?Size = null,
-    color: Color = Color.black
-}) Rect_Impl {
+pub fn Rect(config: struct { size: ?Size = null, color: Color = Color.black }) Rect_Impl {
     var btn = Rect_Impl.init();
     _ = btn.addDrawHandler(Rect_Impl.draw) catch unreachable;
     btn.preferredSize = config.size;

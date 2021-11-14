@@ -11,48 +11,33 @@ const LPARAM = win32.LPARAM;
 const LRESULT = win32.LRESULT;
 const WINAPI = win32.WINAPI;
 
-const Win32Error = error {
-    UnknownError,
-    InitializationError
-};
+const Win32Error = error{ UnknownError, InitializationError };
 
-pub const Capabilities = .{
-    .useEventLoop = true
-};
+pub const Capabilities = .{ .useEventLoop = true };
 
 pub const PeerType = HWND;
 
 var hInst: HINSTANCE = undefined;
 
 pub const public = struct {
-
     pub fn main() !void {
         try init();
         try @import("root").run();
     }
-
 };
 
 pub fn init() !void {
-    const hInstance = @ptrCast(win32.HINSTANCE, @alignCast(@alignOf(win32.HINSTANCE),
-        win32.GetModuleHandleW(null).?));
+    const hInstance = @ptrCast(win32.HINSTANCE, @alignCast(@alignOf(win32.HINSTANCE), win32.GetModuleHandleW(null).?));
     hInst = hInstance;
 
-    const initEx = win32.INITCOMMONCONTROLSEX {
-        .dwSize = @sizeOf(win32.INITCOMMONCONTROLSEX),
-        .dwICC = win32.ICC_STANDARD_CLASSES
-    };
+    const initEx = win32.INITCOMMONCONTROLSEX{ .dwSize = @sizeOf(win32.INITCOMMONCONTROLSEX), .dwICC = win32.ICC_STANDARD_CLASSES };
     const code = win32.InitCommonControlsEx(&initEx);
     if (code == 0) {
         std.debug.print("Failed to initialize Common Controls.", .{});
     }
 }
 
-pub const MessageType = enum {
-    Information,
-    Warning,
-    Error
-};
+pub const MessageType = enum { Information, Warning, Error };
 
 pub fn showNativeMessageDialog(msgType: MessageType, comptime fmt: []const u8, args: anytype) void {
     const msg = std.fmt.allocPrintZ(lib.internal.scratch_allocator, fmt, args) catch {
@@ -96,7 +81,7 @@ pub const Window = struct {
             win32.WM_SIZE => {
                 _ = win32.EnumChildWindows(hwnd, relayoutChild, @bitCast(isize, @ptrToInt(hwnd)));
             },
-            else => {}
+            else => {},
         }
         return win32.DefWindowProcA(hwnd, wm, wp, lp);
     }
@@ -113,7 +98,7 @@ pub const Window = struct {
             .hbrBackground = null,
             .lpszMenuName = null,
             .lpszClassName = className,
-            .hIconSm = null
+            .hIconSm = null,
         };
 
         if ((try win32.registerClassExA(&wc)) == 0) {
@@ -121,25 +106,22 @@ pub const Window = struct {
             return Win32Error.InitializationError;
         }
 
-        const hwnd = try win32.createWindowExA(
-            win32.WS_EX_LEFT,          // dwExtStyle
-            className,                 // lpClassName
-            "",                        // lpWindowName
+        const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
+            className, // lpClassName
+            "", // lpWindowName
             win32.WS_OVERLAPPEDWINDOW, // dwStyle
-            win32.CW_USEDEFAULT,       // X
-            win32.CW_USEDEFAULT,       // Y
-            win32.CW_USEDEFAULT,       // nWidth
-            win32.CW_USEDEFAULT,       // nHeight
-            null,                      // hWindParent
-            null,                      // hMenu
-            hInst,                     // hInstance
-            null                       // lpParam
+            win32.CW_USEDEFAULT, // X
+            win32.CW_USEDEFAULT, // Y
+            win32.CW_USEDEFAULT, // nWidth
+            win32.CW_USEDEFAULT, // nHeight
+            null, // hWindParent
+            null, // hMenu
+            hInst, // hInstance
+            null // lpParam
         );
 
         defaultWHWND = hwnd;
-        return Window {
-            .hwnd = hwnd
-        };
+        return Window{ .hwnd = hwnd };
     }
 
     pub fn setChild(self: *Window, hwnd: anytype) void {
@@ -165,33 +147,26 @@ pub const Window = struct {
         _ = win32.showWindow(self.hwnd, win32.SW_HIDE);
         _ = win32.UpdateWindow(self.hwnd);
     }
-
 };
 
-pub const EventType = enum {
-    Click,
-    Draw,
-    MouseButton,
-    Scroll,
-    TextChanged,
-    Resize,
-    KeyType
-};
+pub const EventType = enum { Click, Draw, MouseButton, Scroll, TextChanged, Resize, KeyType };
 
+// zig fmt: off
 const EventUserData = struct {
     /// Only works for buttons
-    clickHandler: ?fn(data: usize) void = null,
-    mouseButtonHandler: ?fn(button: MouseButton, pressed: bool, x: u32, y: u32, data: usize) void = null,
-    keyTypeHandler: ?fn(str: []const u8, data: usize) void = null,
-    scrollHandler: ?fn(dx: f32, dy: f32, data: usize) void = null,
-    resizeHandler: ?fn(width: u32, height: u32, data: usize) void = null,
+    clickHandler: ?fn (data: usize) void = null,
+    mouseButtonHandler: ?fn (button: MouseButton, pressed: bool, x: u32, y: u32, data: usize) void = null,
+    keyTypeHandler: ?fn (str: []const u8, data: usize) void = null,
+    scrollHandler: ?fn (dx: f32, dy: f32, data: usize) void = null,
+    resizeHandler: ?fn (width: u32, height: u32, data: usize) void = null,
     /// Only works for canvas (althought technically it isn't required to)
-    drawHandler: ?fn(ctx: Canvas.DrawContext, data: usize) void = null,
-    changedTextHandler: ?fn(data: usize) void = null,
+    drawHandler: ?fn (ctx: Canvas.DrawContext, data: usize) void = null,
+    changedTextHandler: ?fn (data: usize) void = null,
     userdata: usize = 0
 };
+// zig fmt: on
 
-fn getEventUserData(peer: HWND) callconv(.Inline) *EventUserData {
+inline fn getEventUserData(peer: HWND) *EventUserData {
     return @intToPtr(*EventUserData, win32.GetWindowLongPtr(peer, win32.GWL_USERDATA));
 }
 
@@ -211,7 +186,7 @@ pub fn Events(comptime T: type) type {
                                 handler(data.userdata);
                             }
                         },
-                        else => {}
+                        else => {},
                     }
                 },
                 win32.WM_SIZE => {
@@ -219,25 +194,21 @@ pub fn Events(comptime T: type) type {
                     if (data.resizeHandler) |handler| {
                         var rect: RECT = undefined;
                         _ = win32.GetWindowRect(hwnd, &rect);
-                        handler(
-                            @intCast(u32, rect.right - rect.left),
-                            @intCast(u32, rect.bottom - rect.top),
-                            data.userdata
-                        );
+                        handler(@intCast(u32, rect.right - rect.left), @intCast(u32, rect.bottom - rect.top), data.userdata);
                     }
                 },
-                else => {}
+                else => {},
             }
             return win32.DefWindowProcA(hwnd, wm, wp, lp);
         }
 
         pub fn setupEvents(peer: HWND) !void {
             var data = try lib.internal.lasting_allocator.create(EventUserData);
-            data.* = EventUserData {}; // ensure that it uses default values
+            data.* = EventUserData{}; // ensure that it uses default values
             win32.SetWindowLongPtr(peer, win32.GWL_USERDATA, @ptrToInt(data));
         }
 
-        pub fn setUserData(self: *T, data: anytype) callconv(.Inline) void {
+        pub inline fn setUserData(self: *T, data: anytype) void {
             comptime {
                 if (!std.meta.trait.isSingleItemPtr(@TypeOf(data))) {
                     @compileError(std.fmt.comptimePrint("Expected single item pointer, got {s}", .{@typeName(@TypeOf(data))}));
@@ -246,16 +217,16 @@ pub fn Events(comptime T: type) type {
             getEventUserData(self.peer).userdata = @ptrToInt(data);
         }
 
-        pub fn setCallback(self: *T, comptime eType: EventType, cb: anytype) callconv(.Inline) !void {
+        pub inline fn setCallback(self: *T, comptime eType: EventType, cb: anytype) !void {
             const data = getEventUserData(self.peer);
             switch (eType) {
-                .Click       => data.clickHandler       = cb,
-                .Draw        => data.drawHandler        = cb,
+                .Click => data.clickHandler = cb,
+                .Draw => data.drawHandler = cb,
                 .MouseButton => data.mouseButtonHandler = cb,
-                .Scroll      => data.scrollHandler      = cb,
+                .Scroll => data.scrollHandler = cb,
                 .TextChanged => data.changedTextHandler = cb,
-                .Resize      => data.resizeHandler      = cb,
-                .KeyType     => data.keyTypeHandler     = cb
+                .Resize => data.resizeHandler = cb,
+                .KeyType => data.keyTypeHandler = cb,
             }
         }
 
@@ -279,18 +250,14 @@ pub fn Events(comptime T: type) type {
         }
 
         pub fn setOpacity(self: *const T, opacity: f64) void {
-            _ = self; _ = opacity;
+            _ = self;
+            _ = opacity;
             // TODO
         }
-
     };
 }
 
-pub const MouseButton = enum {
-    Left,
-    Middle,
-    Right
-};
+pub const MouseButton = enum { Left, Middle, Right };
 
 pub const Canvas = struct {
     peer: HWND,
@@ -302,7 +269,7 @@ pub const Canvas = struct {
 pub const Button = struct {
     peer: HWND,
     data: usize = 0,
-    clickHandler: ?fn(data: usize) void = null,
+    clickHandler: ?fn (data: usize) void = null,
     oldWndProc: ?win32.WNDPROC = null,
     arena: std.heap.ArenaAllocator,
 
@@ -311,26 +278,22 @@ pub const Button = struct {
     var classRegistered = false;
 
     pub fn create() !Button {
-        const hwnd = try win32.createWindowExA(
-            win32.WS_EX_LEFT,                                           // dwExtStyle
-            "BUTTON",                                                   // lpClassName
-            "",                                                         // lpWindowName
+        const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
+            "BUTTON", // lpClassName
+            "", // lpWindowName
             win32.WS_TABSTOP | win32.WS_CHILD | win32.BS_DEFPUSHBUTTON, // dwStyle
-            10,                                                         // X
-            10,                                                         // Y
-            100,                                                        // nWidth
-            100,                                                        // nHeight
-            defaultWHWND,                                               // hWindParent
-            null,                                                       // hMenu
-            hInst,                                                      // hInstance
-            null                                                        // lpParam
+            10, // X
+            10, // Y
+            100, // nWidth
+            100, // nHeight
+            defaultWHWND, // hWindParent
+            null, // hMenu
+            hInst, // hInstance
+            null // lpParam
         );
         try Button.setupEvents(hwnd);
 
-        return Button {
-            .peer = hwnd,
-            .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator)
-        };
+        return Button{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator) };
     }
 
     pub fn setLabel(self: *Button, label: [:0]const u8) void {
@@ -352,7 +315,6 @@ pub const Button = struct {
         const text = std.unicode.utf16leToUtf8AllocZ(allocator, utf16Slice) catch unreachable; // TODO return error
         return text;
     }
-
 };
 
 pub const Label = struct {
@@ -363,26 +325,22 @@ pub const Label = struct {
     pub usingnamespace Events(Label);
 
     pub fn create() !Label {
-        const hwnd = try win32.createWindowExA(
-            win32.WS_EX_LEFT,                         // dwExtStyle
-            "STATIC",                                 // lpClassName
-            "",                                       // lpWindowName
-            win32.WS_TABSTOP | win32.WS_CHILD,        // dwStyle
-            10,                                       // X
-            10,                                       // Y
-            100,                                      // nWidth
-            100,                                      // nHeight
-            defaultWHWND,                             // hWindParent
-            null,                                     // hMenu
-            hInst,                                    // hInstance
-            null                                      // lpParam
+        const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
+            "STATIC", // lpClassName
+            "", // lpWindowName
+            win32.WS_TABSTOP | win32.WS_CHILD, // dwStyle
+            10, // X
+            10, // Y
+            100, // nWidth
+            100, // nHeight
+            defaultWHWND, // hWindParent
+            null, // hMenu
+            hInst, // hInstance
+            null // lpParam
         );
         try Label.setupEvents(hwnd);
 
-        return Label {
-            .peer = hwnd,
-            .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator)
-        };
+        return Label{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator) };
     }
 
     pub fn setAlignment(self: *Label, alignment: f32) void {
@@ -411,14 +369,9 @@ pub const Label = struct {
     pub fn destroy(self: *Label) void {
         self.arena.deinit();
     }
-
 };
 
-const ContainerStruct = struct {
-    hwnd: HWND,
-    count: usize,
-    index: usize
-};
+const ContainerStruct = struct { hwnd: HWND, count: usize, index: usize };
 
 pub const Container = struct {
     peer: HWND,
@@ -440,7 +393,7 @@ pub const Container = struct {
                 .hbrBackground = null,
                 .lpszMenuName = null,
                 .lpszClassName = "zgtContainerClass",
-                .hIconSm = null
+                .hIconSm = null,
             };
 
             if ((try win32.registerClassExA(&wc)) == 0) {
@@ -450,25 +403,22 @@ pub const Container = struct {
             classRegistered = true;
         }
 
-        const hwnd = try win32.createWindowExA(
-            win32.WS_EX_LEFT,                         // dwExtStyle
-            "zgtContainerClass",                      // lpClassName
-            "",                                       // lpWindowName
-            win32.WS_TABSTOP | win32.WS_CHILD,        // dwStyle
-            10,                                       // X
-            10,                                       // Y
-            100,                                      // nWidth
-            100,                                      // nHeight
-            defaultWHWND,                             // hWindParent
-            null,                                     // hMenu
-            hInst,                                    // hInstance
-            null                                      // lpParam
+        const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
+            "zgtContainerClass", // lpClassName
+            "", // lpWindowName
+            win32.WS_TABSTOP | win32.WS_CHILD, // dwStyle
+            10, // X
+            10, // Y
+            100, // nWidth
+            100, // nHeight
+            defaultWHWND, // hWindParent
+            null, // hMenu
+            hInst, // hInstance
+            null // lpParam
         );
         try Container.setupEvents(hwnd);
 
-        return Container {
-            .peer = hwnd
-        };
+        return Container{ .peer = hwnd };
     }
 
     pub fn add(self: *Container, peer: PeerType) void {
@@ -507,7 +457,7 @@ pub fn runStep(step: lib.EventLoopStep) bool {
             if (win32.PeekMessageA(&msg, null, 0, 0, 1) == 0) {
                 return true; // no message available
             }
-        }
+        },
     }
 
     if ((msg.message & 0xFF) == 0x012) { // WM_QUIT

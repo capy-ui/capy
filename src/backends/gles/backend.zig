@@ -20,11 +20,7 @@ pub const GuiWidget = struct {
     }
 };
 
-pub const MessageType = enum {
-    Information,
-    Warning,
-    Error
-};
+pub const MessageType = enum { Information, Warning, Error };
 
 pub fn showNativeMessageDialog(msgType: MessageType, comptime fmt: []const u8, args: anytype) void {
     const msg = std.fmt.allocPrintZ(lib.internal.scratch_allocator, fmt, args) catch {
@@ -32,15 +28,11 @@ pub fn showNativeMessageDialog(msgType: MessageType, comptime fmt: []const u8, a
         return;
     };
     defer lib.internal.scratch_allocator.free(msg);
-    std.log.info("native message dialog (TODO): ({}) {s}", .{msgType, msg});
+    std.log.info("native message dialog (TODO): ({}) {s}", .{ msgType, msg });
 }
 
 pub const PeerType = *GuiWidget;
-pub const MouseButton = enum {
-    Left,
-    Middle,
-    Right
-};
+pub const MouseButton = enum { Left, Middle, Right };
 
 pub fn init() !void {
     if (c.glfwInit() != 1) {
@@ -57,9 +49,9 @@ pub fn unexpectedGlError() !void {
             return error.InvalidEnum;
         },
         else => |id| {
-            std.log.warn("Unknown GL error: {d}",.{ id });
+            std.log.warn("Unknown GL error: {d}", .{id});
             return error.Unexpected;
-        }
+        },
     }
 }
 
@@ -72,8 +64,8 @@ const Shader = struct {
             try unexpectedGlError();
         }
 
-        c.glShaderSource(id, 1, &[_][*c]const u8 { source }, null);
-        return Shader { .id = id };
+        c.glShaderSource(id, 1, &[_][*c]const u8{source}, null);
+        return Shader{ .id = id };
     }
 
     pub fn compile(self: Shader) !void {
@@ -87,7 +79,7 @@ const Shader = struct {
             const infoLog = try lib.internal.scratch_allocator.allocSentinel(u8, @intCast(usize, infoLogLen), 0);
             defer lib.internal.scratch_allocator.free(infoLog);
             c.glGetShaderInfoLog(self.id, infoLogLen, null, infoLog.ptr);
-            std.log.crit("shader compile error:\n{s}", .{ infoLog });
+            std.log.crit("shader compile error:\n{s}", .{infoLog});
             return error.ShaderError;
         }
     }
@@ -111,10 +103,10 @@ pub const Window = struct {
         var vao: c.GLuint = undefined;
         c.glGenVertexArrays(1, &vao);
         c.glBindVertexArray(vao);
-        const bufferData = [_]f32 {
+        const bufferData = [_]f32{
             -1.0, -1.0,
-             1.0, -1.0,
-            -1.0,  1.0,
+            1.0,  -1.0,
+            -1.0, 1.0,
         };
         var vbo: c.GLuint = undefined;
         c.glGenBuffers(1, &vbo);
@@ -141,9 +133,7 @@ pub const Window = struct {
         std.log.info("program: {d}", .{program});
 
         try activeWindows.append(window);
-        return Window {
-            .window = window
-        };
+        return Window{ .window = window };
     }
 
     pub fn show(self: *Window) void {
@@ -158,28 +148,17 @@ pub const Window = struct {
         _ = self;
         _ = peer;
     }
-
 };
 
-pub const EventType = enum {
-    Click,
-    Draw,
-    MouseButton,
-    Scroll,
-    TextChanged,
-    Resize,
-    KeyType
-};
+pub const EventType = enum { Click, Draw, MouseButton, Scroll, TextChanged, Resize, KeyType };
 
 pub fn Events(comptime T: type) type {
     return struct {
         const Self = @This();
 
-        pub fn setupEvents() !void {
+        pub fn setupEvents() !void {}
 
-        }
-
-        pub fn setUserData(self: *T, data: anytype) callconv(.Inline) void {
+        pub inline fn setUserData(self: *T, data: anytype) void {
             comptime {
                 if (!std.meta.trait.isSingleItemPtr(@TypeOf(data))) {
                     @compileError(std.fmt.comptimePrint("Expected single item pointer, got {s}", .{@typeName(@TypeOf(data))}));
@@ -189,18 +168,18 @@ pub fn Events(comptime T: type) type {
             self.peer.userdata = @ptrToInt(data);
         }
 
-        pub fn setCallback(self: *T, comptime eType: EventType, cb: anytype) callconv(.Inline) !void {
+        pub inline fn setCallback(self: *T, comptime eType: EventType, cb: anytype) !void {
             _ = cb;
             _ = self;
             //const data = getEventUserData(self.peer);
             switch (eType) {
-                .Click       => {},
-                .Draw        => {},
+                .Click => {},
+                .Draw => {},
                 .MouseButton => {},
-                .Scroll      => {},
+                .Scroll => {},
                 .TextChanged => {},
-                .Resize      => {},
-                .KeyType     => {}
+                .Resize => {},
+                .KeyType => {},
             }
         }
 
@@ -226,7 +205,6 @@ pub fn Events(comptime T: type) type {
             //return c.gtk_widget_get_allocated_height(self.peer);
             return 0;
         }
-
     };
 }
 
@@ -236,9 +214,7 @@ pub const TextField = struct {
     pub usingnamespace Events(TextField);
 
     pub fn create() !TextField {
-        return TextField {
-            .peer = try GuiWidget.init(lasting_allocator)
-        };
+        return TextField{ .peer = try GuiWidget.init(lasting_allocator) };
     }
 
     pub fn setText(self: *TextField, text: []const u8) void {
@@ -250,7 +226,6 @@ pub const TextField = struct {
         _ = self;
         return "";
     }
-
 };
 
 pub const Button = struct {
@@ -259,16 +234,13 @@ pub const Button = struct {
     pub usingnamespace Events(Button);
 
     pub fn create() !Button {
-        return Button {
-            .peer = try GuiWidget.init(lasting_allocator)
-        };
+        return Button{ .peer = try GuiWidget.init(lasting_allocator) };
     }
 
     pub fn setLabel(self: *Button, label: [:0]const u8) void {
         _ = self;
         _ = label;
     }
-
 };
 
 pub const Container = struct {
@@ -277,9 +249,7 @@ pub const Container = struct {
     pub usingnamespace Events(Container);
 
     pub fn create() !Container {
-        return Container {
-            .peer = try GuiWidget.init(lasting_allocator)
-        };
+        return Container{ .peer = try GuiWidget.init(lasting_allocator) };
     }
 
     pub fn add(self: *Container, peer: PeerType) void {
@@ -290,15 +260,16 @@ pub const Container = struct {
     pub fn move(self: *const Container, peer: PeerType, x: u32, y: u32) void {
         _ = self;
         _ = peer;
-        _ = x; _ = y;
+        _ = x;
+        _ = y;
     }
 
     pub fn resize(self: *const Container, peer: PeerType, w: u32, h: u32) void {
-        _ = w; _ = h;
+        _ = w;
+        _ = h;
         _ = peer;
         _ = self;
     }
-
 };
 
 pub const Canvas = struct {
@@ -334,7 +305,7 @@ pub fn runStep(step: lib.EventLoopStep) bool {
         } else {
             switch (step) {
                 .Asynchronous => c.glfwPollEvents(),
-                .Blocking     => c.glfwWaitEvents()
+                .Blocking => c.glfwWaitEvents(),
             }
             // TODO: check if something changed before drawing
             drawWindow(window);

@@ -4,7 +4,6 @@ const lasting_allocator = @import("internal.zig").lasting_allocator;
 const milliTimestamp = @import("internal.zig").milliTimestamp;
 
 pub const Easings = struct {
-
     pub fn Linear(t: f64) f64 {
         return t;
     }
@@ -20,7 +19,6 @@ pub const Easings = struct {
     pub fn InOut(t: f64) f64 {
         return In(t) * (1 - t) + Out(t) * t;
     }
-
 };
 
 pub fn Animation(comptime T: type) type {
@@ -29,14 +27,14 @@ pub fn Animation(comptime T: type) type {
         end: i64,
         min: T,
         max: T,
-        animFn: fn(t: f64) f64,
+        animFn: fn (t: f64) f64,
 
         /// Get the current value from the animation
         pub fn get(self: *@This()) T {
             const maxDiff = @intToFloat(f64, self.end - self.start);
             const diff = @intToFloat(f64, milliTimestamp() - self.start);
             var t = diff / maxDiff;
-            
+
             // Clamp t to [0, 1]
             if (t > 1.0) t = 1.0;
             if (t < 0.0) t = 0.0;
@@ -121,21 +119,15 @@ pub fn DataWrapper(comptime T: type) type {
         bindLock: std.Thread.Mutex = .{},
         allocator: ?*std.mem.Allocator = null,
         animation: if (IsNumber) ?Animation(T) else void = if (IsNumber) null else {},
-        updater: ?fn(*Container_Impl) T = null,
+        updater: ?fn (*Container_Impl) T = null,
 
         const Self = @This();
         const IsNumber = std.meta.trait.isNumber(T);
 
-        pub const ChangeListener = struct {
-            function: fn(newValue: T, userdata: usize) void,
-            userdata: usize = 0
-        };
+        pub const ChangeListener = struct { function: fn (newValue: T, userdata: usize) void, userdata: usize = 0 };
 
         pub fn of(value: T) Self {
-            return Self {
-                .value = value,
-                .onChange = std.ArrayList(ChangeListener).init(lasting_allocator)
-            };
+            return Self{ .value = value, .onChange = std.ArrayList(ChangeListener).init(lasting_allocator) };
         }
 
         /// This function updates any current animation.
@@ -159,19 +151,13 @@ pub fn DataWrapper(comptime T: type) type {
             return self.animation != null;
         }
 
-        pub fn animate(self: *Self, anim: fn(f64) f64, target: T, duration: i64) void {
+        pub fn animate(self: *Self, anim: fn (f64) f64, target: T, duration: i64) void {
             if (!IsNumber) {
                 @compileError("animate only supported on numbers");
             }
 
             const time = milliTimestamp();
-            self.animation = Animation(T) {
-                .start = time,
-                .end = time + duration,
-                .min = self.value,
-                .max = target,
-                .animFn = anim
-            };
+            self.animation = Animation(T){ .start = time, .end = time + duration, .min = self.value, .max = target, .animFn = anim };
         }
 
         pub fn addChangeListener(self: *Self, listener: ChangeListener) !usize {
@@ -259,23 +245,17 @@ pub fn DataWrapper(comptime T: type) type {
 }
 
 pub fn FormatDataWrapper(allocator: *std.mem.Allocator, comptime fmt: []const u8, childs: anytype) !*StringDataWrapper {
-    const Self = struct {
-        wrapper: StringDataWrapper,
-        childs: @TypeOf(childs)
-    };
+    const Self = struct { wrapper: StringDataWrapper, childs: @TypeOf(childs) };
     var self = try allocator.create(Self);
     const empty = try allocator.alloc(u8, 0); // alloc an empty string so it can be freed
-    self.* = Self {
-        .wrapper = StringDataWrapper.of(empty),
-        .childs = childs
-    };
+    self.* = Self{ .wrapper = StringDataWrapper.of(empty), .childs = childs };
     self.wrapper.allocator = allocator;
 
     const childTypes = comptime blk: {
-        var types: []const type = &[_]type {};
+        var types: []const type = &[_]type{};
         for (childs) |child| {
             const T = @TypeOf(child.value);
-            types = types ++ &[_]type { T };
+            types = types ++ &[_]type{T};
         }
         break :blk types;
     };
@@ -296,23 +276,20 @@ pub fn FormatDataWrapper(allocator: *std.mem.Allocator, comptime fmt: []const u8
 
     inline for (childs) |child| {
         const T = @TypeOf(child.value);
-        _ = try child.addChangeListener(.{
-            .userdata = @ptrToInt(self),
-            .function = struct {
-                fn callback(newValue: T, userdata: usize) void {
-                    _ = newValue;
-                    const ptr = @intToPtr(*Self, userdata);
-                    format(ptr);
-                }
-            }.callback
-        });
+        _ = try child.addChangeListener(.{ .userdata = @ptrToInt(self), .function = struct {
+            fn callback(newValue: T, userdata: usize) void {
+                _ = newValue;
+                const ptr = @intToPtr(*Self, userdata);
+                format(ptr);
+            }
+        }.callback });
     }
     return &self.wrapper;
 }
 
 pub const StringDataWrapper = DataWrapper([]const u8);
 
-pub const FloatDataWrapper  = DataWrapper(f32);
+pub const FloatDataWrapper = DataWrapper(f32);
 pub const DoubleDataWrapper = DataWrapper(f64);
 
 /// The size expressed in display pixels.
@@ -321,7 +298,7 @@ pub const Size = struct {
     height: u32,
 
     pub fn init(width: u32, height: u32) Size {
-        return Size { .width = width, .height = height };
+        return Size{ .width = width, .height = height };
     }
 
     /// Returns the size with the least area
@@ -343,23 +320,12 @@ pub const Size = struct {
     }
 
     pub fn combine(a: Size, b: Size) Size {
-        return Size {
-            .width = std.math.max(a.width, b.width),
-            .height = std.math.max(a.height, b.height)
-        };
+        return Size{ .width = std.math.max(a.width, b.width), .height = std.math.max(a.height, b.height) };
     }
 
     pub fn intersect(a: Size, b: Size) Size {
-        return Size {
-            .width = std.math.min(a.width, b.width),
-            .height = std.math.min(a.height, b.height)
-        };
+        return Size{ .width = std.math.min(a.width, b.width), .height = std.math.min(a.height, b.height) };
     }
 };
 
-pub const Rectangle = struct {
-    left: u32,
-    top: u32,
-    right: u32,
-    bottom: u32
-};
+pub const Rectangle = struct { left: u32, top: u32, right: u32, bottom: u32 };

@@ -7,14 +7,14 @@ pub const GuiWidget = struct {
     userdata: usize = 0,
     element: js.ElementId = 0,
     /// Only works for buttons
-    clickHandler: ?fn(data: usize) void = null,
-    mouseButtonHandler: ?fn(button: MouseButton, pressed: bool, x: u32, y: u32, data: usize) void = null,
-    keyTypeHandler: ?fn(str: []const u8, data: usize) void = null,
-    scrollHandler: ?fn(dx: f32, dy: f32, data: usize) void = null,
-    resizeHandler: ?fn(width: u32, height: u32, data: usize) void = null,
+    clickHandler: ?fn (data: usize) void = null,
+    mouseButtonHandler: ?fn (button: MouseButton, pressed: bool, x: u32, y: u32, data: usize) void = null,
+    keyTypeHandler: ?fn (str: []const u8, data: usize) void = null,
+    scrollHandler: ?fn (dx: f32, dy: f32, data: usize) void = null,
+    resizeHandler: ?fn (width: u32, height: u32, data: usize) void = null,
     /// Only works for canvas (althought technically it isn't required to)
-    drawHandler: ?fn(ctx: Canvas.DrawContext, data: usize) void = null,
-    changedTextHandler: ?fn(data: usize) void = null,
+    drawHandler: ?fn (ctx: Canvas.DrawContext, data: usize) void = null,
+    changedTextHandler: ?fn (data: usize) void = null,
 
     pub fn init(allocator: *std.mem.Allocator, name: []const u8) !*GuiWidget {
         const self = try allocator.create(GuiWidget);
@@ -23,11 +23,7 @@ pub const GuiWidget = struct {
     }
 };
 
-pub const MessageType = enum {
-    Information,
-    Warning,
-    Error
-};
+pub const MessageType = enum { Information, Warning, Error };
 
 pub fn showNativeMessageDialog(msgType: MessageType, comptime fmt: []const u8, args: anytype) void {
     const msg = std.fmt.allocPrintZ(lib.internal.scratch_allocator, fmt, args) catch {
@@ -35,15 +31,11 @@ pub fn showNativeMessageDialog(msgType: MessageType, comptime fmt: []const u8, a
         return;
     };
     defer lib.internal.scratch_allocator.free(msg);
-    std.log.info("native message dialog (TODO): ({}) {s}", .{msgType, msg});
+    std.log.info("native message dialog (TODO): ({}) {s}", .{ msgType, msg });
 }
 
 pub const PeerType = *GuiWidget;
-pub const MouseButton = enum {
-    Left,
-    Middle,
-    Right
-};
+pub const MouseButton = enum { Left, Middle, Right };
 
 pub fn init() !void {
     // TODO
@@ -56,7 +48,7 @@ pub const Window = struct {
 
     pub fn create() !Window {
         // TODO
-        return Window { };
+        return Window{};
     }
 
     pub fn show(self: *Window) void {
@@ -80,28 +72,17 @@ pub const Window = struct {
             // TODO: js.clearRoot();
         }
     }
-
 };
 
-pub const EventType = enum {
-    Click,
-    Draw,
-    MouseButton,
-    Scroll,
-    TextChanged,
-    Resize,
-    KeyType
-};
+pub const EventType = enum { Click, Draw, MouseButton, Scroll, TextChanged, Resize, KeyType };
 
 pub fn Events(comptime T: type) type {
     return struct {
         const Self = @This();
 
-        pub fn setupEvents() !void {
+        pub fn setupEvents() !void {}
 
-        }
-
-        pub fn setUserData(self: *T, data: anytype) callconv(.Inline) void {
+        pub inline fn setUserData(self: *T, data: anytype) void {
             comptime {
                 if (!std.meta.trait.isSingleItemPtr(@TypeOf(data))) {
                     @compileError(std.fmt.comptimePrint("Expected single item pointer, got {s}", .{@typeName(@TypeOf(data))}));
@@ -111,21 +92,21 @@ pub fn Events(comptime T: type) type {
             self.peer.userdata = @ptrToInt(data);
         }
 
-        pub fn setCallback(self: *T, comptime eType: EventType, cb: anytype) callconv(.Inline) !void {
+        pub inline fn setCallback(self: *T, comptime eType: EventType, cb: anytype) !void {
             _ = cb;
             _ = self;
             //const data = getEventUserData(self.peer);
             switch (eType) {
-                .Click       => {},
-                .Draw        => self.peer.drawHandler = cb,
+                .Click => {},
+                .Draw => self.peer.drawHandler = cb,
                 .MouseButton => {},
-                .Scroll      => {},
+                .Scroll => {},
                 .TextChanged => {},
-                .Resize      => {
+                .Resize => {
                     self.peer.resizeHandler = cb;
                     self.requestDraw() catch {};
                 },
-                .KeyType     => {}
+                .KeyType => {},
             }
         }
 
@@ -150,7 +131,6 @@ pub fn Events(comptime T: type) type {
         pub fn getHeight(self: *const T) c_int {
             return std.math.max(10, js.getHeight(self.peer.element));
         }
-
     };
 }
 
@@ -160,9 +140,7 @@ pub const TextField = struct {
     pub usingnamespace Events(TextField);
 
     pub fn create() !TextField {
-        return TextField {
-            .peer = try GuiWidget.init(lasting_allocator, "input")
-        };
+        return TextField{ .peer = try GuiWidget.init(lasting_allocator, "input") };
     }
 
     pub fn setText(self: *TextField, text: []const u8) void {
@@ -173,9 +151,7 @@ pub const TextField = struct {
         _ = self;
         return "";
     }
-
 };
-
 
 pub const Label = struct {
     peer: *GuiWidget,
@@ -183,14 +159,10 @@ pub const Label = struct {
     pub usingnamespace Events(Label);
 
     pub fn create() !Label {
-        return Label {
-            .peer = try GuiWidget.init(lasting_allocator, "span")
-        };
+        return Label{ .peer = try GuiWidget.init(lasting_allocator, "span") };
     }
 
-    pub fn setAlignment(_: *Label, _: f32) void {
-
-    }
+    pub fn setAlignment(_: *Label, _: f32) void {}
 
     pub fn setText(self: *Label, text: [:0]const u8) void {
         js.setText(self.peer.element, text.ptr, text.len);
@@ -199,7 +171,6 @@ pub const Label = struct {
     pub fn getText(_: *Label) [:0]const u8 {
         return undefined;
     }
-
 };
 
 pub const Button = struct {
@@ -208,9 +179,7 @@ pub const Button = struct {
     pub usingnamespace Events(Button);
 
     pub fn create() !Button {
-        return Button {
-            .peer = try GuiWidget.init(lasting_allocator, "button")
-        };
+        return Button{ .peer = try GuiWidget.init(lasting_allocator, "button") };
     }
 
     pub fn setLabel(self: *Button, label: [:0]const u8) void {
@@ -222,7 +191,6 @@ pub const Button = struct {
     pub fn getLabel(_: *Button) [:0]const u8 {
         return undefined;
     }
-
 };
 
 pub const Canvas = struct {
@@ -238,12 +206,7 @@ pub const Canvas = struct {
         }
 
         pub fn setColorRGBA(self: *const DrawContext, r: f32, g: f32, b: f32, a: f32) void {
-            js.setColor(self.ctx,
-                @floatToInt(u8, r * 255),
-                @floatToInt(u8, g * 255),
-                @floatToInt(u8, b * 255),
-                @floatToInt(u8, a * 255)
-            );
+            js.setColor(self.ctx, @floatToInt(u8, r * 255), @floatToInt(u8, g * 255), @floatToInt(u8, b * 255), @floatToInt(u8, a * 255));
         }
 
         pub fn rectangle(self: *const DrawContext, x: u32, y: u32, w: u32, h: u32) void {
@@ -258,7 +221,11 @@ pub const Canvas = struct {
 
         pub fn ellipse(self: *const DrawContext, x: u32, y: u32, w: f32, h: f32) void {
             // TODO
-            _ = self; _ = x; _ = y; _ = w; _ = h;
+            _ = self;
+            _ = x;
+            _ = y;
+            _ = w;
+            _ = h;
         }
 
         pub fn stroke(self: *const DrawContext) void {
@@ -268,18 +235,15 @@ pub const Canvas = struct {
         pub fn fill(self: *const DrawContext) void {
             js.fill(self.ctx);
         }
-
     };
 
     pub fn create() !Canvas {
-        return Canvas {
-            .peer = try GuiWidget.init(lasting_allocator, "canvas")
-        };
+        return Canvas{ .peer = try GuiWidget.init(lasting_allocator, "canvas") };
     }
 
     pub fn _requestDraw(self: *Canvas) !void {
         const ctxId = js.openContext(self.peer.element);
-        const ctx = DrawContext { .ctx = ctxId };
+        const ctx = DrawContext{ .ctx = ctxId };
         if (self.peer.drawHandler) |handler| {
             handler(ctx, self.peer.userdata);
         }
@@ -292,9 +256,7 @@ pub const Container = struct {
     pub usingnamespace Events(Container);
 
     pub fn create() !Container {
-        return Container {
-            .peer = try GuiWidget.init(lasting_allocator, "div")
-        };
+        return Container{ .peer = try GuiWidget.init(lasting_allocator, "div") };
     }
 
     pub fn add(self: *Container, peer: PeerType) void {
@@ -313,7 +275,6 @@ pub const Container = struct {
             handler(w, h, peer.userdata);
         }
     }
-
 };
 
 pub fn milliTimestamp() i64 {
@@ -334,7 +295,6 @@ var resumePtr: anyframe = undefined;
 pub const backendExport = struct {
     pub const os = struct {
         pub const system = struct {
-
             pub const E = enum(u8) {
                 SUCCESS = 0,
                 INVAL = 1,
@@ -342,10 +302,7 @@ pub const backendExport = struct {
                 FAULT = 3,
             };
 
-            pub const timespec = struct {
-                tv_sec: isize,
-                tv_nsec: isize
-            };
+            pub const timespec = struct { tv_sec: isize, tv_nsec: isize };
 
             pub fn getErrno(r: usize) E {
                 if (r & ~@as(usize, 0xFF) == ~@as(usize, 0xFF)) {
@@ -361,7 +318,6 @@ pub const backendExport = struct {
                 sleep(ms);
                 return 0;
             }
-
         };
     };
 
@@ -379,13 +335,13 @@ pub const backendExport = struct {
 
     pub fn panic(msg: []const u8, _: ?*std.builtin.StackTrace) noreturn {
         js.print(msg);
-        
+
         @breakpoint();
         while (true) {}
     }
 
     pub export fn _start() callconv(.C) void {
-        _ = @asyncCall(&frame, &result, executeMain, .{ });
+        _ = @asyncCall(&frame, &result, executeMain, .{});
     }
 
     pub export fn _zgtContinue() callconv(.C) void {

@@ -13,9 +13,7 @@ pub const TextArea_Impl = struct {
     _text: []const u8,
 
     pub fn init(text: []const u8) TextArea_Impl {
-        return TextArea_Impl.init_events(TextArea_Impl {
-            ._text = text
-        });
+        return TextArea_Impl.init_events(TextArea_Impl{ ._text = text });
     }
 
     pub fn show(self: *TextArea_Impl) !void {
@@ -30,7 +28,7 @@ pub const TextArea_Impl = struct {
         _ = self;
         _ = available;
         // TODO getting hint from native peer
-        return Size { .width = 100.0, .height = 100.0 };
+        return Size{ .width = 100.0, .height = 100.0 };
     }
 
     pub fn setText(self: *TextArea_Impl, text: []const u8) void {
@@ -60,9 +58,7 @@ pub const TextField_Impl = struct {
     text: StringDataWrapper,
 
     pub fn init(text: []const u8) TextField_Impl {
-        return TextField_Impl.init_events(TextField_Impl {
-            .text = StringDataWrapper.of(text)
-        });
+        return TextField_Impl.init_events(TextField_Impl{ .text = StringDataWrapper.of(text) });
     }
 
     /// Internal function used at initialization.
@@ -91,17 +87,14 @@ pub const TextField_Impl = struct {
             self.peer = peer;
             try self.show_events();
             try peer.setCallback(.TextChanged, textChanged);
-            _ = try self.text.addChangeListener(.{
-                .function = wrapperTextChanged,
-                .userdata = @ptrToInt(&self.peer)
-            });
+            _ = try self.text.addChangeListener(.{ .function = wrapperTextChanged, .userdata = @ptrToInt(&self.peer) });
         }
     }
 
     pub fn getPreferredSize(self: *TextField_Impl, available: Size) Size {
         _ = self;
         _ = available;
-        return Size { .width = 100.0, .height = 40.0 };
+        return Size{ .width = 100.0, .height = 40.0 };
     }
 
     pub fn setText(self: *TextField_Impl, text: []const u8) void {
@@ -120,14 +113,10 @@ pub const TextField_Impl = struct {
     }
 };
 
-pub fn TextArea(config: struct {
-    text: []const u8 = ""
-}) TextArea_Impl {
+pub fn TextArea(config: struct { text: []const u8 = "" }) TextArea_Impl {
     return TextArea_Impl.init(config.text);
 }
 
-pub fn TextField(config: struct {
-    text: []const u8 = ""
-}) TextField_Impl {
+pub fn TextField(config: struct { text: []const u8 = "" }) TextField_Impl {
     return TextField_Impl.init(config.text);
 }

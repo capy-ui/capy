@@ -5,11 +5,11 @@ const lasting_allocator = @import("internal.zig").lasting_allocator;
 const Size = @import("data.zig").Size;
 const Rectangle = @import("data.zig").Rectangle;
 
-pub const Layout = fn(peer: Callbacks, widgets: []Widget) void;
+pub const Layout = fn (peer: Callbacks, widgets: []Widget) void;
 const Callbacks = struct {
     userdata: usize,
-    moveResize: fn(data: usize, peer: backend.PeerType, x: u32, y: u32, w: u32, h: u32) void,
-    getSize: fn(data: usize) Size,
+    moveResize: fn (data: usize, peer: backend.PeerType, x: u32, y: u32, w: u32, h: u32) void,
+    getSize: fn (data: usize) Size,
     computingPreferredSize: bool,
     availableSize: ?Size = null,
 };
@@ -27,8 +27,7 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
     //const count = @intCast(u32, widgets.len);
     const expandedCount = getExpandedCount(widgets);
 
-    var childHeight = if (expandedCount == 0) 0
-        else @intCast(u32, peer.getSize(peer.userdata).height) / expandedCount;
+    var childHeight = if (expandedCount == 0) 0 else @intCast(u32, peer.getSize(peer.userdata).height) / expandedCount;
     for (widgets) |widget| {
         if (!widget.container_expanded) {
             const available = if (expandedCount > 0) Size.init(0, 0) else peer.getSize(peer.userdata);
@@ -45,21 +44,13 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
     var childY: f32 = 0.0;
     for (widgets) |*widget| {
         if (widget.peer) |widgetPeer| {
-            const available = Size {
-                .width = @intCast(u32, peer.getSize(peer.userdata).width),
-                .height = if (widget.container_expanded) childHeight
-                    else (@intCast(u32, peer.getSize(peer.userdata).height) - @floatToInt(u32, childY))
-            };
+            const available = Size{ .width = @intCast(u32, peer.getSize(peer.userdata).width), .height = if (widget.container_expanded) childHeight else (@intCast(u32, peer.getSize(peer.userdata).height) - @floatToInt(u32, childY)) };
             const preferred = widget.getPreferredSize(available);
-            const size = if (widget.container_expanded) available
-                else Size.intersect(available, preferred);
+            const size = if (widget.container_expanded) available else Size.intersect(available, preferred);
             const alignX = std.math.clamp(widget.alignX.get(), 0, 1);
-            var x = @floatToInt(u32, @floor(
-                alignX * @intToFloat(f32, peer.getSize(peer.userdata).width -| preferred.width)));
+            var x = @floatToInt(u32, @floor(alignX * @intToFloat(f32, peer.getSize(peer.userdata).width -| preferred.width)));
             if (widget.container_expanded or peer.computingPreferredSize) x = 0;
-            peer.moveResize(peer.userdata, widgetPeer,
-                x, @floatToInt(u32, @floor(childY)),
-                size.width, size.height);
+            peer.moveResize(peer.userdata, widgetPeer, x, @floatToInt(u32, @floor(childY)), size.width, size.height);
             childY += @intToFloat(f32, size.height);
         }
     }
@@ -69,8 +60,7 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
     //const count = @intCast(u32, widgets.len);
     const expandedCount = getExpandedCount(widgets);
 
-    var childWidth = if (expandedCount == 0) 0
-        else @intCast(u32, peer.getSize(peer.userdata).width) / expandedCount;
+    var childWidth = if (expandedCount == 0) 0 else @intCast(u32, peer.getSize(peer.userdata).width) / expandedCount;
     for (widgets) |widget| {
         if (!widget.container_expanded) {
             const available = peer.getSize(peer.userdata);
@@ -90,28 +80,20 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
             if (@floatToInt(u32, childX) >= peer.getSize(peer.userdata).width) {
                 break;
             }
-            const available = Size {
-                .width = if (widget.container_expanded) childWidth
-                    else (@intCast(u32, peer.getSize(peer.userdata).width) - @floatToInt(u32, childX)),
-                .height = @intCast(u32, peer.getSize(peer.userdata).height)
-            };
+            const available = Size{ .width = if (widget.container_expanded) childWidth else (@intCast(u32, peer.getSize(peer.userdata).width) - @floatToInt(u32, childX)), .height = @intCast(u32, peer.getSize(peer.userdata).height) };
             const preferred = widget.getPreferredSize(available);
-            const size = if (widget.container_expanded) available
-                else Size.intersect(available, preferred);
+            const size = if (widget.container_expanded) available else Size.intersect(available, preferred);
             const alignY = std.math.clamp(widget.alignY.get(), 0, 1);
-            var y = @floatToInt(u32, @floor(
-                alignY * @intToFloat(f32, peer.getSize(peer.userdata).height -| preferred.height)));
+            var y = @floatToInt(u32, @floor(alignY * @intToFloat(f32, peer.getSize(peer.userdata).height -| preferred.height)));
             if (widget.container_expanded or peer.computingPreferredSize) y = 0;
-            peer.moveResize(peer.userdata, widgetPeer,
-                @floatToInt(u32, @floor(childX)), y,
-                size.width, size.height);
+            peer.moveResize(peer.userdata, widgetPeer, @floatToInt(u32, @floor(childX)), y, size.width, size.height);
             childX += @intToFloat(f32, size.width);
         }
     }
 }
 
 pub fn MarginLayout(peer: Callbacks, widgets: []Widget) void {
-    const margin = Rectangle { .left = 5, .top = 5, .right = 5, .bottom = 5 };
+    const margin = Rectangle{ .left = 5, .top = 5, .right = 5, .bottom = 5 };
     if (widgets.len > 1) {
         std.log.scoped(.zgt).warn("Margin container has more than one widget!", .{});
         return;
@@ -120,7 +102,7 @@ pub fn MarginLayout(peer: Callbacks, widgets: []Widget) void {
     if (widgets[0].peer) |widgetPeer| {
         const available = peer.getSize(peer.userdata);
         const preferredSize = widgets[0].getPreferredSize(.{ .width = 0, .height = 0 });
-        
+
         // const size = Size {
         //     .width = std.math.max(@intCast(u32, preferredSize.width), margin.left + margin.right) - margin.left - margin.right,
         //     .height = std.math.max(@intCast(u32, preferredSize.height), margin.top + margin.bottom) - margin.top - margin.bottom
@@ -139,8 +121,7 @@ pub fn StackLayout(peer: Callbacks, widgets: []Widget) void {
     const size = peer.getSize(peer.userdata);
     for (widgets) |widget| {
         if (widget.peer) |widgetPeer| {
-            const widgetSize = if (peer.computingPreferredSize) widget.getPreferredSize(peer.availableSize.?)
-                else size;
+            const widgetSize = if (peer.computingPreferredSize) widget.getPreferredSize(peer.availableSize.?) else size;
             peer.moveResize(peer.userdata, widgetPeer, 0, 0, widgetSize.width, widgetSize.height);
         }
     }
@@ -161,12 +142,7 @@ pub const Container_Impl = struct {
     widget: ?*Widget = null,
 
     pub fn init(childrens: std.ArrayList(Widget), config: GridConfig, layout: Layout) !Container_Impl {
-        var column = Container_Impl.init_events(Container_Impl {
-            .peer = null,
-            .childrens = childrens,
-            .expand = config.expand == .Fill,
-            .layout = layout
-        })
+        var column = Container_Impl.init_events(Container_Impl{ .peer = null, .childrens = childrens, .expand = config.expand == .Fill, .layout = layout })
             .setName(config.name);
         try column.addResizeHandler(onResize);
         return column;
@@ -201,14 +177,8 @@ pub const Container_Impl = struct {
     pub fn getPreferredSize(self: *Container_Impl, available: Size) Size {
         _ = available;
 
-        var size: Size = Size { .width = 0, .height = 0 };
-        const callbacks = Callbacks {
-            .userdata = @ptrToInt(&size),
-            .moveResize = fakeResMove,
-            .getSize = fakeSize,
-            .computingPreferredSize = true,
-            .availableSize = available
-        };
+        var size: Size = Size{ .width = 0, .height = 0 };
+        const callbacks = Callbacks{ .userdata = @ptrToInt(&size), .moveResize = fakeResMove, .getSize = fakeSize, .computingPreferredSize = true, .availableSize = available };
         self.layout(callbacks, self.childrens.items);
         return size;
     }
@@ -238,9 +208,9 @@ pub const Container_Impl = struct {
 
     fn fakeSize(data: usize) Size {
         _ = data;
-        return Size {
+        return Size{
             .width = std.math.maxInt(u32) / 2, // divide by 2 to leave some room
-            .height = std.math.maxInt(u32) / 2
+            .height = std.math.maxInt(u32) / 2,
         };
     }
 
@@ -253,10 +223,7 @@ pub const Container_Impl = struct {
 
     fn getSize(data: usize) Size {
         const peer = @intToPtr(*backend.Container, data);
-        return Size {
-            .width = @intCast(u32, peer.getWidth()),
-            .height = @intCast(u32, peer.getHeight())
-        };
+        return Size{ .width = @intCast(u32, peer.getWidth()), .height = @intCast(u32, peer.getHeight()) };
     }
 
     fn moveResize(data: usize, widget: backend.PeerType, x: u32, y: u32, w: u32, h: u32) void {
@@ -268,12 +235,7 @@ pub const Container_Impl = struct {
         if (self.relayouting.load(.Acquire) == true) return;
         if (self.peer) |peer| {
             self.relayouting.store(true, .Release);
-            const callbacks = Callbacks {
-                .userdata = @ptrToInt(&peer),
-                .moveResize = moveResize,
-                .getSize = getSize,
-                .computingPreferredSize = false
-            };
+            const callbacks = Callbacks{ .userdata = @ptrToInt(&peer), .moveResize = moveResize, .getSize = getSize, .computingPreferredSize = false };
             self.layout(callbacks, self.childrens.items);
             self.relayouting.store(false, .Release);
         }
@@ -312,7 +274,7 @@ pub const Container_Impl = struct {
 fn isErrorUnion(comptime T: type) bool {
     return switch (@typeInfo(T)) {
         .ErrorUnion => true,
-        else => false
+        else => false,
     };
 }
 
@@ -321,12 +283,12 @@ fn abstractContainerConstructor(comptime T: type, childrens: anytype, config: an
     var list = std.ArrayList(Widget).init(lasting_allocator);
     inline for (fields) |field| {
         const element = @field(childrens, field.name);
-        const child = 
+        const child =
             if (comptime isErrorUnion(@TypeOf(element))) // if it is an error union, unwrap it
-                try element
-            else
-                element;
-        
+            try element
+        else
+            element;
+
         const ComponentType = @import("internal.zig").DereferencedType(@TypeOf(child));
         const widget = try @import("internal.zig").genericWidgetFrom(child);
         if (ComponentType != Widget) {
@@ -346,7 +308,7 @@ fn abstractContainerConstructor(comptime T: type, childrens: anytype, config: an
     }
 
     return try T.init(list, config, layout);
-} 
+}
 
 const Expand = enum {
     /// The grid should take the minimal size that its childrens want
@@ -361,28 +323,27 @@ const GridConfig = struct {
 };
 
 /// Set the style of the child to expanded by creating and showing the widget early.
-pub fn Expanded(child: anytype) callconv(.Inline) anyerror!Widget {
-    var widget = try @import("internal.zig").genericWidgetFrom(
-        if (comptime isErrorUnion(@TypeOf(child)))
-            try child
-        else
-            child);
+pub inline fn Expanded(child: anytype) anyerror!Widget {
+    var widget = try @import("internal.zig").genericWidgetFrom(if (comptime isErrorUnion(@TypeOf(child)))
+        try child
+    else
+        child);
     widget.container_expanded = true;
     return widget;
 }
 
-pub fn Stack(childrens: anytype) callconv(.Inline) anyerror!Container_Impl {
+pub inline fn Stack(childrens: anytype) anyerror!Container_Impl {
     return try abstractContainerConstructor(Container_Impl, childrens, .{}, StackLayout);
 }
 
-pub fn Row(config: GridConfig, childrens: anytype) callconv(.Inline) anyerror!Container_Impl {
+pub inline fn Row(config: GridConfig, childrens: anytype) anyerror!Container_Impl {
     return try abstractContainerConstructor(Container_Impl, childrens, config, RowLayout);
 }
 
-pub fn Column(config: GridConfig, childrens: anytype) callconv(.Inline) anyerror!Container_Impl {
+pub inline fn Column(config: GridConfig, childrens: anytype) anyerror!Container_Impl {
     return try abstractContainerConstructor(Container_Impl, childrens, config, ColumnLayout);
 }
 
-pub fn Margin(child: anytype) callconv(.Inline) anyerror!Container_Impl {
-    return try abstractContainerConstructor(Container_Impl, .{ child }, GridConfig { }, MarginLayout);
+pub inline fn Margin(child: anytype) anyerror!Container_Impl {
+    return try abstractContainerConstructor(Container_Impl, .{child}, GridConfig{}, MarginLayout);
 }

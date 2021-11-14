@@ -4,23 +4,19 @@ const std = @import("std");
 const backend = @import("backend.zig");
 const style = @import("style.zig");
 const Widget = @import("widget.zig").Widget;
-const Class  = @import("widget.zig").Class;
+const Class = @import("widget.zig").Class;
 const Size = @import("data.zig").Size;
 const DataWrapper = @import("data.zig").DataWrapper;
 
 /// Allocator used for small, short-lived and repetitive allocations.
 /// You can change this by setting the `zgtScratchAllocator` field in your main file
 /// or by setting the `zgtAllocator` field which will also apply as lasting allocator.
-pub const scratch_allocator = if (@hasDecl(root, "zgtScratchAllocator")) root.zgtScratchAllocator
-    else if (@hasDecl(root, "zgtAllocator")) root.zgtAllocator
-    else std.heap.page_allocator;
+pub const scratch_allocator = if (@hasDecl(root, "zgtScratchAllocator")) root.zgtScratchAllocator else if (@hasDecl(root, "zgtAllocator")) root.zgtAllocator else std.heap.page_allocator;
 
 /// Allocator used for bigger, longer-lived but rare allocations (example: widgets).
 /// You can change this by setting the `zgtLastingAllocator` field in your main file
 /// or by setting the `zgtAllocator` field which will also apply as scratch allocator.
-pub const lasting_allocator = if (@hasDecl(root, "zgtLastingAllocator")) root.zgtScratchAllocator
-    else if (@hasDecl(root, "zgtAllocator")) root.zgtAllocator
-    else std.heap.page_allocator;
+pub const lasting_allocator = if (@hasDecl(root, "zgtLastingAllocator")) root.zgtScratchAllocator else if (@hasDecl(root, "zgtAllocator")) root.zgtAllocator else std.heap.page_allocator;
 
 pub fn All(comptime T: type) type {
     return struct {
@@ -38,8 +34,8 @@ pub fn All(comptime T: type) type {
 
 pub fn Widgeting(comptime T: type) type {
     return struct {
-
-        pub const WidgetClass = Class {
+        // zig fmt: off
+        pub const WidgetClass = Class{
             .showFn = showWidget,
             .deinitFn = deinitWidget,
             .preferredSizeFn = getPreferredSizeWidget
@@ -51,6 +47,7 @@ pub fn Widgeting(comptime T: type) type {
             alignY: DataWrapper(f32) = DataWrapper(f32).of(0.5),
             name: ?[]const u8 = null
         };
+        // zig fmt: on
 
         /// When alignX or alignY is changed, this will trigger a parent relayout
         fn alignChanged(new: f32, userdata: usize) void {
@@ -79,8 +76,8 @@ pub fn Widgeting(comptime T: type) type {
 
         pub fn deinitWidget(widget: *Widget) void {
             const component = @intToPtr(*T, widget.data);
-            std.log.info("deinit {s}", .{ @typeName(T) });
-            std.log.info("a {}", .{ component });
+            std.log.info("deinit {s}", .{@typeName(T)});
+            std.log.info("a {}", .{component});
 
             if (component.peer) |peer| peer.deinit();
             if (@hasDecl(T, "deinit")) {
@@ -179,16 +176,14 @@ pub fn Widgeting(comptime T: type) type {
             self.dataWrappers.alignY.set(other.get());
             return self.*;
         }
-
     };
 }
 
 pub fn DereferencedType(comptime T: type) type {
-    return
-        if (comptime std.meta.trait.isSingleItemPtr(T))
-            std.meta.Child(T)
-        else
-            T;
+    return if (comptime std.meta.trait.isSingleItemPtr(T))
+        std.meta.Child(T)
+    else
+        T;
 }
 
 /// Create a generic Widget struct from the given component.
@@ -201,13 +196,13 @@ pub fn genericWidgetFrom(component: anytype) anyerror!Widget {
         copy.* = component;
         break :blk copy;
     };
-    
+
     // used to update things like data wrappers, this happens once, at initialization,
     // after that the component isn't moved in memory anymore
     cp.pointerMoved();
 
     const Dereferenced = DereferencedType(ComponentType);
-    return Widget {
+    return Widget{
         .data = @ptrToInt(cp),
         .class = &Dereferenced.WidgetClass,
         .name = &cp.dataWrappers.name,
@@ -218,30 +213,28 @@ pub fn genericWidgetFrom(component: anytype) anyerror!Widget {
 }
 
 // pub fn Property(comptime T: type, comptime name: []const u8) type {
-     // Depends on #6709
+// Depends on #6709
 //     return struct {
 
 //     };
 // }
 
 // Events
-pub const RedrawError = error {
-    MissingPeer
-};
+pub const RedrawError = error{MissingPeer};
 
 pub fn Events(comptime T: type) type {
     return struct {
-        pub const Callback       = fn(widget: *T) anyerror!void;
-        pub const DrawCallback   = fn(widget: *T, ctx: backend.Canvas.DrawContext) anyerror!void;
-        pub const ButtonCallback = fn(widget: *T, button: backend.MouseButton, pressed: bool, x: u32, y: u32) anyerror!void;
-        pub const ScrollCallback = fn(widget: *T, dx: f32, dy: f32) anyerror!void;
-        pub const ResizeCallback = fn(widget: *T, size: Size) anyerror!void;
-        pub const KeyTypeCallback= fn(widget: *T, key: []const u8) anyerror!void;
-        const HandlerList        = std.ArrayList(Callback);
-        const DrawHandlerList    = std.ArrayList(DrawCallback);
-        const ButtonHandlerList  = std.ArrayList(ButtonCallback);
-        const ScrollHandlerList  = std.ArrayList(ScrollCallback);
-        const ResizeHandlerList  = std.ArrayList(ResizeCallback);
+        pub const Callback = fn (widget: *T) anyerror!void;
+        pub const DrawCallback = fn (widget: *T, ctx: backend.Canvas.DrawContext) anyerror!void;
+        pub const ButtonCallback = fn (widget: *T, button: backend.MouseButton, pressed: bool, x: u32, y: u32) anyerror!void;
+        pub const ScrollCallback = fn (widget: *T, dx: f32, dy: f32) anyerror!void;
+        pub const ResizeCallback = fn (widget: *T, size: Size) anyerror!void;
+        pub const KeyTypeCallback = fn (widget: *T, key: []const u8) anyerror!void;
+        const HandlerList = std.ArrayList(Callback);
+        const DrawHandlerList = std.ArrayList(DrawCallback);
+        const ButtonHandlerList = std.ArrayList(ButtonCallback);
+        const ScrollHandlerList = std.ArrayList(ScrollCallback);
+        const ResizeHandlerList = std.ArrayList(ResizeCallback);
         const KeyTypeHandlerList = std.ArrayList(KeyTypeCallback);
 
         pub const Handlers = struct {
@@ -256,6 +249,7 @@ pub fn Events(comptime T: type) type {
 
         pub fn init_events(self: T) T {
             var obj = self;
+            // zig fmt: off
             obj.handlers = .{
                 .clickHandlers = HandlerList.init(lasting_allocator),
                 .drawHandlers = DrawHandlerList.init(lasting_allocator),
@@ -264,6 +258,7 @@ pub fn Events(comptime T: type) type {
                 .resizeHandlers = ResizeHandlerList.init(lasting_allocator),
                 .keyTypeHandlers = KeyTypeHandlerList.init(lasting_allocator)
             };
+            // zig fmt: on
             return obj;
         }
 
@@ -282,7 +277,7 @@ pub fn Events(comptime T: type) type {
                         var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
                         defer arena.deinit();
                         std.debug.writeStackTrace(trace.*, writer, &arena.allocator, debug_info, .no_color) catch {};
-                    } else |_| { }
+                    } else |_| {}
                 }
             }
             writer.print("Please check the log.", .{}) catch {};
@@ -326,7 +321,7 @@ pub fn Events(comptime T: type) type {
 
         fn resizeHandler(width: u32, height: u32, data: usize) void {
             const self = @intToPtr(*T, data);
-            const size = Size { .width = width, .height = height };
+            const size = Size{ .width = width, .height = height };
             for (self.handlers.resizeHandlers.items) |func| {
                 func(self, size) catch |err| errorHandler(err);
             }
@@ -342,17 +337,14 @@ pub fn Events(comptime T: type) type {
 
         pub fn show_events(self: *T) !void {
             self.peer.?.setUserData(self);
-            try self.peer.?.setCallback(.Click      , clickHandler);
-            try self.peer.?.setCallback(.Draw       , drawHandler);
+            try self.peer.?.setCallback(.Click, clickHandler);
+            try self.peer.?.setCallback(.Draw, drawHandler);
             try self.peer.?.setCallback(.MouseButton, buttonHandler);
-            try self.peer.?.setCallback(.Scroll     , scrollHandler);
-            try self.peer.?.setCallback(.Resize     , resizeHandler);
-            try self.peer.?.setCallback(.KeyType    , keyTypeHandler);
+            try self.peer.?.setCallback(.Scroll, scrollHandler);
+            try self.peer.?.setCallback(.Resize, resizeHandler);
+            try self.peer.?.setCallback(.KeyType, keyTypeHandler);
 
-            _ = try self.dataWrappers.opacity.addChangeListener(.{
-                .function = opacityChanged,
-                .userdata = @ptrToInt(self)
-            });
+            _ = try self.dataWrappers.opacity.addChangeListener(.{ .function = opacityChanged, .userdata = @ptrToInt(self) });
             opacityChanged(self.dataWrappers.opacity.get(), @ptrToInt(self)); // call it so it's updated
         }
 

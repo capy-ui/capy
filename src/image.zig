@@ -11,15 +11,10 @@ pub const ImageData = struct {
     height: usize,
     /// Value pointing to the image data
     peer: backend.ImageData,
-    
+
     pub fn fromBytes(width: usize, height: usize, stride: usize, cs: Colorspace, bytes: []const u8) !ImageData {
         std.debug.assert(bytes.len >= stride * height);
-        return ImageData {
-            .width = width,
-            .height = height,
-            .stride = stride,
-            .peer = try backend.ImageData.from(width, height, stride, cs, bytes)
-        };
+        return ImageData{ .width = width, .height = height, .stride = stride, .peer = try backend.ImageData.from(width, height, stride, cs, bytes) };
     }
 
     pub fn fromFile(allocator: *std.mem.Allocator, path: []const u8) !ImageData {
@@ -40,18 +35,11 @@ pub const Image_Impl = struct {
     data: ImageData,
 
     pub fn init() Image_Impl {
-        return initWithData(.{
-            .width = 0,
-            .height = 0,
-            .stride = 0,
-            .peer = 0
-        });
+        return initWithData(.{ .width = 0, .height = 0, .stride = 0, .peer = 0 });
     }
 
     pub fn initWithData(data: ImageData) Image_Impl {
-        return Image_Impl.init_events(Image_Impl {
-            .data = data
-        });
+        return Image_Impl.init_events(Image_Impl{ .data = data });
     }
 
     pub fn show(self: *Image_Impl) !void {
@@ -64,17 +52,11 @@ pub const Image_Impl = struct {
 
     pub fn getPreferredSize(self: *Image_Impl, available: Size) Size {
         _ = available;
-        return Size {
-            .width = @intCast(u32, self.data.width),
-            .height = @intCast(u32, self.data.height)
-        };
+        return Size{ .width = @intCast(u32, self.data.width), .height = @intCast(u32, self.data.height) };
     }
-
 };
 
-pub fn Image(config: struct {
-    data: ImageData
-}) Image_Impl {
+pub fn Image(config: struct { data: ImageData }) Image_Impl {
     var image = Image_Impl.initWithData(config.data);
     return image;
 }

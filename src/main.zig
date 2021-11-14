@@ -11,7 +11,7 @@ pub usingnamespace @import("image.zig");
 pub usingnamespace @import("color.zig");
 
 pub const internal = @import("internal.zig");
-pub const backend  = @import("backend.zig");
+pub const backend = @import("backend.zig");
 
 pub const cross_platform = if (@hasDecl(backend, "backendExport"))
     backend.backendExport
@@ -22,20 +22,9 @@ pub const GlBackend = @import("backends/gles/backend.zig");
 
 pub const MouseButton = backend.MouseButton;
 
-pub const BackendEventType = enum {
-    Click,
-    Draw,
-    MouseButton,
-    Scroll,
-    TextChanged,
-    Resize,
-    KeyType
-};
+pub const BackendEventType = enum { Click, Draw, MouseButton, Scroll, TextChanged, Resize, KeyType };
 
-pub const EventLoopStep = enum {
-    Blocking,
-    Asynchronous
-};
+pub const EventLoopStep = enum { Blocking, Asynchronous };
 
 /// Posts an empty event to finish the current step started in zgt.stepEventLoop
 pub fn wakeEventLoop() void {
@@ -53,7 +42,7 @@ pub fn runEventLoop() void {
             if (!backend.runStep(.Asynchronous)) {
                 break;
             }
-            
+
             if (@import("std").event.Loop.instance) |*loop| {
                 loop.yield();
             }
