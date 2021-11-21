@@ -1,5 +1,10 @@
 pub const ElementId = usize;
 pub const CanvasContextId = usize;
+pub const EventId = usize;
+
+pub const EventType = enum(usize) {
+    Resize = 0
+};
 
 pub extern fn jsPrint(msg: [*]const u8, len: usize) void;
 pub extern fn jsCreateElement(name: [*]const u8, nameLen: usize) ElementId;
@@ -11,6 +16,9 @@ pub extern fn setSize(element: ElementId, w: usize, h: usize) void;
 pub extern fn getWidth(element: ElementId) c_int;
 pub extern fn getHeight(element: ElementId) c_int;
 pub extern fn now() f64;
+pub extern fn hasEvent() bool;
+pub extern fn popEvent() EventId;
+pub extern fn getEventType(event: EventId) EventType;
 
 // Canvas related
 pub extern fn openContext(element: ElementId) CanvasContextId;

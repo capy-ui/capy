@@ -22,6 +22,8 @@
 			let obj = null;
 			let domObjects = [];
 			let canvasContexts = [];
+			let pendingEvents = [];
+			let events = [];
 
 			function readString(addr, len) {
 				let string = "";
@@ -60,9 +62,12 @@
 						}
 					},
 					setPos: function(element, x, y) {
-						domObjects[element].style.left = x + "px";
-						domObjects[element].style.top  = y + "px";
-						domObjects[element].style.position = "absolute";
+						//domObjects[element].style.left = x + "px";
+						//domObjects[element].style.top  = y + "px";
+						domObjects[element].style.transform = "translate(" + x + "px, " + y + "px)";
+						if (domObjects[element].style.position !== "absolute") {
+							domObjects[element].style.position = "absolute";
+						}
 					},
 					setSize: function(element, w, h) {
 						domObjects[element].style.width  = w + "px";
@@ -76,6 +81,19 @@
 					},
 					now: function() {
 						return Date.now();
+					},
+					hasEvent: function() {
+						return pendingEvents.length > 0;
+					},
+					popEvent: function() {
+						if (pendingEvents.length > 0) {
+							return pendingEvents.shift();
+						} else {
+							console.error("Popping event even though none is available!");
+						}
+					},
+					getEventType: function(event) {
+						return events[event].type;
 					},
 
 					// Canvas
@@ -117,9 +135,15 @@
 				obj.instance.exports._start();
 
 				// TODO: when we're in blocking mode, avoid updating so often
-				setInterval(function() {
+				function update() {
 					obj.instance.exports._zgtContinue();
-				}, 20);
+				}
+				setInterval(update, 32);
+
+				window.onresize = function() {
+					const event = events.push({ type: 0 });
+					pendingEvents.push(event - 1);
+				};
 			})();
 		</script>
 	</body>

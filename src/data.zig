@@ -3,6 +3,10 @@ const Container_Impl = @import("containers.zig").Container_Impl;
 const lasting_allocator = @import("internal.zig").lasting_allocator;
 const milliTimestamp = @import("internal.zig").milliTimestamp;
 
+fn lerp(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
+    return a * (1 - t) + b * t;
+}
+
 pub const Easings = struct {
     pub fn Linear(t: f64) f64 {
         return t;
@@ -17,7 +21,7 @@ pub const Easings = struct {
     }
 
     pub fn InOut(t: f64) f64 {
-        return In(t) * (1 - t) + Out(t) * t;
+        return lerp(In(t), Out(t), t);
     }
 };
 
@@ -57,7 +61,7 @@ pub fn Animation(comptime T: type) type {
             };
 
             // Do a linear interpolation
-            const result = max * t + min * (1 - t);
+            const result = lerp(min, max, t);
             if (comptime std.meta.trait.isIntegral(T)) {
                 return @floatToInt(T, @round(result));
             } else {

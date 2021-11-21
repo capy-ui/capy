@@ -131,6 +131,12 @@ pub fn Events(comptime T: type) type {
         pub fn getHeight(self: *const T) c_int {
             return std.math.max(10, js.getHeight(self.peer.element));
         }
+
+        pub fn deinit(self: *const T) void {
+            // TODO: actually remove the element
+            _ = self;
+            @panic("TODO");
+        }
     };
 }
 
@@ -354,9 +360,16 @@ pub const backendExport = struct {
 
 pub fn runStep(step: lib.EventLoopStep) callconv(.Async) bool {
     _ = step;
-    if (globalWindow) |window| {
-        if (window.child) |child| {
-            child.resizeHandler.?(0, 0, child.userdata);
+    while (js.hasEvent()) {
+        const eventId = js.popEvent();
+        switch (js.getEventType(eventId)) {
+            .Resize => {
+                if (globalWindow) |window| {
+                    if (window.child) |child| {
+                        child.resizeHandler.?(0, 0, child.userdata);
+                    }
+                }
+            }
         }
     }
     suspending = true;
