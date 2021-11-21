@@ -375,14 +375,21 @@ pub const TextField = struct {
     }
 
     pub fn setText(self: *TextField, text: []const u8) void {
+        var view = std.unicode.Utf8View.initUnchecked(text);
+        var iterator = view.iterator();
+        var numChars: c_int = 0;
+        while (iterator.nextCodepoint() != null) {
+            numChars += 1;
+        }
+
         const buffer = c.gtk_entry_get_buffer(@ptrCast(*c.GtkEntry, self.peer));
-        c.gtk_entry_buffer_set_text(buffer, text.ptr, @intCast(c_int, text.len));
+        c.gtk_entry_buffer_set_text(buffer, text.ptr, numChars);
     }
 
     pub fn getText(self: *TextField) [:0]const u8 {
         const buffer = c.gtk_entry_get_buffer(@ptrCast(*c.GtkEntry, self.peer));
         const text = c.gtk_entry_buffer_get_text(buffer);
-        const length = c.gtk_entry_buffer_get_length(buffer);
+        const length = c.gtk_entry_buffer_get_bytes(buffer);
         return text[0..length :0];
     }
 };
