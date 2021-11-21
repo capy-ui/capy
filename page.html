@@ -54,6 +54,12 @@
 								target: idx
 							});
 						});
+						elem.addEventListener("change", function(e) {
+							pushEvent({
+								type: 2,
+								target: idx
+							});
+						});
 						return idx;
 					},
 					appendElement: function(parent, child) {

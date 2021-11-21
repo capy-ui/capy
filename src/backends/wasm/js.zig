@@ -2,7 +2,7 @@ pub const ElementId = usize;
 pub const CanvasContextId = usize;
 pub const EventId = usize;
 
-pub const EventType = enum(usize) { Resize = 0, OnClick };
+pub const EventType = enum(usize) { Resize = 0, OnClick, TextChange };
 
 pub extern fn jsPrint(msg: [*]const u8, len: usize) void;
 pub extern fn jsCreateElement(name: [*]const u8, nameLen: usize) ElementId;

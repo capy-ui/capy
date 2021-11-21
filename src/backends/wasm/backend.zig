@@ -1,6 +1,6 @@
 const std = @import("std");
 const lib = @import("../../main.zig");
-pub const js = @import("js.zig");
+const js = @import("js.zig");
 const lasting_allocator = lib.internal.lasting_allocator;
 
 pub const GuiWidget = struct {
@@ -105,7 +105,7 @@ pub fn Events(comptime T: type) type {
                 .Draw => self.peer.drawHandler = cb,
                 .MouseButton => {},
                 .Scroll => {},
-                .TextChanged => {},
+                .TextChanged => self.peer.changedTextHandler = cb,
                 .Resize => {
                     self.peer.resizeHandler = cb;
                     self.requestDraw() catch {};
@@ -136,6 +136,11 @@ pub fn Events(comptime T: type) type {
                 switch (js.getEventType(event)) {
                     .OnClick => {
                         if (self.peer.clickHandler) |handler| {
+                            handler(self.peer.userdata);
+                        }
+                    },
+                    .TextChange => {
+                        if (self.peer.changedTextHandler) |handler| {
                             handler(self.peer.userdata);
                         }
                     },
@@ -182,7 +187,7 @@ pub const TextField = struct {
         // TODO: fix the obvious memory leak
         const text = lasting_allocator.allocSentinel(u8, len, 0) catch unreachable;
         js.getText(self.peer.element, text.ptr);
-        
+
         return text;
     }
 };
