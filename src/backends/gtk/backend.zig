@@ -184,6 +184,7 @@ pub fn Events(comptime T: type) type {
             _ = userdata;
             const data = getEventUserData(peer);
             _ = data;
+            _ = event;
             //std.log.info("motion: {}", .{event});
             return 0;
         }
