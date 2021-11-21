@@ -25,6 +25,11 @@
 			let pendingEvents = [];
 			let events = [];
 
+			function pushEvent(evt) {
+				const eventId = events.push(evt);
+				pendingEvents.push(eventId - 1);
+			}
+
 			function readString(addr, len) {
 				let string = "";
 				let view = new Uint8Array(obj.instance.exports.memory.buffer);
@@ -43,6 +48,13 @@
 					jsCreateElement: function(name, nameLen) {
 						const elem = document.createElement(readString(name, nameLen));
 						const idx = domObjects.push(elem) - 1;
+						elem.addEventListener("click", function(e) {
+							console.log("clicked");
+							pushEvent({
+								type: 1,
+								target: idx
+							});
+						});
 						return idx;
 					},
 					appendElement: function(parent, child) {
@@ -95,6 +107,12 @@
 					getEventType: function(event) {
 						return events[event].type;
 					},
+					getEventTarget: function(event) {
+						if (events[event].target === undefined) {
+							console.error("Tried getting the target of a global event");
+						}
+						return events[event].target;
+					},
 
 					// Canvas
 					openContext: function(element) {
@@ -141,9 +159,9 @@
 				setInterval(update, 32);
 
 				window.onresize = function() {
-					const event = events.push({ type: 0 });
-					pendingEvents.push(event - 1);
+					pushEvent({ type: 0 });
 				};
+				window.onresize(); // call resize handler atleast once, to setup layout
 			})();
 		</script>
 	</body>

@@ -90,7 +90,7 @@ const TestType = struct {
 
 test "widget basics" {
     var testWidget: TestType = .{};
-    const widget = Widget {
+    const widget = Widget{
         .data = @ptrToInt(&testWidget),
         .class = &TestType.WidgetClass,
 

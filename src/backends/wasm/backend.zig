@@ -5,6 +5,8 @@ const lasting_allocator = lib.internal.lasting_allocator;
 
 pub const GuiWidget = struct {
     userdata: usize = 0,
+    object: usize = 0,
+
     element: js.ElementId = 0,
     /// Only works for buttons
     clickHandler: ?fn (data: usize) void = null,
@@ -16,9 +18,11 @@ pub const GuiWidget = struct {
     drawHandler: ?fn (ctx: Canvas.DrawContext, data: usize) void = null,
     changedTextHandler: ?fn (data: usize) void = null,
 
-    pub fn init(allocator: *std.mem.Allocator, name: []const u8) !*GuiWidget {
+    processEventFn: fn (object: usize, event: js.EventId) void,
+
+    pub fn init(comptime T: type, allocator: *std.mem.Allocator, name: []const u8) !*GuiWidget {
         const self = try allocator.create(GuiWidget);
-        self.element = js.createElement(name);
+        self.* = .{ .processEventFn = T.processEvent, .element = js.createElement(name) };
         return self;
     }
 };
@@ -47,12 +51,11 @@ pub const Window = struct {
     child: ?PeerType = null,
 
     pub fn create() !Window {
-        // TODO
         return Window{};
     }
 
     pub fn show(self: *Window) void {
-        // TODO
+        // TODO: handle multiple windows
         if (globalWindow != null) {
             js.print("one window already showed!");
             return;
@@ -90,6 +93,7 @@ pub fn Events(comptime T: type) type {
             }
 
             self.peer.userdata = @ptrToInt(data);
+            self.peer.object = @ptrToInt(self);
         }
 
         pub inline fn setCallback(self: *T, comptime eType: EventType, cb: anytype) !void {
@@ -97,7 +101,7 @@ pub fn Events(comptime T: type) type {
             _ = self;
             //const data = getEventUserData(self.peer);
             switch (eType) {
-                .Click => {},
+                .Click => self.peer.clickHandler = cb,
                 .Draw => self.peer.drawHandler = cb,
                 .MouseButton => {},
                 .Scroll => {},
@@ -124,6 +128,26 @@ pub fn Events(comptime T: type) type {
             }
         }
 
+        pub fn processEvent(object: usize, event: js.EventId) void {
+            const self = @intToPtr(*T, object);
+
+            if (js.getEventTarget(event) == self.peer.element) {
+                // handle event
+                switch (js.getEventType(event)) {
+                    .OnClick => {
+                        if (self.peer.clickHandler) |handler| {
+                            handler(self.peer.userdata);
+                        }
+                    },
+                    .Resize => unreachable,
+                }
+            } else if (T == Container) { // if we're a container, iterate over our children to propagate the event
+                for (self.children.items) |child| {
+                    child.processEventFn(child.object, event);
+                }
+            }
+        }
+
         pub fn getWidth(self: *const T) c_int {
             return std.math.max(10, js.getWidth(self.peer.element));
         }
@@ -146,7 +170,7 @@ pub const TextField = struct {
     pub usingnamespace Events(TextField);
 
     pub fn create() !TextField {
-        return TextField{ .peer = try GuiWidget.init(lasting_allocator, "input") };
+        return TextField{ .peer = try GuiWidget.init(TextField, lasting_allocator, "input") };
     }
 
     pub fn setText(self: *TextField, text: []const u8) void {
@@ -165,7 +189,7 @@ pub const Label = struct {
     pub usingnamespace Events(Label);
 
     pub fn create() !Label {
-        return Label{ .peer = try GuiWidget.init(lasting_allocator, "span") };
+        return Label{ .peer = try GuiWidget.init(Label, lasting_allocator, "span") };
     }
 
     pub fn setAlignment(_: *Label, _: f32) void {}
@@ -185,7 +209,7 @@ pub const Button = struct {
     pub usingnamespace Events(Button);
 
     pub fn create() !Button {
-        return Button{ .peer = try GuiWidget.init(lasting_allocator, "button") };
+        return Button{ .peer = try GuiWidget.init(Button, lasting_allocator, "button") };
     }
 
     pub fn setLabel(self: *Button, label: [:0]const u8) void {
@@ -244,7 +268,7 @@ pub const Canvas = struct {
     };
 
     pub fn create() !Canvas {
-        return Canvas{ .peer = try GuiWidget.init(lasting_allocator, "canvas") };
+        return Canvas{ .peer = try GuiWidget.init(Canvas, lasting_allocator, "canvas") };
     }
 
     pub fn _requestDraw(self: *Canvas) !void {
@@ -258,15 +282,20 @@ pub const Canvas = struct {
 
 pub const Container = struct {
     peer: *GuiWidget,
+    children: std.ArrayList(*GuiWidget),
 
     pub usingnamespace Events(Container);
 
     pub fn create() !Container {
-        return Container{ .peer = try GuiWidget.init(lasting_allocator, "div") };
+        return Container{
+            .peer = try GuiWidget.init(Container, lasting_allocator, "div"),
+            .children = std.ArrayList(*GuiWidget).init(lasting_allocator),
+        };
     }
 
     pub fn add(self: *Container, peer: PeerType) void {
         js.appendElement(self.peer.element, peer.element);
+        self.children.append(peer) catch unreachable;
     }
 
     pub fn move(self: *const Container, peer: PeerType, x: u32, y: u32) void {
@@ -367,6 +396,13 @@ pub fn runStep(step: lib.EventLoopStep) callconv(.Async) bool {
                 if (globalWindow) |window| {
                     if (window.child) |child| {
                         child.resizeHandler.?(0, 0, child.userdata);
+                    }
+                }
+            },
+            .OnClick => {
+                if (globalWindow) |window| {
+                    if (window.child) |child| {
+                        child.processEventFn(child.object, eventId);
                     }
                 }
             },
