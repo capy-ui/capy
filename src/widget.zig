@@ -5,6 +5,8 @@ const data = @import("data.zig");
 const Allocator = std.mem.Allocator;
 
 pub const Class = struct {
+    typeName: []const u8,
+
     showFn: fn (widget: *Widget) anyerror!void,
     deinitFn: fn (widget: *Widget) void,
     preferredSizeFn: fn (widget: *const Widget, available: data.Size) data.Size,
@@ -45,6 +47,11 @@ pub const Widget = struct {
 
     /// Asserts widget data is of type T
     pub fn as(self: *const Widget, comptime T: type) *T {
+        if (std.debug.runtime_safety) {
+            if (!self.is(T)) {
+                std.debug.panic("tried to cast widget to " ++ @typeName(T) ++ " but type is {s}", .{self.class.typeName});
+            }
+        }
         return @intToPtr(*T, self.data);
     }
 

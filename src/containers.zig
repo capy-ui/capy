@@ -242,6 +242,8 @@ pub const Container_Impl = struct {
     }
 
     pub fn add(self: *Container_Impl, widget: anytype) !void {
+        const ComponentType = @import("internal.zig").DereferencedType(@TypeOf(widget));
+
         var genericWidget = try @import("internal.zig").genericWidgetFrom(widget);
         if (self.expand) {
             genericWidget.container_expanded = true;
@@ -253,6 +255,9 @@ pub const Container_Impl = struct {
 
         const slot = try self.childrens.addOne();
         slot.* = genericWidget;
+        if (@hasField(ComponentType, "dataWrappers")) {
+            widget.as(ComponentType).dataWrappers.widget = slot;
+        }
 
         if (self.peer) |*peer| {
             try slot.show();
@@ -304,7 +309,12 @@ fn abstractContainerConstructor(comptime T: type, childrens: anytype, config: an
                 }
             }
         }
-        try list.append(widget);
+        const slot = try list.addOne();
+        slot.* = widget;
+
+        if (ComponentType != Widget) {
+            widget.as(ComponentType).dataWrappers.widget = slot;
+        }
     }
 
     return try T.init(list, config, layout);

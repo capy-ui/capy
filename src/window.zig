@@ -35,8 +35,11 @@ pub const Window = struct {
             try wrappedContainer
         else
             wrappedContainer;
+        const ComponentType = @import("internal.zig").DereferencedType(@TypeOf(container));
 
         self.child = try @import("internal.zig").genericWidgetFrom(container);
+        self.child.?.as(ComponentType).dataWrappers.widget = &self.child.?;
+
         try self.child.?.show();
 
         self.peer.setChild(self.child.?.peer);

@@ -7,6 +7,7 @@ const Widget = @import("widget.zig").Widget;
 const Class = @import("widget.zig").Class;
 const Size = @import("data.zig").Size;
 const DataWrapper = @import("data.zig").DataWrapper;
+const Container_Impl = @import("containers.zig").Container_Impl;
 
 /// Allocator used for small, short-lived and repetitive allocations.
 /// You can change this by setting the `zgtScratchAllocator` field in your main file
@@ -36,16 +37,21 @@ pub fn Widgeting(comptime T: type) type {
     return struct {
         // zig fmt: off
         pub const WidgetClass = Class{
+            .typeName = @typeName(T),
+            
             .showFn = showWidget,
             .deinitFn = deinitWidget,
-            .preferredSizeFn = getPreferredSizeWidget
+            .preferredSizeFn = getPreferredSizeWidget,
         };
 
         pub const DataWrappers = struct {
             opacity: DataWrapper(f64) = DataWrapper(f64).of(1.0),
             alignX: DataWrapper(f32) = DataWrapper(f32).of(0.5),
             alignY: DataWrapper(f32) = DataWrapper(f32).of(0.5),
-            name: ?[]const u8 = null
+            name: ?[]const u8 = null,
+
+            /// The widget representing this component
+            widget: ?*Widget = null,
         };
         // zig fmt: on
 
@@ -78,6 +84,7 @@ pub fn Widgeting(comptime T: type) type {
             const component = @intToPtr(*T, widget.data);
             std.log.info("deinit {s}", .{@typeName(T)});
             std.log.info("a {}", .{component});
+            component.dataWrappers.widget = null;
 
             if (component.peer) |peer| peer.deinit();
             if (@hasDecl(T, "deinit")) {
@@ -176,6 +183,37 @@ pub fn Widgeting(comptime T: type) type {
             self.dataWrappers.alignY.set(other.get());
             return self.*;
         }
+
+        pub fn getWidget(self: *T) ?*Widget {
+            return self.dataWrappers.widget;
+        }
+
+        // This can return a Container_Impl as parents are always a container
+        pub fn getParent(self: *T) ?*Container_Impl {
+            if (self.dataWrappers.widget) |widget| {
+                if (widget.parent) |parent| {
+                    return parent.as(Container_Impl);
+                }
+            }
+            return null;
+        }
+
+        /// Go up the widget tree until we find the root (which is the component
+        /// put with window.set()
+        /// Returns null if the component is unparented.
+        pub fn getRoot(self: *T) ?*Container_Impl {
+            var parent = self.getParent() orelse return null;
+            while (true) {
+                const ancester = parent.getParent();
+                if (ancester) |newParent| {
+                    parent = newParent;
+                } else {
+                    break;
+                }
+            }
+
+            return parent;
+        }
     };
 }
 
@@ -190,6 +228,10 @@ pub fn DereferencedType(comptime T: type) type {
 pub fn genericWidgetFrom(component: anytype) anyerror!Widget {
     const ComponentType = @TypeOf(component);
     if (ComponentType == Widget) return component;
+
+    if (component.dataWrappers.widget != null) {
+        return error.ComponentAlreadyHasWidget;
+    }
 
     var cp = if (comptime std.meta.trait.isSingleItemPtr(ComponentType)) component else blk: {
         var copy = try lasting_allocator.create(ComponentType);

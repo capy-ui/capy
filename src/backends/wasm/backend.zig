@@ -369,7 +369,7 @@ pub fn runStep(step: lib.EventLoopStep) callconv(.Async) bool {
                         child.resizeHandler.?(0, 0, child.userdata);
                     }
                 }
-            }
+            },
         }
     }
     suspending = true;
