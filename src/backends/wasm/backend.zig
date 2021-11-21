@@ -1,6 +1,6 @@
 const std = @import("std");
 const lib = @import("../../main.zig");
-const js = @import("js.zig");
+pub const js = @import("js.zig");
 const lasting_allocator = lib.internal.lasting_allocator;
 
 pub const GuiWidget = struct {
@@ -178,8 +178,12 @@ pub const TextField = struct {
     }
 
     pub fn getText(self: *TextField) [:0]const u8 {
-        _ = self;
-        return "";
+        const len = js.getTextLen(self.peer.element);
+        // TODO: fix the obvious memory leak
+        const text = lasting_allocator.allocSentinel(u8, len, 0) catch unreachable;
+        js.getText(self.peer.element, text.ptr);
+        
+        return text;
     }
 };
 
@@ -399,7 +403,7 @@ pub fn runStep(step: lib.EventLoopStep) callconv(.Async) bool {
                     }
                 }
             },
-            .OnClick => {
+            else => {
                 if (globalWindow) |window| {
                     if (window.child) |child| {
                         child.processEventFn(child.object, eventId);

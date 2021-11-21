@@ -7,5 +7,3 @@ dependencies:
       only_os: linux
     - src: system_lib c
       only_os: linux
-    - src: system_lib comctl32
-      only_os: windows

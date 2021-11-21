@@ -49,7 +49,6 @@
 						const elem = document.createElement(readString(name, nameLen));
 						const idx = domObjects.push(elem) - 1;
 						elem.addEventListener("click", function(e) {
-							console.log("clicked");
 							pushEvent({
 								type: 1,
 								target: idx
@@ -71,6 +70,25 @@
 							elem.value = readString(textPtr, textLen);
 						} else {
 							elem.innerText = readString(textPtr, textLen);
+						}
+					},
+					getTextLen: function(element) {
+						const elem = domObjects[element];
+						if (elem.nodeName === "INPUT") {
+							return elem.value.length;
+						} else {
+							return elem.innerText.length;
+						}
+					},
+					getText: function(elemnt, textPtr) {
+						const elem = domObjects[element];
+						let text = "";
+						if (elem.nodeName === "INPUT") text = elem.value;
+						else text = elem.innerText;
+
+						let view = new Uint8Array(obj.instance.exports.memory.buffer);
+						for (let i = 0; i < text.length; i++) {
+							view[textPtr + i] = text.codePointAt(i);
 						}
 					},
 					setPos: function(element, x, y) {

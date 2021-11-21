@@ -9,6 +9,8 @@ pub extern fn jsCreateElement(name: [*]const u8, nameLen: usize) ElementId;
 pub extern fn appendElement(parent: ElementId, child: ElementId) void;
 pub extern fn setRoot(root: ElementId) void;
 pub extern fn setText(element: ElementId, textPtr: [*]const u8, textLen: usize) void;
+pub extern fn getTextLen(element: ElementId) usize;
+pub extern fn getText(element: ElementId, textPtr: [*]const u8) void;
 pub extern fn setPos(element: ElementId, x: usize, y: usize) void;
 pub extern fn setSize(element: ElementId, w: usize, h: usize) void;
 pub extern fn getWidth(element: ElementId) c_int;
