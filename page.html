@@ -31,14 +31,10 @@
 			}
 
 			function readString(addr, len) {
-				let string = "";
+				let utf8Decoder = new TextDecoder();
 				let view = new Uint8Array(obj.instance.exports.memory.buffer);
-				for (let i = 0; i < len; i++) {
-					string = string + String.fromCodePoint(view[addr]);
-					addr += 1;
-				}
 				
-				return string;
+				return utf8Decoder.decode(view.slice(addr, addr + len));
 			}
 			const importObj = {
 				env: {
@@ -80,20 +76,23 @@
 					},
 					getTextLen: function(element) {
 						const elem = domObjects[element];
-						if (elem.nodeName === "INPUT") {
-							return elem.value.length;
-						} else {
-							return elem.innerText.length;
-						}
+						let text = "";
+						if (elem.nodeName === "INPUT") text = elem.value;
+						else text = elem.innerText;
+						const length = new TextEncoder().encode(text).length;
+						console.log(elem.value.length + " <= " + length);
+						return length;
 					},
-					getText: function(elemnt, textPtr) {
+					getText: function(element, textPtr) {
 						const elem = domObjects[element];
 						let text = "";
 						if (elem.nodeName === "INPUT") text = elem.value;
 						else text = elem.innerText;
 
+						const length = new TextEncoder().encode(text).length;
+
 						let view = new Uint8Array(obj.instance.exports.memory.buffer);
-						for (let i = 0; i < text.length; i++) {
+						for (let i = 0; i < length; i++) {
 							view[textPtr + i] = text.codePointAt(i);
 						}
 					},
