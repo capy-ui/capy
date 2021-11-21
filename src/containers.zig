@@ -168,9 +168,7 @@ pub const Container_Impl = struct {
             }
 
             if (widget.cast(Container_Impl)) |container| {
-                if (widget.cast(Container_Impl)) |container| {
-                    return container.get(name) orelse continue;
-                }
+                return container.get(name) orelse continue;
             }
         }
         return null;
