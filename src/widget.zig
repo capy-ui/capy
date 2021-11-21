@@ -73,3 +73,38 @@ pub const Widget = struct {
         self.class.deinitFn(self);
     }
 };
+
+const expect = std.testing.expect;
+const expectEqual = std.testing.expectEqual;
+
+const TestType = struct {
+    randomData: u16 = 0x1234,
+
+    pub const WidgetClass = Class{
+        .typeName = "TestType",
+        .showFn = undefined,
+        .deinitFn = undefined,
+        .preferredSizeFn = undefined,
+    };
+};
+
+test "widget basics" {
+    var testWidget: TestType = .{};
+    const widget = Widget {
+        .data = @ptrToInt(&testWidget),
+        .class = &TestType.WidgetClass,
+
+        .name = undefined,
+        .alignX = undefined,
+        .alignY = undefined,
+    };
+
+    try expect(widget.is(TestType));
+
+    const cast = widget.cast(TestType);
+    try expect(cast != null);
+    if (cast) |value| {
+        try expectEqual(&testWidget, value);
+        try expectEqual(@as(u16, 0x1234), value.randomData);
+    }
+}

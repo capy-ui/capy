@@ -43,3 +43,33 @@ pub const Color = packed struct {
         std.mem.bytesAsSlice(Color, dest).* = self;
     }
 };
+
+const expectEqual = std.testing.expectEqual;
+
+test "color parse" {
+    const color = try Color.fromString("#2d4a3b");
+    try expectEqual(@as(u8, 0x2d), color.red);
+    try expectEqual(@as(u8, 0x4a), color.green);
+    try expectEqual(@as(u8, 0x3b), color.blue);
+    try expectEqual(@as(u8, 0xff), color.alpha);
+
+    const color2 = try Color.fromString("#a13d4c89");
+    try expectEqual(@as(u8, 0xa1), color2.red);
+    try expectEqual(@as(u8, 0x3d), color2.green);
+    try expectEqual(@as(u8, 0x4c), color2.blue);
+    try expectEqual(@as(u8, 0x89), color2.alpha);
+}
+
+test "comptime color parse" {
+    const color = Color.comptimeFromString("#3b2d4a");
+    try expectEqual(@as(u8, 0x3b), color.red);
+    try expectEqual(@as(u8, 0x2d), color.green);
+    try expectEqual(@as(u8, 0x4a), color.blue);
+    try expectEqual(@as(u8, 0xff), color.alpha);
+
+    const color2 = Color.comptimeFromString("#98a3cdef");
+    try expectEqual(@as(u8, 0x98), color2.red);
+    try expectEqual(@as(u8, 0xa3), color2.green);
+    try expectEqual(@as(u8, 0xcd), color2.blue);
+    try expectEqual(@as(u8, 0xef), color2.alpha);
+}

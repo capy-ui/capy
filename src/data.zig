@@ -4,7 +4,7 @@ const lasting_allocator = @import("internal.zig").lasting_allocator;
 const milliTimestamp = @import("internal.zig").milliTimestamp;
 
 fn lerp(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
-    return a * (1 - t) + b * t;
+    return a * (1 - @floatCast(@TypeOf(a), t)) + b * @floatCast(@TypeOf(a), t);
 }
 
 pub const Easings = struct {
@@ -333,3 +333,26 @@ pub const Size = struct {
 };
 
 pub const Rectangle = struct { left: u32, top: u32, right: u32, bottom: u32 };
+
+const expectEqual = std.testing.expectEqual;
+
+test "lerp" {
+    const floatTypes = .{ f16, f32, f64, f128 };
+
+    inline for (floatTypes) |Float| {
+        try expectEqual(@as(Float, 0.0), lerp(@as(Float, 0), 1.0, 0.0)); // 0 |-0.0 > 1.0 = 0.0
+        try expectEqual(@as(Float, 0.1), lerp(@as(Float, 0), 0.2, 0.5)); // 0 |-0.5 > 0.2 = 0.1
+        try expectEqual(@as(Float, 0.5), lerp(@as(Float, 0), 1.0, 0.5)); // 0 |-0.5 > 1.0 = 0.5
+        try expectEqual(@as(Float, 1.0), lerp(@as(Float, 0), 1.0, 1.0)); // 0 |-1.0 > 1.0 = 1.0
+    }
+}
+
+test "data wrappers" {
+    var testData = DataWrapper(i32).of(0);
+    testData.set(5);
+    try expectEqual(@as(i32, 5), testData.get());
+}
+
+test "data wrapper change listeners" {
+    // TODO
+}

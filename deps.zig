@@ -1,59 +1,68 @@
 const std = @import("std");
-const build = std.build;
+const Pkg = std.build.Pkg;
+const string = []const u8;
 
 pub const cache = ".zigmod/deps";
 
-pub fn addAllTo(exe: *build.LibExeObjStep) void {
+pub fn addAllTo(exe: *std.build.LibExeObjStep) void {
     @setEvalBranchQuota(1_000_000);
     for (packages) |pkg| {
-        exe.addPackage(pkg);
+        exe.addPackage(pkg.pkg.?);
     }
-    if (c_include_dirs.len > 0 or c_source_files.len > 0) {
-        exe.linkLibC();
-    }
-    for (c_include_dirs) |dir| {
-        exe.addIncludeDir(dir);
-    }
-    inline for (c_source_files) |fpath| {
-        exe.addCSourceFile(fpath[1], @field(c_source_flags, fpath[0]));
-    }
-    for (system_libs) |lib| {
-        exe.linkSystemLibrary(lib);
+    inline for (std.meta.declarations(package_data)) |decl| {
+        const pkg = @as(Package, @field(package_data, decl.name));
+        var llc = false;
+        inline for (pkg.system_libs) |item| {
+            exe.linkSystemLibrary(item);
+            llc = true;
+        }
+        inline for (pkg.c_include_dirs) |item| {
+            exe.addIncludeDir(@field(dirs, decl.name) ++ "/" ++ item);
+            llc = true;
+        }
+        inline for (pkg.c_source_files) |item| {
+            exe.addCSourceFile(@field(dirs, decl.name) ++ "/" ++ item, pkg.c_source_flags);
+            llc = true;
+        }
+        if (llc) {
+            exe.linkLibC();
+        }
     }
 }
 
-fn get_flags(comptime index: usize) []const u8 {
-    return @field(c_source_flags, _paths[index]);
-}
-
-pub const _ids = .{
-    "deeztnhr07fkixemzrksabk1elbzfz1clpervtjjcgxntyop",
+pub const Package = struct {
+    directory: string,
+    pkg: ?Pkg = null,
+    c_include_dirs: []const string = &.{},
+    c_source_files: []const string = &.{},
+    c_source_flags: []const string = &.{},
+    system_libs: []const string = &.{},
 };
 
-pub const _paths = .{
-    "",
+const dirs = struct {
+    pub const _root = "";
+    pub const _deeztnhr07fk = cache ++ "/../..";
 };
 
 pub const package_data = struct {
+    pub const _deeztnhr07fk = Package{
+        .directory = dirs._deeztnhr07fk,
+        .pkg = Pkg{ .name = "zgt", .path = .{ .path = dirs._deeztnhr07fk ++ "/src/main.zig" }, .dependencies = null },
+        .system_libs = &.{ "gtk+-3.0", "c", "comctl32" },
+    };
+    pub const _root = Package{
+        .directory = dirs._root,
+    };
 };
 
-pub const packages = &[_]build.Pkg{
+pub const packages = &[_]Package{
+    package_data._deeztnhr07fk,
 };
 
 pub const pkgs = struct {
+    pub const zgt = package_data._deeztnhr07fk;
 };
 
-pub const c_include_dirs = &[_][]const u8{
+pub const imports = struct {
+    pub const zgt = @import(".zigmod/deps/../../src/main.zig");
 };
-
-pub const c_source_flags = struct {
-};
-
-pub const c_source_files = &[_][2][]const u8{
-};
-
-pub const system_libs = &[_][]const u8{
-    "gtk+-3.0",
-    "c",
-};
-
