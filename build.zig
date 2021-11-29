@@ -47,15 +47,13 @@ pub fn build(b: *std.build.Builder) !void {
     const target = b.standardTargetOptions(.{});
     const mode = b.standardReleaseOptions();
 
-    const examplePath = "examples/7gui/counter.zig";
+    const examplePath = "examples/editor.zig";
     if (target.toTarget().isWasm()) {
         const obj = b.addSharedLibrary("example", examplePath, .unversioned);
         obj.setTarget(target);
         obj.setBuildMode(mode);
         try install(obj, ".");
         obj.install();
-
-
     } else {
         const exe = b.addExecutable("example", examplePath);
         exe.setTarget(target);
@@ -72,4 +70,11 @@ pub fn build(b: *std.build.Builder) !void {
         const run_step = b.step("run", "Run the example");
         run_step.dependOn(&run_cmd.step);
     }
+
+    const tests = b.addTest("src/main.zig");
+    tests.setBuildMode(mode);
+    try install(tests, ".");
+
+    const test_step = b.step("test", "Run unit tests");
+    test_step.dependOn(&tests.step);
 }
