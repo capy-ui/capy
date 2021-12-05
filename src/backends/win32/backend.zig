@@ -124,12 +124,13 @@ pub const Window = struct {
         return Window{ .hwnd = hwnd };
     }
 
-    pub fn setChild(self: *Window, hwnd: anytype) void {
-        _ = win32.SetParent(hwnd, self.hwnd);
-        const style = win32.GetWindowLongPtr(hwnd, win32.GWL_STYLE);
-        win32.SetWindowLongPtr(hwnd, win32.GWL_STYLE, style | win32.WS_CHILD);
-        _ = win32.showWindow(hwnd, win32.SW_SHOWDEFAULT);
-        _ = win32.UpdateWindow(hwnd);
+    pub fn setChild(self: *Window, hwnd: ?HWND) void {
+        // TODO: if null, remove child
+        _ = win32.SetParent(hwnd.?, self.hwnd);
+        const style = win32.GetWindowLongPtr(hwnd.?, win32.GWL_STYLE);
+        win32.SetWindowLongPtr(hwnd.?, win32.GWL_STYLE, style | win32.WS_CHILD);
+        _ = win32.showWindow(hwnd.?, win32.SW_SHOWDEFAULT);
+        _ = win32.UpdateWindow(hwnd.?);
     }
 
     pub fn resize(self: *Window, width: c_int, height: c_int) void {
@@ -252,6 +253,11 @@ pub fn Events(comptime T: type) type {
         pub fn setOpacity(self: *const T, opacity: f64) void {
             _ = self;
             _ = opacity;
+            // TODO
+        }
+
+        pub fn deinit(self: *const T) void {
+            _ = self;
             // TODO
         }
     };
