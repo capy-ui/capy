@@ -5,7 +5,7 @@ pub usingnamespace zgt.cross_platform;
 var gpa = std.heap.GeneralPurposeAllocator(.{}) {};
 pub const zgtAllocator = &gpa.allocator;
 
-fn draw(widget: *zgt.Canvas_Impl, ctx: zgt.DrawContext) !void {
+fn draw(widget: *zgt.Canvas_Impl, ctx: *zgt.DrawContext) !void {
     _ = widget;
     std.log.info("drawing widget", .{});
     ctx.setColor(0, 0, 0);

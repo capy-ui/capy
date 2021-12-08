@@ -98,7 +98,7 @@ const EventUserData = struct {
     scrollHandler: ?fn (dx: f32, dy: f32, data: usize) void = null,
     resizeHandler: ?fn (width: u32, height: u32, data: usize) void = null,
     /// Only works for canvas (althought technically it isn't required to)
-    drawHandler: ?fn (ctx: Canvas.DrawContext, data: usize) void = null,
+    drawHandler: ?fn (ctx: *Canvas.DrawContext, data: usize) void = null,
     changedTextHandler: ?fn (data: usize) void = null,
     userdata: usize = 0
 };
@@ -444,25 +444,25 @@ pub const Canvas = struct {
             }
         };
 
-        pub fn setColorByte(self: *const DrawContext, color: lib.Color) void {
+        pub fn setColorByte(self: *DrawContext, color: lib.Color) void {
             self.setColorRGBA(@intToFloat(f32, color.red) / 255.0, @intToFloat(f32, color.green) / 255.0, @intToFloat(f32, color.blue) / 255.0, @intToFloat(f32, color.alpha) / 255.0);
         }
 
-        pub fn setColor(self: *const DrawContext, r: f32, g: f32, b: f32) void {
+        pub fn setColor(self: *DrawContext, r: f32, g: f32, b: f32) void {
             self.setColorRGBA(r, g, b, 1);
         }
 
-        pub fn setColorRGBA(self: *const DrawContext, r: f32, g: f32, b: f32, a: f32) void {
+        pub fn setColorRGBA(self: *DrawContext, r: f32, g: f32, b: f32, a: f32) void {
             const color = c.GdkRGBA{ .red = r, .green = g, .blue = b, .alpha = a };
             c.gdk_cairo_set_source_rgba(self.cr, &color);
         }
 
         /// Add a rectangle to the current path
-        pub fn rectangle(self: *const DrawContext, x: u32, y: u32, w: u32, h: u32) void {
+        pub fn rectangle(self: *DrawContext, x: u32, y: u32, w: u32, h: u32) void {
             c.cairo_rectangle(self.cr, @intToFloat(f64, x), @intToFloat(f64, y), @intToFloat(f64, w), @intToFloat(f64, h));
         }
 
-        pub fn ellipse(self: *const DrawContext, x: u32, y: u32, w: f32, h: f32) void {
+        pub fn ellipse(self: *DrawContext, x: u32, y: u32, w: f32, h: f32) void {
             if (w == h) { // if it is a circle, we can use something slightly faster
                 c.cairo_arc(self.cr, @intToFloat(f64, x), @intToFloat(f64, y), w, 0, 2 * std.math.pi);
                 return;
@@ -475,12 +475,12 @@ pub const Canvas = struct {
             c.cairo_set_matrix(self.cr, &matrix);
         }
 
-        pub fn clear(self: *const DrawContext, x: u32, y: u32, w: u32, h: u32) void {
+        pub fn clear(self: *DrawContext, x: u32, y: u32, w: u32, h: u32) void {
             const styleContext = c.gtk_widget_get_style_context(self.widget);
             c.gtk_render_background(styleContext, self.cr, @intToFloat(f64, x), @intToFloat(f64, y), @intToFloat(f64, w), @intToFloat(f64, h));
         }
 
-        pub fn text(self: *const DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
+        pub fn text(self: *DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
             const pangoLayout = layout._layout;
             var inkRect: c.PangoRectangle = undefined;
             c.pango_layout_get_pixel_extents(pangoLayout, null, &inkRect);
@@ -495,19 +495,19 @@ pub const Canvas = struct {
             c.pango_cairo_show_layout(self.cr, pangoLayout);
         }
 
-        pub fn line(self: *const DrawContext, x1: u32, y1: u32, x2: u32, y2: u32) void {
+        pub fn line(self: *DrawContext, x1: u32, y1: u32, x2: u32, y2: u32) void {
             c.cairo_move_to(self.cr, @intToFloat(f64, x1), @intToFloat(f64, y1));
             c.cairo_line_to(self.cr, @intToFloat(f64, x2), @intToFloat(f64, y2));
             c.cairo_stroke(self.cr);
         }
 
         /// Stroke the current path and reset the path.
-        pub fn stroke(self: *const DrawContext) void {
+        pub fn stroke(self: *DrawContext) void {
             c.cairo_stroke(self.cr);
         }
 
         /// Fill the current path and reset the path.
-        pub fn fill(self: *const DrawContext) void {
+        pub fn fill(self: *DrawContext) void {
             c.cairo_fill(self.cr);
         }
     };
@@ -516,7 +516,8 @@ pub const Canvas = struct {
         _ = userdata;
         const data = getEventUserData(peer);
         if (data.drawHandler) |handler| {
-            handler(DrawContext{ .cr = cr, .widget = peer }, data.userdata);
+            var dc = DrawContext{ .cr = cr, .widget = peer };
+            handler(&dc, data.userdata);
         }
         return 0; // propagate the event further
     }

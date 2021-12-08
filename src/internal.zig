@@ -267,7 +267,7 @@ pub const RedrawError = error{MissingPeer};
 pub fn Events(comptime T: type) type {
     return struct {
         pub const Callback = fn (widget: *T) anyerror!void;
-        pub const DrawCallback = fn (widget: *T, ctx: backend.Canvas.DrawContext) anyerror!void;
+        pub const DrawCallback = fn (widget: *T, ctx: *backend.Canvas.DrawContext) anyerror!void;
         pub const ButtonCallback = fn (widget: *T, button: backend.MouseButton, pressed: bool, x: u32, y: u32) anyerror!void;
         pub const ScrollCallback = fn (widget: *T, dx: f32, dy: f32) anyerror!void;
         pub const ResizeCallback = fn (widget: *T, size: Size) anyerror!void;
@@ -333,7 +333,7 @@ pub fn Events(comptime T: type) type {
             }
         }
 
-        fn drawHandler(ctx: backend.Canvas.DrawContext, data: usize) void {
+        fn drawHandler(ctx: *backend.Canvas.DrawContext, data: usize) void {
             const self = @intToPtr(*T, data);
             for (self.handlers.drawHandlers.items) |func| {
                 func(self, ctx) catch |err| errorHandler(err);

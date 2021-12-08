@@ -20,7 +20,7 @@ pub const LineGraph_Impl = struct {
         });
     }
 
-    pub fn draw(self: *LineGraph_Impl, ctx: zgt.DrawContext) !void {
+    pub fn draw(self: *LineGraph_Impl, ctx: *zgt.DrawContext) !void {
         const width = self.getWidth();
         const height = self.getHeight();
         ctx.setColor(1, 1, 1);

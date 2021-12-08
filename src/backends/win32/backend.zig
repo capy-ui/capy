@@ -162,7 +162,7 @@ const EventUserData = struct {
     scrollHandler: ?fn (dx: f32, dy: f32, data: usize) void = null,
     resizeHandler: ?fn (width: u32, height: u32, data: usize) void = null,
     /// Only works for canvas (althought technically it isn't required to)
-    drawHandler: ?fn (ctx: Canvas.DrawContext, data: usize) void = null,
+    drawHandler: ?fn (ctx: *Canvas.DrawContext, data: usize) void = null,
     changedTextHandler: ?fn (data: usize) void = null,
     userdata: usize = 0
 };
@@ -207,8 +207,8 @@ pub fn Events(comptime T: type) type {
                     const data = getEventUserData(hwnd);
                     if (data.drawHandler) |handler| {
                         const brush = win32.CreateSolidBrush(0x00FFFFFF); // default to white
-                        const dc = Canvas.DrawContext { .hdc = hdc, .hbr = brush };
-                        handler(dc, data.userdata);
+                        var dc = Canvas.DrawContext { .hdc = hdc, .hbr = brush };
+                        handler(&dc, data.userdata);
                     }
                 },
                 else => {},
@@ -322,7 +322,7 @@ pub const Canvas = struct {
 
         // TODO: transparency support using https://docs.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-alphablend
         // or use GDI+ and https://docs.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-drawing-with-opaque-and-semitransparent-brushes-use
-        pub fn setColorByte(self: *const DrawContext, color: lib.Color) void {
+        pub fn setColorByte(self: *DrawContext, color: lib.Color) void {
             const colorref: win32.COLORREF = (@as(win32.COLORREF, color.blue) << 16) |
                 (@as(win32.COLORREF, color.green) << 8) | color.red;
             const brush = win32.CreateSolidBrush(colorref);
@@ -331,11 +331,11 @@ pub const Canvas = struct {
             _ = brush;
         }
 
-        pub fn setColor(self: *const DrawContext, r: f32, g: f32, b: f32) void {
+        pub fn setColor(self: *DrawContext, r: f32, g: f32, b: f32) void {
             self.setColorRGBA(r, g, b, 1);
         }
 
-        pub fn setColorRGBA(self: *const DrawContext, r: f32, g: f32, b: f32, a: f32) void {
+        pub fn setColorRGBA(self: *DrawContext, r: f32, g: f32, b: f32, a: f32) void {
             self.setColorByte(.{
                 .red = @floatToInt(u8, r * 255),
                 .green = @floatToInt(u8, g * 255),
@@ -344,20 +344,20 @@ pub const Canvas = struct {
             });
         }
 
-        pub fn rectangle(self: *const DrawContext, x: u32, y: u32, w: u32, h: u32) void {
+        pub fn rectangle(self: *DrawContext, x: u32, y: u32, w: u32, h: u32) void {
             _ = win32.Rectangle(self.hdc, @intCast(c_int, x), @intCast(c_int, y),
                 @intCast(c_int, x + w), @intCast(c_int, x + h));
         }
 
-        pub fn text(self: *const DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
+        pub fn text(self: *DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
             _ = self; _ = x; _ = y; _ = layout; _ = str;
         }
 
-        pub fn line(self: *const DrawContext, x1: u32, y1: u32, x2: u32, y2: u32) void {
+        pub fn line(self: *DrawContext, x1: u32, y1: u32, x2: u32, y2: u32) void {
             _ = self; _ = x1; _ = y1; _ = x2; _ = y2;
         }
 
-        pub fn fill(self: *const DrawContext) void {
+        pub fn fill(self: *DrawContext) void {
             _ = self;
         }
     };
