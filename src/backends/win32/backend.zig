@@ -124,6 +124,7 @@ pub const Window = struct {
         return Window{ .hwnd = hwnd };
     }
 
+    // TODO: handle the fact that ONLY the root child must forcibly draw a background
     pub fn setChild(self: *Window, hwnd: ?HWND) void {
         // TODO: if null, remove child
         _ = win32.SetParent(hwnd.?, self.hwnd);
@@ -198,6 +199,18 @@ pub fn Events(comptime T: type) type {
                         handler(@intCast(u32, rect.right - rect.left), @intCast(u32, rect.bottom - rect.top), data.userdata);
                     }
                 },
+                win32.WM_PAINT => {
+                    var ps: win32.PAINTSTRUCT = undefined;
+                    var hdc: win32.HDC = win32.BeginPaint(hwnd, &ps);
+                    defer _ = win32.EndPaint(hwnd, &ps);
+
+                    const data = getEventUserData(hwnd);
+                    if (data.drawHandler) |handler| {
+                        const brush = win32.CreateSolidBrush(0x00FFFFFF); // default to white
+                        const dc = Canvas.DrawContext { .hdc = hdc, .hbr = brush };
+                        handler(dc, data.userdata);
+                    }
+                },
                 else => {},
             }
             return win32.DefWindowProcA(hwnd, wm, wp, lp);
@@ -269,7 +282,128 @@ pub const Canvas = struct {
     peer: HWND,
     data: usize = 0,
 
-    pub const DrawContext = struct {};
+    pub usingnamespace Events(Canvas);
+
+    pub const DrawContext = struct {
+        hdc: win32.HDC,
+        hbr: win32.HBRUSH,
+
+        pub const TextLayout = struct {
+
+            pub const Font = struct {
+                face: [:0]const u8,
+                size: f64,
+            };
+
+            pub const TextSize = struct { width: u32, height: u32 };
+
+            pub fn init() TextLayout {
+                return TextLayout{ };
+            }
+
+            pub fn setFont(self: *TextLayout, font: Font) void {
+                _ = self; _ = font;
+            }
+
+            pub fn getTextSize(self: *TextLayout, str: []const u8) TextSize {
+                var width: c_int = 1;
+                var height: c_int = 1;
+                _ = self;
+                _ = str;
+
+                return TextSize{ .width = @intCast(u32, width), .height = @intCast(u32, height) };
+            }
+
+            pub fn deinit(self: *TextLayout) void {
+                _ = self;
+            }
+
+        };
+
+        // TODO: transparency support using https://docs.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-alphablend
+        // or use GDI+ and https://docs.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-drawing-with-opaque-and-semitransparent-brushes-use
+        pub fn setColorByte(self: *const DrawContext, color: lib.Color) void {
+            const colorref: win32.COLORREF = (@as(win32.COLORREF, color.blue) << 16) |
+                (@as(win32.COLORREF, color.green) << 8) | color.red;
+            const brush = win32.CreateSolidBrush(colorref);
+            _ = win32.DeleteObject(@ptrCast(win32.HGDIOBJ, self.hbr)); // delete the old brush
+            win32.SelectObject(self.hdc, @ptrCast(win32.HGDIOBJ, brush));
+            _ = brush;
+        }
+
+        pub fn setColor(self: *const DrawContext, r: f32, g: f32, b: f32) void {
+            self.setColorRGBA(r, g, b, 1);
+        }
+
+        pub fn setColorRGBA(self: *const DrawContext, r: f32, g: f32, b: f32, a: f32) void {
+            self.setColorByte(.{
+                .red = @floatToInt(u8, r * 255),
+                .green = @floatToInt(u8, g * 255),
+                .blue = @floatToInt(u8, b * 255),
+                .alpha = @floatToInt(u8, a * 255)
+            });
+        }
+
+        pub fn rectangle(self: *const DrawContext, x: u32, y: u32, w: u32, h: u32) void {
+            _ = win32.Rectangle(self.hdc, @intCast(c_int, x), @intCast(c_int, y),
+                @intCast(c_int, x + w), @intCast(c_int, x + h));
+        }
+
+        pub fn text(self: *const DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
+            _ = self; _ = x; _ = y; _ = layout; _ = str;
+        }
+
+        pub fn line(self: *const DrawContext, x1: u32, y1: u32, x2: u32, y2: u32) void {
+            _ = self; _ = x1; _ = y1; _ = x2; _ = y2;
+        }
+
+        pub fn fill(self: *const DrawContext) void {
+            _ = self;
+        }
+    };
+
+    var classRegistered = false;
+
+    pub fn create() !Canvas {
+        if (!classRegistered) {
+            var wc: win32.WNDCLASSEXA = .{
+                .style = 0,
+                .lpfnWndProc = Canvas.process,
+                .cbClsExtra = 0,
+                .cbWndExtra = 0,
+                .hInstance = hInst,
+                .hIcon = null, // TODO: LoadIcon
+                .hCursor = null, // TODO: LoadCursor
+                .hbrBackground = null,
+                .lpszMenuName = null,
+                .lpszClassName = "zgtCanvasClass",
+                .hIconSm = null,
+            };
+
+            if ((try win32.registerClassExA(&wc)) == 0) {
+                showNativeMessageDialog(.Error, "Could not register window class {s}", .{"zgtCanvasClass"});
+                return Win32Error.InitializationError;
+            }
+            classRegistered = true;
+        }
+
+        const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
+            "zgtCanvasClass", // lpClassName
+            "", // lpWindowName
+            win32.WS_TABSTOP | win32.WS_CHILD, // dwStyle
+            10, // X
+            10, // Y
+            100, // nWidth
+            100, // nHeight
+            defaultWHWND, // hWindParent
+            null, // hMenu
+            hInst, // hInstance
+            null // lpParam
+        );
+        try Canvas.setupEvents(hwnd);
+
+        return Canvas{ .peer = hwnd };
+    }
 };
 
 pub const Button = struct {

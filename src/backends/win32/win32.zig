@@ -11,6 +11,12 @@ pub const LRESULT = std.os.windows.LRESULT;
 pub const RECT = std.os.windows.RECT;
 pub const LPRECT = *RECT;
 pub const WINAPI = std.os.windows.WINAPI;
+pub const HDC = std.os.windows.HDC;
+pub const HBRUSH = std.os.windows.HBRUSH;
+pub const COLORREF = std.os.windows.DWORD;
+pub const BOOL = std.os.windows.BOOL;
+pub const BYTE = std.os.windows.BYTE;
+pub const HGDIOBJ = *opaque {};
 
 pub const BS_DEFPUSHBUTTON = 1;
 pub const BS_FLAT = 0x00008000;
@@ -33,10 +39,25 @@ pub extern "user32" fn GetWindowRect(hWnd: HWND, lpRect: LPRECT) callconv(WINAPI
 pub extern "user32" fn GetClientRect(hWnd: HWND, lpRect: LPRECT) callconv(WINAPI) c_int;
 pub extern "user32" fn SetWindowPos(hWnd: HWND, hWndInsertAfter: HWND, X: c_int, Y: c_int, cx: c_int, cy: c_int, uFlags: c_uint) callconv(WINAPI) c_int;
 pub extern "user32" fn MoveWindow(hWnd: HWND, X: c_int, Y: c_int, nWidth: c_int, nHeight: c_int, repaint: c_int) callconv(WINAPI) c_int;
+pub extern "user32" fn BeginPaint(hWnd: HWND, lpPaint: *PAINTSTRUCT) HDC;
+pub extern "user32" fn EndPaint(hWnd: HWND, lpPaint: *const PAINTSTRUCT) BOOL;
+pub extern "gdi32" fn CreateSolidBrush(color: COLORREF) HBRUSH;
+pub extern "gdi32" fn DeleteObject(ho: HGDIOBJ) BOOL;
+pub extern "gdi32" fn SelectObject(hdc: HDC, h: HGDIOBJ) void;
+pub extern "gdi32" fn Rectangle(hdc: HDC, left: c_int, top: c_int, right: c_int, bottom: c_int) BOOL;
 
 // Common Controls
 pub extern "comctl32" fn InitCommonControlsEx(picce: [*c]const INITCOMMONCONTROLSEX) callconv(WINAPI) c_int;
 pub const INITCOMMONCONTROLSEX = extern struct { dwSize: c_uint, dwICC: c_uint };
+
+pub const PAINTSTRUCT = extern struct {
+    hdc: HDC,
+    fErase: BOOL,
+    rcPaint: RECT,
+    fRestore: BOOL,
+    fIncUpdate: BOOL,
+    rgbReserved: [32]BYTE
+};
 
 pub fn GetWindowLongPtr(hWnd: HWND, nIndex: c_int) usize {
     switch (@import("builtin").cpu.arch) {

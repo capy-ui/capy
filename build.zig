@@ -14,9 +14,10 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
             step.enable_wine = true;
             step.subsystem = .Windows;
             step.linkSystemLibrary("comctl32");
+            step.linkSystemLibrary("gdi32");
             switch (step.target.toTarget().cpu.arch) {
-                .x86_64 => step.addObjectFile("src/backends/win32/res/x86_64.o"),
-                //.i386 => step.addObjectFile("src/backends/win32/res/i386.o"), // currently disabled due to problems with safe SEH
+                .x86_64 => step.addObjectFile(prefix ++ "/src/backends/win32/res/x86_64.o"),
+                //.i386 => step.addObjectFile(prefix ++ "/src/backends/win32/res/i386.o"), // currently disabled due to problems with safe SEH
                 else => {} // not much of a problem as it'll just lack styling
             }
         },
