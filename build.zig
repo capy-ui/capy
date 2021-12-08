@@ -48,28 +48,37 @@ pub fn build(b: *std.build.Builder) !void {
     const target = b.standardTargetOptions(.{});
     const mode = b.standardReleaseOptions();
 
-    const examplePath = "examples/calculator.zig";
-    if (target.toTarget().isWasm()) {
-        const obj = b.addSharedLibrary("example", examplePath, .unversioned);
-        obj.setTarget(target);
-        obj.setBuildMode(mode);
-        try install(obj, ".");
-        obj.install();
-    } else {
-        const exe = b.addExecutable("example", examplePath);
-        exe.setTarget(target);
-        exe.setBuildMode(mode);
-        try install(exe, ".");
-        exe.install();
+    var examplesDir = try std.fs.cwd().openDir("examples", .{ .iterate = true });
+    defer examplesDir.close();
 
-        const run_cmd = exe.run();
-        run_cmd.step.dependOn(b.getInstallStep());
-        if (b.args) |args| {
-            run_cmd.addArgs(args);
+    var walker = try examplesDir.walk(b.allocator);
+    defer walker.deinit();
+    while (try walker.next()) |entry| {
+        if (entry.kind == .File and std.mem.eql(u8, std.fs.path.extension(entry.path), ".zig")) {
+            const name = try std.mem.replaceOwned(u8, b.allocator, entry.path[0..entry.path.len-4], "/", "-");
+            defer b.allocator.free(name);
+
+            // it is not freed as the path is used later for building
+            const programPath = try std.mem.concat(b.allocator, u8, &.{ "examples/", entry.path });
+
+            const exe: *std.build.LibExeObjStep = if (target.toTarget().isWasm())
+                    b.addSharedLibrary(name, programPath, .unversioned)
+                else
+                    b.addExecutable(name, programPath);
+            exe.setTarget(target);
+            exe.setBuildMode(mode);
+            try install(exe, ".");
+            exe.install();
+
+            const run_cmd = exe.run();
+            run_cmd.step.dependOn(&exe.install_step.?.step);
+            if (b.args) |args| {
+                run_cmd.addArgs(args);
+            }
+
+            const run_step = b.step(name, "Run this example");
+            run_step.dependOn(&run_cmd.step);
         }
-
-        const run_step = b.step("run", "Run the example");
-        run_step.dependOn(&run_cmd.step);
     }
 
     const tests = b.addTest("src/main.zig");
