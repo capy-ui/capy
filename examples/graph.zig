@@ -157,7 +157,7 @@ fn SetEasing(comptime Easing: fn(x: f64) f64) fn(*zgt.Button_Impl) anyerror!void
     return callback;
 }
 
-fn drawRectangle(widget: *zgt.Canvas_Impl, ctx: zgt.Canvas_Impl.DrawContext) !void {
+fn drawRectangle(widget: *zgt.Canvas_Impl, ctx: *zgt.Canvas_Impl.DrawContext) !void {
     _ = widget;
     ctx.setColor(0, 0, 0);
     ctx.rectangle(0, 0, 100, 100);

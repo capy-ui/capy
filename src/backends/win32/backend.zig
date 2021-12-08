@@ -445,8 +445,6 @@ pub const Button = struct {
 
     pub usingnamespace Events(Button);
 
-    var classRegistered = false;
-
     pub fn create() !Button {
         const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
             "BUTTON", // lpClassName
