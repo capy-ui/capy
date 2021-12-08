@@ -206,7 +206,7 @@ pub fn Events(comptime T: type) type {
 
                     const data = getEventUserData(hwnd);
                     if (data.drawHandler) |handler| {
-                        const brush = win32.CreateSolidBrush(0x00FFFFFF); // default to white
+                        const brush = win32.CreateSolidBrush(0x00FFFFFF).?; // default to white
                         var dc = Canvas.DrawContext { .hdc = hdc, .hbr = brush };
                         handler(&dc, data.userdata);
                     }
@@ -289,6 +289,9 @@ pub const Canvas = struct {
         hbr: win32.HBRUSH,
 
         pub const TextLayout = struct {
+            font: win32.HFONT,
+            /// HDC only used for getting text metrics
+            hdc: win32.HDC,
 
             pub const Font = struct {
                 face: [:0]const u8,
@@ -298,24 +301,43 @@ pub const Canvas = struct {
             pub const TextSize = struct { width: u32, height: u32 };
 
             pub fn init() TextLayout {
-                return TextLayout{ };
+                return TextLayout{
+                    .font = undefined,
+                    // creates an HDC for the current screen, whatever it means given we can have windows on different screens
+                    .hdc = win32.CreateCompatibleDC(null).?
+                };
             }
 
             pub fn setFont(self: *TextLayout, font: Font) void {
-                _ = self; _ = font;
+                // _ = win32.DeleteObject(@ptrCast(win32.HGDIOBJ, self.font)); // delete old font
+                self.font = win32.CreateFontA(
+                    0, // cWidth
+                    0, // cHeight
+                    0, // cEscapement,
+                    0, // cOrientation,
+                    win32.FW_NORMAL, // cWeight
+                    0, // bItalic
+                    0, // bUnderline
+                    0, // bStrikeOut
+                    0, // iCharSet
+                    0, // iOutPrecision
+                    0, // iClipPrecision
+                    0, // iQuality
+                    0, // iPitchAndFamily
+                    font.face // pszFaceName
+                ).?;
+                win32.SelectObject(self.hdc, @ptrCast(win32.HGDIOBJ, self.font));
             }
 
             pub fn getTextSize(self: *TextLayout, str: []const u8) TextSize {
-                var width: c_int = 1;
-                var height: c_int = 1;
-                _ = self;
-                _ = str;
+                var size: win32.SIZE = undefined;
+                _ = win32.GetTextExtentPoint32A(self.hdc, str.ptr, @intCast(c_int, str.len), &size);
 
-                return TextSize{ .width = @intCast(u32, width), .height = @intCast(u32, height) };
+                return TextSize{ .width = @intCast(u32, size.cx), .height = @intCast(u32, size.cy) };
             }
 
             pub fn deinit(self: *TextLayout) void {
-                _ = self;
+                _ = win32.DeleteObject(@ptrCast(win32.HGDIOBJ, self.hdc));
             }
 
         };
@@ -325,7 +347,7 @@ pub const Canvas = struct {
         pub fn setColorByte(self: *DrawContext, color: lib.Color) void {
             const colorref: win32.COLORREF = (@as(win32.COLORREF, color.blue) << 16) |
                 (@as(win32.COLORREF, color.green) << 8) | color.red;
-            const brush = win32.CreateSolidBrush(colorref);
+            const brush = win32.CreateSolidBrush(colorref).?;
             _ = win32.DeleteObject(@ptrCast(win32.HGDIOBJ, self.hbr)); // delete the old brush
             win32.SelectObject(self.hdc, @ptrCast(win32.HGDIOBJ, brush));
             _ = brush;
@@ -350,7 +372,10 @@ pub const Canvas = struct {
         }
 
         pub fn text(self: *DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
-            _ = self; _ = x; _ = y; _ = layout; _ = str;
+            _ = layout;
+            win32.SelectObject(self.hdc, @ptrCast(win32.HGDIOBJ, layout.font));
+            _ = win32.ExtTextOutA(self.hdc, @intCast(c_int, x), @intCast(c_int, y), 0, null,
+                str.ptr, @intCast(std.os.windows.UINT, str.len), null);
         }
 
         pub fn line(self: *DrawContext, x1: u32, y1: u32, x2: u32, y2: u32) void {

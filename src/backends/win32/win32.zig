@@ -13,10 +13,15 @@ pub const LPRECT = *RECT;
 pub const WINAPI = std.os.windows.WINAPI;
 pub const HDC = std.os.windows.HDC;
 pub const HBRUSH = std.os.windows.HBRUSH;
+pub const HFONT = *opaque {};
 pub const COLORREF = std.os.windows.DWORD;
 pub const BOOL = std.os.windows.BOOL;
 pub const BYTE = std.os.windows.BYTE;
+pub const UINT = std.os.windows.UINT;
+pub const INT = std.os.windows.INT;
+pub const DWORD = std.os.windows.DWORD;
 pub const HGDIOBJ = *opaque {};
+
 
 pub const BS_DEFPUSHBUTTON = 1;
 pub const BS_FLAT = 0x00008000;
@@ -41,10 +46,27 @@ pub extern "user32" fn SetWindowPos(hWnd: HWND, hWndInsertAfter: HWND, X: c_int,
 pub extern "user32" fn MoveWindow(hWnd: HWND, X: c_int, Y: c_int, nWidth: c_int, nHeight: c_int, repaint: c_int) callconv(WINAPI) c_int;
 pub extern "user32" fn BeginPaint(hWnd: HWND, lpPaint: *PAINTSTRUCT) HDC;
 pub extern "user32" fn EndPaint(hWnd: HWND, lpPaint: *const PAINTSTRUCT) BOOL;
-pub extern "gdi32" fn CreateSolidBrush(color: COLORREF) HBRUSH;
+pub extern "gdi32" fn CreateSolidBrush(color: COLORREF) ?HBRUSH;
 pub extern "gdi32" fn DeleteObject(ho: HGDIOBJ) BOOL;
 pub extern "gdi32" fn SelectObject(hdc: HDC, h: HGDIOBJ) void;
 pub extern "gdi32" fn Rectangle(hdc: HDC, left: c_int, top: c_int, right: c_int, bottom: c_int) BOOL;
+pub extern "gdi32" fn ExtTextOutA(hdc: HDC, x: c_int, y: c_int, options: UINT, lprect: ?*const RECT,
+    lpString: [*]const u8, c: UINT, lpDx: ?*const INT) BOOL;
+pub extern "gdi32" fn GetTextExtentPoint32A(hdc: HDC, lpString: [*]const u8, c: c_int, psizl: *SIZE) BOOL;
+pub extern "gdi32" fn CreateFontA(cHeight: c_int, cWidth: c_int, cEscapement: c_int, cOrientation: c_int,
+    cWeight: c_int, bItalic: DWORD, bUnderline: DWORD, bStrikeOut: DWORD, iCharSet: DWORD, iOutPrecision: DWORD,
+    iClipPrecision: DWORD, iQuality: DWORD, iPitchAndFamily: DWORD, pszFaceName: std.os.windows.LPCSTR) ?HFONT;
+pub extern "gdi32" fn GetStockObject(i: c_int) HGDIOBJ;
+pub extern "gdi32" fn CreateCompatibleDC(hdc: ?HDC) ?HDC;
+
+// TODO: find stock objects constants
+
+// font weights
+pub const FW_DONTCARE = 0;
+pub const FW_THIN = 100;
+pub const FW_LIGHT = 300;
+pub const FW_NORMAL = 400;
+pub const FW_BOLD = 700;
 
 // Common Controls
 pub extern "comctl32" fn InitCommonControlsEx(picce: [*c]const INITCOMMONCONTROLSEX) callconv(WINAPI) c_int;
@@ -57,6 +79,11 @@ pub const PAINTSTRUCT = extern struct {
     fRestore: BOOL,
     fIncUpdate: BOOL,
     rgbReserved: [32]BYTE
+};
+
+pub const SIZE = extern struct {
+    cx: std.os.windows.LONG,
+    cy: std.os.windows.LONG
 };
 
 pub fn GetWindowLongPtr(hWnd: HWND, nIndex: c_int) usize {
