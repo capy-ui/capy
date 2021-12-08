@@ -58,8 +58,30 @@ pub extern "gdi32" fn CreateFontA(cHeight: c_int, cWidth: c_int, cEscapement: c_
     iClipPrecision: DWORD, iQuality: DWORD, iPitchAndFamily: DWORD, pszFaceName: std.os.windows.LPCSTR) ?HFONT;
 pub extern "gdi32" fn GetStockObject(i: c_int) HGDIOBJ;
 pub extern "gdi32" fn CreateCompatibleDC(hdc: ?HDC) ?HDC;
+pub extern "gdi32" fn SetDCBrushColor(hdc: HDC, color: COLORREF) COLORREF;
+pub extern "gdi32" fn GetDCBrushColor(hdc: HDC) COLORREF;
+pub extern "gdi32" fn SetTextColor(hdc: HDC, color: COLORREF) COLORREF;
 
-// TODO: find stock objects constants
+// stock objects constants
+pub const WHITE_BRUSH = 0;
+pub const LTGRAY_BRUSH = 1;
+pub const GRAY_BRUSH = 2;
+pub const DKGRAY_BRUSH = 3;
+pub const BLACK_BRUSH = 4;
+pub const NULL_BRUSH = 5;
+pub const WHITE_PEN = 6;
+pub const BLACK_PEN = 7;
+pub const NULL_PEN = 8;
+pub const OEM_FIXED_FONT = 10;
+pub const ANSI_FIXED_FONT = 11;
+pub const ANSI_VAR_FONT = 12;
+pub const SYSTEM_FONT = 13;
+pub const DEVICE_DEFAULT_FONT = 14;
+pub const DEFAULT_PALETTE = 15;
+pub const SYSTEM_FIXED_FONT = 16;
+pub const DEFAULT_GUI_FONT = 17;
+pub const DC_BRUSH = 18;
+pub const DC_PEN = 19;
 
 // font weights
 pub const FW_DONTCARE = 0;

@@ -206,7 +206,9 @@ pub fn Events(comptime T: type) type {
 
                     const data = getEventUserData(hwnd);
                     if (data.drawHandler) |handler| {
-                        const brush = win32.CreateSolidBrush(0x00FFFFFF).?; // default to white
+                        const brush = @ptrCast(win32.HBRUSH, win32.GetStockObject(win32.DC_BRUSH));
+                        win32.SelectObject(hdc, @ptrCast(win32.HGDIOBJ, brush));
+
                         var dc = Canvas.DrawContext { .hdc = hdc, .hbr = brush };
                         handler(&dc, data.userdata);
                     }
@@ -347,10 +349,7 @@ pub const Canvas = struct {
         pub fn setColorByte(self: *DrawContext, color: lib.Color) void {
             const colorref: win32.COLORREF = (@as(win32.COLORREF, color.blue) << 16) |
                 (@as(win32.COLORREF, color.green) << 8) | color.red;
-            const brush = win32.CreateSolidBrush(colorref).?;
-            _ = win32.DeleteObject(@ptrCast(win32.HGDIOBJ, self.hbr)); // delete the old brush
-            win32.SelectObject(self.hdc, @ptrCast(win32.HGDIOBJ, brush));
-            _ = brush;
+            _ = win32.SetDCBrushColor(self.hdc, colorref);
         }
 
         pub fn setColor(self: *DrawContext, r: f32, g: f32, b: f32) void {
@@ -372,8 +371,14 @@ pub const Canvas = struct {
         }
 
         pub fn text(self: *DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
-            _ = layout;
+            // select current color
+            const color = win32.GetDCBrushColor(self.hdc);
+            _ = win32.SetTextColor(self.hdc, color);
+
+            // select the font
             win32.SelectObject(self.hdc, @ptrCast(win32.HGDIOBJ, layout.font));
+
+            // and draw
             _ = win32.ExtTextOutA(self.hdc, @intCast(c_int, x), @intCast(c_int, y), 0, null,
                 str.ptr, @intCast(std.os.windows.UINT, str.len), null);
         }
