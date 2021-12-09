@@ -89,8 +89,7 @@ pub const Window = struct {
 pub const MouseButton = enum(c_uint) { Left = 1, Middle = 2, Right = 3, _ };
 
 // zig fmt: off
-/// user data used for handling events
-const EventUserData = struct {
+const EventFunctions = struct {
     /// Only works for buttons
     clickHandler: ?fn (data: usize) void = null,
     mouseButtonHandler: ?fn (button: MouseButton, pressed: bool, x: u32, y: u32, data: usize) void = null,
@@ -100,12 +99,28 @@ const EventUserData = struct {
     /// Only works for canvas (althought technically it isn't required to)
     drawHandler: ?fn (ctx: *Canvas.DrawContext, data: usize) void = null,
     changedTextHandler: ?fn (data: usize) void = null,
-    userdata: usize = 0
+};
+
+/// user data used for handling events
+pub const EventUserData = struct {
+    user: EventFunctions = .{},
+    class: EventFunctions = .{},
+    userdata: usize = 0,
+    classUserdata: usize = 0,
+    peer: PeerType,
 };
 // zig fmt: on
 
-inline fn getEventUserData(peer: *c.GtkWidget) *EventUserData {
+pub inline fn getEventUserData(peer: *c.GtkWidget) *EventUserData {
     return @ptrCast(*EventUserData, @alignCast(@alignOf(EventUserData), c.g_object_get_data(@ptrCast(*c.GObject, peer), "eventUserData").?));
+}
+
+pub fn getWidthFromPeer(peer: PeerType) c_int {
+    return c.gtk_widget_get_allocated_width(peer);
+}
+
+pub fn getHeightFromPeer(peer: PeerType) c_int {
+    return c.gtk_widget_get_allocated_height(peer);
 }
 
 pub fn Events(comptime T: type) type {
@@ -122,16 +137,17 @@ pub fn Events(comptime T: type) type {
             c.gtk_widget_add_events(widget, c.GDK_SCROLL_MASK | c.GDK_BUTTON_PRESS_MASK | c.GDK_BUTTON_RELEASE_MASK | c.GDK_KEY_PRESS_MASK | c.GDK_POINTER_MOTION_MASK);
 
             var data = try lib.internal.lasting_allocator.create(EventUserData);
-            data.* = EventUserData{}; // ensure that it uses default values
+            data.* = EventUserData{ .peer = widget }; // ensure that it uses default values
             c.g_object_set_data(@ptrCast(*c.GObject, widget), "eventUserData", data);
         }
 
         fn gtkSizeAllocate(peer: *c.GtkWidget, allocation: *c.GdkRectangle, userdata: usize) callconv(.C) void {
             _ = userdata;
             const data = getEventUserData(peer);
-            if (data.resizeHandler) |handler| {
+            if (data.class.resizeHandler) |handler|
+                handler(@intCast(u32, allocation.width), @intCast(u32, allocation.height), @ptrToInt(data));
+            if (data.user.resizeHandler) |handler|
                 handler(@intCast(u32, allocation.width), @intCast(u32, allocation.height), data.userdata);
-            }
         }
 
         const GdkEventKey = extern struct {
@@ -151,10 +167,13 @@ pub fn Events(comptime T: type) type {
         fn gtkKeyPress(peer: *c.GtkWidget, event: *GdkEventKey, userdata: usize) callconv(.C) c.gboolean {
             _ = userdata;
             const data = getEventUserData(peer);
-            if (data.keyTypeHandler) |handler| {
-                // TODO: use GtkIMContext for accessibility !
-                const str = std.mem.span(event.string);
-                if (str.len != 0) {
+            const str = std.mem.span(event.string);
+            if (str.len != 0) {
+                if (data.class.keyTypeHandler) |handler| {
+                    handler(str, @ptrToInt(data));
+                    if (data.user.keyTypeHandler == null) return 1;
+                }
+                if (data.user.keyTypeHandler) |handler| {
                     handler(str, data.userdata);
                     return 1;
                 }
@@ -165,17 +184,24 @@ pub fn Events(comptime T: type) type {
         fn gtkButtonPress(peer: *c.GtkWidget, event: *c.GdkEventButton, userdata: usize) callconv(.C) c.gboolean {
             _ = userdata;
             const data = getEventUserData(peer);
-            if (data.mouseButtonHandler) |handler| {
-                const pressed = switch (event.type) {
-                    c.GDK_BUTTON_PRESS => true,
-                    c.GDK_BUTTON_RELEASE => false,
-                    // don't send released button in case of GDK_2BUTTON_PRESS, GDK_3BUTTON_PRESS, ...
-                    else => return 0,
-                };
-                c.gtk_widget_grab_focus(peer); // seems to be necessary for the canvas
+            const pressed = switch (event.type) {
+                c.GDK_BUTTON_PRESS => true,
+                c.GDK_BUTTON_RELEASE => false,
+                // don't send released button in case of GDK_2BUTTON_PRESS, GDK_3BUTTON_PRESS, ...
+                else => return 0,
+            };
+            if (event.x < 0 or event.y < 0) return 0;
 
-                if (event.x < 0 or event.y < 0) return 0;
-                handler(@intToEnum(MouseButton, event.button), pressed, @floatToInt(u32, @floor(event.x)), @floatToInt(u32, @floor(event.y)), data.userdata);
+            const button = @intToEnum(MouseButton, event.button);
+            const mx = @floatToInt(u32, @floor(event.x));
+            const my = @floatToInt(u32, @floor(event.y));
+
+            if (data.class.mouseButtonHandler) |handler| {
+                handler(button, pressed, mx, my, @ptrToInt(data));
+            }
+            if (data.user.mouseButtonHandler) |handler| {
+                c.gtk_widget_grab_focus(peer); // seems to be necessary for the canvas
+                handler(button, pressed, mx, my, data.userdata);
             }
             return 0;
         }
@@ -195,21 +221,21 @@ pub fn Events(comptime T: type) type {
         fn gtkMouseScroll(peer: *c.GtkWidget, event: *GdkEventScroll, userdata: usize) callconv(.C) void {
             _ = userdata;
             const data = getEventUserData(peer);
-            if (data.scrollHandler) |handler| {
-                const dx: c.gdouble = switch (event.direction) {
-                    c.GDK_SCROLL_LEFT => -1,
-                    c.GDK_SCROLL_RIGHT => 1,
-                    else => event.delta_x,
-                };
+            const dx: f32 = switch (event.direction) {
+                c.GDK_SCROLL_LEFT => -1,
+                c.GDK_SCROLL_RIGHT => 1,
+                else => @floatCast(f32, event.delta_x),
+            };
+            const dy: f32 = switch (event.direction) {
+                c.GDK_SCROLL_UP => -1,
+                c.GDK_SCROLL_DOWN => 1,
+                else => @floatCast(f32, event.delta_y),
+            };
 
-                const dy: c.gdouble = switch (event.direction) {
-                    c.GDK_SCROLL_UP => -1,
-                    c.GDK_SCROLL_DOWN => 1,
-                    else => event.delta_y,
-                };
-
-                handler(@floatCast(f32, dx), @floatCast(f32, dy), data.userdata);
-            }
+            if (data.class.scrollHandler) |handler|
+                handler(dx, dy, @ptrToInt(data));
+            if (data.user.scrollHandler) |handler|
+                handler(dx, dy, data.userdata);
         }
 
         pub fn deinit(self: *const T) void {
@@ -229,7 +255,7 @@ pub fn Events(comptime T: type) type {
         }
 
         pub inline fn setCallback(self: *T, comptime eType: EventType, cb: anytype) !void {
-            const data = getEventUserData(self.peer);
+            const data = &getEventUserData(self.peer).user;
             switch (eType) {
                 .Click => data.clickHandler = cb,
                 .Draw => data.drawHandler = cb,
@@ -251,48 +277,50 @@ pub fn Events(comptime T: type) type {
         }
 
         pub fn getWidth(self: *const T) c_int {
-            return c.gtk_widget_get_allocated_width(self.peer);
+            return getWidthFromPeer(self.peer);
         }
 
         pub fn getHeight(self: *const T) c_int {
-            return c.gtk_widget_get_allocated_height(self.peer);
+            return getHeightFromPeer(self.peer);
         }
     };
 }
 
 const HandlerList = std.ArrayList(fn (data: usize) void);
 
-pub const Button = struct {
-    peer: *c.GtkWidget,
+pub const Button = @import("../../flat/button.zig").FlatButton;
 
-    pub usingnamespace Events(Button);
+// pub const Button = struct {
+//     peer: *c.GtkWidget,
 
-    fn gtkClicked(peer: *c.GtkWidget, userdata: usize) callconv(.C) void {
-        _ = userdata;
-        const data = getEventUserData(peer);
+//     pub usingnamespace Events(Button);
 
-        if (data.clickHandler) |handler| {
-            handler(data.userdata);
-        }
-    }
+//     fn gtkClicked(peer: *c.GtkWidget, userdata: usize) callconv(.C) void {
+//         _ = userdata;
+//         const data = getEventUserData(peer);
 
-    pub fn create() GtkError!Button {
-        const button = c.gtk_button_new_with_label("") orelse return GtkError.UnknownError;
-        c.gtk_widget_show(button);
-        try Button.setupEvents(button);
-        _ = c.g_signal_connect_data(button, "clicked", @ptrCast(c.GCallback, gtkClicked), null, @as(c.GClosureNotify, null), 0);
-        return Button{ .peer = button };
-    }
+//         if (data.user.clickHandler) |handler| {
+//             handler(data.userdata);
+//         }
+//     }
 
-    pub fn setLabel(self: *const Button, label: [:0]const u8) void {
-        c.gtk_button_set_label(@ptrCast(*c.GtkButton, self.peer), label);
-    }
+//     pub fn create() GtkError!Button {
+//         const button = c.gtk_button_new_with_label("") orelse return GtkError.UnknownError;
+//         c.gtk_widget_show(button);
+//         try Button.setupEvents(button);
+//         _ = c.g_signal_connect_data(button, "clicked", @ptrCast(c.GCallback, gtkClicked), null, @as(c.GClosureNotify, null), 0);
+//         return Button{ .peer = button };
+//     }
 
-    pub fn getLabel(self: *const Button) [:0]const u8 {
-        const label = c.gtk_button_get_label(@ptrCast(*c.GtkButton, self.peer));
-        return std.mem.spanZ(label);
-    }
-};
+//     pub fn setLabel(self: *const Button, label: [:0]const u8) void {
+//         c.gtk_button_set_label(@ptrCast(*c.GtkButton, self.peer), label);
+//     }
+
+//     pub fn getLabel(self: *const Button) [:0]const u8 {
+//         const label = c.gtk_button_get_label(@ptrCast(*c.GtkButton, self.peer));
+//         return std.mem.spanZ(label);
+//     }
+// };
 
 pub const Label = struct {
     peer: *c.GtkWidget,
@@ -515,10 +543,12 @@ pub const Canvas = struct {
     fn gtkCanvasDraw(peer: *c.GtkWidget, cr: *c.cairo_t, userdata: usize) callconv(.C) c_int {
         _ = userdata;
         const data = getEventUserData(peer);
-        if (data.drawHandler) |handler| {
-            var dc = DrawContext{ .cr = cr, .widget = peer };
+        var dc = DrawContext{ .cr = cr, .widget = peer };
+
+        if (data.class.drawHandler) |handler|
+            handler(&dc, @ptrToInt(data));
+        if (data.user.drawHandler) |handler|
             handler(&dc, data.userdata);
-        }
         return 0; // propagate the event further
     }
 
