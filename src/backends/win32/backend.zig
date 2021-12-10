@@ -209,7 +209,7 @@ pub fn Events(comptime T: type) type {
                         const brush = @ptrCast(win32.HBRUSH, win32.GetStockObject(win32.DC_BRUSH));
                         win32.SelectObject(hdc, @ptrCast(win32.HGDIOBJ, brush));
 
-                        var dc = Canvas.DrawContext { .hdc = hdc, .hbr = brush };
+                        var dc = Canvas.DrawContext{ .hdc = hdc, .hbr = brush };
                         handler(&dc, data.userdata);
                     }
                 },
@@ -303,17 +303,17 @@ pub const Canvas = struct {
             pub const TextSize = struct { width: u32, height: u32 };
 
             pub fn init() TextLayout {
-                return TextLayout{
-                    .font = undefined,
-                    // creates an HDC for the current screen, whatever it means given we can have windows on different screens
-                    .hdc = win32.CreateCompatibleDC(null).?
-                };
+                // creates an HDC for the current screen, whatever it means given we can have windows on different screens
+                const hdc = win32.CreateCompatibleDC(null).?;
+
+                const defaultFont = @ptrCast(win32.HFONT, win32.GetStockObject(win32.DEFAULT_GUI_FONT));
+                win32.SelectObject(hdc, @ptrCast(win32.HGDIOBJ, defaultFont));
+                return TextLayout{ .font = defaultFont, .hdc = hdc };
             }
 
             pub fn setFont(self: *TextLayout, font: Font) void {
                 // _ = win32.DeleteObject(@ptrCast(win32.HGDIOBJ, self.font)); // delete old font
-                self.font = win32.CreateFontA(
-                    0, // cWidth
+                self.font = win32.CreateFontA(0, // cWidth
                     0, // cHeight
                     0, // cEscapement,
                     0, // cOrientation,
@@ -341,7 +341,6 @@ pub const Canvas = struct {
             pub fn deinit(self: *TextLayout) void {
                 _ = win32.DeleteObject(@ptrCast(win32.HGDIOBJ, self.hdc));
             }
-
         };
 
         // TODO: transparency support using https://docs.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-alphablend
@@ -357,17 +356,11 @@ pub const Canvas = struct {
         }
 
         pub fn setColorRGBA(self: *DrawContext, r: f32, g: f32, b: f32, a: f32) void {
-            self.setColorByte(.{
-                .red = @floatToInt(u8, r * 255),
-                .green = @floatToInt(u8, g * 255),
-                .blue = @floatToInt(u8, b * 255),
-                .alpha = @floatToInt(u8, a * 255)
-            });
+            self.setColorByte(.{ .red = @floatToInt(u8, r * 255), .green = @floatToInt(u8, g * 255), .blue = @floatToInt(u8, b * 255), .alpha = @floatToInt(u8, a * 255) });
         }
 
         pub fn rectangle(self: *DrawContext, x: u32, y: u32, w: u32, h: u32) void {
-            _ = win32.Rectangle(self.hdc, @intCast(c_int, x), @intCast(c_int, y),
-                @intCast(c_int, x + w), @intCast(c_int, x + h));
+            _ = win32.Rectangle(self.hdc, @intCast(c_int, x), @intCast(c_int, y), @intCast(c_int, x + w), @intCast(c_int, x + h));
         }
 
         pub fn text(self: *DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
@@ -379,12 +372,15 @@ pub const Canvas = struct {
             win32.SelectObject(self.hdc, @ptrCast(win32.HGDIOBJ, layout.font));
 
             // and draw
-            _ = win32.ExtTextOutA(self.hdc, @intCast(c_int, x), @intCast(c_int, y), 0, null,
-                str.ptr, @intCast(std.os.windows.UINT, str.len), null);
+            _ = win32.ExtTextOutA(self.hdc, @intCast(c_int, x), @intCast(c_int, y), 0, null, str.ptr, @intCast(std.os.windows.UINT, str.len), null);
         }
 
         pub fn line(self: *DrawContext, x1: u32, y1: u32, x2: u32, y2: u32) void {
-            _ = self; _ = x1; _ = y1; _ = x2; _ = y2;
+            _ = self;
+            _ = x1;
+            _ = y1;
+            _ = x2;
+            _ = y2;
         }
 
         pub fn fill(self: *DrawContext) void {

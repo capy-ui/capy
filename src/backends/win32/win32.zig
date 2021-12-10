@@ -22,7 +22,6 @@ pub const INT = std.os.windows.INT;
 pub const DWORD = std.os.windows.DWORD;
 pub const HGDIOBJ = *opaque {};
 
-
 pub const BS_DEFPUSHBUTTON = 1;
 pub const BS_FLAT = 0x00008000;
 
@@ -50,12 +49,9 @@ pub extern "gdi32" fn CreateSolidBrush(color: COLORREF) ?HBRUSH;
 pub extern "gdi32" fn DeleteObject(ho: HGDIOBJ) BOOL;
 pub extern "gdi32" fn SelectObject(hdc: HDC, h: HGDIOBJ) void;
 pub extern "gdi32" fn Rectangle(hdc: HDC, left: c_int, top: c_int, right: c_int, bottom: c_int) BOOL;
-pub extern "gdi32" fn ExtTextOutA(hdc: HDC, x: c_int, y: c_int, options: UINT, lprect: ?*const RECT,
-    lpString: [*]const u8, c: UINT, lpDx: ?*const INT) BOOL;
+pub extern "gdi32" fn ExtTextOutA(hdc: HDC, x: c_int, y: c_int, options: UINT, lprect: ?*const RECT, lpString: [*]const u8, c: UINT, lpDx: ?*const INT) BOOL;
 pub extern "gdi32" fn GetTextExtentPoint32A(hdc: HDC, lpString: [*]const u8, c: c_int, psizl: *SIZE) BOOL;
-pub extern "gdi32" fn CreateFontA(cHeight: c_int, cWidth: c_int, cEscapement: c_int, cOrientation: c_int,
-    cWeight: c_int, bItalic: DWORD, bUnderline: DWORD, bStrikeOut: DWORD, iCharSet: DWORD, iOutPrecision: DWORD,
-    iClipPrecision: DWORD, iQuality: DWORD, iPitchAndFamily: DWORD, pszFaceName: std.os.windows.LPCSTR) ?HFONT;
+pub extern "gdi32" fn CreateFontA(cHeight: c_int, cWidth: c_int, cEscapement: c_int, cOrientation: c_int, cWeight: c_int, bItalic: DWORD, bUnderline: DWORD, bStrikeOut: DWORD, iCharSet: DWORD, iOutPrecision: DWORD, iClipPrecision: DWORD, iQuality: DWORD, iPitchAndFamily: DWORD, pszFaceName: std.os.windows.LPCSTR) ?HFONT;
 pub extern "gdi32" fn GetStockObject(i: c_int) HGDIOBJ;
 pub extern "gdi32" fn CreateCompatibleDC(hdc: ?HDC) ?HDC;
 pub extern "gdi32" fn SetDCBrushColor(hdc: HDC, color: COLORREF) COLORREF;
@@ -94,6 +90,7 @@ pub const FW_BOLD = 700;
 pub extern "comctl32" fn InitCommonControlsEx(picce: [*c]const INITCOMMONCONTROLSEX) callconv(WINAPI) c_int;
 pub const INITCOMMONCONTROLSEX = extern struct { dwSize: c_uint, dwICC: c_uint };
 
+// zig fmt: off
 pub const PAINTSTRUCT = extern struct {
     hdc: HDC,
     fErase: BOOL,
@@ -102,11 +99,9 @@ pub const PAINTSTRUCT = extern struct {
     fIncUpdate: BOOL,
     rgbReserved: [32]BYTE
 };
+// zig fmt: on
 
-pub const SIZE = extern struct {
-    cx: std.os.windows.LONG,
-    cy: std.os.windows.LONG
-};
+pub const SIZE = extern struct { cx: std.os.windows.LONG, cy: std.os.windows.LONG };
 
 pub fn GetWindowLongPtr(hWnd: HWND, nIndex: c_int) usize {
     switch (@import("builtin").cpu.arch) {
