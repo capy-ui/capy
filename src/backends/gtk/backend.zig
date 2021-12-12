@@ -86,7 +86,17 @@ pub const Window = struct {
     }
 };
 
-pub const MouseButton = enum(c_uint) { Left = 1, Middle = 2, Right = 3, _ };
+pub const MouseButton = enum(c_uint) {
+    Left = 1,
+    Middle = 2,
+    Right = 3,
+    _,
+
+    /// Returns the ID of the pressed or released finger or null if it is a mouse.
+    pub fn getFingerId(self: MouseButton) ?u8 {
+        return null;
+    }
+};
 
 // zig fmt: off
 const EventFunctions = struct {
@@ -389,7 +399,7 @@ pub const TextField = struct {
     fn gtkTextChanged(peer: *c.GtkWidget, userdata: usize) callconv(.C) void {
         _ = userdata;
         const data = getEventUserData(peer);
-        if (data.changedTextHandler) |handler| {
+        if (data.user.changedTextHandler) |handler| {
             handler(data.userdata);
         }
     }
