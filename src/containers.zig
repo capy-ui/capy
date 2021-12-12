@@ -267,7 +267,7 @@ pub const Container_Impl = struct {
         try self.relayout();
     }
 
-    pub fn deinit(self: *Container_Impl, widget: *Widget) void {
+    pub fn _deinit(self: *Container_Impl, widget: *Widget) void {
         _ = widget;
         for (self.childrens.items) |*child| {
             child.deinit();

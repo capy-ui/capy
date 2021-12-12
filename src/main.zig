@@ -55,3 +55,7 @@ pub fn runEventLoop() void {
 }
 
 // TODO: widget types with comptime reflection (some sort of vtable)
+
+test {
+    _ = @import("fuzz.zig"); // testing the fuzzing library
+}

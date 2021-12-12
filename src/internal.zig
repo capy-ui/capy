@@ -12,12 +12,12 @@ const Container_Impl = @import("containers.zig").Container_Impl;
 /// Allocator used for small, short-lived and repetitive allocations.
 /// You can change this by setting the `zgtScratchAllocator` field in your main file
 /// or by setting the `zgtAllocator` field which will also apply as lasting allocator.
-pub const scratch_allocator = if (@hasDecl(root, "zgtScratchAllocator")) root.zgtScratchAllocator else if (@hasDecl(root, "zgtAllocator")) root.zgtAllocator else std.heap.page_allocator;
+pub const scratch_allocator = if (@hasDecl(root, "zgtScratchAllocator")) root.zgtScratchAllocator else if (@hasDecl(root, "zgtAllocator")) root.zgtAllocator else if (@import("builtin").is_test) std.testing.allocator else std.heap.page_allocator;
 
 /// Allocator used for bigger, longer-lived but rare allocations (example: widgets).
 /// You can change this by setting the `zgtLastingAllocator` field in your main file
 /// or by setting the `zgtAllocator` field which will also apply as scratch allocator.
-pub const lasting_allocator = if (@hasDecl(root, "zgtLastingAllocator")) root.zgtScratchAllocator else if (@hasDecl(root, "zgtAllocator")) root.zgtAllocator else std.heap.page_allocator;
+pub const lasting_allocator = if (@hasDecl(root, "zgtLastingAllocator")) root.zgtScratchAllocator else if (@hasDecl(root, "zgtAllocator")) root.zgtAllocator else if (@import("builtin").is_test) std.testing.allocator else std.heap.page_allocator;
 
 pub fn All(comptime T: type) type {
     return struct {
@@ -82,15 +82,27 @@ pub fn Widgeting(comptime T: type) type {
 
         pub fn deinitWidget(widget: *Widget) void {
             const component = @intToPtr(*T, widget.data);
-            std.log.info("deinit {s}", .{@typeName(T)});
-            std.log.info("a {}", .{component});
-            component.dataWrappers.widget = null;
+            component.deinit();
 
-            if (component.peer) |peer| peer.deinit();
-            if (@hasDecl(T, "deinit")) {
-                T.deinit(component, widget);
+            if (@hasDecl(T, "_deinit")) {
+                T._deinit(component, widget);
             }
             if (widget.allocator) |allocator| allocator.destroy(component);
+        }
+
+        pub fn deinit(self: *T) void {
+            std.log.info("deinit {s}", .{@typeName(T)});
+            std.log.info("a {}", .{self});
+            self.dataWrappers.widget = null;
+
+            self.handlers.clickHandlers.deinit();
+            self.handlers.drawHandlers.deinit();
+            self.handlers.buttonHandlers.deinit();
+            self.handlers.scrollHandlers.deinit();
+            self.handlers.resizeHandlers.deinit();
+            self.handlers.keyTypeHandlers.deinit();
+
+            if (self.peer) |peer| peer.deinit();
         }
 
         pub fn pointerMoved(self: *T) void {

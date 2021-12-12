@@ -1,3 +1,4 @@
+const std = @import("std");
 const backend = @import("backend.zig");
 const Size = @import("data.zig").Size;
 
@@ -71,7 +72,7 @@ pub const Rect_Impl = struct {
         return self.*;
     }
 
-    pub fn draw(self: *Rect_Impl, ctx: Canvas_Impl.DrawContext) !void {
+    pub fn draw(self: *Rect_Impl, ctx: *Canvas_Impl.DrawContext) !void {
         ctx.setColorByte(self.color);
         ctx.rectangle(0, 0, self.getWidth(), self.getHeight());
         ctx.fill();
@@ -86,9 +87,27 @@ pub const Rect_Impl = struct {
 };
 
 pub fn Rect(config: struct { size: ?Size = null, color: Color = Color.black }) Rect_Impl {
-    var btn = Rect_Impl.init();
-    _ = btn.addDrawHandler(Rect_Impl.draw) catch unreachable;
-    btn.preferredSize = config.size;
-    btn.color = config.color;
-    return btn;
+    var rect = Rect_Impl.init();
+    _ = rect.addDrawHandler(Rect_Impl.draw) catch unreachable;
+    rect.preferredSize = config.size;
+    rect.color = config.color;
+    return rect;
+}
+
+const fuzz = @import("fuzz.zig");
+
+test "instantiate Canvas" {
+    var canvas = Canvas(.{});
+    defer canvas.deinit();
+    _ = canvas;
+}
+
+test "instantiate Rect" {
+    var rect = Rect(.{ .color = Color.blue });
+    defer rect.deinit();
+    try std.testing.expectEqual(Color.blue, rect.color);
+
+    var rect2 = Rect(.{ .color = Color.yellow });
+    defer rect2.deinit();
+    try std.testing.expectEqual(Color.yellow, rect2.color);
 }
