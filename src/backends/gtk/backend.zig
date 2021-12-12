@@ -94,6 +94,7 @@ pub const MouseButton = enum(c_uint) {
 
     /// Returns the ID of the pressed or released finger or null if it is a mouse.
     pub fn getFingerId(self: MouseButton) ?u8 {
+        _ = self;
         return null;
     }
 };
