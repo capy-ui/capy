@@ -200,12 +200,12 @@ pub fn Events(comptime T: type) type {
                     }
                 },
                 win32.WM_PAINT => {
-                    var ps: win32.PAINTSTRUCT = undefined;
-                    var hdc: win32.HDC = win32.BeginPaint(hwnd, &ps);
-                    defer _ = win32.EndPaint(hwnd, &ps);
-
                     const data = getEventUserData(hwnd);
                     if (data.drawHandler) |handler| {
+                        var ps: win32.PAINTSTRUCT = undefined;
+                        var hdc: win32.HDC = win32.BeginPaint(hwnd, &ps);
+                        defer _ = win32.EndPaint(hwnd, &ps);
+
                         const brush = @ptrCast(win32.HBRUSH, win32.GetStockObject(win32.DC_BRUSH));
                         win32.SelectObject(hdc, @ptrCast(win32.HGDIOBJ, brush));
 
@@ -252,7 +252,7 @@ pub fn Events(comptime T: type) type {
         pub fn requestDraw(self: *T) !void {
             var updateRect: RECT = undefined;
             updateRect = .{ .left = 0, .top = 0, .right = 10000, .bottom = 10000 };
-            if (win32.InvalidateRect(self.peer, &updateRect, 1) == 0) {
+            if (win32.InvalidateRect(self.peer, &updateRect, 0) == 0) {
                 return Win32Error.UnknownError;
             }
             if (win32.UpdateWindow(self.peer) == 0) {
@@ -329,7 +329,7 @@ pub const Canvas = struct {
 
             pub fn setFont(self: *TextLayout, font: Font) void {
                 // _ = win32.DeleteObject(@ptrCast(win32.HGDIOBJ, self.font)); // delete old font
-                self.font = win32.CreateFontA(0, // cWidth
+                if (win32.CreateFontA(0, // cWidth
                     0, // cHeight
                     0, // cEscapement,
                     0, // cOrientation,
@@ -343,7 +343,10 @@ pub const Canvas = struct {
                     0, // iQuality
                     0, // iPitchAndFamily
                     font.face // pszFaceName
-                ).?;
+                )) |winFont| {
+                    _ = win32.DeleteObject(@ptrCast(win32.HGDIOBJ, self.font));
+                    self.font = winFont;
+                }
                 win32.SelectObject(self.hdc, @ptrCast(win32.HGDIOBJ, self.font));
             }
 
@@ -356,6 +359,7 @@ pub const Canvas = struct {
 
             pub fn deinit(self: *TextLayout) void {
                 _ = win32.DeleteObject(@ptrCast(win32.HGDIOBJ, self.hdc));
+                _ = win32.DeleteObject(@ptrCast(win32.HGDIOBJ, self.font));
             }
         };
 
@@ -376,12 +380,14 @@ pub const Canvas = struct {
         }
 
         pub fn rectangle(self: *DrawContext, x: u32, y: u32, w: u32, h: u32) void {
-            _ = win32.Rectangle(self.hdc, @intCast(c_int, x), @intCast(c_int, y), @intCast(c_int, x + w), @intCast(c_int, x + h));
+            _ = win32.Rectangle(self.hdc, @intCast(c_int, x), @intCast(c_int, y), @intCast(c_int, x + w), @intCast(c_int, y + h));
         }
 
         pub fn ellipse(self: *DrawContext, x: u32, y: u32, w: f32, h: f32) void {
-            _ = self;
-            _ = x; _ = y; _ = w; _ = h;
+            const cw = @floatToInt(c_int, w);
+            const ch = @floatToInt(c_int, h);
+
+            _ = win32.Ellipse(self.hdc, @intCast(c_int, x)-cw, @intCast(c_int, y)-ch, @intCast(c_int, x)+cw*2, @intCast(c_int, y)+ch*2);
         }
 
         pub fn text(self: *DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
@@ -626,9 +632,18 @@ pub const Container = struct {
     pub fn resize(self: *const Container, peer: PeerType, width: u32, height: u32) void {
         var rect: RECT = undefined;
         _ = win32.GetWindowRect(peer, &rect);
+        if (rect.right - rect.left == width and rect.bottom - rect.top == height) {
+            return;
+        }
+
         var parent: RECT = undefined;
         _ = win32.GetWindowRect(self.peer, &parent);
         _ = win32.MoveWindow(peer, rect.left - parent.left, rect.top - parent.top, @intCast(c_int, width), @intCast(c_int, height), 1);
+
+        rect.bottom -= rect.top; rect.right -= rect.left;
+        rect.top = 0; rect.left = 0;
+        //_ = win32.InvalidateRect(self.peer, &rect, 0);
+        _ = win32.UpdateWindow(peer);
     }
 };
 

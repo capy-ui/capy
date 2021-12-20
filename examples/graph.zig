@@ -40,8 +40,9 @@ pub const LineGraph_Impl = struct {
 
         var legendValue: f32 = minValue;
         var legendBuf: [100]u8 = undefined; // the program can't handle a number that is 100 digits long so it's enough
-        //var legendLayout = zgt.DrawContext.TextLayout.init();
-        //legendLayout.setFont(.{ .face = "Arial", .size = 12.0 });
+        var legendLayout = zgt.DrawContext.TextLayout.init();
+        defer legendLayout.deinit();
+        legendLayout.setFont(.{ .face = "Arial", .size = 12.0 });
 
         while (legendValue < maxValue) : (legendValue += (maxValue - minValue) / 10) {
             const y = @intCast(i32, height) - @floatToInt(i32,
@@ -50,7 +51,7 @@ pub const LineGraph_Impl = struct {
             _ = text;
 
             ctx.setColor(0, 0, 0);
-            //ctx.text(0, y, legendLayout, text);
+            ctx.text(0, y, legendLayout, text);
             ctx.line(0, @intCast(u32, y), width, @intCast(u32, y));
             ctx.stroke();
         }
@@ -206,7 +207,7 @@ pub fn main() !void {
         }
         const t = @intToFloat(f32, dt) / 1000;
         rectangleX.set(graph.dataFn(t * 10.0));
-        try graph.requestDraw();
+        // try graph.requestDraw();
         std.time.sleep(30);
     }
 }
