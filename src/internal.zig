@@ -333,7 +333,7 @@ pub fn Events(comptime T: type) type {
                     if (std.debug.getSelfDebugInfo()) |debug_info| {
                         var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
                         defer arena.deinit();
-                        std.debug.writeStackTrace(trace.*, writer, &arena.allocator, debug_info, .no_color) catch {};
+                        std.debug.writeStackTrace(trace.*, writer, arena.allocator(), debug_info, .no_color) catch {};
                     } else |_| {}
                 }
             }

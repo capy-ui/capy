@@ -11,7 +11,6 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
             step.linkSystemLibrary("gtk+-3.0");
         },
         .windows => {
-            step.enable_wine = true;
             step.subsystem = .Windows;
             step.linkSystemLibrary("comctl32");
             step.linkSystemLibrary("gdi32");
@@ -83,8 +82,9 @@ pub fn build(b: *std.build.Builder) !void {
 
     const tests = b.addTest("src/main.zig");
     tests.setBuildMode(mode);
+    tests.emit_docs = .emit;
     try install(tests, ".");
 
-    const test_step = b.step("test", "Run unit tests");
+    const test_step = b.step("test", "Run unit tests and also generate the documentation");
     test_step.dependOn(&tests.step);
 }

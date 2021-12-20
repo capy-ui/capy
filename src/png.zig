@@ -13,7 +13,7 @@ const Chunk = struct {
     data: []const u8,
     stream: ChunkStream,
     crc: u32,
-    allocator: *Allocator,
+    allocator: Allocator,
 
     pub fn deinit(self: *const Chunk) void {
         self.allocator.free(self.type);
@@ -119,7 +119,7 @@ inline fn filterPaeth(image: []const u8, line: []u8, y: u32, start: usize, bytes
     }
 }
 
-fn readChunk(allocator: *Allocator, reader: anytype) !Chunk {
+fn readChunk(allocator: Allocator, reader: anytype) !Chunk {
     const length = try reader.readIntBig(u32);
     var chunkType = try allocator.alloc(u8, 4);
     _ = try reader.readAll(chunkType);
@@ -132,7 +132,7 @@ fn readChunk(allocator: *Allocator, reader: anytype) !Chunk {
     return Chunk{ .length = length, .type = chunkType, .data = data, .stream = stream, .crc = crc, .allocator = allocator };
 }
 
-pub fn read(allocator: *Allocator, unbufferedReader: anytype) !ImageData {
+pub fn read(allocator: Allocator, unbufferedReader: anytype) !ImageData {
     var bufferedReader = std.io.BufferedReader(16 * 1024, @TypeOf(unbufferedReader)){ .unbuffered_reader = unbufferedReader };
     const reader = bufferedReader.reader();
 

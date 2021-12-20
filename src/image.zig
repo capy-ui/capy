@@ -17,7 +17,7 @@ pub const ImageData = struct {
         return ImageData{ .width = width, .height = height, .stride = stride, .peer = try backend.ImageData.from(width, height, stride, cs, bytes) };
     }
 
-    pub fn fromFile(allocator: *std.mem.Allocator, path: []const u8) !ImageData {
+    pub fn fromFile(allocator: std.mem.Allocator, path: []const u8) !ImageData {
         const file = try std.fs.cwd().openFile(path, .{ .read = true });
         defer file.close();
 

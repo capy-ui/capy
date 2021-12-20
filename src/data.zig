@@ -121,7 +121,7 @@ pub fn DataWrapper(comptime T: type) type {
         /// When A is set, it acquires its lock and sets B. Since B is set, it will set A too.
         /// A notices it already acquired the binding lock, and thus returns.
         bindLock: std.Thread.Mutex = .{},
-        allocator: ?*std.mem.Allocator = null,
+        allocator: ?std.mem.Allocator = null,
         animation: if (IsNumber) ?Animation(T) else void = if (IsNumber) null else {},
         updater: ?fn (*Container_Impl) T = null,
 
@@ -248,7 +248,7 @@ pub fn DataWrapper(comptime T: type) type {
     };
 }
 
-pub fn FormatDataWrapper(allocator: *std.mem.Allocator, comptime fmt: []const u8, childs: anytype) !*StringDataWrapper {
+pub fn FormatDataWrapper(allocator: std.mem.Allocator, comptime fmt: []const u8, childs: anytype) !*StringDataWrapper {
     const Self = struct { wrapper: StringDataWrapper, childs: @TypeOf(childs) };
     var self = try allocator.create(Self);
     const empty = try allocator.alloc(u8, 0); // alloc an empty string so it can be freed
@@ -257,9 +257,9 @@ pub fn FormatDataWrapper(allocator: *std.mem.Allocator, comptime fmt: []const u8
 
     const childTypes = comptime blk: {
         var types: []const type = &[_]type{};
-        for (childs) |child| {
-            const T = @TypeOf(child.value);
-            types = types ++ &[_]type{T};
+        for (std.meta.fields(@TypeOf(childs))) |field| {
+            const T = @TypeOf(@field(childs, field.name).value);
+            types = types ++ &[_]type{ T };
         }
         break :blk types;
     };
@@ -267,7 +267,8 @@ pub fn FormatDataWrapper(allocator: *std.mem.Allocator, comptime fmt: []const u8
         fn format(ptr: *Self) void {
             const TupleType = std.meta.Tuple(childTypes);
             var tuple: TupleType = undefined;
-            inline for (ptr.childs) |child, i| {
+            inline for (std.meta.fields(@TypeOf(ptr.childs))) |childF,i| {
+                const child = @field(ptr.childs, childF.name);
                 tuple[i] = child.get();
             }
 
@@ -277,8 +278,12 @@ pub fn FormatDataWrapper(allocator: *std.mem.Allocator, comptime fmt: []const u8
         }
     }.format;
     format(self);
-
-    inline for (childs) |child| {
+    
+    const childFs = std.meta.fields(@TypeOf(childs));
+    comptime var i = 0;
+    inline while (i < childFs.len) : (i += 1) {
+        const childF = childFs[i];
+        const child = @field(childs, childF.name);
         const T = @TypeOf(child.value);
         _ = try child.addChangeListener(.{ .userdata = @ptrToInt(self), .function = struct {
             fn callback(newValue: T, userdata: usize) void {
@@ -390,4 +395,30 @@ test "data wrappers" {
 
 test "data wrapper change listeners" {
     // TODO
+}
+
+test "format data wrapper" {
+    var dataSource1 = DataWrapper(i32).of(5);
+    defer dataSource1.deinit();
+    var dataSource2 = DataWrapper(f32).of(1.23);
+    defer dataSource2.deinit();
+
+    // NOT PASSING DUE TO stage1 COMPILER BUGS
+    // var format = try FormatDataWrapper(std.testing.allocator, "{} and {d}", .{ &dataSource1, &dataSource2 });
+    // defer format.deinit();
+
+    // try std.testing.expectEqualStrings("5 and 1.23", format.get());
+    // dataSource1.set(10);
+    // try std.testing.expectEqualStrings("10 and 1.23", format.get());
+    // dataSource2.set(1456.89);
+    // try std.testing.expectEqualStrings("10 and 1456.89", format.get());
+
+    var dataSource3 = DataWrapper(i32).of(5);
+    defer dataSource3.deinit();
+    var dataSource4 = DataWrapper(i32).of(1);
+    defer dataSource4.deinit();
+
+    var format2 = try FormatDataWrapper(std.testing.allocator, "{} and {}", .{ &dataSource3, &dataSource4 });
+    defer format2.deinit();
+    try std.testing.expectEqualStrings("5 and 1", format2.get());
 }

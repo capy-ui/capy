@@ -18,7 +18,7 @@ pub const Class = struct {
 pub const Widget = struct {
     data: usize,
     /// The allocator that can be used to free 'data'
-    allocator: ?*Allocator = null,
+    allocator: ?Allocator = null,
     peer: ?backend.PeerType = null,
     container_expanded: bool = false,
     class: *const Class,

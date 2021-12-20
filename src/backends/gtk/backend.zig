@@ -329,7 +329,7 @@ pub const Button = struct {
 
     pub fn getLabel(self: *const Button) [:0]const u8 {
         const label = c.gtk_button_get_label(@ptrCast(*c.GtkButton, self.peer));
-        return std.mem.spanZ(label);
+        return std.mem.span(label);
     }
 };
 
@@ -355,7 +355,7 @@ pub const Label = struct {
 
     pub fn getText(self: *Label) [:0]const u8 {
         const text = c.gtk_label_get_text(@ptrCast(*c.GtkLabel, self.peer)).?;
-        return std.mem.spanZ(text);
+        return std.mem.span(text);
     }
 };
 
@@ -388,7 +388,7 @@ pub const TextArea = struct {
         c.gtk_text_buffer_get_bounds(buffer, &start, &end);
 
         const text = c.gtk_text_buffer_get_text(buffer, &start, &end, 1);
-        return std.mem.spanZ(text);
+        return std.mem.span(text);
     }
 };
 

@@ -498,7 +498,7 @@ pub const Button = struct {
     }
 
     pub fn getLabel(self: *Button) [:0]const u8 {
-        const allocator = &self.arena.allocator;
+        const allocator = self.arena.allocator();
         const len = win32.GetWindowTextLengthW(self.peer);
         var buf = allocator.allocSentinel(u16, @intCast(usize, len), 0) catch unreachable; // TODO return error
         defer allocator.free(buf);
@@ -550,7 +550,7 @@ pub const Label = struct {
     }
 
     pub fn getText(self: *Label) [:0]const u8 {
-        const allocator = &self.arena.allocator;
+        const allocator = self.arena.allocator();
         const len = win32.GetWindowTextLengthW(self.peer);
         var buf = allocator.allocSentinel(u16, @intCast(usize, len), 0) catch unreachable; // TODO return error
         defer allocator.free(buf);

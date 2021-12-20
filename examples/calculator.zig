@@ -11,7 +11,7 @@ const Row = zgt.Row;
 const Allocator = std.mem.Allocator;
 
 var computationLabel: zgt.Label_Impl = undefined;
-var allocator: *Allocator = undefined;
+var allocator: Allocator = undefined;
 
 pub fn pressedKey(button: *zgt.Button_Impl) !void {
     const buttonLabel = button.getLabel();
@@ -41,7 +41,7 @@ fn findOperator(computation: []const u8, pos: usize) ?usize {
 pub fn compute(button: *zgt.Button_Impl) !void {
     _ = button;
     const rawText = computationLabel.getText();
-    const computation = rawText[0..std.mem.lenZ(rawText)];
+    const computation = rawText;
 
     const FloatType = f64;
 
@@ -82,10 +82,9 @@ pub fn compute(button: *zgt.Button_Impl) !void {
 
 pub fn main() !void {
     try zgt.backend.init();
-    //var gpa = std.heap.GeneralPurposeAllocator(.{}) {};
-    //defer _ = gpa.deinit();
-    //allocator = &gpa.allocator;
-    allocator = std.heap.page_allocator;
+    var gpa = std.heap.GeneralPurposeAllocator(.{}) {};
+    defer _ = gpa.deinit();
+    allocator = gpa.allocator();
 
     var window = try zgt.Window.init();
     computationLabel = zgt.Label(.{ .text = "", .alignment = .Left });

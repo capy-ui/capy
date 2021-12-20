@@ -74,7 +74,7 @@ fn wbin_get_preferred_height(widget: ?*c.GtkWidget, minimum_height: ?*c.gint, na
     natural_height.?.* = 0;
 }
 
-fn wbin_child_allocate(child: ?*c.GtkWidget, ptr: ?*c_void) callconv(.C) void {
+fn wbin_child_allocate(child: ?*c.GtkWidget, ptr: ?*anyopaque) callconv(.C) void {
     const allocation = @ptrCast(?*c.GtkAllocation, @alignCast(@alignOf(c.GtkAllocation), ptr));
     c.gtk_widget_size_allocate(child, allocation);
 }

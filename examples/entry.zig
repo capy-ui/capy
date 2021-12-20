@@ -3,7 +3,7 @@ const std = @import("std");
 pub usingnamespace zgt.cross_platform;
 
 var gpa = std.heap.GeneralPurposeAllocator(.{}) {};
-pub const zgtAllocator = &gpa.allocator;
+pub const zgtAllocator = gpa.allocator();
 
 fn draw(widget: *zgt.Canvas_Impl, ctx: *zgt.DrawContext) !void {
     _ = widget;
