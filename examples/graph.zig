@@ -208,6 +208,5 @@ pub fn main() !void {
         rectangleX.set(graph.dataFn(t * 10.0));
         try graph.requestDraw();
         std.time.sleep(30);
-        //zgt.backend.sleep(30);
     }
 }

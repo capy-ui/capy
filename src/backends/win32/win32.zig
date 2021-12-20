@@ -17,6 +17,7 @@ pub const HFONT = *opaque {};
 pub const COLORREF = std.os.windows.DWORD;
 pub const BOOL = std.os.windows.BOOL;
 pub const BYTE = std.os.windows.BYTE;
+pub const LONG = std.os.windows.LONG;
 pub const UINT = std.os.windows.UINT;
 pub const INT = std.os.windows.INT;
 pub const DWORD = std.os.windows.DWORD;
@@ -57,6 +58,12 @@ pub extern "gdi32" fn CreateCompatibleDC(hdc: ?HDC) ?HDC;
 pub extern "gdi32" fn SetDCBrushColor(hdc: HDC, color: COLORREF) COLORREF;
 pub extern "gdi32" fn GetDCBrushColor(hdc: HDC) COLORREF;
 pub extern "gdi32" fn SetTextColor(hdc: HDC, color: COLORREF) COLORREF;
+pub extern "gdi32" fn GetSysColorBrush(nIndex: c_int) ?HBRUSH;
+pub extern "gdi32" fn MoveToEx(hdc: HDC, x: c_int, y: c_int, lppt: ?*POINT) BOOL;
+pub extern "gdi32" fn LineTo(hdc: HDC, x: c_int, y: c_int) BOOL;
+pub extern "user32" fn GetWindowRgnBox(hWnd: HWND, lprc: LPRECT) c_int;
+pub extern "user32" fn InvalidateRect(hWnd: HWND, lpRect: *const RECT, bErase: BOOL) BOOL;
+pub extern "user32" fn GetWindowExtEx(hdc: HDC, lpsize: *SIZE) BOOL;
 
 // stock objects constants
 pub const WHITE_BRUSH = 0;
@@ -86,6 +93,16 @@ pub const FW_LIGHT = 300;
 pub const FW_NORMAL = 400;
 pub const FW_BOLD = 700;
 
+// system colors constants (only those that are also supported on Windows 10 are present)
+pub const COLOR_WINDOW = 5;
+pub const COLOR_WINDOWTEXT = 6;
+pub const COLOR_HIGHLIGHT = 13;
+pub const COLOR_HIGHLIGHTTEXT = 14;
+pub const COLOR_3DFACE = 15;
+pub const COLOR_GRAYTEXT = 17;
+pub const COLOR_BTNTEXT = 18;
+pub const COLOR_HOTLIGHT = 26;
+
 // Common Controls
 pub extern "comctl32" fn InitCommonControlsEx(picce: [*c]const INITCOMMONCONTROLSEX) callconv(WINAPI) c_int;
 pub const INITCOMMONCONTROLSEX = extern struct { dwSize: c_uint, dwICC: c_uint };
@@ -100,6 +117,11 @@ pub const PAINTSTRUCT = extern struct {
     rgbReserved: [32]BYTE
 };
 // zig fmt: on
+
+pub const POINT = extern struct {
+    x: LONG,
+    y: LONG
+};
 
 pub const SIZE = extern struct { cx: std.os.windows.LONG, cy: std.os.windows.LONG };
 

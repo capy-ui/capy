@@ -95,7 +95,7 @@ pub const Window = struct {
             .hInstance = hInst,
             .hIcon = null, // TODO: LoadIcon
             .hCursor = null, // TODO: LoadCursor
-            .hbrBackground = null,
+            .hbrBackground = win32.GetSysColorBrush(win32.COLOR_WINDOW),
             .lpszMenuName = null,
             .lpszClassName = className,
             .hIconSm = null,
@@ -209,7 +209,9 @@ pub fn Events(comptime T: type) type {
                         const brush = @ptrCast(win32.HBRUSH, win32.GetStockObject(win32.DC_BRUSH));
                         win32.SelectObject(hdc, @ptrCast(win32.HGDIOBJ, brush));
 
-                        var dc = Canvas.DrawContext{ .hdc = hdc, .hbr = brush };
+                        var dc = Canvas.DrawContext{ .hdc = hdc, .hbr = brush, .path = std.ArrayList(Canvas.DrawContext.PathElement)
+                            .init(lib.internal.scratch_allocator) };
+                        defer dc.path.deinit();
                         handler(&dc, data.userdata);
                     }
                 },
@@ -248,6 +250,11 @@ pub fn Events(comptime T: type) type {
 
         /// Requests a redraw
         pub fn requestDraw(self: *T) !void {
+            var updateRect: RECT = undefined;
+            updateRect = .{ .left = 0, .top = 0, .right = 10000, .bottom = 10000 };
+            if (win32.InvalidateRect(self.peer, &updateRect, 1) == 0) {
+                return Win32Error.UnknownError;
+            }
             if (win32.UpdateWindow(self.peer) == 0) {
                 return Win32Error.UnknownError;
             }
@@ -289,6 +296,15 @@ pub const Canvas = struct {
     pub const DrawContext = struct {
         hdc: win32.HDC,
         hbr: win32.HBRUSH,
+        path: std.ArrayList(PathElement),
+
+        const PathElement = union(enum) {
+            SetColor: win32.COLORREF,
+            Rectangle: struct {
+                left: c_int, top: c_int,
+                right: c_int, bottom: c_int
+            }
+        };
 
         pub const TextLayout = struct {
             font: win32.HFONT,
@@ -363,6 +379,11 @@ pub const Canvas = struct {
             _ = win32.Rectangle(self.hdc, @intCast(c_int, x), @intCast(c_int, y), @intCast(c_int, x + w), @intCast(c_int, x + h));
         }
 
+        pub fn ellipse(self: *DrawContext, x: u32, y: u32, w: f32, h: f32) void {
+            _ = self;
+            _ = x; _ = y; _ = w; _ = h;
+        }
+
         pub fn text(self: *DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
             // select current color
             const color = win32.GetDCBrushColor(self.hdc);
@@ -376,15 +397,16 @@ pub const Canvas = struct {
         }
 
         pub fn line(self: *DrawContext, x1: u32, y1: u32, x2: u32, y2: u32) void {
-            _ = self;
-            _ = x1;
-            _ = y1;
-            _ = x2;
-            _ = y2;
+            _ = win32.MoveToEx(self.hdc, @intCast(c_int, x1), @intCast(c_int, y1), null);
+            _ = win32.LineTo(self.hdc, @intCast(c_int, x2), @intCast(c_int, y2));
         }
 
         pub fn fill(self: *DrawContext) void {
-            _ = self;
+            self.path.clearRetainingCapacity();
+        }
+
+        pub fn stroke(self: *DrawContext) void {
+            self.path.clearRetainingCapacity();
         }
     };
 
@@ -554,7 +576,8 @@ pub const Container = struct {
                 .hInstance = hInst,
                 .hIcon = null, // TODO: LoadIcon
                 .hCursor = null, // TODO: LoadCursor
-                .hbrBackground = null,
+                //.hbrBackground = null,
+                .hbrBackground = win32.GetSysColorBrush(win32.COLOR_WINDOW), // TODO: transparent background!
                 .lpszMenuName = null,
                 .lpszClassName = "zgtContainerClass",
                 .hIconSm = null,
