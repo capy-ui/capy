@@ -4,6 +4,7 @@ const Size = @import("data.zig").Size;
 const DataWrapper = @import("data.zig").DataWrapper;
 const Container_Impl = @import("containers.zig").Container_Impl;
 
+/// A button component. Instantiated using `Button(.{ })`
 pub const Button_Impl = struct {
     pub usingnamespace @import("internal.zig").All(Button_Impl);
 
@@ -12,6 +13,11 @@ pub const Button_Impl = struct {
     dataWrappers: Button_Impl.DataWrappers = .{},
     label: [:0]const u8 = "",
     enabled: DataWrapper(bool),
+
+    pub const Config = struct {
+        label: [:0]const u8 = "",
+        onclick: ?Button_Impl.Callback = null
+    };
 
     pub fn init() Button_Impl {
         return Button_Impl.init_events(Button_Impl{ .enabled = DataWrapper(bool).of(true) });
@@ -64,10 +70,18 @@ pub const Button_Impl = struct {
     }
 };
 
-pub fn Button(config: struct { label: [:0]const u8 = "", onclick: ?Button_Impl.Callback = null }) Button_Impl {
+pub fn Button(config: Button_Impl.Config) Button_Impl {
     var btn = Button_Impl.initLabeled(config.label);
     if (config.onclick) |onclick| {
         btn.addClickHandler(onclick) catch unreachable; // TODO: improve
     }
     return btn;
+}
+
+test "Button" {
+    var button = Button(.{ .label = "Test Label" });
+    try std.testing.expectEqualStrings("Test Label", button.getLabel());
+
+    button.setLabel("New Label");
+    try std.testing.expectEqualStrings("New Label", button.getLabel());
 }

@@ -299,39 +299,39 @@ pub fn Events(comptime T: type) type {
 
 const HandlerList = std.ArrayList(fn (data: usize) void);
 
-pub const Button = @import("../../flat/button.zig").FlatButton;
+// pub const Button = @import("../../flat/button.zig").FlatButton;
 
-// pub const Button = struct {
-//     peer: *c.GtkWidget,
+pub const Button = struct {
+    peer: *c.GtkWidget,
 
-//     pub usingnamespace Events(Button);
+    pub usingnamespace Events(Button);
 
-//     fn gtkClicked(peer: *c.GtkWidget, userdata: usize) callconv(.C) void {
-//         _ = userdata;
-//         const data = getEventUserData(peer);
+    fn gtkClicked(peer: *c.GtkWidget, userdata: usize) callconv(.C) void {
+        _ = userdata;
+        const data = getEventUserData(peer);
 
-//         if (data.user.clickHandler) |handler| {
-//             handler(data.userdata);
-//         }
-//     }
+        if (data.user.clickHandler) |handler| {
+            handler(data.userdata);
+        }
+    }
 
-//     pub fn create() GtkError!Button {
-//         const button = c.gtk_button_new_with_label("") orelse return GtkError.UnknownError;
-//         c.gtk_widget_show(button);
-//         try Button.setupEvents(button);
-//         _ = c.g_signal_connect_data(button, "clicked", @ptrCast(c.GCallback, gtkClicked), null, @as(c.GClosureNotify, null), 0);
-//         return Button{ .peer = button };
-//     }
+    pub fn create() GtkError!Button {
+        const button = c.gtk_button_new_with_label("") orelse return GtkError.UnknownError;
+        c.gtk_widget_show(button);
+        try Button.setupEvents(button);
+        _ = c.g_signal_connect_data(button, "clicked", @ptrCast(c.GCallback, gtkClicked), null, @as(c.GClosureNotify, null), 0);
+        return Button{ .peer = button };
+    }
 
-//     pub fn setLabel(self: *const Button, label: [:0]const u8) void {
-//         c.gtk_button_set_label(@ptrCast(*c.GtkButton, self.peer), label);
-//     }
+    pub fn setLabel(self: *const Button, label: [:0]const u8) void {
+        c.gtk_button_set_label(@ptrCast(*c.GtkButton, self.peer), label);
+    }
 
-//     pub fn getLabel(self: *const Button) [:0]const u8 {
-//         const label = c.gtk_button_get_label(@ptrCast(*c.GtkButton, self.peer));
-//         return std.mem.spanZ(label);
-//     }
-// };
+    pub fn getLabel(self: *const Button) [:0]const u8 {
+        const label = c.gtk_button_get_label(@ptrCast(*c.GtkButton, self.peer));
+        return std.mem.spanZ(label);
+    }
+};
 
 pub const Label = struct {
     peer: *c.GtkWidget,

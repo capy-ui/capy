@@ -19,6 +19,7 @@ pub const scratch_allocator = if (@hasDecl(root, "zgtScratchAllocator")) root.zg
 /// or by setting the `zgtAllocator` field which will also apply as scratch allocator.
 pub const lasting_allocator = if (@hasDecl(root, "zgtLastingAllocator")) root.zgtScratchAllocator else if (@hasDecl(root, "zgtAllocator")) root.zgtAllocator else if (@import("builtin").is_test) std.testing.allocator else std.heap.page_allocator;
 
+/// Convenience function for creating widgets
 pub fn All(comptime T: type) type {
     return struct {
         pub usingnamespace Events(T);
@@ -33,6 +34,7 @@ pub fn All(comptime T: type) type {
 //     };
 // }
 
+/// Convenience function for creating widgets
 pub fn Widgeting(comptime T: type) type {
     return struct {
         // zig fmt: off
@@ -276,6 +278,7 @@ pub fn genericWidgetFrom(component: anytype) anyerror!Widget {
 // Events
 pub const RedrawError = error{MissingPeer};
 
+/// Convenience function for creating widgets
 pub fn Events(comptime T: type) type {
     return struct {
         pub const Callback = fn (widget: *T) anyerror!void;

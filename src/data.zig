@@ -301,6 +301,7 @@ pub const Size = struct {
     width: u32,
     height: u32,
 
+    /// Shorthand for struct initialization
     pub fn init(width: u32, height: u32) Size {
         return Size{ .width = width, .height = height };
     }
@@ -323,12 +324,46 @@ pub const Size = struct {
         }
     }
 
+    /// Combine two sizes by taking the largest width and the largest height
     pub fn combine(a: Size, b: Size) Size {
         return Size{ .width = std.math.max(a.width, b.width), .height = std.math.max(a.height, b.height) };
     }
 
+    /// Intersect two sizes by taking the lowest width and the lowest height
     pub fn intersect(a: Size, b: Size) Size {
         return Size{ .width = std.math.min(a.width, b.width), .height = std.math.min(a.height, b.height) };
+    }
+
+    test "Size.max" {
+        const a = Size.init(200, 10);
+        const b = Size.init(2001, 1);
+        try std.testing.expectEqual(b, Size.max(a, b));
+        try std.testing.expectEqual(b, Size.max(b, a));
+    }
+
+    test "Size.min" {
+        const a = Size.init(200, 10);
+        const b = Size.init(2001, 1);
+        try std.testing.expectEqual(a, Size.min(a, b));
+        try std.testing.expectEqual(a, Size.min(b, a));
+    }
+
+    test "Size.combine" {
+        const a = Size.init(202, 12);
+        const b = Size.init(14, 153);
+        const expected = Size.init(202, 153);
+
+        try std.testing.expectEqual(expected, Size.combine(a, b));
+        try std.testing.expectEqual(expected, Size.combine(b, a));
+    }
+
+    test "Size.intersect" {
+        const a = Size.init(202, 12);
+        const b = Size.init(14, 153);
+        const expected = Size.init(14, 12);
+
+        try std.testing.expectEqual(expected, Size.intersect(a, b));
+        try std.testing.expectEqual(expected, Size.intersect(b, a));
     }
 };
 
