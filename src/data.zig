@@ -398,15 +398,20 @@ test "data wrapper change listeners" {
 }
 
 test "format data wrapper" {
-    var dataSource1 = DataWrapper(i32).of(5);
-    defer dataSource1.deinit();
-    var dataSource2 = DataWrapper(f32).of(1.23);
-    defer dataSource2.deinit();
+    // FormatDataWrapper should be used with an arena allocator
+    var arena = std.heap.ArenaAllocator.init(std.testing.allocator);
+    defer arena.deinit();
+    const allocator = arena.allocator();
 
     // NOT PASSING DUE TO stage1 COMPILER BUGS
-    // var format = try FormatDataWrapper(std.testing.allocator, "{} and {d}", .{ &dataSource1, &dataSource2 });
+    // var dataSource1 = DataWrapper(i32).of(5);
+    // defer dataSource1.deinit();
+    // var dataSource2 = DataWrapper(f32).of(1.23);
+    // defer dataSource2.deinit();
+    // 
+    // var format = try FormatDataWrapper(allocator, "{} and {d}", .{ &dataSource1, &dataSource2 });
     // defer format.deinit();
-
+    // 
     // try std.testing.expectEqualStrings("5 and 1.23", format.get());
     // dataSource1.set(10);
     // try std.testing.expectEqualStrings("10 and 1.23", format.get());
@@ -418,7 +423,11 @@ test "format data wrapper" {
     var dataSource4 = DataWrapper(i32).of(1);
     defer dataSource4.deinit();
 
-    var format2 = try FormatDataWrapper(std.testing.allocator, "{} and {}", .{ &dataSource3, &dataSource4 });
+    var format2 = try FormatDataWrapper(allocator, "{} and {}", .{ &dataSource3, &dataSource4 });
     defer format2.deinit();
     try std.testing.expectEqualStrings("5 and 1", format2.get());
+    dataSource3.set(10);
+    try std.testing.expectEqualStrings("10 and 1", format2.get());
+    dataSource4.set(42);
+    try std.testing.expectEqualStrings("10 and 42", format2.get());
 }
