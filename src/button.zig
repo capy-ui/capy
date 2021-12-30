@@ -14,10 +14,7 @@ pub const Button_Impl = struct {
     label: [:0]const u8 = "",
     enabled: DataWrapper(bool),
 
-    pub const Config = struct {
-        label: [:0]const u8 = "",
-        onclick: ?Button_Impl.Callback = null
-    };
+    pub const Config = struct { label: [:0]const u8 = "", onclick: ?Button_Impl.Callback = null };
 
     pub fn init() Button_Impl {
         return Button_Impl.init_events(Button_Impl{ .enabled = DataWrapper(bool).of(true) });

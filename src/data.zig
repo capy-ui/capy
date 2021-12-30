@@ -259,7 +259,7 @@ pub fn FormatDataWrapper(allocator: std.mem.Allocator, comptime fmt: []const u8,
         var types: []const type = &[_]type{};
         for (std.meta.fields(@TypeOf(childs))) |field| {
             const T = @TypeOf(@field(childs, field.name).value);
-            types = types ++ &[_]type{ T };
+            types = types ++ &[_]type{T};
         }
         break :blk types;
     };
@@ -267,7 +267,7 @@ pub fn FormatDataWrapper(allocator: std.mem.Allocator, comptime fmt: []const u8,
         fn format(ptr: *Self) void {
             const TupleType = std.meta.Tuple(childTypes);
             var tuple: TupleType = undefined;
-            inline for (std.meta.fields(@TypeOf(ptr.childs))) |childF,i| {
+            inline for (std.meta.fields(@TypeOf(ptr.childs))) |childF, i| {
                 const child = @field(ptr.childs, childF.name);
                 tuple[i] = child.get();
             }
@@ -278,7 +278,7 @@ pub fn FormatDataWrapper(allocator: std.mem.Allocator, comptime fmt: []const u8,
         }
     }.format;
     format(self);
-    
+
     const childFs = std.meta.fields(@TypeOf(childs));
     comptime var i = 0;
     inline while (i < childFs.len) : (i += 1) {
@@ -408,10 +408,10 @@ test "format data wrapper" {
     // defer dataSource1.deinit();
     // var dataSource2 = DataWrapper(f32).of(1.23);
     // defer dataSource2.deinit();
-    // 
+    //
     // var format = try FormatDataWrapper(allocator, "{} and {d}", .{ &dataSource1, &dataSource2 });
     // defer format.deinit();
-    // 
+    //
     // try std.testing.expectEqualStrings("5 and 1.23", format.get());
     // dataSource1.set(10);
     // try std.testing.expectEqualStrings("10 and 1.23", format.get());

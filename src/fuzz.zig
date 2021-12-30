@@ -23,7 +23,7 @@ pub fn Iterator(comptime T: type) type {
             }
             //if (self.count >= 10) return null;
             if (std.time.milliTimestamp() >= self.start + 100) {
-                std.debug.print("\niterator: Did {d} rounds in {d} ms\n", .{ self.count, std.time.milliTimestamp() - self.start });
+                std.log.scoped(.iterator).debug("Did {d} rounds in {d} ms", .{ self.count, std.time.milliTimestamp() - self.start });
                 return null;
             }
 

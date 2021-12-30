@@ -1,7 +1,10 @@
 const std = @import("std");
+const shared = @import("../shared.zig");
 const lib = @import("../../main.zig");
 const js = @import("js.zig");
 const lasting_allocator = lib.internal.lasting_allocator;
+
+const EventType = shared.BackendEventType;
 
 pub const GuiWidget = struct {
     userdata: usize = 0,
@@ -76,8 +79,6 @@ pub const Window = struct {
         }
     }
 };
-
-pub const EventType = enum { Click, Draw, MouseButton, Scroll, TextChanged, Resize, KeyType };
 
 pub fn Events(comptime T: type) type {
     return struct {
@@ -396,7 +397,7 @@ pub const backendExport = struct {
     }
 };
 
-pub fn runStep(step: lib.EventLoopStep) callconv(.Async) bool {
+pub fn runStep(step: shared.EventLoopStep) callconv(.Async) bool {
     _ = step;
     while (js.hasEvent()) {
         const eventId = js.popEvent();

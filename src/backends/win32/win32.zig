@@ -119,10 +119,7 @@ pub const PAINTSTRUCT = extern struct {
 };
 // zig fmt: on
 
-pub const POINT = extern struct {
-    x: LONG,
-    y: LONG
-};
+pub const POINT = extern struct { x: LONG, y: LONG };
 
 pub const SIZE = extern struct { cx: std.os.windows.LONG, cy: std.os.windows.LONG };
 

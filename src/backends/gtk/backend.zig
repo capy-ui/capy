@@ -1,22 +1,22 @@
 const std = @import("std");
+const shared = @import("../shared.zig");
 const lib = @import("../../main.zig");
 pub const c = @cImport({
     @cInclude("gtk/gtk.h");
 });
 const wbin_new = @import("windowbin.zig").wbin_new;
 
-const EventType = lib.BackendEventType;
-
-const GtkError = std.mem.Allocator.Error || error{ UnknownError, InitializationError };
+const EventType = shared.BackendEventType;
+const BackendError = shared.BackendError;
 
 pub const Capabilities = .{ .useEventLoop = true };
 
 var activeWindows = std.atomic.Atomic(usize).init(0);
 var randomWindow: *c.GtkWidget = undefined;
 
-pub fn init() !void {
+pub fn init() BackendError!void {
     if (c.gtk_init_check(0, null) == 0) {
-        return GtkError.InitializationError;
+        return BackendError.InitializationError;
     }
 }
 
@@ -42,10 +42,7 @@ pub fn showNativeMessageDialog(msgType: MessageType, comptime fmt: []const u8, a
 
 pub const PeerType = *c.GtkWidget;
 
-export fn gtkWindowHidden(peer: *c.GtkWidget, userdata: usize) void {
-    _ = peer;
-    _ = userdata;
-
+export fn gtkWindowHidden(_: *c.GtkWidget, _: usize) void {
     _ = activeWindows.fetchSub(1, .Release);
 }
 
@@ -55,10 +52,10 @@ pub const Window = struct {
 
     pub usingnamespace Events(Window);
 
-    pub fn create() GtkError!Window {
-        const window = c.gtk_window_new(c.GTK_WINDOW_TOPLEVEL) orelse return GtkError.UnknownError;
+    pub fn create() BackendError!Window {
+        const window = c.gtk_window_new(c.GTK_WINDOW_TOPLEVEL) orelse return error.UnknownError;
         //const screen = c.gtk_window_get_screen(@ptrCast(*c.GtkWindow, window));
-        //std.log.info("{d}", .{c.gdk_screen_get_resolution(screen)});
+        //std.log.info("{d} dpi", .{c.gdk_screen_get_resolution(screen)});
         const wbin = wbin_new() orelse unreachable;
         c.gtk_container_add(@ptrCast(*c.GtkContainer, window), wbin);
         c.gtk_widget_show(wbin);
@@ -105,6 +102,7 @@ const EventFunctions = struct {
     clickHandler: ?fn (data: usize) void = null,
     mouseButtonHandler: ?fn (button: MouseButton, pressed: bool, x: u32, y: u32, data: usize) void = null,
     keyTypeHandler: ?fn (str: []const u8, data: usize) void = null,
+    // TODO: dx and dy are in pixels, not in lines
     scrollHandler: ?fn (dx: f32, dy: f32, data: usize) void = null,
     resizeHandler: ?fn (width: u32, height: u32, data: usize) void = null,
     /// Only works for canvas (althought technically it isn't required to)
@@ -138,7 +136,7 @@ pub fn Events(comptime T: type) type {
     return struct {
         const Self = @This();
 
-        pub fn setupEvents(widget: *c.GtkWidget) GtkError!void {
+        pub fn setupEvents(widget: *c.GtkWidget) BackendError!void {
             _ = c.g_signal_connect_data(widget, "button-press-event", @ptrCast(c.GCallback, gtkButtonPress), null, null, c.G_CONNECT_AFTER);
             _ = c.g_signal_connect_data(widget, "button-release-event", @ptrCast(c.GCallback, gtkButtonPress), null, null, c.G_CONNECT_AFTER);
             _ = c.g_signal_connect_data(widget, "motion-notify-event", @ptrCast(c.GCallback, gtkMouseMotion), null, null, c.G_CONNECT_AFTER);
@@ -315,8 +313,8 @@ pub const Button = struct {
         }
     }
 
-    pub fn create() GtkError!Button {
-        const button = c.gtk_button_new_with_label("") orelse return GtkError.UnknownError;
+    pub fn create() BackendError!Button {
+        const button = c.gtk_button_new_with_label("") orelse return error.UnknownError;
         c.gtk_widget_show(button);
         try Button.setupEvents(button);
         _ = c.g_signal_connect_data(button, "clicked", @ptrCast(c.GCallback, gtkClicked), null, @as(c.GClosureNotify, null), 0);
@@ -338,8 +336,8 @@ pub const Label = struct {
 
     pub usingnamespace Events(Label);
 
-    pub fn create() GtkError!Label {
-        const label = c.gtk_label_new("") orelse return GtkError.UnknownError;
+    pub fn create() BackendError!Label {
+        const label = c.gtk_label_new("") orelse return BackendError.UnknownError;
         c.gtk_widget_show(label);
         try Label.setupEvents(label);
         return Label{ .peer = label };
@@ -366,9 +364,9 @@ pub const TextArea = struct {
 
     pub usingnamespace Events(TextArea);
 
-    pub fn create() GtkError!TextArea {
-        const textArea = c.gtk_text_view_new() orelse return GtkError.UnknownError;
-        const scrolledWindow = c.gtk_scrolled_window_new(null, null) orelse return GtkError.UnknownError;
+    pub fn create() BackendError!TextArea {
+        const textArea = c.gtk_text_view_new() orelse return BackendError.UnknownError;
+        const scrolledWindow = c.gtk_scrolled_window_new(null, null) orelse return BackendError.UnknownError;
         c.gtk_container_add(@ptrCast(*c.GtkContainer, scrolledWindow), textArea);
         c.gtk_widget_show(textArea);
         c.gtk_widget_show(scrolledWindow);
@@ -405,8 +403,8 @@ pub const TextField = struct {
         }
     }
 
-    pub fn create() GtkError!TextField {
-        const textField = c.gtk_entry_new() orelse return GtkError.UnknownError;
+    pub fn create() BackendError!TextField {
+        const textField = c.gtk_entry_new() orelse return BackendError.UnknownError;
         c.gtk_widget_show(textField);
         try TextField.setupEvents(textField);
         _ = c.g_signal_connect_data(textField, "changed", @ptrCast(c.GCallback, gtkTextChanged), null, @as(c.GClosureNotify, null), c.G_CONNECT_AFTER);
@@ -563,8 +561,8 @@ pub const Canvas = struct {
         return 0; // propagate the event further
     }
 
-    pub fn create() GtkError!Canvas {
-        const canvas = c.gtk_drawing_area_new() orelse return GtkError.UnknownError;
+    pub fn create() BackendError!Canvas {
+        const canvas = c.gtk_drawing_area_new() orelse return BackendError.UnknownError;
         c.gtk_widget_show(canvas);
         c.gtk_widget_set_can_focus(canvas, 1);
         try Canvas.setupEvents(canvas);
@@ -578,8 +576,8 @@ pub const Container = struct {
 
     pub usingnamespace Events(Container);
 
-    pub fn create() GtkError!Container {
-        const layout = c.gtk_fixed_new() orelse return GtkError.UnknownError;
+    pub fn create() BackendError!Container {
+        const layout = c.gtk_fixed_new() orelse return BackendError.UnknownError;
         c.gtk_widget_show(layout);
         try Container.setupEvents(layout);
         return Container{ .peer = layout };
@@ -609,7 +607,7 @@ pub const ImageData = struct {
     peer: *c.GdkPixbuf,
 
     pub fn from(width: usize, height: usize, stride: usize, cs: lib.Colorspace, bytes: []const u8) !ImageData {
-        const pixbuf = c.gdk_pixbuf_new_from_data(bytes.ptr, c.GDK_COLORSPACE_RGB, @boolToInt(cs == .RGBA), 8, @intCast(c_int, width), @intCast(c_int, height), @intCast(c_int, stride), null, null) orelse return GtkError.UnknownError;
+        const pixbuf = c.gdk_pixbuf_new_from_data(bytes.ptr, c.GDK_COLORSPACE_RGB, @boolToInt(cs == .RGBA), 8, @intCast(c_int, width), @intCast(c_int, height), @intCast(c_int, stride), null, null) orelse return BackendError.UnknownError;
 
         return ImageData{ .peer = pixbuf };
     }
@@ -620,8 +618,8 @@ pub const Image = struct {
 
     pub usingnamespace Events(Image);
 
-    pub fn create() GtkError!Image {
-        const image = c.gtk_image_new() orelse return GtkError.UnknownError;
+    pub fn create() BackendError!Image {
+        const image = c.gtk_image_new() orelse return BackendError.UnknownError;
         c.gtk_widget_show(image);
         try Image.setupEvents(image);
         return Image{ .peer = image };
@@ -651,7 +649,7 @@ pub fn postEmptyEvent() void {
     c.gdk_window_invalidate_rect(c.gtk_widget_get_window(randomWindow), &rect, 0);
 }
 
-pub fn runStep(step: lib.EventLoopStep) bool {
+pub fn runStep(step: shared.EventLoopStep) bool {
     _ = c.gtk_main_iteration_do(@boolToInt(step == .Blocking));
     return activeWindows.load(.Acquire) != 0;
 }

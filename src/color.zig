@@ -2,6 +2,7 @@ const std = @import("std");
 
 pub const Colorspace = enum { RGB, RGBA };
 
+/// 8-bit sRGB color with transparency as 32 bits ordered RGBA
 pub const Color = packed struct {
     red: u8,
     green: u8,

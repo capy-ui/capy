@@ -1,5 +1,8 @@
 const std = @import("std");
 const lib = @import("../../main.zig");
+const shared = @import("../shared.zig");
+
+const EventType = shared.BackendEventType;
 
 const win32 = @import("win32.zig");
 const HWND = win32.HWND;
@@ -151,8 +154,6 @@ pub const Window = struct {
     }
 };
 
-pub const EventType = enum { Click, Draw, MouseButton, Scroll, TextChanged, Resize, KeyType };
-
 // zig fmt: off
 const EventUserData = struct {
     /// Only works for buttons
@@ -298,13 +299,7 @@ pub const Canvas = struct {
         hbr: win32.HBRUSH,
         path: std.ArrayList(PathElement),
 
-        const PathElement = union(enum) {
-            SetColor: win32.COLORREF,
-            Rectangle: struct {
-                left: c_int, top: c_int,
-                right: c_int, bottom: c_int
-            }
-        };
+        const PathElement = union(enum) { SetColor: win32.COLORREF, Rectangle: struct { left: c_int, top: c_int, right: c_int, bottom: c_int } };
 
         pub const TextLayout = struct {
             font: win32.HFONT,
@@ -387,7 +382,7 @@ pub const Canvas = struct {
             const cw = @floatToInt(c_int, w);
             const ch = @floatToInt(c_int, h);
 
-            _ = win32.Ellipse(self.hdc, @intCast(c_int, x)-cw, @intCast(c_int, y)-ch, @intCast(c_int, x)+cw*2, @intCast(c_int, y)+ch*2);
+            _ = win32.Ellipse(self.hdc, @intCast(c_int, x) - cw, @intCast(c_int, y) - ch, @intCast(c_int, x) + cw * 2, @intCast(c_int, y) + ch * 2);
         }
 
         pub fn text(self: *DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
@@ -640,14 +635,16 @@ pub const Container = struct {
         _ = win32.GetWindowRect(self.peer, &parent);
         _ = win32.MoveWindow(peer, rect.left - parent.left, rect.top - parent.top, @intCast(c_int, width), @intCast(c_int, height), 1);
 
-        rect.bottom -= rect.top; rect.right -= rect.left;
-        rect.top = 0; rect.left = 0;
+        rect.bottom -= rect.top;
+        rect.right -= rect.left;
+        rect.top = 0;
+        rect.left = 0;
         //_ = win32.InvalidateRect(self.peer, &rect, 0);
         _ = win32.UpdateWindow(peer);
     }
 };
 
-pub fn runStep(step: lib.EventLoopStep) bool {
+pub fn runStep(step: shared.EventLoopStep) bool {
     var msg: MSG = undefined;
     switch (step) {
         .Blocking => {

@@ -1,4 +1,5 @@
 const std = @import("std");
+const shared = @import("../shared.zig");
 const lib = @import("../../main.zig");
 const c = @cImport({
     @cDefine("GLFW_INCLUDE_ES3", {});
@@ -6,6 +7,8 @@ const c = @cImport({
 });
 const gl = c;
 const lasting_allocator = lib.internal.lasting_allocator;
+
+const EventType = shared.BackendEventType;
 
 var activeWindows = std.ArrayList(*c.GLFWwindow).init(lasting_allocator);
 
@@ -150,8 +153,6 @@ pub const Window = struct {
     }
 };
 
-pub const EventType = enum { Click, Draw, MouseButton, Scroll, TextChanged, Resize, KeyType };
-
 pub fn Events(comptime T: type) type {
     return struct {
         const Self = @This();
@@ -295,7 +296,7 @@ fn drawWindow(cWindow: ?*c.GLFWwindow) callconv(.C) void {
     c.glfwSwapBuffers(window);
 }
 
-pub fn runStep(step: lib.EventLoopStep) bool {
+pub fn runStep(step: shared.EventLoopStep) bool {
     for (activeWindows.items) |window| {
         c.glfwMakeContextCurrent(window);
         if (c.glfwWindowShouldClose(window) != 0) {
