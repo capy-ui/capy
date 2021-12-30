@@ -40,6 +40,19 @@ pub const Color = packed struct {
         return comptime fromString(string) catch |err| @compileError(@errorName(err));
     }
 
+    fn lerpByte(a: u8, b: u8, t: f64) u8 {
+        return @floatToInt(u8, @intToFloat(f64, a) * (1 - t) + @intToFloat(f64, b) * t);
+    }
+
+    pub fn lerp(a: Color, b: Color, t: f64) Color {
+        return Color{
+            .red = lerpByte(a.red, b.red, t),
+            .green = lerpByte(a.green, b.green, t),
+            .blue = lerpByte(a.blue, b.blue, t),
+            .alpha = lerpByte(a.alpha, b.alpha, t),
+        };
+    }
+
     pub fn toBytes(self: Color, dest: []u8) void {
         std.mem.bytesAsSlice(Color, dest).* = self;
     }
@@ -73,4 +86,18 @@ test "comptime color parse" {
     try expectEqual(@as(u8, 0xa3), color2.green);
     try expectEqual(@as(u8, 0xcd), color2.blue);
     try expectEqual(@as(u8, 0xef), color2.alpha);
+}
+
+test "color linear interpolation" {
+    const a = Color.comptimeFromString("#00ff8844");
+    const b = Color.comptimeFromString("#88888888");
+    try expectEqual(Color.lerp(a, b, 0.5), Color.lerp(b, a, 0.5));
+    try expectEqual(Color.lerp(a, b, 0.75), Color.lerp(b, a, 0.25));
+    try expectEqual(Color.lerp(a, b, 1.0), Color.lerp(b, a, 0.0));
+
+    const result = Color.lerp(a, b, 0.5);
+    try expectEqual(@as(u8, 0x44), result.red);
+    try expectEqual(@as(u8, 0xc3), result.green);
+    try expectEqual(@as(u8, 0x88), result.blue);
+    try expectEqual(@as(u8, 0x66), result.alpha);
 }

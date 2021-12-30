@@ -3,6 +3,7 @@ const Container_Impl = @import("containers.zig").Container_Impl;
 const lasting_allocator = @import("internal.zig").lasting_allocator;
 const milliTimestamp = @import("internal.zig").milliTimestamp;
 
+/// Linear interpolation between a and b with factor t.
 fn lerp(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
     return a * (1 - @floatCast(@TypeOf(a), t)) + b * @floatCast(@TypeOf(a), t);
 }
@@ -38,11 +39,10 @@ pub fn Animation(comptime T: type) type {
             const maxDiff = @intToFloat(f64, self.end - self.start);
             const diff = @intToFloat(f64, milliTimestamp() - self.start);
             var t = diff / maxDiff;
-
             // Clamp t to [0, 1]
-            if (t > 1.0) t = 1.0;
-            if (t < 0.0) t = 0.0;
-            t = self.animFn(t); // transform 't' using the animation function
+            t = std.math.clamp(t, 0.0, 1.0);
+            // Transform 't' using the animation function
+            t = self.animFn(t);
 
             const min = comptime blk: {
                 if (std.meta.trait.isIntegral(T)) {
@@ -61,11 +61,17 @@ pub fn Animation(comptime T: type) type {
             };
 
             // Do a linear interpolation
-            const result = lerp(min, max, t);
-            if (comptime std.meta.trait.isIntegral(T)) {
-                return @floatToInt(T, @round(result));
+            if (comptime std.meta.trait.isNumber(T)) {
+                const result = lerp(min, max, t);
+                if (comptime std.meta.trait.isIntegral(T)) {
+                    return @floatToInt(T, @round(result));
+                } else {
+                    return result;
+                }
+            } else if (comptime std.meta.trait.isContainer(T) and @hasDecl(T, "lerp")) {
+                return T.lerp(min, max, t);
             } else {
-                return result;
+                @compileError("Type " ++ @typeName(T) ++ " does not support animations.");
             }
         }
     };

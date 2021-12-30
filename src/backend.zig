@@ -22,10 +22,13 @@ test "backend: create window" {
     var window = try backend.Window.create();
     window.show();
 
-    {var i: usize = 0; while (i < 30) : (i += 1) {
-        if (i == 15) {
-            window.close();
+    {
+        var i: usize = 0;
+        while (i < 30) : (i += 1) {
+            if (i == 15) {
+                window.close();
+            }
+            try std.testing.expectEqual(i < 15, backend.runStep(.Asynchronous));
         }
-        try std.testing.expectEqual(i < 15, backend.runStep(.Asynchronous));
-    }}
+    }
 }
