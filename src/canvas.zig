@@ -82,15 +82,12 @@ pub const Rect_Impl = struct {
     pub fn show(self: *Rect_Impl) !void {
         if (self.peer == null) {
             self.peer = try backend.Canvas.create();
-            _ = try self.color.addChangeListener(.{
-                .function = struct {
-                    fn callback(_: Color, userdata: usize) void {
-                        const peer = @intToPtr(*?backend.Canvas, userdata);
-                        peer.*.?.requestDraw() catch {};
-                    }
-                }.callback,
-                .userdata = @ptrToInt(&self.peer)
-            });
+            _ = try self.color.addChangeListener(.{ .function = struct {
+                fn callback(_: Color, userdata: usize) void {
+                    const peer = @intToPtr(*?backend.Canvas, userdata);
+                    peer.*.?.requestDraw() catch {};
+                }
+            }.callback, .userdata = @ptrToInt(&self.peer) });
             try self.show_events();
         }
     }

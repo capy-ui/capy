@@ -109,10 +109,7 @@ pub fn isDataWrapper(comptime T: type) bool {
     return @hasField(T, "bindLock"); // TODO: check all properties using comptime
 }
 
-pub var _animatedDataWrappers = std.ArrayList(struct {
-    fnPtr: fn(data: *anyopaque) bool,
-    userdata: *anyopaque
-}).init(lasting_allocator);
+pub var _animatedDataWrappers = std.ArrayList(struct { fnPtr: fn (data: *anyopaque) bool, userdata: *anyopaque }).init(lasting_allocator);
 
 pub fn DataWrapper(comptime T: type) type {
     return struct {
@@ -175,10 +172,13 @@ pub fn DataWrapper(comptime T: type) type {
 
             var contains = false;
             for (_animatedDataWrappers.items) |item| {
-                if (@ptrCast(*anyopaque, self) == item.userdata) { contains = true; break; }
+                if (@ptrCast(*anyopaque, self) == item.userdata) {
+                    contains = true;
+                    break;
+                }
             }
             if (!contains) {
-                _animatedDataWrappers.append(.{ .fnPtr = @ptrCast(fn(*anyopaque) bool, Self.update), .userdata = self }) catch {};
+                _animatedDataWrappers.append(.{ .fnPtr = @ptrCast(fn (*anyopaque) bool, Self.update), .userdata = self }) catch {};
             }
         }
 
