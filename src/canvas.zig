@@ -1,6 +1,7 @@
 const std = @import("std");
 const backend = @import("backend.zig");
 const Size = @import("data.zig").Size;
+const DataWrapper = @import("data.zig").DataWrapper;
 
 pub const DrawContext = backend.Canvas.DrawContext;
 
@@ -56,7 +57,7 @@ pub const Rect_Impl = struct {
     handlers: Rect_Impl.Handlers = undefined,
     dataWrappers: Rect_Impl.DataWrappers = .{},
     preferredSize: ?Size = null,
-    color: Color = Color.black,
+    color: DataWrapper(Color) = DataWrapper(Color).of(Color.black),
 
     pub fn init() Rect_Impl {
         return Rect_Impl.init_events(Rect_Impl{});
@@ -73,7 +74,7 @@ pub const Rect_Impl = struct {
     }
 
     pub fn draw(self: *Rect_Impl, ctx: *Canvas_Impl.DrawContext) !void {
-        ctx.setColorByte(self.color);
+        ctx.setColorByte(self.color.get());
         ctx.rectangle(0, 0, self.getWidth(), self.getHeight());
         ctx.fill();
     }
@@ -81,6 +82,15 @@ pub const Rect_Impl = struct {
     pub fn show(self: *Rect_Impl) !void {
         if (self.peer == null) {
             self.peer = try backend.Canvas.create();
+            _ = try self.color.addChangeListener(.{
+                .function = struct {
+                    fn callback(_: Color, userdata: usize) void {
+                        const peer = @intToPtr(*?backend.Canvas, userdata);
+                        peer.*.?.requestDraw() catch {};
+                    }
+                }.callback,
+                .userdata = @ptrToInt(&self.peer)
+            });
             try self.show_events();
         }
     }
@@ -90,7 +100,7 @@ pub fn Rect(config: struct { size: ?Size = null, color: Color = Color.black }) R
     var rect = Rect_Impl.init();
     _ = rect.addDrawHandler(Rect_Impl.draw) catch unreachable;
     rect.preferredSize = config.size;
-    rect.color = config.color;
+    rect.color = DataWrapper(Color).of(config.color);
     return rect;
 }
 
@@ -105,9 +115,9 @@ test "instantiate Canvas" {
 test "instantiate Rect" {
     var rect = Rect(.{ .color = Color.blue });
     defer rect.deinit();
-    try std.testing.expectEqual(Color.blue, rect.color);
+    try std.testing.expectEqual(Color.blue, rect.color.get());
 
     var rect2 = Rect(.{ .color = Color.yellow });
     defer rect2.deinit();
-    try std.testing.expectEqual(Color.yellow, rect2.color);
+    try std.testing.expectEqual(Color.yellow, rect2.color.get());
 }

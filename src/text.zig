@@ -69,8 +69,8 @@ pub const TextField_Impl = struct {
 
     /// When the text is changed in the StringDataWrapper
     fn wrapperTextChanged(newValue: []const u8, userdata: usize) void {
-        const peer = @intToPtr(*backend.TextField, userdata);
-        peer.setText(newValue);
+        const peer = @intToPtr(*?backend.TextField, userdata);
+        peer.*.?.setText(newValue);
     }
 
     fn textChanged(userdata: usize) void {

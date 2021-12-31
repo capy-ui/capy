@@ -109,6 +109,11 @@ pub fn isDataWrapper(comptime T: type) bool {
     return @hasField(T, "bindLock"); // TODO: check all properties using comptime
 }
 
+pub var _animatedDataWrappers = std.ArrayList(struct {
+    fnPtr: fn(data: *anyopaque) bool,
+    userdata: *anyopaque
+}).init(lasting_allocator);
+
 pub fn DataWrapper(comptime T: type) type {
     return struct {
         value: T,
@@ -128,11 +133,11 @@ pub fn DataWrapper(comptime T: type) type {
         /// A notices it already acquired the binding lock, and thus returns.
         bindLock: std.Thread.Mutex = .{},
         allocator: ?std.mem.Allocator = null,
-        animation: if (IsNumber) ?Animation(T) else void = if (IsNumber) null else {},
+        animation: if (IsAnimable) ?Animation(T) else void = if (IsAnimable) null else {},
         updater: ?fn (*Container_Impl) T = null,
 
         const Self = @This();
-        const IsNumber = std.meta.trait.isNumber(T);
+        const IsAnimable = std.meta.trait.isNumber(T) or (std.meta.trait.isContainer(T) and @hasDecl(T, "lerp"));
 
         pub const ChangeListener = struct { function: fn (newValue: T, userdata: usize) void, userdata: usize = 0 };
 
@@ -162,12 +167,19 @@ pub fn DataWrapper(comptime T: type) type {
         }
 
         pub fn animate(self: *Self, anim: fn (f64) f64, target: T, duration: i64) void {
-            if (!IsNumber) {
+            if (!IsAnimable) {
                 @compileError("animate only supported on numbers");
             }
-
             const time = milliTimestamp();
             self.animation = Animation(T){ .start = time, .end = time + duration, .min = self.value, .max = target, .animFn = anim };
+
+            var contains = false;
+            for (_animatedDataWrappers.items) |item| {
+                if (@ptrCast(*anyopaque, self) == item.userdata) { contains = true; break; }
+            }
+            if (!contains) {
+                _animatedDataWrappers.append(.{ .fnPtr = @ptrCast(fn(*anyopaque) bool, Self.update), .userdata = self }) catch {};
+            }
         }
 
         pub fn addChangeListener(self: *Self, listener: ChangeListener) !usize {
@@ -228,7 +240,7 @@ pub fn DataWrapper(comptime T: type) type {
 
                 self.lock.lock();
                 self.value = value;
-                if (IsNumber and resetAnimation) {
+                if (IsAnimable and resetAnimation) {
                     self.animation = null;
                 }
                 self.lock.unlock();

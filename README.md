@@ -5,6 +5,8 @@
 
 ---
 
+![the glorius software in action](https://raw.githubusercontent.com/zenith391/bottom-zig-gui/main/.github/screenshot.png) 
+
 ## Introduction
 
 zgt is a **graphical user interface library for Zig**. It is mainly intended for creating applications using native controls from the operating system.

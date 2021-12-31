@@ -7,8 +7,7 @@ var label = zgt.StringDataWrapper.of("0");
 
 //pub const zgtBackend = zgt.GlBackend;
 
-fn increment(button: *zgt.Button_Impl) !void {
-    _ = button;
+fn increment(_: *zgt.Button_Impl) !void {
     count.set(count.get() + 1);
 }
 
@@ -46,9 +45,5 @@ pub fn main() !void {
 
     // Count to 100 in 2000ms
     count.animate(zgt.Easings.InOut, 100, 2000);
-
-    while (zgt.stepEventLoop(.Asynchronous)) {
-        _ = count.update();
-        std.time.sleep(16);
-    }
+    zgt.runEventLoop();
 }

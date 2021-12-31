@@ -22,9 +22,7 @@ pub const GlBackend = @import("backends/gles/backend.zig");
 
 pub const MouseButton = backend.MouseButton;
 
-pub const BackendEventType = enum { Click, Draw, MouseButton, Scroll, TextChanged, Resize, KeyType };
-
-pub const EventLoopStep = enum { Blocking, Asynchronous };
+pub const EventLoopStep = @import("backends/shared.zig").EventLoopStep;
 
 /// Posts an empty event to finish the current step started in zgt.stepEventLoop
 pub fn wakeEventLoop() void {
@@ -32,14 +30,27 @@ pub fn wakeEventLoop() void {
 }
 
 /// Returns false if the last window has been closed.
+/// Even if the wanted step type is Blocking, zgt has the right
+/// to request an asynchronous step to the backend in order to animate
+/// data wrappers.
 pub fn stepEventLoop(stepType: EventLoopStep) bool {
-    return backend.runStep(stepType);
+    const data = @import("data.zig");
+    if (data._animatedDataWrappers.items.len > 0) {
+        for (data._animatedDataWrappers.items) |item, i| {
+            if (item.fnPtr(item.userdata) == false) { // animation ended
+                _ = data._animatedDataWrappers.swapRemove(i);
+            }
+        }
+        return backend.runStep(.Asynchronous);
+    } else {
+        return backend.runStep(stepType);
+    }
 }
 
 pub fn runEventLoop() void {
     while (true) {
         if (@import("std").io.is_async) {
-            if (!backend.runStep(.Asynchronous)) {
+            if (!stepEventLoop(.Asynchronous)) {
                 break;
             }
 
@@ -47,14 +58,12 @@ pub fn runEventLoop() void {
                 loop.yield();
             }
         } else {
-            if (!backend.runStep(.Blocking)) {
+            if (!stepEventLoop(.Blocking)) {
                 break;
             }
         }
     }
 }
-
-// TODO: widget types with comptime reflection (some sort of vtable)
 
 test {
     _ = @import("fuzz.zig"); // testing the fuzzing library

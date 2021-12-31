@@ -44,9 +44,5 @@ pub fn main() !void {
 
     window.resize(800, 450);
     window.show();
-
-    while (zgt.stepEventLoop(.Asynchronous)) {
-        _ = opacity.update();
-        std.time.sleep(16);
-    }
+    zgt.runEventLoop();
 }

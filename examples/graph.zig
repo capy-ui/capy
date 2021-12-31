@@ -207,7 +207,6 @@ pub fn main() !void {
         }
         const t = @intToFloat(f32, dt) / 1000;
         rectangleX.set(graph.dataFn(t * 10.0));
-        // try graph.requestDraw();
         std.time.sleep(30);
     }
 }
