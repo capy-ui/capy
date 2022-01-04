@@ -216,6 +216,7 @@ pub fn Events(comptime T: type) type {
                         handler(&dc, data.userdata);
                     }
                 },
+                win32.WM_DESTROY => win32.PostQuitMessage(0),
                 else => {},
             }
             return win32.DefWindowProcA(hwnd, wm, wp, lp);

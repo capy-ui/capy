@@ -50,15 +50,20 @@ pub fn build(b: *std.build.Builder) !void {
     var examplesDir = try std.fs.cwd().openDir("examples", .{ .iterate = true });
     defer examplesDir.close();
 
+    const broken = switch (target.getOsTag()) {
+        .windows => &[_][]const u8{ "7gui-counter", "entry", "fade" },
+        else => &[_][]const u8{},
+    };
+
     var walker = try examplesDir.walk(b.allocator);
     defer walker.deinit();
     while (try walker.next()) |entry| {
         if (entry.kind == .File and std.mem.eql(u8, std.fs.path.extension(entry.path), ".zig")) {
-            const name = try std.mem.replaceOwned(u8, b.allocator, entry.path[0..entry.path.len-4], "/", "-");
+            const name = try std.mem.replaceOwned(u8, b.allocator, entry.path[0..entry.path.len-4], std.fs.path.sep_str, "-");
             defer b.allocator.free(name);
 
             // it is not freed as the path is used later for building
-            const programPath = try std.mem.concat(b.allocator, u8, &.{ "examples/", entry.path });
+            const programPath = b.pathJoin(&.{ "examples", entry.path });
 
             const exe: *std.build.LibExeObjStep = if (target.toTarget().isWasm())
                     b.addSharedLibrary(name, programPath, .unversioned)
@@ -67,7 +72,20 @@ pub fn build(b: *std.build.Builder) !void {
             exe.setTarget(target);
             exe.setBuildMode(mode);
             try install(exe, ".");
-            exe.install();
+
+            const install_step = b.addInstallArtifact(exe);
+            const working = blk: {
+                for (broken) |broken_name| {
+                    if (std.mem.eql(u8, name, broken_name))
+                        break :blk false;
+                }
+                break :blk true;
+            };
+            if (working) {
+                b.getInstallStep().dependOn(&install_step.step);
+            } else {
+                std.log.warn("'{s}' is broken (disabled by default)", .{name});
+            }
 
             const run_cmd = exe.run();
             run_cmd.step.dependOn(&exe.install_step.?.step);
