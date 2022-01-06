@@ -18,12 +18,12 @@ pub const GuiWidget = struct {
     scrollHandler: ?fn (dx: f32, dy: f32, data: usize) void = null,
     resizeHandler: ?fn (width: u32, height: u32, data: usize) void = null,
     /// Only works for canvas (althought technically it isn't required to)
-    drawHandler: ?fn (ctx: Canvas.DrawContext, data: usize) void = null,
+    drawHandler: ?fn (ctx: *Canvas.DrawContext, data: usize) void = null,
     changedTextHandler: ?fn (data: usize) void = null,
 
     processEventFn: fn (object: usize, event: js.EventId) void,
 
-    pub fn init(comptime T: type, allocator: *std.mem.Allocator, name: []const u8) !*GuiWidget {
+    pub fn init(comptime T: type, allocator: std.mem.Allocator, name: []const u8) !*GuiWidget {
         const self = try allocator.create(GuiWidget);
         self.* = .{ .processEventFn = T.processEvent, .element = js.createElement(name) };
         return self;
