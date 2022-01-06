@@ -5,6 +5,7 @@ const shared = @import("../shared.zig");
 const EventType = shared.BackendEventType;
 
 const win32 = @import("win32.zig");
+const gdi = @import("gdip.zig");
 const HWND = win32.HWND;
 const HINSTANCE = win32.HINSTANCE;
 const RECT = win32.RECT;
@@ -22,13 +23,6 @@ pub const PeerType = HWND;
 
 var hInst: HINSTANCE = undefined;
 
-pub const public = struct {
-    pub fn main() !void {
-        try init();
-        try @import("root").run();
-    }
-};
-
 pub fn init() !void {
     const hInstance = @ptrCast(win32.HINSTANCE, @alignCast(@alignOf(win32.HINSTANCE), win32.GetModuleHandleW(null).?));
     hInst = hInstance;
@@ -38,6 +32,9 @@ pub fn init() !void {
     if (code == 0) {
         std.debug.print("Failed to initialize Common Controls.", .{});
     }
+
+    var input = win32.GdiplusStartupInput{};
+    try gdi.gdipWrap(win32.GdiplusStartup(&gdi.token, &input, null));
 }
 
 pub const MessageType = enum { Information, Warning, Error };
@@ -206,11 +203,12 @@ pub fn Events(comptime T: type) type {
                         var ps: win32.PAINTSTRUCT = undefined;
                         var hdc: win32.HDC = win32.BeginPaint(hwnd, &ps);
                         defer _ = win32.EndPaint(hwnd, &ps);
+                        var graphics = gdi.Graphics.createFromHdc(hdc) catch unreachable;
 
                         const brush = @ptrCast(win32.HBRUSH, win32.GetStockObject(win32.DC_BRUSH));
                         win32.SelectObject(hdc, @ptrCast(win32.HGDIOBJ, brush));
 
-                        var dc = Canvas.DrawContext{ .hdc = hdc, .hbr = brush, .path = std.ArrayList(Canvas.DrawContext.PathElement)
+                        var dc = Canvas.DrawContext{ .hdc = hdc, .graphics = graphics, .hbr = brush, .path = std.ArrayList(Canvas.DrawContext.PathElement)
                             .init(lib.internal.scratch_allocator) };
                         defer dc.path.deinit();
                         handler(&dc, data.userdata);
@@ -297,6 +295,7 @@ pub const Canvas = struct {
 
     pub const DrawContext = struct {
         hdc: win32.HDC,
+        graphics: gdi.Graphics,
         hbr: win32.HBRUSH,
         path: std.ArrayList(PathElement),
 

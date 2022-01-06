@@ -14,6 +14,7 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
             step.subsystem = .Windows;
             step.linkSystemLibrary("comctl32");
             step.linkSystemLibrary("gdi32");
+            step.linkSystemLibrary("gdiplus");
             switch (step.target.toTarget().cpu.arch) {
                 .x86_64 => step.addObjectFile(prefix ++ "/src/backends/win32/res/x86_64.o"),
                 //.i386 => step.addObjectFile(prefix ++ "/src/backends/win32/res/i386.o"), // currently disabled due to problems with safe SEH

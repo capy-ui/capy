@@ -18,6 +18,7 @@ pub const COLORREF = std.os.windows.DWORD;
 pub const BOOL = std.os.windows.BOOL;
 pub const BYTE = std.os.windows.BYTE;
 pub const LONG = std.os.windows.LONG;
+pub const ULONG = std.os.windows.ULONG;
 pub const UINT = std.os.windows.UINT;
 pub const INT = std.os.windows.INT;
 pub const DWORD = std.os.windows.DWORD;
@@ -140,3 +141,21 @@ pub fn SetWindowLongPtr(hWnd: HWND, nIndex: c_int, dwNewLong: usize) void {
 }
 
 pub const ICC_STANDARD_CLASSES = 0x00004000;
+
+// GDI+ part, based on https://docs.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-flatapi-flat
+pub const GpGraphics = *opaque {};
+pub const GpStatus = enum(c_int) { Ok, GenericError, InvalidParameter, OutOfMemory, ObjectBusy, InsufficientBuffer, NotImplemented, Win32Error, WrongState, Aborted, FileNotFound, ValueOverflow, AccessDenied, UnknownImageFormat, FontFamilyNotFound, FontStyleNotFound, NotTrueTypeFont, UnsupportedGdiplusVersion, GdiplusNotInitialized, PropertyNotFound, PropertyNotSupported, ProfileNotFound };
+
+pub const DebugEventLevel = enum(c_int) { DebugEventLevelFatal, DebugEventLevelWarning };
+
+pub const DebugEventProc = fn (level: DebugEventLevel, message: [*]const u8) callconv(.C) void;
+pub const GdiplusStartupInput = extern struct { GdiplusVersion: u32 = 1, DebugEventCallback: ?DebugEventProc = null, SuppressBackgroundThread: BOOL = 0, SuppressExternalCodecs: BOOL = 0, GdiplusStartupInput: ?fn (debugEventCallback: DebugEventProc, suppressBackgroundThread: BOOL, supressExternalCodecs: BOOL) callconv(.C) void = null };
+
+pub const GdiplusStartupOutput = extern struct {
+    NotificationHookProc: fn () callconv(.C) void, // TODO
+    NotificationUnhookProc: fn () callconv(.C) void, // TODO
+};
+
+pub extern "gdiplus" fn GdipCreateFromHDC(hdc: HDC, graphics: *GpGraphics) callconv(WINAPI) GpStatus;
+pub extern "gdiplus" fn GdiplusStartup(token: *ULONG, input: ?*GdiplusStartupInput, output: ?*GdiplusStartupOutput) callconv(WINAPI) GpStatus;
+pub extern "gdiplus" fn GdiplusShutdown(token: *ULONG) void;
