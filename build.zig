@@ -88,14 +88,16 @@ pub fn build(b: *std.build.Builder) !void {
                 std.log.warn("'{s}' is broken (disabled by default)", .{name});
             }
 
-            const run_cmd = exe.run();
-            run_cmd.step.dependOn(&exe.install_step.?.step);
-            if (b.args) |args| {
-                run_cmd.addArgs(args);
-            }
+            if (!target.toTarget().isWasm()) {
+                const run_cmd = exe.run();
+                run_cmd.step.dependOn(&exe.install_step.?.step);
+                if (b.args) |args| {
+                    run_cmd.addArgs(args);
+                }
 
-            const run_step = b.step(name, "Run this example");
-            run_step.dependOn(&run_cmd.step);
+                const run_step = b.step(name, "Run this example");
+                run_step.dependOn(&run_cmd.step);
+            }
         }
     }
 
