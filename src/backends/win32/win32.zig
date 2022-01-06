@@ -45,27 +45,27 @@ pub extern "user32" fn GetWindowRect(hWnd: HWND, lpRect: LPRECT) callconv(WINAPI
 pub extern "user32" fn GetClientRect(hWnd: HWND, lpRect: LPRECT) callconv(WINAPI) c_int;
 pub extern "user32" fn SetWindowPos(hWnd: HWND, hWndInsertAfter: HWND, X: c_int, Y: c_int, cx: c_int, cy: c_int, uFlags: c_uint) callconv(WINAPI) c_int;
 pub extern "user32" fn MoveWindow(hWnd: HWND, X: c_int, Y: c_int, nWidth: c_int, nHeight: c_int, repaint: c_int) callconv(WINAPI) c_int;
-pub extern "user32" fn BeginPaint(hWnd: HWND, lpPaint: *PAINTSTRUCT) HDC;
-pub extern "user32" fn EndPaint(hWnd: HWND, lpPaint: *const PAINTSTRUCT) BOOL;
-pub extern "gdi32" fn CreateSolidBrush(color: COLORREF) ?HBRUSH;
-pub extern "gdi32" fn DeleteObject(ho: HGDIOBJ) BOOL;
-pub extern "gdi32" fn SelectObject(hdc: HDC, h: HGDIOBJ) void;
-pub extern "gdi32" fn Rectangle(hdc: HDC, left: c_int, top: c_int, right: c_int, bottom: c_int) BOOL;
-pub extern "gdi32" fn Ellipse(hdc: HDC, left: c_int, top: c_int, right: c_int, bottom: c_int) BOOL;
-pub extern "gdi32" fn ExtTextOutA(hdc: HDC, x: c_int, y: c_int, options: UINT, lprect: ?*const RECT, lpString: [*]const u8, c: UINT, lpDx: ?*const INT) BOOL;
-pub extern "gdi32" fn GetTextExtentPoint32A(hdc: HDC, lpString: [*]const u8, c: c_int, psizl: *SIZE) BOOL;
-pub extern "gdi32" fn CreateFontA(cHeight: c_int, cWidth: c_int, cEscapement: c_int, cOrientation: c_int, cWeight: c_int, bItalic: DWORD, bUnderline: DWORD, bStrikeOut: DWORD, iCharSet: DWORD, iOutPrecision: DWORD, iClipPrecision: DWORD, iQuality: DWORD, iPitchAndFamily: DWORD, pszFaceName: std.os.windows.LPCSTR) ?HFONT;
-pub extern "gdi32" fn GetStockObject(i: c_int) HGDIOBJ;
-pub extern "gdi32" fn CreateCompatibleDC(hdc: ?HDC) ?HDC;
-pub extern "gdi32" fn SetDCBrushColor(hdc: HDC, color: COLORREF) COLORREF;
-pub extern "gdi32" fn GetDCBrushColor(hdc: HDC) COLORREF;
-pub extern "gdi32" fn SetTextColor(hdc: HDC, color: COLORREF) COLORREF;
-pub extern "gdi32" fn GetSysColorBrush(nIndex: c_int) ?HBRUSH;
-pub extern "gdi32" fn MoveToEx(hdc: HDC, x: c_int, y: c_int, lppt: ?*POINT) BOOL;
-pub extern "gdi32" fn LineTo(hdc: HDC, x: c_int, y: c_int) BOOL;
-pub extern "user32" fn GetWindowRgnBox(hWnd: HWND, lprc: LPRECT) c_int;
-pub extern "user32" fn InvalidateRect(hWnd: HWND, lpRect: *const RECT, bErase: BOOL) BOOL;
-pub extern "user32" fn GetWindowExtEx(hdc: HDC, lpsize: *SIZE) BOOL;
+pub extern "user32" fn BeginPaint(hWnd: HWND, lpPaint: *PAINTSTRUCT) callconv(WINAPI) HDC;
+pub extern "user32" fn EndPaint(hWnd: HWND, lpPaint: *const PAINTSTRUCT) callconv(WINAPI) BOOL;
+pub extern "gdi32" fn CreateSolidBrush(color: COLORREF) callconv(WINAPI) ?HBRUSH;
+pub extern "gdi32" fn DeleteObject(ho: HGDIOBJ) callconv(WINAPI) BOOL;
+pub extern "gdi32" fn SelectObject(hdc: HDC, h: HGDIOBJ) callconv(WINAPI) void;
+pub extern "gdi32" fn Rectangle(hdc: HDC, left: c_int, top: c_int, right: c_int, bottom: c_int) callconv(WINAPI) BOOL;
+pub extern "gdi32" fn Ellipse(hdc: HDC, left: c_int, top: c_int, right: c_int, bottom: c_int) callconv(WINAPI) BOOL;
+pub extern "gdi32" fn ExtTextOutA(hdc: HDC, x: c_int, y: c_int, options: UINT, lprect: ?*const RECT, lpString: [*]const u8, c: UINT, lpDx: ?*const INT) callconv(WINAPI) BOOL;
+pub extern "gdi32" fn GetTextExtentPoint32A(hdc: HDC, lpString: [*]const u8, c: c_int, psizl: *SIZE) callconv(WINAPI) BOOL;
+pub extern "gdi32" fn CreateFontA(cHeight: c_int, cWidth: c_int, cEscapement: c_int, cOrientation: c_int, cWeight: c_int, bItalic: DWORD, bUnderline: DWORD, bStrikeOut: DWORD, iCharSet: DWORD, iOutPrecision: DWORD, iClipPrecision: DWORD, iQuality: DWORD, iPitchAndFamily: DWORD, pszFaceName: std.os.windows.LPCSTR) callconv(WINAPI) ?HFONT;
+pub extern "gdi32" fn GetStockObject(i: c_int) callconv(WINAPI) HGDIOBJ;
+pub extern "gdi32" fn CreateCompatibleDC(hdc: ?HDC) callconv(WINAPI) ?HDC;
+pub extern "gdi32" fn SetDCBrushColor(hdc: HDC, color: COLORREF) callconv(WINAPI) COLORREF;
+pub extern "gdi32" fn GetDCBrushColor(hdc: HDC) callconv(WINAPI) COLORREF;
+pub extern "gdi32" fn SetTextColor(hdc: HDC, color: COLORREF) callconv(WINAPI) COLORREF;
+pub extern "gdi32" fn GetSysColorBrush(nIndex: c_int) callconv(WINAPI) ?HBRUSH;
+pub extern "gdi32" fn MoveToEx(hdc: HDC, x: c_int, y: c_int, lppt: ?*POINT) callconv(WINAPI) BOOL;
+pub extern "gdi32" fn LineTo(hdc: HDC, x: c_int, y: c_int) callconv(WINAPI) BOOL;
+pub extern "user32" fn GetWindowRgnBox(hWnd: HWND, lprc: LPRECT) callconv(WINAPI) c_int;
+pub extern "user32" fn InvalidateRect(hWnd: HWND, lpRect: *const RECT, bErase: BOOL) callconv(WINAPI) BOOL;
+pub extern "user32" fn GetWindowExtEx(hdc: HDC, lpsize: *SIZE) callconv(WINAPI) BOOL;
 
 // stock objects constants
 pub const WHITE_BRUSH = 0;
@@ -156,6 +156,6 @@ pub const GdiplusStartupOutput = extern struct {
     NotificationUnhookProc: fn () callconv(.C) void, // TODO
 };
 
-pub extern "gdiplus" fn GdipCreateFromHDC(hdc: HDC, graphics: *GpGraphics) callconv(WINAPI) GpStatus;
-pub extern "gdiplus" fn GdiplusStartup(token: *ULONG, input: ?*GdiplusStartupInput, output: ?*GdiplusStartupOutput) callconv(WINAPI) GpStatus;
+pub extern "gdiplus" fn GdipCreateFromHDC(hdc: HDC, graphics: *GpGraphics) GpStatus;
+pub extern "gdiplus" fn GdiplusStartup(token: *ULONG, input: ?*GdiplusStartupInput, output: ?*GdiplusStartupOutput) GpStatus;
 pub extern "gdiplus" fn GdiplusShutdown(token: *ULONG) void;
