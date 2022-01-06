@@ -309,6 +309,9 @@ pub const Canvas = struct {
             font: win32.HFONT,
             /// HDC only used for getting text metrics
             hdc: win32.HDC,
+            /// If null, no text wrapping is applied, otherwise the text is wrapping as if this was the maximum width.
+            /// TODO: this is not yet implemented in the win32 backend
+            wrap: ?f64 = null,
 
             pub const Font = struct {
                 face: [:0]const u8,
@@ -459,11 +462,54 @@ pub const Canvas = struct {
     }
 };
 
+pub const TextField = struct {
+    peer: HWND,
+    arena: std.heap.ArenaAllocator,
+
+    pub usingnamespace Events(TextField);
+
+    pub fn create() !TextField {
+        const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
+            "EDIT", // lpClassName
+            "", // lpWindowName
+            win32.WS_TABSTOP | win32.WS_CHILD, // dwStyle
+            10, // X
+            10, // Y
+            100, // nWidth
+            100, // nHeight
+            defaultWHWND, // hWindParent
+            null, // hMenu
+            hInst, // hInstance
+            null // lpParam
+        );
+        try TextField.setupEvents(hwnd);
+
+        return TextField{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator) };
+    }
+
+    pub fn setText(self: *TextField, text: []const u8) void {
+        const allocator = lib.internal.scratch_allocator;
+        const wide = std.unicode.utf8ToUtf16LeWithNull(allocator, text) catch return; // invalid utf8 or not enough memory
+        defer allocator.free(wide);
+        if (win32.SetWindowTextW(self.peer, wide) == 0) {
+            std.os.windows.unexpectedError(win32.GetLastError()) catch {};
+        }
+    }
+
+    pub fn getText(self: *TextField) [:0]const u8 {
+        const allocator = self.arena.allocator();
+        const len = win32.GetWindowTextLengthW(self.peer);
+        var buf = allocator.allocSentinel(u16, @intCast(usize, len), 0) catch unreachable; // TODO return error
+        defer allocator.free(buf);
+        const realLen = @intCast(usize, win32.GetWindowTextW(self.peer, buf.ptr, len + 1));
+        const utf16Slice = buf[0..realLen];
+        const text = std.unicode.utf16leToUtf8AllocZ(allocator, utf16Slice) catch unreachable; // TODO return error
+        return text;
+    }
+};
+
 pub const Button = struct {
     peer: HWND,
-    data: usize = 0,
-    clickHandler: ?fn (data: usize) void = null,
-    oldWndProc: ?win32.WNDPROC = null,
     arena: std.heap.ArenaAllocator,
 
     pub usingnamespace Events(Button);
@@ -581,8 +627,7 @@ pub const Container = struct {
                 .hInstance = hInst,
                 .hIcon = null, // TODO: LoadIcon
                 .hCursor = null, // TODO: LoadCursor
-                //.hbrBackground = null,
-                .hbrBackground = win32.GetSysColorBrush(win32.COLOR_WINDOW), // TODO: transparent background!
+                .hbrBackground = null,
                 .lpszMenuName = null,
                 .lpszClassName = "zgtContainerClass",
                 .hIconSm = null,

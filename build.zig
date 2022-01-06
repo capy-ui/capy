@@ -52,7 +52,7 @@ pub fn build(b: *std.build.Builder) !void {
     defer examplesDir.close();
 
     const broken = switch (target.getOsTag()) {
-        .windows => &[_][]const u8{ "7gui-counter", "entry", "fade" },
+        .windows => &[_][]const u8{ "7gui-counter", "fade" },
         else => &[_][]const u8{},
     };
 
@@ -100,6 +100,7 @@ pub fn build(b: *std.build.Builder) !void {
     }
 
     const tests = b.addTest("src/main.zig");
+    tests.setTarget(target);
     tests.setBuildMode(mode);
     // tests.emit_docs = .emit;
     try install(tests, ".");
