@@ -52,7 +52,7 @@ pub fn build(b: *std.build.Builder) !void {
     defer examplesDir.close();
 
     const broken = switch (target.getOsTag()) {
-        .windows => &[_][]const u8{ "7gui-counter", "fade" },
+        .windows => &[_][]const u8{ "fade" },
         else => &[_][]const u8{},
     };
 
