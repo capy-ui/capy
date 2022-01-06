@@ -14,9 +14,14 @@ pub const Capabilities = .{ .useEventLoop = true };
 var activeWindows = std.atomic.Atomic(usize).init(0);
 var randomWindow: *c.GtkWidget = undefined;
 
+var hasInit: bool = false;
+
 pub fn init() BackendError!void {
-    if (c.gtk_init_check(0, null) == 0) {
-        return BackendError.InitializationError;
+    if (!hasInit) {
+        hasInit = true;
+        if (c.gtk_init_check(0, null) == 0) {
+            return BackendError.InitializationError;
+        }
     }
 }
 

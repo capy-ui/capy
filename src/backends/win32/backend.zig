@@ -22,19 +22,23 @@ pub const Capabilities = .{ .useEventLoop = true };
 pub const PeerType = HWND;
 
 var hInst: HINSTANCE = undefined;
+var hasInit: bool = false;
 
 pub fn init() !void {
-    const hInstance = @ptrCast(win32.HINSTANCE, @alignCast(@alignOf(win32.HINSTANCE), win32.GetModuleHandleW(null).?));
-    hInst = hInstance;
+    if (!hasInit) {
+        hasInit = true;
+        const hInstance = @ptrCast(win32.HINSTANCE, @alignCast(@alignOf(win32.HINSTANCE), win32.GetModuleHandleW(null).?));
+        hInst = hInstance;
 
-    const initEx = win32.INITCOMMONCONTROLSEX{ .dwSize = @sizeOf(win32.INITCOMMONCONTROLSEX), .dwICC = win32.ICC_STANDARD_CLASSES };
-    const code = win32.InitCommonControlsEx(&initEx);
-    if (code == 0) {
-        std.debug.print("Failed to initialize Common Controls.", .{});
+        const initEx = win32.INITCOMMONCONTROLSEX{ .dwSize = @sizeOf(win32.INITCOMMONCONTROLSEX), .dwICC = win32.ICC_STANDARD_CLASSES };
+        const code = win32.InitCommonControlsEx(&initEx);
+        if (code == 0) {
+            std.debug.print("Failed to initialize Common Controls.", .{});
+        }
+
+        var input = win32.GdiplusStartupInput{};
+        try gdi.gdipWrap(win32.GdiplusStartup(&gdi.token, &input, null));
     }
-
-    var input = win32.GdiplusStartupInput{};
-    try gdi.gdipWrap(win32.GdiplusStartup(&gdi.token, &input, null));
 }
 
 pub const MessageType = enum { Information, Warning, Error };

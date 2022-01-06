@@ -45,7 +45,7 @@ pub const PeerType = *GuiWidget;
 pub const MouseButton = enum { Left, Middle, Right };
 
 pub fn init() !void {
-    // TODO
+    // no initialization to do
 }
 
 var globalWindow: ?*Window = null;

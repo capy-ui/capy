@@ -101,7 +101,7 @@ pub fn build(b: *std.build.Builder) !void {
 
     const tests = b.addTest("src/main.zig");
     tests.setBuildMode(mode);
-    tests.emit_docs = .emit;
+    // tests.emit_docs = .emit;
     try install(tests, ".");
 
     const test_step = b.step("test", "Run unit tests and also generate the documentation");
