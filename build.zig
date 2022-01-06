@@ -11,6 +11,17 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
             step.linkSystemLibrary("gtk+-3.0");
         },
         .windows => {
+            // There doesn't seem to be a way to link to a .def file so we temporarily put it in the Zig installation folder
+            const libcommon = step.builder.pathJoin(&.{ std.fs.path.dirname(step.builder.zig_exe).?, "lib", "libc", "mingw", "lib-common", "gdiplus.def" });
+            defer step.builder.allocator.free(libcommon);
+            std.fs.accessAbsolute(libcommon, .{}) catch |err| switch (err) {
+                error.FileNotFound => {
+                    try std.fs.copyFileAbsolute(
+                        step.builder.pathFromRoot(prefix ++ "/src/backends/win32/gdiplus.def"), libcommon, .{});
+                },
+                else => {}
+            };
+
             step.subsystem = .Windows;
             step.linkSystemLibrary("comctl32");
             step.linkSystemLibrary("gdi32");
