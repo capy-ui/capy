@@ -604,7 +604,26 @@ pub const Container = struct {
 
         // temporary fix and should be replaced by a proper way to resize down
         c.gtk_widget_set_size_request(peer, std.math.max(@intCast(c_int, w) - 5, 0), std.math.max(@intCast(c_int, h) - 5, 0));
+        //c.gtk_widget_set_size_request(peer, @intCast(c_int, w), @intCast(c_int, h));
         c.gtk_container_resize_children(@ptrCast(*c.GtkContainer, self.peer));
+    }
+};
+
+pub const ScrollView = struct {
+    peer: *c.GtkWidget,
+
+    pub usingnamespace Events(ScrollView);
+
+    pub fn create() BackendError!ScrollView {
+        const scrolledWindow = c.gtk_scrolled_window_new(null, null) orelse return BackendError.UnknownError;
+        c.gtk_widget_show(scrolledWindow);
+        try ScrollView.setupEvents(scrolledWindow);
+        return ScrollView{ .peer = scrolledWindow };
+    }
+
+    pub fn setChild(self: *ScrollView, peer: PeerType) void {
+        // TODO: remove old widget if there was one
+        c.gtk_container_add(@ptrCast(*c.GtkContainer, self.peer), peer);
     }
 };
 

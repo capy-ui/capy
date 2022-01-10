@@ -6,7 +6,7 @@ pub const Window = struct {
     /// The DPI the GUI has been developed against
     source_dpi: u32 = 96,
     peer: backend.Window,
-    child: ?Widget = null,
+    _child: ?Widget = null,
 
     pub fn init() !Window {
         const peer = try backend.Window.create();
@@ -37,12 +37,12 @@ pub const Window = struct {
             wrappedContainer;
         const ComponentType = @import("internal.zig").DereferencedType(@TypeOf(container));
 
-        self.child = try @import("internal.zig").genericWidgetFrom(container);
-        self.child.?.as(ComponentType).dataWrappers.widget = &self.child.?;
+        self._child = try @import("internal.zig").genericWidgetFrom(container);
+        self._child.?.as(ComponentType).dataWrappers.widget = &self._child.?;
 
-        try self.child.?.show();
+        try self._child.?.show();
 
-        self.peer.setChild(self.child.?.peer);
+        self.peer.setChild(self._child.?.peer);
     }
 
     pub fn resize(self: *Window, width: u32, height: u32) void {
@@ -50,7 +50,7 @@ pub const Window = struct {
     }
 
     pub fn deinit(self: *Window) void {
-        if (self.child) |*child| {
+        if (self._child) |*child| {
             child.deinit();
         }
     }

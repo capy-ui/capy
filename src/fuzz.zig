@@ -12,9 +12,14 @@ pub fn Iterator(comptime T: type) type {
         start: i64,
 
         pub const Self = @This();
+        const DETERMINISTIC_TEST = false;
 
         pub fn init() Self {
-            return Self{ .rand = std.rand.DefaultPrng.init(0), .start = std.time.milliTimestamp() };
+            return Self{
+                .rand = std.rand.DefaultPrng.init(if (DETERMINISTIC_TEST) 0 else
+                @truncate(u64, @bitCast(u128, std.time.nanoTimestamp()))),
+                .start = std.time.milliTimestamp(),
+            };
         }
 
         pub fn next(self: *Self) ?T {

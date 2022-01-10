@@ -77,9 +77,9 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
     var childX: f32 = 0.0;
     for (widgets) |widget| {
         if (widget.peer) |widgetPeer| {
-            if (@floatToInt(u32, childX) >= peer.getSize(peer.userdata).width) {
-                break;
-            }
+            // if (@floatToInt(u32, childX) >= peer.getSize(peer.userdata).width) {
+            //     break;
+            // }
             const available = Size{ .width = if (widget.container_expanded) childWidth else (@intCast(u32, peer.getSize(peer.userdata).width) - @floatToInt(u32, childX)), .height = @intCast(u32, peer.getSize(peer.userdata).height) };
             const preferred = widget.getPreferredSize(available);
             const size = if (widget.container_expanded) available else Size.intersect(available, preferred);
@@ -256,7 +256,7 @@ pub const Container_Impl = struct {
         const slot = try self.childrens.addOne();
         slot.* = genericWidget;
         if (@hasField(ComponentType, "dataWrappers")) {
-            widget.as(ComponentType).dataWrappers.widget = slot;
+            genericWidget.as(ComponentType).dataWrappers.widget = slot;
         }
 
         if (self.peer) |*peer| {

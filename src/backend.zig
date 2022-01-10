@@ -44,3 +44,11 @@ test "backend: text field" {
     field.setText(str);
     try std.testing.expectEqualStrings(str, field.getText());
 }
+
+test "backend: scrollable" {
+    try backend.init();
+    var scrollable = try backend.Scrollable.create();
+    defer scrollable.deinit();
+
+    // TODO: more tests
+}
