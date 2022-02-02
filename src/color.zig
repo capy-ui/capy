@@ -9,11 +9,24 @@ pub const Color = packed struct {
     blue: u8,
     alpha: u8 = 255,
 
-    pub const black = Color.comptimeFromString("#000000");
+    // The CSS level 2 revision 1 colors
+    pub const maroon = Color.comptimeFromString("#800000");
     pub const red = Color.comptimeFromString("#ff0000");
-    pub const green = Color.comptimeFromString("#00ff00");
-    pub const blue = Color.comptimeFromString("#0000ff");
+    pub const orange = Color.comptimeFromString("#ffa500");
     pub const yellow = Color.comptimeFromString("#ffff00");
+    pub const lime = Color.comptimeFromString("#00ff00");
+    pub const green = Color.comptimeFromString("#008000");
+    pub const olive = Color.comptimeFromString("#808000");
+    pub const aqua = Color.comptimeFromString("#00ffff");
+    pub const teal = Color.comptimeFromString("#008080");
+    pub const blue = Color.comptimeFromString("#0000ff");
+    pub const navy = Color.comptimeFromString("#000080");
+    pub const fuchsia = Color.comptimeFromString("#ff00ff");
+    pub const purple = Color.comptimeFromString("#800080");
+
+    pub const black = Color.comptimeFromString("#000000");
+    pub const gray = Color.comptimeFromString("#808080");
+    pub const silver = Color.comptimeFromString("#c0c0c0");
     pub const white = Color.comptimeFromString("#ffffff");
 
     pub const transparent = Color.comptimeFromString("#00000000");
