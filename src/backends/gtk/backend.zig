@@ -147,7 +147,8 @@ pub fn Events(comptime T: type) type {
             _ = c.g_signal_connect_data(widget, "motion-notify-event", @ptrCast(c.GCallback, gtkMouseMotion), null, null, c.G_CONNECT_AFTER);
             _ = c.g_signal_connect_data(widget, "scroll-event", @ptrCast(c.GCallback, gtkMouseScroll), null, null, c.G_CONNECT_AFTER);
             _ = c.g_signal_connect_data(widget, "size-allocate", @ptrCast(c.GCallback, gtkSizeAllocate), null, null, c.G_CONNECT_AFTER);
-            _ = c.g_signal_connect_data(widget, "key-press-event", @ptrCast(c.GCallback, gtkKeyPress), null, null, c.G_CONNECT_AFTER);
+            if (T != Canvas)
+                _ = c.g_signal_connect_data(widget, "key-press-event", @ptrCast(c.GCallback, gtkKeyPress), null, null, c.G_CONNECT_AFTER);
             c.gtk_widget_add_events(widget, c.GDK_SCROLL_MASK | c.GDK_BUTTON_PRESS_MASK | c.GDK_BUTTON_RELEASE_MASK | c.GDK_KEY_PRESS_MASK | c.GDK_POINTER_MOTION_MASK);
 
             var data = try lib.internal.lasting_allocator.create(EventUserData);
@@ -181,7 +182,7 @@ pub fn Events(comptime T: type) type {
         fn gtkKeyPress(peer: *c.GtkWidget, event: *GdkEventKey, userdata: usize) callconv(.C) c.gboolean {
             _ = userdata;
             const data = getEventUserData(peer);
-            const str = std.mem.span(event.string);
+            const str = event.string[0..@intCast(usize, event.length)];
             if (str.len != 0) {
                 if (data.class.keyTypeHandler) |handler| {
                     handler(str, @ptrToInt(data));
@@ -438,6 +439,7 @@ pub const TextField = struct {
 
 pub const Canvas = struct {
     peer: *c.GtkWidget,
+    controller: *c.GtkEventController,
 
     pub usingnamespace Events(Canvas);
 
@@ -566,13 +568,45 @@ pub const Canvas = struct {
         return 0; // propagate the event further
     }
 
+    fn gtkImKeyPress(key: *c.GtkEventControllerKey, keyval: c.guint, keycode: c.guint, state: *c.GdkModifierType, userdata: c.gpointer) callconv(.C) c.gboolean {
+        _ = userdata;
+        _ = keycode;
+        _ = state;
+
+        const peer = c.gtk_event_controller_get_widget(@ptrCast(*c.GtkEventController, key));
+        const data = getEventUserData(peer);
+        _ = data;
+        var finalKeyval = @intCast(u21, keyval);
+        if (keyval >= 0xFF00 and keyval < 0xFF20) { // control characters
+            finalKeyval = @intCast(u21, keyval) - 0xFF00;
+        }
+        if (finalKeyval >= 32768) return 0;
+
+        var encodeBuffer: [4]u8 = undefined;
+        const strLength = std.unicode.utf8Encode(@intCast(u21, finalKeyval), &encodeBuffer) catch unreachable;
+        const str = encodeBuffer[0..strLength];
+
+        if (data.class.keyTypeHandler) |handler| {
+            handler(str, @ptrToInt(data));
+            if (data.user.keyTypeHandler == null) return 1;
+        }
+        if (data.user.keyTypeHandler) |handler| {
+            handler(str, data.userdata);
+            return 1;
+        }
+        return 1;
+    }
+
     pub fn create() BackendError!Canvas {
         const canvas = c.gtk_drawing_area_new() orelse return BackendError.UnknownError;
         c.gtk_widget_show(canvas);
         c.gtk_widget_set_can_focus(canvas, 1);
         try Canvas.setupEvents(canvas);
         _ = c.g_signal_connect_data(canvas, "draw", @ptrCast(c.GCallback, gtkCanvasDraw), null, @as(c.GClosureNotify, null), 0);
-        return Canvas{ .peer = canvas };
+
+        const controller = c.gtk_event_controller_key_new(canvas).?;
+        _ = c.g_signal_connect_data(controller, "key-pressed", @ptrCast(c.GCallback, gtkImKeyPress), null, null, c.G_CONNECT_AFTER);
+        return Canvas{ .peer = canvas, .controller = controller };
     }
 };
 

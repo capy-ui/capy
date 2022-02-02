@@ -47,7 +47,7 @@ test "backend: text field" {
 
 test "backend: scrollable" {
     try backend.init();
-    var scrollable = try backend.Scrollable.create();
+    var scrollable = try backend.ScrollView.create();
     defer scrollable.deinit();
 
     // TODO: more tests
