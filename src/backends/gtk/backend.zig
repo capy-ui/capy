@@ -643,6 +643,35 @@ pub const Container = struct {
     }
 };
 
+pub const TabContainer = struct {
+    peer: *c.GtkWidget,
+
+    pub usingnamespace Events(TabContainer);
+
+    pub fn create() BackendError!TabContainer {
+        const layout = c.gtk_notebook_new() orelse return BackendError.UnknownError;
+        c.gtk_widget_show(layout);
+        try TabContainer.setupEvents(layout);
+        return TabContainer{ .peer = layout };
+    }
+
+    /// Returns the index of the newly added tab
+    pub fn insert(self: *const TabContainer, position: usize, peer: PeerType) usize {
+        return c.gtk_notebook_insert_page(@ptrCast(*c.GtkNotebook, self.peer),
+            peer, null, position);
+    }
+
+    pub fn setLabel(self: *const TabContainer, position: usize, text: [:0]const u8) void {
+        const child = c.gtk_notebook_get_nth_page(@ptrCast(*c.GtkNotebook, self.peer), @intCast(c_int, position));
+        c.gtk_notebook_set_tab_label_text(@ptrCast(*c.GtkNotebook, self.peer), child, text);
+    }
+
+    /// Returns the number of tabs added to this tab container
+    pub fn getTabsNumber(self: *const TabContainer) usize {
+        return @intCast(usize, c.gtk_notebook_get_n_pages(@ptrCast(*c.GtkNotebook, self.peer)));
+    }
+};
+
 pub const ScrollView = struct {
     peer: *c.GtkWidget,
 

@@ -31,16 +31,9 @@ pub const Scrollable_Impl = struct {
     }
 };
 
-fn isErrorUnion(comptime T: type) bool {
-    return switch (@typeInfo(T)) {
-        .ErrorUnion => true,
-        else => false,
-    };
-}
-
 pub fn Scrollable(element: anytype) anyerror!Scrollable_Impl {
     const child =
-            if (comptime isErrorUnion(@TypeOf(element)))
+            if (comptime @import("internal.zig").isErrorUnion(@TypeOf(element)))
             try element
         else
             element;

@@ -8,6 +8,7 @@ const Class = @import("widget.zig").Class;
 const Size = @import("data.zig").Size;
 const DataWrapper = @import("data.zig").DataWrapper;
 const Container_Impl = @import("containers.zig").Container_Impl;
+const Layout = @import("containers.zig").Layout;
 
 /// Allocator used for small, short-lived and repetitive allocations.
 /// You can change this by setting the `zgtScratchAllocator` field in your main file
@@ -138,7 +139,7 @@ pub fn Widgeting(comptime T: type) type {
         // TODO: consider using something like https://github.com/MasterQ32/any-pointer for userdata
         // to get some safety
 
-        pub fn setUserdata(self: *T, userdata: anytype) T {
+        pub fn setUserdata(self: *T, userdata: ?*anyopaque) T {
             if (comptime std.meta.trait.isIntegral(@TypeOf(userdata))) {
                 self.handlers.userdata = userdata;
             } else {
@@ -176,6 +177,11 @@ pub fn Widgeting(comptime T: type) type {
 
         pub fn setAlignX(self: *T, alignX: f32) T {
             self.dataWrappers.alignX.set(alignX);
+            return self.*;
+        }
+
+        pub fn setAlignY(self: *T, alignY: f32) T {
+            self.dataWrappers.alignY.set(alignY);
             return self.*;
         }
 
@@ -231,6 +237,11 @@ pub fn Widgeting(comptime T: type) type {
     };
 }
 
+/// Generate a config struct that allows with all the properties of the given type
+pub fn GenerateConfigStruct(comptime T: type) type {
+
+}
+
 pub fn DereferencedType(comptime T: type) type {
     return if (comptime std.meta.trait.isSingleItemPtr(T))
         std.meta.Child(T)
@@ -266,6 +277,50 @@ pub fn genericWidgetFrom(component: anytype) anyerror!Widget {
         .alignY = &cp.dataWrappers.alignY,
         .allocator = if (comptime std.meta.trait.isSingleItemPtr(ComponentType)) null else lasting_allocator,
     };
+}
+
+pub fn isErrorUnion(comptime T: type) bool {
+    return switch (@typeInfo(T)) {
+        .ErrorUnion => true,
+        else => false,
+    };
+}
+
+pub fn convertTupleToWidgets(childrens: anytype) anyerror!std.ArrayList(Widget) {
+    const fields = std.meta.fields(@TypeOf(childrens));
+    var list = std.ArrayList(Widget).init(lasting_allocator);
+    inline for (fields) |field| {
+        const element = @field(childrens, field.name);
+        const child =
+            if (comptime isErrorUnion(@TypeOf(element))) // if it is an error union, unwrap it
+            try element
+        else
+            element;
+
+        const ComponentType = @import("internal.zig").DereferencedType(@TypeOf(child));
+        const widget = try @import("internal.zig").genericWidgetFrom(child);
+        if (ComponentType != Widget) {
+            inline for (std.meta.fields(ComponentType)) |compField| {
+                if (comptime @import("data.zig").isDataWrapper(compField.field_type)) {
+                    const wrapper = @field(widget.as(ComponentType), compField.name);
+                    if (wrapper.updater) |updater| {
+                        std.log.info("data updater of {s} field '{s}'", .{ @typeName(ComponentType), compField.name });
+
+                        // cannot get parent as of now
+                        try @import("data.zig").proneUpdater(updater, undefined);
+                    }
+                }
+            }
+        }
+        const slot = try list.addOne();
+        slot.* = widget;
+
+        if (ComponentType != Widget) {
+            widget.as(ComponentType).dataWrappers.widget = slot;
+        }
+    }
+
+    return list;
 }
 
 // pub fn Property(comptime T: type, comptime name: []const u8) type {
