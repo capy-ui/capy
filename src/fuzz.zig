@@ -16,8 +16,7 @@ pub fn Iterator(comptime T: type) type {
 
         pub fn init() Self {
             return Self{
-                .rand = std.rand.DefaultPrng.init(if (DETERMINISTIC_TEST) 0 else
-                @truncate(u64, @bitCast(u128, std.time.nanoTimestamp()))),
+                .rand = std.rand.DefaultPrng.init(if (DETERMINISTIC_TEST) 0 else @truncate(u64, @bitCast(u128, std.time.nanoTimestamp()))),
                 .start = std.time.milliTimestamp(),
             };
         }

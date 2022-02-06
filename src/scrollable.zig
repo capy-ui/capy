@@ -33,10 +33,10 @@ pub const Scrollable_Impl = struct {
 
 pub fn Scrollable(element: anytype) anyerror!Scrollable_Impl {
     const child =
-            if (comptime @import("internal.zig").isErrorUnion(@TypeOf(element)))
-            try element
-        else
-            element;
+        if (comptime @import("internal.zig").isErrorUnion(@TypeOf(element)))
+        try element
+    else
+        element;
     const widget = try @import("internal.zig").genericWidgetFrom(child);
 
     return Scrollable_Impl.init(widget);

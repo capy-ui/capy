@@ -11,7 +11,7 @@ pub const Tabs_Impl = struct {
     handlers: Tabs_Impl.Handlers = undefined,
     dataWrappers: Tabs_Impl.DataWrappers = .{},
     childrens: std.ArrayList(Widget),
-	
+
     /// The widget associated to this Tabs_Impl
     widget: ?*Widget = null,
 
@@ -35,7 +35,7 @@ pub const Tabs_Impl = struct {
         return Size.init(0, 0); // TODO
     }
 
-	pub fn add(self: *Tabs_Impl, widget: anytype) !void {
+    pub fn add(self: *Tabs_Impl, widget: anytype) !void {
         const ComponentType = @import("internal.zig").DereferencedType(@TypeOf(widget));
 
         var genericWidget = try @import("internal.zig").genericWidgetFrom(widget);
@@ -55,7 +55,6 @@ pub const Tabs_Impl = struct {
         }
     }
 
-
     pub fn _deinit(self: *Tabs_Impl, _: *Widget) void {
         for (self.childrens.items) |*child| {
             child.deinit();
@@ -73,10 +72,10 @@ fn isErrorUnion(comptime T: type) bool {
 
 pub fn Tabs(element: anytype) anyerror!Tabs_Impl {
     const child =
-            if (comptime isErrorUnion(@TypeOf(element)))
-            try element
-        else
-            element;
+        if (comptime isErrorUnion(@TypeOf(element)))
+        try element
+    else
+        element;
     const widget = try @import("internal.zig").genericWidgetFrom(child);
 
     return Tabs_Impl.init(widget);

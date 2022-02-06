@@ -270,10 +270,9 @@ pub const Canvas = struct {
             }
 
             pub fn init() TextLayout {
-                return TextLayout{ };
+                return TextLayout{};
             }
         };
-
 
         pub fn setColorByte(self: *DrawContext, color: lib.Color) void {
             js.setColor(self.ctx, color.red, color.green, color.blue, color.alpha);
@@ -284,7 +283,7 @@ pub const Canvas = struct {
         }
 
         pub fn setColorRGBA(self: *DrawContext, r: f32, g: f32, b: f32, a: f32) void {
-            const color = lib.Color {
+            const color = lib.Color{
                 .red = @floatToInt(u8, r * 255),
                 .green = @floatToInt(u8, g * 255),
                 .blue = @floatToInt(u8, b * 255),
@@ -299,7 +298,11 @@ pub const Canvas = struct {
 
         pub fn text(self: *DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
             // TODO
-            _ = self; _ = x; _ = y; _ = layout; _ = str;
+            _ = self;
+            _ = x;
+            _ = y;
+            _ = layout;
+            _ = str;
         }
 
         pub fn line(self: *DrawContext, x1: u32, y1: u32, x2: u32, y2: u32) void {

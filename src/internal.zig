@@ -239,7 +239,8 @@ pub fn Widgeting(comptime T: type) type {
 
 /// Generate a config struct that allows with all the properties of the given type
 pub fn GenerateConfigStruct(comptime T: type) type {
-
+    _ = T;
+    unreachable;
 }
 
 pub fn DereferencedType(comptime T: type) type {
