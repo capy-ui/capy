@@ -308,7 +308,7 @@ pub inline fn Expanded(child: anytype) anyerror!Widget {
 }
 
 pub inline fn Stack(childrens: anytype) anyerror!Container_Impl {
-    return try Container_Impl.init(try convertTupleToWidgets(childrens), childrens, StackLayout);
+    return try Container_Impl.init(try convertTupleToWidgets(childrens), .{}, StackLayout);
 }
 
 pub inline fn Row(config: GridConfig, childrens: anytype) anyerror!Container_Impl {

@@ -612,22 +612,28 @@ pub const Canvas = struct {
 
 pub const Container = struct {
     peer: *c.GtkWidget,
+    container: *c.GtkWidget,
 
     pub usingnamespace Events(Container);
 
     pub fn create() BackendError!Container {
         const layout = c.gtk_fixed_new() orelse return BackendError.UnknownError;
         c.gtk_widget_show(layout);
-        try Container.setupEvents(layout);
-        return Container{ .peer = layout };
+
+        // A custom component is used to bypass GTK's minimum size mechanism
+        const wbin = wbin_new() orelse return BackendError.UnknownError;
+        c.gtk_container_add(@ptrCast(*c.GtkContainer, wbin), layout);
+        c.gtk_widget_show(wbin);
+        try Container.setupEvents(wbin);
+        return Container{ .peer = wbin, .container = layout };
     }
 
     pub fn add(self: *const Container, peer: PeerType) void {
-        c.gtk_fixed_put(@ptrCast(*c.GtkFixed, self.peer), peer, 0, 0);
+        c.gtk_fixed_put(@ptrCast(*c.GtkFixed, self.container), peer, 0, 0);
     }
 
     pub fn move(self: *const Container, peer: PeerType, x: u32, y: u32) void {
-        c.gtk_fixed_move(@ptrCast(*c.GtkFixed, self.peer), peer, @intCast(c_int, x), @intCast(c_int, y));
+        c.gtk_fixed_move(@ptrCast(*c.GtkFixed, self.container), peer, @intCast(c_int, x), @intCast(c_int, y));
     }
 
     pub fn resize(self: *const Container, peer: PeerType, w: u32, h: u32) void {
@@ -637,9 +643,9 @@ pub const Container = struct {
         _ = self;
 
         // temporary fix and should be replaced by a proper way to resize down
-        c.gtk_widget_set_size_request(peer, std.math.max(@intCast(c_int, w) - 5, 0), std.math.max(@intCast(c_int, h) - 5, 0));
-        //c.gtk_widget_set_size_request(peer, @intCast(c_int, w), @intCast(c_int, h));
-        c.gtk_container_resize_children(@ptrCast(*c.GtkContainer, self.peer));
+        //c.gtk_widget_set_size_request(peer, std.math.max(@intCast(c_int, w) - 5, 0), std.math.max(@intCast(c_int, h) - 5, 0));
+        c.gtk_widget_set_size_request(peer, @intCast(c_int, w), @intCast(c_int, h));
+        c.gtk_container_resize_children(@ptrCast(*c.GtkContainer, self.container));
     }
 };
 
@@ -657,8 +663,7 @@ pub const TabContainer = struct {
 
     /// Returns the index of the newly added tab
     pub fn insert(self: *const TabContainer, position: usize, peer: PeerType) usize {
-        return c.gtk_notebook_insert_page(@ptrCast(*c.GtkNotebook, self.peer),
-            peer, null, position);
+        return c.gtk_notebook_insert_page(@ptrCast(*c.GtkNotebook, self.peer), peer, null, position);
     }
 
     pub fn setLabel(self: *const TabContainer, position: usize, text: [:0]const u8) void {
