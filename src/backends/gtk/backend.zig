@@ -106,6 +106,8 @@ const EventFunctions = struct {
     /// Only works for buttons
     clickHandler: ?fn (data: usize) void = null,
     mouseButtonHandler: ?fn (button: MouseButton, pressed: bool, x: u32, y: u32, data: usize) void = null,
+    // TODO: Mouse object with pressed buttons and more data
+    mouseMotionHandler: ?fn(x: u32, y: u32, data: usize) void = null,
     keyTypeHandler: ?fn (str: []const u8, data: usize) void = null,
     // TODO: dx and dy are in pixels, not in lines
     scrollHandler: ?fn (dx: f32, dy: f32, data: usize) void = null,
@@ -224,9 +226,17 @@ pub fn Events(comptime T: type) type {
         fn gtkMouseMotion(peer: *c.GtkWidget, event: *c.GdkEventMotion, userdata: usize) callconv(.C) c.gboolean {
             _ = userdata;
             const data = getEventUserData(peer);
-            _ = data;
-            _ = event;
-            //std.log.info("motion: {}", .{event});
+
+            const mx = @floatToInt(u32, @floor(event.x));
+            const my = @floatToInt(u32, @floor(event.y));
+            if (data.class.mouseMotionHandler) |handler| {
+                handler(mx, my, @ptrToInt(data));
+                if (data.user.mouseMotionHandler == null) return 1;
+            }
+            if (data.user.mouseMotionHandler) |handler| {
+                handler(mx, my, data.userdata);
+                return 1;
+            }
             return 0;
         }
 
@@ -275,6 +285,7 @@ pub fn Events(comptime T: type) type {
                 .Click => data.clickHandler = cb,
                 .Draw => data.drawHandler = cb,
                 .MouseButton => data.mouseButtonHandler = cb,
+                .MouseMotion => data.mouseMotionHandler = cb,
                 .Scroll => data.scrollHandler = cb,
                 .TextChanged => data.changedTextHandler = cb,
                 .Resize => data.resizeHandler = cb,

@@ -195,9 +195,9 @@ test "simple struct init" {
 test "basic bisecting" {
     // As we're seeking values under 1000 among 4 billion randomly generated values,
     // we need to run this test for longer
-    try testFunction(u64, 1000, struct {
-        pub fn callback(value: u64) !void {
-            try std.testing.expect(value % 5 != 0);
+    try testFunction(u32, 1000, struct {
+        pub fn callback(value: u32) !void {
+            try std.testing.expect(value % 2 != 0);
         }
     }.callback);
 }

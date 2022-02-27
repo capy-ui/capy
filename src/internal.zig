@@ -340,12 +340,14 @@ pub fn Events(comptime T: type) type {
         pub const Callback = fn (widget: *T) anyerror!void;
         pub const DrawCallback = fn (widget: *T, ctx: *backend.Canvas.DrawContext) anyerror!void;
         pub const ButtonCallback = fn (widget: *T, button: backend.MouseButton, pressed: bool, x: u32, y: u32) anyerror!void;
+        pub const MouseMoveCallback = fn(widget: *T, x: u32, y: u32) anyerror!void;
         pub const ScrollCallback = fn (widget: *T, dx: f32, dy: f32) anyerror!void;
         pub const ResizeCallback = fn (widget: *T, size: Size) anyerror!void;
         pub const KeyTypeCallback = fn (widget: *T, key: []const u8) anyerror!void;
         const HandlerList = std.ArrayList(Callback);
         const DrawHandlerList = std.ArrayList(DrawCallback);
         const ButtonHandlerList = std.ArrayList(ButtonCallback);
+        const MouseMoveHandlerList = std.ArrayList(MouseMoveCallback);
         const ScrollHandlerList = std.ArrayList(ScrollCallback);
         const ResizeHandlerList = std.ArrayList(ResizeCallback);
         const KeyTypeHandlerList = std.ArrayList(KeyTypeCallback);
@@ -354,6 +356,7 @@ pub fn Events(comptime T: type) type {
             clickHandlers: HandlerList,
             drawHandlers: DrawHandlerList,
             buttonHandlers: ButtonHandlerList,
+            mouseMoveHandlers: MouseMoveHandlerList,
             scrollHandlers: ScrollHandlerList,
             resizeHandlers: ResizeHandlerList,
             keyTypeHandlers: KeyTypeHandlerList,
@@ -367,6 +370,7 @@ pub fn Events(comptime T: type) type {
                 .clickHandlers = HandlerList.init(lasting_allocator),
                 .drawHandlers = DrawHandlerList.init(lasting_allocator),
                 .buttonHandlers = ButtonHandlerList.init(lasting_allocator),
+                .mouseMoveHandlers = MouseMoveHandlerList.init(lasting_allocator),
                 .scrollHandlers = ScrollHandlerList.init(lasting_allocator),
                 .resizeHandlers = ResizeHandlerList.init(lasting_allocator),
                 .keyTypeHandlers = KeyTypeHandlerList.init(lasting_allocator)
@@ -418,6 +422,13 @@ pub fn Events(comptime T: type) type {
             }
         }
 
+        fn mouseMovedHandler(x: u32, y: u32, data: usize) void {
+            const self = @intToPtr(*T, data);
+            for (self.handlers.mouseMoveHandlers.items) |func| {
+                func(self, x, y) catch |err| errorHandler(err);
+            }
+        }
+
         fn keyTypeHandler(str: []const u8, data: usize) void {
             const self = @intToPtr(*T, data);
             for (self.handlers.keyTypeHandlers.items) |func| {
@@ -453,6 +464,7 @@ pub fn Events(comptime T: type) type {
             try self.peer.?.setCallback(.Click, clickHandler);
             try self.peer.?.setCallback(.Draw, drawHandler);
             try self.peer.?.setCallback(.MouseButton, buttonHandler);
+            try self.peer.?.setCallback(.MouseMotion, mouseMovedHandler);
             try self.peer.?.setCallback(.Scroll, scrollHandler);
             try self.peer.?.setCallback(.Resize, resizeHandler);
             try self.peer.?.setCallback(.KeyType, keyTypeHandler);
@@ -472,6 +484,10 @@ pub fn Events(comptime T: type) type {
 
         pub fn addMouseButtonHandler(self: *T, handler: ButtonCallback) !void {
             try self.handlers.buttonHandlers.append(handler);
+        }
+
+        pub fn addMouseMotionHandler(self: *T, handler: MouseMoveCallback) !void {
+            try self.handlers.mouseMoveHandlers.append(handler);
         }
 
         pub fn addScrollHandler(self: *T, handler: ScrollCallback) !void {
