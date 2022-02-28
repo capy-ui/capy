@@ -5,7 +5,7 @@ const backend = if (@hasDecl(@import("root"), "zgtBackend"))
     @import("root").zgtBackend
 else switch (builtin.os.tag) {
     .windows => @import("backends/win32/backend.zig"),
-    .linux => @import("backends/gtk/backend.zig"),
+    .linux, .freebsd => @import("backends/gtk/backend.zig"),
     .freestanding => blk: {
         if (builtin.cpu.arch == .wasm32) {
             break :blk @import("backends/wasm/backend.zig");
