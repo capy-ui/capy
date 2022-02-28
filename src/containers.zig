@@ -5,6 +5,8 @@ const lasting_allocator = @import("internal.zig").lasting_allocator;
 const Size = @import("data.zig").Size;
 const Rectangle = @import("data.zig").Rectangle;
 
+const convertTupleToWidgets = @import("internal.zig").convertTupleToWidgets;
+
 pub const Layout = fn (peer: Callbacks, widgets: []Widget) void;
 const Callbacks = struct {
     userdata: usize,
@@ -77,9 +79,9 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
     var childX: f32 = 0.0;
     for (widgets) |widget| {
         if (widget.peer) |widgetPeer| {
-            if (@floatToInt(u32, childX) >= peer.getSize(peer.userdata).width) {
-                break;
-            }
+            // if (@floatToInt(u32, childX) >= peer.getSize(peer.userdata).width) {
+            //     break;
+            // }
             const available = Size{ .width = if (widget.container_expanded) childWidth else (@intCast(u32, peer.getSize(peer.userdata).width) - @floatToInt(u32, childX)), .height = @intCast(u32, peer.getSize(peer.userdata).height) };
             const preferred = widget.getPreferredSize(available);
             const size = if (widget.container_expanded) available else Size.intersect(available, preferred);
@@ -256,7 +258,7 @@ pub const Container_Impl = struct {
         const slot = try self.childrens.addOne();
         slot.* = genericWidget;
         if (@hasField(ComponentType, "dataWrappers")) {
-            widget.as(ComponentType).dataWrappers.widget = slot;
+            genericWidget.as(ComponentType).dataWrappers.widget = slot;
         }
 
         if (self.peer) |*peer| {
@@ -283,43 +285,6 @@ fn isErrorUnion(comptime T: type) bool {
     };
 }
 
-fn abstractContainerConstructor(comptime T: type, childrens: anytype, config: anytype, layout: Layout) anyerror!T {
-    const fields = std.meta.fields(@TypeOf(childrens));
-    var list = std.ArrayList(Widget).init(lasting_allocator);
-    inline for (fields) |field| {
-        const element = @field(childrens, field.name);
-        const child =
-            if (comptime isErrorUnion(@TypeOf(element))) // if it is an error union, unwrap it
-            try element
-        else
-            element;
-
-        const ComponentType = @import("internal.zig").DereferencedType(@TypeOf(child));
-        const widget = try @import("internal.zig").genericWidgetFrom(child);
-        if (ComponentType != Widget) {
-            inline for (std.meta.fields(ComponentType)) |compField| {
-                if (comptime @import("data.zig").isDataWrapper(compField.field_type)) {
-                    const wrapper = @field(widget.as(ComponentType), compField.name);
-                    if (wrapper.updater) |updater| {
-                        std.log.info("data updater of {s} field '{s}'", .{ @typeName(ComponentType), compField.name });
-
-                        // cannot get parent as of now
-                        try @import("data.zig").proneUpdater(updater, undefined);
-                    }
-                }
-            }
-        }
-        const slot = try list.addOne();
-        slot.* = widget;
-
-        if (ComponentType != Widget) {
-            widget.as(ComponentType).dataWrappers.widget = slot;
-        }
-    }
-
-    return try T.init(list, config, layout);
-}
-
 const Expand = enum {
     /// The grid should take the minimal size that its childrens want
     No,
@@ -343,17 +308,17 @@ pub inline fn Expanded(child: anytype) anyerror!Widget {
 }
 
 pub inline fn Stack(childrens: anytype) anyerror!Container_Impl {
-    return try abstractContainerConstructor(Container_Impl, childrens, .{}, StackLayout);
+    return try Container_Impl.init(try convertTupleToWidgets(childrens), .{}, StackLayout);
 }
 
 pub inline fn Row(config: GridConfig, childrens: anytype) anyerror!Container_Impl {
-    return try abstractContainerConstructor(Container_Impl, childrens, config, RowLayout);
+    return try Container_Impl.init(try convertTupleToWidgets(childrens), config, RowLayout);
 }
 
 pub inline fn Column(config: GridConfig, childrens: anytype) anyerror!Container_Impl {
-    return try abstractContainerConstructor(Container_Impl, childrens, config, ColumnLayout);
+    return try Container_Impl.init(try convertTupleToWidgets(childrens), config, ColumnLayout);
 }
 
 pub inline fn Margin(child: anytype) anyerror!Container_Impl {
-    return try abstractContainerConstructor(Container_Impl, .{child}, GridConfig{}, MarginLayout);
+    return try Container_Impl.init(try convertTupleToWidgets(.{child}), .{}, MarginLayout);
 }

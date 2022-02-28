@@ -14,9 +14,14 @@ pub const Capabilities = .{ .useEventLoop = true };
 var activeWindows = std.atomic.Atomic(usize).init(0);
 var randomWindow: *c.GtkWidget = undefined;
 
+var hasInit: bool = false;
+
 pub fn init() BackendError!void {
-    if (c.gtk_init_check(0, null) == 0) {
-        return BackendError.InitializationError;
+    if (!hasInit) {
+        hasInit = true;
+        if (c.gtk_init_check(0, null) == 0) {
+            return BackendError.InitializationError;
+        }
     }
 }
 
@@ -101,6 +106,8 @@ const EventFunctions = struct {
     /// Only works for buttons
     clickHandler: ?fn (data: usize) void = null,
     mouseButtonHandler: ?fn (button: MouseButton, pressed: bool, x: u32, y: u32, data: usize) void = null,
+    // TODO: Mouse object with pressed buttons and more data
+    mouseMotionHandler: ?fn(x: u32, y: u32, data: usize) void = null,
     keyTypeHandler: ?fn (str: []const u8, data: usize) void = null,
     // TODO: dx and dy are in pixels, not in lines
     scrollHandler: ?fn (dx: f32, dy: f32, data: usize) void = null,
@@ -142,7 +149,8 @@ pub fn Events(comptime T: type) type {
             _ = c.g_signal_connect_data(widget, "motion-notify-event", @ptrCast(c.GCallback, gtkMouseMotion), null, null, c.G_CONNECT_AFTER);
             _ = c.g_signal_connect_data(widget, "scroll-event", @ptrCast(c.GCallback, gtkMouseScroll), null, null, c.G_CONNECT_AFTER);
             _ = c.g_signal_connect_data(widget, "size-allocate", @ptrCast(c.GCallback, gtkSizeAllocate), null, null, c.G_CONNECT_AFTER);
-            _ = c.g_signal_connect_data(widget, "key-press-event", @ptrCast(c.GCallback, gtkKeyPress), null, null, c.G_CONNECT_AFTER);
+            if (T != Canvas)
+                _ = c.g_signal_connect_data(widget, "key-press-event", @ptrCast(c.GCallback, gtkKeyPress), null, null, c.G_CONNECT_AFTER);
             c.gtk_widget_add_events(widget, c.GDK_SCROLL_MASK | c.GDK_BUTTON_PRESS_MASK | c.GDK_BUTTON_RELEASE_MASK | c.GDK_KEY_PRESS_MASK | c.GDK_POINTER_MOTION_MASK);
 
             var data = try lib.internal.lasting_allocator.create(EventUserData);
@@ -176,7 +184,7 @@ pub fn Events(comptime T: type) type {
         fn gtkKeyPress(peer: *c.GtkWidget, event: *GdkEventKey, userdata: usize) callconv(.C) c.gboolean {
             _ = userdata;
             const data = getEventUserData(peer);
-            const str = std.mem.span(event.string);
+            const str = event.string[0..@intCast(usize, event.length)];
             if (str.len != 0) {
                 if (data.class.keyTypeHandler) |handler| {
                     handler(str, @ptrToInt(data));
@@ -218,9 +226,17 @@ pub fn Events(comptime T: type) type {
         fn gtkMouseMotion(peer: *c.GtkWidget, event: *c.GdkEventMotion, userdata: usize) callconv(.C) c.gboolean {
             _ = userdata;
             const data = getEventUserData(peer);
-            _ = data;
-            _ = event;
-            //std.log.info("motion: {}", .{event});
+
+            const mx = @floatToInt(u32, @floor(event.x));
+            const my = @floatToInt(u32, @floor(event.y));
+            if (data.class.mouseMotionHandler) |handler| {
+                handler(mx, my, @ptrToInt(data));
+                if (data.user.mouseMotionHandler == null) return 1;
+            }
+            if (data.user.mouseMotionHandler) |handler| {
+                handler(mx, my, data.userdata);
+                return 1;
+            }
             return 0;
         }
 
@@ -269,6 +285,7 @@ pub fn Events(comptime T: type) type {
                 .Click => data.clickHandler = cb,
                 .Draw => data.drawHandler = cb,
                 .MouseButton => data.mouseButtonHandler = cb,
+                .MouseMotion => data.mouseMotionHandler = cb,
                 .Scroll => data.scrollHandler = cb,
                 .TextChanged => data.changedTextHandler = cb,
                 .Resize => data.resizeHandler = cb,
@@ -433,6 +450,7 @@ pub const TextField = struct {
 
 pub const Canvas = struct {
     peer: *c.GtkWidget,
+    controller: *c.GtkEventController,
 
     pub usingnamespace Events(Canvas);
 
@@ -561,34 +579,72 @@ pub const Canvas = struct {
         return 0; // propagate the event further
     }
 
+    fn gtkImKeyPress(key: *c.GtkEventControllerKey, keyval: c.guint, keycode: c.guint, state: *c.GdkModifierType, userdata: c.gpointer) callconv(.C) c.gboolean {
+        _ = userdata;
+        _ = keycode;
+        _ = state;
+
+        const peer = c.gtk_event_controller_get_widget(@ptrCast(*c.GtkEventController, key));
+        const data = getEventUserData(peer);
+        _ = data;
+        var finalKeyval = @intCast(u21, keyval);
+        if (keyval >= 0xFF00 and keyval < 0xFF20) { // control characters
+            finalKeyval = @intCast(u21, keyval) - 0xFF00;
+        }
+        if (finalKeyval >= 32768) return 0;
+
+        var encodeBuffer: [4]u8 = undefined;
+        const strLength = std.unicode.utf8Encode(@intCast(u21, finalKeyval), &encodeBuffer) catch unreachable;
+        const str = encodeBuffer[0..strLength];
+
+        if (data.class.keyTypeHandler) |handler| {
+            handler(str, @ptrToInt(data));
+            if (data.user.keyTypeHandler == null) return 1;
+        }
+        if (data.user.keyTypeHandler) |handler| {
+            handler(str, data.userdata);
+            return 1;
+        }
+        return 1;
+    }
+
     pub fn create() BackendError!Canvas {
         const canvas = c.gtk_drawing_area_new() orelse return BackendError.UnknownError;
         c.gtk_widget_show(canvas);
         c.gtk_widget_set_can_focus(canvas, 1);
         try Canvas.setupEvents(canvas);
         _ = c.g_signal_connect_data(canvas, "draw", @ptrCast(c.GCallback, gtkCanvasDraw), null, @as(c.GClosureNotify, null), 0);
-        return Canvas{ .peer = canvas };
+
+        const controller = c.gtk_event_controller_key_new(canvas).?;
+        _ = c.g_signal_connect_data(controller, "key-pressed", @ptrCast(c.GCallback, gtkImKeyPress), null, null, c.G_CONNECT_AFTER);
+        return Canvas{ .peer = canvas, .controller = controller };
     }
 };
 
 pub const Container = struct {
     peer: *c.GtkWidget,
+    container: *c.GtkWidget,
 
     pub usingnamespace Events(Container);
 
     pub fn create() BackendError!Container {
         const layout = c.gtk_fixed_new() orelse return BackendError.UnknownError;
         c.gtk_widget_show(layout);
-        try Container.setupEvents(layout);
-        return Container{ .peer = layout };
+
+        // A custom component is used to bypass GTK's minimum size mechanism
+        const wbin = wbin_new() orelse return BackendError.UnknownError;
+        c.gtk_container_add(@ptrCast(*c.GtkContainer, wbin), layout);
+        c.gtk_widget_show(wbin);
+        try Container.setupEvents(wbin);
+        return Container{ .peer = wbin, .container = layout };
     }
 
     pub fn add(self: *const Container, peer: PeerType) void {
-        c.gtk_fixed_put(@ptrCast(*c.GtkFixed, self.peer), peer, 0, 0);
+        c.gtk_fixed_put(@ptrCast(*c.GtkFixed, self.container), peer, 0, 0);
     }
 
     pub fn move(self: *const Container, peer: PeerType, x: u32, y: u32) void {
-        c.gtk_fixed_move(@ptrCast(*c.GtkFixed, self.peer), peer, @intCast(c_int, x), @intCast(c_int, y));
+        c.gtk_fixed_move(@ptrCast(*c.GtkFixed, self.container), peer, @intCast(c_int, x), @intCast(c_int, y));
     }
 
     pub fn resize(self: *const Container, peer: PeerType, w: u32, h: u32) void {
@@ -598,8 +654,55 @@ pub const Container = struct {
         _ = self;
 
         // temporary fix and should be replaced by a proper way to resize down
-        c.gtk_widget_set_size_request(peer, std.math.max(@intCast(c_int, w) - 5, 0), std.math.max(@intCast(c_int, h) - 5, 0));
-        c.gtk_container_resize_children(@ptrCast(*c.GtkContainer, self.peer));
+        //c.gtk_widget_set_size_request(peer, std.math.max(@intCast(c_int, w) - 5, 0), std.math.max(@intCast(c_int, h) - 5, 0));
+        c.gtk_widget_set_size_request(peer, @intCast(c_int, w), @intCast(c_int, h));
+        c.gtk_container_resize_children(@ptrCast(*c.GtkContainer, self.container));
+    }
+};
+
+pub const TabContainer = struct {
+    peer: *c.GtkWidget,
+
+    pub usingnamespace Events(TabContainer);
+
+    pub fn create() BackendError!TabContainer {
+        const layout = c.gtk_notebook_new() orelse return BackendError.UnknownError;
+        c.gtk_widget_show(layout);
+        try TabContainer.setupEvents(layout);
+        return TabContainer{ .peer = layout };
+    }
+
+    /// Returns the index of the newly added tab
+    pub fn insert(self: *const TabContainer, position: usize, peer: PeerType) usize {
+        return c.gtk_notebook_insert_page(@ptrCast(*c.GtkNotebook, self.peer), peer, null, position);
+    }
+
+    pub fn setLabel(self: *const TabContainer, position: usize, text: [:0]const u8) void {
+        const child = c.gtk_notebook_get_nth_page(@ptrCast(*c.GtkNotebook, self.peer), @intCast(c_int, position));
+        c.gtk_notebook_set_tab_label_text(@ptrCast(*c.GtkNotebook, self.peer), child, text);
+    }
+
+    /// Returns the number of tabs added to this tab container
+    pub fn getTabsNumber(self: *const TabContainer) usize {
+        return @intCast(usize, c.gtk_notebook_get_n_pages(@ptrCast(*c.GtkNotebook, self.peer)));
+    }
+};
+
+pub const ScrollView = struct {
+    peer: *c.GtkWidget,
+
+    pub usingnamespace Events(ScrollView);
+
+    pub fn create() BackendError!ScrollView {
+        const scrolledWindow = c.gtk_scrolled_window_new(null, null) orelse return BackendError.UnknownError;
+        c.gtk_widget_show(scrolledWindow);
+        try ScrollView.setupEvents(scrolledWindow);
+        return ScrollView{ .peer = scrolledWindow };
+    }
+
+    pub fn setChild(self: *ScrollView, peer: PeerType) void {
+        // TODO: remove old widget if there was one
+        c.gtk_container_add(@ptrCast(*c.GtkContainer, self.peer), peer);
     }
 };
 

@@ -8,6 +8,7 @@ const Class = @import("widget.zig").Class;
 const Size = @import("data.zig").Size;
 const DataWrapper = @import("data.zig").DataWrapper;
 const Container_Impl = @import("containers.zig").Container_Impl;
+const Layout = @import("containers.zig").Layout;
 
 /// Allocator used for small, short-lived and repetitive allocations.
 /// You can change this by setting the `zgtScratchAllocator` field in your main file
@@ -138,7 +139,7 @@ pub fn Widgeting(comptime T: type) type {
         // TODO: consider using something like https://github.com/MasterQ32/any-pointer for userdata
         // to get some safety
 
-        pub fn setUserdata(self: *T, userdata: anytype) T {
+        pub fn setUserdata(self: *T, userdata: ?*anyopaque) T {
             if (comptime std.meta.trait.isIntegral(@TypeOf(userdata))) {
                 self.handlers.userdata = userdata;
             } else {
@@ -176,6 +177,11 @@ pub fn Widgeting(comptime T: type) type {
 
         pub fn setAlignX(self: *T, alignX: f32) T {
             self.dataWrappers.alignX.set(alignX);
+            return self.*;
+        }
+
+        pub fn setAlignY(self: *T, alignY: f32) T {
+            self.dataWrappers.alignY.set(alignY);
             return self.*;
         }
 
@@ -231,6 +237,12 @@ pub fn Widgeting(comptime T: type) type {
     };
 }
 
+/// Generate a config struct that allows with all the properties of the given type
+pub fn GenerateConfigStruct(comptime T: type) type {
+    _ = T;
+    unreachable;
+}
+
 pub fn DereferencedType(comptime T: type) type {
     return if (comptime std.meta.trait.isSingleItemPtr(T))
         std.meta.Child(T)
@@ -268,6 +280,50 @@ pub fn genericWidgetFrom(component: anytype) anyerror!Widget {
     };
 }
 
+pub fn isErrorUnion(comptime T: type) bool {
+    return switch (@typeInfo(T)) {
+        .ErrorUnion => true,
+        else => false,
+    };
+}
+
+pub fn convertTupleToWidgets(childrens: anytype) anyerror!std.ArrayList(Widget) {
+    const fields = std.meta.fields(@TypeOf(childrens));
+    var list = std.ArrayList(Widget).init(lasting_allocator);
+    inline for (fields) |field| {
+        const element = @field(childrens, field.name);
+        const child =
+            if (comptime isErrorUnion(@TypeOf(element))) // if it is an error union, unwrap it
+            try element
+        else
+            element;
+
+        const ComponentType = @import("internal.zig").DereferencedType(@TypeOf(child));
+        const widget = try @import("internal.zig").genericWidgetFrom(child);
+        if (ComponentType != Widget) {
+            inline for (std.meta.fields(ComponentType)) |compField| {
+                if (comptime @import("data.zig").isDataWrapper(compField.field_type)) {
+                    const wrapper = @field(widget.as(ComponentType), compField.name);
+                    if (wrapper.updater) |updater| {
+                        std.log.info("data updater of {s} field '{s}'", .{ @typeName(ComponentType), compField.name });
+
+                        // cannot get parent as of now
+                        try @import("data.zig").proneUpdater(updater, undefined);
+                    }
+                }
+            }
+        }
+        const slot = try list.addOne();
+        slot.* = widget;
+
+        if (ComponentType != Widget) {
+            widget.as(ComponentType).dataWrappers.widget = slot;
+        }
+    }
+
+    return list;
+}
+
 // pub fn Property(comptime T: type, comptime name: []const u8) type {
 // Depends on #6709
 //     return struct {
@@ -284,12 +340,14 @@ pub fn Events(comptime T: type) type {
         pub const Callback = fn (widget: *T) anyerror!void;
         pub const DrawCallback = fn (widget: *T, ctx: *backend.Canvas.DrawContext) anyerror!void;
         pub const ButtonCallback = fn (widget: *T, button: backend.MouseButton, pressed: bool, x: u32, y: u32) anyerror!void;
+        pub const MouseMoveCallback = fn(widget: *T, x: u32, y: u32) anyerror!void;
         pub const ScrollCallback = fn (widget: *T, dx: f32, dy: f32) anyerror!void;
         pub const ResizeCallback = fn (widget: *T, size: Size) anyerror!void;
         pub const KeyTypeCallback = fn (widget: *T, key: []const u8) anyerror!void;
         const HandlerList = std.ArrayList(Callback);
         const DrawHandlerList = std.ArrayList(DrawCallback);
         const ButtonHandlerList = std.ArrayList(ButtonCallback);
+        const MouseMoveHandlerList = std.ArrayList(MouseMoveCallback);
         const ScrollHandlerList = std.ArrayList(ScrollCallback);
         const ResizeHandlerList = std.ArrayList(ResizeCallback);
         const KeyTypeHandlerList = std.ArrayList(KeyTypeCallback);
@@ -298,6 +356,7 @@ pub fn Events(comptime T: type) type {
             clickHandlers: HandlerList,
             drawHandlers: DrawHandlerList,
             buttonHandlers: ButtonHandlerList,
+            mouseMoveHandlers: MouseMoveHandlerList,
             scrollHandlers: ScrollHandlerList,
             resizeHandlers: ResizeHandlerList,
             keyTypeHandlers: KeyTypeHandlerList,
@@ -311,6 +370,7 @@ pub fn Events(comptime T: type) type {
                 .clickHandlers = HandlerList.init(lasting_allocator),
                 .drawHandlers = DrawHandlerList.init(lasting_allocator),
                 .buttonHandlers = ButtonHandlerList.init(lasting_allocator),
+                .mouseMoveHandlers = MouseMoveHandlerList.init(lasting_allocator),
                 .scrollHandlers = ScrollHandlerList.init(lasting_allocator),
                 .resizeHandlers = ResizeHandlerList.init(lasting_allocator),
                 .keyTypeHandlers = KeyTypeHandlerList.init(lasting_allocator)
@@ -362,6 +422,13 @@ pub fn Events(comptime T: type) type {
             }
         }
 
+        fn mouseMovedHandler(x: u32, y: u32, data: usize) void {
+            const self = @intToPtr(*T, data);
+            for (self.handlers.mouseMoveHandlers.items) |func| {
+                func(self, x, y) catch |err| errorHandler(err);
+            }
+        }
+
         fn keyTypeHandler(str: []const u8, data: usize) void {
             const self = @intToPtr(*T, data);
             for (self.handlers.keyTypeHandlers.items) |func| {
@@ -397,6 +464,7 @@ pub fn Events(comptime T: type) type {
             try self.peer.?.setCallback(.Click, clickHandler);
             try self.peer.?.setCallback(.Draw, drawHandler);
             try self.peer.?.setCallback(.MouseButton, buttonHandler);
+            try self.peer.?.setCallback(.MouseMotion, mouseMovedHandler);
             try self.peer.?.setCallback(.Scroll, scrollHandler);
             try self.peer.?.setCallback(.Resize, resizeHandler);
             try self.peer.?.setCallback(.KeyType, keyTypeHandler);
@@ -416,6 +484,10 @@ pub fn Events(comptime T: type) type {
 
         pub fn addMouseButtonHandler(self: *T, handler: ButtonCallback) !void {
             try self.handlers.buttonHandlers.append(handler);
+        }
+
+        pub fn addMouseMotionHandler(self: *T, handler: MouseMoveCallback) !void {
+            try self.handlers.mouseMoveHandlers.append(handler);
         }
 
         pub fn addScrollHandler(self: *T, handler: ScrollCallback) !void {

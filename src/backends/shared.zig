@@ -7,6 +7,7 @@ pub const BackendEventType = enum {
     Click,
     Draw,
     MouseButton,
+    MouseMotion,
     Scroll,
     TextChanged,
     Resize,

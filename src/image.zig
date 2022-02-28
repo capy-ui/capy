@@ -18,7 +18,7 @@ pub const ImageData = struct {
     }
 
     pub fn fromFile(allocator: std.mem.Allocator, path: []const u8) !ImageData {
-        const file = try std.fs.cwd().openFile(path, .{ .read = true });
+        const file = try std.fs.cwd().openFile(path, .{ .mode = .read_only });
         defer file.close();
 
         const reader = file.reader();

@@ -18,12 +18,12 @@ pub const GuiWidget = struct {
     scrollHandler: ?fn (dx: f32, dy: f32, data: usize) void = null,
     resizeHandler: ?fn (width: u32, height: u32, data: usize) void = null,
     /// Only works for canvas (althought technically it isn't required to)
-    drawHandler: ?fn (ctx: Canvas.DrawContext, data: usize) void = null,
+    drawHandler: ?fn (ctx: *Canvas.DrawContext, data: usize) void = null,
     changedTextHandler: ?fn (data: usize) void = null,
 
     processEventFn: fn (object: usize, event: js.EventId) void,
 
-    pub fn init(comptime T: type, allocator: *std.mem.Allocator, name: []const u8) !*GuiWidget {
+    pub fn init(comptime T: type, allocator: std.mem.Allocator, name: []const u8) !*GuiWidget {
         const self = try allocator.create(GuiWidget);
         self.* = .{ .processEventFn = T.processEvent, .element = js.createElement(name) };
         return self;
@@ -45,7 +45,7 @@ pub const PeerType = *GuiWidget;
 pub const MouseButton = enum { Left, Middle, Right };
 
 pub fn init() !void {
-    // TODO
+    // no initialization to do
 }
 
 var globalWindow: ?*Window = null;
@@ -241,25 +241,77 @@ pub const Canvas = struct {
     pub const DrawContext = struct {
         ctx: js.CanvasContextId,
 
-        pub fn setColor(self: *const DrawContext, r: f32, g: f32, b: f32) void {
+        pub const Font = struct {
+            face: [:0]const u8,
+            size: f64,
+        };
+
+        pub const TextSize = struct { width: u32, height: u32 };
+
+        pub const TextLayout = struct {
+            wrap: ?f64 = null,
+
+            pub fn setFont(self: *TextLayout, font: Font) void {
+                // TODO
+                _ = self;
+                _ = font;
+            }
+
+            pub fn deinit(self: *TextLayout) void {
+                // TODO
+                _ = self;
+            }
+
+            pub fn getTextSize(self: *TextLayout, str: []const u8) TextSize {
+                // TODO
+                _ = self;
+                _ = str;
+                return TextSize{ .width = 0, .height = 0 };
+            }
+
+            pub fn init() TextLayout {
+                return TextLayout{};
+            }
+        };
+
+        pub fn setColorByte(self: *DrawContext, color: lib.Color) void {
+            js.setColor(self.ctx, color.red, color.green, color.blue, color.alpha);
+        }
+
+        pub fn setColor(self: *DrawContext, r: f32, g: f32, b: f32) void {
             self.setColorRGBA(r, g, b, 1);
         }
 
-        pub fn setColorRGBA(self: *const DrawContext, r: f32, g: f32, b: f32, a: f32) void {
-            js.setColor(self.ctx, @floatToInt(u8, r * 255), @floatToInt(u8, g * 255), @floatToInt(u8, b * 255), @floatToInt(u8, a * 255));
+        pub fn setColorRGBA(self: *DrawContext, r: f32, g: f32, b: f32, a: f32) void {
+            const color = lib.Color{
+                .red = @floatToInt(u8, r * 255),
+                .green = @floatToInt(u8, g * 255),
+                .blue = @floatToInt(u8, b * 255),
+                .alpha = @floatToInt(u8, a * 255),
+            };
+            self.setColorByte(color);
         }
 
-        pub fn rectangle(self: *const DrawContext, x: u32, y: u32, w: u32, h: u32) void {
+        pub fn rectangle(self: *DrawContext, x: u32, y: u32, w: u32, h: u32) void {
             js.rectPath(self.ctx, x, y, w, h);
         }
 
-        pub fn line(self: *const DrawContext, x1: u32, y1: u32, x2: u32, y2: u32) void {
+        pub fn text(self: *DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
+            // TODO
+            _ = self;
+            _ = x;
+            _ = y;
+            _ = layout;
+            _ = str;
+        }
+
+        pub fn line(self: *DrawContext, x1: u32, y1: u32, x2: u32, y2: u32) void {
             js.moveTo(self.ctx, x1, y1);
             js.lineTo(self.ctx, x2, y2);
             js.stroke(self.ctx);
         }
 
-        pub fn ellipse(self: *const DrawContext, x: u32, y: u32, w: f32, h: f32) void {
+        pub fn ellipse(self: *DrawContext, x: u32, y: u32, w: f32, h: f32) void {
             // TODO
             _ = self;
             _ = x;
@@ -268,11 +320,11 @@ pub const Canvas = struct {
             _ = h;
         }
 
-        pub fn stroke(self: *const DrawContext) void {
+        pub fn stroke(self: *DrawContext) void {
             js.stroke(self.ctx);
         }
 
-        pub fn fill(self: *const DrawContext) void {
+        pub fn fill(self: *DrawContext) void {
             js.fill(self.ctx);
         }
     };
@@ -283,9 +335,9 @@ pub const Canvas = struct {
 
     pub fn _requestDraw(self: *Canvas) !void {
         const ctxId = js.openContext(self.peer.element);
-        const ctx = DrawContext{ .ctx = ctxId };
+        var ctx = DrawContext{ .ctx = ctxId };
         if (self.peer.drawHandler) |handler| {
-            handler(ctx, self.peer.userdata);
+            handler(&ctx, self.peer.userdata);
         }
     }
 };

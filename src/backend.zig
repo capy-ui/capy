@@ -32,3 +32,23 @@ test "backend: create window" {
         }
     }
 }
+
+test "backend: text field" {
+    try backend.init();
+    var field = try backend.TextField.create();
+    defer field.deinit();
+    field.setText("Hello, World!");
+    try std.testing.expectEqualStrings("Hello, World!", field.getText());
+
+    const str = "שָׁלוֹםUnicode 👩‍👦‍👦 नमस्ते";
+    field.setText(str);
+    try std.testing.expectEqualStrings(str, field.getText());
+}
+
+test "backend: scrollable" {
+    try backend.init();
+    var scrollable = try backend.ScrollView.create();
+    defer scrollable.deinit();
+
+    // TODO: more tests
+}
