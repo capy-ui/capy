@@ -79,6 +79,7 @@ const WebServerStep = struct {
 
         var context = Context { .builder = self.builder, .exe = self.exe };
         const builder = http.router.Builder(*Context);
+        std.debug.print("Web server opened at http://localhost:8080/", .{});
         try http.listenAndServe(
             allocator,
             try std.net.Address.parseIp("127.0.0.1", 8080),
