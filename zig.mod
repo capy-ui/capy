@@ -7,3 +7,5 @@ dependencies:
       only_os: linux
     - src: system_lib c
       only_os: linux
+build_dependencies:
+    - src: git https://github.com/Luukdegram/apple_pie

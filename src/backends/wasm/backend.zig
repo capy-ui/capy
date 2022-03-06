@@ -105,6 +105,7 @@ pub fn Events(comptime T: type) type {
                 .Click => self.peer.clickHandler = cb,
                 .Draw => self.peer.drawHandler = cb,
                 .MouseButton => {},
+                .MouseMotion => {},
                 .Scroll => {},
                 .TextChanged => self.peer.changedTextHandler = cb,
                 .Resize => {
