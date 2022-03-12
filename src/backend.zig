@@ -7,7 +7,7 @@ else switch (builtin.os.tag) {
     .windows => @import("backends/win32/backend.zig"),
     .linux, .freebsd => @import("backends/gtk/backend.zig"),
     .freestanding => blk: {
-        if (builtin.cpu.arch == .wasm32) {
+        if (builtin.cpu.arch == .wasm32 or builtin.cpu.arch == .wasm64) {
             break :blk @import("backends/wasm/backend.zig");
         } else {
             @compileError("Unsupported OS: freestanding");

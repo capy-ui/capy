@@ -58,7 +58,7 @@ pub fn testFunction(comptime T: type, duration: i64, func: fn (T) anyerror!void)
             const timePerElement = @divFloor(time, @intCast(i64, self.elements.items.len));
             for (self.elements.items) |*element| {
                 const start = std.time.milliTimestamp();
-                var stepSize: T = 100;
+                var stepSize: T = 1000;
                 while (std.time.milliTimestamp() < start + timePerElement) {
                     switch (element.*) {
                         .BiggerThan => |value| {
@@ -195,9 +195,10 @@ test "simple struct init" {
 test "basic bisecting" {
     // As we're seeking values under 1000 among 4 billion randomly generated values,
     // we need to run this test for longer
-    try testFunction(u32, 1000, struct {
-        pub fn callback(value: u32) !void {
-            try std.testing.expect(value % 2 != 0);
+    try testFunction(u16, 1000, struct {
+        pub fn callback(value: u16) !void {
+            try std.testing.expect(value > 1000);
+            try std.testing.expect(value < 5000);
         }
     }.callback);
 }

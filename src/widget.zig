@@ -4,6 +4,8 @@ const data = @import("data.zig");
 
 const Allocator = std.mem.Allocator;
 
+/// A class is a constant list of methods that can be called using Widget.
+// Note: it is called Class instead of VTable as it was made before allocgate
 pub const Class = struct {
     typeName: []const u8,
 
@@ -16,7 +18,9 @@ pub const Class = struct {
 
 /// A widget is a unique representation and constant size of any view.
 pub const Widget = struct {
-    data: usize,
+    /// Similarly to std.mem.Allocator, this is a pointer to the actual component class that
+    /// its class methods use.
+    data: *anyopaque,
     /// The allocator that can be used to free 'data'
     allocator: ?Allocator = null,
     peer: ?backend.PeerType = null,
@@ -49,10 +53,10 @@ pub const Widget = struct {
     pub fn as(self: *const Widget, comptime T: type) *T {
         if (std.debug.runtime_safety) {
             if (!self.is(T)) {
-                std.debug.panic("tried to cast widget to " ++ @typeName(T) ++ " but type is {s}", .{self.class.typeName});
+                std.debug.panic("Tried to cast widget to " ++ @typeName(T) ++ " but type is {s}", .{self.class.typeName});
             }
         }
-        return @intToPtr(*T, self.data);
+        return @ptrCast(*T, @alignCast(@alignOf(T), self.data));
     }
 
     /// Returns if the class of the widget corresponds to T
@@ -91,7 +95,7 @@ const TestType = struct {
 test "widget basics" {
     var testWidget: TestType = .{};
     const widget = Widget{
-        .data = @ptrToInt(&testWidget),
+        .data = &testWidget,
         .class = &TestType.WidgetClass,
 
         .name = undefined,

@@ -70,7 +70,7 @@ pub fn Widgeting(comptime T: type) type {
         }
 
         pub fn showWidget(widget: *Widget) anyerror!void {
-            const component = @intToPtr(*T, widget.data);
+            const component = widget.as(T);
             try component.show();
             widget.peer = component.peer.?.peer;
 
@@ -84,7 +84,7 @@ pub fn Widgeting(comptime T: type) type {
         }
 
         pub fn deinitWidget(widget: *Widget) void {
-            const component = @intToPtr(*T, widget.data);
+            const component = widget.as(T);
             component.deinit();
 
             if (@hasDecl(T, "_deinit")) {
@@ -118,7 +118,7 @@ pub fn Widgeting(comptime T: type) type {
         }
 
         pub fn getPreferredSizeWidget(widget: *const Widget, available: Size) Size {
-            const component = @intToPtr(*T, widget.data);
+            const component = widget.as(T);
             return component.getPreferredSize(available);
         }
 
@@ -240,9 +240,12 @@ pub fn Widgeting(comptime T: type) type {
 /// Generate a config struct that allows with all the properties of the given type
 pub fn GenerateConfigStruct(comptime T: type) type {
     _ = T;
+    // TODO
     unreachable;
 }
 
+/// If T is a pointer, return the type it points to, otherwise return T.
+/// Example: DereferencedType(*Button_Impl) = Button_Impl
 pub fn DereferencedType(comptime T: type) type {
     return if (comptime std.meta.trait.isSingleItemPtr(T))
         std.meta.Child(T)
@@ -251,6 +254,7 @@ pub fn DereferencedType(comptime T: type) type {
 }
 
 /// Create a generic Widget struct from the given component.
+/// This method will set dataWrappers.widget field and can only be called once.
 pub fn genericWidgetFrom(component: anytype) anyerror!Widget {
     const ComponentType = @TypeOf(component);
     if (ComponentType == Widget) return component;
@@ -259,19 +263,21 @@ pub fn genericWidgetFrom(component: anytype) anyerror!Widget {
         return error.ComponentAlreadyHasWidget;
     }
 
+    // Unless it is already a pointer, we clone the component so that
+    // it can be referenced by the Widget we're gonna create.
     var cp = if (comptime std.meta.trait.isSingleItemPtr(ComponentType)) component else blk: {
         var copy = try lasting_allocator.create(ComponentType);
         copy.* = component;
         break :blk copy;
     };
 
-    // used to update things like data wrappers, this happens once, at initialization,
+    // Udate things like data wrappers, this happens once, at initialization,
     // after that the component isn't moved in memory anymore
     cp.pointerMoved();
 
     const Dereferenced = DereferencedType(ComponentType);
     return Widget{
-        .data = @ptrToInt(cp),
+        .data = cp,
         .class = &Dereferenced.WidgetClass,
         .name = &cp.dataWrappers.name,
         .alignX = &cp.dataWrappers.alignX,

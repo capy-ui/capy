@@ -34,7 +34,7 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
             }
         },
         .freestanding => {
-            if (step.target.toTarget().cpu.arch == .wasm32) {
+            if (step.target.toTarget().isWasm()) {
                 // supported
             } else {
                 return error.UnsupportedOs;
@@ -79,7 +79,7 @@ const WebServerStep = struct {
 
         var context = Context { .builder = self.builder, .exe = self.exe };
         const builder = http.router.Builder(*Context);
-        std.debug.print("Web server opened at http://localhost:8080/", .{});
+        std.debug.print("Web server opened at http://localhost:8080/\n", .{});
         try http.listenAndServe(
             allocator,
             try std.net.Address.parseIp("127.0.0.1", 8080),
