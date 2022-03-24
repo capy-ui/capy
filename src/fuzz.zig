@@ -40,10 +40,10 @@ pub fn testFunction(comptime T: type, duration: i64, func: fn (T) anyerror!void)
             pub fn format(value: HypothesisElement, comptime _: []const u8, _: std.fmt.FormatOptions, writer: anytype) !void {
                 switch (value) {
                     .BiggerThan => |v| {
-                        try writer.print("bigger than {d}", .{ v });
+                        try writer.print("bigger than {d}", .{v});
                     },
                     .SmallerThan => |v| {
-                        try writer.print("smaller than {d}", .{ v });
+                        try writer.print("smaller than {d}", .{v});
                     },
                 }
             }
@@ -51,7 +51,7 @@ pub fn testFunction(comptime T: type, duration: i64, func: fn (T) anyerror!void)
 
         // Try to find counter-examples in the given time and adjust the hypothesis
         // based on that counter-example.
-        pub fn refine(self: *Self, time: i64, callback: fn(T) anyerror!void) void {
+        pub fn refine(self: *Self, time: i64, callback: fn (T) anyerror!void) void {
             var prng = std.rand.DefaultPrng.init(@bitCast(u64, std.time.milliTimestamp()));
             const random = prng.random();
 
@@ -78,7 +78,7 @@ pub fn testFunction(comptime T: type, duration: i64, func: fn (T) anyerror!void)
                             } else {
                                 //stepSize /= 2;
                             }
-                        }
+                        },
                     }
                 }
             }
@@ -86,7 +86,7 @@ pub fn testFunction(comptime T: type, duration: i64, func: fn (T) anyerror!void)
 
         pub fn format(value: Self, comptime _: []const u8, _: std.fmt.FormatOptions, writer: anytype) !void {
             for (value.elements.items) |item| {
-                try writer.print("{}, ", .{ item });
+                try writer.print("{}, ", .{item});
             }
         }
 
@@ -105,19 +105,17 @@ pub fn testFunction(comptime T: type, duration: i64, func: fn (T) anyerror!void)
             return .{ .items = items };
         }
 
-        pub fn hypothetize(self: *Self, callback: fn(T) anyerror!void) !Hypothesis {
+        pub fn hypothetize(self: *Self, callback: fn (T) anyerror!void) !Hypothesis {
             var elements = std.ArrayList(Hypothesis.HypothesisElement).init(std.testing.allocator);
             if (comptime std.meta.trait.isNumber(T)) {
                 std.sort.sort(T, self.items, {}, comptime std.sort.asc(T));
                 const smallest = self.items[0];
-                const biggest  = self.items[self.items.len - 1];
+                const biggest = self.items[self.items.len - 1];
                 try elements.append(.{ .BiggerThan = smallest });
                 try elements.append(.{ .SmallerThan = biggest });
             }
 
-            var hypothesis = Hypothesis {
-                .elements = elements
-            };
+            var hypothesis = Hypothesis{ .elements = elements };
             std.debug.print("\nRefining hypothesis..", .{});
             hypothesis.refine(3000, callback);
             return hypothesis;

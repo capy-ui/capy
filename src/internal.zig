@@ -45,6 +45,7 @@ pub fn Widgeting(comptime T: type) type {
             .showFn = showWidget,
             .deinitFn = deinitWidget,
             .preferredSizeFn = getPreferredSizeWidget,
+            .setWidgetFn = setWidgetFn,
         };
 
         pub const DataWrappers = struct {
@@ -81,6 +82,11 @@ pub fn Widgeting(comptime T: type) type {
             if (@hasDecl(T, "_showWidget")) {
                 try T._showWidget(widget, component);
             }
+        }
+
+        pub fn setWidgetFn(widget: *Widget) void {
+            const component = widget.as(T);
+            component.dataWrappers.widget = widget;
         }
 
         pub fn deinitWidget(widget: *Widget) void {
@@ -346,7 +352,7 @@ pub fn Events(comptime T: type) type {
         pub const Callback = fn (widget: *T) anyerror!void;
         pub const DrawCallback = fn (widget: *T, ctx: *backend.Canvas.DrawContext) anyerror!void;
         pub const ButtonCallback = fn (widget: *T, button: backend.MouseButton, pressed: bool, x: u32, y: u32) anyerror!void;
-        pub const MouseMoveCallback = fn(widget: *T, x: u32, y: u32) anyerror!void;
+        pub const MouseMoveCallback = fn (widget: *T, x: u32, y: u32) anyerror!void;
         pub const ScrollCallback = fn (widget: *T, dx: f32, dy: f32) anyerror!void;
         pub const ResizeCallback = fn (widget: *T, size: Size) anyerror!void;
         pub const KeyTypeCallback = fn (widget: *T, key: []const u8) anyerror!void;

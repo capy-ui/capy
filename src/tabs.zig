@@ -10,21 +10,22 @@ pub const Tabs_Impl = struct {
     peer: ?backend.TabContainer = null,
     handlers: Tabs_Impl.Handlers = undefined,
     dataWrappers: Tabs_Impl.DataWrappers = .{},
-    childrens: std.ArrayList(Widget),
+    tabs: std.ArrayList(Tab_Impl),
 
     /// The widget associated to this Tabs_Impl
     widget: ?*Widget = null,
 
-    pub fn init(widget: Widget) Tabs_Impl {
-        return Tabs_Impl.init_events(Tabs_Impl{});
+    pub fn init(tabs: std.ArrayList(Tab_Impl)) Tabs_Impl {
+        return Tabs_Impl.init_events(Tabs_Impl{ .tabs = tabs });
     }
 
     pub fn show(self: *Tabs_Impl) !void {
         if (self.peer == null) {
             var peer = try backend.TabContainer.create();
-            for (self.childrens.items) |*widget| {
-                try widget.show();
-                peer.add(widget.peer.?);
+            for (self.tabs.items) |*tab| {
+                try tab.widget.show();
+                const tabPosition = peer.insert(peer.getTabsNumber(), tab.widget.peer.?);
+                peer.setLabel(tabPosition, tab.name);
             }
             self.peer = peer;
             try self.show_events();
@@ -32,7 +33,16 @@ pub const Tabs_Impl = struct {
     }
 
     pub fn getPreferredSize(self: *Tabs_Impl, available: Size) Size {
+        _ = self;
+        _ = available;
         return Size.init(0, 0); // TODO
+    }
+
+    pub fn _showWidget(widget: *Widget, self: *Tabs_Impl) !void {
+        self.widget = widget;
+        for (self.tabs.items) |*child| {
+            child.widget.parent = widget;
+        }
     }
 
     pub fn add(self: *Tabs_Impl, widget: anytype) !void {
@@ -43,8 +53,8 @@ pub const Tabs_Impl = struct {
             genericWidget.parent = parent;
         }
 
-        const slot = try self.childrens.addOne();
-        slot.* = genericWidget;
+        const slot = try self.tab.addOne();
+        slot.* = .{ .name = "Untitled Tab", .widget = genericWidget };
         if (@hasField(ComponentType, "dataWrappers")) {
             genericWidget.as(ComponentType).dataWrappers.widget = slot;
         }
@@ -56,10 +66,10 @@ pub const Tabs_Impl = struct {
     }
 
     pub fn _deinit(self: *Tabs_Impl, _: *Widget) void {
-        for (self.childrens.items) |*child| {
-            child.deinit();
+        for (self.tabs.items) |*tab| {
+            tab.widget.deinit();
         }
-        self.childrens.deinit();
+        self.tabs.deinit();
     }
 };
 
@@ -70,13 +80,39 @@ fn isErrorUnion(comptime T: type) bool {
     };
 }
 
-pub fn Tabs(element: anytype) anyerror!Tabs_Impl {
-    const child =
-        if (comptime isErrorUnion(@TypeOf(element)))
-        try element
-    else
-        element;
-    const widget = try @import("internal.zig").genericWidgetFrom(child);
+pub inline fn Tabs(children: anytype) anyerror!Tabs_Impl {
+    const fields = std.meta.fields(@TypeOf(children));
+    var list = std.ArrayList(Tab_Impl).init(@import("internal.zig").lasting_allocator);
+    inline for (fields) |field| {
+        const element = @field(children, field.name);
+        const tab =
+            if (comptime isErrorUnion(@TypeOf(element))) // if it is an error union, unwrap it
+            try element
+        else
+            element;
+        const slot = try list.addOne();
+        slot.* = tab;
+        slot.*.widget.class.setWidgetFn(&slot.*.widget);
+    }
+    return Tabs_Impl.init(list);
+}
 
-    return Tabs_Impl.init(widget);
+pub const Tab_Impl = struct {
+    name: [:0]const u8,
+    widget: Widget,
+};
+
+pub const TabConfig = struct {
+    name: [:0]const u8 = "",
+};
+
+pub inline fn Tab(config: TabConfig, child: anytype) anyerror!Tab_Impl {
+    const widget = try @import("internal.zig").genericWidgetFrom(if (comptime isErrorUnion(@TypeOf(child)))
+        try child
+    else
+        child);
+    return Tab_Impl{
+        .name = config.name,
+        .widget = widget,
+    };
 }

@@ -674,7 +674,7 @@ pub const TabContainer = struct {
 
     /// Returns the index of the newly added tab
     pub fn insert(self: *const TabContainer, position: usize, peer: PeerType) usize {
-        return c.gtk_notebook_insert_page(@ptrCast(*c.GtkNotebook, self.peer), peer, null, position);
+        return @intCast(usize, c.gtk_notebook_insert_page(@ptrCast(*c.GtkNotebook, self.peer), peer, null, @intCast(c_int, position)));
     }
 
     pub fn setLabel(self: *const TabContainer, position: usize, text: [:0]const u8) void {

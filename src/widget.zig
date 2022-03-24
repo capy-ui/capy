@@ -12,6 +12,11 @@ pub const Class = struct {
     showFn: fn (widget: *Widget) anyerror!void,
     deinitFn: fn (widget: *Widget) void,
     preferredSizeFn: fn (widget: *const Widget, available: data.Size) data.Size,
+    /// Normally, each widget is paired to a component and each showed component is
+    /// paired to a widget. However, in order to pair them you need to be able to edit
+    /// the dataWrappers.widget field, which is impossible if the component type is
+    /// unknown. This function is thus called internally to pair the widget.
+    setWidgetFn: fn (widget: *Widget) void,
     // offset into a list of updater optional pointers
     //updaters: []const usize,
 };
@@ -23,13 +28,14 @@ pub const Widget = struct {
     data: *anyopaque,
     /// The allocator that can be used to free 'data'
     allocator: ?Allocator = null,
+    class: *const Class,
     peer: ?backend.PeerType = null,
     container_expanded: bool = false,
-    class: *const Class,
-    /// A widget can ONLY be parented by a Container
+    /// A widget MUST only be parented by a Container
     parent: ?*Widget = null,
-    name: *?[]const u8,
 
+    // TODO: store @offsetOf these fields in the Class instead of having the cost of 3 pointers
+    name: *?[]const u8,
     /// If there is more available size than preferred size and the widget is not expanded,
     /// this will determine where will the widget be located horizontally.
     alignX: *data.DataWrapper(f32),
