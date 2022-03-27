@@ -54,7 +54,7 @@ pub const Tabs_Impl = struct {
         }
 
         const slot = try self.tab.addOne();
-        slot.* = .{ .name = "Untitled Tab", .widget = genericWidget };
+        slot.* = .{ .label = "Untitled Tab", .widget = genericWidget };
         if (@hasField(ComponentType, "dataWrappers")) {
             genericWidget.as(ComponentType).dataWrappers.widget = slot;
         }

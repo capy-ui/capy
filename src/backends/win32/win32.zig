@@ -35,6 +35,7 @@ pub const BN_CLICKED = 0;
 
 pub const WNDENUMPROC = fn (hwnd: HWND, lParam: LPARAM) callconv(WINAPI) c_int;
 
+pub extern "user32" fn SendMessageA(hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM) callconv(WINAPI) LRESULT;
 pub extern "user32" fn SetParent(child: HWND, newParent: HWND) callconv(WINAPI) HWND;
 pub extern "user32" fn SetWindowTextW(hWnd: HWND, lpString: [*:0]const u16) callconv(WINAPI) c_int;
 pub extern "user32" fn GetWindowTextW(hWnd: HWND, lpString: [*:0]const u16, nMaxCount: c_int) callconv(WINAPI) c_int;
@@ -141,6 +142,58 @@ pub fn SetWindowLongPtr(hWnd: HWND, nIndex: c_int, dwNewLong: usize) void {
 }
 
 pub const ICC_STANDARD_CLASSES = 0x00004000;
+
+// Common Control: Tabs
+const TCM_FIRST = 0x1300;
+pub const TCM_GETITEMCOUNT = TCM_FIRST + 4;
+pub const TCM_GETITEMA = TCM_FIRST + 5;
+pub const TCM_GETITEMW = TCM_FIRST + 60;
+pub const TCM_SETITEMA = TCM_FIRST + 6;
+pub const TCM_SETITEMW = TCM_FIRST + 61;
+pub const TCM_INSERTITEMA = TCM_FIRST + 7;
+pub const TCM_INSERTITEMW = TCM_FIRST + 62;
+
+pub const TCIF_TEXT = 0x0001;
+pub const TCIF_IMAGE = 0x0002;
+pub const TCIF_RTLLEADING = 0x0004;
+pub const TCIF_PARAM = 0x0008;
+pub const TCIF_STATE = 0x0010;
+
+pub const TCITEMA = extern struct {
+    mask: UINT,
+    dwState: DWORD = undefined,
+    dwStateMask: DWORD = undefined,
+    pszText: ?[*:0]const u8 = undefined,
+    /// Size in TCHAR of the pszText string
+    cchTextMax: c_int = undefined,
+    iImage: c_int = -1,
+    /// Userdata
+    lParam: LPARAM = undefined,
+};
+
+pub fn TabCtrl_InsertItemA(hWnd: HWND, index: c_int, tabItem: *const TCITEMA) LRESULT {
+    const newIndex = SendMessageA(hWnd, TCM_INSERTITEMA, @intCast(c_uint, index), @bitCast(isize, @ptrToInt(tabItem)));
+    if (newIndex == -1) {
+        @panic("Failed to insert tab");
+    }
+    return newIndex;
+}
+
+pub fn TabCtrl_GetItemA(hWnd: HWND, index: c_int, out: *TCITEMA) void {
+    if (SendMessageA(hWnd, TCM_GETITEMA, @intCast(c_uint, index), @bitCast(isize, @ptrToInt(out))) == 0) {
+        @panic("Failed to get tab");
+    }
+}
+
+pub fn TabCtrl_SetItemA(hWnd: HWND, index: c_int, tabItem: *const TCITEMA) void {
+    if (SendMessageA(hWnd, TCM_SETITEMA, @intCast(c_uint, index), @bitCast(isize, @ptrToInt(tabItem))) == 0) {
+        @panic("Failed to set tab");
+    }
+}
+
+pub fn TabCtrl_GetItemCount(hWnd: HWND) LRESULT {
+    return SendMessageA(hWnd, TCM_GETITEMCOUNT, 0, 0);
+}
 
 // GDI+ part, based on https://docs.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-flatapi-flat
 pub const GpGraphics = *opaque {};

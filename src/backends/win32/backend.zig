@@ -612,6 +612,52 @@ pub const Label = struct {
     }
 };
 
+pub const TabContainer = struct {
+    peer: HWND,
+    arena: std.heap.ArenaAllocator,
+
+    pub usingnamespace Events(TabContainer);
+
+    pub fn create() !TabContainer {
+        const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
+            "SysTabControl32", // lpClassName
+            "", // lpWindowName
+            win32.WS_TABSTOP | win32.WS_CHILD, // dwStyle
+            10, // X
+            10, // Y
+            100, // nWidth
+            100, // nHeight
+            defaultWHWND, // hWindParent
+            null, // hMenu
+            hInst, // hInstance
+            null // lpParam
+        );
+        try TabContainer.setupEvents(hwnd);
+
+        return TabContainer{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator) };
+    }
+
+    pub fn insert(self: *const TabContainer, position: usize, peer: PeerType) usize {
+        const item = win32.TCITEMA{ .mask = 0 };
+        const newIndex = win32.TabCtrl_InsertItemA(self.peer, @intCast(c_int, position), &item);
+        _ = peer;
+        return @intCast(usize, newIndex);
+    }
+
+    pub fn setLabel(self: *const TabContainer, position: usize, text: [:0]const u8) void {
+        const item = win32.TCITEMA{
+            .mask = win32.TCIF_TEXT, // only change the text attribute
+            .pszText = text,
+            // cchTextMax doesn't need to be set when using SetItem
+        };
+        win32.TabCtrl_SetItemA(self.peer, @intCast(c_int, position), &item);
+    }
+
+    pub fn getTabsNumber(self: *const TabContainer) usize {
+        return @bitCast(usize, win32.TabCtrl_GetItemCount(self.peer));
+    }
+};
+
 const ContainerStruct = struct { hwnd: HWND, count: usize, index: usize };
 
 pub const Container = struct {
@@ -647,7 +693,7 @@ pub const Container = struct {
         const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
             "zgtContainerClass", // lpClassName
             "", // lpWindowName
-            win32.WS_TABSTOP | win32.WS_CHILD, // dwStyle
+            win32.WS_TABSTOP | win32.WS_CHILD | win32.WS_CLIPCHILDREN, // dwStyle
             10, // X
             10, // Y
             100, // nWidth
