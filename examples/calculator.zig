@@ -32,10 +32,7 @@ pub fn erase(button: *zgt.Button_Impl) !void {
 }
 
 fn findOperator(computation: []const u8, pos: usize) ?usize {
-    return std.mem.indexOfScalarPos(u8, computation, pos, '+')
-        orelse std.mem.indexOfScalarPos(u8, computation, pos, '-')
-        orelse std.mem.indexOfScalarPos(u8, computation, pos, '*')
-        orelse std.mem.indexOfScalarPos(u8, computation, pos, '/');
+    return std.mem.indexOfScalarPos(u8, computation, pos, '+') orelse std.mem.indexOfScalarPos(u8, computation, pos, '-') orelse std.mem.indexOfScalarPos(u8, computation, pos, '*') orelse std.mem.indexOfScalarPos(u8, computation, pos, '/');
 }
 
 pub fn compute(button: *zgt.Button_Impl) !void {
@@ -52,9 +49,9 @@ pub fn compute(button: *zgt.Button_Impl) !void {
         const op = findOperator(computation, pos);
         if (op) |operator| {
             const leftHand = computation[pos..operator];
-            const end = findOperator(computation, operator+1) orelse computation.len;
-            const rightHand = computation[operator+1..end];
-            const leftHandNum  = std.fmt.parseFloat(FloatType, leftHand) catch std.math.nan(FloatType);
+            const end = findOperator(computation, operator + 1) orelse computation.len;
+            const rightHand = computation[operator + 1 .. end];
+            const leftHandNum = std.fmt.parseFloat(FloatType, leftHand) catch std.math.nan(FloatType);
             const rightHandNum = std.fmt.parseFloat(FloatType, rightHand) catch std.math.nan(FloatType);
 
             if (pos == 0) result = leftHandNum;
@@ -64,7 +61,7 @@ pub fn compute(button: *zgt.Button_Impl) !void {
                 '-' => result -= rightHandNum,
                 '*' => result *= rightHandNum,
                 '/' => result /= rightHandNum,
-                else => unreachable
+                else => unreachable,
             }
 
             pos = end;
@@ -82,7 +79,7 @@ pub fn compute(button: *zgt.Button_Impl) !void {
 
 pub fn main() !void {
     try zgt.backend.init();
-    var gpa = std.heap.GeneralPurposeAllocator(.{}) {};
+    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
     defer _ = gpa.deinit();
     allocator = gpa.allocator();
 
@@ -109,12 +106,12 @@ pub fn main() !void {
             Margin(Button(.{ .label = "*", .onclick = pressedKey })),
         })),
         Expanded(Row(.{ .expand = .Fill }, .{
-            Margin(Button(.{ .label = "/" , .onclick = pressedKey })),
-            Margin(Button(.{ .label = "0" , .onclick = pressedKey })),
-            Margin(Button(.{ .label = "CE", .onclick = erase      })),
-            Margin(Button(.{ .label = "." , .onclick = pressedKey }))
+            Margin(Button(.{ .label = "/", .onclick = pressedKey })),
+            Margin(Button(.{ .label = "0", .onclick = pressedKey })),
+            Margin(Button(.{ .label = "CE", .onclick = erase })),
+            Margin(Button(.{ .label = ".", .onclick = pressedKey })),
         })),
-        Expanded(Button(.{ .label = "=", .onclick = compute }))
+        Expanded(Button(.{ .label = "=", .onclick = compute })),
     }));
     window.resize(400, 500);
     window.show();

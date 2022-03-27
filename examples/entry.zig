@@ -2,7 +2,7 @@ const zgt = @import("zgt");
 const std = @import("std");
 pub usingnamespace zgt.cross_platform;
 
-var gpa = std.heap.GeneralPurposeAllocator(.{}) {};
+var gpa = std.heap.GeneralPurposeAllocator(.{}){};
 pub const zgtAllocator = gpa.allocator();
 
 fn draw(widget: *zgt.Canvas_Impl, ctx: *zgt.DrawContext) !void {
@@ -22,7 +22,7 @@ fn draw(widget: *zgt.Canvas_Impl, ctx: *zgt.DrawContext) !void {
 }
 
 fn scroll(widget: *zgt.Canvas_Impl, dx: f32, dy: f32) !void {
-    std.log.info("Scroll by {d}, {d}", .{dx, dy});
+    std.log.info("Scroll by {d}, {d}", .{ dx, dy });
     try widget.requestDraw();
 }
 
@@ -36,16 +36,12 @@ pub fn main() !void {
     var canvas = zgt.Canvas(.{});
     _ = try canvas.addDrawHandler(draw);
     try canvas.addScrollHandler(scroll);
-    
-    try window.set(
-        zgt.Column(.{}, .{
-            zgt.TextField(.{ .text = "gemini://gemini.circumlunar.space/" }),
-            zgt.TextField(.{ .text = "other text" }),
-            zgt.Expanded(
-                &canvas
-            )
-        })
-    );
+
+    try window.set(zgt.Column(.{}, .{
+        zgt.TextField(.{ .text = "gemini://gemini.circumlunar.space/" }),
+        zgt.TextField(.{ .text = "other text" }),
+        zgt.Expanded(&canvas),
+    }));
 
     window.resize(800, 600);
     window.show();

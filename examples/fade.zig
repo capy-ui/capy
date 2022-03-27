@@ -24,23 +24,15 @@ pub fn main() !void {
 
     var window = try zgt.Window.init();
     const imageData = try zgt.ImageData.fromFile(zgt.internal.lasting_allocator, "ziglogo.png");
-    
-    try window.set(
-        zgt.Column(.{}, .{
-            zgt.Row(.{}, .{
-                zgt.Expanded(
-                    (try zgt.Row(.{}, .{
-                        zgt.Expanded(
-                            zgt.Label(.{ .text = "Hello Zig" })
-                        ),
-                        zgt.Image(.{ .data = imageData }),
-                    }))
-                        .bindOpacity(&opacity)
-                ),
-                zgt.Button(.{ .label = "Show", .onclick = startAnimation })
-            })
-        })
-    );
+
+    try window.set(zgt.Column(.{}, .{zgt.Row(.{}, .{
+        zgt.Expanded((try zgt.Row(.{}, .{
+            zgt.Expanded(zgt.Label(.{ .text = "Hello Zig" })),
+            zgt.Image(.{ .data = imageData }),
+        }))
+            .bindOpacity(&opacity)),
+        zgt.Button(.{ .label = "Show", .onclick = startAnimation }),
+    })}));
 
     window.resize(800, 450);
     window.show();

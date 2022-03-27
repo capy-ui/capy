@@ -95,6 +95,7 @@ const TestType = struct {
         .showFn = undefined,
         .deinitFn = undefined,
         .preferredSizeFn = undefined,
+        .setWidgetFn = undefined,
     };
 };
 

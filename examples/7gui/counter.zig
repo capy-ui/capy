@@ -23,22 +23,16 @@ pub fn main() !void {
     try zgt.backend.init();
 
     var window = try zgt.Window.init();
-    
-    var format = try zgt.FormatDataWrapper(zgt.internal.lasting_allocator, "{d}", .{ &count });
+
+    var format = try zgt.FormatDataWrapper(zgt.internal.lasting_allocator, "{d}", .{&count});
     defer format.deinit();
-    try window.set(
-        zgt.Column(.{ .expand = .Fill }, .{
-            zgt.Row(.{}, .{
-                zgt.Expanded(
-                    zgt.TextField(.{})
-                        .setName("text-field")
-                        .bindText(format)
-                ),
-                zgt.Button(.{ .label = "Count", .onclick = increment })
-                    //.setEnabledUpdater(buttonEnabled)
-            })
-        })
-    );
+    try window.set(zgt.Column(.{ .expand = .Fill }, .{zgt.Row(.{}, .{
+        zgt.Expanded(zgt.TextField(.{})
+            .setName("text-field")
+            .bindText(format)),
+        zgt.Button(.{ .label = "Count", .onclick = increment }),
+        //.setEnabledUpdater(buttonEnabled)
+    })}));
 
     window.resize(250, 100);
     window.show();

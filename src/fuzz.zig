@@ -191,6 +191,8 @@ test "simple struct init" {
 }
 
 test "basic bisecting" {
+    if (true) return error.SkipZigTest;
+
     // As we're seeking values under 1000 among 4 billion randomly generated values,
     // we need to run this test for longer
     try testFunction(u16, 1000, struct {
