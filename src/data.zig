@@ -1,7 +1,6 @@
 const std = @import("std");
 const Container_Impl = @import("containers.zig").Container_Impl;
 const lasting_allocator = @import("internal.zig").lasting_allocator;
-const milliTimestamp = @import("internal.zig").milliTimestamp;
 
 /// Linear interpolation between a and b with factor t.
 fn lerp(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
@@ -37,7 +36,7 @@ pub fn Animation(comptime T: type) type {
         /// Get the current value from the animation
         pub fn get(self: *@This()) T {
             const maxDiff = @intToFloat(f64, self.end - self.start);
-            const diff = @intToFloat(f64, milliTimestamp() - self.start);
+            const diff = @intToFloat(f64, std.time.milliTimestamp() - self.start);
             var t = diff / maxDiff;
             // Clamp t to [0, 1]
             t = std.math.clamp(t, 0.0, 1.0);
@@ -147,7 +146,7 @@ pub fn DataWrapper(comptime T: type) type {
         pub fn update(self: *Self) bool {
             if (self.animation) |*anim| {
                 self.extendedSet(anim.get(), true, false);
-                if (milliTimestamp() >= anim.end) {
+                if (std.time.milliTimestamp() >= anim.end) {
                     self.animation = null;
                     return false;
                 } else {
@@ -167,7 +166,7 @@ pub fn DataWrapper(comptime T: type) type {
             if (!IsAnimable) {
                 @compileError("animate only supported on numbers");
             }
-            const time = milliTimestamp();
+            const time = std.time.milliTimestamp();
             self.animation = Animation(T){ .start = time, .end = time + duration, .min = self.value, .max = target, .animFn = anim };
 
             var contains = false;
