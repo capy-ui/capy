@@ -124,6 +124,7 @@ pub const EventUserData = struct {
     userdata: usize = 0,
     classUserdata: usize = 0,
     peer: PeerType,
+    focusOnClick: bool = false,
 };
 // zig fmt: on
 
@@ -156,6 +157,11 @@ pub fn Events(comptime T: type) type {
             var data = try lib.internal.lasting_allocator.create(EventUserData);
             data.* = EventUserData{ .peer = widget }; // ensure that it uses default values
             c.g_object_set_data(@ptrCast(*c.GObject, widget), "eventUserData", data);
+        }
+
+        pub fn copyEventUserData(source: *c.GtkWidget, destination: *c.GtkWidget) void {
+            const data = getEventUserData(source);
+            c.g_object_set_data(@ptrCast(*c.GObject, destination), "eventUserData", data);
         }
 
         fn gtkSizeAllocate(peer: *c.GtkWidget, allocation: *c.GdkRectangle, userdata: usize) callconv(.C) void {
@@ -217,7 +223,9 @@ pub fn Events(comptime T: type) type {
                 handler(button, pressed, mx, my, @ptrToInt(data));
             }
             if (data.user.mouseButtonHandler) |handler| {
-                c.gtk_widget_grab_focus(peer); // seems to be necessary for the canvas
+                if (data.focusOnClick) {
+                    c.gtk_widget_grab_focus(peer);
+                }
                 handler(button, pressed, mx, my, data.userdata);
             }
             return 0;
@@ -449,7 +457,10 @@ pub const TextField = struct {
 };
 
 pub const Canvas = struct {
+    /// GtkEventBox which will take all of canvas's events
     peer: *c.GtkWidget,
+    /// Actual GtkCanvas
+    canvas: *c.GtkWidget,
     controller: *c.GtkEventController,
 
     pub usingnamespace Events(Canvas);
@@ -611,13 +622,20 @@ pub const Canvas = struct {
     pub fn create() BackendError!Canvas {
         const canvas = c.gtk_drawing_area_new() orelse return BackendError.UnknownError;
         c.gtk_widget_show(canvas);
-        c.gtk_widget_set_can_focus(canvas, 1);
-        try Canvas.setupEvents(canvas);
         _ = c.g_signal_connect_data(canvas, "draw", @ptrCast(c.GCallback, gtkCanvasDraw), null, @as(c.GClosureNotify, null), 0);
 
-        const controller = c.gtk_event_controller_key_new(canvas).?;
+        const peer = c.gtk_event_box_new() orelse return BackendError.UnknownError;
+        c.gtk_widget_set_can_focus(peer, 1);
+        c.gtk_widget_show(peer);
+        c.gtk_container_add(@ptrCast(*c.GtkContainer, peer), canvas);
+        try Canvas.setupEvents(peer);
+        getEventUserData(peer).focusOnClick = true;
+        // Copy event user data so that :draw can use `getEventUserData`
+        Canvas.copyEventUserData(peer, canvas);
+
+        const controller = c.gtk_event_controller_key_new(peer).?;
         _ = c.g_signal_connect_data(controller, "key-pressed", @ptrCast(c.GCallback, gtkImKeyPress), null, null, c.G_CONNECT_AFTER);
-        return Canvas{ .peer = canvas, .controller = controller };
+        return Canvas{ .peer = peer, .canvas = canvas, .controller = controller };
     }
 };
 

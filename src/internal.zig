@@ -524,11 +524,3 @@ pub fn Events(comptime T: type) type {
         }
     };
 }
-
-pub fn milliTimestamp() i64 {
-    if (@hasDecl(backend, "milliTimestamp")) {
-        return backend.milliTimestamp();
-    } else {
-        return std.time.milliTimestamp();
-    }
-}

@@ -25,7 +25,7 @@ pub const Tabs_Impl = struct {
             for (self.tabs.items) |*tab| {
                 try tab.widget.show();
                 const tabPosition = peer.insert(peer.getTabsNumber(), tab.widget.peer.?);
-                peer.setLabel(tabPosition, tab.name);
+                peer.setLabel(tabPosition, tab.label);
             }
             self.peer = peer;
             try self.show_events();
@@ -98,12 +98,12 @@ pub inline fn Tabs(children: anytype) anyerror!Tabs_Impl {
 }
 
 pub const Tab_Impl = struct {
-    name: [:0]const u8,
+    label: [:0]const u8,
     widget: Widget,
 };
 
 pub const TabConfig = struct {
-    name: [:0]const u8 = "",
+    label: [:0]const u8 = "",
 };
 
 pub inline fn Tab(config: TabConfig, child: anytype) anyerror!Tab_Impl {
@@ -112,7 +112,7 @@ pub inline fn Tab(config: TabConfig, child: anytype) anyerror!Tab_Impl {
     else
         child);
     return Tab_Impl{
-        .name = config.name,
+        .label = config.label,
         .widget = widget,
     };
 }
