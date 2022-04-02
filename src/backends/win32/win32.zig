@@ -13,6 +13,7 @@ pub const LPRECT = *RECT;
 pub const WINAPI = std.os.windows.WINAPI;
 pub const HDC = std.os.windows.HDC;
 pub const HBRUSH = std.os.windows.HBRUSH;
+pub const HMENU = std.os.windows.HMENU;
 pub const HFONT = *opaque {};
 pub const COLORREF = std.os.windows.DWORD;
 pub const BOOL = std.os.windows.BOOL;
@@ -42,6 +43,7 @@ pub extern "user32" fn GetWindowTextW(hWnd: HWND, lpString: [*:0]const u16, nMax
 pub extern "user32" fn GetWindowTextLengthW(hWnd: HWND) callconv(WINAPI) c_int;
 pub extern "user32" fn EnumChildWindows(hWndParent: HWND, lpEnumFunc: WNDENUMPROC, lParam: LPARAM) callconv(WINAPI) c_int;
 pub extern "user32" fn GetParent(hWnd: HWND) callconv(WINAPI) HWND;
+pub extern "user32" fn GetWindow(hWnd: HWND, uCmd: UINT) callconv(WINAPI) HWND;
 pub extern "user32" fn GetWindowRect(hWnd: HWND, lpRect: LPRECT) callconv(WINAPI) c_int;
 pub extern "user32" fn GetClientRect(hWnd: HWND, lpRect: LPRECT) callconv(WINAPI) c_int;
 pub extern "user32" fn SetWindowPos(hWnd: HWND, hWndInsertAfter: HWND, X: c_int, Y: c_int, cx: c_int, cy: c_int, uFlags: c_uint) callconv(WINAPI) c_int;
@@ -106,24 +108,37 @@ pub const COLOR_GRAYTEXT = 17;
 pub const COLOR_BTNTEXT = 18;
 pub const COLOR_HOTLIGHT = 26;
 
+// properties for GetWindow
+pub const GW_HWNDFIRST = 0;
+pub const GW_HWNDLAST = 1;
+pub const GW_HWNDNEXT = 2;
+pub const GW_HWNDPREV = 3;
+pub const GW_OWNER = 4;
+pub const GW_CHILD = 5;
+pub const GW_ENABLEDPOPUP = 6;
+
 // Common Controls
 pub extern "comctl32" fn InitCommonControlsEx(picce: [*c]const INITCOMMONCONTROLSEX) callconv(WINAPI) c_int;
 pub const INITCOMMONCONTROLSEX = extern struct { dwSize: c_uint, dwICC: c_uint };
 
-// zig fmt: off
 pub const PAINTSTRUCT = extern struct {
     hdc: HDC,
     fErase: BOOL,
     rcPaint: RECT,
     fRestore: BOOL,
     fIncUpdate: BOOL,
-    rgbReserved: [32]BYTE
+    rgbReserved: [32]BYTE,
 };
-// zig fmt: on
 
 pub const POINT = extern struct { x: LONG, y: LONG };
 
 pub const SIZE = extern struct { cx: std.os.windows.LONG, cy: std.os.windows.LONG };
+
+pub const NMHDR = extern struct {
+    hwndFrom: HWND,
+    idFrom: UINT,
+    code: UINT,
+};
 
 pub fn GetWindowLongPtr(hWnd: HWND, nIndex: c_int) usize {
     switch (@import("builtin").cpu.arch) {
@@ -152,6 +167,10 @@ pub const TCM_SETITEMA = TCM_FIRST + 6;
 pub const TCM_SETITEMW = TCM_FIRST + 61;
 pub const TCM_INSERTITEMA = TCM_FIRST + 7;
 pub const TCM_INSERTITEMW = TCM_FIRST + 62;
+
+const TCN_FIRST = @as(UINT, 0) -% 550;
+pub const TCN_SELCHANGE = TCN_FIRST - 1;
+pub const TCN_SELCHANGING = TCN_FIRST - 2;
 
 pub const TCIF_TEXT = 0x0001;
 pub const TCIF_IMAGE = 0x0002;

@@ -181,6 +181,19 @@ pub fn Events(comptime T: type) type {
         const Self = @This();
 
         pub fn process(hwnd: HWND, wm: c_uint, wp: WPARAM, lp: LPARAM) callconv(WINAPI) LRESULT {
+            switch (wm) {
+                win32.WM_NOTIFY => {
+                    const nmhdr = @intToPtr(*const win32.NMHDR, @bitCast(usize, lp));
+                    std.log.info("code = {d} vs {d}", .{ nmhdr.code, win32.TCN_SELCHANGING });
+                    switch (nmhdr.code) {
+                        win32.TCN_SELCHANGING => {
+                            return 0;
+                        },
+                        else => {}
+                    }
+                },
+                else => {},
+            }
             if (win32.GetWindowLongPtr(hwnd, win32.GWL_USERDATA) == 0) return win32.DefWindowProcA(hwnd, wm, wp, lp);
             switch (wm) {
                 win32.WM_COMMAND => {
@@ -195,8 +208,21 @@ pub fn Events(comptime T: type) type {
                         else => {},
                     }
                 },
+                win32.WM_NOTIFY => {
+                    const nmhdr = @intToPtr(*const win32.NMHDR, @bitCast(usize, lp));
+                    std.log.info("code = {d} vs {d}", .{ nmhdr.code, win32.TCN_SELCHANGING });
+                    switch (nmhdr.code) {
+                        win32.TCN_SELCHANGING => {
+                            return 0;
+                        },
+                        else => {}
+                    }
+                },
                 win32.WM_SIZE => {
                     const data = getEventUserData(hwnd);
+                    if (@hasDecl(T, "onResize")) {
+                        T.onResize(data, hwnd);
+                    }
                     if (data.resizeHandler) |handler| {
                         var rect: RECT = undefined;
                         _ = win32.GetWindowRect(hwnd, &rect);
@@ -427,7 +453,7 @@ pub const Canvas = struct {
     pub fn create() !Canvas {
         if (!classRegistered) {
             var wc: win32.WNDCLASSEXA = .{
-                .style = 0,
+                .style = win32.CS_HREDRAW | win32.CS_VREDRAW,
                 .lpfnWndProc = Canvas.process,
                 .cbClsExtra = 0,
                 .cbWndExtra = 0,
@@ -560,7 +586,6 @@ pub const Button = struct {
 
 pub const Label = struct {
     peer: HWND,
-    data: usize = 0,
     arena: std.heap.ArenaAllocator,
 
     pub usingnamespace Events(Label);
@@ -613,16 +638,41 @@ pub const Label = struct {
 };
 
 pub const TabContainer = struct {
+    /// Container that contains the tab control because win32 requires that
     peer: HWND,
+    /// The actual tab control
+    tabControl: HWND,
     arena: std.heap.ArenaAllocator,
 
     pub usingnamespace Events(TabContainer);
 
+    var classRegistered = false;
+
     pub fn create() !TabContainer {
-        const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
-            "SysTabControl32", // lpClassName
+        if (!classRegistered) {
+            var wc: win32.WNDCLASSEXA = .{
+                .style = 0,
+                .lpfnWndProc = TabContainer.process,
+                .hInstance = hInst,
+                .hIcon = null, // TODO: LoadIcon
+                .hCursor = null, // TODO: LoadCursor
+                .hbrBackground = null,
+                .lpszMenuName = null,
+                .lpszClassName = "zgtTabClass",
+                .hIconSm = null,
+            };
+
+            if ((try win32.registerClassExA(&wc)) == 0) {
+                showNativeMessageDialog(.Error, "Could not register window class zgtTabClass", .{});
+                return Win32Error.InitializationError;
+            }
+            classRegistered = true;
+        }
+
+        const wrapperHwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
+            "zgtTabClass", // lpClassName
             "", // lpWindowName
-            win32.WS_TABSTOP | win32.WS_CHILD, // dwStyle
+            win32.WS_TABSTOP | win32.WS_CHILD | win32.WS_CLIPCHILDREN, // dwStyle
             10, // X
             10, // Y
             100, // nWidth
@@ -632,14 +682,31 @@ pub const TabContainer = struct {
             hInst, // hInstance
             null // lpParam
         );
-        try TabContainer.setupEvents(hwnd);
 
-        return TabContainer{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator) };
+        const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
+            "SysTabControl32", // lpClassName
+            "", // lpWindowName
+            win32.WS_TABSTOP | win32.WS_CHILD | win32.WS_CLIPSIBLINGS, // dwStyle
+            10, // X
+            10, // Y
+            100, // nWidth
+            100, // nHeight
+            defaultWHWND, // hWindParent
+            null, // hMenu
+            hInst, // hInstance
+            null // lpParam
+        );
+        try TabContainer.setupEvents(wrapperHwnd);
+        _ = win32.SetParent(hwnd, wrapperHwnd);
+        _ = win32.showWindow(hwnd, win32.SW_SHOWDEFAULT);
+        _ = win32.UpdateWindow(hwnd);
+
+        return TabContainer{ .peer = wrapperHwnd, .tabControl = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator) };
     }
 
     pub fn insert(self: *const TabContainer, position: usize, peer: PeerType) usize {
         const item = win32.TCITEMA{ .mask = 0 };
-        const newIndex = win32.TabCtrl_InsertItemA(self.peer, @intCast(c_int, position), &item);
+        const newIndex = win32.TabCtrl_InsertItemA(self.tabControl, @intCast(c_int, position), &item);
         _ = peer;
         return @intCast(usize, newIndex);
     }
@@ -650,11 +717,18 @@ pub const TabContainer = struct {
             .pszText = text,
             // cchTextMax doesn't need to be set when using SetItem
         };
-        win32.TabCtrl_SetItemA(self.peer, @intCast(c_int, position), &item);
+        win32.TabCtrl_SetItemA(self.tabControl, @intCast(c_int, position), &item);
     }
 
     pub fn getTabsNumber(self: *const TabContainer) usize {
-        return @bitCast(usize, win32.TabCtrl_GetItemCount(self.peer));
+        return @bitCast(usize, win32.TabCtrl_GetItemCount(self.tabControl));
+    }
+
+    fn onResize(_: *EventUserData, hwnd: HWND) void {
+        var rect: RECT = undefined;
+        _ = win32.GetWindowRect(hwnd, &rect);
+        const child = win32.GetWindow(hwnd, win32.GW_CHILD);
+        _ = win32.MoveWindow(child, 0, 0, rect.right - rect.left, rect.bottom - rect.top, 1);
     }
 };
 
