@@ -96,7 +96,7 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
             const size = blk: {
                 if (widget.container_expanded) {
                     break :blk available;
-                } else if (widget.alignY.get() == null) {
+                } else if (widget.alignY.get() == null and !peer.computingPreferredSize) {
                     break :blk Size.intersect(available, Size.init(preferred.width, available.height));
                 } else {
                     break :blk Size.intersect(available, preferred);
@@ -192,6 +192,15 @@ pub const Container_Impl = struct {
             }
         }
         return null;
+    }
+
+    /// Combines get() and Widget.as()
+    pub fn getAs(self: *Container_Impl, comptime T: type, name: []const u8, ) ?*T {
+        if (self.get(name)) |widget| {
+            return widget.as(T);
+        } else {
+            return null;
+        }
     }
 
     pub fn getPreferredSize(self: *Container_Impl, available: Size) Size {

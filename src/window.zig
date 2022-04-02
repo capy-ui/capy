@@ -45,6 +45,10 @@ pub const Window = struct {
         self.peer.setChild(self._child.?.peer);
     }
 
+    pub fn getChild(self: Window) ?Widget {
+        return self._child;
+    }
+
     pub fn resize(self: *Window, width: u32, height: u32) void {
         self.peer.resize(@intCast(c_int, width), @intCast(c_int, height));
     }
