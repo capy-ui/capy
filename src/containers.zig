@@ -48,8 +48,17 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
         if (widget.peer) |widgetPeer| {
             const available = Size{ .width = @intCast(u32, peer.getSize(peer.userdata).width), .height = if (widget.container_expanded) childHeight else (@intCast(u32, peer.getSize(peer.userdata).height) - @floatToInt(u32, childY)) };
             const preferred = widget.getPreferredSize(available);
-            const size = if (widget.container_expanded) available else Size.intersect(available, preferred);
-            const alignX = std.math.clamp(widget.alignX.get(), 0, 1);
+            const size = blk: {
+                if (widget.container_expanded) {
+                    break :blk available;
+                } else if (widget.alignX.get() == null) {
+                    break :blk Size.intersect(available, Size.init(available.width, preferred.height));
+                } else {
+                    break :blk Size.intersect(available, preferred);
+                }
+            };
+
+            const alignX = std.math.clamp(widget.alignX.get() orelse 0, 0, 1);
             var x = @floatToInt(u32, @floor(alignX * @intToFloat(f32, peer.getSize(peer.userdata).width -| preferred.width)));
             if (widget.container_expanded or peer.computingPreferredSize) x = 0;
             peer.moveResize(peer.userdata, widgetPeer, x, @floatToInt(u32, @floor(childY)), size.width, size.height);
@@ -84,8 +93,17 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
             // }
             const available = Size{ .width = if (widget.container_expanded) childWidth else (@intCast(u32, peer.getSize(peer.userdata).width) - @floatToInt(u32, childX)), .height = @intCast(u32, peer.getSize(peer.userdata).height) };
             const preferred = widget.getPreferredSize(available);
-            const size = if (widget.container_expanded) available else Size.intersect(available, preferred);
-            const alignY = std.math.clamp(widget.alignY.get(), 0, 1);
+            const size = blk: {
+                if (widget.container_expanded) {
+                    break :blk available;
+                } else if (widget.alignY.get() == null) {
+                    break :blk Size.intersect(available, Size.init(preferred.width, available.height));
+                } else {
+                    break :blk Size.intersect(available, preferred);
+                }
+            };
+
+            const alignY = std.math.clamp(widget.alignY.get() orelse 0, 0, 1);
             var y = @floatToInt(u32, @floor(alignY * @intToFloat(f32, peer.getSize(peer.userdata).height -| preferred.height)));
             if (widget.container_expanded or peer.computingPreferredSize) y = 0;
             peer.moveResize(peer.userdata, widgetPeer, @floatToInt(u32, @floor(childX)), y, size.width, size.height);

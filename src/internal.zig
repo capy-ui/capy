@@ -49,9 +49,9 @@ pub fn Widgeting(comptime T: type) type {
         };
 
         pub const DataWrappers = struct {
-            opacity: DataWrapper(f64) = DataWrapper(f64).of(1.0),
-            alignX: DataWrapper(f32) = DataWrapper(f32).of(0.5),
-            alignY: DataWrapper(f32) = DataWrapper(f32).of(0.5),
+            opacity: DataWrapper(f32) = DataWrapper(f32).of(1.0),
+            alignX: DataWrapper(?f32) = DataWrapper(?f32).of(null),
+            alignY: DataWrapper(?f32) = DataWrapper(?f32).of(null),
             name: ?[]const u8 = null,
 
             /// The widget representing this component
@@ -60,7 +60,7 @@ pub fn Widgeting(comptime T: type) type {
         // zig fmt: on
 
         /// When alignX or alignY is changed, this will trigger a parent relayout
-        fn alignChanged(new: f32, userdata: usize) void {
+        fn alignChanged(new: ?f32, userdata: usize) void {
             _ = new;
 
             const widget = @intToPtr(*Widget, userdata);
@@ -464,7 +464,7 @@ pub fn Events(comptime T: type) type {
         }
 
         /// When the value is changed in the opacity data wrapper
-        fn opacityChanged(newValue: f64, userdata: usize) void {
+        fn opacityChanged(newValue: f32, userdata: usize) void {
             const widget = @intToPtr(*T, userdata);
             if (widget.peer) |*peer| {
                 peer.setOpacity(newValue);

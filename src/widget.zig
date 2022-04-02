@@ -38,11 +38,11 @@ pub const Widget = struct {
     name: *?[]const u8,
     /// If there is more available size than preferred size and the widget is not expanded,
     /// this will determine where will the widget be located horizontally.
-    alignX: *data.DataWrapper(f32),
+    alignX: *data.DataWrapper(?f32),
 
     /// If there is more available size than preferred size and the widget is not expanded,
     /// this will determine where will the widget be located vertically.
-    alignY: *data.DataWrapper(f32),
+    alignY: *data.DataWrapper(?f32),
 
     pub fn show(self: *Widget) anyerror!void {
         try self.class.showFn(self);
