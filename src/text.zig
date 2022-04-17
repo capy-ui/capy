@@ -94,7 +94,7 @@ pub const TextField_Impl = struct {
     pub fn getPreferredSize(self: *TextField_Impl, available: Size) Size {
         _ = self;
         _ = available;
-        return Size{ .width = 100.0, .height = 40.0 };
+        return Size{ .width = 200.0, .height = 40.0 };
     }
 
     pub fn setText(self: *TextField_Impl, text: []const u8) void {

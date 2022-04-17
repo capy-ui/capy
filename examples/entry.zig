@@ -33,12 +33,15 @@ pub fn main() !void {
     var window = try zgt.Window.init();
     defer window.deinit();
 
-    var canvas = zgt.Canvas(.{});
-    _ = try canvas.addDrawHandler(draw);
+    var canvas = try zgt.Canvas(.{})
+        .addDrawHandler(draw);
     try canvas.addScrollHandler(scroll);
 
     try window.set(zgt.Column(.{}, .{
-        zgt.TextField(.{ .text = "gemini://gemini.circumlunar.space/" }),
+        zgt.Row(.{}, .{
+            zgt.Expanded(zgt.TextField(.{ .text = "gemini://gemini.circumlunar.space/" })),
+            zgt.Button(.{ .label = "Go!" }),
+        }),
         zgt.TextField(.{ .text = "other text" }),
         zgt.Expanded(&canvas),
     }));

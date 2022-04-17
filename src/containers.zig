@@ -50,7 +50,12 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
             const preferred = widget.getPreferredSize(available);
             const size = blk: {
                 if (widget.container_expanded) {
-                    break :blk available;
+                    // if we're computing preferred size, avoid inflating and return preferred width
+                    if (peer.computingPreferredSize) {
+                        break :blk Size.init(preferred.width, available.height);
+                    } else {
+                        break :blk available;
+                    }
                 } else if (widget.alignX.get() == null) {
                     break :blk Size.intersect(available, Size.init(available.width, preferred.height));
                 } else {
@@ -95,7 +100,12 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
             const preferred = widget.getPreferredSize(available);
             const size = blk: {
                 if (widget.container_expanded) {
-                    break :blk available;
+                    // if we're computing preferred size, avoid inflating and return preferred height
+                    if (peer.computingPreferredSize) {
+                        break :blk Size.init(available.width, preferred.height);
+                    } else {
+                        break :blk available;
+                    }
                 } else if (widget.alignY.get() == null and !peer.computingPreferredSize) {
                     break :blk Size.intersect(available, Size.init(preferred.width, available.height));
                 } else {
@@ -195,7 +205,7 @@ pub const Container_Impl = struct {
     }
 
     /// Combines get() and Widget.as()
-    pub fn getAs(self: *Container_Impl, comptime T: type, name: []const u8, ) ?*T {
+    pub fn getAs(self: *Container_Impl, comptime T: type, name: []const u8) ?*T {
         if (self.get(name)) |widget| {
             return widget.as(T);
         } else {

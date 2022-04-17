@@ -184,12 +184,12 @@ pub fn Events(comptime T: type) type {
             switch (wm) {
                 win32.WM_NOTIFY => {
                     const nmhdr = @intToPtr(*const win32.NMHDR, @bitCast(usize, lp));
-                    std.log.info("code = {d} vs {d}", .{ nmhdr.code, win32.TCN_SELCHANGING });
+                    //std.log.info("code = {d} vs {d}", .{ nmhdr.code, win32.TCN_SELCHANGING });
                     switch (nmhdr.code) {
                         win32.TCN_SELCHANGING => {
                             return 0;
                         },
-                        else => {}
+                        else => {},
                     }
                 },
                 else => {},
@@ -210,12 +210,12 @@ pub fn Events(comptime T: type) type {
                 },
                 win32.WM_NOTIFY => {
                     const nmhdr = @intToPtr(*const win32.NMHDR, @bitCast(usize, lp));
-                    std.log.info("code = {d} vs {d}", .{ nmhdr.code, win32.TCN_SELCHANGING });
+                    //std.log.info("code = {d} vs {d}", .{ nmhdr.code, win32.TCN_SELCHANGING });
                     switch (nmhdr.code) {
                         win32.TCN_SELCHANGING => {
                             return 0;
                         },
-                        else => {}
+                        else => {},
                     }
                 },
                 win32.WM_SIZE => {
