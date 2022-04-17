@@ -75,6 +75,7 @@ pub fn compute(button: *zgt.Button_Impl) !void {
 
     const text = try std.fmt.allocPrintZ(allocator, "{d}", .{result});
     computationLabel.setText(text);
+    allocator.free(text);
 }
 
 pub fn main() !void {
