@@ -91,22 +91,24 @@ pub fn Widgeting(comptime T: type) type {
 
         pub fn deinitWidget(widget: *Widget) void {
             const component = widget.as(T);
-            component.deinit();
-
+            std.log.info("start deinit {s}", .{@typeName(T)});
             if (@hasDecl(T, "_deinit")) {
                 T._deinit(component, widget);
             }
+            component.deinit();
+            
             if (widget.allocator) |allocator| allocator.destroy(component);
         }
 
         pub fn deinit(self: *T) void {
-            std.log.info("deinit {s}", .{@typeName(T)});
+            std.log.info("deinit properly {s}", .{@typeName(T)});
             std.log.info("a {}", .{self});
             self.dataWrappers.widget = null;
 
             self.handlers.clickHandlers.deinit();
             self.handlers.drawHandlers.deinit();
             self.handlers.buttonHandlers.deinit();
+            self.handlers.mouseMoveHandlers.deinit();
             self.handlers.scrollHandlers.deinit();
             self.handlers.resizeHandlers.deinit();
             self.handlers.keyTypeHandlers.deinit();
@@ -146,17 +148,12 @@ pub fn Widgeting(comptime T: type) type {
         // to get some safety
 
         pub fn setUserdata(self: *T, userdata: ?*anyopaque) T {
-            if (comptime std.meta.trait.isIntegral(@TypeOf(userdata))) {
-                self.handlers.userdata = userdata;
-            } else {
-                self.handlers.userdata = @ptrToInt(userdata);
-            }
-
+            self.handlers.userdata = userdata;
             return self.*;
         }
 
         pub fn getUserdata(self: *T, comptime U: type) U {
-            return @intToPtr(U, self.handlers.userdata);
+            return @ptrCast(U, self.handlers.userdata);
         }
 
         // Properties
@@ -356,6 +353,7 @@ pub fn Events(comptime T: type) type {
         pub const ScrollCallback = fn (widget: *T, dx: f32, dy: f32) anyerror!void;
         pub const ResizeCallback = fn (widget: *T, size: Size) anyerror!void;
         pub const KeyTypeCallback = fn (widget: *T, key: []const u8) anyerror!void;
+        pub const KeyPressCallback = fn(widget: *T, keycode: u16) anyerror!void;
         const HandlerList = std.ArrayList(Callback);
         const DrawHandlerList = std.ArrayList(DrawCallback);
         const ButtonHandlerList = std.ArrayList(ButtonCallback);
@@ -363,6 +361,7 @@ pub fn Events(comptime T: type) type {
         const ScrollHandlerList = std.ArrayList(ScrollCallback);
         const ResizeHandlerList = std.ArrayList(ResizeCallback);
         const KeyTypeHandlerList = std.ArrayList(KeyTypeCallback);
+        const KeyPressHandlerList = std.ArrayList(KeyPressCallback);
 
         pub const Handlers = struct {
             clickHandlers: HandlerList,
@@ -372,12 +371,12 @@ pub fn Events(comptime T: type) type {
             scrollHandlers: ScrollHandlerList,
             resizeHandlers: ResizeHandlerList,
             keyTypeHandlers: KeyTypeHandlerList,
-            userdata: usize = 0,
+            keyPressHandlers: KeyPressHandlerList,
+            userdata: ?*anyopaque = null,
         };
 
         pub fn init_events(self: T) T {
             var obj = self;
-            // zig fmt: off
             obj.handlers = .{
                 .clickHandlers = HandlerList.init(lasting_allocator),
                 .drawHandlers = DrawHandlerList.init(lasting_allocator),
@@ -385,9 +384,9 @@ pub fn Events(comptime T: type) type {
                 .mouseMoveHandlers = MouseMoveHandlerList.init(lasting_allocator),
                 .scrollHandlers = ScrollHandlerList.init(lasting_allocator),
                 .resizeHandlers = ResizeHandlerList.init(lasting_allocator),
-                .keyTypeHandlers = KeyTypeHandlerList.init(lasting_allocator)
+                .keyTypeHandlers = KeyTypeHandlerList.init(lasting_allocator),
+                .keyPressHandlers = KeyPressHandlerList.init(lasting_allocator),
             };
-            // zig fmt: on
             return obj;
         }
 
@@ -447,6 +446,13 @@ pub fn Events(comptime T: type) type {
                 func(self, str) catch |err| errorHandler(err);
             }
         }
+        
+        fn keyPressHandler(keycode: u16, data: usize) void {
+            const self = @intToPtr(*T, data);
+            for (self.handlers.keyPressHandlers.items) |func| {
+                func(self, keycode) catch |err| errorHandler(err);
+            }
+        }
 
         fn scrollHandler(dx: f32, dy: f32, data: usize) void {
             const self = @intToPtr(*T, data);
@@ -480,6 +486,7 @@ pub fn Events(comptime T: type) type {
             try self.peer.?.setCallback(.Scroll, scrollHandler);
             try self.peer.?.setCallback(.Resize, resizeHandler);
             try self.peer.?.setCallback(.KeyType, keyTypeHandler);
+            try self.peer.?.setCallback(.KeyPress, keyPressHandler);
 
             _ = try self.dataWrappers.opacity.addChangeListener(.{ .function = opacityChanged, .userdata = @ptrToInt(self) });
             opacityChanged(self.dataWrappers.opacity.get(), @ptrToInt(self)); // call it so it's updated
@@ -511,8 +518,11 @@ pub fn Events(comptime T: type) type {
         }
 
         pub fn addKeyTypeHandler(self: *T, handler: KeyTypeCallback) !void {
-            std.log.info("add", .{});
             try self.handlers.keyTypeHandlers.append(handler);
+        }
+
+        pub fn addKeyPressHandler(self: *T, handler: KeyPressCallback) !void {
+            try self.handlers.keyPressHandlers.append(handler);
         }
 
         pub fn requestDraw(self: *T) !void {

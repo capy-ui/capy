@@ -109,6 +109,7 @@ const EventFunctions = struct {
     // TODO: Mouse object with pressed buttons and more data
     mouseMotionHandler: ?fn(x: u32, y: u32, data: usize) void = null,
     keyTypeHandler: ?fn (str: []const u8, data: usize) void = null,
+    keyPressHandler: ?fn(hardwareKeycode: u16, data: usize) void = null,
     // TODO: dx and dy are in pixels, not in lines
     scrollHandler: ?fn (dx: f32, dy: f32, data: usize) void = null,
     resizeHandler: ?fn (width: u32, height: u32, data: usize) void = null,
@@ -150,8 +151,7 @@ pub fn Events(comptime T: type) type {
             _ = c.g_signal_connect_data(widget, "motion-notify-event", @ptrCast(c.GCallback, gtkMouseMotion), null, null, c.G_CONNECT_AFTER);
             _ = c.g_signal_connect_data(widget, "scroll-event", @ptrCast(c.GCallback, gtkMouseScroll), null, null, c.G_CONNECT_AFTER);
             _ = c.g_signal_connect_data(widget, "size-allocate", @ptrCast(c.GCallback, gtkSizeAllocate), null, null, c.G_CONNECT_AFTER);
-            if (T != Canvas)
-                _ = c.g_signal_connect_data(widget, "key-press-event", @ptrCast(c.GCallback, gtkKeyPress), null, null, c.G_CONNECT_AFTER);
+            _ = c.g_signal_connect_data(widget, "key-press-event", @ptrCast(c.GCallback, gtkKeyPress), null, null, c.G_CONNECT_AFTER);
             c.gtk_widget_add_events(widget, c.GDK_SCROLL_MASK | c.GDK_BUTTON_PRESS_MASK | c.GDK_BUTTON_RELEASE_MASK | c.GDK_KEY_PRESS_MASK | c.GDK_POINTER_MOTION_MASK);
 
             var data = try lib.internal.lasting_allocator.create(EventUserData);
@@ -191,7 +191,7 @@ pub fn Events(comptime T: type) type {
             _ = userdata;
             const data = getEventUserData(peer);
             const str = event.string[0..@intCast(usize, event.length)];
-            if (str.len != 0) {
+            if (str.len != 0 and T != Canvas) {
                 if (data.class.keyTypeHandler) |handler| {
                     handler(str, @ptrToInt(data));
                     if (data.user.keyTypeHandler == null) return 1;
@@ -201,6 +201,15 @@ pub fn Events(comptime T: type) type {
                     return 1;
                 }
             }
+            if (data.class.keyPressHandler) |handler| {
+                handler(event.hardware_keycode, @ptrToInt(data));
+                if (data.user.keyPressHandler == null) return 1;
+            }
+            if (data.user.keyPressHandler) |handler| {
+                handler(event.hardware_keycode, data.userdata);
+                return 1;
+            }
+
             return 0;
         }
 
@@ -298,6 +307,7 @@ pub fn Events(comptime T: type) type {
                 .TextChanged => data.changedTextHandler = cb,
                 .Resize => data.resizeHandler = cb,
                 .KeyType => data.keyTypeHandler = cb,
+                .KeyPress => data.keyPressHandler = cb,
             }
         }
 
@@ -610,7 +620,6 @@ pub const Canvas = struct {
 
         if (data.class.keyTypeHandler) |handler| {
             handler(str, @ptrToInt(data));
-            if (data.user.keyTypeHandler == null) return 1;
         }
         if (data.user.keyTypeHandler) |handler| {
             handler(str, data.userdata);

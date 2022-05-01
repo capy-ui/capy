@@ -11,7 +11,10 @@ pub const BackendEventType = enum {
     Scroll,
     TextChanged,
     Resize,
-    KeyType
+    /// This corresponds to a character being typed (e.g. Shift+e = 'E')
+    KeyType,
+    /// This corresponds to a key beign pressed (e.g. Shift)
+    KeyPress,
 };
 // zig fmt: on
 

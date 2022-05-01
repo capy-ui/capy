@@ -35,7 +35,7 @@ pub const Tabs_Impl = struct {
     pub fn getPreferredSize(self: *Tabs_Impl, available: Size) Size {
         _ = self;
         _ = available;
-        return Size.init(0, 0); // TODO
+        return available; // TODO
     }
 
     pub fn _showWidget(widget: *Widget, self: *Tabs_Impl) !void {
