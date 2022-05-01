@@ -327,6 +327,15 @@ pub fn Events(comptime T: type) type {
         pub fn getHeight(self: *const T) c_int {
             return getHeightFromPeer(self.peer);
         }
+
+        pub fn getPreferredSize(self: *const T) lib.Size {
+            var requisition: c.GtkRequisition = undefined;
+            c.gtk_widget_get_preferred_size(self.peer, null, &requisition);
+            return lib.Size.init(
+                @intCast(u32, requisition.width),
+                @intCast(u32, requisition.height),
+            );
+        }
     };
 }
 
