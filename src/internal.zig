@@ -96,7 +96,7 @@ pub fn Widgeting(comptime T: type) type {
                 T._deinit(component, widget);
             }
             component.deinit();
-            
+
             if (widget.allocator) |allocator| allocator.destroy(component);
         }
 
@@ -178,12 +178,12 @@ pub fn Widgeting(comptime T: type) type {
             return self.*;
         }
 
-        pub fn setAlignX(self: *T, alignX: f32) T {
+        pub fn setAlignX(self: *T, alignX: ?f32) T {
             self.dataWrappers.alignX.set(alignX);
             return self.*;
         }
 
-        pub fn setAlignY(self: *T, alignY: f32) T {
+        pub fn setAlignY(self: *T, alignY: ?f32) T {
             self.dataWrappers.alignY.set(alignY);
             return self.*;
         }
@@ -353,7 +353,7 @@ pub fn Events(comptime T: type) type {
         pub const ScrollCallback = fn (widget: *T, dx: f32, dy: f32) anyerror!void;
         pub const ResizeCallback = fn (widget: *T, size: Size) anyerror!void;
         pub const KeyTypeCallback = fn (widget: *T, key: []const u8) anyerror!void;
-        pub const KeyPressCallback = fn(widget: *T, keycode: u16) anyerror!void;
+        pub const KeyPressCallback = fn (widget: *T, keycode: u16) anyerror!void;
         const HandlerList = std.ArrayList(Callback);
         const DrawHandlerList = std.ArrayList(DrawCallback);
         const ButtonHandlerList = std.ArrayList(ButtonCallback);
@@ -446,7 +446,7 @@ pub fn Events(comptime T: type) type {
                 func(self, str) catch |err| errorHandler(err);
             }
         }
-        
+
         fn keyPressHandler(keycode: u16, data: usize) void {
             const self = @intToPtr(*T, data);
             for (self.handlers.keyPressHandlers.items) |func| {

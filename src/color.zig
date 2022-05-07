@@ -4,10 +4,12 @@ pub const Colorspace = enum { RGB, RGBA };
 
 /// 8-bit sRGB color with transparency as 32 bits ordered RGBA
 pub const Color = packed struct {
-    red: u8,
-    green: u8,
-    blue: u8,
+    // due to packed struct ordering, fields are in 'reverse' so that the color
+    // represented as an hex number is 0xRRGGBBAA (matching the fromString methods)
     alpha: u8 = 255,
+    blue: u8,
+    green: u8,
+    red: u8,
 
     // The CSS level 2 revision 1 colors
     pub const maroon = Color.comptimeFromString("#800000");
@@ -57,6 +59,8 @@ pub const Color = packed struct {
         return @floatToInt(u8, @intToFloat(f64, a) * (1 - t) + @intToFloat(f64, b) * t);
     }
 
+    // TODO: interpolate between colors in a way that better matches
+    // the human vision. Maybe using an other color space like HSLuv?
     pub fn lerp(a: Color, b: Color, t: f64) Color {
         return Color{
             .red = lerpByte(a.red, b.red, t),

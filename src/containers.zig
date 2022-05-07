@@ -172,10 +172,12 @@ pub const Container_Impl = struct {
     widget: ?*Widget = null,
 
     pub fn init(childrens: std.ArrayList(Widget), config: GridConfig, layout: Layout) !Container_Impl {
-        var column = Container_Impl.init_events(Container_Impl{ .peer = null, .childrens = childrens, .expand = config.expand == .Fill, .layout = layout })
+        var container = Container_Impl.init_events(Container_Impl{ .peer = null, .childrens = childrens, .expand = config.expand == .Fill, .layout = layout })
             .setName(config.name);
-        try column.addResizeHandler(onResize);
-        return column;
+        _ = container.setAlignX(config.alignX);
+        _ = container.setAlignY(config.alignY);
+        try container.addResizeHandler(onResize);
+        return container;
     }
 
     pub fn onResize(self: *Container_Impl, size: Size) !void {
@@ -271,12 +273,12 @@ pub const Container_Impl = struct {
     }
 
     pub fn relayout(self: *Container_Impl) !void {
-        if (self.relayouting.load(.Acquire) == true) return;
+        if (self.relayouting.load(.SeqCst) == true) return;
         if (self.peer) |peer| {
-            self.relayouting.store(true, .Release);
+            self.relayouting.store(true, .SeqCst);
             const callbacks = Callbacks{ .userdata = @ptrToInt(&peer), .moveResize = moveResize, .getSize = getSize, .computingPreferredSize = false };
             self.layout(callbacks, self.childrens.items);
-            self.relayouting.store(false, .Release);
+            self.relayouting.store(false, .SeqCst);
         }
     }
 
@@ -332,6 +334,8 @@ const Expand = enum {
 const GridConfig = struct {
     expand: Expand = .No,
     name: ?[]const u8 = null,
+    alignX: ?f32 = null,
+    alignY: ?f32 = null,
 };
 
 /// Set the style of the child to expanded by creating and showing the widget early.
