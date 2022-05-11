@@ -86,7 +86,7 @@ const WebServerStep = struct {
             &context,
             comptime http.router.Router(*Context, &.{
                 builder.get("/", null, index),
-                builder.get("/zig-out/lib/example.wasm", null, wasmFile),
+                builder.get("/zig-app.wasm", null, wasmFile),
             }),
         );
     }
@@ -95,7 +95,7 @@ const WebServerStep = struct {
         const allocator = request.arena;
         const buildRoot = context.builder.build_root;
         const file = try std.fs.cwd().openFile(
-            try std.fs.path.join(allocator, &.{ buildRoot, "page.html" }), .{});
+            try std.fs.path.join(allocator, &.{ buildRoot, "src/backends/wasm/page.html" }), .{});
         defer file.close();
         const text = try file.readToEndAlloc(allocator, std.math.maxInt(usize));
         

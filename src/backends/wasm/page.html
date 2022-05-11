@@ -172,7 +172,7 @@
 			};
 
 			(async function() {
-				obj = await WebAssembly.instantiateStreaming(fetch("zig-out/lib/example.wasm"), importObj);
+				obj = await WebAssembly.instantiateStreaming(fetch("zig-app.wasm"), importObj);
 				obj.instance.exports._start();
 
 				// TODO: when we're in blocking mode, avoid updating so often
