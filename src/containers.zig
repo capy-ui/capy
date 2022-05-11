@@ -46,7 +46,7 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
     var childY: f32 = 0.0;
     for (widgets) |*widget| {
         if (widget.peer) |widgetPeer| {
-            const available = Size{ .width = @intCast(u32, peer.getSize(peer.userdata).width), .height = if (widget.container_expanded) childHeight else (@intCast(u32, peer.getSize(peer.userdata).height) - @floatToInt(u32, childY)) };
+            const available = Size{ .width = @intCast(u32, peer.getSize(peer.userdata).width), .height = if (widget.container_expanded) childHeight else (@intCast(u32, peer.getSize(peer.userdata).height) - @floatToInt(u32, childY)), };
             const preferred = widget.getPreferredSize(available);
             const size = blk: {
                 if (widget.container_expanded) {
@@ -56,7 +56,7 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
                     } else {
                         break :blk available;
                     }
-                } else if (widget.alignX.get() == null) {
+                } else if (widget.alignX.get() == null and !peer.computingPreferredSize) {
                     break :blk Size.intersect(available, Size.init(available.width, preferred.height));
                 } else {
                     break :blk Size.intersect(available, preferred);
@@ -64,7 +64,7 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
             };
 
             const alignX = std.math.clamp(widget.alignX.get() orelse 0, 0, 1);
-            var x = @floatToInt(u32, @floor(alignX * @intToFloat(f32, peer.getSize(peer.userdata).width -| preferred.width)));
+            var x = @floatToInt(u32, @floor(alignX * @intToFloat(f32, peer.getSize(peer.userdata).width -| size.width)));
             if (widget.container_expanded or peer.computingPreferredSize) x = 0;
             peer.moveResize(peer.userdata, widgetPeer, x, @floatToInt(u32, @floor(childY)), size.width, size.height);
             childY += @intToFloat(f32, size.height);

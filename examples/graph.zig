@@ -160,7 +160,7 @@ fn drawRectangle(widget: *zgt.Canvas_Impl, ctx: *zgt.Canvas_Impl.DrawContext) !v
     ctx.fill();
 }
 
-var rectangleX = zgt.DataWrapper(f32).of(0.1);
+var rectangleX = zgt.DataWrapper(?f32).of(0.1);
 var animStart: i64 = 0;
 pub fn main() !void {
     try zgt.backend.init();
@@ -188,9 +188,9 @@ pub fn main() !void {
     window.show();
 
     while (zgt.stepEventLoop(.Asynchronous)) {
-        var dt = zgt.internal.milliTimestamp() - animStart;
+        var dt = std.time.milliTimestamp() - animStart;
         if (dt > 1500) {
-            animStart = zgt.internal.milliTimestamp(); // std.time.milliTimestamp();
+            animStart = std.time.milliTimestamp();
             continue;
         } else if (dt > 1000) {
             dt = 1000;
