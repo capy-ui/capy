@@ -6,8 +6,10 @@ pub const c = @cImport({
 });
 const wbin_new = @import("windowbin.zig").wbin_new;
 
+const EventFunctions = shared.EventFunctions(@This());
 const EventType = shared.BackendEventType;
 const BackendError = shared.BackendError;
+const MouseButton = shared.MouseButton;
 
 pub const Capabilities = .{ .useEventLoop = true };
 
@@ -25,9 +27,7 @@ pub fn init() BackendError!void {
     }
 }
 
-pub const MessageType = enum { Information, Warning, Error };
-
-pub fn showNativeMessageDialog(msgType: MessageType, comptime fmt: []const u8, args: anytype) void {
+pub fn showNativeMessageDialog(msgType: shared.MessageType, comptime fmt: []const u8, args: anytype) void {
     const msg = std.fmt.allocPrintZ(lib.internal.scratch_allocator, fmt, args) catch {
         std.log.err("Could not launch message dialog, original text: " ++ fmt, args);
         return;
@@ -88,36 +88,7 @@ pub const Window = struct {
     }
 };
 
-pub const MouseButton = enum(c_uint) {
-    Left = 1,
-    Middle = 2,
-    Right = 3,
-    _,
-
-    /// Returns the ID of the pressed or released finger or null if it is a mouse.
-    pub fn getFingerId(self: MouseButton) ?u8 {
-        _ = self;
-        return null;
-    }
-};
-
 // zig fmt: off
-const EventFunctions = struct {
-    /// Only works for buttons
-    clickHandler: ?fn (data: usize) void = null,
-    mouseButtonHandler: ?fn (button: MouseButton, pressed: bool, x: u32, y: u32, data: usize) void = null,
-    // TODO: Mouse object with pressed buttons and more data
-    mouseMotionHandler: ?fn(x: u32, y: u32, data: usize) void = null,
-    keyTypeHandler: ?fn (str: []const u8, data: usize) void = null,
-    keyPressHandler: ?fn(hardwareKeycode: u16, data: usize) void = null,
-    // TODO: dx and dy are in pixels, not in lines
-    scrollHandler: ?fn (dx: f32, dy: f32, data: usize) void = null,
-    resizeHandler: ?fn (width: u32, height: u32, data: usize) void = null,
-    /// Only works for canvas (althought technically it isn't required to)
-    drawHandler: ?fn (ctx: *Canvas.DrawContext, data: usize) void = null,
-    changedTextHandler: ?fn (data: usize) void = null,
-};
-
 /// user data used for handling events
 pub const EventUserData = struct {
     user: EventFunctions = .{},
@@ -224,7 +195,12 @@ pub fn Events(comptime T: type) type {
             };
             if (event.x < 0 or event.y < 0) return 0;
 
-            const button = @intToEnum(MouseButton, event.button);
+            const button = switch (event.button) {
+                1 => MouseButton.Left,
+                2 => MouseButton.Middle,
+                3 => MouseButton.Right,
+                else => @intToEnum(MouseButton, event.button),
+            };
             const mx = @floatToInt(u32, @floor(event.x));
             const my = @floatToInt(u32, @floor(event.y));
 

@@ -5,23 +5,23 @@ const js = @import("js.zig");
 const lasting_allocator = lib.internal.lasting_allocator;
 
 const EventType = shared.BackendEventType;
+const EventFunctions = shared.EventFunctions(@This());
+const MouseButton = shared.MouseButton;
 
-pub const GuiWidget = struct {
+// What the backend exports
+pub const PeerType = *GuiWidget;
+
+const GuiWidget = struct {
+    user: EventFunctions = .{},
+    class: EventFunctions = .{},
     userdata: usize = 0,
-    object: usize = 0,
+    classUserdata: usize = 0,
 
+    /// Pointer to the component (of type T)
+    object: ?*anyopaque = null,
     element: js.ElementId = 0,
-    /// Only works for buttons
-    clickHandler: ?fn (data: usize) void = null,
-    mouseButtonHandler: ?fn (button: MouseButton, pressed: bool, x: u32, y: u32, data: usize) void = null,
-    keyTypeHandler: ?fn (str: []const u8, data: usize) void = null,
-    scrollHandler: ?fn (dx: f32, dy: f32, data: usize) void = null,
-    resizeHandler: ?fn (width: u32, height: u32, data: usize) void = null,
-    /// Only works for canvas (althought technically it isn't required to)
-    drawHandler: ?fn (ctx: *Canvas.DrawContext, data: usize) void = null,
-    changedTextHandler: ?fn (data: usize) void = null,
 
-    processEventFn: fn (object: usize, event: js.EventId) void,
+    processEventFn: fn (object: ?*anyopaque, event: js.EventId) void,
 
     pub fn init(comptime T: type, allocator: std.mem.Allocator, name: []const u8) !*GuiWidget {
         const self = try allocator.create(GuiWidget);
@@ -30,9 +30,7 @@ pub const GuiWidget = struct {
     }
 };
 
-pub const MessageType = enum { Information, Warning, Error };
-
-pub fn showNativeMessageDialog(msgType: MessageType, comptime fmt: []const u8, args: anytype) void {
+pub fn showNativeMessageDialog(msgType: shared.MessageType, comptime fmt: []const u8, args: anytype) void {
     const msg = std.fmt.allocPrintZ(lib.internal.scratch_allocator, fmt, args) catch {
         std.log.err("Could not launch message dialog, original text: " ++ fmt, args);
         return;
@@ -40,9 +38,6 @@ pub fn showNativeMessageDialog(msgType: MessageType, comptime fmt: []const u8, a
     defer lib.internal.scratch_allocator.free(msg);
     std.log.info("native message dialog (TODO): ({}) {s}", .{ msgType, msg });
 }
-
-pub const PeerType = *GuiWidget;
-pub const MouseButton = enum { Left, Middle, Right };
 
 pub fn init() !void {
     // no initialization to do
@@ -94,25 +89,23 @@ pub fn Events(comptime T: type) type {
             }
 
             self.peer.userdata = @ptrToInt(data);
-            self.peer.object = @ptrToInt(self);
+            self.peer.object = self;
         }
 
         pub inline fn setCallback(self: *T, comptime eType: EventType, cb: anytype) !void {
-            _ = cb;
-            _ = self;
-            //const data = getEventUserData(self.peer);
             switch (eType) {
-                .Click => self.peer.clickHandler = cb,
-                .Draw => self.peer.drawHandler = cb,
-                .MouseButton => {},
-                .MouseMotion => {},
-                .Scroll => {},
+                .Click => self.peer.user.clickHandler = cb,
+                .Draw => self.peer.user.drawHandler = cb,
+                .MouseButton => self.peer.user.mouseButtonHandler = cb,
+                .MouseMotion => self.peer.user.mouseMotionHandler = cb,
+                .Scroll => self.peer.user.scrollHandler = cb,
                 .TextChanged => self.peer.changedTextHandler = cb,
                 .Resize => {
-                    self.peer.resizeHandler = cb;
+                    self.peer.user.resizeHandler = cb;
                     self.requestDraw() catch {};
                 },
-                .KeyType => {},
+                .KeyType => self.peer.user.keyTypeHandler = cb,
+                .KeyPress => self.peer.user.keyPressHandler = cb,
             }
         }
 
@@ -123,26 +116,25 @@ pub fn Events(comptime T: type) type {
 
         /// Requests a redraw
         pub fn requestDraw(self: *T) !void {
-            _ = self;
             js.print("request draw");
             if (@hasDecl(T, "_requestDraw")) {
                 try self._requestDraw();
             }
         }
 
-        pub fn processEvent(object: usize, event: js.EventId) void {
-            const self = @intToPtr(*T, object);
+        pub fn processEvent(object: ?*anyopaque, event: js.EventId) void {
+            const self = @ptrCast(*T, @alignCast(@alignOf(T), object.?));
 
             if (js.getEventTarget(event) == self.peer.element) {
                 // handle event
                 switch (js.getEventType(event)) {
                     .OnClick => {
-                        if (self.peer.clickHandler) |handler| {
+                        if (self.peer.user.clickHandler) |handler| {
                             handler(self.peer.userdata);
                         }
                     },
                     .TextChange => {
-                        if (self.peer.changedTextHandler) |handler| {
+                        if (self.peer.user.changedTextHandler) |handler| {
                             handler(self.peer.userdata);
                         }
                     },
@@ -161,6 +153,14 @@ pub fn Events(comptime T: type) type {
 
         pub fn getHeight(self: *const T) c_int {
             return std.math.max(10, js.getHeight(self.peer.element));
+        }
+
+        pub fn getPreferredSize(self: *const T) lib.Size {
+            // TODO
+            _ = self;
+            return lib.Size.init(
+                100, 100
+            );
         }
 
         pub fn deinit(self: *const T) void {
@@ -337,7 +337,10 @@ pub const Canvas = struct {
     pub fn _requestDraw(self: *Canvas) !void {
         const ctxId = js.openContext(self.peer.element);
         var ctx = DrawContext{ .ctx = ctxId };
-        if (self.peer.drawHandler) |handler| {
+        if (self.peer.class.drawHandler) |handler| {
+            handler(&ctx, self.peer.classUserdata);
+        }
+        if (self.peer.user.drawHandler) |handler| {
             handler(&ctx, self.peer.userdata);
         }
     }
@@ -369,66 +372,106 @@ pub const Container = struct {
     pub fn resize(self: *const Container, peer: PeerType, w: u32, h: u32) void {
         _ = self;
         js.setSize(peer.element, w, h);
-        if (peer.resizeHandler) |handler| {
+        if (peer.user.resizeHandler) |handler| {
             handler(w, h, peer.userdata);
         }
     }
 };
 
-pub fn milliTimestamp() i64 {
-    return @floatToInt(i64, @floor(js.now()));
+fn executeMain() callconv(.Async) anyerror!void {
+    const mainFn = @import("root").main;
+    const ReturnType = @typeInfo(@TypeOf(mainFn)).Fn.return_type.?;
+    if (ReturnType == void) {
+        mainFn();
+    } else {
+        try mainFn();
+    }
 }
 
-fn executeMain() anyerror!void {
-    try mainFn();
-}
-
-const mainFn = @import("root").main;
 var frame: @Frame(executeMain) = undefined;
 var result: anyerror!void = error.None;
 var suspending: bool = false;
 
 var resumePtr: anyframe = undefined;
 
+fn milliTimestamp() i64 {
+    return @floatToInt(i64, js.now());
+}
+
 pub const backendExport = struct {
     pub const os = struct {
         pub const system = struct {
-            pub const E = enum(u8) {
-                SUCCESS = 0,
-                INVAL = 1,
-                INTR = 2,
-                FAULT = 3,
-            };
-
-            pub const timespec = struct { tv_sec: isize, tv_nsec: isize };
-
+            pub const E = std.os.linux.E;
+            fn errno(e: E) usize {
+                const signed_r = @as(isize, 0) - @enumToInt(e);
+                return @bitCast(usize, signed_r);
+            }
+            
             pub fn getErrno(r: usize) E {
-                if (r & ~@as(usize, 0xFF) == ~@as(usize, 0xFF)) {
-                    return @intToEnum(E, r & 0xFF);
-                } else {
-                    return E.SUCCESS;
-                }
+                const signed_r = @bitCast(isize, r);
+                const int = if (signed_r > -4096 and signed_r < 0) -signed_r else 0;
+                return @intToEnum(E, int);
             }
 
+            // Time
+            pub const CLOCK = std.os.linux.CLOCK;
+            pub const timespec = std.os.linux.timespec;
+
+            pub fn clock_gettime(clk_id: i32, tp: *timespec) usize {
+                _ = clk_id;
+                
+                // Time in milliseconds
+                const millis = milliTimestamp();
+                tp.tv_sec = @intCast(isize, @divTrunc(millis, std.time.ms_per_s));
+                tp.tv_nsec = @intCast(isize, @rem(millis, std.time.ms_per_s) * std.time.ns_per_ms);
+                return 0;
+            }
+
+            /// Precision DEFINITELY not guarenteed (can have up to 20ms delays)
             pub fn nanosleep(req: *const timespec, rem: ?*timespec) usize {
                 _ = rem;
-                const ms = @intCast(u64, req.tv_sec) * 1000 + @intCast(u64, req.tv_nsec) / 1000;
-                sleep(ms);
+                // Duration in milliseconds
+                const duration = @intCast(u64, req.tv_sec) * 1000 + @intCast(u64, req.tv_nsec) / 1000;
+
+                const start = milliTimestamp();
+                while (milliTimestamp() < start + @intCast(i64, duration)) {
+                    suspending = true;
+                    suspend {
+                        resumePtr = @frame();
+                    }
+                }
                 return 0;
+            }
+
+            // I/O
+            pub const fd_t = u32;
+            pub const STDOUT_FILENO = 1;
+            pub const STDERR_FILENO = 1;
+
+            pub fn write(fd: fd_t, buf: [*]const u8, size: usize) usize {
+                if (fd == STDOUT_FILENO or fd == STDERR_FILENO) {
+                    // TODO: buffer and write for each new line
+                    js.jsPrint(buf, size);
+                    return size;
+                } else {
+                    return errno(E.BADF);
+                }
             }
         };
     };
 
-    /// Precision DEFINITELY not guarenteed (can have up to 20ms delays)
-    pub fn sleep(duration: u64) void {
-        const start = milliTimestamp();
+    pub fn log(
+        comptime message_level: std.log.Level,
+        comptime scope: @Type(.EnumLiteral),
+        comptime format: []const u8,
+        args: anytype,
+    ) void {
+        const level_txt = comptime message_level.asText();
+        const prefix2 = if (scope == .default) ": " else "(" ++ @tagName(scope) ++ "): ";
+        const text = std.fmt.allocPrint(lib.internal.scratch_allocator, level_txt ++ prefix2 ++ format ++ "\n", args) catch return;
+        defer lib.internal.scratch_allocator.free(text);
 
-        while (milliTimestamp() < start + @intCast(i64, duration)) {
-            suspending = true;
-            suspend {
-                resumePtr = @frame();
-            }
-        }
+        js.print(text);
     }
 
     pub fn panic(msg: []const u8, _: ?*std.builtin.StackTrace) noreturn {
@@ -458,7 +501,7 @@ pub fn runStep(step: shared.EventLoopStep) callconv(.Async) bool {
             .Resize => {
                 if (globalWindow) |window| {
                     if (window.child) |child| {
-                        child.resizeHandler.?(0, 0, child.userdata);
+                        child.user.resizeHandler.?(0, 0, child.userdata);
                     }
                 }
             },

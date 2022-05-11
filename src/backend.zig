@@ -17,6 +17,11 @@ else switch (builtin.os.tag) {
 };
 pub usingnamespace backend;
 
+test {
+    // ensure selected backend atleast compiles
+    std.testing.refAllDecls(backend);
+}
+
 test "backend: create window" {
     try backend.init();
     var window = try backend.Window.create();

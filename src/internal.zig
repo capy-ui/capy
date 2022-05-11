@@ -9,6 +9,7 @@ const Size = @import("data.zig").Size;
 const DataWrapper = @import("data.zig").DataWrapper;
 const Container_Impl = @import("containers.zig").Container_Impl;
 const Layout = @import("containers.zig").Layout;
+const MouseButton = @import("backends/shared.zig").MouseButton;
 
 /// Allocator used for small, short-lived and repetitive allocations.
 /// You can change this by setting the `zgtScratchAllocator` field in your main file
@@ -348,7 +349,7 @@ pub fn Events(comptime T: type) type {
     return struct {
         pub const Callback = fn (widget: *T) anyerror!void;
         pub const DrawCallback = fn (widget: *T, ctx: *backend.Canvas.DrawContext) anyerror!void;
-        pub const ButtonCallback = fn (widget: *T, button: backend.MouseButton, pressed: bool, x: u32, y: u32) anyerror!void;
+        pub const ButtonCallback = fn (widget: *T, button: MouseButton, pressed: bool, x: u32, y: u32) anyerror!void;
         pub const MouseMoveCallback = fn (widget: *T, x: u32, y: u32) anyerror!void;
         pub const ScrollCallback = fn (widget: *T, dx: f32, dy: f32) anyerror!void;
         pub const ResizeCallback = fn (widget: *T, size: Size) anyerror!void;
@@ -426,7 +427,7 @@ pub fn Events(comptime T: type) type {
             }
         }
 
-        fn buttonHandler(button: backend.MouseButton, pressed: bool, x: u32, y: u32, data: usize) void {
+        fn buttonHandler(button: MouseButton, pressed: bool, x: u32, y: u32, data: usize) void {
             const self = @intToPtr(*T, data);
             for (self.handlers.buttonHandlers.items) |func| {
                 func(self, button, pressed, x, y) catch |err| errorHandler(err);

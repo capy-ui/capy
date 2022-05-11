@@ -22,9 +22,8 @@ else
 
 pub const GlBackend = @import("backends/gles/backend.zig");
 
-pub const MouseButton = backend.MouseButton;
-
 pub const EventLoopStep = @import("backends/shared.zig").EventLoopStep;
+pub const MouseButton = @import("backends/shared.zig").MouseButton;
 
 /// Posts an empty event to finish the current step started in zgt.stepEventLoop
 pub fn wakeEventLoop() void {
