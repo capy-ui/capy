@@ -21,7 +21,8 @@ pub fn main() !void {
         zgt.Rect(.{ .color = zgt.Color.transparent })
             .setName("background-rectangle"),
         zgt.Column(.{}, .{
-            zgt.Button(.{ .label = "Random color", .onclick = animateRandomColor }),
+            zgt.Button(.{ .label = "Random color", .onclick = animateRandomColor })
+                .setAlignX(0.5),
         }),
     }));
     window.show();
