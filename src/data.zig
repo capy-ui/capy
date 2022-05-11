@@ -41,6 +41,7 @@ pub fn lerp(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
         @compileError("type " ++ @typeName(T) ++ " does not support linear interpolation");
     }
 }
+const lerpInt = lerp;
 
 pub const Easings = struct {
     pub fn Linear(t: f64) f64 {
@@ -355,12 +356,25 @@ pub const Size = struct {
 
     /// Combine two sizes by taking the largest width and the largest height
     pub fn combine(a: Size, b: Size) Size {
-        return Size{ .width = std.math.max(a.width, b.width), .height = std.math.max(a.height, b.height) };
+        return Size{
+            .width = std.math.max(a.width, b.width),
+            .height = std.math.max(a.height, b.height),
+        };
     }
 
     /// Intersect two sizes by taking the lowest width and the lowest height
     pub fn intersect(a: Size, b: Size) Size {
-        return Size{ .width = std.math.min(a.width, b.width), .height = std.math.min(a.height, b.height) };
+        return Size{
+            .width = std.math.min(a.width, b.width),
+            .height = std.math.min(a.height, b.height),
+        };
+    }
+
+    pub fn lerp(a: Size, b: Size, t: f64) Size {
+        return Size{
+            .width = lerpInt(a.width, b.width, t),
+            .height = lerpInt(a.height, b.height, t),
+        };
     }
 
     test "Size.max" {
@@ -393,6 +407,16 @@ pub const Size = struct {
 
         try std.testing.expectEqual(expected, Size.intersect(a, b));
         try std.testing.expectEqual(expected, Size.intersect(b, a));
+    }
+
+    test "Size.lerp" {
+        const a = Size.init(100, 200);
+        const b = Size.init(200, 600);
+        const expected = Size.init(150, 400);
+        const got = Size.lerp(a, b, 0.5);
+
+        try std.testing.expectEqual(expected.width, got.width);
+        try std.testing.expectEqual(expected.height, got.height);
     }
 };
 

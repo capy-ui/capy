@@ -25,10 +25,12 @@ pub const TextArea_Impl = struct {
     }
 
     pub fn getPreferredSize(self: *TextArea_Impl, available: Size) Size {
-        _ = self;
         _ = available;
-        // TODO getting hint from native peer
-        return Size{ .width = 100.0, .height = 100.0 };
+        if (self.peer) |peer| {
+            return peer.getPreferredSize();
+        } else {
+            return Size{ .width = 100.0, .height = 100.0 };
+        }
     }
 
     pub fn setText(self: *TextArea_Impl, text: []const u8) void {
@@ -92,9 +94,12 @@ pub const TextField_Impl = struct {
     }
 
     pub fn getPreferredSize(self: *TextField_Impl, available: Size) Size {
-        _ = self;
         _ = available;
-        return Size{ .width = 200.0, .height = 40.0 };
+        if (self.peer) |peer| {
+            return peer.getPreferredSize();
+        } else {
+            return Size{ .width = 200.0, .height = 40.0 };
+        }
     }
 
     pub fn setText(self: *TextField_Impl, text: []const u8) void {

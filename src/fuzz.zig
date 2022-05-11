@@ -49,8 +49,8 @@ pub fn testFunction(comptime T: type, duration: i64, func: fn (T) anyerror!void)
             }
         };
 
-        // Try to find counter-examples in the given time and adjust the hypothesis
-        // based on that counter-example.
+        /// Tries to find counter-examples (case where there is no error) in the
+        /// given time and adjust the hypothesis based on that counter-example.
         pub fn refine(self: *Self, time: i64, callback: fn (T) anyerror!void) void {
             var prng = std.rand.DefaultPrng.init(@bitCast(u64, std.time.milliTimestamp()));
             const random = prng.random();
@@ -72,11 +72,12 @@ pub fn testFunction(comptime T: type, duration: i64, func: fn (T) anyerror!void)
                         },
                         .SmallerThan => |value| {
                             const add = random.uintLessThanBiased(T, stepSize);
-                            if (threwError(callback, value +| add)) {
-                                element.* = .{ .SmallerThan = value +| add };
-                                stepSize *|= 2;
+                            if (threwError(callback, value -| add)) {
+                                element.* = .{ .SmallerThan = value -| add };
+                                //stepSize *|= 2;
+                                if (stepSize < 1) stepSize = 1;
                             } else {
-                                //stepSize /= 2;
+                                stepSize /= 2;
                             }
                         },
                     }
@@ -191,7 +192,7 @@ test "simple struct init" {
 }
 
 test "basic bisecting" {
-    if (true) return error.SkipZigTest;
+    //if (true) return error.SkipZigTest;
 
     // As we're seeking values under 1000 among 4 billion randomly generated values,
     // we need to run this test for longer

@@ -2,7 +2,30 @@ const win32 = @import("win32.zig");
 
 pub var token: win32.ULONG = undefined;
 
-pub const GpError = error{ Ok, GenericError, InvalidParameter, OutOfMemory, ObjectBusy, InsufficientBuffer, NotImplemented, Win32Error, WrongState, Aborted, FileNotFound, ValueOverflow, AccessDenied, UnknownImageFormat, FontFamilyNotFound, FontStyleNotFound, NotTrueTypeFont, UnsupportedGdiplusVersion, GdiplusNotInitialized, PropertyNotFound, PropertyNotSupported, ProfileNotFound };
+pub const GpError = error{
+    Ok,
+    GenericError,
+    InvalidParameter,
+    OutOfMemory,
+    ObjectBusy,
+    InsufficientBuffer,
+    NotImplemented,
+    Win32Error,
+    WrongState,
+    Aborted,
+    FileNotFound,
+    ValueOverflow,
+    AccessDenied,
+    UnknownImageFormat,
+    FontFamilyNotFound,
+    FontStyleNotFound,
+    NotTrueTypeFont,
+    UnsupportedGdiplusVersion,
+    GdiplusNotInitialized,
+    PropertyNotFound,
+    PropertyNotSupported,
+    ProfileNotFound,
+};
 
 pub fn gdipWrap(status: win32.GpStatus) GpError!void {
     if (status != .Ok) {
