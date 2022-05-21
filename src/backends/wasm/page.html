@@ -44,6 +44,8 @@
 					jsCreateElement: function(name, nameLen) {
 						const elem = document.createElement(readString(name, nameLen));
 						const idx = domObjects.push(elem) - 1;
+
+						elem.style.position = "absolute";
 						elem.addEventListener("click", function(e) {
 							pushEvent({
 								type: 1,
@@ -97,12 +99,7 @@
 						}
 					},
 					setPos: function(element, x, y) {
-						//domObjects[element].style.left = x + "px";
-						//domObjects[element].style.top  = y + "px";
 						domObjects[element].style.transform = "translate(" + x + "px, " + y + "px)";
-						if (domObjects[element].style.position !== "absolute") {
-							domObjects[element].style.position = "absolute";
-						}
 					},
 					setSize: function(element, w, h) {
 						domObjects[element].style.width  = w + "px";

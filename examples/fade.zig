@@ -2,7 +2,7 @@ const std = @import("std");
 const zgt = @import("zgt");
 pub usingnamespace zgt.cross_platform;
 
-var opacity = zgt.DataWrapper(f64).of(0);
+var opacity = zgt.DataWrapper(f32).of(0);
 
 fn startAnimation(button: *zgt.Button_Impl) !void {
     // Ensure the current animation is done before starting another

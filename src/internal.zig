@@ -158,13 +158,13 @@ pub fn Widgeting(comptime T: type) type {
         }
 
         // Properties
-        // TODO: pub usingnamespace Property(f64, "opacity");
+        // TODO: pub usingnamespace Property(f32, "opacity");
 
-        pub fn setOpacity(self: *T, opacity: f64) void {
+        pub fn setOpacity(self: *T, opacity: f32) void {
             self.dataWrappers.opacity.set(opacity);
         }
 
-        pub fn getOpacity(self: *T) f64 {
+        pub fn getOpacity(self: *T) f32 {
             return self.dataWrappers.opacity.get();
         }
 
@@ -173,7 +173,7 @@ pub fn Widgeting(comptime T: type) type {
         }
 
         /// Bind the 'opacity' property to argument.
-        pub fn bindOpacity(self: *T, other: *DataWrapper(f64)) T {
+        pub fn bindOpacity(self: *T, other: *DataWrapper(f32)) T {
             self.dataWrappers.opacity.bind(other);
             self.dataWrappers.opacity.set(other.get());
             return self.*;
