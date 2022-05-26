@@ -64,14 +64,15 @@ pub const Easings = struct {
 pub fn Animation(comptime T: type) type {
     return struct {
         start: i64,
-        end: i64,
+        /// Assume animation won't last more than 4000000 seconds
+        duration: u32,
         min: T,
         max: T,
         animFn: fn (t: f64) f64,
 
         /// Get the current value from the animation
         pub fn get(self: *@This()) T {
-            const maxDiff = @intToFloat(f64, self.end - self.start);
+            const maxDiff = @intToFloat(f64, self.duration);
             const diff = @intToFloat(f64, std.time.milliTimestamp() - self.start);
             var t = diff / maxDiff;
             // Clamp t to [0, 1]
@@ -170,12 +171,18 @@ pub fn DataWrapper(comptime T: type) type {
             return self.animation != null;
         }
 
-        pub fn animate(self: *Self, anim: fn (f64) f64, target: T, duration: i64) void {
+        pub fn animate(self: *Self, anim: fn (f64) f64, target: T, duration: u64) void {
             if (!IsAnimable) {
-                @compileError("animate only supported on numbers");
+                @compileError("animate() called on data that is not animable");
             }
             const time = std.time.milliTimestamp();
-            self.animation = Animation(T){ .start = time, .end = time + duration, .min = self.value, .max = target, .animFn = anim };
+            self.animation = Animation(T){
+                .start = time,
+                .end = @intCast(u32, duration),
+                .min = self.value,
+                .max = target,
+                .animFn = anim,
+            };
 
             var contains = false;
             for (_animatedDataWrappers.items) |item| {
@@ -326,7 +333,25 @@ pub const StringDataWrapper = DataWrapper([]const u8);
 pub const FloatDataWrapper = DataWrapper(f32);
 pub const DoubleDataWrapper = DataWrapper(f64);
 
-/// The size expressed in display pixels.
+/// A position expressed in display pixels.
+pub const Position = struct {
+    x: u32,
+    y: u32,
+
+    /// Shorthand for struct initialization
+    pub fn init(width: u32, height: u32) Position {
+        return Position{ .x = width, .y = height };
+    }
+
+    pub fn lerp(a: Position, b: Position, t: f64) Position {
+        return Position{
+            .x = lerpInt(a.x, b.x, t),
+            .y = lerpInt(a.y, b.y, t),
+        };
+    }
+};
+
+/// A size expressed in display pixels.
 pub const Size = struct {
     width: u32,
     height: u32,
@@ -420,7 +445,17 @@ pub const Size = struct {
     }
 };
 
-pub const Rectangle = struct { left: u32, top: u32, right: u32, bottom: u32 };
+pub const Rectangle = struct {
+    origin: Position,
+    size: Size,
+
+    pub fn lerp(a: Rectangle, b: Rectangle, t: f64) Rectangle {
+        return Rectangle{
+            .origin = Position.lerp(a.origin, b.origin, t),
+            .size = Size.lerp(a.size, b.size, t),
+        };
+    }
+};
 
 const expectEqual = std.testing.expectEqual;
 

@@ -35,9 +35,9 @@ pub fn EventFunctions(comptime Backend: type) type {
         clickHandler: ?fn (data: usize) void = null,
         mouseButtonHandler: ?fn (button: MouseButton, pressed: bool, x: u32, y: u32, data: usize) void = null,
         // TODO: Mouse object with pressed buttons and more data
-        mouseMotionHandler: ?fn(x: u32, y: u32, data: usize) void = null,
+        mouseMotionHandler: ?fn (x: u32, y: u32, data: usize) void = null,
         keyTypeHandler: ?fn (str: []const u8, data: usize) void = null,
-        keyPressHandler: ?fn(hardwareKeycode: u16, data: usize) void = null,
+        keyPressHandler: ?fn (hardwareKeycode: u16, data: usize) void = null,
         // TODO: dx and dy are in pixels, not in lines
         scrollHandler: ?fn (dx: f32, dy: f32, data: usize) void = null,
         resizeHandler: ?fn (width: u32, height: u32, data: usize) void = null,

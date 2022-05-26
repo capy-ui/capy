@@ -14,6 +14,13 @@ const Callbacks = struct {
     getSize: fn (data: usize) Size,
     computingPreferredSize: bool,
     availableSize: ?Size = null,
+    layoutConfig: [16]u8,
+
+    pub fn getLayoutConfig(self: Callbacks, comptime T: type) T {
+        comptime std.debug.assert(@sizeOf(T) <= 16);
+        const slice = self.layoutConfig[0..@sizeOf(T)];
+        return @ptrCast(*const T, slice.ptr).*;
+    }
 };
 
 fn getExpandedCount(widgets: []Widget) u32 {
@@ -46,7 +53,10 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
     var childY: f32 = 0.0;
     for (widgets) |*widget| {
         if (widget.peer) |widgetPeer| {
-            const available = Size{ .width = @intCast(u32, peer.getSize(peer.userdata).width), .height = if (widget.container_expanded) childHeight else (@intCast(u32, peer.getSize(peer.userdata).height) - @floatToInt(u32, childY)), };
+            const available = Size{
+                .width = @intCast(u32, peer.getSize(peer.userdata).width),
+                .height = if (widget.container_expanded) childHeight else (@intCast(u32, peer.getSize(peer.userdata).height) - @floatToInt(u32, childY)),
+            };
             const preferred = widget.getPreferredSize(available);
             const size = blk: {
                 if (widget.container_expanded) {
@@ -123,7 +133,7 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
 }
 
 pub fn MarginLayout(peer: Callbacks, widgets: []Widget) void {
-    const margin = Rectangle{ .left = 5, .top = 5, .right = 5, .bottom = 5 };
+    const margin = peer.getLayoutConfig(Rectangle);
     if (widgets.len > 1) {
         std.log.scoped(.zgt).warn("Margin container has more than one widget!", .{});
         return;
@@ -167,12 +177,26 @@ pub const Container_Impl = struct {
     expand: bool,
     relayouting: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
     layout: Layout,
+    layoutConfig: [16]u8,
 
     /// The widget associated to this Container_Impl
     widget: ?*Widget = null,
 
-    pub fn init(childrens: std.ArrayList(Widget), config: GridConfig, layout: Layout) !Container_Impl {
-        var container = Container_Impl.init_events(Container_Impl{ .peer = null, .childrens = childrens, .expand = config.expand == .Fill, .layout = layout })
+    pub fn init(childrens: std.ArrayList(Widget), config: GridConfig, layout: Layout, layoutConfig: anytype) !Container_Impl {
+        const LayoutConfig = @TypeOf(layoutConfig);
+        comptime std.debug.assert(@sizeOf(LayoutConfig) <= 16);
+        var layoutConfigBytes: [16]u8 = undefined;
+        if (@sizeOf(LayoutConfig) > 0) {
+            layoutConfigBytes[0..@sizeOf(LayoutConfig)].* = std.mem.toBytes(layoutConfig);
+        }
+
+        var container = Container_Impl.init_events(Container_Impl{
+            .peer = null,
+            .childrens = childrens,
+            .expand = config.expand == .Fill,
+            .layout = layout,
+            .layoutConfig = layoutConfigBytes,
+        })
             .setName(config.name);
         _ = container.setAlignX(config.alignX);
         _ = container.setAlignY(config.alignY);
@@ -219,7 +243,14 @@ pub const Container_Impl = struct {
         _ = available;
 
         var size: Size = Size{ .width = 0, .height = 0 };
-        const callbacks = Callbacks{ .userdata = @ptrToInt(&size), .moveResize = fakeResMove, .getSize = fakeSize, .computingPreferredSize = true, .availableSize = available };
+        const callbacks = Callbacks{
+            .userdata = @ptrToInt(&size),
+            .moveResize = fakeResMove,
+            .getSize = fakeSize,
+            .computingPreferredSize = true,
+            .availableSize = available,
+            .layoutConfig = self.layoutConfig,
+        };
         self.layout(callbacks, self.childrens.items);
         return size;
     }
@@ -276,7 +307,13 @@ pub const Container_Impl = struct {
         if (self.relayouting.load(.SeqCst) == true) return;
         if (self.peer) |peer| {
             self.relayouting.store(true, .SeqCst);
-            const callbacks = Callbacks{ .userdata = @ptrToInt(&peer), .moveResize = moveResize, .getSize = getSize, .computingPreferredSize = false };
+            const callbacks = Callbacks{
+                .userdata = @ptrToInt(&peer),
+                .moveResize = moveResize,
+                .getSize = getSize,
+                .computingPreferredSize = false,
+                .layoutConfig = self.layoutConfig,
+            };
             self.layout(callbacks, self.childrens.items);
             self.relayouting.store(false, .SeqCst);
         }
@@ -349,17 +386,17 @@ pub inline fn Expanded(child: anytype) anyerror!Widget {
 }
 
 pub inline fn Stack(childrens: anytype) anyerror!Container_Impl {
-    return try Container_Impl.init(try convertTupleToWidgets(childrens), .{}, StackLayout);
+    return try Container_Impl.init(try convertTupleToWidgets(childrens), .{}, StackLayout, {});
 }
 
 pub inline fn Row(config: GridConfig, childrens: anytype) anyerror!Container_Impl {
-    return try Container_Impl.init(try convertTupleToWidgets(childrens), config, RowLayout);
+    return try Container_Impl.init(try convertTupleToWidgets(childrens), config, RowLayout, {});
 }
 
 pub inline fn Column(config: GridConfig, childrens: anytype) anyerror!Container_Impl {
-    return try Container_Impl.init(try convertTupleToWidgets(childrens), config, ColumnLayout);
+    return try Container_Impl.init(try convertTupleToWidgets(childrens), config, ColumnLayout, {});
 }
 
-pub inline fn Margin(child: anytype) anyerror!Container_Impl {
-    return try Container_Impl.init(try convertTupleToWidgets(.{child}), .{}, MarginLayout);
+pub inline fn Margin(margin: Rectangle, child: anytype) anyerror!Container_Impl {
+    return try Container_Impl.init(try convertTupleToWidgets(.{child}), .{}, MarginLayout, margin);
 }

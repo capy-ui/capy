@@ -158,9 +158,7 @@ pub fn Events(comptime T: type) type {
         pub fn getPreferredSize(self: *const T) lib.Size {
             // TODO
             _ = self;
-            return lib.Size.init(
-                100, 100
-            );
+            return lib.Size.init(100, 100);
         }
 
         pub fn deinit(self: *const T) void {
@@ -406,7 +404,7 @@ pub const backendExport = struct {
                 const signed_r = @as(isize, 0) - @enumToInt(e);
                 return @bitCast(usize, signed_r);
             }
-            
+
             pub fn getErrno(r: usize) E {
                 const signed_r = @bitCast(isize, r);
                 const int = if (signed_r > -4096 and signed_r < 0) -signed_r else 0;
@@ -419,7 +417,7 @@ pub const backendExport = struct {
 
             pub fn clock_gettime(clk_id: i32, tp: *timespec) usize {
                 _ = clk_id;
-                
+
                 // Time in milliseconds
                 const millis = milliTimestamp();
                 tp.tv_sec = @intCast(isize, @divTrunc(millis, std.time.ms_per_s));
