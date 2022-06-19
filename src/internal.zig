@@ -11,15 +11,17 @@ const Container_Impl = @import("containers.zig").Container_Impl;
 const Layout = @import("containers.zig").Layout;
 const MouseButton = @import("backends/shared.zig").MouseButton;
 
+const link_libc = @import("builtin").link_libc;
+
 /// Allocator used for small, short-lived and repetitive allocations.
 /// You can change this by setting the `zgtScratchAllocator` field in your main file
 /// or by setting the `zgtAllocator` field which will also apply as lasting allocator.
-pub const scratch_allocator = if (@hasDecl(root, "zgtScratchAllocator")) root.zgtScratchAllocator else if (@hasDecl(root, "zgtAllocator")) root.zgtAllocator else if (@import("builtin").is_test) std.testing.allocator else std.heap.page_allocator;
+pub const scratch_allocator = if (@hasDecl(root, "zgtScratchAllocator")) root.zgtScratchAllocator else if (@hasDecl(root, "zgtAllocator")) root.zgtAllocator else if (@import("builtin").is_test) std.testing.allocator else if (link_libc) std.heap.c_allocator else std.heap.page_allocator;
 
 /// Allocator used for bigger, longer-lived but rare allocations (example: widgets).
 /// You can change this by setting the `zgtLastingAllocator` field in your main file
 /// or by setting the `zgtAllocator` field which will also apply as scratch allocator.
-pub const lasting_allocator = if (@hasDecl(root, "zgtLastingAllocator")) root.zgtScratchAllocator else if (@hasDecl(root, "zgtAllocator")) root.zgtAllocator else if (@import("builtin").is_test) std.testing.allocator else std.heap.page_allocator;
+pub const lasting_allocator = if (@hasDecl(root, "zgtLastingAllocator")) root.zgtLastingAllocator else if (@hasDecl(root, "zgtAllocator")) root.zgtAllocator else if (@import("builtin").is_test) std.testing.allocator else if (link_libc) std.heap.c_allocator else std.heap.page_allocator;
 
 /// Convenience function for creating widgets
 pub fn All(comptime T: type) type {

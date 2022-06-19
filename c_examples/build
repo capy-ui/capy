@@ -1,0 +1,2 @@
+#!/bin/sh
+gcc -I../include zgt_app.c ../zig-out/lib/libzgt.so.0 -Wl,-rpath ../zig-out/lib/ -o zgt_app

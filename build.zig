@@ -47,7 +47,7 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
         },
     }
 
-    const zgt = std.build.Pkg{ .name = "zgt", .path = std.build.FileSource.relative(prefix ++ "/src/main.zig"), .dependencies = &[_]std.build.Pkg{} };
+    const zgt = std.build.Pkg{ .name = "zgt", .source = std.build.FileSource.relative(prefix ++ "/src/main.zig"), .dependencies = &[_]std.build.Pkg{} };
 
     step.addPackage(zgt);
 }
@@ -176,6 +176,18 @@ pub fn build(b: *std.build.Builder) !void {
             }
         }
     }
+
+    const lib = b.addSharedLibrary("zgt", "src/c_api.zig", b.version(0, 1, 0));
+    lib.setTarget(target);
+    lib.setBuildMode(mode);
+    try install(lib, ".");
+    lib.install();
+
+    const sharedlib_install_step = b.addInstallArtifact(lib);
+    b.getInstallStep().dependOn(&sharedlib_install_step.step);
+
+    const buildc_step = b.step("shared", "Build zgt as a shared library (with C ABI)");
+    buildc_step.dependOn(&lib.install_step.?.step);
 
     const tests = b.addTest("src/main.zig");
     tests.setTarget(target);
