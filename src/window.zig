@@ -38,7 +38,9 @@ pub const Window = struct {
         const ComponentType = @import("internal.zig").DereferencedType(@TypeOf(container));
 
         self._child = try @import("internal.zig").genericWidgetFrom(container);
-        self._child.?.as(ComponentType).dataWrappers.widget = &self._child.?;
+        if (ComponentType != Widget) {
+            self._child.?.as(ComponentType).dataWrappers.widget = &self._child.?;
+        }
 
         try self._child.?.show();
 
@@ -51,6 +53,10 @@ pub const Window = struct {
 
     pub fn resize(self: *Window, width: u32, height: u32) void {
         self.peer.resize(@intCast(c_int, width), @intCast(c_int, height));
+    }
+
+    pub fn setTitle(self: *Window, title: [:0]const u8) void {
+        self.peer.setTitle(title);
     }
 
     pub fn deinit(self: *Window) void {

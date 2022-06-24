@@ -84,37 +84,40 @@ pub fn main() !void {
     defer _ = gpa.deinit();
     allocator = gpa.allocator();
 
+
+
     var window = try zgt.Window.init();
     computationLabel = zgt.Label(.{ .text = "", .alignment = .Left });
-    try window.set(zgt.Column(.{ .expand = .Fill }, .{
+    try window.set(zgt.Column(.{ .expand = .Fill, .spacing = 10 }, .{
         &computationLabel,
-        Expanded(Row(.{ .expand = .Fill }, .{
-            Margin(Button(.{ .label = "7", .onclick = pressedKey })),
-            Margin(Button(.{ .label = "8", .onclick = pressedKey })),
-            Margin(Button(.{ .label = "9", .onclick = pressedKey })),
-            Margin(Button(.{ .label = "+", .onclick = pressedKey })),
+        Expanded(Row(.{ .expand = .Fill, .spacing = 10 }, .{
+            Button(.{ .label = "7", .onclick = pressedKey }),
+            Button(.{ .label = "8", .onclick = pressedKey }),
+            Button(.{ .label = "9", .onclick = pressedKey }),
+            Button(.{ .label = "+", .onclick = pressedKey }),
         })),
-        Expanded(Row(.{ .expand = .Fill }, .{
-            Margin(Button(.{ .label = "4", .onclick = pressedKey })),
-            Margin(Button(.{ .label = "5", .onclick = pressedKey })),
-            Margin(Button(.{ .label = "6", .onclick = pressedKey })),
-            Margin(Button(.{ .label = "-", .onclick = pressedKey })),
+        Expanded(Row(.{ .expand = .Fill, .spacing = 10 }, .{
+            Button(.{ .label = "4", .onclick = pressedKey }),
+            Button(.{ .label = "5", .onclick = pressedKey }),
+            Button(.{ .label = "6", .onclick = pressedKey }),
+            Button(.{ .label = "-", .onclick = pressedKey }),
         })),
-        Expanded(Row(.{ .expand = .Fill }, .{
-            Margin(Button(.{ .label = "1", .onclick = pressedKey })),
-            Margin(Button(.{ .label = "2", .onclick = pressedKey })),
-            Margin(Button(.{ .label = "3", .onclick = pressedKey })),
-            Margin(Button(.{ .label = "*", .onclick = pressedKey })),
+        Expanded(Row(.{ .expand = .Fill, .spacing = 10 }, .{
+            Button(.{ .label = "1", .onclick = pressedKey }),
+            Button(.{ .label = "2", .onclick = pressedKey }),
+            Button(.{ .label = "3", .onclick = pressedKey }),
+            Button(.{ .label = "*", .onclick = pressedKey }),
         })),
-        Expanded(Row(.{ .expand = .Fill }, .{
-            Margin(Button(.{ .label = "/", .onclick = pressedKey })),
-            Margin(Button(.{ .label = "0", .onclick = pressedKey })),
-            Margin(Button(.{ .label = "CE", .onclick = erase })),
-            Margin(Button(.{ .label = ".", .onclick = pressedKey })),
+        Expanded(Row(.{ .expand = .Fill, .spacing = 10 }, .{
+            Button(.{ .label = "/", .onclick = pressedKey }),
+            Button(.{ .label = "0", .onclick = pressedKey }),
+            Button(.{ .label = "CE", .onclick = erase }),
+            Button(.{ .label = ".", .onclick = pressedKey }),
         })),
         Expanded(Button(.{ .label = "=", .onclick = compute })),
     }));
     window.resize(400, 500);
+    window.setTitle("Calculator");
     window.show();
     zgt.runEventLoop();
 }

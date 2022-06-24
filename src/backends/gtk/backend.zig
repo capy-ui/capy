@@ -74,6 +74,10 @@ pub const Window = struct {
         c.gtk_window_resize(@ptrCast(*c.GtkWindow, self.peer), width, height);
     }
 
+    pub fn setTitle(self: *Window, title: [*:0]const u8) void {
+        c.gtk_window_set_title(@ptrCast(*c.GtkWindow, self.peer), title);
+    }
+
     pub fn setChild(self: *Window, peer: ?*c.GtkWidget) void {
         c.gtk_container_add(@ptrCast(*c.GtkContainer, self.wbin), peer);
     }
@@ -334,7 +338,7 @@ pub const Button = struct {
     }
 
     pub fn create() BackendError!Button {
-        const button = c.gtk_button_new_with_label("") orelse return error.UnknownError;
+        const button = c.gtk_button_new() orelse return error.UnknownError;
         c.gtk_widget_show(button);
         try Button.setupEvents(button);
         _ = c.g_signal_connect_data(button, "clicked", @ptrCast(c.GCallback, gtkClicked), null, @as(c.GClosureNotify, null), 0);

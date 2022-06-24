@@ -449,6 +449,13 @@ pub const Rectangle = struct {
     origin: Position,
     size: Size,
 
+    pub fn init(left: u32, top: u32, right: u32, bottom: u32) Rectangle {
+        return Rectangle{
+            .origin = .{ .x = left, .y = top },
+            .size = .{ .width = right, .height = bottom },
+        };
+    }
+
     pub fn lerp(a: Rectangle, b: Rectangle, t: f64) Rectangle {
         return Rectangle{
             .origin = Position.lerp(a.origin, b.origin, t),

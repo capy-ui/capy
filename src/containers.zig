@@ -19,7 +19,7 @@ const Callbacks = struct {
     pub fn getLayoutConfig(self: Callbacks, comptime T: type) T {
         comptime std.debug.assert(@sizeOf(T) <= 16);
         const slice = self.layoutConfig[0..@sizeOf(T)];
-        return @ptrCast(*const T, slice.ptr).*;
+        return @ptrCast(*const T, @alignCast(@alignOf(T), slice)).*;
     }
 };
 
@@ -32,14 +32,20 @@ fn getExpandedCount(widgets: []Widget) u32 {
     return expandedCount;
 }
 
-pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
-    //const count = @intCast(u32, widgets.len);
-    const expandedCount = getExpandedCount(widgets);
+const ColumnRowConfig = struct {
+    spacing: u32 = 0,
+};
 
-    var childHeight = if (expandedCount == 0) 0 else @intCast(u32, peer.getSize(peer.userdata).height) / expandedCount;
+pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
+    const expandedCount = getExpandedCount(widgets);
+    const config = peer.getLayoutConfig(ColumnRowConfig);
+
+    const totalAvailableHeight = @intCast(u32, peer.getSize(peer.userdata).height -| (widgets.len -| 1) * config.spacing);
+
+    var childHeight = if (expandedCount == 0) 0 else @intCast(u32, totalAvailableHeight) / expandedCount;
     for (widgets) |widget| {
         if (!widget.container_expanded) {
-            const available = if (expandedCount > 0) Size.init(0, 0) else peer.getSize(peer.userdata);
+            const available = if (expandedCount > 0) Size.init(0, 0) else Size.init(peer.getSize(peer.userdata).width, totalAvailableHeight);
             const divider = if (expandedCount == 0) 1 else expandedCount;
             const takenHeight = widget.getPreferredSize(available).height / divider;
             if (childHeight >= takenHeight) {
@@ -51,7 +57,8 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
     }
 
     var childY: f32 = 0.0;
-    for (widgets) |*widget| {
+    for (widgets) |widget, i| {
+        const isLastWidget = i == widgets.len - 1;
         if (widget.peer) |widgetPeer| {
             const available = Size{
                 .width = @intCast(u32, peer.getSize(peer.userdata).width),
@@ -77,21 +84,22 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
             var x = @floatToInt(u32, @floor(alignX * @intToFloat(f32, peer.getSize(peer.userdata).width -| size.width)));
             if (widget.container_expanded or peer.computingPreferredSize) x = 0;
             peer.moveResize(peer.userdata, widgetPeer, x, @floatToInt(u32, @floor(childY)), size.width, size.height);
-            childY += @intToFloat(f32, size.height);
+            childY += @intToFloat(f32, size.height) + if (isLastWidget) 0 else @intToFloat(f32, config.spacing);
         }
     }
 }
 
 pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
-    //const count = @intCast(u32, widgets.len);
     const expandedCount = getExpandedCount(widgets);
+    const config = peer.getLayoutConfig(ColumnRowConfig);
 
-    var childWidth = if (expandedCount == 0) 0 else @intCast(u32, peer.getSize(peer.userdata).width) / expandedCount;
+    const totalAvailableWidth = peer.getSize(peer.userdata).width -| (widgets.len -| 1) * config.spacing;
+
+    var childWidth = if (expandedCount == 0) 0 else @intCast(u32, totalAvailableWidth) / expandedCount;
     for (widgets) |widget| {
         if (!widget.container_expanded) {
-            const available = peer.getSize(peer.userdata);
             const divider = if (expandedCount == 0) 1 else expandedCount;
-            const takenWidth = widget.getPreferredSize(available).width / divider;
+            const takenWidth = @intCast(u32, totalAvailableWidth / divider);
             if (childWidth >= takenWidth) {
                 childWidth -= takenWidth;
             } else {
@@ -101,12 +109,16 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
     }
 
     var childX: f32 = 0.0;
-    for (widgets) |widget| {
+    for (widgets) |widget, i| {
+        const isLastWidget = i == widgets.len - 1;
         if (widget.peer) |widgetPeer| {
             // if (@floatToInt(u32, childX) >= peer.getSize(peer.userdata).width) {
             //     break;
             // }
-            const available = Size{ .width = if (widget.container_expanded) childWidth else (@intCast(u32, peer.getSize(peer.userdata).width) -| @floatToInt(u32, childX)), .height = @intCast(u32, peer.getSize(peer.userdata).height) };
+            const available = Size{
+                .width = if (widget.container_expanded) childWidth else (@intCast(u32, peer.getSize(peer.userdata).width) -| @floatToInt(u32, childX)),
+                .height = @intCast(u32, peer.getSize(peer.userdata).height),
+            };
             const preferred = widget.getPreferredSize(available);
             const size = blk: {
                 if (widget.container_expanded) {
@@ -127,7 +139,8 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
             var y = @floatToInt(u32, @floor(alignY * @intToFloat(f32, peer.getSize(peer.userdata).height -| preferred.height)));
             if (widget.container_expanded or peer.computingPreferredSize) y = 0;
             peer.moveResize(peer.userdata, widgetPeer, @floatToInt(u32, @floor(childX)), y, size.width, size.height);
-            childX += @intToFloat(f32, size.width);
+
+            childX += @intToFloat(f32, size.width) + if (isLastWidget) 0 else @intToFloat(f32, config.spacing);
         }
     }
 }
@@ -373,6 +386,7 @@ const GridConfig = struct {
     name: ?[]const u8 = null,
     alignX: ?f32 = null,
     alignY: ?f32 = null,
+    spacing: u32 = 0,
 };
 
 /// Set the style of the child to expanded by creating and showing the widget early.
@@ -390,11 +404,11 @@ pub inline fn Stack(childrens: anytype) anyerror!Container_Impl {
 }
 
 pub inline fn Row(config: GridConfig, childrens: anytype) anyerror!Container_Impl {
-    return try Container_Impl.init(try convertTupleToWidgets(childrens), config, RowLayout, {});
+    return try Container_Impl.init(try convertTupleToWidgets(childrens), config, RowLayout, ColumnRowConfig{ .spacing = config.spacing });
 }
 
 pub inline fn Column(config: GridConfig, childrens: anytype) anyerror!Container_Impl {
-    return try Container_Impl.init(try convertTupleToWidgets(childrens), config, ColumnLayout, {});
+    return try Container_Impl.init(try convertTupleToWidgets(childrens), config, ColumnLayout, ColumnRowConfig{ .spacing = config.spacing });
 }
 
 pub inline fn Margin(margin: Rectangle, child: anytype) anyerror!Container_Impl {
