@@ -58,3 +58,21 @@ fn buttonClicked(button: *zgt.Button_Impl) !void {
 It is easy to add something like a button or a text area. The example can already be used to notice a widget's parameters are usually enclosed in anonymous
 structs (`.{ .label = "Save" }`). You can also see that simply wrapping a widget with `zgt.Expanded( ... )` will tell it to take all the space it can.
 
+## Supported platforms
+
+A platform is considered supported only if it can be built from every other OS.
+
+✅ Windows x86_64  
+✅ Linux x86_64  
+✅ Linux aarch64 (PinePhone, PineBook...)  
+✅ WebAssembly  
+🏃 macOS M1  
+🏃 macOS aarch64  
+
+- ✅ Working and can be cross-compile from all platforms supported by Zig
+- 🏃 Planned
+
+Note: As there's no "official" GUI library for Linux, GTK 3 has been chosen as it is the one
+that works and can be configured on the most distros. It's also the reason Libadwaita won't
+be adopted, as it's meant for GNOME and GNOME only by disallowing styling and integration
+with other DEs.
