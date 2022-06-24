@@ -33,8 +33,8 @@ pub fn main() !void {
 
     var window = try zgt.Window.init();
     try window.set(
-        zgt.Column(.{}, .{
-            zgt.Row(.{}, .{
+        zgt.Column(.{ .spacing = 10 }, .{ // have 10px spacing between each column's element
+            zgt.Row(.{ .spacing = 5 }, .{ // have 5px spacing between each row's element
                 zgt.Button(.{ .label = "Save", .onclick = buttonClicked }),
                 zgt.Button(.{ .label = "Run",  .onclick = buttonClicked })
             }),
