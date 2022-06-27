@@ -1,6 +1,7 @@
 const std = @import("std");
 const backend = @import("backend.zig");
 const Widget = @import("widget.zig").Widget;
+const MenuBar_Impl = @import("menu.zig").MenuBar_Impl;
 
 pub const Window = struct {
     /// The DPI the GUI has been developed against
@@ -57,6 +58,10 @@ pub const Window = struct {
 
     pub fn setTitle(self: *Window, title: [:0]const u8) void {
         self.peer.setTitle(title);
+    }
+
+    pub fn setMenuBar(self: *Window, bar: MenuBar_Impl) void {
+        self.peer.setMenuBar(bar);
     }
 
     pub fn deinit(self: *Window) void {

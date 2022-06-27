@@ -54,6 +54,9 @@ export fn gtkWindowHidden(_: *c.GtkWidget, _: usize) void {
 pub const Window = struct {
     peer: *c.GtkWidget,
     wbin: *c.GtkWidget,
+    /// A VBox is required to contain the menu and the window's child (wrapped in wbin)
+    vbox: *c.GtkWidget,
+    menuBar: ?*c.GtkWidget = null,
 
     pub usingnamespace Events(Window);
 
@@ -62,12 +65,17 @@ pub const Window = struct {
         //const screen = c.gtk_window_get_screen(@ptrCast(*c.GtkWindow, window));
         //std.log.info("{d} dpi", .{c.gdk_screen_get_resolution(screen)});
         const wbin = wbin_new() orelse unreachable;
-        c.gtk_container_add(@ptrCast(*c.GtkContainer, window), wbin);
         c.gtk_widget_show(wbin);
+
+        const vbox = c.gtk_vbox_new(0, 0) orelse return error.UnknownError;
+        c.gtk_box_pack_end(@ptrCast(*c.GtkBox, vbox), wbin, 1, 1, 0);
+
+        c.gtk_container_add(@ptrCast(*c.GtkContainer, window), vbox);
+        c.gtk_widget_show(vbox);
 
         _ = c.g_signal_connect_data(window, "hide", @ptrCast(c.GCallback, gtkWindowHidden), null, null, c.G_CONNECT_AFTER);
         randomWindow = window;
-        return Window{ .peer = window, .wbin = wbin };
+        return Window{ .peer = window, .wbin = wbin, .vbox = vbox };
     }
 
     pub fn resize(self: *Window, width: c_int, height: c_int) void {
@@ -80,6 +88,20 @@ pub const Window = struct {
 
     pub fn setChild(self: *Window, peer: ?*c.GtkWidget) void {
         c.gtk_container_add(@ptrCast(*c.GtkContainer, self.wbin), peer);
+    }
+
+    pub fn setMenuBar(self: *Window, bar: lib.MenuBar_Impl) void {
+        const menuBar = c.gtk_menu_bar_new().?;
+
+        for (bar.menus) |menuItem| {
+            const menu = c.gtk_menu_item_new_with_label(menuItem.label);
+            c.gtk_menu_shell_append(@ptrCast(*c.GtkMenuShell, menuBar), menu);
+            c.gtk_widget_show(menu);
+        }
+
+        c.gtk_box_pack_start(@ptrCast(*c.GtkBox, self.vbox), menuBar, 0, 0, 0);
+        c.gtk_widget_show(menuBar);
+        self.menuBar = menuBar;
     }
 
     pub fn show(self: *Window) void {
