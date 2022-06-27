@@ -1,3 +1,4 @@
+// zig fmt: off
 const std = @import("std");
 const builtin = @import("builtin");
 const Pkg = std.build.Pkg;
@@ -15,8 +16,13 @@ pub fn addAllTo(exe: *std.build.LibExeObjStep) void {
     var vcpkg = false;
     inline for (comptime std.meta.declarations(package_data)) |decl| {
         const pkg = @as(Package, @field(package_data, decl.name));
-        inline for (pkg.system_libs) |item| {
+        for (pkg.system_libs) |item| {
             exe.linkSystemLibrary(item);
+            llc = true;
+        }
+        for (pkg.frameworks) |item| {
+            if (!std.Target.current.isDarwin()) @panic(exe.builder.fmt("a dependency is attempting to link to the framework {s}, which is only possible under Darwin", .{item}));
+            exe.linkFramework(item);
             llc = true;
         }
         inline for (pkg.c_include_dirs) |item| {
@@ -40,11 +46,12 @@ pub const Package = struct {
     c_source_files: []const string = &.{},
     c_source_flags: []const string = &.{},
     system_libs: []const string = &.{},
+    frameworks: []const string = &.{},
     vcpkg: bool = false,
 };
 
 fn checkMinZig(current: std.SemanticVersion, exe: *std.build.LibExeObjStep) void {
-    const min = std.SemanticVersion.parse("null") catch return;
+    const min = std.SemanticVersion.parse("0.10.0-dev.2625+d506275a0") catch return;
     if (current.order(min).compare(.lt)) @panic(exe.builder.fmt("Your Zig version v{} does not meet the minimum build requirement of v{}", .{current, min}));
 }
 
@@ -57,12 +64,12 @@ pub const dirs = struct {
 pub const package_data = struct {
     pub const _deeztnhr07fk = Package{
         .directory = dirs._deeztnhr07fk,
-        .pkg = Pkg{ .name = "zgt", .path = .{ .path = dirs._deeztnhr07fk ++ "/src/main.zig" }, .dependencies = null },
+        .pkg = Pkg{ .name = "zgt", .source = .{ .path = dirs._deeztnhr07fk ++ "/src/main.zig" }, .dependencies = null },
         .system_libs = &.{ "gtk+-3.0", "c" },
     };
     pub const _hm449ur2xup4 = Package{
         .directory = dirs._hm449ur2xup4,
-        .pkg = Pkg{ .name = "apple_pie", .path = .{ .path = dirs._hm449ur2xup4 ++ "/src/apple_pie.zig" }, .dependencies = null },
+        .pkg = Pkg{ .name = "apple_pie", .source = .{ .path = dirs._hm449ur2xup4 ++ "/src/apple_pie.zig" }, .dependencies = null },
     };
     pub const _root = Package{
         .directory = dirs._root,

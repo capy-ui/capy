@@ -2,6 +2,7 @@ id: deeztnhr07fkixemzrksabk1elbzfz1clpervtjjcgxntyop
 name: zgt
 main: src/main.zig
 license: MIT
+min_zig_version: 0.10.0-dev.2625+d506275a0
 dependencies:
     - src: system_lib gtk+-3.0
       only_os: linux
