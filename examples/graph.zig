@@ -174,7 +174,7 @@ pub fn main() !void {
         .bindAlignX(&rectangleX);
 
     try window.set(zgt.Column(.{}, .{
-        zgt.Row(.{}, .{
+        zgt.Row(.{ .spacing = 10, .alignX = 0.5 }, .{
             zgt.Button(.{ .label = "Linear", .onclick = SetEasing(zgt.Easings.Linear) }),
             zgt.Button(.{ .label = "In", .onclick = SetEasing(zgt.Easings.In) }),
             zgt.Button(.{ .label = "Out", .onclick = SetEasing(zgt.Easings.Out) }),

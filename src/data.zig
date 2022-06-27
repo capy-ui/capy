@@ -155,7 +155,7 @@ pub fn DataWrapper(comptime T: type) type {
         pub fn update(self: *Self) bool {
             if (self.animation) |*anim| {
                 self.extendedSet(anim.get(), true, false);
-                if (std.time.milliTimestamp() >= anim.end) {
+                if (std.time.milliTimestamp() >= anim.start + anim.duration) {
                     self.animation = null;
                     return false;
                 } else {
@@ -178,7 +178,7 @@ pub fn DataWrapper(comptime T: type) type {
             const time = std.time.milliTimestamp();
             self.animation = Animation(T){
                 .start = time,
-                .end = @intCast(u32, duration),
+                .duration = @intCast(u32, duration),
                 .min = self.value,
                 .max = target,
                 .animFn = anim,

@@ -28,14 +28,16 @@ pub fn main() !void {
     defer format.deinit();
     try window.set(zgt.Column(.{}, .{
         zgt.Row(.{ .alignX = 0.5 }, .{
-            zgt.TextField(.{})
-                .setName("text-field")
-                .setAlignY(0.5)
-                .bindText(format),
-            zgt.Button(.{ .label = "Count", .onclick = increment })
-                .setAlignY(0.5),
-            //.setEnabledUpdater(buttonEnabled)
-        }),
+            zgt.Row(.{ .alignY = 0.5, .spacing = 5 }, .{
+                zgt.TextField(.{})
+                    .setName("text-field")
+                    .setAlignY(0.5)
+                    .bindText(format),
+                zgt.Button(.{ .label = "Count", .onclick = increment })
+                    .setAlignY(0.5),
+                //.setEnabledUpdater(buttonEnabled)
+            }),
+        })
     }));
 
     window.resize(250, 100);

@@ -2,7 +2,7 @@ const std = @import("std");
 const zgt = @import("zgt");
 pub usingnamespace zgt.cross_platform;
 
-var prng: std.rand.DefaultPrng = std.rand.DefaultPrng.init(0);
+var prng: std.rand.DefaultPrng = undefined; // initialized in main()
 var random = prng.random();
 
 pub fn animateRandomColor(button: *zgt.Button_Impl) !void {
@@ -15,6 +15,7 @@ pub fn animateRandomColor(button: *zgt.Button_Impl) !void {
 pub fn main() !void {
     try zgt.backend.init();
     var window = try zgt.Window.init();
+    prng = std.rand.DefaultPrng.init(@bitCast(u64, std.time.milliTimestamp()));
 
     window.resize(800, 600);
     try window.set(zgt.Stack(.{

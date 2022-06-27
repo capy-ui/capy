@@ -386,7 +386,7 @@ const GridConfig = struct {
     name: ?[]const u8 = null,
     alignX: ?f32 = null,
     alignY: ?f32 = null,
-    spacing: u32 = 0,
+    spacing: u32 = 5,
 };
 
 /// Set the style of the child to expanded by creating and showing the widget early.
