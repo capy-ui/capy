@@ -69,7 +69,7 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
         if (widget.peer) |widgetPeer| {
             const available = Size{
                 .width = @intCast(u32, peer.getSize(peer.userdata).width),
-                .height = if (widget.container_expanded) childHeight else subtract(@intCast(u32, peer.getSize(peer.userdata).height), @floatToInt(u32, childY)),
+(@intCast(u32, peer.getSize(peer.userdata).height) -| @floatToInt(u32, childY))
             };
             const preferred = widget.getPreferredSize(available);
             const size = blk: {
