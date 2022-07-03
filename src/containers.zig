@@ -32,11 +32,6 @@ fn getExpandedCount(widgets: []Widget) u32 {
     return expandedCount;
 }
 
-// Safely subtract b from a
-inline fn subtract(a: u32, b: u32) u32 {
-    return if (a < b) 0 else a - b;
-}
-
 const ColumnRowConfig = struct {
     spacing: u32 = 0,
 };
