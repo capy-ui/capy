@@ -56,13 +56,15 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
         }
     }
 
+
+
     var childY: f32 = 0.0;
     for (widgets) |widget, i| {
         const isLastWidget = i == widgets.len - 1;
         if (widget.peer) |widgetPeer| {
             const available = Size{
                 .width = @intCast(u32, peer.getSize(peer.userdata).width),
-                .height = if (widget.container_expanded) childHeight else (@intCast(u32, peer.getSize(peer.userdata).height) - @floatToInt(u32, childY)),
+(@intCast(u32, peer.getSize(peer.userdata).height) -| @floatToInt(u32, childY))
             };
             const preferred = widget.getPreferredSize(available);
             const size = blk: {
