@@ -4,12 +4,12 @@
 typedef void* ZgtWidget;
 typedef void* ZgtWindow;
 
-int zgt_init_backend();
+int zgt_init_backend(void);
 
-void zgt_run_event_loop();
+void zgt_run_event_loop(void);
 
 // window
-ZgtWindow zgt_window_init();
+ZgtWindow zgt_window_init(void);
 
 void zgt_window_show(ZgtWindow window);
 

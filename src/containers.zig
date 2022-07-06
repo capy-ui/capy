@@ -79,6 +79,9 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
                 } else if (widget.alignX.get() == null and !peer.computingPreferredSize) {
                     break :blk Size.intersect(available, Size.init(available.width, preferred.height));
                 } else {
+                    if (peer.computingPreferredSize and widget.alignX.get() != null and widget.alignX.get().? > 0) {
+                        break :blk Size.intersect(available, Size.init(available.width, preferred.height));
+                    }
                     break :blk Size.intersect(available, preferred);
                 }
             };
@@ -134,6 +137,9 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
                 } else if (widget.alignY.get() == null and !peer.computingPreferredSize) {
                     break :blk Size.intersect(available, Size.init(preferred.width, available.height));
                 } else {
+                    if (peer.computingPreferredSize and widget.alignY.get() != null and widget.alignY.get().? > 0) {
+                        break :blk Size.intersect(available, Size.init(preferred.width, available.height));
+                    }
                     break :blk Size.intersect(available, preferred);
                 }
             };
