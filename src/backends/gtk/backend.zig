@@ -108,10 +108,21 @@ pub const Window = struct {
                 initMenu(@ptrCast(*c.GtkMenuShell, itemMenu), item.items);
                 c.gtk_menu_item_set_submenu(@ptrCast(*c.GtkMenuItem, menuItem), itemMenu);
             }
+            if (item.config.onClick) |callback| {
+                const data = @intToPtr(?*anyopaque, @ptrToInt(callback));
+                _ = c.g_signal_connect_data(menuItem, "activate", @ptrCast(c.GCallback, gtkActivate), data, null, c.G_CONNECT_AFTER);
+            }
 
             c.gtk_menu_shell_append(menu, menuItem);
             c.gtk_widget_show(menuItem);
         }
+    }
+
+    fn gtkActivate(peer: *c.GtkMenuItem, userdata: ?*anyopaque) callconv(.C) void {
+        _ = peer;
+
+        const callback = @ptrCast(fn() void, userdata);
+        callback();
     }
 
     pub fn show(self: *Window) void {

@@ -15,11 +15,13 @@ pub const MenuItem_Impl = struct {
 pub const MenuBar_Impl = struct { menus: []const MenuItem_Impl };
 
 const Config = struct {
-    label: [:0]const u8
+    pub const Callback = fn () void;
+
+    label: [:0]const u8,
+    onClick: ?Callback = null,
 };
 
 pub fn MenuItem(config: Config) MenuItem_Impl {
-    _ = config;
     return MenuItem_Impl{ .config = config };
 }
 
