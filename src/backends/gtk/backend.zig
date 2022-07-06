@@ -104,6 +104,20 @@ pub const Window = struct {
         self.menuBar = menuBar;
     }
 
+    pub fn setIcon(self: *Window, data: ImageData) void {
+        c.gtk_window_set_icon(@ptrCast(*c.GtkWindow, self.peer), data.peer);
+    }
+
+    pub fn setIconName(self: *Window, name: [:0]const u8) void {
+        _ = self;
+        c.gtk_window_set_default_icon_name(name);
+    }
+
+    pub fn setProgramName(self: *Window, name: [:0]const u8) void {
+        _ = self;
+        c.g_set_prgname(name);
+    }
+
     pub fn show(self: *Window) void {
         c.gtk_widget_show(self.peer);
         _ = activeWindows.fetchAdd(1, .Release);
@@ -391,6 +405,10 @@ pub const Label = struct {
 
     pub fn setAlignment(self: *Label, alignment: f32) void {
         c.gtk_label_set_xalign(@ptrCast(*c.GtkLabel, self.peer), alignment);
+    }
+
+    pub fn setSelectable(self: *Label, selectable: bool) void {
+        c.gtk_label_set_selectable(@ptrCast(*c.GtkLabel, self.peer), @boolToInt(selectable));
     }
 
     pub fn setText(self: *Label, text: [:0]const u8) void {

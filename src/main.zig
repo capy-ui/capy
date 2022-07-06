@@ -56,7 +56,7 @@ pub fn runEventLoop() void {
                 break;
             }
 
-            if (@import("std").event.Loop.instance) |*loop| {
+            if (@import("std").event.Loop.instance) |loop| {
                 loop.yield();
             }
         } else {
