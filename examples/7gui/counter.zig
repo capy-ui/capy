@@ -29,7 +29,7 @@ pub fn main() !void {
     try window.set(zgt.Column(.{}, .{
         zgt.Row(.{ .alignX = 0.5 }, .{
             zgt.Row(.{ .alignY = 0.5, .spacing = 5 }, .{
-                zgt.TextField(.{})
+                zgt.TextField(.{ .readOnly = true })
                     .setName("text-field")
                     .setAlignY(0.5)
                     .bindText(format),

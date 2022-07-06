@@ -475,6 +475,11 @@ pub const TextField = struct {
         const length = c.gtk_entry_buffer_get_bytes(buffer);
         return text[0..length :0];
     }
+
+    pub fn setReadOnly(self: *TextField, readOnly: bool) void {
+        c.gtk_editable_set_editable(@ptrCast(*c.GtkEditable, self.peer), @boolToInt(!readOnly));
+        c.gtk_widget_set_can_focus(self.peer, @boolToInt(!readOnly));
+    }
 };
 
 pub const Canvas = struct {

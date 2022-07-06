@@ -48,6 +48,9 @@ test "backend: text field" {
     const str = "שָׁלוֹםUnicode 👩‍👦‍👦 नमस्ते";
     field.setText(str);
     try std.testing.expectEqualStrings(str, field.getText());
+
+    field.setReadOnly(true);
+    field.setReadOnly(false);
 }
 
 test "backend: scrollable" {

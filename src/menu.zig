@@ -11,23 +11,21 @@ pub const MenuItem_Impl = struct {
     items: []const MenuItem_Impl = &.{},
 };
 
-pub const MenuBar_Impl = struct {
-    menus: []const MenuItem_Impl
-};
+pub const MenuBar_Impl = struct { menus: []const MenuItem_Impl };
 
 const Config = struct {};
 
 pub fn MenuItem(label: [:0]const u8, config: Config) MenuItem_Impl {
     _ = config;
-    return MenuItem_Impl { .label = label };
+    return MenuItem_Impl{ .label = label };
 }
 
 /// 'items' is a tuple
 pub fn Menu(label: [:0]const u8, items: anytype) MenuItem_Impl {
-    return MenuItem_Impl { .label = label, .items = &items };
+    return MenuItem_Impl{ .label = label, .items = &items };
 }
 
 /// 'menus' is a tuple
 pub fn MenuBar(menus: anytype) MenuBar_Impl {
-    return MenuBar_Impl { .menus = &menus };
+    return MenuBar_Impl{ .menus = &menus };
 }

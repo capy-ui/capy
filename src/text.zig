@@ -2,6 +2,7 @@ const std = @import("std");
 const backend = @import("backend.zig");
 const dataStructures = @import("data.zig");
 const Size = dataStructures.Size;
+const DataWrapper = dataStructures.DataWrapper;
 const StringDataWrapper = dataStructures.StringDataWrapper;
 
 pub const TextArea_Impl = struct {
@@ -58,9 +59,18 @@ pub const TextField_Impl = struct {
     handlers: TextField_Impl.Handlers = undefined,
     dataWrappers: TextField_Impl.DataWrappers = .{},
     text: StringDataWrapper,
+    readOnly: DataWrapper(bool),
 
-    pub fn init(text: []const u8) TextField_Impl {
-        return TextField_Impl.init_events(TextField_Impl{ .text = StringDataWrapper.of(text) });
+    const Config = struct {
+        text: []const u8 = "",
+        readOnly: bool = false,
+    };
+
+    pub fn init(config: Config) TextField_Impl {
+        return TextField_Impl.init_events(TextField_Impl{
+            .text = StringDataWrapper.of(config.text),
+            .readOnly = DataWrapper(bool).of(config.readOnly),
+        });
     }
 
     /// Internal function used at initialization.
@@ -86,7 +96,9 @@ pub const TextField_Impl = struct {
         if (self.peer == null) {
             var peer = try backend.TextField.create();
             peer.setText(self.text.get());
+            peer.setReadOnly(self.readOnly.get());
             self.peer = peer;
+
             try self.show_events();
             try peer.setCallback(.TextChanged, textChanged);
             _ = try self.text.addChangeListener(.{ .function = wrapperTextChanged, .userdata = @ptrToInt(&self.peer) });
@@ -116,12 +128,27 @@ pub const TextField_Impl = struct {
         self.text.set(other.get());
         return self.*;
     }
+
+    pub fn setReadOnly(self: *TextField_Impl, readOnly: bool) void {
+        self.readOnly.set(readOnly);
+    }
+
+    pub fn isReadOnly(self: *TextField_Impl) bool {
+        return self.readOnly.get();
+    }
+
+    /// Bind the 'readOnly' property to argument.
+    pub fn bindReadOnly(self: *TextField_Impl, other: *DataWrapper(bool)) TextField_Impl {
+        self.readOnly.bind(other);
+        self.readOnly.set(other.get());
+        return self.*;
+    }
 };
 
 pub fn TextArea(config: struct { text: []const u8 = "" }) TextArea_Impl {
     return TextArea_Impl.init(config.text);
 }
 
-pub fn TextField(config: struct { text: []const u8 = "" }) TextField_Impl {
-    return TextField_Impl.init(config.text);
+pub fn TextField(config: TextField_Impl.Config) TextField_Impl {
+    return TextField_Impl.init(config);
 }
