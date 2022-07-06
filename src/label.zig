@@ -32,11 +32,12 @@ pub const Label_Impl = struct {
 
     pub fn getPreferredSize(self: *Label_Impl, available: Size) Size {
         _ = available;
-        const len = std.mem.len(self._text);
-        return Size{
-            .width = @intCast(u32, 10 * len), // TODO: saturating multiply instead
-            .height = 40.0,
-        };
+        if (self.peer) |peer| {
+            return peer.getPreferredSize();
+        } else {
+            const len = std.mem.len(self._text);
+            return Size{ .width = @intCast(u32, 10 * len), .height = 40.0 };
+        }
     }
 
     pub fn setText(self: *Label_Impl, text: [:0]const u8) void {
