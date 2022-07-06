@@ -5,7 +5,7 @@ pub usingnamespace zgt.cross_platform;
 var celsius    = zgt.DataWrapper([]const u8).of("0");
 var fahrenheit = zgt.DataWrapper([]const u8).of("-40");
 
-// Small buffers to avoid memory allocations when editing the values
+// Small buffers so that we can edit the values without even allocating memory in the app
 var celsiusBuffer   : [100]u8 = undefined;
 var fahrenheitBuffer: [100]u8 = undefined;
 
@@ -18,11 +18,9 @@ pub fn main() !void {
         zgt.Row(.{ .alignX = 0.5 }, .{
             zgt.Row(.{ .alignY = 0.5, .spacing = 5 }, .{
                 zgt.TextField(.{})
-                    .setName("celsius-field")
                     .bindText(&celsius),
                 zgt.Label(.{ .text = "Celsius =" }),
                 zgt.TextField(.{})
-                    .setName("fahrenheit-field")
                     .bindText(&fahrenheit),
                 zgt.Label(.{ .text = "Fahrenheit" }),
             }),

@@ -94,7 +94,7 @@ pub const Window = struct {
         const menuBar = c.gtk_menu_bar_new().?;
 
         for (bar.menus) |menuItem| {
-            const menu = c.gtk_menu_item_new_with_label(menuItem.label);
+            const menu = c.gtk_menu_item_new_with_label(menuItem.config.label);
             c.gtk_menu_shell_append(@ptrCast(*c.GtkMenuShell, menuBar), menu);
             c.gtk_widget_show(menu);
         }
