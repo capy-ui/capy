@@ -18,6 +18,8 @@ pub fn main() !void {
     // This allows to implement things like `FormatDataWrapper`, which takes other data wrappers as arguments
     // and formats them into text (same syntax as `std.fmt.format`), it can then be used like any other
     // DataWrapper.
+    // However, FormatDataWrapper isn't bi-directional (editing the text field won't change count's value),
+    // but it remains best fit for this example as the text field is read-only.
     var format = try zgt.FormatDataWrapper(zgt.internal.lasting_allocator, "{d}", .{&count});
     defer format.deinit();
 
