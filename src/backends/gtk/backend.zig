@@ -92,16 +92,26 @@ pub const Window = struct {
 
     pub fn setMenuBar(self: *Window, bar: lib.MenuBar_Impl) void {
         const menuBar = c.gtk_menu_bar_new().?;
-
-        for (bar.menus) |menuItem| {
-            const menu = c.gtk_menu_item_new_with_label(menuItem.config.label);
-            c.gtk_menu_shell_append(@ptrCast(*c.GtkMenuShell, menuBar), menu);
-            c.gtk_widget_show(menu);
-        }
+        initMenu(@ptrCast(*c.GtkMenuShell, menuBar), bar.menus);
 
         c.gtk_box_pack_start(@ptrCast(*c.GtkBox, self.vbox), menuBar, 0, 0, 0);
         c.gtk_widget_show(menuBar);
         self.menuBar = menuBar;
+    }
+
+    fn initMenu(menu: *c.GtkMenuShell, items: []const lib.MenuItem_Impl) void {
+        for (items) |item| {
+            const menuItem = c.gtk_menu_item_new_with_label(item.config.label);
+            if (item.items.len > 0) {
+                // The menu associated to the menu item
+                const itemMenu = c.gtk_menu_new();
+                initMenu(@ptrCast(*c.GtkMenuShell, itemMenu), item.items);
+                c.gtk_menu_item_set_submenu(@ptrCast(*c.GtkMenuItem, menuItem), itemMenu);
+            }
+
+            c.gtk_menu_shell_append(menu, menuItem);
+            c.gtk_widget_show(menuItem);
+        }
     }
 
     pub fn show(self: *Window) void {
