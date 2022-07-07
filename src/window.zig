@@ -1,6 +1,7 @@
 const std = @import("std");
 const backend = @import("backend.zig");
 const Widget = @import("widget.zig").Widget;
+const Image_Impl = @import("image.zig").Image_Impl;
 const MenuBar_Impl = @import("menu.zig").MenuBar_Impl;
 
 pub const Window = struct {
@@ -58,6 +59,14 @@ pub const Window = struct {
 
     pub fn setTitle(self: *Window, title: [:0]const u8) void {
         self.peer.setTitle(title);
+    }
+
+    pub fn setIcon(self: *Window, icon: *Image_Impl) void {
+        self.peer.setIcon(icon.data.peer);
+    }
+
+    pub fn setIconName(self: *Window, name: [:0]const u8) void {
+        self.peer.setIconName(name);
     }
 
     pub fn setMenuBar(self: *Window, bar: MenuBar_Impl) void {
