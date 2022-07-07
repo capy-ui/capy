@@ -2,6 +2,7 @@ const std = @import("std");
 const lib = @import("../../main.zig");
 const shared = @import("../shared.zig");
 
+const EventFunctions = shared.EventFunctions(@This());
 const EventType = shared.BackendEventType;
 
 const win32 = @import("win32.zig");
@@ -144,6 +145,13 @@ pub const Window = struct {
         _ = win32.MoveWindow(self.hwnd, rect.left, rect.top, @intCast(c_int, width), @intCast(c_int, height), 1);
     }
 
+    pub fn setTitle(self: *Window, title: [*:0]const u8) void {
+        const utf16 = std.unicode.utf8ToUtf16LeWithNull(lib.internal.scratch_allocator, std.mem.span(title)) catch return;
+        defer lib.internal.scratch_allocator.free(utf16);
+
+        _ = win32.SetWindowTextW(self.hwnd, utf16);
+    }
+
     pub fn show(self: *Window) void {
         _ = win32.showWindow(self.hwnd, win32.SW_SHOWDEFAULT);
         _ = win32.UpdateWindow(self.hwnd);
@@ -155,22 +163,12 @@ pub const Window = struct {
     }
 };
 
-// zig fmt: off
 const EventUserData = struct {
-    /// Only works for buttons
-    clickHandler: ?fn (data: usize) void = null,
-    mouseButtonHandler: ?fn (button: MouseButton, pressed: bool, x: u32, y: u32, data: usize) void = null,
-    // TODO: Mouse object with pressed buttons and more data
-    mouseMotionHandler: ?fn(x: u32, y: u32, data: usize) void = null,
-    keyTypeHandler: ?fn (str: []const u8, data: usize) void = null,
-    scrollHandler: ?fn (dx: f32, dy: f32, data: usize) void = null,
-    resizeHandler: ?fn (width: u32, height: u32, data: usize) void = null,
-    /// Only works for canvas (althought technically it isn't required to)
-    drawHandler: ?fn (ctx: *Canvas.DrawContext, data: usize) void = null,
-    changedTextHandler: ?fn (data: usize) void = null,
-    userdata: usize = 0
+    user: EventFunctions = .{},
+    class: EventFunctions = .{},
+    userdata: usize = 0,
+    classUserdata: usize = 0,
 };
-// zig fmt: on
 
 inline fn getEventUserData(peer: HWND) *EventUserData {
     return @intToPtr(*EventUserData, win32.GetWindowLongPtr(peer, win32.GWL_USERDATA));
@@ -201,9 +199,10 @@ pub fn Events(comptime T: type) type {
                     const data = getEventUserData(@intToPtr(HWND, @bitCast(usize, lp)));
                     switch (code) {
                         win32.BN_CLICKED => {
-                            if (data.clickHandler) |handler| {
+                            if (data.class.clickHandler) |handler|
                                 handler(data.userdata);
-                            }
+                            if (data.user.clickHandler) |handler|
+                                handler(data.userdata);
                         },
                         else => {},
                     }
@@ -223,28 +222,32 @@ pub fn Events(comptime T: type) type {
                     if (@hasDecl(T, "onResize")) {
                         T.onResize(data, hwnd);
                     }
-                    if (data.resizeHandler) |handler| {
-                        var rect: RECT = undefined;
-                        _ = win32.GetWindowRect(hwnd, &rect);
+                    var rect: RECT = undefined;
+                    _ = win32.GetWindowRect(hwnd, &rect);
+
+                    if (data.class.resizeHandler) |handler|
                         handler(@intCast(u32, rect.right - rect.left), @intCast(u32, rect.bottom - rect.top), data.userdata);
-                    }
+                    if (data.user.resizeHandler) |handler|
+                        handler(@intCast(u32, rect.right - rect.left), @intCast(u32, rect.bottom - rect.top), data.userdata);
                 },
                 win32.WM_PAINT => {
                     const data = getEventUserData(hwnd);
-                    if (data.drawHandler) |handler| {
-                        var ps: win32.PAINTSTRUCT = undefined;
-                        var hdc: win32.HDC = win32.BeginPaint(hwnd, &ps);
-                        defer _ = win32.EndPaint(hwnd, &ps);
-                        var graphics = gdi.Graphics.createFromHdc(hdc) catch unreachable;
+                    var ps: win32.PAINTSTRUCT = undefined;
+                    var hdc: win32.HDC = win32.BeginPaint(hwnd, &ps);
+                    defer _ = win32.EndPaint(hwnd, &ps);
+                    var graphics = gdi.Graphics.createFromHdc(hdc) catch unreachable;
 
-                        const brush = @ptrCast(win32.HBRUSH, win32.GetStockObject(win32.DC_BRUSH));
-                        win32.SelectObject(hdc, @ptrCast(win32.HGDIOBJ, brush));
+                    const brush = @ptrCast(win32.HBRUSH, win32.GetStockObject(win32.DC_BRUSH));
+                    win32.SelectObject(hdc, @ptrCast(win32.HGDIOBJ, brush));
 
-                        var dc = Canvas.DrawContext{ .hdc = hdc, .graphics = graphics, .hbr = brush, .path = std.ArrayList(Canvas.DrawContext.PathElement)
-                            .init(lib.internal.scratch_allocator) };
-                        defer dc.path.deinit();
+                    var dc = Canvas.DrawContext{ .hdc = hdc, .graphics = graphics, .hbr = brush, .path = std.ArrayList(Canvas.DrawContext.PathElement)
+                        .init(lib.internal.scratch_allocator) };
+                    defer dc.path.deinit();
+
+                    if (data.class.drawHandler) |handler|
                         handler(&dc, data.userdata);
-                    }
+                    if (data.user.drawHandler) |handler|
+                        handler(&dc, data.userdata);
                 },
                 win32.WM_DESTROY => win32.PostQuitMessage(0),
                 else => {},
@@ -270,15 +273,16 @@ pub fn Events(comptime T: type) type {
         pub inline fn setCallback(self: *T, comptime eType: EventType, cb: anytype) !void {
             const data = getEventUserData(self.peer);
             switch (eType) {
-                .Click => data.clickHandler = cb,
-                .Draw => data.drawHandler = cb,
-                .MouseButton => data.mouseButtonHandler = cb,
+                .Click => data.user.clickHandler = cb,
+                .Draw => data.user.drawHandler = cb,
+                .MouseButton => data.user.mouseButtonHandler = cb,
                 // TODO: implement mouse motion
-                .MouseMotion => data.mouseMotionHandler = cb,
-                .Scroll => data.scrollHandler = cb,
-                .TextChanged => data.changedTextHandler = cb,
-                .Resize => data.resizeHandler = cb,
-                .KeyType => data.keyTypeHandler = cb,
+                .MouseMotion => data.user.mouseMotionHandler = cb,
+                .Scroll => data.user.scrollHandler = cb,
+                .TextChanged => data.user.changedTextHandler = cb,
+                .Resize => data.user.resizeHandler = cb,
+                .KeyType => data.user.keyTypeHandler = cb,
+                .KeyPress => data.user.keyPressHandler = cb,
             }
         }
 
@@ -304,6 +308,14 @@ pub fn Events(comptime T: type) type {
             var rect: RECT = undefined;
             _ = win32.GetWindowRect(self.peer, &rect);
             return rect.bottom - rect.top;
+        }
+
+        pub fn getPreferredSize(self: *const T) lib.Size {
+            // TODO
+            _ = self;
+            return lib.Size.init(
+                100, 50
+            );
         }
 
         pub fn setOpacity(self: *const T, opacity: f64) void {
@@ -535,6 +547,10 @@ pub const TextField = struct {
         const utf16Slice = buf[0..realLen];
         const text = std.unicode.utf16leToUtf8AllocZ(allocator, utf16Slice) catch unreachable; // TODO return error
         return text;
+    }
+
+    pub fn setReadOnly(self: *TextField, readOnly: bool) void {
+        _ = win32.SendMessageA(self.peer, win32.EM_SETREADONLY, @boolToInt(readOnly), undefined);
     }
 };
 
