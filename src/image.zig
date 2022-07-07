@@ -24,6 +24,12 @@ pub const ImageData = struct {
         const reader = file.reader();
         return @import("png.zig").read(allocator, reader);
     }
+
+    // Load from a png file using @embedFile.
+    pub fn fromEmbeddedFile(allocator: std.mem.Allocator, buf: []const u8) !ImageData {
+        const reader = std.io.fixedBufferStream(buf).reader();
+        return @import("png.zig").read(allocator, reader);
+    }
 };
 
 pub const Image_Impl = struct {
