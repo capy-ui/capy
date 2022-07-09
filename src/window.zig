@@ -1,7 +1,7 @@
 const std = @import("std");
 const backend = @import("backend.zig");
 const Widget = @import("widget.zig").Widget;
-const Image_Impl = @import("image.zig").Image_Impl;
+const ImageData = @import("image.zig").ImageData;
 const MenuBar_Impl = @import("menu.zig").MenuBar_Impl;
 
 pub const Window = struct {
