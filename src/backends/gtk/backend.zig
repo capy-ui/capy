@@ -86,6 +86,14 @@ pub const Window = struct {
         c.gtk_window_set_title(@ptrCast(*c.GtkWindow, self.peer), title);
     }
 
+    pub fn setIcon(self: *Window, data: ImageData) void {
+        c.gtk_window_set_icon(@ptrCast(*c.GtkWindow, self.peer), data.peer);
+    }
+
+    pub fn setIconName(self: *Window, name: [:0]const u8) void {
+        c.gtk_window_set_icon_name(@ptrCast(*c.GtkWindow, self.peer), name);
+    }
+
     pub fn setChild(self: *Window, peer: ?*c.GtkWidget) void {
         c.gtk_container_add(@ptrCast(*c.GtkContainer, self.wbin), peer);
     }
