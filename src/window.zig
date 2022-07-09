@@ -61,7 +61,7 @@ pub const Window = struct {
         self.peer.setTitle(title);
     }
 
-    pub fn setIcon(self: *Window, icon: *Image_Impl) void {
+    pub fn setIcon(self: *Window, icon: *ImageData) void {
         self.peer.setIcon(icon.data.peer);
     }
 
