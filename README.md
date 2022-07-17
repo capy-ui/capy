@@ -63,12 +63,18 @@ structs (`.{ .label = "Save" }`). You can also see that simply wrapping a widget
 A platform is considered supported only if it can be built from every other OS.
 
 ✅ Windows x86_64  
+✅ Windows i386
+
 ✅ Linux x86_64  
+✅ Linux i386  
 ✅ Linux aarch64 (PinePhone, PineBook...)  
+
 ✅ FreeBSD x86_64  
+
 ✅ WebAssembly  
+
 🏃 macOS M1  
-🏃 macOS aarch64  
+🏃 macOS x86_64  
 
 - ✅ Working and can be cross-compile from all platforms supported by Zig
 - 🏃 Planned
