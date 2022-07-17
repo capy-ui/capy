@@ -65,7 +65,7 @@ A platform is considered supported only if it can be built from every other OS.
 ✅ Windows x86_64  
 ✅ Linux x86_64  
 ✅ Linux aarch64 (PinePhone, PineBook...)  
-✅ FreeBSD x86_64
+✅ FreeBSD x86_64  
 ✅ WebAssembly  
 🏃 macOS M1  
 🏃 macOS aarch64  
