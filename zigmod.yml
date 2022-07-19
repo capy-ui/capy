@@ -1,6 +1,6 @@
 id: deeztnhr07fkixemzrksabk1elbzfz1clpervtjjcgxntyop
 name: zgt
-main: build_zig.yml
+main: build_zgt.zig
 license: MIT
 min_zig_version: 0.10.0-dev.2625+d506275a0
 main: build_zgt.zig
