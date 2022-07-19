@@ -3,6 +3,7 @@ name: zgt
 main: src/main.zig
 license: MIT
 min_zig_version: 0.10.0-dev.2625+d506275a0
+main: build_zgt.zig
 dependencies:
     - src: system_lib gtk+-3.0
       only_os: linux
