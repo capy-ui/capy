@@ -54,6 +54,12 @@ structs (`.{ .label = "Save" }`). You can also see that simply wrapping a widget
 
 ## Installation
 
+**If you're starting a new project,
+simply clone [zgt-template](https://github.com/zenith391/zgt-template)
+and follow build instructions**
+
+Otherwise if you're adding zgt to an already existing project:  
+
 Before proceeding, you must first install the [zigmod](https://github.com/nektro/zigmod) package manager.
 Then, in the folder of your project,
 you can execute the following commands:
