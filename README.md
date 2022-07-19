@@ -58,6 +58,21 @@ fn buttonClicked(button: *zgt.Button_Impl) !void {
 It is easy to add something like a button or a text area. The example can already be used to notice a widget's parameters are usually enclosed in anonymous
 structs (`.{ .label = "Save" }`). You can also see that simply wrapping a widget with `zgt.Expanded( ... )` will tell it to take all the space it can.
 
+## Installation
+
+Before proceeding, you must first install the [zigmod](https://github.com/nektro/zigmod) package manager.
+Then, in the folder of your project,
+you can execute the following commands:
+```sh
+zigmod init
+zigmod aq add 1/zenith391/zgt
+zigmod fetch
+```
+Finally, you need to follow the instructions on the
+[zigmod wiki](https://github.com/nektro/zigmod/blob/master/docs/commands/fetch.md#adding-depszig-to-your-buildzig) to change `build.zig`
+
+For more information, please look in the [wiki](https://github.com/zenith391/zgt/wiki/Installation)
+
 ## Supported platforms
 
 A platform is considered supported only if it can be built from every other OS.
