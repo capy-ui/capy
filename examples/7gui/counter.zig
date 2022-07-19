@@ -29,7 +29,7 @@ pub fn main() !void {
                 zgt.TextField(.{ .readOnly = true })
                     .setName("text-field")
                     .bindText(format),
-                zgt.Button(.{ .label = "Count", .onclick = increment })
+                zgt.Button(.{ .label = "Count", .onclick = increment }),
             }),
         }),
     }));

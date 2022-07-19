@@ -5,22 +5,22 @@ const Widget = @import("widget.zig").Widget;
 const ImageData = @import("image.zig").ImageData;
 const MenuBar_Impl = @import("menu.zig").MenuBar_Impl;
 const Size = @import("data.zig").Size;
+const DataWrapper = @import("data.zig").DataWrapper;
 
-const Display = struct {
-    resolution: Size,
-    dpi: u32
-};
+const Display = struct { resolution: Size, dpi: u32 };
 
 const devices = std.ComptimeStringMap(Display, .{
-    .{ "iphone-13-mini", .{ .resolution = Size.init(1080, 2340), .dpi = 476 }},
-    .{ "iphone-13", .{ .resolution = Size.init(1170, 2532), .dpi = 460 }},
-    .{ "pixel-6", .{ .resolution = Size.init(1080, 2400), .dpi = 411 }},
-    .{ "pixel-6-pro", .{ .resolution = Size.init(1440, 3120), .dpi = 512 }},
+    .{ "iphone-13-mini", .{ .resolution = Size.init(1080, 2340), .dpi = 476 } },
+    .{ "iphone-13", .{ .resolution = Size.init(1170, 2532), .dpi = 460 } },
+    .{ "pixel-6", .{ .resolution = Size.init(1080, 2400), .dpi = 411 } },
+    .{ "pixel-6-pro", .{ .resolution = Size.init(1440, 3120), .dpi = 512 } },
 });
 
 pub const Window = struct {
     peer: backend.Window,
     _child: ?Widget = null,
+    // TODO
+    size: DataWrapper(Size) = DataWrapper(Size).of(Size.init(640, 480)),
 
     pub fn init() !Window {
         const peer = try backend.Window.create();
@@ -71,21 +71,19 @@ pub const Window = struct {
     var did_invalid_warning = false;
 
     pub fn resize(self: *Window, width: u32, height: u32) void {
-        const EMULATOR_KEY = "ZGT_MOBILE_EMULATION";
+        const EMULATOR_KEY = "ZGT_MOBILE_EMULATED";
         if (std.process.hasEnvVarConstant(EMULATOR_KEY)) {
-            const id = std.process.getEnvVarOwned(
-                internal.scratch_allocator, EMULATOR_KEY) catch unreachable;
+            const id = std.process.getEnvVarOwned(internal.scratch_allocator, EMULATOR_KEY) catch unreachable;
             defer internal.scratch_allocator.free(id);
             if (devices.get(id)) |device| {
-                self.peer.resize(@intCast(c_int, device.resolution.width),
-                    @intCast(c_int, device.resolution.height));
+                self.peer.resize(@intCast(c_int, device.resolution.width), @intCast(c_int, device.resolution.height));
                 self.setSourceDpi(device.dpi);
                 return;
             } else if (!did_invalid_warning) {
-                std.log.warn("Invalid property \"" ++ EMULATOR_KEY ++ "={s}\"", .{ id });
+                std.log.warn("Invalid property \"" ++ EMULATOR_KEY ++ "={s}\"", .{id});
                 std.debug.print("Expected one of:\r\n", .{});
                 for (devices.kvs) |entry| {
-                    std.debug.print("    - {s}\r\n", .{ entry.key });
+                    std.debug.print("    - {s}\r\n", .{entry.key});
                 }
                 did_invalid_warning = true;
             }

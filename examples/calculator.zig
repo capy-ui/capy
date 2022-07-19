@@ -84,8 +84,6 @@ pub fn main() !void {
     defer _ = gpa.deinit();
     allocator = gpa.allocator();
 
-
-
     var window = try zgt.Window.init();
     computationLabel = zgt.Label(.{ .text = "", .alignment = .Left });
     try window.set(zgt.Column(.{ .expand = .Fill, .spacing = 10 }, .{

@@ -313,9 +313,7 @@ pub fn Events(comptime T: type) type {
         pub fn getPreferredSize(self: *const T) lib.Size {
             // TODO
             _ = self;
-            return lib.Size.init(
-                100, 50
-            );
+            return lib.Size.init(100, 50);
         }
 
         pub fn setOpacity(self: *const T, opacity: f64) void {

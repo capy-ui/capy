@@ -81,9 +81,7 @@ pub const Window = struct {
     }
 
     pub fn resize(self: *Window, width: c_int, height: c_int) void {
-        c.gtk_window_resize(@ptrCast(*c.GtkWindow, self.peer),
-            @floatToInt(c_int, @intToFloat(f32, width) * self.scale),
-            @floatToInt(c_int, @intToFloat(f32, height) * self.scale));
+        c.gtk_window_resize(@ptrCast(*c.GtkWindow, self.peer), @floatToInt(c_int, @intToFloat(f32, width) * self.scale), @floatToInt(c_int, @intToFloat(f32, height) * self.scale));
     }
 
     pub fn setTitle(self: *Window, title: [*:0]const u8) void {
@@ -116,7 +114,7 @@ pub const Window = struct {
         // TODO: Handle GtkWindow moving between screens with different DPIs
         const resolution = @as(f32, 96.0);
         self.scale = resolution / @intToFloat(f32, dpi);
-        std.log.debug("Scale: {d}", .{ self.scale });
+        std.log.debug("Scale: {d}", .{self.scale});
     }
 
     fn initMenu(menu: *c.GtkMenuShell, items: []const lib.MenuItem_Impl) void {
@@ -141,7 +139,7 @@ pub const Window = struct {
     fn gtkActivate(peer: *c.GtkMenuItem, userdata: ?*anyopaque) callconv(.C) void {
         _ = peer;
 
-        const callback = @ptrCast(fn() void, userdata);
+        const callback = @ptrCast(fn () void, userdata);
         callback();
     }
 

@@ -2,11 +2,11 @@ const std = @import("std");
 const zgt = @import("zgt");
 pub usingnamespace zgt.cross_platform;
 
-var celsius    = zgt.DataWrapper([]const u8).of("0");
+var celsius = zgt.DataWrapper([]const u8).of("0");
 var fahrenheit = zgt.DataWrapper([]const u8).of("-40");
 
 // Small buffers so that we can edit the values without even allocating memory in the app
-var celsiusBuffer   : [100]u8 = undefined;
+var celsiusBuffer: [100]u8 = undefined;
 var fahrenheitBuffer: [100]u8 = undefined;
 
 pub fn main() !void {
@@ -42,24 +42,23 @@ pub fn onCelsiusChange(newValue: []const u8, _: usize) void {
         const fahrenheitTemp = number * (9.0 / 5.0) + 32;
 
         // {d:.1} means print the float in decimal form and round it to 1 digit after the dot
-        const text = std.fmt.bufPrint(&fahrenheitBuffer, "{d:.1}", .{ fahrenheitTemp })
-            catch unreachable; // We know this is unreachable as a f32 will never exceed 100 characters
+        const text = std.fmt.bufPrint(&fahrenheitBuffer, "{d:.1}", .{fahrenheitTemp}) catch unreachable; // We know this is unreachable as a f32 will never exceed 100 characters
         fahrenheit.set(text);
     } else |err| switch (err) {
         error.InvalidCharacter => {
             fahrenheit.set("");
-        }
+        },
     }
 }
 
 pub fn onFahrenheitChange(newValue: []const u8, _: usize) void {
     if (std.fmt.parseFloat(f32, newValue)) |number| {
         const celsiusTemp = (number - 32) * (5.0 / 9.0);
-        const text = std.fmt.bufPrint(&celsiusBuffer, "{d:.1}", .{ celsiusTemp }) catch unreachable;
+        const text = std.fmt.bufPrint(&celsiusBuffer, "{d:.1}", .{celsiusTemp}) catch unreachable;
         celsius.set(text);
     } else |err| switch (err) {
         error.InvalidCharacter => {
             celsius.set("");
-        }
+        },
     }
 }

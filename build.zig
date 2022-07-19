@@ -1,56 +1,6 @@
 const std = @import("std");
 const http = @import("deps.zig").imports.apple_pie;
-
-pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !void {
-    step.subsystem = .Native;
-    // step.linkSystemLibrary("glfw");
-    // step.linkSystemLibrary("GLESv2");
-
-    switch (step.target.getOsTag()) {
-        .linux, .freebsd => {
-            step.linkLibC();
-            step.linkSystemLibrary("gtk+-3.0");
-        },
-        .windows => {
-            // There doesn't seem to be a way to link to a .def file so we temporarily put it in the Zig installation folder
-            const libcommon = step.builder.pathJoin(&.{ std.fs.path.dirname(step.builder.zig_exe).?, "lib", "libc", "mingw", "lib-common", "gdiplus.def" });
-            defer step.builder.allocator.free(libcommon);
-            std.fs.accessAbsolute(libcommon, .{}) catch |err| switch (err) {
-                error.FileNotFound => {
-                    try std.fs.copyFileAbsolute(
-                        step.builder.pathFromRoot(prefix ++ "/src/backends/win32/gdiplus.def"), libcommon, .{});
-                },
-                else => {}
-            };
-
-            step.subsystem = .Windows;
-            step.linkSystemLibrary("comctl32");
-            step.linkSystemLibrary("gdi32");
-            step.linkSystemLibrary("gdiplus");
-            switch (step.target.toTarget().cpu.arch) {
-                .x86_64 => step.addObjectFile(prefix ++ "/src/backends/win32/res/x86_64.o"),
-                //.i386 => step.addObjectFile(prefix ++ "/src/backends/win32/res/i386.o"), // currently disabled due to problems with safe SEH
-                else => {}, // not much of a problem as it'll just lack styling
-            }
-        },
-        .freestanding => {
-            if (step.target.toTarget().isWasm()) {
-                // supported
-            } else {
-                return error.UnsupportedOs;
-            }
-        },
-        else => {
-            // TODO: use the GLES backend as long as the windowing system is supported
-            // but the UI library isn't
-            return error.UnsupportedOs;
-        },
-    }
-
-    const zgt = std.build.Pkg{ .name = "zgt", .source = std.build.FileSource.relative(prefix ++ "/src/main.zig"), .dependencies = &[_]std.build.Pkg{} };
-
-    step.addPackage(zgt);
-}
+const install = @import("build_zgt.zig").install;
 
 /// Step used to run a web server
 const WebServerStep = struct {
@@ -77,7 +27,7 @@ const WebServerStep = struct {
         const self = @fieldParentPtr(WebServerStep, "step", step);
         const allocator = self.builder.allocator;
 
-        var context = Context { .builder = self.builder, .exe = self.exe };
+        var context = Context{ .builder = self.builder, .exe = self.exe };
         const builder = http.router.Builder(*Context);
         std.debug.print("Web server opened at http://localhost:8080/\n", .{});
         try http.listenAndServe(
@@ -94,11 +44,10 @@ const WebServerStep = struct {
     fn index(context: *Context, response: *http.Response, request: http.Request, _: ?*const anyopaque) !void {
         const allocator = request.arena;
         const buildRoot = context.builder.build_root;
-        const file = try std.fs.cwd().openFile(
-            try std.fs.path.join(allocator, &.{ buildRoot, "src/backends/wasm/page.html" }), .{});
+        const file = try std.fs.cwd().openFile(try std.fs.path.join(allocator, &.{ buildRoot, "src/backends/wasm/page.html" }), .{});
         defer file.close();
         const text = try file.readToEndAlloc(allocator, std.math.maxInt(usize));
-        
+
         try response.headers.put("Content-Type", "text/html");
         try response.writer().writeAll(text);
     }
@@ -109,7 +58,7 @@ const WebServerStep = struct {
         const file = try std.fs.cwd().openFile(path, .{});
         defer file.close();
         const text = try file.readToEndAlloc(allocator, std.math.maxInt(usize));
-        
+
         try response.headers.put("Content-Type", "application/wasm");
         try response.writer().writeAll(text);
     }
@@ -123,7 +72,7 @@ pub fn build(b: *std.build.Builder) !void {
     defer examplesDir.close();
 
     const broken = switch (target.getOsTag()) {
-        .windows => &[_][]const u8{ "fade" },
+        .windows => &[_][]const u8{"fade"},
         else => &[_][]const u8{},
     };
 
