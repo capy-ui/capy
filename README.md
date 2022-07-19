@@ -16,12 +16,6 @@ It has been made with the goal to empower standalone UI applications, integratio
 
 ## Usage
 
-**zgt can be used as any other library** using the Zig build package system. It only requires adding this code to your `build.zig` file (it also manages backend-specific configuration):
-
-```zig
-try @import("zgt/build.zig").install(exe, "./path/to/zgt");
-```
-
 A simple application using zgt:
 
 ```zig
