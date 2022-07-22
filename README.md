@@ -65,11 +65,52 @@ Then, in the folder of your project,
 you can execute the following commands:
 ```sh
 zigmod init
-zigmod aq add 1/zenith391/zgt
+```
+In your `build.zig`, add:
+```diff
+diff --git a/usr/bin/ziglang/lib/zig/init-exe/build.zig b/build.zig
+index 29b50b5..ccbb74b 100644
+--- a/usr/bin/ziglang/lib/zig/init-exe/build.zig
++++ b/build.zig
+@@ -1,6 +1,7 @@
+ const std = @import("std");
++const deps = @import("deps.zig");
+
+-pub fn build(b: *std.build.Builder) void {
++pub fn build(b: *std.build.Builder) !void {
+     // Standard target options allows the person running `zig build` to choose
+     // what target to build for. Here we do not override the defaults, which
+     // means any target is allowed, and the default is native. Other options
+@@ -11,7 +12,9 @@ pub fn build(b: *std.build.Builder) void {
+     // between Debug, ReleaseSafe, ReleaseFast, and ReleaseSmall.
+     const mode = b.standardReleaseOptions();
+
+-    const exe = b.addExecutable("$", "src/main.zig");
++    const exe = b.addExecutable("zgt-template", "src/main.zig");
++    const pathToZgt = ".zigmod/deps/git/github.com/zenith391/zgt/";
++    try deps.imports.zgt.install(exe, pathToZgt);
+     exe.setTarget(target);
+     exe.setBuildMode(mode);
+     exe.install();
+```
+And in your `zigmod.yml` file, add:
+```diff
+diff --git a/default_zigmod.yml b/zigmod.yml
+index e39f6f1..4774adb 100644
+--- a/default_zigmod.yml
++++ b/zigmod.yml
+@@ -2,4 +2,6 @@ id: Random ID
+ name: Your app name
+ license: Your license
+ description: A description.
++build_dependencies:
++    - src: git https://github.com/zenith391/zgt
+ root_depedencies:
+```
+Finally, run
+```sh
 zigmod fetch
 ```
-Finally, you need to follow the instructions on the
-[zigmod wiki](https://github.com/nektro/zigmod/blob/master/docs/commands/fetch.md#adding-depszig-to-your-buildzig) to change `build.zig`
 
 For more information, please look in the [wiki](https://github.com/zenith391/zgt/wiki/Installation)
 
