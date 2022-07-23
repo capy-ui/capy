@@ -68,7 +68,7 @@ pub fn build(b: *std.build.Builder) !void {
     const target = b.standardTargetOptions(.{});
     const mode = b.standardReleaseOptions();
 
-    var examplesDir = try std.fs.cwd().openDir("examples", .{ .iterate = true });
+    var examplesDir = try std.fs.cwd().openIterableDir("examples", .{});
     defer examplesDir.close();
 
     const broken = switch (target.getOsTag()) {
@@ -80,7 +80,8 @@ pub fn build(b: *std.build.Builder) !void {
     defer walker.deinit();
     while (try walker.next()) |entry| {
         if (entry.kind == .File and std.mem.eql(u8, std.fs.path.extension(entry.path), ".zig")) {
-            const name = try std.mem.replaceOwned(u8, b.allocator, entry.path[0 .. entry.path.len - 4], "/", "-");
+            const name = try std.mem.replaceOwned(u8, b.allocator, entry.path[0 .. entry.path.len - 4],
+                std.fs.path.sep_str, "-");
             defer b.allocator.free(name);
 
             // it is not freed as the path is used later for building
