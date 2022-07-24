@@ -117,6 +117,18 @@ pub const GW_OWNER = 4;
 pub const GW_CHILD = 5;
 pub const GW_ENABLEDPOPUP = 6;
 
+// High DPI support
+pub const DPI_AWARENESS_CONTEXT = INT;
+pub const DPI_AWARENESS_CONTEXT_UNAWARE = -1;
+pub const DPI_AWARENESS_CONTEXT_SYSTEM_AWARE = -2;
+pub const DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE = -3;
+pub const DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2 = -4;
+pub const DPI_AWARENESS_CONTEXT_UNAWARE_GDISCALED = -5;
+
+pub const WM_DPICHANGED = 0x02E0;
+
+pub extern "user32" fn SetProcessDpiAwarenessContext(value: DPI_AWARENESS_CONTEXT) callconv(WINAPI) BOOL;
+
 // Common Controls
 pub extern "comctl32" fn InitCommonControlsEx(picce: [*c]const INITCOMMONCONTROLSEX) callconv(WINAPI) c_int;
 pub const INITCOMMONCONTROLSEX = extern struct { dwSize: c_uint, dwICC: c_uint };

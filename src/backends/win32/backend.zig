@@ -1,6 +1,8 @@
 const std = @import("std");
 const lib = @import("../../main.zig");
 const shared = @import("../shared.zig");
+const os = @import("builtin").target.os;
+const log = std.log.scoped(.win32);
 
 const EventFunctions = shared.EventFunctions(@This());
 const EventType = shared.BackendEventType;
@@ -39,6 +41,12 @@ pub fn init() !void {
 
         var input = win32.GdiplusStartupInput{};
         try gdi.gdipWrap(win32.GdiplusStartup(&gdi.token, &input, null));
+        if (os.isAtLeast(.windows, .win10_rs2).?) {
+            // tell Windows that we support high-dpi
+            if (win32.SetProcessDpiAwarenessContext(win32.DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2) == 0) {
+                log.warn("could not set dpi awareness mode; expect the windows to look blurry on high-dpi screens", .{});
+            }
+        }
     }
 }
 
@@ -68,6 +76,7 @@ var defaultWHWND: HWND = undefined;
 
 pub const Window = struct {
     hwnd: HWND,
+    source_dpi: u32 = 96,
 
     fn relayoutChild(hwnd: HWND, lp: LPARAM) callconv(WINAPI) c_int {
         const parent = @intToPtr(HWND, @bitCast(usize, lp));
@@ -85,6 +94,9 @@ pub const Window = struct {
         switch (wm) {
             win32.WM_SIZE => {
                 _ = win32.EnumChildWindows(hwnd, relayoutChild, @bitCast(isize, @ptrToInt(hwnd)));
+            },
+            win32.WM_DPICHANGED => {
+                // TODO: update scale factor
             },
             else => {},
         }
@@ -150,6 +162,10 @@ pub const Window = struct {
         defer lib.internal.scratch_allocator.free(utf16);
 
         _ = win32.SetWindowTextW(self.hwnd, utf16);
+    }
+
+    pub fn setSourceDpi(self: *Window, dpi: u32) void {
+        self.source_dpi = dpi;
     }
 
     pub fn show(self: *Window) void {
