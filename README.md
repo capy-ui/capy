@@ -1,7 +1,7 @@
-<h1 align="center">zgt: a GUI library for Zig</h1>
+<h1 align="center">Capy: a GUI library for Zig</h1>
 <h5 align="center">GUIs in Zig, but idiomatic</h5>
 
-**As of now, zgt is NOT ready for use in production as I'm still making breaking changes**
+**As of now, Capy is NOT ready for use in production as I'm still making breaking changes**
 
 ---
 
@@ -9,43 +9,43 @@
 
 ## Introduction
 
-zgt is a **graphical user interface library for Zig**. It is mainly intended for creating applications using native controls from the operating system.
-zgt is a declarative UI library aiming to be easy to write for and versatile.
+Capy is a **graphical user interface library for Zig**. It is mainly intended for creating applications using native controls from the operating system.
+Capy is a declarative UI library aiming to be easy to write for and versatile.
 
 It has been made with the goal to empower standalone UI applications, integration in games or any other rendering process is a non-goal.
 
 ## Usage
 
-A simple application using zgt:
+A simple application using capy:
 
 ```zig
-const zgt = @import("zgt");
+const capy = @import("capy");
 const std = @import("std");
 
 pub fn main() !void {
-    try zgt.backend.init();
+    try capy.backend.init();
 
-    var window = try zgt.Window.init();
+    var window = try capy.Window.init();
     try window.set(
-        zgt.Column(.{ .spacing = 10 }, .{ // have 10px spacing between each column's element
-            zgt.Row(.{ .spacing = 5 }, .{ // have 5px spacing between each row's element
-                zgt.Button(.{ .label = "Save", .onclick = buttonClicked }),
-                zgt.Button(.{ .label = "Run",  .onclick = buttonClicked })
+        capy.Column(.{ .spacing = 10 }, .{ // have 10px spacing between each column's element
+            capy.Row(.{ .spacing = 5 }, .{ // have 5px spacing between each row's element
+                capy.Button(.{ .label = "Save", .onclick = buttonClicked }),
+                capy.Button(.{ .label = "Run",  .onclick = buttonClicked })
             }),
             // Expanded means the widget will take all the space it can
             // in the parent container
-            zgt.Expanded(
-                zgt.TextArea(.{ .text = "Hello World!" })
+            capy.Expanded(
+                capy.TextArea(.{ .text = "Hello World!" })
             )
         })
     );
 
     window.resize(800, 600);
     window.show();
-    zgt.runEventLoop();
+    capy.runEventLoop();
 }
 
-fn buttonClicked(button: *zgt.Button_Impl) !void {
+fn buttonClicked(button: *capy.Button_Impl) !void {
     std.log.info("You clicked button with text {s}", .{button.getLabel()});
 }
 ```
@@ -55,10 +55,10 @@ structs (`.{ .label = "Save" }`). You can also see that simply wrapping a widget
 ## Installation
 
 **If you're starting a new project,
-simply clone [zgt-template](https://github.com/zenith391/zgt-template)
+simply clone [capy-template](https://github.com/zenith391/capy-template)
 and follow build instructions**
 
-Otherwise if you're adding zgt to an already existing project:  
+Otherwise if you're adding capy to an already existing project:  
 
 Before proceeding, you must first install the [zigmod](https://github.com/nektro/zigmod) package manager.
 Then, in the folder of your project,
@@ -87,8 +87,8 @@ index 29b50b5..ccbb74b 100644
 
 -    const exe = b.addExecutable("$", "src/main.zig");
 +    const exe = b.addExecutable("zgt-template", "src/main.zig");
-+    const pathToZgt = ".zigmod/deps/git/github.com/zenith391/zgt/";
-+    try deps.imports.zgt.install(exe, pathToZgt);
++    const pathToCapy = ".zigmod/deps/git/github.com/zenith391/capy/";
++    try deps.imports.capy.install(exe, pathToCapy);
      exe.setTarget(target);
      exe.setBuildMode(mode);
      exe.install();
@@ -104,7 +104,7 @@ index e39f6f1..4774adb 100644
  license: Your license
  description: A description.
 +build_dependencies:
-+    - src: git https://github.com/zenith391/zgt
++    - src: git https://github.com/zenith391/capy
  root_depedencies:
 ```
 Finally, run
