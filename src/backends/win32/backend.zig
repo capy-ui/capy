@@ -72,12 +72,13 @@ pub fn showNativeMessageDialog(msgType: MessageType, comptime fmt: []const u8, a
     };
 }
 
-const className = "zgtWClass";
 var defaultWHWND: HWND = undefined;
 
 pub const Window = struct {
     hwnd: HWND,
     source_dpi: u32 = 96,
+    
+    const className = "capyWClass";
 
     fn relayoutChild(hwnd: HWND, lp: LPARAM) callconv(WINAPI) c_int {
         const parent = @intToPtr(HWND, @bitCast(usize, lp));
@@ -106,7 +107,7 @@ pub const Window = struct {
 
     pub fn create() !Window {
         var wc: win32.WNDCLASSEXA = .{
-            .style = 0,
+            .style = win32.CS_HREDRAW | win32.CS_VREDRAW,
             .lpfnWndProc = process,
             .cbClsExtra = 0,
             .cbWndExtra = 0,
@@ -579,7 +580,7 @@ pub const Button = struct {
         const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
             "BUTTON", // lpClassName
             "", // lpWindowName
-            win32.WS_TABSTOP | win32.WS_CHILD | win32.BS_DEFPUSHBUTTON, // dwStyle
+            win32.WS_TABSTOP | win32.WS_CHILD | win32.BS_PUSHBUTTON | win32.BS_FLAT, // dwStyle
             10, // X
             10, // Y
             100, // nWidth

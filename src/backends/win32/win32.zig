@@ -25,6 +25,7 @@ pub const INT = std.os.windows.INT;
 pub const DWORD = std.os.windows.DWORD;
 pub const HGDIOBJ = *opaque {};
 
+pub const BS_PUSHBUTTON = 0;
 pub const BS_DEFPUSHBUTTON = 1;
 pub const BS_FLAT = 0x00008000;
 
