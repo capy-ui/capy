@@ -50,7 +50,7 @@ fn buttonClicked(button: *capy.Button_Impl) !void {
 }
 ```
 It is easy to add something like a button or a text area. The example can already be used to notice a widget's parameters are usually enclosed in anonymous
-structs (`.{ .label = "Save" }`). You can also see that simply wrapping a widget with `zgt.Expanded( ... )` will tell it to take all the space it can.
+structs (`.{ .label = "Save" }`). You can also see that simply wrapping a widget with `capy.Expanded( ... )` will tell it to take all the space it can.
 
 ## Installation
 
@@ -86,11 +86,11 @@ index 29b50b5..ccbb74b 100644
      const mode = b.standardReleaseOptions();
 
 -    const exe = b.addExecutable("$", "src/main.zig");
-+    const exe = b.addExecutable("zgt-template", "src/main.zig");
++    const exe = b.addExecutable("capy-template", "src/main.zig");
 +    const pathToCapy = ".zigmod/deps/git/github.com/zenith391/capy/";
-+    try deps.imports.capy.install(exe, pathToCapy);
      exe.setTarget(target);
      exe.setBuildMode(mode);
++    try deps.imports.capy.install(exe, pathToCapy);
      exe.install();
 ```
 And in your `zigmod.yml` file, add:
@@ -112,7 +112,7 @@ Finally, run
 zigmod fetch
 ```
 
-For more information, please look in the [wiki](https://github.com/zenith391/zgt/wiki/Installation)
+For more information, please look in the [wiki](https://github.com/zenith391/capy/wiki/Installation)
 
 ## Supported platforms
 
