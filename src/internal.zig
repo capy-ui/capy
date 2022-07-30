@@ -13,15 +13,28 @@ const MouseButton = @import("backends/shared.zig").MouseButton;
 
 const link_libc = @import("builtin").link_libc;
 
+/// The default allocator if capy_scratch_allocator or capy_lasting_allocator isn't defined
+const default_allocator = blk: {
+    if (@hasDecl(root, "capy_allocator")) {
+        break :blk root.capy_allocator;
+    } else if (@import("builtin").is_test) {
+        break :blk std.testing.allocator;
+    } else if (link_libc) {
+        break :blk std.heap.c_allocator;
+    } else {
+        break :blk std.heap.page_allocator;
+    }
+};
+
 /// Allocator used for small, short-lived and repetitive allocations.
-/// You can change this by setting the `zgtScratchAllocator` field in your main file
+/// You can change this by setting the `capy_scratch_allocator` field in your main file
 /// or by setting the `zgtAllocator` field which will also apply as lasting allocator.
-pub const scratch_allocator = if (@hasDecl(root, "zgtScratchAllocator")) root.zgtScratchAllocator else if (@hasDecl(root, "zgtAllocator")) root.zgtAllocator else if (@import("builtin").is_test) std.testing.allocator else if (link_libc) std.heap.c_allocator else std.heap.page_allocator;
+pub const scratch_allocator = if (@hasDecl(root, "capy_scratch_allocator")) root.capy_scratch_allocator else default_allocator;
 
 /// Allocator used for bigger, longer-lived but rare allocations (example: widgets).
-/// You can change this by setting the `zgtLastingAllocator` field in your main file
+/// You can change this by setting the `capy_lasting_allocator` field in your main file
 /// or by setting the `zgtAllocator` field which will also apply as scratch allocator.
-pub const lasting_allocator = if (@hasDecl(root, "zgtLastingAllocator")) root.zgtLastingAllocator else if (@hasDecl(root, "zgtAllocator")) root.zgtAllocator else if (@import("builtin").is_test) std.testing.allocator else if (link_libc) std.heap.c_allocator else std.heap.page_allocator;
+pub const lasting_allocator = if (@hasDecl(root, "capy_lasting_allocator")) root.capy_lasting_allocator else default_allocator;
 
 /// Convenience function for creating widgets
 pub fn All(comptime T: type) type {

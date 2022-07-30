@@ -32,7 +32,7 @@ pub fn init() !void {
         hasInit = true;
         const hInstance = @ptrCast(win32.HINSTANCE, @alignCast(@alignOf(win32.HINSTANCE), win32.GetModuleHandleW(null).?));
         hInst = hInstance;
-        
+
         if (os.isAtLeast(.windows, .win10_rs2).?) {
             // tell Windows that we support high-dpi
             if (win32.SetProcessDpiAwarenessContext(win32.DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2) == 0) {

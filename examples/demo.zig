@@ -1,16 +1,16 @@
-const zgt = @import("zgt");
-pub usingnamespace zgt.cross_platform;
+const capy = @import("capy");
+pub usingnamespace capy.cross_platform;
 
 pub fn main() !void {
-    try zgt.backend.init();
+    try capy.backend.init();
 
-    var window = try zgt.Window.init();
-    try window.set(zgt.Row(.{}, .{
-        zgt.Button(.{ .label = "Tree" }),
-        zgt.Expanded(zgt.Button(.{ .label = "Main" })),
-        zgt.Button(.{ .label = "Misc" }),
+    var window = try capy.Window.init();
+    try window.set(capy.Row(.{}, .{
+        capy.Button(.{ .label = "Tree" }),
+        capy.Expanded(capy.Button(.{ .label = "Main" })),
+        capy.Button(.{ .label = "Misc" }),
     }));
 
     window.show();
-    zgt.runEventLoop();
+    capy.runEventLoop();
 }

@@ -4,10 +4,6 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
     step.subsystem = .Native;
     // step.linkSystemLibrary("glfw");
     // step.linkSystemLibrary("GLESv2");
-    
-    //step.addLibraryPath("/system/lib64");
-    //step.single_threaded = true;
-    //step.addRPath("/data/data/com.termux/files/usr/lib");
 
     switch (step.target.getOsTag()) {
         .linux, .freebsd => {
@@ -49,7 +45,10 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
         },
     }
 
-    const zgt = std.build.Pkg{ .name = "zgt", .source = std.build.FileSource.relative(prefix ++ "/src/main.zig"), .dependencies = &[_]std.build.Pkg{} };
-
-    step.addPackage(zgt);
+    const capy = std.build.Pkg{
+        .name = "capy",
+        .source = std.build.FileSource.relative(prefix ++ "/src/main.zig"),
+        .dependencies = &[_]std.build.Pkg{},
+    };
+    step.addPackage(capy);
 }

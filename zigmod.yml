@@ -1,13 +1,7 @@
 id: deeztnhr07fkixemzrksabk1elbzfz1clpervtjjcgxntyop
-name: zgt
-main: build_zgt.zig
+name: capy
+main: build_capy.zig
 license: MIT
 min_zig_version: 0.10.0-dev.2625+d506275a0
-main: build_zgt.zig
-dependencies:
-    - src: system_lib gtk+-3.0
-      only_os: linux
-    - src: system_lib c
-      only_os: linux
 build_dependencies:
     - src: git https://github.com/Luukdegram/apple_pie

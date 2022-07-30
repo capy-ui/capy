@@ -1,19 +1,19 @@
 const std = @import("std");
-const zgt = @import("zgt");
-pub usingnamespace zgt.cross_platform;
+const capy = @import("capy");
+pub usingnamespace capy.cross_platform;
 
-// Short names to avoid writing 'zgt.' each time
-const Button = zgt.Button;
-const Margin = zgt.Margin;
-const Expanded = zgt.Expanded;
-const Row = zgt.Row;
+// Short names to avoid writing 'capy.' each time
+const Button = capy.Button;
+const Margin = capy.Margin;
+const Expanded = capy.Expanded;
+const Row = capy.Row;
 
 const Allocator = std.mem.Allocator;
 
-var computationLabel: zgt.Label_Impl = undefined;
+var computationLabel: capy.Label_Impl = undefined;
 var allocator: Allocator = undefined;
 
-pub fn pressedKey(button: *zgt.Button_Impl) !void {
+pub fn pressedKey(button: *capy.Button_Impl) !void {
     const buttonLabel = button.getLabel();
     const labelText = computationLabel.getText();
 
@@ -26,7 +26,7 @@ pub fn pressedKey(button: *zgt.Button_Impl) !void {
     allocator.free(larger);
 }
 
-pub fn erase(button: *zgt.Button_Impl) !void {
+pub fn erase(button: *capy.Button_Impl) !void {
     _ = button;
     computationLabel.setText("");
 }
@@ -35,7 +35,7 @@ fn findOperator(computation: []const u8, pos: usize) ?usize {
     return std.mem.indexOfScalarPos(u8, computation, pos, '+') orelse std.mem.indexOfScalarPos(u8, computation, pos, '-') orelse std.mem.indexOfScalarPos(u8, computation, pos, '*') orelse std.mem.indexOfScalarPos(u8, computation, pos, '/');
 }
 
-pub fn compute(button: *zgt.Button_Impl) !void {
+pub fn compute(button: *capy.Button_Impl) !void {
     _ = button;
     const rawText = computationLabel.getText();
     const computation = rawText;
@@ -79,14 +79,14 @@ pub fn compute(button: *zgt.Button_Impl) !void {
 }
 
 pub fn main() !void {
-    try zgt.backend.init();
+    try capy.backend.init();
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
     defer _ = gpa.deinit();
     allocator = gpa.allocator();
 
-    var window = try zgt.Window.init();
-    computationLabel = zgt.Label(.{ .text = "", .alignment = .Left });
-    try window.set(zgt.Column(.{ .expand = .Fill, .spacing = 10 }, .{
+    var window = try capy.Window.init();
+    computationLabel = capy.Label(.{ .text = "", .alignment = .Left });
+    try window.set(capy.Column(.{ .expand = .Fill, .spacing = 10 }, .{
         &computationLabel,
         Expanded(Row(.{ .expand = .Fill, .spacing = 10 }, .{
             Button(.{ .label = "7", .onclick = pressedKey }),
@@ -117,5 +117,5 @@ pub fn main() !void {
     window.resize(400, 500);
     window.setTitle("Calculator");
     window.show();
-    zgt.runEventLoop();
+    capy.runEventLoop();
 }

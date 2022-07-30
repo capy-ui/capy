@@ -1,28 +1,28 @@
 const std = @import("std");
-const zgt = @import("zgt");
-pub usingnamespace zgt.cross_platform;
+const capy = @import("capy");
+pub usingnamespace capy.cross_platform;
 
-var celsius = zgt.DataWrapper([]const u8).of("0");
-var fahrenheit = zgt.DataWrapper([]const u8).of("-40");
+var celsius = capy.DataWrapper([]const u8).of("0");
+var fahrenheit = capy.DataWrapper([]const u8).of("-40");
 
 // Small buffers so that we can edit the values without even allocating memory in the app
 var celsiusBuffer: [100]u8 = undefined;
 var fahrenheitBuffer: [100]u8 = undefined;
 
 pub fn main() !void {
-    try zgt.backend.init();
+    try capy.backend.init();
 
-    var window = try zgt.Window.init();
+    var window = try capy.Window.init();
 
-    try window.set(zgt.Column(.{}, .{
-        zgt.Row(.{ .alignX = 0.5 }, .{
-            zgt.Row(.{ .alignY = 0.5, .spacing = 5 }, .{
-                zgt.TextField(.{})
+    try window.set(capy.Column(.{}, .{
+        capy.Row(.{ .alignX = 0.5 }, .{
+            capy.Row(.{ .alignY = 0.5, .spacing = 5 }, .{
+                capy.TextField(.{})
                     .bindText(&celsius),
-                zgt.Label(.{ .text = "Celsius =" }),
-                zgt.TextField(.{})
+                capy.Label(.{ .text = "Celsius =" }),
+                capy.TextField(.{})
                     .bindText(&fahrenheit),
-                zgt.Label(.{ .text = "Fahrenheit" }),
+                capy.Label(.{ .text = "Fahrenheit" }),
             }),
         }),
     }));
@@ -34,7 +34,7 @@ pub fn main() !void {
     window.resize(500, 200);
     window.show();
 
-    zgt.runEventLoop();
+    capy.runEventLoop();
 }
 
 pub fn onCelsiusChange(newValue: []const u8, _: usize) void {

@@ -1,15 +1,15 @@
-const zgt = @import("zgt");
+const capy = @import("capy");
 const std = @import("std");
 
 // Small block needed for correct WebAssembly support
-pub usingnamespace zgt.cross_platform;
+pub usingnamespace capy.cross_platform;
 
 var graph: LineGraph_Impl = undefined;
 
 pub const LineGraph_Impl = struct {
-    pub usingnamespace zgt.internal.All(LineGraph_Impl);
+    pub usingnamespace capy.internal.All(LineGraph_Impl);
 
-    peer: ?zgt.backend.Canvas = null,
+    peer: ?capy.backend.Canvas = null,
     handlers: LineGraph_Impl.Handlers = undefined,
     dataWrappers: LineGraph_Impl.DataWrappers = .{},
     dataFn: fn (x: f32) f32,
@@ -18,7 +18,7 @@ pub const LineGraph_Impl = struct {
         return LineGraph_Impl.init_events(LineGraph_Impl{ .dataFn = dataFn });
     }
 
-    pub fn draw(self: *LineGraph_Impl, ctx: *zgt.DrawContext) !void {
+    pub fn draw(self: *LineGraph_Impl, ctx: *capy.DrawContext) !void {
         const width = self.getWidth();
         const height = self.getHeight();
         ctx.setColor(1, 1, 1);
@@ -38,7 +38,7 @@ pub const LineGraph_Impl = struct {
 
         var legendValue: f32 = minValue;
         var legendBuf: [100]u8 = undefined; // the program can't handle a number that is 100 digits long so it's enough
-        var legendLayout = zgt.DrawContext.TextLayout.init();
+        var legendLayout = capy.DrawContext.TextLayout.init();
         defer legendLayout.deinit();
         legendLayout.setFont(.{ .face = "Arial", .size = 12.0 });
 
@@ -76,15 +76,15 @@ pub const LineGraph_Impl = struct {
 
     pub fn show(self: *LineGraph_Impl) !void {
         if (self.peer == null) {
-            self.peer = try zgt.backend.Canvas.create();
+            self.peer = try capy.backend.Canvas.create();
             try self.show_events();
         }
     }
 
-    pub fn getPreferredSize(self: *LineGraph_Impl, available: zgt.Size) zgt.Size {
+    pub fn getPreferredSize(self: *LineGraph_Impl, available: capy.Size) capy.Size {
         _ = self;
         _ = available;
-        return zgt.Size{ .width = 500.0, .height = 200.0 };
+        return capy.Size{ .width = 500.0, .height = 200.0 };
     }
 };
 
@@ -133,10 +133,10 @@ fn randf(x: f32) f32 {
 }
 
 fn easing(x: f32) f32 {
-    return @floatCast(f32, zgt.Easings.Linear(x / 10.0));
+    return @floatCast(f32, capy.Easings.Linear(x / 10.0));
 }
 
-fn SetEasing(comptime Easing: fn (x: f64) f64) fn (*zgt.Button_Impl) anyerror!void {
+fn SetEasing(comptime Easing: fn (x: f64) f64) fn (*capy.Button_Impl) anyerror!void {
     const func = struct {
         pub fn function(x: f32) f32 {
             return @floatCast(f32, Easing(x / 10.0));
@@ -144,7 +144,7 @@ fn SetEasing(comptime Easing: fn (x: f64) f64) fn (*zgt.Button_Impl) anyerror!vo
     }.function;
 
     const callback = struct {
-        pub fn callback(btn: *zgt.Button_Impl) anyerror!void {
+        pub fn callback(btn: *capy.Button_Impl) anyerror!void {
             _ = btn;
             graph.dataFn = func;
             try graph.requestDraw();
@@ -153,41 +153,41 @@ fn SetEasing(comptime Easing: fn (x: f64) f64) fn (*zgt.Button_Impl) anyerror!vo
     return callback;
 }
 
-fn drawRectangle(widget: *zgt.Canvas_Impl, ctx: *zgt.Canvas_Impl.DrawContext) !void {
+fn drawRectangle(widget: *capy.Canvas_Impl, ctx: *capy.Canvas_Impl.DrawContext) !void {
     _ = widget;
     ctx.setColor(0, 0, 0);
     ctx.rectangle(0, 0, 100, 100);
     ctx.fill();
 }
 
-var rectangleX = zgt.DataWrapper(?f32).of(0.1);
+var rectangleX = capy.DataWrapper(?f32).of(0.1);
 var animStart: i64 = 0;
 pub fn main() !void {
-    try zgt.backend.init();
+    try capy.backend.init();
 
-    var window = try zgt.Window.init();
+    var window = try capy.Window.init();
     graph = try LineGraph(.{ .dataFn = easing });
 
-    var rectangle = (try zgt.Column(.{}, .{zgt.Canvas(.{})
-        .setPreferredSize(zgt.Size{ .width = 100, .height = 100 })
+    var rectangle = (try capy.Column(.{}, .{capy.Canvas(.{})
+        .setPreferredSize(capy.Size{ .width = 100, .height = 100 })
         .addDrawHandler(drawRectangle)}))
         .bindAlignX(&rectangleX);
 
-    try window.set(zgt.Column(.{}, .{
-        zgt.Row(.{ .spacing = 10, .alignX = 0.5 }, .{
-            zgt.Button(.{ .label = "Linear", .onclick = SetEasing(zgt.Easings.Linear) }),
-            zgt.Button(.{ .label = "In", .onclick = SetEasing(zgt.Easings.In) }),
-            zgt.Button(.{ .label = "Out", .onclick = SetEasing(zgt.Easings.Out) }),
-            zgt.Button(.{ .label = "In Out", .onclick = SetEasing(zgt.Easings.InOut) }),
+    try window.set(capy.Column(.{}, .{
+        capy.Row(.{ .spacing = 10, .alignX = 0.5 }, .{
+            capy.Button(.{ .label = "Linear", .onclick = SetEasing(capy.Easings.Linear) }),
+            capy.Button(.{ .label = "In", .onclick = SetEasing(capy.Easings.In) }),
+            capy.Button(.{ .label = "Out", .onclick = SetEasing(capy.Easings.Out) }),
+            capy.Button(.{ .label = "In Out", .onclick = SetEasing(capy.Easings.InOut) }),
         }),
-        zgt.Expanded(&graph),
+        capy.Expanded(&graph),
         &rectangle,
     }));
 
     window.resize(800, 600);
     window.show();
 
-    while (zgt.stepEventLoop(.Asynchronous)) {
+    while (capy.stepEventLoop(.Asynchronous)) {
         var dt = std.time.milliTimestamp() - animStart;
         if (dt > 1500) {
             animStart = std.time.milliTimestamp();

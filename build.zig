@@ -1,6 +1,6 @@
 const std = @import("std");
 const http = @import("deps.zig").imports.apple_pie;
-const install = @import("build_zgt.zig").install;
+const install = @import("build_capy.zig").install;
 
 /// Step used to run a web server
 const WebServerStep = struct {
@@ -72,7 +72,7 @@ pub fn build(b: *std.build.Builder) !void {
     defer examplesDir.close();
 
     const broken = switch (target.getOsTag()) {
-        .windows => &[_][]const u8{"fade"},
+        .windows => &[_][]const u8{"fade","foo_app"},
         else => &[_][]const u8{},
     };
 
@@ -80,8 +80,7 @@ pub fn build(b: *std.build.Builder) !void {
     defer walker.deinit();
     while (try walker.next()) |entry| {
         if (entry.kind == .File and std.mem.eql(u8, std.fs.path.extension(entry.path), ".zig")) {
-            const name = try std.mem.replaceOwned(u8, b.allocator, entry.path[0 .. entry.path.len - 4],
-                std.fs.path.sep_str, "-");
+            const name = try std.mem.replaceOwned(u8, b.allocator, entry.path[0 .. entry.path.len - 4], std.fs.path.sep_str, "-");
             defer b.allocator.free(name);
 
             // it is not freed as the path is used later for building
@@ -127,9 +126,10 @@ pub fn build(b: *std.build.Builder) !void {
         }
     }
 
-    const lib = b.addSharedLibrary("zgt", "src/c_api.zig", b.version(0, 1, 0));
+    const lib = b.addSharedLibrary("capy", "src/c_api.zig", b.version(0, 1, 0));
     lib.setTarget(target);
     lib.setBuildMode(mode);
+    lib.linkLibC();
     try install(lib, ".");
     lib.emit_h = true;
     lib.install();
@@ -137,7 +137,7 @@ pub fn build(b: *std.build.Builder) !void {
     const sharedlib_install_step = b.addInstallArtifact(lib);
     b.getInstallStep().dependOn(&sharedlib_install_step.step);
 
-    const buildc_step = b.step("shared", "Build zgt as a shared library (with C ABI)");
+    const buildc_step = b.step("shared", "Build capy as a shared library (with C ABI)");
     buildc_step.dependOn(&lib.install_step.?.step);
 
     const tests = b.addTest("src/main.zig");
