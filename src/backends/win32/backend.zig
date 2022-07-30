@@ -189,6 +189,8 @@ const EventUserData = struct {
     class: EventFunctions = .{},
     userdata: usize = 0,
     classUserdata: usize = 0,
+    // (very) weak method to detect if a text box's text has actually changed
+    last_text_len: win32.INT = 0,
 };
 
 inline fn getEventUserData(peer: HWND) *EventUserData {
@@ -213,23 +215,33 @@ pub fn Events(comptime T: type) type {
                 },
                 else => {},
             }
-            std.log.info("dd: 0x{x}", .{wm});
             if (win32.GetWindowLongPtr(hwnd, win32.GWL_USERDATA) == 0) return win32.DefWindowProcA(hwnd, wm, wp, lp);
             switch (wm) {
                 win32.WM_COMMAND => {
                     const code = @intCast(u16, wp >> 16);
                     const data = getEventUserData(@intToPtr(HWND, @bitCast(usize, lp)));
-                    std.log.info("WM_COMMAND: 0x{x}", .{code});
                     switch (code) {
                         win32.BN_CLICKED => {
                             if (data.user.clickHandler) |handler|
                                 handler(data.userdata);
                         },
                         win32.EN_CHANGE => {
+                            // Doesn't appear to work.
                             if (data.user.changedTextHandler) |handler|
                                 handler(data.userdata);
                         },
                         else => {},
+                    }
+                },
+                win32.WM_CTLCOLOREDIT => {
+                    const data = getEventUserData(@intToPtr(HWND, @bitCast(usize, lp)));
+                    const len = win32.GetWindowTextLengthW(@intToPtr(HWND, @bitCast(usize, lp)));
+                    // The text box may have changed
+                    // TODO: send the event only when the text truly changed
+                    if (data.last_text_len != len) {
+                        if (data.user.changedTextHandler) |handler|
+                            handler(data.userdata);
+                        data.last_text_len = len;
                     }
                 },
                 win32.WM_NOTIFY => {
