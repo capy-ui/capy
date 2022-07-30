@@ -23,6 +23,7 @@ pub const ULONG = std.os.windows.ULONG;
 pub const UINT = std.os.windows.UINT;
 pub const INT = std.os.windows.INT;
 pub const DWORD = std.os.windows.DWORD;
+pub const CHAR = std.os.windows.CHAR;
 pub const HGDIOBJ = *opaque {};
 
 pub const BS_PUSHBUTTON = 0;
@@ -37,6 +38,8 @@ pub const WS_EX_COMPOSITED = 0x02000000;
 
 pub const BN_CLICKED = 0;
 pub const EN_CHANGE = 0x0300;
+
+pub const SPI_GETNONCLIENTMETRICS = 0x0029;
 
 pub const WNDENUMPROC = fn (hwnd: HWND, lParam: LPARAM) callconv(WINAPI) c_int;
 
@@ -62,6 +65,7 @@ pub extern "gdi32" fn Ellipse(hdc: HDC, left: c_int, top: c_int, right: c_int, b
 pub extern "gdi32" fn ExtTextOutA(hdc: HDC, x: c_int, y: c_int, options: UINT, lprect: ?*const RECT, lpString: [*]const u8, c: UINT, lpDx: ?*const INT) callconv(WINAPI) BOOL;
 pub extern "gdi32" fn GetTextExtentPoint32A(hdc: HDC, lpString: [*]const u8, c: c_int, psizl: *SIZE) callconv(WINAPI) BOOL;
 pub extern "gdi32" fn CreateFontA(cHeight: c_int, cWidth: c_int, cEscapement: c_int, cOrientation: c_int, cWeight: c_int, bItalic: DWORD, bUnderline: DWORD, bStrikeOut: DWORD, iCharSet: DWORD, iOutPrecision: DWORD, iClipPrecision: DWORD, iQuality: DWORD, iPitchAndFamily: DWORD, pszFaceName: std.os.windows.LPCSTR) callconv(WINAPI) ?HFONT;
+pub extern "gdi32" fn CreateFontIndirectA(lplf: *const LOGFONTA) callconv(WINAPI) ?HFONT;
 pub extern "gdi32" fn GetStockObject(i: c_int) callconv(WINAPI) HGDIOBJ;
 pub extern "gdi32" fn CreateCompatibleDC(hdc: ?HDC) callconv(WINAPI) ?HDC;
 pub extern "gdi32" fn SetDCBrushColor(hdc: HDC, color: COLORREF) callconv(WINAPI) COLORREF;
@@ -74,6 +78,7 @@ pub extern "user32" fn GetWindowRgnBox(hWnd: HWND, lprc: LPRECT) callconv(WINAPI
 pub extern "user32" fn InvalidateRect(hWnd: HWND, lpRect: *const RECT, bErase: BOOL) callconv(WINAPI) BOOL;
 pub extern "user32" fn GetWindowExtEx(hdc: HDC, lpsize: *SIZE) callconv(WINAPI) BOOL;
 pub extern "user32" fn EnableWindow(hWnd: HWND, enable: BOOL) callconv(WINAPI) BOOL;
+pub extern "user32" fn SystemParametersInfoA(uiAction: UINT, uiParam: UINT, pvParam: ?*anyopaque, fWinIni: UINT) callconv(WINAPI) BOOL;
 
 // stock objects constants
 pub const WHITE_BRUSH = 0;
@@ -155,6 +160,42 @@ pub const NMHDR = extern struct {
     hwndFrom: HWND,
     idFrom: UINT,
     code: UINT,
+};
+
+pub const LOGFONTA = extern struct {
+    lfHeight: LONG,
+    lfWidth: LONG,
+    lfEscapement: LONG,
+    lfOrientation: LONG,
+    lfWeight: LONG,
+    lfItalic: BYTE,
+    lfUnderline: BYTE,
+    lfStrikeOut: BYTE,
+    lfCharSet: BYTE,
+    lfOutPrecision: BYTE,
+    lfClipPrecision: BYTE,
+    lfQuality: BYTE,
+    lfPitchAndFamily: BYTE,
+    lfFaceName: [32]CHAR,
+};
+
+pub const NONCLIENTMETRICSA = extern struct {
+    cbSize: UINT = @sizeOf(NONCLIENTMETRICSA),
+    iBorderWidth: c_int,
+    iScrollWidth: c_int,
+    iScrollHeight: c_int,
+    iCaptionWidth: c_int,
+    iCaptionHeight: c_int,
+    lfCaptionFont: LOGFONTA,
+    iSmCaptionWidth: c_int,
+    iSmCaptionHeight: c_int,
+    lfSmCaptionFont: LOGFONTA,
+    iMenuWidth: c_int,
+    iMenuHeight: c_int,
+    lfMenuFont: LOGFONTA,
+    lfStatusFont: LOGFONTA,
+    lfMessageFont: LOGFONTA,
+    iPaddedBorderWidth: c_int,
 };
 
 pub fn GetWindowLongPtr(hWnd: HWND, nIndex: c_int) usize {

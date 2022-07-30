@@ -25,6 +25,11 @@ pub const Capabilities = .{ .useEventLoop = true };
 pub const PeerType = HWND;
 
 var hInst: HINSTANCE = undefined;
+/// By default, win32 controls use DEFAULT_GUI_FONT which is an outdated
+/// font from Windows 95 days, by default it doesn't even use ClearType
+/// anti-aliasing. So we take the real default caption font from
+/// NONFCLIENTEMETRICS and apply it manually to every widget.
+var captionFont: win32.HFONT = undefined;
 var hasInit: bool = false;
 
 pub fn init() !void {
@@ -51,6 +56,14 @@ pub fn init() !void {
 
         var input = win32.GdiplusStartupInput{};
         try gdi.gdipWrap(win32.GdiplusStartup(&gdi.token, &input, null));
+        
+        var ncMetrics: win32.NONCLIENTMETRICSA = undefined;
+        ncMetrics.cbSize = @sizeOf(win32.NONCLIENTMETRICSA);
+        _ = win32.SystemParametersInfoA(win32.SPI_GETNONCLIENTMETRICS,
+            @sizeOf(win32.NONCLIENTMETRICSA),
+            &ncMetrics,
+            0);
+        captionFont = win32.CreateFontIndirectA(&ncMetrics.lfCaptionFont).?;
     }
 }
 
@@ -560,6 +573,7 @@ pub const TextField = struct {
             null // lpParam
         );
         try TextField.setupEvents(hwnd);
+        _ = win32.SendMessageA(hwnd, win32.WM_SETFONT, @ptrToInt(captionFont), 1);
 
         return TextField{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator) };
     }
@@ -614,6 +628,7 @@ pub const Button = struct {
             null // lpParam
         );
         try Button.setupEvents(hwnd);
+        _ = win32.SendMessageA(hwnd, win32.WM_SETFONT, @ptrToInt(captionFont), 1);
 
         return Button{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator) };
     }
@@ -660,6 +675,7 @@ pub const Label = struct {
             null // lpParam
         );
         try Label.setupEvents(hwnd);
+        _ = win32.SendMessageA(hwnd, win32.WM_SETFONT, @ptrToInt(captionFont), 1);
 
         return Label{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator) };
     }
