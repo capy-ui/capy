@@ -40,7 +40,10 @@ pub fn init() !void {
             }
         }
 
-        const initEx = win32.INITCOMMONCONTROLSEX{ .dwSize = @sizeOf(win32.INITCOMMONCONTROLSEX), .dwICC = win32.ICC_STANDARD_CLASSES };
+        const initEx = win32.INITCOMMONCONTROLSEX{
+            .dwSize = @sizeOf(win32.INITCOMMONCONTROLSEX),
+            .dwICC = win32.ICC_STANDARD_CLASSES | win32.ICC_WIN95_CLASSES,
+        };
         const code = win32.InitCommonControlsEx(&initEx);
         if (code == 0) {
             std.debug.print("Failed to initialize Common Controls.", .{});
@@ -77,7 +80,7 @@ var defaultWHWND: HWND = undefined;
 pub const Window = struct {
     hwnd: HWND,
     source_dpi: u32 = 96,
-    
+
     const className = "capyWClass";
 
     fn relayoutChild(hwnd: HWND, lp: LPARAM) callconv(WINAPI) c_int {
@@ -114,7 +117,7 @@ pub const Window = struct {
             .hInstance = hInst,
             .hIcon = null, // TODO: LoadIcon
             .hCursor = null, // TODO: LoadCursor
-            .hbrBackground = win32.GetSysColorBrush(win32.COLOR_WINDOW),
+            .hbrBackground = win32.GetSysColorBrush(win32.COLOR_3DFACE),
             .lpszMenuName = null,
             .lpszClassName = className,
             .hIconSm = null,
@@ -125,8 +128,7 @@ pub const Window = struct {
             return Win32Error.InitializationError;
         }
 
-        const hwnd = try win32.createWindowExA(
-            win32.WS_EX_LEFT | win32.WS_EX_COMPOSITED | win32.WS_EX_LAYERED, // dwExtStyle
+        const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT | win32.WS_EX_COMPOSITED | win32.WS_EX_LAYERED, // dwExtStyle
             className, // lpClassName
             "", // lpWindowName
             win32.WS_OVERLAPPEDWINDOW, // dwStyle
@@ -211,16 +213,20 @@ pub fn Events(comptime T: type) type {
                 },
                 else => {},
             }
+            std.log.info("dd: 0x{x}", .{wm});
             if (win32.GetWindowLongPtr(hwnd, win32.GWL_USERDATA) == 0) return win32.DefWindowProcA(hwnd, wm, wp, lp);
             switch (wm) {
                 win32.WM_COMMAND => {
-                    const code = @intCast(u16, wp << 16);
+                    const code = @intCast(u16, wp >> 16);
                     const data = getEventUserData(@intToPtr(HWND, @bitCast(usize, lp)));
+                    std.log.info("WM_COMMAND: 0x{x}", .{code});
                     switch (code) {
                         win32.BN_CLICKED => {
-                            if (data.class.clickHandler) |handler|
-                                handler(data.userdata);
                             if (data.user.clickHandler) |handler|
+                                handler(data.userdata);
+                        },
+                        win32.EN_CHANGE => {
+                            if (data.user.changedTextHandler) |handler|
                                 handler(data.userdata);
                         },
                         else => {},
@@ -531,7 +537,7 @@ pub const TextField = struct {
         const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
             "EDIT", // lpClassName
             "", // lpWindowName
-            win32.WS_TABSTOP | win32.WS_CHILD, // dwStyle
+            win32.WS_TABSTOP | win32.WS_CHILD | win32.WS_BORDER, // dwStyle
             10, // X
             10, // Y
             100, // nWidth
@@ -568,6 +574,7 @@ pub const TextField = struct {
 
     pub fn setReadOnly(self: *TextField, readOnly: bool) void {
         _ = win32.SendMessageA(self.peer, win32.EM_SETREADONLY, @boolToInt(readOnly), undefined);
+        _ = win32.EnableWindow(self.peer, @boolToInt(!readOnly));
     }
 };
 

@@ -59,8 +59,7 @@ pub const Color = packed struct {
         return @floatToInt(u8, @intToFloat(f64, a) * (1 - t) + @intToFloat(f64, b) * t);
     }
 
-    // TODO: interpolate between colors in a way that better matches
-    // the human vision. Maybe using an other color space like HSLuv?
+    // TODO: interpolate between colors in linear RGB space
     pub fn lerp(a: Color, b: Color, t: f64) Color {
         return Color{
             .red = lerpByte(a.red, b.red, t),

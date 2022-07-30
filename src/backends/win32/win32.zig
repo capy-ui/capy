@@ -36,6 +36,7 @@ pub const SWP_NOZORDER = 0x0004;
 pub const WS_EX_COMPOSITED = 0x02000000;
 
 pub const BN_CLICKED = 0;
+pub const EN_CHANGE = 0x0300;
 
 pub const WNDENUMPROC = fn (hwnd: HWND, lParam: LPARAM) callconv(WINAPI) c_int;
 
@@ -72,6 +73,7 @@ pub extern "gdi32" fn LineTo(hdc: HDC, x: c_int, y: c_int) callconv(WINAPI) BOOL
 pub extern "user32" fn GetWindowRgnBox(hWnd: HWND, lprc: LPRECT) callconv(WINAPI) c_int;
 pub extern "user32" fn InvalidateRect(hWnd: HWND, lpRect: *const RECT, bErase: BOOL) callconv(WINAPI) BOOL;
 pub extern "user32" fn GetWindowExtEx(hdc: HDC, lpsize: *SIZE) callconv(WINAPI) BOOL;
+pub extern "user32" fn EnableWindow(hWnd: HWND, enable: BOOL) callconv(WINAPI) BOOL;
 
 // stock objects constants
 pub const WHITE_BRUSH = 0;
@@ -172,6 +174,7 @@ pub fn SetWindowLongPtr(hWnd: HWND, nIndex: c_int, dwNewLong: usize) void {
 }
 
 pub const ICC_STANDARD_CLASSES = 0x00004000;
+pub const ICC_WIN95_CLASSES = 0x000000FF;
 
 // Common Control: Tabs
 const TCM_FIRST = 0x1300;
