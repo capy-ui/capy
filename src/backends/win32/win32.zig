@@ -30,6 +30,12 @@ pub const BS_PUSHBUTTON = 0;
 pub const BS_DEFPUSHBUTTON = 1;
 pub const BS_FLAT = 0x00008000;
 
+// STATIC controls
+/// Centers text horizontally.
+pub const SS_CENTER = 0x00000001;
+/// Centers text vertically.
+pub const SS_CENTERIMAGE = 0x00000200;
+
 pub const SWP_NOACTIVATE = 0x0010;
 pub const SWP_NOOWNERZORDER = 0x0200;
 pub const SWP_NOZORDER = 0x0004;

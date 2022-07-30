@@ -603,7 +603,6 @@ pub const TextField = struct {
 
     pub fn setReadOnly(self: *TextField, readOnly: bool) void {
         _ = win32.SendMessageA(self.peer, win32.EM_SETREADONLY, @boolToInt(readOnly), undefined);
-        _ = win32.EnableWindow(self.peer, @boolToInt(!readOnly));
     }
 };
 
@@ -664,7 +663,7 @@ pub const Label = struct {
         const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
             "STATIC", // lpClassName
             "", // lpWindowName
-            win32.WS_TABSTOP | win32.WS_CHILD, // dwStyle
+            win32.WS_TABSTOP | win32.WS_CHILD | win32.SS_CENTERIMAGE, // dwStyle
             10, // X
             10, // Y
             100, // nWidth
@@ -768,6 +767,7 @@ pub const TabContainer = struct {
             null // lpParam
         );
         try TabContainer.setupEvents(wrapperHwnd);
+        _ = win32.SendMessageA(hwnd, win32.WM_SETFONT, @ptrToInt(captionFont), 0);
         _ = win32.SetParent(hwnd, wrapperHwnd);
         _ = win32.showWindow(hwnd, win32.SW_SHOWDEFAULT);
         _ = win32.UpdateWindow(hwnd);
