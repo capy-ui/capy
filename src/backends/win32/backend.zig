@@ -571,6 +571,9 @@ pub const TextField = struct {
         if (win32.SetWindowTextW(self.peer, wide) == 0) {
             std.os.windows.unexpectedError(win32.GetLastError()) catch {};
         }
+        
+        const len = win32.GetWindowTextLengthW(self.peer);
+        getEventUserData(self.peer).last_text_len = len;
     }
 
     pub fn getText(self: *TextField) [:0]const u8 {
