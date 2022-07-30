@@ -21,7 +21,10 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
                 else => {},
             };
 
-            step.subsystem = .Windows;
+            switch (step.build_mode) {
+                .Debug => step.subsystem = .Console,
+                else => step.subsystem = .Windows,
+            }
             step.linkSystemLibrary("comctl32");
             step.linkSystemLibrary("gdi32");
             step.linkSystemLibrary("gdiplus");
