@@ -125,7 +125,8 @@ pub const Window = struct {
             return Win32Error.InitializationError;
         }
 
-        const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
+        const hwnd = try win32.createWindowExA(
+            win32.WS_EX_LEFT | win32.WS_EX_COMPOSITED | win32.WS_EX_LAYERED, // dwExtStyle
             className, // lpClassName
             "", // lpWindowName
             win32.WS_OVERLAPPEDWINDOW, // dwStyle

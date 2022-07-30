@@ -33,6 +33,8 @@ pub const SWP_NOACTIVATE = 0x0010;
 pub const SWP_NOOWNERZORDER = 0x0200;
 pub const SWP_NOZORDER = 0x0004;
 
+pub const WS_EX_COMPOSITED = 0x02000000;
+
 pub const BN_CLICKED = 0;
 
 pub const WNDENUMPROC = fn (hwnd: HWND, lParam: LPARAM) callconv(WINAPI) c_int;
