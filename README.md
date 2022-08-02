@@ -1,3 +1,4 @@
+<p align="center"><a title="Charles J. Sharp, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Capybara_(Hydrochoerus_hydrochaeris).JPG"><img width="300" alt="Capybara (Hydrochoerus hydrochaeris)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Capybara_%28Hydrochoerus_hydrochaeris%29.JPG/512px-Capybara_%28Hydrochoerus_hydrochaeris%29.JPG"></a></p>
 <h1 align="center">Capy: a GUI library for Zig</h1>
 <h5 align="center">GUIs in Zig, but idiomatic</h5>
 
