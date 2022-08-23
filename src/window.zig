@@ -71,7 +71,7 @@ pub const Window = struct {
     var did_invalid_warning = false;
 
     pub fn resize(self: *Window, width: u32, height: u32) void {
-        const EMULATOR_KEY = "ZGT_MOBILE_EMULATED";
+        const EMULATOR_KEY = "CAPY_MOBILE_EMULATED";
         if (std.process.hasEnvVarConstant(EMULATOR_KEY)) {
             const id = std.process.getEnvVarOwned(internal.scratch_allocator, EMULATOR_KEY) catch unreachable;
             defer internal.scratch_allocator.free(id);

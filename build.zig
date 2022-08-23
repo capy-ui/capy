@@ -35,13 +35,13 @@ const WebServerStep = struct {
             try std.net.Address.parseIp("127.0.0.1", 8080),
             &context,
             comptime http.router.Router(*Context, &.{
-                builder.get("/", null, index),
-                builder.get("/zig-app.wasm", null, wasmFile),
+                builder.get("/", index),
+                builder.get("/zig-app.wasm", wasmFile),
             }),
         );
     }
 
-    fn index(context: *Context, response: *http.Response, request: http.Request, _: ?*const anyopaque) !void {
+    fn index(context: *Context, response: *http.Response, request: http.Request) !void {
         const allocator = request.arena;
         const buildRoot = context.builder.build_root;
         const file = try std.fs.cwd().openFile(try std.fs.path.join(allocator, &.{ buildRoot, "src/backends/wasm/page.html" }), .{});
@@ -52,7 +52,7 @@ const WebServerStep = struct {
         try response.writer().writeAll(text);
     }
 
-    fn wasmFile(context: *Context, response: *http.Response, request: http.Request, _: ?*const anyopaque) !void {
+    fn wasmFile(context: *Context, response: *http.Response, request: http.Request) !void {
         const allocator = request.arena;
         const path = context.exe.getOutputSource().getPath(context.builder);
         const file = try std.fs.cwd().openFile(path, .{});
@@ -109,10 +109,12 @@ pub fn build(b: *std.build.Builder) !void {
             }
 
             if (target.toTarget().isWasm()) {
-                const serve = WebServerStep.create(b, exe);
-                serve.step.dependOn(&exe.install_step.?.step);
-                const serve_step = b.step(name, "Start a web server to run this example");
-                serve_step.dependOn(&serve.step);
+                if (@import("builtin").zig_backend != .stage2_llvm) {
+                    const serve = WebServerStep.create(b, exe);
+                    serve.step.dependOn(&exe.install_step.?.step);
+                    const serve_step = b.step(name, "Start a web server to run this example");
+                    serve_step.dependOn(&serve.step);
+	        }
             } else {
                 const run_cmd = exe.run();
                 run_cmd.step.dependOn(&exe.install_step.?.step);

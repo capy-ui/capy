@@ -2,6 +2,7 @@ const std = @import("std");
 
 pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !void {
     step.subsystem = .Native;
+    step.use_stage1 = true;
     // step.linkSystemLibrary("glfw");
     // step.linkSystemLibrary("GLESv2");
 

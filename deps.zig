@@ -64,8 +64,7 @@ pub const dirs = struct {
 pub const package_data = struct {
     pub const _deeztnhr07fk = Package{
         .directory = dirs._deeztnhr07fk,
-        .pkg = Pkg{ .name = "zgt", .source = .{ .path = dirs._deeztnhr07fk ++ "/src/main.zig" }, .dependencies = null },
-        .system_libs = &.{ "gtk+-3.0", "c" },
+        .pkg = Pkg{ .name = "capy", .source = .{ .path = dirs._deeztnhr07fk ++ "/build_capy.zig" }, .dependencies = null },
     };
     pub const _hm449ur2xup4 = Package{
         .directory = dirs._hm449ur2xup4,
@@ -81,7 +80,7 @@ pub const packages = &[_]Package{
 };
 
 pub const pkgs = struct {
-    pub const zgt = package_data._deeztnhr07fk;
+    pub const capy = package_data._deeztnhr07fk;
 };
 
 pub const imports = struct {
