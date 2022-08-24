@@ -101,7 +101,9 @@ pub fn DataWrapper(comptime T: type) type {
         } else T,
         lock: std.Thread.Mutex = .{},
         /// List of every change listener listening to this data wrapper.
-        /// A linked list is used for minimal stack overhead.
+        /// A linked list is used for minimal stack overhead and to take
+        /// advantage of the fact that most DataWrappers don't have a
+        /// change listener.
         onChange: ChangeListenerList = .{},
         // TODO: multiple bindings and binders
         /// The object this wrapper is binded by
