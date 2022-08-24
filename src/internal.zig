@@ -325,19 +325,6 @@ pub fn convertTupleToWidgets(childrens: anytype) anyerror!std.ArrayList(Widget) 
 
         const ComponentType = @import("internal.zig").DereferencedType(@TypeOf(child));
         const widget = try @import("internal.zig").genericWidgetFrom(child);
-        if (ComponentType != Widget) {
-            inline for (std.meta.fields(ComponentType)) |compField| {
-                if (comptime @import("data.zig").isDataWrapper(compField.field_type)) {
-                    const wrapper = @field(widget.as(ComponentType), compField.name);
-                    if (wrapper.updater) |updater| {
-                        std.log.info("data updater of {s} field '{s}'", .{ @typeName(ComponentType), compField.name });
-
-                        // cannot get parent as of now
-                        try @import("data.zig").proneUpdater(updater, undefined);
-                    }
-                }
-            }
-        }
         const slot = try list.addOne();
         slot.* = widget;
 

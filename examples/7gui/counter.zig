@@ -11,6 +11,7 @@ fn increment(_: *capy.Button_Impl) !void {
 
 pub fn main() !void {
     try capy.backend.init();
+    std.log.info("Overhead of DataWrapper(i64) = {d} bytes, align = {d} bytes", .{ @sizeOf(capy.DataWrapper(i64)) - @sizeOf(i64), @alignOf(capy.DataWrapper(i64)) });
 
     var window = try capy.Window.init();
 

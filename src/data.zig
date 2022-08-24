@@ -71,7 +71,7 @@ pub fn Animation(comptime T: type) type {
         animFn: fn (t: f64) f64,
 
         /// Get the current value from the animation
-        pub fn get(self: *@This()) T {
+        pub fn get(self: @This()) T {
             const maxDiff = @intToFloat(f64, self.duration);
             const diff = @intToFloat(f64, std.time.milliTimestamp() - self.start);
             var t = diff / maxDiff;
@@ -85,90 +85,74 @@ pub fn Animation(comptime T: type) type {
     };
 }
 
-const Updater = struct {
-    /// Pointer to some function
-    fnPtr: usize,
-    // TODO: list of data wrappers that it called
-};
-
-// Atomic stack with list of current 'updater' that are being proned
-// this would allow for it to work with external data wrappers, and in fact with all data wrappers
-// with minimal change
-const UpdaterQueue = std.atomic.Queue(Updater);
-var pronedUpdaterQueue = UpdaterQueue.init();
-
-/// This is used for tracking whether a data wrapper's value has been accessed or not.
-/// This is mostly used for the 'updater' pattern to automatically detect on
-/// which properties an updater depends.
-pub fn proneUpdater(updater: anytype, root: *Container_Impl) !void {
-    var node = try lasting_allocator.create(UpdaterQueue.Node);
-    defer lasting_allocator.destroy(node);
-    node.data = .{ .fnPtr = @ptrToInt(updater) };
-
-    pronedUpdaterQueue.put(node);
-    defer _ = pronedUpdaterQueue.remove(node);
-
-    _ = updater(root);
-}
-
 pub fn isDataWrapper(comptime T: type) bool {
     if (!comptime std.meta.trait.is(.Struct)(T))
         return false;
-    return @hasField(T, "bindLock"); // TODO: check all properties using comptime
+    return @hasDecl(T, "ValueType") and T == DataWrapper(T.ValueType);
 }
 
 pub var _animatedDataWrappers = std.ArrayList(struct { fnPtr: fn (data: *anyopaque) bool, userdata: *anyopaque }).init(lasting_allocator);
 
 pub fn DataWrapper(comptime T: type) type {
     return struct {
-        value: T,
+        value: if (IsAnimable) union(enum) {
+            Single: T,
+            Animated: Animation(T)
+        } else T,
         lock: std.Thread.Mutex = .{},
-        onChange: std.ArrayList(ChangeListener),
+        /// List of every change listener listening to this data wrapper.
+        /// A linked list is used for minimal stack overhead.
+        onChange: ChangeListenerList = .{},
         // TODO: multiple bindings and binders
         /// The object this wrapper is binded by
         binderWrapper: ?*Self = null,
         /// The object this wrapper is binded to
         bindWrapper: ?*Self = null,
-        /// This lock is used to protect from recursive relations between wrappers
+        /// This boolean is used to protect from recursive relations between wrappers
         /// For example if there are two two-way binded data wrappers A and B:
         /// When A is set, B is set too. Since B is set, it will set A too. A is set, it will set B too, and so on..
-        /// To prevent that, the bindLock is acquired when setting the value of the other.
-        /// If the lock has already been acquired, set() returns without calling the other. For example:
-        /// When A is set, it acquires its lock and sets B. Since B is set, it will set A too.
-        /// A notices it already acquired the binding lock, and thus returns.
-        bindLock: std.Thread.Mutex = .{},
+        /// To prevent that, the bindLock is set to true when setting the value of the other.
+        /// If the lock is equal to true, set() returns without calling the other. For example:
+        /// When A is set, it sets the lock to true and sets B. Since B is set, it will set A too.
+        /// A notices that bindLock is already set to true, and thus returns.
+        bindLock: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
         allocator: ?std.mem.Allocator = null,
-        animation: if (IsAnimable) ?Animation(T) else void = if (IsAnimable) null else {},
-        updater: ?fn (*Container_Impl) T = null,
 
         const Self = @This();
         const IsAnimable = std.meta.trait.isNumber(T) or (std.meta.trait.isContainer(T) and @hasDecl(T, "lerp"));
 
+        pub const ValueType = T;
         pub const ChangeListener = struct { function: fn (newValue: T, userdata: usize) void, userdata: usize = 0 };
+        const ChangeListenerList = std.SinglyLinkedList(ChangeListener);
 
         pub fn of(value: T) Self {
-            return Self{ .value = value, .onChange = std.ArrayList(ChangeListener).init(lasting_allocator) };
+            if (IsAnimable) {
+                return Self{ .value = .{ .Single = value }};
+            } else {
+                return Self{ .value = value };
+            }
         }
 
         /// This function updates any current animation.
         /// It returns true if the animation isn't done, false otherwises.
         pub fn update(self: *Self) bool {
-            if (self.animation) |*anim| {
-                self.extendedSet(anim.get(), true, false);
-                if (std.time.milliTimestamp() >= anim.start + anim.duration) {
-                    self.animation = null;
-                    return false;
-                } else {
-                    return true;
-                }
-            } else {
-                return false;
+            switch (self.value) {
+                .Animated => |animation| {
+                    if (std.time.milliTimestamp() >= animation.start + animation.duration) {
+                        self.value = .{ .Single = animation.max };
+                        return false;
+                    } else {
+                        self.callHandlers();
+                        return true;
+                    }
+                },
+                .Single => return false
             }
         }
 
         /// Returns true if there is currently an animation playing.
         pub fn hasAnimation(self: *Self) bool {
-            return self.animation != null;
+            return self.value == .Animated;
         }
 
         pub fn animate(self: *Self, anim: fn (f64) f64, target: T, duration: u64) void {
@@ -176,13 +160,14 @@ pub fn DataWrapper(comptime T: type) type {
                 @compileError("animate() called on data that is not animable");
             }
             const time = std.time.milliTimestamp();
-            self.animation = Animation(T){
+            const currentValue = self.get();
+            self.value = .{ .Animated = Animation(T){
                 .start = time,
                 .duration = @intCast(u32, duration),
-                .min = self.value,
+                .min = currentValue,
                 .max = target,
                 .animFn = anim,
-            };
+            }};
 
             var contains = false;
             for (_animatedDataWrappers.items) |item| {
@@ -197,8 +182,10 @@ pub fn DataWrapper(comptime T: type) type {
         }
 
         pub fn addChangeListener(self: *Self, listener: ChangeListener) !usize {
-            try self.onChange.append(listener);
-            return self.onChange.items.len - 1; // index of the listener
+            const node = try lasting_allocator.create(ChangeListenerList.Node);
+            node.* = .{ .data = listener };
+            self.onChange.prepend(node);
+            return self.onChange.len() - 1;
         }
 
         /// All writes to sender will also change the value of receiver
@@ -225,14 +212,21 @@ pub fn DataWrapper(comptime T: type) type {
         pub fn get(self: *Self) T {
             self.lock.lock();
             defer self.lock.unlock();
-            return self.value;
+            if (IsAnimable) {
+                return switch (self.value) {
+                    .Single => |value| value,
+                    .Animated => |animation| animation.get()
+                };
+            } else {
+                return self.value;
+            }
         }
 
         /// Thread-safe set operation. If doing a read-modify-write operation
         /// manually changing the value and acquiring the lock is recommended.
         /// This also removes any previously set animation!
         pub fn set(self: *Self, value: T) void {
-            self.extendedSet(value, true, true);
+            self.extendedSet(value, true);
         }
 
         /// Thread-safe set operation without calling change listeners
@@ -245,23 +239,36 @@ pub fn DataWrapper(comptime T: type) type {
         /// change the data wrapper, but without setNoListen, it would
         /// cause an infinite recursion.
         pub fn setNoListen(self: *Self, value: T) void {
-            self.extendedSet(value, false, true);
+            self.extendedSet(value, false);
         }
 
-        fn extendedSet(self: *Self, value: T, comptime callHandlers: bool, comptime resetAnimation: bool) void {
-            if (self.bindLock.tryLock()) {
-                defer self.bindLock.unlock();
+        fn extendedSet(self: *Self, value: T, comptime doCallHandlers: bool) void {
+            // This atomically checks if bindLock is false, and sets it to true if it was.
+            // bindLock.compareToSwap(false, true, .SeqCst, .SeqCst) is equivalent to
+            // fn compareAndSwapButNotAtomic(ptr: *bool) ?bool {
+            //     const old_value = ptr.*;
+            //     if (old_value == false) {
+            //         ptr.* = true;
+            //         return null;
+            //     } else {
+            //         return old_value;
+            //     }
+            // }
+            // As you can see, if the old value was false, it returns null, which is what we want.
+            // Otherwise, it returns the old value, but since the only value other than false is true,
+            // we're not interested in the result.
+            if (self.bindLock.compareAndSwap(false, true, .SeqCst, .SeqCst) == null) {
+                defer self.bindLock.store(false, .SeqCst);
 
                 self.lock.lock();
-                self.value = value;
-                if (IsAnimable and resetAnimation) {
-                    self.animation = null;
+                if (IsAnimable) {
+                    self.value = .{ .Single = value };
+                } else {
+                    self.value = value;
                 }
                 self.lock.unlock();
-                if (callHandlers) {
-                    for (self.onChange.items) |listener| {
-                        listener.function(self.value, listener.userdata);
-                    }
+                if (doCallHandlers) {
+                    self.callHandlers();
                 }
                 if (self.bindWrapper) |binding| {
                     binding.set(value);
@@ -271,8 +278,22 @@ pub fn DataWrapper(comptime T: type) type {
             }
         }
 
+        fn callHandlers(self: *Self) void {
+            // Iterate over each node of the linked list
+            var nullableNode = self.onChange.first;
+            const value = self.get();
+            while (nullableNode) |node| {
+                node.data.function(value, node.data.userdata);
+                nullableNode = node.next;
+            }
+        }
+
         pub fn deinit(self: *Self) void {
-            self.onChange.deinit();
+            var nullableNode = self.onChange.first;
+            while (nullableNode) |node| {
+                nullableNode = node.next;
+                lasting_allocator.destroy(node);
+            }
             if (self.allocator) |allocator| {
                 allocator.destroy(self);
             }
@@ -289,8 +310,10 @@ pub fn FormatDataWrapper(allocator: std.mem.Allocator, comptime fmt: []const u8,
 
     const childTypes = comptime blk: {
         var types: []const type = &[_]type{};
+        // Iterate over the 'childs' tuple for each data wrapper
         for (std.meta.fields(@TypeOf(childs))) |field| {
-            const T = @TypeOf(@field(childs, field.name).value);
+            const dataWrapper = @field(childs, field.name);
+            const T = @TypeOf(dataWrapper.*).ValueType;
             types = types ++ &[_]type{T};
         }
         break :blk types;
@@ -316,7 +339,7 @@ pub fn FormatDataWrapper(allocator: std.mem.Allocator, comptime fmt: []const u8,
     inline while (i < childFs.len) : (i += 1) {
         const childF = childFs[i];
         const child = @field(childs, childF.name);
-        const T = @TypeOf(child.value);
+        const T = @TypeOf(child.*).ValueType;
         _ = try child.addChangeListener(.{ .userdata = @ptrToInt(self), .function = struct {
             fn callback(newValue: T, userdata: usize) void {
                 _ = newValue;
