@@ -1,7 +1,7 @@
 id: deeztnhr07fkixemzrksabk1elbzfz1clpervtjjcgxntyop
 name: capy
 main: build_capy.zig
-license: MIT
+license: MPL-2.0
 min_zig_version: 0.10.0-dev.2625+d506275a0
 build_dependencies:
     - src: git https://github.com/Luukdegram/apple_pie
