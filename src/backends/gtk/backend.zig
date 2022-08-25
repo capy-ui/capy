@@ -266,8 +266,8 @@ pub fn Events(comptime T: type) type {
                 3 => MouseButton.Right,
                 else => @intToEnum(MouseButton, event.button),
             };
-            const mx = @floatToInt(u32, @floor(event.x));
-            const my = @floatToInt(u32, @floor(event.y));
+            const mx = @floatToInt(i32, @floor(event.x));
+            const my = @floatToInt(i32, @floor(event.y));
 
             if (data.class.mouseButtonHandler) |handler| {
                 handler(button, pressed, mx, my, @ptrToInt(data));
@@ -285,8 +285,8 @@ pub fn Events(comptime T: type) type {
             _ = userdata;
             const data = getEventUserData(peer);
 
-            const mx = @floatToInt(u32, @floor(event.x));
-            const my = @floatToInt(u32, @floor(event.y));
+            const mx = @floatToInt(i32, @floor(event.x));
+            const my = @floatToInt(i32, @floor(event.y));
             if (data.class.mouseMotionHandler) |handler| {
                 handler(mx, my, @ptrToInt(data));
                 if (data.user.mouseMotionHandler == null) return 1;

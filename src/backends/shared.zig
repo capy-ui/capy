@@ -33,9 +33,9 @@ pub fn EventFunctions(comptime Backend: type) type {
     return struct {
         /// Only works for buttons
         clickHandler: ?fn (data: usize) void = null,
-        mouseButtonHandler: ?fn (button: MouseButton, pressed: bool, x: u32, y: u32, data: usize) void = null,
+        mouseButtonHandler: ?fn (button: MouseButton, pressed: bool, x: i32, y: i32, data: usize) void = null,
         // TODO: Mouse object with pressed buttons and more data
-        mouseMotionHandler: ?fn (x: u32, y: u32, data: usize) void = null,
+        mouseMotionHandler: ?fn (x: i32, y: i32, data: usize) void = null,
         keyTypeHandler: ?fn (str: []const u8, data: usize) void = null,
         keyPressHandler: ?fn (hardwareKeycode: u16, data: usize) void = null,
         // TODO: dx and dy are in pixels, not in lines

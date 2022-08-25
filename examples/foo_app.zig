@@ -20,7 +20,9 @@ pub fn main() !void {
         try column.add(try capy.Scrollable(row));
     }
 
-    try window.set(&column);
+    try window.set(capy.Scrollable(
+        &column
+    ));
     window.resize(800, 600);
     window.show();
     capy.runEventLoop();
