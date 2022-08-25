@@ -95,10 +95,7 @@ pub var _animatedDataWrappers = std.ArrayList(struct { fnPtr: fn (data: *anyopaq
 
 pub fn DataWrapper(comptime T: type) type {
     return struct {
-        value: if (IsAnimable) union(enum) {
-            Single: T,
-            Animated: Animation(T)
-        } else T,
+        value: if (IsAnimable) union(enum) { Single: T, Animated: Animation(T) } else T,
         lock: std.Thread.Mutex = .{},
         /// List of every change listener listening to this data wrapper.
         /// A linked list is used for minimal stack overhead and to take
@@ -129,7 +126,7 @@ pub fn DataWrapper(comptime T: type) type {
 
         pub fn of(value: T) Self {
             if (IsAnimable) {
-                return Self{ .value = .{ .Single = value }};
+                return Self{ .value = .{ .Single = value } };
             } else {
                 return Self{ .value = value };
             }
@@ -148,7 +145,7 @@ pub fn DataWrapper(comptime T: type) type {
                         return true;
                     }
                 },
-                .Single => return false
+                .Single => return false,
             }
         }
 
@@ -169,7 +166,7 @@ pub fn DataWrapper(comptime T: type) type {
                 .min = currentValue,
                 .max = target,
                 .animFn = anim,
-            }};
+            } };
 
             var contains = false;
             for (_animatedDataWrappers.items) |item| {
@@ -217,7 +214,7 @@ pub fn DataWrapper(comptime T: type) type {
             if (IsAnimable) {
                 return switch (self.value) {
                     .Single => |value| value,
-                    .Animated => |animation| animation.get()
+                    .Animated => |animation| animation.get(),
                 };
             } else {
                 return self.value;

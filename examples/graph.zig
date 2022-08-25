@@ -171,7 +171,7 @@ pub fn main() !void {
     var rectangle = (try capy.Column(.{}, .{capy.Canvas(.{})
         .setPreferredSize(capy.Size{ .width = 100, .height = 100 })
         .addDrawHandler(drawRectangle)}))
-        .bindAlignX(&rectangleX);
+        .bind("alignX", &rectangleX);
 
     try window.set(capy.Column(.{}, .{
         capy.Row(.{ .spacing = 10, .alignX = 0.5 }, .{

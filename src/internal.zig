@@ -54,10 +54,9 @@ pub fn All(comptime T: type) type {
 /// Convenience function for creating widgets
 pub fn Widgeting(comptime T: type) type {
     return struct {
-        // zig fmt: off
         pub const WidgetClass = Class{
             .typeName = @typeName(T),
-            
+
             .showFn = showWidget,
             .deinitFn = deinitWidget,
             .preferredSizeFn = getPreferredSizeWidget,
@@ -73,7 +72,6 @@ pub fn Widgeting(comptime T: type) type {
             /// The widget representing this component
             widget: ?*Widget = null,
         };
-        // zig fmt: on
 
         /// When alignX or alignY is changed, this will trigger a parent relayout
         fn alignChanged(new: ?f32, userdata: usize) void {
@@ -173,53 +171,58 @@ pub fn Widgeting(comptime T: type) type {
         }
 
         // Properties
-        // TODO: pub usingnamespace Property(f32, "opacity");
-
-        pub fn setOpacity(self: *T, opacity: f32) void {
-            self.dataWrappers.opacity.set(opacity);
+        fn TypeOfProperty(comptime name: []const u8) type {
+            if (@hasField(T, name)) {
+                return @TypeOf(@field(T, name)).ValueType;
+            } else if (@hasField(DataWrappers, name)) {
+                return @TypeOf(@field(@as(DataWrappers, undefined), name)).ValueType;
+            } else {
+                comptime {
+                    var compileError: []const u8 = "No such property: " ++ name;
+                    if (T == Container_Impl) {
+                        compileError = compileError ++ ", did you mean to use getChild() ?";
+                    }
+                    @compileError(compileError);
+                }
+            }
         }
 
-        pub fn getOpacity(self: *T) f32 {
-            return self.dataWrappers.opacity.get();
+        // This method temporarily returns the component for chaining methods
+        // This will be reconsidered later and thus might be removed.
+        pub fn set(self: *T, comptime name: []const u8, value: TypeOfProperty(name)) T {
+            if (@hasField(DataWrappers, name)) {
+                @field(self.dataWrappers, name).set(value);
+            } else {
+                @field(self, name).set(value);
+            }
+            return self.*;
+        }
+
+        pub fn get(self: T, comptime name: []const u8) TypeOfProperty(name) {
+            if (@hasField(DataWrappers, name)) {
+                return @field(self.dataWrappers, name).get();
+            } else {
+                return @field(self, name).get();
+            }
+        }
+
+        /// Bind the given property to argument
+        pub fn bind(self: *T, comptime name: []const u8, other: *DataWrapper(TypeOfProperty(name))) T {
+            if (@hasField(DataWrappers, name)) {
+                @field(self.dataWrappers, name).bind(other);
+            } else {
+                @field(self, name).bind(other);
+            }
+            _ = self.set(name, other.get());
+            return self.*;
         }
 
         pub fn getName(self: *T) ?[]const u8 {
             return self.dataWrappers.name;
         }
 
-        /// Bind the 'opacity' property to argument.
-        pub fn bindOpacity(self: *T, other: *DataWrapper(f32)) T {
-            self.dataWrappers.opacity.bind(other);
-            self.dataWrappers.opacity.set(other.get());
-            return self.*;
-        }
-
-        pub fn setAlignX(self: *T, alignX: ?f32) T {
-            self.dataWrappers.alignX.set(alignX);
-            return self.*;
-        }
-
-        pub fn setAlignY(self: *T, alignY: ?f32) T {
-            self.dataWrappers.alignY.set(alignY);
-            return self.*;
-        }
-
         pub fn setName(self: *T, name: ?[]const u8) T {
             self.dataWrappers.name = name;
-            return self.*;
-        }
-
-        /// Bind the 'alignX' property to argument.
-        pub fn bindAlignX(self: *T, other: *DataWrapper(?f32)) T {
-            self.dataWrappers.alignX.bind(other);
-            self.dataWrappers.alignX.set(other.get());
-            return self.*;
-        }
-
-        /// Bind the 'alignY' property to argument.
-        pub fn bindAlignY(self: *T, other: *DataWrapper(?f32)) T {
-            self.dataWrappers.alignY.bind(other);
-            self.dataWrappers.alignY.set(other.get());
             return self.*;
         }
 

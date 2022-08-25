@@ -7,7 +7,7 @@ var random = prng.random();
 
 pub fn animateRandomColor(button: *capy.Button_Impl) !void {
     const root = button.getRoot().?;
-    const rect = root.get("background-rectangle").?.as(capy.Rect_Impl);
+    const rect = root.getChild("background-rectangle").?.as(capy.Rect_Impl);
     const randomColor = capy.Color{ .red = random.int(u8), .green = random.int(u8), .blue = random.int(u8) };
     rect.color.animate(capy.Easings.InOut, randomColor, 1000);
 }
@@ -23,7 +23,7 @@ pub fn main() !void {
             .setName("background-rectangle"),
         capy.Column(.{}, .{
             capy.Button(.{ .label = "Random color", .onclick = animateRandomColor })
-                .setAlignX(0.5),
+                .set("alignX", 0.5),
         }),
     }));
     window.show();

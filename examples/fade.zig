@@ -30,7 +30,7 @@ pub fn main() !void {
             capy.Expanded(capy.Label(.{ .text = "Hello Zig" })),
             capy.Image(.{ .data = imageData }),
         }))
-            .bindOpacity(&opacity)),
+            .bind("opacity", &opacity)),
         capy.Button(.{ .label = "Show", .onclick = startAnimation }),
     })}));
 

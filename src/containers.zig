@@ -217,8 +217,8 @@ pub const Container_Impl = struct {
             .layoutConfig = layoutConfigBytes,
         })
             .setName(config.name);
-        _ = container.setAlignX(config.alignX);
-        _ = container.setAlignY(config.alignY);
+        _ = container.set("alignX", config.alignX);
+        _ = container.set("alignY", config.alignY);
         try container.addResizeHandler(onResize);
         return container;
     }
@@ -228,12 +228,12 @@ pub const Container_Impl = struct {
         try self.relayout();
     }
 
-    pub fn getAt(self: *Container_Impl, index: usize) !*Widget {
+    pub fn getChildAt(self: *Container_Impl, index: usize) !*Widget {
         if (index >= self.childrens.items.len) return error.OutOfBounds;
         return &self.childrens.items[index];
     }
 
-    pub fn get(self: *Container_Impl, name: []const u8) ?*Widget {
+    pub fn getChild(self: *Container_Impl, name: []const u8) ?*Widget {
         // TODO: use hash map (maybe acting as cache?) for performance
         for (self.childrens.items) |*widget| {
             if (widget.name.*) |widgetName| {
@@ -243,14 +243,14 @@ pub const Container_Impl = struct {
             }
 
             if (widget.cast(Container_Impl)) |container| {
-                return container.get(name) orelse continue;
+                return container.getChild(name) orelse continue;
             }
         }
         return null;
     }
 
-    /// Combines get() and Widget.as()
-    pub fn getAs(self: *Container_Impl, comptime T: type, name: []const u8) ?*T {
+    /// Combines getChild() and Widget.as()
+    pub fn getChildAs(self: *Container_Impl, comptime T: type, name: []const u8) ?*T {
         if (self.get(name)) |widget| {
             return widget.as(T);
         } else {

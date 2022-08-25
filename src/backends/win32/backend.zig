@@ -56,13 +56,10 @@ pub fn init() !void {
 
         var input = win32.GdiplusStartupInput{};
         try gdi.gdipWrap(win32.GdiplusStartup(&gdi.token, &input, null));
-        
+
         var ncMetrics: win32.NONCLIENTMETRICSA = undefined;
         ncMetrics.cbSize = @sizeOf(win32.NONCLIENTMETRICSA);
-        _ = win32.SystemParametersInfoA(win32.SPI_GETNONCLIENTMETRICS,
-            @sizeOf(win32.NONCLIENTMETRICSA),
-            &ncMetrics,
-            0);
+        _ = win32.SystemParametersInfoA(win32.SPI_GETNONCLIENTMETRICS, @sizeOf(win32.NONCLIENTMETRICSA), &ncMetrics, 0);
         captionFont = win32.CreateFontIndirectA(&ncMetrics.lfCaptionFont).?;
     }
 }
@@ -585,7 +582,7 @@ pub const TextField = struct {
         if (win32.SetWindowTextW(self.peer, wide) == 0) {
             std.os.windows.unexpectedError(win32.GetLastError()) catch {};
         }
-        
+
         const len = win32.GetWindowTextLengthW(self.peer);
         getEventUserData(self.peer).last_text_len = len;
     }
