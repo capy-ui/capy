@@ -72,7 +72,7 @@ pub fn build(b: *std.build.Builder) !void {
     defer examplesDir.close();
 
     const broken = switch (target.getOsTag()) {
-        .windows => &[_][]const u8{"fade","foo_app"},
+        .windows => &[_][]const u8{ "fade", "foo_app" },
         else => &[_][]const u8{},
     };
 
@@ -114,7 +114,7 @@ pub fn build(b: *std.build.Builder) !void {
                     serve.step.dependOn(&exe.install_step.?.step);
                     const serve_step = b.step(name, "Start a web server to run this example");
                     serve_step.dependOn(&serve.step);
-	        }
+                }
             } else {
                 const run_cmd = exe.run();
                 run_cmd.step.dependOn(&exe.install_step.?.step);

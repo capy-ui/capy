@@ -404,8 +404,9 @@ pub fn Events(comptime T: type) type {
             writer.print("Internal error: {s}.\n", .{@errorName(err)}) catch {};
             if (@errorReturnTrace()) |trace| {
                 std.debug.dumpStackTrace(trace.*);
-                if (std.io.is_async) {
+                if (comptime std.io.is_async or @import("builtin").target.isWasm()) {
                     // can't use writeStackTrace as it is async but errorHandler should not be async!
+                    // also can't use writeStackTrace when using WebAssembly
                 } else {
                     if (std.debug.getSelfDebugInfo()) |debug_info| {
                         var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);

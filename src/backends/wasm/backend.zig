@@ -47,6 +47,7 @@ var globalWindow: ?*Window = null;
 
 pub const Window = struct {
     child: ?PeerType = null,
+    scale: f32 = 1.0,
 
     pub fn create() !Window {
         return Window{};
@@ -62,7 +63,7 @@ pub const Window = struct {
     }
 
     pub fn resize(_: *Window, _: c_int, _: c_int) void {
-        // TODO
+        // Not implemented.
     }
 
     pub fn setChild(self: *Window, peer: ?PeerType) void {
@@ -72,6 +73,18 @@ pub const Window = struct {
         } else {
             // TODO: js.clearRoot();
         }
+    }
+
+    pub fn setTitle(self: *Window, title: [*:0]const u8) void {
+        // TODO. This should be configured in the javascript
+        _ = self;
+        _ = title;
+    }
+
+    pub fn setSourceDpi(self: *Window, dpi: u32) void {
+        // CSS pixels are defined to always be 1/96th of an inch (aka 96dpi)
+        const resolution = @intToFloat(f32, dpi);
+        self.scale = resolution / 96.0;
     }
 };
 
