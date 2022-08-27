@@ -36,6 +36,7 @@ const WebServerStep = struct {
             &context,
             comptime http.router.Router(*Context, &.{
                 builder.get("/", index),
+                builder.get("/capy.js", indexJs),
                 builder.get("/zig-app.wasm", wasmFile),
             }),
         );
@@ -49,6 +50,17 @@ const WebServerStep = struct {
         const text = try file.readToEndAlloc(allocator, std.math.maxInt(usize));
 
         try response.headers.put("Content-Type", "text/html");
+        try response.writer().writeAll(text);
+    }
+
+    fn indexJs(context: *Context, response: *http.Response, request: http.Request) !void {
+        const allocator = request.arena;
+        const buildRoot = context.builder.build_root;
+        const file = try std.fs.cwd().openFile(try std.fs.path.join(allocator, &.{ buildRoot, "src/backends/wasm/capy.js" }), .{});
+        defer file.close();
+        const text = try file.readToEndAlloc(allocator, std.math.maxInt(usize));
+
+        try response.headers.put("Content-Type", "application/javascript");
         try response.writer().writeAll(text);
     }
 

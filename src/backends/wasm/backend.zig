@@ -82,7 +82,7 @@ pub const Window = struct {
     }
 
     pub fn setSourceDpi(self: *Window, dpi: u32) void {
-        // CSS pixels are defined to always be 1/96th of an inch (aka 96dpi)
+        // CSS pixels are somewhat undefined given they're based on the confortableness of the reader
         const resolution = @intToFloat(f32, dpi);
         self.scale = resolution / 96.0;
     }

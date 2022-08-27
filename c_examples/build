@@ -1,2 +1,2 @@
 #!/bin/sh
-gcc -I../include zgt_app.c ../zig-out/lib/libzgt.so.0 -Wl,-rpath ../zig-out/lib/ -o zgt_app
+gcc -I../include c_template.c ../zig-out/lib/libcapy.so.0 -Wl,-rpath ../zig-out/lib/ -o c_template
