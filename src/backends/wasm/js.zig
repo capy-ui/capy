@@ -20,6 +20,7 @@ pub extern fn hasEvent() bool;
 pub extern fn popEvent() EventId;
 pub extern fn getEventType(event: EventId) EventType;
 pub extern fn getEventTarget(event: EventId) ElementId;
+pub extern fn stopExecution() noreturn;
 
 // Canvas related
 pub extern fn openContext(element: ElementId) CanvasContextId;

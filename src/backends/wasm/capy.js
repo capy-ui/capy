@@ -3,6 +3,7 @@ let domObjects = [];
 let canvasContexts = [];
 let pendingEvents = [];
 let events = [];
+let executeProgram = true;
 
 function pushEvent(evt) {
 	const eventId = events.push(evt);
@@ -10,8 +11,12 @@ function pushEvent(evt) {
 }
 
 function readString(addr, len) {
+	addr = addr >>> 0; // convert from i32 to u32
+	len = len >>> 0;
+
 	let utf8Decoder = new TextDecoder();
 	let view = new Uint8Array(obj.instance.exports.memory.buffer);
+	// console.debug("read string @ " + addr + " for " + len + " bytes");
 	
 	return utf8Decoder.decode(view.slice(addr, addr + len));
 }
@@ -61,7 +66,7 @@ const importObj = {
 			if (elem.nodeName === "INPUT") text = elem.value;
 			else text = elem.innerText;
 			const length = new TextEncoder().encode(text).length;
-			console.log(elem.value.length + " <= " + length);
+			//console.log(text.length + " <= " + length);
 			return length;
 		},
 		getText: function(element, textPtr) {
@@ -143,7 +148,11 @@ const importObj = {
 		stroke: function(ctx) {
 			canvasContexts[ctx].stroke();
 			canvasContexts[ctx].beginPath();
-		}
+		},
+
+		stopExecution: function() {
+			executeProgram = false;
+		},
 	}
 };
 
@@ -153,7 +162,11 @@ const importObj = {
 
 	// TODO: when we're in blocking mode, avoid updating so often
 	function update() {
-		obj.instance.exports._zgtContinue();
+		if (executeProgram) {
+			obj.instance.exports._zgtContinue();
+		} else {
+			// TODO: clearInterval
+		}
 	}
 	setInterval(update, 32);
 

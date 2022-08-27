@@ -207,6 +207,8 @@ pub const TextField = struct {
 
 pub const Label = struct {
     peer: *GuiWidget,
+    /// The text returned by getText(), it's invalidated everytime setText is called
+    temp_text: ?[:0]const u8 = null,
 
     pub usingnamespace Events(Label);
 
@@ -218,15 +220,30 @@ pub const Label = struct {
 
     pub fn setText(self: *Label, text: [:0]const u8) void {
         js.setText(self.peer.element, text.ptr, text.len);
+        if (self.temp_text) |slice| {
+            lasting_allocator.free(slice);
+            self.temp_text = null;
+        }
     }
 
-    pub fn getText(_: *Label) [:0]const u8 {
-        return undefined;
+    pub fn getText(self: *Label) [:0]const u8 {
+        if (self.temp_text) |text| {
+            return text;
+        } else {
+            const len = js.getTextLen(self.peer.element);
+            const text = lasting_allocator.allocSentinel(u8, len, 0) catch unreachable;
+            js.getText(self.peer.element, text.ptr);
+            self.temp_text = text;
+
+            return text;
+        }
     }
 };
 
 pub const Button = struct {
     peer: *GuiWidget,
+    /// The label returned by getLabel(), it's invalidated everytime setLabel is called
+    temp_label: ?[:0]const u8 = null,
 
     pub usingnamespace Events(Button);
 
@@ -236,12 +253,23 @@ pub const Button = struct {
 
     pub fn setLabel(self: *Button, label: [:0]const u8) void {
         js.setText(self.peer.element, label.ptr, label.len);
-        _ = self;
-        _ = label;
+        if (self.temp_label) |slice| {
+            lasting_allocator.free(slice);
+            self.temp_label = null;
+        }
     }
 
-    pub fn getLabel(_: *Button) [:0]const u8 {
-        return undefined;
+    pub fn getLabel(self: *Button) [:0]const u8 {
+        if (self.temp_label) |text| {
+            return text;
+        } else {
+            const len = js.getTextLen(self.peer.element);
+            const text = lasting_allocator.allocSentinel(u8, len, 0) catch unreachable;
+            js.getText(self.peer.element, text.ptr);
+            self.temp_label = text;
+
+            return text;
+        }
     }
 };
 
@@ -462,7 +490,7 @@ pub const backendExport = struct {
             pub fn write(fd: fd_t, buf: [*]const u8, size: usize) usize {
                 if (fd == STDOUT_FILENO or fd == STDERR_FILENO) {
                     // TODO: buffer and write for each new line
-                    js.jsPrint(buf, size);
+                    js.print(buf[0..size]);
                     return size;
                 } else {
                     return errno(E.BADF);
@@ -488,8 +516,8 @@ pub const backendExport = struct {
     pub fn panic(msg: []const u8, _: ?*std.builtin.StackTrace) noreturn {
         js.print(msg);
 
-        @breakpoint();
-        while (true) {}
+        //@breakpoint();
+        js.stopExecution();
     }
 
     pub export fn _start() callconv(.C) void {
