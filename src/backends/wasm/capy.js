@@ -157,7 +157,12 @@ const importObj = {
 };
 
 (async function() {
-	obj = await WebAssembly.instantiateStreaming(fetch("zig-app.wasm"), importObj);
+	if (WebAssembly.instantiateStreaming) {
+		obj = await WebAssembly.instantiateStreaming(fetch("zig-app.wasm"), importObj);
+	} else {
+		const response = await fetch("zig-app.wasm");
+		obj = await WebAssembly.instantiate(await response.arrayBuffer(), importObj);
+	}
 	obj.instance.exports._start();
 
 	// TODO: when we're in blocking mode, avoid updating so often
