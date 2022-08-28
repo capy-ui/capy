@@ -4,6 +4,7 @@ let canvasContexts = [];
 let pendingEvents = [];
 let events = [];
 let executeProgram = true;
+let rootElementId = -1;
 
 function pushEvent(evt) {
 	const eventId = events.push(evt);
@@ -42,15 +43,70 @@ const importObj = {
 					target: idx
 				});
 			});
+
+			// mouse
+			elem.addEventListener("mousedown", function(e) {
+				pushEvent({
+					type: 3,
+					target: idx,
+					args: [e.button, true, e.clientX, e.clientY]
+				});
+			});
+			elem.addEventListener("mouseup", function(e) {
+				pushEvent({
+					type: 3,
+					target: idx,
+					args: [e.button, false, e.clientX, e.clientY]
+				});
+			});
+			elem.addEventListener("mouseleave", function(e) {
+				pushEvent({
+					type: 3,
+					target: idx,
+					args: [0, false, e.clientX, e.clientY]
+				});
+			});
+			elem.addEventListener("mousemove", function(e) {
+				pushEvent({
+					type: 4,
+					target: idx,
+					args: [e.clientX, e.clientY]
+				});
+			});
+
+			// touch
+			elem.addEventListener("touchstart", function(e) {
+				pushEvent({
+					type: 3,
+					target: idx,
+					args: [0, true, e.touches[0].clientX, e.touches[0].clientY]
+				});
+			});
+			elem.addEventListener("touchend", function(e) {
+				pushEvent({
+					type: 3,
+					target: idx,
+					args: [0, false, e.touches[0].clientX, e.touches[0].clientY]
+				});
+			});
+			elem.addEventListener("touchmove", function(e) {
+				pushEvent({
+					type: 4,
+					target: idx,
+					args: [e.touches[0].clientX, e.touches[0].clientY]
+				});
+			});
 			return idx;
 		},
 		appendElement: function(parent, child) {
 			domObjects[parent].appendChild(domObjects[child]);
 		},
 		setRoot: function(root) {
+			document.querySelector("#application").innerHTML = "";
 			document.querySelector("#application").appendChild(domObjects[root]);
 			domObjects[root].style.width  = "100%";
 			domObjects[root].style.height = "100%";
+			rootElementId = root;
 		},
 		setText: function(element, textPtr, textLen) {
 			const elem = domObjects[element];
@@ -88,6 +144,10 @@ const importObj = {
 		setSize: function(element, w, h) {
 			domObjects[element].style.width  = w + "px";
 			domObjects[element].style.height = h + "px";
+			pushEvent({
+				type: 0,
+				target: element
+			});
 		},
 		getWidth: function(element) {
 			return domObjects[element].clientWidth;
@@ -117,6 +177,12 @@ const importObj = {
 			}
 			return events[event].target;
 		},
+		getEventArg: function(event, idx) {
+			if (events[event].args === undefined || events[event].args[idx] === undefined) {
+				console.error("Tried getting non-existent arg:" + idx);
+			}
+			return events[event].args[idx];
+		},
 
 		// Canvas
 		openContext: function(element) {
@@ -140,6 +206,12 @@ const importObj = {
 		},
 		lineTo: function(ctx, x, y) {
 			canvasContexts[ctx].lineTo(x, y);
+		},
+		fillText: function(ctx, textPtr, textLen, x, y) {
+			const text = readString(textPtr, textLen);
+			canvasContexts[ctx].textAlign = "left";
+			canvasContexts[ctx].textBaseline = "top";
+			canvasContexts[ctx].fillText(text, x, y);
 		},
 		fill: function(ctx) {
 			canvasContexts[ctx].fill();
@@ -169,14 +241,14 @@ const importObj = {
 	function update() {
 		if (executeProgram) {
 			obj.instance.exports._zgtContinue();
-		} else {
-			// TODO: clearInterval
+			requestAnimationFrame(update);
 		}
 	}
-	setInterval(update, 32);
+	//setInterval(update, 32);
+	requestAnimationFrame(update);
 
 	window.onresize = function() {
-		pushEvent({ type: 0 });
+		pushEvent({ type: 0, target: rootElementId });
 	};
 	window.onresize(); // call resize handler atleast once, to setup layout
 })();

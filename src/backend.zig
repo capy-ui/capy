@@ -1,8 +1,8 @@
 const std = @import("std");
 const builtin = @import("builtin");
 
-const backend = if (@hasDecl(@import("root"), "zgtBackend"))
-    @import("root").zgtBackend
+const backend = if (@hasDecl(@import("root"), "capyBackend"))
+    @import("root").capyBackend
 else switch (builtin.os.tag) {
     .windows => @import("backends/win32/backend.zig"),
     .linux, .freebsd => @import("backends/gtk/backend.zig"),

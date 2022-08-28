@@ -2,7 +2,13 @@ pub const ElementId = usize;
 pub const CanvasContextId = usize;
 pub const EventId = usize;
 
-pub const EventType = enum(usize) { Resize = 0, OnClick, TextChange };
+pub const EventType = enum(usize) {
+    Resize = 0,
+    OnClick,
+    TextChange,
+    MouseButton,
+    MouseMotion,
+};
 
 pub extern fn jsPrint(msg: [*]const u8, len: usize) void;
 pub extern fn jsCreateElement(name: [*]const u8, nameLen: usize) ElementId;
@@ -20,6 +26,7 @@ pub extern fn hasEvent() bool;
 pub extern fn popEvent() EventId;
 pub extern fn getEventType(event: EventId) EventType;
 pub extern fn getEventTarget(event: EventId) ElementId;
+pub extern fn getEventArg(event: EventId, argIdx: usize) usize;
 pub extern fn stopExecution() noreturn;
 
 // Canvas related
@@ -28,6 +35,7 @@ pub extern fn setColor(ctx: CanvasContextId, r: u8, g: u8, b: u8, a: u8) void;
 pub extern fn rectPath(ctx: CanvasContextId, x: usize, y: usize, w: usize, h: usize) void;
 pub extern fn moveTo(ctx: CanvasContextId, x: usize, y: usize) void;
 pub extern fn lineTo(ctx: CanvasContextId, x: usize, y: usize) void;
+pub extern fn fillText(ctx: CanvasContextId, textPtr: [*]const u8, textLen: usize, x: i32, y: i32) void;
 pub extern fn fill(ctx: CanvasContextId) void;
 pub extern fn stroke(ctx: CanvasContextId) void;
 

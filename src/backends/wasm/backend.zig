@@ -129,7 +129,6 @@ pub fn Events(comptime T: type) type {
 
         /// Requests a redraw
         pub fn requestDraw(self: *T) !void {
-            js.print("request draw");
             if (@hasDecl(T, "_requestDraw")) {
                 try self._requestDraw();
             }
@@ -151,7 +150,28 @@ pub fn Events(comptime T: type) type {
                             handler(self.peer.userdata);
                         }
                     },
-                    .Resize => unreachable,
+                    .Resize => {
+                        if (self.peer.user.resizeHandler) |handler| {
+                            handler(@intCast(u32, self.getWidth()), @intCast(u32, self.getHeight()), self.peer.userdata);
+                        }
+                        self.requestDraw() catch unreachable;
+                    },
+                    .MouseButton => {
+                        if (self.peer.user.mouseButtonHandler) |handler| {
+                            const button = @intToEnum(MouseButton, js.getEventArg(event, 0));
+                            const pressed = js.getEventArg(event, 1) != 0;
+                            const x = @bitCast(i32, js.getEventArg(event, 2));
+                            const y = @bitCast(i32, js.getEventArg(event, 3));
+                            handler(button, pressed, x, y, self.peer.userdata);
+                        }
+                    },
+                    .MouseMotion => {
+                        if (self.peer.user.mouseMotionHandler) |handler| {
+                            const x = @bitCast(i32, js.getEventArg(event, 0));
+                            const y = @bitCast(i32, js.getEventArg(event, 1));
+                            handler(x, y, self.peer.userdata);
+                        }
+                    },
                 }
             } else if (T == Container) { // if we're a container, iterate over our children to propagate the event
                 for (self.children.items) |child| {
@@ -337,12 +357,9 @@ pub const Canvas = struct {
         }
 
         pub fn text(self: *DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
-            // TODO
-            _ = self;
-            _ = x;
-            _ = y;
+            // TODO: layout
             _ = layout;
-            _ = str;
+            js.fillText(self.ctx, str.ptr, str.len, x, y);
         }
 
         pub fn line(self: *DrawContext, x1: u32, y1: u32, x2: u32, y2: u32) void {
@@ -352,6 +369,15 @@ pub const Canvas = struct {
         }
 
         pub fn ellipse(self: *DrawContext, x: u32, y: u32, w: f32, h: f32) void {
+            // TODO
+            _ = self;
+            _ = x;
+            _ = y;
+            _ = w;
+            _ = h;
+        }
+
+        pub fn clear(self: *DrawContext, x: u32, y: u32, w: u32, h: u32) void {
             // TODO
             _ = self;
             _ = x;
@@ -382,6 +408,19 @@ pub const Canvas = struct {
         if (self.peer.user.drawHandler) |handler| {
             handler(&ctx, self.peer.userdata);
         }
+    }
+};
+
+pub const ImageData = struct {
+    // TODO
+
+    pub fn from(width: usize, height: usize, stride: usize, cs: lib.Colorspace, bytes: []const u8) !ImageData {
+        _ = width;
+        _ = height;
+        _ = stride;
+        _ = cs;
+        _ = bytes;
+        std.debug.todo("WASM ImageData");
     }
 };
 
@@ -537,13 +576,6 @@ pub fn runStep(step: shared.EventLoopStep) callconv(.Async) bool {
     while (js.hasEvent()) {
         const eventId = js.popEvent();
         switch (js.getEventType(eventId)) {
-            .Resize => {
-                if (globalWindow) |window| {
-                    if (window.child) |child| {
-                        child.user.resizeHandler.?(0, 0, child.userdata);
-                    }
-                }
-            },
             else => {
                 if (globalWindow) |window| {
                     if (window.child) |child| {
