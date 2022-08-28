@@ -462,18 +462,42 @@ pub const Container = struct {
     }
 };
 
-fn executeMain() callconv(.Async) anyerror!void {
+// Misc
+pub const Http = struct {
+
+    pub fn send(url: []const u8) HttpResponse {
+        return HttpResponse { .id = js.fetchHttp(url.ptr, url.len) };
+    }
+
+};
+
+pub const HttpResponse = struct {
+    id: js.NetworkRequestId,
+
+    pub fn isReady(self: HttpResponse) bool {
+        return js.isRequestReady(self.id) != 0;
+    }
+
+    pub fn read(self: HttpResponse, buf: []u8) usize {
+        return js.readRequest(self.id, buf.ptr, buf.len);
+    }
+};
+
+// Execution
+
+fn executeMain() callconv(.Async) void {
     const mainFn = @import("root").main;
     const ReturnType = @typeInfo(@TypeOf(mainFn)).Fn.return_type.?;
     if (ReturnType == void) {
         mainFn();
     } else {
-        try mainFn();
+        mainFn() catch js.stopExecution();
     }
+    js.stopExecution();
 }
 
 var frame: @Frame(executeMain) = undefined;
-var result: anyerror!void = error.None;
+var result: void = {};
 var suspending: bool = false;
 
 var resumePtr: anyframe = undefined;

@@ -396,7 +396,7 @@ pub fn Events(comptime T: type) type {
             return obj;
         }
 
-        fn errorHandler(err: anyerror) void {
+        fn errorHandler(err: anyerror) callconv(.Unspecified) void {
             std.log.err("{s}", .{@errorName(err)});
             var streamBuf: [16384]u8 = undefined;
             var stream = std.io.fixedBufferStream(&streamBuf);

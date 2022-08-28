@@ -2,6 +2,9 @@ let obj = null;
 let domObjects = [];
 let canvasContexts = [];
 let pendingEvents = [];
+let networkRequests = [];
+let networkRequestsCompletion = [];
+let networkRequestsReadIdx = [];
 let events = [];
 let executeProgram = true;
 let rootElementId = -1;
@@ -222,8 +225,41 @@ const importObj = {
 			canvasContexts[ctx].beginPath();
 		},
 
+		// Network
+		fetchHttp: function(urlPtr, urlLen) {
+			const url = readString(urlPtr, urlLen);
+			const id = networkRequests.length;
+			const promise = fetch(url).then(response => response.arrayBuffer()).then(response => {
+				networkRequestsCompletion[id] = true;
+				networkRequests[id] = response;
+			});
+			networkRequestsCompletion.push(false);
+			networkRequestsReadIdx.push(0);
+			return networkRequests.push(promise) - 1;
+		},
+		isRequestReady: function(id) {
+			return networkRequestsCompletion[id];
+		},
+		readRequest: function(id, bufPtr, bufLen) {
+			if (networkRequestsCompletion[id] === false) return 0;
+
+			const buffer = networkRequests[id];
+			const idx = networkRequestsReadIdx[id];
+
+			const view = new Uint8Array(buffer);
+			const slice = view.slice(idx, idx + bufLen);
+			const memoryView = new Uint8Array(obj.instance.exports.memory.buffer);
+			for (let i = 0; i < slice.length; i++) {
+				memoryView[bufPtr + i] = slice[i];
+			}
+			networkRequestsReadIdx[id] += slice.length;
+
+			return slice.length;
+		},
+
 		stopExecution: function() {
 			executeProgram = false;
+			console.error("STOP EXECUTION!");
 		},
 	}
 };

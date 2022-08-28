@@ -15,6 +15,7 @@ pub usingnamespace @import("color.zig");
 
 pub const internal = @import("internal.zig");
 pub const backend = @import("backend.zig");
+pub const http = @import("http.zig");
 
 pub const cross_platform = if (@hasDecl(backend, "backendExport"))
     backend.backendExport
@@ -56,7 +57,7 @@ pub fn runEventLoop() void {
                 break;
             }
 
-            if (@import("std").event.Loop.instance) |*loop| {
+            if (@import("std").event.Loop.instance) |loop| {
                 loop.yield();
             }
         } else {

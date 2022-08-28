@@ -249,7 +249,7 @@ pub const Container_Impl = struct {
 
     /// Combines getChild() and Widget.as()
     pub fn getChildAs(self: *Container_Impl, comptime T: type, name: []const u8) ?*T {
-        if (self.get(name)) |widget| {
+        if (self.getChild(name)) |widget| {
             return widget.as(T);
         } else {
             return null;

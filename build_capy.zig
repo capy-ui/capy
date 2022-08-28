@@ -37,7 +37,8 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
         },
         .freestanding => {
             if (step.target.toTarget().isWasm()) {
-                // supported
+                // Things like the image reader require more stack than given by default
+                step.stack_size = std.math.max(step.stack_size orelse 0, 256 * 1024);
             } else {
                 return error.UnsupportedOs;
             }

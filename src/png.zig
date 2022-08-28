@@ -186,6 +186,7 @@ pub fn read(allocator: Allocator, unbufferedReader: anytype) !ImageData {
         bpp = 4;
     }
     const imageData = try allocator.alloc(u8, ihdr.width * ihdr.height * bpp);
+    defer allocator.free(imageData);
     var y: u32 = 0;
 
     const Filter = fn (image: []const u8, line: []u8, y: u32, start: usize, bytes: u8) callconv(.Inline) void;

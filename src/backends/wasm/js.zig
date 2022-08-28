@@ -1,6 +1,7 @@
 pub const ElementId = usize;
 pub const CanvasContextId = usize;
 pub const EventId = usize;
+pub const NetworkRequestId = usize;
 
 pub const EventType = enum(usize) {
     Resize = 0,
@@ -38,6 +39,12 @@ pub extern fn lineTo(ctx: CanvasContextId, x: usize, y: usize) void;
 pub extern fn fillText(ctx: CanvasContextId, textPtr: [*]const u8, textLen: usize, x: i32, y: i32) void;
 pub extern fn fill(ctx: CanvasContextId) void;
 pub extern fn stroke(ctx: CanvasContextId) void;
+
+// Networking related
+// TODO: support more things
+pub extern fn fetchHttp(urlPtr: [*]const u8, urlLen: usize) NetworkRequestId;
+pub extern fn isRequestReady(id: NetworkRequestId) usize;
+pub extern fn readRequest(id: NetworkRequestId, bufPtr: [*]u8, bufLen: usize) usize;
 
 pub fn print(msg: []const u8) void {
     jsPrint(msg.ptr, msg.len);

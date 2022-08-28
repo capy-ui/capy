@@ -114,7 +114,6 @@ pub const Window = struct {
         // TODO: Handle GtkWindow moving between screens with different DPIs
         const resolution = @as(f32, 96.0);
         self.scale = resolution / @intToFloat(f32, dpi);
-        std.log.debug("Scale: {d}", .{self.scale});
     }
 
     fn initMenu(menu: *c.GtkMenuShell, items: []const lib.MenuItem_Impl) void {
