@@ -96,13 +96,14 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
     const expandedCount = getExpandedCount(widgets);
     const config = peer.getLayoutConfig(ColumnRowConfig);
 
-    const totalAvailableWidth = peer.getSize(peer.userdata).width -| (widgets.len -| 1) * config.spacing;
+    const totalAvailableWidth = @intCast(u32, peer.getSize(peer.userdata).width -| (widgets.len -| 1) * config.spacing);
 
     var childWidth = if (expandedCount == 0) 0 else @intCast(u32, totalAvailableWidth) / expandedCount;
     for (widgets) |widget| {
         if (!widget.container_expanded) {
+            const available = if (expandedCount > 0) Size.init(0, 0) else Size.init(totalAvailableWidth, peer.getSize(peer.userdata).height);
             const divider = if (expandedCount == 0) 1 else expandedCount;
-            const takenWidth = @intCast(u32, totalAvailableWidth / divider);
+            const takenWidth = widget.getPreferredSize(available).width / divider;
             if (childWidth >= takenWidth) {
                 childWidth -= takenWidth;
             } else {
@@ -115,9 +116,6 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
     for (widgets) |widget, i| {
         const isLastWidget = i == widgets.len - 1;
         if (widget.peer) |widgetPeer| {
-            // if (@floatToInt(u32, childX) >= peer.getSize(peer.userdata).width) {
-            //     break;
-            // }
             const available = Size{
                 .width = if (widget.container_expanded) childWidth else (@intCast(u32, peer.getSize(peer.userdata).width) -| @floatToInt(u32, childX)),
                 .height = @intCast(u32, peer.getSize(peer.userdata).height),
