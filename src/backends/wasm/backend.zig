@@ -112,7 +112,7 @@ pub fn Events(comptime T: type) type {
                 .MouseButton => self.peer.user.mouseButtonHandler = cb,
                 .MouseMotion => self.peer.user.mouseMotionHandler = cb,
                 .Scroll => self.peer.user.scrollHandler = cb,
-                .TextChanged => self.peer.changedTextHandler = cb,
+                .TextChanged => self.peer.user.changedTextHandler = cb,
                 .Resize => {
                     self.peer.user.resizeHandler = cb;
                     self.requestDraw() catch {};
@@ -222,6 +222,12 @@ pub const TextField = struct {
         js.getText(self.peer.element, text.ptr);
 
         return text;
+    }
+
+    pub fn setReadOnly(self: *TextField, readOnly: bool) void {
+        _ = self;
+        _ = readOnly;
+        // TODO: set read only
     }
 };
 
