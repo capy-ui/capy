@@ -20,11 +20,9 @@ pub const MapViewer_Impl = struct {
     // Our own component state.
     tileCache: std.AutoHashMap(TilePosition, Tile),
     pendingRequests: std.AutoHashMap(TilePosition, capy.http.HttpResponse),
-    // TODO: between 0-1 wrapping for easier application of zoom
-    // TODO: this should preferably be the map center
-    camX: f32 = 0,
-    camY: f32 = 0,
-    camZoom: u5 = 5,
+    centerX: f32 = 0,
+    centerY: f32 = 0,
+    camZoom: u5 = 4,
     isDragging: bool = false,
     lastMouseX: i32 = 0,
     lastMouseY: i32 = 0,
@@ -125,20 +123,20 @@ pub const MapViewer_Impl = struct {
         const height = self.getHeight();
         ctx.clear(0, 0, width, height);
 
-        const camX = @floatToInt(i32, self.camX);
-        const camY = @floatToInt(i32, self.camY);
+        const camX = @floatToInt(i32, self.centerX) - @intCast(i32, width / 2);
+        const camY = @floatToInt(i32, self.centerY) - @intCast(i32, height / 2);
         var x: i32 = @divFloor(camX, 256);
         while (x < @divFloor(camX + @intCast(i32, width)+255, 256)) : (x += 1) {
             var y: i32 = @divFloor(camY, 256);
             while (y < @divFloor(camY + @intCast(i32, height)+255, 256)) : (y += 1) {
-                self.drawTile(ctx, TilePosition { .x = x, .y = y, .zoom = self.camZoom });
+                self.drawTile(ctx, TilePosition { .x = x, .y = y, .zoom = self.camZoom }, camX, camY);
             }
         }
     }
 
-    fn drawTile(self: *MapViewer_Impl, ctx: *capy.DrawContext, pos: TilePosition) void {
-        const x = -@floatToInt(i32, self.camX) + pos.x * 256;
-        const y = -@floatToInt(i32, self.camY) + pos.y * 256;
+    fn drawTile(self: *MapViewer_Impl, ctx: *capy.DrawContext, pos: TilePosition, camX: i32, camY: i32) void {
+        const x = -camX + pos.x * 256;
+        const y = -camY + pos.y * 256;
         if (self.getTile(pos)) |tile| {
             ctx.image(x, y, 256, 256, tile.data);
         } else {
@@ -162,8 +160,8 @@ pub const MapViewer_Impl = struct {
     fn mouseMoved(self: *MapViewer_Impl, x: i32, y: i32) !void {
         if (self.isDragging) {
             // TODO: smooth move
-            self.camX -= @intToFloat(f32, x - self.lastMouseX);
-            self.camY -= @intToFloat(f32, y - self.lastMouseY);
+            self.centerX -= @intToFloat(f32, x - self.lastMouseX);
+            self.centerY -= @intToFloat(f32, y - self.lastMouseY);
 
             self.lastMouseX = x;
             self.lastMouseY = y;
@@ -174,17 +172,18 @@ pub const MapViewer_Impl = struct {
     fn mouseScroll(self: *MapViewer_Impl, dx: f32, dy: f32) !void {
         _ = dx;
         if (dy > 0) {
-            self.camZoom -|= @floatToInt(u5, dy);
-            self.camX /= 2*dy;
-            self.camY /= 2*dy;
-        } else {
-            self.camZoom +|= @floatToInt(u5, -dy);
-            self.camX *= 2*-dy;
-            self.camY *= 2*-dy;
+            self.camZoom -|= 2*@floatToInt(u5, dy);
+            self.centerX /= 4*dy;
+            self.centerY /= 4*dy;
+        } else if (self.camZoom < 18) {
+            self.camZoom +|= 2*@floatToInt(u5, -dy);
+            self.centerX *= 4*-dy;
+            self.centerY *= 4*-dy;
         }
-        if (self.camZoom > 14) {
-            self.camZoom = 14;
+        if (self.camZoom > 18) {
+            self.camZoom = 18;
         }
+        std.log.info("zoom: {d}, pos: {d}, {d}", .{ self.camZoom, self.centerX, self.centerY });
         self.requestDraw() catch unreachable;
     }
 
