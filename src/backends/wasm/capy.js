@@ -228,9 +228,7 @@ const importObj = {
 		fillImage: function(ctx, img, x, y) {
 			const canvas = canvasContexts[ctx];
 			const image = resources[img];
-			if (image.imageDatas[ctx]) {
-				canvas.putImageData(image.imageDatas[ctx], x, y);
-			} else {
+			if (!image.imageDatas[ctx]) {
 				image.imageDatas[ctx] = canvas.createImageData(image.width, image.height);
 				const data = image.imageDatas[ctx].data;
 				const Bpp = image.stride / image.width; // source bytes per pixel
@@ -249,6 +247,7 @@ const importObj = {
 				resources[img] = image;
 				console.log("CREATE FOR " + ctx);
 			}
+			canvas.putImageData(image.imageDatas[ctx], x, y);
 		},
 		fill: function(ctx) {
 			canvasContexts[ctx].fill();
