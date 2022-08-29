@@ -45,9 +45,9 @@ pub const ImageData = struct {
                 &.{plte.processor()},
             ),
         );
-        defer img.deinit();
+        //defer img.deinit();
         const bytes = img.rawBytes();
-        return try ImageData.fromBytes(img.width, img.height, img.rowByteSize(), .RGB, bytes);
+        return try ImageData.fromBytes(img.width, img.height, img.rowByteSize(), .RGBA, bytes);
     }
 };
 

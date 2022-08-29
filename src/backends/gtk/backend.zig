@@ -631,6 +631,13 @@ pub const Canvas = struct {
             c.cairo_stroke(self.cr);
         }
 
+        pub fn image(self: *DrawContext, x: i32, y: i32, w: i32, h: i32, data: lib.ImageData) void {
+            _ = w; _ = h;
+            c.gdk_cairo_set_source_pixbuf(self.cr, data.peer.peer, @intToFloat(f64, x), @intToFloat(f64, y));
+            c.cairo_rectangle(self.cr, @intToFloat(f64, x), @intToFloat(f64, y), @intToFloat(f64, w), @intToFloat(f64, h));
+            c.cairo_fill(self.cr);
+        }
+
         /// Stroke the current path and reset the path.
         pub fn stroke(self: *DrawContext) void {
             c.cairo_stroke(self.cr);
@@ -729,13 +736,6 @@ pub const Container = struct {
     }
 
     pub fn resize(self: *const Container, peer: PeerType, w: u32, h: u32) void {
-        _ = w;
-        _ = h;
-        _ = peer;
-        _ = self;
-
-        // temporary fix and should be replaced by a proper way to resize down
-        //c.gtk_widget_set_size_request(peer, std.math.max(@intCast(c_int, w) - 5, 0), std.math.max(@intCast(c_int, h) - 5, 0));
         c.gtk_widget_set_size_request(peer, @intCast(c_int, w), @intCast(c_int, h));
         c.gtk_container_resize_children(@ptrCast(*c.GtkContainer, self.container));
     }
@@ -790,6 +790,7 @@ pub const ScrollView = struct {
 pub const ImageData = struct {
     peer: *c.GdkPixbuf,
 
+    // TODO: copy bytes to a new array
     pub fn from(width: usize, height: usize, stride: usize, cs: lib.Colorspace, bytes: []const u8) !ImageData {
         const pixbuf = c.gdk_pixbuf_new_from_data(bytes.ptr, c.GDK_COLORSPACE_RGB, @boolToInt(cs == .RGBA), 8, @intCast(c_int, width), @intCast(c_int, height), @intCast(c_int, stride), null, null) orelse return BackendError.UnknownError;
 
