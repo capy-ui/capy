@@ -3,6 +3,11 @@ const capy = @import("capy");
 
 pub usingnamespace capy.cross_platform;
 
+/// Convert from degrees to radians.
+fn deg2rad(theta: f32) f32 {
+    return theta / 180.0 * std.math.pi;
+}
+
 pub const MapViewer_Impl = struct {
     pub usingnamespace capy.internal.All(MapViewer_Impl);
 
@@ -20,6 +25,7 @@ pub const MapViewer_Impl = struct {
     // Our own component state.
     tileCache: std.AutoHashMap(TilePosition, Tile),
     pendingRequests: std.AutoHashMap(TilePosition, capy.http.HttpResponse),
+    pendingSearchRequest: ?capy.http.HttpResponse = null,
     centerX: f32 = 0,
     centerY: f32 = 0,
     camZoom: u5 = 4,
@@ -35,10 +41,6 @@ pub const MapViewer_Impl = struct {
         zoom: u5,
         x: i32,
         y: i32,
-
-        fn deg2rad(theta: f32) f32 {
-            return theta / 180 * std.math.pi;
-        }
 
         /// 'lon' and 'lat' are in degrees
         pub fn fromLonLat(zoom: u5, lon: f32, lat: f32) TilePosition {
@@ -61,10 +63,12 @@ pub const MapViewer_Impl = struct {
     };
 
     pub fn init(config: Config) MapViewer_Impl {
-        return MapViewer_Impl.init_events(MapViewer_Impl{
+        var viewer = MapViewer_Impl.init_events(MapViewer_Impl{
             .tileCache = std.AutoHashMap(TilePosition, Tile).init(config.allocator),
             .pendingRequests = std.AutoHashMap(TilePosition, capy.http.HttpResponse).init(config.allocator),
         });
+        viewer.centerTo(2.3200, 48.8589);
+        return viewer;
     }
 
     // Implementation Methods
@@ -89,23 +93,60 @@ pub const MapViewer_Impl = struct {
         }
     }
 
+    pub fn centerTo(self: *MapViewer_Impl, lon: f32, lat: f32) void {
+        const n = std.math.pow(f32, 2, @intToFloat(f32, self.camZoom));
+        const x = n * ((lon + 180) / 360);
+        const lat_rad = deg2rad(lat);
+        const y = n * (1 - (std.math.ln(
+            std.math.tan(lat_rad) + (1.0 / std.math.cos(lat_rad))
+        ) / std.math.pi)) / 2;
+        self.centerX = x * 256;
+        self.centerY = y * 256;
+    }
+
+    pub fn search(self: *MapViewer_Impl, query: []const u8) !void {
+        var buf: [2048]u8 = undefined;
+        const encoded_query = try capy.http.urlEncode(capy.internal.scratch_allocator, query);
+        defer capy.internal.scratch_allocator.free(encoded_query);
+        const url = try std.fmt.bufPrint(&buf, "https://nominatim.openstreetmap.org/search?q={s}&format=jsonv2", .{ encoded_query });
+
+        const request = capy.http.HttpRequest.get(url);
+        const response = try request.send();
+        self.pendingSearchRequest = response;
+    }
+
     pub fn checkRequests(self: *MapViewer_Impl) !void {
+        if (self.pendingSearchRequest) |*response| {
+            if (response.isReady()) {
+                // Read the body of the HTTP response and store it in memory
+                const contents = try response.reader().readAllAlloc(capy.internal.scratch_allocator, std.math.maxInt(usize));
+                defer capy.internal.scratch_allocator.free(contents);
+
+                var parser = std.json.Parser.init(capy.internal.scratch_allocator, false);
+                defer parser.deinit();
+
+                const valueTree = try parser.parse(contents);
+                const root = valueTree.root.Array;
+                if (root.items.len > 0) { // if there's at least one result
+                    const firstResult = root.items[0].Object;
+                    const lon = try std.fmt.parseFloat(f32, firstResult.get("lon").?.String);
+                    const lat = try std.fmt.parseFloat(f32, firstResult.get("lat").?.String);
+
+                    self.centerTo(lon, lat);
+                }
+                self.pendingSearchRequest = null;
+            }
+        }
+
         var iterator = self.pendingRequests.keyIterator();
         while (iterator.next()) |key| {
             const response = self.pendingRequests.getPtr(key.*).?;
             if (response.isReady()) {
                 // Read the body of the HTTP response and store it in memory
-                var contents = std.ArrayList(u8).init(capy.internal.scratch_allocator);
-                defer contents.deinit();
+                const contents = try response.reader().readAllAlloc(capy.internal.scratch_allocator, std.math.maxInt(usize));
+                defer capy.internal.scratch_allocator.free(contents);
 
-                var buf: [512]u8 = undefined;
-                while (true) {
-                    const len = try response.read(&buf);
-                    if (len == 0) break;
-                    try contents.writer().writeAll(buf[0..len]);
-                }
-
-                const imageData = try capy.ImageData.fromBuffer(capy.internal.scratch_allocator, contents.toOwnedSlice());
+                const imageData = try capy.ImageData.fromBuffer(capy.internal.scratch_allocator, contents);
                 try self.tileCache.put(key.*, .{ .data = imageData });
                 self.pendingRequests.removeByPtr(key);
                 self.requestDraw() catch unreachable;
@@ -219,8 +260,11 @@ pub fn main() !void {
     try window.set(
         capy.Column(.{}, .{
             capy.Row(.{}, .{
-                capy.Expanded(capy.TextField(.{})),
-                capy.Button(.{ .label = "Go!" }),
+                capy.Expanded(
+                    capy.TextField(.{})
+                        .setName("location-input")
+                ),
+                capy.Button(.{ .label = "Go!", .onclick = onGo }),
             }),
             capy.Expanded(
                 (try MapViewer(.{}))
@@ -236,4 +280,11 @@ pub fn main() !void {
         const viewer = root.getChildAs(MapViewer_Impl, "map-viewer").?;
         try viewer.checkRequests();
     }
+}
+
+fn onGo(self: *capy.Button_Impl) !void {
+    const root = self.getRoot().?;
+    const viewer = root.getChildAs(MapViewer_Impl, "map-viewer").?;
+    const input = root.getChildAs(capy.TextField_Impl, "location-input").?;
+    try viewer.search(input.get("text"));
 }

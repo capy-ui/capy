@@ -116,7 +116,7 @@ pub fn Widgeting(comptime T: type) type {
 
         pub fn deinit(self: *T) void {
             std.log.info("deinit properly {s}", .{@typeName(T)});
-            std.log.info("a {}", .{self});
+            //std.log.info("a {}", .{self});
             self.dataWrappers.widget = null;
 
             self.handlers.clickHandlers.deinit();
@@ -173,7 +173,7 @@ pub fn Widgeting(comptime T: type) type {
         // Properties
         fn TypeOfProperty(comptime name: []const u8) type {
             if (@hasField(T, name)) {
-                return @TypeOf(@field(T, name)).ValueType;
+                return @TypeOf(@field(@as(T, undefined), name)).ValueType;
             } else if (@hasField(DataWrappers, name)) {
                 return @TypeOf(@field(@as(DataWrappers, undefined), name)).ValueType;
             } else {
@@ -198,7 +198,7 @@ pub fn Widgeting(comptime T: type) type {
             return self.*;
         }
 
-        pub fn get(self: T, comptime name: []const u8) TypeOfProperty(name) {
+        pub fn get(self: *T, comptime name: []const u8) TypeOfProperty(name) {
             if (@hasField(DataWrappers, name)) {
                 return @field(self.dataWrappers, name).get();
             } else {
