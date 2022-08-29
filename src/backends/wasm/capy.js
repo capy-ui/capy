@@ -244,8 +244,8 @@ const importObj = {
 						}
 					}
 				}
+				image.bytes = undefined; // try to free up some space
 				resources[img] = image;
-				console.log("CREATE FOR " + ctx);
 			}
 			canvas.putImageData(image.imageDatas[ctx], x, y);
 		},
@@ -263,7 +263,6 @@ const importObj = {
 			const size = stride * height;
 			let view = new Uint8Array(obj.instance.exports.memory.buffer);
 			let data = Uint8ClampedArray.from(view.slice(bytesPtr, bytesPtr + size));
-			console.log("upload " + size + " bytes image");
 			return resources.push({
 				type: 'image',
 				width: width,
@@ -327,11 +326,11 @@ const importObj = {
 	function update() {
 		if (executeProgram) {
 			obj.instance.exports._zgtContinue();
-			//requestAnimationFrame(update);
+			requestAnimationFrame(update);
 		}
 	}
-	setInterval(update, 32);
-	//requestAnimationFrame(update);
+	//setInterval(update, 32);
+	requestAnimationFrame(update);
 
 	window.onresize = function() {
 		pushEvent({ type: 0, target: rootElementId });

@@ -1,3 +1,6 @@
 [submodule "vendor/zigimg"]
 	path = vendor/zigimg
 	url = https://github.com/zigimg/zigimg
+[submodule "vendor/zfetch"]
+	path = vendor/zfetch
+	url = https://github.com/truemedian/zfetch

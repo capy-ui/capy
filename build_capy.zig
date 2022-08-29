@@ -53,11 +53,13 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
         .name = "zigimg",
         .source = std.build.FileSource.relative("vendor/zigimg/zigimg.zig"),
     };
+    
+    const zfetch = try @import("vendor/zfetch/build.zig").getPackage(step.builder);
 
     const capy = std.build.Pkg{
         .name = "capy",
         .source = std.build.FileSource.relative(prefix ++ "/src/main.zig"),
-        .dependencies = &[_]std.build.Pkg{ zigimg },
+        .dependencies = &[_]std.build.Pkg{ zigimg, zfetch },
     };
     step.addPackage(capy);
 }

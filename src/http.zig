@@ -13,7 +13,7 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
             return HttpRequest{ .url = url };
         }
 
-        pub fn send(self: HttpRequest) HttpResponse {
+        pub fn send(self: HttpRequest) !HttpResponse {
             return .{ .peer = backend.Http.send(self.url) };
         }
     };
@@ -43,10 +43,56 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
             return self.peer.read(dest);
         }
 
-        pub fn deinit(self: *const HttpResponse) void {
-            internal.lasting_allocator.destroy(self);
+        pub fn deinit(self: *HttpResponse) void {
+            _ = self; // TODO?
         }
     };
 } else struct {
+    const zfetch = @import("zfetch");
+
     // TODO: implement using ziget
+    pub const HttpRequest = struct {
+        url: []const u8,
+
+        pub fn get(url: []const u8) HttpRequest {
+            return HttpRequest{ .url = url };
+        }
+
+        pub fn send(self: HttpRequest) !HttpResponse {
+            var headers = zfetch.Headers.init(internal.scratch_allocator);
+            defer headers.deinit();
+
+            var req = try zfetch.Request.init(internal.lasting_allocator, self.url, null);
+            try req.do(.GET, headers, null);
+            return HttpResponse { .req = req };
+        }
+    };
+
+    pub const HttpResponse = struct {
+        req: *zfetch.Request,
+
+        pub const ReadError = zfetch.Request.Reader.Error;
+        pub const Reader = std.io.Reader(*HttpResponse, ReadError, read);
+
+        pub fn isReady(self: *HttpResponse) bool {
+            _ = self;
+            return true;
+        }
+
+        pub fn checkError(self: *HttpResponse) !void {
+            _ = self;
+        }
+
+        pub fn reader(self: *HttpResponse) Reader {
+            return .{ .context = self };
+        }
+
+        pub fn read(self: *HttpResponse, dest: []u8) ReadError!usize {
+            return self.req.reader().read(dest);
+        }
+
+        pub fn deinit(self: *HttpResponse) void {
+            self.req.deinit();
+        }
+    };
 };
