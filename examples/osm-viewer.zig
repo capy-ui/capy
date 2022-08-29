@@ -24,6 +24,7 @@ pub const MapViewer_Impl = struct {
     // TODO: this should preferably be the map center
     camX: f32 = 0,
     camY: f32 = 0,
+    camZoom: u5 = 5,
     isDragging: bool = false,
     lastMouseX: i32 = 0,
     lastMouseY: i32 = 0,
@@ -83,7 +84,7 @@ pub const MapViewer_Impl = struct {
                 var buf: [2048]u8 = undefined;
                 const url = std.fmt.bufPrint(&buf, "https://tile.openstreetmap.org/{}/{}/{}.png", .{ actual_pos.zoom, actual_pos.x, actual_pos.y }) catch unreachable;
                 const request = capy.http.HttpRequest.get(url);
-                const response = request.send();
+                const response = request.send() catch unreachable;
                 self.pendingRequests.put(actual_pos, response ) catch unreachable;
             }
             return null;
@@ -105,7 +106,6 @@ pub const MapViewer_Impl = struct {
                     if (len == 0) break;
                     try contents.writer().writeAll(buf[0..len]);
                 }
-                std.log.info("length: {}", .{ contents.items.len });
 
                 const imageData = try capy.ImageData.fromBuffer(capy.internal.scratch_allocator, contents.toOwnedSlice());
                 try self.tileCache.put(key.*, .{ .data = imageData });
@@ -131,7 +131,7 @@ pub const MapViewer_Impl = struct {
         while (x < @divFloor(camX + @intCast(i32, width)+255, 256)) : (x += 1) {
             var y: i32 = @divFloor(camY, 256);
             while (y < @divFloor(camY + @intCast(i32, height)+255, 256)) : (y += 1) {
-                self.drawTile(ctx, TilePosition { .x = x, .y = y, .zoom = 4 });
+                self.drawTile(ctx, TilePosition { .x = x, .y = y, .zoom = self.camZoom });
             }
         }
     }
@@ -173,7 +173,18 @@ pub const MapViewer_Impl = struct {
 
     fn mouseScroll(self: *MapViewer_Impl, dx: f32, dy: f32) !void {
         _ = dx;
-        _ = dy;
+        if (dy > 0) {
+            self.camZoom -|= @floatToInt(u5, dy);
+            self.camX /= 2*dy;
+            self.camY /= 2*dy;
+        } else {
+            self.camZoom +|= @floatToInt(u5, -dy);
+            self.camX *= 2*-dy;
+            self.camY *= 2*-dy;
+        }
+        if (self.camZoom > 14) {
+            self.camZoom = 14;
+        }
         self.requestDraw() catch unreachable;
     }
 
