@@ -2,6 +2,7 @@ pub const ElementId = usize;
 pub const CanvasContextId = usize;
 pub const EventId = usize;
 pub const NetworkRequestId = usize;
+pub const ResourceId = usize;
 
 pub const EventType = enum(usize) {
     Resize = 0,
@@ -37,8 +38,12 @@ pub extern fn rectPath(ctx: CanvasContextId, x: usize, y: usize, w: usize, h: us
 pub extern fn moveTo(ctx: CanvasContextId, x: usize, y: usize) void;
 pub extern fn lineTo(ctx: CanvasContextId, x: usize, y: usize) void;
 pub extern fn fillText(ctx: CanvasContextId, textPtr: [*]const u8, textLen: usize, x: i32, y: i32) void;
+pub extern fn fillImage(ctx: CanvasContextId, img: ResourceId, x: i32, y: i32) void;
 pub extern fn fill(ctx: CanvasContextId) void;
 pub extern fn stroke(ctx: CanvasContextId) void;
+
+// Resources
+pub extern fn uploadImage(width: usize, height: usize, stride: usize, is_rgb: bool, bytesPtr: [*]const u8) ResourceId;
 
 // Networking related
 // TODO: support more things

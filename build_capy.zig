@@ -3,8 +3,6 @@ const std = @import("std");
 pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !void {
     step.subsystem = .Native;
     step.use_stage1 = true;
-    // step.linkSystemLibrary("glfw");
-    // step.linkSystemLibrary("GLESv2");
 
     switch (step.target.getOsTag()) {
         .linux, .freebsd => {
@@ -38,6 +36,7 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
         .freestanding => {
             if (step.target.toTarget().isWasm()) {
                 // Things like the image reader require more stack than given by default
+                // TODO: remove once ziglang/zig#12589 is merged
                 step.stack_size = std.math.max(step.stack_size orelse 0, 256 * 1024);
             } else {
                 return error.UnsupportedOs;
@@ -50,10 +49,15 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
         },
     }
 
+    const zigimg = std.build.Pkg {
+        .name = "zigimg",
+        .source = std.build.FileSource.relative("vendor/zigimg/zigimg.zig"),
+    };
+
     const capy = std.build.Pkg{
         .name = "capy",
         .source = std.build.FileSource.relative(prefix ++ "/src/main.zig"),
-        .dependencies = &[_]std.build.Pkg{},
+        .dependencies = &[_]std.build.Pkg{ zigimg },
     };
     step.addPackage(capy);
 }

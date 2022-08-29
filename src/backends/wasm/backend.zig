@@ -368,6 +368,12 @@ pub const Canvas = struct {
             js.fillText(self.ctx, str.ptr, str.len, x, y);
         }
 
+        pub fn image(self: *DrawContext, x: i32, y: i32, w: i32, h: i32, data: lib.ImageData) void {
+            _ = w;
+            _ = h; // TODO: scaling
+            js.fillImage(self.ctx, data.peer.id, x, y);
+        }
+
         pub fn line(self: *DrawContext, x1: u32, y1: u32, x2: u32, y2: u32) void {
             js.moveTo(self.ctx, x1, y1);
             js.lineTo(self.ctx, x2, y2);
@@ -419,14 +425,10 @@ pub const Canvas = struct {
 
 pub const ImageData = struct {
     // TODO
+    id: js.ResourceId,
 
     pub fn from(width: usize, height: usize, stride: usize, cs: lib.Colorspace, bytes: []const u8) !ImageData {
-        _ = width;
-        _ = height;
-        _ = stride;
-        _ = cs;
-        _ = bytes;
-        std.debug.todo("WASM ImageData");
+        return ImageData{ .id = js.uploadImage(width, height, stride, cs == .RGB, bytes.ptr) };
     }
 };
 
@@ -464,11 +466,9 @@ pub const Container = struct {
 
 // Misc
 pub const Http = struct {
-
     pub fn send(url: []const u8) HttpResponse {
-        return HttpResponse { .id = js.fetchHttp(url.ptr, url.len) };
+        return HttpResponse{ .id = js.fetchHttp(url.ptr, url.len) };
     }
-
 };
 
 pub const HttpResponse = struct {

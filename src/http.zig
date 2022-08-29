@@ -10,7 +10,7 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
         url: []const u8,
 
         pub fn get(url: []const u8) HttpRequest {
-            return HttpRequest { .url = url };
+            return HttpRequest{ .url = url };
         }
 
         pub fn send(self: HttpRequest) HttpResponse {
@@ -21,7 +21,7 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
     pub const HttpResponse = struct {
         peer: backend.HttpResponse,
 
-        pub const ReadError = error {};
+        pub const ReadError = error{};
         pub const Reader = std.io.Reader(*HttpResponse, ReadError, read);
 
         // This weird and clunky polling async API is used because Zig evented I/O mode
@@ -46,7 +46,6 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
         pub fn deinit(self: *const HttpResponse) void {
             internal.lasting_allocator.destroy(self);
         }
-
     };
 } else struct {
     // TODO: implement using ziget

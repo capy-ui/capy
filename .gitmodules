@@ -1,0 +1,3 @@
+[submodule "vendor/zigimg"]
+	path = vendor/zigimg
+	url = https://github.com/zigimg/zigimg

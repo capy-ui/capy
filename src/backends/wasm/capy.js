@@ -5,6 +5,7 @@ let pendingEvents = [];
 let networkRequests = [];
 let networkRequestsCompletion = [];
 let networkRequestsReadIdx = [];
+let resources = [];
 let events = [];
 let executeProgram = true;
 let rootElementId = -1;
@@ -192,7 +193,15 @@ const importObj = {
 			const canvas = domObjects[element];
 			canvas.width = canvas.clientWidth;
 			canvas.height = canvas.clientHeight;
+
+			for (ctxId in canvasContexts) {
+				if (canvasContexts[ctxId].owner === element) {
+					canvasContexts[ctxId].clearRect(0, 0, canvas.width, canvas.height);
+					return ctxId;
+				}
+			}
 			const ctx = canvas.getContext("2d");
+			ctx.owner = element;
 			ctx.lineWidth = 2.5;
 			ctx.beginPath();
 			return canvasContexts.push(ctx) - 1;
@@ -216,6 +225,31 @@ const importObj = {
 			canvasContexts[ctx].textBaseline = "top";
 			canvasContexts[ctx].fillText(text, x, y);
 		},
+		fillImage: function(ctx, img, x, y) {
+			const canvas = canvasContexts[ctx];
+			const image = resources[img];
+			if (image.imageDatas[ctx]) {
+				canvas.putImageData(image.imageDatas[ctx], x, y);
+			} else {
+				image.imageDatas[ctx] = canvas.createImageData(image.width, image.height);
+				const data = image.imageDatas[ctx].data;
+				const Bpp = image.stride / image.width; // source bytes per pixel
+				for (let y = 0; y < image.height; y++) {
+					for (let x = 0; x < image.width; x++) {
+						data[y*image.width*4+x*4+0] = image.bytes[y*image.stride+x*Bpp+0];
+						data[y*image.width*4+x*4+1] = image.bytes[y*image.stride+x*Bpp+1];
+						data[y*image.width*4+x*4+2] = image.bytes[y*image.stride+x*Bpp+2];
+						if (!image.isRgb) {
+							data[y*image.width*4+x*4+3] = image.bytes[y*image.stride+x*Bpp+3];
+						} else {
+							data[y*image.width*4+x*4+3] = 0xFF;
+						}
+					}
+				}
+				resources[img] = image;
+				console.log("CREATE FOR " + ctx);
+			}
+		},
 		fill: function(ctx) {
 			canvasContexts[ctx].fill();
 			canvasContexts[ctx].beginPath();
@@ -223,6 +257,23 @@ const importObj = {
 		stroke: function(ctx) {
 			canvasContexts[ctx].stroke();
 			canvasContexts[ctx].beginPath();
+		},
+
+		// Resources
+		uploadImage: function(width, height, stride, isRgb, bytesPtr) {
+			const size = stride * height;
+			let view = new Uint8Array(obj.instance.exports.memory.buffer);
+			let data = Uint8ClampedArray.from(view.slice(bytesPtr, bytesPtr + size));
+			console.log("upload " + size + " bytes image");
+			return resources.push({
+				type: 'image',
+				width: width,
+				height: height,
+				stride: stride,
+				rgb: isRgb != 0,
+				bytes: data,
+				imageDatas: {},
+			}) - 1;
 		},
 
 		// Network
@@ -277,11 +328,11 @@ const importObj = {
 	function update() {
 		if (executeProgram) {
 			obj.instance.exports._zgtContinue();
-			requestAnimationFrame(update);
+			//requestAnimationFrame(update);
 		}
 	}
-	//setInterval(update, 32);
-	requestAnimationFrame(update);
+	setInterval(update, 32);
+	//requestAnimationFrame(update);
 
 	window.onresize = function() {
 		pushEvent({ type: 0, target: rootElementId });

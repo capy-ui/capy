@@ -1,6 +1,7 @@
 const std = @import("std");
 const backend = @import("backend.zig");
 const Size = @import("data.zig").Size;
+const zigimg = @import("zigimg");
 
 const Colorspace = @import("color.zig").Colorspace;
 
@@ -25,10 +26,28 @@ pub const ImageData = struct {
         return @import("png.zig").read(allocator, reader);
     }
 
-    // Load from a png file using @embedFile.
-    pub fn fromEmbeddedFile(allocator: std.mem.Allocator, buf: []const u8) !ImageData {
-        const reader = std.io.fixedBufferStream(buf).reader();
-        return @import("png.zig").read(allocator, reader);
+    /// Load from a png file using a buffer (which can be provided by @embedFile)
+    pub fn fromBuffer(allocator: std.mem.Allocator, buf: []const u8) !ImageData {
+        // stage1 crashes with LLVM ERROR: Unable to expand fixed point multiplication.
+        //const img = try zigimg.Image.fromMemory(allocator, buf);
+
+        var stream = std.io.StreamSource{ .const_buffer = std.io.fixedBufferStream(buf) };
+        var arena = std.heap.ArenaAllocator.init(allocator);
+        defer arena.deinit();
+
+        var plte = zigimg.png.PlteProcessor{};
+        // TRNS processor isn't included as it crashed LLVM due to saturating multiplication
+        var img = try zigimg.png.load(
+            &stream,
+            allocator,
+            zigimg.png.ReaderOptions.initWithProcessors(
+                arena.allocator(),
+                &.{plte.processor()},
+            ),
+        );
+        defer img.deinit();
+        const bytes = img.rawBytes();
+        return try ImageData.fromBytes(img.width, img.height, img.rowByteSize(), .RGB, bytes);
     }
 };
 
