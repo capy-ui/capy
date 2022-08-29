@@ -77,6 +77,14 @@ const importObj = {
 					args: [e.clientX, e.clientY]
 				});
 			});
+			elem.addEventListener("wheel", function(e) {
+				console.log(e.deltaY);
+				pushEvent({
+					type: 5,
+					target: idx,
+					args: [Math.round(e.deltaX / 100), Math.round(e.deltaY / 100)]
+				});
+			});
 
 			// touch
 			elem.addEventListener("touchstart", function(e) {

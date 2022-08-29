@@ -10,6 +10,7 @@ pub const EventType = enum(usize) {
     TextChange,
     MouseButton,
     MouseMotion,
+    MouseScroll,
 };
 
 pub extern fn jsPrint(msg: [*]const u8, len: usize) void;

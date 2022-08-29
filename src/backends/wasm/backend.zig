@@ -172,6 +172,13 @@ pub fn Events(comptime T: type) type {
                             handler(x, y, self.peer.userdata);
                         }
                     },
+                    .MouseScroll => {
+                        if (self.peer.user.scrollHandler) |handler| {
+                            const dx = @intToFloat(f32, @bitCast(i32, js.getEventArg(event, 0)));
+                            const dy = @intToFloat(f32, @bitCast(i32, js.getEventArg(event, 1)));
+                            handler(dx, dy, self.peer.userdata);
+                        }
+                    }
                 }
             } else if (T == Container) { // if we're a container, iterate over our children to propagate the event
                 for (self.children.items) |child| {

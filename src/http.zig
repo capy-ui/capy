@@ -14,7 +14,7 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
         }
 
         pub fn send(self: HttpRequest) !HttpResponse {
-            return .{ .peer = backend.Http.send(self.url) };
+            return HttpResponse { .peer = backend.Http.send(self.url) };
         }
     };
 
