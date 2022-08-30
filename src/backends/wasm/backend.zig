@@ -498,7 +498,7 @@ fn executeMain() callconv(.Async) void {
     if (ReturnType == void) {
         mainFn();
     } else {
-        mainFn() catch js.stopExecution();
+        mainFn() catch |err| @panic(@errorName(err));
     }
     js.stopExecution();
 }

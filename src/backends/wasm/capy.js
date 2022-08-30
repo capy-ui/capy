@@ -199,8 +199,8 @@ const importObj = {
 		// Canvas
 		openContext: function(element) {
 			const canvas = domObjects[element];
-			canvas.width = canvas.clientWidth;
-			canvas.height = canvas.clientHeight;
+			canvas.width = window.devicePixelRatio * canvas.clientWidth;
+			canvas.height = window.devicePixelRatio * canvas.clientHeight;
 
 			for (ctxId in canvasContexts) {
 				if (canvasContexts[ctxId].owner === element) {

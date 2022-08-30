@@ -135,6 +135,7 @@ pub const MapViewer_Impl = struct {
                     self.centerTo(lon, lat);
                 }
                 self.pendingSearchRequest = null;
+                self.requestDraw() catch unreachable;
             }
         }
 
