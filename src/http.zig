@@ -14,7 +14,7 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
         }
 
         pub fn send(self: HttpRequest) !HttpResponse {
-            return HttpResponse { .peer = backend.Http.send(self.url) };
+            return HttpResponse{ .peer = backend.Http.send(self.url) };
         }
     };
 
@@ -64,7 +64,7 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
 
             var req = try zfetch.Request.init(internal.lasting_allocator, self.url, null);
             try req.do(.GET, headers, null);
-            return HttpResponse { .req = req };
+            return HttpResponse{ .req = req };
         }
     };
 

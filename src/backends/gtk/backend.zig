@@ -634,9 +634,19 @@ pub const Canvas = struct {
         pub fn image(self: *DrawContext, x: i32, y: i32, w: u32, h: u32, data: lib.ImageData) void {
             _ = w;
             _ = h;
-            c.gdk_cairo_set_source_pixbuf(self.cr, data.peer.peer, @intToFloat(f64, x), @intToFloat(f64, y));
-            c.cairo_rectangle(self.cr, @intToFloat(f64, x), @intToFloat(f64, y), @intToFloat(f64, w), @intToFloat(f64, h));
-            c.cairo_fill(self.cr);
+            c.cairo_save(self.cr);
+            defer c.cairo_restore(self.cr);
+
+            const width = @intToFloat(f64, data.width);
+            const height = @intToFloat(f64, data.height);
+            c.cairo_scale(self.cr, @intToFloat(f64, w) / width, @intToFloat(f64, h) / height);
+            c.gdk_cairo_set_source_pixbuf(
+                self.cr,
+                data.peer.peer,
+                @intToFloat(f64, x) / (@intToFloat(f64, w) / width),
+                @intToFloat(f64, y) / (@intToFloat(f64, h) / height),
+            );
+            c.cairo_paint(self.cr);
         }
 
         /// Stroke the current path and reset the path.

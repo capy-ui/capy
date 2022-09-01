@@ -23,14 +23,14 @@ pub fn main() !void {
     try capy.backend.init();
 
     var window = try capy.Window.init();
-    const imageData = try capy.ImageData.fromFile(capy.internal.lasting_allocator, "ziglogo.png");
+    const imageData = try capy.ImageData.fromBuffer(capy.internal.lasting_allocator, @embedFile("../ziglogo.png"));
 
     try window.set(
         capy.Row(.{}, .{
             capy.Expanded((try capy.Row(.{}, .{
                 capy.Label(.{ .text = "Hello Zig" }),
                 capy.Expanded(
-                    capy.Image(.{ .data = imageData }),
+                    capy.Image(.{ .data = imageData, .scaling = .Fit }),
                 ),
             }))
                 .bind("opacity", &opacity)),
