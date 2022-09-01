@@ -631,8 +631,9 @@ pub const Canvas = struct {
             c.cairo_stroke(self.cr);
         }
 
-        pub fn image(self: *DrawContext, x: i32, y: i32, w: i32, h: i32, data: lib.ImageData) void {
-            _ = w; _ = h;
+        pub fn image(self: *DrawContext, x: i32, y: i32, w: u32, h: u32, data: lib.ImageData) void {
+            _ = w;
+            _ = h;
             c.gdk_cairo_set_source_pixbuf(self.cr, data.peer.peer, @intToFloat(f64, x), @intToFloat(f64, y));
             c.cairo_rectangle(self.cr, @intToFloat(f64, x), @intToFloat(f64, y), @intToFloat(f64, w), @intToFloat(f64, h));
             c.cairo_fill(self.cr);
@@ -795,23 +796,6 @@ pub const ImageData = struct {
         const pixbuf = c.gdk_pixbuf_new_from_data(bytes.ptr, c.GDK_COLORSPACE_RGB, @boolToInt(cs == .RGBA), 8, @intCast(c_int, width), @intCast(c_int, height), @intCast(c_int, stride), null, null) orelse return BackendError.UnknownError;
 
         return ImageData{ .peer = pixbuf };
-    }
-};
-
-pub const Image = struct {
-    peer: *c.GtkWidget,
-
-    pub usingnamespace Events(Image);
-
-    pub fn create() BackendError!Image {
-        const image = c.gtk_image_new() orelse return BackendError.UnknownError;
-        c.gtk_widget_show(image);
-        try Image.setupEvents(image);
-        return Image{ .peer = image };
-    }
-
-    pub fn setData(self: *Image, data: ImageData) void {
-        c.gtk_image_set_from_pixbuf(@ptrCast(*c.GtkImage, self.peer), data.peer);
     }
 };
 

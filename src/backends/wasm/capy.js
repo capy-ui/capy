@@ -143,11 +143,11 @@ const importObj = {
 			if (elem.nodeName === "INPUT") text = elem.value;
 			else text = elem.innerText;
 
-			const length = new TextEncoder().encode(text).length;
+			const encoded = new TextEncoder().encode(text);
 
 			let view = new Uint8Array(obj.instance.exports.memory.buffer);
-			for (let i = 0; i < length; i++) {
-				view[textPtr + i] = text.codePointAt(i);
+			for (let i = 0; i < encoded.length; i++) {
+				view[textPtr + i] = encoded[i];
 			}
 		},
 		setPos: function(element, x, y) {

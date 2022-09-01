@@ -178,7 +178,7 @@ pub fn Events(comptime T: type) type {
                             const dy = @intToFloat(f32, @bitCast(i32, js.getEventArg(event, 1)));
                             handler(dx, dy, self.peer.userdata);
                         }
-                    }
+                    },
                 }
             } else if (T == Container) { // if we're a container, iterate over our children to propagate the event
                 for (self.children.items) |child| {
@@ -375,7 +375,7 @@ pub const Canvas = struct {
             js.fillText(self.ctx, str.ptr, str.len, x, y);
         }
 
-        pub fn image(self: *DrawContext, x: i32, y: i32, w: i32, h: i32, data: lib.ImageData) void {
+        pub fn image(self: *DrawContext, x: i32, y: i32, w: u32, h: u32, data: lib.ImageData) void {
             _ = w;
             _ = h; // TODO: scaling
             js.fillImage(self.ctx, data.peer.id, x, y);

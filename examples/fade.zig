@@ -2,7 +2,7 @@ const std = @import("std");
 const capy = @import("capy");
 pub usingnamespace capy.cross_platform;
 
-var opacity = capy.DataWrapper(f32).of(0);
+var opacity = capy.DataWrapper(f32).of(1.0);
 
 fn startAnimation(button: *capy.Button_Impl) !void {
     // Ensure the current animation is done before starting another
@@ -25,14 +25,18 @@ pub fn main() !void {
     var window = try capy.Window.init();
     const imageData = try capy.ImageData.fromFile(capy.internal.lasting_allocator, "ziglogo.png");
 
-    try window.set(capy.Column(.{}, .{capy.Row(.{}, .{
-        capy.Expanded((try capy.Row(.{}, .{
-            capy.Expanded(capy.Label(.{ .text = "Hello Zig" })),
-            capy.Image(.{ .data = imageData }),
-        }))
-            .bind("opacity", &opacity)),
-        capy.Button(.{ .label = "Show", .onclick = startAnimation }),
-    })}));
+    try window.set(
+        capy.Row(.{}, .{
+            capy.Expanded((try capy.Row(.{}, .{
+                capy.Label(.{ .text = "Hello Zig" }),
+                capy.Expanded(
+                    capy.Image(.{ .data = imageData }),
+                ),
+            }))
+                .bind("opacity", &opacity)),
+            capy.Button(.{ .label = "Hide", .onclick = startAnimation }),
+        }),
+    );
 
     window.resize(800, 450);
     window.show();

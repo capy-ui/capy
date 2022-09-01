@@ -45,7 +45,7 @@ const WebServerStep = struct {
     fn index(context: *Context, response: *http.Response, request: http.Request) !void {
         const allocator = request.arena;
         const buildRoot = context.builder.build_root;
-        const file = try std.fs.cwd().openFile(try std.fs.path.join(allocator, &.{ buildRoot, "src/backends/wasm/page.html" }), .{});
+        const file = try std.fs.cwd().openFile(try std.fs.path.join(allocator, &.{ buildRoot, "src/backends/wasm/index.html" }), .{});
         defer file.close();
         const text = try file.readToEndAlloc(allocator, std.math.maxInt(usize));
 
