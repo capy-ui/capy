@@ -23,9 +23,9 @@ const GuiWidget = struct {
 
     processEventFn: fn (object: ?*anyopaque, event: js.EventId) void,
 
-    pub fn init(comptime T: type, allocator: std.mem.Allocator, name: []const u8) !*GuiWidget {
+    pub fn init(comptime T: type, allocator: std.mem.Allocator, name: []const u8, typeName: []const u8) !*GuiWidget {
         const self = try allocator.create(GuiWidget);
-        self.* = .{ .processEventFn = T.processEvent, .element = js.createElement(name) };
+        self.* = .{ .processEventFn = T.processEvent, .element = js.createElement(name, typeName) };
         return self;
     }
 };
@@ -215,7 +215,7 @@ pub const TextField = struct {
     pub usingnamespace Events(TextField);
 
     pub fn create() !TextField {
-        return TextField{ .peer = try GuiWidget.init(TextField, lasting_allocator, "input") };
+        return TextField{ .peer = try GuiWidget.init(TextField, lasting_allocator, "input", "textfield") };
     }
 
     pub fn setText(self: *TextField, text: []const u8) void {
@@ -246,7 +246,7 @@ pub const Label = struct {
     pub usingnamespace Events(Label);
 
     pub fn create() !Label {
-        return Label{ .peer = try GuiWidget.init(Label, lasting_allocator, "span") };
+        return Label{ .peer = try GuiWidget.init(Label, lasting_allocator, "span", "label") };
     }
 
     pub fn setAlignment(_: *Label, _: f32) void {}
@@ -281,7 +281,7 @@ pub const Button = struct {
     pub usingnamespace Events(Button);
 
     pub fn create() !Button {
-        return Button{ .peer = try GuiWidget.init(Button, lasting_allocator, "button") };
+        return Button{ .peer = try GuiWidget.init(Button, lasting_allocator, "button", "button") };
     }
 
     pub fn setLabel(self: *Button, label: [:0]const u8) void {
@@ -415,7 +415,7 @@ pub const Canvas = struct {
     };
 
     pub fn create() !Canvas {
-        return Canvas{ .peer = try GuiWidget.init(Canvas, lasting_allocator, "canvas") };
+        return Canvas{ .peer = try GuiWidget.init(Canvas, lasting_allocator, "canvas", "canvas") };
     }
 
     pub fn _requestDraw(self: *Canvas) !void {
@@ -447,7 +447,7 @@ pub const Container = struct {
 
     pub fn create() !Container {
         return Container{
-            .peer = try GuiWidget.init(Container, lasting_allocator, "div"),
+            .peer = try GuiWidget.init(Container, lasting_allocator, "div", "container"),
             .children = std.ArrayList(*GuiWidget).init(lasting_allocator),
         };
     }

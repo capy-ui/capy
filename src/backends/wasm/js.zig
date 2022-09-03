@@ -14,7 +14,7 @@ pub const EventType = enum(usize) {
 };
 
 pub extern fn jsPrint(msg: [*]const u8, len: usize) void;
-pub extern fn jsCreateElement(name: [*]const u8, nameLen: usize) ElementId;
+pub extern fn jsCreateElement(name: [*]const u8, nameLen: usize, elementType: [*]const u8, elementTypeLen: usize) ElementId;
 pub extern fn appendElement(parent: ElementId, child: ElementId) void;
 pub extern fn setRoot(root: ElementId) void;
 pub extern fn setText(element: ElementId, textPtr: [*]const u8, textLen: usize) void;
@@ -56,8 +56,8 @@ pub fn print(msg: []const u8) void {
     jsPrint(msg.ptr, msg.len);
 }
 
-pub fn createElement(name: []const u8) ElementId {
-    return jsCreateElement(name.ptr, name.len);
+pub fn createElement(name: []const u8, elementType: []const u8) ElementId {
+    return jsCreateElement(name.ptr, name.len, elementType.ptr, elementType.len);
 }
 
 pub fn write(_: void, msg: []const u8) error{}!usize {

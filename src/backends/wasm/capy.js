@@ -30,11 +30,12 @@ const importObj = {
 		jsPrint: function(arg, len) {
 			console.log(readString(arg, len));
 		},
-		jsCreateElement: function(name, nameLen) {
+		jsCreateElement: function(name, nameLen, elementType, elementTypeLen) {
 			const elem = document.createElement(readString(name, nameLen));
 			const idx = domObjects.push(elem) - 1;
 
 			elem.style.position = "absolute";
+			elem.classList.add("capy-" + readString(elementType, elementTypeLen));
 			elem.addEventListener("click", function(e) {
 				pushEvent({
 					type: 1,
@@ -156,6 +157,9 @@ const importObj = {
 		setSize: function(element, w, h) {
 			domObjects[element].style.width  = w + "px";
 			domObjects[element].style.height = h + "px";
+			if (domObjects[element].classList.contains("capy-label")) {
+				domObjects[element].style.lineHeight = h + "px";
+			}
 			pushEvent({
 				type: 0,
 				target: element
