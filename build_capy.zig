@@ -38,6 +38,9 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
                 // Things like the image reader require more stack than given by default
                 // TODO: remove once ziglang/zig#12589 is merged
                 step.stack_size = std.math.max(step.stack_size orelse 0, 256 * 1024);
+                if (step.build_mode == .ReleaseSmall) {
+                    step.strip = true;
+                }
             } else {
                 return error.UnsupportedOs;
             }
