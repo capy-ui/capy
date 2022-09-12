@@ -139,3 +139,5 @@ Note: As there's no "official" GUI library for Linux, GTK 3 has been chosen as i
 that works and can be configured on the most distros. It's also the reason Libadwaita won't
 be adopted, as it's meant for GNOME and GNOME only by disallowing styling and integration
 with other DEs.
+
+Ask questions and receive updates on the [Matrix channel](https://matrix.to/#/!jPJVkwYrfkAgKpCiHG:matrix.org?via=matrix.org).
