@@ -632,8 +632,6 @@ pub const Canvas = struct {
         }
 
         pub fn image(self: *DrawContext, x: i32, y: i32, w: u32, h: u32, data: lib.ImageData) void {
-            _ = w;
-            _ = h;
             c.cairo_save(self.cr);
             defer c.cairo_restore(self.cr);
 
@@ -679,7 +677,6 @@ pub const Canvas = struct {
 
         const peer = c.gtk_event_controller_get_widget(@ptrCast(*c.GtkEventController, key));
         const data = getEventUserData(peer);
-        _ = data;
         var finalKeyval = @intCast(u21, keyval);
         if (keyval >= 0xFF00 and keyval < 0xFF20) { // control characters
             finalKeyval = @intCast(u21, keyval) - 0xFF00;

@@ -55,7 +55,6 @@ pub const edited_GtkWidgetClass = extern struct {
 };
 
 fn wbin_class_init(class: *WBinClass) callconv(.C) void {
-    _ = class;
     const widget_class = @ptrCast(*edited_GtkWidgetClass, class);
     widget_class.get_preferred_width = wbin_get_preferred_width;
     widget_class.get_preferred_height = wbin_get_preferred_height;

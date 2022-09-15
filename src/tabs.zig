@@ -34,7 +34,6 @@ pub const Tabs_Impl = struct {
 
     pub fn getPreferredSize(self: *Tabs_Impl, available: Size) Size {
         _ = self;
-        _ = available;
         return available; // TODO
     }
 

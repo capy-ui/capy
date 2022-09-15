@@ -20,9 +20,6 @@ pub const Canvas_Impl = struct {
     }
 
     pub fn getPreferredSize(self: *Canvas_Impl, available: Size) Size {
-        _ = self;
-        _ = available;
-
         // As it's a canvas, by default it should take the available space
         return self.preferredSize orelse available;
     }
@@ -106,7 +103,6 @@ const fuzz = @import("fuzz.zig");
 test "instantiate Canvas" {
     var canvas = Canvas(.{});
     defer canvas.deinit();
-    _ = canvas;
 }
 
 test "instantiate Rect" {

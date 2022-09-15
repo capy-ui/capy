@@ -166,7 +166,6 @@ pub fn MarginLayout(peer: Callbacks, widgets: []Widget) void {
         // };
         // _ = size;
         //const finalSize = Size.combine(preferredSize, available);
-        _ = widgetPeer;
         _ = preferredSize;
         _ = margin;
         //peer.moveResize(peer.userdata, widgetPeer, margin.left, margin.top, finalSize.width, finalSize.height);
@@ -257,8 +256,6 @@ pub const Container_Impl = struct {
     }
 
     pub fn getPreferredSize(self: *Container_Impl, available: Size) Size {
-        _ = available;
-
         var size: Size = Size{ .width = 0, .height = 0 };
         const callbacks = Callbacks{
             .userdata = @ptrToInt(&size),
@@ -385,7 +382,7 @@ const Expand = enum {
     Fill,
 };
 
-const GridConfig = struct {
+pub const GridConfig = struct {
     expand: Expand = .No,
     name: ?[]const u8 = null,
     alignX: ?f32 = null,
