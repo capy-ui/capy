@@ -80,9 +80,12 @@ pub fn compute(button: *capy.Button_Impl) !void {
 
 pub fn main() !void {
     try capy.backend.init();
+    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    defer if (comptime !@import("builtin").target.isWasm()) {
+        _ = gpa.deinit();
+    };
+
     if (comptime !@import("builtin").target.isWasm()) {
-        var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-        defer _ = gpa.deinit();
         allocator = gpa.allocator();
     } else {
         allocator = std.heap.page_allocator;
