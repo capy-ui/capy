@@ -1,0 +1,27 @@
+name: MacOS
+
+on:
+  push:
+    paths:
+      - "**.zig"
+  pull_request:
+    paths:
+      - "**.zig"
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Zig
+        uses: goto-bus-stop/setup-zig@v1
+        with:
+          version: master
+
+      - name: Test
+        run: zig build test

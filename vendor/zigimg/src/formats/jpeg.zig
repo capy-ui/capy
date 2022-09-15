@@ -947,7 +947,6 @@ pub const JPEG = struct {
     }
 
     pub fn read(self: *JPEG, stream: *Image.Stream, pixels_opt: *?color.PixelStorage) ImageReadError!Frame {
-        _ = pixels_opt;
         const jfif_header = JFIFHeader.read(stream) catch |err| switch (err) {
             error.App0MarkerDoesNotExist, error.JfifIdentifierNotSet, error.ThumbnailImagesUnsupported, error.ExtraneousApplicationMarker => return ImageReadError.InvalidData,
             else => |e| return e,
