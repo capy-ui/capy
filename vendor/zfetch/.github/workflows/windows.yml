@@ -1,0 +1,50 @@
+name: Windows
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - name: Disable CRLF
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.eol lf
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Setup Zig
+        uses: goto-bus-stop/setup-zig@v1
+        with:
+          version: master
+
+      - name: Setup Gyro
+        uses: mattnite/setup-gyro@v1
+        with:
+          access-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Test
+        run: gyro build test
+
+      - name: Setup Package
+        working-directory: examples
+        run: gyro redirect --alias zfetch --path ..
+
+      - name: Example (Get)
+        working-directory: examples
+        run: gyro build run-get
+
+      - name: Example (Post)
+        working-directory: examples
+        run: gyro build run-post
+
+      - name: Example (Download)
+        working-directory: examples
+        run: gyro build run-download

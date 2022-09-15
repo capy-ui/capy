@@ -1,0 +1,9 @@
+[submodule "libs/iguanaTLS"]
+	path = libs/iguanaTLS
+	url = https://github.com/nektro/iguanaTLS
+[submodule "libs/uri"]
+	path = libs/uri
+	url = https://github.com/MasterQ32/zig-uri
+[submodule "libs/hzzp"]
+	path = libs/hzzp
+	url = https://github.com/truemedian/hzzp

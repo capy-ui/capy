@@ -1,0 +1,7 @@
+pkgs:
+  zigimg:
+    version: 0.1.0
+    license: MIT
+    description: Zig library for reading and writing different image formats 
+    source_url: https://github.com/zigimg/zigimg
+    root: zigimg.zig
