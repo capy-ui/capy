@@ -33,7 +33,7 @@ fn getBuildPrefix() []const u8 {
 }
 
 fn getDependency(comptime name: []const u8, comptime root: []const u8) !std.build.Pkg {
-    const path = getBuildPrefix() ++ "/libs/" ++ name ++ "/" ++ root;
+    const path = comptime getBuildPrefix() ++ "/libs/" ++ name ++ "/" ++ root;
 
     // Make sure that the dependency has been checked out.
     std.fs.cwd().access(path, .{}) catch |err| switch (err) {
@@ -60,7 +60,7 @@ pub fn getPackage(b: *Builder) !std.build.Pkg {
 
     return std.build.Pkg{
         .name = "zfetch",
-        .source = .{ .path = getBuildPrefix() ++ "/src/main.zig" },
+        .source = .{ .path = comptime getBuildPrefix() ++ "/src/main.zig" },
         .dependencies = dependencies,
     };
 }
