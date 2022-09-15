@@ -33,6 +33,9 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
                 else => {}, // not much of a problem as it'll just lack styling
             }
         },
+        .macos => {
+            step.linkFramework("CoreFoundation");
+        },
         .freestanding => {
             if (step.target.toTarget().isWasm()) {
                 // Things like the image reader require more stack than given by default
