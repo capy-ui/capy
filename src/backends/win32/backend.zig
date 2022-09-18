@@ -883,13 +883,6 @@ pub const Container = struct {
         var parent: RECT = undefined;
         _ = win32.GetWindowRect(self.peer, &parent);
         _ = win32.MoveWindow(peer, rect.left - parent.left, rect.top - parent.top, @intCast(c_int, width), @intCast(c_int, height), 1);
-
-        rect.bottom -= rect.top;
-        rect.right -= rect.left;
-        rect.top = 0;
-        rect.left = 0;
-        //_ = win32.InvalidateRect(self.peer, &rect, 0);
-        _ = win32.UpdateWindow(peer);
     }
 };
 
