@@ -1,4 +1,4 @@
 zig-out/
 zig-cache/
 .zigmod/
-./deps.zig
+deps.zig

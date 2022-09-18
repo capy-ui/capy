@@ -30,6 +30,10 @@ var hInst: HINSTANCE = undefined;
 /// anti-aliasing. So we take the real default caption font from
 /// NONFCLIENTEMETRICS and apply it manually to every widget.
 var captionFont: win32.HFONT = undefined;
+/// Default arrow cursor used to avoid components keeping the last cursor icon
+/// that's been set (which is usually the resize cursor or loading cursor)
+var defaultCursor: win32.HCURSOR = undefined;
+
 var hasInit: bool = false;
 
 pub fn init() !void {
@@ -61,6 +65,10 @@ pub fn init() !void {
         ncMetrics.cbSize = @sizeOf(win32.NONCLIENTMETRICSA);
         _ = win32.SystemParametersInfoA(win32.SPI_GETNONCLIENTMETRICS, @sizeOf(win32.NONCLIENTMETRICSA), &ncMetrics, 0);
         captionFont = win32.CreateFontIndirectA(&ncMetrics.lfCaptionFont).?;
+
+        // Load the default arrow cursor so that components can use it
+        // This avoids components keeping the last cursor (resize cursor or loading cursor)
+        defaultCursor = win32.LoadCursorA(null, win32.IDC_ARROW);
     }
 }
 
@@ -126,7 +134,7 @@ pub const Window = struct {
             .cbWndExtra = 0,
             .hInstance = hInst,
             .hIcon = null, // TODO: LoadIcon
-            .hCursor = null, // TODO: LoadCursor
+            .hCursor = defaultCursor,
             .hbrBackground = win32.GetSysColorBrush(win32.COLOR_3DFACE),
             .lpszMenuName = null,
             .lpszClassName = className,
@@ -516,22 +524,22 @@ pub const Canvas = struct {
                 .cbWndExtra = 0,
                 .hInstance = hInst,
                 .hIcon = null, // TODO: LoadIcon
-                .hCursor = null, // TODO: LoadCursor
+                .hCursor = defaultCursor,
                 .hbrBackground = null,
                 .lpszMenuName = null,
-                .lpszClassName = "zgtCanvasClass",
+                .lpszClassName = "capyCanvasClass",
                 .hIconSm = null,
             };
 
             if ((try win32.registerClassExA(&wc)) == 0) {
-                showNativeMessageDialog(.Error, "Could not register window class {s}", .{"zgtCanvasClass"});
+                showNativeMessageDialog(.Error, "Could not register window class {s}", .{"capyCanvasClass"});
                 return Win32Error.InitializationError;
             }
             classRegistered = true;
         }
 
         const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
-            "zgtCanvasClass", // lpClassName
+            "capyCanvasClass", // lpClassName
             "", // lpWindowName
             win32.WS_TABSTOP | win32.WS_CHILD, // dwStyle
             10, // X
@@ -722,22 +730,22 @@ pub const TabContainer = struct {
                 .lpfnWndProc = TabContainer.process,
                 .hInstance = hInst,
                 .hIcon = null, // TODO: LoadIcon
-                .hCursor = null, // TODO: LoadCursor
+                .hCursor = defaultCursor,
                 .hbrBackground = null,
                 .lpszMenuName = null,
-                .lpszClassName = "zgtTabClass",
+                .lpszClassName = "capyTabClass",
                 .hIconSm = null,
             };
 
             if ((try win32.registerClassExA(&wc)) == 0) {
-                showNativeMessageDialog(.Error, "Could not register window class zgtTabClass", .{});
+                showNativeMessageDialog(.Error, "Could not register window class capyTabClass", .{});
                 return Win32Error.InitializationError;
             }
             classRegistered = true;
         }
 
         const wrapperHwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
-            "zgtTabClass", // lpClassName
+            "capyTabClass", // lpClassName
             "", // lpWindowName
             win32.WS_TABSTOP | win32.WS_CHILD | win32.WS_CLIPCHILDREN, // dwStyle
             10, // X
@@ -818,22 +826,22 @@ pub const Container = struct {
                 .cbWndExtra = 0,
                 .hInstance = hInst,
                 .hIcon = null, // TODO: LoadIcon
-                .hCursor = null, // TODO: LoadCursor
+                .hCursor = defaultCursor,
                 .hbrBackground = null,
                 .lpszMenuName = null,
-                .lpszClassName = "zgtContainerClass",
+                .lpszClassName = "capyContainerClass",
                 .hIconSm = null,
             };
 
             if ((try win32.registerClassExA(&wc)) == 0) {
-                showNativeMessageDialog(.Error, "Could not register window class {s}", .{"zgtContainerClass"});
+                showNativeMessageDialog(.Error, "Could not register window class {s}", .{"capyContainerClass"});
                 return Win32Error.InitializationError;
             }
             classRegistered = true;
         }
 
         const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
-            "zgtContainerClass", // lpClassName
+            "capyContainerClass", // lpClassName
             "", // lpWindowName
             win32.WS_TABSTOP | win32.WS_CHILD | win32.WS_CLIPCHILDREN, // dwStyle
             10, // X

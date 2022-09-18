@@ -15,6 +15,7 @@ pub const HDC = std.os.windows.HDC;
 pub const HBRUSH = std.os.windows.HBRUSH;
 pub const HMENU = std.os.windows.HMENU;
 pub const HFONT = *opaque {};
+pub const HCURSOR = std.os.windows.HCURSOR;
 pub const COLORREF = std.os.windows.DWORD;
 pub const BOOL = std.os.windows.BOOL;
 pub const BYTE = std.os.windows.BYTE;
@@ -46,6 +47,9 @@ pub const BN_CLICKED = 0;
 pub const EN_CHANGE = 0x0300;
 
 pub const SPI_GETNONCLIENTMETRICS = 0x0029;
+
+/// Standard arrow cursor.
+pub const IDC_ARROW = @intToPtr([*:0]const u8, 32512);
 
 pub const WNDENUMPROC = fn (hwnd: HWND, lParam: LPARAM) callconv(WINAPI) c_int;
 
@@ -85,6 +89,7 @@ pub extern "user32" fn InvalidateRect(hWnd: HWND, lpRect: *const RECT, bErase: B
 pub extern "user32" fn GetWindowExtEx(hdc: HDC, lpsize: *SIZE) callconv(WINAPI) BOOL;
 pub extern "user32" fn EnableWindow(hWnd: HWND, enable: BOOL) callconv(WINAPI) BOOL;
 pub extern "user32" fn SystemParametersInfoA(uiAction: UINT, uiParam: UINT, pvParam: ?*anyopaque, fWinIni: UINT) callconv(WINAPI) BOOL;
+pub extern "user32" fn LoadCursorA(hInst: ?HINSTANCE, lpCursorName: std.os.windows.LPCSTR) callconv(WINAPI) HCURSOR;
 
 // stock objects constants
 pub const WHITE_BRUSH = 0;
