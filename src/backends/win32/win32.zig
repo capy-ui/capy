@@ -15,6 +15,7 @@ pub const HDC = std.os.windows.HDC;
 pub const HBRUSH = std.os.windows.HBRUSH;
 pub const HMENU = std.os.windows.HMENU;
 pub const HFONT = *opaque {};
+pub const HRGN = *opaque {};
 pub const HCURSOR = std.os.windows.HCURSOR;
 pub const COLORREF = std.os.windows.DWORD;
 pub const BOOL = std.os.windows.BOOL;
@@ -283,6 +284,52 @@ pub fn TabCtrl_SetItemA(hWnd: HWND, index: c_int, tabItem: *const TCITEMA) void 
 pub fn TabCtrl_GetItemCount(hWnd: HWND) LRESULT {
     return SendMessageA(hWnd, TCM_GETITEMCOUNT, 0, 0);
 }
+
+// Common Control: Scroll Bar
+pub const SIF_RANGE = 0x0001;
+pub const SIF_PAGE = 0x0002;
+pub const SIF_POS = 0x0004;
+pub const SIF_DISABLENOSCROLL = 0x0008;
+pub const SIF_TRACKPOS = 0x0010;
+pub const SIF_ALL = SIF_RANGE | SIF_PAGE | SIF_POS | SIF_DISABLENOSCROLL | SIF_TRACKPOS;
+
+pub const SB_LINEUP = 0;
+pub const SB_LINELEFT = 0;
+pub const SB_LINEDOWN = 1;
+pub const SB_LINERIGHT = 1;
+pub const SB_PAGEUP = 2;
+pub const SB_PAGELEFT = 2;
+pub const SB_PAGEDOWN = 3;
+pub const SB_PAGERIGHT = 3;
+pub const SB_THUMBPOSITION = 4;
+pub const SB_THUMBTRACK = 5;
+pub const SB_TOP = 6;
+pub const SB_LEFT = 6;
+pub const SB_BOTTOM = 7;
+pub const SB_RIGHT = 7;
+pub const SB_ENDSCROLL = 8;
+
+pub const SCROLLINFO = extern struct {
+    cbSize: UINT = @sizeOf(SCROLLINFO),
+    fMask: UINT,
+    nMin: c_int = undefined,
+    nMax: c_int = undefined,
+    nPage: UINT = undefined,
+    nPos: c_int = undefined,
+    nTrackPos: c_int = undefined,
+};
+
+pub const SB_HORZ = 0;
+pub const SB_VERT = 1;
+pub const SB_CTL = 2;
+pub const SB_BOTH = 3;
+
+pub const SW_INVALIDATE = 0x0002;
+
+pub extern "comctl32" fn GetScrollInfo(hWnd: HWND, nBar: c_int, lpsi: *SCROLLINFO) BOOL;
+pub extern "comctl32" fn SetScrollInfo(hWnd: HWND, nBar: c_int, lpsi: *const SCROLLINFO, redraw: BOOL) c_int;
+pub extern "comctl32" fn EnableScrollBar(hWnd: HWND, wSBflags: UINT, wArrows: UINT) callconv(WINAPI) BOOL;
+pub extern "comctl32" fn ScrollWindowEx(hWnd: HWND, dx: c_int, dy: c_int, prcScroll: ?*const RECT, prcClip: ?*const RECT, hrgnUpdate: ?HRGN, prcUpdate: ?LPRECT, flags: UINT) callconv(WINAPI) c_int;
 
 // GDI+ part, based on https://docs.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-flatapi-flat
 pub const GpGraphics = *opaque {};

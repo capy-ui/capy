@@ -789,7 +789,7 @@ pub const ScrollView = struct {
         return ScrollView{ .peer = scrolledWindow };
     }
 
-    pub fn setChild(self: *ScrollView, peer: PeerType) void {
+    pub fn setChild(self: *ScrollView, peer: PeerType, _: *const lib.Widget) void {
         // TODO: remove old widget if there was one
         c.gtk_container_add(@ptrCast(*c.GtkContainer, self.peer), peer);
     }

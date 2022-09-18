@@ -20,7 +20,7 @@ pub const Scrollable_Impl = struct {
         if (self.peer == null) {
             var peer = try backend.ScrollView.create();
             try self.child.show();
-            peer.setChild(self.child.peer.?);
+            peer.setChild(self.child.peer.?, &self.child);
             self.peer = peer;
             try self.show_events();
         }

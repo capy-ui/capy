@@ -206,6 +206,7 @@ const EventUserData = struct {
     user: EventFunctions = .{},
     class: EventFunctions = .{},
     userdata: usize = 0,
+    peerPtr: ?*anyopaque = null,
     classUserdata: usize = 0,
     // (very) weak method to detect if a text box's text has actually changed
     last_text_len: win32.INT = 0,
@@ -285,6 +286,58 @@ pub fn Events(comptime T: type) type {
                     if (data.user.resizeHandler) |handler|
                         handler(@intCast(u32, rect.right - rect.left), @intCast(u32, rect.bottom - rect.top), data.userdata);
                 },
+                win32.WM_HSCROLL => {
+                    const data = getEventUserData(hwnd);
+                    var scrollInfo = win32.SCROLLINFO{ .fMask = win32.SIF_POS };
+                    _ = win32.GetScrollInfo(hwnd, win32.SB_HORZ, &scrollInfo);
+
+                    const currentScroll = @intCast(u32, scrollInfo.nPos);
+                    const newPos = switch (@truncate(u16, wp)) {
+                        win32.SB_PAGEUP => currentScroll -| 50,
+                        win32.SB_PAGEDOWN => currentScroll + 50,
+                        win32.SB_LINEUP => currentScroll -| 5,
+                        win32.SB_LINEDOWN => currentScroll + 5,
+                        win32.SB_THUMBPOSITION, win32.SB_THUMBTRACK => wp >> 16,
+                        else => currentScroll,
+                    };
+
+                    if (newPos != currentScroll) {
+                        const horizontalScrollInfo = win32.SCROLLINFO{
+                            .fMask = win32.SIF_POS,
+                            .nPos = @intCast(c_int, newPos),
+                        };
+                        _ = win32.SetScrollInfo(hwnd, win32.SB_HORZ, &horizontalScrollInfo, 1);
+                        if (@hasDecl(T, "onHScroll")) {
+                            T.onHScroll(data, hwnd, newPos);
+                        }
+                    }
+                },
+                win32.WM_VSCROLL => {
+                    const data = getEventUserData(hwnd);
+                    var scrollInfo = win32.SCROLLINFO{ .fMask = win32.SIF_POS };
+                    _ = win32.GetScrollInfo(hwnd, win32.SB_VERT, &scrollInfo);
+
+                    const currentScroll = @intCast(u32, scrollInfo.nPos);
+                    const newPos = switch (@truncate(u16, wp)) {
+                        win32.SB_PAGEUP => currentScroll -| 50,
+                        win32.SB_PAGEDOWN => currentScroll + 50,
+                        win32.SB_LINEUP => currentScroll -| 5,
+                        win32.SB_LINEDOWN => currentScroll + 5,
+                        win32.SB_THUMBPOSITION, win32.SB_THUMBTRACK => wp >> 16,
+                        else => currentScroll,
+                    };
+
+                    if (newPos != currentScroll) {
+                        const verticalScrollInfo = win32.SCROLLINFO{
+                            .fMask = win32.SIF_POS,
+                            .nPos = @intCast(c_int, newPos),
+                        };
+                        _ = win32.SetScrollInfo(hwnd, win32.SB_VERT, &verticalScrollInfo, 1);
+                        if (@hasDecl(T, "onVScroll")) {
+                            T.onVScroll(data, hwnd, newPos);
+                        }
+                    }
+                },
                 win32.WM_PAINT => {
                     const data = getEventUserData(hwnd);
                     var ps: win32.PAINTSTRUCT = undefined;
@@ -322,6 +375,7 @@ pub fn Events(comptime T: type) type {
                     @compileError(std.fmt.comptimePrint("Expected single item pointer, got {s}", .{@typeName(@TypeOf(data))}));
                 }
             }
+            getEventUserData(self.peer).peerPtr = self;
             getEventUserData(self.peer).userdata = @ptrToInt(data);
         }
 
@@ -542,8 +596,8 @@ pub const Canvas = struct {
             "capyCanvasClass", // lpClassName
             "", // lpWindowName
             win32.WS_TABSTOP | win32.WS_CHILD, // dwStyle
-            10, // X
-            10, // Y
+            0, // X
+            0, // Y
             100, // nWidth
             100, // nHeight
             defaultWHWND, // hWindParent
@@ -568,8 +622,8 @@ pub const TextField = struct {
             "EDIT", // lpClassName
             "", // lpWindowName
             win32.WS_TABSTOP | win32.WS_CHILD | win32.WS_BORDER, // dwStyle
-            10, // X
-            10, // Y
+            0, // X
+            0, // Y
             100, // nWidth
             100, // nHeight
             defaultWHWND, // hWindParent
@@ -622,8 +676,8 @@ pub const Button = struct {
             "BUTTON", // lpClassName
             "", // lpWindowName
             win32.WS_TABSTOP | win32.WS_CHILD | win32.BS_PUSHBUTTON | win32.BS_FLAT, // dwStyle
-            10, // X
-            10, // Y
+            0, // X
+            0, // Y
             100, // nWidth
             100, // nHeight
             defaultWHWND, // hWindParent
@@ -669,8 +723,8 @@ pub const Label = struct {
             "STATIC", // lpClassName
             "", // lpWindowName
             win32.WS_TABSTOP | win32.WS_CHILD | win32.SS_CENTERIMAGE, // dwStyle
-            10, // X
-            10, // Y
+            0, // X
+            0, // Y
             100, // nWidth
             100, // nHeight
             defaultWHWND, // hWindParent
@@ -748,8 +802,8 @@ pub const TabContainer = struct {
             "capyTabClass", // lpClassName
             "", // lpWindowName
             win32.WS_TABSTOP | win32.WS_CHILD | win32.WS_CLIPCHILDREN, // dwStyle
-            10, // X
-            10, // Y
+            0, // X
+            0, // Y
             100, // nWidth
             100, // nHeight
             defaultWHWND, // hWindParent
@@ -762,8 +816,8 @@ pub const TabContainer = struct {
             "SysTabControl32", // lpClassName
             "", // lpWindowName
             win32.WS_TABSTOP | win32.WS_CHILD | win32.WS_CLIPSIBLINGS, // dwStyle
-            10, // X
-            10, // Y
+            0, // X
+            0, // Y
             100, // nWidth
             100, // nHeight
             defaultWHWND, // hWindParent
@@ -808,6 +862,136 @@ pub const TabContainer = struct {
     }
 };
 
+// TODO: scroll using mouse wheel and using keyboard (arrow keys + page up/down)
+pub const ScrollView = struct {
+    peer: HWND,
+    child: ?HWND = null,
+    widget: ?*const lib.Widget = null,
+
+    pub usingnamespace Events(ScrollView);
+
+    var classRegistered = false;
+
+    pub fn create() !ScrollView {
+        if (!classRegistered) {
+            var wc: win32.WNDCLASSEXA = .{
+                .style = 0,
+                .lpfnWndProc = ScrollView.process,
+                .cbClsExtra = 0,
+                .cbWndExtra = 0,
+                .hInstance = hInst,
+                .hIcon = null,
+                .hCursor = defaultCursor,
+                .hbrBackground = null,
+                .lpszMenuName = null,
+                .lpszClassName = "capyScrollViewClass",
+                .hIconSm = null,
+            };
+
+            if ((try win32.registerClassExA(&wc)) == 0) {
+                showNativeMessageDialog(.Error, "Could not register window class {s}", .{"capyScrollViewClass"});
+                return Win32Error.InitializationError;
+            }
+            classRegistered = true;
+        }
+
+        const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
+            "capyScrollViewClass", // lpClassName
+            "", // lpWindowName
+            win32.WS_TABSTOP | win32.WS_CHILD | win32.WS_CLIPCHILDREN | win32.WS_HSCROLL | win32.WS_VSCROLL, // dwStyle
+            0, // X
+            0, // Y
+            100, // nWidth
+            100, // nHeight
+            defaultWHWND, // hWindParent
+            null, // hMenu
+            hInst, // hInstance
+            null // lpParam
+        );
+        try ScrollView.setupEvents(hwnd);
+        return ScrollView{ .peer = hwnd };
+    }
+
+    pub fn setChild(self: *ScrollView, peer: PeerType, widget: *const lib.Widget) void {
+        // TODO: remove old widget if there was one
+        self.child = peer;
+        self.widget = widget;
+
+        _ = win32.SetParent(peer, self.peer);
+        const style = win32.GetWindowLongPtr(peer, win32.GWL_STYLE);
+        win32.SetWindowLongPtr(peer, win32.GWL_STYLE, style | win32.WS_CHILD);
+        _ = win32.showWindow(peer, win32.SW_SHOWDEFAULT);
+        _ = win32.UpdateWindow(peer);
+    }
+
+    pub fn onHScroll(_: *EventUserData, hwnd: HWND, newPos: usize) void {
+        const child = win32.GetWindow(hwnd, win32.GW_CHILD);
+
+        var parent: RECT = undefined;
+        _ = win32.GetWindowRect(hwnd, &parent);
+
+        var rect: RECT = undefined;
+        _ = win32.GetWindowRect(child, &rect);
+        _ = win32.MoveWindow(child, -@intCast(c_int, newPos), rect.top - parent.top, rect.right - rect.left, rect.bottom - rect.top, 1);
+    }
+
+    pub fn onVScroll(_: *EventUserData, hwnd: HWND, newPos: usize) void {
+        const child = win32.GetWindow(hwnd, win32.GW_CHILD);
+
+        var parent: RECT = undefined;
+        _ = win32.GetWindowRect(hwnd, &parent);
+
+        var rect: RECT = undefined;
+        _ = win32.GetWindowRect(child, &rect);
+        _ = win32.MoveWindow(child, rect.left - parent.left, -@intCast(c_int, newPos), rect.right - rect.left, rect.bottom - rect.top, 1);
+    }
+
+    pub fn onResize(data: *EventUserData, hwnd: HWND) void {
+        const self = @ptrCast(*const ScrollView, @alignCast(@alignOf(ScrollView), data.peerPtr));
+
+        // Get the child component's bounding box
+        var rect: RECT = undefined;
+        _ = win32.GetWindowRect(self.child.?, &rect);
+
+        // Get the scroll view's bounding box
+        var parent: RECT = undefined;
+        _ = win32.GetWindowRect(hwnd, &parent);
+
+        const width = parent.right - parent.left;
+        const height = parent.bottom - parent.top;
+
+        // Resize the child component to its preferred size (while keeping its current position)
+        const preferred = self.widget.?.getPreferredSize(lib.Size.init(std.math.maxInt(u32), std.math.maxInt(u32)));
+
+        const child = win32.GetWindow(hwnd, win32.GW_CHILD);
+        _ = win32.MoveWindow(
+            child,
+            std.math.max(rect.left - parent.left, std.math.min(0, -(@intCast(c_int, preferred.width) - width))),
+            std.math.max(rect.top - parent.top, std.math.min(0, -(@intCast(c_int, preferred.height) - height))),
+            @intCast(c_int, preferred.width),
+            @intCast(c_int, preferred.height),
+            1,
+        );
+
+        // Finally, update the scroll bars
+        const horizontalScrollInfo = win32.SCROLLINFO{
+            .fMask = win32.SIF_RANGE | win32.SIF_PAGE,
+            .nMin = 0,
+            .nMax = @intCast(c_int, preferred.width),
+            .nPage = @intCast(c_uint, width),
+        };
+        _ = win32.SetScrollInfo(self.peer, win32.SB_HORZ, &horizontalScrollInfo, 1);
+
+        const verticalScrollInfo = win32.SCROLLINFO{
+            .fMask = win32.SIF_RANGE | win32.SIF_PAGE,
+            .nMin = 0,
+            .nMax = @intCast(c_int, preferred.height),
+            .nPage = @intCast(c_uint, height),
+        };
+        _ = win32.SetScrollInfo(self.peer, win32.SB_VERT, &verticalScrollInfo, 1);
+    }
+};
+
 const ContainerStruct = struct { hwnd: HWND, count: usize, index: usize };
 
 pub const Container = struct {
@@ -844,8 +1028,8 @@ pub const Container = struct {
             "capyContainerClass", // lpClassName
             "", // lpWindowName
             win32.WS_TABSTOP | win32.WS_CHILD | win32.WS_CLIPCHILDREN, // dwStyle
-            10, // X
-            10, // Y
+            0, // X
+            0, // Y
             100, // nWidth
             100, // nHeight
             defaultWHWND, // hWindParent
