@@ -84,7 +84,7 @@ pub fn build(b: *std.build.Builder) !void {
     defer examplesDir.close();
 
     const broken = switch (target.getOsTag()) {
-        .windows => &[_][]const u8{ "fade", "foo_app" },
+        .windows => &[_][]const u8{ "fade" },
         else => &[_][]const u8{},
     };
 
