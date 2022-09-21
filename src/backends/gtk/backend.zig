@@ -739,6 +739,13 @@ pub const Container = struct {
         c.gtk_fixed_put(@ptrCast(*c.GtkFixed, self.container), peer, 0, 0);
     }
 
+    pub fn remove(self: *const Container, peer: PeerType) void {
+        // NOTE: the component might not be able to be added back
+        // to fix this every peer type (Container, Button..) would have to hold a reference
+        // that GTK knows about to their GtkWidget
+        c.gtk_container_remove(@ptrCast(*c.GtkContainer, self.container), peer);
+    }
+
     pub fn move(self: *const Container, peer: PeerType, x: u32, y: u32) void {
         c.gtk_fixed_move(@ptrCast(*c.GtkFixed, self.container), peer, @intCast(c_int, x), @intCast(c_int, y));
     }

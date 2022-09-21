@@ -222,7 +222,7 @@ pub const Container_Impl = struct {
 
     pub fn onResize(self: *Container_Impl, size: Size) !void {
         _ = size;
-        try self.relayout();
+        self.relayout();
     }
 
     pub fn getChildAt(self: *Container_Impl, index: usize) !*Widget {
@@ -281,7 +281,7 @@ pub const Container_Impl = struct {
             }
             self.peer = peer;
             try self.show_events();
-            try self.relayout();
+            self.relayout();
         }
     }
 
@@ -317,7 +317,7 @@ pub const Container_Impl = struct {
         @intToPtr(*backend.Container, data).resize(widget, w, h);
     }
 
-    pub fn relayout(self: *Container_Impl) !void {
+    pub fn relayout(self: *Container_Impl) void {
         if (self.relayouting.load(.SeqCst) == true) return;
         if (self.peer) |peer| {
             self.relayouting.store(true, .SeqCst);
@@ -356,7 +356,27 @@ pub const Container_Impl = struct {
             peer.add(slot.peer.?);
         }
 
-        try self.relayout();
+        self.relayout();
+    }
+
+    pub fn removeByIndex(self: *Container_Impl, index: usize) void {
+        const widget = self.childrens.items[index];
+        // Remove from the component
+        if (self.peer) |*peer| {
+            peer.remove(widget.peer.?);
+        }
+        // And finally remove from the list, and relayout to apply changes
+        std.debug.assert(std.meta.eql(
+            self.childrens.orderedRemove(index),
+            widget,
+        ));
+        self.relayout();
+    }
+
+    pub fn removeAll(self: *Container_Impl) void {
+        while (self.childrens.items.len > 0) {
+            self.removeByIndex(0);
+        }
     }
 
     pub fn _deinit(self: *Container_Impl, widget: *Widget) void {

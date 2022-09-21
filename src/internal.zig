@@ -80,7 +80,7 @@ pub fn Widgeting(comptime T: type) type {
             const widget = @intToPtr(*Widget, userdata);
             if (widget.parent) |parent| {
                 const container = parent.as(@import("containers.zig").Container_Impl);
-                container.relayout() catch {};
+                container.relayout();
             }
         }
 

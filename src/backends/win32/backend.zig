@@ -384,13 +384,17 @@ pub fn Events(comptime T: type) type {
             switch (eType) {
                 .Click => data.user.clickHandler = cb,
                 .Draw => data.user.drawHandler = cb,
+                // TODO: implement mouse button
                 .MouseButton => data.user.mouseButtonHandler = cb,
                 // TODO: implement mouse motion
                 .MouseMotion => data.user.mouseMotionHandler = cb,
+                // TODO: implement scroll
                 .Scroll => data.user.scrollHandler = cb,
                 .TextChanged => data.user.changedTextHandler = cb,
                 .Resize => data.user.resizeHandler = cb,
+                // TODO: implement key type
                 .KeyType => data.user.keyTypeHandler = cb,
+                // TODO: implement key press
                 .KeyPress => data.user.keyPressHandler = cb,
             }
         }
