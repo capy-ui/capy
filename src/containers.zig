@@ -360,6 +360,7 @@ pub const Container_Impl = struct {
     }
 
     pub fn removeByIndex(self: *Container_Impl, index: usize) void {
+        // TODO: deinit widget here?
         const widget = self.childrens.items[index];
         // Remove from the component
         if (self.peer) |*peer| {

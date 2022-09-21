@@ -6,6 +6,7 @@ pub usingnamespace @import("label.zig");
 pub usingnamespace @import("text.zig");
 pub usingnamespace @import("canvas.zig");
 pub usingnamespace @import("containers.zig");
+pub usingnamespace @import("list.zig");
 pub usingnamespace @import("tabs.zig");
 pub usingnamespace @import("scrollable.zig");
 pub usingnamespace @import("menu.zig");
