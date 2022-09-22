@@ -5,7 +5,7 @@
 
 ---
 
-![the glorius software in action](https://raw.githubusercontent.com/capy-ui/bottom-zig-gui/main/.github/screenshot.png)
+![the glorius software in action](https://raw.githubusercontent.com/zenith391/bottom-zig-gui/main/.github/screenshot.png)
 
 ## Introduction
 
