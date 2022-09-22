@@ -5,7 +5,7 @@
 
 ---
 
-![the glorius software in action](https://raw.githubusercontent.com/zenith391/bottom-zig-gui/main/.github/screenshot.png) 
+![the glorius software in action](https://raw.githubusercontent.com/zenith391/bottom-zig-gui/main/.github/screenshot.png)
 
 ## Introduction
 
@@ -49,13 +49,14 @@ fn buttonClicked(button: *capy.Button_Impl) !void {
     std.log.info("You clicked button with text {s}", .{button.getLabel()});
 }
 ```
+
 It is easy to add something like a button or a text area. The example can already be used to notice a widget's parameters are usually enclosed in anonymous
 structs (`.{ .label = "Save" }`). You can also see that simply wrapping a widget with `capy.Expanded( ... )` will tell it to take all the space it can.
 
 ## Installation
 
 **If you're starting a new project,
-simply clone [capy-template](https://github.com/zenith391/capy-template)
+simply clone [capy-template](https://github.com/capy-ui/capy-template)
 and follow build instructions**
 
 Otherwise if you're adding capy to an already existing project:  
@@ -63,10 +64,13 @@ Otherwise if you're adding capy to an already existing project:
 Before proceeding, you must first install the [zigmod](https://github.com/nektro/zigmod) package manager.
 Then, in the folder of your project,
 you can execute the following commands:
+
 ```sh
 zigmod init
 ```
+
 In your `build.zig`, add:
+
 ```diff
 diff --git a/usr/bin/ziglang/lib/zig/init-exe/build.zig b/build.zig
 index 29b50b5..ccbb74b 100644
@@ -87,13 +91,15 @@ index 29b50b5..ccbb74b 100644
 
 -    const exe = b.addExecutable("$", "src/main.zig");
 +    const exe = b.addExecutable("capy-template", "src/main.zig");
-+    const pathToCapy = ".zigmod/deps/git/github.com/zenith391/capy/";
++    const pathToCapy = ".zigmod/deps/git/github.com/capy-ui/capy/";
      exe.setTarget(target);
      exe.setBuildMode(mode);
 +    try deps.imports.capy.install(exe, pathToCapy);
      exe.install();
 ```
+
 And in your `zigmod.yml` file, add:
+
 ```diff
 diff --git a/default_zigmod.yml b/zigmod.yml
 index e39f6f1..4774adb 100644
@@ -104,15 +110,17 @@ index e39f6f1..4774adb 100644
  license: Your license
  description: A description.
 +build_dependencies:
-+    - src: git https://github.com/zenith391/capy
++    - src: git https://github.com/capy-ui/capy
  root_depedencies:
 ```
+
 Finally, run
+
 ```sh
 zigmod fetch
 ```
 
-For more information, please look in the [wiki](https://github.com/zenith391/capy/wiki/Installation)
+For more information, please look in the [wiki](https://github.com/capy-ui/capy/wiki/Installation)
 
 ## Supported platforms
 
