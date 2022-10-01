@@ -38,12 +38,10 @@ pub fn main() !void {
 
     // The last time a new entry was added to the list
     var last_add = std.time.milliTimestamp();
-    while (capy.stepEventLoop(.Asynchronous)) {
-        if (std.time.milliTimestamp() >= last_add + 1000) {
+    while (capy.stepEventLoop(.Blocking)) {
+        while (std.time.milliTimestamp() >= last_add + 1000) : (last_add += 1000) {
             hn_list_model.size.set(hn_list_model.size.get() + 1);
             std.log.info("There are now {} items.", .{ hn_list_model.size.get() });
-            last_add = std.time.milliTimestamp();
         }
-        std.time.sleep(16 * std.time.ns_per_ms);
     }
 }

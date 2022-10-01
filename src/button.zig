@@ -65,11 +65,6 @@ pub const Button_Impl = struct {
             return self.label;
         }
     }
-
-    pub fn setEnabledUpdater(self: *Button_Impl, updater: fn (*Container_Impl) bool) Button_Impl {
-        self.enabled.updater = updater;
-        return self.*;
-    }
 };
 
 pub fn Button(config: Button_Impl.Config) Button_Impl {

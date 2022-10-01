@@ -191,7 +191,6 @@ pub const MapViewer_Impl = struct {
     }
 
     fn mouseButton(self: *MapViewer_Impl, button: capy.MouseButton, pressed: bool, x: i32, y: i32) !void {
-        _ = x; _ = y;
         if (button == .Left) {
             self.isDragging = pressed;
             self.lastMouseX = x;

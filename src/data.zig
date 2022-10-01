@@ -1,6 +1,7 @@
 const std = @import("std");
 const Container_Impl = @import("containers.zig").Container_Impl;
-const lasting_allocator = @import("internal.zig").lasting_allocator;
+const internal = @import("internal.zig");
+const lasting_allocator = internal.lasting_allocator;
 
 /// Linear interpolation between floats a and b with factor t.
 fn lerpFloat(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
@@ -115,6 +116,12 @@ pub fn DataWrapper(comptime T: type) type {
         /// When A is set, it sets the lock to true and sets B. Since B is set, it will set A too.
         /// A notices that bindLock is already set to true, and thus returns.
         bindLock: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
+
+        /// If dependOn has been called, this is a pointer to the callback function
+        depend_on_callback: ?*const anyopaque = null,
+        /// If dependOn has been called, this is the list of data wrappers it depends on.
+        depend_on_wrappers: ?[]?*anyopaque = null,
+
         allocator: ?std.mem.Allocator = null,
 
         const Self = @This();
@@ -276,6 +283,88 @@ pub fn DataWrapper(comptime T: type) type {
                 // Do nothing ...
             }
         }
+        
+        /// This makes the value of this data wrapper entirely dependent
+        /// on the given parameters, it can only be reverted by calling set()
+        /// 'tuple' must be a tuple with pointers to data wrappers
+        /// 'function' must be a function accepting as arguments the value types of the data wrappers and returning a new value.
+        pub fn dependOn(self: *Self, tuple: anytype, function: anytype) !void {
+            const FunctionType = @TypeOf(function);
+            
+            // Data Wrapper types
+            // e.g. DataWrapper(u32), DataWrapper([]const u8)
+            const DataWrapperTypes = comptime blk: {
+                var types: [tuple.len]type = undefined;
+                var i: usize = 0;
+                while (i < tuple.len) : (i += 1) {
+                    types[i] = internal.DereferencedType(@TypeOf(tuple[i]));
+                }
+                break :blk types;
+            };
+            
+            // Value types
+            // e.g. u32, []const u8
+            const ValueTypes = comptime blk: {
+                var types: [tuple.len]type = undefined;
+                var i: usize = 0;
+                while (i < tuple.len) : (i += 1) {
+                    types[i] = DataWrapperTypes[i].ValueType;
+                }
+                break :blk types;
+            };
+
+            const handler = struct {
+                fn handler(data_wrapper: *Self, fn_ptr: ?*const anyopaque, wrappers: []?*anyopaque) void {
+                    const callback = @ptrCast(FunctionType, fn_ptr);
+                    const ArgsTuple = std.meta.Tuple(&ValueTypes);
+                    
+                    var args: ArgsTuple = undefined;
+                    comptime var i: usize = 0;
+                    inline while (i < DataWrapperTypes.len) : (i += 1) {
+                        const wrapper_ptr = wrappers[i];
+                        const DataWrapperType = DataWrapperTypes[i];
+                        const wrapper = @ptrCast(*DataWrapperType, @alignCast(@alignOf(DataWrapperType), wrapper_ptr));
+                        const value = wrapper.get();
+                        args[i] = value;
+                    }
+
+                    const result = @call(.{}, callback, args);
+                    data_wrapper.set(result);
+                }
+            }.handler;
+            
+            // List of DataWrappers, casted to ?*anyopaque
+            const wrappers = try lasting_allocator.alloc(?*anyopaque, tuple.len);
+            {
+                comptime var i: usize = 0;
+                inline while (i < tuple.len) : (i += 1) {
+                    const wrapper = tuple[i];
+                    wrappers[i] = wrapper;
+                }
+            }
+
+            // Call the handler once for initialization
+            const fn_ptr = @as(?*const anyopaque, function);
+            handler(self, fn_ptr, wrappers);
+            
+            {
+                comptime var i: usize = 0;
+                inline while (i < tuple.len) : (i += 1) {
+                    const wrapper = tuple[i];
+                    const WrapperValueType = ValueTypes[i];
+                    const changeListener = struct {
+                        fn changeListener(_: WrapperValueType, userdata: usize) void {
+                            const self_ptr = @intToPtr(*Self, userdata);
+                            handler(self_ptr, self_ptr.depend_on_callback.?, self_ptr.depend_on_wrappers.?);
+                        }
+                    }.changeListener;
+                    _ = try wrapper.addChangeListener(.{ .function = changeListener, .userdata = @ptrToInt(self) });
+                }
+            }
+            
+            self.depend_on_callback = fn_ptr;
+            self.depend_on_wrappers = wrappers;
+        }
 
         fn callHandlers(self: *Self) void {
             // Iterate over each node of the linked list
@@ -311,9 +400,10 @@ pub fn FormatDataWrapper(allocator: std.mem.Allocator, comptime fmt: []const u8,
         var types: []const type = &[_]type{};
         // Iterate over the 'childs' tuple for each data wrapper
         for (std.meta.fields(@TypeOf(childs))) |field| {
-            const dataWrapper = @field(childs, field.name);
-            const T = @TypeOf(dataWrapper.*).ValueType;
-            types = types ++ &[_]type{T};
+            const T = @import("internal.zig").DereferencedType(
+                @TypeOf(@field(childs, field.name)),
+            );
+            types = types ++ &[_]type{T.ValueType};
         }
         break :blk types;
     };
