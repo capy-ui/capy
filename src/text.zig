@@ -60,6 +60,7 @@ pub const TextField_Impl = struct {
     dataWrappers: TextField_Impl.DataWrappers = .{},
     text: StringDataWrapper,
     readOnly: DataWrapper(bool),
+    _wrapperTextBlock: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
 
     const Config = struct {
         text: []const u8 = "",
@@ -81,15 +82,24 @@ pub const TextField_Impl = struct {
 
     /// When the text is changed in the StringDataWrapper
     fn wrapperTextChanged(newValue: []const u8, userdata: usize) void {
+        const self = @intToPtr(*TextField_Impl, userdata);
+        if (self._wrapperTextBlock.load(.Monotonic) == true) return;
+
+        self.peer.?.setText(newValue);
+    }
+
+    fn wrapperReadOnlyChanged(newValue: bool, userdata: usize) void {
         const peer = @intToPtr(*?backend.TextField, userdata);
-        peer.*.?.setText(newValue);
+        peer.*.?.setReadOnly(newValue);
     }
 
     fn textChanged(userdata: usize) void {
         const self = @intToPtr(*TextField_Impl, userdata);
         const text = self.peer.?.getText();
-
-        self.text.setNoListen(text);
+        
+        self._wrapperTextBlock.store(true, .Monotonic);
+        defer self._wrapperTextBlock.store(false, .Monotonic);
+        self.text.set(text);
     }
 
     pub fn show(self: *TextField_Impl) !void {
@@ -101,7 +111,8 @@ pub const TextField_Impl = struct {
 
             try self.show_events();
             try peer.setCallback(.TextChanged, textChanged);
-            _ = try self.text.addChangeListener(.{ .function = wrapperTextChanged, .userdata = @ptrToInt(&self.peer) });
+            _ = try self.text.addChangeListener(.{ .function = wrapperTextChanged, .userdata = @ptrToInt(self) });
+            _ = try self.readOnly.addChangeListener(.{ .function = wrapperReadOnlyChanged, .userdata = @ptrToInt(&self.peer) });
         }
     }
 
