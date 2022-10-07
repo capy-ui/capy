@@ -148,4 +148,4 @@ that works and can be configured on the most distros. It's also the reason Libad
 be adopted, as it's meant for GNOME and GNOME only by disallowing styling and integration
 with other DEs.
 
-Ask questions and receive updates on the [Matrix channel](https://matrix.to/#/!jPJVkwYrfkAgKpCiHG:matrix.org?via=matrix.org).
+Ask questions and receive updates on the [Matrix channel](https://matrix.to/#/#capy-ui:matrix.org).
