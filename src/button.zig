@@ -33,11 +33,17 @@ pub const Button_Impl = struct {
         self.enabled.updateBinders();
     }
 
+    fn wrapperEnabledChanged(newValue: bool, userdata: usize) void {
+        const peer = @intToPtr(*?backend.Button, userdata);
+        peer.*.?.setEnabled(newValue);
+    }
+
     pub fn show(self: *Button_Impl) !void {
         if (self.peer == null) {
             self.peer = try backend.Button.create();
             self.peer.?.setLabel(self.label);
             try self.show_events();
+            _ = try self.enabled.addChangeListener(.{ .function = wrapperEnabledChanged, .userdata = @ptrToInt(&self.peer) });
         }
     }
 

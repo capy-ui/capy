@@ -413,6 +413,10 @@ pub const Button = struct {
         const label = c.gtk_button_get_label(@ptrCast(*c.GtkButton, self.peer));
         return std.mem.span(label);
     }
+
+    pub fn setEnabled(self: *const Button, enabled: bool) void {
+        c.gtk_widget_set_sensitive(self.peer, @boolToInt(enabled));
+    }
 };
 
 pub const Label = struct {
