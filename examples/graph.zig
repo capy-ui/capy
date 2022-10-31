@@ -45,7 +45,6 @@ pub const LineGraph_Impl = struct {
         while (legendValue < maxValue) : (legendValue += (maxValue - minValue) / 10) {
             const y = @intCast(i32, height) - @floatToInt(i32, @floor((legendValue - minValue) * (@intToFloat(f32, height) / (maxValue - minValue))));
             const text = try std.fmt.bufPrint(&legendBuf, "{d:.1}", .{legendValue});
-            _ = text;
 
             ctx.setColor(0, 0, 0);
             ctx.text(0, y, legendLayout, text);

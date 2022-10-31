@@ -714,6 +714,10 @@ pub const Button = struct {
         const text = std.unicode.utf16leToUtf8AllocZ(allocator, utf16Slice) catch unreachable; // TODO return error
         return text;
     }
+
+    pub fn setEnabled(self: *Button, enabled: bool) void {
+        _ = win32.EnableWindow(self.peer, @boolToInt(enabled));
+    }
 };
 
 pub const Label = struct {

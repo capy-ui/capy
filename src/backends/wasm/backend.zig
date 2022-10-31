@@ -292,7 +292,7 @@ pub const Button = struct {
         }
     }
 
-    pub fn getLabel(self: *Button) [:0]const u8 {
+    pub fn getLabel(self: *const Button) [:0]const u8 {
         if (self.temp_label) |text| {
             return text;
         } else {
@@ -303,6 +303,11 @@ pub const Button = struct {
 
             return text;
         }
+    }
+
+    pub fn setEnabled(self: *const Button, enabled: bool) void {
+        _ = self; _ = enabled;
+        // TODO: enabled property
     }
 };
 
@@ -589,7 +594,7 @@ pub const backendExport = struct {
         js.print(text);
     }
 
-    pub fn panic(msg: []const u8, _: ?*std.builtin.StackTrace) noreturn {
+    pub fn panic(msg: []const u8, _: ?*std.builtin.StackTrace, _: ?usize) noreturn {
         js.print(msg);
 
         //@breakpoint();
