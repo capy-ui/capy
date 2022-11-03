@@ -602,7 +602,7 @@ pub const Canvas = struct {
 
         pub fn ellipse(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
             if (w == h) { // if it is a circle, we can use something slightly faster
-                c.cairo_arc(self.cr, @intToFloat(f64, x), @intToFloat(f64, y), w, 0, 2 * std.math.pi);
+                c.cairo_arc(self.cr, @intToFloat(f64, x), @intToFloat(f64, y), @intToFloat(f64, w), 0, 2 * std.math.pi);
                 return;
             }
             var matrix: c.cairo_matrix_t = undefined;

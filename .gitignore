@@ -1,4 +1,5 @@
 zig-out/
 zig-cache/
 .zigmod/
+kcov-output/
 deps.zig

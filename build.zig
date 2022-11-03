@@ -162,4 +162,13 @@ pub fn build(b: *std.build.Builder) !void {
 
     const test_step = b.step("test", "Run unit tests and also generate the documentation");
     test_step.dependOn(&tests.step);
+
+    const coverage_tests = b.addTest("src/main.zig");
+    coverage_tests.setTarget(target);
+    coverage_tests.setBuildMode(mode);
+    coverage_tests.exec_cmd_args = &.{ "kcov", "kcov-output", null };
+    try install(coverage_tests, ".");
+
+    const cov_step = b.step("coverage", "Perform code coverage of unit tests. This requires 'kcov' to be installed.");
+    cov_step.dependOn(&coverage_tests.step);
 }
