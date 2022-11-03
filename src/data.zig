@@ -447,12 +447,12 @@ pub const DoubleDataWrapper = DataWrapper(f64);
 
 /// A position expressed in display pixels.
 pub const Position = struct {
-    x: u32,
-    y: u32,
+    x: i32,
+    y: i32,
 
     /// Shorthand for struct initialization
-    pub fn init(width: u32, height: u32) Position {
-        return Position{ .x = width, .y = height };
+    pub fn init(x: i32, y: i32) Position {
+        return Position{ .x = x, .y = y };
     }
 
     pub fn lerp(a: Position, b: Position, t: f64) Position {

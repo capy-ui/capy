@@ -531,16 +531,22 @@ pub const Canvas = struct {
         }
 
         pub fn setColorRGBA(self: *DrawContext, r: f32, g: f32, b: f32, a: f32) void {
-            self.setColorByte(.{ .red = @floatToInt(u8, r * 255), .green = @floatToInt(u8, g * 255), .blue = @floatToInt(u8, b * 255), .alpha = @floatToInt(u8, a * 255) });
+            const color = lib.Color{
+                .red = @floatToInt(u8, std.math.clamp(r, 0, 1) * 255),
+                .green = @floatToInt(u8, std.math.clamp(g, 0, 1) * 255),
+                .blue = @floatToInt(u8, std.math.clamp(b, 0, 1) * 255),
+                .alpha = @floatToInt(u8, std.math.clamp(a, 0, 1) * 255),
+            };
+            self.setColorByte(color);
         }
 
-        pub fn rectangle(self: *DrawContext, x: u32, y: u32, w: u32, h: u32) void {
-            _ = win32.Rectangle(self.hdc, @intCast(c_int, x), @intCast(c_int, y), @intCast(c_int, x + w), @intCast(c_int, y + h));
+        pub fn rectangle(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
+            _ = win32.Rectangle(self.hdc, @intCast(c_int, x), @intCast(c_int, y), x + @intCast(c_int, w), y + @intCast(c_int, h));
         }
 
-        pub fn ellipse(self: *DrawContext, x: u32, y: u32, w: f32, h: f32) void {
-            const cw = @floatToInt(c_int, w);
-            const ch = @floatToInt(c_int, h);
+        pub fn ellipse(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
+            const cw = @intCast(c_int, w);
+            const ch = @intCast(c_int, h);
 
             _ = win32.Ellipse(self.hdc, @intCast(c_int, x) - cw, @intCast(c_int, y) - ch, @intCast(c_int, x) + cw * 2, @intCast(c_int, y) + ch * 2);
         }
@@ -557,7 +563,7 @@ pub const Canvas = struct {
             _ = win32.ExtTextOutA(self.hdc, @intCast(c_int, x), @intCast(c_int, y), 0, null, str.ptr, @intCast(std.os.windows.UINT, str.len), null);
         }
 
-        pub fn line(self: *DrawContext, x1: u32, y1: u32, x2: u32, y2: u32) void {
+        pub fn line(self: *DrawContext, x1: i32, y1: i32, x2: i32, y2: i32) void {
             _ = win32.MoveToEx(self.hdc, @intCast(c_int, x1), @intCast(c_int, y1), null);
             _ = win32.LineTo(self.hdc, @intCast(c_int, x2), @intCast(c_int, y2));
         }

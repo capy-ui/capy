@@ -35,9 +35,9 @@ pub extern fn stopExecution() noreturn;
 // Canvas related
 pub extern fn openContext(element: ElementId) CanvasContextId;
 pub extern fn setColor(ctx: CanvasContextId, r: u8, g: u8, b: u8, a: u8) void;
-pub extern fn rectPath(ctx: CanvasContextId, x: usize, y: usize, w: usize, h: usize) void;
-pub extern fn moveTo(ctx: CanvasContextId, x: usize, y: usize) void;
-pub extern fn lineTo(ctx: CanvasContextId, x: usize, y: usize) void;
+pub extern fn rectPath(ctx: CanvasContextId, x: i32, y: i32, w: u32, h: u32) void;
+pub extern fn moveTo(ctx: CanvasContextId, x: i32, y: i32) void;
+pub extern fn lineTo(ctx: CanvasContextId, x: i32, y: i32) void;
 pub extern fn fillText(ctx: CanvasContextId, textPtr: [*]const u8, textLen: usize, x: i32, y: i32) void;
 pub extern fn fillImage(ctx: CanvasContextId, img: ResourceId, x: i32, y: i32) void;
 pub extern fn fill(ctx: CanvasContextId) void;

@@ -533,6 +533,9 @@ pub const Canvas = struct {
 
     pub usingnamespace Events(Canvas);
 
+    // TODO: use f32 for coordinates?
+    // avoid the burden of converting between signed and unsigned integers?
+
     pub const DrawContext = struct {
         cr: *c.cairo_t,
         widget: *c.GtkWidget,
@@ -582,6 +585,7 @@ pub const Canvas = struct {
             self.setColorRGBA(@intToFloat(f32, color.red) / 255.0, @intToFloat(f32, color.green) / 255.0, @intToFloat(f32, color.blue) / 255.0, @intToFloat(f32, color.alpha) / 255.0);
         }
 
+        /// Colors components are from 0 to 1.
         pub fn setColor(self: *DrawContext, r: f32, g: f32, b: f32) void {
             self.setColorRGBA(r, g, b, 1);
         }
@@ -592,19 +596,19 @@ pub const Canvas = struct {
         }
 
         /// Add a rectangle to the current path
-        pub fn rectangle(self: *DrawContext, x: u32, y: u32, w: u32, h: u32) void {
+        pub fn rectangle(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
             c.cairo_rectangle(self.cr, @intToFloat(f64, x), @intToFloat(f64, y), @intToFloat(f64, w), @intToFloat(f64, h));
         }
 
-        pub fn ellipse(self: *DrawContext, x: u32, y: u32, w: f32, h: f32) void {
+        pub fn ellipse(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
             if (w == h) { // if it is a circle, we can use something slightly faster
                 c.cairo_arc(self.cr, @intToFloat(f64, x), @intToFloat(f64, y), w, 0, 2 * std.math.pi);
                 return;
             }
             var matrix: c.cairo_matrix_t = undefined;
             c.cairo_get_matrix(self.cr, &matrix);
-            const scale = w + h;
-            c.cairo_scale(self.cr, w / scale, h / scale);
+            const scale = @intToFloat(f32, w + h);
+            c.cairo_scale(self.cr, @intToFloat(f32, w) / scale, @intToFloat(f32, h) / scale);
             c.cairo_arc(self.cr, @intToFloat(f64, x), @intToFloat(f64, y), scale, 0, 2 * std.math.pi);
             c.cairo_set_matrix(self.cr, &matrix);
         }
@@ -629,7 +633,7 @@ pub const Canvas = struct {
             c.pango_cairo_show_layout(self.cr, pangoLayout);
         }
 
-        pub fn line(self: *DrawContext, x1: u32, y1: u32, x2: u32, y2: u32) void {
+        pub fn line(self: *DrawContext, x1: i32, y1: i32, x2: i32, y2: i32) void {
             c.cairo_move_to(self.cr, @intToFloat(f64, x1), @intToFloat(f64, y1));
             c.cairo_line_to(self.cr, @intToFloat(f64, x2), @intToFloat(f64, y2));
             c.cairo_stroke(self.cr);

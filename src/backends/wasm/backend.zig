@@ -362,15 +362,15 @@ pub const Canvas = struct {
 
         pub fn setColorRGBA(self: *DrawContext, r: f32, g: f32, b: f32, a: f32) void {
             const color = lib.Color{
-                .red = @floatToInt(u8, r * 255),
-                .green = @floatToInt(u8, g * 255),
-                .blue = @floatToInt(u8, b * 255),
-                .alpha = @floatToInt(u8, a * 255),
+                .red = @floatToInt(u8, std.math.clamp(r, 0, 1) * 255),
+                .green = @floatToInt(u8, std.math.clamp(g, 0, 1) * 255),
+                .blue = @floatToInt(u8, std.math.clamp(b, 0, 1) * 255),
+                .alpha = @floatToInt(u8, std.math.clamp(a, 0, 1) * 255),
             };
             self.setColorByte(color);
         }
 
-        pub fn rectangle(self: *DrawContext, x: u32, y: u32, w: u32, h: u32) void {
+        pub fn rectangle(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
             js.rectPath(self.ctx, x, y, w, h);
         }
 
@@ -386,13 +386,13 @@ pub const Canvas = struct {
             js.fillImage(self.ctx, data.peer.id, x, y);
         }
 
-        pub fn line(self: *DrawContext, x1: u32, y1: u32, x2: u32, y2: u32) void {
+        pub fn line(self: *DrawContext, x1: i32, y1: i32, x2: i32, y2: i32) void {
             js.moveTo(self.ctx, x1, y1);
             js.lineTo(self.ctx, x2, y2);
             js.stroke(self.ctx);
         }
 
-        pub fn ellipse(self: *DrawContext, x: u32, y: u32, w: f32, h: f32) void {
+        pub fn ellipse(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
             // TODO
             _ = self;
             _ = x;

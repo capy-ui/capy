@@ -48,28 +48,28 @@ pub const LineGraph_Impl = struct {
 
             ctx.setColor(0, 0, 0);
             ctx.text(0, y, legendLayout, text);
-            ctx.line(0, @intCast(u32, y), width, @intCast(u32, y));
+            ctx.line(0, y, @intCast(i32, width), y);
             ctx.stroke();
         }
 
         x = 0;
-        var oldX: u32 = 0;
-        var oldY: u32 = 0;
+        var oldX: i32 = 0;
+        var oldY: i32 = 0;
         while (x < 10) : (x += 0.1) {
             const y = self.dataFn(x);
             var dy = @intCast(i32, height) - @floatToInt(i32, @floor((y - minValue) * (@intToFloat(f32, height) / (maxValue - minValue))));
             var dx = @floatToInt(i32, @floor(x * 100)) + 50;
             if (dy < 0) dy = 0;
             if (dx < 0) dx = 0;
-            if (oldY == 0) oldY = @intCast(u32, dy);
+            if (oldY == 0) oldY = dy;
 
             ctx.setColor(0, 0, 0);
-            ctx.line(oldX, oldY, @intCast(u32, dx), @intCast(u32, dy));
+            ctx.line(oldX, oldY, dx, dy);
             ctx.stroke();
             ctx.ellipse(oldX, oldY, 3, 3);
             ctx.fill();
-            oldX = @intCast(u32, dx);
-            oldY = @intCast(u32, dy);
+            oldX = dx;
+            oldY = dy;
         }
     }
 
