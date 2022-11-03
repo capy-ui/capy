@@ -8,4 +8,6 @@ jobs:
       - uses: goto-bus-stop/setup-zig@v1
         with:
           version: master
+      - uses: nektro/actions-setup-zigmod@v1
+      - run: zigmod fetch
       - run: zig build test
