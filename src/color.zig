@@ -34,11 +34,11 @@ pub const Color = packed struct {
     pub const transparent = Color.comptimeFromString("#00000000");
 
     pub fn fromString(string: []const u8) !Color {
-        if (string.len != 7 and string.len != 9) {
-            return error.InvalidLength;
-        }
         if (string[0] != '#') {
             return error.NotSupported;
+        }
+        if (string.len != 7 and string.len != 9) {
+            return error.InvalidLength;
         }
 
         const r = try std.fmt.parseInt(u8, string[1..3], 16);
@@ -116,4 +116,11 @@ test "color linear interpolation" {
     try expectEqual(@as(u8, 0xc3), result.green);
     try expectEqual(@as(u8, 0x88), result.blue);
     try expectEqual(@as(u8, 0x66), result.alpha);
+}
+
+test "erroneous colors" {
+    try std.testing.expectError(error.InvalidLength, Color.fromString("#00ff8"));
+    try std.testing.expectError(error.InvalidLength, Color.fromString("#000"));
+    try std.testing.expectError(error.InvalidLength, Color.fromString("#00ff88aaa"));
+    try std.testing.expectError(error.NotSupported, Color.fromString("hello"));
 }

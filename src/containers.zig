@@ -380,8 +380,7 @@ pub const Container_Impl = struct {
         }
     }
 
-    pub fn _deinit(self: *Container_Impl, widget: *Widget) void {
-        _ = widget;
+    pub fn _deinit(self: *Container_Impl) void {
         for (self.childrens.items) |*child| {
             child.deinit();
         }

@@ -71,6 +71,10 @@ pub const Button_Impl = struct {
             return self.label;
         }
     }
+
+    pub fn _deinit(self: *Button_Impl) void {
+        self.enabled.deinit();
+    }
 };
 
 pub fn Button(config: Button_Impl.Config) Button_Impl {
@@ -87,4 +91,14 @@ test "Button" {
 
     button.setLabel("New Label");
     try std.testing.expectEqualStrings("New Label", button.getLabel());
+
+    try backend.init();
+    try button.show();
+    defer button.deinit();
+
+    button.enabled.set(true);
+
+    try std.testing.expectEqualStrings("New Label", button.getLabel());
+    button.setLabel("One more time");
+    try std.testing.expectEqualStrings("One more time", button.getLabel());
 }

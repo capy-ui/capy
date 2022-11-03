@@ -62,18 +62,25 @@ pub fn testFunction(comptime T: type, duration: i64, func: fn (T) anyerror!void)
                 while (std.time.milliTimestamp() < start + timePerElement) {
                     switch (element.*) {
                         .BiggerThan => |value| {
-                            const add = random.uintLessThanBiased(T, stepSize);
-                            if (threwError(callback, value -| add)) {
-                                element.* = .{ .BiggerThan = value -| add };
-                                stepSize *|= 2;
-                            } else {
-                                //stepSize /= 2;
+                            //const add = random.uintLessThanBiased(T, stepSize);
+                            if (threwError(callback, value) and threwError(callback, value -| 1)) {
+                                element.* = .{ .BiggerThan = value -| 1 };
                             }
+                            // if (threwError(callback, value -| add)) {
+                            //     element.* = .{ .BiggerThan = value -| add };
+                            //     stepSize *|= 2;
+                            //     if (threwError(callback, value +| add)) {
+                            //         element.* = .{ .BiggerThan = value +| add };
+                            //         stepSize = std.math.max(1, stepSize / 3);
+                            //     }
+                            // } else {
+                            //     //stepSize /= 2;
+                            // }
                         },
                         .SmallerThan => |value| {
                             const add = random.uintLessThanBiased(T, stepSize);
-                            if (threwError(callback, value -| add)) {
-                                element.* = .{ .SmallerThan = value -| add };
+                            if (threwError(callback, value +| add)) {
+                                element.* = .{ .SmallerThan = value +| add };
                                 //stepSize *|= 2;
                                 if (stepSize < 1) stepSize = 1;
                             } else {
@@ -112,33 +119,37 @@ pub fn testFunction(comptime T: type, duration: i64, func: fn (T) anyerror!void)
                 std.sort.sort(T, self.items, {}, comptime std.sort.asc(T));
                 const smallest = self.items[0];
                 const biggest = self.items[self.items.len - 1];
-                try elements.append(.{ .BiggerThan = smallest });
-                try elements.append(.{ .SmallerThan = biggest });
+                try elements.append(.{ .BiggerThan = biggest });
+                try elements.append(.{ .SmallerThan = smallest });
             }
 
             var hypothesis = Hypothesis{ .elements = elements };
+            std.debug.print("\nCaught {d} errors. Base hypothesis: {}", .{ self.items.len, hypothesis });
             std.debug.print("\nRefining hypothesis..", .{});
             hypothesis.refine(3000, callback);
             return hypothesis;
         }
     };
 
-    var errorsWith = std.ArrayList(T).init(std.testing.allocator);
+    //var errorsWith = std.ArrayList(T).init(std.testing.allocator);
+    var errorsWith = std.AutoArrayHashMap(T, void).init(std.testing.allocator);
     defer errorsWith.deinit();
     while (iterator.next()) |item| {
-        if (threwError(func, item)) {
-            try errorsWith.append(item);
+        if (!errorsWith.contains(item)) {
+            if (threwError(func, item)) {
+                try errorsWith.put(item, {});
+            }
         }
     }
 
-    if (errorsWith.items.len > 0) {
-        var breakCond = BreakCondition.init(errorsWith.items);
+    if (errorsWith.count() > 0) {
+        var breakCond = BreakCondition.init(errorsWith.keys());
         const hypothesis = try breakCond.hypothetize(func);
         defer hypothesis.deinit();
 
         std.debug.print("\nThe function fails when using a value that is {}\n", .{hypothesis});
-        std.debug.print("---\nError return trace with {any}:\n", .{errorsWith.items[0]});
-        return try func(errorsWith.items[0]);
+        std.debug.print("---\nError return trace with {any}:\n", .{errorsWith.keys()[0]});
+        return try func(errorsWith.keys()[0]);
     }
 }
 
@@ -196,7 +207,7 @@ test "basic bisecting" {
 
     // As we're seeking values under 1000 among 4 billion randomly generated values,
     // we need to run this test for longer
-    try testFunction(u16, 1000, struct {
+    try testFunction(u16, 500, struct {
         pub fn callback(value: u16) !void {
             try std.testing.expect(value > 1000);
             try std.testing.expect(value < 5000);

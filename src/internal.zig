@@ -105,19 +105,20 @@ pub fn Widgeting(comptime T: type) type {
 
         pub fn deinitWidget(widget: *Widget) void {
             const component = widget.as(T);
-            std.log.info("start deinit {s}", .{@typeName(T)});
-            if (@hasDecl(T, "_deinit")) {
-                T._deinit(component, widget);
-            }
             component.deinit();
 
             if (widget.allocator) |allocator| allocator.destroy(component);
         }
 
         pub fn deinit(self: *T) void {
-            std.log.info("deinit properly {s}", .{@typeName(T)});
-            //std.log.info("a {}", .{self});
+            if (@hasDecl(T, "_deinit")) {
+                self._deinit();
+            }
+
             self.dataWrappers.widget = null;
+            self.dataWrappers.opacity.deinit();
+            self.dataWrappers.alignX.deinit();
+            self.dataWrappers.alignY.deinit();
 
             self.handlers.clickHandlers.deinit();
             self.handlers.drawHandlers.deinit();
