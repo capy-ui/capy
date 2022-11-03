@@ -2,7 +2,10 @@ name: CI
 on: [push, pull_request]
 jobs:
   ci:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v3
       - uses: goto-bus-stop/setup-zig@v1
