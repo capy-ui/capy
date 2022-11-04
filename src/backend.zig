@@ -5,6 +5,7 @@ const backend = if (@hasDecl(@import("root"), "capyBackend"))
     @import("root").capyBackend
 else switch (builtin.os.tag) {
     .windows => @import("backends/win32/backend.zig"),
+    .macos => @import("backends/macos/backend.zig"),
     .linux, .freebsd => @import("backends/gtk/backend.zig"),
     .freestanding => blk: {
         if (builtin.cpu.arch == .wasm32 or builtin.cpu.arch == .wasm64) {

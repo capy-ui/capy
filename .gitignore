@@ -2,4 +2,5 @@ zig-out/
 zig-cache/
 .zigmod/
 kcov-output/
+macos-sdk/
 deps.zig

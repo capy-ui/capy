@@ -96,7 +96,7 @@ pub const TextField_Impl = struct {
     fn textChanged(userdata: usize) void {
         const self = @intToPtr(*TextField_Impl, userdata);
         const text = self.peer.?.getText();
-        
+
         self._wrapperTextBlock.store(true, .Monotonic);
         defer self._wrapperTextBlock.store(false, .Monotonic);
         self.text.set(text);

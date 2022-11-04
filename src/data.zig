@@ -283,14 +283,14 @@ pub fn DataWrapper(comptime T: type) type {
                 // Do nothing ...
             }
         }
-        
+
         /// This makes the value of this data wrapper entirely dependent
         /// on the given parameters, it can only be reverted by calling set()
         /// 'tuple' must be a tuple with pointers to data wrappers
         /// 'function' must be a function accepting as arguments the value types of the data wrappers and returning a new value.
         pub fn dependOn(self: *Self, tuple: anytype, function: anytype) !void {
             const FunctionType = @TypeOf(function);
-            
+
             // Data Wrapper types
             // e.g. DataWrapper(u32), DataWrapper([]const u8)
             const DataWrapperTypes = comptime blk: {
@@ -301,7 +301,7 @@ pub fn DataWrapper(comptime T: type) type {
                 }
                 break :blk types;
             };
-            
+
             // Value types
             // e.g. u32, []const u8
             const ValueTypes = comptime blk: {
@@ -317,7 +317,7 @@ pub fn DataWrapper(comptime T: type) type {
                 fn handler(data_wrapper: *Self, fn_ptr: ?*const anyopaque, wrappers: []?*anyopaque) void {
                     const callback = @ptrCast(FunctionType, fn_ptr);
                     const ArgsTuple = std.meta.Tuple(&ValueTypes);
-                    
+
                     var args: ArgsTuple = undefined;
                     comptime var i: usize = 0;
                     inline while (i < DataWrapperTypes.len) : (i += 1) {
@@ -332,7 +332,7 @@ pub fn DataWrapper(comptime T: type) type {
                     data_wrapper.set(result);
                 }
             }.handler;
-            
+
             // List of DataWrappers, casted to ?*anyopaque
             const wrappers = try lasting_allocator.alloc(?*anyopaque, tuple.len);
             {
@@ -346,7 +346,7 @@ pub fn DataWrapper(comptime T: type) type {
             // Call the handler once for initialization
             const fn_ptr = @as(?*const anyopaque, function);
             handler(self, fn_ptr, wrappers);
-            
+
             {
                 comptime var i: usize = 0;
                 inline while (i < tuple.len) : (i += 1) {
@@ -361,7 +361,7 @@ pub fn DataWrapper(comptime T: type) type {
                     _ = try wrapper.addChangeListener(.{ .function = changeListener, .userdata = @ptrToInt(self) });
                 }
             }
-            
+
             self.depend_on_callback = fn_ptr;
             self.depend_on_wrappers = wrappers;
         }

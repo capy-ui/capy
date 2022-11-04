@@ -379,8 +379,6 @@ pub fn Events(comptime T: type) type {
     };
 }
 
-const HandlerList = std.ArrayList(fn (data: usize) void);
-
 // pub const Button = @import("../../flat/button.zig").FlatButton;
 
 pub const Button = struct {

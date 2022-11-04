@@ -306,7 +306,8 @@ pub const Button = struct {
     }
 
     pub fn setEnabled(self: *const Button, enabled: bool) void {
-        _ = self; _ = enabled;
+        _ = self;
+        _ = enabled;
         // TODO: enabled property
     }
 };
