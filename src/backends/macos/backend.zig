@@ -1,6 +1,7 @@
 const std = @import("std");
 const shared = @import("../shared.zig");
 const lib = @import("../../main.zig");
+const objc = @import("objc.zig");
 
 const EventFunctions = shared.EventFunctions(@This());
 const EventType = shared.BackendEventType;
@@ -51,11 +52,20 @@ pub fn Events(comptime T: type) type {
 pub const Window = struct {
     source_dpi: u32 = 96,
     scale: f32 = 1.0,
+    peer: objc.id,
 
     pub usingnamespace Events(Window);
 
     pub fn create() BackendError!Window {
-        return Window{};
+        const NSWindow = objc.getClass("NSWindow") catch return BackendError.InitializationError;
+        const rect = objc.NSRectMake(0, 0, 100, 100);
+        const style: c_ulong = 1; // titled
+        const backing: c_ulong = 2; // NSBackingStoreBuffered
+        const flag: c_int = @boolToInt(false);
+
+        return Window{
+            .peer = objc.msgSendByName(objc.id, NSWindow, "initWithContentRect:styleMask:backing:defer:", .{ rect, style, backing, flag }) catch return BackendError.UnknownError,
+        };
     }
 
     pub fn resize(self: *Window, width: c_int, height: c_int) void {
@@ -82,7 +92,9 @@ pub const Window = struct {
     }
 
     pub fn show(self: *Window) void {
-        _ = self;
+        std.log.info("show window", .{});
+        objc.msgSendByName(void, self.peer, "makeKeyAndOrderFront", .{ @as(objc.id, undefined) }) catch unreachable;
+        std.log.info("showed window", .{});
         _ = activeWindows.fetchAdd(1, .Release);
     }
 

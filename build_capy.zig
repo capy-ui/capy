@@ -34,7 +34,7 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
             }
         },
         .macos => {
-            if (@import("builtin").os != .macos) {
+            if (@import("builtin").os.tag != .macos) {
                 const b = step.builder;
                 const sdk_root_dir = b.pathFromRoot("macos-sdk/");
                 const sdk_framework_dir = std.fs.path.join(b.allocator, &.{ sdk_root_dir, "System/Library/Frameworks" }) catch unreachable;
@@ -44,7 +44,14 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
                 step.addSystemIncludePath(sdk_include_dir);
                 step.addLibraryPath(sdk_lib_dir);
             }
+
+            step.linkLibC();
+            step.linkFramework("CoreData");
+            step.linkFramework("ApplicationServices");
             step.linkFramework("CoreFoundation");
+            step.linkFramework("Foundation");
+            step.linkFramework("AppKit");
+            step.linkSystemLibraryName("objc");
         },
         .freestanding => {
             if (step.target.toTarget().isWasm()) {
