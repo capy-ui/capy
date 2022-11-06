@@ -76,8 +76,13 @@ If you want to help the project more directly, you can fork the project and then
 
 A platform is considered supported only if it can be built to from every other OS.
 
+### Desktop
+
 ✅ Windows x86_64  
 ✅ Windows i386
+
+🏃 macOS M1  
+🏃 macOS x86_64  
 
 ✅ Linux x86_64  
 ✅ Linux i386  
@@ -87,8 +92,10 @@ A platform is considered supported only if it can be built to from every other O
 
 ✅ WebAssembly  
 
-🏃 macOS M1  
-🏃 macOS x86_64  
+### Mobile
+
+🏃 Android
+🏃 iOS
 
 - ✅ Working and can be cross-compile from all platforms supported by Zig
 - 🏃 Planned

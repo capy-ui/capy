@@ -211,17 +211,17 @@ pub const NONCLIENTMETRICSA = extern struct {
 };
 
 pub fn GetWindowLongPtr(hWnd: HWND, nIndex: c_int) usize {
-    switch (@import("builtin").cpu.arch) {
-        .x86_64 => return @bitCast(usize, std.os.windows.user32.GetWindowLongPtrA(hWnd, nIndex)),
-        .i386 => return @bitCast(usize, std.os.windows.user32.GetWindowLongA(hWnd, nIndex)),
+    switch (comptime @import("builtin").cpu.arch.ptrBitWidth()) {
+        64 => return @bitCast(usize, std.os.windows.user32.GetWindowLongPtrA(hWnd, nIndex)),
+        32 => return @bitCast(usize, std.os.windows.user32.GetWindowLongA(hWnd, nIndex)),
         else => @compileError("Unsupported architecture."),
     }
 }
 
 pub fn SetWindowLongPtr(hWnd: HWND, nIndex: c_int, dwNewLong: usize) void {
-    switch (@import("builtin").cpu.arch) {
-        .x86_64 => _ = std.os.windows.user32.SetWindowLongPtrA(hWnd, nIndex, @bitCast(isize, dwNewLong)),
-        .i386 => _ = std.os.windows.user32.SetWindowLongA(hWnd, nIndex, @bitCast(isize, dwNewLong)),
+    switch (comptime @import("builtin").cpu.arch.ptrBitWidth()) {
+        64 => _ = std.os.windows.user32.SetWindowLongPtrA(hWnd, nIndex, @bitCast(isize, dwNewLong)),
+        32 => _ = std.os.windows.user32.SetWindowLongA(hWnd, nIndex, @bitCast(isize, dwNewLong)),
         else => @compileError("Unsupported architecture."),
     }
 }
