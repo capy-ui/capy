@@ -18,4 +18,5 @@ jobs:
           version: master
       - uses: nektro/actions-setup-zigmod@v1
       - run: zigmod fetch
-      - run: zig build test
+      - name: Build Capy
+        run: zig build
