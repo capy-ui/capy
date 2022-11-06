@@ -1,0 +1,16 @@
+--- include/tls.h.orig	2017-02-13 20:19:55.918636579 +0900
++++ include/tls.h	2017-02-13 20:21:18.313073161 +0900
+@@ -22,6 +22,13 @@
+ extern "C" {
+ #endif
+
++#ifdef _MSC_VER
++#ifndef LIBRESSL_INTERNAL
++#include <basetsd.h>
++typedef SSIZE_T ssize_t;
++#endif
++#endif
++
+ #include <sys/types.h>
+
+ #include <stddef.h>

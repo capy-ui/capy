@@ -1,0 +1,18 @@
+--- tests/bn_isqrt.c.orig	Mon Aug 15 10:40:29 2022
++++ tests/bn_isqrt.c	Mon Aug 15 10:41:46 2022
+@@ -304,6 +304,7 @@ main(int argc, char *argv[])
+ 	int ch;
+ 	int failed = 0, print = 0;
+ 
++#ifndef _MSC_VER
+ 	while ((ch = getopt(argc, argv, "C")) != -1) {
+ 		switch (ch) {
+ 		case 'C':
+@@ -314,6 +315,7 @@ main(int argc, char *argv[])
+ 			break;
+ 		}
+ 	}
++#endif
+ 
+ 	if (print)
+ 		return check_tables(1);

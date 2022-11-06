@@ -1,0 +1,11 @@
+--- ./crypto/bn/bn_lcl.h.orig	Fri Feb 18 16:30:39 2022
++++ ./crypto/bn/bn_lcl.h	Mon Feb 21 05:39:35 2022
+@@ -283,7 +283,7 @@
+ 	     : "r"(a), "r"(b));		\
+ 	ret;			})
+ #  endif	/* compiler */
+-# elif defined(__x86_64) || defined(__x86_64__)
++# elif (defined(__x86_64) || defined(__x86_64__)) && defined(_LP64)
+ #  if defined(__GNUC__) && __GNUC__>=2
+ #   define BN_UMULT_HIGH(a,b)	({	\
+ 	BN_ULONG ret,discard;	\

@@ -1,0 +1,41 @@
+
+ASM_X86_64_MINGW64 = aes/aes-mingw64-x86_64.S
+ASM_X86_64_MINGW64 += aes/bsaes-mingw64-x86_64.S
+ASM_X86_64_MINGW64 += aes/vpaes-mingw64-x86_64.S
+ASM_X86_64_MINGW64 += aes/aesni-mingw64-x86_64.S
+ASM_X86_64_MINGW64 += aes/aesni-sha1-mingw64-x86_64.S
+#ASM_X86_64_MINGW64 += bn/modexp512-mingw64-x86_64.S
+#ASM_X86_64_MINGW64 += bn/mont-mingw64-x86_64.S
+#ASM_X86_64_MINGW64 += bn/mont5-mingw64-x86_64.S
+#ASM_X86_64_MINGW64 += bn/gf2m-mingw64-x86_64.S
+ASM_X86_64_MINGW64 += camellia/cmll-mingw64-x86_64.S
+ASM_X86_64_MINGW64 += md5/md5-mingw64-x86_64.S
+ASM_X86_64_MINGW64 += modes/ghash-mingw64-x86_64.S
+ASM_X86_64_MINGW64 += rc4/rc4-mingw64-x86_64.S
+ASM_X86_64_MINGW64 += rc4/rc4-md5-mingw64-x86_64.S
+ASM_X86_64_MINGW64 += sha/sha1-mingw64-x86_64.S
+ASM_X86_64_MINGW64 += sha/sha256-mingw64-x86_64.S
+ASM_X86_64_MINGW64 += sha/sha512-mingw64-x86_64.S
+ASM_X86_64_MINGW64 += whrlpool/wp-mingw64-x86_64.S
+ASM_X86_64_MINGW64 += cpuid-mingw64-x86_64.S
+
+EXTRA_DIST += $(ASM_X86_64_MINGW64)
+
+if HOST_ASM_MINGW64_X86_64
+libcrypto_la_CPPFLAGS += -DAES_ASM
+libcrypto_la_CPPFLAGS += -DBSAES_ASM
+libcrypto_la_CPPFLAGS += -DVPAES_ASM
+libcrypto_la_CPPFLAGS += -DOPENSSL_IA32_SSE2
+#libcrypto_la_CPPFLAGS += -DOPENSSL_BN_ASM_MONT
+#libcrypto_la_CPPFLAGS += -DOPENSSL_BN_ASM_MONT5
+#libcrypto_la_CPPFLAGS += -DOPENSSL_BN_ASM_GF2m
+libcrypto_la_CPPFLAGS += -DMD5_ASM
+libcrypto_la_CPPFLAGS += -DGHASH_ASM
+libcrypto_la_CPPFLAGS += -DRSA_ASM
+libcrypto_la_CPPFLAGS += -DSHA1_ASM
+libcrypto_la_CPPFLAGS += -DSHA256_ASM
+libcrypto_la_CPPFLAGS += -DSHA512_ASM
+libcrypto_la_CPPFLAGS += -DWHIRLPOOL_ASM
+libcrypto_la_CPPFLAGS += -DOPENSSL_CPUID_OBJ
+libcrypto_la_SOURCES += $(ASM_X86_64_MINGW64)
+endif

@@ -1,0 +1,3 @@
+AM_CFLAGS =
+AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/include/compat -DLIBRESSL_INTERNAL
+AM_CPPFLAGS += -D__BEGIN_HIDDEN_DECLS= -D__END_HIDDEN_DECLS=

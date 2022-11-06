@@ -1,0 +1,9 @@
+[submodule "hzzp"]
+	path = hzzp
+	url = https://github.com/truemedian/hzzp
+[submodule "zuri"]
+	path = zuri
+	url = https://github.com/Vexu/zuri
+[submodule "zig-libressl"]
+	path = zig-libressl
+	url = git@github.com:haze/zig-libressl

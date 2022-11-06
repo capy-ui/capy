@@ -1,0 +1,30 @@
+ASM_ARM_ELF = aes/aes-elf-armv4.S
+ASM_ARM_ELF += bn/gf2m-elf-armv4.S
+ASM_ARM_ELF += bn/mont-elf-armv4.S
+ASM_ARM_ELF += sha/sha1-elf-armv4.S
+ASM_ARM_ELF += sha/sha512-elf-armv4.S
+ASM_ARM_ELF += sha/sha256-elf-armv4.S
+ASM_ARM_ELF += modes/ghash-elf-armv4.S
+ASM_ARM_ELF += armv4cpuid.S
+ASM_ARM_ELF += armcap.c
+
+ASM_ARM_ELF += aes/aes_cbc.c
+ASM_ARM_ELF += camellia/camellia.c
+ASM_ARM_ELF += camellia/cmll_cbc.c
+ASM_ARM_ELF += rc4/rc4_enc.c
+ASM_ARM_ELF += rc4/rc4_skey.c
+ASM_ARM_ELF += whrlpool/wp_block.c
+
+EXTRA_DIST += $(ASM_ARM_ELF)
+
+if HOST_ASM_ELF_ARM
+libcrypto_la_CPPFLAGS += -DAES_ASM
+libcrypto_la_CPPFLAGS += -DOPENSSL_BN_ASM_MONT
+libcrypto_la_CPPFLAGS += -DOPENSSL_BN_ASM_GF2m
+libcrypto_la_CPPFLAGS += -DGHASH_ASM
+libcrypto_la_CPPFLAGS += -DSHA1_ASM
+libcrypto_la_CPPFLAGS += -DSHA256_ASM
+libcrypto_la_CPPFLAGS += -DSHA512_ASM
+libcrypto_la_CPPFLAGS += -DOPENSSL_CPUID_OBJ
+libcrypto_la_SOURCES += $(ASM_ARM_ELF)
+endif

@@ -1,0 +1,99 @@
+--- apps/openssl/speed.c.orig	Sun Feb  6 20:37:16 2022
++++ apps/openssl/speed.c	Sun Feb  6 21:07:42 2022
+@@ -159,7 +159,16 @@
+ pkey_print_message(const char *str, const char *str2,
+     long num, int bits, int sec);
+ static void print_result(int alg, int run_no, int count, double time_used);
++#ifndef _WIN32
+ static int do_multi(int multi);
++#else
++void speed_signal(int sigcatch, void (*func)(int sigraised));
++unsigned int speed_alarm(unsigned int seconds);
++void speed_alarm_free(int run);
++#define SIGALRM		14
++#define signal(sigcatch, func)	speed_signal((sigcatch), (func))
++#define alarm(seconds)		speed_alarm((seconds))
++#endif
+ 
+ #define ALGOR_NUM	32
+ #define SIZE_NUM	5
+@@ -466,8 +475,10 @@
+ 	const EVP_CIPHER *evp_cipher = NULL;
+ 	const EVP_MD *evp_md = NULL;
+ 	int decrypt = 0;
++#ifndef _WIN32
+ 	int multi = 0;
+ 	const char *errstr = NULL;
++#endif
+ 
+ 	if (single_execution) {
+ 		if (pledge("stdio proc", NULL) == -1) {
+@@ -544,6 +555,7 @@
+ 			j--;	/* Otherwise, -decrypt gets confused with an
+ 				 * algorithm. */
+ 		}
++#ifndef _WIN32
+ 		else if ((argc > 0) && (strcmp(*argv, "-multi") == 0)) {
+ 			argc--;
+ 			argv++;
+@@ -559,6 +571,7 @@
+ 			j--;	/* Otherwise, -multi gets confused with an
+ 				 * algorithm. */
+ 		}
++#endif
+ 		else if (argc > 0 && !strcmp(*argv, "-mr")) {
+ 			mr = 1;
+ 			j--;	/* Otherwise, -mr gets confused with an
+@@ -921,7 +934,9 @@
+ 			BIO_printf(bio_err, "-evp e          use EVP e.\n");
+ 			BIO_printf(bio_err, "-decrypt        time decryption instead of encryption (only EVP).\n");
+ 			BIO_printf(bio_err, "-mr             produce machine readable output.\n");
++#ifndef _WIN32
+ 			BIO_printf(bio_err, "-multi n        run n benchmarks in parallel.\n");
++#endif
+ 			goto end;
+ 		}
+ 		argc--;
+@@ -929,8 +944,10 @@
+ 		j++;
+ 	}
+ 
++#ifndef _WIN32
+ 	if (multi && do_multi(multi))
+ 		goto show_res;
++#endif
+ 
+ 	if (j == 0) {
+ 		for (i = 0; i < ALGOR_NUM; i++) {
+@@ -1807,7 +1824,9 @@
+ 				ecdh_doit[j] = 0;
+ 		}
+ 	}
++#ifndef _WIN32
+ show_res:
++#endif
+ 	if (!mr) {
+ 		fprintf(stdout, "%s\n", SSLeay_version(SSLEAY_VERSION));
+ 		fprintf(stdout, "%s\n", SSLeay_version(SSLEAY_BUILT_ON));
+@@ -1980,11 +1999,15 @@
+ static void
+ print_result(int alg, int run_no, int count, double time_used)
+ {
++#ifdef _WIN32
++	speed_alarm_free(run);
++#endif
+ 	BIO_printf(bio_err, mr ? "+R:%d:%s:%f\n"
+ 	    : "%d %s's in %.2fs\n", count, names[alg], time_used);
+ 	results[alg][run_no] = ((double) count) / time_used * lengths[run_no];
+ }
+ 
++#ifndef _WIN32
+ static char *
+ sstrsep(char **string, const char *delim)
+ {
+@@ -2191,4 +2214,5 @@
+ 	free(fds);
+ 	return 1;
+ }
++#endif
+ #endif

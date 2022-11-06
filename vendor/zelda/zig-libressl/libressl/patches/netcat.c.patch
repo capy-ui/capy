@@ -1,0 +1,178 @@
+--- apps/nc/netcat.c.orig	Wed Jun 22 11:15:52 2022
++++ apps/nc/netcat.c	Wed Jun 22 11:15:52 2022
+@@ -93,9 +93,13 @@
+ int	Dflag;					/* sodebug */
+ int	Iflag;					/* TCP receive buffer size */
+ int	Oflag;					/* TCP send buffer size */
++#ifdef TCP_MD5SIG
+ int	Sflag;					/* TCP MD5 signature option */
++#endif
+ int	Tflag = -1;				/* IP Type of Service */
++#ifdef SO_RTABLE
+ int	rtableid = -1;
++#endif
+ 
+ int	usetls;					/* use TLS */
+ const char    *Cflag;				/* Public cert file */
+@@ -269,12 +273,14 @@
+ 		case 'u':
+ 			uflag = 1;
+ 			break;
++#ifdef SO_RTABLE
+ 		case 'V':
+ 			rtableid = (int)strtonum(optarg, 0,
+ 			    RT_TABLEID_MAX, &errstr);
+ 			if (errstr)
+ 				errx(1, "rtable %s: %s", errstr, optarg);
+ 			break;
++#endif
+ 		case 'v':
+ 			vflag = 1;
+ 			break;
+@@ -321,9 +327,11 @@
+ 		case 'o':
+ 			oflag = optarg;
+ 			break;
++#ifdef TCP_MD5SIG
+ 		case 'S':
+ 			Sflag = 1;
+ 			break;
++#endif
+ 		case 'T':
+ 			errstr = NULL;
+ 			errno = 0;
+@@ -347,9 +355,11 @@
+ 	argc -= optind;
+ 	argv += optind;
+ 
++#ifdef SO_RTABLE
+ 	if (rtableid >= 0)
+ 		if (setrtable(rtableid) == -1)
+ 			err(1, "setrtable");
++#endif
+ 
+ 	/* Cruft to make sure options are clean, and used properly. */
+ 	if (argc == 1 && family == AF_UNIX) {
+@@ -945,7 +955,10 @@
+     char *ipaddr)
+ {
+ 	struct addrinfo *res, *res0;
+-	int s = -1, error, herr, on = 1, save_errno;
++	int s = -1, error, herr, save_errno;
++#ifdef SO_BINDANY
++	int on = 1;
++#endif
+ 
+ 	if ((error = getaddrinfo(host, port, &hints, &res0)))
+ 		errx(1, "getaddrinfo for host \"%s\" port %s: %s", host,
+@@ -960,8 +973,10 @@
+ 		if (sflag || pflag) {
+ 			struct addrinfo ahints, *ares;
+ 
++#ifdef SO_BINDANY
+ 			/* try SO_BINDANY, but don't insist */
+ 			setsockopt(s, SOL_SOCKET, SO_BINDANY, &on, sizeof(on));
++#endif
+ 			memset(&ahints, 0, sizeof(struct addrinfo));
+ 			ahints.ai_family = res->ai_family;
+ 			ahints.ai_socktype = uflag ? SOCK_DGRAM : SOCK_STREAM;
+@@ -1053,7 +1068,10 @@
+ local_listen(const char *host, const char *port, struct addrinfo hints)
+ {
+ 	struct addrinfo *res, *res0;
+-	int s = -1, ret, x = 1, save_errno;
++	int s = -1, save_errno;
++#ifdef SO_REUSEPORT
++	int ret, x = 1;
++#endif
+ 	int error;
+ 
+ 	/* Allow nodename to be null. */
+@@ -1074,9 +1092,11 @@
+ 		    res->ai_protocol)) == -1)
+ 			continue;
+ 
++#ifdef SO_REUSEPORT
+ 		ret = setsockopt(s, SOL_SOCKET, SO_REUSEPORT, &x, sizeof(x));
+ 		if (ret == -1)
+ 			err(1, NULL);
++#endif
+ 
+ 		set_common_sockopts(s, res->ai_family);
+ 
+@@ -1545,11 +1565,13 @@
+ {
+ 	int x = 1;
+ 
++#ifdef TCP_MD5SIG
+ 	if (Sflag) {
+ 		if (setsockopt(s, IPPROTO_TCP, TCP_MD5SIG,
+ 		    &x, sizeof(x)) == -1)
+ 			err(1, NULL);
+ 	}
++#endif
+ 	if (Dflag) {
+ 		if (setsockopt(s, SOL_SOCKET, SO_DEBUG,
+ 		    &x, sizeof(x)) == -1)
+@@ -1560,9 +1582,16 @@
+ 		    IP_TOS, &Tflag, sizeof(Tflag)) == -1)
+ 			err(1, "set IP ToS");
+ 
++#ifdef IPV6_TCLASS
+ 		else if (af == AF_INET6 && setsockopt(s, IPPROTO_IPV6,
+ 		    IPV6_TCLASS, &Tflag, sizeof(Tflag)) == -1)
+ 			err(1, "set IPv6 traffic class");
++#else
++		else if (af == AF_INET6) {
++			errno = ENOPROTOOPT;
++			err(1, "set IPv6 traffic class not supported");
++		}
++#endif
+ 	}
+ 	if (Iflag) {
+ 		if (setsockopt(s, SOL_SOCKET, SO_RCVBUF,
+@@ -1586,13 +1615,17 @@
+ 	}
+ 
+ 	if (minttl != -1) {
++#ifdef IP_MINTTL
+ 		if (af == AF_INET && setsockopt(s, IPPROTO_IP,
+ 		    IP_MINTTL, &minttl, sizeof(minttl)))
+ 			err(1, "set IP min TTL");
++#endif
+ 
+-		else if (af == AF_INET6 && setsockopt(s, IPPROTO_IPV6,
++#ifdef IPV6_MINHOPCOUNT
++		if (af == AF_INET6 && setsockopt(s, IPPROTO_IPV6,
+ 		    IPV6_MINHOPCOUNT, &minttl, sizeof(minttl)))
+ 			err(1, "set IPv6 min hop count");
++#endif
+ 	}
+ }
+ 
+@@ -1817,15 +1850,19 @@
+ 	\t-P proxyuser\tUsername for proxy authentication\n\
+ 	\t-p port\t	Specify local port for remote connects\n\
+ 	\t-R CAfile	CA bundle\n\
+-	\t-r		Randomize remote ports\n\
+-	\t-S		Enable the TCP MD5 signature option\n\
+-	\t-s sourceaddr	Local source address\n\
++	\t-r		Randomize remote ports\n"
++#ifdef TCP_MD5SIG
++	"\t-S		Enable the TCP MD5 signature option\n"
++#endif
++	"\t-s sourceaddr	Local source address\n\
+ 	\t-T keyword	TOS value or TLS options\n\
+ 	\t-t		Answer TELNET negotiation\n\
+ 	\t-U		Use UNIX domain socket\n\
+-	\t-u		UDP mode\n\
+-	\t-V rtable	Specify alternate routing table\n\
+-	\t-v		Verbose\n\
++	\t-u		UDP mode\n"
++#ifdef SO_RTABLE
++	"\t-V rtable	Specify alternate routing table\n"
++#endif
++	"\t-v		Verbose\n\
+ 	\t-W recvlimit	Terminate after receiving a number of packets\n\
+ 	\t-w timeout	Timeout for connects and final net reads\n\
+ 	\t-X proto	Proxy protocol: \"4\", \"5\" (SOCKS) or \"connect\"\n\
