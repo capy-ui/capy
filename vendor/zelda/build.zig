@@ -2,20 +2,26 @@ const std = @import("std");
 const zig_libressl = @import("zig-libressl/build.zig");
 const Pkg = std.build.Pkg;
 
+fn relativeToThis(comptime path: []const u8) []const u8 {
+    comptime {
+        return std.fs.path.dirname(@src().file).? ++ "/" ++ path;
+    }
+}
+
 pub const pkgs = struct {
     pub const hzzp = Pkg{
         .name = "hzzp",
-        .source = std.build.FileSource.relative("hzzp/src/main.zig"),
+        .source = std.build.FileSource{ .path = relativeToThis("hzzp/src/main.zig") },
     };
 
     pub const zuri = Pkg{
         .name = "zuri",
-        .source = std.build.FileSource.relative("zuri/src/zuri.zig"),
+        .source = std.build.FileSource{ .path = relativeToThis("zuri/src/zuri.zig") },
     };
 
     pub const libressl = Pkg{
         .name = "zig-libressl",
-        .source = std.build.FileSource.relative("zig-libressl/src/main.zig"),
+        .source = std.build.FileSource{ .path = relativeToThis("zig-libressl/src/main.zig") },
     };
 
     pub const zelda = Pkg{
