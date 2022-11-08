@@ -64,7 +64,7 @@ pub const Tabs_Impl = struct {
         }
     }
 
-    pub fn _deinit(self: *Tabs_Impl, _: *Widget) void {
+    pub fn _deinit(self: *Tabs_Impl) void {
         for (self.tabs.items) |*tab| {
             tab.widget.deinit();
         }
