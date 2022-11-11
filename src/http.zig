@@ -48,9 +48,8 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
         }
     };
 } else struct {
-    const zfetch = @import("zfetch");
+    const zelda = @import("zelda");
 
-    // TODO: implement using ziget
     pub const HttpRequest = struct {
         url: []const u8,
 
@@ -59,20 +58,35 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
         }
 
         pub fn send(self: HttpRequest) !HttpResponse {
-            var headers = zfetch.Headers.init(internal.scratch_allocator);
-            defer headers.deinit();
+            var client = try zelda.HttpClient.init(internal.lasting_allocator, .{});
+            defer client.deinit();
 
-            var req = try zfetch.Request.init(internal.lasting_allocator, self.url, null);
-            try req.do(.GET, headers, null);
-            return HttpResponse{ .req = req };
+            var request = zelda.request.Request{
+                .method = .GET,
+                .url = self.url,
+                .use_global_connection_pool = true,
+            };
+
+            const response = try client.perform(request);
+            return HttpResponse{
+                .response = response,
+            };
         }
     };
 
     pub const HttpResponse = struct {
-        req: *zfetch.Request,
+        response: zelda.request.Response,
+        stream: std.io.FixedBufferStream([]const u8),
 
-        pub const ReadError = zfetch.Request.Reader.Error;
+        pub const ReadError = error{};
         pub const Reader = std.io.Reader(*HttpResponse, ReadError, read);
+
+        pub fn init(response: zelda.request.Response) HttpResponse {
+            return .{
+                .response = response,
+                .stream = std.io.fixedBufferStream(response.body.?),
+            };
+        }
 
         pub fn isReady(self: *HttpResponse) bool {
             _ = self;
@@ -80,7 +94,9 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
         }
 
         pub fn checkError(self: *HttpResponse) !void {
-            _ = self;
+            if (self.response.status_code != .success_ok) {
+                return error.FailedRequest;
+            }
         }
 
         pub fn reader(self: *HttpResponse) Reader {
@@ -88,11 +104,11 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
         }
 
         pub fn read(self: *HttpResponse, dest: []u8) ReadError!usize {
-            return self.req.reader().read(dest);
+            return self.stream.reader().read(dest);
         }
 
         pub fn deinit(self: *HttpResponse) void {
-            self.req.deinit();
+            self.response.deinit();
         }
     };
 };

@@ -1,4 +1,6 @@
 const std = @import("std");
+const build_zelda = @import("vendor/zelda/build.zig");
+const zig_libressl = @import("vendor/zelda/zig-libressl/build.zig");
 
 pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !void {
     step.subsystem = .Native;
@@ -77,12 +79,19 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
         .source = std.build.FileSource.relative(prefix ++ "/vendor/zigimg/zigimg.zig"),
     };
 
-    const zfetch = try @import("vendor/zfetch/build.zig").getPackage(step.builder);
+    const zelda = std.build.Pkg{
+        .name = "zelda",
+        .source = .{ .path = "vendor/zelda/src/main.zig" },
+        .dependencies = &[_]std.build.Pkg{
+            build_zelda.pkgs.hzzp, build_zelda.pkgs.zuri, build_zelda.pkgs.libressl,
+        },
+    };
+    //try zig_libressl.useLibreSslForStep(step.builder, step.target, step.build_mode, "vendor/zelda/zig-libressl/libressl", step, false);
 
     const capy = std.build.Pkg{
         .name = "capy",
         .source = std.build.FileSource.relative(prefix ++ "/src/main.zig"),
-        .dependencies = &[_]std.build.Pkg{ zigimg, zfetch },
+        .dependencies = &[_]std.build.Pkg{ zigimg, zelda },
     };
     step.addPackage(capy);
 }
