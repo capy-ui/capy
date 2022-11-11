@@ -2,6 +2,7 @@ const std = @import("std");
 const shared = @import("../shared.zig");
 const lib = @import("../../main.zig");
 const objc = @import("objc.zig");
+const AppKit = @import("AppKit.zig");
 
 const EventFunctions = shared.EventFunctions(@This());
 const EventType = shared.BackendEventType;
@@ -58,20 +59,32 @@ pub const Window = struct {
 
     pub fn create() BackendError!Window {
         const NSWindow = objc.getClass("NSWindow") catch return BackendError.InitializationError;
-        const rect = objc.NSRectMake(0, 0, 100, 100);
-        const style: c_ulong = 1; // titled
-        const backing: c_ulong = 2; // NSBackingStoreBuffered
-        const flag: c_int = @boolToInt(false);
+        const rect = objc.NSRectMake(100, 100, 200, 200);
+        const style = AppKit.NSWindowStyleMask.Titled | AppKit.NSWindowStyleMask.Closable | AppKit.NSWindowStyleMask.Miniaturizable | AppKit.NSWindowStyleMask.Resizable;
+
+        std.log.info("make new rect", .{});
+        const newRect = objc.msgSendByName(objc.NSRect, NSWindow, "frameRectForContentRect:styleMask:", .{ rect, style }) catch unreachable;
+
+        std.log.info("make ", .{});
+        std.log.info("new rect: {x}", .{@bitCast(u64, newRect.origin.y)});
+        const flag: u8 = @boolToInt(false);
+
+        const window = objc.msgSendByName(
+            objc.id,
+            objc.alloc(NSWindow) catch return BackendError.UnknownError,
+            "initWithContentRect:styleMask:backing:defer:",
+            .{ rect, style, AppKit.NSBackingStore.Buffered, flag },
+        ) catch return BackendError.UnknownError;
 
         return Window{
-            .peer = objc.msgSendByName(objc.id, NSWindow, "initWithContentRect:styleMask:backing:defer:", .{ rect, style, backing, flag }) catch return BackendError.UnknownError,
+            .peer = window,
         };
     }
 
     pub fn resize(self: *Window, width: c_int, height: c_int) void {
-        _ = self;
-        _ = width;
-        _ = height;
+        const frame = objc.NSRectMake(100, 100, @intToFloat(objc.CGFloat, width), @intToFloat(objc.CGFloat, height));
+        // TODO: resize animation can be handled using a DataWrapper on the user-facing API
+        _ = objc.msgSendByName(void, self.peer, "setFrame:display:", .{ frame, true }) catch unreachable;
     }
 
     pub fn setTitle(self: *Window, title: [*:0]const u8) void {
@@ -93,7 +106,7 @@ pub const Window = struct {
 
     pub fn show(self: *Window) void {
         std.log.info("show window", .{});
-        objc.msgSendByName(void, self.peer, "makeKeyAndOrderFront", .{ @as(objc.id, undefined) }) catch unreachable;
+        objc.msgSendByName(void, self.peer, "makeKeyAndOrderFront:", .{@as(objc.id, self.peer)}) catch unreachable;
         std.log.info("showed window", .{});
         _ = activeWindows.fetchAdd(1, .Release);
     }
