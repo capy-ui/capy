@@ -86,7 +86,15 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
             build_zelda.pkgs.hzzp, build_zelda.pkgs.zuri, build_zelda.pkgs.libressl,
         },
     };
-    try zig_libressl.useLibreSslForStep(step.builder, step.target, step.build_mode, "vendor/zelda/zig-libressl/libressl", step, false);
+    const use_system_libressl = true; // TODO: set false when haze/zig-libressl#3 is closed
+    try zig_libressl.useLibreSslForStep(
+        step.builder,
+        step.target,
+        step.build_mode,
+        "vendor/zelda/zig-libressl/libressl",
+        step,
+        use_system_libressl,
+    );
 
     const capy = std.build.Pkg{
         .name = "capy",
