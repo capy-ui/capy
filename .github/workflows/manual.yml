@@ -16,7 +16,7 @@ jobs:
           deb [ arch=amd64 allow-insecure=yes ] https://reyk-guest.pages.debian.net/libressl/ autobuilt main
           EOF
           sudo apt-get update
-          sudo apt-get install libgtk-3-dev libtls-dev
+          sudo apt-get install --allow-unauthenticated libgtk-3-dev libtls-dev
       - uses: goto-bus-stop/setup-zig@v1
         with:
           version: master
