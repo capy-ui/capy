@@ -12,6 +12,9 @@ jobs:
       - name: Setup Linux dependencies
         if: runner.os == 'Linux'
         run: |
+          sudo tee /etc/apt/sources.list.d/libressl.list <<EOF
+          deb [ arch=amd64 allow-insecure=yes ] https://reyk-guest.pages.debian.net/libressl/ autobuilt main
+          EOF
           sudo apt-get update
           sudo apt-get install libgtk-3-dev libtls-dev
       - uses: goto-bus-stop/setup-zig@v1
