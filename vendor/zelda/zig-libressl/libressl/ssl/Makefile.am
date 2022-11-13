@@ -99,6 +99,7 @@ noinst_HEADERS += ssl_sigalgs.h
 noinst_HEADERS += ssl_tlsext.h
 noinst_HEADERS += tls_content.h
 noinst_HEADERS += tls_internal.h
+noinst_HEADERS += tls12_internal.h
 noinst_HEADERS += tls13_internal.h
 noinst_HEADERS += tls13_handshake.h
 noinst_HEADERS += tls13_record.h

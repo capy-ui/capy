@@ -48,13 +48,13 @@ pub fn build(b: *std.build.Builder) !void {
 
     var main_tests = b.addTest("src/normal_test.zig");
     main_tests.setBuildMode(mode);
-    try useLibreSslForStep(b, target, mode, "/Users/haze/Code/zig-libressl/libressl", main_tests, use_system_libressl);
+    try useLibreSslForStep(b, target, mode, "./libressl", main_tests, use_system_libressl);
 
     var async_tests = b.addTest("src/async_test.zig");
     async_tests.use_stage1 = true;
     async_tests.test_evented_io = true;
     async_tests.setBuildMode(mode);
-    try useLibreSslForStep(b, target, mode, "/Users/haze/Code/zig-libressl/libressl", async_tests, use_system_libressl);
+    try useLibreSslForStep(b, target, mode, "./libressl", async_tests, use_system_libressl);
 
     const test_step = b.step("test", "Run library tests");
     test_step.dependOn(&main_tests.step);

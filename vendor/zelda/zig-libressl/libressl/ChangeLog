@@ -28,6 +28,150 @@ history is also available from Git.
 
 LibreSSL Portable Release Notes:
 
+3.6.0 - Development release
+
+	* Internal improvements
+	  - Avoid expensive RFC 3779 checks during cert verification.
+	  - The templated ASN.1 decoder has been cleaned up, refactored,
+	    modernized with parts rewritten using CBB and CBS.
+	  - The ASN.1 time parser has been rewritten.
+	  - Rewrite and fix ASN1_STRING_to_UTF8().
+	  - Use asn1_abs_set_unused_bits() rather than inlining it.
+	  - Simplify ec_asn1_group2curve().
+	  - First pass at a clean up of ASN1_item_sign_ctx()
+	  - ssl_txt.c was cleaned up.
+	  - Internal function arguments and struct member have been changed
+	    to size_t.
+	  - Lots of missing error checks of EVP API were added.
+	  - Clean up and clarify BN_kronecker().
+	  - Simplify ASN1_INTEGER_cmp()
+	  - Rewrite ASN1_INTEGER_{get,set}() using CBS and CBB and reuse
+	    the ASN1_INTEGER functions for ASN1_ENUMERATED.
+	  - Use ASN1_INTEGER to parse and build {Z,}LONG_it
+	  - Refactored and cleaned up group (elliptic curve) handling in
+	    t1_lib.c.
+	  - Simplify certificate list handling code in the legacy server.
+	  - Make CBB_finish() fail if *out_data is not NULL.
+	  - Remove tls_buffer_set_data() and remove/revise callers.
+	  - Rewrite SSL{_CTX,}_set_alpn_protos() using CBS.
+	  - Simplify tlsext_supported_groups_server_parse().
+	  - Remove redundant length checks in tlsext parse functions.
+	  - Simplify tls13_server_encrypted_extensions_recv().
+	  - Add read and write support to tls_buffer.
+	  - Convert TLS transcript from BUF_MEM to tls_buffer.
+	  - Clear key on exit in PKCS12_gen_mac().
+	  - Minor fixes in PKCS12_parse().
+	  - Provide and use a primitive clear function for BIGNUM_it.
+	  - Use ASN1_INTEGER to encode/decode BIGNUM_it.
+	  - Add stack frames to AES-NI x86_64 assembly.
+	  - Use named initialisers for BIGNUMs.
+	  - Tidy up some of BN_nist_mod_*.
+	  - Expand BLOCK_CIPHER_* and related macros.
+	  - Avoid shadowing the cbs function parameter in
+	    tlsext_alpn_server_parse()
+	  - Deduplicate peer certificate chain processing code.
+	  - Make it possible to signal an error from an i2c_* function.
+	  - Rewrite i2c_ASN1_INTEGER() using CBB/CBS.
+	  - Remove UINT32_MAX limitation on ChaCha() and CRYPTO_chacha_20().
+	  - Remove bogus length checks from EVP_aead_chacha20_poly1305().
+	  - Reworked DSA_size() and ECDSA_size().
+	  - Stop using CBIGNUM_it internal to libcrypto.
+	  - Provide c2i_ASN1_ENUMERATED_cbs() and call it from
+	    asn1_c2i_primitive().
+	  - Ensure ASN.1 types are appropriately encoded.
+	  - Avoid recycling ASN1_STRINGs when decoding ASN.1.
+	  - Tidy up asn1_c2i_primitive() slightly.
+	  - Mechanically expand IMPLEMENT_BLOCK_CIPHER, IMPLEMENT_CFBR,
+	    BLOCK_CIPHER and the looney M_do_cipher macros.
+	  - Use correct length for EVP CFB mode ciphers.
+	  - Provide a version of ssl_msg_callback() that takes a CBS.
+	  - Use CBS to parse TLS alerts in the legacy stack.
+	  - Increment the input and output position for EVP AES CFB1.
+	  - Ensure there is no trailing data for a CCS received by the
+	    TLSv1.3 stack.
+	  - Use CBS when procesing a CCS message in the legacy stack.
+	  - Be stricter with middlebox compatibility mode in the TLSv1.3
+	    server.
+	* Compatibility changes
+	  - The ASN.1 time parser has been refactored and rewritten using CBS.
+	    It has been made stricter in that it now enforces the rules from
+	    RFC 5280.
+	  - ASN1_AFLG_BROKEN was removed.
+	  - Error check tls_session_secret_cb() like OpenSSL.
+	  - Added ASN1_INTEGER_{get,set}_{u,}int64()
+	  - Move leaf certificate checks to the last thing after chain
+	    validation.
+	  - Added -s option to openssl(1) ciphers that only shows the ciphers
+	    supported by the specified protocol.
+	  - Use TLS_client_method() instead of TLSv1_client_method() in
+	    the openssl(1) ciphers command.
+	  - Validate the protocols in SSL{_CTX,}_set_alpn_protos().
+	  - Made TS and PKCS12 opaque.
+	  - Per RFC 7292, safeContentsBag is a SEQUENCE OF, not a SET OF.
+	  - Align PKCS12_key_gen_uni() with OpenSSL
+	  - Various PKCS12 and TS accessors were added. In particular, the
+	    TS_RESP_CTX_set_time_cb() function was added back.
+	  - Allow a NULL header in PEM_write{,_bio}()
+	  - Allow empty attribute sets in CSRs.
+	  - Adjust signatures of BIO_ctrl functions.
+	  - Provide additional defines for EVP AEAD.
+	  - Provide OPENSSL_cleanup().
+	  - Make BIO_info_cb() identical to bio_info_cb().
+	* Bug fixes
+	  - Avoid use of uninitialized in BN_mod_exp_recp().
+	  - Fix X509_get_extension_flags() by ensuring that EXFLAG_INVALID is
+	    set on X509_get_purpose() failure.
+	  - Fix HMAC() with NULL key.
+	  - Add ERR_load_{COMP,CT,KDF}_strings() to ERR_load_crypto_strings().
+	  - Avoid strict aliasing violations in BN_nist_mod_*().
+	  - Do not return X509_V_ERR_UNSPECIFIED from X509_check_ca().
+	    No return value of X509_check_ca() indicates failure. Application
+	    code should therefore issue a checked call to X509_check_purpose()
+	    before calling X509_check_ca().
+	  - Rewrite and fix X509v3_asid_subset() to avoid segfaults on some
+	    valid input.
+	  - Call the ASN1_OP_D2I_PRE callback after ASN1_item_ex_new().
+	  - Fix d2i_ASN1_OBJECT to advance the *der_in pointer correctly.
+	  - Avoid use of uninitialized in ASN1_STRING_to_UTF8().
+	  - Do not pass uninitialized pointer to ASN1_STRING_to_UTF8().
+	  - Do not refuse valid IPv6 addresses in nc(1)'s HTTP CONNECT proxy.
+	  - Do not reject primes in trial divisions.
+	  - Error out on negative shifts in BN_{r,l}shift() instead of
+	    accessing arrays out of bounds.
+	  - Fix URI name constraints, allow for URI's with no host part.
+	  - Fix the legacy verifier callback behaviour for untrusted certs.
+	  - Correct serfver-side handling of TLSv1.3 key updates.
+	  - Plug leak in PKCS12_setup_mac().
+	  - Plug leak in X509V3_add1_i2d().
+	  - Only print X.509 versions we know about.
+	  - Avoid signed integer overflow due to unary negation
+	  - Initialize readbytes in BIO_gets().
+	  - Plug memory leak in CMS_add_simple_smimecap().
+	  - Plug memory leak in X509_REQ_print_ex().
+	  - Check HMAC() return value to avoid a later use of uninitialized.
+	  - Avoid potential NULL dereference in ssl_set_pkey().
+	  - Check return values in ssl_print_tmp_key().
+	  - Switch loop bounds from size_t to int in check_hosts().
+	  - Avoid division by zero if no connection was made in s_time.c.
+	  - Check sk_SSL_CIPHER_push() return value
+	  - Avoid out-of-bounds read in ssl_cipher_process_rulestr().
+	  - Use LONG_MAX as the limit for ciphers with long based APIs.
+	* New features
+	  - EVP API for HKDF ported from OpenSSL and subsequently cleaned up.
+	  - The security level API (SSL_{,CTX}_{get,set}_security_level()) is
+	    now available. Callbacks and ex_data are not supported. Sane
+	    software will not be using this.
+	  - Experimental support for the BoringSSL QUIC API.
+	  - Add initial support for TS ESSCertIDv2 verification.
+	  - LibreSSL now uses the Baillie-PSW primality test instead of
+	    Miller-Rabin .
+
+3.5.3 - Reliability fix
+
+	* Fix d2i_ASN1_OBJECT(). A confusion of two CBS resulted in advancing
+	  the passed *der_in pointer incorrectly. Thanks to Aram Sargsyan for
+	  reporting the issue and testing the fix.
+
 3.5.2 - Stable release
 
 	* Bug fixes

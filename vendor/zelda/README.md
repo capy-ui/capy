@@ -11,6 +11,17 @@ Zelda uses [hzzp](https://github.com/truemedian/hzzp) and [zig-libressl](https:/
 - [x] TLS 1.1, TLS 1.2, TLS 1.3
 - [x] Simple One-Shot interface for raw bytes & JSON encoded data
 
+### Linking
+
+```zig
+const zelda = @import("path/to/zelda/build.zig");
+
+pub fn build(b: *std.build.Builder) !void {
+    const exe = ...
+    try zelda.link(b, exe, target, mode, use_system_libressl);
+}
+```
+
 ### Example
 ```zig
 /// Extracted from `examples/whats_my_ip/src/main.zig`

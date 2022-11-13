@@ -15,6 +15,6 @@ jobs:
       ARCH: ${{ matrix.arch }}
     name: ${{ matrix.arch }} - ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@main
     - name: Run CI script
       run: ./scripts/test

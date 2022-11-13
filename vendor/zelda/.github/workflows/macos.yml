@@ -1,0 +1,29 @@
+name: MacOS
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: "0 7 * * *"
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Setup Zig
+        uses: goto-bus-stop/setup-zig@v1
+        with:
+          version: master
+
+      - name: Install Autotmake
+        run: brew install automake
+
+      - name: Test
+        run: zig build --verbose-cc --verbose test

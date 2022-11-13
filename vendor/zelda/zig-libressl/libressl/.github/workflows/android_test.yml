@@ -12,7 +12,7 @@ jobs:
       MAX_NAL: 28
     name: Android 8.x 9
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@main
     - name: Run CI script
       run: ./scripts/test
 
@@ -25,6 +25,6 @@ jobs:
       MAX_NAL: 30
     name: Android 10 11
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@main
     - name: Run CI script
       run: ./scripts/test

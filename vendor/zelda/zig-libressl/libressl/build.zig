@@ -1358,6 +1358,29 @@ pub fn createLibCryptoStep(
     };
     const libcrypto_unix_sources = prefixStringArray("crypto/", &raw_libcrypto_unix_sources);
 
+    const raw_libcrypto_elf_x86_64_asm_sources = [_][]const u8{
+        "aes/aes-elf-x86_64.S",
+        "aes/bsaes-elf-x86_64.S",
+        "aes/vpaes-elf-x86_64.S",
+        "aes/aesni-elf-x86_64.S",
+        "aes/aesni-sha1-elf-x86_64.S",
+        "bn/modexp512-elf-x86_64.S",
+        "bn/mont-elf-x86_64.S",
+        "bn/mont5-elf-x86_64.S",
+        "bn/gf2m-elf-x86_64.S",
+        "camellia/cmll-elf-x86_64.S",
+        "md5/md5-elf-x86_64.S",
+        "modes/ghash-elf-x86_64.S",
+        "rc4/rc4-elf-x86_64.S",
+        "rc4/rc4-md5-elf-x86_64.S",
+        "sha/sha1-elf-x86_64.S",
+        "sha/sha256-elf-x86_64.S",
+        "sha/sha512-elf-x86_64.S",
+        "whrlpool/wp-elf-x86_64.S",
+        "cpuid-elf-x86_64.S",
+    };
+    const libcrypto_elf_x86_64_asm_sources = prefixStringArray("crypto/", &raw_libcrypto_elf_x86_64_asm_sources);
+
     const raw_libcrypto_macos_x86_64_asm_sources = [_][]const u8{
         "aes/aes-macosx-x86_64.S",
         "aes/bsaes-macosx-x86_64.S",
@@ -1389,7 +1412,7 @@ pub fn createLibCryptoStep(
         "-DLIBRESSL_CRYPTO_INTERNAL",
         "-DOPENSSL_NO_HW_PADLOCK",
         "-DSIZEOF_TIME_T=8",
-        "-D_PATH_SSL_CA_FILE=\"/Users/haze/code/libressl/tests/../cert.pem\"",
+        // "-D_PATH_SSL_CA_FILE=\"/Users/haze/code/libressl/tests/../cert.pem\"",
         "-D__BEGIN_HIDDEN_DECLS=",
         "-D__END_HIDDEN_DECLS=",
     });
@@ -1449,6 +1472,26 @@ pub fn createLibCryptoStep(
         },
         .linux => {
             try libcrypto.c_source_files.appendSlice(libcrypto_unix_sources);
+            if (target.getCpuArch() == .x86_64) {
+                try libcrypto.assembly_files.appendSlice(libcrypto_elf_x86_64_asm_sources);
+                try libcrypto.c_flags.appendSlice(&[_][]const u8{
+                    "-DAES_ASM",
+                    "-DBSAES_ASM",
+                    "-DVPAES_ASM",
+                    "-DOPENSSL_IA32_SSE2",
+                    "-DOPENSSL_BN_ASM_MONT",
+                    "-DOPENSSL_BN_ASM_MONT5",
+                    "-DOPENSSL_BN_ASM_GF2m",
+                    "-DMD5_ASM",
+                    "-DGHASH_ASM",
+                    "-DRSA_ASM",
+                    "-DSHA1_ASM",
+                    "-DSHA256_ASM",
+                    "-DSHA512_ASM)",
+                    "-DWHIRLPOOL_ASM)",
+                    "-DOPENSSL_CPUID_OBJ",
+                });
+            }
         },
         else => {},
     }

@@ -212,3 +212,6 @@ openbsd/
 *.tar.gz
 man/Makefile.am
 man/mandoc.db
+
+zig-cache/
+zig-out/

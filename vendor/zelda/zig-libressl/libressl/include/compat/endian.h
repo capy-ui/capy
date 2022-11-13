@@ -24,6 +24,9 @@
 #elif defined(HAVE_ENDIAN_H)
 #include_next <endian.h>
 
+#elif defined(HAVE_MACHINE_ENDIAN_H)
+#include_next <machine/endian.h>
+
 #elif defined(__sun) || defined(_AIX) || defined(__hpux)
 #include <sys/types.h>
 #include <arpa/nameser_compat.h>

@@ -1,10 +1,10 @@
 const std = @import("std");
-const zig_libressl = @import("zig-libressl/build.zig");
+pub const zig_libressl = @import("zig-libressl/build.zig");
 const Pkg = std.build.Pkg;
 
 fn relativeToThis(comptime path: []const u8) []const u8 {
     comptime {
-        return std.fs.path.dirname(@src().file).? ++ "/" ++ path;
+        return std.fs.path.dirname(@src().file).? ++ std.fs.path.sep_str ++ path;
     }
 }
 
@@ -26,12 +26,23 @@ pub const pkgs = struct {
 
     pub const zelda = Pkg{
         .name = "zelda",
-        .source = .{ .path = "src/main.zig" },
+        .source = .{ .path = relativeToThis("src/main.zig") },
         .dependencies = &[_]Pkg{
             hzzp, zuri, libressl,
         },
     };
 };
+
+pub fn link(
+    b: *std.build.Builder,
+    exe: *std.build.LibExeObjStep,
+    target: std.zig.CrossTarget,
+    mode: std.builtin.Mode,
+    use_system_libressl: bool,
+) !void {
+    exe.addPackage(pkgs.zelda);
+    try zig_libressl.useLibreSslForStep(b, target, mode, relativeToThis("zig-libressl/libressl"), exe, use_system_libressl);
+}
 
 pub fn build(b: *std.build.Builder) !void {
     const use_system_libressl = b.option(bool, "use-system-libressl", "Link and build from the system installed copy of LibreSSL instead of building it from source") orelse false;
@@ -48,8 +59,7 @@ pub fn build(b: *std.build.Builder) !void {
     create_test_step.sanitize_thread = sanitize_thread;
     create_test_step.setTarget(target);
     create_test_step.setBuildMode(mode);
-    create_test_step.addPackage(pkgs.zelda);
-    try zig_libressl.useLibreSslForStep(b, target, mode, "zig-libressl/libressl", create_test_step, use_system_libressl);
+    try link(b, create_test_step, target, .ReleaseFast, use_system_libressl);
 
     if (maybe_test_filter) |test_filter| {
         create_test_step.setFilter(test_filter);

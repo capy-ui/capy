@@ -17,6 +17,6 @@ jobs:
     steps:
     - name: Install packages for macos
       run: brew install automake
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@main
     - name: Run CI script
       run: ./scripts/test

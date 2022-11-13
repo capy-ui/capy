@@ -1,7 +1,6 @@
 <h1 align="center">Zig-LibreSSL</h1>
 <p align="center">
     <a href="LICENSE"><img src="https://badgen.net/github/license/haze/zig-libressl" /></a>
-    <a href="https://twitter.com/hhazee"><img src="https://badgen.net/badge/twitter/@hhazee/1DA1F2?icon&label" /></a>
 </p>
 
 <p align="center">
@@ -9,11 +8,14 @@
 </p>
 
 ## Project status
-Zig-LibreSSL is currently a work in progress. I've hand verified that simple message transactions
-work, along with use in a homebrewed HTTP client, but there is still much more to test! Please feel
-free to open issues for features you want, or bugs that you encounter.
+
+Zig-LibreSSL is currently a work in progress. I've hand verified that simple
+message transactions work, along with use in a homebrewed HTTP client, but there
+is still much more to test! Please feel free to open issues for features you
+want, or bugs that you encounter.
 
 ## Quickstart Client
+
 ```zig
 const std = @import("std");
 
@@ -41,6 +43,7 @@ pub fn main() !void {
 ```
 
 ## Quickstart Server
+
 ```zig
 const std = @import("std");
 
@@ -73,4 +76,5 @@ pub fn main() !void {
 ```
 
 ## TODOS
+
 Please see the todos in `src/main.zig`

@@ -291,6 +291,11 @@ if(HAVE_ENDIAN_H)
 	add_definitions(-DHAVE_ENDIAN_H)
 endif()
 
+check_include_files(machine/endian.h HAVE_MACHINE_ENDIAN_H)
+if(HAVE_MACHINE_ENDIAN_H)
+	add_definitions(-DHAVE_MACHINE_ENDIAN_H)
+endif()
+
 check_include_files(err.h HAVE_ERR_H)
 if(HAVE_ERR_H)
 	add_definitions(-DHAVE_ERR_H)

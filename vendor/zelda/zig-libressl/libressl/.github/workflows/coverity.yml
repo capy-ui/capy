@@ -15,7 +15,7 @@ jobs:
       COVERITY_SCAN_BUILD_COMMAND_PREPEND: "./autogen.sh && ./configure && make dist && tar zxf libressl-*.tar.gz && rm libressl-*.tar.gz && cd libressl-* && mkdir build-static && mkdir build-shared && cmake -GNinja -DBUILD_SHARED_LIBS=ON .."
       COVERITY_SCAN_BUILD_COMMAND: "ninja"
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@main
     - name: Install apt dependencies
       run: |
         sudo apt-get update
