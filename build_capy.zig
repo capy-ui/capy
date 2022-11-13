@@ -1,6 +1,8 @@
 const std = @import("std");
 const build_zelda = @import("vendor/zelda/build.zig");
-const zig_libressl = @import("vendor/zelda/zig-libressl/build.zig");
+const zig_libressl = if (@import("builtin").os.tag == .windows)
+    struct {} // TODO: fix
+else @import("vendor/zelda/zig-libressl/build.zig");
 
 pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !void {
     step.subsystem = .Native;
@@ -81,7 +83,7 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
 
     const zelda = build_zelda.pkgs.zelda;
     const use_system_libressl = step.target.getOsTag() == .windows or step.target.getOsTag() == .openbsd;
-    if (step.target.getOsTag() != .freestanding) {
+    if ((comptime @import("builtin").os.tag != .windows) and step.target.getOsTag() != .freestanding) {
         try zig_libressl.useLibreSslForStep(
             step.builder,
             step.target,
