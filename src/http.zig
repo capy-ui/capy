@@ -68,9 +68,7 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
             };
 
             const response = try client.perform(request);
-            return HttpResponse{
-                .response = response,
-            };
+            return HttpResponse.init(response);
         }
     };
 
@@ -84,7 +82,7 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
         pub fn init(response: zelda.request.Response) HttpResponse {
             return .{
                 .response = response,
-                .stream = std.io.fixedBufferStream(response.body.?),
+                .stream = .{ .buffer = response.body.?, .pos = 0 },
             };
         }
 
