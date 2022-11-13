@@ -86,12 +86,12 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
             build_zelda.pkgs.hzzp, build_zelda.pkgs.zuri, build_zelda.pkgs.libressl,
         },
     };
-    const use_system_libressl = false; // TODO: set false when haze/zig-libressl#3 is closed
+    const use_system_libressl = false;
     try zig_libressl.useLibreSslForStep(
         step.builder,
         step.target,
         step.build_mode,
-        "vendor/zelda/zig-libressl/libressl",
+        prefix ++ "/vendor/zelda/zig-libressl/libressl",
         step,
         use_system_libressl,
     );

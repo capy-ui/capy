@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          submodules: true
+          submodules: recursive
       - name: Setup Linux dependencies
         if: runner.os == 'Linux'
         run: |
