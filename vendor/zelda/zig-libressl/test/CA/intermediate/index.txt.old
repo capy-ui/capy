@@ -1,3 +1,0 @@
-V	231011172155Z		1000	unknown	/C=CA/ST=Edmonton/O=Bob Beck/OU=LibTLS Tutorial OCSP division/CN=localhost
-R	231011172155Z	221001172155Z	1001	unknown	/C=CA/ST=Edmonton/O=Bob Beck/OU=LibTLS Tutorial Revoked Certs/CN=localhost
-V	231011172155Z		1002	unknown	/C=CA/ST=Edmonton/O=Bob Beck/OU=LibTLS Tutorial Server Certs/CN=localhost

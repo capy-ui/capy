@@ -68,14 +68,6 @@ Otherwise or for more information, please look in the [wiki](https://github.com/
 
 You can questions and receive updates on the [#capy-ui Matrix channel](https://matrix.to/#/#capy-ui:matrix.org).
 
-Then you will need to install LibreSSL as a system dependency.
-On Debian/Ubuntu, this is
-```sh
-sudo apt-get install libtls-dev
-```
-
-This dependency will be removed once [#3](https://github.com/haze/zig-libressl/issues/3) is solved.
-
 ## Contributing
 Contributing can be as simple as opening an issue and detailling what bug you encountered or what feature you wish to have.  
 If you want to help the project more directly, you can fork the project and then create a pull request.
