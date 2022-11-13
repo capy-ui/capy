@@ -1,0 +1,4 @@
+[submodule "vendor/zelda"]
+	path = vendor/zelda
+	url = https://github.com/haze/zelda
+	fetchRecurseSubmodules = true
