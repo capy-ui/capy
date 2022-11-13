@@ -20,5 +20,9 @@ jobs:
           version: master
       - uses: nektro/actions-setup-zigmod@v1
       - run: zigmod fetch
-      - name: Build Capy
+      - name: Build Capy for native
+        if: runner.os == 'Linux'
         run: zig build
+      - name: Build Capy for Windows
+        if: runner.os == 'Linux'
+        run: zig build -Dtarget=native-windows

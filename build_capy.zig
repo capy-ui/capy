@@ -82,8 +82,8 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
     };
 
     const zelda = build_zelda.pkgs.zelda;
-    const use_system_libressl = step.target.getOsTag() == .windows or step.target.getOsTag() == .openbsd;
-    if ((comptime @import("builtin").os.tag != .windows) and step.target.getOsTag() != .freestanding) {
+    const use_system_libressl = @import("builtin").os.tag == .windows;
+    if ((comptime @import("builtin").os.tag != .windows) and step.target.getOsTag() != .freestanding and step.target.getOsTag() != .windows) {
         try zig_libressl.useLibreSslForStep(
             step.builder,
             step.target,
