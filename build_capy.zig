@@ -79,22 +79,18 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
         .source = std.build.FileSource.relative(prefix ++ "/vendor/zigimg/zigimg.zig"),
     };
 
-    const zelda = std.build.Pkg{
-        .name = "zelda",
-        .source = .{ .path = "vendor/zelda/src/main.zig" },
-        .dependencies = &[_]std.build.Pkg{
-            build_zelda.pkgs.hzzp, build_zelda.pkgs.zuri, build_zelda.pkgs.libressl,
-        },
-    };
-    const use_system_libressl = false;
-    try zig_libressl.useLibreSslForStep(
-        step.builder,
-        step.target,
-        step.build_mode,
-        prefix ++ "/vendor/zelda/zig-libressl/libressl",
-        step,
-        use_system_libressl,
-    );
+    const zelda = build_zelda.pkgs.zelda;
+    const use_system_libressl = step.target.getOsTag() == .windows or step.target.getOsTag() == .openbsd;
+    if (step.target.getOsTag() != .freestanding) {
+        try zig_libressl.useLibreSslForStep(
+            step.builder,
+            step.target,
+            .ReleaseSafe,
+            prefix ++ "/vendor/zelda/zig-libressl/libressl",
+            step,
+            use_system_libressl,
+        );
+    }
 
     const capy = std.build.Pkg{
         .name = "capy",
