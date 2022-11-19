@@ -69,7 +69,7 @@ pub fn Animation(comptime T: type) type {
         duration: u32,
         min: T,
         max: T,
-        animFn: fn (t: f64) f64,
+        animFn: std.meta.FnPtr(fn (t: f64) f64),
 
         /// Get the current value from the animation
         pub fn get(self: @This()) T {
@@ -92,7 +92,10 @@ pub fn isDataWrapper(comptime T: type) bool {
     return @hasDecl(T, "ValueType") and T == DataWrapper(T.ValueType);
 }
 
-pub var _animatedDataWrappers = std.ArrayList(struct { fnPtr: fn (data: *anyopaque) bool, userdata: *anyopaque }).init(lasting_allocator);
+pub var _animatedDataWrappers = std.ArrayList(struct {
+    fnPtr: std.meta.FnPtr(fn (data: *anyopaque) bool),
+    userdata: *anyopaque,
+}).init(lasting_allocator);
 
 pub fn DataWrapper(comptime T: type) type {
     return struct {
@@ -128,7 +131,7 @@ pub fn DataWrapper(comptime T: type) type {
         const IsAnimable = std.meta.trait.isNumber(T) or (std.meta.trait.isContainer(T) and @hasDecl(T, "lerp"));
 
         pub const ValueType = T;
-        pub const ChangeListener = struct { function: fn (newValue: T, userdata: usize) void, userdata: usize = 0 };
+        pub const ChangeListener = struct { function: std.meta.FnPtr(fn (newValue: T, userdata: usize) void), userdata: usize = 0 };
         const ChangeListenerList = std.SinglyLinkedList(ChangeListener);
 
         pub fn of(value: T) Self {

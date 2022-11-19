@@ -2,7 +2,8 @@ const std = @import("std");
 const build_zelda = @import("vendor/zelda/build.zig");
 const zig_libressl = if (@import("builtin").os.tag == .windows)
     struct {} // TODO: fix
-else @import("vendor/zelda/zig-libressl/build.zig");
+else
+    @import("vendor/zelda/zig-libressl/build.zig");
 
 pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !void {
     step.subsystem = .Native;

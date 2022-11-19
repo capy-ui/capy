@@ -9,14 +9,14 @@ const Allocator = std.mem.Allocator;
 pub const Class = struct {
     typeName: []const u8,
 
-    showFn: fn (widget: *Widget) anyerror!void,
-    deinitFn: fn (widget: *Widget) void,
-    preferredSizeFn: fn (widget: *const Widget, available: data.Size) data.Size,
+    showFn: std.meta.FnPtr(fn (widget: *Widget) anyerror!void),
+    deinitFn: std.meta.FnPtr(fn (widget: *Widget) void),
+    preferredSizeFn: std.meta.FnPtr(fn (widget: *const Widget, available: data.Size) data.Size),
     /// Normally, each widget is paired to a component and each showed component is
     /// paired to a widget. However, in order to pair them you need to be able to edit
     /// the dataWrappers.widget field, which is impossible if the component type is
     /// unknown. This function is thus called internally to pair the widget.
-    setWidgetFn: fn (widget: *Widget) void,
+    setWidgetFn: std.meta.FnPtr(fn (widget: *Widget) void),
     // offset into a list of updater optional pointers
     //updaters: []const usize,
 };

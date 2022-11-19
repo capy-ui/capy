@@ -29,7 +29,7 @@ pub fn main() !void {
             capy.Row(.{ .alignY = 0.5, .spacing = 5 }, .{
                 capy.TextField(.{ .readOnly = true })
                     .setName("text-field")
-                    .bindText(format),
+                    .bind("text", format),
                 capy.Button(.{ .label = "Count", .onclick = increment }),
             }),
         }),

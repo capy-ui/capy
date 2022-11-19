@@ -7,11 +7,11 @@ const Rectangle = @import("data.zig").Rectangle;
 
 const convertTupleToWidgets = @import("internal.zig").convertTupleToWidgets;
 
-pub const Layout = fn (peer: Callbacks, widgets: []Widget) void;
+pub const Layout = std.meta.FnPtr(fn (peer: Callbacks, widgets: []Widget) void);
 const Callbacks = struct {
     userdata: usize,
-    moveResize: fn (data: usize, peer: backend.PeerType, x: u32, y: u32, w: u32, h: u32) void,
-    getSize: fn (data: usize) Size,
+    moveResize: std.meta.FnPtr(fn (data: usize, peer: backend.PeerType, x: u32, y: u32, w: u32, h: u32) void),
+    getSize: std.meta.FnPtr(fn (data: usize) Size),
     computingPreferredSize: bool,
     availableSize: ?Size = null,
     layoutConfig: [16]u8,

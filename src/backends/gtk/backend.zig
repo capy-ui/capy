@@ -75,7 +75,11 @@ pub const Window = struct {
         c.gtk_container_add(@ptrCast(*c.GtkContainer, window), vbox);
         c.gtk_widget_show(vbox);
 
-        _ = c.g_signal_connect_data(window, "hide", @ptrCast(c.GCallback, gtkWindowHidden), null, null, c.G_CONNECT_AFTER);
+        if (@import("builtin").zig_backend != .stage1) {
+            _ = c.g_signal_connect_data(window, "hide", @ptrCast(c.GCallback, &gtkWindowHidden), null, null, c.G_CONNECT_AFTER);
+        } else {
+            _ = c.g_signal_connect_data(window, "hide", @ptrCast(c.GCallback, gtkWindowHidden), null, null, c.G_CONNECT_AFTER);
+        }
         randomWindow = window;
         return Window{ .peer = window, .wbin = wbin, .vbox = vbox };
     }

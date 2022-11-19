@@ -351,6 +351,7 @@ pub fn convertTupleToWidgets(childrens: anytype) anyerror!std.ArrayList(Widget) 
 pub const RedrawError = error{MissingPeer};
 
 /// Convenience function for creating widgets
+/// Blocked on https://github.com/ziglang/zig/issues/12325
 pub fn Events(comptime T: type) type {
     return struct {
         pub const Callback = fn (widget: *T) anyerror!void;
