@@ -145,7 +145,7 @@ pub fn build(b: *std.build.Builder) !void {
     lib.setBuildMode(mode);
     lib.linkLibC();
     try install(lib, ".");
-    lib.emit_h = true;
+    // lib.emit_h = true;
     lib.install();
 
     const sharedlib_install_step = b.addInstallArtifact(lib);
