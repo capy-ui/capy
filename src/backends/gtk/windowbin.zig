@@ -28,7 +28,7 @@ var wbin_type: c.GType = 0;
 
 export fn wbin_get_type() c.GType {
     if (wbin_type == 0) {
-        if (@import("builtin").zig_backend == .stage1) {
+        if (comptime @import("builtin").zig_backend == .stage1) {
             const wbin_info = std.mem.zeroInit(c.GTypeInfo, .{
                 .class_size = @sizeOf(WBinClass),
                 .class_init = @ptrCast(c.GClassInitFunc, wbin_class_init),

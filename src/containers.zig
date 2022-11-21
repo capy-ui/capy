@@ -212,11 +212,11 @@ pub const Container_Impl = struct {
             .expand = config.expand == .Fill,
             .layout = layout,
             .layoutConfig = layoutConfigBytes,
-        })
-            .setName(config.name);
+        });
+        _ = container.setName(config.name);
         _ = container.set("alignX", config.alignX);
         _ = container.set("alignY", config.alignY);
-        try container.addResizeHandler(onResize);
+        try container.addResizeHandler(&onResize);
         return container;
     }
 

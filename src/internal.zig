@@ -351,17 +351,27 @@ pub fn convertTupleToWidgets(childrens: anytype) anyerror!std.ArrayList(Widget) 
 pub const RedrawError = error{MissingPeer};
 
 /// Convenience function for creating widgets
-/// Blocked on https://github.com/ziglang/zig/issues/12325
 pub fn Events(comptime T: type) type {
     return struct {
-        pub const Callback = fn (widget: *T) anyerror!void;
-        pub const DrawCallback = fn (widget: *T, ctx: *backend.Canvas.DrawContext) anyerror!void;
-        pub const ButtonCallback = fn (widget: *T, button: MouseButton, pressed: bool, x: i32, y: i32) anyerror!void;
-        pub const MouseMoveCallback = fn (widget: *T, x: i32, y: i32) anyerror!void;
-        pub const ScrollCallback = fn (widget: *T, dx: f32, dy: f32) anyerror!void;
-        pub const ResizeCallback = fn (widget: *T, size: Size) anyerror!void;
-        pub const KeyTypeCallback = fn (widget: *T, key: []const u8) anyerror!void;
-        pub const KeyPressCallback = fn (widget: *T, keycode: u16) anyerror!void;
+        /// Blocked on https://github.com/ziglang/zig/issues/12325
+        //pub const Callback = *const fn (widget: *T) anyerror!void;
+        //pub const DrawCallback = *const fn (widget: *T, ctx: *backend.Canvas.DrawContext) anyerror!void;
+        //pub const ButtonCallback = *const fn (widget: *T, button: MouseButton, pressed: bool, x: i32, y: i32) anyerror!void;
+        //pub const MouseMoveCallback = *const fn (widget: *T, x: i32, y: i32) anyerror!void;
+        //pub const ScrollCallback = *const fn (widget: *T, dx: f32, dy: f32) anyerror!void;
+        //pub const ResizeCallback = *const fn (widget: *T, size: Size) anyerror!void;
+        //pub const KeyTypeCallback = *const fn (widget: *T, key: []const u8) anyerror!void;
+        //pub const KeyPressCallback = *const fn (widget: *T, keycode: u16) anyerror!void;
+
+        // Temporary workaround: use *anyopaque
+        pub const Callback = *const fn (widget: *anyopaque) anyerror!void;
+        pub const DrawCallback = *const fn (widget: *anyopaque, ctx: *backend.Canvas.DrawContext) anyerror!void;
+        pub const ButtonCallback = *const fn (widget: *anyopaque, button: MouseButton, pressed: bool, x: i32, y: i32) anyerror!void;
+        pub const MouseMoveCallback = *const fn (widget: *anyopaque, x: i32, y: i32) anyerror!void;
+        pub const ScrollCallback = *const fn (widget: *anyopaque, dx: f32, dy: f32) anyerror!void;
+        pub const ResizeCallback = *const fn (widget: *anyopaque, size: Size) anyerror!void;
+        pub const KeyTypeCallback = *const fn (widget: *anyopaque, key: []const u8) anyerror!void;
+        pub const KeyPressCallback = *const fn (widget: *anyopaque, keycode: u16) anyerror!void;
         const HandlerList = std.ArrayList(Callback);
         const DrawHandlerList = std.ArrayList(DrawCallback);
         const ButtonHandlerList = std.ArrayList(ButtonCallback);
@@ -501,37 +511,37 @@ pub fn Events(comptime T: type) type {
             opacityChanged(self.dataWrappers.opacity.get(), @ptrToInt(self)); // call it so it's updated
         }
 
-        pub fn addClickHandler(self: *T, handler: Callback) !void {
-            try self.handlers.clickHandlers.append(handler);
+        pub fn addClickHandler(self: *T, handler: anytype) !void {
+            try self.handlers.clickHandlers.append(@ptrCast(Callback, handler));
         }
 
-        pub fn addDrawHandler(self: *T, handler: DrawCallback) !T {
-            try self.handlers.drawHandlers.append(handler);
+        pub fn addDrawHandler(self: *T, handler: anytype) !T {
+            try self.handlers.drawHandlers.append(@ptrCast(DrawCallback, handler));
             return self.*;
         }
 
-        pub fn addMouseButtonHandler(self: *T, handler: ButtonCallback) !void {
-            try self.handlers.buttonHandlers.append(handler);
+        pub fn addMouseButtonHandler(self: *T, handler: anytype) !void {
+            try self.handlers.buttonHandlers.append(@ptrCast(ButtonCallback, handler));
         }
 
-        pub fn addMouseMotionHandler(self: *T, handler: MouseMoveCallback) !void {
-            try self.handlers.mouseMoveHandlers.append(handler);
+        pub fn addMouseMotionHandler(self: *T, handler: anytype) !void {
+            try self.handlers.mouseMoveHandlers.append(@ptrCast(MouseMoveCallback, handler));
         }
 
-        pub fn addScrollHandler(self: *T, handler: ScrollCallback) !void {
-            try self.handlers.scrollHandlers.append(handler);
+        pub fn addScrollHandler(self: *T, handler: anytype) !void {
+            try self.handlers.scrollHandlers.append(@ptrCast(ScrollCallback, handler));
         }
 
-        pub fn addResizeHandler(self: *T, handler: ResizeCallback) !void {
-            try self.handlers.resizeHandlers.append(handler);
+        pub fn addResizeHandler(self: *T, handler: anytype) !void {
+            try self.handlers.resizeHandlers.append(@ptrCast(ResizeCallback, handler));
         }
 
-        pub fn addKeyTypeHandler(self: *T, handler: KeyTypeCallback) !void {
-            try self.handlers.keyTypeHandlers.append(handler);
+        pub fn addKeyTypeHandler(self: *T, handler: anytype) !void {
+            try self.handlers.keyTypeHandlers.append(@ptrCast(KeyTypeCallback, handler));
         }
 
-        pub fn addKeyPressHandler(self: *T, handler: KeyPressCallback) !void {
-            try self.handlers.keyPressHandlers.append(handler);
+        pub fn addKeyPressHandler(self: *T, handler: anytype) !void {
+            try self.handlers.keyPressHandlers.append(@ptrCast(KeyPressCallback, handler));
         }
 
         pub fn requestDraw(self: *T) !void {

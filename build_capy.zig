@@ -7,7 +7,6 @@ else
 
 pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !void {
     step.subsystem = .Native;
-    step.use_stage1 = true;
 
     switch (step.target.getOsTag()) {
         .linux, .freebsd => {

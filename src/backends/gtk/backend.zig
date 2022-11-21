@@ -40,7 +40,7 @@ pub fn showNativeMessageDialog(msgType: shared.MessageType, comptime fmt: []cons
         .Error => c.GTK_MESSAGE_ERROR,
     });
 
-    const dialog = c.gtk_message_dialog_new(null, c.GTK_DIALOG_DESTROY_WITH_PARENT, cType, c.GTK_BUTTONS_CLOSE, msg);
+    const dialog = c.gtk_message_dialog_new(null, c.GTK_DIALOG_DESTROY_WITH_PARENT, cType, c.GTK_BUTTONS_CLOSE, msg.ptr);
     _ = c.gtk_dialog_run(@ptrCast(*c.GtkDialog, dialog));
     c.gtk_widget_destroy(dialog);
 }
@@ -75,7 +75,7 @@ pub const Window = struct {
         c.gtk_container_add(@ptrCast(*c.GtkContainer, window), vbox);
         c.gtk_widget_show(vbox);
 
-        if (@import("builtin").zig_backend != .stage1) {
+        if (comptime @import("builtin").zig_backend != .stage1) {
             _ = c.g_signal_connect_data(window, "hide", @ptrCast(c.GCallback, &gtkWindowHidden), null, null, c.G_CONNECT_AFTER);
         } else {
             _ = c.g_signal_connect_data(window, "hide", @ptrCast(c.GCallback, gtkWindowHidden), null, null, c.G_CONNECT_AFTER);
@@ -185,12 +185,12 @@ pub fn Events(comptime T: type) type {
         const Self = @This();
 
         pub fn setupEvents(widget: *c.GtkWidget) BackendError!void {
-            _ = c.g_signal_connect_data(widget, "button-press-event", @ptrCast(c.GCallback, gtkButtonPress), null, null, c.G_CONNECT_AFTER);
-            _ = c.g_signal_connect_data(widget, "button-release-event", @ptrCast(c.GCallback, gtkButtonPress), null, null, c.G_CONNECT_AFTER);
-            _ = c.g_signal_connect_data(widget, "motion-notify-event", @ptrCast(c.GCallback, gtkMouseMotion), null, null, c.G_CONNECT_AFTER);
-            _ = c.g_signal_connect_data(widget, "scroll-event", @ptrCast(c.GCallback, gtkMouseScroll), null, null, c.G_CONNECT_AFTER);
-            _ = c.g_signal_connect_data(widget, "size-allocate", @ptrCast(c.GCallback, gtkSizeAllocate), null, null, c.G_CONNECT_AFTER);
-            _ = c.g_signal_connect_data(widget, "key-press-event", @ptrCast(c.GCallback, gtkKeyPress), null, null, c.G_CONNECT_AFTER);
+            _ = c.g_signal_connect_data(widget, "button-press-event", @ptrCast(c.GCallback, &gtkButtonPress), null, null, c.G_CONNECT_AFTER);
+            _ = c.g_signal_connect_data(widget, "button-release-event", @ptrCast(c.GCallback, &gtkButtonPress), null, null, c.G_CONNECT_AFTER);
+            _ = c.g_signal_connect_data(widget, "motion-notify-event", @ptrCast(c.GCallback, &gtkMouseMotion), null, null, c.G_CONNECT_AFTER);
+            _ = c.g_signal_connect_data(widget, "scroll-event", @ptrCast(c.GCallback, &gtkMouseScroll), null, null, c.G_CONNECT_AFTER);
+            _ = c.g_signal_connect_data(widget, "size-allocate", @ptrCast(c.GCallback, &gtkSizeAllocate), null, null, c.G_CONNECT_AFTER);
+            _ = c.g_signal_connect_data(widget, "key-press-event", @ptrCast(c.GCallback, &gtkKeyPress), null, null, c.G_CONNECT_AFTER);
             c.gtk_widget_add_events(widget, c.GDK_SCROLL_MASK | c.GDK_BUTTON_PRESS_MASK | c.GDK_BUTTON_RELEASE_MASK | c.GDK_KEY_PRESS_MASK | c.GDK_POINTER_MOTION_MASK);
 
             var data = try lib.internal.lasting_allocator.create(EventUserData);
@@ -403,12 +403,12 @@ pub const Button = struct {
         const button = c.gtk_button_new() orelse return error.UnknownError;
         c.gtk_widget_show(button);
         try Button.setupEvents(button);
-        _ = c.g_signal_connect_data(button, "clicked", @ptrCast(c.GCallback, gtkClicked), null, @as(c.GClosureNotify, null), 0);
+        _ = c.g_signal_connect_data(button, "clicked", @ptrCast(c.GCallback, &gtkClicked), null, @as(c.GClosureNotify, null), 0);
         return Button{ .peer = button };
     }
 
     pub fn setLabel(self: *const Button, label: [:0]const u8) void {
-        c.gtk_button_set_label(@ptrCast(*c.GtkButton, self.peer), label);
+        c.gtk_button_set_label(@ptrCast(*c.GtkButton, self.peer), label.ptr);
     }
 
     pub fn getLabel(self: *const Button) [:0]const u8 {
@@ -438,7 +438,7 @@ pub const Label = struct {
     }
 
     pub fn setText(self: *Label, text: [:0]const u8) void {
-        c.gtk_label_set_text(@ptrCast(*c.GtkLabel, self.peer), text);
+        c.gtk_label_set_text(@ptrCast(*c.GtkLabel, self.peer), text.ptr);
     }
 
     pub fn getText(self: *Label) [:0]const u8 {
