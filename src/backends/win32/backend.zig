@@ -1064,6 +1064,11 @@ pub const Container = struct {
         _ = win32.UpdateWindow(peer);
     }
 
+    pub fn remove(self: *Container, peer: PeerType) void {
+        _ = self;
+        _ = win32.showWindow(peer, win32.SW_HIDE);
+    }
+
     pub fn move(self: *const Container, peer: PeerType, x: u32, y: u32) void {
         _ = self;
         var rect: RECT = undefined;
