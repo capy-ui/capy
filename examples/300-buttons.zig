@@ -24,19 +24,17 @@ pub fn main() !void {
         var row = try capy.Row(.{}, .{});
         var j: usize = 0;
         while (j < ROW_ITEMS) : (j += 1) {
-            const buttonLabel = try std.fmt.allocPrintZ(labelAllocator, "Button #{d}", .{ j + i * ROW_ITEMS + 1 });
+            const buttonLabel = try std.fmt.allocPrintZ(labelAllocator, "Button #{d}", .{j + i * ROW_ITEMS + 1});
             try row.add(capy.Button(.{ .label = buttonLabel }));
         }
 
         try column.add(row);
     }
 
-    try window.set(capy.Scrollable(
-        &column
-    ));
+    try window.set(capy.Scrollable(&column));
     window.resize(800, 600);
     window.show();
-    
+
     const end = std.time.milliTimestamp();
     std.log.info("Took {d}ms for creating {d} buttons", .{ end - start, NUM_ROWS * ROW_ITEMS });
 

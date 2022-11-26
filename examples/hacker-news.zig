@@ -9,16 +9,15 @@ const ListModel = struct {
 
     pub fn getComponent(self: *ListModel, index: usize) capy.Label_Impl {
         return capy.Label(.{
-            .text = std.fmt.allocPrintZ(self.arena.allocator(), "Label #{d}", .{ index + 1 }) catch unreachable,
+            .text = std.fmt.allocPrintZ(self.arena.allocator(), "Label #{d}", .{index + 1}) catch unreachable,
         });
     }
-
 };
 
 pub fn main() !void {
     try capy.backend.init();
 
-    var hn_list_model = ListModel {};
+    var hn_list_model = ListModel{};
 
     var window = try capy.Window.init();
     try window.set(
@@ -41,7 +40,7 @@ pub fn main() !void {
     while (capy.stepEventLoop(.Blocking)) {
         while (std.time.milliTimestamp() >= last_add + 1000) : (last_add += 1000) {
             hn_list_model.size.set(hn_list_model.size.get() + 1);
-            std.log.info("There are now {} items.", .{ hn_list_model.size.get() });
+            std.log.info("There are now {} items.", .{hn_list_model.size.get()});
         }
     }
 }

@@ -47,20 +47,12 @@ pub const MapViewer_Impl = struct {
             const n = std.math.pow(f32, 2, @intToFloat(f32, zoom));
             const x = n * ((lon + 180) / 360);
             const lat_rad = deg2rad(lat);
-            const y = n * (1 - (std.math.ln(
-                std.math.tan(lat_rad) + (1.0 / std.math.cos(lat_rad))
-            ) / std.math.pi)) / 2;
-            return TilePosition {
-                .zoom = zoom,
-                .x = @floatToInt(i32, x),
-                .y = @floatToInt(i32, y)
-            };
+            const y = n * (1 - (std.math.ln(std.math.tan(lat_rad) + (1.0 / std.math.cos(lat_rad))) / std.math.pi)) / 2;
+            return TilePosition{ .zoom = zoom, .x = @floatToInt(i32, x), .y = @floatToInt(i32, y) };
         }
     };
 
-    const Tile = struct {
-        data: capy.ImageData
-    };
+    const Tile = struct { data: capy.ImageData };
 
     pub fn init(config: Config) MapViewer_Impl {
         var viewer = MapViewer_Impl.init_events(MapViewer_Impl{
@@ -74,7 +66,7 @@ pub const MapViewer_Impl = struct {
     // Implementation Methods
     pub fn getTile(self: *MapViewer_Impl, pos: TilePosition) ?Tile {
         const modTileXY = std.math.powi(i32, 2, pos.zoom) catch unreachable;
-        const actual_pos = TilePosition {
+        const actual_pos = TilePosition{
             .zoom = pos.zoom,
             .x = @mod(pos.x, modTileXY),
             .y = @mod(pos.y, modTileXY),
@@ -87,7 +79,7 @@ pub const MapViewer_Impl = struct {
                 const url = std.fmt.bufPrint(&buf, "https://tile.openstreetmap.org/{}/{}/{}.png", .{ actual_pos.zoom, actual_pos.x, actual_pos.y }) catch unreachable;
                 const request = capy.http.HttpRequest.get(url);
                 const response = request.send() catch unreachable;
-                self.pendingRequests.put(actual_pos, response ) catch unreachable;
+                self.pendingRequests.put(actual_pos, response) catch unreachable;
             }
             return null;
         }
@@ -97,9 +89,7 @@ pub const MapViewer_Impl = struct {
         const n = std.math.pow(f32, 2, @intToFloat(f32, self.camZoom));
         const x = n * ((lon + 180) / 360);
         const lat_rad = deg2rad(lat);
-        const y = n * (1 - (std.math.ln(
-            std.math.tan(lat_rad) + (1.0 / std.math.cos(lat_rad))
-        ) / std.math.pi)) / 2;
+        const y = n * (1 - (std.math.ln(std.math.tan(lat_rad) + (1.0 / std.math.cos(lat_rad))) / std.math.pi)) / 2;
         self.centerX = x * 256;
         self.centerY = y * 256;
     }
@@ -108,7 +98,7 @@ pub const MapViewer_Impl = struct {
         var buf: [2048]u8 = undefined;
         const encoded_query = try capy.http.urlEncode(capy.internal.scratch_allocator, query);
         defer capy.internal.scratch_allocator.free(encoded_query);
-        const url = try std.fmt.bufPrint(&buf, "https://nominatim.openstreetmap.org/search?q={s}&format=jsonv2", .{ encoded_query });
+        const url = try std.fmt.bufPrint(&buf, "https://nominatim.openstreetmap.org/search?q={s}&format=jsonv2", .{encoded_query});
 
         const request = capy.http.HttpRequest.get(url);
         const response = try request.send();
@@ -168,10 +158,10 @@ pub const MapViewer_Impl = struct {
         const camX = @floatToInt(i32, self.centerX) - @intCast(i32, width / 2);
         const camY = @floatToInt(i32, self.centerY) - @intCast(i32, height / 2);
         var x: i32 = @divFloor(camX, 256);
-        while (x < @divFloor(camX + @intCast(i32, width)+255, 256)) : (x += 1) {
+        while (x < @divFloor(camX + @intCast(i32, width) + 255, 256)) : (x += 1) {
             var y: i32 = @divFloor(camY, 256);
-            while (y < @divFloor(camY + @intCast(i32, height)+255, 256)) : (y += 1) {
-                self.drawTile(ctx, TilePosition { .x = x, .y = y, .zoom = self.camZoom }, camX, camY);
+            while (y < @divFloor(camY + @intCast(i32, height) + 255, 256)) : (y += 1) {
+                self.drawTile(ctx, TilePosition{ .x = x, .y = y, .zoom = self.camZoom }, camX, camY);
             }
         }
     }
@@ -185,8 +175,7 @@ pub const MapViewer_Impl = struct {
             var layout = capy.DrawContext.TextLayout.init();
             defer layout.deinit();
             var buf: [100]u8 = undefined;
-            ctx.text(x, y, layout,
-                std.fmt.bufPrint(&buf, "T{d},{d}@{d}", .{ pos.x, pos.y, pos.zoom }) catch unreachable);
+            ctx.text(x, y, layout, std.fmt.bufPrint(&buf, "T{d},{d}@{d}", .{ pos.x, pos.y, pos.zoom }) catch unreachable);
         }
     }
 
@@ -213,13 +202,13 @@ pub const MapViewer_Impl = struct {
     fn mouseScroll(self: *MapViewer_Impl, dx: f32, dy: f32) !void {
         _ = dx;
         if (dy > 0) {
-            self.camZoom -|= 2*@floatToInt(u5, dy);
-            self.centerX /= 4*dy;
-            self.centerY /= 4*dy;
+            self.camZoom -|= 2 * @floatToInt(u5, dy);
+            self.centerX /= 4 * dy;
+            self.centerY /= 4 * dy;
         } else if (self.camZoom < 18) {
-            self.camZoom +|= 2*@floatToInt(u5, -dy);
-            self.centerX *= 4*-dy;
-            self.centerY *= 4*-dy;
+            self.camZoom +|= 2 * @floatToInt(u5, -dy);
+            self.centerX *= 4 * -dy;
+            self.centerY *= 4 * -dy;
         }
         if (self.camZoom > 18) {
             self.camZoom = 18;
@@ -260,16 +249,10 @@ pub fn main() !void {
     try window.set(
         capy.Column(.{}, .{
             capy.Row(.{}, .{
-                capy.Expanded(
-                    capy.TextField(.{})
-                        .setName("location-input")
-                ),
+                capy.Expanded(capy.TextField(.{ .name = "location-input" })),
                 capy.Button(.{ .label = "Go!", .onclick = onGo }),
             }),
-            capy.Expanded(
-                (try MapViewer(.{}))
-                    .setName("map-viewer")
-            ),
+            capy.Expanded(MapViewer(.{ .name = "map-viewer" })),
         }),
     );
     window.setTitle("OpenStreetMap Viewer");

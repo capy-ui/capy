@@ -27,8 +27,7 @@ pub fn main() !void {
     try window.set(capy.Column(.{}, .{
         capy.Row(.{ .alignX = 0.5 }, .{
             capy.Row(.{ .alignY = 0.5, .spacing = 5 }, .{
-                capy.TextField(.{ .readOnly = true })
-                    .setName("text-field")
+                capy.TextField(.{ .readOnly = true, .name = "text-field" })
                     .bind("text", format),
                 capy.Button(.{ .label = "Count", .onclick = increment }),
             }),

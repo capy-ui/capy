@@ -6,20 +6,15 @@ var selectedIndex: capy.DataWrapper(usize) = capy.DataWrapper(usize).of(0);
 
 pub fn main() !void {
     try capy.backend.init();
-    
+
     var window = try capy.Window.init();
-    try window.set(
-        capy.Column(.{}, .{
-            capy.Button(.{ .label = "one-way flight", .onclick = oneWay }),
-            capy.Button(.{ .label = "return flight", .onclick = returnFlight }),
-            capy.TextField(.{ .text = "27.03.2014" })
-                .setName("start-date"),
-            capy.TextField(.{ .text = "27.03.2014" })
-                .setName("return-date"),
-            capy.Button(.{ .label = "Book", .onclick = bookFlight })
-                .setName("book-button"),
-        })
-    );
+    try window.set(capy.Column(.{}, .{
+        capy.Button(.{ .label = "one-way flight", .onclick = oneWay }),
+        capy.Button(.{ .label = "return flight", .onclick = returnFlight }),
+        capy.TextField(.{ .name = "start-date", .text = "27.03.2014" }),
+        capy.TextField(.{ .name = "return-date", .text = "27.03.2014" }),
+        capy.Button(.{ .name = "book-button", .label = "Book", .onclick = bookFlight }),
+    }));
 
     window.setTitle("Book Flight");
     window.show();
@@ -29,7 +24,7 @@ pub fn main() !void {
     const return_field = root.getChildAs(capy.TextField_Impl, "return-date").?;
     const book_button = root.getChildAs(capy.Button_Impl, "book-button").?;
 
-    try return_field.readOnly.dependOn(.{ &selectedIndex }, struct {
+    try return_field.readOnly.dependOn(.{&selectedIndex}, struct {
         fn a(index: usize) bool {
             return index != 1; // only enabled for return flight
         }
@@ -45,7 +40,7 @@ pub fn main() !void {
             return return_date > start_date;
         }
     }.a);
-    
+
     capy.runEventLoop();
 }
 
