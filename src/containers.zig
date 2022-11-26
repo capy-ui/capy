@@ -233,14 +233,19 @@ pub const Container_Impl = struct {
     pub fn getChild(self: *Container_Impl, name: []const u8) ?*Widget {
         // TODO: use hash map (maybe acting as cache?) for performance
         for (self.childrens.items) |*widget| {
-            if (widget.name.*) |widgetName| {
+            if (widget.name.*.get()) |widgetName| {
                 if (std.mem.eql(u8, name, widgetName)) {
                     return widget;
                 }
             }
 
             if (widget.cast(Container_Impl)) |container| {
-                return container.getChild(name) orelse continue;
+                //return container.getChild(name) orelse continue;
+
+                // workaround a stage2 bug
+                // TODO: reduce to a unit test and report to ziglang/zig
+                const function = getChild;
+                return function(container, name) orelse continue;
             }
         }
         return null;

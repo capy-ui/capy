@@ -3,10 +3,11 @@ const builtin = @import("builtin");
 const std = @import("std");
 const backend = @import("backend.zig");
 const style = @import("style.zig");
+const dataStructures = @import("data.zig");
 const Widget = @import("widget.zig").Widget;
 const Class = @import("widget.zig").Class;
-const Size = @import("data.zig").Size;
-const DataWrapper = @import("data.zig").DataWrapper;
+const Size = dataStructures.Size;
+const DataWrapper = dataStructures.DataWrapper;
 const Container_Impl = @import("containers.zig").Container_Impl;
 const Layout = @import("containers.zig").Layout;
 const MouseButton = @import("backends/shared.zig").MouseButton;
@@ -67,11 +68,13 @@ pub fn Widgeting(comptime T: type) type {
             opacity: DataWrapper(f32) = DataWrapper(f32).of(1.0),
             alignX: DataWrapper(?f32) = DataWrapper(?f32).of(null),
             alignY: DataWrapper(?f32) = DataWrapper(?f32).of(null),
-            name: ?[]const u8 = null,
+            name: DataWrapper(?[]const u8) = DataWrapper(?[]const u8).of(null),
 
             /// The widget representing this component
             widget: ?*Widget = null,
         };
+
+        pub const Config = GenerateConfigStruct(T);
 
         /// When alignX or alignY is changed, this will trigger a parent relayout
         fn alignChanged(new: ?f32, userdata: usize) void {
@@ -161,10 +164,8 @@ pub fn Widgeting(comptime T: type) type {
 
         // TODO: consider using something like https://github.com/MasterQ32/any-pointer for userdata
         // to get some safety
-
-        pub fn setUserdata(self: *T, userdata: ?*anyopaque) T {
+        pub fn setUserdata(self: *T, userdata: ?*anyopaque) void {
             self.handlers.userdata = userdata;
-            return self.*;
         }
 
         pub fn getUserdata(self: *T, comptime U: type) U {
@@ -190,16 +191,15 @@ pub fn Widgeting(comptime T: type) type {
 
         // This method temporarily returns the component for chaining methods
         // This will be reconsidered later and thus might be removed.
-        pub fn set(self: *T, comptime name: []const u8, value: TypeOfProperty(name)) T {
+        pub fn set(self: *T, comptime name: []const u8, value: TypeOfProperty(name)) void {
             if (@hasField(DataWrappers, name)) {
                 @field(self.dataWrappers, name).set(value);
             } else {
                 @field(self, name).set(value);
             }
-            return self.*;
         }
 
-        pub fn get(self: *T, comptime name: []const u8) TypeOfProperty(name) {
+        pub fn get(self: T, comptime name: []const u8) TypeOfProperty(name) {
             if (@hasField(DataWrappers, name)) {
                 return @field(self.dataWrappers, name).get();
             } else {
@@ -208,23 +208,21 @@ pub fn Widgeting(comptime T: type) type {
         }
 
         /// Bind the given property to argument
-        pub fn bind(self: *T, comptime name: []const u8, other: *DataWrapper(TypeOfProperty(name))) T {
+        pub fn bind(self: *T, comptime name: []const u8, other: *DataWrapper(TypeOfProperty(name))) void {
             if (@hasField(DataWrappers, name)) {
                 @field(self.dataWrappers, name).bind(other);
             } else {
                 @field(self, name).bind(other);
             }
-            _ = self.set(name, other.get());
-            return self.*;
+            self.set(name, other.get());
         }
 
         pub fn getName(self: *T) ?[]const u8 {
             return self.dataWrappers.name;
         }
 
-        pub fn setName(self: *T, name: ?[]const u8) T {
-            self.dataWrappers.name = name;
-            return self.*;
+        pub fn setName(self: *T, name: ?[]const u8) void {
+            self.dataWrappers.name.set(name);
         }
 
         pub fn getWidget(self: *T) ?*Widget {
@@ -262,9 +260,56 @@ pub fn Widgeting(comptime T: type) type {
 
 /// Generate a config struct that allows with all the properties of the given type
 pub fn GenerateConfigStruct(comptime T: type) type {
-    _ = T;
-    // TODO
-    unreachable;
+    // TODO: .onclick = &.{ handlerOne, handlerTwo }, for other event handlers
+    comptime {
+        var config_fields: []const std.builtin.Type.StructField = &.{};
+        iterateFields(&config_fields, T);
+
+        const default_value: ?T.Callback = null;
+        config_fields = config_fields ++ &[1]std.builtin.Type.StructField{.{
+            .name = "onclick",
+            .field_type = ?*const fn (widget: *anyopaque) anyerror!void,
+            .default_value = @ptrCast(?*const anyopaque, &default_value),
+            .is_comptime = false,
+            .alignment = @alignOf(?T.Callback),
+        }};
+
+
+        const t = @Type(.{ .Struct = .{
+            .layout = .Auto,
+            .backing_integer = null,
+            .fields = config_fields,
+            .decls = &.{},
+            .is_tuple = false,
+        } });
+    // @compileError(t);
+        return t;
+    }
+}
+
+fn iterateFields(comptime config_fields: *[]const std.builtin.Type.StructField, comptime T: type) void {
+    for (std.meta.fields(T)) |field| {
+        const FieldType = field.field_type;
+        if (dataStructures.isDataWrapper(FieldType)) {
+            const default_value = if (field.default_value) |default| @ptrCast(*const FieldType, @alignCast(@alignOf(FieldType), default)).getUnsafe() else null;
+            const has_default_value = field.default_value != null;
+
+            config_fields.* = config_fields.* ++ &[1]std.builtin.Type.StructField{.{
+                .name = field.name,
+                .field_type = FieldType.ValueType,
+                .default_value = if (has_default_value) @ptrCast(?*const anyopaque, @alignCast(1, &default_value)) else null,
+                .is_comptime = false,
+                .alignment = @alignOf(FieldType.ValueType),
+            }};
+        } else if (comptime std.meta.trait.is(.Struct)(FieldType)) {
+            iterateFields(config_fields, FieldType);
+        }
+    }
+}
+
+pub fn applyConfigStruct(target: anytype, config: anytype) void {
+    _ = target;
+    _ = config;
 }
 
 /// If T is a pointer, return the type it points to, otherwise return T.

@@ -11,16 +11,11 @@ pub const Button_Impl = struct {
     peer: ?backend.Button = null,
     handlers: Button_Impl.Handlers = undefined,
     dataWrappers: Button_Impl.DataWrappers = .{},
-    label: [:0]const u8 = "",
-    enabled: DataWrapper(bool),
-
-    pub const Config = struct {
-        label: [:0]const u8 = "",
-        onclick: ?Button_Impl.Callback = null,
-    };
+    label: DataWrapper([:0]const u8) = DataWrapper([:0]const u8).of(""),
+    enabled: DataWrapper(bool) = DataWrapper(bool).of(true),
 
     pub fn init() Button_Impl {
-        return Button_Impl.init_events(Button_Impl{ .enabled = DataWrapper(bool).of(true) });
+        return Button_Impl.init_events(Button_Impl{});
     }
 
     pub fn initLabeled(label: [:0]const u8) Button_Impl {
@@ -38,12 +33,18 @@ pub const Button_Impl = struct {
         peer.*.?.setEnabled(newValue);
     }
 
+    fn wrapperLabelChanged(newValue: [:0]const u8, userdata: usize) void {
+        const peer = @intToPtr(*?backend.Button, userdata);
+        peer.*.?.setLabel(newValue);
+    }
+
     pub fn show(self: *Button_Impl) !void {
         if (self.peer == null) {
             self.peer = try backend.Button.create();
-            self.peer.?.setLabel(self.label);
+            self.peer.?.setLabel(self.label.get());
             try self.show_events();
             _ = try self.enabled.addChangeListener(.{ .function = wrapperEnabledChanged, .userdata = @ptrToInt(&self.peer) });
+            _ = try self.label.addChangeListener(.{ .function = wrapperLabelChanged, .userdata = @ptrToInt(&self.peer) });
         }
     }
 
@@ -57,19 +58,11 @@ pub const Button_Impl = struct {
     }
 
     pub fn setLabel(self: *Button_Impl, label: [:0]const u8) void {
-        if (self.peer) |*peer| {
-            peer.setLabel(label);
-        } else {
-            self.label = label;
-        }
+        self.label.set(label);
     }
 
     pub fn getLabel(self: *Button_Impl) [:0]const u8 {
-        if (self.peer) |*peer| {
-            return peer.getLabel();
-        } else {
-            return self.label;
-        }
+        return self.label.get();
     }
 
     pub fn _deinit(self: *Button_Impl) void {

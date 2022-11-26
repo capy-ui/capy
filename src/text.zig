@@ -1,12 +1,13 @@
 const std = @import("std");
 const backend = @import("backend.zig");
 const dataStructures = @import("data.zig");
+const internal = @import("internal.zig");
 const Size = dataStructures.Size;
 const DataWrapper = dataStructures.DataWrapper;
 const StringDataWrapper = dataStructures.StringDataWrapper;
 
 pub const TextArea_Impl = struct {
-    pub usingnamespace @import("internal.zig").All(TextArea_Impl);
+    pub usingnamespace internal.All(TextArea_Impl);
 
     peer: ?backend.TextArea = null,
     handlers: TextArea_Impl.Handlers = undefined,
@@ -52,22 +53,17 @@ pub const TextArea_Impl = struct {
 };
 
 pub const TextField_Impl = struct {
-    pub usingnamespace @import("internal.zig").All(TextField_Impl);
+    pub usingnamespace internal.All(TextField_Impl);
     //pub usingnamespace @import("internal.zig").Property(TextField_Impl, "text");
 
     peer: ?backend.TextField = null,
     handlers: TextField_Impl.Handlers = undefined,
     dataWrappers: TextField_Impl.DataWrappers = .{},
-    text: StringDataWrapper,
-    readOnly: DataWrapper(bool),
+    text: StringDataWrapper = StringDataWrapper.of(""),
+    readOnly: DataWrapper(bool) = DataWrapper(bool).of(false),
     _wrapperTextBlock: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
 
-    const Config = struct {
-        text: []const u8 = "",
-        readOnly: bool = false,
-    };
-
-    pub fn init(config: Config) TextField_Impl {
+    pub fn init(config: TextField_Impl.Config) TextField_Impl {
         return TextField_Impl.init_events(TextField_Impl{
             .text = StringDataWrapper.of(config.text),
             .readOnly = DataWrapper(bool).of(config.readOnly),

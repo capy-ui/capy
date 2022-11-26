@@ -100,6 +100,7 @@ pub var _animatedDataWrappers = std.ArrayList(struct {
 pub fn DataWrapper(comptime T: type) type {
     return struct {
         value: if (IsAnimable) union(enum) { Single: T, Animated: Animation(T) } else T,
+        // TODO: switch to a lock that allow concurrent reads but one concurrent write
         lock: std.Thread.Mutex = .{},
         /// List of every change listener listening to this data wrapper.
         /// A linked list is used for minimal stack overhead and to take
@@ -164,7 +165,7 @@ pub fn DataWrapper(comptime T: type) type {
             return self.value == .Animated;
         }
 
-        pub fn animate(self: *Self, anim: fn (f64) f64, target: T, duration: u64) void {
+        pub fn animate(self: *Self, anim: std.meta.FnPtr(fn (f64) f64), target: T, duration: u64) void {
             if (!IsAnimable) {
                 @compileError("animate() called on data that is not animable");
             }
@@ -186,7 +187,7 @@ pub fn DataWrapper(comptime T: type) type {
                 }
             }
             if (!contains) {
-                _animatedDataWrappers.append(.{ .fnPtr = @ptrCast(fn (*anyopaque) bool, Self.update), .userdata = self }) catch {};
+                _animatedDataWrappers.append(.{ .fnPtr = @ptrCast(std.meta.FnPtr(fn (*anyopaque) bool), &Self.update), .userdata = self }) catch {};
             }
         }
 
@@ -221,6 +222,13 @@ pub fn DataWrapper(comptime T: type) type {
         pub fn get(self: *Self) T {
             self.lock.lock();
             defer self.lock.unlock();
+            return self.getUnsafe();
+        }
+
+        /// This gets the value of the data wrapper without accounting for
+        /// multi-threading. Do not use it! If you have an app with only one thread,
+        /// then use the single_threaded build flag, don't use this function.
+        pub fn getUnsafe(self: Self) T {
             if (IsAnimable) {
                 return switch (self.value) {
                     .Single => |value| value,
@@ -392,6 +400,7 @@ pub fn DataWrapper(comptime T: type) type {
     };
 }
 
+// TODO: reimplement using DataWrapper.dependOn
 pub fn FormatDataWrapper(allocator: std.mem.Allocator, comptime fmt: []const u8, childs: anytype) !*StringDataWrapper {
     const Self = struct { wrapper: StringDataWrapper, childs: @TypeOf(childs) };
     var self = try allocator.create(Self);

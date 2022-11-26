@@ -710,7 +710,7 @@ pub const Canvas = struct {
     pub fn create() BackendError!Canvas {
         const canvas = c.gtk_drawing_area_new() orelse return BackendError.UnknownError;
         c.gtk_widget_show(canvas);
-        _ = c.g_signal_connect_data(canvas, "draw", @ptrCast(c.GCallback, gtkCanvasDraw), null, @as(c.GClosureNotify, null), 0);
+        _ = c.g_signal_connect_data(canvas, "draw", @ptrCast(c.GCallback, &gtkCanvasDraw), null, @as(c.GClosureNotify, null), 0);
 
         const peer = c.gtk_event_box_new() orelse return BackendError.UnknownError;
         c.gtk_widget_set_can_focus(peer, 1);
@@ -722,7 +722,7 @@ pub const Canvas = struct {
         Canvas.copyEventUserData(peer, canvas);
 
         const controller = c.gtk_event_controller_key_new(peer).?;
-        _ = c.g_signal_connect_data(controller, "key-pressed", @ptrCast(c.GCallback, gtkImKeyPress), null, null, c.G_CONNECT_AFTER);
+        _ = c.g_signal_connect_data(controller, "key-pressed", @ptrCast(c.GCallback, &gtkImKeyPress), null, null, c.G_CONNECT_AFTER);
         return Canvas{ .peer = peer, .canvas = canvas, .controller = controller };
     }
 };

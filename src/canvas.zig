@@ -53,7 +53,7 @@ pub const Rect_Impl = struct {
     peer: ?backend.Canvas = null,
     handlers: Rect_Impl.Handlers = undefined,
     dataWrappers: Rect_Impl.DataWrappers = .{},
-    preferredSize: ?Size = null,
+    preferredSize: DataWrapper(?Size) = DataWrapper(?Size).of(null),
     color: DataWrapper(Color) = DataWrapper(Color).of(Color.black),
 
     pub fn init() Rect_Impl {
@@ -61,12 +61,12 @@ pub const Rect_Impl = struct {
     }
 
     pub fn getPreferredSize(self: *Rect_Impl, available: Size) Size {
-        return self.preferredSize orelse
+        return self.preferredSize.get() orelse
             available.intersect(Size.init(0, 0));
     }
 
     pub fn setPreferredSize(self: *Rect_Impl, preferred: Size) Rect_Impl {
-        self.preferredSize = preferred;
+        self.preferredSize.set(preferred);
         return self.*;
     }
 
@@ -90,11 +90,13 @@ pub const Rect_Impl = struct {
     }
 };
 
-pub fn Rect(config: struct { size: ?Size = null, color: Color = Color.black }) Rect_Impl {
+pub fn Rect(config: Rect_Impl.Config) Rect_Impl {
     var rect = Rect_Impl.init();
-    _ = rect.addDrawHandler(Rect_Impl.draw) catch unreachable;
-    rect.preferredSize = config.size;
+    _ = rect.addDrawHandler(&Rect_Impl.draw) catch unreachable;
+    rect.preferredSize = DataWrapper(?Size).of(config.preferredSize);
     rect.color = DataWrapper(Color).of(config.color);
+    rect.dataWrappers.name.set(config.name);
+    rect.dataWrappers.alignX.set(config.alignX);
     return rect;
 }
 

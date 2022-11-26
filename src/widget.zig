@@ -35,7 +35,7 @@ pub const Widget = struct {
     parent: ?*Widget = null,
 
     // TODO: store @offsetOf these fields in the Class instead of having the cost of 3 pointers
-    name: *?[]const u8,
+    name: *data.DataWrapper(?[]const u8),
     /// If there is more available size than preferred size and the widget is not expanded,
     /// this will determine where will the widget be located horizontally.
     alignX: *data.DataWrapper(?f32),
