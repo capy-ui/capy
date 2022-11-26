@@ -13,7 +13,10 @@ const Allocator = std.mem.Allocator;
 var computationLabel: capy.Label_Impl = undefined;
 var allocator: Allocator = undefined;
 
-pub fn pressedKey(button: *capy.Button_Impl) !void {
+// TODO: switch back to *capy.Button_Impl when ziglang/zig#12325 is fixed
+pub fn pressedKey(button_: *anyopaque) !void {
+    const button = @ptrCast(*capy.Button_Impl, @alignCast(@alignOf(capy.Button_Impl), button_));
+
     const buttonLabel = button.getLabel();
     const labelText = computationLabel.getText();
 
@@ -26,8 +29,8 @@ pub fn pressedKey(button: *capy.Button_Impl) !void {
     allocator.free(larger);
 }
 
-pub fn erase(button: *capy.Button_Impl) !void {
-    _ = button;
+// TODO: switch back to *capy.Button_Impl when ziglang/zig#12325 is fixed
+pub fn erase(_: *anyopaque) !void {
     computationLabel.setText("");
 }
 
@@ -35,8 +38,8 @@ fn findOperator(computation: []const u8, pos: usize) ?usize {
     return std.mem.indexOfScalarPos(u8, computation, pos, '+') orelse std.mem.indexOfScalarPos(u8, computation, pos, '-') orelse std.mem.indexOfScalarPos(u8, computation, pos, '*') orelse std.mem.indexOfScalarPos(u8, computation, pos, '/');
 }
 
-pub fn compute(button: *capy.Button_Impl) !void {
-    _ = button;
+// TODO: switch back to *capy.Button_Impl when ziglang/zig#12325 is fixed
+pub fn compute(_: *anyopaque) !void {
     const rawText = computationLabel.getText();
     const computation = rawText;
 
