@@ -9,7 +9,7 @@ const DataWrapper = @import("data.zig").DataWrapper;
 
 pub const GenericListModel = struct {
     size: *DataWrapper(usize),
-    getComponent: fn (self: *anyopaque, index: usize) Widget,
+    getComponent: *const fn (self: *anyopaque, index: usize) Widget,
     userdata: *anyopaque,
 };
 

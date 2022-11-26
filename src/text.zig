@@ -129,26 +129,12 @@ pub const TextField_Impl = struct {
         return self.text.get();
     }
 
-    /// Bind the 'text' property to argument.
-    pub fn bindText(self: *TextField_Impl, other: *StringDataWrapper) TextField_Impl {
-        self.text.bind(other);
-        self.text.set(other.get());
-        return self.*;
-    }
-
     pub fn setReadOnly(self: *TextField_Impl, readOnly: bool) void {
         self.readOnly.set(readOnly);
     }
 
     pub fn isReadOnly(self: *TextField_Impl) bool {
         return self.readOnly.get();
-    }
-
-    /// Bind the 'readOnly' property to argument.
-    pub fn bindReadOnly(self: *TextField_Impl, other: *DataWrapper(bool)) TextField_Impl {
-        self.readOnly.bind(other);
-        self.readOnly.set(other.get());
-        return self.*;
     }
 };
 

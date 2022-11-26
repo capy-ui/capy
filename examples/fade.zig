@@ -23,7 +23,7 @@ pub fn main() !void {
     try capy.backend.init();
 
     var window = try capy.Window.init();
-    const imageData = try capy.ImageData.fromBuffer(capy.internal.lasting_allocator, @embedFile("../ziglogo.png"));
+    const imageData = try capy.ImageData.fromBuffer(capy.internal.lasting_allocator, @embedFile("ziglogo.png"));
 
     try window.set(
         capy.Row(.{}, .{

@@ -131,7 +131,7 @@ pub const Window = struct {
             }
             if (item.config.onClick) |callback| {
                 const data = @intToPtr(?*anyopaque, @ptrToInt(callback));
-                _ = c.g_signal_connect_data(menuItem, "activate", @ptrCast(c.GCallback, gtkActivate), data, null, c.G_CONNECT_AFTER);
+                _ = c.g_signal_connect_data(menuItem, "activate", @ptrCast(c.GCallback, &gtkActivate), data, null, c.G_CONNECT_AFTER);
             }
 
             c.gtk_menu_shell_append(menu, menuItem);
@@ -497,7 +497,7 @@ pub const TextField = struct {
         const textField = c.gtk_entry_new() orelse return BackendError.UnknownError;
         c.gtk_widget_show(textField);
         try TextField.setupEvents(textField);
-        _ = c.g_signal_connect_data(textField, "changed", @ptrCast(c.GCallback, gtkTextChanged), null, @as(c.GClosureNotify, null), c.G_CONNECT_AFTER);
+        _ = c.g_signal_connect_data(textField, "changed", @ptrCast(c.GCallback, &gtkTextChanged), null, @as(c.GClosureNotify, null), c.G_CONNECT_AFTER);
         return TextField{ .peer = textField };
     }
 
@@ -556,7 +556,7 @@ pub const Canvas = struct {
             wrap: ?f64 = null,
 
             pub fn setFont(self: *TextLayout, font: Font) void {
-                const fontDescription = c.pango_font_description_from_string(font.face) orelse unreachable;
+                const fontDescription = c.pango_font_description_from_string(font.face.ptr) orelse unreachable;
                 c.pango_font_description_set_size(fontDescription, @floatToInt(c_int, @floor(font.size * @as(f64, c.PANGO_SCALE))));
                 c.pango_layout_set_font_description(self._layout, fontDescription);
                 c.pango_font_description_free(fontDescription);
@@ -785,7 +785,7 @@ pub const TabContainer = struct {
 
     pub fn setLabel(self: *const TabContainer, position: usize, text: [:0]const u8) void {
         const child = c.gtk_notebook_get_nth_page(@ptrCast(*c.GtkNotebook, self.peer), @intCast(c_int, position));
-        c.gtk_notebook_set_tab_label_text(@ptrCast(*c.GtkNotebook, self.peer), child, text);
+        c.gtk_notebook_set_tab_label_text(@ptrCast(*c.GtkNotebook, self.peer), child, text.ptr);
     }
 
     /// Returns the number of tabs added to this tab container

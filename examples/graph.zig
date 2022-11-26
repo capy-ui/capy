@@ -12,9 +12,9 @@ pub const LineGraph_Impl = struct {
     peer: ?capy.backend.Canvas = null,
     handlers: LineGraph_Impl.Handlers = undefined,
     dataWrappers: LineGraph_Impl.DataWrappers = .{},
-    dataFn: fn (x: f32) f32,
+    dataFn: *const fn (x: f32) f32,
 
-    pub fn init(dataFn: fn (x: f32) f32) LineGraph_Impl {
+    pub fn init(dataFn: *const fn (x: f32) f32) LineGraph_Impl {
         return LineGraph_Impl.init_events(LineGraph_Impl{ .dataFn = dataFn });
     }
 
@@ -87,9 +87,9 @@ pub const LineGraph_Impl = struct {
     }
 };
 
-pub fn LineGraph(config: struct { dataFn: fn (x: f32) f32 }) !LineGraph_Impl {
-    var lineGraph = try LineGraph_Impl.init(config.dataFn)
-        .addDrawHandler(LineGraph_Impl.draw);
+pub fn LineGraph(config: struct { dataFn: *const fn (x: f32) f32 }) !LineGraph_Impl {
+    var lineGraph = LineGraph_Impl.init(config.dataFn);
+    try lineGraph.addDrawHandler(&LineGraph_Impl.draw);
     return lineGraph;
 }
 
@@ -135,7 +135,9 @@ fn easing(x: f32) f32 {
     return @floatCast(f32, capy.Easings.Linear(x / 10.0));
 }
 
-fn SetEasing(comptime Easing: fn (x: f64) f64) fn (*capy.Button_Impl) anyerror!void {
+// This demonstrates how you can use Zig's ability to generate functions at compile-time
+// in order to make cool and useful things
+fn SetEasing(comptime Easing: fn (x: f64) f64) fn (*anyopaque) anyerror!void {
     const func = struct {
         pub fn function(x: f32) f32 {
             return @floatCast(f32, Easing(x / 10.0));
@@ -143,8 +145,8 @@ fn SetEasing(comptime Easing: fn (x: f64) f64) fn (*capy.Button_Impl) anyerror!v
     }.function;
 
     const callback = struct {
-        pub fn callback(btn: *capy.Button_Impl) anyerror!void {
-            _ = btn;
+        // TODO: switch back to *capy.Button_Impl when ziglang/zig#12325 is fixed
+        pub fn callback(_: *anyopaque) anyerror!void {
             graph.dataFn = func;
             try graph.requestDraw();
         }
@@ -152,8 +154,8 @@ fn SetEasing(comptime Easing: fn (x: f64) f64) fn (*capy.Button_Impl) anyerror!v
     return callback;
 }
 
-fn drawRectangle(widget: *capy.Canvas_Impl, ctx: *capy.Canvas_Impl.DrawContext) !void {
-    _ = widget;
+// TODO: switch back to *capy.Canvas_Impl when ziglang/zig#12325 is fixed
+fn drawRectangle(_: *anyopaque, ctx: *capy.Canvas_Impl.DrawContext) !void {
     ctx.setColor(0, 0, 0);
     ctx.rectangle(0, 0, 100, 100);
     ctx.fill();
@@ -167,9 +169,12 @@ pub fn main() !void {
     var window = try capy.Window.init();
     graph = try LineGraph(.{ .dataFn = easing });
 
-    var rectangle = (try capy.Column(.{}, .{capy.Canvas(.{})
-        .setPreferredSize(capy.Size{ .width = 100, .height = 100 })
-        .addDrawHandler(drawRectangle)}))
+    var rectangle = (try capy.Column(.{}, .{
+        capy.Canvas(.{
+            .preferredSize = capy.Size{ .width = 100, .height = 100 },
+            .ondraw = drawRectangle,
+        }),
+    }))
         .bind("alignX", &rectangleX);
 
     try window.set(capy.Column(.{}, .{

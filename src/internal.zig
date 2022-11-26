@@ -208,13 +208,18 @@ pub fn Widgeting(comptime T: type) type {
         }
 
         /// Bind the given property to argument
-        pub fn bind(self: *T, comptime name: []const u8, other: *DataWrapper(TypeOfProperty(name))) void {
+        pub fn bind(immutable_self: *const T, comptime name: []const u8, other: *DataWrapper(TypeOfProperty(name))) T {
+            // TODO: use another system for binding components
+            // This is DANGEROUSLY unsafe (and unoptimized)
+            const self = @intToPtr(*T, @ptrToInt(immutable_self));
+
             if (@hasField(DataWrappers, name)) {
                 @field(self.dataWrappers, name).bind(other);
             } else {
                 @field(self, name).bind(other);
             }
             self.set(name, other.get());
+            return immutable_self.*;
         }
 
         pub fn getName(self: *T) ?[]const u8 {
@@ -268,10 +273,17 @@ pub fn GenerateConfigStruct(comptime T: type) type {
         const default_value: ?T.Callback = null;
         config_fields = config_fields ++ &[1]std.builtin.Type.StructField{.{
             .name = "onclick",
-            .field_type = ?*const fn (widget: *anyopaque) anyerror!void,
+            .field_type = ?T.Callback,
             .default_value = @ptrCast(?*const anyopaque, &default_value),
             .is_comptime = false,
             .alignment = @alignOf(?T.Callback),
+        }};
+        config_fields = config_fields ++ &[1]std.builtin.Type.StructField{.{
+            .name = "ondraw",
+            .field_type = ?T.DrawCallback,
+            .default_value = @ptrCast(?*const anyopaque, &default_value),
+            .is_comptime = false,
+            .alignment = @alignOf(?T.DrawCallback),
         }};
 
 
@@ -560,9 +572,8 @@ pub fn Events(comptime T: type) type {
             try self.handlers.clickHandlers.append(@ptrCast(Callback, handler));
         }
 
-        pub fn addDrawHandler(self: *T, handler: anytype) !T {
+        pub fn addDrawHandler(self: *T, handler: anytype) !void {
             try self.handlers.drawHandlers.append(@ptrCast(DrawCallback, handler));
-            return self.*;
         }
 
         pub fn addMouseButtonHandler(self: *T, handler: anytype) !void {

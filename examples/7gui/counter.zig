@@ -5,7 +5,8 @@ pub usingnamespace capy.cross_platform;
 // Thanks to `FormatDataWrapper` (see below) we can use an int for couting
 var count = capy.DataWrapper(i64).of(0);
 
-fn increment(_: *capy.Button_Impl) !void {
+// TODO: switch back to *capy.Button_Impl when ziglang/zig#12325 is fixed
+fn increment(_: *anyopaque) !void {
     count.set(count.get() + 1);
 }
 

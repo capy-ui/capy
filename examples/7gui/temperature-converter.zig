@@ -18,10 +18,10 @@ pub fn main() !void {
         capy.Row(.{ .alignX = 0.5 }, .{
             capy.Row(.{ .alignY = 0.5, .spacing = 5 }, .{
                 capy.TextField(.{})
-                    .bindText(&celsius),
+                    .bind("text", &celsius),
                 capy.Label(.{ .text = "Celsius =" }),
                 capy.TextField(.{})
-                    .bindText(&fahrenheit),
+                    .bind("text", &fahrenheit),
                 capy.Label(.{ .text = "Fahrenheit" }),
             }),
         }),

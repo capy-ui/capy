@@ -34,9 +34,9 @@ pub fn main() !void {
     var window = try capy.Window.init();
     defer window.deinit();
 
-    var canvas = try capy.Canvas(.{})
-        .addDrawHandler(draw);
-    try canvas.addScrollHandler(scroll);
+    var canvas = capy.Canvas(.{});
+    try canvas.addDrawHandler(&draw);
+    try canvas.addScrollHandler(&scroll);
 
     try window.set(capy.Column(.{}, .{
         capy.Row(.{}, .{

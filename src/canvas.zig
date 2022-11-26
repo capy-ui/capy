@@ -11,7 +11,7 @@ pub const Canvas_Impl = struct {
     peer: ?backend.Canvas = null,
     handlers: Canvas_Impl.Handlers = undefined,
     dataWrappers: Canvas_Impl.DataWrappers = .{},
-    preferredSize: ?Size = null,
+    preferredSize: DataWrapper(?Size) = DataWrapper(?Size).of(null),
 
     pub const DrawContext = backend.Canvas.DrawContext;
 
@@ -21,11 +21,11 @@ pub const Canvas_Impl = struct {
 
     pub fn getPreferredSize(self: *Canvas_Impl, available: Size) Size {
         // As it's a canvas, by default it should take the available space
-        return self.preferredSize orelse available;
+        return self.preferredSize.get() orelse available;
     }
 
     pub fn setPreferredSize(self: *Canvas_Impl, preferred: Size) Canvas_Impl {
-        self.preferredSize = preferred;
+        self.preferredSize.set(preferred);
         return self.*;
     }
 
@@ -37,7 +37,7 @@ pub const Canvas_Impl = struct {
     }
 };
 
-pub fn Canvas(config: struct { onclick: ?Canvas_Impl.Callback = null }) Canvas_Impl {
+pub fn Canvas(config: Canvas_Impl.Config) Canvas_Impl {
     var btn = Canvas_Impl.init();
     if (config.onclick) |onclick| {
         btn.addClickHandler(onclick) catch unreachable; // TODO: improve
@@ -92,7 +92,7 @@ pub const Rect_Impl = struct {
 
 pub fn Rect(config: Rect_Impl.Config) Rect_Impl {
     var rect = Rect_Impl.init();
-    _ = rect.addDrawHandler(&Rect_Impl.draw) catch unreachable;
+    rect.addDrawHandler(&Rect_Impl.draw) catch unreachable;
     rect.preferredSize = DataWrapper(?Size).of(config.preferredSize);
     rect.color = DataWrapper(Color).of(config.color);
     rect.dataWrappers.name.set(config.name);
