@@ -84,8 +84,8 @@ pub fn build(b: *std.build.Builder) !void {
     defer examplesDir.close();
 
     const broken = switch (target.getOsTag()) {
-        .windows => &[_][]const u8{"fade"},
-        else => &[_][]const u8{},
+        .windows => &[_][]const u8{"osm-viewer","fade"},
+        else => &[_][]const u8{"osm-viewer"},
     };
 
     var walker = try examplesDir.walk(b.allocator);
