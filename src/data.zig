@@ -124,7 +124,7 @@ pub fn DataWrapper(comptime T: type) type {
         /// If dependOn has been called, this is a pointer to the callback function
         depend_on_callback: ?*const anyopaque = null,
         /// If dependOn has been called, this is the list of data wrappers it depends on.
-        depend_on_wrappers: ?[]?*anyopaque = null,
+        depend_on_wrappers: []?*anyopaque = &.{},
 
         allocator: ?std.mem.Allocator = null,
 
@@ -366,7 +366,7 @@ pub fn DataWrapper(comptime T: type) type {
                     const changeListener = struct {
                         fn changeListener(_: WrapperValueType, userdata: usize) void {
                             const self_ptr = @intToPtr(*Self, userdata);
-                            handler(self_ptr, self_ptr.depend_on_callback.?, self_ptr.depend_on_wrappers.?);
+                            handler(self_ptr, self_ptr.depend_on_callback.?, self_ptr.depend_on_wrappers);
                         }
                     }.changeListener;
                     _ = try wrapper.addChangeListener(.{ .function = changeListener, .userdata = @ptrToInt(self) });
