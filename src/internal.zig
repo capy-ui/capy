@@ -286,7 +286,6 @@ pub fn GenerateConfigStruct(comptime T: type) type {
             .alignment = @alignOf(?T.DrawCallback),
         }};
 
-
         const t = @Type(.{ .Struct = .{
             .layout = .Auto,
             .backing_integer = null,
@@ -294,7 +293,6 @@ pub fn GenerateConfigStruct(comptime T: type) type {
             .decls = &.{},
             .is_tuple = false,
         } });
-    // @compileError(t);
         return t;
     }
 }

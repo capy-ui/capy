@@ -52,10 +52,10 @@ pub const SPI_GETNONCLIENTMETRICS = 0x0029;
 /// Standard arrow cursor.
 pub const IDC_ARROW = @intToPtr([*:0]const u8, 32512);
 
-pub const WNDENUMPROC = fn (hwnd: HWND, lParam: LPARAM) callconv(WINAPI) c_int;
+pub const WNDENUMPROC = *const fn (hwnd: HWND, lParam: LPARAM) callconv(WINAPI) c_int;
 
 pub extern "user32" fn SendMessageA(hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM) callconv(WINAPI) LRESULT;
-pub extern "user32" fn SetParent(child: HWND, newParent: HWND) callconv(WINAPI) HWND;
+pub extern "user32" fn SetParent(child: HWND, newParent: ?HWND) callconv(WINAPI) ?HWND;
 pub extern "user32" fn SetWindowTextW(hWnd: HWND, lpString: [*:0]const u16) callconv(WINAPI) c_int;
 pub extern "user32" fn GetWindowTextW(hWnd: HWND, lpString: [*:0]const u16, nMaxCount: c_int) callconv(WINAPI) c_int;
 pub extern "user32" fn GetWindowTextLengthW(hWnd: HWND) callconv(WINAPI) c_int;
@@ -337,12 +337,18 @@ pub const GpStatus = enum(c_int) { Ok, GenericError, InvalidParameter, OutOfMemo
 
 pub const DebugEventLevel = enum(c_int) { DebugEventLevelFatal, DebugEventLevelWarning };
 
-pub const DebugEventProc = fn (level: DebugEventLevel, message: [*]const u8) callconv(.C) void;
-pub const GdiplusStartupInput = extern struct { GdiplusVersion: u32 = 1, DebugEventCallback: ?DebugEventProc = null, SuppressBackgroundThread: BOOL = 0, SuppressExternalCodecs: BOOL = 0, GdiplusStartupInput: ?fn (debugEventCallback: DebugEventProc, suppressBackgroundThread: BOOL, supressExternalCodecs: BOOL) callconv(.C) void = null };
+pub const DebugEventProc = *const fn (level: DebugEventLevel, message: [*]const u8) callconv(.C) void;
+pub const GdiplusStartupInput = extern struct {
+    GdiplusVersion: u32 = 1,
+    DebugEventCallback: ?DebugEventProc = null,
+    SuppressBackgroundThread: BOOL = 0,
+    SuppressExternalCodecs: BOOL = 0,
+    GdiplusStartupInput: ?*const fn (debugEventCallback: DebugEventProc, suppressBackgroundThread: BOOL, supressExternalCodecs: BOOL) callconv(.C) void = null,
+};
 
 pub const GdiplusStartupOutput = extern struct {
-    NotificationHookProc: fn () callconv(.C) void, // TODO
-    NotificationUnhookProc: fn () callconv(.C) void, // TODO
+    NotificationHookProc: *const fn () callconv(.C) void, // TODO
+    NotificationUnhookProc: *const fn () callconv(.C) void, // TODO
 };
 
 pub extern "gdiplus" fn GdipCreateFromHDC(hdc: HDC, graphics: *GpGraphics) GpStatus;

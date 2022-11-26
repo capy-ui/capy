@@ -45,7 +45,7 @@ pub const ImageData = struct {
 
         var plte = zigimg.png.PlteProcessor{};
         // TRNS processor isn't included as it crashed LLVM due to saturating multiplication
-        var processors: [1]zigimg.png.ReaderProcessor = .{ plte.processor() };
+        var processors: [1]zigimg.png.ReaderProcessor = .{plte.processor()};
         var img = try zigimg.png.load(
             stream,
             allocator,
