@@ -45,12 +45,13 @@ pub const ImageData = struct {
 
         var plte = zigimg.png.PlteProcessor{};
         // TRNS processor isn't included as it crashed LLVM due to saturating multiplication
+        var processors: [1]zigimg.png.ReaderProcessor = .{ plte.processor() };
         var img = try zigimg.png.load(
             stream,
             allocator,
             zigimg.png.ReaderOptions.initWithProcessors(
                 arena.allocator(),
-                &.{plte.processor()},
+                &processors,
             ),
         );
         //defer img.deinit();
@@ -72,10 +73,8 @@ pub const Image_Impl = struct {
     peer: ?backend.Canvas = null,
     handlers: Image_Impl.Handlers = undefined,
     dataWrappers: Image_Impl.DataWrappers = .{},
-    imageData: DataWrapper(ImageData) = DataWrapper(ImageData)
-        .of(.{ .width = 0, .height = 0, .stride = 0, .peer = undefined }),
-    scaling: DataWrapper(Scaling) = DataWrapper(Scaling)
-        .of(.None),
+    data: DataWrapper(ImageData),
+    scaling: DataWrapper(Scaling) = DataWrapper(Scaling).of(.Fit),
 
     pub const Scaling = enum {
         /// Keep the original size of the image
@@ -86,24 +85,19 @@ pub const Image_Impl = struct {
         Stretch,
     };
 
-    pub const Config = struct {
-        data: ImageData,
-        scaling: Scaling = .Fit,
-    };
-
     pub const DrawContext = backend.Canvas.DrawContext;
 
-    pub fn init(config: Config) Image_Impl {
+    pub fn init(config: Image_Impl.Config) Image_Impl {
         var image = Image_Impl.init_events(Image_Impl{
-            .imageData = DataWrapper(ImageData).of(config.data),
+            .data = DataWrapper(ImageData).of(config.data),
             .scaling = DataWrapper(Scaling).of(config.scaling),
         });
-        _ = image.addDrawHandler(Image_Impl.draw) catch unreachable;
+        image.addDrawHandler(&Image_Impl.draw) catch unreachable;
         return image;
     }
 
     pub fn getPreferredSize(self: *Image_Impl, _: Size) Size {
-        const data = self.imageData.get();
+        const data = self.data.get();
         return Size.init(data.width, data.height);
     }
 
@@ -111,7 +105,7 @@ pub const Image_Impl = struct {
         const width = self.getWidth();
         const height = self.getHeight();
 
-        const image = self.imageData.get();
+        const image = self.data.get();
         switch (self.scaling.get()) {
             .None => {
                 const imageX = @intCast(i32, width / 2) - @intCast(i32, image.width / 2);

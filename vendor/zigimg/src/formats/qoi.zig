@@ -16,10 +16,10 @@ const std = @import("std");
 const utils = @import("../utils.zig");
 
 pub const QoiColor = extern struct {
-    r: u8,
-    g: u8,
-    b: u8,
-    a: u8 = 0xFF,
+    r: u8 align(1),
+    g: u8 align(1),
+    b: u8 align(1),
+    a: u8 align(1) = 0xFF,
 
     fn hash(c: QoiColor) u6 {
         return @truncate(u6, c.r *% 3 +% c.g *% 5 +% c.b *% 7 +% c.a *% 11);
@@ -79,14 +79,14 @@ pub const Format = enum(u8) {
     rgba = 4,
 };
 
-pub const Header = packed struct {
+pub const Header = extern struct {
     const size = 14;
     const correct_magic = [4]u8{ 'q', 'o', 'i', 'f' };
 
-    width: u32,
-    height: u32,
-    format: Format,
-    colorspace: Colorspace,
+    width: u32 align(1),
+    height: u32 align(1),
+    format: Format align(1),
+    colorspace: Colorspace align(1),
 
     fn encode(header: Header) [size]u8 {
         var result: [size]u8 = undefined;
@@ -96,6 +96,10 @@ pub const Header = packed struct {
         result[12] = @enumToInt(header.format);
         result[13] = @enumToInt(header.colorspace);
         return result;
+    }
+
+    comptime {
+        std.debug.assert((@sizeOf(Header) + Header.correct_magic.len) == Header.size);
     }
 };
 

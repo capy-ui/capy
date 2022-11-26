@@ -31,11 +31,11 @@ pub inline fn toF32Color(value: anytype) f32 {
     return @intToFloat(f32, value) / @intToFloat(f32, math.maxInt(@TypeOf(value)));
 }
 
-pub const Colorf32 = packed struct {
-    r: f32,
-    g: f32,
-    b: f32,
-    a: f32 = 1.0,
+pub const Colorf32 = extern struct {
+    r: f32 align(1),
+    g: f32 align(1),
+    b: f32 align(1),
+    a: f32 align(1) = 1.0,
 
     const Self = @This();
 
@@ -337,14 +337,26 @@ fn RgbaMethods(comptime Self: type) type {
 }
 
 fn RgbColor(comptime T: type) type {
-    return packed struct {
-        r: T,
-        g: T,
-        b: T,
+    return extern struct {
+        r: T align(1),
+        g: T align(1),
+        b: T align(1),
 
         pub usingnamespace RgbMethods(@This());
     };
 }
+
+// Rgb555
+// OpenGL: GL_RGB5
+// Vulkan: VK_FORMAT_R5G6B5_UNORM_PACK16
+// Direct3D/DXGI: n/a
+pub const Rgb555 = packed struct {
+    r: u5,
+    g: u5,
+    b: u5,
+
+    pub usingnamespace RgbMethods(@This());
+};
 
 // Rgb565
 // OpenGL: n/a
@@ -359,11 +371,11 @@ pub const Rgb565 = packed struct {
 };
 
 fn RgbaColor(comptime T: type) type {
-    return packed struct {
-        r: T,
-        g: T,
-        b: T,
-        a: T = math.maxInt(T),
+    return extern struct {
+        r: T align(1),
+        g: T align(1),
+        b: T align(1),
+        a: T align(1) = math.maxInt(T),
 
         pub usingnamespace RgbMethods(@This());
         pub usingnamespace RgbaMethods(@This());
@@ -382,12 +394,6 @@ pub const Rgb24 = RgbColor(u8);
 // Direct3D/DXGI: DXGI_FORMAT_R8G8B8A8_UNORM
 pub const Rgba32 = RgbaColor(u8);
 
-// Rgb555
-// OpenGL: GL_RGB5
-// Vulkan: VK_FORMAT_R5G6B5_UNORM_PACK16
-// Direct3D/DXGI: n/a
-pub const Rgb555 = RgbColor(u5);
-
 // Rgb48
 // OpenGL: GL_RGB16
 // Vulkan: VK_FORMAT_R16G16B16_UNORM
@@ -401,20 +407,20 @@ pub const Rgb48 = RgbColor(u16);
 pub const Rgba64 = RgbaColor(u16);
 
 fn BgrColor(comptime T: type) type {
-    return packed struct {
-        b: T,
-        g: T,
-        r: T,
+    return extern struct {
+        b: T align(1),
+        g: T align(1),
+        r: T align(1),
 
         pub usingnamespace RgbMethods(@This());
     };
 }
 
 fn BgraColor(comptime T: type) type {
-    return packed struct {
-        b: T,
-        g: T,
-        r: T,
+    return extern struct {
+        b: T align(1),
+        g: T align(1),
+        r: T align(1),
         a: T = math.maxInt(T),
 
         pub usingnamespace RgbMethods(@This());
@@ -524,13 +530,13 @@ pub const PixelStorage = union(PixelFormat) {
     grayscale2: []Grayscale2,
     grayscale4: []Grayscale4,
     grayscale8: []Grayscale8,
-    grayscale8Alpha: []Grayscale8Alpha,
     grayscale16: []Grayscale16,
+    grayscale8Alpha: []Grayscale8Alpha,
     grayscale16Alpha: []Grayscale16Alpha,
-    rgb24: []Rgb24,
-    rgba32: []Rgba32,
     rgb565: []Rgb565,
     rgb555: []Rgb555,
+    rgb24: []Rgb24,
+    rgba32: []Rgba32,
     bgr24: []Bgr24,
     bgra32: []Bgra32,
     rgb48: []Rgb48,

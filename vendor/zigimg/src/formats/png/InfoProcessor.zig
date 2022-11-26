@@ -9,7 +9,7 @@ const PaletteProcessData = png_reader.PaletteProcessData;
 const isChunkCritical = png_reader.isChunkCritical;
 
 pub const PngInfoOptions = struct {
-    processor: Self = init(std.io.getStdOut().writer()),
+    processor: Self,
     processors: [1]png_reader.ReaderProcessor = undefined,
     tmp_buffer: [png_reader.required_temp_bytes]u8 = undefined,
     fb_allocator: std.heap.FixedBufferAllocator = undefined,

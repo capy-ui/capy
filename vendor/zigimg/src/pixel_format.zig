@@ -63,6 +63,20 @@ pub const PixelFormat = enum(u32) {
         };
     }
 
+    pub fn bitsPerChannel(self: Self) u8 {
+        return switch (self) {
+            .invalid => 0,
+            .rgb565 => unreachable, // TODO: what to do in that case?
+            .indexed1, .grayscale1 => 1,
+            .indexed2, .grayscale2 => 2,
+            .indexed4, .grayscale4 => 4,
+            .rgb555 => 5,
+            .indexed8, .grayscale8, .grayscale8Alpha, .rgb24, .rgba32, .bgr24, .bgra32 => 8,
+            .indexed16, .grayscale16, .grayscale16Alpha, .rgb48, .rgba64 => 16,
+            .float32 => 32,
+        };
+    }
+
     pub fn channelCount(self: Self) u8 {
         return switch (self) {
             .invalid => 0,

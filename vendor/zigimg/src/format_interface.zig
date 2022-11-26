@@ -1,15 +1,16 @@
+const std = @import("std");
 const Image = @import("Image.zig");
 const color = @import("color.zig");
-const Allocator = @import("std").mem.Allocator;
+const Allocator = std.mem.Allocator;
 const ImageReadError = Image.ReadError;
 const ImageWriteError = Image.WriteError;
 
 // mlarouche: Because this is a interface, I use Zig function naming convention instead of the variable naming convention
 pub const FormatInterface = struct {
-    format: FormatFn,
-    formatDetect: FormatDetectFn,
-    readImage: ReadImageFn,
-    writeImage: WriteImageFn,
+    format: std.meta.FnPtr(FormatFn),
+    formatDetect: std.meta.FnPtr(FormatDetectFn),
+    readImage: std.meta.FnPtr(ReadImageFn),
+    writeImage: std.meta.FnPtr(WriteImageFn),
 
     pub const FormatFn = fn () Image.Format;
     pub const FormatDetectFn = fn (stream: *Image.Stream) ImageReadError!bool;

@@ -6,11 +6,7 @@ This is a work in progress library to create, process, read and write different 
 
 ## Install & Build
 
-This project assume current Zig master (0.10.0+).
-
-### Stage 2 (Self-Hosted compiler support)
-
-Use branch `stage2_compat` if you want stage2 support.
+This project assume current Zig master (0.10.0+) with stage2 self-hosted compiler.
 
 ### Use zigimg in your project
 
@@ -45,7 +41,7 @@ zig build test
 | PBM           | ✔️            | ❌            |
 | PCX           | ✔️            | ❌            |
 | PGM           | ✔️ (Partial)  | ✔️ (Partial)  |
-| PNG           | ✔️            | ❌            |
+| PNG           | ✔️            | ✔️ (Partial)  |
 | PPM           | ✔️ (Partial)  | ❌            |
 | QOI           | ✔️            | ✔️            |
 | TGA           | ✔️            | ❌            |

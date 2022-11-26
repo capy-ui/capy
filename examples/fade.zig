@@ -4,7 +4,10 @@ pub usingnamespace capy.cross_platform;
 
 var opacity = capy.DataWrapper(f32).of(1.0);
 
-fn startAnimation(button: *capy.Button_Impl) !void {
+// TODO: switch back to *capy.Button_Impl when ziglang/zig#12325 is fixed
+fn startAnimation(button_: *anyopaque) !void {
+    const button = @ptrCast(*capy.Button_Impl, @alignCast(@alignOf(capy.Button_Impl), button_));
+
     // Ensure the current animation is done before starting another
     if (!opacity.hasAnimation()) {
         if (opacity.get() == 0) { // if hidden

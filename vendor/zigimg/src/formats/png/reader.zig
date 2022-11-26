@@ -580,9 +580,9 @@ pub const ReaderProcessor = struct {
     vtable: *const VTable,
 
     const VTable = struct {
-        chunk_processor: ?fn (context: *anyopaque, data: *ChunkProcessData) Image.ReadError!PixelFormat,
-        palette_processor: ?fn (context: *anyopaque, data: *PaletteProcessData) Image.ReadError!void,
-        data_row_processor: ?fn (context: *anyopaque, data: *RowProcessData) Image.ReadError!PixelFormat,
+        chunk_processor: ?std.meta.FnPtr(fn (context: *anyopaque, data: *ChunkProcessData) Image.ReadError!PixelFormat),
+        palette_processor: ?std.meta.FnPtr(fn (context: *anyopaque, data: *PaletteProcessData) Image.ReadError!void),
+        data_row_processor: ?std.meta.FnPtr(fn (context: *anyopaque, data: *RowProcessData) Image.ReadError!PixelFormat),
     };
 
     const Self = @This();

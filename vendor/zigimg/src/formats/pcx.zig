@@ -11,24 +11,24 @@ const Image = @import("../Image.zig");
 const std = @import("std");
 const utils = @import("../utils.zig");
 
-pub const PCXHeader = packed struct {
+pub const PCXHeader = extern struct {
     id: u8 = 0x0A,
     version: u8,
     compression: u8,
     bpp: u8,
-    xmin: u16,
-    ymin: u16,
-    xmax: u16,
-    ymax: u16,
-    horizontal_dpi: u16,
-    vertical_dpi: u16,
+    xmin: u16 align(1),
+    ymin: u16 align(1),
+    xmax: u16 align(1),
+    ymax: u16 align(1),
+    horizontal_dpi: u16 align(1),
+    vertical_dpi: u16 align(1),
     builtin_palette: [48]u8,
     _reserved0: u8 = 0,
     planes: u8,
-    stride: u16,
-    palette_information: u16,
-    screen_width: u16,
-    screen_height: u16,
+    stride: u16 align(1),
+    palette_information: u16 align(1),
+    screen_width: u16 align(1),
+    screen_height: u16 align(1),
 
     // HACK: For some reason, padding as field does not report 128 bytes for the header.
     var padding: [54]u8 = undefined;

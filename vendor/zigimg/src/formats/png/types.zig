@@ -54,6 +54,22 @@ pub const ColorType = enum(u8) {
             .rgba_color => 4,
         };
     }
+
+    pub fn fromPixelFormat(pixel_format: PixelFormat) !Self {
+        return switch (pixel_format) {
+            .rgb24, .rgb48 => .rgb_color,
+
+            .rgba32, .rgba64 => .rgba_color,
+
+            .grayscale1, .grayscale2, .grayscale4, .grayscale8, .grayscale16 => .grayscale,
+
+            .grayscale8Alpha, .grayscale16Alpha => .grayscale_alpha,
+
+            .indexed1, .indexed2, .indexed4, .indexed8 => .indexed,
+
+            else => return error.Unsupported,
+        };
+    }
 };
 
 pub const FilterType = enum(u8) {
@@ -70,14 +86,14 @@ pub const InterlaceMethod = enum(u8) {
 };
 
 /// The compression methods supported by PNG
-pub const CompressionMethod = enum(u8) { deflate = 0 };
+pub const CompressionMethod = enum(u8) { deflate = 0, _ };
 
 /// The filter methods supported by PNG
-pub const FilterMethod = enum(u8) { adaptive = 0 };
+pub const FilterMethod = enum(u8) { adaptive = 0, _ };
 
-pub const ChunkHeader = packed struct {
-    length: u32,
-    type: u32,
+pub const ChunkHeader = extern struct {
+    length: u32 align(1),
+    type: u32 align(1),
 
     const Self = @This();
 
@@ -86,9 +102,9 @@ pub const ChunkHeader = packed struct {
     }
 };
 
-pub const HeaderData = packed struct {
-    width: u32,
-    height: u32,
+pub const HeaderData = extern struct {
+    width: u32 align(1),
+    height: u32 align(1),
     bit_depth: u8,
     color_type: ColorType,
     compression_method: CompressionMethod,
