@@ -38,6 +38,12 @@ pub fn lerp(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
         }
     } else if (comptime std.meta.trait.isContainer(T) and @hasDecl(T, "lerp")) {
         return T.lerp(a, b, t);
+    } else if (comptime std.meta.trait.is(.Optional)(T)) {
+        if (a != null and b != null) {
+            return lerp(a.?, b.?, t);
+        } else {
+            return b;
+        }
     } else {
         @compileError("type " ++ @typeName(T) ++ " does not support linear interpolation");
     }
@@ -97,6 +103,15 @@ pub var _animatedDataWrappers = std.ArrayList(struct {
     userdata: *anyopaque,
 }).init(lasting_allocator);
 
+fn isAnimable(comptime T: type) bool {
+    if (std.meta.trait.isNumber(T) or (std.meta.trait.isContainer(T) and @hasDecl(T, "lerp"))) {
+        return true;
+    } else if (std.meta.trait.is(.Optional)(T)) {
+        return isAnimable(std.meta.Child(T));
+    }
+    return false;
+}
+
 pub fn DataWrapper(comptime T: type) type {
     return struct {
         value: if (IsAnimable) union(enum) { Single: T, Animated: Animation(T) } else T,
@@ -129,7 +144,7 @@ pub fn DataWrapper(comptime T: type) type {
         allocator: ?std.mem.Allocator = null,
 
         const Self = @This();
-        const IsAnimable = std.meta.trait.isNumber(T) or (std.meta.trait.isContainer(T) and @hasDecl(T, "lerp"));
+        const IsAnimable = isAnimable(T);
 
         pub const ValueType = T;
         pub const ChangeListener = struct { function: std.meta.FnPtr(fn (newValue: T, userdata: usize) void), userdata: usize = 0 };
@@ -162,6 +177,7 @@ pub fn DataWrapper(comptime T: type) type {
 
         /// Returns true if there is currently an animation playing.
         pub fn hasAnimation(self: *Self) bool {
+            if (!IsAnimable) return false;
             return self.value == .Animated;
         }
 
