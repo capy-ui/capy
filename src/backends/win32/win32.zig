@@ -351,6 +351,6 @@ pub const GdiplusStartupOutput = extern struct {
     NotificationUnhookProc: *const fn () callconv(.C) void, // TODO
 };
 
-pub extern "gdiplus" fn GdipCreateFromHDC(hdc: HDC, graphics: *GpGraphics) GpStatus;
-pub extern "gdiplus" fn GdiplusStartup(token: *ULONG, input: ?*GdiplusStartupInput, output: ?*GdiplusStartupOutput) GpStatus;
-pub extern "gdiplus" fn GdiplusShutdown(token: *ULONG) void;
+pub extern "gdiplus" fn GdipCreateFromHDC(hdc: HDC, graphics: *GpGraphics) callconv(WINAPI) GpStatus;
+pub extern "gdiplus" fn GdiplusStartup(token: *ULONG, input: ?*GdiplusStartupInput, output: ?*GdiplusStartupOutput) callconv(WINAPI) GpStatus;
+pub extern "gdiplus" fn GdiplusShutdown(token: *ULONG) callconv(WINAPI) void;

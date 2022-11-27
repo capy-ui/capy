@@ -24,5 +24,5 @@ jobs:
         run: zig build
       - name: Build Capy for Windows x86_64
         run: zig build -Dtarget=x86_64-windows
-      - name: Build Capy for Windows i386
-        run: zig build -Dtarget=i386-windows
+      - name: Build Capy for Windows x86
+        run: zig build -Dtarget=x86-windows
