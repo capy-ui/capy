@@ -18,12 +18,6 @@ pub const Button_Impl = struct {
         return Button_Impl.init_events(Button_Impl{});
     }
 
-    pub fn initLabeled(label: [:0]const u8) Button_Impl {
-        var button = Button_Impl.init();
-        button.setLabel(label);
-        return button;
-    }
-
     pub fn _pointerMoved(self: *Button_Impl) void {
         self.enabled.updateBinders();
     }
@@ -41,6 +35,8 @@ pub const Button_Impl = struct {
     pub fn show(self: *Button_Impl) !void {
         if (self.peer == null) {
             self.peer = try backend.Button.create();
+            self.peer.?.setEnabled(self.enabled.get());
+            
             self.peer.?.setLabel(self.label.get());
             try self.show_events();
             _ = try self.enabled.addChangeListener(.{ .function = wrapperEnabledChanged, .userdata = @ptrToInt(&self.peer) });
@@ -71,7 +67,12 @@ pub const Button_Impl = struct {
 };
 
 pub fn Button(config: Button_Impl.Config) Button_Impl {
-    var btn = Button_Impl.initLabeled(config.label);
+    var btn = Button_Impl.init();
+    btn.label.set(config.label);
+    btn.enabled.set(config.enabled);
+    btn.dataWrappers.alignX.set(config.alignX);
+    btn.dataWrappers.alignY.set(config.alignY);
+    btn.dataWrappers.name.set(config.name);
     if (config.onclick) |onclick| {
         btn.addClickHandler(onclick) catch unreachable; // TODO: improve
     }
