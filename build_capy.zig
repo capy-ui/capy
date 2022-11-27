@@ -1,5 +1,5 @@
 const std = @import("std");
-const build_zelda = @import("vendor/zelda/build.zig");
+//const build_zelda = @import("vendor/zelda/build.zig");
 const zig_libressl = struct {};
 // const zig_libressl = if (@import("builtin").os.tag == .windows)
 //     struct {} // TODO: fix
@@ -72,23 +72,24 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
         .source = std.build.FileSource.relative(prefix ++ "/vendor/zigimg/zigimg.zig"),
     };
 
-    const zelda = build_zelda.pkgs.zelda;
-    const use_system_libressl = @import("builtin").os.tag == .windows;
-    if ((comptime @import("builtin").os.tag != .windows) and step.target.getOsTag() != .freestanding and step.target.getOsTag() != .windows and false) {
-        try zig_libressl.useLibreSslForStep(
-            step.builder,
-            step.target,
-            .ReleaseSafe,
-            prefix ++ "/vendor/zelda/zig-libressl/libressl",
-            step,
-            use_system_libressl,
-        );
-    }
+    // const zelda = build_zelda.pkgs.zelda;
+    // const use_system_libressl = @import("builtin").os.tag == .windows;
+    // if ((comptime @import("builtin").os.tag != .windows) and step.target.getOsTag() != .freestanding and step.target.getOsTag() != .windows and false) {
+    //     try zig_libressl.useLibreSslForStep(
+    //         step.builder,
+    //         step.target,
+    //         .ReleaseSafe,
+    //         prefix ++ "/vendor/zelda/zig-libressl/libressl",
+    //         step,
+    //         use_system_libressl,
+    //     );
+    // }
 
     const capy = std.build.Pkg{
         .name = "capy",
         .source = std.build.FileSource.relative(prefix ++ "/src/main.zig"),
-        .dependencies = &[_]std.build.Pkg{ zigimg, zelda },
+        //.dependencies = &[_]std.build.Pkg{ zigimg, zelda },
+        .dependencies = &[_]std.build.Pkg{ zigimg },
     };
     step.addPackage(capy);
 }
