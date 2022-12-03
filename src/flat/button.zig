@@ -1,5 +1,6 @@
 const std = @import("std");
 const backend = @import("../backend.zig");
+const Size = @import("../data.zig").Size;
 
 /// Button flat peer
 pub const FlatButton = struct {
@@ -7,6 +8,7 @@ pub const FlatButton = struct {
     canvas: backend.Canvas,
 
     label: [:0]const u8 = "",
+    enabled: bool = true,
 
     pub usingnamespace backend.Events(FlatButton);
 
@@ -21,16 +23,17 @@ pub const FlatButton = struct {
     // TODO: themes and custom styling
     fn draw(ctx: *backend.Canvas.DrawContext, data: usize) void {
         const events = @intToPtr(*backend.EventUserData, data);
-        const selfPtr = @intToPtr(?*FlatButton, events.classUserdata);
+        const self = @intToPtr(?*FlatButton, events.classUserdata).?;
 
         const width = @intCast(u32, backend.getWidthFromPeer(events.peer));
         const height = @intCast(u32, backend.getHeightFromPeer(events.peer));
 
-        ctx.setColor(0.3, 0.3, 0.3);
+        if (self.enabled) { ctx.setColor(0.8, 0.8, 0.8); }
+        else { ctx.setColor(0.7, 0.7, 0.7); }
         ctx.rectangle(0, 0, width, height);
         ctx.fill();
 
-        const text = if (selfPtr) |self| self.label else "";
+        const text = self.label;
         var layout = backend.Canvas.DrawContext.TextLayout.init();
         defer layout.deinit();
         ctx.setColor(1, 1, 1);
@@ -48,5 +51,14 @@ pub const FlatButton = struct {
 
     pub fn getLabel(self: *const FlatButton) [:0]const u8 {
         return self.label;
+    }
+
+    pub fn setEnabled(self: *FlatButton, enabled: bool) void {
+        self.enabled = enabled;
+    }
+
+    pub fn getPreferredSize_impl(self: *const FlatButton) Size {
+        _ = self;
+        return Size.init(300, 100);
     }
 };
