@@ -11,7 +11,8 @@ pub const CapyBuildOptions = struct {
     android: AndroidOptions = .{},
 
     pub const AndroidOptions = struct {
-        version: AndroidSdk.AndroidVersion = .android5,
+        // As of 2022, 95% of Android devices use Android 8 (Oreo) or higher
+        version: AndroidSdk.AndroidVersion = .android8,
     };
 };
 
@@ -113,7 +114,7 @@ pub fn install(step: *std.build.LibExeObjStep, options: CapyBuildOptions) !void 
                     // This is a set of resources. It should at least contain a "mipmap/icon.png" resource that
                     // will provide the application icon.
                     .resources = &[_]AndroidSdk.Resource{
-                        .{ .path = "mipmap/icon.png", .content = .{ .path = "example/icon.png" } },
+                        .{ .path = "mipmap/icon.png", .content = .{ .path = "android/default_icon.png" } },
                     },
                     .aaudio = false,
                     .opensl = false,
@@ -128,7 +129,7 @@ pub fn install(step: *std.build.LibExeObjStep, options: CapyBuildOptions) !void 
                 };
 
                 const app = sdk.createApp(
-                    "app-template.apk",
+                    "zig-out/capy-app.apk",
                     step.root_src.?.getPath(step.builder),
                     config,
                     mode,
@@ -147,6 +148,9 @@ pub fn install(step: *std.build.LibExeObjStep, options: CapyBuildOptions) !void 
                 }
 
                 // Make the app build when we invoke "zig build" or "zig build install"
+                // TODO: only invoke keystore if .build_config/android.keystore doesn't exist
+                // When doing take environment variables or prompt if they're unavailable
+                //step.step.dependOn(sdk.initKeystore(key_store, .{}));
                 step.step.dependOn(app.final_step);
 
                 //const b = step.builder;

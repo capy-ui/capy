@@ -36,7 +36,7 @@ pub const Button_Impl = struct {
         if (self.peer == null) {
             self.peer = try backend.Button.create();
             self.peer.?.setEnabled(self.enabled.get());
-            
+
             self.peer.?.setLabel(self.label.get());
             try self.show_events();
             _ = try self.enabled.addChangeListener(.{ .function = wrapperEnabledChanged, .userdata = @ptrToInt(&self.peer) });

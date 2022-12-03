@@ -28,8 +28,11 @@ pub const FlatButton = struct {
         const width = @intCast(u32, backend.getWidthFromPeer(events.peer));
         const height = @intCast(u32, backend.getHeightFromPeer(events.peer));
 
-        if (self.enabled) { ctx.setColor(0.8, 0.8, 0.8); }
-        else { ctx.setColor(0.7, 0.7, 0.7); }
+        if (self.enabled) {
+            ctx.setColor(0.8, 0.8, 0.8);
+        } else {
+            ctx.setColor(0.7, 0.7, 0.7);
+        }
         ctx.rectangle(0, 0, width, height);
         ctx.fill();
 

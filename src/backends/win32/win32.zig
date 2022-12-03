@@ -327,7 +327,7 @@ pub const SB_BOTH = 3;
 pub const SW_INVALIDATE = 0x0002;
 
 pub extern "comctl32" fn GetScrollInfo(hWnd: HWND, nBar: c_int, lpsi: *SCROLLINFO) callconv(WINAPI) BOOL;
-pub extern "comctl32" fn SetScrollInfo(hWnd: HWND, nBar: c_int, lpsi: *const SCROLLINFO, redraw: BOOL) callconv(WINAPI)  c_int;
+pub extern "comctl32" fn SetScrollInfo(hWnd: HWND, nBar: c_int, lpsi: *const SCROLLINFO, redraw: BOOL) callconv(WINAPI) c_int;
 pub extern "comctl32" fn EnableScrollBar(hWnd: HWND, wSBflags: UINT, wArrows: UINT) callconv(WINAPI) BOOL;
 pub extern "comctl32" fn ScrollWindowEx(hWnd: HWND, dx: c_int, dy: c_int, prcScroll: ?*const RECT, prcClip: ?*const RECT, hrgnUpdate: ?HRGN, prcUpdate: ?LPRECT, flags: UINT) callconv(WINAPI) c_int;
 

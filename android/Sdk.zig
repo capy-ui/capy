@@ -739,6 +739,10 @@ pub fn compileAppLibrary(
     exe.strip = (mode == .ReleaseSmall);
     exe.export_table = true;
 
+    // XXX: temporary!
+    // TODO: remove and fix __emutls_get_address problem instead
+    exe.single_threaded = true;
+
     exe.defineCMacro("ANDROID", null);
 
     exe.linkLibC();

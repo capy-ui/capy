@@ -7,7 +7,13 @@ const backend = //if (@hasDecl(@import("root"), "capyBackend"))
     switch (builtin.os.tag) {
     .windows => @import("backends/win32/backend.zig"),
     .macos => @import("backends/macos/backend.zig"),
-    .linux, .freebsd => @import("backends/gtk/backend.zig"),
+    .linux, .freebsd => blk: {
+        if (builtin.target.isAndroid()) {
+            break :blk @import("backends/android/backend.zig");
+        } else {
+            break :blk @import("backends/gtk/backend.zig");
+        }
+    },
     .freestanding => blk: {
         if (builtin.cpu.arch == .wasm32 or builtin.cpu.arch == .wasm64) {
             break :blk @import("backends/wasm/backend.zig");
