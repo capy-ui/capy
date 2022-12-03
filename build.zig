@@ -104,7 +104,7 @@ pub fn build(b: *std.build.Builder) !void {
                 b.addExecutable(name, programPath);
             exe.setTarget(target);
             exe.setBuildMode(mode);
-            try install(exe, ".");
+            try install(exe, .{});
 
             const install_step = b.addInstallArtifact(exe);
             const working = blk: {
@@ -144,7 +144,7 @@ pub fn build(b: *std.build.Builder) !void {
     lib.setTarget(target);
     lib.setBuildMode(mode);
     lib.linkLibC();
-    try install(lib, ".");
+    try install(lib, .{});
     // lib.emit_h = true;
     lib.install();
 
@@ -158,7 +158,7 @@ pub fn build(b: *std.build.Builder) !void {
     tests.setTarget(target);
     tests.setBuildMode(mode);
     // tests.emit_docs = .emit;
-    try install(tests, ".");
+    try install(tests, .{});
 
     const test_step = b.step("test", "Run unit tests and also generate the documentation");
     test_step.dependOn(&tests.step);
@@ -167,7 +167,7 @@ pub fn build(b: *std.build.Builder) !void {
     coverage_tests.setTarget(target);
     coverage_tests.setBuildMode(mode);
     coverage_tests.exec_cmd_args = &.{ "kcov", "--clean", "--include-pattern=src/", "kcov-output", null };
-    try install(coverage_tests, ".");
+    try install(coverage_tests, .{});
 
     const cov_step = b.step("coverage", "Perform code coverage of unit tests. This requires 'kcov' to be installed.");
     cov_step.dependOn(&coverage_tests.step);

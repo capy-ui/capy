@@ -6,14 +6,16 @@ const zig_libressl = struct {};
 // else
 //     @import("vendor/zelda/zig-libressl/build.zig");
 
-pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !void {
+pub const CapyBuildOptions = struct {
+
+};
+
+pub fn install(step: *std.build.LibExeObjStep, options: CapyBuildOptions) !void {
+    _ = options;
+    const prefix = comptime std.fs.path.dirname(@src().file).? ++ std.fs.path.sep_str;
     step.subsystem = .Native;
 
     switch (step.target.getOsTag()) {
-        .linux, .freebsd => {
-            step.linkLibC();
-            step.linkSystemLibrary("gtk+-3.0");
-        },
         .windows => {
             switch (step.build_mode) {
                 .Debug => step.subsystem = .Console,
@@ -48,6 +50,10 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
             step.linkFramework("AppKit");
             step.linkSystemLibraryName("objc");
         },
+        .linux, .freebsd => {
+            step.linkLibC();
+            step.linkSystemLibrary("gtk+-3.0");
+        },
         .freestanding => {
             if (step.target.toTarget().isWasm()) {
                 // Things like the image reader require more stack than given by default
@@ -69,7 +75,7 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
 
     const zigimg = std.build.Pkg{
         .name = "zigimg",
-        .source = std.build.FileSource.relative(prefix ++ "/vendor/zigimg/zigimg.zig"),
+        .source = std.build.FileSource { .path = prefix ++ "/vendor/zigimg/zigimg.zig" },
     };
 
     // const zelda = build_zelda.pkgs.zelda;
@@ -87,7 +93,7 @@ pub fn install(step: *std.build.LibExeObjStep, comptime prefix: []const u8) !voi
 
     const capy = std.build.Pkg{
         .name = "capy",
-        .source = std.build.FileSource.relative(prefix ++ "/src/main.zig"),
+        .source = std.build.FileSource { .path = prefix ++ "/src/main.zig" },
         //.dependencies = &[_]std.build.Pkg{ zigimg, zelda },
         .dependencies = &[_]std.build.Pkg{ zigimg },
     };
