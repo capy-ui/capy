@@ -428,7 +428,7 @@ pub fn createApp(
             \\
         ) catch unreachable;
 
-        break :blk buf.toOwnedSlice();
+        break :blk buf.toOwnedSlice() catch unreachable;
     });
 
     const manifest_step = sdk.b.addWriteFile("AndroidManifest.xml", blk: {
@@ -479,7 +479,7 @@ pub fn createApp(
             ) catch unreachable;
         }
 
-        break :blk buf.toOwnedSlice();
+        break :blk buf.toOwnedSlice() catch unreachable;
     });
 
     const resource_dir_step = CreateResourceDirectory.create(sdk.b);
@@ -601,7 +601,7 @@ pub fn createApp(
         .sdk = sdk,
         .first_step = &make_unsigned_apk.step,
         .final_step = sign_step,
-        .libraries = libs.toOwnedSlice(),
+        .libraries = libs.toOwnedSlice() catch unreachable,
         .build_options = build_options,
         .package_name = sdk.b.dupe(app_config.package_name),
         .apk_file = (std.build.FileSource{ .path = apk_file }).dupe(sdk.b),
