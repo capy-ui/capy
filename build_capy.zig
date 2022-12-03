@@ -1,4 +1,5 @@
 const std = @import("std");
+const AndroidSdk = @import("android/Sdk.zig");
 //const build_zelda = @import("vendor/zelda/build.zig");
 const zig_libressl = struct {};
 // const zig_libressl = if (@import("builtin").os.tag == .windows)
@@ -7,13 +8,42 @@ const zig_libressl = struct {};
 //     @import("vendor/zelda/zig-libressl/build.zig");
 
 pub const CapyBuildOptions = struct {
+    android: AndroidOptions = .{},
 
+    pub const AndroidOptions = struct {
+        version: AndroidSdk.AndroidVersion = .android5,
+    };
 };
 
 pub fn install(step: *std.build.LibExeObjStep, options: CapyBuildOptions) !void {
-    _ = options;
     const prefix = comptime std.fs.path.dirname(@src().file).? ++ std.fs.path.sep_str;
     step.subsystem = .Native;
+
+    const zigimg = std.build.Pkg{
+        .name = "zigimg",
+        .source = std.build.FileSource { .path = prefix ++ "/vendor/zigimg/zigimg.zig" },
+    };
+
+    // const zelda = build_zelda.pkgs.zelda;
+    // const use_system_libressl = @import("builtin").os.tag == .windows;
+    // if ((comptime @import("builtin").os.tag != .windows) and step.target.getOsTag() != .freestanding and step.target.getOsTag() != .windows and false) {
+    //     try zig_libressl.useLibreSslForStep(
+    //         step.builder,
+    //         step.target,
+    //         .ReleaseSafe,
+    //         prefix ++ "/vendor/zelda/zig-libressl/libressl",
+    //         step,
+    //         use_system_libressl,
+    //     );
+    // }
+
+    const capy = std.build.Pkg{
+        .name = "capy",
+        .source = std.build.FileSource { .path = prefix ++ "/src/main.zig" },
+        //.dependencies = &[_]std.build.Pkg{ zigimg, zelda },
+        .dependencies = &[_]std.build.Pkg{ zigimg },
+    };
+    step.addPackage(capy);
 
     switch (step.target.getOsTag()) {
         .windows => {
@@ -51,8 +81,87 @@ pub fn install(step: *std.build.LibExeObjStep, options: CapyBuildOptions) !void 
             step.linkSystemLibraryName("objc");
         },
         .linux, .freebsd => {
-            step.linkLibC();
-            step.linkSystemLibrary("gtk+-3.0");
+            if (step.target.toTarget().isAndroid()) {
+                // TODO: automatically download the SDK and NDK and build tools?
+                const sdk = AndroidSdk.init(step.builder, null, .{});
+                const mode = step.build_mode;
+
+                // Provide some KeyStore structure so we can sign our app.
+                // Recommendation: Don't hardcore your password here, everyone can read it.
+                // At least not for your production keystore ;)
+                const key_store = AndroidSdk.KeyStore{
+                    .file = ".build_config/android.keystore",
+                    .alias = "default",
+                    .password = "ziguana",
+                };
+
+                var libraries = std.ArrayList([]const u8).init(step.builder.allocator);
+                try libraries.append("GLESv2");
+                try libraries.append("EGL");
+                try libraries.append("android");
+                try libraries.append("log");
+
+                const config = AndroidSdk.AppConfig{
+                    .target_version = options.android.version,
+                    // This is displayed to the user
+                    .display_name = "Zig Android App Template",
+                    // This is used internally for ... things?
+                    .app_name = "zig-app-template",
+                    // This is required for the APK name. This identifies your app, android will associate
+                    // your signing key with this identifier and will prevent updates if the key changes.
+                    .package_name = "net.random_projects.zig_android_template",
+                    // This is a set of resources. It should at least contain a "mipmap/icon.png" resource that
+                    // will provide the application icon.
+                    .resources = &[_]AndroidSdk.Resource{
+                        .{ .path = "mipmap/icon.png", .content = .{ .path = "example/icon.png" } },
+                    },
+                    .aaudio = false,
+                    .opensl = false,
+                    // This is a list of android permissions. Check out the documentation to figure out which you need.
+                    .permissions = &[_][]const u8{
+                        "android.permission.SET_RELEASE_APP",
+                        //"android.permission.RECORD_AUDIO",
+                    },
+                    // This is a list of native android apis to link against.
+                    .libraries = libraries.items,
+                    .packages = &.{ capy },
+                };
+
+                const app = sdk.createApp(
+                    "app-template.apk",
+                    step.root_src.?.getPath(step.builder),
+                    config,
+                    mode,
+                    .{
+                        .aarch64 = true,
+                        .arm = false,
+                        .x86_64 = false,
+                        .x86 = false,
+                    }, // default targets
+                    key_store,
+                );
+
+                for (app.libraries) |exe| {
+                    // Provide the "android" package in each executable we build
+                    exe.addPackage(app.getAndroidPackage("android"));
+                }
+
+                // Make the app build when we invoke "zig build" or "zig build install"
+                step.step.dependOn(app.final_step);
+
+                //const b = step.builder;
+                // const keystore_step = b.step("keystore", "Initialize a fresh debug keystore");
+                // const push_step = b.step("push", "Push the app to a connected android device");
+                // const run_step = b.step("run", "Run the app on a connected android device");
+
+                // keystore_step.dependOn(sdk.initKeystore(key_store, .{}));
+                // push_step.dependOn(app.install());
+                // run_step.dependOn(app.run());
+                step.step.dependOn(app.run());
+            } else {
+                step.linkLibC();
+                step.linkSystemLibrary("gtk+-3.0");
+            }
         },
         .freestanding => {
             if (step.target.toTarget().isWasm()) {
@@ -72,30 +181,4 @@ pub fn install(step: *std.build.LibExeObjStep, options: CapyBuildOptions) !void 
             return error.UnsupportedOs;
         },
     }
-
-    const zigimg = std.build.Pkg{
-        .name = "zigimg",
-        .source = std.build.FileSource { .path = prefix ++ "/vendor/zigimg/zigimg.zig" },
-    };
-
-    // const zelda = build_zelda.pkgs.zelda;
-    // const use_system_libressl = @import("builtin").os.tag == .windows;
-    // if ((comptime @import("builtin").os.tag != .windows) and step.target.getOsTag() != .freestanding and step.target.getOsTag() != .windows and false) {
-    //     try zig_libressl.useLibreSslForStep(
-    //         step.builder,
-    //         step.target,
-    //         .ReleaseSafe,
-    //         prefix ++ "/vendor/zelda/zig-libressl/libressl",
-    //         step,
-    //         use_system_libressl,
-    //     );
-    // }
-
-    const capy = std.build.Pkg{
-        .name = "capy",
-        .source = std.build.FileSource { .path = prefix ++ "/src/main.zig" },
-        //.dependencies = &[_]std.build.Pkg{ zigimg, zelda },
-        .dependencies = &[_]std.build.Pkg{ zigimg },
-    };
-    step.addPackage(capy);
 }

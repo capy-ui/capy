@@ -1,5 +1,6 @@
 zig-out/
 zig-cache/
+.build_config/
 .zigmod/
 kcov-output/
 macos-sdk/

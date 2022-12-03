@@ -1,0 +1,6 @@
+zig-cache
+*.apk
+*.keystore
+.build_config
+zig-out
+*.apk.idsig
