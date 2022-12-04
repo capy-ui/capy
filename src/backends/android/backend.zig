@@ -1,6 +1,7 @@
 const std = @import("std");
 const shared = @import("../shared.zig");
 const lib = @import("../../main.zig");
+const android = @import("android");
 
 const EventFunctions = shared.EventFunctions(@This());
 const EventType = shared.BackendEventType;
@@ -102,10 +103,103 @@ pub fn runStep(step: shared.EventLoopStep) bool {
 }
 
 pub const backendExport = struct {
-    pub fn panic(msg: []const u8, _: ?*std.builtin.StackTrace, _: ?usize) noreturn {
-        _ = msg;
+    //pub const ANativeActivity_onCreate = @import("android-support.zig").ANativeActivity_onCreate;
 
-        @breakpoint();
-        unreachable;
+    // pub fn panic(msg: []const u8, _: ?*std.builtin.StackTrace, _: ?usize) noreturn {
+    //     _ = msg;
+
+    //     @breakpoint();
+    //     unreachable;
+    // }
+
+    comptime {
+        _ = android.ANativeActivity_createFunc;
+        _ = android.ANativeActivity_onCreate;
     }
+
+
+    pub const AndroidApp = struct {
+        allocator: std.mem.Allocator,
+        activity: *android.ANativeActivity,
+        jni: android.JNI = undefined,
+        thread: ?std.Thread = null,
+        running: bool = true,
+
+        // TODO: add an interface in capy for handling stored state
+        pub fn init(allocator: std.mem.Allocator, activity: *android.ANativeActivity, stored_state: ?[]const u8) !AndroidApp {
+            _ = stored_state;
+            std.log.info("HELLO WORLD", .{});
+
+            return AndroidApp{
+                .allocator = allocator,
+                .activity = activity,
+            };
+        }
+
+        pub fn start(self: *AndroidApp) !void {
+            std.log.info("start", .{});
+            self.thread = try std.Thread.spawn(.{}, mainLoop, .{ self });
+        }
+
+        pub fn deinit(self: *AndroidApp) void {
+            @atomicStore(bool, &self.running, false, .SeqCst);
+            if (self.thread) |thread| {
+                thread.join();
+                self.thread = null;
+            }
+            self.jni.deinit();
+            std.log.info("end", .{});
+        }
+
+        pub fn onNativeWindowCreated(self: *AndroidApp, window: *android.ANativeWindow) void {
+            //_ = window;
+            _ = self;
+            //android.ANativeWindow_release(window);
+            _ = android.ANativeWindow_unlockAndPost(window);
+        }
+
+        fn setAppContentView(self: *AndroidApp) void {
+            std.log.warn("Creating android.widget.TextView", .{});
+            const TextView = self.jni.findClass("android/widget/TextView");
+            const textViewInit = self.jni.invokeJni(.GetMethodID, .{ TextView, "<init>", "(Landroid/content/Context;)V" });
+            const textView = self.jni.invokeJni(.NewObject, .{ TextView, textViewInit, self.activity.clazz });
+
+            const setText = self.jni.invokeJni(.GetMethodID, .{ TextView, "setText", "(Ljava/lang/CharSequence;)V" });
+            self.jni.invokeJni(.CallVoidMethod, .{ textView, setText, self.jni.newString("Hello from Zig!") });
+
+            std.log.info("Attempt to call NativeActivity.getWindow()", .{});
+            const activityClass = self.jni.findClass("android/app/NativeActivity");
+            const getWindow = self.jni.invokeJni(.GetMethodID, .{ activityClass, "getWindow", "()Landroid/view/Window;" });
+            const activityWindow = self.jni.invokeJni(.CallObjectMethod, .{ self.activity.clazz, getWindow });
+            const WindowClass = self.jni.findClass("android/view/Window");
+
+            // This disables the surface handler set by default by android.view.NativeActivity
+            // This way we let the content view do the drawing instead of us.
+            const takeSurface = self.jni.invokeJni(.GetMethodID, .{ WindowClass, "takeSurface", "(Landroid/view/SurfaceHolder$Callback2;)V" });
+            self.jni.invokeJni(.CallVoidMethod, .{
+                activityWindow,
+                takeSurface,
+                @as(android.jobject, null),
+            });
+
+            std.log.err("Attempt to call NativeActivity.setContentView()", .{});
+            const setContentView = self.jni.invokeJni(.GetMethodID, .{ activityClass, "setContentView", "(Landroid/view/View;)V" });
+            self.jni.invokeJni(.CallVoidMethod, .{
+                self.activity.clazz,
+                setContentView,
+                textView,
+            });
+        }
+
+        fn mainLoop(self: *AndroidApp) !void {
+            self.jni = android.JNI.init(self.activity);
+
+            self.setAppContentView();
+            while (@atomicLoad(bool, &self.running, .SeqCst)) {
+                std.time.sleep(1 * std.time.ns_per_s);
+            }
+        }
+
+    };
+    
 };

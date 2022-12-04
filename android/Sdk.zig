@@ -448,6 +448,9 @@ pub fn createApp(
                 \\
             , .{perm}) catch unreachable;
         }
+        writer.print(
+            \\    <uses-sdk android:minSdkVersion="{d}" />
+        , .{ @enumToInt(app_config.target_version) }) catch unreachable;
 
         if (app_config.fullscreen) {
             writer.writeAll(
@@ -738,10 +741,6 @@ pub fn compileAppLibrary(
     exe.bundle_compiler_rt = true;
     exe.strip = (mode == .ReleaseSmall);
     exe.export_table = true;
-
-    // XXX: temporary!
-    // TODO: remove and fix __emutls_get_address problem instead
-    exe.single_threaded = true;
 
     exe.defineCMacro("ANDROID", null);
 

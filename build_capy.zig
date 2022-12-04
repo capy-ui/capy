@@ -13,6 +13,8 @@ pub const CapyBuildOptions = struct {
     pub const AndroidOptions = struct {
         // As of 2022, 95% of Android devices use Android 8 (Oreo) or higher
         version: AndroidSdk.AndroidVersion = .android8,
+        // TODO: implement sdk downloading
+        download_sdk_automatically: bool = true,
     };
 };
 
@@ -44,7 +46,7 @@ pub fn install(step: *std.build.LibExeObjStep, options: CapyBuildOptions) !void 
         //.dependencies = &[_]std.build.Pkg{ zigimg, zelda },
         .dependencies = &[_]std.build.Pkg{ zigimg },
     };
-    step.addPackage(capy);
+    if (!step.target.toTarget().isAndroid()) step.addPackage(capy);
 
     switch (step.target.getOsTag()) {
         .windows => {
@@ -105,12 +107,12 @@ pub fn install(step: *std.build.LibExeObjStep, options: CapyBuildOptions) !void 
                 const config = AndroidSdk.AppConfig{
                     .target_version = options.android.version,
                     // This is displayed to the user
-                    .display_name = "Zig Android App Template",
+                    .display_name = "Capy Example",
                     // This is used internally for ... things?
-                    .app_name = "zig-app-template",
+                    .app_name = "capyui_example",
                     // This is required for the APK name. This identifies your app, android will associate
                     // your signing key with this identifier and will prevent updates if the key changes.
-                    .package_name = "net.random_projects.zig_android_template",
+                    .package_name = "io.capyui.example",
                     // This is a set of resources. It should at least contain a "mipmap/icon.png" resource that
                     // will provide the application icon.
                     .resources = &[_]AndroidSdk.Resource{
@@ -125,7 +127,7 @@ pub fn install(step: *std.build.LibExeObjStep, options: CapyBuildOptions) !void 
                     },
                     // This is a list of native android apis to link against.
                     .libraries = libraries.items,
-                    .packages = &.{ capy },
+                    .packages = &.{ },
                 };
 
                 const app = sdk.createApp(
@@ -142,10 +144,17 @@ pub fn install(step: *std.build.LibExeObjStep, options: CapyBuildOptions) !void 
                     key_store,
                 );
 
+                const capy_android = std.build.Pkg{
+                    .name = "capy",
+                    .source = std.build.FileSource { .path = prefix ++ "/src/main.zig" },
+                    .dependencies = &[_]std.build.Pkg{ zigimg, app.getAndroidPackage("android") },
+                };
                 for (app.libraries) |exe| {
                     // Provide the "android" package in each executable we build
-                    exe.addPackage(app.getAndroidPackage("android"));
+                    exe.addPackage(capy_android);
                 }
+                step.addPackage(capy_android);
+                step.export_symbol_names = &.{ "ANativeActivity_onCreate" };
 
                 // Make the app build when we invoke "zig build" or "zig build install"
                 // TODO: only invoke keystore if .build_config/android.keystore doesn't exist
@@ -161,6 +170,7 @@ pub fn install(step: *std.build.LibExeObjStep, options: CapyBuildOptions) !void 
                 // keystore_step.dependOn(sdk.initKeystore(key_store, .{}));
                 // push_step.dependOn(app.install());
                 // run_step.dependOn(app.run());
+                step.step.dependOn(app.install());
                 step.step.dependOn(app.run());
             } else {
                 step.linkLibC();
