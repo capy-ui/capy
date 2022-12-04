@@ -90,14 +90,17 @@ A platform is considered supported only if it can be built to from every other O
 
 ✅ FreeBSD x86_64  
 
-✅ WebAssembly  
-
 ### Mobile
 
-🏃 Android
+🧪 Android  
 🏃 iOS
 
+### Web
+
+✅ WebAssembly  
+
 - ✅ Working and can be cross-compile from all platforms supported by Zig
+- 🧪 Experimental
 - 🏃 Planned
 
 Note: As there's no "official" GUI library for Linux, GTK 3 has been chosen as it is the one
