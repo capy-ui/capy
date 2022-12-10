@@ -817,12 +817,44 @@ pub const ScrollView = struct {
 
 pub const ImageData = struct {
     peer: *c.GdkPixbuf,
+    mutex: std.Thread.Mutex = .{},
+
+    pub const DrawLock = struct {
+        _surface: *c.cairo_surface_t,
+        draw_context: Canvas.DrawContext,
+        data: *ImageData,
+
+        pub fn end(self: DrawLock) void {
+            c.cairo_destroy(self.draw_context.cr);
+            c.cairo_surface_destroy(self._surface);
+            self.data.mutex.unlock();
+        }
+    };
 
     // TODO: copy bytes to a new array
     pub fn from(width: usize, height: usize, stride: usize, cs: lib.Colorspace, bytes: []const u8) !ImageData {
         const pixbuf = c.gdk_pixbuf_new_from_data(bytes.ptr, c.GDK_COLORSPACE_RGB, @boolToInt(cs == .RGBA), 8, @intCast(c_int, width), @intCast(c_int, height), @intCast(c_int, stride), null, null) orelse return BackendError.UnknownError;
 
         return ImageData{ .peer = pixbuf };
+    }
+
+    pub fn draw(self: *ImageData) DrawLock {
+        self.mutex.lock();
+        // TODO: just create one surface and use it forever
+        const surface = c.cairo_surface_create_from_pixbuf(self.peer, 1, null);
+        const cr = c.cairo_create(surface);
+        return DrawLock{
+            ._surface = surface,
+            .draw_context = .{ .cr = cr },
+            .data = self,
+        };
+    }
+
+    pub fn deinit(self: *ImageData) void {
+        self.mutex.lock();
+        defer self.mutex.unlock();
+
+        c.g_object_unref(@ptrCast(*c.GObject, @alignCast(@alignOf(c.GObject), self.peer)));
     }
 };
 

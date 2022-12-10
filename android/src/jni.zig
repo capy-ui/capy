@@ -32,7 +32,7 @@ pub const JNI = struct {
         return @typeInfo(@typeInfo(std.meta.fieldInfo(android.JNINativeInterface, function).field_type).Pointer.child).Fn.return_type.?;
     }
 
-    pub fn invokeJni(self: *Self, comptime function: @TypeOf(.literal), args: anytype) JniReturnType(function) {
+    pub inline fn invokeJni(self: *Self, comptime function: @TypeOf(.literal), args: anytype) JniReturnType(function) {
         return @call(
             .{},
             @field(self.env.*, @tagName(function)),

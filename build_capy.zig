@@ -128,6 +128,7 @@ pub fn install(step: *std.build.LibExeObjStep, options: CapyBuildOptions) !void 
                     // This is a list of native android apis to link against.
                     .libraries = libraries.items,
                     .packages = &.{ },
+                    //.fullscreen = true,
                 };
 
                 const app = sdk.createApp(

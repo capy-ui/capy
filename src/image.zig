@@ -1,9 +1,11 @@
 const std = @import("std");
 const backend = @import("backend.zig");
+const internal = @import("internal.zig");
 const Size = @import("data.zig").Size;
 const zigimg = @import("zigimg");
 const DataWrapper = @import("data.zig").DataWrapper;
 
+// TODO: use zigimg's structs instead of duplicating efforts
 const Colorspace = @import("color.zig").Colorspace;
 
 /// As of now, Capy UI only supports RGB and RGBA images
@@ -13,14 +15,25 @@ pub const ImageData = struct {
     height: u32,
     /// Value pointing to the image data
     peer: backend.ImageData,
+    data: []const u8,
+    allocator: ?std.mem.Allocator = null,
 
-    pub fn fromBytes(width: u32, height: u32, stride: u32, cs: Colorspace, bytes: []const u8) !ImageData {
+    pub fn new(width: u32, height: u32, cs: Colorspace) !ImageData {
+        const stride = width * cs.byteCount();
+        const bytes = try internal.lasting_allocator.alloc(u8, stride * height);
+        std.mem.set(u8, bytes, 0x00);
+        return fromBytes(width, height, stride, cs, bytes, internal.lasting_allocator);
+    }
+
+    pub fn fromBytes(width: u32, height: u32, stride: u32, cs: Colorspace, bytes: []const u8, allocator: ?std.mem.Allocator) !ImageData {
         std.debug.assert(bytes.len >= stride * height);
         return ImageData{
             .width = width,
             .height = height,
             .stride = stride,
             .peer = try backend.ImageData.from(width, height, stride, cs, bytes),
+            .data = bytes,
+            .allocator = allocator,
         };
     }
 
@@ -62,7 +75,16 @@ pub const ImageData = struct {
             @intCast(u32, img.rowByteSize()),
             .RGBA,
             bytes,
+            allocator,
         );
+    }
+
+    pub fn deinit(self: *ImageData) void {
+        self.peer.deinit();
+        if (self.allocator) |allocator| {
+            allocator.free(self.data);
+        }
+        self.* = undefined;
     }
 };
 

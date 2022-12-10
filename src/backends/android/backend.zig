@@ -61,7 +61,7 @@ pub fn Events(comptime T: type) type {
             const jni = &theApp.jni;
             var data = try lib.internal.lasting_allocator.create(EventUserData);
             data.* = EventUserData{ .peer = widget }; // ensure that it uses default values
-            std.log.info("Cast {*} to Long", .{ data });
+            std.log.info("Cast {*} to Long", .{data});
 
             // Wrap the memory address in a Long object
             // Right now, it relies on the hope the memory address is < 0x7fffffffffffffff otherwise it will
@@ -119,23 +119,31 @@ pub fn Events(comptime T: type) type {
         }
 
         pub fn getWidth(self: *const T) c_int {
-            // TODO
+            // const jni = &theApp.jni;
+            // const View = jni.findClass("android/view/View");
+            // const getMeasuredWidth = jni.invokeJni(.GetMethodID, .{ View, "getMeasuredWidth", "()I" });
+            // const width = jni.invokeJni(.CallIntMethod, .{ self.peer, getMeasuredWidth });
+            // return width;
             _ = self;
-            return 10;
+            return 800;
         }
 
         pub fn getHeight(self: *const T) c_int {
-            // TODO
+            // const jni = &theApp.jni;
+            // const View = jni.findClass("android/view/View");
+            // const getMeasuredHeight = jni.invokeJni(.GetMethodID, .{ View, "getMeasuredHeight", "()I" });
+            // const height = jni.invokeJni(.CallIntMethod, .{ self.peer, getMeasuredHeight });
+            // return height;
             _ = self;
-            return 10;
+            return 800;
         }
 
         pub fn getPreferredSize(self: *const T) lib.Size {
             // TODO
             _ = self;
             return lib.Size.init(
-                10,
-                10,
+                100,
+                100,
             );
         }
     };
@@ -166,16 +174,22 @@ pub const Window = struct {
 
     pub fn setChild(self: *Window, peer: ?PeerType) void {
         self.show();
-        
+
         const jni = &theApp.jni;
         const activityClass = jni.findClass("android/app/NativeActivity");
         const setContentView = jni.invokeJni(.GetMethodID, .{ activityClass, "setContentView", "(Landroid/view/View;)V" });
-        std.log.info("NativeActivity.setContentView({?})", .{ peer });
+        std.log.info("NativeActivity.setContentView({?})", .{peer});
+        //_ = setContentView;
         jni.invokeJni(.CallVoidMethod, .{
             theApp.activity.clazz,
             setContentView,
             peer,
         });
+
+        const View = jni.findClass("android/view/View");
+        const getMeasuredWidth = jni.invokeJni(.GetMethodID, .{ View, "getWidth", "()I" });
+        const width = jni.invokeJni(.CallIntMethod, .{ peer.?, getMeasuredWidth });
+        std.log.info("measured width: {d}", .{width});
 
         getEventUserData(peer.?).user.resizeHandler.?(800, 800, getEventUserData(peer.?).userdata);
     }
@@ -196,7 +210,7 @@ pub const Window = struct {
             const jni = &theApp.jni;
             _ = activeWindows.fetchAdd(1, .SeqCst);
             std.log.info("edit activity", .{});
-            
+
             // Get the window associated to the current NativeActivity
             const activityClass = jni.findClass("android/app/NativeActivity");
             const getWindow = jni.invokeJni(.GetMethodID, .{ activityClass, "getWindow", "()Landroid/view/Window;" });
@@ -288,7 +302,6 @@ pub const Canvas = struct {
     pub usingnamespace Events(Canvas);
 
     pub const DrawContext = struct {
-
         pub const Font = struct {
             face: [:0]const u8,
             size: f64,
@@ -431,13 +444,9 @@ pub const Container = struct {
     pub fn add(self: *const Container, peer: PeerType) void {
         std.log.info("add peer to container", .{});
         const jni = &theApp.jni;
-        const LayoutParams = jni.findClass("android/widget/AbsoluteLayout$LayoutParams");
-        const paramsInit = jni.invokeJni(.GetMethodID, .{ LayoutParams, "<init>", "(IIII)V" });
-        const params = jni.invokeJni(.NewObject, .{ LayoutParams, paramsInit, @as(c_int, 100), @as(c_int, 100), @as(c_int, 0), @as(c_int, 0) }).?;
-
         const AbsoluteLayout = jni.findClass("android/widget/AbsoluteLayout");
-        const addView = jni.invokeJni(.GetMethodID, .{ AbsoluteLayout, "addView", "(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V" });
-        jni.invokeJni(.CallVoidMethod, .{ self.peer, addView, peer, params });
+        const addView = jni.invokeJni(.GetMethodID, .{ AbsoluteLayout, "addView", "(Landroid/view/View;)V" });
+        jni.invokeJni(.CallVoidMethod, .{ self.peer, addView, peer });
     }
 
     pub fn remove(self: *const Container, peer: PeerType) void {
@@ -447,15 +456,35 @@ pub const Container = struct {
     }
 
     pub fn move(self: *const Container, peer: PeerType, x: u32, y: u32) void {
-        _ = self;
         std.log.info("move {*} to {d}, {d}", .{ peer, x, y });
+        const jni = &theApp.jni;
+        const View = jni.findClass("android/view/View");
+        const getLayoutParams = jni.invokeJni(.GetMethodID, .{ View, "getLayoutParams", "()Landroid/view/ViewGroup$LayoutParams;" });
+        const params = jni.invokeJni(.CallObjectMethod, .{ peer, getLayoutParams });
+
+        const LayoutParams = jni.findClass("android/widget/AbsoluteLayout$LayoutParams");
+        jni.invokeJni(.SetIntField, .{ params, jni.invokeJni(.GetFieldID, .{ LayoutParams, "x", "I" }), @intCast(c_int, x) });
+        jni.invokeJni(.SetIntField, .{ params, jni.invokeJni(.GetFieldID, .{ LayoutParams, "y", "I" }), @intCast(c_int, x) });
+
+        const AbsoluteLayout = jni.findClass("android/widget/AbsoluteLayout");
+        const updateViewLayout = jni.invokeJni(.GetMethodID, .{ AbsoluteLayout, "updateViewLayout", "(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V" });
+        jni.invokeJni(.CallVoidMethod, .{ self.peer, updateViewLayout, peer, params });
     }
 
     pub fn resize(self: *const Container, peer: PeerType, w: u32, h: u32) void {
-        _ = self;
-        _ = peer;
-        _ = w;
-        _ = h;
+        std.log.info("resize {*} to {d}, {d}", .{ peer, w, h });
+        const jni = &theApp.jni;
+        const View = jni.findClass("android/view/View");
+        const getLayoutParams = jni.invokeJni(.GetMethodID, .{ View, "getLayoutParams", "()Landroid/view/ViewGroup$LayoutParams;" });
+        const params = jni.invokeJni(.CallObjectMethod, .{ peer, getLayoutParams });
+
+        const LayoutParams = jni.findClass("android/widget/AbsoluteLayout$LayoutParams");
+        jni.invokeJni(.SetIntField, .{ params, jni.invokeJni(.GetFieldID, .{ LayoutParams, "width", "I" }), @intCast(c_int, w) });
+        jni.invokeJni(.SetIntField, .{ params, jni.invokeJni(.GetFieldID, .{ LayoutParams, "height", "I" }), @intCast(c_int, h) });
+
+        const AbsoluteLayout = jni.findClass("android/widget/AbsoluteLayout");
+        const updateViewLayout = jni.invokeJni(.GetMethodID, .{ AbsoluteLayout, "updateViewLayout", "(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V" });
+        jni.invokeJni(.CallVoidMethod, .{ self.peer, updateViewLayout, peer, params });
     }
 };
 
@@ -465,7 +494,7 @@ pub fn postEmptyEvent() void {
 
 pub fn runStep(step: shared.EventLoopStep) bool {
     _ = step;
-    return activeWindows.load(.Acquire) != 0;
+    return activeWindows.load(.Acquire) != 0 and theApp.running;
 }
 
 pub const backendExport = struct {
@@ -496,7 +525,20 @@ pub const backendExport = struct {
 
         pub fn start(self: *AndroidApp) !void {
             theApp = self;
-            self.thread = try std.Thread.spawn(.{}, mainLoop, .{ self });
+            self.jni = android.JNI.init(self.activity);
+            defer self.jni.deinit();
+
+            std.log.err("Attempt to call NativeActivity.clearContentView()", .{});
+            const activityClass = self.jni.findClass("android/app/NativeActivity");
+            const getWindow = self.jni.invokeJni(.GetMethodID, .{ activityClass, "getWindow", "()Landroid/view/Window;" });
+            const window = self.jni.invokeJni(.CallObjectMethod, .{ self.activity.clazz, getWindow });
+            const PhoneWindow = self.jni.findClass("com/android/internal/policy/PhoneWindow");
+            const clearContentView = self.jni.invokeJni(.GetMethodID, .{ PhoneWindow, "clearContentView", "()V" });
+            self.jni.invokeJni(.CallVoidMethod, .{
+                window,
+                clearContentView,
+            });
+            self.thread = try std.Thread.spawn(.{}, mainLoop, .{self});
         }
 
         pub fn deinit(self: *AndroidApp) void {
@@ -505,7 +547,6 @@ pub const backendExport = struct {
                 thread.join();
                 self.thread = null;
             }
-            self.jni.deinit();
         }
 
         pub fn onNativeWindowCreated(self: *AndroidApp, window: *android.ANativeWindow) void {
@@ -548,11 +589,11 @@ pub const backendExport = struct {
         }
 
         fn mainLoop(self: *AndroidApp) !void {
-            self.jni = android.JNI.init(self.activity);
-            self.setAppContentView();
+            std.time.sleep(5000 * std.time.ns_per_ms);
+            _ = self;
+
+            //self.setAppContentView();
             try @import("root").main();
         }
-
     };
-    
 };
