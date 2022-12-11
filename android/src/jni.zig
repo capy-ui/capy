@@ -12,7 +12,16 @@ pub const JNI = struct {
     pub fn init(activity: *android.ANativeActivity) Self {
         var env: *android.JNIEnv = undefined;
         _ = activity.vm.*.AttachCurrentThread(activity.vm, &env, null);
+        return fromJniEnv(activity, env);
+    }
 
+    pub fn get(activity: *android.ANativeActivity) Self {
+        var env: *android.JNIEnv = undefined;
+        _ = activity.vm.*.GetEnv(activity.vm, @ptrCast(*?*anyopaque, &env), android.JNI_VERSION_1_6);
+        return fromJniEnv(activity, env);
+    }
+
+    fn fromJniEnv(activity: *android.ANativeActivity, env: *android.JNIEnv) Self {
         var activityClass = env.*.FindClass(env, "android/app/NativeActivity");
 
         return Self{
@@ -32,7 +41,7 @@ pub const JNI = struct {
         return @typeInfo(@typeInfo(std.meta.fieldInfo(android.JNINativeInterface, function).field_type).Pointer.child).Fn.return_type.?;
     }
 
-    pub inline fn invokeJni(self: *Self, comptime function: @TypeOf(.literal), args: anytype) JniReturnType(function) {
+    pub inline fn invokeJni(self: Self, comptime function: @TypeOf(.literal), args: anytype) JniReturnType(function) {
         return @call(
             .{},
             @field(self.env.*, @tagName(function)),
@@ -40,11 +49,11 @@ pub const JNI = struct {
         );
     }
 
-    pub fn findClass(self: *Self, class: [:0]const u8) android.jclass {
+    pub fn findClass(self: Self, class: [:0]const u8) android.jclass {
         return self.invokeJni(.FindClass, .{class.ptr});
     }
 
-    pub fn newString(self: *Self, string: [*:0]const u8) android.jstring {
+    pub fn newString(self: Self, string: [*:0]const u8) android.jstring {
         return self.invokeJni(.NewStringUTF, .{ string });
     }
 
