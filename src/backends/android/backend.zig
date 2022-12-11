@@ -119,23 +119,38 @@ pub fn Events(comptime T: type) type {
         }
 
         pub fn getWidth(self: *const T) c_int {
-            // const jni = &theApp.jni;
-            // const View = jni.findClass("android/view/View");
-            // const getMeasuredWidth = jni.invokeJni(.GetMethodID, .{ View, "getMeasuredWidth", "()I" });
-            // const width = jni.invokeJni(.CallIntMethod, .{ self.peer, getMeasuredWidth });
-            // return width;
-            _ = self;
-            return 800;
+            theApp.runOnUiThread(struct {
+                fn callback(self_ptr: *const T) void {
+                    const jni = theApp.getJni();
+                    const View = jni.findClass("android/view/View");
+                    const measure = jni.invokeJni(.GetMethodID, .{ View, "measure", "(II)V" });
+                    jni.invokeJni(.CallVoidMethod, .{ self_ptr.peer, measure, @as(c_int, 0), @as(c_int, 0) });
+                }
+            }.callback, .{ self }) catch unreachable;
+
+            const jni = theApp.getJni();
+            const View = jni.findClass("android/view/View");
+            const getMeasuredWidth = jni.invokeJni(.GetMethodID, .{ View, "getWidth", "()I" });
+            const width = jni.invokeJni(.CallIntMethod, .{ self.peer, getMeasuredWidth });
+            std.log.info("width = {d}", .{ width });
+            return width;
         }
 
         pub fn getHeight(self: *const T) c_int {
-            // const jni = &theApp.jni;
-            // const View = jni.findClass("android/view/View");
-            // const getMeasuredHeight = jni.invokeJni(.GetMethodID, .{ View, "getMeasuredHeight", "()I" });
-            // const height = jni.invokeJni(.CallIntMethod, .{ self.peer, getMeasuredHeight });
-            // return height;
-            _ = self;
-            return 800;
+            theApp.runOnUiThread(struct {
+                fn callback(self_ptr: *const T) void {
+                    const jni = theApp.getJni();
+                    const View = jni.findClass("android/view/View");
+                    const measure = jni.invokeJni(.GetMethodID, .{ View, "measure", "(II)V" });
+                    jni.invokeJni(.CallVoidMethod, .{ self_ptr.peer, measure, @as(c_int, 0), @as(c_int, 0) });
+                }
+            }.callback, .{ self }) catch unreachable;
+
+            const jni = theApp.getJni();
+            const View = jni.findClass("android/view/View");
+            const getMeasuredHeight = jni.invokeJni(.GetMethodID, .{ View, "getHeight", "()I" });
+            const height = jni.invokeJni(.CallIntMethod, .{ self.peer, getMeasuredHeight });
+            return height;
         }
 
         pub fn getPreferredSize(self: *const T) lib.Size {
@@ -487,36 +502,45 @@ pub const Container = struct {
         @panic("TODO: remove");
     }
 
-    pub fn move(self: *const Container, peer: PeerType, x: u32, y: u32) void {
-        std.log.info("move {*} to {d}, {d}", .{ peer, x, y });
-        const jni = theApp.getJni();
-        const View = jni.findClass("android/view/View");
-        const getLayoutParams = jni.invokeJni(.GetMethodID, .{ View, "getLayoutParams", "()Landroid/view/ViewGroup$LayoutParams;" });
-        const params = jni.invokeJni(.CallObjectMethod, .{ peer, getLayoutParams });
+    pub fn move(in_self: *const Container, in_peer: PeerType, in_x: u32, in_y: u32) void {
+        theApp.runOnUiThread(struct {
+            fn callback(self: *const Container, peer: PeerType, x: u32, y: u32) void {
+                std.log.info("move {*} to {d}, {d}", .{ peer, x, y });
+                const jni = theApp.getJni();
+                const View = jni.findClass("android/view/View");
+                const getLayoutParams = jni.invokeJni(.GetMethodID, .{ View, "getLayoutParams", "()Landroid/view/ViewGroup$LayoutParams;" });
+                const params = jni.invokeJni(.CallObjectMethod, .{ peer, getLayoutParams });
 
-        const LayoutParams = jni.findClass("android/widget/AbsoluteLayout$LayoutParams");
-        jni.invokeJni(.SetIntField, .{ params, jni.invokeJni(.GetFieldID, .{ LayoutParams, "x", "I" }), @intCast(c_int, x) });
-        jni.invokeJni(.SetIntField, .{ params, jni.invokeJni(.GetFieldID, .{ LayoutParams, "y", "I" }), @intCast(c_int, x) });
+                const LayoutParams = jni.findClass("android/widget/AbsoluteLayout$LayoutParams");
+                jni.invokeJni(.SetIntField, .{ params, jni.invokeJni(.GetFieldID, .{ LayoutParams, "x", "I" }), @intCast(c_int, x) });
+                jni.invokeJni(.SetIntField, .{ params, jni.invokeJni(.GetFieldID, .{ LayoutParams, "y", "I" }), @intCast(c_int, x) });
 
-        const AbsoluteLayout = jni.findClass("android/widget/AbsoluteLayout");
-        const updateViewLayout = jni.invokeJni(.GetMethodID, .{ AbsoluteLayout, "updateViewLayout", "(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V" });
-        jni.invokeJni(.CallVoidMethod, .{ self.peer, updateViewLayout, peer, params });
+                const AbsoluteLayout = jni.findClass("android/widget/AbsoluteLayout");
+                const updateViewLayout = jni.invokeJni(.GetMethodID, .{ AbsoluteLayout, "updateViewLayout", "(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V" });
+                jni.invokeJni(.CallVoidMethod, .{ self.peer, updateViewLayout, peer, params });
+            }
+        }.callback, .{ in_self, in_peer, in_x, in_y }) catch unreachable;
     }
 
-    pub fn resize(self: *const Container, peer: PeerType, w: u32, h: u32) void {
-        std.log.info("resize {*} to {d}, {d}", .{ peer, w, h });
-        const jni = theApp.getJni();
-        const View = jni.findClass("android/view/View");
-        const getLayoutParams = jni.invokeJni(.GetMethodID, .{ View, "getLayoutParams", "()Landroid/view/ViewGroup$LayoutParams;" });
-        const params = jni.invokeJni(.CallObjectMethod, .{ peer, getLayoutParams });
+    pub fn resize(in_self: *const Container, in_peer: PeerType, in_w: u32, in_h: u32) void {
+        theApp.runOnUiThread(struct {
+            fn callback(self: *const Container, peer: PeerType, w: u32, h: u32) void {
+                std.log.info("resize {*} to {d}, {d}", .{ peer, w, h });
+                const jni = theApp.getJni();
+                const View = jni.findClass("android/view/View");
+                const getLayoutParams = jni.invokeJni(.GetMethodID, .{ View, "getLayoutParams", "()Landroid/view/ViewGroup$LayoutParams;" });
+                const params = jni.invokeJni(.CallObjectMethod, .{ peer, getLayoutParams });
 
-        const LayoutParams = jni.findClass("android/widget/AbsoluteLayout$LayoutParams");
-        jni.invokeJni(.SetIntField, .{ params, jni.invokeJni(.GetFieldID, .{ LayoutParams, "width", "I" }), @intCast(c_int, w) });
-        jni.invokeJni(.SetIntField, .{ params, jni.invokeJni(.GetFieldID, .{ LayoutParams, "height", "I" }), @intCast(c_int, h) });
+                const LayoutParams = jni.findClass("android/widget/AbsoluteLayout$LayoutParams");
+                jni.invokeJni(.SetIntField, .{ params, jni.invokeJni(.GetFieldID, .{ LayoutParams, "width", "I" }), @intCast(c_int, w) });
+                jni.invokeJni(.SetIntField, .{ params, jni.invokeJni(.GetFieldID, .{ LayoutParams, "height", "I" }), @intCast(c_int, h) });
 
-        const AbsoluteLayout = jni.findClass("android/widget/AbsoluteLayout");
-        const updateViewLayout = jni.invokeJni(.GetMethodID, .{ AbsoluteLayout, "updateViewLayout", "(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V" });
-        jni.invokeJni(.CallVoidMethod, .{ self.peer, updateViewLayout, peer, params });
+                const AbsoluteLayout = jni.findClass("android/widget/AbsoluteLayout");
+                const updateViewLayout = jni.invokeJni(.GetMethodID, .{ AbsoluteLayout, "updateViewLayout", "(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V" });
+                jni.invokeJni(.CallVoidMethod, .{ self.peer, updateViewLayout, peer, params });
+            }
+        }.callback, .{ in_self, in_peer, in_w, in_h }) catch unreachable;
+        getEventUserData(in_peer).user.resizeHandler.?(in_w, in_h, getEventUserData(in_peer).userdata);
     }
 };
 
