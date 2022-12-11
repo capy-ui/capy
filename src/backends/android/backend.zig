@@ -509,9 +509,18 @@ pub const backendExport = struct {
     pub const AndroidApp = struct {
         allocator: std.mem.Allocator,
         activity: *android.ANativeActivity,
-        jni: android.JNI = undefined,
         thread: ?std.Thread = null,
+        uiThreadLooper: *android.ALooper = undefined,
         running: bool = true,
+
+        // The JNIEnv of the UI thread
+        uiJni: android.JNI = undefined,
+        // The JNIEnv of the app thread
+        mainJni: android.JNI = undefined,
+
+        // This is needed because to run a callback on the UI thread Looper you must
+        // react to a fd change, so we use a pipe to force it
+        pipe: [2]std.os.fd_t = undefined,
 
         // TODO: add an interface in capy for handling stored state
         pub fn init(allocator: std.mem.Allocator, activity: *android.ANativeActivity, stored_state: ?[]const u8) !AndroidApp {
@@ -525,20 +534,56 @@ pub const backendExport = struct {
 
         pub fn start(self: *AndroidApp) !void {
             theApp = self;
-            self.jni = android.JNI.init(self.activity);
-            defer self.jni.deinit();
+            self.uiThreadLooper = android.ALooper_forThread().?;
+            self.pipe = try std.os.pipe();
+            android.ALooper_acquire(self.uiThreadLooper);
+
+            var jni = android.JNI.init(self.activity);
+            self.uiJni = jni;
 
             std.log.err("Attempt to call NativeActivity.clearContentView()", .{});
-            const activityClass = self.jni.findClass("android/app/NativeActivity");
-            const getWindow = self.jni.invokeJni(.GetMethodID, .{ activityClass, "getWindow", "()Landroid/view/Window;" });
-            const window = self.jni.invokeJni(.CallObjectMethod, .{ self.activity.clazz, getWindow });
-            const PhoneWindow = self.jni.findClass("com/android/internal/policy/PhoneWindow");
-            const clearContentView = self.jni.invokeJni(.GetMethodID, .{ PhoneWindow, "clearContentView", "()V" });
-            self.jni.invokeJni(.CallVoidMethod, .{
+            const activityClass = jni.findClass("android/app/NativeActivity");
+            const getWindow = jni.invokeJni(.GetMethodID, .{ activityClass, "getWindow", "()Landroid/view/Window;" });
+            const window = jni.invokeJni(.CallObjectMethod, .{ self.activity.clazz, getWindow });
+            const PhoneWindow = jni.findClass("com/android/internal/policy/PhoneWindow");
+            const clearContentView = jni.invokeJni(.GetMethodID, .{ PhoneWindow, "clearContentView", "()V" });
+            jni.invokeJni(.CallVoidMethod, .{
                 window,
                 clearContentView,
             });
             self.thread = try std.Thread.spawn(.{}, mainLoop, .{self});
+        }
+
+        pub fn runOnUiThread(self: *AndroidApp, comptime func: anytype, args: anytype) !void {
+            // TODO: use a mutex so that there aren't concurrent requests which wouldn't mix well with addFd
+            const Args = @TypeOf(args);
+            const allocator = lib.internal.scratch_allocator;
+
+            const args_ptr = try allocator.create(Args);
+            args_ptr.* = args;
+            errdefer allocator.destroy(args_ptr);
+
+            const Instance = struct {
+                fn callback(_: c_int, _: c_int, data: ?*anyopaque) callconv(.C) c_int {
+                    const args_data = @ptrCast(*Args, @alignCast(@alignOf(Args), data.?));
+                    defer allocator.destroy(args_data);
+
+                    @call(.{}, func, args_data.*);
+                    return 0;
+                }
+            };
+
+            const result = android.ALooper_addFd(self.uiThreadLooper,
+                self.pipe[0],
+                0,
+                android.ALOOPER_EVENT_INPUT,
+                Instance.callback,
+                args_ptr,
+            );
+            std.debug.assert(try std.os.write(self.pipe[1], "hello") == 5);
+            if (result == -1) {
+                return error.LooperError;
+            }
         }
 
         pub fn deinit(self: *AndroidApp) void {
@@ -547,6 +592,8 @@ pub const backendExport = struct {
                 thread.join();
                 self.thread = null;
             }
+            android.ALooper_release(self.uiThreadLooper);
+            self.uiJni.deinit();
         }
 
         pub fn onNativeWindowCreated(self: *AndroidApp, window: *android.ANativeWindow) void {
@@ -556,32 +603,35 @@ pub const backendExport = struct {
         }
 
         fn setAppContentView(self: *AndroidApp) void {
-            std.log.warn("Creating android.widget.TextView", .{});
-            const TextView = self.jni.findClass("android/widget/TextView");
-            const textViewInit = self.jni.invokeJni(.GetMethodID, .{ TextView, "<init>", "(Landroid/content/Context;)V" });
-            const textView = self.jni.invokeJni(.NewObject, .{ TextView, textViewInit, self.activity.clazz });
+            const jni = &self.uiJni;
 
-            const setText = self.jni.invokeJni(.GetMethodID, .{ TextView, "setText", "(Ljava/lang/CharSequence;)V" });
-            self.jni.invokeJni(.CallVoidMethod, .{ textView, setText, self.jni.newString("Hello from Zig!") });
+            std.log.warn("Creating android.widget.TextView", .{});
+            const TextView = jni.findClass("android/widget/TextView");
+            std.log.warn("Found android.widget.TextView", .{});
+            const textViewInit = jni.invokeJni(.GetMethodID, .{ TextView, "<init>", "(Landroid/content/Context;)V" });
+            const textView = jni.invokeJni(.NewObject, .{ TextView, textViewInit, self.activity.clazz });
+
+            const setText = jni.invokeJni(.GetMethodID, .{ TextView, "setText", "(Ljava/lang/CharSequence;)V" });
+            jni.invokeJni(.CallVoidMethod, .{ textView, setText, jni.newString("Hello from Zig!") });
 
             std.log.info("Attempt to call NativeActivity.getWindow()", .{});
-            const activityClass = self.jni.findClass("android/app/NativeActivity");
-            const getWindow = self.jni.invokeJni(.GetMethodID, .{ activityClass, "getWindow", "()Landroid/view/Window;" });
-            const activityWindow = self.jni.invokeJni(.CallObjectMethod, .{ self.activity.clazz, getWindow });
-            const WindowClass = self.jni.findClass("android/view/Window");
+            const activityClass = jni.findClass("android/app/NativeActivity");
+            const getWindow = jni.invokeJni(.GetMethodID, .{ activityClass, "getWindow", "()Landroid/view/Window;" });
+            const activityWindow = jni.invokeJni(.CallObjectMethod, .{ self.activity.clazz, getWindow });
+            const WindowClass = jni.findClass("android/view/Window");
 
             // This disables the surface handler set by default by android.view.NativeActivity
             // This way we let the content view do the drawing instead of us.
-            const takeSurface = self.jni.invokeJni(.GetMethodID, .{ WindowClass, "takeSurface", "(Landroid/view/SurfaceHolder$Callback2;)V" });
-            self.jni.invokeJni(.CallVoidMethod, .{
+            const takeSurface = jni.invokeJni(.GetMethodID, .{ WindowClass, "takeSurface", "(Landroid/view/SurfaceHolder$Callback2;)V" });
+            jni.invokeJni(.CallVoidMethod, .{
                 activityWindow,
                 takeSurface,
                 @as(android.jobject, null),
             });
 
             std.log.err("Attempt to call NativeActivity.setContentView()", .{});
-            const setContentView = self.jni.invokeJni(.GetMethodID, .{ activityClass, "setContentView", "(Landroid/view/View;)V" });
-            self.jni.invokeJni(.CallVoidMethod, .{
+            const setContentView = jni.invokeJni(.GetMethodID, .{ activityClass, "setContentView", "(Landroid/view/View;)V" });
+            jni.invokeJni(.CallVoidMethod, .{
                 self.activity.clazz,
                 setContentView,
                 textView,
@@ -589,11 +639,17 @@ pub const backendExport = struct {
         }
 
         fn mainLoop(self: *AndroidApp) !void {
-            std.time.sleep(5000 * std.time.ns_per_ms);
-            _ = self;
+            self.mainJni = android.JNI.init(self.activity);
+            defer self.mainJni.deinit();
+
+            try self.runOnUiThread(setAppContentView, .{ self });
+            while (self.running) {
+                std.time.sleep(1000 * std.time.ns_per_ms);
+            }
+            //_ = self;
 
             //self.setAppContentView();
-            try @import("root").main();
+            //try @import("root").main();
         }
     };
 };
