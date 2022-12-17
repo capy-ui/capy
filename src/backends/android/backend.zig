@@ -38,6 +38,7 @@ pub const EventUserData = struct {
     classUserdata: usize = 0,
     peer: PeerType,
     focusOnClick: bool = false,
+    overridenSize: ?lib.Size = null,
 };
 
 const EVENT_USER_DATA_KEY: c_int = 1888792543; // guarenteed by a fair dice roll
@@ -119,36 +120,27 @@ pub fn Events(comptime T: type) type {
         }
 
         pub fn getWidth(self: *const T) c_int {
-            theApp.runOnUiThread(struct {
-                fn callback(self_ptr: *const T) void {
-                    const jni = theApp.getJni();
-                    const View = jni.findClass("android/view/View");
-                    const measure = jni.invokeJni(.GetMethodID, .{ View, "measure", "(II)V" });
-                    jni.invokeJni(.CallVoidMethod, .{ self_ptr.peer, measure, @as(c_int, 0), @as(c_int, 0) });
-                }
-            }.callback, .{ self }) catch unreachable;
+            const data = getEventUserData(self.peer);
+            if (data.overridenSize) |size| {
+                return @intCast(c_int, size.width);
+            }
 
             const jni = theApp.getJni();
             const View = jni.findClass("android/view/View");
-            const getMeasuredWidth = jni.invokeJni(.GetMethodID, .{ View, "getWidth", "()I" });
+            const getMeasuredWidth = jni.invokeJni(.GetMethodID, .{ View, "getMeasuredWidth", "()I" });
             const width = jni.invokeJni(.CallIntMethod, .{ self.peer, getMeasuredWidth });
-            std.log.info("width = {d}", .{ width });
             return width;
         }
 
         pub fn getHeight(self: *const T) c_int {
-            theApp.runOnUiThread(struct {
-                fn callback(self_ptr: *const T) void {
-                    const jni = theApp.getJni();
-                    const View = jni.findClass("android/view/View");
-                    const measure = jni.invokeJni(.GetMethodID, .{ View, "measure", "(II)V" });
-                    jni.invokeJni(.CallVoidMethod, .{ self_ptr.peer, measure, @as(c_int, 0), @as(c_int, 0) });
-                }
-            }.callback, .{ self }) catch unreachable;
+            const data = getEventUserData(self.peer);
+            if (data.overridenSize) |size| {
+                return @intCast(c_int, size.height);
+            }
 
             const jni = theApp.getJni();
             const View = jni.findClass("android/view/View");
-            const getMeasuredHeight = jni.invokeJni(.GetMethodID, .{ View, "getHeight", "()I" });
+            const getMeasuredHeight = jni.invokeJni(.GetMethodID, .{ View, "getMeasuredHeight", "()I" });
             const height = jni.invokeJni(.CallIntMethod, .{ self.peer, getMeasuredHeight });
             return height;
         }
@@ -157,7 +149,7 @@ pub fn Events(comptime T: type) type {
             // TODO
             _ = self;
             return lib.Size.init(
-                100,
+                200,
                 100,
             );
         }
@@ -202,15 +194,12 @@ pub const Window = struct {
                     setContentView,
                     peer,
                 });
-
-                const View = jni.findClass("android/view/View");
-                const getMeasuredWidth = jni.invokeJni(.GetMethodID, .{ View, "getWidth", "()I" });
-                const width = jni.invokeJni(.CallIntMethod, .{ peer.?, getMeasuredWidth });
-                std.log.info("measured width: {d}", .{width});
             }
         }.callback, .{ in_peer }) catch unreachable;
 
-        getEventUserData(in_peer.?).user.resizeHandler.?(800, 800, getEventUserData(in_peer.?).userdata);
+        const data = getEventUserData(in_peer.?);
+        data.overridenSize = lib.Size.init(720, 1080);
+        data.user.resizeHandler.?(720, 800, data.userdata);
     }
 
     pub fn setSourceDpi(self: *Window, dpi: u32) void {
@@ -481,19 +470,15 @@ pub const Container = struct {
     pub fn add(in_self: *const Container, in_peer: PeerType) void {
         theApp.runOnUiThread(struct {
             fn callback(self: *const Container, peer: PeerType) void {
-                std.log.err("add peer to container", .{});
-                std.log.err("self.peer1: {*}, peer: {*}", .{ self.peer, peer });
                 const jni = theApp.getJni();
                 const AbsoluteLayout = jni.findClass("android/widget/AbsoluteLayout");
                 const LayoutParams = jni.findClass("android/widget/AbsoluteLayout$LayoutParams");
                 const paramsInit = jni.invokeJni(.GetMethodID, .{ LayoutParams, "<init>", "(IIII)V" });
                 const params = jni.invokeJni(.NewObject, .{ LayoutParams, paramsInit, @as(c_int, 100), @as(c_int, 100), @as(c_int, 0), @as(c_int, 0) });
                 const addView = jni.invokeJni(.GetMethodID, .{ AbsoluteLayout, "addView", "(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V" });
-                std.log.err("self.peer: {*}, peer: {*}", .{ self.peer, peer });
                 jni.invokeJni(.CallVoidMethod, .{ self.peer, addView, peer, params });
             }
         }.callback, .{ in_self, in_peer }) catch unreachable;
-        std.log.info("return from fn", .{});
     }
 
     pub fn remove(self: *const Container, peer: PeerType) void {
@@ -505,7 +490,7 @@ pub const Container = struct {
     pub fn move(in_self: *const Container, in_peer: PeerType, in_x: u32, in_y: u32) void {
         theApp.runOnUiThread(struct {
             fn callback(self: *const Container, peer: PeerType, x: u32, y: u32) void {
-                std.log.info("move {*} to {d}, {d}", .{ peer, x, y });
+                //std.log.info("move {*} to {d}, {d}", .{ peer, x, y });
                 const jni = theApp.getJni();
                 const View = jni.findClass("android/view/View");
                 const getLayoutParams = jni.invokeJni(.GetMethodID, .{ View, "getLayoutParams", "()Landroid/view/ViewGroup$LayoutParams;" });
@@ -513,7 +498,7 @@ pub const Container = struct {
 
                 const LayoutParams = jni.findClass("android/widget/AbsoluteLayout$LayoutParams");
                 jni.invokeJni(.SetIntField, .{ params, jni.invokeJni(.GetFieldID, .{ LayoutParams, "x", "I" }), @intCast(c_int, x) });
-                jni.invokeJni(.SetIntField, .{ params, jni.invokeJni(.GetFieldID, .{ LayoutParams, "y", "I" }), @intCast(c_int, x) });
+                jni.invokeJni(.SetIntField, .{ params, jni.invokeJni(.GetFieldID, .{ LayoutParams, "y", "I" }), @intCast(c_int, y) });
 
                 const AbsoluteLayout = jni.findClass("android/widget/AbsoluteLayout");
                 const updateViewLayout = jni.invokeJni(.GetMethodID, .{ AbsoluteLayout, "updateViewLayout", "(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V" });
@@ -525,7 +510,7 @@ pub const Container = struct {
     pub fn resize(in_self: *const Container, in_peer: PeerType, in_w: u32, in_h: u32) void {
         theApp.runOnUiThread(struct {
             fn callback(self: *const Container, peer: PeerType, w: u32, h: u32) void {
-                std.log.info("resize {*} to {d}, {d}", .{ peer, w, h });
+                //std.log.info("resize {*} to {d}, {d}", .{ peer, w, h });
                 const jni = theApp.getJni();
                 const View = jni.findClass("android/view/View");
                 const getLayoutParams = jni.invokeJni(.GetMethodID, .{ View, "getLayoutParams", "()Landroid/view/ViewGroup$LayoutParams;" });
@@ -538,6 +523,10 @@ pub const Container = struct {
                 const AbsoluteLayout = jni.findClass("android/widget/AbsoluteLayout");
                 const updateViewLayout = jni.invokeJni(.GetMethodID, .{ AbsoluteLayout, "updateViewLayout", "(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V" });
                 jni.invokeJni(.CallVoidMethod, .{ self.peer, updateViewLayout, peer, params });
+                const measure = jni.invokeJni(.GetMethodID, .{ View, "measure", "(II)V" });
+                jni.invokeJni(.CallVoidMethod, .{ self.peer, measure, @as(c_int, 0), @as(c_int, 0) });
+
+                getEventUserData(peer).overridenSize = lib.Size.init(w, h);
             }
         }.callback, .{ in_self, in_peer, in_w, in_h }) catch unreachable;
         getEventUserData(in_peer).user.resizeHandler.?(in_w, in_h, getEventUserData(in_peer).userdata);
@@ -573,6 +562,7 @@ pub const backendExport = struct {
         uiJni: android.JNI = undefined,
         // The JNIEnv of the app thread
         mainJni: android.JNI = undefined,
+        uiThreadId: std.Thread.Id = undefined,
 
         // This is needed because to run a callback on the UI thread Looper you must
         // react to a fd change, so we use a pipe to force it
@@ -594,6 +584,7 @@ pub const backendExport = struct {
         pub fn start(self: *AndroidApp) !void {
             theApp = self;
             self.uiThreadLooper = android.ALooper_forThread().?;
+            self.uiThreadId = std.Thread.getCurrentId();
             self.pipe = try std.os.pipe();
             android.ALooper_acquire(self.uiThreadLooper);
 
@@ -615,6 +606,13 @@ pub const backendExport = struct {
                 @as(android.jobject, null),
             });
 
+            const takeInputQueue = jni.invokeJni(.GetMethodID, .{ WindowClass, "takeInputQueue", "(Landroid/view/InputQueue$Callback;)V" });
+            jni.invokeJni(.CallVoidMethod, .{
+                activityWindow,
+                takeInputQueue,
+                @as(android.jobject, null),
+            });
+
             // std.log.err("Attempt to call NativeActivity.clearContentView()", .{});
             // const activityClass = jni.findClass("android/app/NativeActivity");
             // const getWindow = jni.invokeJni(.GetMethodID, .{ activityClass, "getWindow", "()Landroid/view/Window;" });
@@ -629,6 +627,12 @@ pub const backendExport = struct {
         }
 
         pub fn runOnUiThread(self: *AndroidApp, comptime func: anytype, args: anytype) !void {
+            if (std.Thread.getCurrentId() == self.uiThreadId) {
+                std.log.err("CALLED runOnUiThread FROM UI THREAD", .{});
+                @call(.{}, func, args);
+                return;
+            }
+
             // TODO: use a mutex so that there aren't concurrent requests which wouldn't mix well with addFd
             const Args = @TypeOf(args);
             const allocator = lib.internal.scratch_allocator;
