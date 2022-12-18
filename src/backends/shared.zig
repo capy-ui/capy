@@ -32,18 +32,18 @@ pub const MouseButton = enum(c_uint) {
 pub fn EventFunctions(comptime Backend: type) type {
     return struct {
         /// Only works for buttons
-        clickHandler: ?std.meta.FnPtr(fn (data: usize) void) = null,
-        mouseButtonHandler: ?std.meta.FnPtr(fn (button: MouseButton, pressed: bool, x: i32, y: i32, data: usize) void) = null,
+        clickHandler: ?*const fn (data: usize) void = null,
+        mouseButtonHandler: ?*const fn (button: MouseButton, pressed: bool, x: i32, y: i32, data: usize) void = null,
         // TODO: Mouse object with pressed buttons and more data
-        mouseMotionHandler: ?std.meta.FnPtr(fn (x: i32, y: i32, data: usize) void) = null,
-        keyTypeHandler: ?std.meta.FnPtr(fn (str: []const u8, data: usize) void) = null,
-        keyPressHandler: ?std.meta.FnPtr(fn (hardwareKeycode: u16, data: usize) void) = null,
+        mouseMotionHandler: ?*const fn (x: i32, y: i32, data: usize) void = null,
+        keyTypeHandler: ?*const fn (str: []const u8, data: usize) void = null,
+        keyPressHandler: ?*const fn (hardwareKeycode: u16, data: usize) void = null,
         // TODO: dx and dy are in pixels, not in lines
-        scrollHandler: ?std.meta.FnPtr(fn (dx: f32, dy: f32, data: usize) void) = null,
-        resizeHandler: ?std.meta.FnPtr(fn (width: u32, height: u32, data: usize) void) = null,
+        scrollHandler: ?*const fn (dx: f32, dy: f32, data: usize) void = null,
+        resizeHandler: ?*const fn (width: u32, height: u32, data: usize) void = null,
         /// Only works for canvas (althought technically it isn't required to)
-        drawHandler: ?std.meta.FnPtr(fn (ctx: *Backend.Canvas.DrawContext, data: usize) void) = null,
-        changedTextHandler: ?std.meta.FnPtr(fn (data: usize) void) = null,
+        drawHandler: ?*const fn (ctx: *Backend.Canvas.DrawContext, data: usize) void = null,
+        changedTextHandler: ?*const fn (data: usize) void = null,
     };
 }
 

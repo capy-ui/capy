@@ -75,7 +75,7 @@ pub fn Animation(comptime T: type) type {
         duration: u32,
         min: T,
         max: T,
-        animFn: std.meta.FnPtr(fn (t: f64) f64),
+        animFn: *const fn (t: f64) f64,
 
         /// Get the current value from the animation
         pub fn get(self: @This()) T {
@@ -99,7 +99,7 @@ pub fn isDataWrapper(comptime T: type) bool {
 }
 
 pub var _animatedDataWrappers = std.ArrayList(struct {
-    fnPtr: std.meta.FnPtr(fn (data: *anyopaque) bool),
+    fnPtr: *const fn (data: *anyopaque) bool,
     userdata: *anyopaque,
 }).init(lasting_allocator);
 
@@ -147,7 +147,7 @@ pub fn DataWrapper(comptime T: type) type {
         const IsAnimable = isAnimable(T);
 
         pub const ValueType = T;
-        pub const ChangeListener = struct { function: std.meta.FnPtr(fn (newValue: T, userdata: usize) void), userdata: usize = 0 };
+        pub const ChangeListener = struct { function: *const fn (newValue: T, userdata: usize) void, userdata: usize = 0 };
         const ChangeListenerList = std.SinglyLinkedList(ChangeListener);
 
         pub fn of(value: T) Self {
@@ -181,7 +181,7 @@ pub fn DataWrapper(comptime T: type) type {
             return self.value == .Animated;
         }
 
-        pub fn animate(self: *Self, anim: std.meta.FnPtr(fn (f64) f64), target: T, duration: u64) void {
+        pub fn animate(self: *Self, anim: *const fn (f64) f64, target: T, duration: u64) void {
             if (!IsAnimable) {
                 @compileError("animate() called on data that is not animable");
             }
@@ -203,7 +203,7 @@ pub fn DataWrapper(comptime T: type) type {
                 }
             }
             if (!contains) {
-                _animatedDataWrappers.append(.{ .fnPtr = @ptrCast(std.meta.FnPtr(fn (*anyopaque) bool), &Self.update), .userdata = self }) catch {};
+                _animatedDataWrappers.append(.{ .fnPtr = @ptrCast(*const fn (*anyopaque) bool, &Self.update), .userdata = self }) catch {};
             }
         }
 

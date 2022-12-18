@@ -7,11 +7,11 @@ const Rectangle = @import("data.zig").Rectangle;
 
 const convertTupleToWidgets = @import("internal.zig").convertTupleToWidgets;
 
-pub const Layout = std.meta.FnPtr(fn (peer: Callbacks, widgets: []Widget) void);
+pub const Layout = *const fn (peer: Callbacks, widgets: []Widget) void;
 const Callbacks = struct {
     userdata: usize,
-    moveResize: std.meta.FnPtr(fn (data: usize, peer: backend.PeerType, x: u32, y: u32, w: u32, h: u32) void),
-    getSize: std.meta.FnPtr(fn (data: usize) Size),
+    moveResize: *const fn (data: usize, peer: backend.PeerType, x: u32, y: u32, w: u32, h: u32) void,
+    getSize: *const fn (data: usize) Size,
     computingPreferredSize: bool,
     availableSize: ?Size = null,
     layoutConfig: [16]u8,
@@ -34,6 +34,7 @@ fn getExpandedCount(widgets: []Widget) u32 {
 
 const ColumnRowConfig = struct {
     spacing: u32 = 0,
+    wrapping: bool = false,
 };
 
 pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
@@ -413,6 +414,7 @@ pub const GridConfig = struct {
     alignX: ?f32 = null,
     alignY: ?f32 = null,
     spacing: u32 = 5,
+    wrapping: bool = false,
 };
 
 /// Set the style of the child to expanded by creating and showing the widget early.
@@ -430,11 +432,11 @@ pub inline fn Stack(childrens: anytype) anyerror!Container_Impl {
 }
 
 pub inline fn Row(config: GridConfig, childrens: anytype) anyerror!Container_Impl {
-    return try Container_Impl.init(try convertTupleToWidgets(childrens), config, RowLayout, ColumnRowConfig{ .spacing = config.spacing });
+    return try Container_Impl.init(try convertTupleToWidgets(childrens), config, RowLayout, ColumnRowConfig{ .spacing = config.spacing, .wrapping = config.wrapping });
 }
 
 pub inline fn Column(config: GridConfig, childrens: anytype) anyerror!Container_Impl {
-    return try Container_Impl.init(try convertTupleToWidgets(childrens), config, ColumnLayout, ColumnRowConfig{ .spacing = config.spacing });
+    return try Container_Impl.init(try convertTupleToWidgets(childrens), config, ColumnLayout, ColumnRowConfig{ .spacing = config.spacing, .wrapping = config.wrapping });
 }
 
 pub inline fn Margin(margin: Rectangle, child: anytype) anyerror!Container_Impl {
