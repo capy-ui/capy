@@ -580,9 +580,9 @@ pub const ReaderProcessor = struct {
     vtable: *const VTable,
 
     const VTable = struct {
-        chunk_processor: ?std.meta.FnPtr(fn (context: *anyopaque, data: *ChunkProcessData) Image.ReadError!PixelFormat),
-        palette_processor: ?std.meta.FnPtr(fn (context: *anyopaque, data: *PaletteProcessData) Image.ReadError!void),
-        data_row_processor: ?std.meta.FnPtr(fn (context: *anyopaque, data: *RowProcessData) Image.ReadError!PixelFormat),
+        chunk_processor: ?*const fn (context: *anyopaque, data: *ChunkProcessData) Image.ReadError!PixelFormat,
+        palette_processor: ?*const fn (context: *anyopaque, data: *PaletteProcessData) Image.ReadError!void,
+        data_row_processor: ?*const fn (context: *anyopaque, data: *RowProcessData) Image.ReadError!PixelFormat,
     };
 
     const Self = @This();
@@ -617,15 +617,15 @@ pub const ReaderProcessor = struct {
         const gen = struct {
             fn chunkProcessor(ptr: *anyopaque, data: *ChunkProcessData) Image.ReadError!PixelFormat {
                 const self = @ptrCast(Ptr, @alignCast(alignment, ptr));
-                return @call(.{ .modifier = .always_inline }, chunkProcessorFn.?, .{ self, data });
+                return @call(.always_inline, chunkProcessorFn.?, .{ self, data });
             }
             fn paletteProcessor(ptr: *anyopaque, data: *PaletteProcessData) Image.ReadError!void {
                 const self = @ptrCast(Ptr, @alignCast(alignment, ptr));
-                return @call(.{ .modifier = .always_inline }, paletteProcessorFn.?, .{ self, data });
+                return @call(.always_inline, paletteProcessorFn.?, .{ self, data });
             }
             fn dataRowProcessor(ptr: *anyopaque, data: *RowProcessData) Image.ReadError!PixelFormat {
                 const self = @ptrCast(Ptr, @alignCast(alignment, ptr));
-                return @call(.{ .modifier = .always_inline }, dataRowProcessorFn.?, .{ self, data });
+                return @call(.always_inline, dataRowProcessorFn.?, .{ self, data });
             }
 
             const vtable = VTable{

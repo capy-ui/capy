@@ -7,10 +7,10 @@ const ImageWriteError = Image.WriteError;
 
 // mlarouche: Because this is a interface, I use Zig function naming convention instead of the variable naming convention
 pub const FormatInterface = struct {
-    format: std.meta.FnPtr(FormatFn),
-    formatDetect: std.meta.FnPtr(FormatDetectFn),
-    readImage: std.meta.FnPtr(ReadImageFn),
-    writeImage: std.meta.FnPtr(WriteImageFn),
+    format: *const FormatFn,
+    formatDetect: *const FormatDetectFn,
+    readImage: *const ReadImageFn,
+    writeImage: *const WriteImageFn,
 
     pub const FormatFn = fn () Image.Format;
     pub const FormatDetectFn = fn (stream: *Image.Stream) ImageReadError!bool;

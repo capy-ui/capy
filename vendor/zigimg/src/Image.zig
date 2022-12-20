@@ -76,7 +76,7 @@ animation: Animation = .{},
 
 const Self = @This();
 
-const FormatInteraceFnType = std.meta.FnPtr(fn () FormatInterface);
+const FormatInteraceFnType = *const fn () FormatInterface;
 const all_interface_funcs = blk: {
     const allFormatDecls = std.meta.declarations(AllImageFormats);
     var result: [allFormatDecls.len]FormatInteraceFnType = undefined;
