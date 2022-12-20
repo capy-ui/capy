@@ -589,10 +589,10 @@ pub const Rectangle = struct {
     origin: Position,
     size: Size,
 
-    pub fn init(left: u32, top: u32, right: u32, bottom: u32) Rectangle {
+    pub fn init(ox: i32, oy: i32, owidth: u32, oheight: u32) Rectangle {
         return Rectangle{
-            .origin = .{ .x = left, .y = top },
-            .size = .{ .width = right, .height = bottom },
+            .origin = .{ .x = ox, .y = oy },
+            .size = .{ .width = owidth, .height = oheight },
         };
     }
 
@@ -601,6 +601,22 @@ pub const Rectangle = struct {
             .origin = Position.lerp(a.origin, b.origin, t),
             .size = Size.lerp(a.size, b.size, t),
         };
+    }
+
+    pub fn x(self: Rectangle) i32 {
+        return self.origin.x;
+    }
+
+    pub fn y(self: Rectangle) i32 {
+        return self.origin.y;
+    }
+
+    pub fn width(self: Rectangle) u32 {
+        return self.size.width;
+    }
+
+    pub fn height(self: Rectangle) u32 {
+        return self.size.height;
     }
 };
 

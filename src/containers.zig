@@ -159,18 +159,22 @@ pub fn MarginLayout(peer: Callbacks, widgets: []Widget) void {
 
     if (widgets[0].peer) |widgetPeer| {
         const available = peer.getSize(peer.userdata);
-        const preferredSize = widgets[0].getPreferredSize(.{ .width = 0, .height = 0 });
+        const left = std.math.lossyCast(u32, margin.x());
+        const top = std.math.lossyCast(u32, margin.y());
+        const right = margin.width();
+        const bottom = margin.height();
 
-        // const size = Size {
-        //     .width = std.math.max(@intCast(u32, preferredSize.width), margin.left + margin.right) - margin.left - margin.right,
-        //     .height = std.math.max(@intCast(u32, preferredSize.height), margin.top + margin.bottom) - margin.top - margin.bottom
-        // };
-        // _ = size;
-        //const finalSize = Size.combine(preferredSize, available);
-        _ = preferredSize;
-        _ = margin;
-        //peer.moveResize(peer.userdata, widgetPeer, margin.left, margin.top, finalSize.width, finalSize.height);
-        peer.moveResize(peer.userdata, widgetPeer, 0, 0, available.width, available.height);
+        if (peer.computingPreferredSize) {
+            // What to return for computing preferred size
+            const preferredSize = widgets[0].getPreferredSize(.{ .width = 0, .height = 0 });
+            peer.moveResize(peer.userdata, widgetPeer, left, top, preferredSize.width + right, preferredSize.height + bottom);
+        } else {
+            // What to return for actual layouting
+            const preferredSize = widgets[0].getPreferredSize(available);
+
+            const finalSize = Size.combine(preferredSize, available);
+            peer.moveResize(peer.userdata, widgetPeer, left, top, finalSize.width, finalSize.height);
+        }
     }
 }
 
