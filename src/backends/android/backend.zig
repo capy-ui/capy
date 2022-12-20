@@ -195,7 +195,7 @@ pub const Window = struct {
                     peer,
                 });
             }
-        }.callback, .{ in_peer }) catch unreachable;
+        }.callback, .{in_peer}) catch unreachable;
 
         const data = getEventUserData(in_peer.?);
         data.overridenSize = lib.Size.init(720, 1080);
@@ -257,9 +257,9 @@ pub const Button = struct {
                 const peerInit = jni.invokeJni(.GetMethodID, .{ AndroidButton, "<init>", "(Landroid/content/Context;)V" });
                 const peer = jni.invokeJni(.NewObject, .{ AndroidButton, peerInit, theApp.activity.clazz }).?;
                 Button.setupEvents(peer) catch unreachable;
-                view_ptr.* = jni.invokeJni(.NewGlobalRef, .{ peer }).?;
+                view_ptr.* = jni.invokeJni(.NewGlobalRef, .{peer}).?;
             }
-        }.callback, .{ &view }) catch unreachable;
+        }.callback, .{&view}) catch unreachable;
         return Button{ .peer = view };
     }
 
@@ -294,9 +294,9 @@ pub const TextField = struct {
                 const peerInit = jni.invokeJni(.GetMethodID, .{ EditText, "<init>", "(Landroid/content/Context;)V" });
                 const peer = jni.invokeJni(.NewObject, .{ EditText, peerInit, theApp.activity.clazz }).?;
                 TextField.setupEvents(peer) catch unreachable;
-                view_ptr.* = jni.invokeJni(.NewGlobalRef, .{ peer }).?;
+                view_ptr.* = jni.invokeJni(.NewGlobalRef, .{peer}).?;
             }
-        }.callback, .{ &view }) catch unreachable;
+        }.callback, .{&view}) catch unreachable;
         return TextField{ .peer = view };
     }
 
@@ -461,9 +461,9 @@ pub const Container = struct {
                 const absoluteLayoutInit = jni.invokeJni(.GetMethodID, .{ AbsoluteLayout, "<init>", "(Landroid/content/Context;)V" });
                 const view = jni.invokeJni(.NewObject, .{ AbsoluteLayout, absoluteLayoutInit, theApp.activity.clazz }).?;
                 Container.setupEvents(view) catch unreachable; // TODO: bubble up errors
-                layout_ptr.* = jni.invokeJni(.NewGlobalRef, .{ view }).?;
+                layout_ptr.* = jni.invokeJni(.NewGlobalRef, .{view}).?;
             }
-        }.callback, .{ &layout }) catch unreachable;
+        }.callback, .{&layout}) catch unreachable;
         return Container{ .peer = layout };
     }
 
@@ -652,7 +652,8 @@ pub const backendExport = struct {
                 }
             };
 
-            const result = android.ALooper_addFd(self.uiThreadLooper,
+            const result = android.ALooper_addFd(
+                self.uiThreadLooper,
                 self.pipe[0],
                 0,
                 android.ALOOPER_EVENT_INPUT,
@@ -728,7 +729,7 @@ pub const backendExport = struct {
             self.mainJni = android.JNI.init(self.activity);
             defer self.mainJni.deinit();
 
-            try self.runOnUiThread(setAppContentView, .{ self });
+            try self.runOnUiThread(setAppContentView, .{self});
             try @import("root").main();
         }
     };

@@ -11,7 +11,7 @@ pub fn main() !void {
     defer _ = gpa.deinit();
 
     var window = try capy.Window.init();
-    //defer window.deinit();
+    defer window.deinit();
 
     try window.set(capy.Tabs(.{
         capy.Tab(.{ .label = "Border Layout" }, BorderLayoutExample()),

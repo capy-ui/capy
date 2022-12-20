@@ -21,7 +21,7 @@ const AndroidApp = @import("root").AndroidApp;
 pub var sdk_version: c_int = 0;
 
 /// Actual application entry point
-pub export fn ANativeActivity_onCreate(activity: *android.ANativeActivity, savedState: ?[*]u8, savedStateSize: usize) callconv(.C) void {
+export fn ANativeActivity_onCreate(activity: *android.ANativeActivity, savedState: ?[*]u8, savedStateSize: usize) callconv(.C) void {
     {
         var sdk_ver_str: [92]u8 = undefined;
         const len = android.__system_property_get("ro.build.version.sdk", &sdk_ver_str);

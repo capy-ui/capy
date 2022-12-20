@@ -273,14 +273,14 @@ pub fn GenerateConfigStruct(comptime T: type) type {
         const default_value: ?T.Callback = null;
         config_fields = config_fields ++ &[1]std.builtin.Type.StructField{.{
             .name = "onclick",
-            .field_type = ?T.Callback,
+            .type = ?T.Callback,
             .default_value = @ptrCast(?*const anyopaque, &default_value),
             .is_comptime = false,
             .alignment = @alignOf(?T.Callback),
         }};
         config_fields = config_fields ++ &[1]std.builtin.Type.StructField{.{
             .name = "ondraw",
-            .field_type = ?T.DrawCallback,
+            .type = ?T.DrawCallback,
             .default_value = @ptrCast(?*const anyopaque, &default_value),
             .is_comptime = false,
             .alignment = @alignOf(?T.DrawCallback),
@@ -299,14 +299,14 @@ pub fn GenerateConfigStruct(comptime T: type) type {
 
 fn iterateFields(comptime config_fields: *[]const std.builtin.Type.StructField, comptime T: type) void {
     for (std.meta.fields(T)) |field| {
-        const FieldType = field.field_type;
+        const FieldType = field.type;
         if (dataStructures.isDataWrapper(FieldType)) {
             const default_value = if (field.default_value) |default| @ptrCast(*const FieldType, @alignCast(@alignOf(FieldType), default)).getUnsafe() else null;
             const has_default_value = field.default_value != null;
 
             config_fields.* = config_fields.* ++ &[1]std.builtin.Type.StructField{.{
                 .name = field.name,
-                .field_type = FieldType.ValueType,
+                .type = FieldType.ValueType,
                 .default_value = if (has_default_value) @ptrCast(?*const anyopaque, @alignCast(1, &default_value)) else null,
                 .is_comptime = false,
                 .alignment = @alignOf(FieldType.ValueType),
