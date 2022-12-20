@@ -21,9 +21,7 @@ pub fn main() !void {
             capy.Button(.{ .label = "Button", .alignX = 0, .onclick = moveButton }),
             capy.Button(.{ .label = "Button (disabled)", .enabled = false, .alignX = 0 }),
         })),
-        capy.Tab(.{ .label = "Drawing" }, capy.Expanded(
-            Drawer(.{})
-        )),
+        capy.Tab(.{ .label = "Drawing" }, capy.Expanded(Drawer(.{}))),
     }));
 
     window.show();
@@ -54,7 +52,7 @@ pub const Drawer_Impl = struct {
         if (size.width > self.image.width or size.height > self.image.height) {
             self.image.deinit(); // delete old image
             self.image = try capy.ImageData.new(size.width, size.height, .RGB);
-            @import("std").log.info("new image of size {}", .{ size });
+            @import("std").log.info("new image of size {}", .{size});
         }
     }
 

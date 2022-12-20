@@ -325,6 +325,7 @@ pub fn Events(comptime T: type) type {
         }
 
         pub fn deinit(self: *const T) void {
+            std.log.info("deinit {s}", .{@typeName(T)});
             std.log.info("peer = {} width = {d}", .{ self, self.getWidth() });
             const data = getEventUserData(self.peer);
             lib.internal.lasting_allocator.destroy(data);
