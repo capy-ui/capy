@@ -264,8 +264,10 @@ pub const Button = struct {
     }
 
     pub fn setLabel(self: *const Button, label: [:0]const u8) void {
-        _ = self;
-        _ = label;
+        const jni = theApp.getJni();
+        const ButtonClass = jni.findClass("android/widget/Button");
+        const setTextMethod = jni.invokeJni(.GetMethodID, .{ ButtonClass, "setText", "(Ljava/lang/CharSequence;)V" });
+        jni.invokeJni(.CallVoidMethod, .{ self.peer, setTextMethod, jni.newString(label) });
     }
 
     pub fn getLabel(self: *const Button) [:0]const u8 {
@@ -277,6 +279,46 @@ pub const Button = struct {
         _ = self;
         _ = enabled;
     }
+};
+
+pub const Label = struct {
+    peer: PeerType,
+
+    pub usingnamespace Events(Label);
+
+    pub fn create() BackendError!Label {
+        var view: PeerType = undefined;
+        theApp.runOnUiThread(struct {
+            fn callback(view_ptr: *PeerType) void {
+                std.log.info("Creating android.widget.TextView", .{});
+                const jni = theApp.getJni();
+                const TextView = jni.findClass("android/widget/TextView");
+                const peerInit = jni.invokeJni(.GetMethodID, .{ TextView, "<init>", "(Landroid/content/Context;)V" });
+                const peer = jni.invokeJni(.NewObject, .{ TextView, peerInit, theApp.activity.clazz }).?;
+                Label.setupEvents(peer) catch unreachable;
+                view_ptr.* = jni.invokeJni(.NewGlobalRef, .{peer}).?;
+            }
+        }.callback, .{&view}) catch unreachable;
+        return Label{ .peer = view };
+    }
+
+    pub fn setText(self: *Label, text: [:0]const u8) void {
+        const jni = theApp.getJni();
+        const TextView = jni.findClass("android/widget/TextView");
+        const setTextMethod = jni.invokeJni(.GetMethodID, .{ TextView, "setText", "(Ljava/lang/CharSequence;)V" });
+        jni.invokeJni(.CallVoidMethod, .{ self.peer, setTextMethod, jni.newString(text) });
+    }
+
+    pub fn getText(self: *Label) [:0]const u8 {
+        _ = self;
+        return "";
+    }
+
+    pub fn setAlignment(self: *Label, alignment: f32) void {
+        _ = self;
+        _ = alignment;
+    }
+
 };
 
 pub const TextField = struct {
@@ -300,9 +342,19 @@ pub const TextField = struct {
         return TextField{ .peer = view };
     }
 
-    pub fn setText(self: *TextField, text: []const u8) void {
-        _ = self;
-        _ = text;
+    pub fn setText(self_ptr: *TextField, text_ptr: []const u8) void {
+        theApp.runOnUiThread(struct {
+            fn callback(self: *TextField, text: []const u8) void {
+                const allocator = lib.internal.scratch_allocator;
+                const nulTerminated = allocator.dupeZ(u8, text) catch return;
+                defer allocator.free(nulTerminated);
+
+                const jni = theApp.getJni();
+                const EditText = jni.findClass("android/widget/EditText");
+                const setTextMethod = jni.invokeJni(.GetMethodID, .{ EditText, "setText", "(Ljava/lang/CharSequence;)V" });
+                jni.invokeJni(.CallVoidMethod, .{ self.peer, setTextMethod, jni.newString(nulTerminated) });
+            }
+        }.callback, .{self_ptr, text_ptr}) catch unreachable;
     }
 
     pub fn getText(self: *TextField) [:0]const u8 {
@@ -629,7 +681,7 @@ pub const backendExport = struct {
         pub fn runOnUiThread(self: *AndroidApp, comptime func: anytype, args: anytype) !void {
             if (std.Thread.getCurrentId() == self.uiThreadId) {
                 std.log.err("CALLED runOnUiThread FROM UI THREAD", .{});
-                @call(.{}, func, args);
+                @call(.auto, func, args);
                 return;
             }
 
@@ -646,7 +698,7 @@ pub const backendExport = struct {
                     const args_data = @ptrCast(*Args, @alignCast(@alignOf(Args), data.?));
                     defer allocator.destroy(args_data);
 
-                    @call(.{}, func, args_data.*);
+                    @call(.auto, func, args_data.*);
                     std.Thread.Futex.wake(&theApp.uiThreadCondition, 1);
                     return 0;
                 }

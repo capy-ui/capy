@@ -38,12 +38,12 @@ pub const JNI = struct {
 
     fn JniReturnType(comptime function: @TypeOf(.literal)) type {
         @setEvalBranchQuota(10_000);
-        return @typeInfo(@typeInfo(std.meta.fieldInfo(android.JNINativeInterface, function).field_type).Pointer.child).Fn.return_type.?;
+        return @typeInfo(@typeInfo(std.meta.fieldInfo(android.JNINativeInterface, function).type).Pointer.child).Fn.return_type.?;
     }
 
     pub inline fn invokeJni(self: Self, comptime function: @TypeOf(.literal), args: anytype) JniReturnType(function) {
         return @call(
-            .{},
+            .auto,
             @field(self.env.*, @tagName(function)),
             .{self.env} ++ args,
         );

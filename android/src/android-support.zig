@@ -224,7 +224,7 @@ fn makeNativeActivityGlue(comptime App: type) android.ANativeActivityCallbacks {
         fn invoke(activity: *android.ANativeActivity, comptime func: []const u8, args: anytype) void {
             if (@hasDecl(App, func)) {
                 if (activity.instance) |instance| {
-                    const result = @call(.{}, @field(App, func), .{@ptrCast(*App, @alignCast(@alignOf(App), instance))} ++ args);
+                    const result = @call(.auto, @field(App, func), .{@ptrCast(*App, @alignCast(@alignOf(App), instance))} ++ args);
                     switch (@typeInfo(@TypeOf(result))) {
                         .ErrorUnion => result catch |err| app_log.err("{s} returned error {s}", .{ func, @errorName(err) }),
                         .Void => {},

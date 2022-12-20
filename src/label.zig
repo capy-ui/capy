@@ -62,3 +62,9 @@ pub const TextAlignment = enum { Left, Center, Right };
 pub fn Label(config: struct { text: [:0]const u8 = "", alignment: TextAlignment = .Center }) Label_Impl {
     return Label_Impl.init(config.text, config.alignment);
 }
+
+// TODO: replace with an actual empty element from the backend
+// Although this is not necessary and would only provide minimal memory/performance gains
+pub fn Spacing() !@import("widget.zig").Widget {
+    return try @import("containers.zig").Expanded(Label(.{}));
+}
