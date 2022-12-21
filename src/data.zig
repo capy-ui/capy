@@ -355,7 +355,7 @@ pub fn DataWrapper(comptime T: type) type {
                         args[i] = value;
                     }
 
-                    const result = @call(.{}, callback, args);
+                    const result = @call(.auto, callback, args);
                     data_wrapper.set(result);
                 }
             }.handler;

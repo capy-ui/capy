@@ -39,8 +39,14 @@ pub const Canvas_Impl = struct {
 
 pub fn Canvas(config: Canvas_Impl.Config) Canvas_Impl {
     var btn = Canvas_Impl.init();
+    btn.preferredSize = DataWrapper(?Size).of(config.preferredSize);
+    btn.dataWrappers.name.set(config.name);
+    btn.dataWrappers.alignX.set(config.alignX);
     if (config.onclick) |onclick| {
         btn.addClickHandler(onclick) catch unreachable; // TODO: improve
+    }
+    if (config.ondraw) |ondraw| {
+        btn.addDrawHandler(ondraw) catch unreachable; // TODO: improve
     }
     return btn;
 }

@@ -26,7 +26,7 @@ pub fn main() !void {
             capy.Column(.{}, .{
                 capy.Stack(.{
                     capy.Rect(.{ .color = capy.Color.comptimeFromString("#ff6600") }),
-                    capy.Label(.{ .text = "Hacker News" }),
+                    capy.Label(.{ .text = "Hacker News", .alignment = .Left }),
                 }),
                 capy.ColumnList(.{}, &hn_list_model),
             }),
