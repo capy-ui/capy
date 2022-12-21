@@ -30,7 +30,14 @@ pub const HGDIOBJ = *opaque {};
 
 pub const BS_PUSHBUTTON = 0;
 pub const BS_DEFPUSHBUTTON = 1;
+pub const BS_CHECKBOX = 2;
+pub const BS_AUTOCHECKBOX = 3;
+pub const BS_AUTORADIOBUTTON = 9;
 pub const BS_FLAT = 0x00008000;
+
+pub const BST_CHECKED = 1;
+pub const BST_INDETERMINATE = 2;
+pub const BST_UNCHECKED = 0;
 
 // STATIC controls
 /// Centers text horizontally.

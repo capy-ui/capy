@@ -146,7 +146,9 @@ pub const Window = struct {
             return Win32Error.InitializationError;
         }
 
-        const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT | win32.WS_EX_COMPOSITED | win32.WS_EX_LAYERED, // dwExtStyle
+        const hwnd = try win32.createWindowExA(
+            // composited and layered don't work in wine for some reason, but only in wine
+            win32.WS_EX_LEFT,// | win32.WS_EX_COMPOSITED | win32.WS_EX_LAYERED | win32.WS_EX_APPWINDOW, // dwExtStyle
             className, // lpClassName
             "", // lpWindowName
             win32.WS_OVERLAPPEDWINDOW, // dwStyle
@@ -723,6 +725,58 @@ pub const Button = struct {
 
     pub fn setEnabled(self: *Button, enabled: bool) void {
         _ = win32.EnableWindow(self.peer, @boolToInt(enabled));
+    }
+};
+
+pub const CheckBox = struct {
+    peer: HWND,
+    arena: std.heap.ArenaAllocator,
+
+    pub usingnamespace Events(CheckBox);
+
+    pub fn create() !CheckBox {
+        const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
+            "BUTTON", // lpClassName
+            "", // lpWindowName
+            win32.WS_TABSTOP | win32.WS_CHILD | win32.BS_AUTOCHECKBOX, // dwStyle
+            0, // X
+            0, // Y
+            100, // nWidth
+            100, // nHeight
+            defaultWHWND, // hWindParent
+            null, // hMenu
+            hInst, // hInstance
+            null // lpParam
+        );
+        try CheckBox.setupEvents(hwnd);
+        _ = win32.SendMessageA(hwnd, win32.WM_SETFONT, @ptrToInt(captionFont), 1);
+
+        return CheckBox{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator) };
+    }
+
+    pub fn setLabel(self: *CheckBox, label: [:0]const u8) void {
+        const allocator = lib.internal.scratch_allocator;
+        const wide = std.unicode.utf8ToUtf16LeWithNull(allocator, label) catch return; // invalid utf8 or not enough memory
+        defer allocator.free(wide);
+        if (win32.SetWindowTextW(self.peer, wide) == 0) {
+            std.os.windows.unexpectedError(win32.GetLastError()) catch {};
+        }
+    }
+
+    pub fn setEnabled(self: *CheckBox, enabled: bool) void {
+        _ = win32.EnableWindow(self.peer, @boolToInt(enabled));
+    }
+
+    pub fn setChecked(self: *CheckBox, checked: bool) void {
+        const state: win32.WPARAM = switch (checked) {
+            true => win32.BST_CHECKED,
+            false => win32.BST_UNCHECKED
+        };
+        _ = win32.SendMessageA(self.peer, win32.BM_SETCHECK, state, 0);
+    }
+
+    pub fn isChecked(self: *CheckBox) bool {
+        return win32.SendMessageA(self.peer, win32.BM_GETCHECK, 0, 0) != win32.BST_UNCHECKED;
     }
 };
 

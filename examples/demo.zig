@@ -23,11 +23,12 @@ pub fn main() !void {
             capy.CheckBox(.{ .label = "Checked", .checked = true }), // TODO: dynamic label based on checked
             capy.CheckBox(.{ .label = "Disabled", .enabled = false }),
         })),
-        capy.Tab(.{ .label = "Drawing" }, capy.Expanded(Drawer(.{}))),
+        //capy.Tab(.{ .label = "Drawing" }, capy.Expanded(Drawer(.{}))),
     }));
 
     window.show();
     capy.runEventLoop();
+    std.log.info("Goodbye!", .{});
 }
 
 pub const Drawer_Impl = struct {
