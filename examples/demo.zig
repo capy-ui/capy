@@ -20,6 +20,8 @@ pub fn main() !void {
             // TODO: use constraint layout (when it's added) to make all buttons same width
             capy.Button(.{ .label = "Button", .alignX = 0, .onclick = moveButton }),
             capy.Button(.{ .label = "Button (disabled)", .enabled = false, .alignX = 0 }),
+            capy.CheckBox(.{ .label = "Checked", .checked = true }), // TODO: dynamic label based on checked
+            capy.CheckBox(.{ .label = "Disabled", .enabled = false }),
         })),
         capy.Tab(.{ .label = "Drawing" }, capy.Expanded(Drawer(.{}))),
     }));

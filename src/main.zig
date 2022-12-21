@@ -2,6 +2,7 @@ pub const Window = @import("window.zig").Window;
 pub const Widget = @import("widget.zig").Widget;
 
 pub usingnamespace @import("button.zig");
+pub usingnamespace @import("checkbox.zig");
 pub usingnamespace @import("label.zig");
 pub usingnamespace @import("text.zig");
 pub usingnamespace @import("canvas.zig");

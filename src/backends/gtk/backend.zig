@@ -425,6 +425,50 @@ pub const Button = struct {
     }
 };
 
+pub const CheckBox = struct {
+    peer: *c.GtkWidget,
+
+    pub usingnamespace Events(CheckBox);
+
+    fn gtkClicked(peer: *c.GtkWidget, userdata: usize) callconv(.C) void {
+        _ = userdata;
+        const data = getEventUserData(peer);
+
+        if (data.user.clickHandler) |handler| {
+            handler(data.userdata);
+        }
+    }
+
+    pub fn create() BackendError!CheckBox {
+        const button = c.gtk_check_button_new() orelse return error.UnknownError;
+        c.gtk_widget_show(button);
+        try CheckBox.setupEvents(button);
+        _ = c.g_signal_connect_data(button, "clicked", @ptrCast(c.GCallback, &gtkClicked), null, @as(c.GClosureNotify, null), 0);
+        return CheckBox{ .peer = button };
+    }
+
+    pub fn setLabel(self: *const CheckBox, label: [:0]const u8) void {
+        c.gtk_button_set_label(@ptrCast(*c.GtkButton, self.peer), label.ptr);
+    }
+
+    pub fn getLabel(self: *const CheckBox) [:0]const u8 {
+        const label = c.gtk_button_get_label(@ptrCast(*c.GtkButton, self.peer));
+        return std.mem.span(label);
+    }
+
+    pub fn setEnabled(self: *const CheckBox, enabled: bool) void {
+        c.gtk_widget_set_sensitive(self.peer, @boolToInt(enabled));
+    }
+
+    pub fn setChecked(self: *const CheckBox, checked: bool) void {
+        c.gtk_toggle_button_set_active(@ptrCast(*c.GtkToggleButton, self.peer), @boolToInt(checked));
+    }
+
+    pub fn isChecked(self: *const CheckBox) bool {
+        return c.gtk_toggle_button_get_active(@ptrCast(*c.GtkToggleButton, self.peer)) != 0;
+    }
+};
+
 pub const Label = struct {
     peer: *c.GtkWidget,
 
