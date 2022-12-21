@@ -36,10 +36,10 @@ pub const toMagicNumberLittle = switch (native_endian) {
 fn checkEnumFields(data: anytype) StructReadError!void {
     const T = @typeInfo(@TypeOf(data)).Pointer.child;
     inline for (meta.fields(T)) |entry| {
-        switch (@typeInfo(entry.field_type)) {
+        switch (@typeInfo(entry.type)) {
             .Enum => {
                 const value = @enumToInt(@field(data, entry.name));
-                _ = std.meta.intToEnum(entry.field_type, value) catch return StructReadError.InvalidData;
+                _ = std.meta.intToEnum(entry.type, value) catch return StructReadError.InvalidData;
             },
             .Struct => {
                 try checkEnumFields(&@field(data, entry.name));
@@ -58,7 +58,7 @@ pub fn readStructNative(reader: io.StreamSource.Reader, comptime T: type) Struct
 fn swapFieldBytes(data: anytype) StructReadError!void {
     const T = @typeInfo(@TypeOf(data)).Pointer.child;
     inline for (meta.fields(T)) |entry| {
-        switch (@typeInfo(entry.field_type)) {
+        switch (@typeInfo(entry.type)) {
             .Int => |int| {
                 if (int.bits > 8) {
                     @field(data, entry.name) = @byteSwap(@field(data, entry.name));
@@ -70,19 +70,19 @@ fn swapFieldBytes(data: anytype) StructReadError!void {
             .Enum => {
                 const value = @enumToInt(@field(data, entry.name));
                 if (@bitSizeOf(@TypeOf(value)) > 8) {
-                    @field(data, entry.name) = try std.meta.intToEnum(entry.field_type, @byteSwap(value));
+                    @field(data, entry.name) = try std.meta.intToEnum(entry.type, @byteSwap(value));
                 } else {
-                    _ = std.meta.intToEnum(entry.field_type, value) catch return StructReadError.InvalidData;
+                    _ = std.meta.intToEnum(entry.type, value) catch return StructReadError.InvalidData;
                 }
             },
             .Array => |array| {
                 if (array.child != u8) {
-                    @compileError("Add support for type " ++ @typeName(T) ++ "." ++ @typeName(entry.field_type) ++ " in swapFieldBytes");
+                    @compileError("Add support for type " ++ @typeName(T) ++ "." ++ @typeName(entry.type) ++ " in swapFieldBytes");
                 }
             },
             .Bool => {},
             else => {
-                @compileError("Add support for type " ++ @typeName(T) ++ "." ++ @typeName(entry.field_type) ++ " in swapFieldBytes");
+                @compileError("Add support for type " ++ @typeName(T) ++ "." ++ @typeName(entry.type) ++ " in swapFieldBytes");
             },
         }
     }
