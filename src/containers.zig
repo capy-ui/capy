@@ -58,9 +58,20 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
     }
 
     var childY: f32 = 0.0;
+    // Child X is different from 0 only when 'wrapping' property is set to true
+    var childX: f32 = 0.0;
     for (widgets) |widget, i| {
         const isLastWidget = i == widgets.len - 1;
         if (widget.peer) |widgetPeer| {
+            const minimumSize = widget.getPreferredSize(Size.init(1, 1));
+            if (config.wrapping) {
+                if (childY >= @intToFloat(f32, peer.getSize(peer.userdata).height -| minimumSize.height)) {
+                    childY = 0;
+                    // TODO: largest width of all the column
+                    childX += @intToFloat(f32, minimumSize.width);
+                }
+            }
+
             const available = Size{
                 .width = @intCast(u32, peer.getSize(peer.userdata).width),
                 .height = if (widget.container_expanded) childHeight else (@intCast(u32, peer.getSize(peer.userdata).height) -| @floatToInt(u32, childY)),
@@ -74,20 +85,16 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
                     } else {
                         break :blk available;
                     }
-                } else if (widget.alignX.get() == null and !peer.computingPreferredSize) {
-                    break :blk Size.intersect(available, Size.init(available.width, preferred.height));
+                } else if (!peer.computingPreferredSize) {
+                    const width = if (config.wrapping) preferred.width else available.width;
+                    break :blk Size.intersect(available, Size.init(width, preferred.height));
                 } else {
-                    if (peer.computingPreferredSize and widget.alignX.get() != null and widget.alignX.get().? > 0) {
-                        break :blk Size.intersect(available, Size.init(available.width, preferred.height));
-                    }
                     break :blk Size.intersect(available, preferred);
                 }
             };
 
-            const alignX = std.math.clamp(widget.alignX.get() orelse 0, 0, 1);
-            var x = @floatToInt(u32, @floor(alignX * @intToFloat(f32, peer.getSize(peer.userdata).width -| size.width)));
-            if (widget.container_expanded or peer.computingPreferredSize) x = 0;
-            peer.moveResize(peer.userdata, widgetPeer, x, @floatToInt(u32, @floor(childY)), size.width, size.height);
+            const x: u32 = @floatToInt(u32, childX);
+            peer.moveResize(peer.userdata, widgetPeer, x, @floatToInt(u32, childY), size.width, size.height);
             childY += @intToFloat(f32, size.height) + if (isLastWidget) 0 else @intToFloat(f32, config.spacing);
         }
     }
@@ -159,7 +166,7 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
 pub fn MarginLayout(peer: Callbacks, widgets: []Widget) void {
     const margin = peer.getLayoutConfig(Rectangle);
     if (widgets.len > 1) {
-        std.log.scoped(.zgt).warn("Margin container has more than one widget!", .{});
+        std.log.scoped(.capy).warn("Margin container has more than one widget!", .{});
         return;
     }
 
