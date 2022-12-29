@@ -192,36 +192,6 @@ pub fn MarginLayout(peer: Callbacks, widgets: []Widget) void {
     }
 }
 
-pub fn AlignLayout(peer: Callbacks, widgets: []Widget) void {
-    const opts = peer.getLayoutConfig(AlignOptions);
-    const alignX = opts.x;
-    const alignY = opts.y;
-
-    if (widgets.len > 1) {
-        std.log.scoped(.capy).warn("Align container has more than one widget!", .{});
-        return;
-    }
-
-    if (widgets[0].peer) |widgetPeer| {
-        const available = peer.getSize(peer.userdata);
-
-        if (peer.computingPreferredSize) {
-            // What to return for computing preferred size
-            const preferredSize = widgets[0].getPreferredSize(.{ .width = 0, .height = 0 });
-            peer.moveResize(peer.userdata, widgetPeer, 0, 0, preferredSize.width, preferredSize.height);
-        } else {
-            // What to return for actual layouting
-            const preferredSize = widgets[0].getPreferredSize(available);
-            const finalSize = Size.intersect(preferredSize, available);
-
-            const x = @floatToInt(u32, alignX * @intToFloat(f32, available.width -| finalSize.width));
-            const y = @floatToInt(u32, alignY * @intToFloat(f32, available.height -| finalSize.height));
-
-            peer.moveResize(peer.userdata, widgetPeer, x, y, finalSize.width, finalSize.height);
-        }
-    }
-}
-
 pub fn StackLayout(peer: Callbacks, widgets: []Widget) void {
     const size = peer.getSize(peer.userdata);
     for (widgets) |widget| {
@@ -489,15 +459,4 @@ pub inline fn Column(config: GridConfig, childrens: anytype) anyerror!Container_
 
 pub inline fn Margin(margin: Rectangle, child: anytype) anyerror!Container_Impl {
     return try Container_Impl.init(try convertTupleToWidgets(.{child}), .{}, MarginLayout, margin);
-}
-
-// TODO: align component
-pub const AlignOptions = struct {
-    // TODO: switch to pivot + align system or keep current system where both are combined?
-    x: f32 = 0.5,
-    y: f32 = 0.5,
-};
-
-pub inline fn Align(opts: AlignOptions, child: anytype) anyerror!Container_Impl {
-    return try Container_Impl.init(try convertTupleToWidgets(.{child}), .{}, AlignLayout, opts);
 }
