@@ -588,7 +588,7 @@ pub const Canvas = struct {
 
     pub const DrawContext = struct {
         cr: *c.cairo_t,
-        widget: *c.GtkWidget,
+        widget: ?*c.GtkWidget = null,
 
         pub const Font = struct {
             face: [:0]const u8,
@@ -664,8 +664,10 @@ pub const Canvas = struct {
         }
 
         pub fn clear(self: *DrawContext, x: u32, y: u32, w: u32, h: u32) void {
-            const styleContext = c.gtk_widget_get_style_context(self.widget);
-            c.gtk_render_background(styleContext, self.cr, @intToFloat(f64, x), @intToFloat(f64, y), @intToFloat(f64, w), @intToFloat(f64, h));
+            if (self.widget) |widget| {
+                const styleContext = c.gtk_widget_get_style_context(widget);
+                c.gtk_render_background(styleContext, self.cr, @intToFloat(f64, x), @intToFloat(f64, y), @intToFloat(f64, w), @intToFloat(f64, h));
+            }
         }
 
         pub fn text(self: *DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
@@ -863,6 +865,8 @@ pub const ScrollView = struct {
 pub const ImageData = struct {
     peer: *c.GdkPixbuf,
     mutex: std.Thread.Mutex = .{},
+    width: usize,
+    height: usize,
 
     pub const DrawLock = struct {
         _surface: *c.cairo_surface_t,
@@ -870,6 +874,11 @@ pub const ImageData = struct {
         data: *ImageData,
 
         pub fn end(self: DrawLock) void {
+            const width = @intCast(c_int, self.data.width);
+            const height = @intCast(c_int, self.data.height);
+
+            c.g_object_unref(@ptrCast(*c.GObject, @alignCast(@alignOf(c.GObject), self.data.peer)));
+            self.data.peer = c.gdk_pixbuf_get_from_surface(self._surface, 0, 0, width, height).?;
             c.cairo_destroy(self.draw_context.cr);
             c.cairo_surface_destroy(self._surface);
             self.data.mutex.unlock();
@@ -880,14 +889,14 @@ pub const ImageData = struct {
     pub fn from(width: usize, height: usize, stride: usize, cs: lib.Colorspace, bytes: []const u8) !ImageData {
         const pixbuf = c.gdk_pixbuf_new_from_data(bytes.ptr, c.GDK_COLORSPACE_RGB, @boolToInt(cs == .RGBA), 8, @intCast(c_int, width), @intCast(c_int, height), @intCast(c_int, stride), null, null) orelse return BackendError.UnknownError;
 
-        return ImageData{ .peer = pixbuf };
+        return ImageData{ .peer = pixbuf, .width = width, .height = height };
     }
 
     pub fn draw(self: *ImageData) DrawLock {
         self.mutex.lock();
         // TODO: just create one surface and use it forever
-        const surface = c.cairo_surface_create_from_pixbuf(self.peer, 1, null);
-        const cr = c.cairo_create(surface);
+        const surface = c.gdk_cairo_surface_create_from_pixbuf(self.peer, 1, null).?;
+        const cr = c.cairo_create(surface).?;
         return DrawLock{
             ._surface = surface,
             .draw_context = .{ .cr = cr },
