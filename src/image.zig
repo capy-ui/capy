@@ -109,6 +109,7 @@ pub const Image_Impl = struct {
 
     pub const DrawContext = backend.Canvas.DrawContext;
 
+    // TODO: just directly accept an URL or file path if there's no data
     pub fn init(config: Image_Impl.Config) Image_Impl {
         var image = Image_Impl.init_events(Image_Impl{
             .data = DataWrapper(ImageData).of(config.data),

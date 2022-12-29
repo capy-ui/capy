@@ -130,21 +130,15 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
                     } else {
                         break :blk available;
                     }
-                } else if (widget.alignY.get() == null and !peer.computingPreferredSize) {
+                } else if (!peer.computingPreferredSize) {
                     break :blk Size.intersect(available, Size.init(preferred.width, available.height));
                 } else {
-                    if (peer.computingPreferredSize and widget.alignY.get() != null and widget.alignY.get().? > 0) {
-                        break :blk Size.intersect(available, Size.init(preferred.width, available.height));
-                    }
                     break :blk Size.intersect(available, preferred);
                 }
             };
 
-            const alignY = std.math.clamp(widget.alignY.get() orelse 0, 0, 1);
-            var y = @floatToInt(u32, @floor(alignY * @intToFloat(f32, peer.getSize(peer.userdata).height -| preferred.height)));
-            if (widget.container_expanded or peer.computingPreferredSize) y = 0;
+            const y: u32 = 0;
             peer.moveResize(peer.userdata, widgetPeer, @floatToInt(u32, @floor(childX)), y, size.width, size.height);
-
             childX += @intToFloat(f32, size.width) + if (isLastWidget) 0 else @intToFloat(f32, config.spacing);
         }
     }
@@ -446,4 +440,17 @@ pub inline fn Column(config: GridConfig, childrens: anytype) anyerror!Container_
 
 pub inline fn Margin(margin: Rectangle, child: anytype) anyerror!Container_Impl {
     return try Container_Impl.init(try convertTupleToWidgets(.{child}), .{}, MarginLayout, margin);
+}
+
+// TODO: align component
+pub const AlignOptions = struct {
+    // TODO: switch to pivot + align system or keep current system where both are combined?
+    alignX: f32 = 0.5,
+    alignY: f32 = 0.5,
+};
+
+pub inline fn Align(opts: AlignOptions, child: anytype) anyerror!Container_Impl {
+    _ = opts;
+    _ = child;
+    @compileError("TODO: align");
 }
