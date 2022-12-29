@@ -10,33 +10,26 @@ pub fn main() !void {
 
     var window = try capy.Window.init();
 
-    const NUM_ROWS = 30;
-    const ROW_ITEMS = 10;
+    const NUM_BUTTONS = 300;
 
     // This is only used for additional performance
     var labelArena = std.heap.ArenaAllocator.init(capy.internal.scratch_allocator);
     defer labelArena.deinit();
     const labelAllocator = labelArena.child_allocator;
 
-    var column = try capy.Column(.{}, .{});
+    var row = try capy.Row(.{ .wrapping = true }, .{});
     var i: usize = 0;
-    while (i < NUM_ROWS) : (i += 1) {
-        var row = try capy.Row(.{}, .{});
-        var j: usize = 0;
-        while (j < ROW_ITEMS) : (j += 1) {
-            const buttonLabel = try std.fmt.allocPrintZ(labelAllocator, "Button #{d}", .{j + i * ROW_ITEMS + 1});
-            try row.add(capy.Button(.{ .label = buttonLabel }));
-        }
-
-        try column.add(row);
+    while (i < NUM_BUTTONS) : (i += 1) {
+        const buttonLabel = try std.fmt.allocPrintZ(labelAllocator, "Button #{d}", .{i});
+        try row.add(capy.Button(.{ .label = buttonLabel }));
     }
 
-    try window.set(capy.Scrollable(&column));
+    try window.set(row);
     window.resize(800, 600);
     window.show();
 
     const end = std.time.milliTimestamp();
-    std.log.info("Took {d}ms for creating {d} buttons", .{ end - start, NUM_ROWS * ROW_ITEMS });
+    std.log.info("Took {d}ms for creating {d} buttons", .{ end - start, NUM_BUTTONS });
 
     capy.runEventLoop();
 }
