@@ -178,12 +178,12 @@ pub fn main() !void {
         .bind("alignX", &rectangleX);
 
     try window.set(capy.Column(.{}, .{
-        capy.Row(.{ .spacing = 10, .alignX = 0.5 }, .{
+        capy.Align(.{}, capy.Row(.{ .spacing = 10 }, .{
             capy.Button(.{ .label = "Linear", .onclick = SetEasing(capy.Easings.Linear) }),
             capy.Button(.{ .label = "In", .onclick = SetEasing(capy.Easings.In) }),
             capy.Button(.{ .label = "Out", .onclick = SetEasing(capy.Easings.Out) }),
             capy.Button(.{ .label = "In Out", .onclick = SetEasing(capy.Easings.InOut) }),
-        }),
+        })),
         capy.Expanded(&graph),
         &rectangle,
     }));

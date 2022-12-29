@@ -19,7 +19,7 @@ pub fn main() !void {
             // alignX = 0 means buttons should be aligned to the left
             // TODO: use constraint layout (when it's added) to make all buttons same width
             capy.Button(.{ .label = "Button", .alignX = 0, .onclick = moveButton }),
-            capy.Button(.{ .label = "Button (disabled)", .enabled = false, .alignX = 0 }),
+            capy.Button(.{ .label = "Button (disabled)", .enabled = false }),
             capy.CheckBox(.{ .label = "Checked", .checked = true }), // TODO: dynamic label based on checked
             capy.CheckBox(.{ .label = "Disabled", .enabled = false }),
         })),

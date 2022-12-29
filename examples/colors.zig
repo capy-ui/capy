@@ -24,7 +24,7 @@ pub fn main() !void {
     try window.set(capy.Stack(.{
         capy.Rect(.{ .name = "background-rectangle", .color = capy.Color.transparent }),
         capy.Column(.{}, .{
-            capy.Button(.{ .label = "Random color", .onclick = animateRandomColor, .alignX = 0.5 }),
+            capy.Align(.{}, capy.Button(.{ .label = "Random color", .onclick = animateRandomColor })),
         }),
     }));
     window.show();
