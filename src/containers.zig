@@ -114,9 +114,20 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
     }
 
     var childX: f32 = 0.0;
+    // Child Y is different from 0 only when 'wrapping' property is set to true
+    var childY: f32 = 0.0;
     for (widgets) |widget, i| {
         const isLastWidget = i == widgets.len - 1;
         if (widget.peer) |widgetPeer| {
+            const minimumSize = widget.getPreferredSize(Size.init(1, 1));
+            if (config.wrapping) {
+                if (childX >= @intToFloat(f32, peer.getSize(peer.userdata).width -| minimumSize.width)) {
+                    childX = 0;
+                    // TODO: largest height of all the row
+                    childY += @intToFloat(f32, minimumSize.height);
+                }
+            }
+
             const available = Size{
                 .width = if (widget.container_expanded) childWidth else (@intCast(u32, peer.getSize(peer.userdata).width) -| @floatToInt(u32, childX)),
                 .height = @intCast(u32, peer.getSize(peer.userdata).height),
@@ -131,14 +142,15 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
                         break :blk available;
                     }
                 } else if (!peer.computingPreferredSize) {
-                    break :blk Size.intersect(available, Size.init(preferred.width, available.height));
+                    const height = if (config.wrapping) preferred.height else available.height;
+                    break :blk Size.intersect(available, Size.init(preferred.width, height));
                 } else {
                     break :blk Size.intersect(available, preferred);
                 }
             };
 
-            const y: u32 = 0;
-            peer.moveResize(peer.userdata, widgetPeer, @floatToInt(u32, @floor(childX)), y, size.width, size.height);
+            const y: u32 = @floatToInt(u32, childY);
+            peer.moveResize(peer.userdata, widgetPeer, @floatToInt(u32, childX), y, size.width, size.height);
             childX += @intToFloat(f32, size.width) + if (isLastWidget) 0 else @intToFloat(f32, config.spacing);
         }
     }
