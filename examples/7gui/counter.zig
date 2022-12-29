@@ -25,15 +25,13 @@ pub fn main() !void {
     var format = try capy.FormatDataWrapper(capy.internal.lasting_allocator, "{d}", .{&count});
     defer format.deinit();
 
-    try window.set(capy.Column(.{}, .{
-        capy.Row(.{ .alignX = 0.5 }, .{
-            capy.Row(.{ .alignY = 0.5, .spacing = 5 }, .{
-                capy.TextField(.{ .readOnly = true, .name = "text-field" })
-                    .bind("text", format),
-                capy.Button(.{ .label = "Count", .onclick = increment }),
-            }),
+    try window.set(capy.Align(.{}, 
+        capy.Row(.{ .spacing = 5 }, .{
+            capy.TextField(.{ .readOnly = true, .name = "text-field" })
+                .bind("text", format),
+            capy.Button(.{ .label = "Count", .onclick = increment }),
         }),
-    }));
+    ));
 
     window.setTitle("Counter");
     window.resize(250, 100);

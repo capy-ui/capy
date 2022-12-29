@@ -21,7 +21,7 @@ const GuiWidget = struct {
     object: ?*anyopaque = null,
     element: js.ElementId = 0,
 
-    processEventFn: fn (object: ?*anyopaque, event: js.EventId) void,
+    processEventFn: *const fn (object: ?*anyopaque, event: js.EventId) void,
 
     pub fn init(comptime T: type, allocator: std.mem.Allocator, name: []const u8, typeName: []const u8) !*GuiWidget {
         const self = try allocator.create(GuiWidget);
