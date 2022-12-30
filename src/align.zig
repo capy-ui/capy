@@ -30,11 +30,17 @@ pub const Align_Impl = struct {
         self.relayout();
     }
 
+    pub fn _showWidget(widget: *Widget, self: *Align_Impl) !void {
+        self.child.parent = widget.parent;
+        self.child.class.setWidgetFn(&self.child);
+    }
+
     pub fn show(self: *Align_Impl) !void {
         if (self.peer == null) {
             var peer = try backend.Container.create();
             self.peer = peer;
-			
+
+            self.child.class.setWidgetFn(&self.child);
             try self.child.show();
 			peer.add(self.child.peer.?);
 
@@ -82,5 +88,6 @@ pub fn Align(opts: Align_Impl.Config, child: anytype) anyerror!Align_Impl {
 	else
 		child;
 
-	return try Align_Impl.init(opts, try internal.genericWidgetFrom(element));
+    const widget = try internal.genericWidgetFrom(element);
+	return try Align_Impl.init(opts, widget);
 }

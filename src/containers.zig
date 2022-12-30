@@ -300,6 +300,10 @@ pub const Container_Impl = struct {
                 if (self.expand) {
                     widget.container_expanded = true;
                 }
+                widget.class.setWidgetFn(widget);
+                if (self.dataWrappers.widget) |self_widget| {
+                    widget.parent = self_widget;
+                }
                 try widget.show();
                 peer.add(widget.peer.?);
             }
