@@ -62,6 +62,7 @@ pub fn Widgeting(comptime T: type) type {
             .deinitFn = deinitWidget,
             .preferredSizeFn = getPreferredSizeWidget,
             .setWidgetFn = setWidgetFn,
+            .getParentFn = widget_getParent,
         };
 
         pub const DataWrappers = struct {
@@ -234,20 +235,25 @@ pub fn Widgeting(comptime T: type) type {
             return self.dataWrappers.widget;
         }
 
-        // This can return a Container_Impl as parents are always a container
-        pub fn getParent(self: *T) ?*Container_Impl {
+        // Returns the parent of the current widget
+        pub fn getParent(self: *T) ?*Widget {
             if (self.dataWrappers.widget) |widget| {
                 if (widget.parent) |parent| {
-                    return parent.as(Container_Impl);
+                    return parent;
                 }
             }
             return null;
         }
 
+        fn widget_getParent(widget: *const Widget) ?*Widget {
+            const component = widget.as(T);
+            return component.getParent();
+        }
+
         /// Go up the widget tree until we find the root (which is the component
         /// put with window.set()
         /// Returns null if the component is unparented.
-        pub fn getRoot(self: *T) ?*Container_Impl {
+        pub fn getRoot(self: *T) ?*Widget {
             var parent = self.getParent() orelse return null;
             while (true) {
                 const ancester = parent.getParent();

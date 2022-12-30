@@ -58,7 +58,7 @@ fn returnFlight(_: *anyopaque) !void {
 fn bookFlight(button_: *anyopaque) !void {
     const button = @ptrCast(*capy.Button_Impl, @alignCast(@alignOf(capy.Button_Impl), button_));
 
-    const root = button.getRoot().?;
+    const root = button.getRoot().?.as(capy.Container_Impl);
     _ = root;
 }
 

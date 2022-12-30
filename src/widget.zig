@@ -17,6 +17,7 @@ pub const Class = struct {
     /// the dataWrappers.widget field, which is impossible if the component type is
     /// unknown. This function is thus called internally to pair the widget.
     setWidgetFn: *const fn (widget: *Widget) void,
+    getParentFn: *const fn (widget: *const Widget) ?*Widget,
     // offset into a list of updater optional pointers
     //updaters: []const usize,
 };
@@ -53,6 +54,10 @@ pub const Widget = struct {
     /// and maximum size is widget.getPreferredSize(Size { .width = std.math.maxInt(u32), .height = std.math.maxInt(u32) })
     pub fn getPreferredSize(self: *const Widget, available: data.Size) data.Size {
         return self.class.preferredSizeFn(self, available);
+    }
+
+    pub fn getParent(self: *const Widget) ?* Widget {
+        return self.class.getParentFn(self);
     }
 
     /// Asserts widget data is of type T
