@@ -178,8 +178,7 @@ pub fn DataWrapper(comptime T: type) type {
         /// Returns true if there is currently an animation playing.
         pub fn hasAnimation(self: *Self) bool {
             if (!IsAnimable) return false;
-            self.update();
-            return self.value == .Animated;
+            return self.update();
         }
 
         pub fn animate(self: *Self, anim: *const fn (f64) f64, target: T, duration: u64) void {
@@ -638,6 +637,7 @@ test "data wrappers" {
     var testData = DataWrapper(i32).of(0);
     testData.set(5);
     try expectEqual(@as(i32, 5), testData.get());
+    try std.testing.expect(testData.hasAnimation() == false);
 }
 
 test "data wrapper change listeners" {
