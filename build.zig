@@ -84,7 +84,7 @@ pub fn build(b: *std.build.Builder) !void {
     defer examplesDir.close();
 
     const broken = switch (target.getOsTag()) {
-        .windows => &[_][]const u8{"osm-viewer","fade"},
+        .windows => &[_][]const u8{ "osm-viewer", "fade" },
         else => &[_][]const u8{"osm-viewer"},
     };
 
@@ -140,7 +140,7 @@ pub fn build(b: *std.build.Builder) !void {
         }
     }
 
-    const lib = b.addSharedLibrary("capy", "src/c_api.zig", b.version(0, 1, 0));
+    const lib = b.addSharedLibrary("capy", "src/c_api.zig", b.version(0, 3, 0));
     lib.setTarget(target);
     lib.setBuildMode(mode);
     lib.linkLibC();

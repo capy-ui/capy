@@ -147,8 +147,8 @@ pub const Window = struct {
         }
 
         const hwnd = try win32.createWindowExA(
-            // composited and layered don't work in wine for some reason, but only in wine
-            win32.WS_EX_LEFT,// | win32.WS_EX_COMPOSITED | win32.WS_EX_LAYERED | win32.WS_EX_APPWINDOW, // dwExtStyle
+        // composited and layered don't work in wine for some reason, but only in wine
+        win32.WS_EX_LEFT, // | win32.WS_EX_COMPOSITED | win32.WS_EX_LAYERED | win32.WS_EX_APPWINDOW, // dwExtStyle
             className, // lpClassName
             "", // lpWindowName
             win32.WS_OVERLAPPEDWINDOW, // dwStyle
@@ -770,7 +770,7 @@ pub const CheckBox = struct {
     pub fn setChecked(self: *CheckBox, checked: bool) void {
         const state: win32.WPARAM = switch (checked) {
             true => win32.BST_CHECKED,
-            false => win32.BST_UNCHECKED
+            false => win32.BST_UNCHECKED,
         };
         _ = win32.SendMessageA(self.peer, win32.BM_SETCHECK, state, 0);
     }

@@ -318,7 +318,6 @@ pub const Label = struct {
         _ = self;
         _ = alignment;
     }
-
 };
 
 pub const TextField = struct {
@@ -354,7 +353,7 @@ pub const TextField = struct {
                 const setTextMethod = jni.invokeJni(.GetMethodID, .{ EditText, "setText", "(Ljava/lang/CharSequence;)V" });
                 jni.invokeJni(.CallVoidMethod, .{ self.peer, setTextMethod, jni.newString(nulTerminated) });
             }
-        }.callback, .{self_ptr, text_ptr}) catch unreachable;
+        }.callback, .{ self_ptr, text_ptr }) catch unreachable;
     }
 
     pub fn getText(self: *TextField) [:0]const u8 {

@@ -14,7 +14,8 @@ pub fn main() !void {
 
     var window = try capy.Window.init();
 
-    try window.set(capy.Align(.{},
+    try window.set(capy.Align(
+        .{},
         capy.Row(.{ .spacing = 5 }, .{
             capy.TextField(.{})
                 .bind("text", &celsius),

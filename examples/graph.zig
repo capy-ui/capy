@@ -169,7 +169,8 @@ pub fn main() !void {
     var window = try capy.Window.init();
     graph = try LineGraph(.{ .dataFn = easing });
 
-    var rectangle = (try capy.Align(.{}, 
+    var rectangle = (try capy.Align(
+        .{},
         capy.Canvas(.{
             .preferredSize = capy.Size{ .width = 100, .height = 100 },
             .ondraw = drawRectangle,

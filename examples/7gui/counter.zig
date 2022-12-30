@@ -25,7 +25,8 @@ pub fn main() !void {
     var format = try capy.FormatDataWrapper(capy.internal.lasting_allocator, "{d}", .{&count});
     defer format.deinit();
 
-    try window.set(capy.Align(.{}, 
+    try window.set(capy.Align(
+        .{},
         capy.Row(.{ .spacing = 5 }, .{
             capy.TextField(.{ .readOnly = true, .name = "text-field" })
                 .bind("text", format),

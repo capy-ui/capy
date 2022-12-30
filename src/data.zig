@@ -178,6 +178,7 @@ pub fn DataWrapper(comptime T: type) type {
         /// Returns true if there is currently an animation playing.
         pub fn hasAnimation(self: *Self) bool {
             if (!IsAnimable) return false;
+            self.update();
             return self.value == .Animated;
         }
 

@@ -13,17 +13,17 @@ pub const Align_Impl = struct {
     dataWrappers: Align_Impl.DataWrappers = .{},
 
     child: Widget,
-	relayouting: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
-	x: DataWrapper(f32) = DataWrapper(f32).of(0.5),
-	y: DataWrapper(f32) = DataWrapper(f32).of(0.5),
+    relayouting: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
+    x: DataWrapper(f32) = DataWrapper(f32).of(0.5),
+    y: DataWrapper(f32) = DataWrapper(f32).of(0.5),
 
     pub fn init(config: Align_Impl.Config, widget: Widget) !Align_Impl {
         var component = Align_Impl.init_events(Align_Impl{ .child = widget });
-		component.x.set(config.x);
-		component.y.set(config.y);
+        component.x.set(config.x);
+        component.y.set(config.y);
         try component.addResizeHandler(&onResize);
 
-		return component;
+        return component;
     }
 
     pub fn _pointerMoved(self: *Align_Impl) void {
@@ -31,7 +31,7 @@ pub const Align_Impl = struct {
         self.y.updateBinders();
     }
 
-	pub fn onResize(self: *Align_Impl, _: Size) !void {
+    pub fn onResize(self: *Align_Impl, _: Size) !void {
         self.relayout();
     }
 
@@ -56,7 +56,7 @@ pub const Align_Impl = struct {
 
             self.child.class.setWidgetFn(&self.child);
             try self.child.show();
-			peer.add(self.child.peer.?);
+            peer.add(self.child.peer.?);
 
             try self.show_events();
         }
@@ -68,21 +68,21 @@ pub const Align_Impl = struct {
             self.relayouting.store(true, .SeqCst);
             defer self.relayouting.store(false, .SeqCst);
 
-        	const available = Size{ .width = @intCast(u32, peer.getWidth()), .height = @intCast(u32, peer.getHeight()) };
-			
-			const alignX = self.x.get();
-			const alignY = self.y.get();
+            const available = Size{ .width = @intCast(u32, peer.getWidth()), .height = @intCast(u32, peer.getHeight()) };
 
-			if (self.child.peer) |widgetPeer| {
-				const preferredSize = self.child.getPreferredSize(available);
-				const finalSize = Size.intersect(preferredSize, available);
+            const alignX = self.x.get();
+            const alignY = self.y.get();
 
-				const x = @floatToInt(u32, alignX * @intToFloat(f32, available.width -| finalSize.width));
-				const y = @floatToInt(u32, alignY * @intToFloat(f32, available.height -| finalSize.height));
+            if (self.child.peer) |widgetPeer| {
+                const preferredSize = self.child.getPreferredSize(available);
+                const finalSize = Size.intersect(preferredSize, available);
 
-				peer.move(widgetPeer, x, y);
-				peer.resize(widgetPeer, finalSize.width, finalSize.height);
-			}
+                const x = @floatToInt(u32, alignX * @intToFloat(f32, available.width -| finalSize.width));
+                const y = @floatToInt(u32, alignY * @intToFloat(f32, available.height -| finalSize.height));
+
+                peer.move(widgetPeer, x, y);
+                peer.resize(widgetPeer, finalSize.width, finalSize.height);
+            }
         }
     }
 
@@ -91,17 +91,17 @@ pub const Align_Impl = struct {
     }
 
     pub fn _deinit(self: *Align_Impl) void {
-		self.child.deinit();
+        self.child.deinit();
     }
 };
 
 pub fn Align(opts: Align_Impl.Config, child: anytype) anyerror!Align_Impl {
-	const element =
-		if (comptime internal.isErrorUnion(@TypeOf(child)))
-		try child
-	else
-		child;
+    const element =
+        if (comptime internal.isErrorUnion(@TypeOf(child)))
+        try child
+    else
+        child;
 
     const widget = try internal.genericWidgetFrom(element);
-	return try Align_Impl.init(opts, widget);
+    return try Align_Impl.init(opts, widget);
 }

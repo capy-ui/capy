@@ -49,7 +49,7 @@ pub const Widget = struct {
         return self.class.preferredSizeFn(self, available);
     }
 
-    pub fn getParent(self: *const Widget) ?* Widget {
+    pub fn getParent(self: *const Widget) ?*Widget {
         return self.class.getParentFn(self);
     }
 
@@ -94,6 +94,7 @@ const TestType = struct {
         .deinitFn = undefined,
         .preferredSizeFn = undefined,
         .setWidgetFn = undefined,
+        .getParentFn = undefined,
     };
 };
 
@@ -104,8 +105,6 @@ test "widget basics" {
         .class = &TestType.WidgetClass,
 
         .name = undefined,
-        .alignX = undefined,
-        .alignY = undefined,
     };
 
     try expect(widget.is(TestType));
