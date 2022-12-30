@@ -47,8 +47,13 @@ There are convenience options with `zig build push` (installs the app on a conne
 Install the [`sdkmanager`](https://developer.android.com/studio/command-line/sdkmanager) and invoke the following command line:
 
 ```
-sdkmanager --install "platforms;android-21" # Min version: Android 5
-sdkmanager --install "build-tools;33.0.0"
+# Android Platforms for your target Android version
+# Min version: Android 5
+sdkmanager --install "platforms;android-21"
+# you can install other versions as well
+# remember to set it like `zig build -Dandroid=android99`
+
+sdkmanager --install "build-tools;33.0.1"
 sdkmanager --install "ndk;25.1.8937393"
 zig build keystore install run
 ```

@@ -378,7 +378,7 @@ pub fn findUserConfig(b: *Builder, versions: Sdk.ToolchainVersions) !UserConfig 
     return config;
 }
 
-fn findProgramPath(allocator: std.mem.Allocator, program: []const u8) ?[]const u8 {
+pub fn findProgramPath(allocator: std.mem.Allocator, program: []const u8) ?[]const u8 {
     const args: []const []const u8 = if (builtin.os.tag == .windows)
         &[_][]const u8{ "where", program }
     else
@@ -492,4 +492,13 @@ fn findProblemWithJdk(b: *Builder, path: []const u8) ?[]const u8 {
 
 fn pathConcat(b: *Builder, left: []const u8, right: []const u8) []const u8 {
     return std.fs.path.join(b.allocator, &[_][]const u8{ left, right }) catch unreachable;
+}
+
+pub fn fileExists(path: []const u8) bool {
+    std.fs.cwd().access(path, .{}) catch |err| {
+        if (err == error.FileNotFound) return false;
+        std.log.debug("Cannot access {s}, {s}", .{ path, @errorName(err) });
+        return false;
+    };
+    return true;
 }

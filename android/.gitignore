@@ -1,6 +1,7 @@
 zig-cache
 *.apk
 *.keystore
+.vscode
 .build_config
 zig-out
 *.apk.idsig

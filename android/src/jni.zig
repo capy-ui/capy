@@ -15,6 +15,7 @@ pub const JNI = struct {
         return fromJniEnv(activity, env);
     }
 
+    /// Get the JNIEnv associated with the current thread.
     pub fn get(activity: *android.ANativeActivity) Self {
         var env: *android.JNIEnv = undefined;
         _ = activity.vm.*.GetEnv(activity.vm, @ptrCast(*?*anyopaque, &env), android.JNI_VERSION_1_6);

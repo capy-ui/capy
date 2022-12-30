@@ -45,6 +45,13 @@ folders: UserConfig,
 
 versions: ToolchainVersions,
 
+launch_using: ADBLaunchMethod = .monkey,
+
+pub const ADBLaunchMethod = enum {
+    monkey,
+    am,
+};
+
 /// Initializes the android SDK.
 /// It requires some input on which versions of the tool chains should be used
 pub fn init(b: *Builder, user_config: ?UserConfig, toolchains: ToolchainVersions) *Sdk {
@@ -55,7 +62,13 @@ pub fn init(b: *Builder, user_config: ?UserConfig, toolchains: ToolchainVersions
 
         const zipalign = std.fs.path.join(b.allocator, &[_][]const u8{ actual_user_config.android_sdk_root, "build-tools", toolchains.build_tools_version, "zipalign" ++ exe }) catch unreachable;
         const aapt = std.fs.path.join(b.allocator, &[_][]const u8{ actual_user_config.android_sdk_root, "build-tools", toolchains.build_tools_version, "aapt" ++ exe }) catch unreachable;
-        const adb = std.fs.path.join(b.allocator, &[_][]const u8{ actual_user_config.android_sdk_root, "platform-tools", "adb" ++ exe }) catch unreachable;
+        const adb = blk1: {
+            const adb_sdk = std.fs.path.join(b.allocator, &[_][]const u8{ actual_user_config.android_sdk_root, "platform-tools", "adb" ++ exe }) catch unreachable;
+            if (!auto_detect.fileExists(adb_sdk)) {
+                break :blk1 auto_detect.findProgramPath(b.allocator, "adb") orelse @panic("No adb found");
+            }
+            break :blk1 adb_sdk;
+        };
         const apksigner = std.fs.path.join(b.allocator, &[_][]const u8{ actual_user_config.android_sdk_root, "build-tools", toolchains.build_tools_version, "apksigner" ++ exe }) catch unreachable;
         const keytool = std.fs.path.join(b.allocator, &[_][]const u8{ actual_user_config.java_home, "bin", "keytool" ++ exe }) catch unreachable;
 
@@ -96,7 +109,7 @@ pub fn init(b: *Builder, user_config: ?UserConfig, toolchains: ToolchainVersions
 }
 
 pub const ToolchainVersions = struct {
-    build_tools_version: []const u8 = "33.0.0",
+    build_tools_version: []const u8 = "33.0.1",
     ndk_version: []const u8 = "25.1.8937393",
 };
 
@@ -194,8 +207,6 @@ pub const AppConfig = struct {
     },
 
     libraries: []const []const u8 = &app_libs,
-
-    packages: []const std.build.Pkg = &.{},
 };
 
 /// One of the legal targets android can be built for.
@@ -448,9 +459,6 @@ pub fn createApp(
                 \\
             , .{perm}) catch unreachable;
         }
-        writer.print(
-            \\    <uses-sdk android:minSdkVersion="{d}" />
-        , .{ @enumToInt(app_config.target_version) }) catch unreachable;
 
         if (app_config.fullscreen) {
             writer.writeAll(
@@ -748,9 +756,6 @@ pub fn compileAppLibrary(
     for (app_config.libraries) |lib| {
         exe.linkSystemLibraryName(lib);
     }
-    for (app_config.packages) |package| {
-        exe.addPackage(package);
-    }
 
     exe.setBuildMode(mode);
 
@@ -924,14 +929,25 @@ pub fn installApp(sdk: Sdk, apk_file: std.build.FileSource) *Step {
 }
 
 pub fn startApp(sdk: Sdk, package_name: []const u8) *Step {
-    const step = sdk.b.addSystemCommand(&[_][]const u8{
-        sdk.system_tools.adb,
-        "shell",
-        "am",
-        "start",
-        "-n",
-        sdk.b.fmt("{s}/android.app.NativeActivity", .{package_name}),
-    });
+    const command: []const []const u8 = switch (sdk.launch_using) {
+        .am => &.{
+            sdk.system_tools.adb,
+            "shell",
+            "am",
+            "start",
+            "-n",
+            sdk.b.fmt("{s}/android.app.NativeActivity", .{package_name}),
+        },
+        .monkey => &.{
+            sdk.system_tools.adb,
+            "shell",
+            "monkey",
+            "-p",
+            package_name,
+            "1",
+        },
+    };
+    const step = sdk.b.addSystemCommand(command);
     return &step.step;
 }
 
@@ -946,28 +962,33 @@ pub const KeyConfig = struct {
 /// A build step that initializes a new key store from the given configuration.
 /// `android_config.key_store` must be non-`null` as it is used to initialize the key store.
 pub fn initKeystore(sdk: Sdk, key_store: KeyStore, key_config: KeyConfig) *Step {
-    const step = sdk.b.addSystemCommand(&[_][]const u8{
-        sdk.system_tools.keytool,
-        "-genkey",
-        "-v",
-        "-keystore",
-        key_store.file,
-        "-alias",
-        key_store.alias,
-        "-keyalg",
-        @tagName(key_config.key_algorithm),
-        "-keysize",
-        sdk.b.fmt("{d}", .{key_config.key_size}),
-        "-validity",
-        sdk.b.fmt("{d}", .{key_config.validity}),
-        "-storepass",
-        key_store.password,
-        "-keypass",
-        key_store.password,
-        "-dname",
-        key_config.distinguished_name,
-    });
-    return &step.step;
+    if (auto_detect.fileExists(key_store.file)) {
+        std.log.warn("keystore already exists: {s}", .{key_store.file});
+        return sdk.b.step("init_keystore_noop", "Do nothing, since key exists");
+    } else {
+        const step = sdk.b.addSystemCommand(&[_][]const u8{
+            sdk.system_tools.keytool,
+            "-genkey",
+            "-v",
+            "-keystore",
+            key_store.file,
+            "-alias",
+            key_store.alias,
+            "-keyalg",
+            @tagName(key_config.key_algorithm),
+            "-keysize",
+            sdk.b.fmt("{d}", .{key_config.key_size}),
+            "-validity",
+            sdk.b.fmt("{d}", .{key_config.validity}),
+            "-storepass",
+            key_store.password,
+            "-keypass",
+            key_store.password,
+            "-dname",
+            key_config.distinguished_name,
+        });
+        return &step.step;
+    }
 }
 
 const Builder = std.build.Builder;
@@ -1008,9 +1029,7 @@ const zig_targets = struct {
     };
 };
 
-const app_libs = [_][]const u8{
-    "GLESv2", "EGL", "android", "log", "aaudio"
-};
+const app_libs = [_][]const u8{ "GLESv2", "EGL", "android", "log", "aaudio" };
 
 const BuildOptionStep = struct {
     const Self = @This();

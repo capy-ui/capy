@@ -49,7 +49,7 @@ pub fn build(b: *std.build.Builder) !void {
         // This is a set of resources. It should at least contain a "mipmap/icon.png" resource that
         // will provide the application icon.
         .resources = &[_]Sdk.Resource{
-            .{ .path = "mipmap/icon.png", .content = .{ .path = "example/icon.png" } },
+            .{ .path = "mipmap/icon.png", .content = .{ .path = "examples/icon.png" } },
         },
 
         .aaudio = aaudio,
@@ -66,9 +66,18 @@ pub fn build(b: *std.build.Builder) !void {
         .libraries = libraries.items,
     };
 
+    // Replace by your app's main file.
+    // Here this is some code to choose the example to run
+    const ExampleType = enum { egl, textview };
+    const example = b.option(ExampleType, "example", "Which example to run") orelse .egl;
+    const src = switch (example) {
+        .egl => "examples/egl/main.zig",
+        .textview => "examples/textview/main.zig",
+    };
+
     const app = sdk.createApp(
         "app-template.apk",
-        "example/main.zig",
+        src,
         config,
         mode,
         .{
