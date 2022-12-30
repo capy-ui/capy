@@ -8,6 +8,7 @@ pub const log = android.log;
 
 const EGLContext = android.egl.EGLContext;
 const JNI = android.JNI;
+const NativeActivity = android.NativeActivity;
 const c = android.egl.c;
 
 const app_log = std.log.scoped(.app);
@@ -200,10 +201,10 @@ pub const AndroidApp = struct {
         });
 
         if (event_type == .AKEY_EVENT_ACTION_DOWN) {
-            var jni = JNI.init(self.activity);
-            defer jni.deinit();
+            var native_activity = NativeActivity.init(self.activity);
+            defer native_activity.deinit();
 
-            var codepoint = jni.AndroidGetUnicodeChar(
+            var codepoint = try native_activity.AndroidGetUnicodeChar(
                 android.AKeyEvent_getKeyCode(event),
                 android.AKeyEvent_getMetaState(event),
             );
@@ -252,21 +253,21 @@ pub const AndroidApp = struct {
         const event_type = @intToEnum(android.AMotionEventActionType, android.AMotionEvent_getAction(event));
 
         {
-            var jni = JNI.init(self.activity);
-            defer jni.deinit();
+            var native_activity = NativeActivity.init(self.activity);
+            defer native_activity.deinit();
 
             // Show/Hide keyboard
-            // _ = jni.AndroidDisplayKeyboard(true);
+            // _ = native_activity.AndroidDisplayKeyboard(true);
 
             // this allows you to send the app in the background
-            // const success = jni.AndroidSendToBack(true);
+            // const success = native_activity.AndroidSendToBack(true);
             // _ = success;
             // std.log.scoped(.input).debug("SendToBack() = {}\n", .{success});
 
             // This is a demo on how to request permissions:
             if (event_type == .AMOTION_EVENT_ACTION_UP) {
-                if (!JNI.AndroidHasPermissions(&jni, "android.permission.RECORD_AUDIO")) {
-                    JNI.AndroidRequestAppPermissions(&jni, "android.permission.RECORD_AUDIO");
+                if (!try NativeActivity.AndroidHasPermissions(&native_activity, "android.permission.RECORD_AUDIO")) {
+                    try NativeActivity.AndroidRequestAppPermissions(&native_activity, "android.permission.RECORD_AUDIO");
                 }
             }
         }
@@ -350,11 +351,11 @@ pub const AndroidApp = struct {
 
     fn mainLoop(self: *Self) !void {
         // This code somehow crashes yet. Needs more investigations
-        var jni = JNI.init(self.activity);
-        defer jni.deinit();
+        var native_activity = NativeActivity.init(self.activity);
+        defer native_activity.deinit();
 
         // Must be called from main thread…
-        _ = jni.AndroidMakeFullscreen();
+        _ = try native_activity.AndroidMakeFullscreen();
 
         var loop: usize = 0;
         app_log.info("mainLoop() started\n", .{});

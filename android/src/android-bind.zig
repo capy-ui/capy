@@ -512,7 +512,7 @@ pub const jobjectRefType = enum_jobjectRefType;
 const struct_unnamed_15 = extern struct {
     name: [*c]const u8,
     signature: [*c]const u8,
-    fnPtr: ?*anyopaque,
+    fnPtr: ?*const anyopaque,
 };
 pub const JNINativeMethod = struct_unnamed_15;
 pub const JNINativeInterface = extern struct {

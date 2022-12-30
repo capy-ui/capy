@@ -8,6 +8,7 @@ pub const log = android.log;
 
 const EGLContext = android.egl.EGLContext;
 const JNI = android.JNI;
+const NativeActivity = android.NativeActivity;
 const c = android.egl.c;
 
 const app_log = std.log.scoped(.app);
@@ -23,9 +24,9 @@ pub const AndroidApp = struct {
     running: bool = true,
 
     // The JNIEnv of the UI thread
-    uiJni: JNI = undefined,
+    uiJni: NativeActivity = undefined,
     // The JNIEnv of the app thread
-    mainJni: JNI = undefined,
+    mainJni: NativeActivity = undefined,
 
     // This is needed because to run a callback on the UI thread Looper you must
     // react to a fd change, so we use a pipe to force it
@@ -52,31 +53,22 @@ pub const AndroidApp = struct {
         self.pipe = try std.os.pipe();
         android.ALooper_acquire(self.uiThreadLooper);
 
-        var jni = JNI.init(self.activity);
-        self.uiJni = jni;
+        var native_activity = NativeActivity.init(self.activity);
+        self.uiJni = native_activity;
+        const jni = native_activity.jni;
 
         // Get the window object attached to our activity
-        const activityClass = jni.findClass("android/app/NativeActivity");
-        const getWindow = jni.invokeJni(.GetMethodID, .{ activityClass, "getWindow", "()Landroid/view/Window;" });
-        const activityWindow = jni.invokeJni(.CallObjectMethod, .{ self.activity.clazz, getWindow });
-        const WindowClass = jni.findClass("android/view/Window");
+        const activityWindow = try native_activity.activity_class.callObjectMethod(self.activity.clazz, "getWindow", "()Landroid/view/Window;", .{});
+
+        const WindowClass = try jni.findClass("android/view/Window");
 
         // This disables the surface handler set by default by android.view.NativeActivity
         // This way we let the content view do the drawing instead of us.
-        const takeSurface = jni.invokeJni(.GetMethodID, .{ WindowClass, "takeSurface", "(Landroid/view/SurfaceHolder$Callback2;)V" });
-        jni.invokeJni(.CallVoidMethod, .{
-            activityWindow,
-            takeSurface,
-            @as(android.jobject, null),
-        });
+        try WindowClass.callVoidMethod(activityWindow, "takeSurface", "(Landroid/view/SurfaceHolder$Callback2;)V", .{@as(android.jobject, null)});
 
         // Do the same but with the input queue. This allows the content view to handle input.
-        const takeInputQueue = jni.invokeJni(.GetMethodID, .{ WindowClass, "takeInputQueue", "(Landroid/view/InputQueue$Callback;)V" });
-        jni.invokeJni(.CallVoidMethod, .{
-            activityWindow,
-            takeInputQueue,
-            @as(android.jobject, null),
-        });
+        try WindowClass.callVoidMethod(activityWindow, "takeInputQueue", "(Landroid/view/InputQueue$Callback;)V", .{@as(android.jobject, null)});
+
         self.thread = try std.Thread.spawn(.{}, mainLoop, .{self});
     }
 
@@ -92,10 +84,7 @@ pub const AndroidApp = struct {
         const Args = @TypeOf(args);
         const allocator = self.allocator;
 
-        const Data = struct {
-            args: Args,
-            self: *AndroidApp
-        };
+        const Data = struct { args: Args, self: *AndroidApp };
 
         const data_ptr = try allocator.create(Data);
         data_ptr.* = .{ .args = args, .self = self };
@@ -113,7 +102,8 @@ pub const AndroidApp = struct {
             }
         };
 
-        const result = android.ALooper_addFd(self.uiThreadLooper,
+        const result = android.ALooper_addFd(
+            self.uiThreadLooper,
             self.pipe[0],
             0,
             android.ALOOPER_EVENT_INPUT,
@@ -128,8 +118,8 @@ pub const AndroidApp = struct {
         std.Thread.Futex.wait(&self.uiThreadCondition, 0);
     }
 
-    pub fn getJni(self: *AndroidApp) JNI {
-        return JNI.get(self.activity);
+    pub fn getActivity(self: *AndroidApp) NativeActivity {
+        return NativeActivity.get(self.activity);
     }
 
     pub fn deinit(self: *AndroidApp) void {
@@ -143,34 +133,33 @@ pub const AndroidApp = struct {
     }
 
     fn setAppContentView(self: *AndroidApp) void {
-        const jni = self.getJni();
+        self.setAppContentViewImpl() catch |e| {
+            app_log.err("Error occured while running setAppContentView: {s}", .{ @errorName(e) });
+        };
+    }
+
+    fn setAppContentViewImpl(self: *AndroidApp) !void {
+        const native_activity = self.getActivity();
+        const jni = native_activity.jni;
 
         // We create a new TextView..
         std.log.warn("Creating android.widget.TextView", .{});
-        const TextView = jni.findClass("android/widget/TextView");
-        const textViewInit = jni.invokeJni(.GetMethodID, .{ TextView, "<init>", "(Landroid/content/Context;)V" });
-        const textView = jni.invokeJni(.NewObject, .{ TextView, textViewInit, self.activity.clazz });
+        const TextView = try jni.findClass("android/widget/TextView");
+        const textView = try TextView.newObject("(Landroid/content/Context;)V", .{self.activity.clazz});
 
         // .. and set its text to "Hello from Zig!"
-        const setText = jni.invokeJni(.GetMethodID, .{ TextView, "setText", "(Ljava/lang/CharSequence;)V" });
-        jni.invokeJni(.CallVoidMethod, .{ textView, setText, jni.newString("Hello from Zig!") });
+        try TextView.callVoidMethod(textView, "setText", "(Ljava/lang/CharSequence;)V", .{try jni.newString("Hello from Zig!")});
 
         // And then we use it as our content view!
         std.log.err("Attempt to call NativeActivity.setContentView()", .{});
-        const activityClass = jni.findClass("android/app/NativeActivity");
-        const setContentView = jni.invokeJni(.GetMethodID, .{ activityClass, "setContentView", "(Landroid/view/View;)V" });
-        jni.invokeJni(.CallVoidMethod, .{
-            self.activity.clazz,
-            setContentView,
-            textView,
-        });
+        try native_activity.activity_class.callVoidMethod(self.activity.clazz, "setContentView", "(Landroid/view/View;)V", .{textView});
     }
 
     fn mainLoop(self: *AndroidApp) !void {
-        self.mainJni = JNI.init(self.activity);
+        self.mainJni = NativeActivity.init(self.activity);
         defer self.mainJni.deinit();
 
-        try self.runOnUiThread(setAppContentView, .{ self });
+        try self.runOnUiThread(setAppContentView, .{self});
         while (self.running) {
             std.time.sleep(1 * std.time.ns_per_s);
         }
