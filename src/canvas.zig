@@ -41,7 +41,6 @@ pub fn Canvas(config: Canvas_Impl.Config) Canvas_Impl {
     var btn = Canvas_Impl.init();
     btn.preferredSize = DataWrapper(?Size).of(config.preferredSize);
     btn.dataWrappers.name.set(config.name);
-    btn.dataWrappers.alignX.set(config.alignX);
     if (config.onclick) |onclick| {
         btn.addClickHandler(onclick) catch unreachable; // TODO: improve
     }
@@ -102,7 +101,6 @@ pub fn Rect(config: Rect_Impl.Config) Rect_Impl {
     rect.preferredSize = DataWrapper(?Size).of(config.preferredSize);
     rect.color = DataWrapper(Color).of(config.color);
     rect.dataWrappers.name.set(config.name);
-    rect.dataWrappers.alignX.set(config.alignX);
     return rect;
 }
 

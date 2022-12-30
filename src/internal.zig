@@ -67,8 +67,6 @@ pub fn Widgeting(comptime T: type) type {
 
         pub const DataWrappers = struct {
             opacity: DataWrapper(f32) = DataWrapper(f32).of(1.0),
-            alignX: DataWrapper(?f32) = DataWrapper(?f32).of(null),
-            alignY: DataWrapper(?f32) = DataWrapper(?f32).of(null),
             name: DataWrapper(?[]const u8) = DataWrapper(?[]const u8).of(null),
 
             /// The widget representing this component
@@ -77,24 +75,10 @@ pub fn Widgeting(comptime T: type) type {
 
         pub const Config = GenerateConfigStruct(T);
 
-        /// When alignX or alignY is changed, this will trigger a parent relayout
-        fn alignChanged(new: ?f32, userdata: usize) void {
-            _ = new;
-
-            const widget = @intToPtr(*Widget, userdata);
-            if (widget.parent) |parent| {
-                const container = parent.as(@import("containers.zig").Container_Impl);
-                container.relayout();
-            }
-        }
-
         pub fn showWidget(widget: *Widget) anyerror!void {
             const component = widget.as(T);
             try component.show();
             widget.peer = component.peer.?.peer;
-
-            _ = try component.dataWrappers.alignX.addChangeListener(.{ .function = alignChanged, .userdata = @ptrToInt(widget) });
-            _ = try component.dataWrappers.alignY.addChangeListener(.{ .function = alignChanged, .userdata = @ptrToInt(widget) });
 
             // if the widget wants to do some operations on showWidget
             if (@hasDecl(T, "_showWidget")) {
@@ -121,8 +105,6 @@ pub fn Widgeting(comptime T: type) type {
 
             self.dataWrappers.widget = null;
             self.dataWrappers.opacity.deinit();
-            self.dataWrappers.alignX.deinit();
-            self.dataWrappers.alignY.deinit();
 
             self.handlers.clickHandlers.deinit();
             self.handlers.drawHandlers.deinit();
@@ -137,8 +119,6 @@ pub fn Widgeting(comptime T: type) type {
 
         pub fn pointerMoved(self: *T) void {
             self.dataWrappers.opacity.updateBinders();
-            self.dataWrappers.alignX.updateBinders();
-            self.dataWrappers.alignY.updateBinders();
             if (@hasDecl(T, "_pointerMoved")) {
                 self._pointerMoved();
             }
@@ -364,8 +344,6 @@ pub fn genericWidgetFrom(component: anytype) anyerror!Widget {
         .data = cp,
         .class = &Dereferenced.WidgetClass,
         .name = &cp.dataWrappers.name,
-        .alignX = &cp.dataWrappers.alignX,
-        .alignY = &cp.dataWrappers.alignY,
         .allocator = if (comptime std.meta.trait.isSingleItemPtr(ComponentType)) null else lasting_allocator,
     };
 }

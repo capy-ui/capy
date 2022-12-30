@@ -26,12 +26,23 @@ pub const Align_Impl = struct {
 		return component;
     }
 
+    pub fn _pointerMoved(self: *Align_Impl) void {
+        self.x.updateBinders();
+        self.y.updateBinders();
+    }
+
 	pub fn onResize(self: *Align_Impl, _: Size) !void {
         self.relayout();
     }
 
+    /// When alignX or alignY is changed, this will trigger a parent relayout
+    fn alignChanged(_: f32, userdata: usize) void {
+        const self = @intToPtr(*Align_Impl, userdata);
+        self.relayout();
+    }
+
     pub fn _showWidget(widget: *Widget, self: *Align_Impl) !void {
-        self.child.parent = widget.parent;
+        self.child.parent = widget;
         self.child.class.setWidgetFn(&self.child);
     }
 
@@ -39,6 +50,9 @@ pub const Align_Impl = struct {
         if (self.peer == null) {
             var peer = try backend.Container.create();
             self.peer = peer;
+
+            _ = try self.x.addChangeListener(.{ .function = alignChanged, .userdata = @ptrToInt(self) });
+            _ = try self.y.addChangeListener(.{ .function = alignChanged, .userdata = @ptrToInt(self) });
 
             self.child.class.setWidgetFn(&self.child);
             try self.child.show();

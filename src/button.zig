@@ -70,8 +70,6 @@ pub fn Button(config: Button_Impl.Config) Button_Impl {
     var btn = Button_Impl.init();
     btn.label.set(config.label);
     btn.enabled.set(config.enabled);
-    btn.dataWrappers.alignX.set(config.alignX);
-    btn.dataWrappers.alignY.set(config.alignY);
     btn.dataWrappers.name.set(config.name);
     if (config.onclick) |onclick| {
         btn.addClickHandler(onclick) catch unreachable; // TODO: improve

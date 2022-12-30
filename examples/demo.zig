@@ -18,7 +18,7 @@ pub fn main() !void {
         capy.Tab(.{ .label = "Buttons" }, capy.Column(.{}, .{
             // alignX = 0 means buttons should be aligned to the left
             // TODO: use constraint layout (when it's added) to make all buttons same width
-            capy.Button(.{ .label = "Button", .alignX = 0, .onclick = moveButton }),
+            capy.Align(.{ .x = 0 }, capy.Button(.{ .label = "Button", .onclick = moveButton })),
             capy.Button(.{ .label = "Button (disabled)", .enabled = false }),
             capy.CheckBox(.{ .label = "Checked", .checked = true }), // TODO: dynamic label based on checked
             capy.CheckBox(.{ .label = "Disabled", .enabled = false }),
@@ -98,11 +98,12 @@ fn BorderLayoutExample() anyerror!capy.Container_Impl {
 
 fn moveButton(button_: *anyopaque) !void {
     const button = @ptrCast(*capy.Button_Impl, @alignCast(@alignOf(capy.Button_Impl), button_));
-    const alignX = &button.dataWrappers.alignX;
+    const parent = button.getParent().?.as(capy.Align_Impl);
 
+    const alignX = &parent.x;
     // Ensure the current animation is done before starting another
     if (!alignX.hasAnimation()) {
-        if (alignX.get().? == 0) { // if on the left
+        if (alignX.get() == 0) { // if on the left
             alignX.animate(capy.Easings.InOut, 1, 1000);
         } else {
             alignX.animate(capy.Easings.InOut, 0, 1000);

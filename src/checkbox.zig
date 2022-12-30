@@ -53,7 +53,6 @@ pub const CheckBox_Impl = struct {
             _ = try self.enabled.addChangeListener(.{ .function = wrapperEnabledChanged, .userdata = @ptrToInt(&self.peer) });
             _ = try self.label.addChangeListener(.{ .function = wrapperLabelChanged, .userdata = @ptrToInt(&self.peer) });
 
-            std.log.info("og: {*}", .{ self });
             try self.addClickHandler(&onClick);
         }
     }
@@ -85,8 +84,6 @@ pub fn CheckBox(config: CheckBox_Impl.Config) CheckBox_Impl {
     btn.checked.set(config.checked);
     btn.label.set(config.label);
     btn.enabled.set(config.enabled);
-    btn.dataWrappers.alignX.set(config.alignX);
-    btn.dataWrappers.alignY.set(config.alignY);
     btn.dataWrappers.name.set(config.name);
     if (config.onclick) |onclick| {
         btn.addClickHandler(onclick) catch unreachable; // TODO: improve

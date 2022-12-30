@@ -161,7 +161,7 @@ fn drawRectangle(_: *anyopaque, ctx: *capy.Canvas_Impl.DrawContext) !void {
     ctx.fill();
 }
 
-var rectangleX = capy.DataWrapper(?f32).of(0.1);
+var rectangleX = capy.DataWrapper(f32).of(0.1);
 var animStart: i64 = 0;
 pub fn main() !void {
     try capy.backend.init();
@@ -169,13 +169,13 @@ pub fn main() !void {
     var window = try capy.Window.init();
     graph = try LineGraph(.{ .dataFn = easing });
 
-    var rectangle = (try capy.Column(.{}, .{
+    var rectangle = (try capy.Align(.{}, 
         capy.Canvas(.{
             .preferredSize = capy.Size{ .width = 100, .height = 100 },
             .ondraw = drawRectangle,
         }),
-    }))
-        .bind("alignX", &rectangleX);
+    ))
+        .bind("x", &rectangleX);
 
     try window.set(capy.Column(.{}, .{
         capy.Align(.{}, capy.Row(.{ .spacing = 10 }, .{

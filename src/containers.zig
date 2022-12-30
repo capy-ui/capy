@@ -233,8 +233,6 @@ pub const Container_Impl = struct {
             .layoutConfig = layoutConfigBytes,
         });
         _ = container.setName(config.name);
-        _ = container.set("alignX", config.alignX);
-        _ = container.set("alignY", config.alignY);
         try container.addResizeHandler(&onResize);
         return container;
     }
