@@ -24,7 +24,7 @@ pub fn install(step: *std.build.LibExeObjStep, options: CapyBuildOptions) !void 
 
     const zigimg = std.build.Pkg{
         .name = "zigimg",
-        .source = std.build.FileSource { .path = prefix ++ "/vendor/zigimg/zigimg.zig" },
+        .source = std.build.FileSource{ .path = prefix ++ "/vendor/zigimg/zigimg.zig" },
     };
 
     // const zelda = build_zelda.pkgs.zelda;
@@ -42,9 +42,9 @@ pub fn install(step: *std.build.LibExeObjStep, options: CapyBuildOptions) !void 
 
     const capy = std.build.Pkg{
         .name = "capy",
-        .source = std.build.FileSource { .path = prefix ++ "/src/main.zig" },
+        .source = std.build.FileSource{ .path = prefix ++ "/src/main.zig" },
         //.dependencies = &[_]std.build.Pkg{ zigimg, zelda },
-        .dependencies = &[_]std.build.Pkg{ zigimg },
+        .dependencies = &[_]std.build.Pkg{zigimg},
     };
     if (!step.target.toTarget().isAndroid()) step.addPackage(capy);
 
@@ -133,6 +133,7 @@ pub fn install(step: *std.build.LibExeObjStep, options: CapyBuildOptions) !void 
                 const app = sdk.createApp(
                     "zig-out/capy-app.apk",
                     step.root_src.?.getPath(step.builder),
+                    "android/classes.dex",
                     config,
                     mode,
                     .{
@@ -146,7 +147,7 @@ pub fn install(step: *std.build.LibExeObjStep, options: CapyBuildOptions) !void 
 
                 const capy_android = std.build.Pkg{
                     .name = "capy",
-                    .source = std.build.FileSource { .path = prefix ++ "/src/main.zig" },
+                    .source = std.build.FileSource{ .path = prefix ++ "/src/main.zig" },
                     .dependencies = &[_]std.build.Pkg{ zigimg, app.getAndroidPackage("android") },
                 };
                 for (app.libraries) |exe| {
@@ -154,7 +155,7 @@ pub fn install(step: *std.build.LibExeObjStep, options: CapyBuildOptions) !void 
                     exe.addPackage(capy_android);
                 }
                 step.addPackage(capy_android);
-                step.export_symbol_names = &.{ "ANativeActivity_onCreate" };
+                step.export_symbol_names = &.{"ANativeActivity_onCreate"};
 
                 // Make the app build when we invoke "zig build" or "zig build install"
                 // TODO: only invoke keystore if .build_config/android.keystore doesn't exist

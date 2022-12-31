@@ -35,6 +35,15 @@ pub const Align_Impl = struct {
         self.relayout();
     }
 
+    pub fn getChild(self: *Align_Impl, name: []const u8) ?*Widget {
+        if (self.child.name.*.get()) |child_name| {
+            if (std.mem.eql(u8, child_name, name)) {
+                return &self.child;
+            }
+        }
+        return null;
+    }
+
     /// When alignX or alignY is changed, this will trigger a parent relayout
     fn alignChanged(_: f32, userdata: usize) void {
         const self = @intToPtr(*Align_Impl, userdata);

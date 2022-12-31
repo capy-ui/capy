@@ -530,6 +530,8 @@ pub const TextArea = struct {
 
 pub const TextField = struct {
     peer: *c.GtkWidget,
+    // duplicate text to keep the same behaviour as other backends
+    dup_text: std.ArrayList(u8),
 
     pub usingnamespace Events(TextField);
 
@@ -546,7 +548,7 @@ pub const TextField = struct {
         c.gtk_widget_show(textField);
         try TextField.setupEvents(textField);
         _ = c.g_signal_connect_data(textField, "changed", @ptrCast(c.GCallback, &gtkTextChanged), null, @as(c.GClosureNotify, null), c.G_CONNECT_AFTER);
-        return TextField{ .peer = textField };
+        return TextField{ .peer = textField, .dup_text = std.ArrayList(u8).init(lib.internal.lasting_allocator) };
     }
 
     pub fn setText(self: *TextField, text: []const u8) void {
@@ -558,7 +560,10 @@ pub const TextField = struct {
         }
 
         const buffer = c.gtk_entry_get_buffer(@ptrCast(*c.GtkEntry, self.peer));
-        c.gtk_entry_buffer_set_text(buffer, text.ptr, numChars);
+        self.dup_text.clearRetainingCapacity();
+        self.dup_text.appendSlice(text) catch return;
+
+        c.gtk_entry_buffer_set_text(buffer, self.dup_text.items.ptr, numChars);
     }
 
     pub fn getText(self: *TextField) [:0]const u8 {
