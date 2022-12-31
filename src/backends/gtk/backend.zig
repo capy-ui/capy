@@ -471,6 +471,7 @@ pub const CheckBox = struct {
 
 pub const Label = struct {
     peer: *c.GtkWidget,
+    nullTerminated: ?[:0]const u8 = null,
 
     pub usingnamespace Events(Label);
 
@@ -485,13 +486,12 @@ pub const Label = struct {
         c.gtk_label_set_xalign(@ptrCast(*c.GtkLabel, self.peer), alignment);
     }
 
-    pub fn setText(self: *Label, text: [:0]const u8) void {
-        c.gtk_label_set_text(@ptrCast(*c.GtkLabel, self.peer), text.ptr);
-    }
-
-    pub fn getText(self: *Label) [:0]const u8 {
-        const text = c.gtk_label_get_text(@ptrCast(*c.GtkLabel, self.peer)).?;
-        return std.mem.span(text);
+    pub fn setText(self: *Label, text: []const u8) void {
+        if (self.nullTerminated) |old| {
+            lib.internal.lasting_allocator.free(old);
+        }
+        self.nullTerminated = lib.internal.lasting_allocator.dupeZ(u8, text) catch unreachable;
+        c.gtk_label_set_text(@ptrCast(*c.GtkLabel, self.peer), self.nullTerminated.?.ptr);
     }
 };
 

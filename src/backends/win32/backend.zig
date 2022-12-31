@@ -811,22 +811,13 @@ pub const Label = struct {
         _ = alignment;
     }
 
-    pub fn setText(self: *Label, text: [:0]const u8) void {
+    pub fn setText(self: *Label, text: []const u8) void {
         const allocator = lib.internal.scratch_allocator;
         const wide = std.unicode.utf8ToUtf16LeWithNull(allocator, text) catch return; // invalid utf8 or not enough memory
         defer allocator.free(wide);
         if (win32.SetWindowTextW(self.peer, wide) == 0) {
             std.os.windows.unexpectedError(win32.GetLastError()) catch {};
         }
-    }
-
-    pub fn getText(self: *Label) [:0]const u8 {
-        const allocator = self.arena.allocator();
-        const len = win32.GetWindowTextLengthW(self.peer);
-        var buf = allocator.allocSentinel(u16, @intCast(usize, len), 0) catch unreachable; // TODO return error
-        defer allocator.free(buf);
-        const utf16Slice = buf[0..@intCast(usize, win32.GetWindowTextW(self.peer, buf.ptr, len + 1))];
-        return std.unicode.utf16leToUtf8AllocZ(allocator, utf16Slice) catch unreachable; // TODO return error
     }
 
     pub fn destroy(self: *Label) void {
