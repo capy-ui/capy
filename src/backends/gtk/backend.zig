@@ -486,12 +486,29 @@ pub const Label = struct {
         c.gtk_label_set_xalign(@ptrCast(*c.GtkLabel, self.peer), alignment);
     }
 
+    const RunOpts = struct {
+        label: *c.GtkLabel,
+        text: [:0]const u8,
+    };
+
+    fn setText_uiThread(userdata: ?*anyopaque) callconv(.C) c_int {
+        const runOpts = @ptrCast(*RunOpts, @alignCast(@alignOf(RunOpts), userdata.?));
+        defer lib.internal.scratch_allocator.destroy(runOpts);
+
+        c.gtk_label_set_text(runOpts.label, runOpts.text);
+        return c.G_SOURCE_REMOVE;
+    }
+
     pub fn setText(self: *Label, text: []const u8) void {
         if (self.nullTerminated) |old| {
             lib.internal.lasting_allocator.free(old);
         }
         self.nullTerminated = lib.internal.lasting_allocator.dupeZ(u8, text) catch unreachable;
-        c.gtk_label_set_text(@ptrCast(*c.GtkLabel, self.peer), self.nullTerminated.?.ptr);
+
+        // It must be run in UI thread otherwise set_text might crash randomly
+        const runOpts = lib.internal.scratch_allocator.create(RunOpts) catch unreachable;
+        runOpts.* = .{ .label = @ptrCast(*c.GtkLabel, self.peer), .text = self.nullTerminated.? };
+        _ = c.g_idle_add(setText_uiThread, runOpts);
     }
 };
 
