@@ -550,7 +550,7 @@ pub const Canvas = struct {
             const cw = @intCast(c_int, w);
             const ch = @intCast(c_int, h);
 
-            _ = win32.Ellipse(self.hdc, @intCast(c_int, x) - cw, @intCast(c_int, y) - ch, @intCast(c_int, x) + cw * 2, @intCast(c_int, y) + ch * 2);
+            _ = win32.Ellipse(self.hdc, @intCast(c_int, x), @intCast(c_int, y), @intCast(c_int, x) + cw, @intCast(c_int, y) + ch);
         }
 
         pub fn text(self: *DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {

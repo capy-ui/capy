@@ -16,7 +16,7 @@ var mouseY: i32 = 0;
 
 var totalEnergy = capy.DataWrapper(f32).of(0);
 
-const BALL_DIAMETER = 10;
+const BALL_DIAMETER = 20;
 const BALL_RADIUS = BALL_DIAMETER / 2;
 
 //var gpa = std.heap.GeneralPurposeAllocator(.{}) {};
@@ -113,14 +113,14 @@ fn onDraw(widget: *capy.Canvas_Impl, ctx: *capy.DrawContext) !void {
         } else {
             ctx.setColor(0, 0, 0);
         }
-        ctx.ellipse(@floatToInt(i32, ball.x), @floatToInt(i32, ball.y), 10, 10);
+        ctx.ellipse(@floatToInt(i32, ball.x), @floatToInt(i32, ball.y), BALL_DIAMETER, BALL_DIAMETER);
         ctx.fill();
     }
 
     if (selected_ball_index) |index| {
         const ball = balls.items[index];
         ctx.setColor(0, 0, 0);
-        ctx.line(@floatToInt(i32, ball.x), @floatToInt(i32, ball.y), mouseX, mouseY);
+        ctx.line(@floatToInt(i32, ball.x + BALL_RADIUS), @floatToInt(i32, ball.y + BALL_RADIUS), mouseX, mouseY);
         ctx.stroke();
     }
 }
@@ -160,9 +160,9 @@ fn simulationThread(window: *capy.Window) !void {
                     const dx = otherBall.x - ball.x;
                     const dy = otherBall.y - ball.y;
                     const distance = std.math.sqrt((dx * dx) + (dy * dy));
-                    if (distance < BALL_RADIUS) {
+                    if (distance < BALL_DIAMETER) {
                         // Collision!
-                        if (std.math.sign(ball.velX) == @as(f32, if(dx > 0) 1 else -1) or std.math.sign(ball.velY) == @as(f32, if(dy > 0) 1 else -1)) {
+                        if (std.math.sign(ball.velX) == std.math.sign(dx) or std.math.sign(ball.velY) == std.math.sign(dy)) {
                             // We only take it if they're approaching each other to avoid two balls
                             // getting stuck forever
                             const oldVelX = ball.velX;
@@ -172,17 +172,25 @@ fn simulationThread(window: *capy.Window) !void {
 
                             otherBall.velX = oldVelX;
                             otherBall.velY = oldVelY;
+
+                            const offshoot = (BALL_DIAMETER - distance) / 2;
+                            ball.x -= (dx / distance) * offshoot / 2;
+                            ball.y -= (dy / distance) * offshoot / 2;
+                            otherBall.x += (dy / distance) * offshoot / 2;
+                            otherBall.y += (dy / distance) * offshoot / 2;
                         }
                     }
 
                     // Attraction
-                    //const dr2 = distance / BALL_RADIUS;
-                    //const dr6 = dr2 * dr2 * dr2;
-                    //const dr12 = dr6 * dr6;
-                    const attractionForce = 1000 / (distance * distance);
-
-                    ball.velX += (dx/distance) * attractionForce;
-                    ball.velY += (dy/distance) * attractionForce;
+                    const dr2 = BALL_RADIUS / distance;
+                    const dr6 = dr2 * dr2 * dr2;
+                    const dr12 = dr6 * dr6;
+                    //const attractionForce = 10 / (distance * distance);
+                    const attractionForce = 10 * 4 * -(dr12 - dr6);
+                    if (distance > BALL_DIAMETER) {
+                        ball.velX += (dx/distance) * attractionForce;
+                        ball.velY += (dy/distance) * attractionForce;
+                    }
                 }
             }
 
@@ -196,9 +204,12 @@ fn simulationThread(window: *capy.Window) !void {
             }
 
             // Friction
-            const friction = 0.001;
+            const friction = 0.01;
             ball.velX *= 1 - friction;
             ball.velY *= 1 - friction;
+
+            ball.velX = std.math.min(1000, ball.velX);
+            ball.velY = std.math.min(1000, ball.velY);
         }
 
         var total: f32 = 0; // count total energy
