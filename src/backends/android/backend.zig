@@ -54,6 +54,60 @@ pub inline fn getEventUserData(peer: PeerType) *EventUserData {
     return @intToPtr(*EventUserData, @bitCast(u64, value));
 }
 
+fn onClick(_: ?*anyopaque, jni: *android.JNI, _: android.jobject, args: android.jobjectArray) !android.jobject {
+    const view = try jni.invokeJni(.GetObjectArrayElement, .{ args, 0 });
+    const eventData = getEventUserData(view.?);
+    if (eventData.user.clickHandler) |clickHandler| {
+        clickHandler(eventData.userdata);
+    }
+    if (eventData.class.clickHandler) |clickHandler| {
+        clickHandler(eventData.classUserdata);
+    }
+    return null;
+}
+
+fn getOnClickListener() !android.jobject {
+    const jni = theApp.getJni();
+
+    // Get class loader instance
+    const ActivityClass = try jni.findClass("android/app/NativeActivity");
+    const cls = try ActivityClass.callObjectMethod(theApp.activity.clazz, "getClassLoader", "()Ljava/lang/ClassLoader;", .{});
+
+    // Class loader class object
+    const ClassLoader = try jni.findClass("java/lang/ClassLoader");
+    const strClassName = try jni.newString("NativeInvocationHandler");
+    defer jni.invokeJniNoException(.DeleteLocalRef, .{strClassName});
+    const NativeInvocationHandlerClass = try ClassLoader.callObjectMethod(cls, "loadClass", "(Ljava/lang/String;)Ljava/lang/Class;", .{strClassName});
+
+    // Get invocation handler factory
+    const invocation_handler_factory = try android.NativeInvocationHandler.init(jni, NativeInvocationHandlerClass);
+
+    // Create a NativeInvocationHandler
+    const invocation_handler = try invocation_handler_factory.createAlloc(jni, theApp.allocator, null, &onClick);
+
+    // Make an object array with 1 item, the android.view.View$OnClickListener interface class
+    const interface_array = try jni.invokeJni(.NewObjectArray, .{
+        1,
+        try jni.invokeJni(.FindClass, .{"java/lang/Class"}),
+        try jni.invokeJni(.FindClass, .{"android/view/View$OnClickListener"}),
+    });
+
+    // Create a Proxy class implementing the OnClickListener interface
+    const Proxy = try jni.findClass("java/lang/reflect/Proxy");
+    const proxy = try Proxy.callStaticObjectMethod(
+        "newProxyInstance",
+        "(Ljava/lang/ClassLoader;[Ljava/lang/Class;Ljava/lang/reflect/InvocationHandler;)Ljava/lang/Object;",
+        .{ cls, interface_array, invocation_handler },
+    );
+
+    return try jni.invokeJni(.NewGlobalRef, .{proxy});
+}
+
+const AndroidEventCallbacks = struct {
+    onClick: android.jobject = null,
+};
+var androidCallbacks: AndroidEventCallbacks = .{};
+
 pub fn Events(comptime T: type) type {
     return struct {
         const Self = @This();
@@ -72,6 +126,11 @@ pub fn Events(comptime T: type) type {
 
             const View = jni.findClass("android/view/View") catch return error.InitializationError;
             View.callVoidMethod(widget, "setTag", "(ILjava/lang/Object;)V", .{ EVENT_USER_DATA_KEY, dataAddress }) catch return error.InitializationError;
+
+            if (androidCallbacks.onClick == null) {
+                androidCallbacks.onClick = (getOnClickListener() catch return error.InitializationError).?;
+            }
+            View.callVoidMethod(widget, "setOnClickListener", "(Landroid/view/View$OnClickListener;)V", .{androidCallbacks.onClick}) catch return error.InitializationError;
         }
 
         pub fn deinit(self: *const T) void {
