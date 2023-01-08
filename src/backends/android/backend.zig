@@ -57,16 +57,29 @@ pub inline fn getEventUserData(peer: PeerType) *EventUserData {
 fn onClick(_: ?*anyopaque, jni: *android.JNI, _: android.jobject, args: android.jobjectArray) !android.jobject {
     const view = try jni.invokeJni(.GetObjectArrayElement, .{ args, 0 });
     const eventData = getEventUserData(view.?);
-    if (eventData.user.clickHandler) |clickHandler| {
-        clickHandler(eventData.userdata);
+    if (eventData.user.clickHandler) |handler| {
+        handler(eventData.userdata);
     }
-    if (eventData.class.clickHandler) |clickHandler| {
-        clickHandler(eventData.classUserdata);
+    if (eventData.class.clickHandler) |handler| {
+        handler(eventData.classUserdata);
     }
     return null;
 }
 
-fn getOnClickListener() !android.jobject {
+fn onChangedText(view: ?*anyopaque, jni: *android.JNI, _: android.jobject, args: android.jobjectArray) !android.jobject {
+    _ = jni;
+    _ = args;
+    const eventData = getEventUserData(view.?);
+    if (eventData.user.changedTextHandler) |handler| {
+        handler(eventData.userdata);
+    }
+    if (eventData.class.changedTextHandler) |handler| {
+        handler(eventData.classUserdata);
+    }
+    return null;
+}
+
+fn getEventListener(comptime name: [:0]const u8, comptime function: anytype, data: ?*anyopaque) !android.jobject {
     const jni = theApp.getJni();
 
     // Get class loader instance
@@ -83,13 +96,13 @@ fn getOnClickListener() !android.jobject {
     const invocation_handler_factory = try android.NativeInvocationHandler.init(jni, NativeInvocationHandlerClass);
 
     // Create a NativeInvocationHandler
-    const invocation_handler = try invocation_handler_factory.createAlloc(jni, theApp.allocator, null, &onClick);
+    const invocation_handler = try invocation_handler_factory.createAlloc(jni, theApp.allocator, data, @ptrCast(android.NativeInvocationHandler.InvokeFn, function));
 
     // Make an object array with 1 item, the android.view.View$OnClickListener interface class
     const interface_array = try jni.invokeJni(.NewObjectArray, .{
         1,
         try jni.invokeJni(.FindClass, .{"java/lang/Class"}),
-        try jni.invokeJni(.FindClass, .{"android/view/View$OnClickListener"}),
+        try jni.invokeJni(.FindClass, .{name}),
     });
 
     // Create a Proxy class implementing the OnClickListener interface
@@ -105,6 +118,7 @@ fn getOnClickListener() !android.jobject {
 
 const AndroidEventCallbacks = struct {
     onClick: android.jobject = null,
+    onChangedText: android.jobject = null,
 };
 var androidCallbacks: AndroidEventCallbacks = .{};
 
@@ -127,7 +141,7 @@ pub fn Events(comptime T: type) type {
             View.callVoidMethod(widget, "setTag", "(ILjava/lang/Object;)V", .{ EVENT_USER_DATA_KEY, dataAddress }) catch return error.InitializationError;
 
             if (androidCallbacks.onClick == null) {
-                androidCallbacks.onClick = (getOnClickListener() catch return error.InitializationError).?;
+                androidCallbacks.onClick = (getEventListener("android/view/View$OnClickListener", &onClick, null) catch return error.InitializationError).?;
             }
             View.callVoidMethod(widget, "setOnClickListener", "(Landroid/view/View$OnClickListener;)V", .{androidCallbacks.onClick}) catch return error.InitializationError;
         }
@@ -366,6 +380,9 @@ pub const TextField = struct {
                 const peer = (EditText.newObject("(Landroid/content/Context;)V", .{theApp.activity.clazz}) catch unreachable).?;
                 TextField.setupEvents(peer) catch unreachable;
                 view_ptr.* = jni.invokeJniNoException(.NewGlobalRef, .{peer}).?;
+                    
+                const textChanged = (getEventListener("android/text/TextWatcher", &onChangedText, view_ptr.*) catch unreachable).?;
+                EditText.callVoidMethod(view_ptr.*, "addTextChangedListener", "(Landroid/text/TextWatcher;)V", .{textChanged}) catch unreachable;
             }
         }.callback, .{&view}) catch unreachable;
         return TextField{ .peer = view };
@@ -385,9 +402,15 @@ pub const TextField = struct {
         }.callback, .{ self_ptr, text_ptr }) catch unreachable;
     }
 
-    pub fn getText(self: *TextField) [:0]const u8 {
-        _ = self;
-        return "";
+    pub fn getText(self: *TextField) []const u8 {
+        const jni = theApp.getJni();
+        const EditText = jni.findClass("android/widget/EditText") catch unreachable;
+        const text = EditText.callObjectMethod(self.peer, "getText", "()Landroid/text/Editable;", .{}) catch unreachable;
+        const string = jni.callObjectMethod(text, "toString", "()Ljava/lang/String;", .{}) catch unreachable;
+        const length = @intCast(usize, jni.invokeJniNoException(.GetStringUTFLength, .{ string }));
+        const chars = jni.invokeJniNoException(.GetStringUTFChars, .{ string, null });
+        // TODO: call ReleaseStringUTFChars
+        return chars[0..length];
     }
 
     pub fn setReadOnly(self: *TextField, readOnly: bool) void {
