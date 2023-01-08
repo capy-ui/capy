@@ -541,7 +541,7 @@ pub fn createApp(
         "-I", // add an existing package to base include set
         root_jar,
         "-I",
-        "classes.dex",
+        dex_file_opt.?,
     });
 
     make_unsigned_apk.addArg("-M"); // specify full path to AndroidManifest.xml to include in zip

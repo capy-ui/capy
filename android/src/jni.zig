@@ -33,6 +33,11 @@ pub const JNI = opaque {
         const value = jni.invokeJniNoException(function, args);
         if (jni.invokeJniNoException(.ExceptionCheck, .{}) == android.JNI_TRUE) {
             log.err("Encountered exception while calling: {s} {any}", .{ @tagName(function), args });
+            inline for (args) |arg, i| {
+                if (comptime std.meta.trait.isZigString(@TypeOf(arg))) {
+                    log.err("Arg {d}: {s}", .{ i, arg });
+                }
+            }
             return Error.ExceptionThrown;
         }
         return value;
@@ -102,6 +107,11 @@ pub const JNI = opaque {
             return try class.jni.invokeJni(.GetStaticObjectField, .{ class.class, field_id });
         }
 
+        pub inline fn setIntField(class: Class, object: android.jobject, name: [:0]const u8, signature: [:0]const u8, value: android.jint) !void {
+            const field_id = try class.jni.invokeJni(.GetFieldID, .{ class.class, name, signature });
+            try class.jni.invokeJni(.SetIntField, .{ object, field_id, value });
+        }
+
         pub inline fn callVoidMethod(class: Class, object: android.jobject, name: [:0]const u8, signature: [:0]const u8, args: anytype) Error!void {
             const method_id = try class.jni.invokeJni(.GetMethodID, .{ class.class, name, signature });
             try class.jni.invokeJni(.CallVoidMethod, .{ object, method_id } ++ args);
@@ -110,6 +120,11 @@ pub const JNI = opaque {
         pub inline fn callIntMethod(class: Class, object: android.jobject, name: [:0]const u8, signature: [:0]const u8, args: anytype) Error!android.jint {
             const method_id = try class.jni.invokeJni(.GetMethodID, .{ class.class, name, signature });
             return try class.jni.invokeJni(.CallIntMethod, .{ object, method_id } ++ args);
+        }
+
+        pub inline fn callLongMethod(class: Class, object: android.jobject, name: [:0]const u8, signature: [:0]const u8, args: anytype) Error!android.jlong {
+            const method_id = try class.jni.invokeJni(.GetMethodID, .{ class.class, name, signature });
+            return try class.jni.invokeJni(.CallLongMethod, .{ object, method_id } ++ args);
         }
 
         pub inline fn callBooleanMethod(class: Class, object: android.jobject, name: [:0]const u8, signature: [:0]const u8, args: anytype) Error!bool {
