@@ -20,6 +20,7 @@ pub const Button_Impl = struct {
 
     pub fn _pointerMoved(self: *Button_Impl) void {
         self.enabled.updateBinders();
+        self.label.updateBinders();
     }
 
     fn wrapperEnabledChanged(newValue: bool, userdata: usize) void {

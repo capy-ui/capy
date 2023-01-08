@@ -116,7 +116,6 @@ pub fn Events(comptime T: type) type {
             const jni = theApp.getJni();
             var data = try lib.internal.lasting_allocator.create(EventUserData);
             data.* = EventUserData{ .peer = widget }; // ensure that it uses default values
-            std.log.info("Cast {*} to Long", .{data});
 
             // Wrap the memory address in a Long object
             // As long as we treat the Long as an unsigned number on our side, this supports all possible
@@ -304,11 +303,6 @@ pub const Button = struct {
         ButtonClass.callVoidMethod(self.peer, "setText", "(Ljava/lang/CharSequence;)V", .{jni.newString(label) catch unreachable}) catch unreachable;
     }
 
-    pub fn getLabel(self: *const Button) [:0]const u8 {
-        _ = self;
-        return "";
-    }
-
     pub fn setEnabled(self: *const Button, enabled: bool) void {
         _ = self;
         _ = enabled;
@@ -317,6 +311,7 @@ pub const Button = struct {
 
 pub const Label = struct {
     peer: PeerType,
+    nullTerminated: ?[:0]const u8 = null,
 
     pub usingnamespace Events(Label);
 
@@ -326,25 +321,28 @@ pub const Label = struct {
             fn callback(view_ptr: *PeerType) void {
                 std.log.info("Creating android.widget.TextView", .{});
                 const jni = theApp.getJni();
-                const TextView = jni.findClass("android/widget/TextView");
-                const peerInit = jni.invokeJni(.GetMethodID, .{ TextView, "<init>", "(Landroid/content/Context;)V" });
-                const peer = jni.invokeJni(.NewObject, .{ TextView, peerInit, theApp.activity.clazz }).?;
+                const TextView = jni.findClass("android/widget/TextView") catch unreachable;
+                const peer = (TextView.newObject("(Landroid/content/Context;)V", .{ theApp.activity.clazz }) catch unreachable).?;
                 Label.setupEvents(peer) catch unreachable;
-                view_ptr.* = jni.invokeJni(.NewGlobalRef, .{peer}).?;
+                view_ptr.* = jni.invokeJniNoException(.NewGlobalRef, .{peer}).?;
             }
         }.callback, .{&view}) catch unreachable;
         return Label{ .peer = view };
     }
 
-    pub fn setText(self: *Label, text: [:0]const u8) void {
-        const jni = theApp.getJni();
-        const TextView = jni.findClass("android/widget/TextView") catch unreachable;
-        TextView.callVoidMethod(self.peer, .{ "setText", "(Ljava/lang/CharSequence;)V", jni.newString(text) catch unreachable }) catch unreachable;
-    }
+    pub fn setText(self_ptr: *Label, text_ptr: []const u8) void {
+        theApp.runOnUiThread(struct {
+            fn callback(self: *Label, text: []const u8) void {
+                if (self.nullTerminated) |old| {
+                    lib.internal.lasting_allocator.free(old);
+                }
+                self.nullTerminated = lib.internal.lasting_allocator.dupeZ(u8, text) catch unreachable;
 
-    pub fn getText(self: *Label) [:0]const u8 {
-        _ = self;
-        return "";
+                const jni = theApp.getJni();
+                const TextView = jni.findClass("android/widget/TextView") catch unreachable;
+                TextView.callVoidMethod(self.peer, "setText", "(Ljava/lang/CharSequence;)V", .{ jni.newString(self.nullTerminated.?) catch unreachable }) catch unreachable;
+            }
+        }.callback, .{ self_ptr, text_ptr }) catch unreachable;
     }
 
     pub fn setAlignment(self: *Label, alignment: f32) void {
@@ -703,7 +701,6 @@ pub const backendExport = struct {
 
         pub fn runOnUiThread(self: *AndroidApp, comptime func: anytype, args: anytype) !void {
             if (std.Thread.getCurrentId() == self.uiThreadId) {
-                std.log.err("CALLED runOnUiThread FROM UI THREAD", .{});
                 @call(.auto, func, args);
                 return;
             }

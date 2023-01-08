@@ -26,7 +26,7 @@ pub fn pressedKey(button_: *anyopaque) !void {
     larger[labelText.len] = buttonLabel[0]; // finally, set the last letter
 
     computationLabel.setText(larger); // and now we can put that as our new computation label text
-    allocator.free(larger);
+    allocator.free(labelText);
 }
 
 // TODO: switch back to *capy.Button_Impl when ziglang/zig#12325 is fixed
