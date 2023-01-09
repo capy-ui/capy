@@ -102,6 +102,7 @@ pub var _animatedDataWrappers = std.ArrayList(struct {
     fnPtr: *const fn (data: *anyopaque) bool,
     userdata: *anyopaque,
 }).init(lasting_allocator);
+pub var _animatedDataWrappersMutex = std.Thread.Mutex {};
 
 fn isAnimable(comptime T: type) bool {
     if (std.meta.trait.isNumber(T) or (std.meta.trait.isContainer(T) and @hasDecl(T, "lerp"))) {
@@ -196,6 +197,9 @@ pub fn DataWrapper(comptime T: type) type {
             } };
 
             var contains = false;
+            _animatedDataWrappersMutex.lock();
+            defer _animatedDataWrappersMutex.unlock();
+
             for (_animatedDataWrappers.items) |item| {
                 if (@ptrCast(*anyopaque, self) == item.userdata) {
                     contains = true;

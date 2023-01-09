@@ -42,6 +42,9 @@ pub fn wakeEventLoop() void {
 pub fn stepEventLoop(stepType: EventLoopStep) bool {
     const data = @import("data.zig");
     if (data._animatedDataWrappers.items.len > 0) {
+        data._animatedDataWrappersMutex.lock();
+        defer data._animatedDataWrappersMutex.unlock();
+        
         for (data._animatedDataWrappers.items) |item, i| {
             if (item.fnPtr(item.userdata) == false) { // animation ended
                 _ = data._animatedDataWrappers.swapRemove(i);
