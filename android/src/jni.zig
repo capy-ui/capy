@@ -38,7 +38,7 @@ pub const JNI = opaque {
                     log.err("Arg {d}: {s}", .{ i, arg });
                 }
             }
-            return Error.ExceptionThrown;
+            //return Error.ExceptionThrown;
         }
         return value;
     }

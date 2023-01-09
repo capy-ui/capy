@@ -184,8 +184,9 @@ pub fn Events(comptime T: type) type {
 
         /// Requests a redraw
         pub fn requestDraw(self: *T) !void {
-            // TODO
-            _ = self;
+            const jni = theApp.getJni();
+            const View = jni.findClass("android/view/View") catch unreachable;
+            View.callVoidMethod(self.peer, "invalidate", "()V", .{}) catch unreachable;
         }
 
         pub fn getWidth(self: *const T) c_int {
@@ -425,6 +426,12 @@ pub const Canvas = struct {
     pub usingnamespace Events(Canvas);
 
     pub const DrawContext = struct {
+        canvas: android.jobject,
+        paint: android.jobject,
+        paintClass: android.JNI.Class,
+        jni: *android.JNI,
+        class: android.JNI.Class,
+
         pub const Font = struct {
             face: [:0]const u8,
             size: f64,
@@ -459,9 +466,12 @@ pub const Canvas = struct {
         };
 
         pub fn setColorByte(self: *DrawContext, color: lib.Color) void {
-            // TODO
-            _ = self;
-            _ = color;
+            self.paintClass.callVoidMethod(self.paint, "setARGB", "(IIII)V", .{
+                @as(android.jint, color.alpha),
+                @as(android.jint, color.red),
+                @as(android.jint, color.green),
+                @as(android.jint, color.blue),
+            }) catch unreachable;
         }
 
         pub fn setColor(self: *DrawContext, r: f32, g: f32, b: f32) void {
@@ -479,12 +489,34 @@ pub const Canvas = struct {
         }
 
         pub fn rectangle(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
-            // TODO
-            _ = self;
-            _ = x;
-            _ = y;
-            _ = w;
-            _ = h;
+            const PaintStyle = self.jni.findClass("android/graphics/Paint$Style") catch unreachable;
+            const FILL = PaintStyle.getStaticObjectField("FILL", "Landroid/graphics/Paint$Style;") catch unreachable;
+            self.paintClass.callVoidMethod(self.paint, "setStyle", "(Landroid/graphics/Paint$Style;)V", .{
+                FILL
+            }) catch unreachable;
+            const color = self.paintClass.callIntMethod(self.paint, "getColor", "()I", .{}) catch unreachable;
+            const red = (color & 0xFF0000) >> 16;
+            const green = (color & 0x00FF00) >> 8;
+            const blue = (color & 0x0000FF);
+
+            _ = self.class.callBooleanMethod(self.canvas, "clipRect", "(IIII)Z", .{
+                x, y,
+                @intCast(i32, w), @intCast(i32, h),
+            }) catch unreachable;
+
+            self.class.callVoidMethod(self.canvas, "drawRGB", "(III)V", .{
+                @as(android.jint, red),
+                @as(android.jint, green),
+                @as(android.jint, blue),
+            }) catch unreachable;
+
+            self.class.callVoidMethod(self.canvas, "drawRect", "(FFFFLandroid/graphics/Paint;)V", .{
+                @intToFloat(f32, x+100),
+                @intToFloat(f32, y+100),
+                @intToFloat(f32, x+@intCast(i32, w)),
+                @intToFloat(f32, y+@intCast(i32, h)),
+                self.paint,
+            }) catch unreachable;
         }
 
         pub fn text(self: *DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
@@ -544,8 +576,53 @@ pub const Canvas = struct {
         }
     };
 
-    pub fn create() !Canvas {
-        return Canvas{ .peer = undefined };
+    fn onDraw(jni: *android.JNI, view: android.jobject, canvas: android.jobject) android.jobject {
+        std.log.info("Draw!", .{});
+        const eventData = getEventUserData(view.?);
+        const class = jni.findClass("android/graphics/Canvas") catch unreachable;
+        const paintClass = jni.findClass("android/graphics/Paint") catch unreachable;
+        const paint = paintClass.newObject("()V", .{}) catch unreachable;
+        var ctx = Canvas.DrawContext { .canvas = canvas, .jni = jni, .class = class, .paintClass = paintClass, .paint = paint };
+        if (eventData.user.drawHandler) |handler| {
+            handler(&ctx, eventData.userdata);
+        }
+        if (eventData.class.drawHandler) |handler| {
+            handler(&ctx, eventData.classUserdata);
+        }
+        return null;
+    }
+
+    pub fn create() BackendError!Canvas {
+        var view: PeerType = undefined;
+        theApp.runOnUiThread(struct {
+            fn callback(view_ptr: *PeerType) void {
+                std.log.info("Creating android.widget.EditText", .{});
+                const jni = theApp.getJni();
+
+                // Get class loader instance
+                const ActivityClass = jni.findClass("android/app/NativeActivity") catch unreachable;
+                const cls = ActivityClass.callObjectMethod(theApp.activity.clazz, "getClassLoader", "()Ljava/lang/ClassLoader;", .{}) catch unreachable;
+
+                // Class loader class object
+                const ClassLoader = jni.findClass("java/lang/ClassLoader") catch unreachable;
+                const strClassName = jni.newString("CanvasView") catch unreachable;
+                defer jni.invokeJniNoException(.DeleteLocalRef, .{strClassName});
+                const CanvasViewClass = android.JNI.Class { .jni = jni, .class = ClassLoader.callObjectMethod(cls, "loadClass", "(Ljava/lang/String;)Ljava/lang/Class;", .{strClassName}) catch unreachable };
+                const methods = [_]android.JNINativeMethod{
+                    .{
+                        .name = "onDraw0",
+                        .signature = "(Landroid/graphics/Canvas;)V",
+                        .fnPtr = onDraw,
+                    },
+                };
+                _ = jni.invokeJni(.RegisterNatives, .{ CanvasViewClass.class, &methods, methods.len }) catch unreachable;
+
+                const peer = (CanvasViewClass.newObject("(Landroid/content/Context;)V", .{theApp.activity.clazz}) catch unreachable).?;
+                Canvas.setupEvents(peer) catch unreachable;
+                view_ptr.* = jni.invokeJniNoException(.NewGlobalRef, .{peer}).?;
+            }
+        }.callback, .{&view}) catch unreachable;
+        return Canvas{ .peer = view };
     }
 };
 
