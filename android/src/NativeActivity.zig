@@ -16,9 +16,13 @@ pub fn init(activity: *android.ANativeActivity) Self {
 
 /// Get the JNIEnv associated with the current thread.
 pub fn get(activity: *android.ANativeActivity) Self {
-    var env: *android.JNIEnv = undefined;
-    _ = activity.vm.*.GetEnv(activity.vm, @ptrCast(*?*anyopaque, &env), android.JNI_VERSION_1_6);
-    return fromJniEnv(activity, env);
+    var nullable_env: ?*android.JNIEnv = null;
+    _ = activity.vm.*.GetEnv(activity.vm, @ptrCast(*?*anyopaque, &nullable_env), android.JNI_VERSION_1_6);
+    if (nullable_env) |env| {
+        return fromJniEnv(activity, env);
+    } else {
+        return init(activity);
+    }
 }
 
 fn fromJniEnv(activity: *android.ANativeActivity, env: *android.JNIEnv) Self {

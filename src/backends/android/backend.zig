@@ -186,7 +186,7 @@ pub fn Events(comptime T: type) type {
         pub fn requestDraw(self: *T) !void {
             const jni = theApp.getJni();
             const View = jni.findClass("android/view/View") catch unreachable;
-            View.callVoidMethod(self.peer, "invalidate", "()V", .{}) catch unreachable;
+            View.callVoidMethod(self.peer, "postInvalidate", "()V", .{}) catch unreachable;
         }
 
         pub fn getWidth(self: *const T) c_int {
@@ -548,12 +548,19 @@ pub const Canvas = struct {
         }
 
         pub fn ellipse(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
-            // TODO
-            _ = self;
-            _ = x;
-            _ = y;
-            _ = w;
-            _ = h;
+            const PaintStyle = self.jni.findClass("android/graphics/Paint$Style") catch unreachable;
+            const FILL = PaintStyle.getStaticObjectField("FILL", "Landroid/graphics/Paint$Style;") catch unreachable;
+            self.paintClass.callVoidMethod(self.paint, "setStyle", "(Landroid/graphics/Paint$Style;)V", .{
+                FILL
+            }) catch unreachable;
+
+            self.class.callVoidMethod(self.canvas, "drawRect", "(FFFFLandroid/graphics/Paint;)V", .{
+                @intToFloat(f32, x),
+                @intToFloat(f32, y),
+                @intToFloat(f32, x+@intCast(i32, w)),
+                @intToFloat(f32, y+@intCast(i32, h)),
+                self.paint,
+            }) catch unreachable;
         }
 
         pub fn clear(self: *DrawContext, x: u32, y: u32, w: u32, h: u32) void {
@@ -736,6 +743,7 @@ pub const backendExport = struct {
         // The JNIEnv of the app thread
         mainJni: *android.JNI = undefined,
         uiThreadId: std.Thread.Id = undefined,
+        uiThreadMutex: std.Thread.Mutex = .{},
 
         // This is needed because to run a callback on the UI thread Looper you must
         // react to a fd change, so we use a pipe to force it
@@ -803,7 +811,12 @@ pub const backendExport = struct {
             if (std.Thread.getCurrentId() == self.uiThreadId) {
                 @call(.auto, func, args);
                 return;
+            } else {
+                std.log.info("request from thread {d}", .{ std.Thread.getCurrentId() });
             }
+
+            self.uiThreadMutex.lock();
+            defer self.uiThreadMutex.unlock();
 
             // TODO: use a mutex so that there aren't concurrent requests which wouldn't mix well with addFd
             const Args = @TypeOf(args);
@@ -813,6 +826,7 @@ pub const backendExport = struct {
             args_ptr.* = args;
             errdefer allocator.destroy(args_ptr);
 
+            const expected_value = self.uiThreadCondition.load(.Monotonic);
             const Instance = struct {
                 fn callback(_: c_int, _: c_int, data: ?*anyopaque) callconv(.C) c_int {
                     const args_data = @ptrCast(*Args, @alignCast(@alignOf(Args), data.?));
@@ -820,6 +834,7 @@ pub const backendExport = struct {
 
                     @call(.auto, func, args_data.*);
                     std.Thread.Futex.wake(&theApp.uiThreadCondition, 1);
+                    _ = theApp.uiThreadCondition.fetchAdd(1, .Monotonic);
                     return 0;
                 }
             };
@@ -837,7 +852,7 @@ pub const backendExport = struct {
                 return error.LooperError;
             }
 
-            std.Thread.Futex.wait(&self.uiThreadCondition, 0);
+            std.Thread.Futex.wait(&self.uiThreadCondition, expected_value);
         }
 
         pub fn getJni(self: *AndroidApp) *android.JNI {
