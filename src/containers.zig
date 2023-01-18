@@ -14,7 +14,7 @@ const Callbacks = struct {
     getSize: *const fn (data: usize) Size,
     computingPreferredSize: bool,
     availableSize: ?Size = null,
-    layoutConfig: [16]u8,
+    layoutConfig: [16]u8 align(4),
 
     pub fn getLayoutConfig(self: Callbacks, comptime T: type) T {
         comptime std.debug.assert(@sizeOf(T) <= 16);
