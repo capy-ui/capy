@@ -77,6 +77,22 @@ pub const JNI = opaque {
         return jni.invokeJni(.CallObjectMethod, .{ object, method_id } ++ args);
     }
 
+    fn argsToValueArray(args: anytype) [args.len]android.jvalue {
+        var values: [args.len]android.jvalue = undefined;
+        inline for (args) |arg, i| {
+            var value: android.jvalue = undefined;
+            switch (@TypeOf(arg)) {
+                android.jint, u32, c_int => value = .{ .i = @bitCast(i32, arg) },
+                android.jlong, usize => value = .{ .j = @bitCast(i64, arg) },
+                android.jfloat => value = .{ .f = arg },
+                android.jobject, *anyopaque => value = .{ .l = arg },
+                else => @compileError("unsupported jni type: " ++ @typeName(@TypeOf(arg))),
+            }
+            values[i] = value;
+        }
+        return values;
+    }
+
     pub const Class = struct {
         jni: *JNI,
         class: android.jclass,
@@ -94,20 +110,7 @@ pub const JNI = opaque {
 
         pub inline fn newObject(class: Class, signature: [:0]const u8, args: anytype) Error!JniReturnType(.NewObject) {
             const method_id = try class.jni.invokeJni(.GetMethodID, .{ class.class, "<init>", signature });
-            var values: [args.len]android.jvalue = undefined;
-            // TODO: switch all methods to their A variant
-            inline for (args) |arg, i| {
-                var value: android.jvalue = undefined;
-                switch (@TypeOf(arg)) {
-                    android.jint, u32, c_int => value = .{ .i = @bitCast(i32, arg) },
-                    android.jlong, usize => value = .{ .j = @bitCast(i64, arg) },
-                    android.jfloat => value = .{ .f = arg },
-                    android.jobject => value = .{ .l = arg },
-                    else => @compileError("unsupported jni type: " ++ @typeName(@TypeOf(arg))),
-                }
-                values[i] = value;
-            }
-
+            const values = argsToValueArray(args);
             return try class.jni.invokeJni(.NewObjectA, .{ class.class, method_id, &values });
         }
 
@@ -128,7 +131,8 @@ pub const JNI = opaque {
 
         pub inline fn callVoidMethod(class: Class, object: android.jobject, name: [:0]const u8, signature: [:0]const u8, args: anytype) Error!void {
             const method_id = try class.jni.invokeJni(.GetMethodID, .{ class.class, name, signature });
-            try class.jni.invokeJni(.CallVoidMethod, .{ object, method_id } ++ args);
+            const values = argsToValueArray(args);
+            try class.jni.invokeJni(.CallVoidMethodA, .{ object, method_id, &values });
         }
 
         pub inline fn callIntMethod(class: Class, object: android.jobject, name: [:0]const u8, signature: [:0]const u8, args: anytype) Error!android.jint {
@@ -138,7 +142,8 @@ pub const JNI = opaque {
 
         pub inline fn callFloatMethod(class: Class, object: android.jobject, name: [:0]const u8, signature: [:0]const u8, args: anytype) Error!android.jfloat {
             const method_id = try class.jni.invokeJni(.GetMethodID, .{ class.class, name, signature });
-            return try class.jni.invokeJni(.CallFloatMethod, .{ object, method_id } ++ args);
+            const values = argsToValueArray(args);
+            return try class.jni.invokeJni(.CallFloatMethodA, .{ object, method_id, &values });
         }
 
         pub inline fn callLongMethod(class: Class, object: android.jobject, name: [:0]const u8, signature: [:0]const u8, args: anytype) Error!android.jlong {

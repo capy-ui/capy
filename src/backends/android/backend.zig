@@ -469,14 +469,12 @@ pub const Canvas = struct {
         };
 
         pub fn setColorByte(self: *DrawContext, color: lib.Color) void {
-            _ = self;
-            _ = color;
-            // self.paintClass.callVoidMethod(self.paint, "setARGB", "(IIII)V", .{
-            //     @as(android.jint, color.alpha),
-            //     @as(android.jint, color.red),
-            //     @as(android.jint, color.green),
-            //     @as(android.jint, color.blue),
-            // }) catch unreachable;
+            self.paintClass.callVoidMethod(self.paint, "setARGB", "(IIII)V", .{
+                @as(android.jint, color.alpha),
+                @as(android.jint, color.red),
+                @as(android.jint, color.green),
+                @as(android.jint, color.blue),
+            }) catch unreachable;
         }
 
         pub fn setColor(self: *DrawContext, r: f32, g: f32, b: f32) void {
@@ -497,39 +495,11 @@ pub const Canvas = struct {
             const PaintStyle = self.jni.findClass("android/graphics/Paint$Style") catch unreachable;
             const FILL = PaintStyle.getStaticObjectField("FILL", "Landroid/graphics/Paint$Style;") catch unreachable;
             self.paintClass.callVoidMethod(self.paint, "setStyle", "(Landroid/graphics/Paint$Style;)V", .{FILL}) catch unreachable;
-            _ = x;
-            _ = y;
-            _ = w;
-            _ = h;
-
-            // self.class.callVoidMethod(self.canvas, "drawPaint", "(Landroid/graphics/Paint;)V", .{
-            //     self.paint,
-            // }) catch unreachable;
-            // const color = self.paintClass.callIntMethod(self.paint, "getColor", "()I", .{}) catch unreachable;
-            // const red = (color & 0xFF0000) >> 16;
-            // const green = (color & 0x00FF00) >> 8;
-            // const blue = (color & 0x0000FF);
-
-            // _ = self.class.callBooleanMethod(self.canvas, "clipRect", "(IIII)Z", .{
-            //     x, y,
-            //     @intCast(i32, w), @intCast(i32, h),
-            // }) catch unreachable;
-
-            // self.class.callVoidMethod(self.canvas, "drawRGB", "(III)V", .{
-            //     @as(android.jint, red),
-            //     @as(android.jint, green),
-            //     @as(android.jint, blue),
-            // }) catch unreachable;
-
             self.class.callVoidMethod(self.canvas, "drawRect", "(FFFFLandroid/graphics/Paint;)V", .{
-                //@intToFloat(f32, x+100),
-                //@intToFloat(f32, y+100),
-                //@intToFloat(f32, x+@intCast(i32, w)),
-                //@intToFloat(f32, y+@intCast(i32, h)),
-                @as(android.jfloat, 0.0),
-                @as(android.jfloat, 0.0),
-                @as(android.jfloat, 1000.0),
-                @as(android.jfloat, 1000.0),
+                @intToFloat(f32, x),
+                @intToFloat(f32, y),
+                @intToFloat(f32, x + @intCast(i32, w)),
+                @intToFloat(f32, y + @intCast(i32, h)),
                 self.paint,
             }) catch unreachable;
         }
@@ -554,32 +524,25 @@ pub const Canvas = struct {
         }
 
         pub fn line(self: *DrawContext, x1: i32, y1: i32, x2: i32, y2: i32) void {
-            // TODO
-            _ = self;
-            _ = x1;
-            _ = y1;
-            _ = x2;
-            _ = y2;
+            self.class.callVoidMethod(self.canvas, "drawLine", "(FFFFLandroid/graphics/Paint;)V", .{
+                @intToFloat(f32, x1),
+                @intToFloat(f32, y1),
+                @intToFloat(f32, x2),
+                @intToFloat(f32, y2),
+                self.paint,
+            }) catch unreachable;
         }
 
         pub fn ellipse(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
-            const RectF = self.jni.findClass("android/graphics/RectF") catch unreachable;
-            const rect = RectF.newObject("(FFFF)V", .{
-                @bitCast(u32, @intToFloat(f32, x)),
-                //@byteSwap(@bitCast(u32, @as(f32, 1000.0))),
-                @intToFloat(f32, y),
-                @intToFloat(f32, x + @intCast(i32, w)),
-                // @byteSwap(@bitCast(u32, @as(f32, 1500.0)),
-                @intToFloat(f32, y + @intCast(i32, h)),
-            }) catch unreachable;
-
-            const height = RectF.callFloatMethod(rect, "centerX", "()F", .{}) catch unreachable;
             const PaintStyle = self.jni.findClass("android/graphics/Paint$Style") catch unreachable;
             const FILL = PaintStyle.getStaticObjectField("FILL", "Landroid/graphics/Paint$Style;") catch unreachable;
             self.paintClass.callVoidMethod(self.paint, "setStyle", "(Landroid/graphics/Paint$Style;)V", .{FILL}) catch unreachable;
 
-            self.class.callVoidMethod(self.canvas, "drawOval", "(Landroid/graphics/RectF;Landroid/graphics/Paint;)V", .{
-                rect,
+            self.class.callVoidMethod(self.canvas, "drawOval", "(FFFFLandroid/graphics/Paint;)V", .{
+                @intToFloat(f32, x),
+                @intToFloat(f32, y),
+                @intToFloat(f32, x + @intCast(i32, w)),
+                @intToFloat(f32, y + @intCast(i32, h)),
                 self.paint,
             }) catch unreachable;
         }
@@ -605,7 +568,6 @@ pub const Canvas = struct {
     };
 
     fn onDraw(jni: *android.JNI, view: android.jobject, canvas: android.jobject) android.jobject {
-        std.log.info("Draw!", .{});
         const eventData = getEventUserData(view.?);
         const class = jni.findClass("android/graphics/Canvas") catch unreachable;
         const paintClass = jni.findClass("android/graphics/Paint") catch unreachable;
