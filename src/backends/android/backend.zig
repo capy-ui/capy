@@ -15,6 +15,7 @@ var hasInit: bool = false;
 var theApp: *backendExport.AndroidApp = undefined;
 
 const NativeActivity = android.NativeActivity;
+const USE_MATERIAL = false;
 
 pub fn init() BackendError!void {
     if (!hasInit) {
@@ -135,7 +136,7 @@ pub fn Events(comptime T: type) type {
             // As long as we treat the Long as an unsigned number on our side, this supports all possible
             // 64-bit addresses.
             const Long = jni.findClass("java/lang/Long") catch return error.InitializationError;
-            const dataAddress = Long.newObject("(J)V", .{ @ptrToInt(data) }) catch return error.InitializationError;
+            const dataAddress = Long.newObject("(J)V", .{@ptrToInt(data)}) catch return error.InitializationError;
 
             const View = jni.findClass("android/view/View") catch return error.InitializationError;
             View.callVoidMethod(widget, "setTag", "(ILjava/lang/Object;)V", .{ EVENT_USER_DATA_KEY, dataAddress }) catch return error.InitializationError;
@@ -297,13 +298,15 @@ pub const Button = struct {
 
     pub usingnamespace Events(Button);
 
+    const CLASS = if (USE_MATERIAL) "com/google/android/material/button/MaterialButton" else "android/widget/Button";
+
     pub fn create() BackendError!Button {
         var view: PeerType = undefined;
         theApp.runOnUiThread(struct {
             fn callback(view_ptr: *PeerType) void {
-                std.log.info("Creating android.widget.Button", .{});
+                std.log.info("Creating " ++ CLASS, .{});
                 const jni = theApp.getJni();
-                const AndroidButton = jni.findClass("android/widget/Button") catch unreachable;
+                const AndroidButton = jni.findClass(CLASS) catch unreachable;
                 const peer = (AndroidButton.newObject("(Landroid/content/Context;)V", .{theApp.activity.clazz}) catch unreachable).?;
                 Button.setupEvents(peer) catch unreachable;
                 view_ptr.* = jni.invokeJniNoException(.NewGlobalRef, .{peer}).?;
@@ -337,7 +340,7 @@ pub const Label = struct {
                 std.log.info("Creating android.widget.TextView", .{});
                 const jni = theApp.getJni();
                 const TextView = jni.findClass("android/widget/TextView") catch unreachable;
-                const peer = (TextView.newObject("(Landroid/content/Context;)V", .{ theApp.activity.clazz }) catch unreachable).?;
+                const peer = (TextView.newObject("(Landroid/content/Context;)V", .{theApp.activity.clazz}) catch unreachable).?;
                 Label.setupEvents(peer) catch unreachable;
                 view_ptr.* = jni.invokeJniNoException(.NewGlobalRef, .{peer}).?;
             }
@@ -355,7 +358,7 @@ pub const Label = struct {
 
                 const jni = theApp.getJni();
                 const TextView = jni.findClass("android/widget/TextView") catch unreachable;
-                TextView.callVoidMethod(self.peer, "setText", "(Ljava/lang/CharSequence;)V", .{ jni.newString(self.nullTerminated.?) catch unreachable }) catch unreachable;
+                TextView.callVoidMethod(self.peer, "setText", "(Ljava/lang/CharSequence;)V", .{jni.newString(self.nullTerminated.?) catch unreachable}) catch unreachable;
             }
         }.callback, .{ self_ptr, text_ptr }) catch unreachable;
     }
@@ -381,7 +384,7 @@ pub const TextField = struct {
                 const peer = (EditText.newObject("(Landroid/content/Context;)V", .{theApp.activity.clazz}) catch unreachable).?;
                 TextField.setupEvents(peer) catch unreachable;
                 view_ptr.* = jni.invokeJniNoException(.NewGlobalRef, .{peer}).?;
-                    
+
                 const textChanged = (getEventListener("android/text/TextWatcher", &onChangedText, view_ptr.*) catch unreachable).?;
                 EditText.callVoidMethod(view_ptr.*, "addTextChangedListener", "(Landroid/text/TextWatcher;)V", .{textChanged}) catch unreachable;
             }
@@ -408,7 +411,7 @@ pub const TextField = struct {
         const EditText = jni.findClass("android/widget/EditText") catch unreachable;
         const text = EditText.callObjectMethod(self.peer, "getText", "()Landroid/text/Editable;", .{}) catch unreachable;
         const string = jni.callObjectMethod(text, "toString", "()Ljava/lang/String;", .{}) catch unreachable;
-        const length = @intCast(usize, jni.invokeJniNoException(.GetStringUTFLength, .{ string }));
+        const length = @intCast(usize, jni.invokeJniNoException(.GetStringUTFLength, .{string}));
         const chars = jni.invokeJniNoException(.GetStringUTFChars, .{ string, null });
         // TODO: call ReleaseStringUTFChars
         return chars[0..length];
@@ -466,12 +469,14 @@ pub const Canvas = struct {
         };
 
         pub fn setColorByte(self: *DrawContext, color: lib.Color) void {
-            self.paintClass.callVoidMethod(self.paint, "setARGB", "(IIII)V", .{
-                @as(android.jint, color.alpha),
-                @as(android.jint, color.red),
-                @as(android.jint, color.green),
-                @as(android.jint, color.blue),
-            }) catch unreachable;
+            _ = self;
+            _ = color;
+            // self.paintClass.callVoidMethod(self.paint, "setARGB", "(IIII)V", .{
+            //     @as(android.jint, color.alpha),
+            //     @as(android.jint, color.red),
+            //     @as(android.jint, color.green),
+            //     @as(android.jint, color.blue),
+            // }) catch unreachable;
         }
 
         pub fn setColor(self: *DrawContext, r: f32, g: f32, b: f32) void {
@@ -491,30 +496,40 @@ pub const Canvas = struct {
         pub fn rectangle(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
             const PaintStyle = self.jni.findClass("android/graphics/Paint$Style") catch unreachable;
             const FILL = PaintStyle.getStaticObjectField("FILL", "Landroid/graphics/Paint$Style;") catch unreachable;
-            self.paintClass.callVoidMethod(self.paint, "setStyle", "(Landroid/graphics/Paint$Style;)V", .{
-                FILL
-            }) catch unreachable;
-            const color = self.paintClass.callIntMethod(self.paint, "getColor", "()I", .{}) catch unreachable;
-            const red = (color & 0xFF0000) >> 16;
-            const green = (color & 0x00FF00) >> 8;
-            const blue = (color & 0x0000FF);
+            self.paintClass.callVoidMethod(self.paint, "setStyle", "(Landroid/graphics/Paint$Style;)V", .{FILL}) catch unreachable;
+            _ = x;
+            _ = y;
+            _ = w;
+            _ = h;
 
-            _ = self.class.callBooleanMethod(self.canvas, "clipRect", "(IIII)Z", .{
-                x, y,
-                @intCast(i32, w), @intCast(i32, h),
-            }) catch unreachable;
+            // self.class.callVoidMethod(self.canvas, "drawPaint", "(Landroid/graphics/Paint;)V", .{
+            //     self.paint,
+            // }) catch unreachable;
+            // const color = self.paintClass.callIntMethod(self.paint, "getColor", "()I", .{}) catch unreachable;
+            // const red = (color & 0xFF0000) >> 16;
+            // const green = (color & 0x00FF00) >> 8;
+            // const blue = (color & 0x0000FF);
 
-            self.class.callVoidMethod(self.canvas, "drawRGB", "(III)V", .{
-                @as(android.jint, red),
-                @as(android.jint, green),
-                @as(android.jint, blue),
-            }) catch unreachable;
+            // _ = self.class.callBooleanMethod(self.canvas, "clipRect", "(IIII)Z", .{
+            //     x, y,
+            //     @intCast(i32, w), @intCast(i32, h),
+            // }) catch unreachable;
+
+            // self.class.callVoidMethod(self.canvas, "drawRGB", "(III)V", .{
+            //     @as(android.jint, red),
+            //     @as(android.jint, green),
+            //     @as(android.jint, blue),
+            // }) catch unreachable;
 
             self.class.callVoidMethod(self.canvas, "drawRect", "(FFFFLandroid/graphics/Paint;)V", .{
-                @intToFloat(f32, x+100),
-                @intToFloat(f32, y+100),
-                @intToFloat(f32, x+@intCast(i32, w)),
-                @intToFloat(f32, y+@intCast(i32, h)),
+                //@intToFloat(f32, x+100),
+                //@intToFloat(f32, y+100),
+                //@intToFloat(f32, x+@intCast(i32, w)),
+                //@intToFloat(f32, y+@intCast(i32, h)),
+                @as(android.jfloat, 0.0),
+                @as(android.jfloat, 0.0),
+                @as(android.jfloat, 1000.0),
+                @as(android.jfloat, 1000.0),
                 self.paint,
             }) catch unreachable;
         }
@@ -550,15 +565,13 @@ pub const Canvas = struct {
         pub fn ellipse(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
             const PaintStyle = self.jni.findClass("android/graphics/Paint$Style") catch unreachable;
             const FILL = PaintStyle.getStaticObjectField("FILL", "Landroid/graphics/Paint$Style;") catch unreachable;
-            self.paintClass.callVoidMethod(self.paint, "setStyle", "(Landroid/graphics/Paint$Style;)V", .{
-                FILL
-            }) catch unreachable;
+            self.paintClass.callVoidMethod(self.paint, "setStyle", "(Landroid/graphics/Paint$Style;)V", .{FILL}) catch unreachable;
 
-            self.class.callVoidMethod(self.canvas, "drawRect", "(FFFFLandroid/graphics/Paint;)V", .{
+            self.class.callVoidMethod(self.canvas, "drawOval", "(FFFFLandroid/graphics/Paint;)V", .{
                 @intToFloat(f32, x),
                 @intToFloat(f32, y),
-                @intToFloat(f32, x+@intCast(i32, w)),
-                @intToFloat(f32, y+@intCast(i32, h)),
+                @intToFloat(f32, x + @intCast(i32, w)),
+                @intToFloat(f32, y + @intCast(i32, h)),
                 self.paint,
             }) catch unreachable;
         }
@@ -589,12 +602,12 @@ pub const Canvas = struct {
         const class = jni.findClass("android/graphics/Canvas") catch unreachable;
         const paintClass = jni.findClass("android/graphics/Paint") catch unreachable;
         const paint = paintClass.newObject("()V", .{}) catch unreachable;
-        var ctx = Canvas.DrawContext { .canvas = canvas, .jni = jni, .class = class, .paintClass = paintClass, .paint = paint };
-        if (eventData.user.drawHandler) |handler| {
-            handler(&ctx, eventData.userdata);
-        }
+        var ctx = Canvas.DrawContext{ .canvas = canvas, .jni = jni, .class = class, .paintClass = paintClass, .paint = paint };
         if (eventData.class.drawHandler) |handler| {
             handler(&ctx, eventData.classUserdata);
+        }
+        if (eventData.user.drawHandler) |handler| {
+            handler(&ctx, eventData.userdata);
         }
         return null;
     }
@@ -614,7 +627,7 @@ pub const Canvas = struct {
                 const ClassLoader = jni.findClass("java/lang/ClassLoader") catch unreachable;
                 const strClassName = jni.newString("CanvasView") catch unreachable;
                 defer jni.invokeJniNoException(.DeleteLocalRef, .{strClassName});
-                const CanvasViewClass = android.JNI.Class { .jni = jni, .class = ClassLoader.callObjectMethod(cls, "loadClass", "(Ljava/lang/String;)Ljava/lang/Class;", .{strClassName}) catch unreachable };
+                const CanvasViewClass = android.JNI.Class{ .jni = jni, .class = ClassLoader.callObjectMethod(cls, "loadClass", "(Ljava/lang/String;)Ljava/lang/Class;", .{strClassName}) catch unreachable };
                 const methods = [_]android.JNINativeMethod{
                     .{
                         .name = "onDraw0",
@@ -811,8 +824,6 @@ pub const backendExport = struct {
             if (std.Thread.getCurrentId() == self.uiThreadId) {
                 @call(.auto, func, args);
                 return;
-            } else {
-                std.log.info("request from thread {d}", .{ std.Thread.getCurrentId() });
             }
 
             self.uiThreadMutex.lock();

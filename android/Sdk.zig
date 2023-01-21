@@ -1007,7 +1007,7 @@ const zig_targets = struct {
         .os_tag = android_os,
         .abi = android_abi,
         .cpu_model = .baseline,
-        .cpu_features_add = std.Target.aarch64.featureSet(&.{.v8a}),
+        .cpu_features_add = std.Target.aarch64.featureSet(&.{.v8a, .reserve_x18}),
     };
 
     const arm = std.zig.CrossTarget{

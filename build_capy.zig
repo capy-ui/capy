@@ -86,6 +86,7 @@ pub fn install(step: *std.build.LibExeObjStep, options: CapyBuildOptions) !void 
         .linux, .freebsd => {
             if (step.target.toTarget().isAndroid()) {
                 // TODO: automatically download the SDK and NDK and build tools?
+                // TODO: download Material components by parsing Maven?
                 const sdk = AndroidSdk.init(step.builder, null, .{});
                 const mode = step.build_mode;
 
