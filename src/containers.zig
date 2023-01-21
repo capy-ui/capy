@@ -185,7 +185,10 @@ pub fn MarginLayout(peer: Callbacks, widgets: []Widget) void {
             // What to return for actual layouting
             const preferredSize = widgets[0].getPreferredSize(available);
 
-            const finalSize = Size.intersect(preferredSize, available);
+            //const finalSize = Size.intersect(preferredSize, available);
+            _ = preferredSize;
+            const finalSize = available;
+            
             //peer.moveResize(peer.userdata, widgetPeer, 0, 0, finalSize.width, finalSize.height);
             peer.moveResize(peer.userdata, widgetPeer, left, top, finalSize.width -| left -| right, finalSize.height -| top -| bottom);
         }
