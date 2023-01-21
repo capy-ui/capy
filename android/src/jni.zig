@@ -94,7 +94,21 @@ pub const JNI = opaque {
 
         pub inline fn newObject(class: Class, signature: [:0]const u8, args: anytype) Error!JniReturnType(.NewObject) {
             const method_id = try class.jni.invokeJni(.GetMethodID, .{ class.class, "<init>", signature });
-            return try class.jni.invokeJni(.NewObject, .{ class.class, method_id } ++ args);
+            var values: [args.len]android.jvalue = undefined;
+            // TODO: switch all methods to their A variant
+            inline for (args) |arg, i| {
+                var value: android.jvalue = undefined;
+                switch (@TypeOf(arg)) {
+                    android.jint, u32, c_int => value = .{ .i = @bitCast(i32, arg) },
+                    android.jlong, usize => value = .{ .j = @bitCast(i64, arg) },
+                    android.jfloat => value = .{ .f = arg },
+                    android.jobject => value = .{ .l = arg },
+                    else => @compileError("unsupported jni type: " ++ @typeName(@TypeOf(arg))),
+                }
+                values[i] = value;
+            }
+
+            return try class.jni.invokeJni(.NewObjectA, .{ class.class, method_id, &values });
         }
 
         pub inline fn getStaticIntField(class: Class, name: [:0]const u8) !android.jint {
@@ -120,6 +134,11 @@ pub const JNI = opaque {
         pub inline fn callIntMethod(class: Class, object: android.jobject, name: [:0]const u8, signature: [:0]const u8, args: anytype) Error!android.jint {
             const method_id = try class.jni.invokeJni(.GetMethodID, .{ class.class, name, signature });
             return try class.jni.invokeJni(.CallIntMethod, .{ object, method_id } ++ args);
+        }
+
+        pub inline fn callFloatMethod(class: Class, object: android.jobject, name: [:0]const u8, signature: [:0]const u8, args: anytype) Error!android.jfloat {
+            const method_id = try class.jni.invokeJni(.GetMethodID, .{ class.class, name, signature });
+            return try class.jni.invokeJni(.CallFloatMethod, .{ object, method_id } ++ args);
         }
 
         pub inline fn callLongMethod(class: Class, object: android.jobject, name: [:0]const u8, signature: [:0]const u8, args: anytype) Error!android.jlong {
