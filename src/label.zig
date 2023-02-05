@@ -49,7 +49,7 @@ pub const Label_Impl = struct {
         if (self.peer) |peer| {
             return peer.getPreferredSize();
         } else {
-            const len = std.mem.len(self.text.get());
+            const len = self.text.get().len;
             return Size{ .width = @intCast(u32, 10 * len), .height = 40.0 };
         }
     }

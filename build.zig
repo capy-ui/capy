@@ -1,6 +1,8 @@
 const std = @import("std");
 const http = @import("deps.zig").imports.apple_pie;
 const install = @import("build_capy.zig").install;
+const installBuild = @import("build_capy.zig").installBuild;
+const FileSource = std.build.FileSource;
 
 /// Step used to run a web server
 const WebServerStep = struct {
@@ -76,9 +78,9 @@ const WebServerStep = struct {
     }
 };
 
-pub fn build(b: *std.build.Builder) !void {
+pub fn build(b: *std.Build) !void {
     const target = b.standardTargetOptions(.{});
-    const mode = b.standardReleaseOptions();
+    const optimize = b.standardOptimizeOption(.{});
 
     var examplesDir = try std.fs.cwd().openIterableDir("examples", .{});
     defer examplesDir.close();
@@ -96,14 +98,12 @@ pub fn build(b: *std.build.Builder) !void {
             defer b.allocator.free(name);
 
             // it is not freed as the path is used later for building
-            const programPath = b.pathJoin(&.{ "examples", entry.path });
+            const programPath = FileSource.relative(b.pathJoin(&.{ "examples", entry.path }));
 
             const exe: *std.build.LibExeObjStep = if (target.toTarget().isWasm())
-                b.addSharedLibrary(name, programPath, .unversioned)
+                b.addSharedLibrary(.{ .name = name, .root_source_file = programPath, .target = target, .optimize = optimize })
             else
-                b.addExecutable(name, programPath);
-            exe.setTarget(target);
-            exe.setBuildMode(mode);
+                b.addExecutable(.{ .name = name, .root_source_file = programPath, .target = target, .optimize = optimize });
             try install(exe, .{});
 
             const install_step = b.addInstallArtifact(exe);
@@ -140,9 +140,13 @@ pub fn build(b: *std.build.Builder) !void {
         }
     }
 
-    const lib = b.addSharedLibrary("capy", "src/c_api.zig", b.version(0, 3, 0));
-    lib.setTarget(target);
-    lib.setBuildMode(mode);
+    const lib = b.addSharedLibrary(.{
+        .name = "capy",
+        .root_source_file = FileSource.relative("src/c_api.zig"),
+        .version = std.builtin.Version{ .major = 0, .minor = 3, .patch = 0 },
+        .target = target,
+        .optimize = optimize,
+    });
     lib.linkLibC();
     try install(lib, .{});
     // lib.emit_h = true;
@@ -154,18 +158,22 @@ pub fn build(b: *std.build.Builder) !void {
     const buildc_step = b.step("shared", "Build capy as a shared library (with C ABI)");
     buildc_step.dependOn(&lib.install_step.?.step);
 
-    const tests = b.addTest("src/main.zig");
-    tests.setTarget(target);
-    tests.setBuildMode(mode);
+    const tests = b.addTest(.{
+        .root_source_file = FileSource.relative("src/main.zig"),
+        .target = target,
+        .optimize = optimize,
+    });
     // tests.emit_docs = .emit;
     try install(tests, .{});
 
     const test_step = b.step("test", "Run unit tests and also generate the documentation");
     test_step.dependOn(&tests.step);
 
-    const coverage_tests = b.addTest("src/main.zig");
-    coverage_tests.setTarget(target);
-    coverage_tests.setBuildMode(mode);
+    const coverage_tests = b.addTest(.{
+        .root_source_file = FileSource.relative("src/main.zig"),
+        .target = target,
+        .optimize = optimize,
+    });
     coverage_tests.exec_cmd_args = &.{ "kcov", "--clean", "--include-pattern=src/", "kcov-output", null };
     try install(coverage_tests, .{});
 
