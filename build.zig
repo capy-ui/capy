@@ -170,12 +170,14 @@ pub fn build(b: *std.Build) !void {
     const test_step = b.step("test", "Run unit tests and also generate the documentation");
     test_step.dependOn(&tests.step);
 
-    // const coverage_tests = b.addTest("src/main.zig");
-    // coverage_tests.setTarget(target);
-    // coverage_tests.setBuildMode(mode);
-    // coverage_tests.exec_cmd_args = &.{ "kcov", "--clean", "--include-pattern=src/", "kcov-output", null };
-    // try install(coverage_tests, .{});
+    const coverage_tests = b.addTest(.{
+        .root_source_file = FileSource.relative("src/main.zig"),
+        .target = target,
+        .optimize = optimize,
+    });
+    coverage_tests.exec_cmd_args = &.{ "kcov", "--clean", "--include-pattern=src/", "kcov-output", null };
+    try install(coverage_tests, .{});
 
-    // const cov_step = b.step("coverage", "Perform code coverage of unit tests. This requires 'kcov' to be installed.");
-    // cov_step.dependOn(&coverage_tests.step);
+    const cov_step = b.step("coverage", "Perform code coverage of unit tests. This requires 'kcov' to be installed.");
+    cov_step.dependOn(&coverage_tests.step);
 }
