@@ -63,10 +63,12 @@ pub fn Widgeting(comptime T: type) type {
             .preferredSizeFn = getPreferredSizeWidget,
             .setWidgetFn = setWidgetFn,
             .getParentFn = widget_getParent,
+            .isDisplayedFn = isDisplayedFn,
         };
 
         pub const DataWrappers = struct {
             opacity: DataWrapper(f32) = DataWrapper(f32).of(1.0),
+            displayed: DataWrapper(bool) = DataWrapper(bool).of(true),
             name: DataWrapper(?[]const u8) = DataWrapper(?[]const u8).of(null),
 
             /// The widget representing this component
@@ -89,6 +91,11 @@ pub fn Widgeting(comptime T: type) type {
         pub fn setWidgetFn(widget: *Widget) void {
             const component = widget.as(T);
             component.dataWrappers.widget = widget;
+        }
+
+        pub fn isDisplayedFn(widget: *const Widget) bool {
+            const component = widget.as(T);
+            return component.dataWrappers.displayed.get();
         }
 
         pub fn deinitWidget(widget: *Widget) void {

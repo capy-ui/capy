@@ -66,7 +66,7 @@ pub const LineGraph_Impl = struct {
             ctx.setColor(0, 0, 0);
             ctx.line(oldX, oldY, dx, dy);
             ctx.stroke();
-            ctx.ellipse(oldX, oldY, 3, 3);
+            ctx.ellipse(oldX - 3, oldY - 3, 6, 6);
             ctx.fill();
             oldX = dx;
             oldY = dy;

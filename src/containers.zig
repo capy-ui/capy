@@ -188,7 +188,7 @@ pub fn MarginLayout(peer: Callbacks, widgets: []Widget) void {
             //const finalSize = Size.intersect(preferredSize, available);
             _ = preferredSize;
             const finalSize = available;
-            
+
             //peer.moveResize(peer.userdata, widgetPeer, 0, 0, finalSize.width, finalSize.height);
             peer.moveResize(peer.userdata, widgetPeer, left, top, finalSize.width -| left -| right, finalSize.height -| top -| bottom);
         }
@@ -359,7 +359,18 @@ pub const Container_Impl = struct {
                 .computingPreferredSize = false,
                 .layoutConfig = self.layoutConfig,
             };
-            self.layout(callbacks, self.childrens.items);
+
+            var tempItems = std.ArrayList(Widget).init(self.childrens.allocator);
+            defer tempItems.deinit();
+            for (self.childrens.items) |child| {
+                if (child.isDisplayed()) {
+                    tempItems.append(child) catch return;
+                } else {
+                    peer.remove(child.peer.?);
+                }
+            }
+
+            self.layout(callbacks, tempItems.items);
             self.relayouting.store(false, .SeqCst);
         }
     }

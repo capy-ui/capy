@@ -77,6 +77,7 @@ pub const JNI = opaque {
         return jni.invokeJni(.CallObjectMethod, .{ object, method_id } ++ args);
     }
 
+    // This is required as float arguments get corrupted when passed as varargs
     fn argsToValueArray(args: anytype) [args.len]android.jvalue {
         var values: [args.len]android.jvalue = undefined;
         inline for (args) |arg, i| {

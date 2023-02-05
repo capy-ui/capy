@@ -64,10 +64,12 @@ pub const TextField_Impl = struct {
     _wrapperTextBlock: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
 
     pub fn init(config: TextField_Impl.Config) TextField_Impl {
-        return TextField_Impl.init_events(TextField_Impl{
+        var field = TextField_Impl.init_events(TextField_Impl{
             .text = StringDataWrapper.of(config.text),
             .readOnly = DataWrapper(bool).of(config.readOnly),
         });
+        field.setName(config.name);
+        return field;
     }
 
     /// Internal function used at initialization.

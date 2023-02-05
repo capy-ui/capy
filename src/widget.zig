@@ -18,6 +18,7 @@ pub const Class = struct {
     /// unknown. This function is thus called internally to pair the widget.
     setWidgetFn: *const fn (widget: *Widget) void,
     getParentFn: *const fn (widget: *const Widget) ?*Widget,
+    isDisplayedFn: *const fn (widget: *const Widget) bool,
     // offset into a list of updater optional pointers
     //updaters: []const usize,
 };
@@ -51,6 +52,10 @@ pub const Widget = struct {
 
     pub fn getParent(self: *const Widget) ?*Widget {
         return self.class.getParentFn(self);
+    }
+
+    pub fn isDisplayed(self: *const Widget) bool {
+        return self.class.isDisplayedFn(self);
     }
 
     /// Asserts widget data is of type T
