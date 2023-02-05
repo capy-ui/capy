@@ -15,14 +15,18 @@ pub const CapyBuildOptions = struct {
 pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !void {
     _ = options;
     const prefix = comptime std.fs.path.dirname(@src().file).? ++ std.fs.path.sep_str;
+    const b = step.builder;
     step.subsystem = .Native;
 
-    step.addAnonymousModule("zigimg", .{
+    const zigimg = b.createModule(.{
         .source_file = .{ .path = prefix ++ "/vendor/zigimg/zigimg.zig" },
     });
 
     step.addAnonymousModule("capy", .{
         .source_file = .{ .path = prefix ++ "/src/main.zig" },
+        .dependencies = &.{
+            .{ .name = "zigimg", .module = zigimg }
+        }
     });
 
     // const capy = std.build.Pkg{
@@ -50,7 +54,6 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !void {
         },
         .macos => {
             if (@import("builtin").os.tag != .macos) {
-                const b = step.builder;
                 const sdk_root_dir = b.pathFromRoot("macos-sdk/");
                 const sdk_framework_dir = std.fs.path.join(b.allocator, &.{ sdk_root_dir, "System/Library/Frameworks" }) catch unreachable;
                 const sdk_include_dir = std.fs.path.join(b.allocator, &.{ sdk_root_dir, "usr/include" }) catch unreachable;
