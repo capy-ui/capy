@@ -1,6 +1,7 @@
 const std = @import("std");
 const http = @import("deps.zig").imports.apple_pie;
 const install = @import("build_capy.zig").install;
+const installBuild = @import("build_capy.zig").installBuild;
 const FileSource = std.build.FileSource;
 
 /// Step used to run a web server
@@ -104,6 +105,7 @@ pub fn build(b: *std.Build) !void {
             else
                 b.addExecutable(.{ .name = name, .root_source_file = programPath, .target = target, .optimize = optimize });
             try install(exe, .{});
+            exe.install();
 
             const install_step = b.addInstallArtifact(exe);
             const working = blk: {

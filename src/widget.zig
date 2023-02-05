@@ -100,6 +100,7 @@ const TestType = struct {
         .preferredSizeFn = undefined,
         .setWidgetFn = undefined,
         .getParentFn = undefined,
+        .isDisplayedFn = undefined,
     };
 };
 

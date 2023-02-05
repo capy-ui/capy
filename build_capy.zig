@@ -12,21 +12,17 @@ pub const CapyBuildOptions = struct {
     };
 };
 
-pub fn install(step: *std.build.LibExeObjStep, options: CapyBuildOptions) !void {
+pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !void {
     _ = options;
-
     const prefix = comptime std.fs.path.dirname(@src().file).? ++ std.fs.path.sep_str;
-    const build = step.builder;
     step.subsystem = .Native;
 
-    build.addModule(.{
-        .name = "zigimg",
-        .source_file = std.build.FileSource{ .path = prefix ++ "/vendor/zigimg/zigimg.zig" },
+    step.addAnonymousModule("zigimg", .{
+        .source_file = .{ .path = prefix ++ "/vendor/zigimg/zigimg.zig" },
     });
 
-    build.addModule(.{
-        .name = "capy",
-        .source_file = std.build.FileSource{ .path = prefix ++ "/src/main.zig" },
+    step.addAnonymousModule("capy", .{
+        .source_file = .{ .path = prefix ++ "/src/main.zig" },
     });
 
     // const capy = std.build.Pkg{
