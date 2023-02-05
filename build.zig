@@ -86,7 +86,7 @@ pub fn build(b: *std.Build) !void {
     defer examplesDir.close();
 
     const broken = switch (target.getOsTag()) {
-        .windows => &[_][]const u8{ "osm-viewer", "fade" },
+        .windows => &[_][]const u8{ "osm-viewer", "fade", "slide-viewer" },
         else => &[_][]const u8{"osm-viewer"},
     };
 
