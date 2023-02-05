@@ -1109,7 +1109,7 @@ pub const Container = struct {
         _ = win32.UpdateWindow(peer);
     }
 
-    pub fn remove(self: *Container, peer: PeerType) void {
+    pub fn remove(self: *const Container, peer: PeerType) void {
         _ = self;
         _ = win32.showWindow(peer, win32.SW_HIDE);
     }
