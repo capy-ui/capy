@@ -1,12 +1,12 @@
 const std = @import("std");
-const backend = @import("backend.zig");
-const Size = @import("data.zig").Size;
-const DataWrapper = @import("data.zig").DataWrapper;
+const backend = @import("../backend.zig");
+const Size = @import("../data.zig").Size;
+const DataWrapper = @import("../data.zig").DataWrapper;
 
 pub const DrawContext = backend.Canvas.DrawContext;
 
 pub const Canvas_Impl = struct {
-    pub usingnamespace @import("internal.zig").All(Canvas_Impl);
+    pub usingnamespace @import("../internal.zig").All(Canvas_Impl);
 
     peer: ?backend.Canvas = null,
     handlers: Canvas_Impl.Handlers = undefined,
@@ -50,10 +50,10 @@ pub fn Canvas(config: Canvas_Impl.Config) Canvas_Impl {
     return btn;
 }
 
-const Color = @import("color.zig").Color;
+const Color = @import("../color.zig").Color;
 
 pub const Rect_Impl = struct {
-    pub usingnamespace @import("internal.zig").All(Rect_Impl);
+    pub usingnamespace @import("../internal.zig").All(Rect_Impl);
 
     peer: ?backend.Canvas = null,
     handlers: Rect_Impl.Handlers = undefined,
@@ -104,7 +104,7 @@ pub fn Rect(config: Rect_Impl.Config) Rect_Impl {
     return rect;
 }
 
-const fuzz = @import("fuzz.zig");
+const fuzz = @import("../fuzz.zig");
 
 test "instantiate Canvas" {
     var canvas = Canvas(.{});

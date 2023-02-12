@@ -266,7 +266,7 @@ pub const Container_Impl = struct {
                 // TODO: reduce to a unit test and report to ziglang/zig
                 const function = getChild;
                 return function(container, name) orelse continue;
-            } else if (widget.cast(@import("align.zig").Align_Impl)) |component| {
+            } else if (widget.cast(@import("components/Align.zig").Align_Impl)) |component| {
                 return component.getChild(name) orelse continue;
             }
         }

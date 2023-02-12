@@ -1,11 +1,11 @@
 const std = @import("std");
-const backend = @import("backend.zig");
-const Size = @import("data.zig").Size;
-const DataWrapper = @import("data.zig").DataWrapper;
-const Container_Impl = @import("containers.zig").Container_Impl;
+const backend = @import("../backend.zig");
+const Size = @import("../data.zig").Size;
+const DataWrapper = @import("../data.zig").DataWrapper;
+const Container_Impl = @import("../containers.zig").Container_Impl;
 
 pub const CheckBox_Impl = struct {
-    pub usingnamespace @import("internal.zig").All(CheckBox_Impl);
+    pub usingnamespace @import("../internal.zig").All(CheckBox_Impl);
 
     peer: ?backend.CheckBox = null,
     handlers: CheckBox_Impl.Handlers = undefined,

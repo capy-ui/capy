@@ -3,7 +3,7 @@ const backend = @import("backend.zig");
 const internal = @import("internal.zig");
 const Widget = @import("widget.zig").Widget;
 const ImageData = @import("image.zig").ImageData;
-const MenuBar_Impl = @import("menu.zig").MenuBar_Impl;
+const MenuBar_Impl = @import("components/Menu.zig").MenuBar_Impl;
 const Size = @import("data.zig").Size;
 const DataWrapper = @import("data.zig").DataWrapper;
 

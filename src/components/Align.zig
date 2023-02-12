@@ -1,12 +1,12 @@
 const std = @import("std");
-const backend = @import("backend.zig");
-const internal = @import("internal.zig");
-const Size = @import("data.zig").Size;
-const DataWrapper = @import("data.zig").DataWrapper;
-const Widget = @import("widget.zig").Widget;
+const backend = @import("../backend.zig");
+const internal = @import("../internal.zig");
+const Size = @import("../data.zig").Size;
+const DataWrapper = @import("../data.zig").DataWrapper;
+const Widget = @import("../widget.zig").Widget;
 
 pub const Align_Impl = struct {
-    pub usingnamespace @import("internal.zig").All(Align_Impl);
+    pub usingnamespace @import("../internal.zig").All(Align_Impl);
 
     peer: ?backend.Container = null,
     handlers: Align_Impl.Handlers = undefined,

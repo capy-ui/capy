@@ -1,9 +1,9 @@
 const std = @import("std");
-const internal = @import("internal.zig");
-const backend = @import("backend.zig");
-const Size = @import("data.zig").Size;
-const DataWrapper = @import("data.zig").DataWrapper;
-const Widget = @import("widget.zig").Widget;
+const internal = @import("../internal.zig");
+const backend = @import("../backend.zig");
+const Size = @import("../data.zig").Size;
+const DataWrapper = @import("../data.zig").DataWrapper;
+const Widget = @import("../widget.zig").Widget;
 
 pub const MenuItem_Impl = struct {
     config: Config,

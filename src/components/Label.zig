@@ -1,10 +1,10 @@
 const std = @import("std");
-const backend = @import("backend.zig");
-const Size = @import("data.zig").Size;
-const DataWrapper = @import("data.zig").DataWrapper;
+const backend = @import("../backend.zig");
+const Size = @import("../data.zig").Size;
+const DataWrapper = @import("../data.zig").DataWrapper;
 
 pub const Label_Impl = struct {
-    pub usingnamespace @import("internal.zig").All(Label_Impl);
+    pub usingnamespace @import("../internal.zig").All(Label_Impl);
 
     peer: ?backend.Label = null,
     handlers: Label_Impl.Handlers = undefined,
@@ -71,6 +71,6 @@ pub fn Label(config: Label_Impl.Config) Label_Impl {
 
 // TODO: replace with an actual empty element from the backend
 // Although this is not necessary and would only provide minimal memory/performance gains
-pub fn Spacing() !@import("widget.zig").Widget {
-    return try @import("containers.zig").Expanded(Label(.{}));
+pub fn Spacing() !@import("../widget.zig").Widget {
+    return try @import("../containers.zig").Expanded(Label(.{}));
 }

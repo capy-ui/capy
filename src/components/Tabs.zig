@@ -1,11 +1,11 @@
 const std = @import("std");
-const backend = @import("backend.zig");
-const Size = @import("data.zig").Size;
-const DataWrapper = @import("data.zig").DataWrapper;
-const Widget = @import("widget.zig").Widget;
+const backend = @import("../backend.zig");
+const Size = @import("../data.zig").Size;
+const DataWrapper = @import("../data.zig").DataWrapper;
+const Widget = @import("../widget.zig").Widget;
 
 pub const Tabs_Impl = struct {
-    pub usingnamespace @import("internal.zig").All(Tabs_Impl);
+    pub usingnamespace @import("../internal.zig").All(Tabs_Impl);
 
     peer: ?backend.TabContainer = null,
     handlers: Tabs_Impl.Handlers = undefined,
@@ -45,9 +45,9 @@ pub const Tabs_Impl = struct {
     }
 
     pub fn add(self: *Tabs_Impl, widget: anytype) !void {
-        const ComponentType = @import("internal.zig").DereferencedType(@TypeOf(widget));
+        const ComponentType = @import("../internal.zig").DereferencedType(@TypeOf(widget));
 
-        var genericWidget = try @import("internal.zig").genericWidgetFrom(widget);
+        var genericWidget = try @import("../internal.zig").genericWidgetFrom(widget);
         if (self.widget) |parent| {
             genericWidget.parent = parent;
         }
@@ -81,7 +81,7 @@ fn isErrorUnion(comptime T: type) bool {
 
 pub inline fn Tabs(children: anytype) anyerror!Tabs_Impl {
     const fields = std.meta.fields(@TypeOf(children));
-    var list = std.ArrayList(Tab_Impl).init(@import("internal.zig").lasting_allocator);
+    var list = std.ArrayList(Tab_Impl).init(@import("../internal.zig").lasting_allocator);
     inline for (fields) |field| {
         const element = @field(children, field.name);
         const tab =
@@ -106,7 +106,7 @@ pub const TabConfig = struct {
 };
 
 pub inline fn Tab(config: TabConfig, child: anytype) anyerror!Tab_Impl {
-    const widget = try @import("internal.zig").genericWidgetFrom(if (comptime isErrorUnion(@TypeOf(child)))
+    const widget = try @import("../internal.zig").genericWidgetFrom(if (comptime isErrorUnion(@TypeOf(child)))
         try child
     else
         child);

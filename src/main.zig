@@ -1,20 +1,23 @@
 pub const Window = @import("window.zig").Window;
 pub const Widget = @import("widget.zig").Widget;
 
-pub usingnamespace @import("align.zig");
-pub usingnamespace @import("button.zig");
-pub usingnamespace @import("checkbox.zig");
-pub usingnamespace @import("label.zig");
-pub usingnamespace @import("text.zig");
-pub usingnamespace @import("canvas.zig");
+pub usingnamespace @import("components/Align.zig");
+pub usingnamespace @import("components/Button.zig");
+pub usingnamespace @import("components/Canvas.zig");
+pub usingnamespace @import("components/CheckBox.zig");
+pub usingnamespace @import("components/Image.zig");
+pub usingnamespace @import("components/Label.zig");
+pub usingnamespace @import("components/Menu.zig");
+pub usingnamespace @import("components/Scrollable.zig");
+pub usingnamespace @import("components/Tabs.zig");
+pub usingnamespace @import("components/TextArea.zig");
+pub usingnamespace @import("components/TextField.zig");
 pub usingnamespace @import("containers.zig");
-pub usingnamespace @import("list.zig");
-pub usingnamespace @import("tabs.zig");
-pub usingnamespace @import("scrollable.zig");
-pub usingnamespace @import("menu.zig");
+
+pub usingnamespace @import("color.zig");
 pub usingnamespace @import("data.zig");
 pub usingnamespace @import("image.zig");
-pub usingnamespace @import("color.zig");
+pub usingnamespace @import("list.zig");
 
 pub const internal = @import("internal.zig");
 pub const backend = @import("backend.zig");

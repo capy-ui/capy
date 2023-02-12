@@ -1,12 +1,12 @@
 const std = @import("std");
-const backend = @import("backend.zig");
-const Size = @import("data.zig").Size;
-const DataWrapper = @import("data.zig").DataWrapper;
-const Container_Impl = @import("containers.zig").Container_Impl;
+const backend = @import("../backend.zig");
+const Size = @import("../data.zig").Size;
+const DataWrapper = @import("../data.zig").DataWrapper;
+const Container_Impl = @import("../containers.zig").Container_Impl;
 
 /// A button component. Instantiated using `Button(.{ })`
 pub const Button_Impl = struct {
-    pub usingnamespace @import("internal.zig").All(Button_Impl);
+    pub usingnamespace @import("../internal.zig").All(Button_Impl);
 
     peer: ?backend.Button = null,
     handlers: Button_Impl.Handlers = undefined,
