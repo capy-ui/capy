@@ -382,22 +382,23 @@ pub fn Events(comptime T: type) type {
         }
 
         pub inline fn setCallback(self: *T, comptime eType: EventType, cb: anytype) !void {
-            const data = getEventUserData(self.peer);
+            const data = &getEventUserData(self.peer).user;
             switch (eType) {
-                .Click => data.user.clickHandler = cb,
-                .Draw => data.user.drawHandler = cb,
+                .Click => data.clickHandler = cb,
+                .Draw => data.drawHandler = cb,
                 // TODO: implement mouse button
-                .MouseButton => data.user.mouseButtonHandler = cb,
+                .MouseButton => data.mouseButtonHandler = cb,
                 // TODO: implement mouse motion
-                .MouseMotion => data.user.mouseMotionHandler = cb,
+                .MouseMotion => data.mouseMotionHandler = cb,
                 // TODO: implement scroll
-                .Scroll => data.user.scrollHandler = cb,
-                .TextChanged => data.user.changedTextHandler = cb,
-                .Resize => data.user.resizeHandler = cb,
+                .Scroll => data.scrollHandler = cb,
+                .TextChanged => data.changedTextHandler = cb,
+                .Resize => data.resizeHandler = cb,
                 // TODO: implement key type
-                .KeyType => data.user.keyTypeHandler = cb,
+                .KeyType => data.keyTypeHandler = cb,
                 // TODO: implement key press
-                .KeyPress => data.user.keyPressHandler = cb,
+                .KeyPress => data.keyPressHandler = cb,
+                .PropertyChange => data.propertyChangeHandler = cb,
             }
         }
 
@@ -777,6 +778,66 @@ pub const CheckBox = struct {
 
     pub fn isChecked(self: *CheckBox) bool {
         return win32.SendMessageA(self.peer, win32.BM_GETCHECK, 0, 0) != win32.BST_UNCHECKED;
+    }
+};
+
+pub const Slider = struct {
+    peer: HWND,
+    min: f32 = 0,
+    max: f32 = 100,
+    stepSize: f32 = 0.1,
+
+    pub usingnamespace Events(Slider);
+
+    pub fn create() !Slider {
+        const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
+            "msctls_trackbar32", // lpClassName
+            "", // lpWindowName
+            win32.WS_TABSTOP | win32.WS_CHILD, // dwStyle
+            0, // X
+            0, // Y
+            100, // nWidth
+            100, // nHeight
+            defaultWHWND, // hWindParent
+            null, // hMenu
+            hInst, // hInstance
+            null // lpParam
+        );
+        try Slider.setupEvents(hwnd);
+        _ = win32.SendMessageA(hwnd, win32.WM_SETFONT, @ptrToInt(captionFont), 1);
+
+        return Slider{ .peer = hwnd };
+    }
+
+    pub fn getValue(self: *const Slider) f32 {
+        const valueInt = win32.SendMessageA(self.peer, win32.TBM_GETPOS, 0, 0);
+        const value = @intToFloat(f32, valueInt) * self.stepSize;
+        return value;
+    }
+
+    pub fn setValue(self: *Slider, value: f32) void {
+        const valueInt = @floatToInt(i32, value / self.stepSize);
+        win32.SendMessageA(self.peer, win32.TBM_GETPOS, 1, valueInt);
+    }
+
+    pub fn setMinimum(self: *Slider, minimum: f32) void {
+        self.min = minimum;
+        self.updateMinMax();
+    }
+
+    pub fn setMaximum(self: *Slider, maximum: f32) void {
+        self.max = maximum;
+        self.updateMinMax();
+    }
+
+    fn updateMinMax(self: *const Slider) void {
+        const maxInt = @floatToInt(i32, self.max / self.stepSize);
+        const minInt = @floatToInt(i32, self.min / self.stepSize);
+        _ = win32.SendMessageA(self.peer, win32.TBM_SETRANGE, 1, (@as(u64, maxInt) << 32) | minInt);
+    }
+
+    pub fn setEnabled(self: *Slider, enabled: bool) void {
+        _ = win32.EnableWindow(self.peer, @boolToInt(enabled));
     }
 };
 

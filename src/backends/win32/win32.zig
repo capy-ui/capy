@@ -39,6 +39,11 @@ pub const BST_CHECKED = 1;
 pub const BST_INDETERMINATE = 2;
 pub const BST_UNCHECKED = 0;
 
+// TRACKBAR control
+pub const TBM_GETPOS = 0x0400;
+pub const TBM_SETPOS = 0x0405;
+pub const TBM_SETRANGE = 0x0406;
+
 // STATIC controls
 /// Centers text horizontally.
 pub const SS_CENTER = 0x00000001;
