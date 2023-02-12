@@ -12,8 +12,9 @@ pub const BackendEventType = enum {
     Resize,
     /// This corresponds to a character being typed (e.g. Shift+e = 'E')
     KeyType,
-    /// This corresponds to a key beign pressed (e.g. Shift)
+    /// This corresponds to a key being pressed (e.g. Shift)
     KeyPress,
+    PropertyChange,
 };
 
 pub const MouseButton = enum(c_uint) {
@@ -44,6 +45,7 @@ pub fn EventFunctions(comptime Backend: type) type {
         /// Only works for canvas (althought technically it isn't required to)
         drawHandler: ?*const fn (ctx: *Backend.Canvas.DrawContext, data: usize) void = null,
         changedTextHandler: ?*const fn (data: usize) void = null,
+        propertyChangeHandler: ?*const fn(name: []const u8, value: *const anyopaque, data: usize) void = null,
     };
 }
 

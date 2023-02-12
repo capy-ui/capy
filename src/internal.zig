@@ -418,6 +418,7 @@ pub fn Events(comptime T: type) type {
         pub const ResizeCallback = *const fn (widget: *anyopaque, size: Size) anyerror!void;
         pub const KeyTypeCallback = *const fn (widget: *anyopaque, key: []const u8) anyerror!void;
         pub const KeyPressCallback = *const fn (widget: *anyopaque, keycode: u16) anyerror!void;
+        pub const PropertyChangeCallback = *const fn(widget: *anyopaque, property_name: []const u8, new_value: *const anyopaque) anyerror!void;
         const HandlerList = std.ArrayList(Callback);
         const DrawHandlerList = std.ArrayList(DrawCallback);
         const ButtonHandlerList = std.ArrayList(ButtonCallback);
@@ -426,6 +427,7 @@ pub fn Events(comptime T: type) type {
         const ResizeHandlerList = std.ArrayList(ResizeCallback);
         const KeyTypeHandlerList = std.ArrayList(KeyTypeCallback);
         const KeyPressHandlerList = std.ArrayList(KeyPressCallback);
+        const PropertyChangeHandlerList = std.ArrayList(PropertyChangeCallback);
 
         pub const Handlers = struct {
             clickHandlers: HandlerList,
@@ -436,6 +438,7 @@ pub fn Events(comptime T: type) type {
             resizeHandlers: ResizeHandlerList,
             keyTypeHandlers: KeyTypeHandlerList,
             keyPressHandlers: KeyPressHandlerList,
+            propertyChangeHandlers: PropertyChangeHandlerList,
             userdata: ?*anyopaque = null,
         };
 
@@ -450,6 +453,7 @@ pub fn Events(comptime T: type) type {
                 .resizeHandlers = ResizeHandlerList.init(lasting_allocator),
                 .keyTypeHandlers = KeyTypeHandlerList.init(lasting_allocator),
                 .keyPressHandlers = KeyPressHandlerList.init(lasting_allocator),
+                .propertyChangeHandlers = PropertyChangeHandlerList.init(lasting_allocator),
             };
             return obj;
         }
@@ -534,6 +538,13 @@ pub fn Events(comptime T: type) type {
             }
         }
 
+        fn propertyChangeHandler(name: []const u8, value: *const anyopaque, data: usize) void {
+            const self = @intToPtr(*T, data);
+            for (self.handlers.propertyChangeHandlers.items) |func| {
+                func(self, name, value) catch |err| errorHandler(err);
+            }
+        }
+
         /// When the value is changed in the opacity data wrapper
         fn opacityChanged(newValue: f32, userdata: usize) void {
             const widget = @intToPtr(*T, userdata);
@@ -552,6 +563,7 @@ pub fn Events(comptime T: type) type {
             try self.peer.?.setCallback(.Resize, resizeHandler);
             try self.peer.?.setCallback(.KeyType, keyTypeHandler);
             try self.peer.?.setCallback(.KeyPress, keyPressHandler);
+            try self.peer.?.setCallback(.PropertyChange, propertyChangeHandler);
 
             _ = try self.dataWrappers.opacity.addChangeListener(.{ .function = opacityChanged, .userdata = @ptrToInt(self) });
             opacityChanged(self.dataWrappers.opacity.get(), @ptrToInt(self)); // call it so it's updated
@@ -587,6 +599,12 @@ pub fn Events(comptime T: type) type {
 
         pub fn addKeyPressHandler(self: *T, handler: anytype) !void {
             try self.handlers.keyPressHandlers.append(@ptrCast(KeyPressCallback, handler));
+        }
+
+        /// This shouldn't be used by user applications directly.
+        /// Instead set a change listener to the corresponding data wrapper.
+        pub fn addPropertyChangeHandler(self: *T, handler: anytype) !void {
+            try self.handlers.propertyChangeHandlers.append(@ptrCast(PropertyChangeCallback, handler));
         }
 
         pub fn requestDraw(self: *T) !void {

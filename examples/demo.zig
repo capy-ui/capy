@@ -13,6 +13,9 @@ pub fn main() !void {
     var window = try capy.Window.init();
     defer window.deinit();
 
+    var someSliderValue = capy.DataWrapper(f32).of(0);
+    var someSliderText = try capy.FormatDataWrapper(capy.internal.lasting_allocator, "{d:.1}", .{&someSliderValue});
+
     try window.set(capy.Tabs(.{
         capy.Tab(.{ .label = "Border Layout" }, BorderLayoutExample()),
         capy.Tab(.{ .label = "Buttons" }, capy.Column(.{}, .{
@@ -22,6 +25,12 @@ pub fn main() !void {
             capy.Button(.{ .label = "Button (disabled)", .enabled = false }),
             capy.CheckBox(.{ .label = "Checked", .checked = true }), // TODO: dynamic label based on checked
             capy.CheckBox(.{ .label = "Disabled", .enabled = false }),
+            capy.Row(.{}, .{
+                capy.Expanded(capy.Slider(.{})
+                    .bind("value", &someSliderValue)),
+                capy.Label(.{})
+                    .bind("text", someSliderText),
+            }),
         })),
         //capy.Tab(.{ .label = "Drawing" }, capy.Expanded(Drawer(.{}))),
     }));

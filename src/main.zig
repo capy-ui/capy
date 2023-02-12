@@ -8,6 +8,7 @@ pub usingnamespace @import("components/CheckBox.zig");
 pub usingnamespace @import("components/Image.zig");
 pub usingnamespace @import("components/Label.zig");
 pub usingnamespace @import("components/Menu.zig");
+pub usingnamespace @import("components/Slider.zig");
 pub usingnamespace @import("components/Scrollable.zig");
 pub usingnamespace @import("components/Tabs.zig");
 pub usingnamespace @import("components/TextArea.zig");
@@ -47,7 +48,7 @@ pub fn stepEventLoop(stepType: EventLoopStep) bool {
     if (data._animatedDataWrappers.items.len > 0) {
         data._animatedDataWrappersMutex.lock();
         defer data._animatedDataWrappersMutex.unlock();
-        
+
         for (data._animatedDataWrappers.items) |item, i| {
             if (item.fnPtr(item.userdata) == false) { // animation ended
                 _ = data._animatedDataWrappers.swapRemove(i);
