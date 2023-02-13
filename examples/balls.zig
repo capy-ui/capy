@@ -41,7 +41,7 @@ pub fn main() !void {
 
     var canvas = capy.Canvas(.{
         .preferredSize = capy.Size.init(500, 500),
-        .ondraw = @ptrCast(*const fn(*anyopaque, *capy.DrawContext) anyerror!void, &onDraw),
+        .ondraw = @ptrCast(*const fn (*anyopaque, *capy.DrawContext) anyerror!void, &onDraw),
         .name = "ball-canvas",
     });
     try canvas.addMouseButtonHandler(&onMouseButton);
@@ -53,16 +53,16 @@ pub fn main() !void {
     var window = try capy.Window.init();
     try window.set(capy.Column(.{}, .{
         capy.Label(.{ .text = "Balls with attraction and friction" }),
-        capy.Label(.{ })
-                .bind("text", totalEnergyFormat),
-		capy.Align(.{}, &canvas),
+        capy.Label(.{})
+            .bind("text", totalEnergyFormat),
+        capy.Align(.{}, &canvas),
     }));
 
     window.setTitle("Balls");
     window.resize(600, 600);
     window.show();
 
-    var simThread = try std.Thread.spawn(.{}, simulationThread, .{ &window });
+    var simThread = try std.Thread.spawn(.{}, simulationThread, .{&window});
     defer simThread.join();
 
     capy.runEventLoop();
@@ -188,8 +188,8 @@ fn simulationThread(window: *capy.Window) !void {
                     //const attractionForce = 10 / (distance * distance);
                     const attractionForce = 10 * 4 * -(dr12 - dr6);
                     if (distance > BALL_DIAMETER) {
-                        ball.velX += (dx/distance) * attractionForce;
-                        ball.velY += (dy/distance) * attractionForce;
+                        ball.velX += (dx / distance) * attractionForce;
+                        ball.velY += (dy / distance) * attractionForce;
                     }
                 }
             }

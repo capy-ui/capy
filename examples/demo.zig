@@ -6,7 +6,9 @@ var gpa: std.heap.GeneralPurposeAllocator(.{}) = undefined;
 pub const capy_allocator = gpa.allocator();
 
 pub fn main() !void {
-    try capy.backend.init();
+    try capy.init();
+    defer capy.deinit();
+
     gpa = .{};
     defer _ = gpa.deinit();
 
