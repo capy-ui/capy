@@ -187,7 +187,7 @@ pub fn Widgeting(comptime T: type) type {
             }
         }
 
-        pub fn get(self: T, comptime name: []const u8) TypeOfProperty(name) {
+        pub fn get(self: *T, comptime name: []const u8) TypeOfProperty(name) {
             if (@hasField(DataWrappers, name)) {
                 return @field(self.dataWrappers, name).get();
             } else {
@@ -418,7 +418,7 @@ pub fn Events(comptime T: type) type {
         pub const ResizeCallback = *const fn (widget: *anyopaque, size: Size) anyerror!void;
         pub const KeyTypeCallback = *const fn (widget: *anyopaque, key: []const u8) anyerror!void;
         pub const KeyPressCallback = *const fn (widget: *anyopaque, keycode: u16) anyerror!void;
-        pub const PropertyChangeCallback = *const fn(widget: *anyopaque, property_name: []const u8, new_value: *const anyopaque) anyerror!void;
+        pub const PropertyChangeCallback = *const fn (widget: *anyopaque, property_name: []const u8, new_value: *const anyopaque) anyerror!void;
         const HandlerList = std.ArrayList(Callback);
         const DrawHandlerList = std.ArrayList(DrawCallback);
         const ButtonHandlerList = std.ArrayList(ButtonCallback);

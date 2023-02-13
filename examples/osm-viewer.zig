@@ -1,5 +1,6 @@
 const std = @import("std");
 const capy = @import("capy");
+const DataWrapper = capy.DataWrapper;
 
 pub usingnamespace capy.cross_platform;
 
@@ -32,10 +33,7 @@ pub const MapViewer_Impl = struct {
     isDragging: bool = false,
     lastMouseX: i32 = 0,
     lastMouseY: i32 = 0,
-
-    pub const Config = struct {
-        allocator: std.mem.Allocator = capy.internal.lasting_allocator,
-    };
+    allocator: DataWrapper(std.mem.Allocator) = DataWrapper(std.mem.Allocator).of(capy.internal.lasting_allocator),
 
     const TilePosition = struct {
         zoom: u5,
@@ -54,12 +52,14 @@ pub const MapViewer_Impl = struct {
 
     const Tile = struct { data: capy.ImageData };
 
-    pub fn init(config: Config) MapViewer_Impl {
+    pub fn init(config: MapViewer_Impl.Config) MapViewer_Impl {
         var viewer = MapViewer_Impl.init_events(MapViewer_Impl{
             .tileCache = std.AutoHashMap(TilePosition, Tile).init(config.allocator),
             .pendingRequests = std.AutoHashMap(TilePosition, capy.http.HttpResponse).init(config.allocator),
+            .allocator = DataWrapper(std.mem.Allocator).of(config.allocator),
         });
         viewer.centerTo(2.3200, 48.8589);
+        viewer.setName(config.name);
         return viewer;
     }
 
@@ -235,10 +235,10 @@ pub const MapViewer_Impl = struct {
 
 pub fn MapViewer(config: MapViewer_Impl.Config) !MapViewer_Impl {
     var map_viewer = MapViewer_Impl.init(config);
-    _ = try map_viewer.addDrawHandler(MapViewer_Impl.draw);
-    _ = try map_viewer.addMouseButtonHandler(MapViewer_Impl.mouseButton);
-    _ = try map_viewer.addMouseMotionHandler(MapViewer_Impl.mouseMoved);
-    _ = try map_viewer.addScrollHandler(MapViewer_Impl.mouseScroll);
+    _ = try map_viewer.addDrawHandler(&MapViewer_Impl.draw);
+    _ = try map_viewer.addMouseButtonHandler(&MapViewer_Impl.mouseButton);
+    _ = try map_viewer.addMouseMotionHandler(&MapViewer_Impl.mouseMoved);
+    _ = try map_viewer.addScrollHandler(&MapViewer_Impl.mouseScroll);
     return map_viewer;
 }
 
@@ -265,8 +265,9 @@ pub fn main() !void {
     }
 }
 
-fn onGo(self: *capy.Button_Impl) !void {
-    const root = self.getRoot().?;
+fn onGo(self_ptr: *anyopaque) !void {
+    const self = @ptrCast(*capy.Button_Impl, @alignCast(@alignOf(capy.Button_Impl), self_ptr)); // due to ZIG BUG
+    const root = self.getRoot().?.as(capy.Container_Impl);
     const viewer = root.getChildAs(MapViewer_Impl, "map-viewer").?;
     const input = root.getChildAs(capy.TextField_Impl, "location-input").?;
     try viewer.search(input.get("text"));
