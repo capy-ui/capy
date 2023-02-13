@@ -831,9 +831,10 @@ pub const Slider = struct {
     }
 
     fn updateMinMax(self: *const Slider) void {
-        const maxInt = @floatToInt(i32, self.max / self.stepSize);
-        const minInt = @floatToInt(i32, self.min / self.stepSize);
-        _ = win32.SendMessageA(self.peer, win32.TBM_SETRANGE, 1, (@as(isize, @bitCast(u32, maxInt)) << 32) | @bitCast(u32, minInt));
+        const maxInt = @floatToInt(i16, self.max / self.stepSize);
+        const minInt = @floatToInt(i16, self.min / self.stepSize);
+        _ = win32.SendMessageA(self.peer, win32.TBM_SETRANGEMIN, 1, minInt);
+        _ = win32.SendMessageA(self.peer, win32.TBM_SETRANGEMAX, 1, maxInt);
     }
 
     pub fn setEnabled(self: *Slider, enabled: bool) void {
