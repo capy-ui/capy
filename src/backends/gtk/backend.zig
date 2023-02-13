@@ -353,6 +353,7 @@ pub fn Events(comptime T: type) type {
                 .Resize => data.resizeHandler = cb,
                 .KeyType => data.keyTypeHandler = cb,
                 .KeyPress => data.keyPressHandler = cb,
+                .PropertyChange => data.propertyChangeHandler = cb,
             }
         }
 
@@ -466,6 +467,63 @@ pub const CheckBox = struct {
 
     pub fn isChecked(self: *const CheckBox) bool {
         return c.gtk_toggle_button_get_active(@ptrCast(*c.GtkToggleButton, self.peer)) != 0;
+    }
+};
+
+pub const Slider = struct {
+    peer: *c.GtkWidget,
+
+    pub usingnamespace Events(Slider);
+
+    fn gtkValueChanged(peer: *c.GtkWidget, userdata: usize) callconv(.C) void {
+        _ = userdata;
+        const data = getEventUserData(peer);
+
+        if (data.user.propertyChangeHandler) |handler| {
+            const value = @floatCast(f32, c.gtk_range_get_value(@ptrCast(*c.GtkRange, peer)));
+            handler("value", &value, data.userdata);
+        }
+    }
+
+    pub fn create() BackendError!Slider {
+        const adjustment = c.gtk_adjustment_new(0, 0, 100 + 10, 10, 10, 10);
+        const slider = c.gtk_scale_new(c.GTK_ORIENTATION_HORIZONTAL, adjustment) orelse return error.UnknownError;
+        c.gtk_widget_show(slider);
+        try Slider.setupEvents(slider);
+        _ = c.g_signal_connect_data(slider, "value-changed", @ptrCast(c.GCallback, &gtkValueChanged), null, @as(c.GClosureNotify, null), 0);
+        return Slider{ .peer = slider };
+    }
+
+    pub fn getValue(self: *const Slider) f32 {
+        return @floatCast(f32, c.gtk_range_get_value(@ptrCast(*c.GtkRange, self.peer)));
+    }
+
+    pub fn setValue(self: *const Slider, value: f32) void {
+        c.gtk_range_set_value(@ptrCast(*c.GtkRange, self.peer), value);
+    }
+
+    pub fn setMinimum(self: *const Slider, minimum: f32) void {
+        const adjustment = c.gtk_range_get_adjustment(@ptrCast(*c.GtkRange, self.peer));
+        c.gtk_adjustment_set_lower(adjustment, minimum);
+        c.gtk_range_set_adjustment(@ptrCast(*c.GtkRange, self.peer), adjustment);
+    }
+
+    pub fn setMaximum(self: *const Slider, maximum: f32) void {
+        const adjustment = c.gtk_range_get_adjustment(@ptrCast(*c.GtkRange, self.peer));
+        c.gtk_adjustment_set_upper(adjustment, maximum + c.gtk_adjustment_get_step_increment(adjustment));
+        c.gtk_range_set_adjustment(@ptrCast(*c.GtkRange, self.peer), adjustment);
+    }
+
+    pub fn setEnabled(self: *const Slider, enabled: bool) void {
+        c.gtk_widget_set_sensitive(self.peer, @boolToInt(enabled));
+    }
+
+    pub fn setOrientation(self: *const Slider, orientation: lib.Orientation) void {
+        const gtkOrientation = switch (orientation) {
+            .Horizontal => c.GTK_ORIENTATION_HORIZONTAL,
+            .Vertical => c.GTK_ORIENTATION_VERTICAL,
+        };
+        c.gtk_orientable_set_orientation(@ptrCast(*c.GtkOrientable, self.peer), gtkOrientation);
     }
 };
 
@@ -674,7 +732,7 @@ pub const Canvas = struct {
 
         pub fn ellipse(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
             if (w == h) { // if it is a circle, we can use something slightly faster
-                c.cairo_arc(self.cr, @intToFloat(f64, x+@intCast(i32, w/2)), @intToFloat(f64, y+@intCast(i32, w/2)), @intToFloat(f64, w/2), 0, 2 * std.math.pi);
+                c.cairo_arc(self.cr, @intToFloat(f64, x + @intCast(i32, w / 2)), @intToFloat(f64, y + @intCast(i32, w / 2)), @intToFloat(f64, w / 2), 0, 2 * std.math.pi);
                 return;
             }
             var matrix: c.cairo_matrix_t = undefined;

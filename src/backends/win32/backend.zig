@@ -817,7 +817,7 @@ pub const Slider = struct {
 
     pub fn setValue(self: *Slider, value: f32) void {
         const valueInt = @floatToInt(i32, value / self.stepSize);
-        win32.SendMessageA(self.peer, win32.TBM_GETPOS, 1, valueInt);
+        _ = win32.SendMessageA(self.peer, win32.TBM_GETPOS, 1, valueInt);
     }
 
     pub fn setMinimum(self: *Slider, minimum: f32) void {
@@ -833,7 +833,7 @@ pub const Slider = struct {
     fn updateMinMax(self: *const Slider) void {
         const maxInt = @floatToInt(i32, self.max / self.stepSize);
         const minInt = @floatToInt(i32, self.min / self.stepSize);
-        _ = win32.SendMessageA(self.peer, win32.TBM_SETRANGE, 1, (@as(u64, maxInt) << 32) | minInt);
+        _ = win32.SendMessageA(self.peer, win32.TBM_SETRANGE, 1, (@as(isize, @bitCast(u32, maxInt)) << 32) | @bitCast(u32, minInt));
     }
 
     pub fn setEnabled(self: *Slider, enabled: bool) void {
@@ -892,6 +892,8 @@ pub const TabContainer = struct {
     /// The actual tab control
     tabControl: HWND,
     arena: std.heap.ArenaAllocator,
+    peerList: std.ArrayList(PeerType),
+    shownPeer: ?PeerType = null,
 
     pub usingnamespace Events(TabContainer);
 
@@ -938,8 +940,8 @@ pub const TabContainer = struct {
             win32.WS_TABSTOP | win32.WS_CHILD | win32.WS_CLIPSIBLINGS, // dwStyle
             0, // X
             0, // Y
-            100, // nWidth
-            100, // nHeight
+            1000, // nWidth
+            50, // nHeight
             defaultWHWND, // hWindParent
             null, // hMenu
             hInst, // hInstance
@@ -951,13 +953,22 @@ pub const TabContainer = struct {
         _ = win32.showWindow(hwnd, win32.SW_SHOWDEFAULT);
         _ = win32.UpdateWindow(hwnd);
 
-        return TabContainer{ .peer = wrapperHwnd, .tabControl = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator) };
+        return TabContainer{ .peer = wrapperHwnd, .tabControl = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator), .peerList = std.ArrayList(PeerType).init(lib.internal.lasting_allocator), };
     }
 
-    pub fn insert(self: *const TabContainer, position: usize, peer: PeerType) usize {
+    pub fn insert(self: *TabContainer, position: usize, peer: PeerType) usize {
         const item = win32.TCITEMA{ .mask = 0 };
         const newIndex = win32.TabCtrl_InsertItemA(self.tabControl, @intCast(c_int, position), &item);
-        _ = peer;
+        self.peerList.append(peer) catch unreachable;
+
+        if (self.shownPeer) |previousPeer| {
+            _ = win32.showWindow(previousPeer, win32.SW_HIDE);
+        }
+        _ = win32.SetParent(peer, self.peer);
+        _ = win32.showWindow(peer, win32.SW_SHOWDEFAULT);
+        _ = win32.UpdateWindow(peer);
+        self.shownPeer = peer;
+
         return @intCast(usize, newIndex);
     }
 
@@ -978,7 +989,7 @@ pub const TabContainer = struct {
         var rect: RECT = undefined;
         _ = win32.GetWindowRect(hwnd, &rect);
         const child = win32.GetWindow(hwnd, win32.GW_CHILD);
-        _ = win32.MoveWindow(child, 0, 0, rect.right - rect.left, rect.bottom - rect.top, 1);
+        _ = win32.MoveWindow(child, 0, 50, rect.right - rect.left, rect.bottom - rect.top, 1);
     }
 };
 
