@@ -353,6 +353,7 @@ pub fn Events(comptime T: type) type {
                 .Resize => data.resizeHandler = cb,
                 .KeyType => data.keyTypeHandler = cb,
                 .KeyPress => data.keyPressHandler = cb,
+                .PropertyChange => data.propertyChangeHandler = cb,
             }
         }
 
