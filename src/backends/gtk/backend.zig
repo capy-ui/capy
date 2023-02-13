@@ -483,7 +483,13 @@ pub const Slider = struct {
             const adjustment = c.gtk_range_get_adjustment(@ptrCast(*c.GtkRange, peer));
             const stepSize = c.gtk_adjustment_get_minimum_increment(adjustment);
             const value = c.gtk_range_get_value(@ptrCast(*c.GtkRange, peer));
-            const adjustedValue = @round(value / stepSize) * stepSize;
+            var adjustedValue = @round(value / stepSize) * stepSize;
+
+            // check if it is equal to -0.0 (a quirk from IEEE 754), if it is then set to 0.0
+            if (adjustedValue == 0 and std.math.copysign(@as(f64, 1.0), adjustedValue) == -1.0) {
+                adjustedValue = 0.0;
+            }
+
             if (!std.math.approxEqAbs(f64, value, adjustedValue, 0.001)) {
                 c.gtk_range_set_value(@ptrCast(*c.GtkRange, peer), adjustedValue);
             } else {
@@ -542,6 +548,7 @@ pub const Slider = struct {
 
 pub const Label = struct {
     peer: *c.GtkWidget,
+    /// Temporary value invalidated once setText_uiThread is called
     nullTerminated: ?[:0]const u8 = null,
 
     pub usingnamespace Events(Label);
@@ -564,6 +571,8 @@ pub const Label = struct {
 
     fn setText_uiThread(userdata: ?*anyopaque) callconv(.C) c_int {
         const runOpts = @ptrCast(*RunOpts, @alignCast(@alignOf(RunOpts), userdata.?));
+        const nullTerminated = runOpts.text;
+        defer lib.internal.scratch_allocator.free(nullTerminated);
         defer lib.internal.scratch_allocator.destroy(runOpts);
 
         c.gtk_label_set_text(runOpts.label, runOpts.text);
@@ -571,14 +580,14 @@ pub const Label = struct {
     }
 
     pub fn setText(self: *Label, text: []const u8) void {
-        if (self.nullTerminated) |old| {
-            lib.internal.lasting_allocator.free(old);
-        }
         self.nullTerminated = lib.internal.lasting_allocator.dupeZ(u8, text) catch unreachable;
 
         // It must be run in UI thread otherwise set_text might crash randomly
         const runOpts = lib.internal.scratch_allocator.create(RunOpts) catch unreachable;
-        runOpts.* = .{ .label = @ptrCast(*c.GtkLabel, self.peer), .text = self.nullTerminated.? };
+        runOpts.* = .{
+            .label = @ptrCast(*c.GtkLabel, self.peer),
+            .text = self.nullTerminated.?,
+        };
         _ = c.g_idle_add(setText_uiThread, runOpts);
     }
 };

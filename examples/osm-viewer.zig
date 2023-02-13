@@ -137,8 +137,15 @@ pub const MapViewer_Impl = struct {
                 const contents = try response.reader().readAllAlloc(capy.internal.scratch_allocator, std.math.maxInt(usize));
                 defer capy.internal.scratch_allocator.free(contents);
 
-                const imageData = try capy.ImageData.fromBuffer(capy.internal.scratch_allocator, contents);
-                try self.tileCache.put(key.*, .{ .data = imageData });
+                if (capy.ImageData.fromBuffer(capy.internal.lasting_allocator, contents)) |imageData| {
+                    try self.tileCache.put(key.*, .{ .data = imageData });
+                } else |err| switch (err) {
+                    error.InvalidData => {
+                        std.log.err("Invalid data at {}: {s}", .{ key.*, contents });
+                    },
+                    else => return err,
+                }
+                response.deinit();
                 self.pendingRequests.removeByPtr(key);
                 self.requestDraw() catch unreachable;
                 break;
