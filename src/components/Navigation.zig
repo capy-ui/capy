@@ -96,7 +96,7 @@ pub const Navigation_Impl = struct {
     /// This is analoguous to sliding to a screen.
     pub fn navigateTo(self: *Navigation_Impl, name: []const u8, params: anytype) !void {
         _ = params;
-        if (self.peer) |peer| {
+        if (self.peer) |*peer| {
             peer.remove(self.activeChild.peer.?);
             const child = self.routes.getPtr(name) orelse return error.NoSuchRoute;
             self.activeChild = child;
