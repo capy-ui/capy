@@ -785,7 +785,7 @@ pub const Slider = struct {
     peer: HWND,
     min: f32 = 0,
     max: f32 = 100,
-    stepSize: f32 = 0.1,
+    stepSize: f32 = 1,
 
     pub usingnamespace Events(Slider);
 
@@ -828,6 +828,13 @@ pub const Slider = struct {
     pub fn setMaximum(self: *Slider, maximum: f32) void {
         self.max = maximum;
         self.updateMinMax();
+    }
+
+    pub fn setStepSize(self: *Slider, stepSize: f32) void {
+        const value = self.getValue();
+        self.stepSize = stepSize;
+        self.updateMinMax();
+        self.setValue(value);
     }
 
     fn updateMinMax(self: *const Slider) void {
@@ -954,7 +961,12 @@ pub const TabContainer = struct {
         _ = win32.showWindow(hwnd, win32.SW_SHOWDEFAULT);
         _ = win32.UpdateWindow(hwnd);
 
-        return TabContainer{ .peer = wrapperHwnd, .tabControl = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator), .peerList = std.ArrayList(PeerType).init(lib.internal.lasting_allocator), };
+        return TabContainer{
+            .peer = wrapperHwnd,
+            .tabControl = hwnd,
+            .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator),
+            .peerList = std.ArrayList(PeerType).init(lib.internal.lasting_allocator),
+        };
     }
 
     pub fn insert(self: *TabContainer, position: usize, peer: PeerType) usize {

@@ -5,6 +5,9 @@ const DataWrapper = @import("../data.zig").DataWrapper;
 
 pub const Orientation = enum { Horizontal, Vertical };
 
+/// A slider that the user can move to set a numerical value.
+/// To avoid any cross-platform bugs, ensure that min/stepSize and
+/// max/stepSize both are between -32767 and 32768.
 pub const Slider_Impl = struct {
     pub usingnamespace @import("../internal.zig").All(Slider_Impl);
 
@@ -14,6 +17,9 @@ pub const Slider_Impl = struct {
     value: DataWrapper(f32) = DataWrapper(f32).of(0),
     min: DataWrapper(f32) = DataWrapper(f32).of(0),
     max: DataWrapper(f32) = DataWrapper(f32).of(100),
+    /// The size of one increment of the value.
+    /// This means the value can only be a multiple of step.
+    step: DataWrapper(f32) = DataWrapper(f32).of(1),
     enabled: DataWrapper(bool) = DataWrapper(bool).of(true),
 
     pub fn init() Slider_Impl {
@@ -39,6 +45,11 @@ pub const Slider_Impl = struct {
         peer.*.?.setMaximum(newValue);
     }
 
+    fn wrapperStepChanged(newValue: f32, userdata: usize) void {
+        const peer = @intToPtr(*?backend.Slider, userdata);
+        peer.*.?.setStepSize(newValue);
+    }
+
     fn wrapperEnabledChanged(newValue: bool, userdata: usize) void {
         const peer = @intToPtr(*?backend.Slider, userdata);
         peer.*.?.setEnabled(newValue);
@@ -57,6 +68,7 @@ pub const Slider_Impl = struct {
             self.peer.?.setMinimum(self.min.get());
             self.peer.?.setMaximum(self.max.get());
             self.peer.?.setValue(self.value.get());
+            self.peer.?.setStepSize(self.step.get());
             self.peer.?.setEnabled(self.enabled.get());
             try self.show_events();
 
@@ -64,6 +76,7 @@ pub const Slider_Impl = struct {
             _ = try self.min.addChangeListener(.{ .function = wrapperMinChanged, .userdata = @ptrToInt(&self.peer) });
             _ = try self.max.addChangeListener(.{ .function = wrapperMaxChanged, .userdata = @ptrToInt(&self.peer) });
             _ = try self.enabled.addChangeListener(.{ .function = wrapperEnabledChanged, .userdata = @ptrToInt(&self.peer) });
+            _ = try self.step.addChangeListener(.{ .function = wrapperStepChanged, .userdata = @ptrToInt(&self.peer) });
 
             try self.addPropertyChangeHandler(&onPropertyChange);
         }
@@ -88,6 +101,7 @@ pub fn Slider(config: Slider_Impl.Config) Slider_Impl {
     slider.min.set(config.min);
     slider.max.set(config.max);
     slider.value.set(config.value);
+    slider.step.set(config.step);
     slider.enabled.set(config.enabled);
     slider.dataWrappers.name.set(config.name);
     if (config.onclick) |onclick| {

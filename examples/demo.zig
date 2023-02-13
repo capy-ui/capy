@@ -26,7 +26,7 @@ pub fn main() !void {
             capy.CheckBox(.{ .label = "Checked", .checked = true }), // TODO: dynamic label based on checked
             capy.CheckBox(.{ .label = "Disabled", .enabled = false }),
             capy.Row(.{}, .{
-                capy.Expanded(capy.Slider(.{})
+                capy.Expanded(capy.Slider(.{ .min = -10, .max = 10, .step = 0.1 })
                     .bind("value", &someSliderValue)),
                 capy.Label(.{})
                     .bind("text", someSliderText),

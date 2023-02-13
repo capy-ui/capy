@@ -480,14 +480,23 @@ pub const Slider = struct {
         const data = getEventUserData(peer);
 
         if (data.user.propertyChangeHandler) |handler| {
-            const value = @floatCast(f32, c.gtk_range_get_value(@ptrCast(*c.GtkRange, peer)));
-            handler("value", &value, data.userdata);
+            const adjustment = c.gtk_range_get_adjustment(@ptrCast(*c.GtkRange, peer));
+            const stepSize = c.gtk_adjustment_get_minimum_increment(adjustment);
+            const value = c.gtk_range_get_value(@ptrCast(*c.GtkRange, peer));
+            const adjustedValue = @round(value / stepSize) * stepSize;
+            if (!std.math.approxEqAbs(f64, value, adjustedValue, 0.001)) {
+                c.gtk_range_set_value(@ptrCast(*c.GtkRange, peer), adjustedValue);
+            } else {
+                const value_f32 = @floatCast(f32, adjustedValue);
+                handler("value", &value_f32, data.userdata);
+            }
         }
     }
 
     pub fn create() BackendError!Slider {
         const adjustment = c.gtk_adjustment_new(0, 0, 100 + 10, 10, 10, 10);
         const slider = c.gtk_scale_new(c.GTK_ORIENTATION_HORIZONTAL, adjustment) orelse return error.UnknownError;
+        c.gtk_scale_set_draw_value(@ptrCast(*c.GtkScale, slider), @boolToInt(false));
         c.gtk_widget_show(slider);
         try Slider.setupEvents(slider);
         _ = c.g_signal_connect_data(slider, "value-changed", @ptrCast(c.GCallback, &gtkValueChanged), null, @as(c.GClosureNotify, null), 0);
@@ -498,27 +507,31 @@ pub const Slider = struct {
         return @floatCast(f32, c.gtk_range_get_value(@ptrCast(*c.GtkRange, self.peer)));
     }
 
-    pub fn setValue(self: *const Slider, value: f32) void {
+    pub fn setValue(self: *Slider, value: f32) void {
         c.gtk_range_set_value(@ptrCast(*c.GtkRange, self.peer), value);
     }
 
-    pub fn setMinimum(self: *const Slider, minimum: f32) void {
+    pub fn setMinimum(self: *Slider, minimum: f32) void {
         const adjustment = c.gtk_range_get_adjustment(@ptrCast(*c.GtkRange, self.peer));
         c.gtk_adjustment_set_lower(adjustment, minimum);
         c.gtk_range_set_adjustment(@ptrCast(*c.GtkRange, self.peer), adjustment);
     }
 
-    pub fn setMaximum(self: *const Slider, maximum: f32) void {
+    pub fn setMaximum(self: *Slider, maximum: f32) void {
         const adjustment = c.gtk_range_get_adjustment(@ptrCast(*c.GtkRange, self.peer));
         c.gtk_adjustment_set_upper(adjustment, maximum + c.gtk_adjustment_get_step_increment(adjustment));
         c.gtk_range_set_adjustment(@ptrCast(*c.GtkRange, self.peer), adjustment);
     }
 
-    pub fn setEnabled(self: *const Slider, enabled: bool) void {
+    pub fn setStepSize(self: *Slider, stepSize: f32) void {
+        c.gtk_range_set_increments(@ptrCast(*c.GtkRange, self.peer), stepSize, stepSize * 10);
+    }
+
+    pub fn setEnabled(self: *Slider, enabled: bool) void {
         c.gtk_widget_set_sensitive(self.peer, @boolToInt(enabled));
     }
 
-    pub fn setOrientation(self: *const Slider, orientation: lib.Orientation) void {
+    pub fn setOrientation(self: *Slider, orientation: lib.Orientation) void {
         const gtkOrientation = switch (orientation) {
             .Horizontal => c.GTK_ORIENTATION_HORIZONTAL,
             .Vertical => c.GTK_ORIENTATION_VERTICAL,
