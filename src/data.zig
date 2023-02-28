@@ -250,7 +250,7 @@ pub fn DataWrapper(comptime T: type) type {
         }
 
         /// Thread-safe get operation. If doing a read-modify-write operation
-        /// manually changing the value and acquiring the lock is recommended.
+        /// you must use the rmw() method.
         pub fn get(self: *Self) T {
             self.lock.lock();
             defer self.lock.unlock();
@@ -272,10 +272,10 @@ pub fn DataWrapper(comptime T: type) type {
         }
 
         /// Thread-safe set operation. If doing a read-modify-write operation
-        /// manually changing the value and acquiring the lock is recommended.
+        /// you must use the rmw() method.
         /// This also removes any previously set animation!
         pub fn set(self: *Self, value: T) void {
-            self.extendedSet(value, true);
+            self.extendedSet(value, .{});
         }
 
         /// Thread-safe set operation without calling change listeners
@@ -288,43 +288,51 @@ pub fn DataWrapper(comptime T: type) type {
         /// change the data wrapper, but without setNoListen, it would
         /// cause an infinite recursion.
         pub fn setNoListen(self: *Self, value: T) void {
-            self.extendedSet(value, false);
+            self.extendedSet(value, .{ .callHandlers = false });
         }
 
-        fn extendedSet(self: *Self, value: T, comptime doCallHandlers: bool) void {
+        const ExtendedSetOptions = struct {
+            callHandlers: bool = true,
+            /// If true, lock before setting the value and unlock after.
+            /// If false, do not lock before setting the value, but still unlock after.
+            locking: bool = true,
+        };
+
+        fn extendedSet(self: *Self, value: T, comptime options: ExtendedSetOptions) void {
             // This atomically checks if bindLock is false, and sets it to true if it was.
-            // bindLock.compareToSwap(false, true, .SeqCst, .SeqCst) is equivalent to
-            // fn compareAndSwapButNotAtomic(ptr: *bool) ?bool {
-            //     const old_value = ptr.*;
-            //     if (old_value == false) {
-            //         ptr.* = true;
-            //         return null;
-            //     } else {
-            //         return old_value;
-            //     }
-            // }
-            // As you can see, if the old value was false, it returns null, which is what we want.
+            // If the old value was false, it returns null, which is what we want.
             // Otherwise, it returns the old value, but since the only value other than false is true,
             // we're not interested in the result.
             if (self.bindLock.compareAndSwap(false, true, .SeqCst, .SeqCst) == null) {
                 defer self.bindLock.store(false, .SeqCst);
 
-                self.lock.lock();
-                if (IsAnimable) {
-                    self.value = .{ .Single = value };
-                } else {
-                    self.value = value;
+                {
+                    if (options.locking) self.lock.lock();
+                    defer self.lock.unlock();
+
+                    if (IsAnimable) {
+                        self.value = .{ .Single = value };
+                    } else {
+                        self.value = value;
+                    }
                 }
-                self.lock.unlock();
-                if (doCallHandlers) {
+
+                if (options.callHandlers)
                     self.callHandlers();
-                }
                 if (self.bindWrapper) |binding| {
                     binding.set(value);
                 }
             } else {
                 // Do nothing ...
             }
+        }
+
+        pub fn rmw(self: *Self, func: *const fn (value: T) T) void {
+            self.lock.lock();
+            // Don't unlock because extendedSet() will already unlocks it
+
+            const current_value = self.getUnsafe();
+            self.extendedSet(func(current_value), .{ .locking = false });
         }
 
         /// This makes the value of this data wrapper entirely dependent

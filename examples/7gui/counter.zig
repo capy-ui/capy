@@ -7,11 +7,15 @@ var count = capy.DataWrapper(i64).of(0);
 
 // TODO: switch back to *capy.Button_Impl when ziglang/zig#12325 is fixed
 fn increment(_: *anyopaque) !void {
-    count.set(count.get() + 1);
+    count.rmw(struct {
+        fn callback(old_value: i64) i64 {
+            return old_value + 1;
+        }
+    }.callback);
 }
 
 pub fn main() !void {
-    try capy.backend.init();
+    try capy.init();
     std.log.info("Overhead of DataWrapper(i64) = {d} bytes, align = {d} bytes", .{ @sizeOf(capy.DataWrapper(i64)) - @sizeOf(i64), @alignOf(capy.DataWrapper(i64)) });
 
     var window = try capy.Window.init();
