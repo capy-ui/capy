@@ -159,6 +159,18 @@ pub fn DataWrapper(comptime T: type) type {
             }
         }
 
+        /// Allocates a new data wrapper and initializes it with the given value.
+        /// This function assumes that there will be no memory errors.
+        /// If you want to handle OutOfMemory, you must manually allocate the DataWrapper
+        pub fn alloc(value: T) *Self {
+            const ptr = lasting_allocator.create(Self) catch |err| switch (err) {
+                error.OutOfMemory => unreachable,
+            };
+            ptr.* = Self.of(value);
+            ptr.allocator = lasting_allocator;
+            return ptr;
+        }
+
         /// This function updates any current animation.
         /// It returns true if the animation isn't done, false otherwises.
         pub fn update(self: *Self) bool {
