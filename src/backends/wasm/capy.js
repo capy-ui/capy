@@ -83,7 +83,10 @@ const importObj = {
 				pushEvent({
 					type: 5,
 					target: idx,
-					args: [Math.round(e.deltaX / 100), Math.round(e.deltaY / 100)]
+					//args: [Math.round(e.deltaX / 100), Math.round(e.deltaY / 100)]
+					// the way it works is very browser and OS dependent so just assume
+					// we scrolled 1 'tick'
+					args: [1 * Math.sign(e.deltaX), 1 * Math.sign(e.deltaY)]
 				});
 			});
 

@@ -336,7 +336,7 @@ pub fn DataWrapper(comptime T: type) type {
         }
 
         /// This makes the value of this data wrapper entirely dependent
-        /// on the given parameters, it can only be reverted by calling set()
+        /// on the given parameters (variable-based reactivity), it can only be reverted by calling set()
         /// 'tuple' must be a tuple with pointers to data wrappers
         /// 'function' must be a function accepting as arguments the value types of the data wrappers and returning a new value.
         pub fn dependOn(self: *Self, tuple: anytype, function: anytype) !void {
