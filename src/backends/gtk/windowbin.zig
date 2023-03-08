@@ -113,6 +113,12 @@ fn wbin_class_init(class: *WBinClass) callconv(.C) void {
     widget_class.get_preferred_width = wbin_get_preferred_width;
     widget_class.get_preferred_height = wbin_get_preferred_height;
     widget_class.size_allocate = wbin_size_allocate;
+    widget_class.get_request_mode = wbin_get_request_mode;
+}
+
+fn wbin_get_request_mode(widget: ?*c.GtkWidget) callconv(.C) c.GtkSizeRequestMode {
+    _ = widget;
+    return c.GTK_SIZE_REQUEST_CONSTANT_SIZE;
 }
 
 fn wbin_get_preferred_width(widget: ?*c.GtkWidget, minimum_width: ?*c.gint, natural_width: ?*c.gint) callconv(.C) void {

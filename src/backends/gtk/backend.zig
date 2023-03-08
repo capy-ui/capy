@@ -1024,43 +1024,15 @@ pub const NavigationSidebar = struct {
         const listBox = c.gtk_list_box_new();
         c.gtk_widget_show(listBox);
 
-        const box = c.gtk_box_new(c.GTK_ORIENTATION_HORIZONTAL, 6);
-        c.gtk_list_box_prepend(@ptrCast(*c.GtkListBox, listBox), box);
-
-        // TODO: use for backend.Icon
-        const icon = c.gtk_image_new_from_icon_name("dialog-warning-symbolic", c.GTK_ICON_SIZE_DIALOG);
-        c.gtk_container_add(@ptrCast(*c.GtkContainer, box), icon);
-
-        const label = c.gtk_label_new("Item 1");
-        c.gtk_container_add(@ptrCast(*c.GtkContainer, box), label);
-        c.gtk_widget_show_all(box);
-
-        const box2 = c.gtk_box_new(c.GTK_ORIENTATION_HORIZONTAL, 6);
-        c.gtk_list_box_prepend(@ptrCast(*c.GtkListBox, listBox), box2);
-
-        // TODO: use for backend.Icon
-        const icon2 = c.gtk_image_new_from_icon_name("dialog-warning-symbolic", c.GTK_ICON_SIZE_DIALOG);
-        c.gtk_container_add(@ptrCast(*c.GtkContainer, box2), icon2);
-
-        const label2 = c.gtk_label_new("Item 2");
-        c.gtk_container_add(@ptrCast(*c.GtkContainer, box2), label2);
-        c.gtk_widget_show_all(box2);
-
         // A custom component is used to bypass GTK's minimum size mechanism
         const wbin = wbin_new() orelse return BackendError.UnknownError;
         c.gtk_container_add(@ptrCast(*c.GtkContainer, wbin), listBox);
         c.gtk_widget_show(wbin);
         try NavigationSidebar.setupEvents(wbin);
 
-        var context: *c.GtkStyleContext = c.gtk_widget_get_style_context(box);
-        c.gtk_style_context_add_class(context, "activatable");
-        c.gtk_style_context_add_class(context, "row");
-
-        var context2: *c.GtkStyleContext = c.gtk_widget_get_style_context(box2);
-        c.gtk_style_context_add_class(context2, "activatable");
-        c.gtk_style_context_add_class(context2, "row");
-
-        return NavigationSidebar{ .peer = wbin, .list = listBox };
+        var sidebar = NavigationSidebar{ .peer = wbin, .list = listBox };
+        sidebar.append(undefined, "Test");
+        return sidebar;
     }
 
     pub fn append(self: *NavigationSidebar, image: ImageData, label: [:0]const u8) void {
@@ -1075,6 +1047,11 @@ pub const NavigationSidebar = struct {
 
         const label_gtk = c.gtk_label_new(label);
         c.gtk_container_add(@ptrCast(*c.GtkContainer, box), label_gtk);
+
+        var context: *c.GtkStyleContext = c.gtk_widget_get_style_context(box);
+        c.gtk_style_context_add_class(context, "activatable");
+        c.gtk_style_context_add_class(context, "row");
+
         c.gtk_widget_show_all(box);
     }
 
