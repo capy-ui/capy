@@ -20,6 +20,7 @@ pub const CheckBox_Impl = struct {
 
     pub fn _pointerMoved(self: *CheckBox_Impl) void {
         self.enabled.updateBinders();
+        self.checked.updateBinders();
     }
 
     fn wrapperCheckedChanged(newValue: bool, userdata: usize) void {

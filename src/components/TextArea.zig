@@ -15,9 +15,14 @@ pub const TextArea_Impl = struct {
     text: StringDataWrapper = StringDataWrapper.of(""),
     _wrapperTextBlock: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
 
+    // TODO: replace with TextArea.setFont(.{ .family = "monospace" }) ?
+    /// Whether to let the system choose a monospace font for us and use it in this TextArea..
+    monospace: DataWrapper(bool) = DataWrapper(bool).of(false),
+
     pub fn init(config: TextArea_Impl.Config) TextArea_Impl {
         var area = TextArea_Impl.init_events(TextArea_Impl{
             .text = StringDataWrapper.of(config.text),
+            .monospace = DataWrapper(bool).of(config.monospace),
         });
         area.setName(config.name);
         return area;
@@ -25,6 +30,7 @@ pub const TextArea_Impl = struct {
 
     pub fn _pointerMoved(self: *TextArea_Impl) void {
         self.text.updateBinders();
+        self.monospace.updateBinders();
     }
 
     fn wrapperTextChanged(newValue: []const u8, userdata: usize) void {
@@ -32,6 +38,11 @@ pub const TextArea_Impl = struct {
         if (self._wrapperTextBlock.load(.Monotonic) == true) return;
 
         self.peer.?.setText(newValue);
+    }
+
+    fn wrapperMonospaceChanged(newValue: bool, userdata: usize) void {
+        const self = @intToPtr(*TextArea_Impl, userdata);
+        self.peer.?.setMonospaced(newValue);
     }
 
     fn textChanged(userdata: usize) void {
@@ -47,11 +58,13 @@ pub const TextArea_Impl = struct {
         if (self.peer == null) {
             var peer = try backend.TextArea.create();
             peer.setText(self.text.get());
+            peer.setMonospaced(self.monospace.get());
             self.peer = peer;
             try self.show_events();
 
             try peer.setCallback(.TextChanged, textChanged);
             _ = try self.text.addChangeListener(.{ .function = wrapperTextChanged, .userdata = @ptrToInt(self) });
+            _ = try self.monospace.addChangeListener(.{ .function = wrapperMonospaceChanged, .userdata = @ptrToInt(self) });
         }
     }
 

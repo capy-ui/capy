@@ -614,6 +614,11 @@ pub const TextArea = struct {
         c.gtk_text_buffer_set_text(buffer, text.ptr, @intCast(c_int, text.len));
     }
 
+    pub fn setMonospaced(self: *TextArea, monospaced: bool) void {
+        std.log.info("monospaced {}", .{monospaced});
+        c.gtk_text_view_set_monospace(@ptrCast(*c.GtkTextView, self.textView), @boolToInt(monospaced));
+    }
+
     pub fn getText(self: *TextArea) [:0]const u8 {
         const buffer = c.gtk_text_view_get_buffer(@ptrCast(*c.GtkTextView, self.textView));
         var start: c.GtkTextIter = undefined;
