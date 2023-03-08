@@ -68,12 +68,24 @@ pub const Color = packed struct {
         return @floatToInt(u8, @intToFloat(f64, a) * (1 - t) + @intToFloat(f64, b) * t);
     }
 
+    pub fn toLinear(component: u8) u8 {
+        var float = @intToFloat(f32, component);
+        float = std.math.pow(f32, float / 255, 1.0 / 2.2) * 255;
+        return @floatToInt(u8, float);
+    }
+
+    pub fn toSRGB(component: u8) u8 {
+        var float = @intToFloat(f32, component);
+        float = std.math.pow(f32, float / 255, 2.2) * 255;
+        return @floatToInt(u8, float);
+    }
+
     // TODO: interpolate between colors in linear RGB space
     pub fn lerp(a: Color, b: Color, t: f64) Color {
         return Color{
-            .red = lerpByte(a.red, b.red, t),
-            .green = lerpByte(a.green, b.green, t),
-            .blue = lerpByte(a.blue, b.blue, t),
+            .red = toSRGB(lerpByte(toLinear(a.red), toLinear(b.red), t)),
+            .green = toSRGB(lerpByte(toLinear(a.green), toLinear(b.green), t)),
+            .blue = toSRGB(lerpByte(toLinear(a.blue), toLinear(b.blue), t)),
             .alpha = lerpByte(a.alpha, b.alpha, t),
         };
     }
