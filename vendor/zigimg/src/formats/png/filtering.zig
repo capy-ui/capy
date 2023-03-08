@@ -49,7 +49,7 @@ pub fn filter(writer: anytype, pixels: color.PixelStorage, filter_choice: Filter
 
         try writer.writeByte(@enumToInt(filter_type));
 
-        for (scanline) |sample, i| {
+        for (scanline, 0..) |sample, i| {
             const previous: u8 = if (i >= pixel_len) scanline[i - pixel_len] else 0;
             const above: u8 = if (previous_scanline) |b| b[i] else 0;
             const above_previous = if (previous_scanline) |b| (if (i >= pixel_len) b[i - pixel_len] else 0) else 0;
@@ -77,7 +77,7 @@ fn filterChoiceHeuristic(scanline: []const u8, previous_scanline: ?[]const u8, p
         var combo: usize = 0;
         var score: usize = 0;
 
-        for (scanline) |sample, i| {
+        for (scanline, 0..) |sample, i| {
             const previous: u8 = if (i >= pixel_len) scanline[i - pixel_len] else 0;
             const above: u8 = if (previous_scanline) |b| b[i] else 0;
             const above_previous = if (previous_scanline) |b| (if (i >= pixel_len) b[i - pixel_len] else 0) else 0;

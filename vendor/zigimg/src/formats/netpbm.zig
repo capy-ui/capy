@@ -449,7 +449,7 @@ fn Netpbm(comptime image_format: Image.Format, comptime header_numbers: []const 
                         switch (pixels) {
                             .grayscale16 => {
                                 const pixels_len = pixels.len();
-                                for (pixels.grayscale16) |entry, index| {
+                                for (pixels.grayscale16, 0..) |entry, index| {
                                     try writer.print("{}", .{entry.value});
 
                                     if (index != (pixels_len - 1)) {
@@ -460,7 +460,7 @@ fn Netpbm(comptime image_format: Image.Format, comptime header_numbers: []const 
                             },
                             .grayscale8 => {
                                 const pixels_len = pixels.len();
-                                for (pixels.grayscale8) |entry, index| {
+                                for (pixels.grayscale8, 0..) |entry, index| {
                                     try writer.print("{}", .{entry.value});
 
                                     if (index != (pixels_len - 1)) {

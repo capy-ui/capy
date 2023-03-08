@@ -60,7 +60,7 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
     var childY: f32 = 0.0;
     // Child X is different from 0 only when 'wrapping' property is set to true
     var childX: f32 = 0.0;
-    for (widgets) |widget, i| {
+    for (widgets, 0..) |widget, i| {
         const isLastWidget = i == widgets.len - 1;
         if (widget.peer) |widgetPeer| {
             const minimumSize = widget.getPreferredSize(Size.init(1, 1));
@@ -123,7 +123,7 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
     var childX: f32 = 0.0;
     // Child Y is different from 0 only when 'wrapping' property is set to true
     var childY: f32 = 0.0;
-    for (widgets) |widget, i| {
+    for (widgets, 0..) |widget, i| {
         const isLastWidget = i == widgets.len - 1;
         if (widget.peer) |widgetPeer| {
             const minimumSize = widget.getPreferredSize(Size.init(1, 1));

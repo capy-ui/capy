@@ -188,7 +188,7 @@ const OctTreeQuantizerNode = struct {
 
     pub fn removeLeaves(self: *Self) i32 {
         var result: i32 = 0;
-        for (self.children) |childOptional, i| {
+        for (self.children, 0..) |childOptional, i| {
             if (childOptional) |child| {
                 self.red += child.red;
                 self.green += child.green;

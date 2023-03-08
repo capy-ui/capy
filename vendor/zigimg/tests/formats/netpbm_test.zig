@@ -225,7 +225,7 @@ test "Write bitmap(grayscale1) ASCII PBM file" {
     defer source_image.deinit();
 
     const source = source_image.pixels;
-    for (grayscales) |value, index| {
+    for (grayscales, 0..) |value, index| {
         source.grayscale1[index].value = value;
     }
 
@@ -247,7 +247,7 @@ test "Write bitmap(grayscale1) ASCII PBM file" {
 
     try testing.expect(read_pixels == .grayscale1);
 
-    for (grayscales) |grayscale_value, index| {
+    for (grayscales, 0..) |grayscale_value, index| {
         try helpers.expectEq(read_pixels.grayscale1[index].value, grayscale_value);
     }
 }
@@ -270,7 +270,7 @@ test "Write bitmap(Grayscale1) binary PBM file" {
 
     const source = source_image.pixels;
 
-    for (grayscales) |value, index| {
+    for (grayscales, 0..) |value, index| {
         source.grayscale1[index].value = value;
     }
 
@@ -292,7 +292,7 @@ test "Write bitmap(Grayscale1) binary PBM file" {
 
     try testing.expect(read_pixels == .grayscale1);
 
-    for (grayscales) |grayscale_value, index| {
+    for (grayscales, 0..) |grayscale_value, index| {
         try helpers.expectEq(read_pixels.grayscale1[index].value, grayscale_value);
     }
 }
@@ -311,7 +311,7 @@ test "Write grayscale8 ASCII PGM file" {
     defer source_image.deinit();
 
     const source = source_image.pixels;
-    for (grayscales) |value, index| {
+    for (grayscales, 0..) |value, index| {
         source.grayscale8[index].value = value;
     }
 
@@ -333,7 +333,7 @@ test "Write grayscale8 ASCII PGM file" {
 
     try testing.expect(read_pixels == .grayscale8);
 
-    for (grayscales) |grayscale_value, index| {
+    for (grayscales, 0..) |grayscale_value, index| {
         try helpers.expectEq(read_pixels.grayscale8[index].value, grayscale_value);
     }
 }
@@ -352,7 +352,7 @@ test "Write grayscale8 binary PGM file" {
     defer source_image.deinit();
 
     const source = source_image.pixels;
-    for (grayscales) |value, index| {
+    for (grayscales, 0..) |value, index| {
         source.grayscale8[index].value = value;
     }
 
@@ -373,7 +373,7 @@ test "Write grayscale8 binary PGM file" {
     const read_pixels = read_image.pixels;
     try testing.expect(read_pixels == .grayscale8);
 
-    for (grayscales) |grayscale_value, index| {
+    for (grayscales, 0..) |grayscale_value, index| {
         try helpers.expectEq(read_pixels.grayscale8[index].value, grayscale_value);
     }
 }
@@ -425,7 +425,7 @@ test "Writing Rgb24 ASCII PPM format" {
 
     try testing.expect(read_image_pixels == .rgb24);
 
-    for (expected_colors) |hex_color, index| {
+    for (expected_colors, 0..) |hex_color, index| {
         try helpers.expectEq(read_image_pixels.rgb24[index].toU32Rgb(), hex_color);
     }
 }
@@ -477,7 +477,7 @@ test "Writing Rgb24 binary PPM format" {
 
     try testing.expect(read_image_pixels == .rgb24);
 
-    for (expected_colors) |hex_color, index| {
+    for (expected_colors, 0..) |hex_color, index| {
         try helpers.expectEq(read_image_pixels.rgb24[index].toU32Rgb(), hex_color);
     }
 }
