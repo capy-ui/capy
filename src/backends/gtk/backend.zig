@@ -142,7 +142,7 @@ pub const Window = struct {
     fn gtkActivate(peer: *c.GtkMenuItem, userdata: ?*anyopaque) callconv(.C) void {
         _ = peer;
 
-        const callback = @ptrCast(fn () void, userdata);
+        const callback = @ptrCast(*const fn () void, userdata.?);
         callback();
     }
 
@@ -605,7 +605,7 @@ pub const TextArea = struct {
         c.gtk_container_add(@ptrCast(*c.GtkContainer, scrolledWindow), textArea);
         c.gtk_widget_show(textArea);
         c.gtk_widget_show(scrolledWindow);
-        try TextArea.setupEvents(textArea);
+        try TextArea.setupEvents(scrolledWindow);
         return TextArea{ .peer = scrolledWindow, .textView = textArea };
     }
 

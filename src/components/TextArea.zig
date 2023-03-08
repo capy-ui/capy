@@ -12,17 +12,46 @@ pub const TextArea_Impl = struct {
     peer: ?backend.TextArea = null,
     handlers: TextArea_Impl.Handlers = undefined,
     dataWrappers: TextArea_Impl.DataWrappers = .{},
-    _text: []const u8,
+    text: StringDataWrapper = StringDataWrapper.of(""),
+    _wrapperTextBlock: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
 
-    pub fn init(text: []const u8) TextArea_Impl {
-        return TextArea_Impl.init_events(TextArea_Impl{ ._text = text });
+    pub fn init(config: TextArea_Impl.Config) TextArea_Impl {
+        var area = TextArea_Impl.init_events(TextArea_Impl{
+            .text = StringDataWrapper.of(config.text),
+        });
+        area.setName(config.name);
+        return area;
+    }
+
+    pub fn _pointerMoved(self: *TextArea_Impl) void {
+        self.text.updateBinders();
+    }
+
+    fn wrapperTextChanged(newValue: []const u8, userdata: usize) void {
+        const self = @intToPtr(*TextArea_Impl, userdata);
+        if (self._wrapperTextBlock.load(.Monotonic) == true) return;
+
+        self.peer.?.setText(newValue);
+    }
+
+    fn textChanged(userdata: usize) void {
+        const self = @intToPtr(*TextArea_Impl, userdata);
+        const text = self.peer.?.getText();
+
+        self._wrapperTextBlock.store(true, .Monotonic);
+        defer self._wrapperTextBlock.store(false, .Monotonic);
+        self.text.set(text);
     }
 
     pub fn show(self: *TextArea_Impl) !void {
         if (self.peer == null) {
             var peer = try backend.TextArea.create();
-            peer.setText(self._text);
+            peer.setText(self.text.get());
             self.peer = peer;
+            try self.show_events();
+
+            try peer.setCallback(.TextChanged, textChanged);
+            _ = try self.text.addChangeListener(.{ .function = wrapperTextChanged, .userdata = @ptrToInt(self) });
         }
     }
 
@@ -36,22 +65,14 @@ pub const TextArea_Impl = struct {
     }
 
     pub fn setText(self: *TextArea_Impl, text: []const u8) void {
-        if (self.peer) |*peer| {
-            peer.setText(text);
-        } else {
-            self._text = text;
-        }
+        self.text.set(text);
     }
 
     pub fn getText(self: *TextArea_Impl) []const u8 {
-        if (self.peer) |*peer| {
-            return peer.getText();
-        } else {
-            return self._text;
-        }
+        return self.text.get();
     }
 };
 
-pub fn TextArea(config: struct { text: []const u8 = "" }) TextArea_Impl {
-    return TextArea_Impl.init(config.text);
+pub fn TextArea(config: TextArea_Impl.Config) TextArea_Impl {
+    return TextArea_Impl.init(config);
 }

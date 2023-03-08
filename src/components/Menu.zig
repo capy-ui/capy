@@ -18,7 +18,7 @@ const Config = struct {
     pub const Callback = fn () void;
 
     label: [:0]const u8,
-    onClick: ?Callback = null,
+    onClick: ?*const Callback = null,
 };
 
 pub fn MenuItem(config: Config) MenuItem_Impl {
