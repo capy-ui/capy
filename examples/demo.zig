@@ -18,23 +18,26 @@ pub fn main() !void {
     var someSliderValue = capy.DataWrapper(f32).of(0);
     var someSliderText = try capy.FormatDataWrapper(capy.internal.lasting_allocator, "{d:.1}", .{&someSliderValue});
 
-    try window.set(capy.Tabs(.{
-        capy.Tab(.{ .label = "Border Layout" }, BorderLayoutExample()),
-        capy.Tab(.{ .label = "Buttons" }, capy.Column(.{}, .{
-            // alignX = 0 means buttons should be aligned to the left
-            // TODO: use constraint layout (when it's added) to make all buttons same width
-            capy.Align(.{ .x = 0 }, capy.Button(.{ .label = "Button", .onclick = moveButton })),
-            capy.Button(.{ .label = "Button (disabled)", .enabled = false }),
-            capy.CheckBox(.{ .label = "Checked", .checked = true }), // TODO: dynamic label based on checked
-            capy.CheckBox(.{ .label = "Disabled", .enabled = false }),
-            capy.Row(.{}, .{
-                capy.Expanded(capy.Slider(.{ .min = -10, .max = 10, .step = 0.1 })
-                    .bind("value", &someSliderValue)),
-                capy.Label(.{})
-                    .bind("text", someSliderText),
-            }),
-        })),
-        //capy.Tab(.{ .label = "Drawing" }, capy.Expanded(Drawer(.{}))),
+    try window.set(capy.Row(.{ .spacing = 0 }, .{
+        capy.NavigationSidebar(.{}),
+        capy.Tabs(.{
+            capy.Tab(.{ .label = "Border Layout" }, BorderLayoutExample()),
+            capy.Tab(.{ .label = "Buttons" }, capy.Column(.{}, .{
+                // alignX = 0 means buttons should be aligned to the left
+                // TODO: use constraint layout (when it's added) to make all buttons same width
+                capy.Align(.{ .x = 0 }, capy.Button(.{ .label = "Button", .onclick = moveButton })),
+                capy.Button(.{ .label = "Button (disabled)", .enabled = false }),
+                capy.CheckBox(.{ .label = "Checked", .checked = true }), // TODO: dynamic label based on checked
+                capy.CheckBox(.{ .label = "Disabled", .enabled = false }),
+                capy.Row(.{}, .{
+                    capy.Expanded(capy.Slider(.{ .min = -10, .max = 10, .step = 0.1 })
+                        .bind("value", &someSliderValue)),
+                    capy.Label(.{})
+                        .bind("text", someSliderText),
+                }),
+            })),
+            //capy.Tab(.{ .label = "Drawing" }, capy.Expanded(Drawer(.{}))),
+        }),
     }));
 
     window.show();
