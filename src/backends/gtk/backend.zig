@@ -615,7 +615,6 @@ pub const TextArea = struct {
     }
 
     pub fn setMonospaced(self: *TextArea, monospaced: bool) void {
-        std.log.info("monospaced {}", .{monospaced});
         c.gtk_text_view_set_monospace(@ptrCast(*c.GtkTextView, self.textView), @boolToInt(monospaced));
     }
 

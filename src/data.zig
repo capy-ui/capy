@@ -104,18 +104,18 @@ pub var _animatedDataWrappers = std.ArrayList(struct {
 }).init(lasting_allocator);
 pub var _animatedDataWrappersMutex = std.Thread.Mutex{};
 
-fn isAnimable(comptime T: type) bool {
+fn isAnimableType(comptime T: type) bool {
     if (std.meta.trait.isNumber(T) or (std.meta.trait.isContainer(T) and @hasDecl(T, "lerp"))) {
         return true;
     } else if (std.meta.trait.is(.Optional)(T)) {
-        return isAnimable(std.meta.Child(T));
+        return isAnimableType(std.meta.Child(T));
     }
     return false;
 }
 
 pub fn DataWrapper(comptime T: type) type {
     return struct {
-        value: if (IsAnimable) union(enum) { Single: T, Animated: Animation(T) } else T,
+        value: if (isAnimable) union(enum) { Single: T, Animated: Animation(T) } else T,
         // TODO: switch to a lock that allow concurrent reads but one concurrent write
         lock: std.Thread.Mutex = .{},
         /// List of every change listener listening to this data wrapper.
@@ -123,11 +123,8 @@ pub fn DataWrapper(comptime T: type) type {
         /// advantage of the fact that most DataWrappers don't have a
         /// change listener.
         onChange: ChangeListenerList = .{},
-        // TODO: multiple bindings and binders
-        /// The object this wrapper is binded by
-        binderWrapper: ?*Self = null,
-        /// The object this wrapper is binded to
-        bindWrapper: ?*Self = null,
+        /// List of all DataWrappers this one is bound to.
+        bindings: BindingList = .{},
         /// This boolean is used to protect from recursive relations between wrappers
         /// For example if there are two two-way binded data wrappers A and B:
         /// When A is set, B is set too. Since B is set, it will set A too. A is set, it will set B too, and so on..
@@ -145,14 +142,20 @@ pub fn DataWrapper(comptime T: type) type {
         allocator: ?std.mem.Allocator = null,
 
         const Self = @This();
-        const IsAnimable = isAnimable(T);
+        const isAnimable = isAnimableType(T);
 
         pub const ValueType = T;
         pub const ChangeListener = struct { function: *const fn (newValue: T, userdata: usize) void, userdata: usize = 0 };
+        pub const Binding = struct {
+            bound_to: *Self,
+            link_id: u16,
+        };
+
         const ChangeListenerList = std.SinglyLinkedList(ChangeListener);
+        const BindingList = std.SinglyLinkedList(Binding);
 
         pub fn of(value: T) Self {
-            if (IsAnimable) {
+            if (isAnimable) {
                 return Self{ .value = .{ .Single = value } };
             } else {
                 return Self{ .value = value };
@@ -190,12 +193,12 @@ pub fn DataWrapper(comptime T: type) type {
 
         /// Returns true if there is currently an animation playing.
         pub fn hasAnimation(self: *Self) bool {
-            if (!IsAnimable) return false;
+            if (!isAnimable) return false;
             return self.update();
         }
 
         pub fn animate(self: *Self, anim: *const fn (f64) f64, target: T, duration: u64) void {
-            if (!IsAnimable) {
+            if (!isAnimable) {
                 @compileError("animate() called on data that is not animable");
             }
             const time = std.time.milliTimestamp();
@@ -230,22 +233,68 @@ pub fn DataWrapper(comptime T: type) type {
             return self.onChange.len() - 1;
         }
 
-        /// All writes to sender will also change the value of receiver
-        pub fn bindOneWay(sender: *Self, receiver: *Self) void {
-            sender.bindWrapper = receiver;
-            receiver.binderWrapper = sender;
+        fn getNextBindId(self: *Self, other: *Self) u16 {
+            var link_id: u16 = 0;
+
+            var nullableNode = self.bindings.first;
+            while (nullableNode) |node| {
+                // if the link id is already used
+                if (node.data.link_id == link_id) {
+                    link_id += 1;
+                }
+
+                var nullableNode2 = other.bindings.first;
+                while (nullableNode2) |node2| {
+                    // if the link id is already used
+                    if (node2.data.link_id == link_id) {
+                        link_id += 1;
+                    }
+                    nullableNode2 = node2.next;
+                }
+                nullableNode = node.next;
+            }
+
+            nullableNode = other.bindings.first;
+            while (nullableNode) |node| {
+                // if the link id is already used
+                if (node.data.link_id == link_id) {
+                    link_id += 1;
+                }
+                nullableNode = node.next;
+            }
+
+            return link_id;
         }
 
         /// All writes to one change the value of the other
         pub fn bind(self: *Self, other: *Self) void {
-            self.bindOneWay(other);
-            other.bindOneWay(self);
+            const link_id = self.getNextBindId(other);
+
+            const node = lasting_allocator.create(BindingList.Node) catch unreachable;
+            node.* = .{ .data = .{ .bound_to = other, .link_id = link_id } };
+            self.bindings.prepend(node);
+
+            const otherNode = lasting_allocator.create(BindingList.Node) catch unreachable;
+            otherNode.* = .{ .data = .{ .bound_to = self, .link_id = link_id } };
+            other.bindings.prepend(otherNode);
         }
 
         /// Updates binder's pointers so they point to this object.
         pub fn updateBinders(self: *Self) void {
-            if (self.binderWrapper) |binder| {
-                binder.bindWrapper = self;
+            var nullableNode = self.bindings.first;
+            while (nullableNode) |node| {
+                const bound_to = node.data.bound_to;
+                const link_id = node.data.link_id;
+                std.debug.assert(bound_to != self);
+
+                var otherNode = bound_to.bindings.first;
+                while (otherNode) |node2| {
+                    if (node2.data.link_id == link_id) {
+                        node2.data.bound_to = self;
+                    }
+                    otherNode = node2.next;
+                }
+                nullableNode = node.next;
             }
         }
 
@@ -261,7 +310,7 @@ pub fn DataWrapper(comptime T: type) type {
         /// multi-threading. Do not use it! If you have an app with only one thread,
         /// then use the single_threaded build flag, don't use this function.
         pub fn getUnsafe(self: Self) T {
-            if (IsAnimable) {
+            if (isAnimable) {
                 return switch (self.value) {
                     .Single => |value| value,
                     .Animated => |animation| animation.get(),
@@ -310,7 +359,7 @@ pub fn DataWrapper(comptime T: type) type {
                     if (options.locking) self.lock.lock();
                     defer self.lock.unlock();
 
-                    if (IsAnimable) {
+                    if (isAnimable) {
                         self.value = .{ .Single = value };
                     } else {
                         self.value = value;
@@ -319,8 +368,12 @@ pub fn DataWrapper(comptime T: type) type {
 
                 if (options.callHandlers)
                     self.callHandlers();
-                if (self.bindWrapper) |binding| {
-                    binding.set(value);
+
+                // Update bounded data wrappers
+                var nullableNode = self.bindings.first;
+                while (nullableNode) |node| {
+                    node.data.bound_to.set(value);
+                    nullableNode = node.next;
                 }
             } else {
                 // Do nothing ...
