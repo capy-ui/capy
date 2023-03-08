@@ -145,7 +145,7 @@ pub fn findUserConfig(b: *Builder, versions: Sdk.ToolchainVersions) !UserConfig 
                 len = @intCast(DWORD, buffer.len);
                 res = RegGetValueA(key, null, value, RRF_RT_REG_SZ, null, buffer.ptr, &len);
                 if (res == ERROR_SUCCESS) {
-                    for (buffer[0..len]) |c, i| {
+                    for (buffer[0..len], 0..) |c, i| {
                         if (c == 0) return buffer[0..i];
                     }
                     return buffer[0..len];

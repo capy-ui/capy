@@ -170,7 +170,7 @@ test "Colorf32.toFromU32Rgba()" {
         color.Colorf32.initRgba(0x26.0 / 255.0, 0xce.0 / 255.0, 0x05.0 / 255.0, 0x89.0 / 255.0),
         color.Colorf32.initRgba(0xf5.0 / 255.0, 0x0f.0 / 255.0, 0x68.0 / 255.0, 0xea.0 / 255.0),
     };
-    for (expected_u32) |expected, i| {
+    for (expected_u32, 0..) |expected, i| {
         const actual = color.Colorf32.fromU32Rgba(expected);
         try helpers.expectEq(actual, expected_c32[i]);
         try helpers.expectEq(actual.toU32Rgba(), expected);
@@ -186,7 +186,7 @@ test "Colorf32.toFromU64Rgba()" {
         color.Colorf32.initRgba(0x68bb.0 / 65535.0, 0x87b3.0 / 65535.0, 0x93a1.0 / 65535.0, 0xc104.0 / 65535.0),
         color.Colorf32.initRgba(0x48b7.0 / 65535.0, 0xf617.0 / 65535.0, 0xa452.0 / 65535.0, 0x0099.0 / 65535.0),
     };
-    for (expected_u64) |expected, i| {
+    for (expected_u64, 0..) |expected, i| {
         const actual = color.Colorf32.fromU64Rgba(expected);
         try helpers.expectEq(actual, expected_c32[i]);
         try helpers.expectEq(actual.toU64Rgba(), expected);
@@ -246,7 +246,7 @@ test "Rgb.toFromU32Rgba()" {
         color.Rgb48.initRgb(0xce * 257, 0x05 * 257, 0x89 * 257),
         color.Rgb48.initRgb(0x0f * 257, 0x68 * 257, 0xea * 257),
     };
-    for (expected_u32) |expected, i| {
+    for (expected_u32, 0..) |expected, i| {
         const actual24_from_rgba = color.Rgb24.fromU32Rgba(expected);
         try helpers.expectEq(actual24_from_rgba, expected_rgb24_from_rgba[i]);
         try helpers.expectEq(actual24_from_rgba.toU32Rgba(), expected | 0xff);
@@ -299,7 +299,7 @@ test "Rgb.toFromU64Rgba()" {
         expected_rgb48_from_rgba[3].toColorf32(),
         expected_rgb48_from_rgba[4].toColorf32(),
     };
-    for (expected_u64) |expected, i| {
+    for (expected_u64, 0..) |expected, i| {
         const actual_from_rgba = color.Rgb48.fromU64Rgba(expected);
         try helpers.expectEq(actual_from_rgba, expected_rgb48_from_rgba[i]);
         try helpers.expectEq(actual_from_rgba.toU64Rgba(), expected | 0xffff);
@@ -337,7 +337,7 @@ test "Rgba.toFromU32Rgba()" {
         color.Rgba64.initRgba(0x26 * 257, 0xce * 257, 0x05 * 257, 0x89 * 257),
         color.Rgba64.initRgba(0xf5 * 257, 0x0f * 257, 0x68 * 257, 0xea * 257),
     };
-    for (expected_u32) |expected, i| {
+    for (expected_u32, 0..) |expected, i| {
         const actual32_from_rgba = color.Rgba32.fromU32Rgba(expected);
         try helpers.expectEq(actual32_from_rgba, expected_rgba32_from_rgba[i]);
         try helpers.expectEq(actual32_from_rgba.toU32Rgba(), expected);
@@ -371,7 +371,7 @@ test "Rgba.toFromU64Rgba())" {
         expected_rgba64_from_rgba[3].toColorf32(),
         expected_rgba64_from_rgba[4].toColorf32(),
     };
-    for (expected_u64) |expected, i| {
+    for (expected_u64, 0..) |expected, i| {
         const actual_from_rgba = color.Rgba64.fromU64Rgba(expected);
         try helpers.expectEq(actual_from_rgba, expected_rgba64_from_rgba[i]);
         try helpers.expectEq(actual_from_rgba.toU64Rgba(), expected);

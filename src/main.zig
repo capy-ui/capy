@@ -69,7 +69,7 @@ pub fn stepEventLoop(stepType: EventLoopStep) bool {
         data._animatedDataWrappersMutex.lock();
         defer data._animatedDataWrappersMutex.unlock();
 
-        for (data._animatedDataWrappers.items) |item, i| {
+        for (data._animatedDataWrappers.items, 0..) |item, i| {
             if (item.fnPtr(item.userdata) == false) { // animation ended
                 _ = data._animatedDataWrappers.swapRemove(i);
             }

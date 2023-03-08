@@ -318,7 +318,7 @@ pub const QOI = struct {
         var previous_pixel = QoiColor{ .r = 0, .g = 0, .b = 0, .a = 0xFF };
         var run_length: usize = 0;
 
-        for (pixels_data) |current_color, i| {
+        for (pixels_data, 0..) |current_color, i| {
             const pixel = QoiColor.from(current_color);
 
             defer previous_pixel = pixel;

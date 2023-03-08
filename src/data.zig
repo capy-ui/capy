@@ -463,7 +463,7 @@ pub fn FormatDataWrapper(allocator: std.mem.Allocator, comptime fmt: []const u8,
         fn format(ptr: *Self) void {
             const TupleType = std.meta.Tuple(childTypes);
             var tuple: TupleType = undefined;
-            inline for (std.meta.fields(@TypeOf(ptr.childs))) |childF, i| {
+            inline for (std.meta.fields(@TypeOf(ptr.childs)), 0..) |childF, i| {
                 const child = @field(ptr.childs, childF.name);
                 tuple[i] = child.get();
             }

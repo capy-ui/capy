@@ -290,7 +290,7 @@ fn readAllData(
             result_palette
         else
             try options.temp_allocator.alloc(color.Rgba32, palette.len);
-        for (palette) |entry, n| {
+        for (palette, 0..) |entry, n| {
             destination_palette[n] = color.Rgba32.initRgb(entry.r, entry.g, entry.b);
         }
         try callPaletteProcessors(options, destination_palette);
@@ -705,7 +705,7 @@ pub const TrnsProcessor = struct {
         self.processed = true;
         switch (self.trns_data) {
             .index_alpha => |index_alpha| {
-                for (index_alpha) |alpha, i| {
+                for (index_alpha, 0..) |alpha, i| {
                     data.palette[i].a = alpha;
                 }
             },

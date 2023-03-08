@@ -195,7 +195,7 @@ const HuffmanTable = struct {
         if (JPEG_VERY_DEBUG) std.debug.print("  Decoded huffman codes map:\n", .{});
 
         var code: u16 = 0;
-        for (code_counts) |count, i| {
+        for (code_counts, 0..) |count, i| {
             if (JPEG_VERY_DEBUG) {
                 std.debug.print("    Length {}: ", .{i + 1});
                 if (count == 0) {
@@ -592,7 +592,7 @@ const Scan = struct {
     }
 
     fn decodeMCU(frame: *Frame, scan_header: ScanHeader, mcu_id: usize, reader: *HuffmanReader, prediction_values: *[3]i12) ImageReadError!void {
-        for (scan_header.components) |maybe_component, component_id| {
+        for (scan_header.components, 0..) |maybe_component, component_id| {
             _ = component_id;
             if (maybe_component == null)
                 break;
@@ -606,7 +606,7 @@ const Scan = struct {
         // file size can be reduced that way. Therefore we need to select the correct
         // destination for this component.
         const component_destination = blk: {
-            for (frame.frame_header.components) |frame_component, i| {
+            for (frame.frame_header.components, 0..) |frame_component, i| {
                 if (frame_component.id == component.component_selector) {
                     break :blk i;
                 }
@@ -800,7 +800,7 @@ const Frame = struct {
     fn dequantize(self: *Frame) !void {
         var mcu_id: usize = 0;
         while (mcu_id < self.mcu_storage.len) : (mcu_id += 1) {
-            for (self.frame_header.components) |component, component_id| {
+            for (self.frame_header.components, 0..) |component, component_id| {
                 const mcu = &self.mcu_storage[mcu_id][component_id];
 
                 if (self.quantization_tables[component.quantization_table_id]) |quantization_table| {
