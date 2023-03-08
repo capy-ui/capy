@@ -26,7 +26,7 @@ pub fn addAllTo(exe: *std.build.LibExeObjStep) void {
             llc = true;
         }
         inline for (pkg.c_include_dirs) |item| {
-            exe.addIncludeDir(@field(dirs, decl.name) ++ "/" ++ item);
+            exe.addIncludePath(@field(dirs, decl.name) ++ "/" ++ item);
             llc = true;
         }
         inline for (pkg.c_source_files) |item| {
@@ -58,17 +58,12 @@ fn checkMinZig(current: std.SemanticVersion, exe: *std.build.LibExeObjStep) void
 pub const dirs = struct {
     pub const _root = "";
     pub const _deeztnhr07fk = cache ++ "/../..";
-    pub const _hm449ur2xup4 = cache ++ "/git/github.com/Luukdegram/apple_pie";
 };
 
 pub const package_data = struct {
     pub const _deeztnhr07fk = Package{
         .directory = dirs._deeztnhr07fk,
         .pkg = Pkg{ .name = "capy", .source = .{ .path = dirs._deeztnhr07fk ++ "/build_capy.zig" }, .dependencies = null },
-    };
-    pub const _hm449ur2xup4 = Package{
-        .directory = dirs._hm449ur2xup4,
-        .pkg = Pkg{ .name = "apple_pie", .source = .{ .path = dirs._hm449ur2xup4 ++ "/src/apple_pie.zig" }, .dependencies = null },
     };
     pub const _root = Package{
         .directory = dirs._root,
@@ -84,5 +79,4 @@ pub const pkgs = struct {
 };
 
 pub const imports = struct {
-    pub const apple_pie = @import(".zigmod/deps/git/github.com/Luukdegram/apple_pie/src/apple_pie.zig");
 };
