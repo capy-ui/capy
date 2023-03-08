@@ -1,6 +1,7 @@
 const std = @import("std");
 const backend = @import("../backend.zig");
 const Size = @import("../data.zig").Size;
+const Color = @import("../color.zig").Color;
 
 /// Button flat peer
 pub const FlatButton = struct {
@@ -28,19 +29,23 @@ pub const FlatButton = struct {
         const width = @intCast(u32, backend.getWidthFromPeer(events.peer));
         const height = @intCast(u32, backend.getHeightFromPeer(events.peer));
 
+        ctx.setColorByte(Color.comptimeFromString("#00000029"));
+        ctx.rectangle(0, 0, width, height);
+        ctx.fill();
+
         if (self.enabled) {
-            ctx.setColor(0.8, 0.8, 0.8);
+            ctx.setColorByte(Color.comptimeFromString("#ffffffb3"));
         } else {
             ctx.setColor(0.7, 0.7, 0.7);
         }
-        ctx.rectangle(0, 0, width, height);
+        ctx.rectangle(3, 3, width - 6, height - 6);
         ctx.fill();
 
         const text = self.label;
         var layout = backend.Canvas.DrawContext.TextLayout.init();
         defer layout.deinit();
-        ctx.setColor(1, 1, 1);
-        layout.setFont(.{ .face = "serif", .size = 12.0 });
+        ctx.setColorByte(Color.comptimeFromString("#000000e4"));
+        layout.setFont(.{ .face = "Segoe UI", .size = 14.0 });
         ctx.text(0, 0, layout, text);
         ctx.fill();
     }
@@ -62,6 +67,6 @@ pub const FlatButton = struct {
 
     pub fn getPreferredSize_impl(self: *const FlatButton) Size {
         _ = self;
-        return Size.init(300, 100);
+        return Size.init(300, 50);
     }
 };
