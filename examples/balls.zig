@@ -74,7 +74,7 @@ fn onMouseButton(widget: *capy.Canvas_Impl, button: capy.MouseButton, pressed: b
     if (button == .Left) {
         if (pressed) {
             selected_ball_index = null;
-            for (balls.items) |*ball, i| {
+            for (balls.items, 0..) |*ball, i| {
                 const dx = ball.x - @intToFloat(f32, x);
                 const dy = ball.y - @intToFloat(f32, y);
                 const distance = std.math.sqrt((dx * dx) + (dy * dy));
@@ -106,7 +106,7 @@ fn onDraw(widget: *capy.Canvas_Impl, ctx: *capy.DrawContext) !void {
     ctx.rectangle(0, 0, width, height);
     ctx.fill();
 
-    for (balls.items) |ball, i| {
+    for (balls.items, 0..) |ball, i| {
         const is_selected = if (selected_ball_index) |target| (i == target) else false;
         if (is_selected) {
             ctx.setColor(1, 0, 0);
@@ -131,7 +131,7 @@ fn simulationThread(window: *capy.Window) !void {
 
     while (true) {
         const delta = 1.0 / 60.0;
-        for (balls.items) |*ball, i| {
+        for (balls.items, 0..) |*ball, i| {
             // Moving
             ball.x += ball.velX * delta;
             ball.y += ball.velY * delta;

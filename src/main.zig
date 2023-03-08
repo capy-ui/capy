@@ -9,6 +9,7 @@ pub usingnamespace @import("components/Image.zig");
 pub usingnamespace @import("components/Label.zig");
 pub usingnamespace @import("components/Menu.zig");
 pub usingnamespace @import("components/Navigation.zig");
+pub usingnamespace @import("components/NavigationSidebar.zig");
 pub usingnamespace @import("components/Slider.zig");
 pub usingnamespace @import("components/Scrollable.zig");
 pub usingnamespace @import("components/Tabs.zig");
@@ -66,12 +67,14 @@ pub fn wakeEventLoop() void {
 pub fn stepEventLoop(stepType: EventLoopStep) bool {
     const data = @import("data.zig");
     if (data._animatedDataWrappers.items.len > 0) {
-        data._animatedDataWrappersMutex.lock();
-        defer data._animatedDataWrappersMutex.unlock();
+        {
+            data._animatedDataWrappersMutex.lock();
+            defer data._animatedDataWrappersMutex.unlock();
 
-        for (data._animatedDataWrappers.items, 0..) |item, i| {
-            if (item.fnPtr(item.userdata) == false) { // animation ended
-                _ = data._animatedDataWrappers.swapRemove(i);
+            for (data._animatedDataWrappers.items, 0..) |item, i| {
+                if (item.fnPtr(item.userdata) == false) { // animation ended
+                    _ = data._animatedDataWrappers.swapRemove(i);
+                }
             }
         }
         return backend.runStep(.Asynchronous);
