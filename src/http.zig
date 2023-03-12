@@ -5,6 +5,9 @@ const std = @import("std");
 const internal = @import("internal.zig");
 const backend = @import("backend.zig");
 
+// TODO: specify more
+pub const SendRequestError = anyerror;
+
 pub usingnamespace if (@hasDecl(backend, "Http")) struct {
     pub const HttpRequest = struct {
         url: []const u8,
@@ -48,6 +51,8 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
         }
     };
 } else struct {
+    var global_client: ?*std.http.Client = null;
+
     pub const HttpRequest = struct {
         url: []const u8,
 
@@ -56,17 +61,22 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
         }
 
         pub fn send(self: HttpRequest) !HttpResponse {
-            const client = try internal.lasting_allocator.create(std.http.Client);
-            client.* = .{ .allocator = internal.lasting_allocator };
+            if (global_client == null) {
+                const client = try internal.lasting_allocator.create(std.http.Client);
+                client.* = .{ .allocator = internal.lasting_allocator };
+                global_client = client;
+            }
             const uri = try std.Uri.parse(self.url);
-            var headers = std.http.Client.Request.Headers{};
-            const request = try client.request(uri, headers, .{});
-            return HttpResponse{ .client = client, .request = request };
+            var headers = std.http.Client.Request.Headers{ .custom = &.{
+                .{ .name = "User-Agent", .value = "capy/0.4.0" },
+            } };
+            var request = try global_client.?.request(uri, headers, .{});
+            try request.finish();
+            return HttpResponse{ .request = request };
         }
     };
 
     pub const HttpResponse = struct {
-        client: *std.http.Client,
         request: std.http.Client.Request,
 
         pub const ReadError = std.http.Client.Request.ReadError;
@@ -78,7 +88,7 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
         }
 
         pub fn checkError(self: *HttpResponse) !void {
-            _ = self;
+            try self.request.waitForCompleteHead();
             // if (self.response.status_code != .success_ok) {
             //     return error.FailedRequest;
             // }
@@ -89,52 +99,12 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
         }
 
         pub fn read(self: *HttpResponse, dest: []u8) ReadError!usize {
-            const amt = try self.request.readAdvanced(dest);
-            if (amt == 0) { // this happens after reading headers
-                return try self.request.readAdvanced(dest);
-            }
+            const amt = try self.request.read(dest);
             return amt;
         }
 
         pub fn deinit(self: *HttpResponse) void {
             self.request.deinit();
-            self.client.deinit();
-            internal.lasting_allocator.destroy(self.client);
         }
     };
 };
-
-/// Applies URI encoding and replaces all reserved characters with their respective %XX code.
-pub fn urlEncode(allocator: std.mem.Allocator, input: []const u8) error{OutOfMemory}![]const u8 {
-    // Code from https://github.com/MasterQ32/zig-uri
-    var outsize: usize = 0;
-    for (input) |c| {
-        outsize += if (isUnreserved(c)) @as(usize, 1) else 3;
-    }
-    var output = try allocator.alloc(u8, outsize);
-    var outptr: usize = 0;
-
-    for (input) |c| {
-        if (isUnreserved(c)) {
-            output[outptr] = c;
-            outptr += 1;
-        } else {
-            var buf: [2]u8 = undefined;
-            _ = std.fmt.bufPrint(&buf, "{X:0>2}", .{c}) catch unreachable;
-
-            output[outptr + 0] = '%';
-            output[outptr + 1] = buf[0];
-            output[outptr + 2] = buf[1];
-            outptr += 3;
-        }
-    }
-    return output;
-}
-
-/// unreserved  = ALPHA / DIGIT / "-" / "." / "_" / "~"
-fn isUnreserved(c: u8) bool {
-    return switch (c) {
-        'A'...'Z', 'a'...'z', '0'...'9', '-', '.', '_', '~' => true,
-        else => false,
-    };
-}

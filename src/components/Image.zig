@@ -4,12 +4,14 @@ const backend = @import("../backend.zig");
 const internal = @import("../internal.zig");
 const Size = @import("../data.zig").Size;
 const DataWrapper = @import("../data.zig").DataWrapper;
+const assets = @import("../assets.zig");
 
 // TODO: use zigimg's structs instead of duplicating efforts
 const Colorspace = @import("../color.zig").Colorspace;
 
 const ImageData = @import("../image.zig").ImageData;
 
+// TODO: convert to using a flat component so a backend may provide an Image backend
 /// Component used to show an image.
 pub const Image_Impl = struct {
     pub usingnamespace @import("../internal.zig").All(Image_Impl);
@@ -17,8 +19,11 @@ pub const Image_Impl = struct {
     peer: ?backend.Canvas = null,
     handlers: Image_Impl.Handlers = undefined,
     dataWrappers: Image_Impl.DataWrappers = .{},
-    data: DataWrapper(ImageData),
+    url: DataWrapper([]const u8),
+    data: DataWrapper(?ImageData) = DataWrapper(?ImageData).of(null),
     scaling: DataWrapper(Scaling) = DataWrapper(Scaling).of(.Fit),
+
+    // TODO: when url changes set data to null
 
     pub const Scaling = enum {
         /// Keep the original size of the image
@@ -34,23 +39,53 @@ pub const Image_Impl = struct {
     // TODO: just directly accept an URL or file path if there's no data
     pub fn init(config: Image_Impl.Config) Image_Impl {
         var image = Image_Impl.init_events(Image_Impl{
-            .data = DataWrapper(ImageData).of(config.data),
+            .url = DataWrapper([]const u8).of(config.url),
+            .data = DataWrapper(?ImageData).of(config.data),
             .scaling = DataWrapper(Scaling).of(config.scaling),
         });
         image.addDrawHandler(&Image_Impl.draw) catch unreachable;
         return image;
     }
 
-    pub fn getPreferredSize(self: *Image_Impl, _: Size) Size {
-        const data = self.data.get();
-        return Size.init(data.width, data.height);
+    pub fn getPreferredSize(self: *Image_Impl, available: Size) Size {
+        if (self.data.get()) |data| {
+            return Size.init(data.width, data.height);
+        } else {
+            return Size.init(100, 30).intersect(available);
+        }
+    }
+
+    fn loadImage(self: *Image_Impl) !void {
+        // TODO: asynchronous loading
+        var handle = try assets.get(self.url.get());
+        defer handle.deinit();
+
+        var reader = handle.reader();
+        // TODO: progressive when I find a way to fit AssetHandle.Reader into zigimg
+        const contents = try reader.readAllAlloc(internal.scratch_allocator, std.math.maxInt(usize));
+        defer internal.scratch_allocator.free(contents);
+
+        const data = try ImageData.fromBuffer(internal.lasting_allocator, contents);
+        self.data.set(data);
     }
 
     pub fn draw(self: *Image_Impl, ctx: *DrawContext) !void {
         const width = self.getWidth();
         const height = self.getHeight();
 
-        const image = self.data.get();
+        if (self.data.get() == null) {
+            self.loadImage() catch |err| {
+                std.log.err("{s}", .{@errorName(err)});
+                if (@errorReturnTrace()) |trace| {
+                    std.debug.dumpStackTrace(trace.*);
+                }
+            };
+
+            // TODO: render a placeholder
+            return;
+        }
+
+        const image = self.data.get().?;
         switch (self.scaling.get()) {
             .None => {
                 const imageX = @intCast(i32, width / 2) - @intCast(i32, image.width / 2);

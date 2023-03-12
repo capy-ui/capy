@@ -21,6 +21,8 @@ pub const Window = struct {
     _child: ?Widget = null,
     // TODO
     size: DataWrapper(Size) = DataWrapper(Size).of(Size.init(640, 480)),
+    /// The default refresh rate is 60 Hz by default
+    refreshRate: DataWrapper(f32) = DataWrapper(f32).of(60),
 
     pub fn init() !Window {
         const peer = try backend.Window.create();

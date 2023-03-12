@@ -93,6 +93,8 @@ pub fn runEventLoop() void {
             if (@import("std").event.Loop.instance) |loop| {
                 loop.yield();
             }
+
+            // TODO: loop through all windows and wait for the first vsync to come
         } else {
             if (!stepEventLoop(.Blocking)) {
                 break;

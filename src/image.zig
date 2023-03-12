@@ -52,7 +52,9 @@ pub const ImageData = struct {
         return readFromStream(allocator, &stream);
     }
 
-    fn readFromStream(allocator: std.mem.Allocator, stream: *std.io.StreamSource) !ImageData {
+    // TODO: on WASM, let the browser do the job of loading image data, so we can reduce the WASM bundle size
+    // TODO: basically, use <img> on Web
+    pub fn readFromStream(allocator: std.mem.Allocator, stream: *std.io.StreamSource) !ImageData {
         var arena = std.heap.ArenaAllocator.init(allocator);
         defer arena.deinit();
 
