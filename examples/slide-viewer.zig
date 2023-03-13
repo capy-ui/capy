@@ -5,12 +5,10 @@ pub usingnamespace capy.cross_platform;
 pub fn main() !void {
     try capy.backend.init();
 
-    const imageData = try capy.ImageData.fromBuffer(capy.internal.lasting_allocator, @embedFile("ziglogo.png"));
-
     var window = try capy.Window.init();
     try window.set(capy.Stack(.{
         capy.Rect(.{ .color = capy.Color.comptimeFromString("#2D2D2D") }),
-        capy.Image(.{ .data = imageData }),
+        capy.Image(.{ .url = "asset:///ziglogo.png" }),
         capy.Column(.{}, .{
             capy.Spacing(),
             capy.Row(.{}, .{

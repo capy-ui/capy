@@ -49,10 +49,10 @@ pub const AssetHandle = struct {
 };
 
 pub fn get(url: []const u8) GetError!AssetHandle {
-    // Normalize the URI for the file:// scheme
+    // Normalize the URI for the file:// and asset:// scheme
     var out_url: [4096]u8 = undefined;
-    const new_size = std.mem.replacementSize(u8, url, "file:///", "file:/");
-    _ = std.mem.replace(u8, url, "file:///", "file:/", &out_url);
+    const new_size = std.mem.replacementSize(u8, url, "///", "/");
+    _ = std.mem.replace(u8, url, "///", "/", &out_url);
 
     const uri = try Uri.parse(out_url[0..new_size]);
     log.debug("Loading {s}", .{url});

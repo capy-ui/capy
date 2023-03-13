@@ -33,8 +33,7 @@ pub fn main() !void {
             capy.Expanded((try capy.Row(.{}, .{
                 capy.Label(.{ .text = "Hello Zig" }),
                 capy.Expanded(
-                    // capy.Image(.{ .url = "asset://examples/ziglogo.png", .scaling = .Fit }),
-                    capy.Image(.{ .url = "file:///media/randy/Données/home/randy/code/capy/assets/ziglogo.png", .scaling = .Fit }),
+                    capy.Image(.{ .url = "asset:///ziglogo.png", .scaling = .Fit }),
                 ),
             }))
                 .bind("opacity", &opacity)),
