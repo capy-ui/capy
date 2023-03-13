@@ -96,7 +96,7 @@ pub const MapViewer_Impl = struct {
 
     pub fn search(self: *MapViewer_Impl, query: []const u8) !void {
         var buf: [2048]u8 = undefined;
-        const encoded_query = try capy.http.urlEncode(capy.internal.scratch_allocator, query);
+        const encoded_query = try std.Uri.escapeQuery(capy.internal.scratch_allocator, query);
         defer capy.internal.scratch_allocator.free(encoded_query);
         const url = try std.fmt.bufPrint(&buf, "https://nominatim.openstreetmap.org/search?q={s}&format=jsonv2", .{encoded_query});
 
@@ -208,11 +208,11 @@ pub const MapViewer_Impl = struct {
 
     fn mouseScroll(self: *MapViewer_Impl, dx: f32, dy: f32) !void {
         _ = dx;
-        if (dy > 0) {
+        if (dy > 0 and self.camZoom > 0) {
             self.camZoom -|= 2 * @floatToInt(u5, dy);
             self.centerX /= 4 * dy;
             self.centerY /= 4 * dy;
-        } else if (self.camZoom < 18) {
+        } else if (dy < 0 and self.camZoom < 18) {
             self.camZoom +|= 2 * @floatToInt(u5, -dy);
             self.centerX *= 4 * -dy;
             self.centerY *= 4 * -dy;

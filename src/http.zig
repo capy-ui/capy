@@ -51,8 +51,6 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
         }
     };
 } else struct {
-    var global_client: ?*std.http.Client = null;
-
     pub const HttpRequest = struct {
         url: []const u8,
 
@@ -61,22 +59,21 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
         }
 
         pub fn send(self: HttpRequest) !HttpResponse {
-            if (global_client == null) {
-                const client = try internal.lasting_allocator.create(std.http.Client);
-                client.* = .{ .allocator = internal.lasting_allocator };
-                global_client = client;
-            }
+            const client = try internal.lasting_allocator.create(std.http.Client);
+            client.* = .{ .allocator = internal.lasting_allocator };
+
             const uri = try std.Uri.parse(self.url);
-            var headers = std.http.Client.Request.Headers{ .custom = &.{
-                .{ .name = "User-Agent", .value = "capy/0.4.0" },
-            } };
-            var request = try global_client.?.request(uri, headers, .{});
+            var headers = std.http.Client.Request.Headers{
+                .connection = .close,
+            };
+            var request = try client.request(uri, headers, .{});
             try request.finish();
-            return HttpResponse{ .request = request };
+            return HttpResponse{ .request = request, .client = client };
         }
     };
 
     pub const HttpResponse = struct {
+        client: *std.http.Client,
         request: std.http.Client.Request,
 
         pub const ReadError = std.http.Client.Request.ReadError;
@@ -105,6 +102,8 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
 
         pub fn deinit(self: *HttpResponse) void {
             self.request.deinit();
+            self.client.deinit();
+            internal.lasting_allocator.destroy(self.client);
         }
     };
 };
