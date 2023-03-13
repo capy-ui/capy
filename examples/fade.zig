@@ -26,14 +26,15 @@ pub fn main() !void {
     try capy.backend.init();
 
     var window = try capy.Window.init();
-    const imageData = try capy.ImageData.fromBuffer(capy.internal.lasting_allocator, @embedFile("ziglogo.png"));
+    // const imageData = try capy.ImageData.fromBuffer(capy.internal.lasting_allocator, @embedFile("ziglogo.png"));
 
     try window.set(
         capy.Row(.{}, .{
             capy.Expanded((try capy.Row(.{}, .{
                 capy.Label(.{ .text = "Hello Zig" }),
                 capy.Expanded(
-                    capy.Image(.{ .data = imageData, .scaling = .Fit }),
+                    // capy.Image(.{ .url = "asset://examples/ziglogo.png", .scaling = .Fit }),
+                    capy.Image(.{ .url = "file:///media/randy/Données/home/randy/code/capy/assets/ziglogo.png", .scaling = .Fit }),
                 ),
             }))
                 .bind("opacity", &opacity)),
