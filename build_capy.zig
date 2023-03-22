@@ -15,7 +15,7 @@ pub const CapyBuildOptions = struct {
 pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !void {
     _ = options;
     const prefix = comptime std.fs.path.dirname(@src().file).? ++ std.fs.path.sep_str;
-    const b = step.builder;
+    const b = step.step.owner;
     step.subsystem = .Native;
 
     const zigimg = b.createModule(.{
@@ -24,9 +24,7 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !void {
 
     step.addAnonymousModule("capy", .{
         .source_file = .{ .path = prefix ++ "/src/main.zig" },
-        .dependencies = &.{
-            .{ .name = "zigimg", .module = zigimg }
-        }
+        .dependencies = &.{.{ .name = "zigimg", .module = zigimg }},
     });
 
     // const capy = std.build.Pkg{
