@@ -16,7 +16,7 @@ pub fn animateRandomColor(button_: *anyopaque) !void {
 }
 
 pub fn main() !void {
-    try capy.backend.init();
+    try capy.init();
     var window = try capy.Window.init();
     prng = std.rand.DefaultPrng.init(@bitCast(u64, std.time.milliTimestamp()));
 

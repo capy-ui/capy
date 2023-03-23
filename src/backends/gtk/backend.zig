@@ -198,7 +198,7 @@ pub fn Events(comptime T: type) type {
             c.g_object_set_data(@ptrCast(*c.GObject, widget), "eventUserData", data);
         }
 
-        pub fn copyEventUserData(source: *c.GtkWidget, destination: *c.GtkWidget) void {
+        pub inline fn copyEventUserData(source: *c.GtkWidget, destination: anytype) void {
             const data = getEventUserData(source);
             c.g_object_set_data(@ptrCast(*c.GObject, destination), "eventUserData", data);
         }
@@ -599,6 +599,14 @@ pub const TextArea = struct {
 
     pub usingnamespace Events(TextArea);
 
+    fn gtkTextChanged(peer: *c.GtkWidget, userdata: usize) callconv(.C) void {
+        _ = userdata;
+        const data = getEventUserData(peer);
+        if (data.user.changedTextHandler) |handler| {
+            handler(data.userdata);
+        }
+    }
+
     pub fn create() BackendError!TextArea {
         const textArea = c.gtk_text_view_new() orelse return BackendError.UnknownError;
         const scrolledWindow = c.gtk_scrolled_window_new(null, null) orelse return BackendError.UnknownError;
@@ -606,6 +614,10 @@ pub const TextArea = struct {
         c.gtk_widget_show(textArea);
         c.gtk_widget_show(scrolledWindow);
         try TextArea.setupEvents(scrolledWindow);
+
+        const buffer = c.gtk_text_view_get_buffer(@ptrCast(*c.GtkTextView, textArea)).?;
+        _ = c.g_signal_connect_data(buffer, "changed", @ptrCast(c.GCallback, &gtkTextChanged), null, @as(c.GClosureNotify, null), c.G_CONNECT_AFTER);
+        TextArea.copyEventUserData(scrolledWindow, buffer);
         return TextArea{ .peer = scrolledWindow, .textView = textArea };
     }
 

@@ -9,11 +9,24 @@ pub fn main() !void {
     var window = try capy.Window.init();
 
     var monospace = capy.DataWrapper(bool).of(false);
+    var text = capy.DataWrapper([]const u8).of("");
+
+    var text_length = capy.DataWrapper(usize).of(undefined);
+    try text_length.dependOn(.{&text}, &struct {
+        fn callback(txt: []const u8) usize {
+            return txt.len;
+        }
+    }.callback);
+
+    var label_text = try capy.FormatDataWrapper(capy.internal.lasting_allocator, "Text length: {d}", .{&text_length});
+    defer label_text.deinit();
 
     try window.set(capy.Column(.{ .spacing = 0 }, .{
         capy.Expanded(capy.TextArea(.{})
-            .bind("monospace", &monospace)),
-        capy.Label(.{ .text = "TODO: cursor info" }),
+            .bind("monospace", &monospace)
+            .bind("text", &text)),
+        capy.Label(.{ .text = "TODO: cursor info" })
+            .bind("text", label_text),
         // TODO: move into menu
         capy.CheckBox(.{ .label = "Monospaced" })
             .bind("checked", &monospace),
