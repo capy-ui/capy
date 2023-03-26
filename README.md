@@ -66,7 +66,7 @@ structs (`.{ .label = "Save" }`). You can also see that simply wrapping a widget
 
 If you're starting a new project, simply clone [capy-template](https://github.com/capy-ui/capy-template) and follow build instructions.
 
-Otherwise or for more information, please look in the [wiki](https://github.com/capy-ui/capy/wiki/Installation).
+Otherwise or for more information, please look in the [docs](https://capy-ui.org/docs/getting-started/installation).
 
 You can questions and receive updates on the [#capy-ui Matrix channel](https://matrix.to/#/#capy-ui:matrix.org).
 
