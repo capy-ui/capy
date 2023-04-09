@@ -10,7 +10,7 @@ const TimeActivity = struct {
 };
 
 const ListModel = struct {
-    size: capy.DataWrapper(usize) = capy.DataWrapper(usize).of(0),
+    size: capy.Atom(usize) = capy.Atom(usize).of(0),
     arena: std.heap.ArenaAllocator = std.heap.ArenaAllocator.init(capy.internal.lasting_allocator),
     data: std.ArrayList(TimeActivity),
 
@@ -48,8 +48,8 @@ pub fn Card(child: anytype) anyerror!capy.Container_Impl {
     });
 }
 
-var submitDesc = capy.StringDataWrapper.of("");
-var submitEnabled = capy.DataWrapper(bool).of(false);
+var submitDesc = capy.StringAtom.of("");
+var submitEnabled = capy.Atom(bool).of(false);
 var list_model: ListModel = undefined;
 
 fn onSubmit(_: *anyopaque) !void {

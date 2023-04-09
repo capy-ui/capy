@@ -1,6 +1,6 @@
 const std = @import("std");
 const capy = @import("capy");
-const DataWrapper = capy.DataWrapper;
+const Atom = capy.Atom;
 
 pub usingnamespace capy.cross_platform;
 
@@ -19,9 +19,8 @@ pub const MapViewer_Impl = struct {
     // a GtkDrawingBox on GTK+, a custom canvas on win32, a <canvas> element on
     // the web, etc.
     peer: ?capy.backend.Canvas = null,
-    // .Handlers and .DataWrappers are implemented by `capy.internal.All(MapViewer_Impl)`
-    handlers: MapViewer_Impl.Handlers = undefined,
-    dataWrappers: MapViewer_Impl.DataWrappers = .{},
+    // .Handlers and .Atoms are implemented by `capy.internal.All(MapViewer_Impl)`
+    widget_data: MapViewer_Impl.WidgetData = .{},
 
     // Our own component state.
     tileCache: std.AutoHashMap(TilePosition, Tile),
@@ -33,7 +32,7 @@ pub const MapViewer_Impl = struct {
     isDragging: bool = false,
     lastMouseX: i32 = 0,
     lastMouseY: i32 = 0,
-    allocator: DataWrapper(std.mem.Allocator) = DataWrapper(std.mem.Allocator).of(capy.internal.lasting_allocator),
+    allocator: Atom(std.mem.Allocator) = Atom(std.mem.Allocator).of(capy.internal.lasting_allocator),
 
     const TilePosition = struct {
         zoom: u5,
@@ -56,7 +55,7 @@ pub const MapViewer_Impl = struct {
         var viewer = MapViewer_Impl.init_events(MapViewer_Impl{
             .tileCache = std.AutoHashMap(TilePosition, Tile).init(config.allocator),
             .pendingRequests = std.AutoHashMap(TilePosition, capy.http.HttpResponse).init(config.allocator),
-            .allocator = DataWrapper(std.mem.Allocator).of(config.allocator),
+            .allocator = Atom(std.mem.Allocator).of(config.allocator),
         });
         viewer.centerTo(2.3200, 48.8589);
         viewer.setName(config.name);

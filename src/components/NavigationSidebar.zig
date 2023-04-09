@@ -8,8 +8,7 @@ pub const NavigationSidebar_Impl = struct {
     pub usingnamespace @import("../internal.zig").All(NavigationSidebar_Impl);
 
     peer: ?backend.NavigationSidebar = null,
-    handlers: NavigationSidebar_Impl.Handlers = undefined,
-    dataWrappers: NavigationSidebar_Impl.DataWrappers = .{},
+    widget_data: NavigationSidebar_Impl.WidgetData = .{},
 
     pub fn init() NavigationSidebar_Impl {
         return NavigationSidebar_Impl.init_events(NavigationSidebar_Impl{});
@@ -38,7 +37,7 @@ pub const NavigationSidebar_Impl = struct {
 
 pub fn NavigationSidebar(config: NavigationSidebar_Impl.Config) NavigationSidebar_Impl {
     var btn = NavigationSidebar_Impl.init();
-    btn.dataWrappers.name.set(config.name);
+    btn.widget_data.atoms.name.set(config.name);
     if (config.onclick) |onclick| {
         btn.addClickHandler(onclick) catch unreachable; // TODO: improve
     }

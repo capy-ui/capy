@@ -8,17 +8,16 @@ pub fn main() !void {
 
     var window = try capy.Window.init();
 
-    var monospace = capy.DataWrapper(bool).of(false);
-    var text = capy.DataWrapper([]const u8).of("");
+    var monospace = capy.Atom(bool).of(false);
+    var text = capy.Atom([]const u8).of("");
 
-    var text_length = capy.DataWrapper(usize).of(undefined);
-    try text_length.dependOn(.{&text}, &struct {
+    var text_length = try capy.Atom(usize).derived(.{&text}, &struct {
         fn callback(txt: []const u8) usize {
             return txt.len;
         }
     }.callback);
 
-    var label_text = try capy.FormatDataWrapper(capy.internal.lasting_allocator, "Text length: {d}", .{&text_length});
+    var label_text = try capy.FormattedAtom(capy.internal.lasting_allocator, "Text length: {d}", .{&text_length});
     defer label_text.deinit();
 
     try window.set(capy.Column(.{ .spacing = 0 }, .{

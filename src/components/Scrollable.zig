@@ -8,8 +8,7 @@ pub const Scrollable_Impl = struct {
     pub usingnamespace @import("../internal.zig").All(Scrollable_Impl);
 
     peer: ?backend.ScrollView = null,
-    handlers: Scrollable_Impl.Handlers = undefined,
-    dataWrappers: Scrollable_Impl.DataWrappers = .{},
+    widget_data: Scrollable_Impl.WidgetData = .{},
     child: Widget,
 
     pub fn init(widget: Widget) Scrollable_Impl {

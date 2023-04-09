@@ -73,7 +73,7 @@ export fn capy_button(label: [*:0]const u8) ?CapyWidget {
 
     const widget = allocator.create(capy.Widget) catch return null;
     widget.* = capy.internal.genericWidgetFrom(button) catch unreachable; // it can't error as the component doesn't have a widget and no allocation is necessary
-    button.dataWrappers.widget = widget;
+    button.widget_data.atoms.widget = widget;
     return widget;
 }
 

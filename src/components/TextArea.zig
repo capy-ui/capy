@@ -3,26 +3,25 @@ const backend = @import("../backend.zig");
 const dataStructures = @import("../data.zig");
 const internal = @import("../internal.zig");
 const Size = dataStructures.Size;
-const DataWrapper = dataStructures.DataWrapper;
-const StringDataWrapper = dataStructures.StringDataWrapper;
+const Atom = dataStructures.Atom;
+const StringAtom = dataStructures.StringAtom;
 
 pub const TextArea_Impl = struct {
     pub usingnamespace internal.All(TextArea_Impl);
 
     peer: ?backend.TextArea = null,
-    handlers: TextArea_Impl.Handlers = undefined,
-    dataWrappers: TextArea_Impl.DataWrappers = .{},
-    text: StringDataWrapper = StringDataWrapper.of(""),
+    widget_data: TextArea_Impl.WidgetData = .{},
+    text: StringAtom = StringAtom.of(""),
     _wrapperTextBlock: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
 
     // TODO: replace with TextArea.setFont(.{ .family = "monospace" }) ?
     /// Whether to let the system choose a monospace font for us and use it in this TextArea..
-    monospace: DataWrapper(bool) = DataWrapper(bool).of(false),
+    monospace: Atom(bool) = Atom(bool).of(false),
 
     pub fn init(config: TextArea_Impl.Config) TextArea_Impl {
         var area = TextArea_Impl.init_events(TextArea_Impl{
-            .text = StringDataWrapper.of(config.text),
-            .monospace = DataWrapper(bool).of(config.monospace),
+            .text = StringAtom.of(config.text),
+            .monospace = Atom(bool).of(config.monospace),
         });
         area.setName(config.name);
         return area;

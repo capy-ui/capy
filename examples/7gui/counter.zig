@@ -2,8 +2,8 @@ const std = @import("std");
 const capy = @import("capy");
 pub usingnamespace capy.cross_platform;
 
-// Thanks to `FormatDataWrapper` (see below) we can use an int for couting
-var count = capy.DataWrapper(i64).of(0);
+// Thanks to `FormattedAtom` (see below) we can use an int for couting
+var count = capy.Atom(i64).of(0);
 
 // TODO: switch back to *capy.Button_Impl when ziglang/zig#12325 is fixed
 fn increment(_: *anyopaque) !void {
@@ -16,7 +16,10 @@ fn increment(_: *anyopaque) !void {
 
 pub fn main() !void {
     try capy.init();
-    std.log.info("Overhead of DataWrapper(i64) = {d} bytes, align = {d} bytes", .{ @sizeOf(capy.DataWrapper(i64)) - @sizeOf(i64), @alignOf(capy.DataWrapper(i64)) });
+    std.log.info(
+        "Overhead of DataWrapper(i64) = {d} bytes, align = {d} bytes",
+        .{ @sizeOf(capy.Atom(i64)) - @sizeOf(i64), @alignOf(capy.Atom(i64)) },
+    );
 
     var window = try capy.Window.init();
 
@@ -26,7 +29,7 @@ pub fn main() !void {
     // DataWrapper.
     // However, FormatDataWrapper isn't bi-directional (editing the text field won't change count's value),
     // but it remains best fit for this example as the text field is read-only.
-    var format = try capy.FormatDataWrapper(capy.internal.lasting_allocator, "{d}", .{&count});
+    var format = try capy.FormattedAtom(capy.internal.lasting_allocator, "{d}", .{&count});
     defer format.deinit();
 
     try window.set(capy.Align(

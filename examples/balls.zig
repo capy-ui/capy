@@ -14,7 +14,7 @@ var selected_ball_index: ?usize = null;
 var mouseX: i32 = 0;
 var mouseY: i32 = 0;
 
-var totalEnergy = capy.DataWrapper(f32).of(0);
+var totalEnergy = capy.Atom(f32).of(0);
 
 const BALL_DIAMETER = 20;
 const BALL_RADIUS = BALL_DIAMETER / 2;
@@ -47,7 +47,7 @@ pub fn main() !void {
     try canvas.addMouseButtonHandler(&onMouseButton);
     try canvas.addMouseMotionHandler(&onMouseMotion);
 
-    var totalEnergyFormat = try capy.FormatDataWrapper(capy.internal.lasting_allocator, "Total Kinetic Energy: {d:.2}", .{&totalEnergy});
+    var totalEnergyFormat = try capy.FormattedAtom(capy.internal.lasting_allocator, "Total Kinetic Energy: {d:.2}", .{&totalEnergy});
     defer totalEnergyFormat.deinit();
 
     var window = try capy.Window.init();

@@ -209,8 +209,7 @@ pub const Container_Impl = struct {
     pub usingnamespace @import("internal.zig").All(Container_Impl);
 
     peer: ?backend.Container,
-    handlers: Container_Impl.Handlers = undefined,
-    dataWrappers: Container_Impl.DataWrappers = .{},
+    widget_data: Container_Impl.WidgetData = .{},
     childrens: std.ArrayList(Widget),
     expand: bool,
     relayouting: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
@@ -304,7 +303,7 @@ pub const Container_Impl = struct {
                     widget.container_expanded = true;
                 }
                 widget.class.setWidgetFn(widget);
-                if (self.dataWrappers.widget) |self_widget| {
+                if (self.widget_data.atoms.widget) |self_widget| {
                     widget.parent = self_widget;
                 }
                 try widget.show();

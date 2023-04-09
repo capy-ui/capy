@@ -6,10 +6,10 @@ const lasting_allocator = @import("internal.zig").lasting_allocator;
 const Size = @import("data.zig").Size;
 const Rectangle = @import("data.zig").Rectangle;
 const containers = @import("containers.zig");
-const DataWrapper = @import("data.zig").DataWrapper;
+const Atom = @import("data.zig").Atom;
 
 pub const GenericListModel = struct {
-    size: *DataWrapper(usize),
+    size: *Atom(usize),
     getComponent: *const fn (self: *anyopaque, index: usize) Widget,
     userdata: *anyopaque,
 };
@@ -18,8 +18,7 @@ pub const List_Impl = struct {
     pub usingnamespace @import("internal.zig").All(List_Impl);
 
     peer: ?backend.ScrollView = null,
-    handlers: List_Impl.Handlers = undefined,
-    dataWrappers: List_Impl.DataWrappers = .{},
+    widget_data: List_Impl.WidgetData = .{},
     child: Widget,
     model: GenericListModel,
 

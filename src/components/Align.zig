@@ -2,20 +2,19 @@ const std = @import("std");
 const backend = @import("../backend.zig");
 const internal = @import("../internal.zig");
 const Size = @import("../data.zig").Size;
-const DataWrapper = @import("../data.zig").DataWrapper;
+const Atom = @import("../data.zig").Atom;
 const Widget = @import("../widget.zig").Widget;
 
 pub const Align_Impl = struct {
     pub usingnamespace @import("../internal.zig").All(Align_Impl);
 
     peer: ?backend.Container = null,
-    handlers: Align_Impl.Handlers = undefined,
-    dataWrappers: Align_Impl.DataWrappers = .{},
+    widget_data: Align_Impl.WidgetData = .{},
 
     child: Widget,
     relayouting: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
-    x: DataWrapper(f32) = DataWrapper(f32).of(0.5),
-    y: DataWrapper(f32) = DataWrapper(f32).of(0.5),
+    x: Atom(f32) = Atom(f32).of(0.5),
+    y: Atom(f32) = Atom(f32).of(0.5),
 
     pub fn init(config: Align_Impl.Config, widget: Widget) !Align_Impl {
         var component = Align_Impl.init_events(Align_Impl{ .child = widget });

@@ -2,8 +2,8 @@ const std = @import("std");
 const capy = @import("capy");
 pub usingnamespace capy.cross_platform;
 
-var celsius = capy.DataWrapper([]const u8).of("0");
-var fahrenheit = capy.DataWrapper([]const u8).of("-40");
+var celsius = capy.Atom([]const u8).of("0");
+var fahrenheit = capy.Atom([]const u8).of("-40");
 
 // Small buffers so that we can edit the values without even allocating memory in the app
 var celsiusBuffer: [100]u8 = undefined;

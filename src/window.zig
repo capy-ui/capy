@@ -5,7 +5,7 @@ const Widget = @import("widget.zig").Widget;
 const ImageData = @import("image.zig").ImageData;
 const MenuBar_Impl = @import("components/Menu.zig").MenuBar_Impl;
 const Size = @import("data.zig").Size;
-const DataWrapper = @import("data.zig").DataWrapper;
+const Atom = @import("data.zig").Atom;
 
 const Display = struct { resolution: Size, dpi: u32 };
 
@@ -20,9 +20,9 @@ pub const Window = struct {
     peer: backend.Window,
     _child: ?Widget = null,
     // TODO
-    size: DataWrapper(Size) = DataWrapper(Size).of(Size.init(640, 480)),
+    size: Atom(Size) = Atom(Size).of(Size.init(640, 480)),
     /// The default refresh rate is 60 Hz by default
-    refreshRate: DataWrapper(f32) = DataWrapper(f32).of(60),
+    refreshRate: Atom(f32) = Atom(f32).of(60),
 
     pub fn init() !Window {
         const peer = try backend.Window.create();
@@ -58,7 +58,7 @@ pub const Window = struct {
 
         self._child = try @import("internal.zig").genericWidgetFrom(container);
         if (ComponentType != Widget) {
-            self._child.?.as(ComponentType).dataWrappers.widget = &self._child.?;
+            self._child.?.as(ComponentType).widget_data.atoms.widget = &self._child.?;
         }
 
         try self._child.?.show();

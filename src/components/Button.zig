@@ -1,7 +1,7 @@
 const std = @import("std");
 const backend = @import("../backend.zig");
 const Size = @import("../data.zig").Size;
-const DataWrapper = @import("../data.zig").DataWrapper;
+const Atom = @import("../data.zig").Atom;
 const Container_Impl = @import("../containers.zig").Container_Impl;
 
 /// A button component. Instantiated using `Button(.{ })`
@@ -9,10 +9,9 @@ pub const Button_Impl = struct {
     pub usingnamespace @import("../internal.zig").All(Button_Impl);
 
     peer: ?backend.Button = null,
-    handlers: Button_Impl.Handlers = undefined,
-    dataWrappers: Button_Impl.DataWrappers = .{},
-    label: DataWrapper([:0]const u8) = DataWrapper([:0]const u8).of(""),
-    enabled: DataWrapper(bool) = DataWrapper(bool).of(true),
+    widget_data: Button_Impl.WidgetData = .{},
+    label: Atom([:0]const u8) = Atom([:0]const u8).of(""),
+    enabled: Atom(bool) = Atom(bool).of(true),
 
     pub fn init() Button_Impl {
         return Button_Impl.init_events(Button_Impl{});
@@ -71,7 +70,7 @@ pub fn Button(config: Button_Impl.Config) Button_Impl {
     var btn = Button_Impl.init();
     btn.label.set(config.label);
     btn.enabled.set(config.enabled);
-    btn.dataWrappers.name.set(config.name);
+    btn.widget_data.atoms.name.set(config.name);
     if (config.onclick) |onclick| {
         btn.addClickHandler(onclick) catch unreachable; // TODO: improve
     }

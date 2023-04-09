@@ -3,24 +3,23 @@ const backend = @import("../backend.zig");
 const dataStructures = @import("../data.zig");
 const internal = @import("../internal.zig");
 const Size = dataStructures.Size;
-const DataWrapper = dataStructures.DataWrapper;
-const StringDataWrapper = dataStructures.StringDataWrapper;
+const Atom = dataStructures.Atom;
+const StringAtom = dataStructures.StringAtom;
 
 pub const TextField_Impl = struct {
     pub usingnamespace internal.All(TextField_Impl);
     //pub usingnamespace @import("internal.zig").Property(TextField_Impl, "text");
 
     peer: ?backend.TextField = null,
-    handlers: TextField_Impl.Handlers = undefined,
-    dataWrappers: TextField_Impl.DataWrappers = .{},
-    text: StringDataWrapper = StringDataWrapper.of(""),
-    readOnly: DataWrapper(bool) = DataWrapper(bool).of(false),
+    widget_data: TextField_Impl.WidgetData = .{},
+    text: StringAtom = StringAtom.of(""),
+    readOnly: Atom(bool) = Atom(bool).of(false),
     _wrapperTextBlock: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
 
     pub fn init(config: TextField_Impl.Config) TextField_Impl {
         var field = TextField_Impl.init_events(TextField_Impl{
-            .text = StringDataWrapper.of(config.text),
-            .readOnly = DataWrapper(bool).of(config.readOnly),
+            .text = StringAtom.of(config.text),
+            .readOnly = Atom(bool).of(config.readOnly),
         });
         field.setName(config.name);
         return field;
@@ -32,7 +31,7 @@ pub const TextField_Impl = struct {
         self.text.updateBinders();
     }
 
-    /// When the text is changed in the StringDataWrapper
+    /// When the text is changed in the StringAtom
     fn wrapperTextChanged(newValue: []const u8, userdata: usize) void {
         const self = @intToPtr(*TextField_Impl, userdata);
         if (self._wrapperTextBlock.load(.Monotonic) == true) return;

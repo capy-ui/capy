@@ -2,7 +2,7 @@ const std = @import("std");
 const capy = @import("capy");
 pub usingnamespace capy.cross_platform;
 
-var selectedIndex: capy.DataWrapper(usize) = capy.DataWrapper(usize).of(0);
+var selectedIndex: capy.Atom(usize) = capy.Atom(usize).of(0);
 
 pub fn main() !void {
     try capy.backend.init();

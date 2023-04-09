@@ -2,18 +2,17 @@ const std = @import("std");
 const backend = @import("../backend.zig");
 const internal = @import("../internal.zig");
 const Size = @import("../data.zig").Size;
-const DataWrapper = @import("../data.zig").DataWrapper;
+const Atom = @import("../data.zig").Atom;
 const Widget = @import("../widget.zig").Widget;
 
 pub const Navigation_Impl = struct {
     pub usingnamespace @import("../internal.zig").All(Navigation_Impl);
 
     peer: ?backend.Container = null,
-    handlers: Navigation_Impl.Handlers = undefined,
-    dataWrappers: Navigation_Impl.DataWrappers = .{},
+    widget_data: Navigation_Impl.WidgetData = .{},
 
     relayouting: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
-    routeName: DataWrapper([]const u8),
+    routeName: Atom([]const u8),
     activeChild: *Widget,
     routes: std.StringHashMap(Widget),
 
@@ -21,7 +20,7 @@ pub const Navigation_Impl = struct {
         var iterator = routes.valueIterator();
         const activeChild = iterator.next() orelse @panic("navigation component is empty");
         var component = Navigation_Impl.init_events(Navigation_Impl{
-            .routeName = DataWrapper([]const u8).of(config.routeName),
+            .routeName = Atom([]const u8).of(config.routeName),
             .routes = routes,
             .activeChild = activeChild,
         });

@@ -92,17 +92,17 @@ pub fn Animation(comptime T: type) type {
     };
 }
 
-pub fn isDataWrapper(comptime T: type) bool {
+pub fn isAtom(comptime T: type) bool {
     if (!comptime std.meta.trait.is(.Struct)(T))
         return false;
-    return @hasDecl(T, "ValueType") and T == DataWrapper(T.ValueType);
+    return @hasDecl(T, "ValueType") and T == Atom(T.ValueType);
 }
 
-pub var _animatedDataWrappers = std.ArrayList(struct {
+pub var _animatedAtoms = std.ArrayList(struct {
     fnPtr: *const fn (data: *anyopaque) bool,
     userdata: *anyopaque,
 }).init(lasting_allocator);
-pub var _animatedDataWrappersMutex = std.Thread.Mutex{};
+pub var _animatedAtomsMutex = std.Thread.Mutex{};
 
 fn isAnimableType(comptime T: type) bool {
     if (std.meta.trait.isNumber(T) or (std.meta.trait.isContainer(T) and @hasDecl(T, "lerp"))) {
@@ -113,17 +113,17 @@ fn isAnimableType(comptime T: type) bool {
     return false;
 }
 
-pub fn DataWrapper(comptime T: type) type {
+pub fn Atom(comptime T: type) type {
     return struct {
         value: if (isAnimable) union(enum) { Single: T, Animated: Animation(T) } else T,
         // TODO: switch to a lock that allow concurrent reads but one concurrent write
         lock: std.Thread.Mutex = .{},
         /// List of every change listener listening to this data wrapper.
         /// A linked list is used for minimal stack overhead and to take
-        /// advantage of the fact that most DataWrappers don't have a
+        /// advantage of the fact that most Atoms don't have a
         /// change listener.
         onChange: ChangeListenerList = .{},
-        /// List of all DataWrappers this one is bound to.
+        /// List of all Atoms this one is bound to.
         bindings: BindingList = .{},
         /// This boolean is used to protect from recursive relations between wrappers
         /// For example if there are two two-way binded data wrappers A and B:
@@ -162,16 +162,16 @@ pub fn DataWrapper(comptime T: type) type {
             }
         }
 
-        /// Shorthand for DataWrapper.of(undefined).dependOn(...)
-        pub fn derived(tuple: anytype, function: anytype) Self {
+        /// Shorthand for Atom.of(undefined).dependOn(...)
+        pub fn derived(tuple: anytype, function: anytype) !Self {
             var wrapper = Self.of(undefined);
-            wrapper.dependOn(tuple, function);
+            try wrapper.dependOn(tuple, function);
             return wrapper;
         }
 
         /// Allocates a new data wrapper and initializes it with the given value.
         /// This function assumes that there will be no memory errors.
-        /// If you want to handle OutOfMemory, you must manually allocate the DataWrapper
+        /// If you want to handle OutOfMemory, you must manually allocate the Atom
         pub fn alloc(value: T) *Self {
             const ptr = lasting_allocator.create(Self) catch |err| switch (err) {
                 error.OutOfMemory => unreachable,
@@ -219,17 +219,17 @@ pub fn DataWrapper(comptime T: type) type {
             } };
 
             var contains = false;
-            _animatedDataWrappersMutex.lock();
-            defer _animatedDataWrappersMutex.unlock();
+            _animatedAtomsMutex.lock();
+            defer _animatedAtomsMutex.unlock();
 
-            for (_animatedDataWrappers.items) |item| {
+            for (_animatedAtoms.items) |item| {
                 if (@ptrCast(*anyopaque, self) == item.userdata) {
                     contains = true;
                     break;
                 }
             }
             if (!contains) {
-                _animatedDataWrappers.append(.{ .fnPtr = @ptrCast(*const fn (*anyopaque) bool, &Self.update), .userdata = self }) catch {};
+                _animatedAtoms.append(.{ .fnPtr = @ptrCast(*const fn (*anyopaque) bool, &Self.update), .userdata = self }) catch {};
             }
         }
 
@@ -409,8 +409,8 @@ pub fn DataWrapper(comptime T: type) type {
             const FunctionType = @TypeOf(function);
 
             // Data Wrapper types
-            // e.g. DataWrapper(u32), DataWrapper([]const u8)
-            const DataWrapperTypes = comptime blk: {
+            // e.g. Atom(u32), Atom([]const u8)
+            const AtomTypes = comptime blk: {
                 var types: [tuple.len]type = undefined;
                 var i: usize = 0;
                 while (i < tuple.len) : (i += 1) {
@@ -425,7 +425,7 @@ pub fn DataWrapper(comptime T: type) type {
                 var types: [tuple.len]type = undefined;
                 var i: usize = 0;
                 while (i < tuple.len) : (i += 1) {
-                    types[i] = DataWrapperTypes[i].ValueType;
+                    types[i] = AtomTypes[i].ValueType;
                 }
                 break :blk types;
             };
@@ -437,10 +437,10 @@ pub fn DataWrapper(comptime T: type) type {
 
                     var args: ArgsTuple = undefined;
                     comptime var i: usize = 0;
-                    inline while (i < DataWrapperTypes.len) : (i += 1) {
+                    inline while (i < AtomTypes.len) : (i += 1) {
                         const wrapper_ptr = wrappers[i];
-                        const DataWrapperType = DataWrapperTypes[i];
-                        const wrapper = @ptrCast(*DataWrapperType, @alignCast(@alignOf(DataWrapperType), wrapper_ptr));
+                        const AtomType = AtomTypes[i];
+                        const wrapper = @ptrCast(*AtomType, @alignCast(@alignOf(AtomType), wrapper_ptr));
                         const value = wrapper.get();
                         args[i] = value;
                     }
@@ -450,7 +450,7 @@ pub fn DataWrapper(comptime T: type) type {
                 }
             }.handler;
 
-            // List of DataWrappers, casted to ?*anyopaque
+            // List of Atoms, casted to ?*anyopaque
             const wrappers = try lasting_allocator.alloc(?*anyopaque, tuple.len);
             {
                 comptime var i: usize = 0;
@@ -506,12 +506,12 @@ pub fn DataWrapper(comptime T: type) type {
     };
 }
 
-// TODO: reimplement using DataWrapper.dependOn
-pub fn FormatDataWrapper(allocator: std.mem.Allocator, comptime fmt: []const u8, childs: anytype) !*StringDataWrapper {
-    const Self = struct { wrapper: StringDataWrapper, childs: @TypeOf(childs) };
+// TODO: reimplement using Atom.derived and its arena allocator
+pub fn FormattedAtom(allocator: std.mem.Allocator, comptime fmt: []const u8, childs: anytype) !*StringAtom {
+    const Self = struct { wrapper: StringAtom, childs: @TypeOf(childs) };
     var self = try allocator.create(Self);
     const empty = try allocator.alloc(u8, 0); // alloc an empty string so it can be freed
-    self.* = Self{ .wrapper = StringDataWrapper.of(empty), .childs = childs };
+    self.* = Self{ .wrapper = StringAtom.of(empty), .childs = childs };
     self.wrapper.allocator = allocator;
 
     const childTypes = comptime blk: {
@@ -558,10 +558,9 @@ pub fn FormatDataWrapper(allocator: std.mem.Allocator, comptime fmt: []const u8,
     return &self.wrapper;
 }
 
-pub const StringDataWrapper = DataWrapper([]const u8);
-
-pub const FloatDataWrapper = DataWrapper(f32);
-pub const DoubleDataWrapper = DataWrapper(f64);
+pub const StringAtom = Atom([]const u8);
+pub const FloatAtom = Atom(f32);
+pub const DoubleAtom = Atom(f64);
 
 /// A position expressed in display pixels.
 pub const Position = struct {
@@ -723,30 +722,30 @@ test "lerp" {
     }
 }
 
-test "data wrappers" {
-    var testData = DataWrapper(i32).of(0);
+test "atoms" {
+    var testData = Atom(i32).of(0);
     testData.set(5);
     try expectEqual(@as(i32, 5), testData.get());
     try std.testing.expect(testData.hasAnimation() == false);
 }
 
-test "data wrapper change listeners" {
+test "atom change listeners" {
     // TODO
 }
 
-test "format data wrapper" {
-    // FormatDataWrapper should be used with an arena allocator
+test "format atom" {
+    // FormattedAtom should be used with an arena allocator
     var arena = std.heap.ArenaAllocator.init(std.testing.allocator);
     defer arena.deinit();
     const allocator = arena.allocator();
 
     // NOT PASSING DUE TO stage1 COMPILER BUGS
-    // var dataSource1 = DataWrapper(i32).of(5);
+    // var dataSource1 = Atom(i32).of(5);
     // defer dataSource1.deinit();
-    // var dataSource2 = DataWrapper(f32).of(1.23);
+    // var dataSource2 = Atom(f32).of(1.23);
     // defer dataSource2.deinit();
     //
-    // var format = try FormatDataWrapper(allocator, "{} and {d}", .{ &dataSource1, &dataSource2 });
+    // var format = try FormattedAtom(allocator, "{} and {d}", .{ &dataSource1, &dataSource2 });
     // defer format.deinit();
     //
     // try std.testing.expectEqualStrings("5 and 1.23", format.get());
@@ -755,12 +754,12 @@ test "format data wrapper" {
     // dataSource2.set(1456.89);
     // try std.testing.expectEqualStrings("10 and 1456.89", format.get());
 
-    var dataSource3 = DataWrapper(i32).of(5);
+    var dataSource3 = Atom(i32).of(5);
     defer dataSource3.deinit();
-    var dataSource4 = DataWrapper(i32).of(1);
+    var dataSource4 = Atom(i32).of(1);
     defer dataSource4.deinit();
 
-    var format2 = try FormatDataWrapper(allocator, "{} and {}", .{ &dataSource3, &dataSource4 });
+    var format2 = try FormattedAtom(allocator, "{} and {}", .{ &dataSource3, &dataSource4 });
     defer format2.deinit();
     try std.testing.expectEqualStrings("5 and 1", format2.get());
     dataSource3.set(10);

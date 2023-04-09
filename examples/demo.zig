@@ -15,8 +15,8 @@ pub fn main() !void {
     var window = try capy.Window.init();
     defer window.deinit();
 
-    var someSliderValue = capy.DataWrapper(f32).of(0);
-    var someSliderText = try capy.FormatDataWrapper(capy.internal.lasting_allocator, "{d:.1}", .{&someSliderValue});
+    var someSliderValue = capy.Atom(f32).of(0);
+    var someSliderText = try capy.FormattedAtom(capy.internal.lasting_allocator, "{d:.1}", .{&someSliderValue});
 
     try window.set(capy.Row(.{ .spacing = 0 }, .{
         capy.NavigationSidebar(.{}),
@@ -50,7 +50,7 @@ pub const Drawer_Impl = struct {
 
     peer: ?capy.backend.Canvas = null,
     handlers: Drawer_Impl.Handlers = undefined,
-    dataWrappers: Drawer_Impl.DataWrappers = .{},
+    dataWrappers: Drawer_Impl.Atoms = .{},
     image: capy.ImageData,
 
     pub fn init() !Drawer_Impl {

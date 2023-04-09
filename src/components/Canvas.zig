@@ -1,7 +1,7 @@
 const std = @import("std");
 const backend = @import("../backend.zig");
 const Size = @import("../data.zig").Size;
-const DataWrapper = @import("../data.zig").DataWrapper;
+const Atom = @import("../data.zig").Atom;
 
 pub const DrawContext = backend.Canvas.DrawContext;
 
@@ -9,9 +9,8 @@ pub const Canvas_Impl = struct {
     pub usingnamespace @import("../internal.zig").All(Canvas_Impl);
 
     peer: ?backend.Canvas = null,
-    handlers: Canvas_Impl.Handlers = undefined,
-    dataWrappers: Canvas_Impl.DataWrappers = .{},
-    preferredSize: DataWrapper(?Size) = DataWrapper(?Size).of(null),
+    widget_data: Canvas_Impl.WidgetData = .{},
+    preferredSize: Atom(?Size) = Atom(?Size).of(null),
 
     pub const DrawContext = backend.Canvas.DrawContext;
 
@@ -39,8 +38,8 @@ pub const Canvas_Impl = struct {
 
 pub fn Canvas(config: Canvas_Impl.Config) Canvas_Impl {
     var btn = Canvas_Impl.init();
-    btn.preferredSize = DataWrapper(?Size).of(config.preferredSize);
-    btn.dataWrappers.name.set(config.name);
+    btn.preferredSize = Atom(?Size).of(config.preferredSize);
+    btn.widget_data.atoms.name.set(config.name);
     if (config.onclick) |onclick| {
         btn.addClickHandler(onclick) catch unreachable; // TODO: improve
     }
@@ -56,10 +55,9 @@ pub const Rect_Impl = struct {
     pub usingnamespace @import("../internal.zig").All(Rect_Impl);
 
     peer: ?backend.Canvas = null,
-    handlers: Rect_Impl.Handlers = undefined,
-    dataWrappers: Rect_Impl.DataWrappers = .{},
-    preferredSize: DataWrapper(?Size) = DataWrapper(?Size).of(null),
-    color: DataWrapper(Color) = DataWrapper(Color).of(Color.black),
+    widget_data: Rect_Impl.WidgetData = .{},
+    preferredSize: Atom(?Size) = Atom(?Size).of(null),
+    color: Atom(Color) = Atom(Color).of(Color.black),
 
     pub fn init() Rect_Impl {
         return Rect_Impl.init_events(Rect_Impl{});
@@ -98,9 +96,9 @@ pub const Rect_Impl = struct {
 pub fn Rect(config: Rect_Impl.Config) Rect_Impl {
     var rect = Rect_Impl.init();
     rect.addDrawHandler(&Rect_Impl.draw) catch unreachable;
-    rect.preferredSize = DataWrapper(?Size).of(config.preferredSize);
-    rect.color = DataWrapper(Color).of(config.color);
-    rect.dataWrappers.name.set(config.name);
+    rect.preferredSize = Atom(?Size).of(config.preferredSize);
+    rect.color = Atom(Color).of(config.color);
+    rect.widget_data.atoms.name.set(config.name);
     return rect;
 }
 

@@ -1,15 +1,14 @@
 const std = @import("std");
 const backend = @import("../backend.zig");
 const Size = @import("../data.zig").Size;
-const DataWrapper = @import("../data.zig").DataWrapper;
+const Atom = @import("../data.zig").Atom;
 const Widget = @import("../widget.zig").Widget;
 
 pub const Tabs_Impl = struct {
     pub usingnamespace @import("../internal.zig").All(Tabs_Impl);
 
     peer: ?backend.TabContainer = null,
-    handlers: Tabs_Impl.Handlers = undefined,
-    dataWrappers: Tabs_Impl.DataWrappers = .{},
+    widget_data: Tabs_Impl.WidgetData = .{},
     tabs: std.ArrayList(Tab_Impl),
 
     /// The widget associated to this Tabs_Impl

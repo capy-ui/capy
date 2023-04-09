@@ -1,7 +1,7 @@
 const std = @import("std");
 const backend = @import("../backend.zig");
 const Size = @import("../data.zig").Size;
-const DataWrapper = @import("../data.zig").DataWrapper;
+const Atom = @import("../data.zig").Atom;
 
 pub const Orientation = enum { Horizontal, Vertical };
 
@@ -16,24 +16,23 @@ pub const Slider_Impl = struct {
     pub usingnamespace @import("../internal.zig").All(Slider_Impl);
 
     peer: ?backend.Slider = null,
-    handlers: Slider_Impl.Handlers = undefined,
-    dataWrappers: Slider_Impl.DataWrappers = .{},
-    value: DataWrapper(f32) = DataWrapper(f32).of(0),
+    widget_data: Slider_Impl.WidgetData = .{},
+    value: Atom(f32) = Atom(f32).of(0),
     /// The minimum value of the slider.
     /// Note that min MUST be below or equal to max.
-    min: DataWrapper(f32),
+    min: Atom(f32),
     /// The maximum value of the slider.
     /// Note that max MUST be above or equal to min.
-    max: DataWrapper(f32),
+    max: Atom(f32),
     /// The size of one increment of the value.
     /// This means the value can only be a multiple of step.
-    step: DataWrapper(f32) = DataWrapper(f32).of(1),
-    enabled: DataWrapper(bool) = DataWrapper(bool).of(true),
+    step: Atom(f32) = Atom(f32).of(1),
+    enabled: Atom(bool) = Atom(bool).of(true),
 
     pub fn init() Slider_Impl {
         return Slider_Impl.init_events(Slider_Impl{
-            .min = DataWrapper(f32).of(undefined),
-            .max = DataWrapper(f32).of(undefined),
+            .min = Atom(f32).of(undefined),
+            .max = Atom(f32).of(undefined),
         });
     }
 
@@ -114,7 +113,7 @@ pub fn Slider(config: Slider_Impl.Config) Slider_Impl {
     slider.value.set(config.value);
     slider.step.set(config.step);
     slider.enabled.set(config.enabled);
-    slider.dataWrappers.name.set(config.name);
+    slider.widget_data.atoms.name.set(config.name);
     if (config.onclick) |onclick| {
         slider.addClickHandler(onclick) catch unreachable; // TODO: improve
     }

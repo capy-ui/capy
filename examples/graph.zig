@@ -10,8 +10,7 @@ pub const LineGraph_Impl = struct {
     pub usingnamespace capy.internal.All(LineGraph_Impl);
 
     peer: ?capy.backend.Canvas = null,
-    handlers: LineGraph_Impl.Handlers = undefined,
-    dataWrappers: LineGraph_Impl.DataWrappers = .{},
+    widget_data: LineGraph_Impl.WidgetData = .{},
     dataFn: *const fn (x: f32) f32,
 
     pub fn init(dataFn: *const fn (x: f32) f32) LineGraph_Impl {
@@ -161,7 +160,7 @@ fn drawRectangle(_: *anyopaque, ctx: *capy.Canvas_Impl.DrawContext) !void {
     ctx.fill();
 }
 
-var rectangleX = capy.DataWrapper(f32).of(0.1);
+var rectangleX = capy.Atom(f32).of(0.1);
 var animStart: i64 = 0;
 pub fn main() !void {
     try capy.backend.init();

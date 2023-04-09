@@ -66,14 +66,14 @@ pub fn wakeEventLoop() void {
 /// data wrappers.
 pub fn stepEventLoop(stepType: EventLoopStep) bool {
     const data = @import("data.zig");
-    if (data._animatedDataWrappers.items.len > 0) {
+    if (data._animatedAtoms.items.len > 0) {
         {
-            data._animatedDataWrappersMutex.lock();
-            defer data._animatedDataWrappersMutex.unlock();
+            data._animatedAtomsMutex.lock();
+            defer data._animatedAtomsMutex.unlock();
 
-            for (data._animatedDataWrappers.items, 0..) |item, i| {
+            for (data._animatedAtoms.items, 0..) |item, i| {
                 if (item.fnPtr(item.userdata) == false) { // animation ended
-                    _ = data._animatedDataWrappers.swapRemove(i);
+                    _ = data._animatedAtoms.swapRemove(i);
                 }
             }
         }

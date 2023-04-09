@@ -1,21 +1,20 @@
 const std = @import("std");
 const backend = @import("../backend.zig");
 const Size = @import("../data.zig").Size;
-const DataWrapper = @import("../data.zig").DataWrapper;
+const Atom = @import("../data.zig").Atom;
 
 pub const Label_Impl = struct {
     pub usingnamespace @import("../internal.zig").All(Label_Impl);
 
     peer: ?backend.Label = null,
-    handlers: Label_Impl.Handlers = undefined,
-    dataWrappers: Label_Impl.DataWrappers = .{},
-    text: DataWrapper([]const u8) = DataWrapper([]const u8).of(""),
-    alignment: DataWrapper(TextAlignment) = DataWrapper(TextAlignment).of(.Left),
+    widget_data: Label_Impl.WidgetData = .{},
+    text: Atom([]const u8) = Atom([]const u8).of(""),
+    alignment: Atom(TextAlignment) = Atom(TextAlignment).of(.Left),
 
     pub fn init(config: Label_Impl.Config) Label_Impl {
         return Label_Impl.init_events(Label_Impl{
-            .text = DataWrapper([]const u8).of(config.text),
-            .alignment = DataWrapper(TextAlignment).of(config.alignment),
+            .text = Atom([]const u8).of(config.text),
+            .alignment = Atom(TextAlignment).of(config.alignment),
         });
     }
 

@@ -7,7 +7,7 @@ const dataStructures = @import("data.zig");
 const Widget = @import("widget.zig").Widget;
 const Class = @import("widget.zig").Class;
 const Size = dataStructures.Size;
-const DataWrapper = dataStructures.DataWrapper;
+const Atom = dataStructures.Atom;
 const Container_Impl = @import("containers.zig").Container_Impl;
 const Layout = @import("containers.zig").Layout;
 const MouseButton = @import("backends/shared.zig").MouseButton;
@@ -42,6 +42,11 @@ pub fn All(comptime T: type) type {
     return struct {
         pub usingnamespace Events(T);
         pub usingnamespace Widgeting(T);
+
+        pub const WidgetData = struct {
+            handlers: T.Handlers = undefined,
+            atoms: T.Atoms = .{},
+        };
     };
 }
 
@@ -66,10 +71,10 @@ pub fn Widgeting(comptime T: type) type {
             .isDisplayedFn = isDisplayedFn,
         };
 
-        pub const DataWrappers = struct {
-            opacity: DataWrapper(f32) = DataWrapper(f32).of(1.0),
-            displayed: DataWrapper(bool) = DataWrapper(bool).of(true),
-            name: DataWrapper(?[]const u8) = DataWrapper(?[]const u8).of(null),
+        pub const Atoms = struct {
+            opacity: Atom(f32) = Atom(f32).of(1.0),
+            displayed: Atom(bool) = Atom(bool).of(true),
+            name: Atom(?[]const u8) = Atom(?[]const u8).of(null),
 
             /// The widget representing this component
             widget: ?*Widget = null,
@@ -90,12 +95,12 @@ pub fn Widgeting(comptime T: type) type {
 
         pub fn setWidgetFn(widget: *Widget) void {
             const component = widget.as(T);
-            component.dataWrappers.widget = widget;
+            component.widget_data.atoms.widget = widget;
         }
 
         pub fn isDisplayedFn(widget: *const Widget) bool {
             const component = widget.as(T);
-            return component.dataWrappers.displayed.get();
+            return component.widget_data.atoms.displayed.get();
         }
 
         pub fn deinitWidget(widget: *Widget) void {
@@ -110,22 +115,22 @@ pub fn Widgeting(comptime T: type) type {
                 self._deinit();
             }
 
-            self.dataWrappers.widget = null;
-            self.dataWrappers.opacity.deinit();
+            self.widget_data.atoms.widget = null;
+            self.widget_data.atoms.opacity.deinit();
 
-            self.handlers.clickHandlers.deinit();
-            self.handlers.drawHandlers.deinit();
-            self.handlers.buttonHandlers.deinit();
-            self.handlers.mouseMoveHandlers.deinit();
-            self.handlers.scrollHandlers.deinit();
-            self.handlers.resizeHandlers.deinit();
-            self.handlers.keyTypeHandlers.deinit();
+            self.widget_data.handlers.clickHandlers.deinit();
+            self.widget_data.handlers.drawHandlers.deinit();
+            self.widget_data.handlers.buttonHandlers.deinit();
+            self.widget_data.handlers.mouseMoveHandlers.deinit();
+            self.widget_data.handlers.scrollHandlers.deinit();
+            self.widget_data.handlers.resizeHandlers.deinit();
+            self.widget_data.handlers.keyTypeHandlers.deinit();
 
             if (self.peer) |peer| peer.deinit();
         }
 
         pub fn pointerMoved(self: *T) void {
-            self.dataWrappers.opacity.updateBinders();
+            self.widget_data.atoms.opacity.updateBinders();
             if (@hasDecl(T, "_pointerMoved")) {
                 self._pointerMoved();
             }
@@ -153,19 +158,19 @@ pub fn Widgeting(comptime T: type) type {
         // TODO: consider using something like https://github.com/MasterQ32/any-pointer for userdata
         // to get some safety
         pub fn setUserdata(self: *T, userdata: ?*anyopaque) void {
-            self.handlers.userdata = userdata;
+            self.widget_data.handlers.userdata = userdata;
         }
 
         pub fn getUserdata(self: *T, comptime U: type) U {
-            return @ptrCast(U, self.handlers.userdata);
+            return @ptrCast(U, self.widget_data.handlers.userdata);
         }
 
         // Properties
         fn TypeOfProperty(comptime name: []const u8) type {
             if (@hasField(T, name)) {
                 return @TypeOf(@field(@as(T, undefined), name)).ValueType;
-            } else if (@hasField(DataWrappers, name)) {
-                return @TypeOf(@field(@as(DataWrappers, undefined), name)).ValueType;
+            } else if (@hasField(Atoms, name)) {
+                return @TypeOf(@field(@as(Atoms, undefined), name)).ValueType;
             } else {
                 comptime {
                     var compileError: []const u8 = "No such property: " ++ name;
@@ -180,29 +185,29 @@ pub fn Widgeting(comptime T: type) type {
         // This method temporarily returns the component for chaining methods
         // This will be reconsidered later and thus might be removed.
         pub fn set(self: *T, comptime name: []const u8, value: TypeOfProperty(name)) void {
-            if (@hasField(DataWrappers, name)) {
-                @field(self.dataWrappers, name).set(value);
+            if (@hasField(Atoms, name)) {
+                @field(self.widget_data.atoms, name).set(value);
             } else {
                 @field(self, name).set(value);
             }
         }
 
         pub fn get(self: *T, comptime name: []const u8) TypeOfProperty(name) {
-            if (@hasField(DataWrappers, name)) {
-                return @field(self.dataWrappers, name).get();
+            if (@hasField(Atoms, name)) {
+                return @field(self.widget_data.atoms, name).get();
             } else {
                 return @field(self, name).get();
             }
         }
 
         /// Bind the given property to argument
-        pub fn bind(immutable_self: *const T, comptime name: []const u8, other: *DataWrapper(TypeOfProperty(name))) T {
+        pub fn bind(immutable_self: *const T, comptime name: []const u8, other: *Atom(TypeOfProperty(name))) T {
             // TODO: use another system for binding components
             // This is DANGEROUSLY unsafe (and unoptimized)
             const self = @intToPtr(*T, @ptrToInt(immutable_self));
 
-            if (@hasField(DataWrappers, name)) {
-                @field(self.dataWrappers, name).bind(other);
+            if (@hasField(Atoms, name)) {
+                @field(self.widget_data.atoms, name).bind(other);
             } else {
                 @field(self, name).bind(other);
             }
@@ -211,20 +216,20 @@ pub fn Widgeting(comptime T: type) type {
         }
 
         pub fn getName(self: *T) ?[]const u8 {
-            return self.dataWrappers.name;
+            return self.widget_data.atoms.name;
         }
 
         pub fn setName(self: *T, name: ?[]const u8) void {
-            self.dataWrappers.name.set(name);
+            self.widget_data.atoms.name.set(name);
         }
 
         pub fn getWidget(self: *T) ?*Widget {
-            return self.dataWrappers.widget;
+            return self.widget_data.atoms.widget;
         }
 
         // Returns the parent of the current widget
         pub fn getParent(self: *T) ?*Widget {
-            if (self.dataWrappers.widget) |widget| {
+            if (self.widget_data.atoms.widget) |widget| {
                 if (widget.parent) |parent| {
                     return parent;
                 }
@@ -293,7 +298,7 @@ pub fn GenerateConfigStruct(comptime T: type) type {
 fn iterateFields(comptime config_fields: *[]const std.builtin.Type.StructField, comptime T: type) void {
     for (std.meta.fields(T)) |field| {
         const FieldType = field.type;
-        if (dataStructures.isDataWrapper(FieldType)) {
+        if (dataStructures.isAtom(FieldType)) {
             const default_value = if (field.default_value) |default| @ptrCast(*const FieldType, @alignCast(@alignOf(FieldType), default)).getUnsafe() else null;
             const has_default_value = field.default_value != null;
 
@@ -325,12 +330,12 @@ pub fn DereferencedType(comptime T: type) type {
 }
 
 /// Create a generic Widget struct from the given component.
-/// This method will set dataWrappers.widget field and can only be called once.
+/// This method will set atoms.widget field and can only be called once.
 pub fn genericWidgetFrom(component: anytype) anyerror!Widget {
     const ComponentType = @TypeOf(component);
     if (ComponentType == Widget) return component;
 
-    if (component.dataWrappers.widget != null) {
+    if (component.widget_data.atoms.widget != null) {
         return error.ComponentAlreadyHasWidget;
     }
 
@@ -350,7 +355,7 @@ pub fn genericWidgetFrom(component: anytype) anyerror!Widget {
     return Widget{
         .data = cp,
         .class = &Dereferenced.WidgetClass,
-        .name = &cp.dataWrappers.name,
+        .name = &cp.widget_data.atoms.name,
         .allocator = if (comptime std.meta.trait.isSingleItemPtr(ComponentType)) null else lasting_allocator,
     };
 }
@@ -379,7 +384,7 @@ pub fn convertTupleToWidgets(childrens: anytype) anyerror!std.ArrayList(Widget) 
         slot.* = widget;
 
         if (ComponentType != Widget) {
-            widget.as(ComponentType).dataWrappers.widget = slot;
+            widget.as(ComponentType).widget_data.atoms.widget = slot;
         }
     }
 
@@ -444,7 +449,7 @@ pub fn Events(comptime T: type) type {
 
         pub fn init_events(self: T) T {
             var obj = self;
-            obj.handlers = .{
+            obj.widget_data.handlers = .{
                 .clickHandlers = HandlerList.init(lasting_allocator),
                 .drawHandlers = DrawHandlerList.init(lasting_allocator),
                 .buttonHandlers = ButtonHandlerList.init(lasting_allocator),
@@ -483,49 +488,49 @@ pub fn Events(comptime T: type) type {
 
         fn clickHandler(data: usize) void {
             const self = @intToPtr(*T, data);
-            for (self.handlers.clickHandlers.items) |func| {
+            for (self.widget_data.handlers.clickHandlers.items) |func| {
                 func(self) catch |err| errorHandler(err);
             }
         }
 
         fn drawHandler(ctx: *backend.Canvas.DrawContext, data: usize) void {
             const self = @intToPtr(*T, data);
-            for (self.handlers.drawHandlers.items) |func| {
+            for (self.widget_data.handlers.drawHandlers.items) |func| {
                 func(self, ctx) catch |err| errorHandler(err);
             }
         }
 
         fn buttonHandler(button: MouseButton, pressed: bool, x: i32, y: i32, data: usize) void {
             const self = @intToPtr(*T, data);
-            for (self.handlers.buttonHandlers.items) |func| {
+            for (self.widget_data.handlers.buttonHandlers.items) |func| {
                 func(self, button, pressed, x, y) catch |err| errorHandler(err);
             }
         }
 
         fn mouseMovedHandler(x: i32, y: i32, data: usize) void {
             const self = @intToPtr(*T, data);
-            for (self.handlers.mouseMoveHandlers.items) |func| {
+            for (self.widget_data.handlers.mouseMoveHandlers.items) |func| {
                 func(self, x, y) catch |err| errorHandler(err);
             }
         }
 
         fn keyTypeHandler(str: []const u8, data: usize) void {
             const self = @intToPtr(*T, data);
-            for (self.handlers.keyTypeHandlers.items) |func| {
+            for (self.widget_data.handlers.keyTypeHandlers.items) |func| {
                 func(self, str) catch |err| errorHandler(err);
             }
         }
 
         fn keyPressHandler(keycode: u16, data: usize) void {
             const self = @intToPtr(*T, data);
-            for (self.handlers.keyPressHandlers.items) |func| {
+            for (self.widget_data.handlers.keyPressHandlers.items) |func| {
                 func(self, keycode) catch |err| errorHandler(err);
             }
         }
 
         fn scrollHandler(dx: f32, dy: f32, data: usize) void {
             const self = @intToPtr(*T, data);
-            for (self.handlers.scrollHandlers.items) |func| {
+            for (self.widget_data.handlers.scrollHandlers.items) |func| {
                 func(self, dx, dy) catch |err| errorHandler(err);
             }
         }
@@ -533,14 +538,14 @@ pub fn Events(comptime T: type) type {
         fn resizeHandler(width: u32, height: u32, data: usize) void {
             const self = @intToPtr(*T, data);
             const size = Size{ .width = width, .height = height };
-            for (self.handlers.resizeHandlers.items) |func| {
+            for (self.widget_data.handlers.resizeHandlers.items) |func| {
                 func(self, size) catch |err| errorHandler(err);
             }
         }
 
         fn propertyChangeHandler(name: []const u8, value: *const anyopaque, data: usize) void {
             const self = @intToPtr(*T, data);
-            for (self.handlers.propertyChangeHandlers.items) |func| {
+            for (self.widget_data.handlers.propertyChangeHandlers.items) |func| {
                 func(self, name, value) catch |err| errorHandler(err);
             }
         }
@@ -565,46 +570,46 @@ pub fn Events(comptime T: type) type {
             try self.peer.?.setCallback(.KeyPress, keyPressHandler);
             try self.peer.?.setCallback(.PropertyChange, propertyChangeHandler);
 
-            _ = try self.dataWrappers.opacity.addChangeListener(.{ .function = opacityChanged, .userdata = @ptrToInt(self) });
-            opacityChanged(self.dataWrappers.opacity.get(), @ptrToInt(self)); // call it so it's updated
+            _ = try self.widget_data.atoms.opacity.addChangeListener(.{ .function = opacityChanged, .userdata = @ptrToInt(self) });
+            opacityChanged(self.widget_data.atoms.opacity.get(), @ptrToInt(self)); // call it so it's updated
         }
 
         pub fn addClickHandler(self: *T, handler: anytype) !void {
-            try self.handlers.clickHandlers.append(@ptrCast(Callback, handler));
+            try self.widget_data.handlers.clickHandlers.append(@ptrCast(Callback, handler));
         }
 
         pub fn addDrawHandler(self: *T, handler: anytype) !void {
-            try self.handlers.drawHandlers.append(@ptrCast(DrawCallback, handler));
+            try self.widget_data.handlers.drawHandlers.append(@ptrCast(DrawCallback, handler));
         }
 
         pub fn addMouseButtonHandler(self: *T, handler: anytype) !void {
-            try self.handlers.buttonHandlers.append(@ptrCast(ButtonCallback, handler));
+            try self.widget_data.handlers.buttonHandlers.append(@ptrCast(ButtonCallback, handler));
         }
 
         pub fn addMouseMotionHandler(self: *T, handler: anytype) !void {
-            try self.handlers.mouseMoveHandlers.append(@ptrCast(MouseMoveCallback, handler));
+            try self.widget_data.handlers.mouseMoveHandlers.append(@ptrCast(MouseMoveCallback, handler));
         }
 
         pub fn addScrollHandler(self: *T, handler: anytype) !void {
-            try self.handlers.scrollHandlers.append(@ptrCast(ScrollCallback, handler));
+            try self.widget_data.handlers.scrollHandlers.append(@ptrCast(ScrollCallback, handler));
         }
 
         pub fn addResizeHandler(self: *T, handler: anytype) !void {
-            try self.handlers.resizeHandlers.append(@ptrCast(ResizeCallback, handler));
+            try self.widget_data.handlers.resizeHandlers.append(@ptrCast(ResizeCallback, handler));
         }
 
         pub fn addKeyTypeHandler(self: *T, handler: anytype) !void {
-            try self.handlers.keyTypeHandlers.append(@ptrCast(KeyTypeCallback, handler));
+            try self.widget_data.handlers.keyTypeHandlers.append(@ptrCast(KeyTypeCallback, handler));
         }
 
         pub fn addKeyPressHandler(self: *T, handler: anytype) !void {
-            try self.handlers.keyPressHandlers.append(@ptrCast(KeyPressCallback, handler));
+            try self.widget_data.handlers.keyPressHandlers.append(@ptrCast(KeyPressCallback, handler));
         }
 
         /// This shouldn't be used by user applications directly.
         /// Instead set a change listener to the corresponding data wrapper.
         pub fn addPropertyChangeHandler(self: *T, handler: anytype) !void {
-            try self.handlers.propertyChangeHandlers.append(@ptrCast(PropertyChangeCallback, handler));
+            try self.widget_data.handlers.propertyChangeHandlers.append(@ptrCast(PropertyChangeCallback, handler));
         }
 
         pub fn requestDraw(self: *T) !void {

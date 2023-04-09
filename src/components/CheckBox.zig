@@ -1,18 +1,17 @@
 const std = @import("std");
 const backend = @import("../backend.zig");
 const Size = @import("../data.zig").Size;
-const DataWrapper = @import("../data.zig").DataWrapper;
+const Atom = @import("../data.zig").Atom;
 const Container_Impl = @import("../containers.zig").Container_Impl;
 
 pub const CheckBox_Impl = struct {
     pub usingnamespace @import("../internal.zig").All(CheckBox_Impl);
 
     peer: ?backend.CheckBox = null,
-    handlers: CheckBox_Impl.Handlers = undefined,
-    dataWrappers: CheckBox_Impl.DataWrappers = .{},
-    checked: DataWrapper(bool) = DataWrapper(bool).of(false),
-    label: DataWrapper([:0]const u8) = DataWrapper([:0]const u8).of(""),
-    enabled: DataWrapper(bool) = DataWrapper(bool).of(true),
+    widget_data: CheckBox_Impl.WidgetData = .{},
+    checked: Atom(bool) = Atom(bool).of(false),
+    label: Atom([:0]const u8) = Atom([:0]const u8).of(""),
+    enabled: Atom(bool) = Atom(bool).of(true),
 
     pub fn init() CheckBox_Impl {
         return CheckBox_Impl.init_events(CheckBox_Impl{});
@@ -85,7 +84,7 @@ pub fn CheckBox(config: CheckBox_Impl.Config) CheckBox_Impl {
     btn.checked.set(config.checked);
     btn.label.set(config.label);
     btn.enabled.set(config.enabled);
-    btn.dataWrappers.name.set(config.name);
+    btn.widget_data.atoms.name.set(config.name);
     if (config.onclick) |onclick| {
         btn.addClickHandler(onclick) catch unreachable; // TODO: improve
     }

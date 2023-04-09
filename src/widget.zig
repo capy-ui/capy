@@ -37,7 +37,7 @@ pub const Widget = struct {
     parent: ?*Widget = null,
 
     // TODO: store @offsetOf these fields in the Class instead of having the cost of 3 pointers
-    name: *data.DataWrapper(?[]const u8),
+    name: *data.Atom(?[]const u8),
 
     pub fn show(self: *Widget) anyerror!void {
         try self.class.showFn(self);
