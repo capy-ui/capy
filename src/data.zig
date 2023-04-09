@@ -162,6 +162,13 @@ pub fn DataWrapper(comptime T: type) type {
             }
         }
 
+        /// Shorthand for DataWrapper.of(undefined).dependOn(...)
+        pub fn derived(tuple: anytype, function: anytype) Self {
+            var wrapper = Self.of(undefined);
+            wrapper.dependOn(tuple, function);
+            return wrapper;
+        }
+
         /// Allocates a new data wrapper and initializes it with the given value.
         /// This function assumes that there will be no memory errors.
         /// If you want to handle OutOfMemory, you must manually allocate the DataWrapper
@@ -380,6 +387,8 @@ pub fn DataWrapper(comptime T: type) type {
             }
         }
 
+        /// Read-Modify-Write the value all in one step.
+        /// If you want to RMW you must use this function in order to avoid concurrency issues.
         pub fn rmw(self: *Self, func: *const fn (value: T) T) void {
             self.lock.lock();
             // Don't unlock because extendedSet() will already unlocks it
@@ -387,6 +396,10 @@ pub fn DataWrapper(comptime T: type) type {
             const current_value = self.getUnsafe();
             self.extendedSet(func(current_value), .{ .locking = false });
         }
+
+        // TODO: constrain "function"'s type based on tuple
+        // TODO: optionally provide the function with an arena allocator which will automatically
+        // handle freeing and lifetime so it's less of a pain in the
 
         /// This makes the value of this data wrapper entirely dependent
         /// on the given parameters (variable-based reactivity), it can only be reverted by calling set()
