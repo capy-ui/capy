@@ -3,13 +3,14 @@ const zigimg = @import("zigimg");
 const backend = @import("../backend.zig");
 const internal = @import("../internal.zig");
 const Size = @import("../data.zig").Size;
-const DataWrapper = @import("../data.zig").DataWrapper;
+const Atom = @import("../data.zig").Atom;
 const assets = @import("../assets.zig");
 
 // TODO: use zigimg's structs instead of duplicating efforts
 const Colorspace = @import("../color.zig").Colorspace;
 
 const ImageData = @import("../image.zig").ImageData;
+const ScalableVectorData = @import("../image.zig").ScalableVectorData;
 
 // TODO: convert to using a flat component so a backend may provide an Image backend
 /// Component used to show an image.
@@ -17,11 +18,13 @@ pub const Image_Impl = struct {
     pub usingnamespace @import("../internal.zig").All(Image_Impl);
 
     peer: ?backend.Canvas = null,
-    handlers: Image_Impl.Handlers = undefined,
-    dataWrappers: Image_Impl.DataWrappers = .{},
-    url: DataWrapper([]const u8),
-    data: DataWrapper(?ImageData) = DataWrapper(?ImageData).of(null),
-    scaling: DataWrapper(Scaling) = DataWrapper(Scaling).of(.Fit),
+    widget_data: Image_Impl.WidgetData = .{},
+    url: Atom([]const u8),
+    data: Atom(?ImageData) = Atom(?ImageData).of(null),
+    scaling: Atom(Scaling) = Atom(Scaling).of(.Fit),
+
+    // TODO: if vector graphics (SVG or TVG) then rerender every time Image component is resized
+    vectorData: Atom(?ScalableVectorData) = Atom(?ScalableVectorData).of(null),
 
     // TODO: when url changes set data to null
 
@@ -39,9 +42,9 @@ pub const Image_Impl = struct {
     // TODO: just directly accept an URL or file path if there's no data
     pub fn init(config: Image_Impl.Config) Image_Impl {
         var image = Image_Impl.init_events(Image_Impl{
-            .url = DataWrapper([]const u8).of(config.url),
-            .data = DataWrapper(?ImageData).of(config.data),
-            .scaling = DataWrapper(Scaling).of(config.scaling),
+            .url = Atom([]const u8).of(config.url),
+            .data = Atom(?ImageData).of(config.data),
+            .scaling = Atom(Scaling).of(config.scaling),
         });
         image.addDrawHandler(&Image_Impl.draw) catch unreachable;
         return image;

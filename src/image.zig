@@ -89,3 +89,5 @@ pub const ImageData = struct {
         self.* = undefined;
     }
 };
+
+pub const ScalableVectorData = struct {};
