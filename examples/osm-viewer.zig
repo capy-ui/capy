@@ -107,6 +107,7 @@ pub const MapViewer_Impl = struct {
     pub fn checkRequests(self: *MapViewer_Impl) !void {
         if (self.pendingSearchRequest) |*response| {
             if (response.isReady()) {
+                try response.checkError();
                 // Read the body of the HTTP response and store it in memory
                 const contents = try response.reader().readAllAlloc(capy.internal.scratch_allocator, std.math.maxInt(usize));
                 defer capy.internal.scratch_allocator.free(contents);

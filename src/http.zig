@@ -1,6 +1,6 @@
 //! Module to handle HTTP(S) requests
 //! This is useful as it is a very common operation that's not done the same on every devices
-//! (For example, on the Web, you can't make TCP sockets, so no 3rd party lib)
+//! (For example, on the Web, you can't make TCP sockets, so std.http won't work)
 const std = @import("std");
 const internal = @import("internal.zig");
 const backend = @import("backend.zig");
@@ -67,7 +67,7 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
                 .connection = .close,
             };
             var request = try client.request(uri, headers, .{});
-            try request.finish();
+            // try request.finish();
             return HttpResponse{ .request = request, .client = client };
         }
     };
@@ -85,7 +85,7 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
         }
 
         pub fn checkError(self: *HttpResponse) !void {
-            try self.request.waitForCompleteHead();
+            try self.request.do();
             // if (self.response.status_code != .success_ok) {
             //     return error.FailedRequest;
             // }
