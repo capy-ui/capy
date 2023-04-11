@@ -2,19 +2,35 @@
 
 ![Project banner](design/logo.png)
 
-This repository contains a example on how to create a minimal Android app in Zig.
+This repository contains multiple examples of creating a minimal Android app in Zig.
 
-## State of the project
+## Examples
 
-This project contains a really small app skeleton in `example/main.zig` which initializes OpenGL and renders a color cycle. Touchscreen events will be displayed as small circles beneath the fingers that will fade as soon as no event for the same finger will happen again.
+There are 4 different examples. The examples have no dependencies on C code except for the android libraries, so they can be considered pure Zig apps.
 
-The code contains some commented examples on how to interface with the JNI to use advanced features of the `ANativeActivity`.
-
-It has no dependencies to C code except for the android libraries, so it can be considered a pure Zig app.
+To select which example to build and run, pass the example flag (e.g. `-Dexample=egl`). Valid values for the example flag are `egl`, `minimal`, `textview`, and `invocationhandler`.
 
 We're running a CI that will verify the build for Windows, macOS and Linux:
 
 [![CI](https://github.com/MasterQ32/ZigAndroidTemplate/actions/workflows/main-ci.yml/badge.svg)](https://github.com/MasterQ32/ZigAndroidTemplate/actions/workflows/main-ci.yml)
+
+### Minimal
+
+`examples/minimal` includes just enough code to get the app running.
+
+### EGL
+
+`examples/egl/` initializes OpenGL and renders a color cycle. Touchscreen events will activate a sine wave synth and be displayed as small circles beneath the fingers that will fade as soon as no event for the same finger will happen again.
+
+The code contains some commented examples on how to interface with the JNI to use advanced features of the `ANativeActivity`.
+
+### Textview
+
+`examples/textview/` creates a Textview component with Android's built-in UI to display "Hello, World!".
+
+### InvocationHandler
+
+`examples/invocationhandler` builds on the textview example. It shows how to pass a callback to the JNI by creating a button component that reacts to being pressed.
 
 ## Presentation
 
@@ -22,6 +38,8 @@ There is a [FOSDEM Talk](https://fosdem.org/2021/schedule/event/zig_android/) yo
 
 - [MP4 Video](https://video.fosdem.org/2021/D.zig/zig_android.mp4)
 - [WebM Video](https://video.fosdem.org/2021/D.zig/zig_android.webm)
+
+Since the time of recording ZigAndroidTemplate has changed in some major ways.
 
 ## What's missing
 
@@ -62,7 +80,7 @@ This should build an APK and install it on your connected phone if possible.
 
 ## Getting started
 
-Check out the [`build.zig`](build.zig) to see how to build a new android app, and [`example/main.zig`](example/main.zig) to see how to create a basic application. All of this is still very rough, though.
+Check out the [`build.zig`](build.zig) to see how to build a new android app. The [`examples`](examples/) folder has multiple examples for making minimal android apps.
 
 ## Credits
 

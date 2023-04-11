@@ -4,7 +4,6 @@ const android = @import("android");
 
 const audio = android.audio;
 pub const panic = android.panic;
-pub const log = android.log;
 
 const EGLContext = android.egl.EGLContext;
 const JNI = android.JNI;
@@ -227,7 +226,7 @@ pub const AndroidApp = struct {
             self.simple_synth.oscillators[@intCast(usize, index)].setWaveOn(true);
         }
 
-        for (self.touch_points) |*opt, i| {
+        for (&self.touch_points, 0..) |*opt, i| {
             if (opt.*) |*pt| {
                 if (pt.index != null and pt.index.? == point.index.?) {
                     pt.* = point;
@@ -632,7 +631,7 @@ pub const AndroidApp = struct {
                     c.glBlendFunc(c.GL_ONE, c.GL_ONE);
                     c.glBlendEquation(c.GL_FUNC_ADD);
 
-                    for (self.touch_points) |*pt| {
+                    for (&self.touch_points) |*pt| {
                         if (pt.*) |*point| {
                             c.glUniform1f(uAspect, self.screen_width / self.screen_height);
                             c.glUniform2f(uPos, point.x / self.screen_width, 1.0 - point.y / self.screen_height);
@@ -884,7 +883,7 @@ const SimpleSynth = struct {
 
     fn init() SimpleSynth {
         var synth = SimpleSynth{};
-        for (synth.oscillators) |*osc, index| {
+        for (&synth.oscillators, 0..) |*osc, index| {
             osc.* = Oscillator{
                 .frequency = audio.midiToFreq(49 + index * 3),
                 .amplitude = audio.dBToAmplitude(-@intToFloat(f64, index) - 15),
@@ -897,7 +896,7 @@ const SimpleSynth = struct {
         var synth = @ptrCast(*SimpleSynth, @alignCast(@alignOf(SimpleSynth), user_data));
         std.debug.assert(stream.buffer == .Int16);
 
-        for (synth.oscillators) |*osc| {
+        for (&synth.oscillators) |*osc| {
             osc.setSampleRate(@intCast(i32, stream.sample_rate));
             osc.renderi16(stream.buffer.Int16);
         }

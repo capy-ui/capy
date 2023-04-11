@@ -4,7 +4,6 @@ const android = @import("android");
 
 const audio = android.audio;
 pub const panic = android.panic;
-pub const log = android.log;
 
 const EGLContext = android.egl.EGLContext;
 const JNI = android.JNI;
@@ -134,7 +133,7 @@ pub const AndroidApp = struct {
 
     fn setAppContentView(self: *AndroidApp) void {
         self.setAppContentViewImpl() catch |e| {
-            app_log.err("Error occured while running setAppContentView: {s}", .{ @errorName(e) });
+            app_log.err("Error occured while running setAppContentView: {s}", .{@errorName(e)});
         };
     }
 

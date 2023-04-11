@@ -2,6 +2,7 @@ const std = @import("std");
 const AndroidSdk = @import("android/Sdk.zig");
 
 pub const CapyBuildOptions = struct {
+    app_name: []const u8 = "Capy Example",
     android: AndroidOptions = .{},
 
     pub const AndroidOptions = struct {
@@ -9,11 +10,17 @@ pub const CapyBuildOptions = struct {
         version: AndroidSdk.AndroidVersion = .android8,
         // TODO: implement sdk download
         download_sdk_automatically: bool = true,
+        package_name: []const u8 = "io.capyui.example",
     };
 };
 
-pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !void {
-    _ = options;
+/// Takes the given CompileStep and options and returns a run step.
+/// The run step from this function must be used because it depends on the target,
+/// running a binary on your local machine isn't the same as spinning a local web server
+/// for WebAssembly or using ADB to upload your Android app to your phone.
+/// If you do not wish to run your CompileStep, ignore the run step by doing
+/// _ = install(step, .{ ... });
+pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Build.Step {
     const prefix = comptime std.fs.path.dirname(@src().file).? ++ std.fs.path.sep_str;
     const b = step.step.owner;
     step.subsystem = .Native;
@@ -73,93 +80,97 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !void {
             if (step.target.toTarget().isAndroid()) {
                 // // TODO: automatically download the SDK and NDK and build tools?
                 // // TODO: download Material components by parsing Maven?
-                // const sdk = AndroidSdk.init(step.builder, null, .{});
-                // const mode = step.build_mode;
+                const sdk = AndroidSdk.init(b, null, .{});
+                const optimize = step.optimize;
 
-                // // Provide some KeyStore structure so we can sign our app.
-                // // Recommendation: Don't hardcore your password here, everyone can read it.
-                // // At least not for your production keystore ;)
-                // const key_store = AndroidSdk.KeyStore{
-                //     .file = ".build_config/android.keystore",
-                //     .alias = "default",
-                //     .password = "ziguana",
-                // };
+                // Provide some KeyStore structure so we can sign our app.
+                // Recommendation: Don't hardcore your password here, everyone can read it.
+                // At least not for your production keystore ;)
+                const key_store = AndroidSdk.KeyStore{
+                    .file = ".build_config/android.keystore",
+                    .alias = "default",
+                    .password = "ziguana",
+                };
 
-                // var libraries = std.ArrayList([]const u8).init(step.builder.allocator);
-                // try libraries.append("GLESv2");
-                // try libraries.append("EGL");
-                // try libraries.append("android");
-                // try libraries.append("log");
+                var libraries = std.ArrayList([]const u8).init(b.allocator);
+                try libraries.append("GLESv2");
+                try libraries.append("EGL");
+                try libraries.append("android");
+                try libraries.append("log");
 
-                // const config = AndroidSdk.AppConfig{
-                //     .target_version = options.android.version,
-                //     // This is displayed to the user
-                //     .display_name = "Capy Example",
-                //     // This is used internally for ... things?
-                //     .app_name = "capyui_example",
-                //     // This is required for the APK name. This identifies your app, android will associate
-                //     // your signing key with this identifier and will prevent updates if the key changes.
-                //     .package_name = "io.capyui.example",
-                //     // This is a set of resources. It should at least contain a "mipmap/icon.png" resource that
-                //     // will provide the application icon.
-                //     .resources = &[_]AndroidSdk.Resource{
-                //         .{ .path = "mipmap/icon.png", .content = .{ .path = "android/default_icon.png" } },
-                //     },
-                //     .aaudio = false,
-                //     .opensl = false,
-                //     // This is a list of android permissions. Check out the documentation to figure out which you need.
-                //     .permissions = &[_][]const u8{
-                //         "android.permission.SET_RELEASE_APP",
-                //         //"android.permission.RECORD_AUDIO",
-                //     },
-                //     // This is a list of native android apis to link against.
-                //     .libraries = libraries.items,
-                //     //.fullscreen = true,
-                // };
+                const config = AndroidSdk.AppConfig{
+                    .target_version = options.android.version,
+                    // This is displayed to the user
+                    .display_name = options.app_name,
+                    // This is used internally for ... things?
+                    .app_name = "capyui_example",
+                    // This is required for the APK name. This identifies your app, android will associate
+                    // your signing key with this identifier and will prevent updates if the key changes.
+                    .package_name = options.android.package_name,
+                    // This is a set of resources. It should at least contain a "mipmap/icon.png" resource that
+                    // will provide the application icon.
+                    .resources = &[_]AndroidSdk.Resource{
+                        .{ .path = "mipmap/icon.png", .content = .{ .path = "android/default_icon.png" } },
+                    },
+                    .aaudio = false,
+                    .opensl = false,
+                    // This is a list of android permissions. Check out the documentation to figure out which you need.
+                    .permissions = &[_][]const u8{
+                        "android.permission.SET_RELEASE_APP",
+                        //"android.permission.RECORD_AUDIO",
+                    },
+                    // This is a list of native android apis to link against.
+                    .libraries = libraries.items,
+                    //.fullscreen = true,
+                };
 
-                // const app = sdk.createApp(
-                //     "zig-out/capy-app.apk",
-                //     step.root_src.?.getPath(step.builder),
-                //     "android/classes.dex",
-                //     config,
-                //     mode,
-                //     .{
-                //         .aarch64 = true,
-                //         .arm = false,
-                //         .x86_64 = false,
-                //         .x86 = false,
-                //     }, // default targets
-                //     key_store,
-                // );
+                const app = sdk.createApp(
+                    "zig-out/capy-app.apk",
+                    step.root_src.?.getPath(b),
+                    &.{ "android/src/CanvasView.java", "android/src/NativeInvocationHandler.java" },
+                    config,
+                    optimize,
+                    .{
+                        .aarch64 = true,
+                        .arm = false,
+                        .x86_64 = false,
+                        .x86 = false,
+                    }, // default targets
+                    key_store,
+                );
 
-                // const capy_android = std.build.Pkg{
-                //     .name = "capy",
-                //     .source = std.build.FileSource{ .path = prefix ++ "/src/main.zig" },
-                //     .dependencies = &[_]std.build.Pkg{ zigimg, app.getAndroidPackage("android") },
-                // };
-                // for (app.libraries) |exe| {
-                //     // Provide the "android" package in each executable we build
-                //     exe.addPackage(capy_android);
-                // }
-                // step.addPackage(capy_android);
-                // step.export_symbol_names = &.{"ANativeActivity_onCreate"};
+                const android_module = b.modules.get("android").?;
+                for (app.libraries) |exe| {
+                    // Provide the "android" package in each executable we build
+                    exe.addAnonymousModule("capy", .{
+                        .source_file = .{ .path = prefix ++ "/src/main.zig" },
+                        .dependencies = &.{
+                            .{ .name = "zigimg", .module = zigimg },
+                            .{ .name = "android", .module = android_module },
+                        },
+                    });
+                    exe.addModule("android", android_module);
+                }
+                step.addAnonymousModule("capy", .{
+                    .source_file = .{ .path = prefix ++ "/src/main.zig" },
+                    .dependencies = &.{
+                        .{ .name = "zigimg", .module = zigimg },
+                        .{ .name = "android", .module = android_module },
+                    },
+                });
+                step.export_symbol_names = &.{"ANativeActivity_onCreate"};
 
-                // // Make the app build when we invoke "zig build" or "zig build install"
-                // // TODO: only invoke keystore if .build_config/android.keystore doesn't exist
-                // // When doing take environment variables or prompt if they're unavailable
-                // //step.step.dependOn(sdk.initKeystore(key_store, .{}));
-                // step.step.dependOn(app.final_step);
+                // Make the app build when we invoke "zig build" or "zig build install"
+                // TODO: only invoke keystore if .build_config/android.keystore doesn't exist
+                // When doing take environment variables or prompt if they're unavailable
+                //step.step.dependOn(sdk.initKeystore(key_store, .{}));
+                step.step.dependOn(app.final_step);
 
-                // //const b = step.builder;
-                // // const keystore_step = b.step("keystore", "Initialize a fresh debug keystore");
-                // // const push_step = b.step("push", "Push the app to a connected android device");
-                // // const run_step = b.step("run", "Run the app on a connected android device");
-
-                // // keystore_step.dependOn(sdk.initKeystore(key_store, .{}));
-                // // push_step.dependOn(app.install());
-                // // run_step.dependOn(app.run());
-                // step.step.dependOn(app.install());
-                // step.step.dependOn(app.run());
+                // keystore_step.dependOn(sdk.initKeystore(key_store, .{}));
+                const install_step = app.install();
+                const run_step = app.run();
+                run_step.dependOn(install_step);
+                return run_step;
             } else {
                 step.linkLibC();
                 step.linkSystemLibrary("gtk+-3.0");
@@ -183,4 +194,7 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !void {
             return error.UnsupportedOs;
         },
     }
+
+    const run_step = b.addRunArtifact(step);
+    return &run_step.step; // this works because run_step is allocated on the heap
 }

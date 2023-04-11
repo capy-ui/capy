@@ -22,7 +22,7 @@
           inherit system;
           config.allowUnfree = true;
           overlays = [
-            devshell.overlay
+            devshell.overlays.default
             self.overlay
           ];
         };

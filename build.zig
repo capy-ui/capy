@@ -104,7 +104,6 @@ pub fn build(b: *std.Build) !void {
                 b.addSharedLibrary(.{ .name = name, .root_source_file = programPath, .target = target, .optimize = optimize })
             else
                 b.addExecutable(.{ .name = name, .root_source_file = programPath, .target = target, .optimize = optimize });
-            try install(exe, .{});
 
             const install_step = b.addInstallArtifact(exe);
             const working = blk: {
@@ -120,7 +119,7 @@ pub fn build(b: *std.Build) !void {
                 std.log.warn("'{s}' is broken (disabled by default)", .{name});
             }
 
-            if (target.toTarget().isWasm()) {
+            if (target.toTarget().isWasm() and false) {
                 if (@import("builtin").zig_backend != .stage2_llvm) {
                     const serve = WebServerStep.create(b, exe);
                     serve.step.dependOn(&exe.install_step.?.step);
@@ -128,14 +127,15 @@ pub fn build(b: *std.Build) !void {
                     serve_step.dependOn(&serve.step);
                 }
             } else {
-                const run_cmd = exe.run();
-                run_cmd.step.dependOn(&exe.install_step.?.step);
-                if (b.args) |args| {
-                    run_cmd.addArgs(args);
-                }
+                // const run_cmd = exe.run();
+                // run_cmd.step.dependOn(&exe.install_step.?.step);
+                // if (b.args) |args| {
+                //     run_cmd.addArgs(args);
+                // }
+                const run_cmd = try install(exe, .{});
 
                 const run_step = b.step(name, "Run this example");
-                run_step.dependOn(&run_cmd.step);
+                run_step.dependOn(run_cmd);
             }
         }
     }
@@ -148,7 +148,7 @@ pub fn build(b: *std.Build) !void {
         .optimize = optimize,
     });
     lib.linkLibC();
-    try install(lib, .{});
+    _ = try install(lib, .{});
     // lib.emit_h = true;
     lib.install();
 
@@ -164,7 +164,7 @@ pub fn build(b: *std.Build) !void {
         .optimize = optimize,
     });
     // tests.emit_docs = .emit;
-    try install(tests, .{});
+    _ = try install(tests, .{});
 
     const test_step = b.step("test", "Run unit tests and also generate the documentation");
     test_step.dependOn(&tests.step);
@@ -175,7 +175,7 @@ pub fn build(b: *std.Build) !void {
         .optimize = optimize,
     });
     coverage_tests.exec_cmd_args = &.{ "kcov", "--clean", "--include-pattern=src/", "kcov-output", null };
-    try install(coverage_tests, .{});
+    _ = try install(coverage_tests, .{});
 
     const cov_step = b.step("coverage", "Perform code coverage of unit tests. This requires 'kcov' to be installed.");
     cov_step.dependOn(&coverage_tests.step);

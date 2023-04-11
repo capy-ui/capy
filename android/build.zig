@@ -8,7 +8,7 @@ const Sdk = @import("Sdk.zig");
 pub fn build(b: *std.build.Builder) !void {
     // Default-initialize SDK
     const sdk = Sdk.init(b, null, .{});
-    const mode = b.standardReleaseOptions();
+    const mode = b.standardOptimizeOption(.{});
     const android_version = b.option(Sdk.AndroidVersion, "android", "Select the android version, default is 'android5'") orelse .android5;
     const aaudio = b.option(bool, "aaudio", "Compile with support for AAudio, default is 'false'") orelse false;
     const opensl = b.option(bool, "opensl", "Compile with support for OpenSL ES, default is 'true'") orelse true;
@@ -68,15 +68,16 @@ pub fn build(b: *std.build.Builder) !void {
 
     // Replace by your app's main file.
     // Here this is some code to choose the example to run
-    const ExampleType = enum { egl, textview, invocationhandler };
+    const ExampleType = enum { egl, minimal, textview, invocationhandler };
     const example = b.option(ExampleType, "example", "Which example to run") orelse .egl;
     const src = switch (example) {
         .egl => "examples/egl/main.zig",
+        .minimal => "examples/minimal/main.zig",
         .textview => "examples/textview/main.zig",
         .invocationhandler => "examples/invocationhandler/main.zig",
     };
-    const dex: ?[:0]const u8 = switch (example) {
-        .invocationhandler => "classes.dex",
+    const dex: ?[]const [:0]const u8 = switch (example) {
+        .invocationhandler => &[_][:0]const u8{"src/NativeInvocationHandler.java"},
         else => null,
     };
 
@@ -95,9 +96,11 @@ pub fn build(b: *std.build.Builder) !void {
         key_store,
     );
 
+    const android_module = b.modules.get("android") orelse unreachable;
+
     for (app.libraries) |exe| {
         // Provide the "android" package in each executable we build
-        exe.addPackage(app.getAndroidPackage("android"));
+        exe.addModule("android", android_module);
     }
 
     // Make the app build when we invoke "zig build" or "zig build install"

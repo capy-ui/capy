@@ -174,6 +174,7 @@ pub fn Events(comptime T: type) type {
                 .Resize => data.resizeHandler = cb,
                 .KeyType => data.keyTypeHandler = cb,
                 .KeyPress => data.keyPressHandler = cb,
+                .PropertyChange => data.propertyChangeHandler = cb,
             }
         }
 
@@ -708,11 +709,9 @@ pub fn runStep(step: shared.EventLoopStep) bool {
 pub const backendExport = struct {
     comptime {
         _ = android.ANativeActivity_createFunc;
-        _ = @import("root").log;
     }
 
     pub const panic = android.panic;
-    pub const log = android.log;
 
     pub const AndroidApp = struct {
         allocator: std.mem.Allocator,

@@ -196,28 +196,31 @@ const LogWriter = struct {
     }
 };
 
-// Android Logging implementation
-pub fn log(
-    comptime message_level: std.log.Level,
-    comptime scope: @Type(.EnumLiteral),
-    comptime format: []const u8,
-    args: anytype,
-) void {
-    const level = switch (message_level) {
-        //  => .ANDROID_LOG_VERBOSE,
-        .debug => android.ANDROID_LOG_DEBUG,
-        .info => android.ANDROID_LOG_INFO,
-        .warn => android.ANDROID_LOG_WARN,
-        .err => android.ANDROID_LOG_ERROR,
-    };
+pub const std_options = struct {
 
-    var logger = LogWriter{
-        .log_level = level,
-    };
-    defer logger.flush();
+    // Android Logging implementation
+    pub fn logFn(
+        comptime message_level: std.log.Level,
+        comptime scope: @Type(.EnumLiteral),
+        comptime format: []const u8,
+        args: anytype,
+    ) void {
+        const level = switch (message_level) {
+            //  => .ANDROID_LOG_VERBOSE,
+            .debug => android.ANDROID_LOG_DEBUG,
+            .info => android.ANDROID_LOG_INFO,
+            .warn => android.ANDROID_LOG_WARN,
+            .err => android.ANDROID_LOG_ERROR,
+        };
 
-    logger.writer().print("{s}: " ++ format, .{@tagName(scope)} ++ args) catch {};
-}
+        var logger = LogWriter{
+            .log_level = level,
+        };
+        defer logger.flush();
+
+        logger.writer().print("{s}: " ++ format, .{@tagName(scope)} ++ args) catch {};
+    }
+};
 
 /// Returns a wrapper implementation for the given App type which implements all
 /// ANativeActivity callbacks.

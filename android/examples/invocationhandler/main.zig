@@ -3,7 +3,6 @@ const std = @import("std");
 const android = @import("android");
 
 pub const panic = android.panic;
-pub const log = android.log;
 
 const EGLContext = android.egl.EGLContext;
 const JNI = android.JNI;
@@ -14,7 +13,6 @@ const NativeInvocationHandler = android.NativeInvocationHandler;
 const app_log = std.log.scoped(.app);
 comptime {
     _ = android.ANativeActivity_createFunc;
-    _ = @import("root").log;
 }
 
 const ButtonData = struct {

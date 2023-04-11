@@ -33,7 +33,7 @@ pub const JNI = opaque {
         const value = jni.invokeJniNoException(function, args);
         if (jni.invokeJniNoException(.ExceptionCheck, .{}) == android.JNI_TRUE) {
             log.err("Encountered exception while calling: {s} {any}", .{ @tagName(function), args });
-            inline for (args) |arg, i| {
+            inline for (args, 0..) |arg, i| {
                 if (comptime std.meta.trait.isZigString(@TypeOf(arg))) {
                     log.err("Arg {d}: {s}", .{ i, arg });
                 }
@@ -80,7 +80,7 @@ pub const JNI = opaque {
     // This is required as float arguments get corrupted when passed as varargs
     fn argsToValueArray(args: anytype) [args.len]android.jvalue {
         var values: [args.len]android.jvalue = undefined;
-        inline for (args) |arg, i| {
+        inline for (args, 0..) |arg, i| {
             var value: android.jvalue = undefined;
             switch (@TypeOf(arg)) {
                 android.jint, u32, c_int => value = .{ .i = @bitCast(i32, arg) },
