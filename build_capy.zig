@@ -1,5 +1,6 @@
 const std = @import("std");
 const AndroidSdk = @import("android/Sdk.zig");
+const Server = std.http.Server;
 
 pub const CapyBuildOptions = struct {
     app_name: []const u8 = "Capy Example",
@@ -12,6 +13,89 @@ pub const CapyBuildOptions = struct {
         download_sdk_automatically: bool = true,
         package_name: []const u8 = "io.capyui.example",
     };
+};
+
+/// Step used to run a web server for WebAssembly apps
+const WebServerStep = struct {
+    step: std.build.Step,
+    exe: *std.build.CompileStep,
+
+    pub fn create(owner: *std.build.Builder, exe: *std.build.LibExeObjStep) *WebServerStep {
+        const self = owner.allocator.create(WebServerStep) catch unreachable;
+        self.* = .{
+            .step = std.build.Step.init(.{
+                .id = .custom,
+                .name = "webserver",
+                .owner = owner,
+                .makeFn = WebServerStep.make,
+            }),
+            .exe = exe,
+        };
+        return self;
+    }
+
+    const Context = struct {
+        exe: *std.build.CompileStep,
+        builder: *std.build.Builder,
+    };
+
+    pub fn make(step: *std.build.Step, prog_node: *std.Progress.Node) !void {
+        // There's no progress to report on.
+        _ = prog_node;
+
+        const self = @fieldParentPtr(WebServerStep, "step", step);
+        const allocator = step.owner.allocator;
+
+        var server = Server.init(allocator, .{ .reuse_address = true });
+        defer server.deinit();
+
+        try server.listen(try std.net.Address.parseIp("127.0.0.1", 8080));
+        std.debug.print("Web server opened at http://localhost:8080/\n", .{});
+
+        while (true) {
+            const res = try server.accept(.{ .dynamic = 8192 });
+            const thread = try std.Thread.spawn(.{}, handler, .{ self, step.owner, res });
+            thread.detach();
+        }
+    }
+
+    fn handler(self: *WebServerStep, build: *std.Build, res: *Server.Response) !void {
+        const allocator = build.allocator;
+        const build_root = build.build_root.path orelse unreachable;
+        while (true) {
+            defer res.reset();
+            try res.wait();
+
+            var arena = std.heap.ArenaAllocator.init(allocator);
+            defer arena.deinit();
+            const req_allocator = arena.allocator();
+
+            const path = res.request.headers.target;
+            var file_path: []const u8 = "";
+            var content_type: []const u8 = "text/html";
+            if (std.mem.eql(u8, path, "/")) {
+                file_path = try std.fs.path.join(req_allocator, &.{ build_root, "src/backends/wasm/index.html" });
+                content_type = "text/html";
+            } else if (std.mem.eql(u8, path, "/capy.js")) {
+                file_path = try std.fs.path.join(req_allocator, &.{ build_root, "src/backends/wasm/capy.js" });
+                content_type = "application/javascript";
+            } else if (std.mem.eql(u8, path, "/zig-app.wasm")) {
+                file_path = self.exe.getOutputSource().getPath2(build, &self.step);
+                content_type = "application/wasm";
+            }
+
+            res.headers.transfer_encoding = .{ .content_length = 14 };
+            res.headers.connection = res.request.headers.connection;
+            res.headers.custom = &.{
+                .{ .name = "Content-Type", .value = content_type },
+            };
+            try res.do();
+
+            _ = try res.write("Hello, World!\n");
+
+            if (res.connection.conn.closing) break;
+        }
+    }
 };
 
 /// Takes the given CompileStep and options and returns a run step.
@@ -184,6 +268,11 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
                 if (step.optimize == .ReleaseSmall) {
                     step.strip = true;
                 }
+
+                const serve = WebServerStep.create(b, step);
+                const install_step = b.addInstallArtifact(step);
+                serve.step.dependOn(&install_step.step);
+                return &serve.step;
             } else {
                 return error.UnsupportedOs;
             }

@@ -4,80 +4,6 @@ pub const install = @import("build_capy.zig").install;
 pub const CapyBuildOptions = @import("build_capy.zig").CapyBuildOptions;
 const FileSource = std.build.FileSource;
 
-/// Step used to run a web server
-const WebServerStep = struct {
-    step: std.build.Step,
-    exe: *std.build.LibExeObjStep,
-    builder: *std.build.Builder,
-
-    pub fn create(builder: *std.build.Builder, exe: *std.build.LibExeObjStep) *WebServerStep {
-        const self = builder.allocator.create(WebServerStep) catch unreachable;
-        self.* = .{
-            .step = std.build.Step.init(.custom, "webserver", builder.allocator, WebServerStep.make),
-            .exe = exe,
-            .builder = builder,
-        };
-        return self;
-    }
-
-    const Context = struct {
-        exe: *std.build.LibExeObjStep,
-        builder: *std.build.Builder,
-    };
-
-    pub fn make(step: *std.build.Step) !void {
-        const self = @fieldParentPtr(WebServerStep, "step", step);
-        const allocator = self.builder.allocator;
-
-        var context = Context{ .builder = self.builder, .exe = self.exe };
-        const builder = http.router.Builder(*Context);
-        std.debug.print("Web server opened at http://localhost:8080/\n", .{});
-        try http.listenAndServe(
-            allocator,
-            try std.net.Address.parseIp("127.0.0.1", 8080),
-            &context,
-            comptime http.router.Router(*Context, &.{
-                builder.get("/", index),
-                builder.get("/capy.js", indexJs),
-                builder.get("/zig-app.wasm", wasmFile),
-            }),
-        );
-    }
-
-    fn index(context: *Context, response: *http.Response, request: http.Request) !void {
-        const allocator = request.arena;
-        const buildRoot = context.builder.build_root;
-        const file = try std.fs.cwd().openFile(try std.fs.path.join(allocator, &.{ buildRoot, "src/backends/wasm/index.html" }), .{});
-        defer file.close();
-        const text = try file.readToEndAlloc(allocator, std.math.maxInt(usize));
-
-        try response.headers.put("Content-Type", "text/html");
-        try response.writer().writeAll(text);
-    }
-
-    fn indexJs(context: *Context, response: *http.Response, request: http.Request) !void {
-        const allocator = request.arena;
-        const buildRoot = context.builder.build_root;
-        const file = try std.fs.cwd().openFile(try std.fs.path.join(allocator, &.{ buildRoot, "src/backends/wasm/capy.js" }), .{});
-        defer file.close();
-        const text = try file.readToEndAlloc(allocator, std.math.maxInt(usize));
-
-        try response.headers.put("Content-Type", "application/javascript");
-        try response.writer().writeAll(text);
-    }
-
-    fn wasmFile(context: *Context, response: *http.Response, request: http.Request) !void {
-        const allocator = request.arena;
-        const path = context.exe.getOutputSource().getPath(context.builder);
-        const file = try std.fs.cwd().openFile(path, .{});
-        defer file.close();
-        const text = try file.readToEndAlloc(allocator, std.math.maxInt(usize));
-
-        try response.headers.put("Content-Type", "application/wasm");
-        try response.writer().writeAll(text);
-    }
-};
-
 pub fn build(b: *std.Build) !void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
@@ -119,24 +45,10 @@ pub fn build(b: *std.Build) !void {
                 std.log.warn("'{s}' is broken (disabled by default)", .{name});
             }
 
-            if (target.toTarget().isWasm() and false) {
-                if (@import("builtin").zig_backend != .stage2_llvm) {
-                    const serve = WebServerStep.create(b, exe);
-                    serve.step.dependOn(&exe.install_step.?.step);
-                    const serve_step = b.step(name, "Start a web server to run this example");
-                    serve_step.dependOn(&serve.step);
-                }
-            } else {
-                // const run_cmd = exe.run();
-                // run_cmd.step.dependOn(&exe.install_step.?.step);
-                // if (b.args) |args| {
-                //     run_cmd.addArgs(args);
-                // }
-                const run_cmd = try install(exe, .{});
+            const run_cmd = try install(exe, .{});
 
-                const run_step = b.step(name, "Run this example");
-                run_step.dependOn(run_cmd);
-            }
+            const run_step = b.step(name, "Run this example");
+            run_step.dependOn(run_cmd);
         }
     }
 
