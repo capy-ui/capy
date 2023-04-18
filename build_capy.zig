@@ -5,6 +5,7 @@ const Server = std.http.Server;
 pub const CapyBuildOptions = struct {
     app_name: []const u8 = "Capy Example",
     android: AndroidOptions = .{},
+    args: ?[]const []const u8 = &.{},
 
     pub const AndroidOptions = struct {
         // As of 2022, 95% of Android devices use Android 8 (Oreo) or higher
@@ -285,5 +286,8 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
     }
 
     const run_step = b.addRunArtifact(step);
+    if (options.args) |args| {
+        run_step.addArgs(args);
+    }
     return &run_step.step; // this works because run_step is allocated on the heap
 }
