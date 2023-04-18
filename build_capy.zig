@@ -4,7 +4,8 @@ const Server = std.http.Server;
 
 pub const CapyBuildOptions = struct {
     app_name: []const u8 = "Capy Example",
-    android: AndroidOptions = .{},
+    // TODO: disable android build if password is not set
+    android: AndroidOptions = .{ .password = "foo" },
     args: ?[]const []const u8 = &.{},
 
     pub const AndroidOptions = struct {
@@ -13,6 +14,8 @@ pub const CapyBuildOptions = struct {
         // TODO: implement sdk download
         download_sdk_automatically: bool = true,
         package_name: []const u8 = "io.capyui.example",
+        /// The password that will be used to sign the keystore. Do not share with others!
+        password: []const u8,
     };
 };
 
@@ -174,7 +177,7 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
                 const key_store = AndroidSdk.KeyStore{
                     .file = ".build_config/android.keystore",
                     .alias = "default",
-                    .password = "ziguana",
+                    .password = options.android.password,
                 };
 
                 var libraries = std.ArrayList([]const u8).init(b.allocator);

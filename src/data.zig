@@ -14,16 +14,16 @@ pub fn lerp(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
     const T = @TypeOf(a);
 
     if (comptime std.meta.trait.isNumber(T)) {
-        const a_casted = comptime blk: {
-            if (std.meta.trait.isIntegral(T)) {
+        const a_casted = blk: {
+            if (comptime std.meta.trait.isIntegral(T)) {
                 break :blk @intToFloat(f64, a);
             } else {
                 break :blk a;
             }
         };
 
-        const b_casted = comptime blk: {
-            if (std.meta.trait.isIntegral(T)) {
+        const b_casted = blk: {
+            if (comptime std.meta.trait.isIntegral(T)) {
                 break :blk @intToFloat(f64, b);
             } else {
                 break :blk b;

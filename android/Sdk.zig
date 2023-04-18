@@ -18,11 +18,9 @@ fn sdkRoot() *const [sdkRootIntern().len]u8 {
 
 // linux-x86_64
 pub fn toolchainHostTag() []const u8 {
-    comptime {
-        const os = builtin.os.tag;
-        const arch = builtin.cpu.arch;
-        return @tagName(os) ++ "-" ++ @tagName(arch);
-    }
+    const os = builtin.os.tag;
+    const arch = builtin.cpu.arch;
+    return @tagName(os) ++ "-" ++ @tagName(arch);
 }
 
 /// This file encodes a instance of an Android SDK interface.

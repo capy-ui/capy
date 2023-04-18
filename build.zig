@@ -62,13 +62,11 @@ pub fn build(b: *std.Build) !void {
     lib.linkLibC();
     _ = try install(lib, .{});
     // lib.emit_h = true;
-    lib.install();
-
-    const sharedlib_install_step = b.addInstallArtifact(lib);
-    b.getInstallStep().dependOn(&sharedlib_install_step.step);
+    const lib_install = b.addInstallArtifact(lib);
+    b.getInstallStep().dependOn(&lib_install.step);
 
     const buildc_step = b.step("shared", "Build capy as a shared library (with C ABI)");
-    buildc_step.dependOn(&lib.install_step.?.step);
+    buildc_step.dependOn(&lib_install.step);
 
     const tests = b.addTest(.{
         .root_source_file = FileSource.relative("src/main.zig"),
