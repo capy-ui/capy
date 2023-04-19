@@ -20,6 +20,8 @@ jobs:
           version: master
       - uses: nektro/actions-setup-zigmod@v1
       - run: zigmod fetch
+      - name: Check formatting
+        run: zig fmt --check .
       - name: Build Capy for native
         run: zig build
       - name: Build Capy for Windows x86_64

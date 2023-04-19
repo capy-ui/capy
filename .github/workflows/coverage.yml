@@ -1,0 +1,35 @@
+name: Code coverage
+on: [push]
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Setup dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev kcov
+
+      - name: Install Zig
+        uses: goto-bus-stop/setup-zig@v2
+        with:
+          version: master
+      
+      - name: Install Zigmod
+        uses: nektro/actions-setup-zigmod@v1
+      - run: zigmod fetch
+
+      - name: Test Coverage Capy for native
+        run: zig build coverage
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        with:
+          name: code-coverage-report
+          directory: kcov-output
+          fail_ci_if_error: true
+          verbose: true
