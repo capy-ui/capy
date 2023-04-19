@@ -90,6 +90,15 @@ pub const Color = packed struct {
         };
     }
 
+    pub fn srgbLerp(a: Color, b: Color, t: f64) Color {
+        return Color{
+            .red = lerpByte(a.red, b.red, t),
+            .green = lerpByte(a.green, b.green, t),
+            .blue = lerpByte(a.blue, b.blue, t),
+            .alpha = lerpByte(a.alpha, b.alpha, t),
+        };
+    }
+
     pub fn toBytes(self: Color, dest: []u8) void {
         std.mem.bytesAsSlice(Color, dest).* = self;
     }
@@ -125,14 +134,14 @@ test "comptime color parse" {
     try expectEqual(@as(u8, 0xef), color2.alpha);
 }
 
-test "color linear interpolation" {
+test "color sRGB linear interpolation" {
     const a = Color.comptimeFromString("#00ff8844");
     const b = Color.comptimeFromString("#88888888");
-    try expectEqual(Color.lerp(a, b, 0.5), Color.lerp(b, a, 0.5));
-    try expectEqual(Color.lerp(a, b, 0.75), Color.lerp(b, a, 0.25));
-    try expectEqual(Color.lerp(a, b, 1.0), Color.lerp(b, a, 0.0));
+    try expectEqual(Color.srgbLerp(a, b, 0.5), Color.srgbLerp(b, a, 0.5));
+    try expectEqual(Color.srgbLerp(a, b, 0.75), Color.srgbLerp(b, a, 0.25));
+    try expectEqual(Color.srgbLerp(a, b, 1.0), Color.srgbLerp(b, a, 0.0));
 
-    const result = Color.lerp(a, b, 0.5);
+    const result = Color.srgbLerp(a, b, 0.5);
     try expectEqual(@as(u8, 0x44), result.red);
     try expectEqual(@as(u8, 0xc3), result.green);
     try expectEqual(@as(u8, 0x88), result.blue);

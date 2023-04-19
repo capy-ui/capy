@@ -63,6 +63,7 @@ pub const Button_Impl = struct {
 
     pub fn _deinit(self: *Button_Impl) void {
         self.enabled.deinit();
+        self.label.deinit();
     }
 };
 
