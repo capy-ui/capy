@@ -1,7 +1,7 @@
 name: Code coverage
 on: [push]
 jobs:
-  ci:
+  coverage:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

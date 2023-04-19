@@ -27,7 +27,7 @@ pub const ThreadPool = struct {
     /// Returns an index into a free thread
     pub fn getFreeThread(self: *ThreadPool) !usize {
         var free: ?usize = null;
-        for (self.list.items) |entry, idx| {
+        for (self.list.items, 0..) |entry, idx| {
             if (!entry.busy) {
                 free = idx;
             }
