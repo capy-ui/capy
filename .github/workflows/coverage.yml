@@ -23,11 +23,8 @@ jobs:
         uses: nektro/actions-setup-zigmod@v1
       - run: zigmod fetch
 
-      - name: Setup virtual X11 server
-        run: Xvfb :19 -screen 0 1024x768x32 &
-
       - name: Test Coverage Capy for native
-        run: zig build coverage
+        run: xvfb-run -a zig build coverage
         env:
           DISPLAY: :19
           NO_AT_BRIDGE: 1
