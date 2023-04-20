@@ -26,7 +26,6 @@ jobs:
       - name: Test Coverage Capy for native
         run: xvfb-run -a zig build coverage
         env:
-          DISPLAY: :19
           NO_AT_BRIDGE: 1
 
       - name: Upload coverage
