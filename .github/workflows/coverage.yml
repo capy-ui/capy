@@ -12,7 +12,7 @@ jobs:
       - name: Setup dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libgtk-3-dev kcov
+          sudo apt-get install -y libgtk-3-dev kcov xvfb
 
       - name: Install Zig
         uses: goto-bus-stop/setup-zig@v2
@@ -23,8 +23,13 @@ jobs:
         uses: nektro/actions-setup-zigmod@v1
       - run: zigmod fetch
 
+      - name: Setup virtual X11 server
+        run: xvfb :19 -screen 0 1024x768x16 &
+
       - name: Test Coverage Capy for native
         run: zig build coverage
+        env:
+          DISPLAY: :19
 
       - name: Upload coverage
         uses: codecov/codecov-action@v3
