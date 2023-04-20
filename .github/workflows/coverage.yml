@@ -24,7 +24,7 @@ jobs:
       - run: zigmod fetch
 
       - name: Setup virtual X11 server
-        run: xvfb :19 -screen 0 1024x768x16 &
+        run: Xvfb :19 -screen 0 1024x768x16 &
 
       - name: Test Coverage Capy for native
         run: zig build coverage
