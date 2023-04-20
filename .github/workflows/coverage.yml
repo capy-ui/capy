@@ -24,12 +24,13 @@ jobs:
       - run: zigmod fetch
 
       - name: Setup virtual X11 server
-        run: Xvfb :19 -screen 0 1024x768x16 &
+        run: Xvfb :19 -screen 0 1024x768x32 &
 
       - name: Test Coverage Capy for native
         run: zig build coverage
         env:
           DISPLAY: :19
+          NO_AT_BRIDGE: 1
 
       - name: Upload coverage
         uses: codecov/codecov-action@v3
