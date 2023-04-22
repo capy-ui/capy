@@ -86,8 +86,12 @@ pub fn build(b: *std.Build) !void {
     });
     coverage_tests.setExecCmd(&.{ "kcov", "--clean", "--include-pattern=src/", "kcov-output", null });
     _ = try install(coverage_tests, .{});
-    const run_coverage_tests = b.addRunArtifact(coverage_tests);
-    run_coverage_tests.has_side_effects = true;
+
+    const run_coverage_tests = b.addSystemCommand(&.{ "kcov", "--clean", "--include-pattern=src/", "kcov-output" });
+    run_coverage_tests.addArtifactArg(coverage_tests);
+
+    // const run_coverage_tests = b.addRunArtifact(coverage_tests);
+    // run_coverage_tests.has_side_effects = true;
 
     const cov_step = b.step("coverage", "Perform code coverage of unit tests. This requires 'kcov' to be installed.");
     cov_step.dependOn(&run_coverage_tests.step);
