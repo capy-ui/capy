@@ -63,11 +63,10 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
             client.* = .{ .allocator = internal.lasting_allocator };
 
             const uri = try std.Uri.parse(self.url);
-            var headers = std.http.Client.Request.Headers{
-                .connection = .close,
-            };
-            var request = try client.request(uri, headers, .{});
-            // try request.finish();
+            var headers = std.http.Headers{ .allocator = internal.lasting_allocator };
+            try headers.append("Connection", "close");
+            var request = try client.request(.GET, uri, headers, .{});
+            try request.start();
             return HttpResponse{ .request = request, .client = client };
         }
     };
@@ -80,7 +79,7 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
         pub const Reader = std.io.Reader(*HttpResponse, ReadError, read);
 
         pub fn isReady(self: *HttpResponse) bool {
-            _ = self;
+            self.request.do() catch return true;
             return true;
         }
 
