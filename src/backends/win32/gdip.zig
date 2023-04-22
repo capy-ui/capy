@@ -1,6 +1,8 @@
-const win32 = @import("win32.zig");
+const std = @import("std");
+const win32 = @import("zigwin32").everything;
+const c = @import("win32.zig");
 
-pub var token: win32.ULONG = undefined;
+pub var token: std.os.windows.ULONG = undefined;
 
 pub const GpError = error{
     Ok,
@@ -27,7 +29,7 @@ pub const GpError = error{
     ProfileNotFound,
 };
 
-pub fn gdipWrap(status: win32.GpStatus) GpError!void {
+pub fn gdipWrap(status: c.GpStatus) GpError!void {
     if (status != .Ok) {
         // TODO: return error type
         @panic("TODO: correctly handle GDI+ errors");
@@ -35,11 +37,11 @@ pub fn gdipWrap(status: win32.GpStatus) GpError!void {
 }
 
 pub const Graphics = struct {
-    peer: win32.GpGraphics,
+    peer: c.GpGraphics,
 
     pub fn createFromHdc(hdc: win32.HDC) GpError!Graphics {
-        var peer: win32.GpGraphics = undefined;
-        try gdipWrap(win32.GdipCreateFromHDC(hdc, &peer));
+        var peer: c.GpGraphics = undefined;
+        try gdipWrap(c.GdipCreateFromHDC(@ptrCast(std.os.windows.HDC, hdc), &peer));
         return Graphics{ .peer = peer };
     }
 };

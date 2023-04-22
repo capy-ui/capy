@@ -7,7 +7,9 @@ const log = std.log.scoped(.win32);
 const EventFunctions = shared.EventFunctions(@This());
 const EventType = shared.BackendEventType;
 
-const win32 = @import("win32.zig");
+// const win32 = @import("win32.zig");
+const zigwin32 = @import("zigwin32");
+const win32 = @import("zigwin32").everything;
 const gdi = @import("gdip.zig");
 const HWND = win32.HWND;
 const HINSTANCE = win32.HINSTANCE;
@@ -16,7 +18,30 @@ const MSG = win32.MSG;
 const WPARAM = win32.WPARAM;
 const LPARAM = win32.LPARAM;
 const LRESULT = win32.LRESULT;
-const WINAPI = win32.WINAPI;
+const WINAPI = std.os.windows.WINAPI;
+
+// Common Control: Tabs
+const TCM_FIRST = 0x1300;
+pub const TCM_GETITEMCOUNT = TCM_FIRST + 4;
+pub const TCM_GETITEMA = TCM_FIRST + 5;
+pub const TCM_GETITEMW = TCM_FIRST + 60;
+pub const TCM_SETITEMA = TCM_FIRST + 6;
+pub const TCM_SETITEMW = TCM_FIRST + 61;
+pub const TCM_INSERTITEMA = TCM_FIRST + 7;
+pub const TCM_INSERTITEMW = TCM_FIRST + 62;
+
+const TCN_FIRST = @as(std.os.windows.UINT, 0) -% 550;
+pub const TCN_SELCHANGE = TCN_FIRST - 1;
+pub const TCN_SELCHANGING = TCN_FIRST - 2;
+
+pub const TCIF_TEXT = 0x0001;
+pub const TCIF_IMAGE = 0x0002;
+pub const TCIF_RTLLEADING = 0x0004;
+pub const TCIF_PARAM = 0x0008;
+pub const TCIF_STATE = 0x0010;
+
+const _T = zigwin32.zig._T;
+const L = zigwin32.zig.L;
 
 const Win32Error = error{ UnknownError, InitializationError };
 
@@ -51,46 +76,54 @@ pub fn init() !void {
 
         const initEx = win32.INITCOMMONCONTROLSEX{
             .dwSize = @sizeOf(win32.INITCOMMONCONTROLSEX),
-            .dwICC = win32.ICC_STANDARD_CLASSES | win32.ICC_WIN95_CLASSES,
+            .dwICC = win32.INITCOMMONCONTROLSEX_ICC.initFlags(.{ .STANDARD_CLASSES = 1, .WIN95_CLASSES = 1 }),
         };
         const code = win32.InitCommonControlsEx(&initEx);
         if (code == 0) {
             std.debug.print("Failed to initialize Common Controls.", .{});
         }
 
-        var input = win32.GdiplusStartupInput{};
-        try gdi.gdipWrap(win32.GdiplusStartup(&gdi.token, &input, null));
+        // var input = win32.GdiplusStartupInput{};
+        // try gdi.gdipWrap(win32.GdiplusStartup(&gdi.token, &input, null));
 
         var ncMetrics: win32.NONCLIENTMETRICSA = undefined;
         ncMetrics.cbSize = @sizeOf(win32.NONCLIENTMETRICSA);
-        _ = win32.SystemParametersInfoA(win32.SPI_GETNONCLIENTMETRICS, @sizeOf(win32.NONCLIENTMETRICSA), &ncMetrics, 0);
+        _ = win32.SystemParametersInfoA(
+            win32.SPI_GETNONCLIENTMETRICS,
+            @sizeOf(win32.NONCLIENTMETRICSA),
+            &ncMetrics,
+            win32.SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS.initFlags(.{}),
+        );
         captionFont = win32.CreateFontIndirectA(&ncMetrics.lfCaptionFont).?;
 
         // Load the default arrow cursor so that components can use it
         // This avoids components keeping the last cursor (resize cursor or loading cursor)
-        defaultCursor = win32.LoadCursorA(null, win32.IDC_ARROW);
+        defaultCursor = zigwin32.ui.windows_and_messaging.LoadCursor(null, win32.IDC_ARROW).?;
     }
 }
 
 pub const MessageType = enum { Information, Warning, Error };
 
 pub fn showNativeMessageDialog(msgType: MessageType, comptime fmt: []const u8, args: anytype) void {
-    const msg = std.fmt.allocPrintZ(lib.internal.scratch_allocator, fmt, args) catch {
+    const msg = std.fmt.allocPrint(lib.internal.scratch_allocator, fmt, args) catch {
         std.log.err("Could not launch message dialog, original text: " ++ fmt, args);
         return;
     };
     defer lib.internal.scratch_allocator.free(msg);
 
-    const icon: u32 = switch (msgType) {
+    const msg_utf16 = std.unicode.utf8ToUtf16LeWithNull(lib.internal.scratch_allocator, msg) catch {
+        std.log.err("Could not launch message dialog, original text: " ++ fmt, args);
+        return;
+    };
+    defer lib.internal.scratch_allocator.free(msg_utf16);
+
+    const icon = switch (msgType) {
         .Information => win32.MB_ICONINFORMATION,
         .Warning => win32.MB_ICONWARNING,
         .Error => win32.MB_ICONERROR,
     };
 
-    _ = win32.messageBoxA(null, msg, "Dialog", icon) catch {
-        std.log.err("Could not launch message dialog, original text: " ++ fmt, args);
-        return;
-    };
+    _ = win32.MessageBoxW(null, msg_utf16, _T("Dialog"), icon);
 }
 
 var defaultWHWND: HWND = undefined;
@@ -99,7 +132,7 @@ pub const Window = struct {
     hwnd: HWND,
     source_dpi: u32 = 96,
 
-    const className = "capyWClass";
+    const className = _T("capyWClass");
 
     fn relayoutChild(hwnd: HWND, lp: LPARAM) callconv(WINAPI) c_int {
         const parent = @intToPtr(HWND, @bitCast(usize, lp));
@@ -127,30 +160,31 @@ pub const Window = struct {
     }
 
     pub fn create() !Window {
-        var wc: win32.WNDCLASSEXA = .{
-            .style = win32.CS_HREDRAW | win32.CS_VREDRAW,
+        var wc: win32.WNDCLASSEXW = .{
+            .cbSize = @sizeOf(win32.WNDCLASSEXW),
+            .style = win32.WNDCLASS_STYLES.initFlags(.{ .HREDRAW = 1, .VREDRAW = 1 }),
             .lpfnWndProc = process,
             .cbClsExtra = 0,
             .cbWndExtra = 0,
             .hInstance = hInst,
             .hIcon = null, // TODO: LoadIcon
             .hCursor = defaultCursor,
-            .hbrBackground = win32.GetSysColorBrush(win32.COLOR_3DFACE),
+            .hbrBackground = win32.GetSysColorBrush(@enumToInt(win32.COLOR_3DFACE)),
             .lpszMenuName = null,
             .lpszClassName = className,
             .hIconSm = null,
         };
 
-        if ((try win32.registerClassExA(&wc)) == 0) {
-            showNativeMessageDialog(.Error, "Could not register window class {s}", .{className});
+        if ((win32.RegisterClassExW(&wc)) == 0) {
+            showNativeMessageDialog(.Error, "Could not register window class {s}", .{"capyWClass"});
             return Win32Error.InitializationError;
         }
 
-        const hwnd = try win32.createWindowExA(
+        const hwnd = win32.CreateWindowExW(
         // composited and layered don't work in wine for some reason, but only in wine
         win32.WS_EX_LEFT, // | win32.WS_EX_COMPOSITED | win32.WS_EX_LAYERED | win32.WS_EX_APPWINDOW, // dwExtStyle
             className, // lpClassName
-            "", // lpWindowName
+            _T(""), // lpWindowName
             win32.WS_OVERLAPPEDWINDOW, // dwStyle
             win32.CW_USEDEFAULT, // X
             win32.CW_USEDEFAULT, // Y
@@ -160,7 +194,7 @@ pub const Window = struct {
             null, // hMenu
             hInst, // hInstance
             null // lpParam
-        );
+        ) orelse return Win32Error.InitializationError;
 
         defaultWHWND = hwnd;
         return Window{ .hwnd = hwnd };
@@ -170,9 +204,9 @@ pub const Window = struct {
     pub fn setChild(self: *Window, hwnd: ?HWND) void {
         // TODO: if null, remove child
         _ = win32.SetParent(hwnd.?, self.hwnd);
-        const style = win32.GetWindowLongPtr(hwnd.?, win32.GWL_STYLE);
-        win32.SetWindowLongPtr(hwnd.?, win32.GWL_STYLE, style | win32.WS_CHILD);
-        _ = win32.showWindow(hwnd.?, win32.SW_SHOWDEFAULT);
+        const style = win32.GetWindowLongPtrW(hwnd.?, win32.GWL_STYLE);
+        _ = win32.SetWindowLongPtrW(hwnd.?, win32.GWL_STYLE, style | @enumToInt(win32.WS_CHILD));
+        _ = win32.ShowWindow(hwnd.?, win32.SW_SHOWDEFAULT);
         _ = win32.UpdateWindow(hwnd.?);
     }
 
@@ -194,7 +228,7 @@ pub const Window = struct {
     }
 
     pub fn show(self: *Window) void {
-        _ = win32.showWindow(self.hwnd, win32.SW_SHOWDEFAULT);
+        _ = win32.ShowWindow(self.hwnd, win32.SW_SHOWDEFAULT);
         _ = win32.UpdateWindow(self.hwnd);
     }
 
@@ -211,11 +245,11 @@ const EventUserData = struct {
     peerPtr: ?*anyopaque = null,
     classUserdata: usize = 0,
     // (very) weak method to detect if a text box's text has actually changed
-    last_text_len: win32.INT = 0,
+    last_text_len: std.os.windows.INT = 0,
 };
 
 inline fn getEventUserData(peer: HWND) *EventUserData {
-    return @intToPtr(*EventUserData, win32.GetWindowLongPtr(peer, win32.GWL_USERDATA));
+    return @intToPtr(*EventUserData, @bitCast(usize, win32.GetWindowLongPtrW(peer, win32.GWL_USERDATA)));
 }
 
 pub fn Events(comptime T: type) type {
@@ -228,7 +262,7 @@ pub fn Events(comptime T: type) type {
                     const nmhdr = @intToPtr(*const win32.NMHDR, @bitCast(usize, lp));
                     //std.log.info("code = {d} vs {d}", .{ nmhdr.code, win32.TCN_SELCHANGING });
                     switch (nmhdr.code) {
-                        win32.TCN_SELCHANGING => {
+                        TCN_SELCHANGING => {
                             return 0;
                         },
                         else => {},
@@ -236,7 +270,7 @@ pub fn Events(comptime T: type) type {
                 },
                 else => {},
             }
-            if (win32.GetWindowLongPtr(hwnd, win32.GWL_USERDATA) == 0) return win32.DefWindowProcA(hwnd, wm, wp, lp);
+            if (win32.GetWindowLongPtrW(hwnd, win32.GWL_USERDATA) == 0) return win32.DefWindowProcA(hwnd, wm, wp, lp);
             switch (wm) {
                 win32.WM_COMMAND => {
                     const code = @intCast(u16, wp >> 16);
@@ -269,7 +303,7 @@ pub fn Events(comptime T: type) type {
                     const nmhdr = @intToPtr(*const win32.NMHDR, @bitCast(usize, lp));
                     //std.log.info("code = {d} vs {d}", .{ nmhdr.code, win32.TCN_SELCHANGING });
                     switch (nmhdr.code) {
-                        win32.TCN_SELCHANGING => {
+                        TCN_SELCHANGING => {
                             return 0;
                         },
                         else => {},
@@ -290,7 +324,10 @@ pub fn Events(comptime T: type) type {
                 },
                 win32.WM_HSCROLL => {
                     const data = getEventUserData(hwnd);
-                    var scrollInfo = win32.SCROLLINFO{ .fMask = win32.SIF_POS };
+                    var scrollInfo = std.mem.zeroInit(win32.SCROLLINFO, .{
+                        .cbSize = @sizeOf(win32.SCROLLINFO),
+                        .fMask = win32.SIF_POS,
+                    });
                     _ = win32.GetScrollInfo(hwnd, win32.SB_HORZ, &scrollInfo);
 
                     const currentScroll = @intCast(u32, scrollInfo.nPos);
@@ -304,10 +341,11 @@ pub fn Events(comptime T: type) type {
                     };
 
                     if (newPos != currentScroll) {
-                        const horizontalScrollInfo = win32.SCROLLINFO{
+                        var horizontalScrollInfo = std.mem.zeroInit(win32.SCROLLINFO, .{
+                            .cbSize = @sizeOf(win32.SCROLLINFO),
                             .fMask = win32.SIF_POS,
                             .nPos = @intCast(c_int, newPos),
-                        };
+                        });
                         _ = win32.SetScrollInfo(hwnd, win32.SB_HORZ, &horizontalScrollInfo, 1);
                         if (@hasDecl(T, "onHScroll")) {
                             T.onHScroll(data, hwnd, newPos);
@@ -316,7 +354,7 @@ pub fn Events(comptime T: type) type {
                 },
                 win32.WM_VSCROLL => {
                     const data = getEventUserData(hwnd);
-                    var scrollInfo = win32.SCROLLINFO{ .fMask = win32.SIF_POS };
+                    var scrollInfo = std.mem.zeroInit(win32.SCROLLINFO, .{ .fMask = win32.SIF_POS });
                     _ = win32.GetScrollInfo(hwnd, win32.SB_VERT, &scrollInfo);
 
                     const currentScroll = @intCast(u32, scrollInfo.nPos);
@@ -330,10 +368,10 @@ pub fn Events(comptime T: type) type {
                     };
 
                     if (newPos != currentScroll) {
-                        const verticalScrollInfo = win32.SCROLLINFO{
+                        var verticalScrollInfo = std.mem.zeroInit(win32.SCROLLINFO, .{
                             .fMask = win32.SIF_POS,
                             .nPos = @intCast(c_int, newPos),
-                        };
+                        });
                         _ = win32.SetScrollInfo(hwnd, win32.SB_VERT, &verticalScrollInfo, 1);
                         if (@hasDecl(T, "onVScroll")) {
                             T.onVScroll(data, hwnd, newPos);
@@ -343,12 +381,12 @@ pub fn Events(comptime T: type) type {
                 win32.WM_PAINT => {
                     const data = getEventUserData(hwnd);
                     var ps: win32.PAINTSTRUCT = undefined;
-                    var hdc: win32.HDC = win32.BeginPaint(hwnd, &ps);
+                    var hdc: win32.HDC = win32.BeginPaint(hwnd, &ps).?;
                     defer _ = win32.EndPaint(hwnd, &ps);
                     var graphics = gdi.Graphics.createFromHdc(hdc) catch unreachable;
 
                     const brush = @ptrCast(win32.HBRUSH, win32.GetStockObject(win32.DC_BRUSH));
-                    win32.SelectObject(hdc, @ptrCast(win32.HGDIOBJ, brush));
+                    _ = win32.SelectObject(hdc, @ptrCast(win32.HGDIOBJ, brush));
 
                     var dc = Canvas.DrawContext{ .hdc = hdc, .graphics = graphics, .hbr = brush, .path = std.ArrayList(Canvas.DrawContext.PathElement)
                         .init(lib.internal.scratch_allocator) };
@@ -368,7 +406,7 @@ pub fn Events(comptime T: type) type {
         pub fn setupEvents(peer: HWND) !void {
             var data = try lib.internal.lasting_allocator.create(EventUserData);
             data.* = EventUserData{}; // ensure that it uses default values
-            win32.SetWindowLongPtr(peer, win32.GWL_USERDATA, @ptrToInt(data));
+            _ = win32.SetWindowLongPtrW(peer, win32.GWL_USERDATA, @bitCast(isize, @ptrToInt(data)));
         }
 
         pub inline fn setUserData(self: *T, data: anytype) void {
@@ -459,7 +497,9 @@ pub const Canvas = struct {
         hbr: win32.HBRUSH,
         path: std.ArrayList(PathElement),
 
-        const PathElement = union(enum) { SetColor: win32.COLORREF, Rectangle: struct { left: c_int, top: c_int, right: c_int, bottom: c_int } };
+        const PathElement = union(enum) {
+            Rectangle: struct { left: c_int, top: c_int, right: c_int, bottom: c_int },
+        };
 
         pub const TextLayout = struct {
             font: win32.HFONT,
@@ -524,8 +564,8 @@ pub const Canvas = struct {
         // TODO: transparency support using https://docs.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-alphablend
         // or use GDI+ and https://docs.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-drawing-with-opaque-and-semitransparent-brushes-use
         pub fn setColorByte(self: *DrawContext, color: lib.Color) void {
-            const colorref: win32.COLORREF = (@as(win32.COLORREF, color.blue) << 16) |
-                (@as(win32.COLORREF, color.green) << 8) | color.red;
+            const colorref = (@as(u32, color.blue) << 16) |
+                (@as(u32, color.green) << 8) | color.red;
             _ = win32.SetDCBrushColor(self.hdc, colorref);
         }
 
@@ -584,8 +624,9 @@ pub const Canvas = struct {
 
     pub fn create() !Canvas {
         if (!classRegistered) {
-            var wc: win32.WNDCLASSEXA = .{
-                .style = win32.CS_HREDRAW | win32.CS_VREDRAW,
+            var wc: win32.WNDCLASSEXW = .{
+                .cbSize = @sizeOf(win32.WNDCLASSEXW),
+                .style = win32.WNDCLASS_STYLES.initFlags(.{ .VREDRAW = 1, .HREDRAW = 1 }),
                 .lpfnWndProc = Canvas.process,
                 .cbClsExtra = 0,
                 .cbWndExtra = 0,
@@ -594,21 +635,21 @@ pub const Canvas = struct {
                 .hCursor = defaultCursor,
                 .hbrBackground = null,
                 .lpszMenuName = null,
-                .lpszClassName = "capyCanvasClass",
+                .lpszClassName = L("capyCanvasClass"),
                 .hIconSm = null,
             };
 
-            if ((try win32.registerClassExA(&wc)) == 0) {
+            if ((win32.RegisterClassExW(&wc)) == 0) {
                 showNativeMessageDialog(.Error, "Could not register window class {s}", .{"capyCanvasClass"});
                 return Win32Error.InitializationError;
             }
             classRegistered = true;
         }
 
-        const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
-            "capyCanvasClass", // lpClassName
-            "", // lpWindowName
-            win32.WS_TABSTOP | win32.WS_CHILD, // dwStyle
+        const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
+            L("capyCanvasClass"), // lpClassName
+            L(""), // lpWindowName
+            win32.WINDOW_STYLE.initFlags(.{ .TABSTOP = 1, .CHILD = 1 }), // dwStyle
             0, // X
             0, // Y
             100, // nWidth
@@ -617,7 +658,7 @@ pub const Canvas = struct {
             null, // hMenu
             hInst, // hInstance
             null // lpParam
-        );
+        ).?;
         try Canvas.setupEvents(hwnd);
 
         return Canvas{ .peer = hwnd };
@@ -856,10 +897,10 @@ pub const Label = struct {
     pub usingnamespace Events(Label);
 
     pub fn create() !Label {
-        const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
-            "STATIC", // lpClassName
-            "", // lpWindowName
-            win32.WS_TABSTOP | win32.WS_CHILD | win32.SS_CENTERIMAGE, // dwStyle
+        const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
+            L("STATIC"), // lpClassName
+            L(""), // lpWindowName
+            @intToEnum(win32.WINDOW_STYLE, @enumToInt(win32.WINDOW_STYLE.initFlags(.{ .TABSTOP = 1, .CHILD = 1 })) | win32.SS_CENTERIMAGE), // dwStyle
             0, // X
             0, // Y
             100, // nWidth
@@ -868,9 +909,9 @@ pub const Label = struct {
             null, // hMenu
             hInst, // hInstance
             null // lpParam
-        );
+        ).?;
         try Label.setupEvents(hwnd);
-        _ = win32.SendMessageA(hwnd, win32.WM_SETFONT, @ptrToInt(captionFont), 1);
+        _ = win32.SendMessageW(hwnd, win32.WM_SETFONT, @ptrToInt(captionFont), 1);
 
         return Label{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator) };
     }
@@ -885,7 +926,7 @@ pub const Label = struct {
         const wide = std.unicode.utf8ToUtf16LeWithNull(allocator, text) catch return; // invalid utf8 or not enough memory
         defer allocator.free(wide);
         if (win32.SetWindowTextW(self.peer, wide) == 0) {
-            std.os.windows.unexpectedError(win32.GetLastError()) catch {};
+            // win32.GetLastError() catch {};
         }
     }
 
@@ -1147,8 +1188,9 @@ pub const Container = struct {
 
     pub fn create() !Container {
         if (!classRegistered) {
-            var wc: win32.WNDCLASSEXA = .{
-                .style = 0,
+            var wc: win32.WNDCLASSEXW = .{
+                .cbSize = @sizeOf(win32.WNDCLASSEXW),
+                .style = win32.WNDCLASS_STYLES.initFlags(.{}),
                 .lpfnWndProc = Container.process,
                 .cbClsExtra = 0,
                 .cbWndExtra = 0,
@@ -1157,21 +1199,21 @@ pub const Container = struct {
                 .hCursor = defaultCursor,
                 .hbrBackground = null,
                 .lpszMenuName = null,
-                .lpszClassName = "capyContainerClass",
+                .lpszClassName = L("capyContainerClass"),
                 .hIconSm = null,
             };
 
-            if ((try win32.registerClassExA(&wc)) == 0) {
+            if ((win32.RegisterClassExW(&wc)) == 0) {
                 showNativeMessageDialog(.Error, "Could not register window class {s}", .{"capyContainerClass"});
                 return Win32Error.InitializationError;
             }
             classRegistered = true;
         }
 
-        const hwnd = try win32.createWindowExA(win32.WS_EX_LEFT, // dwExtStyle
-            "capyContainerClass", // lpClassName
-            "", // lpWindowName
-            win32.WS_TABSTOP | win32.WS_CHILD | win32.WS_CLIPCHILDREN, // dwStyle
+        const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
+            L("capyContainerClass"), // lpClassName
+            L(""), // lpWindowName
+            win32.WINDOW_STYLE.initFlags(.{ .TABSTOP = 1, .CHILD = 1, .CLIPCHILDREN = 1 }), // dwStyle
             0, // X
             0, // Y
             100, // nWidth
@@ -1180,7 +1222,7 @@ pub const Container = struct {
             null, // hMenu
             hInst, // hInstance
             null // lpParam
-        );
+        ).?;
         try Container.setupEvents(hwnd);
 
         return Container{ .peer = hwnd };
@@ -1188,15 +1230,15 @@ pub const Container = struct {
 
     pub fn add(self: *Container, peer: PeerType) void {
         _ = win32.SetParent(peer, self.peer);
-        const style = win32.GetWindowLongPtr(peer, win32.GWL_STYLE);
-        win32.SetWindowLongPtr(peer, win32.GWL_STYLE, style | win32.WS_CHILD);
-        _ = win32.showWindow(peer, win32.SW_SHOWDEFAULT);
+        const style = win32.GetWindowLongPtrW(peer, win32.GWL_STYLE);
+        _ = win32.SetWindowLongPtrW(peer, win32.GWL_STYLE, style | @enumToInt(win32.WS_CHILD));
+        _ = win32.ShowWindow(peer, win32.SW_SHOWDEFAULT);
         _ = win32.UpdateWindow(peer);
     }
 
     pub fn remove(self: *const Container, peer: PeerType) void {
         _ = self;
-        _ = win32.showWindow(peer, win32.SW_HIDE);
+        _ = win32.ShowWindow(peer, win32.SW_HIDE);
     }
 
     pub fn move(self: *const Container, peer: PeerType, x: u32, y: u32) void {
@@ -1228,7 +1270,7 @@ pub fn runStep(step: shared.EventLoopStep) bool {
             }
         },
         .Asynchronous => {
-            if (win32.PeekMessageA(&msg, null, 0, 0, 1) == 0) {
+            if (win32.PeekMessageA(&msg, null, 0, 0, .REMOVE) == 0) {
                 return true; // no message available
             }
         },

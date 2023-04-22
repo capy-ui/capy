@@ -120,18 +120,17 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
         .source_file = .{ .path = prefix ++ "/vendor/zigimg/zigimg.zig" },
     });
 
-    step.addAnonymousModule("capy", .{
-        .source_file = .{ .path = prefix ++ "/src/main.zig" },
-        .dependencies = &.{.{ .name = "zigimg", .module = zigimg }},
+    const zigwin32 = b.createModule(.{
+        .source_file = .{ .path = prefix ++ "/vendor/zigwin32/win32.zig" },
     });
 
-    // const capy = std.build.Pkg{
-    //     .name = "capy",
-    //     .source = std.build.FileSource{ .path = prefix ++ "/src/main.zig" },
-    //     //.dependencies = &[_]std.build.Pkg{ zigimg, zelda },
-    //     .dependencies = &[_]std.build.Pkg{zigimg},
-    // };
-    //if (!step.target.toTarget().isAndroid()) step.addPackage(capy);
+    step.addAnonymousModule("capy", .{
+        .source_file = .{ .path = prefix ++ "/src/main.zig" },
+        .dependencies = &.{
+            .{ .name = "zigimg", .module = zigimg },
+            .{ .name = "zigwin32", .module = zigwin32 },
+        },
+    });
 
     switch (step.target.getOsTag()) {
         .windows => {
