@@ -74,7 +74,7 @@ const WebServerStep = struct {
             defer arena.deinit();
             const req_allocator = arena.allocator();
 
-            const path = res.request.headers.target;
+            const path = res.request.target;
             var file_path: []const u8 = "";
             var content_type: []const u8 = "text/html";
             if (std.mem.eql(u8, path, "/")) {
@@ -88,14 +88,17 @@ const WebServerStep = struct {
                 content_type = "application/wasm";
             }
 
-            res.headers.transfer_encoding = .{ .content_length = 14 };
-            res.headers.connection = res.request.headers.connection;
-            res.headers.custom = &.{
-                .{ .name = "Content-Type", .value = content_type },
-            };
-            try res.do();
+            var file = try std.fs.openFileAbsolute(file_path, .{ .mode = .read_only });
+            defer file.close();
+            const content = try file.readToEndAlloc(req_allocator, std.math.maxInt(usize));
 
-            _ = try res.write("Hello, World!\n");
+            res.transfer_encoding = .{ .content_length = content.len };
+            try res.headers.append("Connection", res.request.headers.getFirstValue("Connection") orelse "close");
+            try res.headers.append("Content-Type", content_type);
+
+            try res.do();
+            try res.writer().writeAll(content);
+            try res.finish();
 
             if (res.connection.conn.closing) break;
         }
