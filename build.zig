@@ -1,5 +1,4 @@
 const std = @import("std");
-const http = @import("deps.zig").imports.apple_pie;
 pub const install = @import("build_capy.zig").install;
 pub const CapyBuildOptions = @import("build_capy.zig").CapyBuildOptions;
 const FileSource = std.build.FileSource;

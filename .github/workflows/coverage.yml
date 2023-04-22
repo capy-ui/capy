@@ -18,10 +18,6 @@ jobs:
         uses: goto-bus-stop/setup-zig@v2
         with:
           version: master
-      
-      - name: Install Zigmod
-        uses: nektro/actions-setup-zigmod@v1
-      - run: zigmod fetch
 
       - name: Test Coverage Capy for native
         run: xvfb-run -a zig build coverage
