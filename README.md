@@ -4,6 +4,9 @@
 
 ---
 
+![Code Coverage](https://img.shields.io/codecov/c/github/capy-ui/capy?style=for-the-badge)
+![MPL-2.0 License](https://img.shields.io/github/license/capy-ui/capy?style=for-the-badge)
+
 ![the glorius software in action](https://raw.githubusercontent.com/zenith391/bottom-zig-gui/main/.github/screenshot.png)
 
 ## Introduction
