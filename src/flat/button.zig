@@ -29,24 +29,33 @@ pub const FlatButton = struct {
         const width = @intCast(u32, backend.getWidthFromPeer(events.peer));
         const height = @intCast(u32, backend.getHeightFromPeer(events.peer));
 
-        ctx.setColorByte(Color.comptimeFromString("#00000029"));
-        ctx.rectangle(0, 0, width, height);
+        ctx.setColorByte(Color.comptimeFromString("#ffffffb3"));
+        // ctx.setColorByte(Color.comptimeFromString("#f9f9f94d"));
+        ctx.roundedRectangle(0, 0, width, height, 4);
         ctx.fill();
 
-        if (self.enabled) {
-            ctx.setColorByte(Color.comptimeFromString("#ffffffb3"));
-        } else {
-            ctx.setColor(0.7, 0.7, 0.7);
-        }
-        ctx.rectangle(3, 3, width - 6, height - 6);
-        ctx.fill();
+        ctx.setColorByte(Color.comptimeFromString("#ffffffb3"));
+        ctx.setLinearGradient(.{
+            .x0 = 0,
+            .y0 = 0,
+            .x1 = 0,
+            .y1 = @intToFloat(f32, height) * 3,
+            .stops = &.{
+                .{ .offset = 0.33, .color = Color.comptimeFromString("#00000029") },
+                .{ .offset = 1.00, .color = Color.comptimeFromString("#0000000F") },
+            },
+        });
+        ctx.roundedRectangle(0, 0, width, height, 4);
+        ctx.stroke();
 
         const text = self.label;
         var layout = backend.Canvas.DrawContext.TextLayout.init();
         defer layout.deinit();
+        layout.setFont(.{ .face = "Segoe UI", .size = 14.0 / 96.0 * 72.0 });
+        const textSize = layout.getTextSize(text);
+
         ctx.setColorByte(Color.comptimeFromString("#000000e4"));
-        layout.setFont(.{ .face = "Segoe UI", .size = 14.0 });
-        ctx.text(0, 0, layout, text);
+        ctx.text(@intCast(i32, (width -| textSize.width) / 2), @intCast(i32, (height -| textSize.height) / 2), layout, text);
         ctx.fill();
     }
 

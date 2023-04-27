@@ -25,8 +25,11 @@ pub fn main() !void {
             capy.Rect(.{ .color = capy.Color.comptimeFromString("#f6f6ef") }),
             capy.Column(.{}, .{
                 capy.Stack(.{
-                    capy.Rect(.{ .color = capy.Color.comptimeFromString("#ff6600") }),
-                    capy.Label(.{ .text = "Hacker News", .alignment = .Left }),
+                    capy.Rect(.{
+                        .color = capy.Color.comptimeFromString("#ff6600"),
+                        .cornerRadius = .{ 0.0, 0.0, 5.0, 5.0 },
+                    }),
+                    capy.Label(.{ .text = "Hacker News", .alignment = .Center }),
                 }),
                 capy.ColumnList(.{}, &hn_list_model),
             }),

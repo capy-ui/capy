@@ -5,6 +5,11 @@ pub usingnamespace capy.cross_platform;
 var gpa: std.heap.GeneralPurposeAllocator(.{}) = undefined;
 pub const capy_allocator = gpa.allocator();
 
+var corner_1 = capy.Atom(f32).of(5);
+var corner_2 = capy.Atom(f32).of(5);
+var corner_3 = capy.Atom(f32).of(5);
+var corner_4 = capy.Atom(f32).of(5);
+
 pub fn main() !void {
     try capy.init();
     defer capy.deinit();
@@ -36,6 +41,24 @@ pub fn main() !void {
                         .bind("text", someSliderText),
                 }),
             })),
+            capy.Tab(.{ .label = "Rounded Rectangle" }, capy.Column(.{}, .{
+                capy.Align(
+                    .{},
+                    capy.Canvas(.{ .preferredSize = capy.Size.init(100, 100), .ondraw = drawRounded }),
+                ),
+                capy.Row(.{}, .{
+                    capy.Expanded(capy.Slider(.{ .min = 0, .max = 100, .step = 0.1 })
+                        .bind("value", &corner_1)),
+                    capy.Expanded(capy.Slider(.{ .min = 0, .max = 100, .step = 0.1 })
+                        .bind("value", &corner_2)),
+                }),
+                capy.Row(.{}, .{
+                    capy.Expanded(capy.Slider(.{ .min = 0, .max = 100, .step = 0.1 })
+                        .bind("value", &corner_3)),
+                    capy.Expanded(capy.Slider(.{ .min = 0, .max = 100, .step = 0.1 })
+                        .bind("value", &corner_4)),
+                }),
+            })),
             //capy.Tab(.{ .label = "Drawing" }, capy.Expanded(Drawer(.{}))),
         }),
     }));
@@ -43,6 +66,24 @@ pub fn main() !void {
     window.show();
     capy.runEventLoop();
     std.log.info("Goodbye!", .{});
+}
+
+fn drawRounded(cnv: *anyopaque, ctx: *capy.DrawContext) !void {
+    const canvas = @ptrCast(*capy.Canvas_Impl, @alignCast(@alignOf(capy.Canvas_Impl), cnv));
+
+    ctx.setColor(0.7, 0.9, 0.3);
+    ctx.setLinearGradient(.{ .x0 = 80, .y0 = 0, .x1 = 100, .y1 = 100, .stops = &.{
+        .{ .offset = 0.1, .color = capy.Color.yellow },
+        .{ .offset = 0.8, .color = capy.Color.white },
+    } });
+    ctx.roundedRectangleEx(
+        0,
+        0,
+        canvas.getWidth(),
+        canvas.getHeight(),
+        .{ corner_1.get(), corner_2.get(), corner_3.get(), corner_4.get() },
+    );
+    ctx.fill();
 }
 
 pub const Drawer_Impl = struct {

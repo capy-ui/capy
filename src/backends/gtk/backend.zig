@@ -329,6 +329,10 @@ pub fn Events(comptime T: type) type {
             std.log.info("peer = {} width = {d}", .{ self, self.getWidth() });
             const data = getEventUserData(self.peer);
             lib.internal.lasting_allocator.destroy(data);
+
+            if (@hasDecl(T, "_deinit")) {
+                self._deinit();
+            }
         }
 
         pub inline fn setUserData(self: *T, data: anytype) void {
@@ -690,6 +694,10 @@ pub const TextField = struct {
         c.gtk_editable_set_editable(@ptrCast(*c.GtkEditable, self.peer), @boolToInt(!readOnly));
         c.gtk_widget_set_can_focus(self.peer, @boolToInt(!readOnly));
     }
+
+    pub fn _deinit(self: *const TextField) void {
+        self.dup_text.deinit();
+    }
 };
 
 pub const Canvas = struct {
@@ -763,9 +771,101 @@ pub const Canvas = struct {
             c.gdk_cairo_set_source_rgba(self.cr, &color);
         }
 
+        pub const LinearGradient = struct {
+            x0: f32,
+            y0: f32,
+            x1: f32,
+            y1: f32,
+            stops: []const Stop,
+
+            pub const Stop = struct {
+                offset: f32,
+                color: lib.Color,
+            };
+        };
+
+        pub fn setLinearGradient(self: *DrawContext, gradient: LinearGradient) void {
+            const pattern = c.cairo_pattern_create_linear(gradient.x0, gradient.y0, gradient.x1, gradient.y1).?;
+            for (gradient.stops) |stop| {
+                c.cairo_pattern_add_color_stop_rgba(
+                    pattern,
+                    stop.offset,
+                    @intToFloat(f32, stop.color.red) / 255.0,
+                    @intToFloat(f32, stop.color.green) / 255.0,
+                    @intToFloat(f32, stop.color.blue) / 255.0,
+                    @intToFloat(f32, stop.color.alpha) / 255.0,
+                );
+            }
+            c.cairo_set_source(self.cr, pattern);
+        }
+
         /// Add a rectangle to the current path
         pub fn rectangle(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
             c.cairo_rectangle(self.cr, @intToFloat(f64, x), @intToFloat(f64, y), @intToFloat(f64, w), @intToFloat(f64, h));
+        }
+
+        pub fn roundedRectangle(self: *DrawContext, x: i32, y: i32, w: u32, h: u32, corner_radius: f32) void {
+            self.roundedRectangleEx(x, y, w, h, .{corner_radius} ** 4);
+        }
+
+        /// The radiuses are in order: top left, top right, bottom left, bottom right
+        pub fn roundedRectangleEx(self: *DrawContext, x: i32, y: i32, w: u32, h: u32, corner_radiuses: [4]f32) void {
+            var corners: [4]f32 = corner_radiuses;
+            if (corners[0] + corners[1] > @intToFloat(f32, w)) {
+                const left_prop = corners[0] / (corners[0] + corners[1]);
+                corners[0] = left_prop * @intToFloat(f32, w);
+                corners[1] = (1 - left_prop) * @intToFloat(f32, w);
+            }
+            if (corners[2] + corners[3] > @intToFloat(f32, w)) {
+                const left_prop = corners[2] / (corners[2] + corners[3]);
+                corners[2] = left_prop * @intToFloat(f32, w);
+                corners[3] = (1 - left_prop) * @intToFloat(f32, w);
+            }
+            if (corners[0] + corners[2] > @intToFloat(f32, h)) {
+                const top_prop = corners[0] / (corners[0] + corners[2]);
+                corners[0] = top_prop * @intToFloat(f32, h);
+                corners[2] = (1 - top_prop) * @intToFloat(f32, h);
+            }
+            if (corners[1] + corners[3] > @intToFloat(f32, h)) {
+                const top_prop = corners[1] / (corners[1] + corners[3]);
+                corners[1] = top_prop * @intToFloat(f32, h);
+                corners[3] = (1 - top_prop) * @intToFloat(f32, h);
+            }
+
+            c.cairo_new_sub_path(self.cr);
+            c.cairo_arc(
+                self.cr,
+                @intToFloat(f64, x + @intCast(i32, w)) - corners[1],
+                @intToFloat(f64, y) + corners[1],
+                corners[1],
+                -std.math.pi / 2.0,
+                0.0,
+            );
+            c.cairo_arc(
+                self.cr,
+                @intToFloat(f64, x + @intCast(i32, w)) - corners[3],
+                @intToFloat(f64, y + @intCast(i32, h)) - corners[3],
+                corners[3],
+                0.0,
+                std.math.pi / 2.0,
+            );
+            c.cairo_arc(
+                self.cr,
+                @intToFloat(f64, x) + corners[2],
+                @intToFloat(f64, y + @intCast(i32, h)) - corners[2],
+                corners[2],
+                std.math.pi / 2.0,
+                std.math.pi,
+            );
+            c.cairo_arc(
+                self.cr,
+                @intToFloat(f64, x) + corners[0],
+                @intToFloat(f64, y) + corners[0],
+                corners[0],
+                std.math.pi,
+                std.math.pi / 2.0 * 3.0,
+            );
+            c.cairo_close_path(self.cr);
         }
 
         pub fn ellipse(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
@@ -775,9 +875,9 @@ pub const Canvas = struct {
             }
             var matrix: c.cairo_matrix_t = undefined;
             c.cairo_get_matrix(self.cr, &matrix);
-            const scale = @intToFloat(f32, w + h);
-            c.cairo_scale(self.cr, @intToFloat(f32, w) / scale, @intToFloat(f32, h) / scale);
-            c.cairo_arc(self.cr, @intToFloat(f64, x), @intToFloat(f64, y), scale, 0, 2 * std.math.pi);
+            const scale = @intToFloat(f32, std.math.max(w, h)) / 2;
+            c.cairo_scale(self.cr, @intToFloat(f32, w / 2) / scale, @intToFloat(f32, h / 2) / scale);
+            c.cairo_arc(self.cr, @intToFloat(f32, w / 2), @intToFloat(f32, h / 2), scale, 0, 2 * std.math.pi);
             c.cairo_set_matrix(self.cr, &matrix);
         }
 

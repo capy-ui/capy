@@ -58,6 +58,7 @@ pub const Rect_Impl = struct {
     widget_data: Rect_Impl.WidgetData = .{},
     preferredSize: Atom(?Size) = Atom(?Size).of(null),
     color: Atom(Color) = Atom(Color).of(Color.black),
+    cornerRadius: Atom([4]f32) = Atom([4]f32).of(.{0.0} ** 4),
 
     pub fn init() Rect_Impl {
         return Rect_Impl.init_events(Rect_Impl{});
@@ -75,7 +76,7 @@ pub const Rect_Impl = struct {
 
     pub fn draw(self: *Rect_Impl, ctx: *Canvas_Impl.DrawContext) !void {
         ctx.setColorByte(self.color.get());
-        ctx.rectangle(0, 0, self.getWidth(), self.getHeight());
+        ctx.roundedRectangleEx(0, 0, self.getWidth(), self.getHeight(), self.cornerRadius.get());
         ctx.fill();
     }
 
@@ -84,6 +85,12 @@ pub const Rect_Impl = struct {
             self.peer = try backend.Canvas.create();
             _ = try self.color.addChangeListener(.{ .function = struct {
                 fn callback(_: Color, userdata: usize) void {
+                    const peer = @intToPtr(*?backend.Canvas, userdata);
+                    peer.*.?.requestDraw() catch {};
+                }
+            }.callback, .userdata = @ptrToInt(&self.peer) });
+            _ = try self.cornerRadius.addChangeListener(.{ .function = struct {
+                fn callback(_: [4]f32, userdata: usize) void {
                     const peer = @intToPtr(*?backend.Canvas, userdata);
                     peer.*.?.requestDraw() catch {};
                 }
@@ -98,6 +105,7 @@ pub fn Rect(config: Rect_Impl.Config) Rect_Impl {
     rect.addDrawHandler(&Rect_Impl.draw) catch unreachable;
     rect.preferredSize = Atom(?Size).of(config.preferredSize);
     rect.color = Atom(Color).of(config.color);
+    rect.cornerRadius = Atom([4]f32).of(config.cornerRadius);
     rect.widget_data.atoms.name.set(config.name);
     return rect;
 }
