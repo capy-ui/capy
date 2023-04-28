@@ -79,12 +79,12 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
         pub const Reader = std.io.Reader(*HttpResponse, ReadError, read);
 
         pub fn isReady(self: *HttpResponse) bool {
-            self.request.do() catch return true;
+            self.request.wait() catch return true;
             return true;
         }
 
         pub fn checkError(self: *HttpResponse) !void {
-            try self.request.do();
+            try self.request.wait();
             // if (self.response.status_code != .success_ok) {
             //     return error.FailedRequest;
             // }
