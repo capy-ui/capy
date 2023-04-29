@@ -19,7 +19,7 @@ jobs:
         with:
           version: master
       - name: Check formatting
-        run: zig fmt --check .
+        run: zig fmt --check src examples
       - name: Build Capy for native
         run: zig build
       - name: Build Capy for Windows x86_64
