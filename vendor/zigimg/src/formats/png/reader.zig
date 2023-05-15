@@ -311,7 +311,7 @@ fn readAllData(
     var temp_allocator = if (tmpbytes < 128 * 1024) options.temp_allocator else allocator;
     var tmp_buffer = try temp_allocator.alloc(u8, tmpbytes);
     defer temp_allocator.free(tmp_buffer);
-    mem.set(u8, tmp_buffer, 0);
+    @memset(tmp_buffer, 0);
     var prev_row = tmp_buffer[0..virtual_line_bytes];
     var current_row = tmp_buffer[virtual_line_bytes .. 2 * virtual_line_bytes];
     const pixel_stride = @intCast(u8, result_line_bytes / width);
@@ -389,7 +389,7 @@ fn readAllData(
             const pass_length = pass_bytes + filter_stride;
             const result_pass_line_bytes = pixel_stride * pass_width[pass];
             const deinterlace_stride = xinc[pass] * pixel_stride;
-            mem.set(u8, prev_row, 0);
+            @memset(prev_row, 0);
             const destx = start_x[pass] * pixel_stride;
             var desty = start_y[pass];
             var y: u32 = 0;

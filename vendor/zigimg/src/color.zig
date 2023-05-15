@@ -457,7 +457,7 @@ pub fn IndexedStorage(comptime T: type) type {
 
             // Since not all palette entries need to be filled we make sure
             // they are all zero at the start.
-            std.mem.set(Rgba32, res.palette, Rgba32.initRgba(0, 0, 0, 0));
+            @memset(res.palette, Rgba32.initRgba(0, 0, 0, 0));
             return res;
         }
 

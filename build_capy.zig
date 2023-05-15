@@ -57,8 +57,8 @@ const WebServerStep = struct {
         std.debug.print("Web server opened at http://localhost:8080/\n", .{});
 
         while (true) {
-            const res = try server.accept(.{ .dynamic = 8192 });
-            const thread = try std.Thread.spawn(.{}, handler, .{ self, step.owner, res });
+            var res = try server.accept(.{ .allocator = allocator });
+            const thread = try std.Thread.spawn(.{}, handler, .{ self, step.owner, &res });
             thread.detach();
         }
     }
@@ -67,7 +67,7 @@ const WebServerStep = struct {
         const allocator = build.allocator;
         const build_root = build.build_root.path orelse unreachable;
         while (true) {
-            defer res.reset();
+            defer _ = res.reset();
             try res.wait();
 
             var arena = std.heap.ArenaAllocator.init(allocator);
