@@ -50,6 +50,7 @@ pub fn lerp(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
 }
 const lerpInt = lerp;
 
+pub const Easing = *const fn (t: f64) f64;
 pub const Easings = struct {
     pub fn Linear(t: f64) f64 {
         return t;
@@ -145,7 +146,11 @@ pub fn Atom(comptime T: type) type {
         const isAnimable = isAnimableType(T);
 
         pub const ValueType = T;
-        pub const ChangeListener = struct { function: *const fn (newValue: T, userdata: usize) void, userdata: usize = 0 };
+        pub const ChangeListener = struct {
+            function: *const fn (newValue: T, userdata: usize) void,
+            userdata: usize = 0,
+            type: enum { Change, Destroy } = .Change,
+        };
         pub const Binding = struct {
             bound_to: *Self,
             link_id: u16,
@@ -179,6 +184,48 @@ pub fn Atom(comptime T: type) type {
             ptr.* = Self.of(value);
             ptr.allocator = lasting_allocator;
             return ptr;
+        }
+
+        /// Allocates a new atom and make it follow the value of the original atom, albeit
+        /// with an animation.
+        pub fn animated(original: *Self, easing: Easing, duration: u64) !*Self {
+            var self = Self.alloc(original.get());
+
+            const AnimationParameters = struct {
+                easing: Easing,
+                duration: u64,
+                self_ptr: *Self,
+            };
+
+            const userdata = try self.allocator.?.create(AnimationParameters);
+            userdata.* = .{ .easing = easing, .duration = duration, .self_ptr = self };
+
+            const animate_fn = struct {
+                fn a(new_value: T, int: usize) void {
+                    const ptr = @intToPtr(*AnimationParameters, int);
+                    ptr.self_ptr.animate(ptr.easing, new_value, ptr.duration);
+                }
+            }.a;
+
+            const destroy_fn = struct {
+                fn a(_: T, int: usize) void {
+                    const ptr = @intToPtr(*AnimationParameters, int);
+                    const allocator = lasting_allocator;
+                    allocator.destroy(ptr);
+                }
+            }.a;
+
+            _ = try original.addChangeListener(.{
+                .function = animate_fn,
+                .userdata = @ptrToInt(userdata),
+                .type = .Change,
+            });
+            _ = try original.addChangeListener(.{
+                .function = destroy_fn,
+                .userdata = @ptrToInt(userdata),
+                .type = .Destroy,
+            });
+            return self;
         }
 
         /// This function updates any current animation.
@@ -488,7 +535,9 @@ pub fn Atom(comptime T: type) type {
             var nullableNode = self.onChange.first;
             const value = self.get();
             while (nullableNode) |node| {
-                node.data.function(value, node.data.userdata);
+                if (node.data.type == .Change) {
+                    node.data.function(value, node.data.userdata);
+                }
                 nullableNode = node.next;
             }
         }
@@ -497,6 +546,9 @@ pub fn Atom(comptime T: type) type {
             var nullableNode = self.onChange.first;
             while (nullableNode) |node| {
                 nullableNode = node.next;
+                if (node.data.type == .Destroy) {
+                    node.data.function(undefined, node.data.userdata);
+                }
                 lasting_allocator.destroy(node);
             }
             if (self.allocator) |allocator| {
@@ -766,4 +818,16 @@ test "format atom" {
     try std.testing.expectEqualStrings("10 and 1", format2.get());
     dataSource4.set(42);
     try std.testing.expectEqualStrings("10 and 42", format2.get());
+}
+
+test "animated atom" {
+    var original = Atom(i32).of(0);
+    defer original.deinit();
+
+    var animated = try Atom(i32).animated(&original, Easings.Linear, 1000);
+    defer animated.deinit();
+    defer _animatedAtoms.clearAndFree();
+
+    original.set(1000);
+    try std.testing.expect(animated.hasAnimation());
 }
