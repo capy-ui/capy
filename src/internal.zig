@@ -126,6 +126,7 @@ pub fn Widgeting(comptime T: type) type {
             self.widget_data.handlers.resizeHandlers.deinit();
             self.widget_data.handlers.keyTypeHandlers.deinit();
 
+            // TODO: deinit all datawrapper properties
             if (self.peer) |peer| peer.deinit();
         }
 

@@ -22,6 +22,7 @@ pub fn main() !void {
     );
 
     var window = try capy.Window.init();
+    defer window.deinit();
 
     // Capy is based around DataWrappers, which is just a way to bind properties, listen to changes, etc.
     // This allows to implement things like `FormatDataWrapper`, which takes other data wrappers as arguments

@@ -196,6 +196,7 @@ pub fn Events(comptime T: type) type {
             var data = try lib.internal.lasting_allocator.create(EventUserData);
             data.* = EventUserData{ .peer = widget }; // ensure that it uses default values
             c.g_object_set_data(@ptrCast(*c.GObject, widget), "eventUserData", data);
+            _ = c.g_object_ref(@ptrCast(*c.GObject, widget));
         }
 
         pub inline fn copyEventUserData(source: *c.GtkWidget, destination: anytype) void {
@@ -325,14 +326,13 @@ pub fn Events(comptime T: type) type {
         }
 
         pub fn deinit(self: *const T) void {
-            std.log.info("deinit {s}", .{@typeName(T)});
-            std.log.info("peer = {} width = {d}", .{ self, self.getWidth() });
             const data = getEventUserData(self.peer);
             lib.internal.lasting_allocator.destroy(data);
 
             if (@hasDecl(T, "_deinit")) {
                 self._deinit();
             }
+            _ = c.g_object_unref(@ptrCast(*c.GObject, self.peer));
         }
 
         pub inline fn setUserData(self: *T, data: anytype) void {
@@ -923,6 +923,10 @@ pub const Canvas = struct {
                 @intToFloat(f64, y) / (@intToFloat(f64, h) / height),
             );
             c.cairo_paint(self.cr);
+        }
+
+        pub fn setStrokeWidth(self: *DrawContext, width: f32) void {
+            c.cairo_set_line_width(self.cr, width);
         }
 
         /// Stroke the current path and reset the path.
