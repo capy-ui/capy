@@ -18,7 +18,7 @@ pub fn build(b: *std.Build) !void {
     var walker = try examplesDir.walk(b.allocator);
     defer walker.deinit();
     while (try walker.next()) |entry| {
-        if (entry.kind == .File and std.mem.eql(u8, std.fs.path.extension(entry.path), ".zig")) {
+        if (entry.kind == .file and std.mem.eql(u8, std.fs.path.extension(entry.path), ".zig")) {
             const name = try std.mem.replaceOwned(u8, b.allocator, entry.path[0 .. entry.path.len - 4], std.fs.path.sep_str, "-");
             defer b.allocator.free(name);
 

@@ -28,8 +28,7 @@ pub fn findUserConfig(b: *Builder, versions: Sdk.ToolchainVersions) !UserConfig 
             print("Unexpected error reading {s}: {s}\n", .{ config_path, @errorName(err) });
             return err;
         };
-        var stream = std.json.TokenStream.init(bytes);
-        if (std.json.parse(UserConfig, &stream, .{ .allocator = b.allocator })) |conf| {
+        if (std.json.parseFromSlice(UserConfig, b.allocator, bytes, .{})) |conf| {
             config = conf;
         } else |err| {
             print("Could not parse {s} ({s}).\n", .{ config_path, @errorName(err) });
