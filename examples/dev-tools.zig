@@ -52,7 +52,7 @@ pub fn main() !void {
     );
 
     app_window.setTitle("Capy Dev Tools");
-    app_window.resize(400, 200);
+    app_window.setPreferredSize(400, 200);
     app_window.show();
 
     capy.runEventLoop();

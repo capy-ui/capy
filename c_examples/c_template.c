@@ -7,7 +7,7 @@ void main() {
 	capy_init_backend();
 
 	window = capy_window_init();
-	capy_window_resize(window, 800, 600);
+	capy_window_set_preferred_size(window, 800, 600);
 
 	button = capy_button("Hello, World");
 	capy_window_set(window, button);

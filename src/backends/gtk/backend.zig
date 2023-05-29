@@ -75,13 +75,25 @@ pub const Window = struct {
         c.gtk_container_add(@ptrCast(*c.GtkContainer, window), vbox);
         c.gtk_widget_show(vbox);
 
-        if (comptime @import("builtin").zig_backend != .stage1) {
-            _ = c.g_signal_connect_data(window, "hide", @ptrCast(c.GCallback, &gtkWindowHidden), null, null, c.G_CONNECT_AFTER);
-        } else {
-            _ = c.g_signal_connect_data(window, "hide", @ptrCast(c.GCallback, gtkWindowHidden), null, null, c.G_CONNECT_AFTER);
-        }
+        _ = c.g_signal_connect_data(window, "hide", @ptrCast(c.GCallback, &gtkWindowHidden), null, null, c.G_CONNECT_AFTER);
         randomWindow = window;
+        try Window.setupEvents(window);
+        _ = c.g_signal_connect_data(window, "check-resize", @ptrCast(c.GCallback, &gtkConfigure), null, null, c.G_CONNECT_AFTER);
         return Window{ .peer = window, .wbin = wbin, .vbox = vbox };
+    }
+
+    fn gtkConfigure(peer: *c.GtkWidget, userdata: usize) callconv(.C) c.gboolean {
+        _ = userdata;
+        const data = getEventUserData(peer);
+        var width: c.gint = undefined;
+        var height: c.gint = undefined;
+        c.gtk_window_get_size(@ptrCast(*c.GtkWindow, peer), &width, &height);
+
+        if (data.class.resizeHandler) |handler|
+            handler(@intCast(u32, width), @intCast(u32, height), @ptrToInt(data));
+        if (data.user.resizeHandler) |handler|
+            handler(@intCast(u32, width), @intCast(u32, height), data.userdata);
+        return 0;
     }
 
     pub fn resize(self: *Window, width: c_int, height: c_int) void {

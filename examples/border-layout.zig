@@ -21,7 +21,7 @@ pub fn main() !void {
     }));
 
     window.setTitle("Hello");
-    window.resize(250, 100);
+    window.setPreferredSize(250, 100);
     window.show();
 
     capy.runEventLoop();

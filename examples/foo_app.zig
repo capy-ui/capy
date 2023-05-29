@@ -21,7 +21,7 @@ pub fn main() !void {
     }
 
     try window.set(capy.Scrollable(&column));
-    window.resize(800, 600);
+    window.setPreferredSize(800, 600);
     window.show();
     capy.runEventLoop();
 }

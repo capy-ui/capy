@@ -59,7 +59,7 @@ pub fn main() !void {
     }));
 
     window.setTitle("Balls");
-    window.resize(600, 600);
+    window.setPreferredSize(600, 600);
     window.show();
 
     var simThread = try std.Thread.spawn(.{}, simulationThread, .{&window});

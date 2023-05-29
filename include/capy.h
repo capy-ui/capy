@@ -15,7 +15,7 @@ void capy_window_show(CapyWindow window);
 
 void capy_window_close(CapyWindow window);
 
-void capy_window_resize(CapyWindow window, unsigned int width, unsigned int height);
+void capy_window_set_preferred_size(CapyWindow window, unsigned int width, unsigned int height);
 
 void capy_window_set(CapyWindow window, CapyWidget widget);
 

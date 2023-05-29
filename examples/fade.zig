@@ -41,7 +41,7 @@ pub fn main() !void {
         }),
     );
 
-    window.resize(800, 450);
+    window.setPreferredSize(800, 450);
     window.show();
     capy.runEventLoop();
 }

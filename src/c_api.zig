@@ -45,8 +45,8 @@ export fn capy_window_deinit(window: CapyWindow) void {
     allocator.destroy(window);
 }
 
-export fn capy_window_resize(window: CapyWindow, width: c_uint, height: c_uint) void {
-    window.resize(width, height);
+export fn capy_window_set_preferred_size(window: CapyWindow, width: c_uint, height: c_uint) void {
+    window.setPreferredSize(width, height);
 }
 
 export fn capy_window_set(window: CapyWindow, widget: CapyWidget) c_int {

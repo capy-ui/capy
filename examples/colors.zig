@@ -20,7 +20,7 @@ pub fn main() !void {
     var window = try capy.Window.init();
     prng = std.rand.DefaultPrng.init(@bitCast(u64, std.time.milliTimestamp()));
 
-    window.resize(800, 600);
+    window.setPreferredSize(800, 600);
     try window.set(capy.Stack(.{
         capy.Rect(.{ .name = "background-rectangle", .color = capy.Color.transparent }),
         capy.Column(.{}, .{

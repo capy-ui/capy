@@ -19,20 +19,32 @@ const devices = std.ComptimeStringMap(Display, .{
 pub const Window = struct {
     peer: backend.Window,
     _child: ?Widget = null,
-    // TODO
+    // TODO: make it call setPreferredSize, if resizing ended up doing a no-up then revert
+    // 'size' to what it was before
+    // TODO: maybe implement vetoable changes to make it work
     size: Atom(Size) = Atom(Size).of(Size.init(640, 480)),
-    /// The default refresh rate is 60 Hz by default
-    refreshRate: Atom(f32) = Atom(f32).of(60),
+    /// The maximum refresh rate of the screen the window is atleast partially in.
+    /// For instance, if a window is on both screen A (60Hz) and B (144Hz) then the value of screenRefreshRate will be 144Hz.
+    screenRefreshRate: Atom(f32) = Atom(f32).of(60),
+
+    pub const Feature = enum {
+        Title,
+        Icon,
+        MenuBar,
+    };
 
     pub fn init() !Window {
         const peer = try backend.Window.create();
         var window = Window{ .peer = peer };
         window.setSourceDpi(96);
-        window.resize(640, 480);
+        window.setPreferredSize(640, 480);
+        try window.peer.setCallback(.Resize, sizeChanged);
+
         return window;
     }
 
     pub fn show(self: *Window) void {
+        self.peer.setUserData(self);
         return self.peer.show();
     }
 
@@ -71,8 +83,9 @@ pub const Window = struct {
     }
 
     var did_invalid_warning = false;
-
-    pub fn resize(self: *Window, width: u32, height: u32) void {
+    /// Attempt to resize the window to the given size.
+    /// On certain platforms (e.g. mobile) or configurations (e.g. tiling window manager) this function might do nothing.
+    pub fn setPreferredSize(self: *Window, width: u32, height: u32) void {
         const EMULATOR_KEY = "CAPY_MOBILE_EMULATED";
         if (std.process.hasEnvVarConstant(EMULATOR_KEY)) {
             const id = std.process.getEnvVarOwned(internal.scratch_allocator, EMULATOR_KEY) catch unreachable;
@@ -90,7 +103,23 @@ pub const Window = struct {
                 did_invalid_warning = true;
             }
         }
+        self.size.set(.{ .width = width, .height = height });
+        self.peer.setUserData(self);
         self.peer.resize(@intCast(c_int, width), @intCast(c_int, height));
+    }
+
+    fn sizeChanged(width: u32, height: u32, data: usize) void {
+        const self = @intToPtr(*Window, data);
+        self.size.set(.{ .width = width, .height = height });
+    }
+
+    // TODO: minimumSize and maximumSize
+
+    pub fn hasFeature(self: *Window, feature: Window.Feature) void {
+        _ = feature;
+        _ = self;
+        // TODO
+        return true;
     }
 
     pub fn setTitle(self: *Window, title: [:0]const u8) void {
@@ -118,5 +147,6 @@ pub const Window = struct {
         if (self._child) |*child| {
             child.deinit();
         }
+        self.peer.deinit();
     }
 };

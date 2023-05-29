@@ -47,7 +47,7 @@ pub fn main() !void {
         capy.Expanded(&canvas),
     }));
 
-    window.resize(800, 600);
+    window.setPreferredSize(800, 600);
     window.show();
     capy.runEventLoop();
 }

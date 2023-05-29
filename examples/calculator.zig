@@ -124,7 +124,7 @@ pub fn main() !void {
         })),
         Expanded(Button(.{ .label = "=", .onclick = compute })),
     }));
-    window.resize(400, 500);
+    window.setPreferredSize(400, 500);
     window.setTitle("Calculator");
     window.show();
     capy.runEventLoop();

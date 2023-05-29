@@ -17,7 +17,7 @@ pub fn main() !void {
         }
     }.callback);
 
-    var label_text = try capy.FormattedAtom(capy.internal.lasting_allocator, "Text length: {d}", .{&text_length});
+    var label_text = try capy.FormattedAtom(capy.internal.lasting_allocator, "Text length: {d}", .{text_length});
     defer label_text.deinit();
 
     try window.set(capy.Column(.{ .spacing = 0 }, .{
@@ -52,7 +52,7 @@ pub fn main() !void {
     }));
 
     window.setTitle("Notepad");
-    window.resize(800, 600);
+    window.setPreferredSize(800, 600);
     window.show();
 
     capy.runEventLoop();

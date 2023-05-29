@@ -30,7 +30,7 @@ pub fn main() !void {
     _ = try fahrenheit.addChangeListener(.{ .function = onFahrenheitChange });
 
     window.setTitle("Temperature Converter");
-    window.resize(500, 200);
+    window.setPreferredSize(500, 200);
     window.show();
 
     capy.runEventLoop();

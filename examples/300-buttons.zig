@@ -25,7 +25,7 @@ pub fn main() !void {
     }
 
     try window.set(row);
-    window.resize(800, 600);
+    window.setPreferredSize(800, 600);
     window.show();
 
     const end = std.time.milliTimestamp();

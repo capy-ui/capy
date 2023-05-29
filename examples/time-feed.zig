@@ -98,7 +98,7 @@ pub fn main() !void {
     }));
 
     window.setTitle("Time Feed");
-    window.resize(250, 100);
+    window.setPreferredSize(250, 100);
     window.show();
 
     capy.runEventLoop();

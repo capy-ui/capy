@@ -168,8 +168,8 @@ pub fn Atom(comptime T: type) type {
         }
 
         /// Shorthand for Atom.of(undefined).dependOn(...)
-        pub fn derived(tuple: anytype, function: anytype) !Self {
-            var wrapper = Self.of(undefined);
+        pub fn derived(tuple: anytype, function: anytype) !*Self {
+            var wrapper = Self.alloc(undefined);
             try wrapper.dependOn(tuple, function);
             return wrapper;
         }
@@ -452,6 +452,7 @@ pub fn Atom(comptime T: type) type {
         /// on the given parameters (variable-based reactivity), it can only be reverted by calling set()
         /// 'tuple' must be a tuple with pointers to data wrappers
         /// 'function' must be a function accepting as arguments the value types of the data wrappers and returning a new value.
+        /// This function relies on the data wrapper not moving in memory and the self pointer still pointing at the same data wrapper
         pub fn dependOn(self: *Self, tuple: anytype, function: anytype) !void {
             const FunctionType = @TypeOf(function);
 

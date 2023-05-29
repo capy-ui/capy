@@ -20,7 +20,7 @@ pub fn main() !void {
         })),
     );
     window.setTitle("Installer");
-    window.resize(800, 600);
+    window.setPreferredSize(800, 600);
     window.show();
     capy.runEventLoop();
 }

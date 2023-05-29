@@ -14,6 +14,7 @@ fn increment(_: *anyopaque) !void {
     }.callback);
 }
 
+var buf: [128]u8 = undefined;
 pub fn main() !void {
     try capy.init();
     std.log.info(
@@ -43,7 +44,7 @@ pub fn main() !void {
     ));
 
     window.setTitle("Counter");
-    window.resize(250, 100);
+    window.setPreferredSize(250, 100);
     window.show();
 
     // Count to 100 in 2000ms
