@@ -100,7 +100,7 @@ const WebServerStep = struct {
             try res.writer().writeAll(content);
             try res.finish();
 
-            if (res.connection.conn.closing) break;
+            if (res.connection.closing) break;
         }
     }
 };
@@ -124,6 +124,7 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
         .source_file = .{ .path = prefix ++ "/vendor/zigwin32/win32.zig" },
     });
 
+    step.addModule("zigwin32", zigwin32);
     step.addAnonymousModule("capy", .{
         .source_file = .{ .path = prefix ++ "/src/main.zig" },
         .dependencies = &.{

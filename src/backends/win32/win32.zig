@@ -4,7 +4,7 @@ pub usingnamespace std.os.windows.user32;
 pub usingnamespace std.os.windows.kernel32;
 
 pub const HINSTANCE = std.os.windows.HINSTANCE;
-pub const HWND = std.os.windows.HWND;
+pub const HWND = @import("zigwin32").everything.HWND;
 pub const WPARAM = std.os.windows.WPARAM;
 pub const LPARAM = std.os.windows.LPARAM;
 pub const LRESULT = std.os.windows.LRESULT;
