@@ -161,7 +161,7 @@ pub const Window = struct {
             },
             else => {},
         }
-        return win32.DefWindowProcA(hwnd, wm, wp, lp);
+        return win32.DefWindowProcW(hwnd, wm, wp, lp);
     }
 
     pub fn create() !Window {
@@ -963,7 +963,7 @@ pub const TabContainer = struct {
     pub fn create() !TabContainer {
         if (!classRegistered) {
             var wc: win32.WNDCLASSEXA = .{
-                .cbSize = @sizeOf(win32.WNDCLASSEXW),
+                .cbSize = @sizeOf(win32.WNDCLASSEXA),
                 .style = win32.WNDCLASS_STYLES.initFlags(.{}),
                 .lpfnWndProc = TabContainer.process,
                 .cbClsExtra = 0,
@@ -1075,7 +1075,7 @@ pub const ScrollView = struct {
     pub fn create() !ScrollView {
         if (!classRegistered) {
             var wc: win32.WNDCLASSEXA = .{
-                .cbSize = @sizeOf(win32.WNDCLASSEXW),
+                .cbSize = @sizeOf(win32.WNDCLASSEXA),
                 .style = win32.WNDCLASS_STYLES.initFlags(.{}),
                 .lpfnWndProc = ScrollView.process,
                 .cbClsExtra = 0,
