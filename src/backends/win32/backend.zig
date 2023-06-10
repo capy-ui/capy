@@ -90,15 +90,15 @@ pub fn init() !void {
         var input = win32Backend.GdiplusStartupInput{};
         try gdi.gdipWrap(win32Backend.GdiplusStartup(&gdi.token, &input, null));
 
-        var ncMetrics: win32.NONCLIENTMETRICSA = undefined;
-        ncMetrics.cbSize = @sizeOf(win32.NONCLIENTMETRICSA);
-        _ = win32.SystemParametersInfoA(
+        var ncMetrics: win32.NONCLIENTMETRICSW = undefined;
+        ncMetrics.cbSize = @sizeOf(win32.NONCLIENTMETRICSW);
+        _ = win32.SystemParametersInfoW(
             win32.SPI_GETNONCLIENTMETRICS,
-            @sizeOf(win32.NONCLIENTMETRICSA),
+            @sizeOf(win32.NONCLIENTMETRICSW),
             &ncMetrics,
             win32.SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS.initFlags(.{}),
         );
-        captionFont = win32.CreateFontIndirectA(&ncMetrics.lfCaptionFont).?;
+        captionFont = win32.CreateFontIndirectW(&ncMetrics.lfCaptionFont).?;
 
         // Load the default arrow cursor so that components can use it
         // This avoids components keeping the last cursor (resize cursor or loading cursor)
@@ -276,7 +276,7 @@ pub fn Events(comptime T: type) type {
                 },
                 else => {},
             }
-            if (win32.GetWindowLongPtrW(hwnd, win32.GWL_USERDATA) == 0) return win32.DefWindowProcA(hwnd, wm, wp, lp);
+            if (win32.GetWindowLongPtrW(hwnd, win32.GWL_USERDATA) == 0) return win32.DefWindowProcW(hwnd, wm, wp, lp);
             switch (wm) {
                 win32.WM_COMMAND => {
                     const code = @intCast(u16, wp >> 16);
@@ -406,7 +406,7 @@ pub fn Events(comptime T: type) type {
                 win32.WM_DESTROY => win32.PostQuitMessage(0),
                 else => {},
             }
-            return win32.DefWindowProcA(hwnd, wm, wp, lp);
+            return win32.DefWindowProcW(hwnd, wm, wp, lp);
         }
 
         pub fn setupEvents(peer: HWND) !void {
@@ -538,7 +538,10 @@ pub const Canvas = struct {
 
             pub fn setFont(self: *TextLayout, font: Font) void {
                 // _ = win32.DeleteObject(@ptrCast(win32.HGDIOBJ, self.font)); // delete old font
-                if (win32.CreateFontA(0, // cWidth
+                const allocator = lib.internal.scratch_allocator;
+                const wideFace = std.unicode.utf8ToUtf16LeWithNull(allocator, font.face) catch return; // invalid utf8 or not enough memory
+                defer allocator.free(wideFace);
+                if (win32.CreateFontW(0, // cWidth
                     0, // cHeight
                     0, // cEscapement,
                     0, // cOrientation,
@@ -551,7 +554,7 @@ pub const Canvas = struct {
                     win32.FONT_CLIP_PRECISION.DEFAULT_PRECIS, // iClipPrecision
                     win32.FONT_QUALITY.DEFAULT_QUALITY, // iQuality
                     win32.FONT_PITCH_AND_FAMILY.DONTCARE, // iPitchAndFamily
-                    font.face // pszFaceName
+                    wideFace // pszFaceName
                 )) |winFont| {
                     _ = win32.DeleteObject(@ptrCast(win32.HGDIOBJ, self.font));
                     self.font = winFont;
@@ -561,7 +564,10 @@ pub const Canvas = struct {
 
             pub fn getTextSize(self: *TextLayout, str: []const u8) TextSize {
                 var size: win32.SIZE = undefined;
-                _ = win32.GetTextExtentPoint32A(self.hdc, str.ptr, @intCast(c_int, str.len), &size);
+                const allocator = lib.internal.scratch_allocator;
+                const wide = std.unicode.utf8ToUtf16LeWithNull(allocator, str) catch return; // invalid utf8 or not enough memory
+                defer allocator.free(wide);
+                _ = win32.GetTextExtentPoint32W(self.hdc, wide.ptr, @intCast(c_int, str.len), &size);
 
                 return TextSize{ .width = @intCast(u32, size.cx), .height = @intCast(u32, size.cy) };
             }
@@ -614,8 +620,10 @@ pub const Canvas = struct {
             _ = win32.SelectObject(self.hdc, @ptrCast(win32.HGDIOBJ, layout.font));
 
             // and draw
-            var tmpStr: [:0]const u8 = str[0..str.len :0];
-            _ = win32.ExtTextOutA(self.hdc, @intCast(c_int, x), @intCast(c_int, y), win32.ETO_OPTIONS.initFlags(.{}), null, tmpStr.ptr, @intCast(std.os.windows.UINT, str.len), null);
+            const allocator = lib.internal.scratch_allocator;
+            const wide = std.unicode.utf8ToUtf16LeWithNull(allocator, str) catch return; // invalid utf8 or not enough memory
+            defer allocator.free(wide);
+            _ = win32.ExtTextOutW(self.hdc, @intCast(c_int, x), @intCast(c_int, y), win32.ETO_OPTIONS.initFlags(.{}), null, wide, @intCast(std.os.windows.UINT, wide.len), null);
         }
 
         pub fn line(self: *DrawContext, x1: i32, y1: i32, x2: i32, y2: i32) void {
@@ -684,9 +692,9 @@ pub const TextField = struct {
     pub usingnamespace Events(TextField);
 
     pub fn create() !TextField {
-        const hwnd = win32.CreateWindowExA(win32.WS_EX_LEFT, // dwExtStyle
-            "EDIT", // lpClassName
-            "", // lpWindowName
+        const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
+            _T("EDIT"), // lpClassName
+            _T(""), // lpWindowName
             @intToEnum(win32.WINDOW_STYLE, @enumToInt(win32.WS_TABSTOP) | @enumToInt(win32.WS_CHILD) | @enumToInt(win32.WS_BORDER)), // dwStyle
             0, // X
             0, // Y
@@ -698,7 +706,7 @@ pub const TextField = struct {
             null // lpParam
         ) orelse return Win32Error.InitializationError;
         try TextField.setupEvents(hwnd);
-        _ = win32.SendMessageA(hwnd, win32.WM_SETFONT, @ptrToInt(captionFont), 1);
+        _ = win32.SendMessageW(hwnd, win32.WM_SETFONT, @ptrToInt(captionFont), 1);
 
         return TextField{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator) };
     }
@@ -727,7 +735,7 @@ pub const TextField = struct {
     }
 
     pub fn setReadOnly(self: *TextField, readOnly: bool) void {
-        _ = win32.SendMessageA(self.peer, win32.EM_SETREADONLY, @boolToInt(readOnly), undefined);
+        _ = win32.SendMessageW(self.peer, win32.EM_SETREADONLY, @boolToInt(readOnly), undefined);
     }
 };
 
@@ -738,9 +746,9 @@ pub const Button = struct {
     pub usingnamespace Events(Button);
 
     pub fn create() !Button {
-        const hwnd = win32.CreateWindowExA(win32.WS_EX_LEFT, // dwExtStyle
-            "BUTTON", // lpClassName
-            "", // lpWindowName
+        const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
+            _T("BUTTON"), // lpClassName
+            _T(""), // lpWindowName
             @intToEnum(win32.WINDOW_STYLE, @enumToInt(win32.WS_TABSTOP) | @enumToInt(win32.WS_CHILD) | win32.BS_PUSHBUTTON | win32.BS_FLAT), // dwStyle
             0, // X
             0, // Y
@@ -752,7 +760,7 @@ pub const Button = struct {
             null // lpParam
         ) orelse return Win32Error.InitializationError;
         try Button.setupEvents(hwnd);
-        _ = win32.SendMessageA(hwnd, win32.WM_SETFONT, @ptrToInt(captionFont), 1);
+        _ = win32.SendMessageW(hwnd, win32.WM_SETFONT, @ptrToInt(captionFont), 1);
 
         return Button{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator) };
     }
@@ -789,7 +797,7 @@ pub const CheckBox = struct {
     pub usingnamespace Events(CheckBox);
 
     pub fn create() !CheckBox {
-        const hwnd = win32.CreateWindowExA(win32.WS_EX_LEFT, // dwExtStyle
+        const hwnd = win32.CreateWindowEx(win32.WS_EX_LEFT, // dwExtStyle
             "BUTTON", // lpClassName
             "", // lpWindowName
             win32.WS_TABSTOP | win32.WS_CHILD | win32.BS_AUTOCHECKBOX, // dwStyle
@@ -803,7 +811,7 @@ pub const CheckBox = struct {
             null // lpParam
         );
         try CheckBox.setupEvents(hwnd);
-        _ = win32.SendMessageA(hwnd, win32.WM_SETFONT, @ptrToInt(captionFont), 1);
+        _ = win32.SendMessageW(hwnd, win32.WM_SETFONT, @ptrToInt(captionFont), 1);
 
         return CheckBox{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator) };
     }
@@ -826,11 +834,11 @@ pub const CheckBox = struct {
             true => win32.BST_CHECKED,
             false => win32.BST_UNCHECKED,
         };
-        _ = win32.SendMessageA(self.peer, win32.BM_SETCHECK, state, 0);
+        _ = win32.SendMessageW(self.peer, win32.BM_SETCHECK, state, 0);
     }
 
     pub fn isChecked(self: *CheckBox) bool {
-        return win32.SendMessageA(self.peer, win32.BM_GETCHECK, 0, 0) != win32.BST_UNCHECKED;
+        return win32.SendMessageW(self.peer, win32.BM_GETCHECK, 0, 0) != win32.BST_UNCHECKED;
     }
 };
 
@@ -843,9 +851,9 @@ pub const Slider = struct {
     pub usingnamespace Events(Slider);
 
     pub fn create() !Slider {
-        const hwnd = win32.CreateWindowExA(win32.WS_EX_LEFT, // dwExtStyle
-            "msctls_trackbar32", // lpClassName
-            "", // lpWindowName
+        const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
+            _T("msctls_trackbar32"), // lpClassName
+            _T(""), // lpWindowName
             win32.WS_TABSTOP | win32.WS_CHILD, // dwStyle
             0, // X
             0, // Y
@@ -857,20 +865,20 @@ pub const Slider = struct {
             null // lpParam
         ) orelse return Win32Error.InitializationError;
         try Slider.setupEvents(hwnd);
-        _ = win32.SendMessageA(hwnd, win32.WM_SETFONT, @ptrToInt(captionFont), 1);
+        _ = win32.SendMessageW(hwnd, win32.WM_SETFONT, @ptrToInt(captionFont), 1);
 
         return Slider{ .peer = hwnd };
     }
 
     pub fn getValue(self: *const Slider) f32 {
-        const valueInt = win32.SendMessageA(self.peer, win32.TBM_GETPOS, 0, 0);
+        const valueInt = win32.SendMessageW(self.peer, win32.TBM_GETPOS, 0, 0);
         const value = @intToFloat(f32, valueInt) * self.stepSize;
         return value;
     }
 
     pub fn setValue(self: *Slider, value: f32) void {
         const valueInt = @floatToInt(i32, value / self.stepSize);
-        _ = win32.SendMessageA(self.peer, win32.TBM_GETPOS, 1, valueInt);
+        _ = win32.SendMessageW(self.peer, win32.TBM_GETPOS, 1, valueInt);
     }
 
     pub fn setMinimum(self: *Slider, minimum: f32) void {
@@ -893,8 +901,8 @@ pub const Slider = struct {
     fn updateMinMax(self: *const Slider) void {
         const maxInt = @floatToInt(i16, self.max / self.stepSize);
         const minInt = @floatToInt(i16, self.min / self.stepSize);
-        _ = win32.SendMessageA(self.peer, win32.TBM_SETRANGEMIN, 1, minInt);
-        _ = win32.SendMessageA(self.peer, win32.TBM_SETRANGEMAX, 1, maxInt);
+        _ = win32.SendMessageW(self.peer, win32.TBM_SETRANGEMIN, 1, minInt);
+        _ = win32.SendMessageW(self.peer, win32.TBM_SETRANGEMAX, 1, maxInt);
     }
 
     pub fn setEnabled(self: *Slider, enabled: bool) void {
@@ -962,8 +970,8 @@ pub const TabContainer = struct {
 
     pub fn create() !TabContainer {
         if (!classRegistered) {
-            var wc: win32.WNDCLASSEXA = .{
-                .cbSize = @sizeOf(win32.WNDCLASSEXA),
+            var wc: win32.WNDCLASSEXW = .{
+                .cbSize = @sizeOf(win32.WNDCLASSEXW),
                 .style = win32.WNDCLASS_STYLES.initFlags(.{}),
                 .lpfnWndProc = TabContainer.process,
                 .cbClsExtra = 0,
@@ -973,20 +981,20 @@ pub const TabContainer = struct {
                 .hCursor = defaultCursor,
                 .hbrBackground = null,
                 .lpszMenuName = null,
-                .lpszClassName = "capyTabClass",
+                .lpszClassName = _T("capyTabClass"),
                 .hIconSm = null,
             };
 
-            if (win32.RegisterClassExA(&wc) == 0) {
+            if (win32.RegisterClassExW(&wc) == 0) {
                 showNativeMessageDialog(.Error, "Could not register window class capyTabClass", .{});
                 return Win32Error.InitializationError;
             }
             classRegistered = true;
         }
 
-        const wrapperHwnd = win32.CreateWindowExA(win32.WS_EX_LEFT, // dwExtStyle
-            "capyTabClass", // lpClassName
-            "", // lpWindowName
+        const wrapperHwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
+            _T("capyTabClass"), // lpClassName
+            _T(""), // lpWindowName
             @intToEnum(win32.WINDOW_STYLE, @enumToInt(win32.WS_TABSTOP) | @enumToInt(win32.WS_CHILD) | @enumToInt(win32.WS_CLIPCHILDREN)), // dwStyle
             0, // X
             0, // Y
@@ -998,9 +1006,9 @@ pub const TabContainer = struct {
             null // lpParam
         ) orelse return Win32Error.InitializationError;
 
-        const hwnd = win32.CreateWindowExA(win32.WS_EX_LEFT, // dwExtStyle
-            "SysTabControl32", // lpClassName
-            "", // lpWindowName
+        const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
+            _T("SysTabControl32"), // lpClassName
+            _T(""), // lpWindowName
             @intToEnum(win32.WINDOW_STYLE, @enumToInt(win32.WS_TABSTOP) | @enumToInt(win32.WS_CHILD) | @enumToInt(win32.WS_CLIPSIBLINGS)), // dwStyle
             0, // X
             0, // Y
@@ -1012,7 +1020,7 @@ pub const TabContainer = struct {
             null // lpParam
         ) orelse return Win32Error.InitializationError;
         try TabContainer.setupEvents(wrapperHwnd);
-        _ = win32.SendMessageA(hwnd, win32.WM_SETFONT, @ptrToInt(captionFont), 0);
+        _ = win32.SendMessageW(hwnd, win32.WM_SETFONT, @ptrToInt(captionFont), 0);
         _ = win32.SetParent(hwnd, wrapperHwnd);
         _ = win32.ShowWindow(hwnd, win32.SW_SHOWDEFAULT);
         _ = win32.UpdateWindow(hwnd);
@@ -1027,7 +1035,7 @@ pub const TabContainer = struct {
 
     pub fn insert(self: *TabContainer, position: usize, peer: PeerType) usize {
         const item = win32Backend.TCITEMA{ .mask = 0 };
-        const newIndex = win32Backend.TabCtrl_InsertItemA(self.tabControl, @intCast(c_int, position), &item);
+        const newIndex = win32Backend.TabCtrl_InsertItemW(self.tabControl, @intCast(c_int, position), &item);
         self.peerList.append(peer) catch unreachable;
 
         if (self.shownPeer) |previousPeer| {
@@ -1047,11 +1055,11 @@ pub const TabContainer = struct {
             .pszText = text,
             // cchTextMax doesn't need to be set when using SetItem
         };
-        win32Backend.TabCtrl_SetItemA(self.tabControl, @intCast(c_int, position), &item);
+        win32Backend.TabCtrl_SetItemW(self.tabControl, @intCast(c_int, position), &item);
     }
 
     pub fn getTabsNumber(self: *const TabContainer) usize {
-        return @bitCast(usize, win32Backend.TabCtrl_GetItemCount(self.tabControl));
+        return @bitCast(usize, win32Backend.TabCtrl_GetItemCountW(self.tabControl));
     }
 
     fn onResize(_: *EventUserData, hwnd: HWND) void {
@@ -1074,8 +1082,8 @@ pub const ScrollView = struct {
 
     pub fn create() !ScrollView {
         if (!classRegistered) {
-            var wc: win32.WNDCLASSEXA = .{
-                .cbSize = @sizeOf(win32.WNDCLASSEXA),
+            var wc: win32.WNDCLASSEXW = .{
+                .cbSize = @sizeOf(win32.WNDCLASSEXW),
                 .style = win32.WNDCLASS_STYLES.initFlags(.{}),
                 .lpfnWndProc = ScrollView.process,
                 .cbClsExtra = 0,
@@ -1085,20 +1093,20 @@ pub const ScrollView = struct {
                 .hCursor = defaultCursor,
                 .hbrBackground = null,
                 .lpszMenuName = null,
-                .lpszClassName = "capyScrollViewClass",
+                .lpszClassName = _T("capyScrollViewClass"),
                 .hIconSm = null,
             };
 
-            if (win32.RegisterClassExA(&wc) == 0) {
+            if (win32.RegisterClassExW(&wc) == 0) {
                 showNativeMessageDialog(.Error, "Could not register window class {s}", .{"capyScrollViewClass"});
                 return Win32Error.InitializationError;
             }
             classRegistered = true;
         }
 
-        const hwnd = win32.CreateWindowExA(win32.WS_EX_LEFT, // dwExtStyle
-            "capyScrollViewClass", // lpClassName
-            "", // lpWindowName
+        const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
+            _T("capyScrollViewClass"), // lpClassName
+            _T(""), // lpWindowName
             @intToEnum(win32.WINDOW_STYLE, @enumToInt(win32.WS_TABSTOP) | @enumToInt(win32.WS_CHILD) | @enumToInt(win32.WS_CLIPCHILDREN) | @enumToInt(win32.WS_HSCROLL) | @enumToInt(win32.WS_VSCROLL)), // dwStyle
             0, // X
             0, // Y
@@ -1287,12 +1295,12 @@ pub fn runStep(step: shared.EventLoopStep) bool {
     var msg: MSG = undefined;
     switch (step) {
         .Blocking => {
-            if (win32.GetMessageA(&msg, null, 0, 0) <= 0) {
+            if (win32.GetMessageW(&msg, null, 0, 0) <= 0) {
                 return false; // error or WM_QUIT message
             }
         },
         .Asynchronous => {
-            if (win32.PeekMessageA(&msg, null, 0, 0, .REMOVE) == 0) {
+            if (win32.PeekMessageW(&msg, null, 0, 0, .REMOVE) == 0) {
                 return true; // no message available
             }
         },
@@ -1302,6 +1310,6 @@ pub fn runStep(step: shared.EventLoopStep) bool {
         return false;
     }
     _ = win32.TranslateMessage(&msg);
-    _ = win32.DispatchMessageA(&msg);
+    _ = win32.DispatchMessageW(&msg);
     return true;
 }
