@@ -33,6 +33,7 @@ test {
 test "backend: create window" {
     try backend.init();
     var window = try backend.Window.create();
+    defer window.deinit();
     window.show();
 
     {

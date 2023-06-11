@@ -59,6 +59,8 @@ var captionFont: win32.HFONT = undefined;
 /// that's been set (which is usually the resize cursor or loading cursor)
 var defaultCursor: win32.HCURSOR = undefined;
 
+var d2dFactory: *win32.ID2D1Factory = undefined;
+
 var hasInit: bool = false;
 
 fn transWinError(win32_error: win32.WIN32_ERROR) std.os.windows.Win32Error {
@@ -103,6 +105,13 @@ pub fn init() !void {
         // Load the default arrow cursor so that components can use it
         // This avoids components keeping the last cursor (resize cursor or loading cursor)
         defaultCursor = zigwin32.ui.windows_and_messaging.LoadCursor(null, win32.IDC_ARROW).?;
+
+        std.debug.assert(win32.D2D1CreateFactory(
+            win32.D2D1_FACTORY_TYPE_SINGLE_THREADED,
+            zigwin32.graphics.direct2d.IID_ID2D1Factory,
+            null,
+            @ptrCast(**anyopaque, &d2dFactory),
+        ) == 0);
     }
 }
 
@@ -210,8 +219,8 @@ pub const Window = struct {
     pub fn setChild(self: *Window, hwnd: ?HWND) void {
         // TODO: if null, remove child
         _ = win32.SetParent(hwnd.?, self.hwnd);
-        const style = win32.GetWindowLongPtrW(hwnd.?, win32.GWL_STYLE);
-        _ = win32.SetWindowLongPtrW(hwnd.?, win32.GWL_STYLE, style | @enumToInt(win32.WS_CHILD));
+        const style = win32Backend.getWindowLongPtr(hwnd.?, win32.GWL_STYLE);
+        _ = win32Backend.setWindowLongPtr(hwnd.?, win32.GWL_STYLE, style | @enumToInt(win32.WS_CHILD));
         _ = win32.ShowWindow(hwnd.?, win32.SW_SHOWDEFAULT);
         _ = win32.UpdateWindow(hwnd.?);
     }
@@ -255,7 +264,7 @@ const EventUserData = struct {
 };
 
 inline fn getEventUserData(peer: HWND) *EventUserData {
-    return @intToPtr(*EventUserData, @bitCast(usize, win32.GetWindowLongPtrW(peer, win32.GWL_USERDATA)));
+    return @intToPtr(*EventUserData, @bitCast(usize, win32Backend.getWindowLongPtr(peer, win32.GWL_USERDATA)));
 }
 
 pub fn Events(comptime T: type) type {
@@ -276,7 +285,7 @@ pub fn Events(comptime T: type) type {
                 },
                 else => {},
             }
-            if (win32.GetWindowLongPtrW(hwnd, win32.GWL_USERDATA) == 0) return win32.DefWindowProcW(hwnd, wm, wp, lp);
+            if (win32Backend.getWindowLongPtr(hwnd, win32.GWL_USERDATA) == 0) return win32.DefWindowProcW(hwnd, wm, wp, lp);
             switch (wm) {
                 win32.WM_COMMAND => {
                     const code = @intCast(u16, wp >> 16);
@@ -386,18 +395,42 @@ pub fn Events(comptime T: type) type {
                 },
                 win32.WM_PAINT => {
                     const data = getEventUserData(hwnd);
-                    var ps: win32.PAINTSTRUCT = undefined;
-                    var hdc: win32.HDC = win32.BeginPaint(hwnd, &ps).?;
-                    defer _ = win32.EndPaint(hwnd, &ps);
-                    var graphics = gdi.Graphics.createFromHdc(hdc) catch unreachable;
+                    var rc: win32.RECT = undefined;
+                    _ = win32.GetClientRect(hwnd, &rc);
 
-                    const brush = @ptrCast(win32.HBRUSH, win32.GetStockObject(win32.DC_BRUSH));
-                    _ = win32.SelectObject(hdc, @ptrCast(win32.HGDIOBJ, brush));
+                    var render_target: ?*win32.ID2D1HwndRenderTarget = null;
+                    var hresult = d2dFactory.ID2D1Factory_CreateHwndRenderTarget(
+                        null,
+                        &win32.D2D1_HWND_RENDER_TARGET_PROPERTIES{
+                            .hwnd = hwnd,
+                            .pixelSize = .{
+                                .width = @intCast(u32, rc.right - rc.left),
+                                .height = @intCast(u32, rc.bottom - rc.top),
+                            },
+                            .presentOptions = win32.D2D1_PRESENT_OPTIONS_NONE,
+                        },
+                        &render_target,
+                    );
+                    std.debug.assert(hresult == 0);
+                    // defer win32.SafeRelease(render_target);
 
-                    var dc = Canvas.DrawContext{ .hdc = hdc, .graphics = graphics, .hbr = brush, .path = std.ArrayList(Canvas.DrawContext.PathElement)
-                        .init(lib.internal.scratch_allocator) };
+                    var default_brush: ?*win32.ID2D1SolidColorBrush = null;
+                    std.debug.assert(render_target.?.ID2D1RenderTarget_CreateSolidColorBrush(
+                        &win32.D2D1_COLOR_F{ .r = 0, .g = 0, .b = 0, .a = 1 },
+                        null,
+                        &default_brush,
+                    ) == 0);
+
+                    var dc = Canvas.DrawContext{
+                        .render_target = render_target.?,
+                        .brush = undefined,
+                        .path = std.ArrayList(Canvas.DrawContext.PathElement)
+                            .init(lib.internal.scratch_allocator),
+                    };
                     defer dc.path.deinit();
 
+                    render_target.?.ID2D1RenderTarget_BeginDraw();
+                    defer _ = render_target.?.ID2D1RenderTarget_EndDraw(null, null);
                     if (data.class.drawHandler) |handler|
                         handler(&dc, data.userdata);
                     if (data.user.drawHandler) |handler|
@@ -412,7 +445,7 @@ pub fn Events(comptime T: type) type {
         pub fn setupEvents(peer: HWND) !void {
             var data = try lib.internal.lasting_allocator.create(EventUserData);
             data.* = EventUserData{}; // ensure that it uses default values
-            _ = win32.SetWindowLongPtrW(peer, win32.GWL_USERDATA, @bitCast(isize, @ptrToInt(data)));
+            _ = win32Backend.setWindowLongPtr(peer, win32.GWL_USERDATA, @ptrToInt(data));
         }
 
         pub inline fn setUserData(self: *T, data: anytype) void {
@@ -503,10 +536,9 @@ pub const Canvas = struct {
     pub usingnamespace Events(Canvas);
 
     pub const DrawContext = struct {
-        hdc: win32.HDC,
-        graphics: gdi.Graphics,
-        hbr: win32.HBRUSH,
         path: std.ArrayList(PathElement),
+        render_target: *win32.ID2D1HwndRenderTarget,
+        brush: *win32.ID2D1SolidColorBrush,
 
         const PathElement = union(enum) {
             Rectangle: struct { left: c_int, top: c_int, right: c_int, bottom: c_int },
@@ -581,9 +613,11 @@ pub const Canvas = struct {
         // TODO: transparency support using https://docs.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-alphablend
         // or use GDI+ and https://docs.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-drawing-with-opaque-and-semitransparent-brushes-use
         pub fn setColorByte(self: *DrawContext, color: lib.Color) void {
+            _ = self;
             const colorref = (@as(u32, color.blue) << 16) |
                 (@as(u32, color.green) << 8) | color.red;
-            _ = win32.SetDCBrushColor(self.hdc, colorref);
+            _ = colorref;
+            // _ = win32.SetDCBrushColor(self.hdc, colorref);
         }
 
         pub fn setColor(self: *DrawContext, r: f32, g: f32, b: f32) void {
@@ -601,34 +635,51 @@ pub const Canvas = struct {
         }
 
         pub fn rectangle(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
-            _ = win32.Rectangle(self.hdc, @intCast(c_int, x), @intCast(c_int, y), x + @intCast(c_int, w), y + @intCast(c_int, h));
+            _ = h;
+            _ = w;
+            _ = y;
+            _ = x;
+            _ = self;
+            // _ = win32.Rectangle(self.hdc, @intCast(c_int, x), @intCast(c_int, y), x + @intCast(c_int, w), y + @intCast(c_int, h));
         }
 
         pub fn ellipse(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
+            _ = y;
+            _ = x;
+            _ = self;
             const cw = @intCast(c_int, w);
+            _ = cw;
             const ch = @intCast(c_int, h);
+            _ = ch;
 
-            _ = win32.Ellipse(self.hdc, @intCast(c_int, x), @intCast(c_int, y), @intCast(c_int, x) + cw, @intCast(c_int, y) + ch);
+            // _ = win32.Ellipse(self.hdc, @intCast(c_int, x), @intCast(c_int, y), @intCast(c_int, x) + cw, @intCast(c_int, y) + ch);
         }
 
         pub fn text(self: *DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
+            _ = str;
+            _ = layout;
+            _ = y;
+            _ = x;
+            _ = self;
             // select current color
-            const color = win32.GetDCBrushColor(self.hdc);
-            _ = win32.SetTextColor(self.hdc, color);
+            // const color = win32.GetDCBrushColor(self.hdc);
+            // _ = win32.SetTextColor(self.hdc, color);
 
             // select the font
-            _ = win32.SelectObject(self.hdc, @ptrCast(win32.HGDIOBJ, layout.font));
+            // win32.SelectObject(self.hdc, @ptrCast(win32.HGDIOBJ, layout.font));
 
             // and draw
-            const allocator = lib.internal.scratch_allocator;
-            const wide = std.unicode.utf8ToUtf16LeWithNull(allocator, str) catch return; // invalid utf8 or not enough memory
-            defer allocator.free(wide);
-            _ = win32.ExtTextOutW(self.hdc, @intCast(c_int, x), @intCast(c_int, y), win32.ETO_OPTIONS.initFlags(.{}), null, wide, @intCast(std.os.windows.UINT, wide.len), null);
+            // _ = win32.ExtTextOutA(self.hdc, @intCast(c_int, x), @intCast(c_int, y), 0, null, str.ptr, @intCast(std.os.windows.UINT, str.len), null);
         }
 
         pub fn line(self: *DrawContext, x1: i32, y1: i32, x2: i32, y2: i32) void {
-            _ = win32.MoveToEx(self.hdc, @intCast(c_int, x1), @intCast(c_int, y1), null);
-            _ = win32.LineTo(self.hdc, @intCast(c_int, x2), @intCast(c_int, y2));
+            _ = y2;
+            _ = x2;
+            _ = y1;
+            _ = x1;
+            _ = self;
+            // _ = win32.MoveToEx(self.hdc, @intCast(c_int, x1), @intCast(c_int, y1), null);
+            // _ = win32.LineTo(self.hdc, @intCast(c_int, x2), @intCast(c_int, y2));
         }
 
         pub fn fill(self: *DrawContext) void {
@@ -1127,8 +1178,8 @@ pub const ScrollView = struct {
         self.widget = widget;
 
         _ = win32.SetParent(peer, self.peer);
-        const style = win32.GetWindowLongPtrW(peer, win32.GWL_STYLE);
-        _ = win32.SetWindowLongPtrW(peer, win32.GWL_STYLE, style | @enumToInt(win32.WS_CHILD));
+        const style = win32Backend.getWindowLongPtr(peer, win32.GWL_STYLE);
+        _ = win32Backend.setWindowLongPtr(peer, win32.GWL_STYLE, style | @enumToInt(win32.WS_CHILD));
         _ = win32.ShowWindow(peer, win32.SW_SHOWDEFAULT);
         _ = win32.UpdateWindow(peer);
     }
@@ -1260,8 +1311,8 @@ pub const Container = struct {
 
     pub fn add(self: *Container, peer: PeerType) void {
         _ = win32.SetParent(peer, self.peer);
-        const style = win32.GetWindowLongPtrW(peer, win32.GWL_STYLE);
-        _ = win32.SetWindowLongPtrW(peer, win32.GWL_STYLE, style | @enumToInt(win32.WS_CHILD));
+        const style = win32Backend.getWindowLongPtr(peer, win32.GWL_STYLE);
+        _ = win32Backend.setWindowLongPtr(peer, win32.GWL_STYLE, style | @enumToInt(win32.WS_CHILD));
         _ = win32.ShowWindow(peer, win32.SW_SHOWDEFAULT);
         _ = win32.UpdateWindow(peer);
     }

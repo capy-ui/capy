@@ -1,4 +1,5 @@
 const std = @import("std");
+const zigwin32 = @import("zigwin32");
 
 pub usingnamespace std.os.windows.user32;
 pub usingnamespace std.os.windows.kernel32;
@@ -221,18 +222,18 @@ pub const NONCLIENTMETRICSA = extern struct {
     iPaddedBorderWidth: c_int,
 };
 
-pub fn GetWindowLongPtr(hWnd: HWND, nIndex: c_int) usize {
-    switch (comptime @import("builtin").cpu.arch.ptrBitWidth()) {
-        64 => return @bitCast(usize, std.os.windows.user32.GetWindowLongPtrA(hWnd, nIndex)),
-        32 => return @bitCast(usize, std.os.windows.user32.GetWindowLongA(hWnd, nIndex)),
+pub fn getWindowLongPtr(hWnd: HWND, nIndex: zigwin32.everything.WINDOW_LONG_PTR_INDEX) usize {
+    switch (comptime @import("builtin").target.ptrBitWidth()) {
+        64 => return @bitCast(usize, zigwin32.everything.GetWindowLongPtrW(hWnd, nIndex)),
+        32 => return @bitCast(usize, zigwin32.everything.GetWindowLongW(hWnd, nIndex)),
         else => @compileError("Unsupported architecture."),
     }
 }
 
-pub fn SetWindowLongPtr(hWnd: HWND, nIndex: c_int, dwNewLong: usize) void {
-    switch (comptime @import("builtin").cpu.arch.ptrBitWidth()) {
-        64 => _ = std.os.windows.user32.SetWindowLongPtrA(hWnd, nIndex, @bitCast(isize, dwNewLong)),
-        32 => _ = std.os.windows.user32.SetWindowLongA(hWnd, nIndex, @bitCast(isize, dwNewLong)),
+pub fn setWindowLongPtr(hWnd: HWND, nIndex: zigwin32.everything.WINDOW_LONG_PTR_INDEX, dwNewLong: usize) void {
+    switch (comptime @import("builtin").target.ptrBitWidth()) {
+        64 => _ = zigwin32.everything.SetWindowLongPtrW(hWnd, nIndex, @bitCast(isize, dwNewLong)),
+        32 => _ = zigwin32.everything.SetWindowLongW(hWnd, nIndex, @bitCast(isize, dwNewLong)),
         else => @compileError("Unsupported architecture."),
     }
 }
