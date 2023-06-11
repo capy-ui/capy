@@ -4,7 +4,7 @@ pub usingnamespace std.os.windows.user32;
 pub usingnamespace std.os.windows.kernel32;
 
 pub const HINSTANCE = std.os.windows.HINSTANCE;
-pub const HWND = std.os.windows.HWND;
+pub const HWND = @import("zigwin32").everything.HWND;
 pub const WPARAM = std.os.windows.WPARAM;
 pub const LPARAM = std.os.windows.LPARAM;
 pub const LRESULT = std.os.windows.LRESULT;
@@ -65,6 +65,7 @@ pub const IDC_ARROW = @intToPtr([*:0]const u8, 32512);
 pub const WNDENUMPROC = *const fn (hwnd: HWND, lParam: LPARAM) callconv(WINAPI) c_int;
 
 pub extern "user32" fn SendMessageA(hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM) callconv(WINAPI) LRESULT;
+pub extern "user32" fn SendMessageW(hWnd: HWND, Msg: UINT, wParam: WPARAM, lParam: LPARAM) callconv(WINAPI) LRESULT;
 pub extern "user32" fn SetParent(child: HWND, newParent: ?HWND) callconv(WINAPI) ?HWND;
 pub extern "user32" fn SetWindowTextW(hWnd: HWND, lpString: [*:0]const u16) callconv(WINAPI) c_int;
 pub extern "user32" fn GetWindowTextW(hWnd: HWND, lpString: [*:0]const u16, nMaxCount: c_int) callconv(WINAPI) c_int;
@@ -291,8 +292,32 @@ pub fn TabCtrl_SetItemA(hWnd: HWND, index: c_int, tabItem: *const TCITEMA) void 
     }
 }
 
-pub fn TabCtrl_GetItemCount(hWnd: HWND) LRESULT {
+pub fn TabCtrl_GetItemCountA(hWnd: HWND) LRESULT {
     return SendMessageA(hWnd, TCM_GETITEMCOUNT, 0, 0);
+}
+
+pub fn TabCtrl_InsertItemW(hWnd: HWND, index: c_int, tabItem: *const TCITEMA) LRESULT {
+    const newIndex = SendMessageW(hWnd, TCM_INSERTITEMA, @intCast(c_uint, index), @bitCast(isize, @ptrToInt(tabItem)));
+    if (newIndex == -1) {
+        @panic("Failed to insert tab");
+    }
+    return newIndex;
+}
+
+pub fn TabCtrl_GetItemW(hWnd: HWND, index: c_int, out: *TCITEMA) void {
+    if (SendMessageW(hWnd, TCM_GETITEMA, @intCast(c_uint, index), @bitCast(isize, @ptrToInt(out))) == 0) {
+        @panic("Failed to get tab");
+    }
+}
+
+pub fn TabCtrl_SetItemW(hWnd: HWND, index: c_int, tabItem: *const TCITEMA) void {
+    if (SendMessageW(hWnd, TCM_SETITEMA, @intCast(c_uint, index), @bitCast(isize, @ptrToInt(tabItem))) == 0) {
+        @panic("Failed to set tab");
+    }
+}
+
+pub fn TabCtrl_GetItemCountW(hWnd: HWND) LRESULT {
+    return SendMessageW(hWnd, TCM_GETITEMCOUNT, 0, 0);
 }
 
 // Common Control: Scroll Bar

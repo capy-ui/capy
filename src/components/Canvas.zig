@@ -1,4 +1,5 @@
 const std = @import("std");
+const builtin = @import("builtin");
 const backend = @import("../backend.zig");
 const Size = @import("../data.zig").Size;
 const Atom = @import("../data.zig").Atom;
@@ -76,7 +77,11 @@ pub const Rect_Impl = struct {
 
     pub fn draw(self: *Rect_Impl, ctx: *Canvas_Impl.DrawContext) !void {
         ctx.setColorByte(self.color.get());
-        ctx.roundedRectangleEx(0, 0, self.getWidth(), self.getHeight(), self.cornerRadius.get());
+        if (builtin.os.tag == .windows) {
+            ctx.rectangle(0, 0, self.getWidth(), self.getHeight());
+        } else {
+            ctx.roundedRectangleEx(0, 0, self.getWidth(), self.getHeight(), self.cornerRadius.get());
+        }
         ctx.fill();
     }
 
