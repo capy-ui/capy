@@ -230,10 +230,10 @@ pub fn getWindowLongPtr(hWnd: HWND, nIndex: zigwin32.everything.WINDOW_LONG_PTR_
     }
 }
 
-pub fn setWindowLongPtr(hWnd: HWND, nIndex: zigwin32.everything.WINDOW_LONG_PTR_INDEX, dwNewLong: usize) void {
+pub fn setWindowLongPtr(hWnd: HWND, nIndex: zigwin32.everything.WINDOW_LONG_PTR_INDEX, dwNewLong: usize) isize {
     switch (comptime @import("builtin").target.ptrBitWidth()) {
-        64 => _ = zigwin32.everything.SetWindowLongPtrW(hWnd, nIndex, @bitCast(isize, dwNewLong)),
-        32 => _ = zigwin32.everything.SetWindowLongW(hWnd, nIndex, @bitCast(isize, dwNewLong)),
+        64 => return zigwin32.everything.SetWindowLongPtrW(hWnd, nIndex, @bitCast(isize, dwNewLong)),
+        32 => return zigwin32.everything.SetWindowLongW(hWnd, nIndex, @bitCast(isize, dwNewLong)),
         else => @compileError("Unsupported architecture."),
     }
 }

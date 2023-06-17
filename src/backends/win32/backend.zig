@@ -89,8 +89,8 @@ pub fn init() !void {
             std.debug.print("Failed to initialize Common Controls.", .{});
         }
 
-        var input = win32Backend.GdiplusStartupInput{};
-        try gdi.gdipWrap(win32Backend.GdiplusStartup(&gdi.token, &input, null));
+        // var input = win32Backend.GdiplusStartupInput{};
+        // try gdi.gdipWrap(win32Backend.GdiplusStartup(&gdi.token, &input, null));
 
         var ncMetrics: win32.NONCLIENTMETRICSW = undefined;
         ncMetrics.cbSize = @sizeOf(win32.NONCLIENTMETRICSW);
@@ -400,7 +400,17 @@ pub fn Events(comptime T: type) type {
 
                     var render_target: ?*win32.ID2D1HwndRenderTarget = null;
                     var hresult = d2dFactory.ID2D1Factory_CreateHwndRenderTarget(
-                        null,
+                        &win32.D2D1_RENDER_TARGET_PROPERTIES{
+                            .type = win32.D2D1_RENDER_TARGET_TYPE_DEFAULT,
+                            .pixelFormat = .{
+                                .format = win32.DXGI_FORMAT_UNKNOWN,
+                                .alphaMode = win32.D2D1_ALPHA_MODE_UNKNOWN,
+                            },
+                            .dpiX = 0.0,
+                            .dpiY = 0.0,
+                            .usage = win32.D2D1_RENDER_TARGET_USAGE_NONE,
+                            .minLevel = win32.D2D1_FEATURE_LEVEL_DEFAULT,
+                        },
                         &win32.D2D1_HWND_RENDER_TARGET_PROPERTIES{
                             .hwnd = hwnd,
                             .pixelSize = .{
@@ -423,13 +433,14 @@ pub fn Events(comptime T: type) type {
 
                     var dc = Canvas.DrawContext{
                         .render_target = render_target.?,
-                        .brush = undefined,
+                        .brush = default_brush.?,
                         .path = std.ArrayList(Canvas.DrawContext.PathElement)
                             .init(lib.internal.scratch_allocator),
                     };
                     defer dc.path.deinit();
 
                     render_target.?.ID2D1RenderTarget_BeginDraw();
+                    render_target.?.ID2D1RenderTarget_Clear(&win32.D2D1_COLOR_F{ .r = 1, .g = 1, .b = 1, .a = 0 });
                     defer _ = render_target.?.ID2D1RenderTarget_EndDraw(null, null);
                     if (data.class.drawHandler) |handler|
                         handler(&dc, data.userdata);
