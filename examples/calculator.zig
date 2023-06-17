@@ -21,7 +21,7 @@ pub fn pressedKey(button_: *anyopaque) !void {
     const labelText = computationLabel.getText();
 
     // Concat the computation label with the first character of the button's label
-    var larger = try allocator.allocSentinel(u8, labelText.len + 1, 0); // allocate a null-terminated string one character longer than labelText
+    var larger = try allocator.alloc(u8, labelText.len + 1); // allocate a string one character longer than labelText
     std.mem.copy(u8, larger, labelText); // copy labelText's contents to the newly allocated string
     larger[labelText.len] = buttonLabel[0]; // finally, set the last letter
 
@@ -31,6 +31,7 @@ pub fn pressedKey(button_: *anyopaque) !void {
 
 // TODO: switch back to *capy.Button_Impl when ziglang/zig#12325 is fixed
 pub fn erase(_: *anyopaque) !void {
+    allocator.free(computationLabel.getText());
     computationLabel.setText("");
 }
 
@@ -76,9 +77,9 @@ pub fn compute(_: *anyopaque) !void {
         }
     }
 
-    const text = try std.fmt.allocPrintZ(allocator, "{d}", .{result});
+    allocator.free(computationLabel.getText());
+    const text = try std.fmt.allocPrint(allocator, "{d}", .{result});
     computationLabel.setText(text);
-    allocator.free(text);
 }
 
 pub fn main() !void {
@@ -96,6 +97,7 @@ pub fn main() !void {
 
     var window = try capy.Window.init();
     computationLabel = capy.Label(.{ .text = "", .alignment = .Left });
+    defer allocator.free(computationLabel.getText());
     try window.set(capy.Column(.{ .expand = .Fill, .spacing = 10 }, .{
         &computationLabel,
         Expanded(Row(.{ .expand = .Fill, .spacing = 10 }, .{
