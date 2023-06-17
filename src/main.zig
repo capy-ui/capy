@@ -1,3 +1,4 @@
+const std = @import("std");
 pub const Window = @import("window.zig").Window;
 pub const Widget = @import("widget.zig").Widget;
 
@@ -21,6 +22,7 @@ pub usingnamespace @import("color.zig");
 pub usingnamespace @import("data.zig");
 pub usingnamespace @import("image.zig");
 pub usingnamespace @import("list.zig");
+pub usingnamespace @import("timer.zig");
 
 pub const internal = @import("internal.zig");
 pub const backend = @import("backend.zig");
@@ -66,6 +68,7 @@ pub fn wakeEventLoop() void {
 /// data wrappers.
 pub fn stepEventLoop(stepType: EventLoopStep) bool {
     const data = @import("data.zig");
+    const timer = @import("timer.zig");
     if (data._animatedAtoms.items.len > 0) {
         {
             data._animatedAtomsMutex.lock();
@@ -78,9 +81,25 @@ pub fn stepEventLoop(stepType: EventLoopStep) bool {
             }
         }
         return backend.runStep(.Asynchronous);
-    } else {
-        return backend.runStep(stepType);
     }
+    if (timer._runningTimers.items.len > 0) {
+        const now = std.time.Instant.now() catch unreachable;
+        // TODO: mutex
+        for (timer._runningTimers.items, 0..) |item, i| {
+            _ = i;
+            if (now.since(item.started.?) >= item.duration) {
+                // TODO: tick timer
+                item.started = now;
+                std.log.info("tick", .{});
+            }
+        }
+        return backend.runStep(.Asynchronous);
+    }
+
+    if (data._animatedAtoms.items.len > 0 or timer._runningTimers.items.len > 0) {
+        return backend.runStep(.Asynchronous);
+    }
+    return backend.runStep(stepType);
 }
 
 pub fn runEventLoop() void {
