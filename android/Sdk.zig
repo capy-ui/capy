@@ -53,7 +53,9 @@ pub const ADBLaunchMethod = enum {
 /// Initializes the android SDK.
 /// It requires some input on which versions of the tool chains should be used
 pub fn init(b: *Builder, user_config: ?UserConfig, toolchains: ToolchainVersions) *Sdk {
-    const actual_user_config = user_config orelse auto_detect.findUserConfig(b, toolchains) catch |err| @panic(@errorName(err));
+    const actual_user_config_err = user_config orelse auto_detect.findUserConfig(b, toolchains);
+    const actual_user_config = actual_user_config_err catch |err| @panic(@errorName(err));
+    // const actual_user_config = user_config orelse auto_detect.findUserConfig(b, toolchains) catch |err| @panic(@errorName(err));
 
     const system_tools = blk: {
         const exe = if (builtin.os.tag == .windows) ".exe" else "";
@@ -506,7 +508,7 @@ pub fn createApp(
         .content = write_xml_file_source,
     });
 
-    const sdk_version_int = @enumToInt(app_config.target_version);
+    const sdk_version_int = @intFromEnum(app_config.target_version);
 
     if (sdk_version_int < 16) @panic("Minimum supported sdk version is 16.");
 
@@ -849,7 +851,7 @@ pub fn compileAppLibrary(
         ndk_root,
         toolchainHostTag(),
         config.lib_dir,
-        @enumToInt(app_config.target_version),
+        @intFromEnum(app_config.target_version),
     });
 
     const include_dir = std.fs.path.resolve(sdk.b.allocator, &[_][]const u8{
@@ -905,7 +907,7 @@ pub fn compileAppLibrary(
 }
 
 fn createLibCFile(sdk: *const Sdk, version: AndroidVersion, folder_name: []const u8, include_dir: []const u8, sys_include_dir: []const u8, crt_dir: []const u8) !std.build.FileSource {
-    const fname = sdk.b.fmt("android-{d}-{s}.conf", .{ @enumToInt(version), folder_name });
+    const fname = sdk.b.fmt("android-{d}-{s}.conf", .{ @intFromEnum(version), folder_name });
 
     var contents = std.ArrayList(u8).init(sdk.b.allocator);
     errdefer contents.deinit();
