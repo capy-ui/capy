@@ -54,7 +54,7 @@ pub fn build(b: *std.Build) !void {
     const lib = b.addSharedLibrary(.{
         .name = "capy",
         .root_source_file = FileSource.relative("src/c_api.zig"),
-        .version = std.builtin.Version{ .major = 0, .minor = 3, .patch = 0 },
+        .version = std.SemanticVersion{ .major = 0, .minor = 3, .patch = 0 },
         .target = target,
         .optimize = optimize,
     });

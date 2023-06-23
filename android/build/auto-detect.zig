@@ -29,7 +29,7 @@ pub fn findUserConfig(b: *Builder, versions: Sdk.ToolchainVersions) !UserConfig 
             return err;
         };
         if (std.json.parseFromSlice(UserConfig, b.allocator, bytes, .{})) |conf| {
-            config = conf;
+            config = conf.value;
         } else |err| {
             print("Could not parse {s} ({s}).\n", .{ config_path, @errorName(err) });
             return err;

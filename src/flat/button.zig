@@ -23,13 +23,14 @@ pub const FlatButton = struct {
 
     // TODO: themes and custom styling
     fn draw(ctx: *backend.Canvas.DrawContext, data: usize) void {
-        const events = @intToPtr(*backend.EventUserData, data);
-        const self = @intToPtr(?*FlatButton, events.classUserdata).?;
+        const events = @ptrFromInt(*backend.EventUserData, data);
+        const self = @ptrFromInt(?*FlatButton, events.classUserdata).?;
 
         const width = @intCast(u32, backend.getWidthFromPeer(events.peer));
         const height = @intCast(u32, backend.getHeightFromPeer(events.peer));
 
         ctx.setColorByte(Color.comptimeFromString("#ffffffb3"));
+        // ctx.setColorByte(Color.comptimeFromString("#80b9ee"));
         // ctx.setColorByte(Color.comptimeFromString("#f9f9f94d"));
         ctx.roundedRectangle(0, 0, width, height, 4);
         ctx.fill();
@@ -39,13 +40,14 @@ pub const FlatButton = struct {
             .x0 = 0,
             .y0 = 0,
             .x1 = 0,
-            .y1 = @intToFloat(f32, height) * 3,
+            .y1 = @floatFromInt(f32, height) * 3,
             .stops = &.{
                 .{ .offset = 0.33, .color = Color.comptimeFromString("#00000029") },
                 .{ .offset = 1.00, .color = Color.comptimeFromString("#0000000F") },
             },
         });
         ctx.roundedRectangle(0, 0, width, height, 4);
+        ctx.setStrokeWidth(1.0);
         ctx.stroke();
 
         const text = self.label;
@@ -62,7 +64,7 @@ pub const FlatButton = struct {
     pub fn setLabel(self: *FlatButton, label: [:0]const u8) void {
         self.label = label;
         const events = backend.getEventUserData(self.peer);
-        events.classUserdata = @ptrToInt(self);
+        events.classUserdata = @intFromPtr(self);
         self.requestDraw() catch {};
     }
 
@@ -76,6 +78,6 @@ pub const FlatButton = struct {
 
     pub fn getPreferredSize_impl(self: *const FlatButton) Size {
         _ = self;
-        return Size.init(300, 50);
+        return Size.init(150, 24);
     }
 };

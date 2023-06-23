@@ -1155,22 +1155,6 @@ const BuildOptionStep = struct {
                 }
                 return;
             },
-            std.builtin.Version => {
-                out.print(
-                    \\pub const {}: @import("std").builtin.Version = .{{
-                    \\    .major = {d},
-                    \\    .minor = {d},
-                    \\    .patch = {d},
-                    \\}};
-                    \\
-                , .{
-                    std.zig.fmtId(name),
-
-                    value.major,
-                    value.minor,
-                    value.patch,
-                }) catch unreachable;
-            },
             std.SemanticVersion => {
                 out.print(
                     \\pub const {}: @import("std").SemanticVersion = .{{
