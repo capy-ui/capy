@@ -271,7 +271,7 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
             if (step.target.toTarget().isWasm()) {
                 // Things like the image reader require more stack than given by default
                 // TODO: remove once ziglang/zig#12589 is merged
-                step.stack_size = std.math.max(step.stack_size orelse 0, 256 * 1024);
+                step.stack_size = @max(step.stack_size orelse 0, 256 * 1024);
                 if (step.optimize == .ReleaseSmall) {
                     step.strip = true;
                 }

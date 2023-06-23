@@ -333,8 +333,8 @@ pub const Container_Impl = struct {
     fn fakeResMove(data: usize, widget: backend.PeerType, x: u32, y: u32, w: u32, h: u32) void {
         const size = @intToPtr(*Size, data);
         _ = widget;
-        size.width = std.math.max(size.width, x + w);
-        size.height = std.math.max(size.height, y + h);
+        size.width = @max(size.width, x + w);
+        size.height = @max(size.height, y + h);
     }
 
     fn getSize(data: usize) Size {

@@ -664,16 +664,16 @@ pub const Size = struct {
     /// Combine two sizes by taking the largest width and the largest height
     pub fn combine(a: Size, b: Size) Size {
         return Size{
-            .width = std.math.max(a.width, b.width),
-            .height = std.math.max(a.height, b.height),
+            .width = @max(a.width, b.width),
+            .height = @max(a.height, b.height),
         };
     }
 
     /// Intersect two sizes by taking the lowest width and the lowest height
     pub fn intersect(a: Size, b: Size) Size {
         return Size{
-            .width = std.math.min(a.width, b.width),
-            .height = std.math.min(a.height, b.height),
+            .width = @min(a.width, b.width),
+            .height = @min(a.height, b.height),
         };
     }
 
