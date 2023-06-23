@@ -28,7 +28,7 @@ pub const List_Impl = struct {
     }
 
     fn modelSizeChanged(newSize: usize, userdata: usize) void {
-        const self = @intToPtr(*List_Impl, userdata);
+        const self = @ptrFromInt(*List_Impl, userdata);
         const container = self.child.as(containers.Container_Impl);
 
         // TODO: cache widgets!
@@ -50,7 +50,7 @@ pub const List_Impl = struct {
             self.peer = peer;
             try self.show_events();
 
-            _ = try self.model.size.addChangeListener(.{ .function = modelSizeChanged, .userdata = @ptrToInt(self) });
+            _ = try self.model.size.addChangeListener(.{ .function = modelSizeChanged, .userdata = @intFromPtr(self) });
         }
     }
 

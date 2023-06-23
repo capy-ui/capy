@@ -52,7 +52,7 @@ pub inline fn getEventUserData(peer: PeerType) *EventUserData {
 
     const Long = jni.findClass("java/lang/Long") catch unreachable;
     const value = Long.callLongMethod(tag, "longValue", "()J", .{}) catch unreachable;
-    return @intToPtr(*EventUserData, @bitCast(u64, value));
+    return @ptrFromInt(*EventUserData, @bitCast(u64, value));
 }
 
 fn onClick(_: ?*anyopaque, jni: *android.JNI, _: android.jobject, args: android.jobjectArray) !android.jobject {
@@ -136,7 +136,7 @@ pub fn Events(comptime T: type) type {
             // As long as we treat the Long as an unsigned number on our side, this supports all possible
             // 64-bit addresses.
             const Long = jni.findClass("java/lang/Long") catch return error.InitializationError;
-            const dataAddress = Long.newObject("(J)V", .{@ptrToInt(data)}) catch return error.InitializationError;
+            const dataAddress = Long.newObject("(J)V", .{@intFromPtr(data)}) catch return error.InitializationError;
 
             const View = jni.findClass("android/view/View") catch return error.InitializationError;
             View.callVoidMethod(widget, "setTag", "(ILjava/lang/Object;)V", .{ EVENT_USER_DATA_KEY, dataAddress }) catch return error.InitializationError;
@@ -159,7 +159,7 @@ pub fn Events(comptime T: type) type {
                 }
             }
 
-            getEventUserData(self.peer).userdata = @ptrToInt(data);
+            getEventUserData(self.peer).userdata = @intFromPtr(data);
         }
 
         pub inline fn setCallback(self: *T, comptime eType: EventType, cb: anytype) !void {
@@ -275,7 +275,7 @@ pub const Window = struct {
         self.source_dpi = 96;
         // TODO
         const resolution = @as(f32, 96.0);
-        self.scale = resolution / @intToFloat(f32, dpi);
+        self.scale = resolution / @floatFromInt(f32, dpi);
     }
 
     pub fn show(_: *Window) void {
@@ -484,10 +484,10 @@ pub const Canvas = struct {
 
         pub fn setColorRGBA(self: *DrawContext, r: f32, g: f32, b: f32, a: f32) void {
             const color = lib.Color{
-                .red = @floatToInt(u8, std.math.clamp(r, 0, 1) * 255),
-                .green = @floatToInt(u8, std.math.clamp(g, 0, 1) * 255),
-                .blue = @floatToInt(u8, std.math.clamp(b, 0, 1) * 255),
-                .alpha = @floatToInt(u8, std.math.clamp(a, 0, 1) * 255),
+                .red = @intFromFloat(u8, std.math.clamp(r, 0, 1) * 255),
+                .green = @intFromFloat(u8, std.math.clamp(g, 0, 1) * 255),
+                .blue = @intFromFloat(u8, std.math.clamp(b, 0, 1) * 255),
+                .alpha = @intFromFloat(u8, std.math.clamp(a, 0, 1) * 255),
             };
             self.setColorByte(color);
         }
@@ -497,10 +497,10 @@ pub const Canvas = struct {
             const FILL = PaintStyle.getStaticObjectField("FILL", "Landroid/graphics/Paint$Style;") catch unreachable;
             self.paintClass.callVoidMethod(self.paint, "setStyle", "(Landroid/graphics/Paint$Style;)V", .{FILL}) catch unreachable;
             self.class.callVoidMethod(self.canvas, "drawRect", "(FFFFLandroid/graphics/Paint;)V", .{
-                @intToFloat(f32, x),
-                @intToFloat(f32, y),
-                @intToFloat(f32, x + @intCast(i32, w)),
-                @intToFloat(f32, y + @intCast(i32, h)),
+                @floatFromInt(f32, x),
+                @floatFromInt(f32, y),
+                @floatFromInt(f32, x + @intCast(i32, w)),
+                @floatFromInt(f32, y + @intCast(i32, h)),
                 self.paint,
             }) catch unreachable;
         }
@@ -526,10 +526,10 @@ pub const Canvas = struct {
 
         pub fn line(self: *DrawContext, x1: i32, y1: i32, x2: i32, y2: i32) void {
             self.class.callVoidMethod(self.canvas, "drawLine", "(FFFFLandroid/graphics/Paint;)V", .{
-                @intToFloat(f32, x1),
-                @intToFloat(f32, y1),
-                @intToFloat(f32, x2),
-                @intToFloat(f32, y2),
+                @floatFromInt(f32, x1),
+                @floatFromInt(f32, y1),
+                @floatFromInt(f32, x2),
+                @floatFromInt(f32, y2),
                 self.paint,
             }) catch unreachable;
         }
@@ -540,10 +540,10 @@ pub const Canvas = struct {
             self.paintClass.callVoidMethod(self.paint, "setStyle", "(Landroid/graphics/Paint$Style;)V", .{FILL}) catch unreachable;
 
             self.class.callVoidMethod(self.canvas, "drawOval", "(FFFFLandroid/graphics/Paint;)V", .{
-                @intToFloat(f32, x),
-                @intToFloat(f32, y),
-                @intToFloat(f32, x + @intCast(i32, w)),
-                @intToFloat(f32, y + @intCast(i32, h)),
+                @floatFromInt(f32, x),
+                @floatFromInt(f32, y),
+                @floatFromInt(f32, x + @intCast(i32, w)),
+                @floatFromInt(f32, y + @intCast(i32, h)),
                 self.paint,
             }) catch unreachable;
         }

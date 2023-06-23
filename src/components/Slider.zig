@@ -41,27 +41,27 @@ pub const Slider_Impl = struct {
     }
 
     fn wrapperValueChanged(newValue: f32, userdata: usize) void {
-        const peer = @intToPtr(*?backend.Slider, userdata);
+        const peer = @ptrFromInt(*?backend.Slider, userdata);
         peer.*.?.setValue(newValue);
     }
 
     fn wrapperMinChanged(newValue: f32, userdata: usize) void {
-        const peer = @intToPtr(*?backend.Slider, userdata);
+        const peer = @ptrFromInt(*?backend.Slider, userdata);
         peer.*.?.setMinimum(newValue);
     }
 
     fn wrapperMaxChanged(newValue: f32, userdata: usize) void {
-        const peer = @intToPtr(*?backend.Slider, userdata);
+        const peer = @ptrFromInt(*?backend.Slider, userdata);
         peer.*.?.setMaximum(newValue);
     }
 
     fn wrapperStepChanged(newValue: f32, userdata: usize) void {
-        const peer = @intToPtr(*?backend.Slider, userdata);
+        const peer = @ptrFromInt(*?backend.Slider, userdata);
         peer.*.?.setStepSize(@fabs(newValue));
     }
 
     fn wrapperEnabledChanged(newValue: bool, userdata: usize) void {
-        const peer = @intToPtr(*?backend.Slider, userdata);
+        const peer = @ptrFromInt(*?backend.Slider, userdata);
         peer.*.?.setEnabled(newValue);
     }
 
@@ -82,11 +82,11 @@ pub const Slider_Impl = struct {
             self.peer.?.setEnabled(self.enabled.get());
             try self.show_events();
 
-            _ = try self.value.addChangeListener(.{ .function = wrapperValueChanged, .userdata = @ptrToInt(&self.peer) });
-            _ = try self.min.addChangeListener(.{ .function = wrapperMinChanged, .userdata = @ptrToInt(&self.peer) });
-            _ = try self.max.addChangeListener(.{ .function = wrapperMaxChanged, .userdata = @ptrToInt(&self.peer) });
-            _ = try self.enabled.addChangeListener(.{ .function = wrapperEnabledChanged, .userdata = @ptrToInt(&self.peer) });
-            _ = try self.step.addChangeListener(.{ .function = wrapperStepChanged, .userdata = @ptrToInt(&self.peer) });
+            _ = try self.value.addChangeListener(.{ .function = wrapperValueChanged, .userdata = @intFromPtr(&self.peer) });
+            _ = try self.min.addChangeListener(.{ .function = wrapperMinChanged, .userdata = @intFromPtr(&self.peer) });
+            _ = try self.max.addChangeListener(.{ .function = wrapperMaxChanged, .userdata = @intFromPtr(&self.peer) });
+            _ = try self.enabled.addChangeListener(.{ .function = wrapperEnabledChanged, .userdata = @intFromPtr(&self.peer) });
+            _ = try self.step.addChangeListener(.{ .function = wrapperStepChanged, .userdata = @intFromPtr(&self.peer) });
 
             try self.addPropertyChangeHandler(&onPropertyChange);
         }

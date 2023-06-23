@@ -24,7 +24,7 @@ pub const Label_Impl = struct {
     }
 
     fn wrapperTextChanged(newValue: []const u8, userdata: usize) void {
-        const self = @intToPtr(*Label_Impl, userdata);
+        const self = @ptrFromInt(*Label_Impl, userdata);
         self.peer.?.setText(newValue);
     }
 
@@ -39,7 +39,7 @@ pub const Label_Impl = struct {
             });
             self.peer = peer;
             try self.show_events();
-            _ = try self.text.addChangeListener(.{ .function = wrapperTextChanged, .userdata = @ptrToInt(self) });
+            _ = try self.text.addChangeListener(.{ .function = wrapperTextChanged, .userdata = @intFromPtr(self) });
         }
     }
 

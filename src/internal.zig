@@ -205,7 +205,7 @@ pub fn Widgeting(comptime T: type) type {
         pub fn bind(immutable_self: *const T, comptime name: []const u8, other: *Atom(TypeOfProperty(name))) T {
             // TODO: use another system for binding components
             // This is DANGEROUSLY unsafe (and unoptimized)
-            const self = @intToPtr(*T, @ptrToInt(immutable_self));
+            const self = @ptrFromInt(*T, @intFromPtr(immutable_self));
 
             if (@hasField(Atoms, name)) {
                 @field(self.widget_data.atoms, name).bind(other);
@@ -488,56 +488,56 @@ pub fn Events(comptime T: type) type {
         }
 
         fn clickHandler(data: usize) void {
-            const self = @intToPtr(*T, data);
+            const self = @ptrFromInt(*T, data);
             for (self.widget_data.handlers.clickHandlers.items) |func| {
                 func(self) catch |err| errorHandler(err);
             }
         }
 
         fn drawHandler(ctx: *backend.Canvas.DrawContext, data: usize) void {
-            const self = @intToPtr(*T, data);
+            const self = @ptrFromInt(*T, data);
             for (self.widget_data.handlers.drawHandlers.items) |func| {
                 func(self, ctx) catch |err| errorHandler(err);
             }
         }
 
         fn buttonHandler(button: MouseButton, pressed: bool, x: i32, y: i32, data: usize) void {
-            const self = @intToPtr(*T, data);
+            const self = @ptrFromInt(*T, data);
             for (self.widget_data.handlers.buttonHandlers.items) |func| {
                 func(self, button, pressed, x, y) catch |err| errorHandler(err);
             }
         }
 
         fn mouseMovedHandler(x: i32, y: i32, data: usize) void {
-            const self = @intToPtr(*T, data);
+            const self = @ptrFromInt(*T, data);
             for (self.widget_data.handlers.mouseMoveHandlers.items) |func| {
                 func(self, x, y) catch |err| errorHandler(err);
             }
         }
 
         fn keyTypeHandler(str: []const u8, data: usize) void {
-            const self = @intToPtr(*T, data);
+            const self = @ptrFromInt(*T, data);
             for (self.widget_data.handlers.keyTypeHandlers.items) |func| {
                 func(self, str) catch |err| errorHandler(err);
             }
         }
 
         fn keyPressHandler(keycode: u16, data: usize) void {
-            const self = @intToPtr(*T, data);
+            const self = @ptrFromInt(*T, data);
             for (self.widget_data.handlers.keyPressHandlers.items) |func| {
                 func(self, keycode) catch |err| errorHandler(err);
             }
         }
 
         fn scrollHandler(dx: f32, dy: f32, data: usize) void {
-            const self = @intToPtr(*T, data);
+            const self = @ptrFromInt(*T, data);
             for (self.widget_data.handlers.scrollHandlers.items) |func| {
                 func(self, dx, dy) catch |err| errorHandler(err);
             }
         }
 
         fn resizeHandler(width: u32, height: u32, data: usize) void {
-            const self = @intToPtr(*T, data);
+            const self = @ptrFromInt(*T, data);
             const size = Size{ .width = width, .height = height };
             for (self.widget_data.handlers.resizeHandlers.items) |func| {
                 func(self, size) catch |err| errorHandler(err);
@@ -545,7 +545,7 @@ pub fn Events(comptime T: type) type {
         }
 
         fn propertyChangeHandler(name: []const u8, value: *const anyopaque, data: usize) void {
-            const self = @intToPtr(*T, data);
+            const self = @ptrFromInt(*T, data);
             for (self.widget_data.handlers.propertyChangeHandlers.items) |func| {
                 func(self, name, value) catch |err| errorHandler(err);
             }
@@ -553,7 +553,7 @@ pub fn Events(comptime T: type) type {
 
         /// When the value is changed in the opacity data wrapper
         fn opacityChanged(newValue: f32, userdata: usize) void {
-            const widget = @intToPtr(*T, userdata);
+            const widget = @ptrFromInt(*T, userdata);
             if (widget.peer) |*peer| {
                 peer.setOpacity(newValue);
             }
@@ -571,8 +571,8 @@ pub fn Events(comptime T: type) type {
             try self.peer.?.setCallback(.KeyPress, keyPressHandler);
             try self.peer.?.setCallback(.PropertyChange, propertyChangeHandler);
 
-            _ = try self.widget_data.atoms.opacity.addChangeListener(.{ .function = opacityChanged, .userdata = @ptrToInt(self) });
-            opacityChanged(self.widget_data.atoms.opacity.get(), @ptrToInt(self)); // call it so it's updated
+            _ = try self.widget_data.atoms.opacity.addChangeListener(.{ .function = opacityChanged, .userdata = @intFromPtr(self) });
+            opacityChanged(self.widget_data.atoms.opacity.get(), @intFromPtr(self)); // call it so it's updated
         }
 
         pub fn addClickHandler(self: *T, handler: anytype) !void {

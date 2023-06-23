@@ -65,16 +65,16 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
         if (widget.peer) |widgetPeer| {
             const minimumSize = widget.getPreferredSize(Size.init(1, 1));
             if (config.wrapping) {
-                if (childY >= @intToFloat(f32, peer.getSize(peer.userdata).height -| minimumSize.height)) {
+                if (childY >= @floatFromInt(f32, peer.getSize(peer.userdata).height -| minimumSize.height)) {
                     childY = 0;
                     // TODO: largest width of all the column
-                    childX += @intToFloat(f32, minimumSize.width);
+                    childX += @floatFromInt(f32, minimumSize.width);
                 }
             }
 
             const available = Size{
                 .width = @intCast(u32, peer.getSize(peer.userdata).width),
-                .height = if (widget.container_expanded) childHeight else (@intCast(u32, peer.getSize(peer.userdata).height) -| @floatToInt(u32, childY)),
+                .height = if (widget.container_expanded) childHeight else (@intCast(u32, peer.getSize(peer.userdata).height) -| @intFromFloat(u32, childY)),
             };
             const preferred = widget.getPreferredSize(available);
             const size = blk: {
@@ -93,9 +93,9 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
                 }
             };
 
-            const x: u32 = @floatToInt(u32, childX);
-            peer.moveResize(peer.userdata, widgetPeer, x, @floatToInt(u32, childY), size.width, size.height);
-            childY += @intToFloat(f32, size.height) + if (isLastWidget) 0 else @intToFloat(f32, config.spacing);
+            const x: u32 = @intFromFloat(u32, childX);
+            peer.moveResize(peer.userdata, widgetPeer, x, @intFromFloat(u32, childY), size.width, size.height);
+            childY += @floatFromInt(f32, size.height) + if (isLastWidget) 0 else @floatFromInt(f32, config.spacing);
         }
     }
 }
@@ -128,15 +128,15 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
         if (widget.peer) |widgetPeer| {
             const minimumSize = widget.getPreferredSize(Size.init(1, 1));
             if (config.wrapping) {
-                if (childX >= @intToFloat(f32, peer.getSize(peer.userdata).width -| minimumSize.width)) {
+                if (childX >= @floatFromInt(f32, peer.getSize(peer.userdata).width -| minimumSize.width)) {
                     childX = 0;
                     // TODO: largest height of all the row
-                    childY += @intToFloat(f32, minimumSize.height);
+                    childY += @floatFromInt(f32, minimumSize.height);
                 }
             }
 
             const available = Size{
-                .width = if (widget.container_expanded) childWidth else (@intCast(u32, peer.getSize(peer.userdata).width) -| @floatToInt(u32, childX)),
+                .width = if (widget.container_expanded) childWidth else (@intCast(u32, peer.getSize(peer.userdata).width) -| @intFromFloat(u32, childX)),
                 .height = @intCast(u32, peer.getSize(peer.userdata).height),
             };
             const preferred = widget.getPreferredSize(available);
@@ -156,9 +156,9 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
                 }
             };
 
-            const y: u32 = @floatToInt(u32, childY);
-            peer.moveResize(peer.userdata, widgetPeer, @floatToInt(u32, childX), y, size.width, size.height);
-            childX += @intToFloat(f32, size.width) + if (isLastWidget) 0 else @intToFloat(f32, config.spacing);
+            const y: u32 = @intFromFloat(u32, childY);
+            peer.moveResize(peer.userdata, widgetPeer, @intFromFloat(u32, childX), y, size.width, size.height);
+            childX += @floatFromInt(f32, size.width) + if (isLastWidget) 0 else @floatFromInt(f32, config.spacing);
         }
     }
 }
@@ -284,7 +284,7 @@ pub const Container_Impl = struct {
     pub fn getPreferredSize(self: *Container_Impl, available: Size) Size {
         var size: Size = Size{ .width = 0, .height = 0 };
         const callbacks = Callbacks{
-            .userdata = @ptrToInt(&size),
+            .userdata = @intFromPtr(&size),
             .moveResize = fakeResMove,
             .getSize = fakeSize,
             .computingPreferredSize = true,
@@ -331,20 +331,20 @@ pub const Container_Impl = struct {
     }
 
     fn fakeResMove(data: usize, widget: backend.PeerType, x: u32, y: u32, w: u32, h: u32) void {
-        const size = @intToPtr(*Size, data);
+        const size = @ptrFromInt(*Size, data);
         _ = widget;
         size.width = @max(size.width, x + w);
         size.height = @max(size.height, y + h);
     }
 
     fn getSize(data: usize) Size {
-        const peer = @intToPtr(*backend.Container, data);
+        const peer = @ptrFromInt(*backend.Container, data);
         return Size{ .width = @intCast(u32, peer.getWidth()), .height = @intCast(u32, peer.getHeight()) };
     }
 
     fn moveResize(data: usize, widget: backend.PeerType, x: u32, y: u32, w: u32, h: u32) void {
-        @intToPtr(*backend.Container, data).move(widget, x, y);
-        @intToPtr(*backend.Container, data).resize(widget, w, h);
+        @ptrFromInt(*backend.Container, data).move(widget, x, y);
+        @ptrFromInt(*backend.Container, data).resize(widget, w, h);
     }
 
     pub fn relayout(self: *Container_Impl) void {
@@ -352,7 +352,7 @@ pub const Container_Impl = struct {
         if (self.peer) |peer| {
             self.relayouting.store(true, .SeqCst);
             const callbacks = Callbacks{
-                .userdata = @ptrToInt(&peer),
+                .userdata = @intFromPtr(&peer),
                 .moveResize = moveResize,
                 .getSize = getSize,
                 .computingPreferredSize = false,

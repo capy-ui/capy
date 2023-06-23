@@ -93,8 +93,8 @@ pub const AndroidApp = struct {
             old.deinit();
         }
 
-        self.screen_width = @intToFloat(f32, android.ANativeWindow_getWidth(window));
-        self.screen_height = @intToFloat(f32, android.ANativeWindow_getHeight(window));
+        self.screen_width = @floatFromInt(f32, android.ANativeWindow_getWidth(window));
+        self.screen_height = @floatFromInt(f32, android.ANativeWindow_getHeight(window));
 
         self.egl = EGLContext.init(window, .gles2) catch |err| blk: {
             app_log.err("Failed to initialize EGL for window: {}\n", .{err});
@@ -177,7 +177,7 @@ pub const AndroidApp = struct {
     }
 
     fn processKeyEvent(self: *Self, event: *android.AInputEvent) !bool {
-        const event_type = @intToEnum(android.AKeyEventActionType, android.AKeyEvent_getAction(event));
+        const event_type = @enumFromInt(android.AKeyEventActionType, android.AKeyEvent_getAction(event));
         std.log.scoped(.input).debug(
             \\Key Press Event: {}
             \\  Flags:       {}
@@ -249,7 +249,7 @@ pub const AndroidApp = struct {
     }
 
     fn processMotionEvent(self: *Self, event: *android.AInputEvent) !bool {
-        const event_type = @intToEnum(android.AMotionEventActionType, android.AMotionEvent_getAction(event));
+        const event_type = @enumFromInt(android.AMotionEventActionType, android.AMotionEvent_getAction(event));
 
         {
             var native_activity = NativeActivity.init(self.activity);
@@ -428,7 +428,7 @@ pub const AndroidApp = struct {
                             continue;
                         }
 
-                        const event_type = @intToEnum(android.AInputEventType, android.AInputEvent_getType(event));
+                        const event_type = @enumFromInt(android.AInputEventType, android.AInputEvent_getType(event));
                         const handled = switch (event_type) {
                             .AINPUT_EVENT_TYPE_KEY => try self.processKeyEvent(event.?),
                             .AINPUT_EVENT_TYPE_MOTION => try self.processMotionEvent(event.?),
@@ -605,7 +605,7 @@ pub const AndroidApp = struct {
                         self.egl_init = false;
                     }
 
-                    const t = @intToFloat(f32, loop) / 100.0;
+                    const t = @floatFromInt(f32, loop) / 100.0;
 
                     // Clear the screen
                     c.glClearColor(
@@ -622,7 +622,7 @@ pub const AndroidApp = struct {
                     c.glBindBuffer(c.GL_ARRAY_BUFFER, touch_buffer);
 
                     c.glEnableVertexAttribArray(vPosition);
-                    c.glVertexAttribPointer(vPosition, 2, c.GL_FLOAT, c.GL_FALSE, 0, @intToPtr(?*anyopaque, 0));
+                    c.glVertexAttribPointer(vPosition, 2, c.GL_FLOAT, c.GL_FALSE, 0, @ptrFromInt(?*anyopaque, 0));
 
                     // c.glDisableVertexAttribArray(1);
 
@@ -652,10 +652,10 @@ pub const AndroidApp = struct {
                     // -- Start 3d zig logo code
                     c.glBindBuffer(c.GL_ARRAY_BUFFER, mesh_buffer);
                     c.glEnableVertexAttribArray(mesh_vPosition);
-                    c.glVertexAttribPointer(mesh_vPosition, 3, c.GL_FLOAT, c.GL_FALSE, @sizeOf(MeshVertex), @intToPtr(?*anyopaque, @offsetOf(MeshVertex, "pos")));
+                    c.glVertexAttribPointer(mesh_vPosition, 3, c.GL_FLOAT, c.GL_FALSE, @sizeOf(MeshVertex), @ptrFromInt(?*anyopaque, @offsetOf(MeshVertex, "pos")));
 
                     c.glEnableVertexAttribArray(mesh_vNormal);
-                    c.glVertexAttribPointer(mesh_vNormal, 3, c.GL_FLOAT, c.GL_FALSE, @sizeOf(MeshVertex), @intToPtr(?*anyopaque, @offsetOf(MeshVertex, "normal")));
+                    c.glVertexAttribPointer(mesh_vNormal, 3, c.GL_FLOAT, c.GL_FALSE, @sizeOf(MeshVertex), @ptrFromInt(?*anyopaque, @offsetOf(MeshVertex, "normal")));
 
                     c.glUseProgram(shaded_program);
 
@@ -850,7 +850,7 @@ const Oscillator = struct {
     }
 
     fn setSampleRate(self: *@This(), sample_rate: i32) void {
-        self.phaseIncrement = (std.math.tau * self.frequency) / @intToFloat(f64, sample_rate);
+        self.phaseIncrement = (std.math.tau * self.frequency) / @floatFromInt(f64, sample_rate);
     }
 
     fn renderf32(self: *@This(), audio_data: []f32) void {
@@ -870,7 +870,7 @@ const Oscillator = struct {
 
         for (audio_data) |*frame| {
             if (@atomicLoad(bool, &self.isWaveOn, .SeqCst)) {
-                frame.* +|= @floatToInt(i16, @floatCast(f32, std.math.sin(self.phase) * self.amplitude) * std.math.maxInt(i16));
+                frame.* +|= @intFromFloat(i16, @floatCast(f32, std.math.sin(self.phase) * self.amplitude) * std.math.maxInt(i16));
                 self.phase += self.phaseIncrement;
                 if (self.phase > std.math.tau) self.phase -= std.math.tau;
             }
@@ -886,7 +886,7 @@ const SimpleSynth = struct {
         for (&synth.oscillators, 0..) |*osc, index| {
             osc.* = Oscillator{
                 .frequency = audio.midiToFreq(49 + index * 3),
-                .amplitude = audio.dBToAmplitude(-@intToFloat(f64, index) - 15),
+                .amplitude = audio.dBToAmplitude(-@floatFromInt(f64, index) - 15),
             };
         }
         return synth;

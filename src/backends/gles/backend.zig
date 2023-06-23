@@ -166,7 +166,7 @@ pub fn Events(comptime T: type) type {
                 }
             }
 
-            self.peer.userdata = @ptrToInt(data);
+            self.peer.userdata = @intFromPtr(data);
         }
 
         pub inline fn setCallback(self: *T, comptime eType: EventType, cb: anytype) !void {

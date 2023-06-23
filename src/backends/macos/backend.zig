@@ -67,7 +67,7 @@ pub const Window = struct {
 
         std.log.info("make ", .{});
         std.log.info("new rect: {x}", .{@bitCast(u64, newRect.origin.y)});
-        const flag: u8 = @boolToInt(false);
+        const flag: u8 = @intFromBool(false);
 
         const window = objc.msgSendByName(
             objc.id,
@@ -82,7 +82,7 @@ pub const Window = struct {
     }
 
     pub fn resize(self: *Window, width: c_int, height: c_int) void {
-        const frame = objc.NSRectMake(100, 100, @intToFloat(objc.CGFloat, width), @intToFloat(objc.CGFloat, height));
+        const frame = objc.NSRectMake(100, 100, @floatFromInt(objc.CGFloat, width), @floatFromInt(objc.CGFloat, height));
         // TODO: resize animation can be handled using a DataWrapper on the user-facing API
         _ = objc.msgSendByName(void, self.peer, "setFrame:display:", .{ frame, true }) catch unreachable;
     }
@@ -101,7 +101,7 @@ pub const Window = struct {
         self.source_dpi = 96;
         // TODO
         const resolution = @as(f32, 96.0);
-        self.scale = resolution / @intToFloat(f32, dpi);
+        self.scale = resolution / @floatFromInt(f32, dpi);
     }
 
     pub fn show(self: *Window) void {

@@ -103,16 +103,16 @@ pub const Image_Impl = struct {
             },
             .Fit => {
                 // The aspect ratio of the image
-                const ratio = @intToFloat(f32, image.width) / @intToFloat(f32, image.height);
+                const ratio = @floatFromInt(f32, image.width) / @floatFromInt(f32, image.height);
                 var imageW: u32 = undefined;
                 var imageH: u32 = undefined;
 
-                if (@intToFloat(f32, width) / ratio < @intToFloat(f32, height)) {
+                if (@floatFromInt(f32, width) / ratio < @floatFromInt(f32, height)) {
                     imageW = width;
-                    imageH = @floatToInt(u32, @intToFloat(f32, imageW) / ratio);
+                    imageH = @intFromFloat(u32, @floatFromInt(f32, imageW) / ratio);
                 } else {
                     imageH = height;
-                    imageW = @floatToInt(u32, @intToFloat(f32, imageH) * ratio);
+                    imageW = @intFromFloat(u32, @floatFromInt(f32, imageH) * ratio);
                 }
 
                 const imageX = @intCast(i32, width / 2) - @intCast(i32, imageW / 2);

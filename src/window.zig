@@ -109,7 +109,7 @@ pub const Window = struct {
     }
 
     fn sizeChanged(width: u32, height: u32, data: usize) void {
-        const self = @intToPtr(*Window, data);
+        const self = @ptrFromInt(*Window, data);
         self.size.set(.{ .width = width, .height = height });
     }
 

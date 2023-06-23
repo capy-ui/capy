@@ -42,7 +42,7 @@ pub const LineGraph_Impl = struct {
         legendLayout.setFont(.{ .face = "Arial", .size = 12.0 });
 
         while (legendValue < maxValue) : (legendValue += (maxValue - minValue) / 10) {
-            const y = @intCast(i32, height) - @floatToInt(i32, @floor((legendValue - minValue) * (@intToFloat(f32, height) / (maxValue - minValue))));
+            const y = @intCast(i32, height) - @intFromFloat(i32, @floor((legendValue - minValue) * (@floatFromInt(f32, height) / (maxValue - minValue))));
             const text = try std.fmt.bufPrint(&legendBuf, "{d:.1}", .{legendValue});
 
             ctx.setColor(0, 0, 0);
@@ -56,8 +56,8 @@ pub const LineGraph_Impl = struct {
         var oldY: i32 = 0;
         while (x < 10) : (x += 0.1) {
             const y = self.dataFn(x);
-            var dy = @intCast(i32, height) - @floatToInt(i32, @floor((y - minValue) * (@intToFloat(f32, height) / (maxValue - minValue))));
-            var dx = @floatToInt(i32, @floor(x * 100)) + 50;
+            var dy = @intCast(i32, height) - @intFromFloat(i32, @floor((y - minValue) * (@floatFromInt(f32, height) / (maxValue - minValue))));
+            var dx = @intFromFloat(i32, @floor(x * 100)) + 50;
             if (dy < 0) dy = 0;
             if (dx < 0) dx = 0;
             if (oldY == 0) oldY = dy;
@@ -101,7 +101,7 @@ fn lerp(a: f32, b: f32, t: f32) f32 {
 
 fn myDataFunction(x: f32) f32 {
     if (x < 0) return 0;
-    const idx = @floatToInt(usize, @floor(x));
+    const idx = @intFromFloat(usize, @floor(x));
     if (idx >= myData.len) return 0;
 
     if (smoothData) {
@@ -199,7 +199,7 @@ pub fn main() !void {
         } else if (dt > 1000) {
             dt = 1000;
         }
-        const t = @intToFloat(f32, dt) / 1000;
+        const t = @floatFromInt(f32, dt) / 1000;
         rectangleX.set(graph.dataFn(t * 10.0));
         std.time.sleep(30);
     }

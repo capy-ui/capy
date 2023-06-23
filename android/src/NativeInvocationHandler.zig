@@ -29,7 +29,7 @@ pub fn createAlloc(self: Self, jni: *android.JNI, alloc: std.mem.Allocator, poin
         .function = function,
     };
 
-    const handler_value = @ptrToInt(handler);
+    const handler_value = @intFromPtr(handler);
     std.debug.assert(handler_value <= 0x7fffffffffffffff);
 
     // Call handler constructor
@@ -59,7 +59,7 @@ const InvocationHandler = struct {
         const Class = try jni.invokeJni(.GetObjectClass, .{this});
         const ptrField = try jni.invokeJni(.GetFieldID, .{ Class, "ptr", "J" });
         const jptr = try jni.getLongField(this, ptrField);
-        const h = @intToPtr(*InvocationHandler, @intCast(usize, jptr));
+        const h = @ptrFromInt(*InvocationHandler, @intCast(usize, jptr));
         return h.function(h.pointer, jni, method, args);
     }
 };

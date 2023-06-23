@@ -90,14 +90,14 @@ pub const Window = struct {
         c.gtk_window_get_size(@ptrCast(*c.GtkWindow, peer), &width, &height);
 
         if (data.class.resizeHandler) |handler|
-            handler(@intCast(u32, width), @intCast(u32, height), @ptrToInt(data));
+            handler(@intCast(u32, width), @intCast(u32, height), @intFromPtr(data));
         if (data.user.resizeHandler) |handler|
             handler(@intCast(u32, width), @intCast(u32, height), data.userdata);
         return 0;
     }
 
     pub fn resize(self: *Window, width: c_int, height: c_int) void {
-        c.gtk_window_resize(@ptrCast(*c.GtkWindow, self.peer), @floatToInt(c_int, @intToFloat(f32, width) * self.scale), @floatToInt(c_int, @intToFloat(f32, height) * self.scale));
+        c.gtk_window_resize(@ptrCast(*c.GtkWindow, self.peer), @intFromFloat(c_int, @floatFromInt(f32, width) * self.scale), @intFromFloat(c_int, @floatFromInt(f32, height) * self.scale));
     }
 
     pub fn setTitle(self: *Window, title: [*:0]const u8) void {
@@ -129,7 +129,7 @@ pub const Window = struct {
         self.source_dpi = 96;
         // TODO: Handle GtkWindow moving between screens with different DPIs
         const resolution = @as(f32, 96.0);
-        self.scale = resolution / @intToFloat(f32, dpi);
+        self.scale = resolution / @floatFromInt(f32, dpi);
     }
 
     fn initMenu(menu: *c.GtkMenuShell, items: []const lib.MenuItem_Impl) void {
@@ -142,7 +142,7 @@ pub const Window = struct {
                 c.gtk_menu_item_set_submenu(@ptrCast(*c.GtkMenuItem, menuItem), itemMenu);
             }
             if (item.config.onClick) |callback| {
-                const data = @intToPtr(?*anyopaque, @ptrToInt(callback));
+                const data = @ptrFromInt(?*anyopaque, @intFromPtr(callback));
                 _ = c.g_signal_connect_data(menuItem, "activate", @ptrCast(c.GCallback, &gtkActivate), data, null, c.G_CONNECT_AFTER);
             }
 
@@ -220,7 +220,7 @@ pub fn Events(comptime T: type) type {
             _ = userdata;
             const data = getEventUserData(peer);
             if (data.class.resizeHandler) |handler|
-                handler(@intCast(u32, allocation.width), @intCast(u32, allocation.height), @ptrToInt(data));
+                handler(@intCast(u32, allocation.width), @intCast(u32, allocation.height), @intFromPtr(data));
             if (data.user.resizeHandler) |handler|
                 handler(@intCast(u32, allocation.width), @intCast(u32, allocation.height), data.userdata);
         }
@@ -245,7 +245,7 @@ pub fn Events(comptime T: type) type {
             const str = event.string[0..@intCast(usize, event.length)];
             if (str.len != 0 and T != Canvas) {
                 if (data.class.keyTypeHandler) |handler| {
-                    handler(str, @ptrToInt(data));
+                    handler(str, @intFromPtr(data));
                     if (data.user.keyTypeHandler == null) return 1;
                 }
                 if (data.user.keyTypeHandler) |handler| {
@@ -254,7 +254,7 @@ pub fn Events(comptime T: type) type {
                 }
             }
             if (data.class.keyPressHandler) |handler| {
-                handler(event.hardware_keycode, @ptrToInt(data));
+                handler(event.hardware_keycode, @intFromPtr(data));
                 if (data.user.keyPressHandler == null) return 1;
             }
             if (data.user.keyPressHandler) |handler| {
@@ -280,13 +280,13 @@ pub fn Events(comptime T: type) type {
                 1 => MouseButton.Left,
                 2 => MouseButton.Middle,
                 3 => MouseButton.Right,
-                else => @intToEnum(MouseButton, event.button),
+                else => @enumFromInt(MouseButton, event.button),
             };
-            const mx = @floatToInt(i32, @floor(event.x));
-            const my = @floatToInt(i32, @floor(event.y));
+            const mx = @intFromFloat(i32, @floor(event.x));
+            const my = @intFromFloat(i32, @floor(event.y));
 
             if (data.class.mouseButtonHandler) |handler| {
-                handler(button, pressed, mx, my, @ptrToInt(data));
+                handler(button, pressed, mx, my, @intFromPtr(data));
             }
             if (data.user.mouseButtonHandler) |handler| {
                 if (data.focusOnClick) {
@@ -301,10 +301,10 @@ pub fn Events(comptime T: type) type {
             _ = userdata;
             const data = getEventUserData(peer);
 
-            const mx = @floatToInt(i32, @floor(event.x));
-            const my = @floatToInt(i32, @floor(event.y));
+            const mx = @intFromFloat(i32, @floor(event.x));
+            const my = @intFromFloat(i32, @floor(event.y));
             if (data.class.mouseMotionHandler) |handler| {
-                handler(mx, my, @ptrToInt(data));
+                handler(mx, my, @intFromPtr(data));
                 if (data.user.mouseMotionHandler == null) return 1;
             }
             if (data.user.mouseMotionHandler) |handler| {
@@ -332,7 +332,7 @@ pub fn Events(comptime T: type) type {
             };
 
             if (data.class.scrollHandler) |handler|
-                handler(dx, dy, @ptrToInt(data));
+                handler(dx, dy, @intFromPtr(data));
             if (data.user.scrollHandler) |handler|
                 handler(dx, dy, data.userdata);
         }
@@ -354,7 +354,7 @@ pub fn Events(comptime T: type) type {
                 }
             }
 
-            getEventUserData(self.peer).userdata = @ptrToInt(data);
+            getEventUserData(self.peer).userdata = @intFromPtr(data);
         }
 
         pub inline fn setCallback(self: *T, comptime eType: EventType, cb: anytype) !void {
@@ -438,7 +438,7 @@ pub const Button = struct {
     }
 
     pub fn setEnabled(self: *const Button, enabled: bool) void {
-        c.gtk_widget_set_sensitive(self.peer, @boolToInt(enabled));
+        c.gtk_widget_set_sensitive(self.peer, @intFromBool(enabled));
     }
 };
 
@@ -474,11 +474,11 @@ pub const CheckBox = struct {
     }
 
     pub fn setEnabled(self: *const CheckBox, enabled: bool) void {
-        c.gtk_widget_set_sensitive(self.peer, @boolToInt(enabled));
+        c.gtk_widget_set_sensitive(self.peer, @intFromBool(enabled));
     }
 
     pub fn setChecked(self: *const CheckBox, checked: bool) void {
-        c.gtk_toggle_button_set_active(@ptrCast(*c.GtkToggleButton, self.peer), @boolToInt(checked));
+        c.gtk_toggle_button_set_active(@ptrCast(*c.GtkToggleButton, self.peer), @intFromBool(checked));
     }
 
     pub fn isChecked(self: *const CheckBox) bool {
@@ -518,7 +518,7 @@ pub const Slider = struct {
     pub fn create() BackendError!Slider {
         const adjustment = c.gtk_adjustment_new(0, 0, 100 + 10, 10, 10, 10);
         const slider = c.gtk_scale_new(c.GTK_ORIENTATION_HORIZONTAL, adjustment) orelse return error.UnknownError;
-        c.gtk_scale_set_draw_value(@ptrCast(*c.GtkScale, slider), @boolToInt(false));
+        c.gtk_scale_set_draw_value(@ptrCast(*c.GtkScale, slider), @intFromBool(false));
         c.gtk_widget_show(slider);
         try Slider.setupEvents(slider);
         _ = c.g_signal_connect_data(slider, "value-changed", @ptrCast(c.GCallback, &gtkValueChanged), null, @as(c.GClosureNotify, null), 0);
@@ -550,7 +550,7 @@ pub const Slider = struct {
     }
 
     pub fn setEnabled(self: *Slider, enabled: bool) void {
-        c.gtk_widget_set_sensitive(self.peer, @boolToInt(enabled));
+        c.gtk_widget_set_sensitive(self.peer, @intFromBool(enabled));
     }
 
     pub fn setOrientation(self: *Slider, orientation: lib.Orientation) void {
@@ -643,7 +643,7 @@ pub const TextArea = struct {
     }
 
     pub fn setMonospaced(self: *TextArea, monospaced: bool) void {
-        c.gtk_text_view_set_monospace(@ptrCast(*c.GtkTextView, self.textView), @boolToInt(monospaced));
+        c.gtk_text_view_set_monospace(@ptrCast(*c.GtkTextView, self.textView), @intFromBool(monospaced));
     }
 
     pub fn getText(self: *TextArea) [:0]const u8 {
@@ -703,8 +703,8 @@ pub const TextField = struct {
     }
 
     pub fn setReadOnly(self: *TextField, readOnly: bool) void {
-        c.gtk_editable_set_editable(@ptrCast(*c.GtkEditable, self.peer), @boolToInt(!readOnly));
-        c.gtk_widget_set_can_focus(self.peer, @boolToInt(!readOnly));
+        c.gtk_editable_set_editable(@ptrCast(*c.GtkEditable, self.peer), @intFromBool(!readOnly));
+        c.gtk_widget_set_can_focus(self.peer, @intFromBool(!readOnly));
     }
 
     pub fn _deinit(self: *const TextField) void {
@@ -743,7 +743,7 @@ pub const Canvas = struct {
 
             pub fn setFont(self: *TextLayout, font: Font) void {
                 const fontDescription = c.pango_font_description_from_string(font.face.ptr) orelse unreachable;
-                c.pango_font_description_set_size(fontDescription, @floatToInt(c_int, @floor(font.size * @as(f64, c.PANGO_SCALE))));
+                c.pango_font_description_set_size(fontDescription, @intFromFloat(c_int, @floor(font.size * @as(f64, c.PANGO_SCALE))));
                 c.pango_layout_set_font_description(self._layout, fontDescription);
                 c.pango_font_description_free(fontDescription);
             }
@@ -756,7 +756,7 @@ pub const Canvas = struct {
             pub fn getTextSize(self: *TextLayout, str: []const u8) TextSize {
                 var width: c_int = undefined;
                 var height: c_int = undefined;
-                c.pango_layout_set_width(self._layout, if (self.wrap) |w| @floatToInt(c_int, @floor(w * @as(f64, c.PANGO_SCALE))) else -1);
+                c.pango_layout_set_width(self._layout, if (self.wrap) |w| @intFromFloat(c_int, @floor(w * @as(f64, c.PANGO_SCALE))) else -1);
                 c.pango_layout_set_text(self._layout, str.ptr, @intCast(c_int, str.len));
                 c.pango_layout_get_pixel_size(self._layout, &width, &height);
 
@@ -770,7 +770,7 @@ pub const Canvas = struct {
         };
 
         pub fn setColorByte(self: *DrawContext, color: lib.Color) void {
-            self.setColorRGBA(@intToFloat(f32, color.red) / 255.0, @intToFloat(f32, color.green) / 255.0, @intToFloat(f32, color.blue) / 255.0, @intToFloat(f32, color.alpha) / 255.0);
+            self.setColorRGBA(@floatFromInt(f32, color.red) / 255.0, @floatFromInt(f32, color.green) / 255.0, @floatFromInt(f32, color.blue) / 255.0, @floatFromInt(f32, color.alpha) / 255.0);
         }
 
         /// Colors components are from 0 to 1.
@@ -802,10 +802,10 @@ pub const Canvas = struct {
                 c.cairo_pattern_add_color_stop_rgba(
                     pattern,
                     stop.offset,
-                    @intToFloat(f32, stop.color.red) / 255.0,
-                    @intToFloat(f32, stop.color.green) / 255.0,
-                    @intToFloat(f32, stop.color.blue) / 255.0,
-                    @intToFloat(f32, stop.color.alpha) / 255.0,
+                    @floatFromInt(f32, stop.color.red) / 255.0,
+                    @floatFromInt(f32, stop.color.green) / 255.0,
+                    @floatFromInt(f32, stop.color.blue) / 255.0,
+                    @floatFromInt(f32, stop.color.alpha) / 255.0,
                 );
             }
             c.cairo_set_source(self.cr, pattern);
@@ -813,7 +813,7 @@ pub const Canvas = struct {
 
         /// Add a rectangle to the current path
         pub fn rectangle(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
-            c.cairo_rectangle(self.cr, @intToFloat(f64, x), @intToFloat(f64, y), @intToFloat(f64, w), @intToFloat(f64, h));
+            c.cairo_rectangle(self.cr, @floatFromInt(f64, x), @floatFromInt(f64, y), @floatFromInt(f64, w), @floatFromInt(f64, h));
         }
 
         pub fn roundedRectangle(self: *DrawContext, x: i32, y: i32, w: u32, h: u32, corner_radius: f32) void {
@@ -823,56 +823,56 @@ pub const Canvas = struct {
         /// The radiuses are in order: top left, top right, bottom left, bottom right
         pub fn roundedRectangleEx(self: *DrawContext, x: i32, y: i32, w: u32, h: u32, corner_radiuses: [4]f32) void {
             var corners: [4]f32 = corner_radiuses;
-            if (corners[0] + corners[1] > @intToFloat(f32, w)) {
+            if (corners[0] + corners[1] > @floatFromInt(f32, w)) {
                 const left_prop = corners[0] / (corners[0] + corners[1]);
-                corners[0] = left_prop * @intToFloat(f32, w);
-                corners[1] = (1 - left_prop) * @intToFloat(f32, w);
+                corners[0] = left_prop * @floatFromInt(f32, w);
+                corners[1] = (1 - left_prop) * @floatFromInt(f32, w);
             }
-            if (corners[2] + corners[3] > @intToFloat(f32, w)) {
+            if (corners[2] + corners[3] > @floatFromInt(f32, w)) {
                 const left_prop = corners[2] / (corners[2] + corners[3]);
-                corners[2] = left_prop * @intToFloat(f32, w);
-                corners[3] = (1 - left_prop) * @intToFloat(f32, w);
+                corners[2] = left_prop * @floatFromInt(f32, w);
+                corners[3] = (1 - left_prop) * @floatFromInt(f32, w);
             }
-            if (corners[0] + corners[2] > @intToFloat(f32, h)) {
+            if (corners[0] + corners[2] > @floatFromInt(f32, h)) {
                 const top_prop = corners[0] / (corners[0] + corners[2]);
-                corners[0] = top_prop * @intToFloat(f32, h);
-                corners[2] = (1 - top_prop) * @intToFloat(f32, h);
+                corners[0] = top_prop * @floatFromInt(f32, h);
+                corners[2] = (1 - top_prop) * @floatFromInt(f32, h);
             }
-            if (corners[1] + corners[3] > @intToFloat(f32, h)) {
+            if (corners[1] + corners[3] > @floatFromInt(f32, h)) {
                 const top_prop = corners[1] / (corners[1] + corners[3]);
-                corners[1] = top_prop * @intToFloat(f32, h);
-                corners[3] = (1 - top_prop) * @intToFloat(f32, h);
+                corners[1] = top_prop * @floatFromInt(f32, h);
+                corners[3] = (1 - top_prop) * @floatFromInt(f32, h);
             }
 
             c.cairo_new_sub_path(self.cr);
             c.cairo_arc(
                 self.cr,
-                @intToFloat(f64, x + @intCast(i32, w)) - corners[1],
-                @intToFloat(f64, y) + corners[1],
+                @floatFromInt(f64, x + @intCast(i32, w)) - corners[1],
+                @floatFromInt(f64, y) + corners[1],
                 corners[1],
                 -std.math.pi / 2.0,
                 0.0,
             );
             c.cairo_arc(
                 self.cr,
-                @intToFloat(f64, x + @intCast(i32, w)) - corners[3],
-                @intToFloat(f64, y + @intCast(i32, h)) - corners[3],
+                @floatFromInt(f64, x + @intCast(i32, w)) - corners[3],
+                @floatFromInt(f64, y + @intCast(i32, h)) - corners[3],
                 corners[3],
                 0.0,
                 std.math.pi / 2.0,
             );
             c.cairo_arc(
                 self.cr,
-                @intToFloat(f64, x) + corners[2],
-                @intToFloat(f64, y + @intCast(i32, h)) - corners[2],
+                @floatFromInt(f64, x) + corners[2],
+                @floatFromInt(f64, y + @intCast(i32, h)) - corners[2],
                 corners[2],
                 std.math.pi / 2.0,
                 std.math.pi,
             );
             c.cairo_arc(
                 self.cr,
-                @intToFloat(f64, x) + corners[0],
-                @intToFloat(f64, y) + corners[0],
+                @floatFromInt(f64, x) + corners[0],
+                @floatFromInt(f64, y) + corners[0],
                 corners[0],
                 std.math.pi,
                 std.math.pi / 2.0 * 3.0,
@@ -882,21 +882,21 @@ pub const Canvas = struct {
 
         pub fn ellipse(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
             if (w == h) { // if it is a circle, we can use something slightly faster
-                c.cairo_arc(self.cr, @intToFloat(f64, x + @intCast(i32, w / 2)), @intToFloat(f64, y + @intCast(i32, w / 2)), @intToFloat(f64, w / 2), 0, 2 * std.math.pi);
+                c.cairo_arc(self.cr, @floatFromInt(f64, x + @intCast(i32, w / 2)), @floatFromInt(f64, y + @intCast(i32, w / 2)), @floatFromInt(f64, w / 2), 0, 2 * std.math.pi);
                 return;
             }
             var matrix: c.cairo_matrix_t = undefined;
             c.cairo_get_matrix(self.cr, &matrix);
-            const scale = @intToFloat(f32, std.math.max(w, h)) / 2;
-            c.cairo_scale(self.cr, @intToFloat(f32, w / 2) / scale, @intToFloat(f32, h / 2) / scale);
-            c.cairo_arc(self.cr, @intToFloat(f32, w / 2), @intToFloat(f32, h / 2), scale, 0, 2 * std.math.pi);
+            const scale = @floatFromInt(f32, std.math.max(w, h)) / 2;
+            c.cairo_scale(self.cr, @floatFromInt(f32, w / 2) / scale, @floatFromInt(f32, h / 2) / scale);
+            c.cairo_arc(self.cr, @floatFromInt(f32, w / 2), @floatFromInt(f32, h / 2), scale, 0, 2 * std.math.pi);
             c.cairo_set_matrix(self.cr, &matrix);
         }
 
         pub fn clear(self: *DrawContext, x: u32, y: u32, w: u32, h: u32) void {
             if (self.widget) |widget| {
                 const styleContext = c.gtk_widget_get_style_context(widget);
-                c.gtk_render_background(styleContext, self.cr, @intToFloat(f64, x), @intToFloat(f64, y), @intToFloat(f64, w), @intToFloat(f64, h));
+                c.gtk_render_background(styleContext, self.cr, @floatFromInt(f64, x), @floatFromInt(f64, y), @floatFromInt(f64, w), @floatFromInt(f64, h));
             }
         }
 
@@ -905,10 +905,10 @@ pub const Canvas = struct {
             var inkRect: c.PangoRectangle = undefined;
             c.pango_layout_get_pixel_extents(pangoLayout, null, &inkRect);
 
-            const dx = @intToFloat(f64, inkRect.x);
-            const dy = @intToFloat(f64, inkRect.y);
-            c.cairo_move_to(self.cr, @intToFloat(f64, x) + dx, @intToFloat(f64, y) + dy);
-            c.pango_layout_set_width(pangoLayout, if (layout.wrap) |w| @floatToInt(c_int, @floor(w * @as(f64, c.PANGO_SCALE))) else -1);
+            const dx = @floatFromInt(f64, inkRect.x);
+            const dy = @floatFromInt(f64, inkRect.y);
+            c.cairo_move_to(self.cr, @floatFromInt(f64, x) + dx, @floatFromInt(f64, y) + dy);
+            c.pango_layout_set_width(pangoLayout, if (layout.wrap) |w| @intFromFloat(c_int, @floor(w * @as(f64, c.PANGO_SCALE))) else -1);
             c.pango_layout_set_text(pangoLayout, str.ptr, @intCast(c_int, str.len));
             c.pango_layout_set_single_paragraph_mode(pangoLayout, 1); // used for coherence with other backends
             c.pango_cairo_update_layout(self.cr, pangoLayout);
@@ -916,8 +916,8 @@ pub const Canvas = struct {
         }
 
         pub fn line(self: *DrawContext, x1: i32, y1: i32, x2: i32, y2: i32) void {
-            c.cairo_move_to(self.cr, @intToFloat(f64, x1), @intToFloat(f64, y1));
-            c.cairo_line_to(self.cr, @intToFloat(f64, x2), @intToFloat(f64, y2));
+            c.cairo_move_to(self.cr, @floatFromInt(f64, x1), @floatFromInt(f64, y1));
+            c.cairo_line_to(self.cr, @floatFromInt(f64, x2), @floatFromInt(f64, y2));
             c.cairo_stroke(self.cr);
         }
 
@@ -925,14 +925,14 @@ pub const Canvas = struct {
             c.cairo_save(self.cr);
             defer c.cairo_restore(self.cr);
 
-            const width = @intToFloat(f64, data.width);
-            const height = @intToFloat(f64, data.height);
-            c.cairo_scale(self.cr, @intToFloat(f64, w) / width, @intToFloat(f64, h) / height);
+            const width = @floatFromInt(f64, data.width);
+            const height = @floatFromInt(f64, data.height);
+            c.cairo_scale(self.cr, @floatFromInt(f64, w) / width, @floatFromInt(f64, h) / height);
             c.gdk_cairo_set_source_pixbuf(
                 self.cr,
                 data.peer.peer,
-                @intToFloat(f64, x) / (@intToFloat(f64, w) / width),
-                @intToFloat(f64, y) / (@intToFloat(f64, h) / height),
+                @floatFromInt(f64, x) / (@floatFromInt(f64, w) / width),
+                @floatFromInt(f64, y) / (@floatFromInt(f64, h) / height),
             );
             c.cairo_paint(self.cr);
         }
@@ -958,7 +958,7 @@ pub const Canvas = struct {
         var dc = DrawContext{ .cr = cr, .widget = peer };
 
         if (data.class.drawHandler) |handler|
-            handler(&dc, @ptrToInt(data));
+            handler(&dc, @intFromPtr(data));
         if (data.user.drawHandler) |handler|
             handler(&dc, data.userdata);
         return 0; // propagate the event further
@@ -982,7 +982,7 @@ pub const Canvas = struct {
         const str = encodeBuffer[0..strLength];
 
         if (data.class.keyTypeHandler) |handler| {
-            handler(str, @ptrToInt(data));
+            handler(str, @intFromPtr(data));
         }
         if (data.user.keyTypeHandler) |handler| {
             handler(str, data.userdata);
@@ -1121,7 +1121,7 @@ pub const ImageData = struct {
 
     // TODO: copy bytes to a new array
     pub fn from(width: usize, height: usize, stride: usize, cs: lib.Colorspace, bytes: []const u8) !ImageData {
-        const pixbuf = c.gdk_pixbuf_new_from_data(bytes.ptr, c.GDK_COLORSPACE_RGB, @boolToInt(cs == .RGBA), 8, @intCast(c_int, width), @intCast(c_int, height), @intCast(c_int, stride), null, null) orelse return BackendError.UnknownError;
+        const pixbuf = c.gdk_pixbuf_new_from_data(bytes.ptr, c.GDK_COLORSPACE_RGB, @intFromBool(cs == .RGBA), 8, @intCast(c_int, width), @intCast(c_int, height), @intCast(c_int, stride), null, null) orelse return BackendError.UnknownError;
 
         return ImageData{ .peer = pixbuf, .width = width, .height = height };
     }
@@ -1216,6 +1216,6 @@ pub fn postEmptyEvent() void {
 }
 
 pub fn runStep(step: shared.EventLoopStep) bool {
-    _ = c.gtk_main_iteration_do(@boolToInt(step == .Blocking));
+    _ = c.gtk_main_iteration_do(@intFromBool(step == .Blocking));
     return activeWindows.load(.Acquire) != 0;
 }

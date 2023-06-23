@@ -16,7 +16,7 @@ pub fn lerp(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
     if (comptime std.meta.trait.isNumber(T)) {
         const a_casted = blk: {
             if (comptime std.meta.trait.isIntegral(T)) {
-                break :blk @intToFloat(f64, a);
+                break :blk @floatFromInt(f64, a);
             } else {
                 break :blk a;
             }
@@ -24,7 +24,7 @@ pub fn lerp(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
 
         const b_casted = blk: {
             if (comptime std.meta.trait.isIntegral(T)) {
-                break :blk @intToFloat(f64, b);
+                break :blk @floatFromInt(f64, b);
             } else {
                 break :blk b;
             }
@@ -32,7 +32,7 @@ pub fn lerp(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
 
         const result = lerpFloat(a_casted, b_casted, t);
         if (comptime std.meta.trait.isIntegral(T)) {
-            return @floatToInt(T, @round(result));
+            return @intFromFloat(T, @round(result));
         } else {
             return result;
         }
@@ -80,8 +80,8 @@ pub fn Animation(comptime T: type) type {
 
         /// Get the current value from the animation
         pub fn get(self: @This()) T {
-            const maxDiff = @intToFloat(f64, self.duration);
-            const diff = @intToFloat(f64, std.time.milliTimestamp() - self.start);
+            const maxDiff = @floatFromInt(f64, self.duration);
+            const diff = @floatFromInt(f64, std.time.milliTimestamp() - self.start);
             var t = diff / maxDiff;
             // Clamp t to [0, 1]
             t = std.math.clamp(t, 0.0, 1.0);
@@ -202,14 +202,14 @@ pub fn Atom(comptime T: type) type {
 
             const animate_fn = struct {
                 fn a(new_value: T, int: usize) void {
-                    const ptr = @intToPtr(*AnimationParameters, int);
+                    const ptr = @ptrFromInt(*AnimationParameters, int);
                     ptr.self_ptr.animate(ptr.easing, new_value, ptr.duration);
                 }
             }.a;
 
             const destroy_fn = struct {
                 fn a(_: T, int: usize) void {
-                    const ptr = @intToPtr(*AnimationParameters, int);
+                    const ptr = @ptrFromInt(*AnimationParameters, int);
                     const allocator = lasting_allocator;
                     allocator.destroy(ptr);
                 }
@@ -217,12 +217,12 @@ pub fn Atom(comptime T: type) type {
 
             _ = try original.addChangeListener(.{
                 .function = animate_fn,
-                .userdata = @ptrToInt(userdata),
+                .userdata = @intFromPtr(userdata),
                 .type = .Change,
             });
             _ = try original.addChangeListener(.{
                 .function = destroy_fn,
-                .userdata = @ptrToInt(userdata),
+                .userdata = @intFromPtr(userdata),
                 .type = .Destroy,
             });
             return self;
@@ -519,11 +519,11 @@ pub fn Atom(comptime T: type) type {
                     const WrapperValueType = ValueTypes[i];
                     const changeListener = struct {
                         fn changeListener(_: WrapperValueType, userdata: usize) void {
-                            const self_ptr = @intToPtr(*Self, userdata);
+                            const self_ptr = @ptrFromInt(*Self, userdata);
                             handler(self_ptr, self_ptr.depend_on_callback.?, self_ptr.depend_on_wrappers);
                         }
                     }.changeListener;
-                    _ = try wrapper.addChangeListener(.{ .function = changeListener, .userdata = @ptrToInt(self) });
+                    _ = try wrapper.addChangeListener(.{ .function = changeListener, .userdata = @intFromPtr(self) });
                 }
             }
 
@@ -600,10 +600,10 @@ pub fn FormattedAtom(allocator: std.mem.Allocator, comptime fmt: []const u8, chi
         const childF = childFs[i];
         const child = @field(childs, childF.name);
         const T = @TypeOf(child.*).ValueType;
-        _ = try child.addChangeListener(.{ .userdata = @ptrToInt(self), .function = struct {
+        _ = try child.addChangeListener(.{ .userdata = @intFromPtr(self), .function = struct {
             fn callback(newValue: T, userdata: usize) void {
                 _ = newValue;
-                const ptr = @intToPtr(*Self, userdata);
+                const ptr = @ptrFromInt(*Self, userdata);
                 format(ptr);
             }
         }.callback });

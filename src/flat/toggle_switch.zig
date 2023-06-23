@@ -22,8 +22,8 @@ pub const FlatToggleSwitch = struct {
 
     // TODO: themes and custom styling
     fn draw(ctx: *backend.Canvas.DrawContext, data: usize) void {
-        const events = @intToPtr(*backend.EventUserData, data);
-        const self = @intToPtr(?*FlatToggleSwitch, events.classUserdata).?;
+        const events = @ptrFromInt(*backend.EventUserData, data);
+        const self = @ptrFromInt(?*FlatToggleSwitch, events.classUserdata).?;
 
         const width = @intCast(u32, backend.getWidthFromPeer(events.peer));
         const height = @intCast(u32, backend.getHeightFromPeer(events.peer));
@@ -48,7 +48,7 @@ pub const FlatToggleSwitch = struct {
     pub fn setLabel(self: *FlatToggleSwitch, label: [:0]const u8) void {
         self.label = label;
         const events = backend.getEventUserData(self.peer);
-        events.classUserdata = @ptrToInt(self);
+        events.classUserdata = @intFromPtr(self);
         self.requestDraw() catch {};
     }
 

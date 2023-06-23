@@ -99,8 +99,8 @@ pub fn findUserConfig(b: *Builder, versions: Sdk.ToolchainVersions) !UserConfig 
         const DWORD = u32;
 
         // const HKEY_CLASSES_ROOT = @intToPtr(HKEY, 0x80000000);
-        const HKEY_CURRENT_USER = @intToPtr(HKEY, 0x80000001);
-        const HKEY_LOCAL_MACHINE = @intToPtr(HKEY, 0x80000002);
+        const HKEY_CURRENT_USER = @ptrFromInt(HKEY, 0x80000001);
+        const HKEY_LOCAL_MACHINE = @ptrFromInt(HKEY, 0x80000002);
         // const HKEY_USERS = @intToPtr(HKEY, 0x80000003);
 
         // const RRF_RT_ANY: DWORD = 0xFFFF;

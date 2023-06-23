@@ -75,8 +75,8 @@ fn onMouseButton(widget: *capy.Canvas_Impl, button: capy.MouseButton, pressed: b
         if (pressed) {
             selected_ball_index = null;
             for (balls.items, 0..) |*ball, i| {
-                const dx = ball.x - @intToFloat(f32, x);
-                const dy = ball.y - @intToFloat(f32, y);
+                const dx = ball.x - @floatFromInt(f32, x);
+                const dy = ball.y - @floatFromInt(f32, y);
                 const distance = std.math.sqrt((dx * dx) + (dy * dy));
                 if (distance < BALL_RADIUS * 2) { // give some room
                     selected_ball_index = i;
@@ -113,14 +113,14 @@ fn onDraw(widget: *capy.Canvas_Impl, ctx: *capy.DrawContext) !void {
         } else {
             ctx.setColor(0, 0, 0);
         }
-        ctx.ellipse(@floatToInt(i32, ball.x), @floatToInt(i32, ball.y), BALL_DIAMETER, BALL_DIAMETER);
+        ctx.ellipse(@intFromFloat(i32, ball.x), @intFromFloat(i32, ball.y), BALL_DIAMETER, BALL_DIAMETER);
         ctx.fill();
     }
 
     if (selected_ball_index) |index| {
         const ball = balls.items[index];
         ctx.setColor(0, 0, 0);
-        ctx.line(@floatToInt(i32, ball.x + BALL_RADIUS), @floatToInt(i32, ball.y + BALL_RADIUS), mouseX, mouseY);
+        ctx.line(@intFromFloat(i32, ball.x + BALL_RADIUS), @intFromFloat(i32, ball.y + BALL_RADIUS), mouseX, mouseY);
         ctx.stroke();
     }
 }
@@ -197,8 +197,8 @@ fn simulationThread(window: *capy.Window) !void {
             // Moving applied by user
             const is_selected = if (selected_ball_index) |idx| (i == idx) else false;
             if (is_selected) {
-                const dx = @intToFloat(f32, mouseX) - ball.x;
-                const dy = @intToFloat(f32, mouseY) - ball.y;
+                const dx = @floatFromInt(f32, mouseX) - ball.x;
+                const dy = @floatFromInt(f32, mouseY) - ball.y;
                 ball.velX += dx / 10;
                 ball.velY += dy / 10;
             }

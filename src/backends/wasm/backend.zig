@@ -83,7 +83,7 @@ pub const Window = struct {
 
     pub fn setSourceDpi(self: *Window, dpi: u32) void {
         // CSS pixels are somewhat undefined given they're based on the confortableness of the reader
-        const resolution = @intToFloat(f32, dpi);
+        const resolution = @floatFromInt(f32, dpi);
         self.scale = resolution / 96.0;
     }
 };
@@ -101,7 +101,7 @@ pub fn Events(comptime T: type) type {
                 }
             }
 
-            self.peer.userdata = @ptrToInt(data);
+            self.peer.userdata = @intFromPtr(data);
             self.peer.object = self;
         }
 
@@ -158,7 +158,7 @@ pub fn Events(comptime T: type) type {
                     },
                     .MouseButton => {
                         if (self.peer.user.mouseButtonHandler) |handler| {
-                            const button = @intToEnum(MouseButton, js.getEventArg(event, 0));
+                            const button = @enumFromInt(MouseButton, js.getEventArg(event, 0));
                             const pressed = js.getEventArg(event, 1) != 0;
                             const x = @bitCast(i32, js.getEventArg(event, 2));
                             const y = @bitCast(i32, js.getEventArg(event, 3));
@@ -174,8 +174,8 @@ pub fn Events(comptime T: type) type {
                     },
                     .MouseScroll => {
                         if (self.peer.user.scrollHandler) |handler| {
-                            const dx = @intToFloat(f32, @bitCast(i32, js.getEventArg(event, 0)));
-                            const dy = @intToFloat(f32, @bitCast(i32, js.getEventArg(event, 1)));
+                            const dx = @floatFromInt(f32, @bitCast(i32, js.getEventArg(event, 0)));
+                            const dy = @floatFromInt(f32, @bitCast(i32, js.getEventArg(event, 1)));
                             handler(dx, dy, self.peer.userdata);
                         }
                     },
@@ -363,10 +363,10 @@ pub const Canvas = struct {
 
         pub fn setColorRGBA(self: *DrawContext, r: f32, g: f32, b: f32, a: f32) void {
             const color = lib.Color{
-                .red = @floatToInt(u8, std.math.clamp(r, 0, 1) * 255),
-                .green = @floatToInt(u8, std.math.clamp(g, 0, 1) * 255),
-                .blue = @floatToInt(u8, std.math.clamp(b, 0, 1) * 255),
-                .alpha = @floatToInt(u8, std.math.clamp(a, 0, 1) * 255),
+                .red = @intFromFloat(u8, std.math.clamp(r, 0, 1) * 255),
+                .green = @intFromFloat(u8, std.math.clamp(g, 0, 1) * 255),
+                .blue = @intFromFloat(u8, std.math.clamp(b, 0, 1) * 255),
+                .alpha = @intFromFloat(u8, std.math.clamp(a, 0, 1) * 255),
             };
             self.setColorByte(color);
         }
@@ -516,7 +516,7 @@ var suspending: bool = false;
 var resumePtr: anyframe = undefined;
 
 fn milliTimestamp() i64 {
-    return @floatToInt(i64, js.now());
+    return @intFromFloat(i64, js.now());
 }
 
 pub const backendExport = struct {
@@ -524,14 +524,14 @@ pub const backendExport = struct {
         pub const system = struct {
             pub const E = std.os.linux.E;
             fn errno(e: E) usize {
-                const signed_r = @as(isize, 0) - @enumToInt(e);
+                const signed_r = @as(isize, 0) - @intFromEnum(e);
                 return @bitCast(usize, signed_r);
             }
 
             pub fn getErrno(r: usize) E {
                 const signed_r = @bitCast(isize, r);
                 const int = if (signed_r > -4096 and signed_r < 0) -signed_r else 0;
-                return @intToEnum(E, int);
+                return @enumFromInt(E, int);
             }
 
             // Time

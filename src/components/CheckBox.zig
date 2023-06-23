@@ -23,17 +23,17 @@ pub const CheckBox_Impl = struct {
     }
 
     fn wrapperCheckedChanged(newValue: bool, userdata: usize) void {
-        const peer = @intToPtr(*?backend.CheckBox, userdata);
+        const peer = @ptrFromInt(*?backend.CheckBox, userdata);
         peer.*.?.setChecked(newValue);
     }
 
     fn wrapperEnabledChanged(newValue: bool, userdata: usize) void {
-        const peer = @intToPtr(*?backend.CheckBox, userdata);
+        const peer = @ptrFromInt(*?backend.CheckBox, userdata);
         peer.*.?.setEnabled(newValue);
     }
 
     fn wrapperLabelChanged(newValue: [:0]const u8, userdata: usize) void {
-        const peer = @intToPtr(*?backend.CheckBox, userdata);
+        const peer = @ptrFromInt(*?backend.CheckBox, userdata);
         peer.*.?.setLabel(newValue);
     }
 
@@ -49,9 +49,9 @@ pub const CheckBox_Impl = struct {
             self.peer.?.setLabel(self.label.get());
             try self.show_events();
 
-            _ = try self.checked.addChangeListener(.{ .function = wrapperCheckedChanged, .userdata = @ptrToInt(&self.peer) });
-            _ = try self.enabled.addChangeListener(.{ .function = wrapperEnabledChanged, .userdata = @ptrToInt(&self.peer) });
-            _ = try self.label.addChangeListener(.{ .function = wrapperLabelChanged, .userdata = @ptrToInt(&self.peer) });
+            _ = try self.checked.addChangeListener(.{ .function = wrapperCheckedChanged, .userdata = @intFromPtr(&self.peer) });
+            _ = try self.enabled.addChangeListener(.{ .function = wrapperEnabledChanged, .userdata = @intFromPtr(&self.peer) });
+            _ = try self.label.addChangeListener(.{ .function = wrapperLabelChanged, .userdata = @intFromPtr(&self.peer) });
 
             try self.addClickHandler(&onClick);
         }

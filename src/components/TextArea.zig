@@ -33,19 +33,19 @@ pub const TextArea_Impl = struct {
     }
 
     fn wrapperTextChanged(newValue: []const u8, userdata: usize) void {
-        const self = @intToPtr(*TextArea_Impl, userdata);
+        const self = @ptrFromInt(*TextArea_Impl, userdata);
         if (self._wrapperTextBlock.load(.Monotonic) == true) return;
 
         self.peer.?.setText(newValue);
     }
 
     fn wrapperMonospaceChanged(newValue: bool, userdata: usize) void {
-        const self = @intToPtr(*TextArea_Impl, userdata);
+        const self = @ptrFromInt(*TextArea_Impl, userdata);
         self.peer.?.setMonospaced(newValue);
     }
 
     fn textChanged(userdata: usize) void {
-        const self = @intToPtr(*TextArea_Impl, userdata);
+        const self = @ptrFromInt(*TextArea_Impl, userdata);
         const text = self.peer.?.getText();
 
         self._wrapperTextBlock.store(true, .Monotonic);
@@ -62,8 +62,8 @@ pub const TextArea_Impl = struct {
             try self.show_events();
 
             try peer.setCallback(.TextChanged, textChanged);
-            _ = try self.text.addChangeListener(.{ .function = wrapperTextChanged, .userdata = @ptrToInt(self) });
-            _ = try self.monospace.addChangeListener(.{ .function = wrapperMonospaceChanged, .userdata = @ptrToInt(self) });
+            _ = try self.text.addChangeListener(.{ .function = wrapperTextChanged, .userdata = @intFromPtr(self) });
+            _ = try self.monospace.addChangeListener(.{ .function = wrapperMonospaceChanged, .userdata = @intFromPtr(self) });
         }
     }
 
