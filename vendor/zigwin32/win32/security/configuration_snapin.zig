@@ -75,7 +75,7 @@ pub const SCESVC_ANALYSIS_INFO = extern struct {
 };
 
 pub const PFSCE_QUERY_INFO = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         sceHandle: ?*anyopaque,
         sceType: SCESVC_INFO_TYPE,
         lpPrefix: ?*i8,
@@ -83,7 +83,7 @@ pub const PFSCE_QUERY_INFO = switch (@import("builtin").zig_backend) {
         ppvInfo: ?*?*anyopaque,
         psceEnumHandle: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         sceHandle: ?*anyopaque,
         sceType: SCESVC_INFO_TYPE,
         lpPrefix: ?*i8,
@@ -91,46 +91,46 @@ pub const PFSCE_QUERY_INFO = switch (@import("builtin").zig_backend) {
         ppvInfo: ?*?*anyopaque,
         psceEnumHandle: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PFSCE_SET_INFO = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         sceHandle: ?*anyopaque,
         sceType: SCESVC_INFO_TYPE,
         lpPrefix: ?*i8,
         bExact: BOOL,
         pvInfo: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         sceHandle: ?*anyopaque,
         sceType: SCESVC_INFO_TYPE,
         lpPrefix: ?*i8,
         bExact: BOOL,
         pvInfo: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PFSCE_FREE_INFO = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pvServiceInfo: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         pvServiceInfo: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PFSCE_LOG_INFO = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         ErrLevel: SCE_LOG_ERR_LEVEL,
         Win32rc: u32,
         pErrFmt: ?*i8,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         ErrLevel: SCE_LOG_ERR_LEVEL,
         Win32rc: u32,
         pErrFmt: ?*i8,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const SCESVC_CALLBACK_INFO = extern struct {
     sceHandle: ?*anyopaque,
@@ -141,24 +141,24 @@ pub const SCESVC_CALLBACK_INFO = extern struct {
 };
 
 pub const PF_ConfigAnalyzeService = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pSceCbInfo: ?*SCESVC_CALLBACK_INFO,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         pSceCbInfo: ?*SCESVC_CALLBACK_INFO,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PF_UpdateService = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pSceCbInfo: ?*SCESVC_CALLBACK_INFO,
         ServiceInfo: ?*SCESVC_CONFIGURATION_INFO,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         pSceCbInfo: ?*SCESVC_CALLBACK_INFO,
         ServiceInfo: ?*SCESVC_CONFIGURATION_INFO,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISceSvcAttachmentPersistInfo_Value = Guid.initString("6d90e0d0-200d-11d1-affb-00c04fb984f9");
@@ -167,14 +167,14 @@ pub const ISceSvcAttachmentPersistInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Save: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISceSvcAttachmentPersistInfo,
                 lpTemplateName: ?*i8,
                 scesvcHandle: ?*?*anyopaque,
                 ppvData: ?*?*anyopaque,
                 pbOverwriteAll: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISceSvcAttachmentPersistInfo,
                 lpTemplateName: ?*i8,
                 scesvcHandle: ?*?*anyopaque,
@@ -183,42 +183,44 @@ pub const ISceSvcAttachmentPersistInfo = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         IsDirty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISceSvcAttachmentPersistInfo,
                 lpTemplateName: ?*i8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISceSvcAttachmentPersistInfo,
                 lpTemplateName: ?*i8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FreeBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISceSvcAttachmentPersistInfo,
                 pvData: ?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISceSvcAttachmentPersistInfo,
                 pvData: ?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISceSvcAttachmentPersistInfo_Save(self: *const T, lpTemplateName: ?*i8, scesvcHandle: ?*?*anyopaque, ppvData: ?*?*anyopaque, pbOverwriteAll: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISceSvcAttachmentPersistInfo.VTable, self.vtable).Save(@ptrCast(*const ISceSvcAttachmentPersistInfo, self), lpTemplateName, scesvcHandle, ppvData, pbOverwriteAll);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISceSvcAttachmentPersistInfo_IsDirty(self: *const T, lpTemplateName: ?*i8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISceSvcAttachmentPersistInfo.VTable, self.vtable).IsDirty(@ptrCast(*const ISceSvcAttachmentPersistInfo, self), lpTemplateName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISceSvcAttachmentPersistInfo_FreeBuffer(self: *const T, pvData: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISceSvcAttachmentPersistInfo.VTable, self.vtable).FreeBuffer(@ptrCast(*const ISceSvcAttachmentPersistInfo, self), pvData);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISceSvcAttachmentPersistInfo_Save(self: *const T, lpTemplateName: ?*i8, scesvcHandle: ?*?*anyopaque, ppvData: ?*?*anyopaque, pbOverwriteAll: ?*BOOL) HRESULT {
+                return @ptrCast(*const ISceSvcAttachmentPersistInfo.VTable, self.vtable).Save(@ptrCast(*const ISceSvcAttachmentPersistInfo, self), lpTemplateName, scesvcHandle, ppvData, pbOverwriteAll);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISceSvcAttachmentPersistInfo_IsDirty(self: *const T, lpTemplateName: ?*i8) HRESULT {
+                return @ptrCast(*const ISceSvcAttachmentPersistInfo.VTable, self.vtable).IsDirty(@ptrCast(*const ISceSvcAttachmentPersistInfo, self), lpTemplateName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISceSvcAttachmentPersistInfo_FreeBuffer(self: *const T, pvData: ?*anyopaque) HRESULT {
+                return @ptrCast(*const ISceSvcAttachmentPersistInfo.VTable, self.vtable).FreeBuffer(@ptrCast(*const ISceSvcAttachmentPersistInfo, self), pvData);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -229,14 +231,14 @@ pub const ISceSvcAttachmentData = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISceSvcAttachmentData,
                 scesvcHandle: ?*anyopaque,
                 sceType: SCESVC_INFO_TYPE,
                 ppvData: ?*?*anyopaque,
                 psceEnumHandle: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISceSvcAttachmentData,
                 scesvcHandle: ?*anyopaque,
                 sceType: SCESVC_INFO_TYPE,
@@ -245,14 +247,14 @@ pub const ISceSvcAttachmentData = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISceSvcAttachmentData,
                 lpServiceName: ?*i8,
                 lpTemplateName: ?*i8,
                 lpSceSvcPersistInfo: ?*ISceSvcAttachmentPersistInfo,
                 pscesvcHandle: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISceSvcAttachmentData,
                 lpServiceName: ?*i8,
                 lpTemplateName: ?*i8,
@@ -261,49 +263,50 @@ pub const ISceSvcAttachmentData = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FreeBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISceSvcAttachmentData,
                 pvData: ?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISceSvcAttachmentData,
                 pvData: ?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CloseHandle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISceSvcAttachmentData,
                 scesvcHandle: ?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISceSvcAttachmentData,
                 scesvcHandle: ?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISceSvcAttachmentData_GetData(self: *const T, scesvcHandle: ?*anyopaque, sceType: SCESVC_INFO_TYPE, ppvData: ?*?*anyopaque, psceEnumHandle: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISceSvcAttachmentData.VTable, self.vtable).GetData(@ptrCast(*const ISceSvcAttachmentData, self), scesvcHandle, sceType, ppvData, psceEnumHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISceSvcAttachmentData_Initialize(self: *const T, lpServiceName: ?*i8, lpTemplateName: ?*i8, lpSceSvcPersistInfo: ?*ISceSvcAttachmentPersistInfo, pscesvcHandle: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISceSvcAttachmentData.VTable, self.vtable).Initialize(@ptrCast(*const ISceSvcAttachmentData, self), lpServiceName, lpTemplateName, lpSceSvcPersistInfo, pscesvcHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISceSvcAttachmentData_FreeBuffer(self: *const T, pvData: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISceSvcAttachmentData.VTable, self.vtable).FreeBuffer(@ptrCast(*const ISceSvcAttachmentData, self), pvData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISceSvcAttachmentData_CloseHandle(self: *const T, scesvcHandle: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISceSvcAttachmentData.VTable, self.vtable).CloseHandle(@ptrCast(*const ISceSvcAttachmentData, self), scesvcHandle);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISceSvcAttachmentData_GetData(self: *const T, scesvcHandle: ?*anyopaque, sceType: SCESVC_INFO_TYPE, ppvData: ?*?*anyopaque, psceEnumHandle: ?*u32) HRESULT {
+                return @ptrCast(*const ISceSvcAttachmentData.VTable, self.vtable).GetData(@ptrCast(*const ISceSvcAttachmentData, self), scesvcHandle, sceType, ppvData, psceEnumHandle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISceSvcAttachmentData_Initialize(self: *const T, lpServiceName: ?*i8, lpTemplateName: ?*i8, lpSceSvcPersistInfo: ?*ISceSvcAttachmentPersistInfo, pscesvcHandle: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const ISceSvcAttachmentData.VTable, self.vtable).Initialize(@ptrCast(*const ISceSvcAttachmentData, self), lpServiceName, lpTemplateName, lpSceSvcPersistInfo, pscesvcHandle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISceSvcAttachmentData_FreeBuffer(self: *const T, pvData: ?*anyopaque) HRESULT {
+                return @ptrCast(*const ISceSvcAttachmentData.VTable, self.vtable).FreeBuffer(@ptrCast(*const ISceSvcAttachmentData, self), pvData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISceSvcAttachmentData_CloseHandle(self: *const T, scesvcHandle: ?*anyopaque) HRESULT {
+                return @ptrCast(*const ISceSvcAttachmentData.VTable, self.vtable).CloseHandle(@ptrCast(*const ISceSvcAttachmentData, self), scesvcHandle);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -314,13 +317,9 @@ pub const ISceSvcAttachmentData = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
@@ -332,16 +331,26 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFSCE_QUERY_INFO")) { _ = PFSCE_QUERY_INFO; }
-    if (@hasDecl(@This(), "PFSCE_SET_INFO")) { _ = PFSCE_SET_INFO; }
-    if (@hasDecl(@This(), "PFSCE_FREE_INFO")) { _ = PFSCE_FREE_INFO; }
-    if (@hasDecl(@This(), "PFSCE_LOG_INFO")) { _ = PFSCE_LOG_INFO; }
-    if (@hasDecl(@This(), "PF_ConfigAnalyzeService")) { _ = PF_ConfigAnalyzeService; }
-    if (@hasDecl(@This(), "PF_UpdateService")) { _ = PF_UpdateService; }
+    if (@hasDecl(@This(), "PFSCE_QUERY_INFO")) {
+        _ = PFSCE_QUERY_INFO;
+    }
+    if (@hasDecl(@This(), "PFSCE_SET_INFO")) {
+        _ = PFSCE_SET_INFO;
+    }
+    if (@hasDecl(@This(), "PFSCE_FREE_INFO")) {
+        _ = PFSCE_FREE_INFO;
+    }
+    if (@hasDecl(@This(), "PFSCE_LOG_INFO")) {
+        _ = PFSCE_LOG_INFO;
+    }
+    if (@hasDecl(@This(), "PF_ConfigAnalyzeService")) {
+        _ = PF_ConfigAnalyzeService;
+    }
+    if (@hasDecl(@This(), "PF_UpdateService")) {
+        _ = PF_UpdateService;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

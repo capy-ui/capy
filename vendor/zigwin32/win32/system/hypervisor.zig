@@ -299,10 +299,7 @@ pub const WHV_X64_CPUID_RESULT2_FLAGS = enum(u32) {
         SubleafSpecific: u1 = 0,
         VpSpecific: u1 = 0,
     }) WHV_X64_CPUID_RESULT2_FLAGS {
-        return @intToEnum(WHV_X64_CPUID_RESULT2_FLAGS,
-              (if (o.SubleafSpecific == 1) @enumToInt(WHV_X64_CPUID_RESULT2_FLAGS.SubleafSpecific) else 0)
-            | (if (o.VpSpecific == 1) @enumToInt(WHV_X64_CPUID_RESULT2_FLAGS.VpSpecific) else 0)
-        );
+        return @enumFromInt(WHV_X64_CPUID_RESULT2_FLAGS, (if (o.SubleafSpecific == 1) @intFromEnum(WHV_X64_CPUID_RESULT2_FLAGS.SubleafSpecific) else 0) | (if (o.VpSpecific == 1) @intFromEnum(WHV_X64_CPUID_RESULT2_FLAGS.VpSpecific) else 0));
     }
 };
 pub const WHvX64CpuidResult2FlagSubleafSpecific = WHV_X64_CPUID_RESULT2_FLAGS.SubleafSpecific;
@@ -433,13 +430,7 @@ pub const WHV_MAP_GPA_RANGE_FLAGS = enum(u32) {
         Execute: u1 = 0,
         TrackDirtyPages: u1 = 0,
     }) WHV_MAP_GPA_RANGE_FLAGS {
-        return @intToEnum(WHV_MAP_GPA_RANGE_FLAGS,
-              (if (o.None == 1) @enumToInt(WHV_MAP_GPA_RANGE_FLAGS.None) else 0)
-            | (if (o.Read == 1) @enumToInt(WHV_MAP_GPA_RANGE_FLAGS.Read) else 0)
-            | (if (o.Write == 1) @enumToInt(WHV_MAP_GPA_RANGE_FLAGS.Write) else 0)
-            | (if (o.Execute == 1) @enumToInt(WHV_MAP_GPA_RANGE_FLAGS.Execute) else 0)
-            | (if (o.TrackDirtyPages == 1) @enumToInt(WHV_MAP_GPA_RANGE_FLAGS.TrackDirtyPages) else 0)
-        );
+        return @enumFromInt(WHV_MAP_GPA_RANGE_FLAGS, (if (o.None == 1) @intFromEnum(WHV_MAP_GPA_RANGE_FLAGS.None) else 0) | (if (o.Read == 1) @intFromEnum(WHV_MAP_GPA_RANGE_FLAGS.Read) else 0) | (if (o.Write == 1) @intFromEnum(WHV_MAP_GPA_RANGE_FLAGS.Write) else 0) | (if (o.Execute == 1) @intFromEnum(WHV_MAP_GPA_RANGE_FLAGS.Execute) else 0) | (if (o.TrackDirtyPages == 1) @intFromEnum(WHV_MAP_GPA_RANGE_FLAGS.TrackDirtyPages) else 0));
     }
 };
 pub const WHvMapGpaRangeFlagNone = WHV_MAP_GPA_RANGE_FLAGS.None;
@@ -468,16 +459,7 @@ pub const WHV_TRANSLATE_GVA_FLAGS = enum(u32) {
         EnforceSmap: u1 = 0,
         OverrideSmap: u1 = 0,
     }) WHV_TRANSLATE_GVA_FLAGS {
-        return @intToEnum(WHV_TRANSLATE_GVA_FLAGS,
-              (if (o.None == 1) @enumToInt(WHV_TRANSLATE_GVA_FLAGS.None) else 0)
-            | (if (o.ValidateRead == 1) @enumToInt(WHV_TRANSLATE_GVA_FLAGS.ValidateRead) else 0)
-            | (if (o.ValidateWrite == 1) @enumToInt(WHV_TRANSLATE_GVA_FLAGS.ValidateWrite) else 0)
-            | (if (o.ValidateExecute == 1) @enumToInt(WHV_TRANSLATE_GVA_FLAGS.ValidateExecute) else 0)
-            | (if (o.PrivilegeExempt == 1) @enumToInt(WHV_TRANSLATE_GVA_FLAGS.PrivilegeExempt) else 0)
-            | (if (o.SetPageTableBits == 1) @enumToInt(WHV_TRANSLATE_GVA_FLAGS.SetPageTableBits) else 0)
-            | (if (o.EnforceSmap == 1) @enumToInt(WHV_TRANSLATE_GVA_FLAGS.EnforceSmap) else 0)
-            | (if (o.OverrideSmap == 1) @enumToInt(WHV_TRANSLATE_GVA_FLAGS.OverrideSmap) else 0)
-        );
+        return @enumFromInt(WHV_TRANSLATE_GVA_FLAGS, (if (o.None == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.None) else 0) | (if (o.ValidateRead == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.ValidateRead) else 0) | (if (o.ValidateWrite == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.ValidateWrite) else 0) | (if (o.ValidateExecute == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.ValidateExecute) else 0) | (if (o.PrivilegeExempt == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.PrivilegeExempt) else 0) | (if (o.SetPageTableBits == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.SetPageTableBits) else 0) | (if (o.EnforceSmap == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.EnforceSmap) else 0) | (if (o.OverrideSmap == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.OverrideSmap) else 0));
     }
 };
 pub const WHvTranslateGvaFlagNone = WHV_TRANSLATE_GVA_FLAGS.None;
@@ -1559,10 +1541,7 @@ pub const WHV_ALLOCATE_VPCI_RESOURCE_FLAGS = enum(u32) {
         None: u1 = 0,
         AllowDirectP2P: u1 = 0,
     }) WHV_ALLOCATE_VPCI_RESOURCE_FLAGS {
-        return @intToEnum(WHV_ALLOCATE_VPCI_RESOURCE_FLAGS,
-              (if (o.None == 1) @enumToInt(WHV_ALLOCATE_VPCI_RESOURCE_FLAGS.None) else 0)
-            | (if (o.AllowDirectP2P == 1) @enumToInt(WHV_ALLOCATE_VPCI_RESOURCE_FLAGS.AllowDirectP2P) else 0)
-        );
+        return @enumFromInt(WHV_ALLOCATE_VPCI_RESOURCE_FLAGS, (if (o.None == 1) @intFromEnum(WHV_ALLOCATE_VPCI_RESOURCE_FLAGS.None) else 0) | (if (o.AllowDirectP2P == 1) @intFromEnum(WHV_ALLOCATE_VPCI_RESOURCE_FLAGS.AllowDirectP2P) else 0));
     }
 };
 pub const WHvAllocateVpciResourceFlagNone = WHV_ALLOCATE_VPCI_RESOURCE_FLAGS.None;
@@ -1602,11 +1581,7 @@ pub const WHV_CREATE_VPCI_DEVICE_FLAGS = enum(u32) {
         PhysicallyBacked: u1 = 0,
         UseLogicalInterrupts: u1 = 0,
     }) WHV_CREATE_VPCI_DEVICE_FLAGS {
-        return @intToEnum(WHV_CREATE_VPCI_DEVICE_FLAGS,
-              (if (o.None == 1) @enumToInt(WHV_CREATE_VPCI_DEVICE_FLAGS.None) else 0)
-            | (if (o.PhysicallyBacked == 1) @enumToInt(WHV_CREATE_VPCI_DEVICE_FLAGS.PhysicallyBacked) else 0)
-            | (if (o.UseLogicalInterrupts == 1) @enumToInt(WHV_CREATE_VPCI_DEVICE_FLAGS.UseLogicalInterrupts) else 0)
-        );
+        return @enumFromInt(WHV_CREATE_VPCI_DEVICE_FLAGS, (if (o.None == 1) @intFromEnum(WHV_CREATE_VPCI_DEVICE_FLAGS.None) else 0) | (if (o.PhysicallyBacked == 1) @intFromEnum(WHV_CREATE_VPCI_DEVICE_FLAGS.PhysicallyBacked) else 0) | (if (o.UseLogicalInterrupts == 1) @intFromEnum(WHV_CREATE_VPCI_DEVICE_FLAGS.UseLogicalInterrupts) else 0));
     }
 };
 pub const WHvCreateVpciDeviceFlagNone = WHV_CREATE_VPCI_DEVICE_FLAGS.None;
@@ -1645,10 +1620,7 @@ pub const WHV_VPCI_MMIO_RANGE_FLAGS = enum(u32) {
         ReadAccess: u1 = 0,
         WriteAccess: u1 = 0,
     }) WHV_VPCI_MMIO_RANGE_FLAGS {
-        return @intToEnum(WHV_VPCI_MMIO_RANGE_FLAGS,
-              (if (o.ReadAccess == 1) @enumToInt(WHV_VPCI_MMIO_RANGE_FLAGS.ReadAccess) else 0)
-            | (if (o.WriteAccess == 1) @enumToInt(WHV_VPCI_MMIO_RANGE_FLAGS.WriteAccess) else 0)
-        );
+        return @enumFromInt(WHV_VPCI_MMIO_RANGE_FLAGS, (if (o.ReadAccess == 1) @intFromEnum(WHV_VPCI_MMIO_RANGE_FLAGS.ReadAccess) else 0) | (if (o.WriteAccess == 1) @intFromEnum(WHV_VPCI_MMIO_RANGE_FLAGS.WriteAccess) else 0));
     }
 };
 pub const WHvVpciMmioRangeFlagReadAccess = WHV_VPCI_MMIO_RANGE_FLAGS.ReadAccess;
@@ -1693,10 +1665,7 @@ pub const WHV_VPCI_INTERRUPT_TARGET_FLAGS = enum(u32) {
         None: u1 = 0,
         Multicast: u1 = 0,
     }) WHV_VPCI_INTERRUPT_TARGET_FLAGS {
-        return @intToEnum(WHV_VPCI_INTERRUPT_TARGET_FLAGS,
-              (if (o.None == 1) @enumToInt(WHV_VPCI_INTERRUPT_TARGET_FLAGS.None) else 0)
-            | (if (o.Multicast == 1) @enumToInt(WHV_VPCI_INTERRUPT_TARGET_FLAGS.Multicast) else 0)
-        );
+        return @enumFromInt(WHV_VPCI_INTERRUPT_TARGET_FLAGS, (if (o.None == 1) @intFromEnum(WHV_VPCI_INTERRUPT_TARGET_FLAGS.None) else 0) | (if (o.Multicast == 1) @intFromEnum(WHV_VPCI_INTERRUPT_TARGET_FLAGS.Multicast) else 0));
     }
 };
 pub const WHvVpciInterruptTargetFlagNone = WHV_VPCI_INTERRUPT_TARGET_FLAGS.None;
@@ -1794,73 +1763,73 @@ pub const WHV_EMULATOR_IO_ACCESS_INFO = extern struct {
 };
 
 pub const WHV_EMULATOR_IO_PORT_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         Context: ?*anyopaque,
         IoAccess: ?*WHV_EMULATOR_IO_ACCESS_INFO,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         Context: ?*anyopaque,
         IoAccess: ?*WHV_EMULATOR_IO_ACCESS_INFO,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const WHV_EMULATOR_MEMORY_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         Context: ?*anyopaque,
         MemoryAccess: ?*WHV_EMULATOR_MEMORY_ACCESS_INFO,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         Context: ?*anyopaque,
         MemoryAccess: ?*WHV_EMULATOR_MEMORY_ACCESS_INFO,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         Context: ?*anyopaque,
         RegisterNames: [*]const WHV_REGISTER_NAME,
         RegisterCount: u32,
         RegisterValues: [*]WHV_REGISTER_VALUE,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         Context: ?*anyopaque,
         RegisterNames: [*]const WHV_REGISTER_NAME,
         RegisterCount: u32,
         RegisterValues: [*]WHV_REGISTER_VALUE,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         Context: ?*anyopaque,
         RegisterNames: [*]const WHV_REGISTER_NAME,
         RegisterCount: u32,
         RegisterValues: [*]const WHV_REGISTER_VALUE,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         Context: ?*anyopaque,
         RegisterNames: [*]const WHV_REGISTER_NAME,
         RegisterCount: u32,
         RegisterValues: [*]const WHV_REGISTER_VALUE,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         Context: ?*anyopaque,
         Gva: u64,
         TranslateFlags: WHV_TRANSLATE_GVA_FLAGS,
         TranslationResult: ?*WHV_TRANSLATE_GVA_RESULT_CODE,
         Gpa: ?*u64,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         Context: ?*anyopaque,
         Gva: u64,
         TranslateFlags: WHV_TRANSLATE_GVA_FLAGS,
         TranslationResult: ?*WHV_TRANSLATE_GVA_RESULT_CODE,
         Gpa: ?*u64,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const WHV_EMULATOR_CALLBACKS = extern struct {
     Size: u32,
@@ -1949,11 +1918,7 @@ pub const HDV_MMIO_MAPPING_FLAGS = enum(u32) {
         Writeable: u1 = 0,
         Executable: u1 = 0,
     }) HDV_MMIO_MAPPING_FLAGS {
-        return @intToEnum(HDV_MMIO_MAPPING_FLAGS,
-              (if (o.None == 1) @enumToInt(HDV_MMIO_MAPPING_FLAGS.None) else 0)
-            | (if (o.Writeable == 1) @enumToInt(HDV_MMIO_MAPPING_FLAGS.Writeable) else 0)
-            | (if (o.Executable == 1) @enumToInt(HDV_MMIO_MAPPING_FLAGS.Executable) else 0)
-        );
+        return @enumFromInt(HDV_MMIO_MAPPING_FLAGS, (if (o.None == 1) @intFromEnum(HDV_MMIO_MAPPING_FLAGS.None) else 0) | (if (o.Writeable == 1) @intFromEnum(HDV_MMIO_MAPPING_FLAGS.Writeable) else 0) | (if (o.Executable == 1) @intFromEnum(HDV_MMIO_MAPPING_FLAGS.Executable) else 0));
     }
 };
 pub const HdvMmioMappingFlagNone = HDV_MMIO_MAPPING_FLAGS.None;
@@ -1961,128 +1926,128 @@ pub const HdvMmioMappingFlagWriteable = HDV_MMIO_MAPPING_FLAGS.Writeable;
 pub const HdvMmioMappingFlagExecutable = HDV_MMIO_MAPPING_FLAGS.Executable;
 
 pub const HDV_PCI_DEVICE_INITIALIZE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         deviceContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         deviceContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const HDV_PCI_DEVICE_TEARDOWN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         deviceContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         deviceContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const HDV_PCI_DEVICE_SET_CONFIGURATION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         deviceContext: ?*anyopaque,
         configurationValueCount: u32,
         configurationValues: [*]const ?[*:0]const u16,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         deviceContext: ?*anyopaque,
         configurationValueCount: u32,
         configurationValues: [*]const ?[*:0]const u16,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const HDV_PCI_DEVICE_GET_DETAILS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         deviceContext: ?*anyopaque,
         pnpId: ?*HDV_PCI_PNP_ID,
         probedBarsCount: u32,
         probedBars: [*]u32,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         deviceContext: ?*anyopaque,
         pnpId: ?*HDV_PCI_PNP_ID,
         probedBarsCount: u32,
         probedBars: [*]u32,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const HDV_PCI_DEVICE_START = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         deviceContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         deviceContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const HDV_PCI_DEVICE_STOP = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         deviceContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         deviceContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const HDV_PCI_READ_CONFIG_SPACE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         deviceContext: ?*anyopaque,
         offset: u32,
         value: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         deviceContext: ?*anyopaque,
         offset: u32,
         value: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const HDV_PCI_WRITE_CONFIG_SPACE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         deviceContext: ?*anyopaque,
         offset: u32,
         value: u32,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         deviceContext: ?*anyopaque,
         offset: u32,
         value: u32,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const HDV_PCI_READ_INTERCEPTED_MEMORY = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         deviceContext: ?*anyopaque,
         barIndex: HDV_PCI_BAR_SELECTOR,
         offset: u64,
         length: u64,
         value: [*:0]u8,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         deviceContext: ?*anyopaque,
         barIndex: HDV_PCI_BAR_SELECTOR,
         offset: u64,
         length: u64,
         value: [*:0]u8,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const HDV_PCI_WRITE_INTERCEPTED_MEMORY = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         deviceContext: ?*anyopaque,
         barIndex: HDV_PCI_BAR_SELECTOR,
         offset: u64,
         length: u64,
         value: [*:0]const u8,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         deviceContext: ?*anyopaque,
         barIndex: HDV_PCI_BAR_SELECTOR,
         offset: u64,
         length: u64,
         value: [*:0]const u8,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const HDV_PCI_INTERFACE_VERSION = enum(i32) {
     Invalid = 0,
@@ -2580,30 +2545,29 @@ pub const DOS_IMAGE_INFO = extern struct {
 };
 
 pub const GUEST_SYMBOLS_PROVIDER_DEBUG_INFO_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         InfoMessage: ?[*:0]const u8,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         InfoMessage: ?[*:0]const u8,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const FOUND_IMAGE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         Context: ?*anyopaque,
         ImageInfo: ?*DOS_IMAGE_INFO,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         Context: ?*anyopaque,
         ImageInfo: ?*DOS_IMAGE_INFO,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const MODULE_INFO = extern struct {
     ProcessImageName: ?[*:0]const u8,
     Image: DOS_IMAGE_INFO,
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (125)
@@ -3471,19 +3435,14 @@ pub extern "vmsavedstatedumpprovider" fn CallStackUnwind(
     callStack: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (9)
@@ -3500,27 +3459,59 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "WHV_EMULATOR_IO_PORT_CALLBACK")) { _ = WHV_EMULATOR_IO_PORT_CALLBACK; }
-    if (@hasDecl(@This(), "WHV_EMULATOR_MEMORY_CALLBACK")) { _ = WHV_EMULATOR_MEMORY_CALLBACK; }
-    if (@hasDecl(@This(), "WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK")) { _ = WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK; }
-    if (@hasDecl(@This(), "WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK")) { _ = WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK; }
-    if (@hasDecl(@This(), "WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK")) { _ = WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK; }
-    if (@hasDecl(@This(), "HDV_PCI_DEVICE_INITIALIZE")) { _ = HDV_PCI_DEVICE_INITIALIZE; }
-    if (@hasDecl(@This(), "HDV_PCI_DEVICE_TEARDOWN")) { _ = HDV_PCI_DEVICE_TEARDOWN; }
-    if (@hasDecl(@This(), "HDV_PCI_DEVICE_SET_CONFIGURATION")) { _ = HDV_PCI_DEVICE_SET_CONFIGURATION; }
-    if (@hasDecl(@This(), "HDV_PCI_DEVICE_GET_DETAILS")) { _ = HDV_PCI_DEVICE_GET_DETAILS; }
-    if (@hasDecl(@This(), "HDV_PCI_DEVICE_START")) { _ = HDV_PCI_DEVICE_START; }
-    if (@hasDecl(@This(), "HDV_PCI_DEVICE_STOP")) { _ = HDV_PCI_DEVICE_STOP; }
-    if (@hasDecl(@This(), "HDV_PCI_READ_CONFIG_SPACE")) { _ = HDV_PCI_READ_CONFIG_SPACE; }
-    if (@hasDecl(@This(), "HDV_PCI_WRITE_CONFIG_SPACE")) { _ = HDV_PCI_WRITE_CONFIG_SPACE; }
-    if (@hasDecl(@This(), "HDV_PCI_READ_INTERCEPTED_MEMORY")) { _ = HDV_PCI_READ_INTERCEPTED_MEMORY; }
-    if (@hasDecl(@This(), "HDV_PCI_WRITE_INTERCEPTED_MEMORY")) { _ = HDV_PCI_WRITE_INTERCEPTED_MEMORY; }
-    if (@hasDecl(@This(), "GUEST_SYMBOLS_PROVIDER_DEBUG_INFO_CALLBACK")) { _ = GUEST_SYMBOLS_PROVIDER_DEBUG_INFO_CALLBACK; }
-    if (@hasDecl(@This(), "FOUND_IMAGE_CALLBACK")) { _ = FOUND_IMAGE_CALLBACK; }
+    if (@hasDecl(@This(), "WHV_EMULATOR_IO_PORT_CALLBACK")) {
+        _ = WHV_EMULATOR_IO_PORT_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WHV_EMULATOR_MEMORY_CALLBACK")) {
+        _ = WHV_EMULATOR_MEMORY_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK")) {
+        _ = WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK")) {
+        _ = WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK")) {
+        _ = WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "HDV_PCI_DEVICE_INITIALIZE")) {
+        _ = HDV_PCI_DEVICE_INITIALIZE;
+    }
+    if (@hasDecl(@This(), "HDV_PCI_DEVICE_TEARDOWN")) {
+        _ = HDV_PCI_DEVICE_TEARDOWN;
+    }
+    if (@hasDecl(@This(), "HDV_PCI_DEVICE_SET_CONFIGURATION")) {
+        _ = HDV_PCI_DEVICE_SET_CONFIGURATION;
+    }
+    if (@hasDecl(@This(), "HDV_PCI_DEVICE_GET_DETAILS")) {
+        _ = HDV_PCI_DEVICE_GET_DETAILS;
+    }
+    if (@hasDecl(@This(), "HDV_PCI_DEVICE_START")) {
+        _ = HDV_PCI_DEVICE_START;
+    }
+    if (@hasDecl(@This(), "HDV_PCI_DEVICE_STOP")) {
+        _ = HDV_PCI_DEVICE_STOP;
+    }
+    if (@hasDecl(@This(), "HDV_PCI_READ_CONFIG_SPACE")) {
+        _ = HDV_PCI_READ_CONFIG_SPACE;
+    }
+    if (@hasDecl(@This(), "HDV_PCI_WRITE_CONFIG_SPACE")) {
+        _ = HDV_PCI_WRITE_CONFIG_SPACE;
+    }
+    if (@hasDecl(@This(), "HDV_PCI_READ_INTERCEPTED_MEMORY")) {
+        _ = HDV_PCI_READ_INTERCEPTED_MEMORY;
+    }
+    if (@hasDecl(@This(), "HDV_PCI_WRITE_INTERCEPTED_MEMORY")) {
+        _ = HDV_PCI_WRITE_INTERCEPTED_MEMORY;
+    }
+    if (@hasDecl(@This(), "GUEST_SYMBOLS_PROVIDER_DEBUG_INFO_CALLBACK")) {
+        _ = GUEST_SYMBOLS_PROVIDER_DEBUG_INFO_CALLBACK;
+    }
+    if (@hasDecl(@This(), "FOUND_IMAGE_CALLBACK")) {
+        _ = FOUND_IMAGE_CALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

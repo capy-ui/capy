@@ -100,18 +100,7 @@ pub const CONSOLE_MODE = enum(u32) {
         ENABLE_AUTO_POSITION: u1 = 0,
         ENABLE_VIRTUAL_TERMINAL_INPUT: u1 = 0,
     }) CONSOLE_MODE {
-        return @intToEnum(CONSOLE_MODE,
-              (if (o.ENABLE_PROCESSED_INPUT == 1) @enumToInt(CONSOLE_MODE.ENABLE_PROCESSED_INPUT) else 0)
-            | (if (o.ENABLE_LINE_INPUT == 1) @enumToInt(CONSOLE_MODE.ENABLE_LINE_INPUT) else 0)
-            | (if (o.ENABLE_ECHO_INPUT == 1) @enumToInt(CONSOLE_MODE.ENABLE_ECHO_INPUT) else 0)
-            | (if (o.ENABLE_WINDOW_INPUT == 1) @enumToInt(CONSOLE_MODE.ENABLE_WINDOW_INPUT) else 0)
-            | (if (o.ENABLE_MOUSE_INPUT == 1) @enumToInt(CONSOLE_MODE.ENABLE_MOUSE_INPUT) else 0)
-            | (if (o.ENABLE_INSERT_MODE == 1) @enumToInt(CONSOLE_MODE.ENABLE_INSERT_MODE) else 0)
-            | (if (o.ENABLE_QUICK_EDIT_MODE == 1) @enumToInt(CONSOLE_MODE.ENABLE_QUICK_EDIT_MODE) else 0)
-            | (if (o.ENABLE_EXTENDED_FLAGS == 1) @enumToInt(CONSOLE_MODE.ENABLE_EXTENDED_FLAGS) else 0)
-            | (if (o.ENABLE_AUTO_POSITION == 1) @enumToInt(CONSOLE_MODE.ENABLE_AUTO_POSITION) else 0)
-            | (if (o.ENABLE_VIRTUAL_TERMINAL_INPUT == 1) @enumToInt(CONSOLE_MODE.ENABLE_VIRTUAL_TERMINAL_INPUT) else 0)
-        );
+        return @enumFromInt(CONSOLE_MODE, (if (o.ENABLE_PROCESSED_INPUT == 1) @intFromEnum(CONSOLE_MODE.ENABLE_PROCESSED_INPUT) else 0) | (if (o.ENABLE_LINE_INPUT == 1) @intFromEnum(CONSOLE_MODE.ENABLE_LINE_INPUT) else 0) | (if (o.ENABLE_ECHO_INPUT == 1) @intFromEnum(CONSOLE_MODE.ENABLE_ECHO_INPUT) else 0) | (if (o.ENABLE_WINDOW_INPUT == 1) @intFromEnum(CONSOLE_MODE.ENABLE_WINDOW_INPUT) else 0) | (if (o.ENABLE_MOUSE_INPUT == 1) @intFromEnum(CONSOLE_MODE.ENABLE_MOUSE_INPUT) else 0) | (if (o.ENABLE_INSERT_MODE == 1) @intFromEnum(CONSOLE_MODE.ENABLE_INSERT_MODE) else 0) | (if (o.ENABLE_QUICK_EDIT_MODE == 1) @intFromEnum(CONSOLE_MODE.ENABLE_QUICK_EDIT_MODE) else 0) | (if (o.ENABLE_EXTENDED_FLAGS == 1) @intFromEnum(CONSOLE_MODE.ENABLE_EXTENDED_FLAGS) else 0) | (if (o.ENABLE_AUTO_POSITION == 1) @intFromEnum(CONSOLE_MODE.ENABLE_AUTO_POSITION) else 0) | (if (o.ENABLE_VIRTUAL_TERMINAL_INPUT == 1) @intFromEnum(CONSOLE_MODE.ENABLE_VIRTUAL_TERMINAL_INPUT) else 0));
     }
 };
 pub const ENABLE_PROCESSED_INPUT = CONSOLE_MODE.ENABLE_PROCESSED_INPUT;
@@ -140,7 +129,7 @@ pub const STD_OUTPUT_HANDLE = STD_HANDLE.OUTPUT_HANDLE;
 pub const STD_ERROR_HANDLE = STD_HANDLE.ERROR_HANDLE;
 
 // TODO: this type has a FreeFunc 'ClosePseudoConsole', what can Zig do with this information?
-pub const HPCON = *opaque{};
+pub const HPCON = *opaque {};
 
 pub const COORD = extern struct {
     X: i16,
@@ -217,13 +206,13 @@ pub const CONSOLE_READCONSOLE_CONTROL = extern struct {
 };
 
 pub const PHANDLER_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         CtrlType: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         CtrlType: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const CONSOLE_CURSOR_INFO = extern struct {
     dwSize: u32,
@@ -272,25 +261,20 @@ pub const CONSOLE_HISTORY_INFO = extern struct {
     dwFlags: u32,
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (94)
 //--------------------------------------------------------------------------------
-pub extern "kernel32" fn AllocConsole(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "kernel32" fn AllocConsole() callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "kernel32" fn FreeConsole(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "kernel32" fn FreeConsole() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "kernel32" fn AttachConsole(
     dwProcessId: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "kernel32" fn GetConsoleCP(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "kernel32" fn GetConsoleCP() callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "kernel32" fn GetConsoleOutputCP(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "kernel32" fn GetConsoleOutputCP() callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "kernel32" fn GetConsoleMode(
     hConsoleHandle: ?HANDLE,
@@ -679,8 +663,7 @@ pub extern "kernel32" fn SetConsoleDisplayMode(
     lpNewScreenBufferDimensions: ?*COORD,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "kernel32" fn GetConsoleWindow(
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+pub extern "kernel32" fn GetConsoleWindow() callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 pub extern "kernel32" fn AddConsoleAliasA(
     Source: ?PSTR,
@@ -716,11 +699,9 @@ pub extern "kernel32" fn GetConsoleAliasesLengthW(
     ExeName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "kernel32" fn GetConsoleAliasExesLengthA(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "kernel32" fn GetConsoleAliasExesLengthA() callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "kernel32" fn GetConsoleAliasExesLengthW(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "kernel32" fn GetConsoleAliasExesLengthW() callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "kernel32" fn GetConsoleAliasesA(
     AliasBuffer: [*:0]u8,
@@ -804,7 +785,6 @@ pub extern "kernel32" fn SetStdHandleEx(
     phPrevValue: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (24)
 //--------------------------------------------------------------------------------
@@ -863,30 +843,30 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetConsoleCommandHistory = thismodule.GetConsoleCommandHistoryW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const ReadConsoleInput = *opaque{};
-        pub const PeekConsoleInput = *opaque{};
-        pub const ReadConsole = *opaque{};
-        pub const WriteConsole = *opaque{};
-        pub const FillConsoleOutputCharacter = *opaque{};
-        pub const WriteConsoleOutputCharacter = *opaque{};
-        pub const ReadConsoleOutputCharacter = *opaque{};
-        pub const WriteConsoleInput = *opaque{};
-        pub const ScrollConsoleScreenBuffer = *opaque{};
-        pub const WriteConsoleOutput = *opaque{};
-        pub const ReadConsoleOutput = *opaque{};
-        pub const GetConsoleTitle = *opaque{};
-        pub const GetConsoleOriginalTitle = *opaque{};
-        pub const SetConsoleTitle = *opaque{};
-        pub const AddConsoleAlias = *opaque{};
-        pub const GetConsoleAlias = *opaque{};
-        pub const GetConsoleAliasesLength = *opaque{};
-        pub const GetConsoleAliasExesLength = *opaque{};
-        pub const GetConsoleAliases = *opaque{};
-        pub const GetConsoleAliasExes = *opaque{};
-        pub const ExpungeConsoleCommandHistory = *opaque{};
-        pub const SetConsoleNumberOfCommands = *opaque{};
-        pub const GetConsoleCommandHistoryLength = *opaque{};
-        pub const GetConsoleCommandHistory = *opaque{};
+        pub const ReadConsoleInput = *opaque {};
+        pub const PeekConsoleInput = *opaque {};
+        pub const ReadConsole = *opaque {};
+        pub const WriteConsole = *opaque {};
+        pub const FillConsoleOutputCharacter = *opaque {};
+        pub const WriteConsoleOutputCharacter = *opaque {};
+        pub const ReadConsoleOutputCharacter = *opaque {};
+        pub const WriteConsoleInput = *opaque {};
+        pub const ScrollConsoleScreenBuffer = *opaque {};
+        pub const WriteConsoleOutput = *opaque {};
+        pub const ReadConsoleOutput = *opaque {};
+        pub const GetConsoleTitle = *opaque {};
+        pub const GetConsoleOriginalTitle = *opaque {};
+        pub const SetConsoleTitle = *opaque {};
+        pub const AddConsoleAlias = *opaque {};
+        pub const GetConsoleAlias = *opaque {};
+        pub const GetConsoleAliasesLength = *opaque {};
+        pub const GetConsoleAliasExesLength = *opaque {};
+        pub const GetConsoleAliases = *opaque {};
+        pub const GetConsoleAliasExes = *opaque {};
+        pub const ExpungeConsoleCommandHistory = *opaque {};
+        pub const SetConsoleNumberOfCommands = *opaque {};
+        pub const GetConsoleCommandHistoryLength = *opaque {};
+        pub const GetConsoleCommandHistory = *opaque {};
     } else struct {
         pub const ReadConsoleInput = @compileError("'ReadConsoleInput' requires that UNICODE be set to true or false in the root module");
         pub const PeekConsoleInput = @compileError("'PeekConsoleInput' requires that UNICODE be set to true or false in the root module");
@@ -928,11 +908,11 @@ const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PHANDLER_ROUTINE")) { _ = PHANDLER_ROUTINE; }
+    if (@hasDecl(@This(), "PHANDLER_ROUTINE")) {
+        _ = PHANDLER_ROUTINE;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

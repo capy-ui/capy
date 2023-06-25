@@ -26,100 +26,102 @@ pub const IContactManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactManager,
                 pszAppName: ?[*:0]const u16,
                 pszAppVersion: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactManager,
                 pszAppName: ?[*:0]const u16,
                 pszAppVersion: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Load: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactManager,
                 pszContactID: ?[*:0]const u16,
                 ppContact: ?*?*IContact,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactManager,
                 pszContactID: ?[*:0]const u16,
                 ppContact: ?*?*IContact,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         MergeContactIDs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactManager,
                 pszNewContactID: ?[*:0]const u16,
                 pszOldContactID: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactManager,
                 pszNewContactID: ?[*:0]const u16,
                 pszOldContactID: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetMeContact: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactManager,
                 ppMeContact: ?*?*IContact,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactManager,
                 ppMeContact: ?*?*IContact,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetMeContact: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactManager,
                 pMeContact: ?*IContact,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactManager,
                 pMeContact: ?*IContact,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetContactCollection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactManager,
                 ppContactCollection: ?*?*IContactCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactManager,
                 ppContactCollection: ?*?*IContactCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactManager_Initialize(self: *const T, pszAppName: ?[*:0]const u16, pszAppVersion: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactManager.VTable, self.vtable).Initialize(@ptrCast(*const IContactManager, self), pszAppName, pszAppVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactManager_Load(self: *const T, pszContactID: ?[*:0]const u16, ppContact: ?*?*IContact) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactManager.VTable, self.vtable).Load(@ptrCast(*const IContactManager, self), pszContactID, ppContact);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactManager_MergeContactIDs(self: *const T, pszNewContactID: ?[*:0]const u16, pszOldContactID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactManager.VTable, self.vtable).MergeContactIDs(@ptrCast(*const IContactManager, self), pszNewContactID, pszOldContactID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactManager_GetMeContact(self: *const T, ppMeContact: ?*?*IContact) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactManager.VTable, self.vtable).GetMeContact(@ptrCast(*const IContactManager, self), ppMeContact);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactManager_SetMeContact(self: *const T, pMeContact: ?*IContact) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactManager.VTable, self.vtable).SetMeContact(@ptrCast(*const IContactManager, self), pMeContact);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactManager_GetContactCollection(self: *const T, ppContactCollection: ?*?*IContactCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactManager.VTable, self.vtable).GetContactCollection(@ptrCast(*const IContactManager, self), ppContactCollection);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactManager_Initialize(self: *const T, pszAppName: ?[*:0]const u16, pszAppVersion: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IContactManager.VTable, self.vtable).Initialize(@ptrCast(*const IContactManager, self), pszAppName, pszAppVersion);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactManager_Load(self: *const T, pszContactID: ?[*:0]const u16, ppContact: ?*?*IContact) HRESULT {
+                return @ptrCast(*const IContactManager.VTable, self.vtable).Load(@ptrCast(*const IContactManager, self), pszContactID, ppContact);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactManager_MergeContactIDs(self: *const T, pszNewContactID: ?[*:0]const u16, pszOldContactID: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IContactManager.VTable, self.vtable).MergeContactIDs(@ptrCast(*const IContactManager, self), pszNewContactID, pszOldContactID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactManager_GetMeContact(self: *const T, ppMeContact: ?*?*IContact) HRESULT {
+                return @ptrCast(*const IContactManager.VTable, self.vtable).GetMeContact(@ptrCast(*const IContactManager, self), ppMeContact);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactManager_SetMeContact(self: *const T, pMeContact: ?*IContact) HRESULT {
+                return @ptrCast(*const IContactManager.VTable, self.vtable).SetMeContact(@ptrCast(*const IContactManager, self), pMeContact);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactManager_GetContactCollection(self: *const T, ppContactCollection: ?*?*IContactCollection) HRESULT {
+                return @ptrCast(*const IContactManager.VTable, self.vtable).GetContactCollection(@ptrCast(*const IContactManager, self), ppContactCollection);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -130,48 +132,50 @@ pub const IContactCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCurrent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactCollection,
                 ppContact: ?*?*IContact,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactCollection,
                 ppContact: ?*?*IContact,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactCollection_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactCollection.VTable, self.vtable).Reset(@ptrCast(*const IContactCollection, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactCollection_Next(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactCollection.VTable, self.vtable).Next(@ptrCast(*const IContactCollection, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactCollection_GetCurrent(self: *const T, ppContact: ?*?*IContact) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactCollection.VTable, self.vtable).GetCurrent(@ptrCast(*const IContactCollection, self), ppContact);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactCollection_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IContactCollection.VTable, self.vtable).Reset(@ptrCast(*const IContactCollection, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactCollection_Next(self: *const T) HRESULT {
+                return @ptrCast(*const IContactCollection.VTable, self.vtable).Next(@ptrCast(*const IContactCollection, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactCollection_GetCurrent(self: *const T, ppContact: ?*?*IContact) HRESULT {
+                return @ptrCast(*const IContactCollection.VTable, self.vtable).GetCurrent(@ptrCast(*const IContactCollection, self), ppContact);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -182,7 +186,7 @@ pub const IContactProperties = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactProperties,
                 pszPropertyName: ?[*:0]const u16,
                 dwFlags: u32,
@@ -190,7 +194,7 @@ pub const IContactProperties = extern struct {
                 cchValue: u32,
                 pdwcchPropertyValueRequired: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactProperties,
                 pszPropertyName: ?[*:0]const u16,
                 dwFlags: u32,
@@ -200,13 +204,13 @@ pub const IContactProperties = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactProperties,
                 pszPropertyName: ?[*:0]const u16,
                 dwFlags: u32,
                 pftDateTime: ?*FILETIME,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactProperties,
                 pszPropertyName: ?[*:0]const u16,
                 dwFlags: u32,
@@ -214,7 +218,7 @@ pub const IContactProperties = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetBinary: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactProperties,
                 pszPropertyName: ?[*:0]const u16,
                 dwFlags: u32,
@@ -223,7 +227,7 @@ pub const IContactProperties = extern struct {
                 pdwcchContentTypeRequired: ?*u32,
                 ppStream: ?*?*IStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactProperties,
                 pszPropertyName: ?[*:0]const u16,
                 dwFlags: u32,
@@ -234,7 +238,7 @@ pub const IContactProperties = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetLabels: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactProperties,
                 pszArrayElementName: ?[*:0]const u16,
                 dwFlags: u32,
@@ -242,7 +246,7 @@ pub const IContactProperties = extern struct {
                 cchLabels: u32,
                 pdwcchLabelsRequired: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactProperties,
                 pszArrayElementName: ?[*:0]const u16,
                 dwFlags: u32,
@@ -252,13 +256,13 @@ pub const IContactProperties = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactProperties,
                 pszPropertyName: ?[*:0]const u16,
                 dwFlags: u32,
                 pszValue: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactProperties,
                 pszPropertyName: ?[*:0]const u16,
                 dwFlags: u32,
@@ -266,13 +270,13 @@ pub const IContactProperties = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetDate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactProperties,
                 pszPropertyName: ?[*:0]const u16,
                 dwFlags: u32,
                 ftDateTime: FILETIME,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactProperties,
                 pszPropertyName: ?[*:0]const u16,
                 dwFlags: u32,
@@ -280,14 +284,14 @@ pub const IContactProperties = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetBinary: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactProperties,
                 pszPropertyName: ?[*:0]const u16,
                 dwFlags: u32,
                 pszContentType: ?[*:0]const u16,
                 pStream: ?*IStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactProperties,
                 pszPropertyName: ?[*:0]const u16,
                 dwFlags: u32,
@@ -296,14 +300,14 @@ pub const IContactProperties = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetLabels: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactProperties,
                 pszArrayElementName: ?[*:0]const u16,
                 dwFlags: u32,
                 dwLabelCount: u32,
                 ppszLabels: [*]?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactProperties,
                 pszArrayElementName: ?[*:0]const u16,
                 dwFlags: u32,
@@ -312,7 +316,7 @@ pub const IContactProperties = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateArrayNode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactProperties,
                 pszArrayName: ?[*:0]const u16,
                 dwFlags: u32,
@@ -321,7 +325,7 @@ pub const IContactProperties = extern struct {
                 cchNewArrayElementName: u32,
                 pdwcchNewArrayElementNameRequired: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactProperties,
                 pszArrayName: ?[*:0]const u16,
                 dwFlags: u32,
@@ -332,43 +336,43 @@ pub const IContactProperties = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DeleteProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactProperties,
                 pszPropertyName: ?[*:0]const u16,
                 dwFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactProperties,
                 pszPropertyName: ?[*:0]const u16,
                 dwFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DeleteArrayNode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactProperties,
                 pszArrayElementName: ?[*:0]const u16,
                 dwFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactProperties,
                 pszArrayElementName: ?[*:0]const u16,
                 dwFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DeleteLabels: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactProperties,
                 pszArrayElementName: ?[*:0]const u16,
                 dwFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactProperties,
                 pszArrayElementName: ?[*:0]const u16,
                 dwFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPropertyCollection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactProperties,
                 ppPropertyCollection: ?*?*IContactPropertyCollection,
                 dwFlags: u32,
@@ -377,7 +381,7 @@ pub const IContactProperties = extern struct {
                 ppszLabels: [*]?PWSTR,
                 fAnyLabelMatches: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactProperties,
                 ppPropertyCollection: ?*?*IContactPropertyCollection,
                 dwFlags: u32,
@@ -389,61 +393,63 @@ pub const IContactProperties = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_GetString(self: *const T, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszValue: [*:0]u16, cchValue: u32, pdwcchPropertyValueRequired: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactProperties.VTable, self.vtable).GetString(@ptrCast(*const IContactProperties, self), pszPropertyName, dwFlags, pszValue, cchValue, pdwcchPropertyValueRequired);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_GetDate(self: *const T, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pftDateTime: ?*FILETIME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactProperties.VTable, self.vtable).GetDate(@ptrCast(*const IContactProperties, self), pszPropertyName, dwFlags, pftDateTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_GetBinary(self: *const T, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszContentType: [*:0]u16, cchContentType: u32, pdwcchContentTypeRequired: ?*u32, ppStream: ?*?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactProperties.VTable, self.vtable).GetBinary(@ptrCast(*const IContactProperties, self), pszPropertyName, dwFlags, pszContentType, cchContentType, pdwcchContentTypeRequired, ppStream);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_GetLabels(self: *const T, pszArrayElementName: ?[*:0]const u16, dwFlags: u32, pszLabels: [*:0]u16, cchLabels: u32, pdwcchLabelsRequired: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactProperties.VTable, self.vtable).GetLabels(@ptrCast(*const IContactProperties, self), pszArrayElementName, dwFlags, pszLabels, cchLabels, pdwcchLabelsRequired);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_SetString(self: *const T, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactProperties.VTable, self.vtable).SetString(@ptrCast(*const IContactProperties, self), pszPropertyName, dwFlags, pszValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_SetDate(self: *const T, pszPropertyName: ?[*:0]const u16, dwFlags: u32, ftDateTime: FILETIME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactProperties.VTable, self.vtable).SetDate(@ptrCast(*const IContactProperties, self), pszPropertyName, dwFlags, ftDateTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_SetBinary(self: *const T, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszContentType: ?[*:0]const u16, pStream: ?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactProperties.VTable, self.vtable).SetBinary(@ptrCast(*const IContactProperties, self), pszPropertyName, dwFlags, pszContentType, pStream);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_SetLabels(self: *const T, pszArrayElementName: ?[*:0]const u16, dwFlags: u32, dwLabelCount: u32, ppszLabels: [*]?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactProperties.VTable, self.vtable).SetLabels(@ptrCast(*const IContactProperties, self), pszArrayElementName, dwFlags, dwLabelCount, ppszLabels);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_CreateArrayNode(self: *const T, pszArrayName: ?[*:0]const u16, dwFlags: u32, fAppend: BOOL, pszNewArrayElementName: [*:0]u16, cchNewArrayElementName: u32, pdwcchNewArrayElementNameRequired: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactProperties.VTable, self.vtable).CreateArrayNode(@ptrCast(*const IContactProperties, self), pszArrayName, dwFlags, fAppend, pszNewArrayElementName, cchNewArrayElementName, pdwcchNewArrayElementNameRequired);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_DeleteProperty(self: *const T, pszPropertyName: ?[*:0]const u16, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactProperties.VTable, self.vtable).DeleteProperty(@ptrCast(*const IContactProperties, self), pszPropertyName, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_DeleteArrayNode(self: *const T, pszArrayElementName: ?[*:0]const u16, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactProperties.VTable, self.vtable).DeleteArrayNode(@ptrCast(*const IContactProperties, self), pszArrayElementName, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_DeleteLabels(self: *const T, pszArrayElementName: ?[*:0]const u16, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactProperties.VTable, self.vtable).DeleteLabels(@ptrCast(*const IContactProperties, self), pszArrayElementName, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_GetPropertyCollection(self: *const T, ppPropertyCollection: ?*?*IContactPropertyCollection, dwFlags: u32, pszMultiValueName: ?[*:0]const u16, dwLabelCount: u32, ppszLabels: [*]?PWSTR, fAnyLabelMatches: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactProperties.VTable, self.vtable).GetPropertyCollection(@ptrCast(*const IContactProperties, self), ppPropertyCollection, dwFlags, pszMultiValueName, dwLabelCount, ppszLabels, fAnyLabelMatches);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactProperties_GetString(self: *const T, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszValue: [*:0]u16, cchValue: u32, pdwcchPropertyValueRequired: ?*u32) HRESULT {
+                return @ptrCast(*const IContactProperties.VTable, self.vtable).GetString(@ptrCast(*const IContactProperties, self), pszPropertyName, dwFlags, pszValue, cchValue, pdwcchPropertyValueRequired);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactProperties_GetDate(self: *const T, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pftDateTime: ?*FILETIME) HRESULT {
+                return @ptrCast(*const IContactProperties.VTable, self.vtable).GetDate(@ptrCast(*const IContactProperties, self), pszPropertyName, dwFlags, pftDateTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactProperties_GetBinary(self: *const T, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszContentType: [*:0]u16, cchContentType: u32, pdwcchContentTypeRequired: ?*u32, ppStream: ?*?*IStream) HRESULT {
+                return @ptrCast(*const IContactProperties.VTable, self.vtable).GetBinary(@ptrCast(*const IContactProperties, self), pszPropertyName, dwFlags, pszContentType, cchContentType, pdwcchContentTypeRequired, ppStream);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactProperties_GetLabels(self: *const T, pszArrayElementName: ?[*:0]const u16, dwFlags: u32, pszLabels: [*:0]u16, cchLabels: u32, pdwcchLabelsRequired: ?*u32) HRESULT {
+                return @ptrCast(*const IContactProperties.VTable, self.vtable).GetLabels(@ptrCast(*const IContactProperties, self), pszArrayElementName, dwFlags, pszLabels, cchLabels, pdwcchLabelsRequired);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactProperties_SetString(self: *const T, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszValue: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IContactProperties.VTable, self.vtable).SetString(@ptrCast(*const IContactProperties, self), pszPropertyName, dwFlags, pszValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactProperties_SetDate(self: *const T, pszPropertyName: ?[*:0]const u16, dwFlags: u32, ftDateTime: FILETIME) HRESULT {
+                return @ptrCast(*const IContactProperties.VTable, self.vtable).SetDate(@ptrCast(*const IContactProperties, self), pszPropertyName, dwFlags, ftDateTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactProperties_SetBinary(self: *const T, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszContentType: ?[*:0]const u16, pStream: ?*IStream) HRESULT {
+                return @ptrCast(*const IContactProperties.VTable, self.vtable).SetBinary(@ptrCast(*const IContactProperties, self), pszPropertyName, dwFlags, pszContentType, pStream);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactProperties_SetLabels(self: *const T, pszArrayElementName: ?[*:0]const u16, dwFlags: u32, dwLabelCount: u32, ppszLabels: [*]?PWSTR) HRESULT {
+                return @ptrCast(*const IContactProperties.VTable, self.vtable).SetLabels(@ptrCast(*const IContactProperties, self), pszArrayElementName, dwFlags, dwLabelCount, ppszLabels);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactProperties_CreateArrayNode(self: *const T, pszArrayName: ?[*:0]const u16, dwFlags: u32, fAppend: BOOL, pszNewArrayElementName: [*:0]u16, cchNewArrayElementName: u32, pdwcchNewArrayElementNameRequired: ?*u32) HRESULT {
+                return @ptrCast(*const IContactProperties.VTable, self.vtable).CreateArrayNode(@ptrCast(*const IContactProperties, self), pszArrayName, dwFlags, fAppend, pszNewArrayElementName, cchNewArrayElementName, pdwcchNewArrayElementNameRequired);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactProperties_DeleteProperty(self: *const T, pszPropertyName: ?[*:0]const u16, dwFlags: u32) HRESULT {
+                return @ptrCast(*const IContactProperties.VTable, self.vtable).DeleteProperty(@ptrCast(*const IContactProperties, self), pszPropertyName, dwFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactProperties_DeleteArrayNode(self: *const T, pszArrayElementName: ?[*:0]const u16, dwFlags: u32) HRESULT {
+                return @ptrCast(*const IContactProperties.VTable, self.vtable).DeleteArrayNode(@ptrCast(*const IContactProperties, self), pszArrayElementName, dwFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactProperties_DeleteLabels(self: *const T, pszArrayElementName: ?[*:0]const u16, dwFlags: u32) HRESULT {
+                return @ptrCast(*const IContactProperties.VTable, self.vtable).DeleteLabels(@ptrCast(*const IContactProperties, self), pszArrayElementName, dwFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactProperties_GetPropertyCollection(self: *const T, ppPropertyCollection: ?*?*IContactPropertyCollection, dwFlags: u32, pszMultiValueName: ?[*:0]const u16, dwLabelCount: u32, ppszLabels: [*]?PWSTR, fAnyLabelMatches: BOOL) HRESULT {
+                return @ptrCast(*const IContactProperties.VTable, self.vtable).GetPropertyCollection(@ptrCast(*const IContactProperties, self), ppPropertyCollection, dwFlags, pszMultiValueName, dwLabelCount, ppszLabels, fAnyLabelMatches);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -454,13 +460,13 @@ pub const IContact = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetContactID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContact,
                 pszContactID: [*:0]u16,
                 cchContactID: u32,
                 pdwcchContactIDRequired: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContact,
                 pszContactID: [*:0]u16,
                 cchContactID: u32,
@@ -468,13 +474,13 @@ pub const IContact = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContact,
                 pszPath: [*:0]u16,
                 cchPath: u32,
                 pdwcchPathRequired: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContact,
                 pszPath: [*:0]u16,
                 cchPath: u32,
@@ -482,32 +488,34 @@ pub const IContact = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CommitChanges: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContact,
                 dwCommitFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContact,
                 dwCommitFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContact_GetContactID(self: *const T, pszContactID: [*:0]u16, cchContactID: u32, pdwcchContactIDRequired: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContact.VTable, self.vtable).GetContactID(@ptrCast(*const IContact, self), pszContactID, cchContactID, pdwcchContactIDRequired);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContact_GetPath(self: *const T, pszPath: [*:0]u16, cchPath: u32, pdwcchPathRequired: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContact.VTable, self.vtable).GetPath(@ptrCast(*const IContact, self), pszPath, cchPath, pdwcchPathRequired);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContact_CommitChanges(self: *const T, dwCommitFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContact.VTable, self.vtable).CommitChanges(@ptrCast(*const IContact, self), dwCommitFlags);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContact_GetContactID(self: *const T, pszContactID: [*:0]u16, cchContactID: u32, pdwcchContactIDRequired: ?*u32) HRESULT {
+                return @ptrCast(*const IContact.VTable, self.vtable).GetContactID(@ptrCast(*const IContact, self), pszContactID, cchContactID, pdwcchContactIDRequired);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContact_GetPath(self: *const T, pszPath: [*:0]u16, cchPath: u32, pdwcchPathRequired: ?*u32) HRESULT {
+                return @ptrCast(*const IContact.VTable, self.vtable).GetPath(@ptrCast(*const IContact, self), pszPath, cchPath, pdwcchPathRequired);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContact_CommitChanges(self: *const T, dwCommitFlags: u32) HRESULT {
+                return @ptrCast(*const IContact.VTable, self.vtable).CommitChanges(@ptrCast(*const IContact, self), dwCommitFlags);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -518,29 +526,29 @@ pub const IContactPropertyCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactPropertyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactPropertyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactPropertyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactPropertyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPropertyName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactPropertyCollection,
                 pszPropertyName: [*:0]u16,
                 cchPropertyName: u32,
                 pdwcchPropertyNameRequired: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactPropertyCollection,
                 pszPropertyName: [*:0]u16,
                 cchPropertyName: u32,
@@ -548,43 +556,43 @@ pub const IContactPropertyCollection = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPropertyType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactPropertyCollection,
                 pdwType: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactPropertyCollection,
                 pdwType: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPropertyVersion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactPropertyCollection,
                 pdwVersion: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactPropertyCollection,
                 pdwVersion: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPropertyModificationDate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactPropertyCollection,
                 pftModificationDate: ?*FILETIME,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactPropertyCollection,
                 pftModificationDate: ?*FILETIME,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPropertyArrayElementID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactPropertyCollection,
                 pszArrayElementID: [*:0]u16,
                 cchArrayElementID: u32,
                 pdwcchArrayElementIDRequired: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactPropertyCollection,
                 pszArrayElementID: [*:0]u16,
                 cchArrayElementID: u32,
@@ -593,37 +601,39 @@ pub const IContactPropertyCollection = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactPropertyCollection_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactPropertyCollection.VTable, self.vtable).Reset(@ptrCast(*const IContactPropertyCollection, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactPropertyCollection_Next(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactPropertyCollection.VTable, self.vtable).Next(@ptrCast(*const IContactPropertyCollection, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactPropertyCollection_GetPropertyName(self: *const T, pszPropertyName: [*:0]u16, cchPropertyName: u32, pdwcchPropertyNameRequired: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactPropertyCollection.VTable, self.vtable).GetPropertyName(@ptrCast(*const IContactPropertyCollection, self), pszPropertyName, cchPropertyName, pdwcchPropertyNameRequired);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactPropertyCollection_GetPropertyType(self: *const T, pdwType: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactPropertyCollection.VTable, self.vtable).GetPropertyType(@ptrCast(*const IContactPropertyCollection, self), pdwType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactPropertyCollection_GetPropertyVersion(self: *const T, pdwVersion: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactPropertyCollection.VTable, self.vtable).GetPropertyVersion(@ptrCast(*const IContactPropertyCollection, self), pdwVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactPropertyCollection_GetPropertyModificationDate(self: *const T, pftModificationDate: ?*FILETIME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactPropertyCollection.VTable, self.vtable).GetPropertyModificationDate(@ptrCast(*const IContactPropertyCollection, self), pftModificationDate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactPropertyCollection_GetPropertyArrayElementID(self: *const T, pszArrayElementID: [*:0]u16, cchArrayElementID: u32, pdwcchArrayElementIDRequired: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactPropertyCollection.VTable, self.vtable).GetPropertyArrayElementID(@ptrCast(*const IContactPropertyCollection, self), pszArrayElementID, cchArrayElementID, pdwcchArrayElementIDRequired);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactPropertyCollection_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IContactPropertyCollection.VTable, self.vtable).Reset(@ptrCast(*const IContactPropertyCollection, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactPropertyCollection_Next(self: *const T) HRESULT {
+                return @ptrCast(*const IContactPropertyCollection.VTable, self.vtable).Next(@ptrCast(*const IContactPropertyCollection, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactPropertyCollection_GetPropertyName(self: *const T, pszPropertyName: [*:0]u16, cchPropertyName: u32, pdwcchPropertyNameRequired: ?*u32) HRESULT {
+                return @ptrCast(*const IContactPropertyCollection.VTable, self.vtable).GetPropertyName(@ptrCast(*const IContactPropertyCollection, self), pszPropertyName, cchPropertyName, pdwcchPropertyNameRequired);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactPropertyCollection_GetPropertyType(self: *const T, pdwType: ?*u32) HRESULT {
+                return @ptrCast(*const IContactPropertyCollection.VTable, self.vtable).GetPropertyType(@ptrCast(*const IContactPropertyCollection, self), pdwType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactPropertyCollection_GetPropertyVersion(self: *const T, pdwVersion: ?*u32) HRESULT {
+                return @ptrCast(*const IContactPropertyCollection.VTable, self.vtable).GetPropertyVersion(@ptrCast(*const IContactPropertyCollection, self), pdwVersion);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactPropertyCollection_GetPropertyModificationDate(self: *const T, pftModificationDate: ?*FILETIME) HRESULT {
+                return @ptrCast(*const IContactPropertyCollection.VTable, self.vtable).GetPropertyModificationDate(@ptrCast(*const IContactPropertyCollection, self), pftModificationDate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactPropertyCollection_GetPropertyArrayElementID(self: *const T, pszArrayElementID: [*:0]u16, cchArrayElementID: u32, pdwcchArrayElementIDRequired: ?*u32) HRESULT {
+                return @ptrCast(*const IContactPropertyCollection.VTable, self.vtable).GetPropertyArrayElementID(@ptrCast(*const IContactPropertyCollection, self), pszArrayElementID, cchArrayElementID, pdwcchArrayElementIDRequired);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -654,26 +664,26 @@ pub const IContactAggregationManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetVersionInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationManager,
                 plMajorVersion: ?*i32,
                 plMinorVersion: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationManager,
                 plMajorVersion: ?*i32,
                 plMinorVersion: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateOrOpenGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationManager,
                 pGroupName: ?[*:0]const u16,
                 options: CONTACT_AGGREGATION_CREATE_OR_OPEN_OPTIONS,
                 pCreatedGroup: ?*BOOL,
                 ppGroup: ?*?*IContactAggregationGroup,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationManager,
                 pGroupName: ?[*:0]const u16,
                 options: CONTACT_AGGREGATION_CREATE_OR_OPEN_OPTIONS,
@@ -682,86 +692,86 @@ pub const IContactAggregationManager = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateExternalContact: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationManager,
                 ppItem: ?*?*IContactAggregationContact,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationManager,
                 ppItem: ?*?*IContactAggregationContact,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateServerPerson: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationManager,
                 ppServerPerson: ?*?*IContactAggregationServerPerson,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationManager,
                 ppServerPerson: ?*?*IContactAggregationServerPerson,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateServerContactLink: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationManager,
                 ppServerContactLink: ?*?*IContactAggregationLink,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationManager,
                 ppServerContactLink: ?*?*IContactAggregationLink,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Flush: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationManager,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationManager,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OpenAggregateContact: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationManager,
                 pItemId: ?[*:0]const u16,
                 ppItem: ?*?*IContactAggregationAggregate,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationManager,
                 pItemId: ?[*:0]const u16,
                 ppItem: ?*?*IContactAggregationAggregate,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OpenContact: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationManager,
                 pItemId: ?[*:0]const u16,
                 ppItem: ?*?*IContactAggregationContact,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationManager,
                 pItemId: ?[*:0]const u16,
                 ppItem: ?*?*IContactAggregationContact,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OpenServerContactLink: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationManager,
                 pItemId: ?[*:0]const u16,
                 ppItem: ?*?*IContactAggregationLink,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationManager,
                 pItemId: ?[*:0]const u16,
                 ppItem: ?*?*IContactAggregationLink,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OpenServerPerson: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationManager,
                 pItemId: ?[*:0]const u16,
                 ppItem: ?*?*IContactAggregationServerPerson,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationManager,
                 pItemId: ?[*:0]const u16,
                 ppItem: ?*?*IContactAggregationServerPerson,
@@ -770,13 +780,13 @@ pub const IContactAggregationManager = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Contacts: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationManager,
                 options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
                 ppItems: ?*?*IContactAggregationContactCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationManager,
                 options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
                 ppItems: ?*?*IContactAggregationContactCollection,
@@ -785,13 +795,13 @@ pub const IContactAggregationManager = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AggregateContacts: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationManager,
                 options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
                 ppAggregates: ?*?*IContactAggregationAggregateCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationManager,
                 options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
                 ppAggregates: ?*?*IContactAggregationAggregateCollection,
@@ -800,13 +810,13 @@ pub const IContactAggregationManager = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Groups: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationManager,
                 options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
                 ppGroups: ?*?*IContactAggregationGroupCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationManager,
                 options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
                 ppGroups: ?*?*IContactAggregationGroupCollection,
@@ -815,12 +825,12 @@ pub const IContactAggregationManager = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServerPersons: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationManager,
                 ppServerPersonCollection: ?*?*IContactAggregationServerPersonCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationManager,
                 ppServerPersonCollection: ?*?*IContactAggregationServerPersonCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -828,13 +838,13 @@ pub const IContactAggregationManager = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServerContactLinks: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationManager,
                 pPersonItemId: ?[*:0]const u16,
                 ppServerContactLinkCollection: ?*?*IContactAggregationLinkCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationManager,
                 pPersonItemId: ?[*:0]const u16,
                 ppServerContactLinkCollection: ?*?*IContactAggregationLinkCollection,
@@ -842,69 +852,71 @@ pub const IContactAggregationManager = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_GetVersionInfo(self: *const T, plMajorVersion: ?*i32, plMinorVersion: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).GetVersionInfo(@ptrCast(*const IContactAggregationManager, self), plMajorVersion, plMinorVersion);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_CreateOrOpenGroup(self: *const T, pGroupName: ?[*:0]const u16, options: CONTACT_AGGREGATION_CREATE_OR_OPEN_OPTIONS, pCreatedGroup: ?*BOOL, ppGroup: ?*?*IContactAggregationGroup) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).CreateOrOpenGroup(@ptrCast(*const IContactAggregationManager, self), pGroupName, options, pCreatedGroup, ppGroup);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_CreateExternalContact(self: *const T, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).CreateExternalContact(@ptrCast(*const IContactAggregationManager, self), ppItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_CreateServerPerson(self: *const T, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).CreateServerPerson(@ptrCast(*const IContactAggregationManager, self), ppServerPerson);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_CreateServerContactLink(self: *const T, ppServerContactLink: ?*?*IContactAggregationLink) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).CreateServerContactLink(@ptrCast(*const IContactAggregationManager, self), ppServerContactLink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_Flush(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).Flush(@ptrCast(*const IContactAggregationManager, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_OpenAggregateContact(self: *const T, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationAggregate) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).OpenAggregateContact(@ptrCast(*const IContactAggregationManager, self), pItemId, ppItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_OpenContact(self: *const T, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).OpenContact(@ptrCast(*const IContactAggregationManager, self), pItemId, ppItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_OpenServerContactLink(self: *const T, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationLink) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).OpenServerContactLink(@ptrCast(*const IContactAggregationManager, self), pItemId, ppItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_OpenServerPerson(self: *const T, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).OpenServerPerson(@ptrCast(*const IContactAggregationManager, self), pItemId, ppItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_get_Contacts(self: *const T, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppItems: ?*?*IContactAggregationContactCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).get_Contacts(@ptrCast(*const IContactAggregationManager, self), options, ppItems);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_get_AggregateContacts(self: *const T, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppAggregates: ?*?*IContactAggregationAggregateCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).get_AggregateContacts(@ptrCast(*const IContactAggregationManager, self), options, ppAggregates);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_get_Groups(self: *const T, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppGroups: ?*?*IContactAggregationGroupCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).get_Groups(@ptrCast(*const IContactAggregationManager, self), options, ppGroups);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_get_ServerPersons(self: *const T, ppServerPersonCollection: ?*?*IContactAggregationServerPersonCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).get_ServerPersons(@ptrCast(*const IContactAggregationManager, self), ppServerPersonCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationManager_get_ServerContactLinks(self: *const T, pPersonItemId: ?[*:0]const u16, ppServerContactLinkCollection: ?*?*IContactAggregationLinkCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).get_ServerContactLinks(@ptrCast(*const IContactAggregationManager, self), pPersonItemId, ppServerContactLinkCollection);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationManager_GetVersionInfo(self: *const T, plMajorVersion: ?*i32, plMinorVersion: ?*i32) HRESULT {
+                return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).GetVersionInfo(@ptrCast(*const IContactAggregationManager, self), plMajorVersion, plMinorVersion);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationManager_CreateOrOpenGroup(self: *const T, pGroupName: ?[*:0]const u16, options: CONTACT_AGGREGATION_CREATE_OR_OPEN_OPTIONS, pCreatedGroup: ?*BOOL, ppGroup: ?*?*IContactAggregationGroup) HRESULT {
+                return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).CreateOrOpenGroup(@ptrCast(*const IContactAggregationManager, self), pGroupName, options, pCreatedGroup, ppGroup);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationManager_CreateExternalContact(self: *const T, ppItem: ?*?*IContactAggregationContact) HRESULT {
+                return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).CreateExternalContact(@ptrCast(*const IContactAggregationManager, self), ppItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationManager_CreateServerPerson(self: *const T, ppServerPerson: ?*?*IContactAggregationServerPerson) HRESULT {
+                return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).CreateServerPerson(@ptrCast(*const IContactAggregationManager, self), ppServerPerson);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationManager_CreateServerContactLink(self: *const T, ppServerContactLink: ?*?*IContactAggregationLink) HRESULT {
+                return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).CreateServerContactLink(@ptrCast(*const IContactAggregationManager, self), ppServerContactLink);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationManager_Flush(self: *const T) HRESULT {
+                return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).Flush(@ptrCast(*const IContactAggregationManager, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationManager_OpenAggregateContact(self: *const T, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationAggregate) HRESULT {
+                return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).OpenAggregateContact(@ptrCast(*const IContactAggregationManager, self), pItemId, ppItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationManager_OpenContact(self: *const T, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationContact) HRESULT {
+                return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).OpenContact(@ptrCast(*const IContactAggregationManager, self), pItemId, ppItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationManager_OpenServerContactLink(self: *const T, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationLink) HRESULT {
+                return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).OpenServerContactLink(@ptrCast(*const IContactAggregationManager, self), pItemId, ppItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationManager_OpenServerPerson(self: *const T, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationServerPerson) HRESULT {
+                return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).OpenServerPerson(@ptrCast(*const IContactAggregationManager, self), pItemId, ppItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationManager_get_Contacts(self: *const T, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppItems: ?*?*IContactAggregationContactCollection) HRESULT {
+                return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).get_Contacts(@ptrCast(*const IContactAggregationManager, self), options, ppItems);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationManager_get_AggregateContacts(self: *const T, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppAggregates: ?*?*IContactAggregationAggregateCollection) HRESULT {
+                return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).get_AggregateContacts(@ptrCast(*const IContactAggregationManager, self), options, ppAggregates);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationManager_get_Groups(self: *const T, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppGroups: ?*?*IContactAggregationGroupCollection) HRESULT {
+                return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).get_Groups(@ptrCast(*const IContactAggregationManager, self), options, ppGroups);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationManager_get_ServerPersons(self: *const T, ppServerPersonCollection: ?*?*IContactAggregationServerPersonCollection) HRESULT {
+                return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).get_ServerPersons(@ptrCast(*const IContactAggregationManager, self), ppServerPersonCollection);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationManager_get_ServerContactLinks(self: *const T, pPersonItemId: ?[*:0]const u16, ppServerContactLinkCollection: ?*?*IContactAggregationLinkCollection) HRESULT {
+                return @ptrCast(*const IContactAggregationManager.VTable, self.vtable).get_ServerContactLinks(@ptrCast(*const IContactAggregationManager, self), pPersonItemId, ppServerContactLinkCollection);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -914,48 +926,48 @@ pub const IContactAggregationContact = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationContact,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationContact,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Save: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationContact,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationContact,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         MoveToAggregate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationContact,
                 pAggregateId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationContact,
                 pAggregateId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Unlink: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationContact,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationContact,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AccountId: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationContact,
                 ppAccountId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationContact,
                 ppAccountId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -963,12 +975,12 @@ pub const IContactAggregationContact = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AccountId: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationContact,
                 pAccountId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationContact,
                 pAccountId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -976,12 +988,12 @@ pub const IContactAggregationContact = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AggregateId: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationContact,
                 ppAggregateId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationContact,
                 ppAggregateId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -989,12 +1001,12 @@ pub const IContactAggregationContact = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationContact,
                 ppItemId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationContact,
                 ppItemId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1002,12 +1014,12 @@ pub const IContactAggregationContact = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsMe: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationContact,
                 pIsMe: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationContact,
                 pIsMe: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1015,12 +1027,12 @@ pub const IContactAggregationContact = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsExternal: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationContact,
                 pIsExternal: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationContact,
                 pIsExternal: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1028,12 +1040,12 @@ pub const IContactAggregationContact = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NetworkSourceId: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationContact,
                 pNetworkSourceId: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationContact,
                 pNetworkSourceId: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1041,12 +1053,12 @@ pub const IContactAggregationContact = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NetworkSourceId: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationContact,
                 networkSourceId: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationContact,
                 networkSourceId: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1054,12 +1066,12 @@ pub const IContactAggregationContact = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NetworkSourceIdString: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationContact,
                 ppNetworkSourceId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationContact,
                 ppNetworkSourceId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1067,12 +1079,12 @@ pub const IContactAggregationContact = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NetworkSourceIdString: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationContact,
                 pNetworkSourceId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationContact,
                 pNetworkSourceId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1080,12 +1092,12 @@ pub const IContactAggregationContact = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemoteObjectId: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationContact,
                 ppRemoteObjectId: ?*?*CONTACT_AGGREGATION_BLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationContact,
                 ppRemoteObjectId: ?*?*CONTACT_AGGREGATION_BLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1093,12 +1105,12 @@ pub const IContactAggregationContact = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RemoteObjectId: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationContact,
                 pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationContact,
                 pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1106,12 +1118,12 @@ pub const IContactAggregationContact = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SyncIdentityHash: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationContact,
                 ppSyncIdentityHash: ?*?*CONTACT_AGGREGATION_BLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationContact,
                 ppSyncIdentityHash: ?*?*CONTACT_AGGREGATION_BLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1119,93 +1131,95 @@ pub const IContactAggregationContact = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SyncIdentityHash: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationContact,
                 pSyncIdentityHash: ?*const CONTACT_AGGREGATION_BLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationContact,
                 pSyncIdentityHash: ?*const CONTACT_AGGREGATION_BLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_Delete(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).Delete(@ptrCast(*const IContactAggregationContact, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_Save(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).Save(@ptrCast(*const IContactAggregationContact, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_MoveToAggregate(self: *const T, pAggregateId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).MoveToAggregate(@ptrCast(*const IContactAggregationContact, self), pAggregateId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_Unlink(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).Unlink(@ptrCast(*const IContactAggregationContact, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_get_AccountId(self: *const T, ppAccountId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).get_AccountId(@ptrCast(*const IContactAggregationContact, self), ppAccountId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_put_AccountId(self: *const T, pAccountId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).put_AccountId(@ptrCast(*const IContactAggregationContact, self), pAccountId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_get_AggregateId(self: *const T, ppAggregateId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).get_AggregateId(@ptrCast(*const IContactAggregationContact, self), ppAggregateId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_get_Id(self: *const T, ppItemId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).get_Id(@ptrCast(*const IContactAggregationContact, self), ppItemId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_get_IsMe(self: *const T, pIsMe: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).get_IsMe(@ptrCast(*const IContactAggregationContact, self), pIsMe);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_get_IsExternal(self: *const T, pIsExternal: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).get_IsExternal(@ptrCast(*const IContactAggregationContact, self), pIsExternal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_get_NetworkSourceId(self: *const T, pNetworkSourceId: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).get_NetworkSourceId(@ptrCast(*const IContactAggregationContact, self), pNetworkSourceId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_put_NetworkSourceId(self: *const T, networkSourceId: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).put_NetworkSourceId(@ptrCast(*const IContactAggregationContact, self), networkSourceId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_get_NetworkSourceIdString(self: *const T, ppNetworkSourceId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).get_NetworkSourceIdString(@ptrCast(*const IContactAggregationContact, self), ppNetworkSourceId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_put_NetworkSourceIdString(self: *const T, pNetworkSourceId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).put_NetworkSourceIdString(@ptrCast(*const IContactAggregationContact, self), pNetworkSourceId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_get_RemoteObjectId(self: *const T, ppRemoteObjectId: ?*?*CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).get_RemoteObjectId(@ptrCast(*const IContactAggregationContact, self), ppRemoteObjectId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_put_RemoteObjectId(self: *const T, pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).put_RemoteObjectId(@ptrCast(*const IContactAggregationContact, self), pRemoteObjectId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_get_SyncIdentityHash(self: *const T, ppSyncIdentityHash: ?*?*CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).get_SyncIdentityHash(@ptrCast(*const IContactAggregationContact, self), ppSyncIdentityHash);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContact_put_SyncIdentityHash(self: *const T, pSyncIdentityHash: ?*const CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).put_SyncIdentityHash(@ptrCast(*const IContactAggregationContact, self), pSyncIdentityHash);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationContact_Delete(self: *const T) HRESULT {
+                return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).Delete(@ptrCast(*const IContactAggregationContact, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationContact_Save(self: *const T) HRESULT {
+                return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).Save(@ptrCast(*const IContactAggregationContact, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationContact_MoveToAggregate(self: *const T, pAggregateId: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).MoveToAggregate(@ptrCast(*const IContactAggregationContact, self), pAggregateId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationContact_Unlink(self: *const T) HRESULT {
+                return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).Unlink(@ptrCast(*const IContactAggregationContact, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationContact_get_AccountId(self: *const T, ppAccountId: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).get_AccountId(@ptrCast(*const IContactAggregationContact, self), ppAccountId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationContact_put_AccountId(self: *const T, pAccountId: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).put_AccountId(@ptrCast(*const IContactAggregationContact, self), pAccountId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationContact_get_AggregateId(self: *const T, ppAggregateId: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).get_AggregateId(@ptrCast(*const IContactAggregationContact, self), ppAggregateId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationContact_get_Id(self: *const T, ppItemId: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).get_Id(@ptrCast(*const IContactAggregationContact, self), ppItemId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationContact_get_IsMe(self: *const T, pIsMe: ?*BOOL) HRESULT {
+                return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).get_IsMe(@ptrCast(*const IContactAggregationContact, self), pIsMe);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationContact_get_IsExternal(self: *const T, pIsExternal: ?*BOOL) HRESULT {
+                return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).get_IsExternal(@ptrCast(*const IContactAggregationContact, self), pIsExternal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationContact_get_NetworkSourceId(self: *const T, pNetworkSourceId: ?*u32) HRESULT {
+                return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).get_NetworkSourceId(@ptrCast(*const IContactAggregationContact, self), pNetworkSourceId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationContact_put_NetworkSourceId(self: *const T, networkSourceId: u32) HRESULT {
+                return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).put_NetworkSourceId(@ptrCast(*const IContactAggregationContact, self), networkSourceId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationContact_get_NetworkSourceIdString(self: *const T, ppNetworkSourceId: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).get_NetworkSourceIdString(@ptrCast(*const IContactAggregationContact, self), ppNetworkSourceId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationContact_put_NetworkSourceIdString(self: *const T, pNetworkSourceId: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).put_NetworkSourceIdString(@ptrCast(*const IContactAggregationContact, self), pNetworkSourceId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationContact_get_RemoteObjectId(self: *const T, ppRemoteObjectId: ?*?*CONTACT_AGGREGATION_BLOB) HRESULT {
+                return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).get_RemoteObjectId(@ptrCast(*const IContactAggregationContact, self), ppRemoteObjectId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationContact_put_RemoteObjectId(self: *const T, pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB) HRESULT {
+                return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).put_RemoteObjectId(@ptrCast(*const IContactAggregationContact, self), pRemoteObjectId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationContact_get_SyncIdentityHash(self: *const T, ppSyncIdentityHash: ?*?*CONTACT_AGGREGATION_BLOB) HRESULT {
+                return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).get_SyncIdentityHash(@ptrCast(*const IContactAggregationContact, self), ppSyncIdentityHash);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationContact_put_SyncIdentityHash(self: *const T, pSyncIdentityHash: ?*const CONTACT_AGGREGATION_BLOB) HRESULT {
+                return @ptrCast(*const IContactAggregationContact.VTable, self.vtable).put_SyncIdentityHash(@ptrCast(*const IContactAggregationContact, self), pSyncIdentityHash);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1215,34 +1229,34 @@ pub const IContactAggregationContactCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         FindFirst: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationContactCollection,
                 ppItem: ?*?*IContactAggregationContact,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationContactCollection,
                 ppItem: ?*?*IContactAggregationContact,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FindNext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationContactCollection,
                 ppItem: ?*?*IContactAggregationContact,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationContactCollection,
                 ppItem: ?*?*IContactAggregationContact,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FindFirstByIdentityHash: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationContactCollection,
                 pSourceType: ?[*:0]const u16,
                 pAccountId: ?[*:0]const u16,
                 pIdentityHash: ?*const CONTACT_AGGREGATION_BLOB,
                 ppItem: ?*?*IContactAggregationContact,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationContactCollection,
                 pSourceType: ?[*:0]const u16,
                 pAccountId: ?[*:0]const u16,
@@ -1253,25 +1267,25 @@ pub const IContactAggregationContactCollection = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationContactCollection,
                 pCount: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationContactCollection,
                 pCount: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FindFirstByRemoteId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationContactCollection,
                 pSourceType: ?[*:0]const u16,
                 pAccountId: ?[*:0]const u16,
                 pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB,
                 ppItem: ?*?*IContactAggregationContact,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationContactCollection,
                 pSourceType: ?[*:0]const u16,
                 pAccountId: ?[*:0]const u16,
@@ -1281,29 +1295,31 @@ pub const IContactAggregationContactCollection = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContactCollection_FindFirst(self: *const T, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationContactCollection.VTable, self.vtable).FindFirst(@ptrCast(*const IContactAggregationContactCollection, self), ppItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContactCollection_FindNext(self: *const T, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationContactCollection.VTable, self.vtable).FindNext(@ptrCast(*const IContactAggregationContactCollection, self), ppItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContactCollection_FindFirstByIdentityHash(self: *const T, pSourceType: ?[*:0]const u16, pAccountId: ?[*:0]const u16, pIdentityHash: ?*const CONTACT_AGGREGATION_BLOB, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationContactCollection.VTable, self.vtable).FindFirstByIdentityHash(@ptrCast(*const IContactAggregationContactCollection, self), pSourceType, pAccountId, pIdentityHash, ppItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContactCollection_get_Count(self: *const T, pCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationContactCollection.VTable, self.vtable).get_Count(@ptrCast(*const IContactAggregationContactCollection, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationContactCollection_FindFirstByRemoteId(self: *const T, pSourceType: ?[*:0]const u16, pAccountId: ?[*:0]const u16, pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationContactCollection.VTable, self.vtable).FindFirstByRemoteId(@ptrCast(*const IContactAggregationContactCollection, self), pSourceType, pAccountId, pRemoteObjectId, ppItem);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationContactCollection_FindFirst(self: *const T, ppItem: ?*?*IContactAggregationContact) HRESULT {
+                return @ptrCast(*const IContactAggregationContactCollection.VTable, self.vtable).FindFirst(@ptrCast(*const IContactAggregationContactCollection, self), ppItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationContactCollection_FindNext(self: *const T, ppItem: ?*?*IContactAggregationContact) HRESULT {
+                return @ptrCast(*const IContactAggregationContactCollection.VTable, self.vtable).FindNext(@ptrCast(*const IContactAggregationContactCollection, self), ppItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationContactCollection_FindFirstByIdentityHash(self: *const T, pSourceType: ?[*:0]const u16, pAccountId: ?[*:0]const u16, pIdentityHash: ?*const CONTACT_AGGREGATION_BLOB, ppItem: ?*?*IContactAggregationContact) HRESULT {
+                return @ptrCast(*const IContactAggregationContactCollection.VTable, self.vtable).FindFirstByIdentityHash(@ptrCast(*const IContactAggregationContactCollection, self), pSourceType, pAccountId, pIdentityHash, ppItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationContactCollection_get_Count(self: *const T, pCount: ?*i32) HRESULT {
+                return @ptrCast(*const IContactAggregationContactCollection.VTable, self.vtable).get_Count(@ptrCast(*const IContactAggregationContactCollection, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationContactCollection_FindFirstByRemoteId(self: *const T, pSourceType: ?[*:0]const u16, pAccountId: ?[*:0]const u16, pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB, ppItem: ?*?*IContactAggregationContact) HRESULT {
+                return @ptrCast(*const IContactAggregationContactCollection.VTable, self.vtable).FindFirstByRemoteId(@ptrCast(*const IContactAggregationContactCollection, self), pSourceType, pAccountId, pRemoteObjectId, ppItem);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1313,29 +1329,29 @@ pub const IContactAggregationAggregate = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Save: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationAggregate,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationAggregate,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetComponentItems: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationAggregate,
                 pComponentItems: ?*?*IContactAggregationContactCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationAggregate,
                 pComponentItems: ?*?*IContactAggregationContactCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Link: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationAggregate,
                 pAggregateId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationAggregate,
                 pAggregateId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1343,13 +1359,13 @@ pub const IContactAggregationAggregate = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Groups: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationAggregate,
                 options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
                 ppGroups: ?*?*IContactAggregationGroupCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationAggregate,
                 options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
                 ppGroups: ?*?*IContactAggregationGroupCollection,
@@ -1358,12 +1374,12 @@ pub const IContactAggregationAggregate = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AntiLink: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationAggregate,
                 ppAntiLink: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationAggregate,
                 ppAntiLink: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1371,12 +1387,12 @@ pub const IContactAggregationAggregate = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AntiLink: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationAggregate,
                 pAntiLink: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationAggregate,
                 pAntiLink: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1384,12 +1400,12 @@ pub const IContactAggregationAggregate = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FavoriteOrder: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationAggregate,
                 pFavoriteOrder: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationAggregate,
                 pFavoriteOrder: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1397,12 +1413,12 @@ pub const IContactAggregationAggregate = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FavoriteOrder: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationAggregate,
                 favoriteOrder: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationAggregate,
                 favoriteOrder: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1410,57 +1426,59 @@ pub const IContactAggregationAggregate = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationAggregate,
                 ppItemId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationAggregate,
                 ppItemId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregate_Save(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationAggregate.VTable, self.vtable).Save(@ptrCast(*const IContactAggregationAggregate, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregate_GetComponentItems(self: *const T, pComponentItems: ?*?*IContactAggregationContactCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationAggregate.VTable, self.vtable).GetComponentItems(@ptrCast(*const IContactAggregationAggregate, self), pComponentItems);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregate_Link(self: *const T, pAggregateId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationAggregate.VTable, self.vtable).Link(@ptrCast(*const IContactAggregationAggregate, self), pAggregateId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregate_get_Groups(self: *const T, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppGroups: ?*?*IContactAggregationGroupCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationAggregate.VTable, self.vtable).get_Groups(@ptrCast(*const IContactAggregationAggregate, self), options, ppGroups);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregate_get_AntiLink(self: *const T, ppAntiLink: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationAggregate.VTable, self.vtable).get_AntiLink(@ptrCast(*const IContactAggregationAggregate, self), ppAntiLink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregate_put_AntiLink(self: *const T, pAntiLink: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationAggregate.VTable, self.vtable).put_AntiLink(@ptrCast(*const IContactAggregationAggregate, self), pAntiLink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregate_get_FavoriteOrder(self: *const T, pFavoriteOrder: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationAggregate.VTable, self.vtable).get_FavoriteOrder(@ptrCast(*const IContactAggregationAggregate, self), pFavoriteOrder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregate_put_FavoriteOrder(self: *const T, favoriteOrder: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationAggregate.VTable, self.vtable).put_FavoriteOrder(@ptrCast(*const IContactAggregationAggregate, self), favoriteOrder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregate_get_Id(self: *const T, ppItemId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationAggregate.VTable, self.vtable).get_Id(@ptrCast(*const IContactAggregationAggregate, self), ppItemId);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationAggregate_Save(self: *const T) HRESULT {
+                return @ptrCast(*const IContactAggregationAggregate.VTable, self.vtable).Save(@ptrCast(*const IContactAggregationAggregate, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationAggregate_GetComponentItems(self: *const T, pComponentItems: ?*?*IContactAggregationContactCollection) HRESULT {
+                return @ptrCast(*const IContactAggregationAggregate.VTable, self.vtable).GetComponentItems(@ptrCast(*const IContactAggregationAggregate, self), pComponentItems);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationAggregate_Link(self: *const T, pAggregateId: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IContactAggregationAggregate.VTable, self.vtable).Link(@ptrCast(*const IContactAggregationAggregate, self), pAggregateId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationAggregate_get_Groups(self: *const T, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppGroups: ?*?*IContactAggregationGroupCollection) HRESULT {
+                return @ptrCast(*const IContactAggregationAggregate.VTable, self.vtable).get_Groups(@ptrCast(*const IContactAggregationAggregate, self), options, ppGroups);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationAggregate_get_AntiLink(self: *const T, ppAntiLink: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IContactAggregationAggregate.VTable, self.vtable).get_AntiLink(@ptrCast(*const IContactAggregationAggregate, self), ppAntiLink);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationAggregate_put_AntiLink(self: *const T, pAntiLink: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IContactAggregationAggregate.VTable, self.vtable).put_AntiLink(@ptrCast(*const IContactAggregationAggregate, self), pAntiLink);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationAggregate_get_FavoriteOrder(self: *const T, pFavoriteOrder: ?*u32) HRESULT {
+                return @ptrCast(*const IContactAggregationAggregate.VTable, self.vtable).get_FavoriteOrder(@ptrCast(*const IContactAggregationAggregate, self), pFavoriteOrder);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationAggregate_put_FavoriteOrder(self: *const T, favoriteOrder: u32) HRESULT {
+                return @ptrCast(*const IContactAggregationAggregate.VTable, self.vtable).put_FavoriteOrder(@ptrCast(*const IContactAggregationAggregate, self), favoriteOrder);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationAggregate_get_Id(self: *const T, ppItemId: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IContactAggregationAggregate.VTable, self.vtable).get_Id(@ptrCast(*const IContactAggregationAggregate, self), ppItemId);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1470,33 +1488,33 @@ pub const IContactAggregationAggregateCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         FindFirst: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationAggregateCollection,
                 ppAggregate: ?*?*IContactAggregationAggregate,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationAggregateCollection,
                 ppAggregate: ?*?*IContactAggregationAggregate,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FindFirstByAntiLinkId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationAggregateCollection,
                 pAntiLinkId: ?[*:0]const u16,
                 ppAggregate: ?*?*IContactAggregationAggregate,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationAggregateCollection,
                 pAntiLinkId: ?[*:0]const u16,
                 ppAggregate: ?*?*IContactAggregationAggregate,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FindNext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationAggregateCollection,
                 ppAggregate: ?*?*IContactAggregationAggregate,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationAggregateCollection,
                 ppAggregate: ?*?*IContactAggregationAggregate,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1504,37 +1522,39 @@ pub const IContactAggregationAggregateCollection = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationAggregateCollection,
                 pCount: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationAggregateCollection,
                 pCount: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregateCollection_FindFirst(self: *const T, ppAggregate: ?*?*IContactAggregationAggregate) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationAggregateCollection.VTable, self.vtable).FindFirst(@ptrCast(*const IContactAggregationAggregateCollection, self), ppAggregate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregateCollection_FindFirstByAntiLinkId(self: *const T, pAntiLinkId: ?[*:0]const u16, ppAggregate: ?*?*IContactAggregationAggregate) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationAggregateCollection.VTable, self.vtable).FindFirstByAntiLinkId(@ptrCast(*const IContactAggregationAggregateCollection, self), pAntiLinkId, ppAggregate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregateCollection_FindNext(self: *const T, ppAggregate: ?*?*IContactAggregationAggregate) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationAggregateCollection.VTable, self.vtable).FindNext(@ptrCast(*const IContactAggregationAggregateCollection, self), ppAggregate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationAggregateCollection_get_Count(self: *const T, pCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationAggregateCollection.VTable, self.vtable).get_Count(@ptrCast(*const IContactAggregationAggregateCollection, self), pCount);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationAggregateCollection_FindFirst(self: *const T, ppAggregate: ?*?*IContactAggregationAggregate) HRESULT {
+                return @ptrCast(*const IContactAggregationAggregateCollection.VTable, self.vtable).FindFirst(@ptrCast(*const IContactAggregationAggregateCollection, self), ppAggregate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationAggregateCollection_FindFirstByAntiLinkId(self: *const T, pAntiLinkId: ?[*:0]const u16, ppAggregate: ?*?*IContactAggregationAggregate) HRESULT {
+                return @ptrCast(*const IContactAggregationAggregateCollection.VTable, self.vtable).FindFirstByAntiLinkId(@ptrCast(*const IContactAggregationAggregateCollection, self), pAntiLinkId, ppAggregate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationAggregateCollection_FindNext(self: *const T, ppAggregate: ?*?*IContactAggregationAggregate) HRESULT {
+                return @ptrCast(*const IContactAggregationAggregateCollection.VTable, self.vtable).FindNext(@ptrCast(*const IContactAggregationAggregateCollection, self), ppAggregate);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationAggregateCollection_get_Count(self: *const T, pCount: ?*i32) HRESULT {
+                return @ptrCast(*const IContactAggregationAggregateCollection.VTable, self.vtable).get_Count(@ptrCast(*const IContactAggregationAggregateCollection, self), pCount);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1544,37 +1564,37 @@ pub const IContactAggregationGroup = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationGroup,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationGroup,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Save: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationGroup,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationGroup,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Add: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationGroup,
                 pAggregateId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationGroup,
                 pAggregateId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Remove: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationGroup,
                 pAggregateId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationGroup,
                 pAggregateId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1582,12 +1602,12 @@ pub const IContactAggregationGroup = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Members: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationGroup,
                 ppAggregateContactCollection: ?*?*IContactAggregationAggregateCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationGroup,
                 ppAggregateContactCollection: ?*?*IContactAggregationAggregateCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1595,12 +1615,12 @@ pub const IContactAggregationGroup = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GlobalObjectId: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationGroup,
                 pGlobalObjectId: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationGroup,
                 pGlobalObjectId: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1608,12 +1628,12 @@ pub const IContactAggregationGroup = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_GlobalObjectId: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationGroup,
                 pGlobalObjectId: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationGroup,
                 pGlobalObjectId: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1621,12 +1641,12 @@ pub const IContactAggregationGroup = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationGroup,
                 ppItemId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationGroup,
                 ppItemId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1634,12 +1654,12 @@ pub const IContactAggregationGroup = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationGroup,
                 ppName: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationGroup,
                 ppName: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1647,61 +1667,63 @@ pub const IContactAggregationGroup = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationGroup,
                 pName: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationGroup,
                 pName: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroup_Delete(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationGroup.VTable, self.vtable).Delete(@ptrCast(*const IContactAggregationGroup, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroup_Save(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationGroup.VTable, self.vtable).Save(@ptrCast(*const IContactAggregationGroup, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroup_Add(self: *const T, pAggregateId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationGroup.VTable, self.vtable).Add(@ptrCast(*const IContactAggregationGroup, self), pAggregateId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroup_Remove(self: *const T, pAggregateId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationGroup.VTable, self.vtable).Remove(@ptrCast(*const IContactAggregationGroup, self), pAggregateId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroup_get_Members(self: *const T, ppAggregateContactCollection: ?*?*IContactAggregationAggregateCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationGroup.VTable, self.vtable).get_Members(@ptrCast(*const IContactAggregationGroup, self), ppAggregateContactCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroup_get_GlobalObjectId(self: *const T, pGlobalObjectId: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationGroup.VTable, self.vtable).get_GlobalObjectId(@ptrCast(*const IContactAggregationGroup, self), pGlobalObjectId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroup_put_GlobalObjectId(self: *const T, pGlobalObjectId: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationGroup.VTable, self.vtable).put_GlobalObjectId(@ptrCast(*const IContactAggregationGroup, self), pGlobalObjectId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroup_get_Id(self: *const T, ppItemId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationGroup.VTable, self.vtable).get_Id(@ptrCast(*const IContactAggregationGroup, self), ppItemId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroup_get_Name(self: *const T, ppName: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationGroup.VTable, self.vtable).get_Name(@ptrCast(*const IContactAggregationGroup, self), ppName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroup_put_Name(self: *const T, pName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationGroup.VTable, self.vtable).put_Name(@ptrCast(*const IContactAggregationGroup, self), pName);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationGroup_Delete(self: *const T) HRESULT {
+                return @ptrCast(*const IContactAggregationGroup.VTable, self.vtable).Delete(@ptrCast(*const IContactAggregationGroup, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationGroup_Save(self: *const T) HRESULT {
+                return @ptrCast(*const IContactAggregationGroup.VTable, self.vtable).Save(@ptrCast(*const IContactAggregationGroup, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationGroup_Add(self: *const T, pAggregateId: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IContactAggregationGroup.VTable, self.vtable).Add(@ptrCast(*const IContactAggregationGroup, self), pAggregateId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationGroup_Remove(self: *const T, pAggregateId: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IContactAggregationGroup.VTable, self.vtable).Remove(@ptrCast(*const IContactAggregationGroup, self), pAggregateId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationGroup_get_Members(self: *const T, ppAggregateContactCollection: ?*?*IContactAggregationAggregateCollection) HRESULT {
+                return @ptrCast(*const IContactAggregationGroup.VTable, self.vtable).get_Members(@ptrCast(*const IContactAggregationGroup, self), ppAggregateContactCollection);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationGroup_get_GlobalObjectId(self: *const T, pGlobalObjectId: ?*Guid) HRESULT {
+                return @ptrCast(*const IContactAggregationGroup.VTable, self.vtable).get_GlobalObjectId(@ptrCast(*const IContactAggregationGroup, self), pGlobalObjectId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationGroup_put_GlobalObjectId(self: *const T, pGlobalObjectId: ?*const Guid) HRESULT {
+                return @ptrCast(*const IContactAggregationGroup.VTable, self.vtable).put_GlobalObjectId(@ptrCast(*const IContactAggregationGroup, self), pGlobalObjectId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationGroup_get_Id(self: *const T, ppItemId: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IContactAggregationGroup.VTable, self.vtable).get_Id(@ptrCast(*const IContactAggregationGroup, self), ppItemId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationGroup_get_Name(self: *const T, ppName: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IContactAggregationGroup.VTable, self.vtable).get_Name(@ptrCast(*const IContactAggregationGroup, self), ppName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationGroup_put_Name(self: *const T, pName: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IContactAggregationGroup.VTable, self.vtable).put_Name(@ptrCast(*const IContactAggregationGroup, self), pName);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1711,33 +1733,33 @@ pub const IContactAggregationGroupCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         FindFirst: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationGroupCollection,
                 ppGroup: ?*?*IContactAggregationGroup,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationGroupCollection,
                 ppGroup: ?*?*IContactAggregationGroup,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FindFirstByGlobalObjectId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationGroupCollection,
                 pGlobalObjectId: ?*const Guid,
                 ppGroup: ?*?*IContactAggregationGroup,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationGroupCollection,
                 pGlobalObjectId: ?*const Guid,
                 ppGroup: ?*?*IContactAggregationGroup,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FindNext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationGroupCollection,
                 ppGroup: ?*?*IContactAggregationGroup,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationGroupCollection,
                 ppGroup: ?*?*IContactAggregationGroup,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1745,37 +1767,39 @@ pub const IContactAggregationGroupCollection = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationGroupCollection,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationGroupCollection,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroupCollection_FindFirst(self: *const T, ppGroup: ?*?*IContactAggregationGroup) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationGroupCollection.VTable, self.vtable).FindFirst(@ptrCast(*const IContactAggregationGroupCollection, self), ppGroup);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroupCollection_FindFirstByGlobalObjectId(self: *const T, pGlobalObjectId: ?*const Guid, ppGroup: ?*?*IContactAggregationGroup) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationGroupCollection.VTable, self.vtable).FindFirstByGlobalObjectId(@ptrCast(*const IContactAggregationGroupCollection, self), pGlobalObjectId, ppGroup);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroupCollection_FindNext(self: *const T, ppGroup: ?*?*IContactAggregationGroup) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationGroupCollection.VTable, self.vtable).FindNext(@ptrCast(*const IContactAggregationGroupCollection, self), ppGroup);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationGroupCollection_get_Count(self: *const T, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationGroupCollection.VTable, self.vtable).get_Count(@ptrCast(*const IContactAggregationGroupCollection, self), pCount);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationGroupCollection_FindFirst(self: *const T, ppGroup: ?*?*IContactAggregationGroup) HRESULT {
+                return @ptrCast(*const IContactAggregationGroupCollection.VTable, self.vtable).FindFirst(@ptrCast(*const IContactAggregationGroupCollection, self), ppGroup);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationGroupCollection_FindFirstByGlobalObjectId(self: *const T, pGlobalObjectId: ?*const Guid, ppGroup: ?*?*IContactAggregationGroup) HRESULT {
+                return @ptrCast(*const IContactAggregationGroupCollection.VTable, self.vtable).FindFirstByGlobalObjectId(@ptrCast(*const IContactAggregationGroupCollection, self), pGlobalObjectId, ppGroup);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationGroupCollection_FindNext(self: *const T, ppGroup: ?*?*IContactAggregationGroup) HRESULT {
+                return @ptrCast(*const IContactAggregationGroupCollection.VTable, self.vtable).FindNext(@ptrCast(*const IContactAggregationGroupCollection, self), ppGroup);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationGroupCollection_get_Count(self: *const T, pCount: ?*u32) HRESULT {
+                return @ptrCast(*const IContactAggregationGroupCollection.VTable, self.vtable).get_Count(@ptrCast(*const IContactAggregationGroupCollection, self), pCount);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1785,30 +1809,30 @@ pub const IContactAggregationLink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationLink,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationLink,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Save: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationLink,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationLink,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AccountId: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationLink,
                 ppAccountId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationLink,
                 ppAccountId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1816,12 +1840,12 @@ pub const IContactAggregationLink = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AccountId: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationLink,
                 pAccountId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationLink,
                 pAccountId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1829,12 +1853,12 @@ pub const IContactAggregationLink = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationLink,
                 ppItemId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationLink,
                 ppItemId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1842,12 +1866,12 @@ pub const IContactAggregationLink = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsLinkResolved: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationLink,
                 pIsLinkResolved: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationLink,
                 pIsLinkResolved: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1855,12 +1879,12 @@ pub const IContactAggregationLink = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IsLinkResolved: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationLink,
                 isLinkResolved: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationLink,
                 isLinkResolved: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1868,12 +1892,12 @@ pub const IContactAggregationLink = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NetworkSourceIdString: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationLink,
                 ppNetworkSourceId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationLink,
                 ppNetworkSourceId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1881,12 +1905,12 @@ pub const IContactAggregationLink = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NetworkSourceIdString: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationLink,
                 pNetworkSourceId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationLink,
                 pNetworkSourceId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1894,12 +1918,12 @@ pub const IContactAggregationLink = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemoteObjectId: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationLink,
                 ppRemoteObjectId: ?*?*CONTACT_AGGREGATION_BLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationLink,
                 ppRemoteObjectId: ?*?*CONTACT_AGGREGATION_BLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1907,12 +1931,12 @@ pub const IContactAggregationLink = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RemoteObjectId: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationLink,
                 pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationLink,
                 pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1920,12 +1944,12 @@ pub const IContactAggregationLink = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServerPerson: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationLink,
                 ppServerPersonId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationLink,
                 ppServerPersonId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1933,12 +1957,12 @@ pub const IContactAggregationLink = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ServerPerson: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationLink,
                 pServerPersonId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationLink,
                 pServerPersonId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1946,12 +1970,12 @@ pub const IContactAggregationLink = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServerPersonBaseline: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationLink,
                 ppServerPersonId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationLink,
                 ppServerPersonId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1959,12 +1983,12 @@ pub const IContactAggregationLink = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ServerPersonBaseline: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationLink,
                 pServerPersonId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationLink,
                 pServerPersonId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1972,12 +1996,12 @@ pub const IContactAggregationLink = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SyncIdentityHash: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationLink,
                 ppSyncIdentityHash: ?*?*CONTACT_AGGREGATION_BLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationLink,
                 ppSyncIdentityHash: ?*?*CONTACT_AGGREGATION_BLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1985,89 +2009,91 @@ pub const IContactAggregationLink = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SyncIdentityHash: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationLink,
                 pSyncIdentityHash: ?*const CONTACT_AGGREGATION_BLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationLink,
                 pSyncIdentityHash: ?*const CONTACT_AGGREGATION_BLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_Delete(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).Delete(@ptrCast(*const IContactAggregationLink, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_Save(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).Save(@ptrCast(*const IContactAggregationLink, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_get_AccountId(self: *const T, ppAccountId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).get_AccountId(@ptrCast(*const IContactAggregationLink, self), ppAccountId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_put_AccountId(self: *const T, pAccountId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).put_AccountId(@ptrCast(*const IContactAggregationLink, self), pAccountId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_get_Id(self: *const T, ppItemId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).get_Id(@ptrCast(*const IContactAggregationLink, self), ppItemId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_get_IsLinkResolved(self: *const T, pIsLinkResolved: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).get_IsLinkResolved(@ptrCast(*const IContactAggregationLink, self), pIsLinkResolved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_put_IsLinkResolved(self: *const T, isLinkResolved: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).put_IsLinkResolved(@ptrCast(*const IContactAggregationLink, self), isLinkResolved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_get_NetworkSourceIdString(self: *const T, ppNetworkSourceId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).get_NetworkSourceIdString(@ptrCast(*const IContactAggregationLink, self), ppNetworkSourceId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_put_NetworkSourceIdString(self: *const T, pNetworkSourceId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).put_NetworkSourceIdString(@ptrCast(*const IContactAggregationLink, self), pNetworkSourceId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_get_RemoteObjectId(self: *const T, ppRemoteObjectId: ?*?*CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).get_RemoteObjectId(@ptrCast(*const IContactAggregationLink, self), ppRemoteObjectId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_put_RemoteObjectId(self: *const T, pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).put_RemoteObjectId(@ptrCast(*const IContactAggregationLink, self), pRemoteObjectId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_get_ServerPerson(self: *const T, ppServerPersonId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).get_ServerPerson(@ptrCast(*const IContactAggregationLink, self), ppServerPersonId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_put_ServerPerson(self: *const T, pServerPersonId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).put_ServerPerson(@ptrCast(*const IContactAggregationLink, self), pServerPersonId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_get_ServerPersonBaseline(self: *const T, ppServerPersonId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).get_ServerPersonBaseline(@ptrCast(*const IContactAggregationLink, self), ppServerPersonId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_put_ServerPersonBaseline(self: *const T, pServerPersonId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).put_ServerPersonBaseline(@ptrCast(*const IContactAggregationLink, self), pServerPersonId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_get_SyncIdentityHash(self: *const T, ppSyncIdentityHash: ?*?*CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).get_SyncIdentityHash(@ptrCast(*const IContactAggregationLink, self), ppSyncIdentityHash);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLink_put_SyncIdentityHash(self: *const T, pSyncIdentityHash: ?*const CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).put_SyncIdentityHash(@ptrCast(*const IContactAggregationLink, self), pSyncIdentityHash);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationLink_Delete(self: *const T) HRESULT {
+                return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).Delete(@ptrCast(*const IContactAggregationLink, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationLink_Save(self: *const T) HRESULT {
+                return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).Save(@ptrCast(*const IContactAggregationLink, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationLink_get_AccountId(self: *const T, ppAccountId: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).get_AccountId(@ptrCast(*const IContactAggregationLink, self), ppAccountId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationLink_put_AccountId(self: *const T, pAccountId: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).put_AccountId(@ptrCast(*const IContactAggregationLink, self), pAccountId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationLink_get_Id(self: *const T, ppItemId: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).get_Id(@ptrCast(*const IContactAggregationLink, self), ppItemId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationLink_get_IsLinkResolved(self: *const T, pIsLinkResolved: ?*BOOL) HRESULT {
+                return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).get_IsLinkResolved(@ptrCast(*const IContactAggregationLink, self), pIsLinkResolved);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationLink_put_IsLinkResolved(self: *const T, isLinkResolved: BOOL) HRESULT {
+                return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).put_IsLinkResolved(@ptrCast(*const IContactAggregationLink, self), isLinkResolved);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationLink_get_NetworkSourceIdString(self: *const T, ppNetworkSourceId: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).get_NetworkSourceIdString(@ptrCast(*const IContactAggregationLink, self), ppNetworkSourceId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationLink_put_NetworkSourceIdString(self: *const T, pNetworkSourceId: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).put_NetworkSourceIdString(@ptrCast(*const IContactAggregationLink, self), pNetworkSourceId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationLink_get_RemoteObjectId(self: *const T, ppRemoteObjectId: ?*?*CONTACT_AGGREGATION_BLOB) HRESULT {
+                return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).get_RemoteObjectId(@ptrCast(*const IContactAggregationLink, self), ppRemoteObjectId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationLink_put_RemoteObjectId(self: *const T, pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB) HRESULT {
+                return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).put_RemoteObjectId(@ptrCast(*const IContactAggregationLink, self), pRemoteObjectId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationLink_get_ServerPerson(self: *const T, ppServerPersonId: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).get_ServerPerson(@ptrCast(*const IContactAggregationLink, self), ppServerPersonId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationLink_put_ServerPerson(self: *const T, pServerPersonId: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).put_ServerPerson(@ptrCast(*const IContactAggregationLink, self), pServerPersonId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationLink_get_ServerPersonBaseline(self: *const T, ppServerPersonId: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).get_ServerPersonBaseline(@ptrCast(*const IContactAggregationLink, self), ppServerPersonId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationLink_put_ServerPersonBaseline(self: *const T, pServerPersonId: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).put_ServerPersonBaseline(@ptrCast(*const IContactAggregationLink, self), pServerPersonId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationLink_get_SyncIdentityHash(self: *const T, ppSyncIdentityHash: ?*?*CONTACT_AGGREGATION_BLOB) HRESULT {
+                return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).get_SyncIdentityHash(@ptrCast(*const IContactAggregationLink, self), ppSyncIdentityHash);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationLink_put_SyncIdentityHash(self: *const T, pSyncIdentityHash: ?*const CONTACT_AGGREGATION_BLOB) HRESULT {
+                return @ptrCast(*const IContactAggregationLink.VTable, self.vtable).put_SyncIdentityHash(@ptrCast(*const IContactAggregationLink, self), pSyncIdentityHash);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2077,24 +2103,24 @@ pub const IContactAggregationLinkCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         FindFirst: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationLinkCollection,
                 ppServerContactLink: ?*?*IContactAggregationLink,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationLinkCollection,
                 ppServerContactLink: ?*?*IContactAggregationLink,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FindFirstByRemoteId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationLinkCollection,
                 pSourceType: ?[*:0]const u16,
                 pAccountId: ?[*:0]const u16,
                 pRemoteId: ?*const CONTACT_AGGREGATION_BLOB,
                 ppServerContactLink: ?*?*IContactAggregationLink,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationLinkCollection,
                 pSourceType: ?[*:0]const u16,
                 pAccountId: ?[*:0]const u16,
@@ -2103,11 +2129,11 @@ pub const IContactAggregationLinkCollection = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FindNext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationLinkCollection,
                 ppServerContactLink: ?*?*IContactAggregationLink,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationLinkCollection,
                 ppServerContactLink: ?*?*IContactAggregationLink,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2115,37 +2141,39 @@ pub const IContactAggregationLinkCollection = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationLinkCollection,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationLinkCollection,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLinkCollection_FindFirst(self: *const T, ppServerContactLink: ?*?*IContactAggregationLink) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationLinkCollection.VTable, self.vtable).FindFirst(@ptrCast(*const IContactAggregationLinkCollection, self), ppServerContactLink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLinkCollection_FindFirstByRemoteId(self: *const T, pSourceType: ?[*:0]const u16, pAccountId: ?[*:0]const u16, pRemoteId: ?*const CONTACT_AGGREGATION_BLOB, ppServerContactLink: ?*?*IContactAggregationLink) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationLinkCollection.VTable, self.vtable).FindFirstByRemoteId(@ptrCast(*const IContactAggregationLinkCollection, self), pSourceType, pAccountId, pRemoteId, ppServerContactLink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLinkCollection_FindNext(self: *const T, ppServerContactLink: ?*?*IContactAggregationLink) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationLinkCollection.VTable, self.vtable).FindNext(@ptrCast(*const IContactAggregationLinkCollection, self), ppServerContactLink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationLinkCollection_get_Count(self: *const T, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationLinkCollection.VTable, self.vtable).get_Count(@ptrCast(*const IContactAggregationLinkCollection, self), pCount);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationLinkCollection_FindFirst(self: *const T, ppServerContactLink: ?*?*IContactAggregationLink) HRESULT {
+                return @ptrCast(*const IContactAggregationLinkCollection.VTable, self.vtable).FindFirst(@ptrCast(*const IContactAggregationLinkCollection, self), ppServerContactLink);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationLinkCollection_FindFirstByRemoteId(self: *const T, pSourceType: ?[*:0]const u16, pAccountId: ?[*:0]const u16, pRemoteId: ?*const CONTACT_AGGREGATION_BLOB, ppServerContactLink: ?*?*IContactAggregationLink) HRESULT {
+                return @ptrCast(*const IContactAggregationLinkCollection.VTable, self.vtable).FindFirstByRemoteId(@ptrCast(*const IContactAggregationLinkCollection, self), pSourceType, pAccountId, pRemoteId, ppServerContactLink);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationLinkCollection_FindNext(self: *const T, ppServerContactLink: ?*?*IContactAggregationLink) HRESULT {
+                return @ptrCast(*const IContactAggregationLinkCollection.VTable, self.vtable).FindNext(@ptrCast(*const IContactAggregationLinkCollection, self), ppServerContactLink);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationLinkCollection_get_Count(self: *const T, pCount: ?*u32) HRESULT {
+                return @ptrCast(*const IContactAggregationLinkCollection.VTable, self.vtable).get_Count(@ptrCast(*const IContactAggregationLinkCollection, self), pCount);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2155,30 +2183,30 @@ pub const IContactAggregationServerPerson = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPerson,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPerson,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Save: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPerson,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPerson,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AggregateId: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPerson,
                 ppAggregateId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPerson,
                 ppAggregateId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2186,12 +2214,12 @@ pub const IContactAggregationServerPerson = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AggregateId: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPerson,
                 pAggregateId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPerson,
                 pAggregateId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2199,12 +2227,12 @@ pub const IContactAggregationServerPerson = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AntiLink: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPerson,
                 ppAntiLink: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPerson,
                 ppAntiLink: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2212,12 +2240,12 @@ pub const IContactAggregationServerPerson = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AntiLink: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPerson,
                 pAntiLink: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPerson,
                 pAntiLink: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2225,12 +2253,12 @@ pub const IContactAggregationServerPerson = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AntiLinkBaseline: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPerson,
                 ppAntiLink: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPerson,
                 ppAntiLink: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2238,12 +2266,12 @@ pub const IContactAggregationServerPerson = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AntiLinkBaseline: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPerson,
                 pAntiLink: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPerson,
                 pAntiLink: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2251,12 +2279,12 @@ pub const IContactAggregationServerPerson = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FavoriteOrder: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPerson,
                 pFavoriteOrder: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPerson,
                 pFavoriteOrder: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2264,12 +2292,12 @@ pub const IContactAggregationServerPerson = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FavoriteOrder: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPerson,
                 favoriteOrder: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPerson,
                 favoriteOrder: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2277,12 +2305,12 @@ pub const IContactAggregationServerPerson = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FavoriteOrderBaseline: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPerson,
                 pFavoriteOrder: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPerson,
                 pFavoriteOrder: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2290,12 +2318,12 @@ pub const IContactAggregationServerPerson = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FavoriteOrderBaseline: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPerson,
                 favoriteOrder: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPerson,
                 favoriteOrder: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2303,12 +2331,12 @@ pub const IContactAggregationServerPerson = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Groups: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPerson,
                 pGroups: ?*?*CONTACT_AGGREGATION_BLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPerson,
                 pGroups: ?*?*CONTACT_AGGREGATION_BLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2316,12 +2344,12 @@ pub const IContactAggregationServerPerson = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Groups: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPerson,
                 pGroups: ?*const CONTACT_AGGREGATION_BLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPerson,
                 pGroups: ?*const CONTACT_AGGREGATION_BLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2329,12 +2357,12 @@ pub const IContactAggregationServerPerson = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GroupsBaseline: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPerson,
                 ppGroups: ?*?*CONTACT_AGGREGATION_BLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPerson,
                 ppGroups: ?*?*CONTACT_AGGREGATION_BLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2342,12 +2370,12 @@ pub const IContactAggregationServerPerson = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_GroupsBaseline: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPerson,
                 pGroups: ?*const CONTACT_AGGREGATION_BLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPerson,
                 pGroups: ?*const CONTACT_AGGREGATION_BLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2355,12 +2383,12 @@ pub const IContactAggregationServerPerson = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPerson,
                 ppId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPerson,
                 ppId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2368,12 +2396,12 @@ pub const IContactAggregationServerPerson = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsTombstone: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPerson,
                 pIsTombstone: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPerson,
                 pIsTombstone: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2381,12 +2409,12 @@ pub const IContactAggregationServerPerson = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IsTombstone: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPerson,
                 isTombstone: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPerson,
                 isTombstone: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2394,12 +2422,12 @@ pub const IContactAggregationServerPerson = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LinkedAggregateId: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPerson,
                 ppLinkedAggregateId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPerson,
                 ppLinkedAggregateId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2407,12 +2435,12 @@ pub const IContactAggregationServerPerson = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LinkedAggregateId: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPerson,
                 pLinkedAggregateId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPerson,
                 pLinkedAggregateId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2420,12 +2448,12 @@ pub const IContactAggregationServerPerson = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ObjectId: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPerson,
                 ppObjectId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPerson,
                 ppObjectId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2433,113 +2461,115 @@ pub const IContactAggregationServerPerson = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ObjectId: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPerson,
                 pObjectId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPerson,
                 pObjectId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_Delete(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).Delete(@ptrCast(*const IContactAggregationServerPerson, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_Save(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).Save(@ptrCast(*const IContactAggregationServerPerson, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_get_AggregateId(self: *const T, ppAggregateId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).get_AggregateId(@ptrCast(*const IContactAggregationServerPerson, self), ppAggregateId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_put_AggregateId(self: *const T, pAggregateId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).put_AggregateId(@ptrCast(*const IContactAggregationServerPerson, self), pAggregateId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_get_AntiLink(self: *const T, ppAntiLink: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).get_AntiLink(@ptrCast(*const IContactAggregationServerPerson, self), ppAntiLink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_put_AntiLink(self: *const T, pAntiLink: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).put_AntiLink(@ptrCast(*const IContactAggregationServerPerson, self), pAntiLink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_get_AntiLinkBaseline(self: *const T, ppAntiLink: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).get_AntiLinkBaseline(@ptrCast(*const IContactAggregationServerPerson, self), ppAntiLink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_put_AntiLinkBaseline(self: *const T, pAntiLink: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).put_AntiLinkBaseline(@ptrCast(*const IContactAggregationServerPerson, self), pAntiLink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_get_FavoriteOrder(self: *const T, pFavoriteOrder: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).get_FavoriteOrder(@ptrCast(*const IContactAggregationServerPerson, self), pFavoriteOrder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_put_FavoriteOrder(self: *const T, favoriteOrder: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).put_FavoriteOrder(@ptrCast(*const IContactAggregationServerPerson, self), favoriteOrder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_get_FavoriteOrderBaseline(self: *const T, pFavoriteOrder: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).get_FavoriteOrderBaseline(@ptrCast(*const IContactAggregationServerPerson, self), pFavoriteOrder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_put_FavoriteOrderBaseline(self: *const T, favoriteOrder: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).put_FavoriteOrderBaseline(@ptrCast(*const IContactAggregationServerPerson, self), favoriteOrder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_get_Groups(self: *const T, pGroups: ?*?*CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).get_Groups(@ptrCast(*const IContactAggregationServerPerson, self), pGroups);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_put_Groups(self: *const T, pGroups: ?*const CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).put_Groups(@ptrCast(*const IContactAggregationServerPerson, self), pGroups);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_get_GroupsBaseline(self: *const T, ppGroups: ?*?*CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).get_GroupsBaseline(@ptrCast(*const IContactAggregationServerPerson, self), ppGroups);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_put_GroupsBaseline(self: *const T, pGroups: ?*const CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).put_GroupsBaseline(@ptrCast(*const IContactAggregationServerPerson, self), pGroups);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_get_Id(self: *const T, ppId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).get_Id(@ptrCast(*const IContactAggregationServerPerson, self), ppId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_get_IsTombstone(self: *const T, pIsTombstone: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).get_IsTombstone(@ptrCast(*const IContactAggregationServerPerson, self), pIsTombstone);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_put_IsTombstone(self: *const T, isTombstone: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).put_IsTombstone(@ptrCast(*const IContactAggregationServerPerson, self), isTombstone);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_get_LinkedAggregateId(self: *const T, ppLinkedAggregateId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).get_LinkedAggregateId(@ptrCast(*const IContactAggregationServerPerson, self), ppLinkedAggregateId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_put_LinkedAggregateId(self: *const T, pLinkedAggregateId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).put_LinkedAggregateId(@ptrCast(*const IContactAggregationServerPerson, self), pLinkedAggregateId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_get_ObjectId(self: *const T, ppObjectId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).get_ObjectId(@ptrCast(*const IContactAggregationServerPerson, self), ppObjectId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPerson_put_ObjectId(self: *const T, pObjectId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).put_ObjectId(@ptrCast(*const IContactAggregationServerPerson, self), pObjectId);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPerson_Delete(self: *const T) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).Delete(@ptrCast(*const IContactAggregationServerPerson, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPerson_Save(self: *const T) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).Save(@ptrCast(*const IContactAggregationServerPerson, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPerson_get_AggregateId(self: *const T, ppAggregateId: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).get_AggregateId(@ptrCast(*const IContactAggregationServerPerson, self), ppAggregateId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPerson_put_AggregateId(self: *const T, pAggregateId: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).put_AggregateId(@ptrCast(*const IContactAggregationServerPerson, self), pAggregateId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPerson_get_AntiLink(self: *const T, ppAntiLink: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).get_AntiLink(@ptrCast(*const IContactAggregationServerPerson, self), ppAntiLink);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPerson_put_AntiLink(self: *const T, pAntiLink: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).put_AntiLink(@ptrCast(*const IContactAggregationServerPerson, self), pAntiLink);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPerson_get_AntiLinkBaseline(self: *const T, ppAntiLink: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).get_AntiLinkBaseline(@ptrCast(*const IContactAggregationServerPerson, self), ppAntiLink);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPerson_put_AntiLinkBaseline(self: *const T, pAntiLink: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).put_AntiLinkBaseline(@ptrCast(*const IContactAggregationServerPerson, self), pAntiLink);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPerson_get_FavoriteOrder(self: *const T, pFavoriteOrder: ?*u32) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).get_FavoriteOrder(@ptrCast(*const IContactAggregationServerPerson, self), pFavoriteOrder);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPerson_put_FavoriteOrder(self: *const T, favoriteOrder: u32) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).put_FavoriteOrder(@ptrCast(*const IContactAggregationServerPerson, self), favoriteOrder);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPerson_get_FavoriteOrderBaseline(self: *const T, pFavoriteOrder: ?*u32) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).get_FavoriteOrderBaseline(@ptrCast(*const IContactAggregationServerPerson, self), pFavoriteOrder);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPerson_put_FavoriteOrderBaseline(self: *const T, favoriteOrder: u32) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).put_FavoriteOrderBaseline(@ptrCast(*const IContactAggregationServerPerson, self), favoriteOrder);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPerson_get_Groups(self: *const T, pGroups: ?*?*CONTACT_AGGREGATION_BLOB) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).get_Groups(@ptrCast(*const IContactAggregationServerPerson, self), pGroups);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPerson_put_Groups(self: *const T, pGroups: ?*const CONTACT_AGGREGATION_BLOB) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).put_Groups(@ptrCast(*const IContactAggregationServerPerson, self), pGroups);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPerson_get_GroupsBaseline(self: *const T, ppGroups: ?*?*CONTACT_AGGREGATION_BLOB) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).get_GroupsBaseline(@ptrCast(*const IContactAggregationServerPerson, self), ppGroups);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPerson_put_GroupsBaseline(self: *const T, pGroups: ?*const CONTACT_AGGREGATION_BLOB) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).put_GroupsBaseline(@ptrCast(*const IContactAggregationServerPerson, self), pGroups);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPerson_get_Id(self: *const T, ppId: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).get_Id(@ptrCast(*const IContactAggregationServerPerson, self), ppId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPerson_get_IsTombstone(self: *const T, pIsTombstone: ?*BOOL) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).get_IsTombstone(@ptrCast(*const IContactAggregationServerPerson, self), pIsTombstone);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPerson_put_IsTombstone(self: *const T, isTombstone: BOOL) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).put_IsTombstone(@ptrCast(*const IContactAggregationServerPerson, self), isTombstone);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPerson_get_LinkedAggregateId(self: *const T, ppLinkedAggregateId: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).get_LinkedAggregateId(@ptrCast(*const IContactAggregationServerPerson, self), ppLinkedAggregateId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPerson_put_LinkedAggregateId(self: *const T, pLinkedAggregateId: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).put_LinkedAggregateId(@ptrCast(*const IContactAggregationServerPerson, self), pLinkedAggregateId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPerson_get_ObjectId(self: *const T, ppObjectId: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).get_ObjectId(@ptrCast(*const IContactAggregationServerPerson, self), ppObjectId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPerson_put_ObjectId(self: *const T, pObjectId: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPerson.VTable, self.vtable).put_ObjectId(@ptrCast(*const IContactAggregationServerPerson, self), pObjectId);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2549,57 +2579,57 @@ pub const IContactAggregationServerPersonCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         FindFirst: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPersonCollection,
                 ppServerPerson: ?*?*IContactAggregationServerPerson,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPersonCollection,
                 ppServerPerson: ?*?*IContactAggregationServerPerson,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FindFirstByServerId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPersonCollection,
                 pServerId: ?[*:0]const u16,
                 ppServerPerson: ?*?*IContactAggregationServerPerson,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPersonCollection,
                 pServerId: ?[*:0]const u16,
                 ppServerPerson: ?*?*IContactAggregationServerPerson,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FindFirstByAggregateId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPersonCollection,
                 pAggregateId: ?[*:0]const u16,
                 ppServerPerson: ?*?*IContactAggregationServerPerson,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPersonCollection,
                 pAggregateId: ?[*:0]const u16,
                 ppServerPerson: ?*?*IContactAggregationServerPerson,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FindFirstByLinkedAggregateId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPersonCollection,
                 pAggregateId: ?[*:0]const u16,
                 ppServerPerson: ?*?*IContactAggregationServerPerson,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPersonCollection,
                 pAggregateId: ?[*:0]const u16,
                 ppServerPerson: ?*?*IContactAggregationServerPerson,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FindNext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPersonCollection,
                 ppServerPerson: ?*?*IContactAggregationServerPerson,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPersonCollection,
                 ppServerPerson: ?*?*IContactAggregationServerPerson,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2607,48 +2637,49 @@ pub const IContactAggregationServerPersonCollection = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContactAggregationServerPersonCollection,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IContactAggregationServerPersonCollection,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPersonCollection_FindFirst(self: *const T, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPersonCollection.VTable, self.vtable).FindFirst(@ptrCast(*const IContactAggregationServerPersonCollection, self), ppServerPerson);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPersonCollection_FindFirstByServerId(self: *const T, pServerId: ?[*:0]const u16, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPersonCollection.VTable, self.vtable).FindFirstByServerId(@ptrCast(*const IContactAggregationServerPersonCollection, self), pServerId, ppServerPerson);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPersonCollection_FindFirstByAggregateId(self: *const T, pAggregateId: ?[*:0]const u16, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPersonCollection.VTable, self.vtable).FindFirstByAggregateId(@ptrCast(*const IContactAggregationServerPersonCollection, self), pAggregateId, ppServerPerson);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPersonCollection_FindFirstByLinkedAggregateId(self: *const T, pAggregateId: ?[*:0]const u16, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPersonCollection.VTable, self.vtable).FindFirstByLinkedAggregateId(@ptrCast(*const IContactAggregationServerPersonCollection, self), pAggregateId, ppServerPerson);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPersonCollection_FindNext(self: *const T, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPersonCollection.VTable, self.vtable).FindNext(@ptrCast(*const IContactAggregationServerPersonCollection, self), ppServerPerson);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactAggregationServerPersonCollection_get_Count(self: *const T, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContactAggregationServerPersonCollection.VTable, self.vtable).get_Count(@ptrCast(*const IContactAggregationServerPersonCollection, self), pCount);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPersonCollection_FindFirst(self: *const T, ppServerPerson: ?*?*IContactAggregationServerPerson) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPersonCollection.VTable, self.vtable).FindFirst(@ptrCast(*const IContactAggregationServerPersonCollection, self), ppServerPerson);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPersonCollection_FindFirstByServerId(self: *const T, pServerId: ?[*:0]const u16, ppServerPerson: ?*?*IContactAggregationServerPerson) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPersonCollection.VTable, self.vtable).FindFirstByServerId(@ptrCast(*const IContactAggregationServerPersonCollection, self), pServerId, ppServerPerson);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPersonCollection_FindFirstByAggregateId(self: *const T, pAggregateId: ?[*:0]const u16, ppServerPerson: ?*?*IContactAggregationServerPerson) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPersonCollection.VTable, self.vtable).FindFirstByAggregateId(@ptrCast(*const IContactAggregationServerPersonCollection, self), pAggregateId, ppServerPerson);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPersonCollection_FindFirstByLinkedAggregateId(self: *const T, pAggregateId: ?[*:0]const u16, ppServerPerson: ?*?*IContactAggregationServerPerson) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPersonCollection.VTable, self.vtable).FindFirstByLinkedAggregateId(@ptrCast(*const IContactAggregationServerPersonCollection, self), pAggregateId, ppServerPerson);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPersonCollection_FindNext(self: *const T, ppServerPerson: ?*?*IContactAggregationServerPerson) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPersonCollection.VTable, self.vtable).FindNext(@ptrCast(*const IContactAggregationServerPersonCollection, self), ppServerPerson);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContactAggregationServerPersonCollection_get_Count(self: *const T, pCount: ?*u32) HRESULT {
+                return @ptrCast(*const IContactAggregationServerPersonCollection.VTable, self.vtable).get_Count(@ptrCast(*const IContactAggregationServerPersonCollection, self), pCount);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -2659,13 +2690,9 @@ pub const IContactAggregationServerPersonCollection = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
@@ -2679,9 +2706,7 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

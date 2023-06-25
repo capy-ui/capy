@@ -52,22 +52,7 @@ pub const LOAD_LIBRARY_FLAGS = enum(u32) {
         LOAD_LIBRARY_SAFE_CURRENT_DIRS: u1 = 0,
         LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER: u1 = 0,
     }) LOAD_LIBRARY_FLAGS {
-        return @intToEnum(LOAD_LIBRARY_FLAGS,
-              (if (o.DONT_RESOLVE_DLL_REFERENCES == 1) @enumToInt(LOAD_LIBRARY_FLAGS.DONT_RESOLVE_DLL_REFERENCES) else 0)
-            | (if (o.LOAD_LIBRARY_AS_DATAFILE == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_AS_DATAFILE) else 0)
-            | (if (o.LOAD_WITH_ALTERED_SEARCH_PATH == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_WITH_ALTERED_SEARCH_PATH) else 0)
-            | (if (o.LOAD_IGNORE_CODE_AUTHZ_LEVEL == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_IGNORE_CODE_AUTHZ_LEVEL) else 0)
-            | (if (o.LOAD_LIBRARY_AS_IMAGE_RESOURCE == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_AS_IMAGE_RESOURCE) else 0)
-            | (if (o.LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE) else 0)
-            | (if (o.LOAD_LIBRARY_REQUIRE_SIGNED_TARGET == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_REQUIRE_SIGNED_TARGET) else 0)
-            | (if (o.LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR) else 0)
-            | (if (o.LOAD_LIBRARY_SEARCH_APPLICATION_DIR == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_APPLICATION_DIR) else 0)
-            | (if (o.LOAD_LIBRARY_SEARCH_USER_DIRS == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_USER_DIRS) else 0)
-            | (if (o.LOAD_LIBRARY_SEARCH_SYSTEM32 == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_SYSTEM32) else 0)
-            | (if (o.LOAD_LIBRARY_SEARCH_DEFAULT_DIRS == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_DEFAULT_DIRS) else 0)
-            | (if (o.LOAD_LIBRARY_SAFE_CURRENT_DIRS == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SAFE_CURRENT_DIRS) else 0)
-            | (if (o.LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER == 1) @enumToInt(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER) else 0)
-        );
+        return @enumFromInt(LOAD_LIBRARY_FLAGS, (if (o.DONT_RESOLVE_DLL_REFERENCES == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.DONT_RESOLVE_DLL_REFERENCES) else 0) | (if (o.LOAD_LIBRARY_AS_DATAFILE == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_AS_DATAFILE) else 0) | (if (o.LOAD_WITH_ALTERED_SEARCH_PATH == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_WITH_ALTERED_SEARCH_PATH) else 0) | (if (o.LOAD_IGNORE_CODE_AUTHZ_LEVEL == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_IGNORE_CODE_AUTHZ_LEVEL) else 0) | (if (o.LOAD_LIBRARY_AS_IMAGE_RESOURCE == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_AS_IMAGE_RESOURCE) else 0) | (if (o.LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE) else 0) | (if (o.LOAD_LIBRARY_REQUIRE_SIGNED_TARGET == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_REQUIRE_SIGNED_TARGET) else 0) | (if (o.LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR) else 0) | (if (o.LOAD_LIBRARY_SEARCH_APPLICATION_DIR == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_APPLICATION_DIR) else 0) | (if (o.LOAD_LIBRARY_SEARCH_USER_DIRS == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_USER_DIRS) else 0) | (if (o.LOAD_LIBRARY_SEARCH_SYSTEM32 == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_SYSTEM32) else 0) | (if (o.LOAD_LIBRARY_SEARCH_DEFAULT_DIRS == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_DEFAULT_DIRS) else 0) | (if (o.LOAD_LIBRARY_SAFE_CURRENT_DIRS == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SAFE_CURRENT_DIRS) else 0) | (if (o.LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER) else 0));
     }
 };
 pub const DONT_RESOLVE_DLL_REFERENCES = LOAD_LIBRARY_FLAGS.DONT_RESOLVE_DLL_REFERENCES;
@@ -92,120 +77,120 @@ pub const ENUMUILANG = extern struct {
 };
 
 pub const ENUMRESLANGPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hModule: ?HINSTANCE,
         lpType: ?[*:0]const u8,
         lpName: ?[*:0]const u8,
         wLanguage: u16,
         lParam: isize,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         hModule: ?HINSTANCE,
         lpType: ?[*:0]const u8,
         lpName: ?[*:0]const u8,
         wLanguage: u16,
         lParam: isize,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const ENUMRESLANGPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hModule: ?HINSTANCE,
         lpType: ?[*:0]const u16,
         lpName: ?[*:0]const u16,
         wLanguage: u16,
         lParam: isize,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         hModule: ?HINSTANCE,
         lpType: ?[*:0]const u16,
         lpName: ?[*:0]const u16,
         wLanguage: u16,
         lParam: isize,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const ENUMRESNAMEPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hModule: ?HINSTANCE,
         lpType: ?[*:0]const u8,
         lpName: ?PSTR,
         lParam: isize,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         hModule: ?HINSTANCE,
         lpType: ?[*:0]const u8,
         lpName: ?PSTR,
         lParam: isize,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const ENUMRESNAMEPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hModule: ?HINSTANCE,
         lpType: ?[*:0]const u16,
         lpName: ?PWSTR,
         lParam: isize,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         hModule: ?HINSTANCE,
         lpType: ?[*:0]const u16,
         lpName: ?PWSTR,
         lParam: isize,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const ENUMRESTYPEPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hModule: ?HINSTANCE,
         lpType: ?PSTR,
         lParam: isize,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         hModule: ?HINSTANCE,
         lpType: ?PSTR,
         lParam: isize,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const ENUMRESTYPEPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hModule: ?HINSTANCE,
         lpType: ?PWSTR,
         lParam: isize,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         hModule: ?HINSTANCE,
         lpType: ?PWSTR,
         lParam: isize,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const PGET_MODULE_HANDLE_EXA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwFlags: u32,
         lpModuleName: ?[*:0]const u8,
         phModule: ?*?HINSTANCE,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         dwFlags: u32,
         lpModuleName: ?[*:0]const u8,
         phModule: ?*?HINSTANCE,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const PGET_MODULE_HANDLE_EXW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwFlags: u32,
         lpModuleName: ?[*:0]const u16,
         phModule: ?*?HINSTANCE,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         dwFlags: u32,
         lpModuleName: ?[*:0]const u16,
         phModule: ?*?HINSTANCE,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const REDIRECTION_FUNCTION_DESCRIPTOR = extern struct {
     DllName: ?[*:0]const u8,
@@ -218,7 +203,6 @@ pub const REDIRECTION_DESCRIPTOR = extern struct {
     FunctionCount: u32,
     Redirections: ?*REDIRECTION_FUNCTION_DESCRIPTOR,
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (49)
@@ -559,7 +543,6 @@ pub extern "kernel32" fn GetDllDirectoryW(
     lpBuffer: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (22)
 //--------------------------------------------------------------------------------
@@ -614,28 +597,28 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetDllDirectory = thismodule.GetDllDirectoryW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const ENUMRESLANGPROC = *opaque{};
-        pub const ENUMRESNAMEPROC = *opaque{};
-        pub const ENUMRESTYPEPROC = *opaque{};
-        pub const PGET_MODULE_HANDLE_EX = *opaque{};
-        pub const FindResourceEx = *opaque{};
-        pub const GetModuleFileName = *opaque{};
-        pub const GetModuleHandle = *opaque{};
-        pub const GetModuleHandleEx = *opaque{};
-        pub const LoadLibraryEx = *opaque{};
-        pub const EnumResourceLanguagesEx = *opaque{};
-        pub const EnumResourceNamesEx = *opaque{};
-        pub const EnumResourceTypesEx = *opaque{};
-        pub const FindResource = *opaque{};
-        pub const LoadLibrary = *opaque{};
-        pub const EnumResourceNames = *opaque{};
-        pub const EnumResourceTypes = *opaque{};
-        pub const EnumResourceLanguages = *opaque{};
-        pub const BeginUpdateResource = *opaque{};
-        pub const UpdateResource = *opaque{};
-        pub const EndUpdateResource = *opaque{};
-        pub const SetDllDirectory = *opaque{};
-        pub const GetDllDirectory = *opaque{};
+        pub const ENUMRESLANGPROC = *opaque {};
+        pub const ENUMRESNAMEPROC = *opaque {};
+        pub const ENUMRESTYPEPROC = *opaque {};
+        pub const PGET_MODULE_HANDLE_EX = *opaque {};
+        pub const FindResourceEx = *opaque {};
+        pub const GetModuleFileName = *opaque {};
+        pub const GetModuleHandle = *opaque {};
+        pub const GetModuleHandleEx = *opaque {};
+        pub const LoadLibraryEx = *opaque {};
+        pub const EnumResourceLanguagesEx = *opaque {};
+        pub const EnumResourceNamesEx = *opaque {};
+        pub const EnumResourceTypesEx = *opaque {};
+        pub const FindResource = *opaque {};
+        pub const LoadLibrary = *opaque {};
+        pub const EnumResourceNames = *opaque {};
+        pub const EnumResourceTypes = *opaque {};
+        pub const EnumResourceLanguages = *opaque {};
+        pub const BeginUpdateResource = *opaque {};
+        pub const UpdateResource = *opaque {};
+        pub const EndUpdateResource = *opaque {};
+        pub const SetDllDirectory = *opaque {};
+        pub const GetDllDirectory = *opaque {};
     } else struct {
         pub const ENUMRESLANGPROC = @compileError("'ENUMRESLANGPROC' requires that UNICODE be set to true or false in the root module");
         pub const ENUMRESNAMEPROC = @compileError("'ENUMRESNAMEPROC' requires that UNICODE be set to true or false in the root module");
@@ -674,18 +657,32 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "ENUMRESLANGPROCA")) { _ = ENUMRESLANGPROCA; }
-    if (@hasDecl(@This(), "ENUMRESLANGPROCW")) { _ = ENUMRESLANGPROCW; }
-    if (@hasDecl(@This(), "ENUMRESNAMEPROCA")) { _ = ENUMRESNAMEPROCA; }
-    if (@hasDecl(@This(), "ENUMRESNAMEPROCW")) { _ = ENUMRESNAMEPROCW; }
-    if (@hasDecl(@This(), "ENUMRESTYPEPROCA")) { _ = ENUMRESTYPEPROCA; }
-    if (@hasDecl(@This(), "ENUMRESTYPEPROCW")) { _ = ENUMRESTYPEPROCW; }
-    if (@hasDecl(@This(), "PGET_MODULE_HANDLE_EXA")) { _ = PGET_MODULE_HANDLE_EXA; }
-    if (@hasDecl(@This(), "PGET_MODULE_HANDLE_EXW")) { _ = PGET_MODULE_HANDLE_EXW; }
+    if (@hasDecl(@This(), "ENUMRESLANGPROCA")) {
+        _ = ENUMRESLANGPROCA;
+    }
+    if (@hasDecl(@This(), "ENUMRESLANGPROCW")) {
+        _ = ENUMRESLANGPROCW;
+    }
+    if (@hasDecl(@This(), "ENUMRESNAMEPROCA")) {
+        _ = ENUMRESNAMEPROCA;
+    }
+    if (@hasDecl(@This(), "ENUMRESNAMEPROCW")) {
+        _ = ENUMRESNAMEPROCW;
+    }
+    if (@hasDecl(@This(), "ENUMRESTYPEPROCA")) {
+        _ = ENUMRESTYPEPROCA;
+    }
+    if (@hasDecl(@This(), "ENUMRESTYPEPROCW")) {
+        _ = ENUMRESTYPEPROCW;
+    }
+    if (@hasDecl(@This(), "PGET_MODULE_HANDLE_EXA")) {
+        _ = PGET_MODULE_HANDLE_EXA;
+    }
+    if (@hasDecl(@This(), "PGET_MODULE_HANDLE_EXW")) {
+        _ = PGET_MODULE_HANDLE_EXW;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

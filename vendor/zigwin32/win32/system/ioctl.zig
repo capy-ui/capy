@@ -26,14 +26,14 @@ pub const GUID_DEVINTERFACE_HIDDEN_VOLUME = Guid.initString("7f108a28-9833-4b3b-
 pub const GUID_DEVINTERFACE_UNIFIED_ACCESS_RPMB = Guid.initString("27447c21-bcc3-4d07-a05b-a3395bb4eee7");
 pub const GUID_DEVICEDUMP_STORAGE_DEVICE = Guid.initString("d8e2592f-1aab-4d56-a746-1f7585df40f4");
 pub const GUID_DEVICEDUMP_DRIVER_STORAGE_PORT = Guid.initString("da82441d-7142-4bc1-b844-0807c5a4b67f");
-pub const DEVPKEY_Storage_Portable = PROPERTYKEY { .fmtid = Guid.initString("4d1ebee8-0803-4774-9842-b77db50265e9"), .pid = 2 };
-pub const DEVPKEY_Storage_Removable_Media = PROPERTYKEY { .fmtid = Guid.initString("4d1ebee8-0803-4774-9842-b77db50265e9"), .pid = 3 };
-pub const DEVPKEY_Storage_System_Critical = PROPERTYKEY { .fmtid = Guid.initString("4d1ebee8-0803-4774-9842-b77db50265e9"), .pid = 4 };
-pub const DEVPKEY_Storage_Disk_Number = PROPERTYKEY { .fmtid = Guid.initString("4d1ebee8-0803-4774-9842-b77db50265e9"), .pid = 5 };
-pub const DEVPKEY_Storage_Partition_Number = PROPERTYKEY { .fmtid = Guid.initString("4d1ebee8-0803-4774-9842-b77db50265e9"), .pid = 6 };
-pub const DEVPKEY_Storage_Mbr_Type = PROPERTYKEY { .fmtid = Guid.initString("4d1ebee8-0803-4774-9842-b77db50265e9"), .pid = 7 };
-pub const DEVPKEY_Storage_Gpt_Type = PROPERTYKEY { .fmtid = Guid.initString("4d1ebee8-0803-4774-9842-b77db50265e9"), .pid = 8 };
-pub const DEVPKEY_Storage_Gpt_Name = PROPERTYKEY { .fmtid = Guid.initString("4d1ebee8-0803-4774-9842-b77db50265e9"), .pid = 9 };
+pub const DEVPKEY_Storage_Portable = PROPERTYKEY{ .fmtid = Guid.initString("4d1ebee8-0803-4774-9842-b77db50265e9"), .pid = 2 };
+pub const DEVPKEY_Storage_Removable_Media = PROPERTYKEY{ .fmtid = Guid.initString("4d1ebee8-0803-4774-9842-b77db50265e9"), .pid = 3 };
+pub const DEVPKEY_Storage_System_Critical = PROPERTYKEY{ .fmtid = Guid.initString("4d1ebee8-0803-4774-9842-b77db50265e9"), .pid = 4 };
+pub const DEVPKEY_Storage_Disk_Number = PROPERTYKEY{ .fmtid = Guid.initString("4d1ebee8-0803-4774-9842-b77db50265e9"), .pid = 5 };
+pub const DEVPKEY_Storage_Partition_Number = PROPERTYKEY{ .fmtid = Guid.initString("4d1ebee8-0803-4774-9842-b77db50265e9"), .pid = 6 };
+pub const DEVPKEY_Storage_Mbr_Type = PROPERTYKEY{ .fmtid = Guid.initString("4d1ebee8-0803-4774-9842-b77db50265e9"), .pid = 7 };
+pub const DEVPKEY_Storage_Gpt_Type = PROPERTYKEY{ .fmtid = Guid.initString("4d1ebee8-0803-4774-9842-b77db50265e9"), .pid = 8 };
+pub const DEVPKEY_Storage_Gpt_Name = PROPERTYKEY{ .fmtid = Guid.initString("4d1ebee8-0803-4774-9842-b77db50265e9"), .pid = 9 };
 pub const IOCTL_STORAGE_CHECK_VERIFY = @as(u32, 2967552);
 pub const IOCTL_STORAGE_CHECK_VERIFY2 = @as(u32, 2951168);
 pub const IOCTL_STORAGE_MEDIA_REMOVAL = @as(u32, 2967556);
@@ -1029,13 +1029,7 @@ pub const GPT_ATTRIBUTES = enum(u64) {
         BASIC_DATA_ATTRIBUTE_SHADOW_COPY: u1 = 0,
         BASIC_DATA_ATTRIBUTE_READ_ONLY: u1 = 0,
     }) GPT_ATTRIBUTES {
-        return @intToEnum(GPT_ATTRIBUTES,
-              (if (o.ATTRIBUTE_PLATFORM_REQUIRED == 1) @enumToInt(GPT_ATTRIBUTES.ATTRIBUTE_PLATFORM_REQUIRED) else 0)
-            | (if (o.BASIC_DATA_ATTRIBUTE_NO_DRIVE_LETTER == 1) @enumToInt(GPT_ATTRIBUTES.BASIC_DATA_ATTRIBUTE_NO_DRIVE_LETTER) else 0)
-            | (if (o.BASIC_DATA_ATTRIBUTE_HIDDEN == 1) @enumToInt(GPT_ATTRIBUTES.BASIC_DATA_ATTRIBUTE_HIDDEN) else 0)
-            | (if (o.BASIC_DATA_ATTRIBUTE_SHADOW_COPY == 1) @enumToInt(GPT_ATTRIBUTES.BASIC_DATA_ATTRIBUTE_SHADOW_COPY) else 0)
-            | (if (o.BASIC_DATA_ATTRIBUTE_READ_ONLY == 1) @enumToInt(GPT_ATTRIBUTES.BASIC_DATA_ATTRIBUTE_READ_ONLY) else 0)
-        );
+        return @enumFromInt(GPT_ATTRIBUTES, (if (o.ATTRIBUTE_PLATFORM_REQUIRED == 1) @intFromEnum(GPT_ATTRIBUTES.ATTRIBUTE_PLATFORM_REQUIRED) else 0) | (if (o.BASIC_DATA_ATTRIBUTE_NO_DRIVE_LETTER == 1) @intFromEnum(GPT_ATTRIBUTES.BASIC_DATA_ATTRIBUTE_NO_DRIVE_LETTER) else 0) | (if (o.BASIC_DATA_ATTRIBUTE_HIDDEN == 1) @intFromEnum(GPT_ATTRIBUTES.BASIC_DATA_ATTRIBUTE_HIDDEN) else 0) | (if (o.BASIC_DATA_ATTRIBUTE_SHADOW_COPY == 1) @intFromEnum(GPT_ATTRIBUTES.BASIC_DATA_ATTRIBUTE_SHADOW_COPY) else 0) | (if (o.BASIC_DATA_ATTRIBUTE_READ_ONLY == 1) @intFromEnum(GPT_ATTRIBUTES.BASIC_DATA_ATTRIBUTE_READ_ONLY) else 0));
     }
 };
 pub const GPT_ATTRIBUTE_PLATFORM_REQUIRED = GPT_ATTRIBUTES.ATTRIBUTE_PLATFORM_REQUIRED;
@@ -1052,10 +1046,7 @@ pub const USN_DELETE_FLAGS = enum(u32) {
         DELETE: u1 = 0,
         NOTIFY: u1 = 0,
     }) USN_DELETE_FLAGS {
-        return @intToEnum(USN_DELETE_FLAGS,
-              (if (o.DELETE == 1) @enumToInt(USN_DELETE_FLAGS.DELETE) else 0)
-            | (if (o.NOTIFY == 1) @enumToInt(USN_DELETE_FLAGS.NOTIFY) else 0)
-        );
+        return @enumFromInt(USN_DELETE_FLAGS, (if (o.DELETE == 1) @intFromEnum(USN_DELETE_FLAGS.DELETE) else 0) | (if (o.NOTIFY == 1) @intFromEnum(USN_DELETE_FLAGS.NOTIFY) else 0));
     }
 };
 pub const USN_DELETE_FLAG_DELETE = USN_DELETE_FLAGS.DELETE;
@@ -1123,37 +1114,7 @@ pub const CHANGER_FEATURES = enum(u32) {
         VOLUME_SEARCH: u1 = 0,
         VOLUME_UNDEFINE: u1 = 0,
     }) CHANGER_FEATURES {
-        return @intToEnum(CHANGER_FEATURES,
-              (if (o.BAR_CODE_SCANNER_INSTALLED == 1) @enumToInt(CHANGER_FEATURES.BAR_CODE_SCANNER_INSTALLED) else 0)
-            | (if (o.CARTRIDGE_MAGAZINE == 1) @enumToInt(CHANGER_FEATURES.CARTRIDGE_MAGAZINE) else 0)
-            | (if (o.CLEANER_ACCESS_NOT_VALID == 1) @enumToInt(CHANGER_FEATURES.CLEANER_ACCESS_NOT_VALID) else 0)
-            | (if (o.CLEANER_SLOT == 1) @enumToInt(CHANGER_FEATURES.CLEANER_SLOT) else 0)
-            | (if (o.CLOSE_IEPORT == 1) @enumToInt(CHANGER_FEATURES.CLOSE_IEPORT) else 0)
-            | (if (o.DEVICE_REINITIALIZE_CAPABLE == 1) @enumToInt(CHANGER_FEATURES.DEVICE_REINITIALIZE_CAPABLE) else 0)
-            | (if (o.DRIVE_CLEANING_REQUIRED == 1) @enumToInt(CHANGER_FEATURES.DRIVE_CLEANING_REQUIRED) else 0)
-            | (if (o.DRIVE_EMPTY_ON_DOOR_ACCESS == 1) @enumToInt(CHANGER_FEATURES.DRIVE_EMPTY_ON_DOOR_ACCESS) else 0)
-            | (if (o.EXCHANGE_MEDIA == 1) @enumToInt(CHANGER_FEATURES.EXCHANGE_MEDIA) else 0)
-            | (if (o.INIT_ELEM_STAT_WITH_RANGE == 1) @enumToInt(CHANGER_FEATURES.INIT_ELEM_STAT_WITH_RANGE) else 0)
-            | (if (o.KEYPAD_ENABLE_DISABLE == 1) @enumToInt(CHANGER_FEATURES.KEYPAD_ENABLE_DISABLE) else 0)
-            | (if (o.LOCK_UNLOCK == 1) @enumToInt(CHANGER_FEATURES.LOCK_UNLOCK) else 0)
-            | (if (o.MEDIUM_FLIP == 1) @enumToInt(CHANGER_FEATURES.MEDIUM_FLIP) else 0)
-            | (if (o.OPEN_IEPORT == 1) @enumToInt(CHANGER_FEATURES.OPEN_IEPORT) else 0)
-            | (if (o.POSITION_TO_ELEMENT == 1) @enumToInt(CHANGER_FEATURES.POSITION_TO_ELEMENT) else 0)
-            | (if (o.PREDISMOUNT_EJECT_REQUIRED == 1) @enumToInt(CHANGER_FEATURES.PREDISMOUNT_EJECT_REQUIRED) else 0)
-            | (if (o.PREMOUNT_EJECT_REQUIRED == 1) @enumToInt(CHANGER_FEATURES.PREMOUNT_EJECT_REQUIRED) else 0)
-            | (if (o.REPORT_IEPORT_STATE == 1) @enumToInt(CHANGER_FEATURES.REPORT_IEPORT_STATE) else 0)
-            | (if (o.SERIAL_NUMBER_VALID == 1) @enumToInt(CHANGER_FEATURES.SERIAL_NUMBER_VALID) else 0)
-            | (if (o.STATUS_NON_VOLATILE == 1) @enumToInt(CHANGER_FEATURES.STATUS_NON_VOLATILE) else 0)
-            | (if (o.STORAGE_DRIVE == 1) @enumToInt(CHANGER_FEATURES.STORAGE_DRIVE) else 0)
-            | (if (o.STORAGE_IEPORT == 1) @enumToInt(CHANGER_FEATURES.STORAGE_IEPORT) else 0)
-            | (if (o.STORAGE_SLOT == 1) @enumToInt(CHANGER_FEATURES.STORAGE_SLOT) else 0)
-            | (if (o.STORAGE_TRANSPORT == 1) @enumToInt(CHANGER_FEATURES.STORAGE_TRANSPORT) else 0)
-            | (if (o.VOLUME_ASSERT == 1) @enumToInt(CHANGER_FEATURES.VOLUME_ASSERT) else 0)
-            | (if (o.VOLUME_IDENTIFICATION == 1) @enumToInt(CHANGER_FEATURES.VOLUME_IDENTIFICATION) else 0)
-            | (if (o.VOLUME_REPLACE == 1) @enumToInt(CHANGER_FEATURES.VOLUME_REPLACE) else 0)
-            | (if (o.VOLUME_SEARCH == 1) @enumToInt(CHANGER_FEATURES.VOLUME_SEARCH) else 0)
-            | (if (o.VOLUME_UNDEFINE == 1) @enumToInt(CHANGER_FEATURES.VOLUME_UNDEFINE) else 0)
-        );
+        return @enumFromInt(CHANGER_FEATURES, (if (o.BAR_CODE_SCANNER_INSTALLED == 1) @intFromEnum(CHANGER_FEATURES.BAR_CODE_SCANNER_INSTALLED) else 0) | (if (o.CARTRIDGE_MAGAZINE == 1) @intFromEnum(CHANGER_FEATURES.CARTRIDGE_MAGAZINE) else 0) | (if (o.CLEANER_ACCESS_NOT_VALID == 1) @intFromEnum(CHANGER_FEATURES.CLEANER_ACCESS_NOT_VALID) else 0) | (if (o.CLEANER_SLOT == 1) @intFromEnum(CHANGER_FEATURES.CLEANER_SLOT) else 0) | (if (o.CLOSE_IEPORT == 1) @intFromEnum(CHANGER_FEATURES.CLOSE_IEPORT) else 0) | (if (o.DEVICE_REINITIALIZE_CAPABLE == 1) @intFromEnum(CHANGER_FEATURES.DEVICE_REINITIALIZE_CAPABLE) else 0) | (if (o.DRIVE_CLEANING_REQUIRED == 1) @intFromEnum(CHANGER_FEATURES.DRIVE_CLEANING_REQUIRED) else 0) | (if (o.DRIVE_EMPTY_ON_DOOR_ACCESS == 1) @intFromEnum(CHANGER_FEATURES.DRIVE_EMPTY_ON_DOOR_ACCESS) else 0) | (if (o.EXCHANGE_MEDIA == 1) @intFromEnum(CHANGER_FEATURES.EXCHANGE_MEDIA) else 0) | (if (o.INIT_ELEM_STAT_WITH_RANGE == 1) @intFromEnum(CHANGER_FEATURES.INIT_ELEM_STAT_WITH_RANGE) else 0) | (if (o.KEYPAD_ENABLE_DISABLE == 1) @intFromEnum(CHANGER_FEATURES.KEYPAD_ENABLE_DISABLE) else 0) | (if (o.LOCK_UNLOCK == 1) @intFromEnum(CHANGER_FEATURES.LOCK_UNLOCK) else 0) | (if (o.MEDIUM_FLIP == 1) @intFromEnum(CHANGER_FEATURES.MEDIUM_FLIP) else 0) | (if (o.OPEN_IEPORT == 1) @intFromEnum(CHANGER_FEATURES.OPEN_IEPORT) else 0) | (if (o.POSITION_TO_ELEMENT == 1) @intFromEnum(CHANGER_FEATURES.POSITION_TO_ELEMENT) else 0) | (if (o.PREDISMOUNT_EJECT_REQUIRED == 1) @intFromEnum(CHANGER_FEATURES.PREDISMOUNT_EJECT_REQUIRED) else 0) | (if (o.PREMOUNT_EJECT_REQUIRED == 1) @intFromEnum(CHANGER_FEATURES.PREMOUNT_EJECT_REQUIRED) else 0) | (if (o.REPORT_IEPORT_STATE == 1) @intFromEnum(CHANGER_FEATURES.REPORT_IEPORT_STATE) else 0) | (if (o.SERIAL_NUMBER_VALID == 1) @intFromEnum(CHANGER_FEATURES.SERIAL_NUMBER_VALID) else 0) | (if (o.STATUS_NON_VOLATILE == 1) @intFromEnum(CHANGER_FEATURES.STATUS_NON_VOLATILE) else 0) | (if (o.STORAGE_DRIVE == 1) @intFromEnum(CHANGER_FEATURES.STORAGE_DRIVE) else 0) | (if (o.STORAGE_IEPORT == 1) @intFromEnum(CHANGER_FEATURES.STORAGE_IEPORT) else 0) | (if (o.STORAGE_SLOT == 1) @intFromEnum(CHANGER_FEATURES.STORAGE_SLOT) else 0) | (if (o.STORAGE_TRANSPORT == 1) @intFromEnum(CHANGER_FEATURES.STORAGE_TRANSPORT) else 0) | (if (o.VOLUME_ASSERT == 1) @intFromEnum(CHANGER_FEATURES.VOLUME_ASSERT) else 0) | (if (o.VOLUME_IDENTIFICATION == 1) @intFromEnum(CHANGER_FEATURES.VOLUME_IDENTIFICATION) else 0) | (if (o.VOLUME_REPLACE == 1) @intFromEnum(CHANGER_FEATURES.VOLUME_REPLACE) else 0) | (if (o.VOLUME_SEARCH == 1) @intFromEnum(CHANGER_FEATURES.VOLUME_SEARCH) else 0) | (if (o.VOLUME_UNDEFINE == 1) @intFromEnum(CHANGER_FEATURES.VOLUME_UNDEFINE) else 0));
     }
 };
 pub const CHANGER_BAR_CODE_SCANNER_INSTALLED = CHANGER_FEATURES.BAR_CODE_SCANNER_INSTALLED;
@@ -1224,25 +1185,7 @@ pub const TXFS_RMF_LAGS = enum(u32) {
         PREFER_CONSISTENCY: u1 = 0,
         PREFER_AVAILABILITY: u1 = 0,
     }) TXFS_RMF_LAGS {
-        return @intToEnum(TXFS_RMF_LAGS,
-              (if (o.LOGGING_MODE == 1) @enumToInt(TXFS_RMF_LAGS.LOGGING_MODE) else 0)
-            | (if (o.RENAME_RM == 1) @enumToInt(TXFS_RMF_LAGS.RENAME_RM) else 0)
-            | (if (o.LOG_CONTAINER_COUNT_MAX == 1) @enumToInt(TXFS_RMF_LAGS.LOG_CONTAINER_COUNT_MAX) else 0)
-            | (if (o.LOG_CONTAINER_COUNT_MIN == 1) @enumToInt(TXFS_RMF_LAGS.LOG_CONTAINER_COUNT_MIN) else 0)
-            | (if (o.LOG_GROWTH_INCREMENT_NUM_CONTAINERS == 1) @enumToInt(TXFS_RMF_LAGS.LOG_GROWTH_INCREMENT_NUM_CONTAINERS) else 0)
-            | (if (o.LOG_GROWTH_INCREMENT_PERCENT == 1) @enumToInt(TXFS_RMF_LAGS.LOG_GROWTH_INCREMENT_PERCENT) else 0)
-            | (if (o.LOG_AUTO_SHRINK_PERCENTAGE == 1) @enumToInt(TXFS_RMF_LAGS.LOG_AUTO_SHRINK_PERCENTAGE) else 0)
-            | (if (o.LOG_NO_CONTAINER_COUNT_MAX == 1) @enumToInt(TXFS_RMF_LAGS.LOG_NO_CONTAINER_COUNT_MAX) else 0)
-            | (if (o.LOG_NO_CONTAINER_COUNT_MIN == 1) @enumToInt(TXFS_RMF_LAGS.LOG_NO_CONTAINER_COUNT_MIN) else 0)
-            | (if (o.GROW_LOG == 1) @enumToInt(TXFS_RMF_LAGS.GROW_LOG) else 0)
-            | (if (o.SHRINK_LOG == 1) @enumToInt(TXFS_RMF_LAGS.SHRINK_LOG) else 0)
-            | (if (o.ENFORCE_MINIMUM_SIZE == 1) @enumToInt(TXFS_RMF_LAGS.ENFORCE_MINIMUM_SIZE) else 0)
-            | (if (o.PRESERVE_CHANGES == 1) @enumToInt(TXFS_RMF_LAGS.PRESERVE_CHANGES) else 0)
-            | (if (o.RESET_RM_AT_NEXT_START == 1) @enumToInt(TXFS_RMF_LAGS.RESET_RM_AT_NEXT_START) else 0)
-            | (if (o.DO_NOT_RESET_RM_AT_NEXT_START == 1) @enumToInt(TXFS_RMF_LAGS.DO_NOT_RESET_RM_AT_NEXT_START) else 0)
-            | (if (o.PREFER_CONSISTENCY == 1) @enumToInt(TXFS_RMF_LAGS.PREFER_CONSISTENCY) else 0)
-            | (if (o.PREFER_AVAILABILITY == 1) @enumToInt(TXFS_RMF_LAGS.PREFER_AVAILABILITY) else 0)
-        );
+        return @enumFromInt(TXFS_RMF_LAGS, (if (o.LOGGING_MODE == 1) @intFromEnum(TXFS_RMF_LAGS.LOGGING_MODE) else 0) | (if (o.RENAME_RM == 1) @intFromEnum(TXFS_RMF_LAGS.RENAME_RM) else 0) | (if (o.LOG_CONTAINER_COUNT_MAX == 1) @intFromEnum(TXFS_RMF_LAGS.LOG_CONTAINER_COUNT_MAX) else 0) | (if (o.LOG_CONTAINER_COUNT_MIN == 1) @intFromEnum(TXFS_RMF_LAGS.LOG_CONTAINER_COUNT_MIN) else 0) | (if (o.LOG_GROWTH_INCREMENT_NUM_CONTAINERS == 1) @intFromEnum(TXFS_RMF_LAGS.LOG_GROWTH_INCREMENT_NUM_CONTAINERS) else 0) | (if (o.LOG_GROWTH_INCREMENT_PERCENT == 1) @intFromEnum(TXFS_RMF_LAGS.LOG_GROWTH_INCREMENT_PERCENT) else 0) | (if (o.LOG_AUTO_SHRINK_PERCENTAGE == 1) @intFromEnum(TXFS_RMF_LAGS.LOG_AUTO_SHRINK_PERCENTAGE) else 0) | (if (o.LOG_NO_CONTAINER_COUNT_MAX == 1) @intFromEnum(TXFS_RMF_LAGS.LOG_NO_CONTAINER_COUNT_MAX) else 0) | (if (o.LOG_NO_CONTAINER_COUNT_MIN == 1) @intFromEnum(TXFS_RMF_LAGS.LOG_NO_CONTAINER_COUNT_MIN) else 0) | (if (o.GROW_LOG == 1) @intFromEnum(TXFS_RMF_LAGS.GROW_LOG) else 0) | (if (o.SHRINK_LOG == 1) @intFromEnum(TXFS_RMF_LAGS.SHRINK_LOG) else 0) | (if (o.ENFORCE_MINIMUM_SIZE == 1) @intFromEnum(TXFS_RMF_LAGS.ENFORCE_MINIMUM_SIZE) else 0) | (if (o.PRESERVE_CHANGES == 1) @intFromEnum(TXFS_RMF_LAGS.PRESERVE_CHANGES) else 0) | (if (o.RESET_RM_AT_NEXT_START == 1) @intFromEnum(TXFS_RMF_LAGS.RESET_RM_AT_NEXT_START) else 0) | (if (o.DO_NOT_RESET_RM_AT_NEXT_START == 1) @intFromEnum(TXFS_RMF_LAGS.DO_NOT_RESET_RM_AT_NEXT_START) else 0) | (if (o.PREFER_CONSISTENCY == 1) @intFromEnum(TXFS_RMF_LAGS.PREFER_CONSISTENCY) else 0) | (if (o.PREFER_AVAILABILITY == 1) @intFromEnum(TXFS_RMF_LAGS.PREFER_AVAILABILITY) else 0));
     }
 };
 pub const TXFS_RM_FLAG_LOGGING_MODE = TXFS_RMF_LAGS.LOGGING_MODE;
@@ -1289,9 +1232,7 @@ pub const FILE_STORAGE_TIER_FLAGS = enum(u32) {
     pub fn initFlags(o: struct {
         Y: u1 = 0,
     }) FILE_STORAGE_TIER_FLAGS {
-        return @intToEnum(FILE_STORAGE_TIER_FLAGS,
-              (if (o.Y == 1) @enumToInt(FILE_STORAGE_TIER_FLAGS.Y) else 0)
-        );
+        return @enumFromInt(FILE_STORAGE_TIER_FLAGS, (if (o.Y == 1) @intFromEnum(FILE_STORAGE_TIER_FLAGS.Y) else 0));
     }
 };
 pub const FILE_STORAGE_TIER_FLAG_NO_SEEK_PENALTY = FILE_STORAGE_TIER_FLAGS.Y;
@@ -1328,22 +1269,7 @@ pub const CHANGER_ELEMENT_STATUS_FLAGS = enum(u32) {
         SVALID: u1 = 0,
         PRODUCT_DATA: u1 = 0,
     }) CHANGER_ELEMENT_STATUS_FLAGS {
-        return @intToEnum(CHANGER_ELEMENT_STATUS_FLAGS,
-              (if (o.ACCESS == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.ACCESS) else 0)
-            | (if (o.AVOLTAG == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.AVOLTAG) else 0)
-            | (if (o.EXCEPT == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.EXCEPT) else 0)
-            | (if (o.EXENAB == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.EXENAB) else 0)
-            | (if (o.FULL == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.FULL) else 0)
-            | (if (o.ID_VALID == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.ID_VALID) else 0)
-            | (if (o.IMPEXP == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.IMPEXP) else 0)
-            | (if (o.INENAB == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.INENAB) else 0)
-            | (if (o.INVERT == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.INVERT) else 0)
-            | (if (o.LUN_VALID == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.LUN_VALID) else 0)
-            | (if (o.NOT_BUS == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.NOT_BUS) else 0)
-            | (if (o.PVOLTAG == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.PVOLTAG) else 0)
-            | (if (o.SVALID == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.SVALID) else 0)
-            | (if (o.PRODUCT_DATA == 1) @enumToInt(CHANGER_ELEMENT_STATUS_FLAGS.PRODUCT_DATA) else 0)
-        );
+        return @enumFromInt(CHANGER_ELEMENT_STATUS_FLAGS, (if (o.ACCESS == 1) @intFromEnum(CHANGER_ELEMENT_STATUS_FLAGS.ACCESS) else 0) | (if (o.AVOLTAG == 1) @intFromEnum(CHANGER_ELEMENT_STATUS_FLAGS.AVOLTAG) else 0) | (if (o.EXCEPT == 1) @intFromEnum(CHANGER_ELEMENT_STATUS_FLAGS.EXCEPT) else 0) | (if (o.EXENAB == 1) @intFromEnum(CHANGER_ELEMENT_STATUS_FLAGS.EXENAB) else 0) | (if (o.FULL == 1) @intFromEnum(CHANGER_ELEMENT_STATUS_FLAGS.FULL) else 0) | (if (o.ID_VALID == 1) @intFromEnum(CHANGER_ELEMENT_STATUS_FLAGS.ID_VALID) else 0) | (if (o.IMPEXP == 1) @intFromEnum(CHANGER_ELEMENT_STATUS_FLAGS.IMPEXP) else 0) | (if (o.INENAB == 1) @intFromEnum(CHANGER_ELEMENT_STATUS_FLAGS.INENAB) else 0) | (if (o.INVERT == 1) @intFromEnum(CHANGER_ELEMENT_STATUS_FLAGS.INVERT) else 0) | (if (o.LUN_VALID == 1) @intFromEnum(CHANGER_ELEMENT_STATUS_FLAGS.LUN_VALID) else 0) | (if (o.NOT_BUS == 1) @intFromEnum(CHANGER_ELEMENT_STATUS_FLAGS.NOT_BUS) else 0) | (if (o.PVOLTAG == 1) @intFromEnum(CHANGER_ELEMENT_STATUS_FLAGS.PVOLTAG) else 0) | (if (o.SVALID == 1) @intFromEnum(CHANGER_ELEMENT_STATUS_FLAGS.SVALID) else 0) | (if (o.PRODUCT_DATA == 1) @intFromEnum(CHANGER_ELEMENT_STATUS_FLAGS.PRODUCT_DATA) else 0));
     }
 };
 pub const ELEMENT_STATUS_ACCESS = CHANGER_ELEMENT_STATUS_FLAGS.ACCESS;
@@ -1387,19 +1313,7 @@ pub const GET_CHANGER_PARAMETERS_FEATURES1 = enum(u32) {
         SLOTS_USE_TRAYS: u1 = 0,
         TRUE_EXCHANGE_CAPABLE: u1 = 0,
     }) GET_CHANGER_PARAMETERS_FEATURES1 {
-        return @intToEnum(GET_CHANGER_PARAMETERS_FEATURES1,
-              (if (o.CLEANER_AUTODISMOUNT == 1) @enumToInt(GET_CHANGER_PARAMETERS_FEATURES1.CLEANER_AUTODISMOUNT) else 0)
-            | (if (o.CLEANER_OPS_NOT_SUPPORTED == 1) @enumToInt(GET_CHANGER_PARAMETERS_FEATURES1.CLEANER_OPS_NOT_SUPPORTED) else 0)
-            | (if (o.IEPORT_USER_CONTROL_CLOSE == 1) @enumToInt(GET_CHANGER_PARAMETERS_FEATURES1.IEPORT_USER_CONTROL_CLOSE) else 0)
-            | (if (o.IEPORT_USER_CONTROL_OPEN == 1) @enumToInt(GET_CHANGER_PARAMETERS_FEATURES1.IEPORT_USER_CONTROL_OPEN) else 0)
-            | (if (o.MOVE_EXTENDS_IEPORT == 1) @enumToInt(GET_CHANGER_PARAMETERS_FEATURES1.MOVE_EXTENDS_IEPORT) else 0)
-            | (if (o.MOVE_RETRACTS_IEPORT == 1) @enumToInt(GET_CHANGER_PARAMETERS_FEATURES1.MOVE_RETRACTS_IEPORT) else 0)
-            | (if (o.PREDISMOUNT_ALIGN_TO_DRIVE == 1) @enumToInt(GET_CHANGER_PARAMETERS_FEATURES1.PREDISMOUNT_ALIGN_TO_DRIVE) else 0)
-            | (if (o.PREDISMOUNT_ALIGN_TO_SLOT == 1) @enumToInt(GET_CHANGER_PARAMETERS_FEATURES1.PREDISMOUNT_ALIGN_TO_SLOT) else 0)
-            | (if (o.RTN_MEDIA_TO_ORIGINAL_ADDR == 1) @enumToInt(GET_CHANGER_PARAMETERS_FEATURES1.RTN_MEDIA_TO_ORIGINAL_ADDR) else 0)
-            | (if (o.SLOTS_USE_TRAYS == 1) @enumToInt(GET_CHANGER_PARAMETERS_FEATURES1.SLOTS_USE_TRAYS) else 0)
-            | (if (o.TRUE_EXCHANGE_CAPABLE == 1) @enumToInt(GET_CHANGER_PARAMETERS_FEATURES1.TRUE_EXCHANGE_CAPABLE) else 0)
-        );
+        return @enumFromInt(GET_CHANGER_PARAMETERS_FEATURES1, (if (o.CLEANER_AUTODISMOUNT == 1) @intFromEnum(GET_CHANGER_PARAMETERS_FEATURES1.CLEANER_AUTODISMOUNT) else 0) | (if (o.CLEANER_OPS_NOT_SUPPORTED == 1) @intFromEnum(GET_CHANGER_PARAMETERS_FEATURES1.CLEANER_OPS_NOT_SUPPORTED) else 0) | (if (o.IEPORT_USER_CONTROL_CLOSE == 1) @intFromEnum(GET_CHANGER_PARAMETERS_FEATURES1.IEPORT_USER_CONTROL_CLOSE) else 0) | (if (o.IEPORT_USER_CONTROL_OPEN == 1) @intFromEnum(GET_CHANGER_PARAMETERS_FEATURES1.IEPORT_USER_CONTROL_OPEN) else 0) | (if (o.MOVE_EXTENDS_IEPORT == 1) @intFromEnum(GET_CHANGER_PARAMETERS_FEATURES1.MOVE_EXTENDS_IEPORT) else 0) | (if (o.MOVE_RETRACTS_IEPORT == 1) @intFromEnum(GET_CHANGER_PARAMETERS_FEATURES1.MOVE_RETRACTS_IEPORT) else 0) | (if (o.PREDISMOUNT_ALIGN_TO_DRIVE == 1) @intFromEnum(GET_CHANGER_PARAMETERS_FEATURES1.PREDISMOUNT_ALIGN_TO_DRIVE) else 0) | (if (o.PREDISMOUNT_ALIGN_TO_SLOT == 1) @intFromEnum(GET_CHANGER_PARAMETERS_FEATURES1.PREDISMOUNT_ALIGN_TO_SLOT) else 0) | (if (o.RTN_MEDIA_TO_ORIGINAL_ADDR == 1) @intFromEnum(GET_CHANGER_PARAMETERS_FEATURES1.RTN_MEDIA_TO_ORIGINAL_ADDR) else 0) | (if (o.SLOTS_USE_TRAYS == 1) @intFromEnum(GET_CHANGER_PARAMETERS_FEATURES1.SLOTS_USE_TRAYS) else 0) | (if (o.TRUE_EXCHANGE_CAPABLE == 1) @intFromEnum(GET_CHANGER_PARAMETERS_FEATURES1.TRUE_EXCHANGE_CAPABLE) else 0));
     }
 };
 pub const CHANGER_CLEANER_AUTODISMOUNT = GET_CHANGER_PARAMETERS_FEATURES1.CLEANER_AUTODISMOUNT;
@@ -4710,7 +4624,6 @@ pub const MOVE_FILE_RECORD_DATA = extern struct {
     TargetFileRecord: LARGE_INTEGER,
 };
 
-
 pub const FIND_BY_SID_DATA = extern struct {
     Restart: u32,
     Sid: SID,
@@ -4893,7 +4806,6 @@ pub const MARK_HANDLE_INFO = extern struct {
     VolumeHandle: ?HANDLE,
     HandleInfo: u32,
 };
-
 
 pub const BULK_SECURITY_TEST_DATA = extern struct {
     DesiredAccess: u32,
@@ -6058,7 +5970,6 @@ pub const DUPLICATE_EXTENTS_DATA = extern struct {
     ByteCount: LARGE_INTEGER,
 };
 
-
 pub const DUPLICATE_EXTENTS_DATA_EX = extern struct {
     Size: usize,
     FileHandle: ?HANDLE,
@@ -6067,7 +5978,6 @@ pub const DUPLICATE_EXTENTS_DATA_EX = extern struct {
     ByteCount: LARGE_INTEGER,
     Flags: u32,
 };
-
 
 pub const DUPLICATE_EXTENTS_STATE = enum(i32) {
     Inactive = 0,
@@ -6420,7 +6330,10 @@ pub const VOLUME_GET_GPT_ATTRIBUTES_INFORMATION = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIO_IRP_EXT_PROCESS_TRACKED_OFFSET_CALLBACK = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIO_IRP_EXT_PROCESS_TRACKED_OFFSET_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 pub const IO_IRP_EXT_TRACK_OFFSET_HEADER = extern struct {
     Validation: u16,
@@ -6428,7 +6341,7 @@ pub const IO_IRP_EXT_TRACK_OFFSET_HEADER = extern struct {
     TrackedOffsetCallback: ?PIO_IRP_EXT_PROCESS_TRACKED_OFFSET_CALLBACK,
 };
 
-pub const MOVE_FILE_DATA32 = switch(@import("../zig.zig").arch) {
+pub const MOVE_FILE_DATA32 = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         FileHandle: u32,
         StartingVcn: LARGE_INTEGER,
@@ -6437,7 +6350,7 @@ pub const MOVE_FILE_DATA32 = switch(@import("../zig.zig").arch) {
     },
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-pub const MARK_HANDLE_INFO32 = switch(@import("../zig.zig").arch) {
+pub const MARK_HANDLE_INFO32 = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         Anonymous: extern union {
             UsnSourceInfo: u32,
@@ -6448,7 +6361,7 @@ pub const MARK_HANDLE_INFO32 = switch(@import("../zig.zig").arch) {
     },
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-pub const DUPLICATE_EXTENTS_DATA32 = switch(@import("../zig.zig").arch) {
+pub const DUPLICATE_EXTENTS_DATA32 = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         FileHandle: u32,
         SourceFileOffset: LARGE_INTEGER,
@@ -6457,7 +6370,7 @@ pub const DUPLICATE_EXTENTS_DATA32 = switch(@import("../zig.zig").arch) {
     },
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-pub const DUPLICATE_EXTENTS_DATA_EX32 = switch(@import("../zig.zig").arch) {
+pub const DUPLICATE_EXTENTS_DATA_EX32 = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         Size: u32,
         FileHandle: u32,
@@ -6478,13 +6391,9 @@ pub const DUPLICATE_EXTENTS_DATA_EX32 = switch(@import("../zig.zig").arch) {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (10)
@@ -6501,9 +6410,7 @@ const STORAGE_BUS_TYPE = @import("../storage/file_system.zig").STORAGE_BUS_TYPE;
 const VIRTUAL_STORAGE_TYPE = @import("../storage/vhd.zig").VIRTUAL_STORAGE_TYPE;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

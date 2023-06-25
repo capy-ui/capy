@@ -116,10 +116,7 @@ pub const HTTP_INITIALIZE = enum(u32) {
         CONFIG: u1 = 0,
         SERVER: u1 = 0,
     }) HTTP_INITIALIZE {
-        return @intToEnum(HTTP_INITIALIZE,
-              (if (o.CONFIG == 1) @enumToInt(HTTP_INITIALIZE.CONFIG) else 0)
-            | (if (o.SERVER == 1) @enumToInt(HTTP_INITIALIZE.SERVER) else 0)
-        );
+        return @enumFromInt(HTTP_INITIALIZE, (if (o.CONFIG == 1) @intFromEnum(HTTP_INITIALIZE.CONFIG) else 0) | (if (o.SERVER == 1) @intFromEnum(HTTP_INITIALIZE.SERVER) else 0));
     }
 };
 pub const HTTP_INITIALIZE_CONFIG = HTTP_INITIALIZE.CONFIG;
@@ -1361,7 +1358,6 @@ pub const HttpFeatureDelegateEx = HTTP_FEATURE_ID.DelegateEx;
 pub const HttpFeatureHttp3 = HTTP_FEATURE_ID.Http3;
 pub const HttpFeaturemax = HTTP_FEATURE_ID.max;
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (43)
 //--------------------------------------------------------------------------------
@@ -1734,7 +1730,6 @@ pub extern "httpapi" fn HttpGetExtension(
     BufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (1)
 //--------------------------------------------------------------------------------
@@ -1747,7 +1742,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const HTTP_SERVICE_BINDING_ = thismodule.HTTP_SERVICE_BINDING_W;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const HTTP_SERVICE_BINDING_ = *opaque{};
+        pub const HTTP_SERVICE_BINDING_ = *opaque {};
     } else struct {
         pub const HTTP_SERVICE_BINDING_ = @compileError("'HTTP_SERVICE_BINDING_' requires that UNICODE be set to true or false in the root module");
     },
@@ -1769,9 +1764,7 @@ const SOCKADDR_STORAGE = @import("../networking/win_sock.zig").SOCKADDR_STORAGE;
 const ULARGE_INTEGER = @import("../foundation.zig").ULARGE_INTEGER;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

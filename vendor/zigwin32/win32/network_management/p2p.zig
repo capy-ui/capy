@@ -425,60 +425,60 @@ pub const PEER_GRAPH_EVENT_DATA = extern struct {
 };
 
 pub const PFNPEER_VALIDATE_RECORD = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hGraph: ?*anyopaque,
         pvContext: ?*anyopaque,
         pRecord: ?*PEER_RECORD,
         changeType: PEER_RECORD_CHANGE_TYPE,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         hGraph: ?*anyopaque,
         pvContext: ?*anyopaque,
         pRecord: ?*PEER_RECORD,
         changeType: PEER_RECORD_CHANGE_TYPE,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PFNPEER_SECURE_RECORD = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hGraph: ?*anyopaque,
         pvContext: ?*anyopaque,
         pRecord: ?*PEER_RECORD,
         changeType: PEER_RECORD_CHANGE_TYPE,
         ppSecurityData: ?*?*PEER_DATA,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         hGraph: ?*anyopaque,
         pvContext: ?*anyopaque,
         pRecord: ?*PEER_RECORD,
         changeType: PEER_RECORD_CHANGE_TYPE,
         ppSecurityData: ?*?*PEER_DATA,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PFNPEER_FREE_SECURITY_DATA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hGraph: ?*anyopaque,
         pvContext: ?*anyopaque,
         pSecurityData: ?*PEER_DATA,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         hGraph: ?*anyopaque,
         pvContext: ?*anyopaque,
         pSecurityData: ?*PEER_DATA,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PFNPEER_ON_PASSWORD_AUTH_FAILED = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hGraph: ?*anyopaque,
         pvContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         hGraph: ?*anyopaque,
         pvContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PEER_SECURITY_INTERFACE = extern struct {
     dwSize: u32,
@@ -1003,19 +1003,19 @@ pub const DRT_SECURITY_PROVIDER = extern struct {
 };
 
 pub const DRT_BOOTSTRAP_RESOLVE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hr: HRESULT,
         pvContext: ?*anyopaque,
         pAddresses: ?*SOCKET_ADDRESS_LIST,
         fFatalError: BOOL,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         hr: HRESULT,
         pvContext: ?*anyopaque,
         pAddresses: ?*SOCKET_ADDRESS_LIST,
         fFatalError: BOOL,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const DRT_BOOTSTRAP_PROVIDER = extern struct {
     pvContext: ?*anyopaque,
@@ -1137,7 +1137,6 @@ pub const PEERDIST_CLIENT_BASIC_INFO = extern struct {
     fFlashCrowd: BOOL,
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (200)
 //--------------------------------------------------------------------------------
@@ -1148,8 +1147,7 @@ pub extern "p2pgraph" fn PeerGraphStartup(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "p2pgraph" fn PeerGraphShutdown(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub extern "p2pgraph" fn PeerGraphShutdown() callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "p2pgraph" fn PeerGraphFreeData(
@@ -1421,8 +1419,7 @@ pub extern "p2p" fn PeerGroupStartup(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "p2p" fn PeerGroupShutdown(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub extern "p2p" fn PeerGroupShutdown() callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "p2p" fn PeerGroupCreate(
@@ -1753,8 +1750,7 @@ pub extern "p2p" fn PeerCollabStartup(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "p2p" fn PeerCollabShutdown(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub extern "p2p" fn PeerCollabShutdown() callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "p2p" fn PeerCollabSignin(
@@ -2008,8 +2004,7 @@ pub extern "p2p" fn PeerPnrpStartup(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "p2p" fn PeerPnrpShutdown(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub extern "p2p" fn PeerPnrpShutdown() callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "p2p" fn PeerPnrpRegister(
@@ -2476,19 +2471,14 @@ pub extern "peerdist" fn PeerDistClientGetInformationByHandle(
     lpInformation: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (16)
@@ -2512,15 +2502,23 @@ const SOCKET_ADDRESS_LIST = @import("../networking/win_sock.zig").SOCKET_ADDRESS
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFNPEER_VALIDATE_RECORD")) { _ = PFNPEER_VALIDATE_RECORD; }
-    if (@hasDecl(@This(), "PFNPEER_SECURE_RECORD")) { _ = PFNPEER_SECURE_RECORD; }
-    if (@hasDecl(@This(), "PFNPEER_FREE_SECURITY_DATA")) { _ = PFNPEER_FREE_SECURITY_DATA; }
-    if (@hasDecl(@This(), "PFNPEER_ON_PASSWORD_AUTH_FAILED")) { _ = PFNPEER_ON_PASSWORD_AUTH_FAILED; }
-    if (@hasDecl(@This(), "DRT_BOOTSTRAP_RESOLVE_CALLBACK")) { _ = DRT_BOOTSTRAP_RESOLVE_CALLBACK; }
+    if (@hasDecl(@This(), "PFNPEER_VALIDATE_RECORD")) {
+        _ = PFNPEER_VALIDATE_RECORD;
+    }
+    if (@hasDecl(@This(), "PFNPEER_SECURE_RECORD")) {
+        _ = PFNPEER_SECURE_RECORD;
+    }
+    if (@hasDecl(@This(), "PFNPEER_FREE_SECURITY_DATA")) {
+        _ = PFNPEER_FREE_SECURITY_DATA;
+    }
+    if (@hasDecl(@This(), "PFNPEER_ON_PASSWORD_AUTH_FAILED")) {
+        _ = PFNPEER_ON_PASSWORD_AUTH_FAILED;
+    }
+    if (@hasDecl(@This(), "DRT_BOOTSTRAP_RESOLVE_CALLBACK")) {
+        _ = DRT_BOOTSTRAP_RESOLVE_CALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

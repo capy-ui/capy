@@ -38,7 +38,7 @@ fn checkEnumFields(data: anytype) StructReadError!void {
     inline for (meta.fields(T)) |entry| {
         switch (@typeInfo(entry.type)) {
             .Enum => {
-                const value = @enumToInt(@field(data, entry.name));
+                const value = @intFromEnum(@field(data, entry.name));
                 _ = std.meta.intToEnum(entry.type, value) catch return StructReadError.InvalidData;
             },
             .Struct => {
@@ -68,7 +68,7 @@ fn swapFieldBytes(data: anytype) StructReadError!void {
                 try swapFieldBytes(&@field(data, entry.name));
             },
             .Enum => {
-                const value = @enumToInt(@field(data, entry.name));
+                const value = @intFromEnum(@field(data, entry.name));
                 if (@bitSizeOf(@TypeOf(value)) > 8) {
                     @field(data, entry.name) = try std.meta.intToEnum(entry.type, @byteSwap(value));
                 } else {

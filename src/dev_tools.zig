@@ -9,6 +9,36 @@ var serverThread: ?std.Thread = null;
 
 var run_server = true;
 
+const ObjectId = u32;
+
+pub const RequestId = enum(u8) {
+    get_windows_num,
+    get_window,
+    get_property,
+};
+
+pub const Request = union(Request) {
+    get_windows_num: packed struct {},
+    get_window: packed struct {
+        index: u32,
+    },
+    get_property: packed struct {
+        property_name: []const u8,
+    },
+};
+
+pub const Response = union(RequestId) {
+    get_windows_num: packed struct {
+        num: u32,
+    },
+    get_window: packed struct {
+        window: ObjectId,
+    },
+    get_property: packed struct {
+        value_id: ObjectId,
+    },
+};
+
 pub fn init() !void {
     const addr = try std.net.Address.parseIp("127.0.0.1", DEV_TOOLS_PORT);
     server = std.net.StreamServer.init(.{ .reuse_address = true });
@@ -25,7 +55,15 @@ pub fn init() !void {
 fn connectionRunner(connection: std.net.StreamServer.Connection) !void {
     log.debug("accepted connection from {}", .{connection.address});
     const stream = connection.stream;
-    _ = stream;
+
+    const reader = stream.reader();
+    const writer = stream.writer();
+    _ = writer;
+
+    while (true) {
+        const request_id = try reader.readByte();
+        std.log.info("request id: 0x{}", .{request_id});
+    }
 }
 
 fn serverRunner() !void {

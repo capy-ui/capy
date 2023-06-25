@@ -12,24 +12,26 @@ pub const ILearningModelOperatorProviderNative = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetRegistry: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ILearningModelOperatorProviderNative,
                 ppOperatorRegistry: ?*?*IMLOperatorRegistry,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ILearningModelOperatorProviderNative,
                 ppOperatorRegistry: ?*?*IMLOperatorRegistry,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILearningModelOperatorProviderNative_GetRegistry(self: *const T, ppOperatorRegistry: ?*?*IMLOperatorRegistry) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ILearningModelOperatorProviderNative.VTable, self.vtable).GetRegistry(@ptrCast(*const ILearningModelOperatorProviderNative, self), ppOperatorRegistry);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ILearningModelOperatorProviderNative_GetRegistry(self: *const T, ppOperatorRegistry: ?*?*IMLOperatorRegistry) HRESULT {
+                return @ptrCast(*const ILearningModelOperatorProviderNative.VTable, self.vtable).GetRegistry(@ptrCast(*const ILearningModelOperatorProviderNative, self), ppOperatorRegistry);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -39,40 +41,42 @@ pub const ITensorNative = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITensorNative,
                 value: [*]?*u8,
                 capacity: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITensorNative,
                 value: [*]?*u8,
                 capacity: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetD3D12Resource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITensorNative,
                 result: ?*?*ID3D12Resource,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITensorNative,
                 result: ?*?*ID3D12Resource,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITensorNative_GetBuffer(self: *const T, value: [*]?*u8, capacity: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITensorNative.VTable, self.vtable).GetBuffer(@ptrCast(*const ITensorNative, self), value, capacity);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITensorNative_GetD3D12Resource(self: *const T, result: ?*?*ID3D12Resource) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITensorNative.VTable, self.vtable).GetD3D12Resource(@ptrCast(*const ITensorNative, self), result);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITensorNative_GetBuffer(self: *const T, value: [*]?*u8, capacity: ?*u32) HRESULT {
+                return @ptrCast(*const ITensorNative.VTable, self.vtable).GetBuffer(@ptrCast(*const ITensorNative, self), value, capacity);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITensorNative_GetD3D12Resource(self: *const T, result: ?*?*ID3D12Resource) HRESULT {
+                return @ptrCast(*const ITensorNative.VTable, self.vtable).GetD3D12Resource(@ptrCast(*const ITensorNative, self), result);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -82,14 +86,14 @@ pub const ITensorStaticsNative = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateFromD3D12Resource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITensorStaticsNative,
                 value: ?*ID3D12Resource,
                 shape: ?*i64,
                 shapeCount: i32,
                 result: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITensorStaticsNative,
                 value: ?*ID3D12Resource,
                 shape: ?*i64,
@@ -99,13 +103,15 @@ pub const ITensorStaticsNative = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITensorStaticsNative_CreateFromD3D12Resource(self: *const T, value: ?*ID3D12Resource, shape: ?*i64, shapeCount: i32, result: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITensorStaticsNative.VTable, self.vtable).CreateFromD3D12Resource(@ptrCast(*const ITensorStaticsNative, self), value, shape, shapeCount, result);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITensorStaticsNative_CreateFromD3D12Resource(self: *const T, value: ?*ID3D12Resource, shape: ?*i64, shapeCount: i32, result: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ITensorStaticsNative.VTable, self.vtable).CreateFromD3D12Resource(@ptrCast(*const ITensorStaticsNative, self), value, shape, shapeCount, result);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -115,12 +121,12 @@ pub const ILearningModelDeviceFactoryNative = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateFromD3D12CommandQueue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ILearningModelDeviceFactoryNative,
                 value: ?*ID3D12CommandQueue,
                 result: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ILearningModelDeviceFactoryNative,
                 value: ?*ID3D12CommandQueue,
                 result: ?*?*IUnknown,
@@ -128,13 +134,15 @@ pub const ILearningModelDeviceFactoryNative = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILearningModelDeviceFactoryNative_CreateFromD3D12CommandQueue(self: *const T, value: ?*ID3D12CommandQueue, result: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ILearningModelDeviceFactoryNative.VTable, self.vtable).CreateFromD3D12CommandQueue(@ptrCast(*const ILearningModelDeviceFactoryNative, self), value, result);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ILearningModelDeviceFactoryNative_CreateFromD3D12CommandQueue(self: *const T, value: ?*ID3D12CommandQueue, result: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const ILearningModelDeviceFactoryNative.VTable, self.vtable).CreateFromD3D12CommandQueue(@ptrCast(*const ILearningModelDeviceFactoryNative, self), value, result);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -144,27 +152,28 @@ pub const ILearningModelSessionOptionsNative = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetIntraOpNumThreadsOverride: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ILearningModelSessionOptionsNative,
                 intraOpNumThreads: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ILearningModelSessionOptionsNative,
                 intraOpNumThreads: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILearningModelSessionOptionsNative_SetIntraOpNumThreadsOverride(self: *const T, intraOpNumThreads: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ILearningModelSessionOptionsNative.VTable, self.vtable).SetIntraOpNumThreadsOverride(@ptrCast(*const ILearningModelSessionOptionsNative, self), intraOpNumThreads);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ILearningModelSessionOptionsNative_SetIntraOpNumThreadsOverride(self: *const T, intraOpNumThreads: u32) HRESULT {
+                return @ptrCast(*const ILearningModelSessionOptionsNative.VTable, self.vtable).SetIntraOpNumThreadsOverride(@ptrCast(*const ILearningModelSessionOptionsNative, self), intraOpNumThreads);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -175,13 +184,9 @@ pub const ILearningModelSessionOptionsNative = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
@@ -194,9 +199,7 @@ const IMLOperatorRegistry = @import("../../ai/machine_learning/win_ml.zig").IMLO
 const IUnknown = @import("../../system/com.zig").IUnknown;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

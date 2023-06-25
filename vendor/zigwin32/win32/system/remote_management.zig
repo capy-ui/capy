@@ -847,7 +847,7 @@ pub const WSMAN_RESPONSE_DATA = extern union {
 };
 
 pub const WSMAN_SHELL_COMPLETION_FUNCTION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         operationContext: ?*anyopaque,
         flags: u32,
         @"error": ?*WSMAN_ERROR,
@@ -856,7 +856,7 @@ pub const WSMAN_SHELL_COMPLETION_FUNCTION = switch (@import("builtin").zig_backe
         operationHandle: ?*WSMAN_OPERATION,
         data: ?*WSMAN_RESPONSE_DATA,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         operationContext: ?*anyopaque,
         flags: u32,
         @"error": ?*WSMAN_ERROR,
@@ -865,7 +865,7 @@ pub const WSMAN_SHELL_COMPLETION_FUNCTION = switch (@import("builtin").zig_backe
         operationHandle: ?*WSMAN_OPERATION,
         data: ?*WSMAN_RESPONSE_DATA,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const WSMAN_SHELL_ASYNC = extern struct {
     operationContext: ?*anyopaque,
@@ -903,89 +903,89 @@ pub const WSMAN_PLUGIN_REQUEST = extern struct {
 };
 
 pub const WSMAN_PLUGIN_RELEASE_SHELL_CONTEXT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         shellContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         shellContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const WSMAN_PLUGIN_RELEASE_COMMAND_CONTEXT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         shellContext: ?*anyopaque,
         commandContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         shellContext: ?*anyopaque,
         commandContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const WSMAN_PLUGIN_STARTUP = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         flags: u32,
         applicationIdentification: ?[*:0]const u16,
         extraInfo: ?[*:0]const u16,
         pluginContext: ?*?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         flags: u32,
         applicationIdentification: ?[*:0]const u16,
         extraInfo: ?[*:0]const u16,
         pluginContext: ?*?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const WSMAN_PLUGIN_SHUTDOWN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pluginContext: ?*anyopaque,
         flags: u32,
         reason: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         pluginContext: ?*anyopaque,
         flags: u32,
         reason: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const WSMAN_PLUGIN_SHELL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pluginContext: ?*anyopaque,
         requestDetails: ?*WSMAN_PLUGIN_REQUEST,
         flags: u32,
         startupInfo: ?*WSMAN_SHELL_STARTUP_INFO_V11,
         inboundShellInformation: ?*WSMAN_DATA,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         pluginContext: ?*anyopaque,
         requestDetails: ?*WSMAN_PLUGIN_REQUEST,
         flags: u32,
         startupInfo: ?*WSMAN_SHELL_STARTUP_INFO_V11,
         inboundShellInformation: ?*WSMAN_DATA,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const WSMAN_PLUGIN_COMMAND = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         requestDetails: ?*WSMAN_PLUGIN_REQUEST,
         flags: u32,
         shellContext: ?*anyopaque,
         commandLine: ?[*:0]const u16,
         arguments: ?*WSMAN_COMMAND_ARG_SET,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         requestDetails: ?*WSMAN_PLUGIN_REQUEST,
         flags: u32,
         shellContext: ?*anyopaque,
         commandLine: ?[*:0]const u16,
         arguments: ?*WSMAN_COMMAND_ARG_SET,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const WSMAN_PLUGIN_SEND = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         requestDetails: ?*WSMAN_PLUGIN_REQUEST,
         flags: u32,
         shellContext: ?*anyopaque,
@@ -993,7 +993,7 @@ pub const WSMAN_PLUGIN_SEND = switch (@import("builtin").zig_backend) {
         stream: ?[*:0]const u16,
         inboundData: ?*WSMAN_DATA,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         requestDetails: ?*WSMAN_PLUGIN_REQUEST,
         flags: u32,
         shellContext: ?*anyopaque,
@@ -1001,58 +1001,58 @@ pub const WSMAN_PLUGIN_SEND = switch (@import("builtin").zig_backend) {
         stream: ?[*:0]const u16,
         inboundData: ?*WSMAN_DATA,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const WSMAN_PLUGIN_RECEIVE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         requestDetails: ?*WSMAN_PLUGIN_REQUEST,
         flags: u32,
         shellContext: ?*anyopaque,
         commandContext: ?*anyopaque,
         streamSet: ?*WSMAN_STREAM_ID_SET,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         requestDetails: ?*WSMAN_PLUGIN_REQUEST,
         flags: u32,
         shellContext: ?*anyopaque,
         commandContext: ?*anyopaque,
         streamSet: ?*WSMAN_STREAM_ID_SET,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const WSMAN_PLUGIN_SIGNAL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         requestDetails: ?*WSMAN_PLUGIN_REQUEST,
         flags: u32,
         shellContext: ?*anyopaque,
         commandContext: ?*anyopaque,
         code: ?[*:0]const u16,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         requestDetails: ?*WSMAN_PLUGIN_REQUEST,
         flags: u32,
         shellContext: ?*anyopaque,
         commandContext: ?*anyopaque,
         code: ?[*:0]const u16,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const WSMAN_PLUGIN_CONNECT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         requestDetails: ?*WSMAN_PLUGIN_REQUEST,
         flags: u32,
         shellContext: ?*anyopaque,
         commandContext: ?*anyopaque,
         inboundConnectInformation: ?*WSMAN_DATA,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         requestDetails: ?*WSMAN_PLUGIN_REQUEST,
         flags: u32,
         shellContext: ?*anyopaque,
         commandContext: ?*anyopaque,
         inboundConnectInformation: ?*WSMAN_DATA,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const WSMAN_AUTHZ_QUOTA = extern struct {
     maxAllowedConcurrentShells: u32,
@@ -1062,20 +1062,20 @@ pub const WSMAN_AUTHZ_QUOTA = extern struct {
 };
 
 pub const WSMAN_PLUGIN_AUTHORIZE_USER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pluginContext: ?*anyopaque,
         senderDetails: ?*WSMAN_SENDER_DETAILS,
         flags: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         pluginContext: ?*anyopaque,
         senderDetails: ?*WSMAN_SENDER_DETAILS,
         flags: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const WSMAN_PLUGIN_AUTHORIZE_OPERATION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pluginContext: ?*anyopaque,
         senderDetails: ?*WSMAN_SENDER_DETAILS,
         flags: u32,
@@ -1083,7 +1083,7 @@ pub const WSMAN_PLUGIN_AUTHORIZE_OPERATION = switch (@import("builtin").zig_back
         action: ?[*:0]const u16,
         resourceUri: ?[*:0]const u16,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         pluginContext: ?*anyopaque,
         senderDetails: ?*WSMAN_SENDER_DETAILS,
         flags: u32,
@@ -1091,29 +1091,29 @@ pub const WSMAN_PLUGIN_AUTHORIZE_OPERATION = switch (@import("builtin").zig_back
         action: ?[*:0]const u16,
         resourceUri: ?[*:0]const u16,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const WSMAN_PLUGIN_AUTHORIZE_QUERY_QUOTA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pluginContext: ?*anyopaque,
         senderDetails: ?*WSMAN_SENDER_DETAILS,
         flags: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         pluginContext: ?*anyopaque,
         senderDetails: ?*WSMAN_SENDER_DETAILS,
         flags: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const WSMAN_PLUGIN_AUTHORIZE_RELEASE_CONTEXT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         userAuthorizationContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         userAuthorizationContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 const CLSID_WSMan_Value = Guid.initString("bced617b-ec03-420b-8508-977dc7a686bd");
 pub const CLSID_WSMan = &CLSID_WSMan_Value;
@@ -1206,14 +1206,14 @@ pub const IWSMan = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         CreateSession: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSMan,
                 connection: ?BSTR,
                 flags: i32,
                 connectionOptions: ?*IDispatch,
                 session: ?*?*IDispatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSMan,
                 connection: ?BSTR,
                 flags: i32,
@@ -1222,11 +1222,11 @@ pub const IWSMan = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateConnectionOptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSMan,
                 connectionOptions: ?*?*IDispatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSMan,
                 connectionOptions: ?*?*IDispatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1234,12 +1234,12 @@ pub const IWSMan = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CommandLine: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSMan,
                 value: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSMan,
                 value: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1247,37 +1247,39 @@ pub const IWSMan = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Error: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSMan,
                 value: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSMan,
                 value: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSMan_CreateSession(self: *const T, connection: ?BSTR, flags: i32, connectionOptions: ?*IDispatch, session: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSMan.VTable, self.vtable).CreateSession(@ptrCast(*const IWSMan, self), connection, flags, connectionOptions, session);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSMan_CreateConnectionOptions(self: *const T, connectionOptions: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSMan.VTable, self.vtable).CreateConnectionOptions(@ptrCast(*const IWSMan, self), connectionOptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSMan_get_CommandLine(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSMan.VTable, self.vtable).get_CommandLine(@ptrCast(*const IWSMan, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSMan_get_Error(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSMan.VTable, self.vtable).get_Error(@ptrCast(*const IWSMan, self), value);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSMan_CreateSession(self: *const T, connection: ?BSTR, flags: i32, connectionOptions: ?*IDispatch, session: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IWSMan.VTable, self.vtable).CreateSession(@ptrCast(*const IWSMan, self), connection, flags, connectionOptions, session);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSMan_CreateConnectionOptions(self: *const T, connectionOptions: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IWSMan.VTable, self.vtable).CreateConnectionOptions(@ptrCast(*const IWSMan, self), connectionOptions);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSMan_get_CommandLine(self: *const T, value: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWSMan.VTable, self.vtable).get_CommandLine(@ptrCast(*const IWSMan, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSMan_get_Error(self: *const T, value: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWSMan.VTable, self.vtable).get_Error(@ptrCast(*const IWSMan, self), value);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1288,294 +1290,296 @@ pub const IWSManEx = extern struct {
     pub const VTable = extern struct {
         base: IWSMan.VTable,
         CreateResourceLocator: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx,
                 strResourceLocator: ?BSTR,
                 newResourceLocator: ?*?*IDispatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx,
                 strResourceLocator: ?BSTR,
                 newResourceLocator: ?*?*IDispatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SessionFlagUTF8: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SessionFlagCredUsernamePassword: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SessionFlagSkipCACheck: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SessionFlagSkipCNCheck: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SessionFlagUseDigest: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SessionFlagUseNegotiate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SessionFlagUseBasic: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SessionFlagUseKerberos: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SessionFlagNoEncryption: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SessionFlagEnableSPNServerPort: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SessionFlagUseNoAuthentication: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumerationFlagNonXmlText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumerationFlagReturnEPR: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumerationFlagReturnObjectAndEPR: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetErrorMessage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx,
                 errorNumber: u32,
                 errorMessage: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx,
                 errorNumber: u32,
                 errorMessage: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumerationFlagHierarchyDeep: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumerationFlagHierarchyShallow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumerationFlagHierarchyDeepBasePropsOnly: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumerationFlagReturnObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWSMan.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_CreateResourceLocator(self: *const T, strResourceLocator: ?BSTR, newResourceLocator: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx.VTable, self.vtable).CreateResourceLocator(@ptrCast(*const IWSManEx, self), strResourceLocator, newResourceLocator);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_SessionFlagUTF8(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagUTF8(@ptrCast(*const IWSManEx, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_SessionFlagCredUsernamePassword(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagCredUsernamePassword(@ptrCast(*const IWSManEx, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_SessionFlagSkipCACheck(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagSkipCACheck(@ptrCast(*const IWSManEx, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_SessionFlagSkipCNCheck(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagSkipCNCheck(@ptrCast(*const IWSManEx, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_SessionFlagUseDigest(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagUseDigest(@ptrCast(*const IWSManEx, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_SessionFlagUseNegotiate(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagUseNegotiate(@ptrCast(*const IWSManEx, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_SessionFlagUseBasic(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagUseBasic(@ptrCast(*const IWSManEx, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_SessionFlagUseKerberos(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagUseKerberos(@ptrCast(*const IWSManEx, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_SessionFlagNoEncryption(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagNoEncryption(@ptrCast(*const IWSManEx, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_SessionFlagEnableSPNServerPort(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagEnableSPNServerPort(@ptrCast(*const IWSManEx, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_SessionFlagUseNoAuthentication(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagUseNoAuthentication(@ptrCast(*const IWSManEx, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_EnumerationFlagNonXmlText(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagNonXmlText(@ptrCast(*const IWSManEx, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_EnumerationFlagReturnEPR(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagReturnEPR(@ptrCast(*const IWSManEx, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_EnumerationFlagReturnObjectAndEPR(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagReturnObjectAndEPR(@ptrCast(*const IWSManEx, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_GetErrorMessage(self: *const T, errorNumber: u32, errorMessage: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx.VTable, self.vtable).GetErrorMessage(@ptrCast(*const IWSManEx, self), errorNumber, errorMessage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_EnumerationFlagHierarchyDeep(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagHierarchyDeep(@ptrCast(*const IWSManEx, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_EnumerationFlagHierarchyShallow(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagHierarchyShallow(@ptrCast(*const IWSManEx, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_EnumerationFlagHierarchyDeepBasePropsOnly(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagHierarchyDeepBasePropsOnly(@ptrCast(*const IWSManEx, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx_EnumerationFlagReturnObject(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagReturnObject(@ptrCast(*const IWSManEx, self), flags);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWSMan.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx_CreateResourceLocator(self: *const T, strResourceLocator: ?BSTR, newResourceLocator: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IWSManEx.VTable, self.vtable).CreateResourceLocator(@ptrCast(*const IWSManEx, self), strResourceLocator, newResourceLocator);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx_SessionFlagUTF8(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagUTF8(@ptrCast(*const IWSManEx, self), flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx_SessionFlagCredUsernamePassword(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagCredUsernamePassword(@ptrCast(*const IWSManEx, self), flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx_SessionFlagSkipCACheck(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagSkipCACheck(@ptrCast(*const IWSManEx, self), flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx_SessionFlagSkipCNCheck(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagSkipCNCheck(@ptrCast(*const IWSManEx, self), flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx_SessionFlagUseDigest(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagUseDigest(@ptrCast(*const IWSManEx, self), flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx_SessionFlagUseNegotiate(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagUseNegotiate(@ptrCast(*const IWSManEx, self), flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx_SessionFlagUseBasic(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagUseBasic(@ptrCast(*const IWSManEx, self), flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx_SessionFlagUseKerberos(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagUseKerberos(@ptrCast(*const IWSManEx, self), flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx_SessionFlagNoEncryption(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagNoEncryption(@ptrCast(*const IWSManEx, self), flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx_SessionFlagEnableSPNServerPort(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagEnableSPNServerPort(@ptrCast(*const IWSManEx, self), flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx_SessionFlagUseNoAuthentication(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagUseNoAuthentication(@ptrCast(*const IWSManEx, self), flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx_EnumerationFlagNonXmlText(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagNonXmlText(@ptrCast(*const IWSManEx, self), flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx_EnumerationFlagReturnEPR(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagReturnEPR(@ptrCast(*const IWSManEx, self), flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx_EnumerationFlagReturnObjectAndEPR(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagReturnObjectAndEPR(@ptrCast(*const IWSManEx, self), flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx_GetErrorMessage(self: *const T, errorNumber: u32, errorMessage: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWSManEx.VTable, self.vtable).GetErrorMessage(@ptrCast(*const IWSManEx, self), errorNumber, errorMessage);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx_EnumerationFlagHierarchyDeep(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagHierarchyDeep(@ptrCast(*const IWSManEx, self), flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx_EnumerationFlagHierarchyShallow(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagHierarchyShallow(@ptrCast(*const IWSManEx, self), flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx_EnumerationFlagHierarchyDeepBasePropsOnly(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagHierarchyDeepBasePropsOnly(@ptrCast(*const IWSManEx, self), flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx_EnumerationFlagReturnObject(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagReturnObject(@ptrCast(*const IWSManEx, self), flags);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1586,24 +1590,26 @@ pub const IWSManEx2 = extern struct {
     pub const VTable = extern struct {
         base: IWSManEx.VTable,
         SessionFlagUseClientCertificate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx2,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx2,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWSManEx.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx2_SessionFlagUseClientCertificate(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx2.VTable, self.vtable).SessionFlagUseClientCertificate(@ptrCast(*const IWSManEx2, self), flags);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWSManEx.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx2_SessionFlagUseClientCertificate(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx2.VTable, self.vtable).SessionFlagUseClientCertificate(@ptrCast(*const IWSManEx2, self), flags);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1614,108 +1620,110 @@ pub const IWSManEx3 = extern struct {
     pub const VTable = extern struct {
         base: IWSManEx2.VTable,
         SessionFlagUTF16: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx3,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx3,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SessionFlagUseCredSsp: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx3,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx3,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumerationFlagAssociationInstance: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx3,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx3,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumerationFlagAssociatedInstance: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx3,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx3,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SessionFlagSkipRevocationCheck: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx3,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx3,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SessionFlagAllowNegotiateImplicitCredentials: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx3,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx3,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SessionFlagUseSsl: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEx3,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEx3,
                 flags: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWSManEx2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx3_SessionFlagUTF16(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx3.VTable, self.vtable).SessionFlagUTF16(@ptrCast(*const IWSManEx3, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx3_SessionFlagUseCredSsp(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx3.VTable, self.vtable).SessionFlagUseCredSsp(@ptrCast(*const IWSManEx3, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx3_EnumerationFlagAssociationInstance(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx3.VTable, self.vtable).EnumerationFlagAssociationInstance(@ptrCast(*const IWSManEx3, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx3_EnumerationFlagAssociatedInstance(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx3.VTable, self.vtable).EnumerationFlagAssociatedInstance(@ptrCast(*const IWSManEx3, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx3_SessionFlagSkipRevocationCheck(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx3.VTable, self.vtable).SessionFlagSkipRevocationCheck(@ptrCast(*const IWSManEx3, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx3_SessionFlagAllowNegotiateImplicitCredentials(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx3.VTable, self.vtable).SessionFlagAllowNegotiateImplicitCredentials(@ptrCast(*const IWSManEx3, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEx3_SessionFlagUseSsl(self: *const T, flags: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEx3.VTable, self.vtable).SessionFlagUseSsl(@ptrCast(*const IWSManEx3, self), flags);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWSManEx2.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx3_SessionFlagUTF16(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx3.VTable, self.vtable).SessionFlagUTF16(@ptrCast(*const IWSManEx3, self), flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx3_SessionFlagUseCredSsp(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx3.VTable, self.vtable).SessionFlagUseCredSsp(@ptrCast(*const IWSManEx3, self), flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx3_EnumerationFlagAssociationInstance(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx3.VTable, self.vtable).EnumerationFlagAssociationInstance(@ptrCast(*const IWSManEx3, self), flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx3_EnumerationFlagAssociatedInstance(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx3.VTable, self.vtable).EnumerationFlagAssociatedInstance(@ptrCast(*const IWSManEx3, self), flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx3_SessionFlagSkipRevocationCheck(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx3.VTable, self.vtable).SessionFlagSkipRevocationCheck(@ptrCast(*const IWSManEx3, self), flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx3_SessionFlagAllowNegotiateImplicitCredentials(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx3.VTable, self.vtable).SessionFlagAllowNegotiateImplicitCredentials(@ptrCast(*const IWSManEx3, self), flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEx3_SessionFlagUseSsl(self: *const T, flags: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManEx3.VTable, self.vtable).SessionFlagUseSsl(@ptrCast(*const IWSManEx3, self), flags);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1728,12 +1736,12 @@ pub const IWSManConnectionOptions = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserName: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManConnectionOptions,
                 name: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManConnectionOptions,
                 name: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1741,12 +1749,12 @@ pub const IWSManConnectionOptions = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UserName: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManConnectionOptions,
                 name: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManConnectionOptions,
                 name: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1754,33 +1762,35 @@ pub const IWSManConnectionOptions = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Password: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManConnectionOptions,
                 password: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManConnectionOptions,
                 password: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptions_get_UserName(self: *const T, name: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManConnectionOptions.VTable, self.vtable).get_UserName(@ptrCast(*const IWSManConnectionOptions, self), name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptions_put_UserName(self: *const T, name: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManConnectionOptions.VTable, self.vtable).put_UserName(@ptrCast(*const IWSManConnectionOptions, self), name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptions_put_Password(self: *const T, password: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManConnectionOptions.VTable, self.vtable).put_Password(@ptrCast(*const IWSManConnectionOptions, self), password);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManConnectionOptions_get_UserName(self: *const T, name: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWSManConnectionOptions.VTable, self.vtable).get_UserName(@ptrCast(*const IWSManConnectionOptions, self), name);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManConnectionOptions_put_UserName(self: *const T, name: ?BSTR) HRESULT {
+                return @ptrCast(*const IWSManConnectionOptions.VTable, self.vtable).put_UserName(@ptrCast(*const IWSManConnectionOptions, self), name);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManConnectionOptions_put_Password(self: *const T, password: ?BSTR) HRESULT {
+                return @ptrCast(*const IWSManConnectionOptions.VTable, self.vtable).put_Password(@ptrCast(*const IWSManConnectionOptions, self), password);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1793,12 +1803,12 @@ pub const IWSManConnectionOptionsEx = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CertificateThumbprint: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManConnectionOptionsEx,
                 thumbprint: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManConnectionOptionsEx,
                 thumbprint: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1806,29 +1816,31 @@ pub const IWSManConnectionOptionsEx = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CertificateThumbprint: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManConnectionOptionsEx,
                 thumbprint: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManConnectionOptionsEx,
                 thumbprint: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWSManConnectionOptions.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptionsEx_get_CertificateThumbprint(self: *const T, thumbprint: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManConnectionOptionsEx.VTable, self.vtable).get_CertificateThumbprint(@ptrCast(*const IWSManConnectionOptionsEx, self), thumbprint);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptionsEx_put_CertificateThumbprint(self: *const T, thumbprint: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManConnectionOptionsEx.VTable, self.vtable).put_CertificateThumbprint(@ptrCast(*const IWSManConnectionOptionsEx, self), thumbprint);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWSManConnectionOptions.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManConnectionOptionsEx_get_CertificateThumbprint(self: *const T, thumbprint: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWSManConnectionOptionsEx.VTable, self.vtable).get_CertificateThumbprint(@ptrCast(*const IWSManConnectionOptionsEx, self), thumbprint);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManConnectionOptionsEx_put_CertificateThumbprint(self: *const T, thumbprint: ?BSTR) HRESULT {
+                return @ptrCast(*const IWSManConnectionOptionsEx.VTable, self.vtable).put_CertificateThumbprint(@ptrCast(*const IWSManConnectionOptionsEx, self), thumbprint);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1839,14 +1851,14 @@ pub const IWSManConnectionOptionsEx2 = extern struct {
     pub const VTable = extern struct {
         base: IWSManConnectionOptionsEx.VTable,
         SetProxy: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManConnectionOptionsEx2,
                 accessType: i32,
                 authenticationMechanism: i32,
                 userName: ?BSTR,
                 password: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManConnectionOptionsEx2,
                 accessType: i32,
                 authenticationMechanism: i32,
@@ -1855,112 +1867,114 @@ pub const IWSManConnectionOptionsEx2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ProxyIEConfig: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManConnectionOptionsEx2,
                 value: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManConnectionOptionsEx2,
                 value: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ProxyWinHttpConfig: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManConnectionOptionsEx2,
                 value: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManConnectionOptionsEx2,
                 value: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ProxyAutoDetect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManConnectionOptionsEx2,
                 value: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManConnectionOptionsEx2,
                 value: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ProxyNoProxyServer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManConnectionOptionsEx2,
                 value: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManConnectionOptionsEx2,
                 value: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ProxyAuthenticationUseNegotiate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManConnectionOptionsEx2,
                 value: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManConnectionOptionsEx2,
                 value: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ProxyAuthenticationUseBasic: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManConnectionOptionsEx2,
                 value: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManConnectionOptionsEx2,
                 value: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ProxyAuthenticationUseDigest: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManConnectionOptionsEx2,
                 value: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManConnectionOptionsEx2,
                 value: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWSManConnectionOptionsEx.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptionsEx2_SetProxy(self: *const T, accessType: i32, authenticationMechanism: i32, userName: ?BSTR, password: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).SetProxy(@ptrCast(*const IWSManConnectionOptionsEx2, self), accessType, authenticationMechanism, userName, password);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptionsEx2_ProxyIEConfig(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyIEConfig(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptionsEx2_ProxyWinHttpConfig(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyWinHttpConfig(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptionsEx2_ProxyAutoDetect(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyAutoDetect(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptionsEx2_ProxyNoProxyServer(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyNoProxyServer(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptionsEx2_ProxyAuthenticationUseNegotiate(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyAuthenticationUseNegotiate(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptionsEx2_ProxyAuthenticationUseBasic(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyAuthenticationUseBasic(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManConnectionOptionsEx2_ProxyAuthenticationUseDigest(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyAuthenticationUseDigest(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWSManConnectionOptionsEx.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManConnectionOptionsEx2_SetProxy(self: *const T, accessType: i32, authenticationMechanism: i32, userName: ?BSTR, password: ?BSTR) HRESULT {
+                return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).SetProxy(@ptrCast(*const IWSManConnectionOptionsEx2, self), accessType, authenticationMechanism, userName, password);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManConnectionOptionsEx2_ProxyIEConfig(self: *const T, value: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyIEConfig(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManConnectionOptionsEx2_ProxyWinHttpConfig(self: *const T, value: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyWinHttpConfig(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManConnectionOptionsEx2_ProxyAutoDetect(self: *const T, value: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyAutoDetect(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManConnectionOptionsEx2_ProxyNoProxyServer(self: *const T, value: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyNoProxyServer(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManConnectionOptionsEx2_ProxyAuthenticationUseNegotiate(self: *const T, value: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyAuthenticationUseNegotiate(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManConnectionOptionsEx2_ProxyAuthenticationUseBasic(self: *const T, value: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyAuthenticationUseBasic(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManConnectionOptionsEx2_ProxyAuthenticationUseDigest(self: *const T, value: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyAuthenticationUseDigest(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1971,13 +1985,13 @@ pub const IWSManSession = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         Get: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManSession,
                 resourceUri: VARIANT,
                 flags: i32,
                 resource: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManSession,
                 resourceUri: VARIANT,
                 flags: i32,
@@ -1985,14 +1999,14 @@ pub const IWSManSession = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Put: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManSession,
                 resourceUri: VARIANT,
                 resource: ?BSTR,
                 flags: i32,
                 resultResource: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManSession,
                 resourceUri: VARIANT,
                 resource: ?BSTR,
@@ -2001,14 +2015,14 @@ pub const IWSManSession = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Create: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManSession,
                 resourceUri: VARIANT,
                 resource: ?BSTR,
                 flags: i32,
                 newUri: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManSession,
                 resourceUri: VARIANT,
                 resource: ?BSTR,
@@ -2017,19 +2031,19 @@ pub const IWSManSession = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManSession,
                 resourceUri: VARIANT,
                 flags: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManSession,
                 resourceUri: VARIANT,
                 flags: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Invoke: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManSession,
                 actionUri: ?BSTR,
                 resourceUri: VARIANT,
@@ -2037,7 +2051,7 @@ pub const IWSManSession = extern struct {
                 flags: i32,
                 result: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManSession,
                 actionUri: ?BSTR,
                 resourceUri: VARIANT,
@@ -2047,7 +2061,7 @@ pub const IWSManSession = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Enumerate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManSession,
                 resourceUri: VARIANT,
                 filter: ?BSTR,
@@ -2055,7 +2069,7 @@ pub const IWSManSession = extern struct {
                 flags: i32,
                 resultSet: ?*?*IDispatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManSession,
                 resourceUri: VARIANT,
                 filter: ?BSTR,
@@ -2065,12 +2079,12 @@ pub const IWSManSession = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Identify: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManSession,
                 flags: i32,
                 result: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManSession,
                 flags: i32,
                 result: ?*?BSTR,
@@ -2079,12 +2093,12 @@ pub const IWSManSession = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Error: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManSession,
                 value: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManSession,
                 value: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2092,12 +2106,12 @@ pub const IWSManSession = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BatchItems: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManSession,
                 value: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManSession,
                 value: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2105,12 +2119,12 @@ pub const IWSManSession = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BatchItems: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManSession,
                 value: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManSession,
                 value: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2118,12 +2132,12 @@ pub const IWSManSession = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Timeout: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManSession,
                 value: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManSession,
                 value: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2131,69 +2145,71 @@ pub const IWSManSession = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Timeout: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManSession,
                 value: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManSession,
                 value: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManSession_Get(self: *const T, resourceUri: VARIANT, flags: i32, resource: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManSession.VTable, self.vtable).Get(@ptrCast(*const IWSManSession, self), resourceUri, flags, resource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManSession_Put(self: *const T, resourceUri: VARIANT, resource: ?BSTR, flags: i32, resultResource: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManSession.VTable, self.vtable).Put(@ptrCast(*const IWSManSession, self), resourceUri, resource, flags, resultResource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManSession_Create(self: *const T, resourceUri: VARIANT, resource: ?BSTR, flags: i32, newUri: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManSession.VTable, self.vtable).Create(@ptrCast(*const IWSManSession, self), resourceUri, resource, flags, newUri);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManSession_Delete(self: *const T, resourceUri: VARIANT, flags: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManSession.VTable, self.vtable).Delete(@ptrCast(*const IWSManSession, self), resourceUri, flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManSession_Invoke(self: *const T, actionUri: ?BSTR, resourceUri: VARIANT, parameters: ?BSTR, flags: i32, result: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManSession.VTable, self.vtable).Invoke(@ptrCast(*const IWSManSession, self), actionUri, resourceUri, parameters, flags, result);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManSession_Enumerate(self: *const T, resourceUri: VARIANT, filter: ?BSTR, dialect: ?BSTR, flags: i32, resultSet: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManSession.VTable, self.vtable).Enumerate(@ptrCast(*const IWSManSession, self), resourceUri, filter, dialect, flags, resultSet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManSession_Identify(self: *const T, flags: i32, result: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManSession.VTable, self.vtable).Identify(@ptrCast(*const IWSManSession, self), flags, result);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManSession_get_Error(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManSession.VTable, self.vtable).get_Error(@ptrCast(*const IWSManSession, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManSession_get_BatchItems(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManSession.VTable, self.vtable).get_BatchItems(@ptrCast(*const IWSManSession, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManSession_put_BatchItems(self: *const T, value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManSession.VTable, self.vtable).put_BatchItems(@ptrCast(*const IWSManSession, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManSession_get_Timeout(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManSession.VTable, self.vtable).get_Timeout(@ptrCast(*const IWSManSession, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManSession_put_Timeout(self: *const T, value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManSession.VTable, self.vtable).put_Timeout(@ptrCast(*const IWSManSession, self), value);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManSession_Get(self: *const T, resourceUri: VARIANT, flags: i32, resource: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWSManSession.VTable, self.vtable).Get(@ptrCast(*const IWSManSession, self), resourceUri, flags, resource);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManSession_Put(self: *const T, resourceUri: VARIANT, resource: ?BSTR, flags: i32, resultResource: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWSManSession.VTable, self.vtable).Put(@ptrCast(*const IWSManSession, self), resourceUri, resource, flags, resultResource);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManSession_Create(self: *const T, resourceUri: VARIANT, resource: ?BSTR, flags: i32, newUri: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWSManSession.VTable, self.vtable).Create(@ptrCast(*const IWSManSession, self), resourceUri, resource, flags, newUri);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManSession_Delete(self: *const T, resourceUri: VARIANT, flags: i32) HRESULT {
+                return @ptrCast(*const IWSManSession.VTable, self.vtable).Delete(@ptrCast(*const IWSManSession, self), resourceUri, flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManSession_Invoke(self: *const T, actionUri: ?BSTR, resourceUri: VARIANT, parameters: ?BSTR, flags: i32, result: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWSManSession.VTable, self.vtable).Invoke(@ptrCast(*const IWSManSession, self), actionUri, resourceUri, parameters, flags, result);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManSession_Enumerate(self: *const T, resourceUri: VARIANT, filter: ?BSTR, dialect: ?BSTR, flags: i32, resultSet: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IWSManSession.VTable, self.vtable).Enumerate(@ptrCast(*const IWSManSession, self), resourceUri, filter, dialect, flags, resultSet);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManSession_Identify(self: *const T, flags: i32, result: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWSManSession.VTable, self.vtable).Identify(@ptrCast(*const IWSManSession, self), flags, result);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManSession_get_Error(self: *const T, value: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWSManSession.VTable, self.vtable).get_Error(@ptrCast(*const IWSManSession, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManSession_get_BatchItems(self: *const T, value: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManSession.VTable, self.vtable).get_BatchItems(@ptrCast(*const IWSManSession, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManSession_put_BatchItems(self: *const T, value: i32) HRESULT {
+                return @ptrCast(*const IWSManSession.VTable, self.vtable).put_BatchItems(@ptrCast(*const IWSManSession, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManSession_get_Timeout(self: *const T, value: ?*i32) HRESULT {
+                return @ptrCast(*const IWSManSession.VTable, self.vtable).get_Timeout(@ptrCast(*const IWSManSession, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManSession_put_Timeout(self: *const T, value: i32) HRESULT {
+                return @ptrCast(*const IWSManSession.VTable, self.vtable).put_Timeout(@ptrCast(*const IWSManSession, self), value);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2204,11 +2220,11 @@ pub const IWSManEnumerator = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         ReadItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEnumerator,
                 resource: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEnumerator,
                 resource: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2216,12 +2232,12 @@ pub const IWSManEnumerator = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AtEndOfStream: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEnumerator,
                 eos: ?*i16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEnumerator,
                 eos: ?*i16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2229,33 +2245,35 @@ pub const IWSManEnumerator = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Error: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManEnumerator,
                 value: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManEnumerator,
                 value: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEnumerator_ReadItem(self: *const T, resource: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEnumerator.VTable, self.vtable).ReadItem(@ptrCast(*const IWSManEnumerator, self), resource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEnumerator_get_AtEndOfStream(self: *const T, eos: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEnumerator.VTable, self.vtable).get_AtEndOfStream(@ptrCast(*const IWSManEnumerator, self), eos);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManEnumerator_get_Error(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManEnumerator.VTable, self.vtable).get_Error(@ptrCast(*const IWSManEnumerator, self), value);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEnumerator_ReadItem(self: *const T, resource: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWSManEnumerator.VTable, self.vtable).ReadItem(@ptrCast(*const IWSManEnumerator, self), resource);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEnumerator_get_AtEndOfStream(self: *const T, eos: ?*i16) HRESULT {
+                return @ptrCast(*const IWSManEnumerator.VTable, self.vtable).get_AtEndOfStream(@ptrCast(*const IWSManEnumerator, self), eos);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManEnumerator_get_Error(self: *const T, value: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWSManEnumerator.VTable, self.vtable).get_Error(@ptrCast(*const IWSManEnumerator, self), value);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2268,12 +2286,12 @@ pub const IWSManResourceLocator = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ResourceURI: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManResourceLocator,
                 uri: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManResourceLocator,
                 uri: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2281,45 +2299,45 @@ pub const IWSManResourceLocator = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResourceURI: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManResourceLocator,
                 uri: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManResourceLocator,
                 uri: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AddSelector: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManResourceLocator,
                 resourceSelName: ?BSTR,
                 selValue: VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManResourceLocator,
                 resourceSelName: ?BSTR,
                 selValue: VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ClearSelectors: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManResourceLocator,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManResourceLocator,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FragmentPath: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManResourceLocator,
                 text: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManResourceLocator,
                 text: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2327,12 +2345,12 @@ pub const IWSManResourceLocator = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FragmentPath: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManResourceLocator,
                 text: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManResourceLocator,
                 text: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2340,12 +2358,12 @@ pub const IWSManResourceLocator = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FragmentDialect: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManResourceLocator,
                 text: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManResourceLocator,
                 text: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2353,24 +2371,24 @@ pub const IWSManResourceLocator = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FragmentDialect: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManResourceLocator,
                 text: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManResourceLocator,
                 text: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AddOption: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManResourceLocator,
                 OptionName: ?BSTR,
                 OptionValue: VARIANT,
                 mustComply: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManResourceLocator,
                 OptionName: ?BSTR,
                 OptionValue: VARIANT,
@@ -2380,12 +2398,12 @@ pub const IWSManResourceLocator = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MustUnderstandOptions: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManResourceLocator,
                 mustUnderstand: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManResourceLocator,
                 mustUnderstand: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2393,94 +2411,96 @@ pub const IWSManResourceLocator = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MustUnderstandOptions: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManResourceLocator,
                 mustUnderstand: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManResourceLocator,
                 mustUnderstand: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ClearOptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManResourceLocator,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManResourceLocator,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Error: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManResourceLocator,
                 value: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManResourceLocator,
                 value: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManResourceLocator_put_ResourceURI(self: *const T, uri: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).put_ResourceURI(@ptrCast(*const IWSManResourceLocator, self), uri);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManResourceLocator_get_ResourceURI(self: *const T, uri: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).get_ResourceURI(@ptrCast(*const IWSManResourceLocator, self), uri);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManResourceLocator_AddSelector(self: *const T, resourceSelName: ?BSTR, selValue: VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).AddSelector(@ptrCast(*const IWSManResourceLocator, self), resourceSelName, selValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManResourceLocator_ClearSelectors(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).ClearSelectors(@ptrCast(*const IWSManResourceLocator, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManResourceLocator_get_FragmentPath(self: *const T, text: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).get_FragmentPath(@ptrCast(*const IWSManResourceLocator, self), text);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManResourceLocator_put_FragmentPath(self: *const T, text: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).put_FragmentPath(@ptrCast(*const IWSManResourceLocator, self), text);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManResourceLocator_get_FragmentDialect(self: *const T, text: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).get_FragmentDialect(@ptrCast(*const IWSManResourceLocator, self), text);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManResourceLocator_put_FragmentDialect(self: *const T, text: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).put_FragmentDialect(@ptrCast(*const IWSManResourceLocator, self), text);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManResourceLocator_AddOption(self: *const T, OptionName: ?BSTR, OptionValue: VARIANT, mustComply: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).AddOption(@ptrCast(*const IWSManResourceLocator, self), OptionName, OptionValue, mustComply);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManResourceLocator_put_MustUnderstandOptions(self: *const T, mustUnderstand: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).put_MustUnderstandOptions(@ptrCast(*const IWSManResourceLocator, self), mustUnderstand);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManResourceLocator_get_MustUnderstandOptions(self: *const T, mustUnderstand: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).get_MustUnderstandOptions(@ptrCast(*const IWSManResourceLocator, self), mustUnderstand);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManResourceLocator_ClearOptions(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).ClearOptions(@ptrCast(*const IWSManResourceLocator, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManResourceLocator_get_Error(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).get_Error(@ptrCast(*const IWSManResourceLocator, self), value);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManResourceLocator_put_ResourceURI(self: *const T, uri: ?BSTR) HRESULT {
+                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).put_ResourceURI(@ptrCast(*const IWSManResourceLocator, self), uri);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManResourceLocator_get_ResourceURI(self: *const T, uri: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).get_ResourceURI(@ptrCast(*const IWSManResourceLocator, self), uri);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManResourceLocator_AddSelector(self: *const T, resourceSelName: ?BSTR, selValue: VARIANT) HRESULT {
+                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).AddSelector(@ptrCast(*const IWSManResourceLocator, self), resourceSelName, selValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManResourceLocator_ClearSelectors(self: *const T) HRESULT {
+                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).ClearSelectors(@ptrCast(*const IWSManResourceLocator, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManResourceLocator_get_FragmentPath(self: *const T, text: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).get_FragmentPath(@ptrCast(*const IWSManResourceLocator, self), text);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManResourceLocator_put_FragmentPath(self: *const T, text: ?BSTR) HRESULT {
+                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).put_FragmentPath(@ptrCast(*const IWSManResourceLocator, self), text);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManResourceLocator_get_FragmentDialect(self: *const T, text: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).get_FragmentDialect(@ptrCast(*const IWSManResourceLocator, self), text);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManResourceLocator_put_FragmentDialect(self: *const T, text: ?BSTR) HRESULT {
+                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).put_FragmentDialect(@ptrCast(*const IWSManResourceLocator, self), text);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManResourceLocator_AddOption(self: *const T, OptionName: ?BSTR, OptionValue: VARIANT, mustComply: BOOL) HRESULT {
+                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).AddOption(@ptrCast(*const IWSManResourceLocator, self), OptionName, OptionValue, mustComply);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManResourceLocator_put_MustUnderstandOptions(self: *const T, mustUnderstand: BOOL) HRESULT {
+                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).put_MustUnderstandOptions(@ptrCast(*const IWSManResourceLocator, self), mustUnderstand);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManResourceLocator_get_MustUnderstandOptions(self: *const T, mustUnderstand: ?*BOOL) HRESULT {
+                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).get_MustUnderstandOptions(@ptrCast(*const IWSManResourceLocator, self), mustUnderstand);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManResourceLocator_ClearOptions(self: *const T) HRESULT {
+                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).ClearOptions(@ptrCast(*const IWSManResourceLocator, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManResourceLocator_get_Error(self: *const T, value: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).get_Error(@ptrCast(*const IWSManResourceLocator, self), value);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2491,9 +2511,11 @@ pub const IWSManResourceLocatorInternal = extern struct {
         base: IUnknown.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2503,14 +2525,14 @@ pub const IWSManInternal = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         ConfigSDDL: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWSManInternal,
                 session: ?*IDispatch,
                 resourceUri: VARIANT,
                 flags: i32,
                 resource: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWSManInternal,
                 session: ?*IDispatch,
                 resourceUri: VARIANT,
@@ -2520,16 +2542,17 @@ pub const IWSManInternal = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSManInternal_ConfigSDDL(self: *const T, session: ?*IDispatch, resourceUri: VARIANT, flags: i32, resource: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWSManInternal.VTable, self.vtable).ConfigSDDL(@ptrCast(*const IWSManInternal, self), session, resourceUri, flags, resource);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWSManInternal_ConfigSDDL(self: *const T, session: ?*IDispatch, resourceUri: VARIANT, flags: i32, resource: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWSManInternal.VTable, self.vtable).ConfigSDDL(@ptrCast(*const IWSManInternal, self), session, resourceUri, flags, resource);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (33)
@@ -2818,19 +2841,14 @@ pub extern "wsmsvc" fn WSManPluginAuthzQueryQuotaComplete(
     extendedErrorInformation: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (9)
@@ -2847,25 +2865,53 @@ const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "WSMAN_SHELL_COMPLETION_FUNCTION")) { _ = WSMAN_SHELL_COMPLETION_FUNCTION; }
-    if (@hasDecl(@This(), "WSMAN_PLUGIN_RELEASE_SHELL_CONTEXT")) { _ = WSMAN_PLUGIN_RELEASE_SHELL_CONTEXT; }
-    if (@hasDecl(@This(), "WSMAN_PLUGIN_RELEASE_COMMAND_CONTEXT")) { _ = WSMAN_PLUGIN_RELEASE_COMMAND_CONTEXT; }
-    if (@hasDecl(@This(), "WSMAN_PLUGIN_STARTUP")) { _ = WSMAN_PLUGIN_STARTUP; }
-    if (@hasDecl(@This(), "WSMAN_PLUGIN_SHUTDOWN")) { _ = WSMAN_PLUGIN_SHUTDOWN; }
-    if (@hasDecl(@This(), "WSMAN_PLUGIN_SHELL")) { _ = WSMAN_PLUGIN_SHELL; }
-    if (@hasDecl(@This(), "WSMAN_PLUGIN_COMMAND")) { _ = WSMAN_PLUGIN_COMMAND; }
-    if (@hasDecl(@This(), "WSMAN_PLUGIN_SEND")) { _ = WSMAN_PLUGIN_SEND; }
-    if (@hasDecl(@This(), "WSMAN_PLUGIN_RECEIVE")) { _ = WSMAN_PLUGIN_RECEIVE; }
-    if (@hasDecl(@This(), "WSMAN_PLUGIN_SIGNAL")) { _ = WSMAN_PLUGIN_SIGNAL; }
-    if (@hasDecl(@This(), "WSMAN_PLUGIN_CONNECT")) { _ = WSMAN_PLUGIN_CONNECT; }
-    if (@hasDecl(@This(), "WSMAN_PLUGIN_AUTHORIZE_USER")) { _ = WSMAN_PLUGIN_AUTHORIZE_USER; }
-    if (@hasDecl(@This(), "WSMAN_PLUGIN_AUTHORIZE_OPERATION")) { _ = WSMAN_PLUGIN_AUTHORIZE_OPERATION; }
-    if (@hasDecl(@This(), "WSMAN_PLUGIN_AUTHORIZE_QUERY_QUOTA")) { _ = WSMAN_PLUGIN_AUTHORIZE_QUERY_QUOTA; }
-    if (@hasDecl(@This(), "WSMAN_PLUGIN_AUTHORIZE_RELEASE_CONTEXT")) { _ = WSMAN_PLUGIN_AUTHORIZE_RELEASE_CONTEXT; }
+    if (@hasDecl(@This(), "WSMAN_SHELL_COMPLETION_FUNCTION")) {
+        _ = WSMAN_SHELL_COMPLETION_FUNCTION;
+    }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_RELEASE_SHELL_CONTEXT")) {
+        _ = WSMAN_PLUGIN_RELEASE_SHELL_CONTEXT;
+    }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_RELEASE_COMMAND_CONTEXT")) {
+        _ = WSMAN_PLUGIN_RELEASE_COMMAND_CONTEXT;
+    }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_STARTUP")) {
+        _ = WSMAN_PLUGIN_STARTUP;
+    }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_SHUTDOWN")) {
+        _ = WSMAN_PLUGIN_SHUTDOWN;
+    }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_SHELL")) {
+        _ = WSMAN_PLUGIN_SHELL;
+    }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_COMMAND")) {
+        _ = WSMAN_PLUGIN_COMMAND;
+    }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_SEND")) {
+        _ = WSMAN_PLUGIN_SEND;
+    }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_RECEIVE")) {
+        _ = WSMAN_PLUGIN_RECEIVE;
+    }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_SIGNAL")) {
+        _ = WSMAN_PLUGIN_SIGNAL;
+    }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_CONNECT")) {
+        _ = WSMAN_PLUGIN_CONNECT;
+    }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_AUTHORIZE_USER")) {
+        _ = WSMAN_PLUGIN_AUTHORIZE_USER;
+    }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_AUTHORIZE_OPERATION")) {
+        _ = WSMAN_PLUGIN_AUTHORIZE_OPERATION;
+    }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_AUTHORIZE_QUERY_QUOTA")) {
+        _ = WSMAN_PLUGIN_AUTHORIZE_QUERY_QUOTA;
+    }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_AUTHORIZE_RELEASE_CONTEXT")) {
+        _ = WSMAN_PLUGIN_AUTHORIZE_RELEASE_CONTEXT;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

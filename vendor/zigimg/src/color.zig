@@ -5,8 +5,8 @@ const PixelFormat = @import("pixel_format.zig").PixelFormat;
 const TypeInfo = std.builtin.TypeInfo;
 
 pub inline fn toIntColor(comptime T: type, value: f32) T {
-    const float_value = @round(value * @intToFloat(f32, math.maxInt(T)));
-    return @floatToInt(T, math.clamp(float_value, math.minInt(T), math.maxInt(T)));
+    const float_value = @round(value * @floatFromInt(f32, math.maxInt(T)));
+    return @intFromFloat(T, math.clamp(float_value, math.minInt(T), math.maxInt(T)));
 }
 
 pub inline fn scaleToIntColor(comptime T: type, value: anytype) T {
@@ -28,7 +28,7 @@ pub inline fn scaleToIntColor(comptime T: type, value: anytype) T {
 }
 
 pub inline fn toF32Color(value: anytype) f32 {
-    return @intToFloat(f32, value) / @intToFloat(f32, math.maxInt(@TypeOf(value)));
+    return @floatFromInt(f32, value) / @floatFromInt(f32, math.maxInt(@TypeOf(value)));
 }
 
 pub const Colorf32 = extern struct {

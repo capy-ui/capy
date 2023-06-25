@@ -228,20 +228,7 @@ pub const REG_SAM_FLAGS = enum(u32) {
         WRITE: u1 = 0,
         ALL_ACCESS: u1 = 0,
     }) REG_SAM_FLAGS {
-        return @intToEnum(REG_SAM_FLAGS,
-              (if (o.QUERY_VALUE == 1) @enumToInt(REG_SAM_FLAGS.QUERY_VALUE) else 0)
-            | (if (o.SET_VALUE == 1) @enumToInt(REG_SAM_FLAGS.SET_VALUE) else 0)
-            | (if (o.CREATE_SUB_KEY == 1) @enumToInt(REG_SAM_FLAGS.CREATE_SUB_KEY) else 0)
-            | (if (o.ENUMERATE_SUB_KEYS == 1) @enumToInt(REG_SAM_FLAGS.ENUMERATE_SUB_KEYS) else 0)
-            | (if (o.NOTIFY == 1) @enumToInt(REG_SAM_FLAGS.NOTIFY) else 0)
-            | (if (o.CREATE_LINK == 1) @enumToInt(REG_SAM_FLAGS.CREATE_LINK) else 0)
-            | (if (o.WOW64_32KEY == 1) @enumToInt(REG_SAM_FLAGS.WOW64_32KEY) else 0)
-            | (if (o.WOW64_64KEY == 1) @enumToInt(REG_SAM_FLAGS.WOW64_64KEY) else 0)
-            | (if (o.WOW64_RES == 1) @enumToInt(REG_SAM_FLAGS.WOW64_RES) else 0)
-            | (if (o.READ == 1) @enumToInt(REG_SAM_FLAGS.READ) else 0)
-            | (if (o.WRITE == 1) @enumToInt(REG_SAM_FLAGS.WRITE) else 0)
-            | (if (o.ALL_ACCESS == 1) @enumToInt(REG_SAM_FLAGS.ALL_ACCESS) else 0)
-        );
+        return @enumFromInt(REG_SAM_FLAGS, (if (o.QUERY_VALUE == 1) @intFromEnum(REG_SAM_FLAGS.QUERY_VALUE) else 0) | (if (o.SET_VALUE == 1) @intFromEnum(REG_SAM_FLAGS.SET_VALUE) else 0) | (if (o.CREATE_SUB_KEY == 1) @intFromEnum(REG_SAM_FLAGS.CREATE_SUB_KEY) else 0) | (if (o.ENUMERATE_SUB_KEYS == 1) @intFromEnum(REG_SAM_FLAGS.ENUMERATE_SUB_KEYS) else 0) | (if (o.NOTIFY == 1) @intFromEnum(REG_SAM_FLAGS.NOTIFY) else 0) | (if (o.CREATE_LINK == 1) @intFromEnum(REG_SAM_FLAGS.CREATE_LINK) else 0) | (if (o.WOW64_32KEY == 1) @intFromEnum(REG_SAM_FLAGS.WOW64_32KEY) else 0) | (if (o.WOW64_64KEY == 1) @intFromEnum(REG_SAM_FLAGS.WOW64_64KEY) else 0) | (if (o.WOW64_RES == 1) @intFromEnum(REG_SAM_FLAGS.WOW64_RES) else 0) | (if (o.READ == 1) @intFromEnum(REG_SAM_FLAGS.READ) else 0) | (if (o.WRITE == 1) @intFromEnum(REG_SAM_FLAGS.WRITE) else 0) | (if (o.ALL_ACCESS == 1) @intFromEnum(REG_SAM_FLAGS.ALL_ACCESS) else 0));
     }
 };
 pub const KEY_QUERY_VALUE = REG_SAM_FLAGS.QUERY_VALUE;
@@ -275,14 +262,7 @@ pub const REG_OPEN_CREATE_OPTIONS = enum(u32) {
         OPEN_LINK: u1 = 0,
         DONT_VIRTUALIZE: u1 = 0,
     }) REG_OPEN_CREATE_OPTIONS {
-        return @intToEnum(REG_OPEN_CREATE_OPTIONS,
-              (if (o.RESERVED == 1) @enumToInt(REG_OPEN_CREATE_OPTIONS.RESERVED) else 0)
-            | (if (o.VOLATILE == 1) @enumToInt(REG_OPEN_CREATE_OPTIONS.VOLATILE) else 0)
-            | (if (o.CREATE_LINK == 1) @enumToInt(REG_OPEN_CREATE_OPTIONS.CREATE_LINK) else 0)
-            | (if (o.BACKUP_RESTORE == 1) @enumToInt(REG_OPEN_CREATE_OPTIONS.BACKUP_RESTORE) else 0)
-            | (if (o.OPEN_LINK == 1) @enumToInt(REG_OPEN_CREATE_OPTIONS.OPEN_LINK) else 0)
-            | (if (o.DONT_VIRTUALIZE == 1) @enumToInt(REG_OPEN_CREATE_OPTIONS.DONT_VIRTUALIZE) else 0)
-        );
+        return @enumFromInt(REG_OPEN_CREATE_OPTIONS, (if (o.RESERVED == 1) @intFromEnum(REG_OPEN_CREATE_OPTIONS.RESERVED) else 0) | (if (o.VOLATILE == 1) @intFromEnum(REG_OPEN_CREATE_OPTIONS.VOLATILE) else 0) | (if (o.CREATE_LINK == 1) @intFromEnum(REG_OPEN_CREATE_OPTIONS.CREATE_LINK) else 0) | (if (o.BACKUP_RESTORE == 1) @intFromEnum(REG_OPEN_CREATE_OPTIONS.BACKUP_RESTORE) else 0) | (if (o.OPEN_LINK == 1) @intFromEnum(REG_OPEN_CREATE_OPTIONS.OPEN_LINK) else 0) | (if (o.DONT_VIRTUALIZE == 1) @intFromEnum(REG_OPEN_CREATE_OPTIONS.DONT_VIRTUALIZE) else 0));
     }
 };
 // TODO: enum 'REG_OPEN_CREATE_OPTIONS' has known issues with its value aliases
@@ -324,13 +304,7 @@ pub const REG_NOTIFY_FILTER = enum(u32) {
         CHANGE_SECURITY: u1 = 0,
         THREAD_AGNOSTIC: u1 = 0,
     }) REG_NOTIFY_FILTER {
-        return @intToEnum(REG_NOTIFY_FILTER,
-              (if (o.CHANGE_NAME == 1) @enumToInt(REG_NOTIFY_FILTER.CHANGE_NAME) else 0)
-            | (if (o.CHANGE_ATTRIBUTES == 1) @enumToInt(REG_NOTIFY_FILTER.CHANGE_ATTRIBUTES) else 0)
-            | (if (o.CHANGE_LAST_SET == 1) @enumToInt(REG_NOTIFY_FILTER.CHANGE_LAST_SET) else 0)
-            | (if (o.CHANGE_SECURITY == 1) @enumToInt(REG_NOTIFY_FILTER.CHANGE_SECURITY) else 0)
-            | (if (o.THREAD_AGNOSTIC == 1) @enumToInt(REG_NOTIFY_FILTER.THREAD_AGNOSTIC) else 0)
-        );
+        return @enumFromInt(REG_NOTIFY_FILTER, (if (o.CHANGE_NAME == 1) @intFromEnum(REG_NOTIFY_FILTER.CHANGE_NAME) else 0) | (if (o.CHANGE_ATTRIBUTES == 1) @intFromEnum(REG_NOTIFY_FILTER.CHANGE_ATTRIBUTES) else 0) | (if (o.CHANGE_LAST_SET == 1) @intFromEnum(REG_NOTIFY_FILTER.CHANGE_LAST_SET) else 0) | (if (o.CHANGE_SECURITY == 1) @intFromEnum(REG_NOTIFY_FILTER.CHANGE_SECURITY) else 0) | (if (o.THREAD_AGNOSTIC == 1) @intFromEnum(REG_NOTIFY_FILTER.THREAD_AGNOSTIC) else 0));
     }
 };
 pub const REG_NOTIFY_CHANGE_NAME = REG_NOTIFY_FILTER.CHANGE_NAME;
@@ -363,18 +337,7 @@ pub const RRF_RT = enum(u32) {
         REG_QWORD: u1 = 0,
         REG_SZ: u1 = 0,
     }) RRF_RT {
-        return @intToEnum(RRF_RT,
-              (if (o.ANY == 1) @enumToInt(RRF_RT.ANY) else 0)
-            | (if (o.DWORD == 1) @enumToInt(RRF_RT.DWORD) else 0)
-            | (if (o.QWORD == 1) @enumToInt(RRF_RT.QWORD) else 0)
-            | (if (o.REG_BINARY == 1) @enumToInt(RRF_RT.REG_BINARY) else 0)
-            | (if (o.REG_DWORD == 1) @enumToInt(RRF_RT.REG_DWORD) else 0)
-            | (if (o.REG_EXPAND_SZ == 1) @enumToInt(RRF_RT.REG_EXPAND_SZ) else 0)
-            | (if (o.REG_MULTI_SZ == 1) @enumToInt(RRF_RT.REG_MULTI_SZ) else 0)
-            | (if (o.REG_NONE == 1) @enumToInt(RRF_RT.REG_NONE) else 0)
-            | (if (o.REG_QWORD == 1) @enumToInt(RRF_RT.REG_QWORD) else 0)
-            | (if (o.REG_SZ == 1) @enumToInt(RRF_RT.REG_SZ) else 0)
-        );
+        return @enumFromInt(RRF_RT, (if (o.ANY == 1) @intFromEnum(RRF_RT.ANY) else 0) | (if (o.DWORD == 1) @intFromEnum(RRF_RT.DWORD) else 0) | (if (o.QWORD == 1) @intFromEnum(RRF_RT.QWORD) else 0) | (if (o.REG_BINARY == 1) @intFromEnum(RRF_RT.REG_BINARY) else 0) | (if (o.REG_DWORD == 1) @intFromEnum(RRF_RT.REG_DWORD) else 0) | (if (o.REG_EXPAND_SZ == 1) @intFromEnum(RRF_RT.REG_EXPAND_SZ) else 0) | (if (o.REG_MULTI_SZ == 1) @intFromEnum(RRF_RT.REG_MULTI_SZ) else 0) | (if (o.REG_NONE == 1) @intFromEnum(RRF_RT.REG_NONE) else 0) | (if (o.REG_QWORD == 1) @intFromEnum(RRF_RT.REG_QWORD) else 0) | (if (o.REG_SZ == 1) @intFromEnum(RRF_RT.REG_SZ) else 0));
     }
 };
 pub const RRF_RT_ANY = RRF_RT.ANY;
@@ -389,7 +352,7 @@ pub const RRF_RT_REG_QWORD = RRF_RT.REG_QWORD;
 pub const RRF_RT_REG_SZ = RRF_RT.REG_SZ;
 
 // TODO: this type has a FreeFunc 'RegCloseKey', what can Zig do with this information?
-pub const HKEY = *opaque{};
+pub const HKEY = *opaque {};
 
 pub const val_context = extern struct {
     valuelen: i32,
@@ -412,7 +375,7 @@ pub const pvalueW = extern struct {
 };
 
 pub const PQUERYHANDLER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         keycontext: ?*anyopaque,
         val_list: ?*val_context,
         num_vals: u32,
@@ -420,7 +383,7 @@ pub const PQUERYHANDLER = switch (@import("builtin").zig_backend) {
         total_outlen: ?*u32,
         input_blen: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         keycontext: ?*anyopaque,
         val_list: ?*val_context,
         num_vals: u32,
@@ -428,7 +391,7 @@ pub const PQUERYHANDLER = switch (@import("builtin").zig_backend) {
         total_outlen: ?*u32,
         input_blen: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const provider_info = extern struct {
     pi_R0_1val: ?PQUERYHANDLER,
@@ -465,7 +428,6 @@ pub const DSKTLSYSTEMTIME = extern struct {
     wResult: u16,
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (83)
 //--------------------------------------------------------------------------------
@@ -495,12 +457,10 @@ pub extern "advapi32" fn RegOpenCurrentUser(
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "advapi32" fn RegDisablePredefinedCache(
-) callconv(@import("std").os.windows.WINAPI) LSTATUS;
+pub extern "advapi32" fn RegDisablePredefinedCache() callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "advapi32" fn RegDisablePredefinedCacheEx(
-) callconv(@import("std").os.windows.WINAPI) LSTATUS;
+pub extern "advapi32" fn RegDisablePredefinedCacheEx() callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn RegConnectRegistryA(
@@ -1193,7 +1153,6 @@ pub extern "api-ms-win-core-state-helpers-l1-1-0" fn GetRegistryValueWithFallbac
     pcbDataOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (36)
 //--------------------------------------------------------------------------------
@@ -1276,42 +1235,42 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const RegSaveKeyEx = thismodule.RegSaveKeyExW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const pvalue = *opaque{};
-        pub const VALENT = *opaque{};
-        pub const RegConnectRegistry = *opaque{};
-        pub const RegConnectRegistryEx = *opaque{};
-        pub const RegCreateKey = *opaque{};
-        pub const RegCreateKeyEx = *opaque{};
-        pub const RegCreateKeyTransacted = *opaque{};
-        pub const RegDeleteKey = *opaque{};
-        pub const RegDeleteKeyEx = *opaque{};
-        pub const RegDeleteKeyTransacted = *opaque{};
-        pub const RegDeleteValue = *opaque{};
-        pub const RegEnumKey = *opaque{};
-        pub const RegEnumKeyEx = *opaque{};
-        pub const RegEnumValue = *opaque{};
-        pub const RegLoadKey = *opaque{};
-        pub const RegOpenKey = *opaque{};
-        pub const RegOpenKeyEx = *opaque{};
-        pub const RegOpenKeyTransacted = *opaque{};
-        pub const RegQueryInfoKey = *opaque{};
-        pub const RegQueryValue = *opaque{};
-        pub const RegQueryMultipleValues = *opaque{};
-        pub const RegQueryValueEx = *opaque{};
-        pub const RegReplaceKey = *opaque{};
-        pub const RegRestoreKey = *opaque{};
-        pub const RegSaveKey = *opaque{};
-        pub const RegSetValue = *opaque{};
-        pub const RegSetValueEx = *opaque{};
-        pub const RegUnLoadKey = *opaque{};
-        pub const RegDeleteKeyValue = *opaque{};
-        pub const RegSetKeyValue = *opaque{};
-        pub const RegDeleteTree = *opaque{};
-        pub const RegCopyTree = *opaque{};
-        pub const RegGetValue = *opaque{};
-        pub const RegLoadMUIString = *opaque{};
-        pub const RegLoadAppKey = *opaque{};
-        pub const RegSaveKeyEx = *opaque{};
+        pub const pvalue = *opaque {};
+        pub const VALENT = *opaque {};
+        pub const RegConnectRegistry = *opaque {};
+        pub const RegConnectRegistryEx = *opaque {};
+        pub const RegCreateKey = *opaque {};
+        pub const RegCreateKeyEx = *opaque {};
+        pub const RegCreateKeyTransacted = *opaque {};
+        pub const RegDeleteKey = *opaque {};
+        pub const RegDeleteKeyEx = *opaque {};
+        pub const RegDeleteKeyTransacted = *opaque {};
+        pub const RegDeleteValue = *opaque {};
+        pub const RegEnumKey = *opaque {};
+        pub const RegEnumKeyEx = *opaque {};
+        pub const RegEnumValue = *opaque {};
+        pub const RegLoadKey = *opaque {};
+        pub const RegOpenKey = *opaque {};
+        pub const RegOpenKeyEx = *opaque {};
+        pub const RegOpenKeyTransacted = *opaque {};
+        pub const RegQueryInfoKey = *opaque {};
+        pub const RegQueryValue = *opaque {};
+        pub const RegQueryMultipleValues = *opaque {};
+        pub const RegQueryValueEx = *opaque {};
+        pub const RegReplaceKey = *opaque {};
+        pub const RegRestoreKey = *opaque {};
+        pub const RegSaveKey = *opaque {};
+        pub const RegSetValue = *opaque {};
+        pub const RegSetValueEx = *opaque {};
+        pub const RegUnLoadKey = *opaque {};
+        pub const RegDeleteKeyValue = *opaque {};
+        pub const RegSetKeyValue = *opaque {};
+        pub const RegDeleteTree = *opaque {};
+        pub const RegCopyTree = *opaque {};
+        pub const RegGetValue = *opaque {};
+        pub const RegLoadMUIString = *opaque {};
+        pub const RegLoadAppKey = *opaque {};
+        pub const RegSaveKeyEx = *opaque {};
     } else struct {
         pub const pvalue = @compileError("'pvalue' requires that UNICODE be set to true or false in the root module");
         pub const VALENT = @compileError("'VALENT' requires that UNICODE be set to true or false in the root module");
@@ -1365,11 +1324,11 @@ const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PQUERYHANDLER")) { _ = PQUERYHANDLER; }
+    if (@hasDecl(@This(), "PQUERYHANDLER")) {
+        _ = PQUERYHANDLER;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

@@ -40,19 +40,19 @@ pub const HcnNotificationServiceDisconnect = HCN_NOTIFICATIONS.ServiceDisconnect
 pub const HcnNotificationFlagsReserved = HCN_NOTIFICATIONS.FlagsReserved;
 
 pub const HCN_NOTIFICATION_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         NotificationType: u32,
         Context: ?*anyopaque,
         NotificationStatus: HRESULT,
         NotificationData: ?[*:0]const u16,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         NotificationType: u32,
         Context: ?*anyopaque,
         NotificationStatus: HRESULT,
         NotificationData: ?[*:0]const u16,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const HCN_PORT_PROTOCOL = enum(i32) {
     TCP = 1,
@@ -86,7 +86,6 @@ pub const HCN_PORT_RANGE_ENTRY = extern struct {
     StartingPort: u16,
     EndingPort: u16,
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (41)
@@ -327,19 +326,14 @@ pub extern "computenetwork" fn HcnFreeGuestNetworkPortReservations(
     PortEntries: ?*HCN_PORT_RANGE_ENTRY,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
@@ -351,11 +345,11 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "HCN_NOTIFICATION_CALLBACK")) { _ = HCN_NOTIFICATION_CALLBACK; }
+    if (@hasDecl(@This(), "HCN_NOTIFICATION_CALLBACK")) {
+        _ = HCN_NOTIFICATION_CALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

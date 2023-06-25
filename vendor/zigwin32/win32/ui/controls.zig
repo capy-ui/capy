@@ -2312,17 +2312,7 @@ pub const DLG_DIR_LIST_FILE_TYPE = enum(u32) {
         SYSTEM: u1 = 0,
         POSTMSGS: u1 = 0,
     }) DLG_DIR_LIST_FILE_TYPE {
-        return @intToEnum(DLG_DIR_LIST_FILE_TYPE,
-              (if (o.ARCHIVE == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.ARCHIVE) else 0)
-            | (if (o.DIRECTORY == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.DIRECTORY) else 0)
-            | (if (o.DRIVES == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.DRIVES) else 0)
-            | (if (o.EXCLUSIVE == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.EXCLUSIVE) else 0)
-            | (if (o.HIDDEN == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.HIDDEN) else 0)
-            | (if (o.READONLY == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.READONLY) else 0)
-            | (if (o.READWRITE == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.READWRITE) else 0)
-            | (if (o.SYSTEM == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.SYSTEM) else 0)
-            | (if (o.POSTMSGS == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.POSTMSGS) else 0)
-        );
+        return @enumFromInt(DLG_DIR_LIST_FILE_TYPE, (if (o.ARCHIVE == 1) @intFromEnum(DLG_DIR_LIST_FILE_TYPE.ARCHIVE) else 0) | (if (o.DIRECTORY == 1) @intFromEnum(DLG_DIR_LIST_FILE_TYPE.DIRECTORY) else 0) | (if (o.DRIVES == 1) @intFromEnum(DLG_DIR_LIST_FILE_TYPE.DRIVES) else 0) | (if (o.EXCLUSIVE == 1) @intFromEnum(DLG_DIR_LIST_FILE_TYPE.EXCLUSIVE) else 0) | (if (o.HIDDEN == 1) @intFromEnum(DLG_DIR_LIST_FILE_TYPE.HIDDEN) else 0) | (if (o.READONLY == 1) @intFromEnum(DLG_DIR_LIST_FILE_TYPE.READONLY) else 0) | (if (o.READWRITE == 1) @intFromEnum(DLG_DIR_LIST_FILE_TYPE.READWRITE) else 0) | (if (o.SYSTEM == 1) @intFromEnum(DLG_DIR_LIST_FILE_TYPE.SYSTEM) else 0) | (if (o.POSTMSGS == 1) @intFromEnum(DLG_DIR_LIST_FILE_TYPE.POSTMSGS) else 0));
     }
 };
 pub const DDL_ARCHIVE = DLG_DIR_LIST_FILE_TYPE.ARCHIVE;
@@ -2343,10 +2333,7 @@ pub const OPEN_THEME_DATA_FLAGS = enum(u32) {
         FORCE_RECT_SIZING: u1 = 0,
         NONCLIENT: u1 = 0,
     }) OPEN_THEME_DATA_FLAGS {
-        return @intToEnum(OPEN_THEME_DATA_FLAGS,
-              (if (o.FORCE_RECT_SIZING == 1) @enumToInt(OPEN_THEME_DATA_FLAGS.FORCE_RECT_SIZING) else 0)
-            | (if (o.NONCLIENT == 1) @enumToInt(OPEN_THEME_DATA_FLAGS.NONCLIENT) else 0)
-        );
+        return @enumFromInt(OPEN_THEME_DATA_FLAGS, (if (o.FORCE_RECT_SIZING == 1) @intFromEnum(OPEN_THEME_DATA_FLAGS.FORCE_RECT_SIZING) else 0) | (if (o.NONCLIENT == 1) @intFromEnum(OPEN_THEME_DATA_FLAGS.NONCLIENT) else 0));
     }
 };
 pub const OTD_FORCE_RECT_SIZING = OPEN_THEME_DATA_FLAGS.FORCE_RECT_SIZING;
@@ -2394,12 +2381,7 @@ pub const IMAGE_LIST_DRAW_STYLE = enum(u32) {
         MASK: u1 = 0,
         NORMAL: u1 = 0,
     }) IMAGE_LIST_DRAW_STYLE {
-        return @intToEnum(IMAGE_LIST_DRAW_STYLE,
-              (if (o.BLEND == 1) @enumToInt(IMAGE_LIST_DRAW_STYLE.BLEND) else 0)
-            | (if (o.FOCUS == 1) @enumToInt(IMAGE_LIST_DRAW_STYLE.FOCUS) else 0)
-            | (if (o.MASK == 1) @enumToInt(IMAGE_LIST_DRAW_STYLE.MASK) else 0)
-            | (if (o.NORMAL == 1) @enumToInt(IMAGE_LIST_DRAW_STYLE.NORMAL) else 0)
-        );
+        return @enumFromInt(IMAGE_LIST_DRAW_STYLE, (if (o.BLEND == 1) @intFromEnum(IMAGE_LIST_DRAW_STYLE.BLEND) else 0) | (if (o.FOCUS == 1) @intFromEnum(IMAGE_LIST_DRAW_STYLE.FOCUS) else 0) | (if (o.MASK == 1) @intFromEnum(IMAGE_LIST_DRAW_STYLE.MASK) else 0) | (if (o.NORMAL == 1) @intFromEnum(IMAGE_LIST_DRAW_STYLE.NORMAL) else 0));
     }
 };
 pub const ILD_BLEND = IMAGE_LIST_DRAW_STYLE.BLEND;
@@ -2482,11 +2464,7 @@ pub const DRAW_THEME_PARENT_BACKGROUND_FLAGS = enum(u32) {
         USECTLCOLORSTATIC: u1 = 0,
         USEERASEBKGND: u1 = 0,
     }) DRAW_THEME_PARENT_BACKGROUND_FLAGS {
-        return @intToEnum(DRAW_THEME_PARENT_BACKGROUND_FLAGS,
-              (if (o.WINDOWDC == 1) @enumToInt(DRAW_THEME_PARENT_BACKGROUND_FLAGS.WINDOWDC) else 0)
-            | (if (o.USECTLCOLORSTATIC == 1) @enumToInt(DRAW_THEME_PARENT_BACKGROUND_FLAGS.USECTLCOLORSTATIC) else 0)
-            | (if (o.USEERASEBKGND == 1) @enumToInt(DRAW_THEME_PARENT_BACKGROUND_FLAGS.USEERASEBKGND) else 0)
-        );
+        return @enumFromInt(DRAW_THEME_PARENT_BACKGROUND_FLAGS, (if (o.WINDOWDC == 1) @intFromEnum(DRAW_THEME_PARENT_BACKGROUND_FLAGS.WINDOWDC) else 0) | (if (o.USECTLCOLORSTATIC == 1) @intFromEnum(DRAW_THEME_PARENT_BACKGROUND_FLAGS.USECTLCOLORSTATIC) else 0) | (if (o.USEERASEBKGND == 1) @intFromEnum(DRAW_THEME_PARENT_BACKGROUND_FLAGS.USEERASEBKGND) else 0));
     }
 };
 pub const DTPB_WINDOWDC = DRAW_THEME_PARENT_BACKGROUND_FLAGS.WINDOWDC;
@@ -2525,18 +2503,7 @@ pub const HDI_MASK = enum(u32) {
         FILTER: u1 = 0,
         STATE: u1 = 0,
     }) HDI_MASK {
-        return @intToEnum(HDI_MASK,
-              (if (o.WIDTH == 1) @enumToInt(HDI_MASK.WIDTH) else 0)
-            | (if (o.TEXT == 1) @enumToInt(HDI_MASK.TEXT) else 0)
-            | (if (o.FORMAT == 1) @enumToInt(HDI_MASK.FORMAT) else 0)
-            | (if (o.LPARAM == 1) @enumToInt(HDI_MASK.LPARAM) else 0)
-            | (if (o.BITMAP == 1) @enumToInt(HDI_MASK.BITMAP) else 0)
-            | (if (o.IMAGE == 1) @enumToInt(HDI_MASK.IMAGE) else 0)
-            | (if (o.DI_SETITEM == 1) @enumToInt(HDI_MASK.DI_SETITEM) else 0)
-            | (if (o.ORDER == 1) @enumToInt(HDI_MASK.ORDER) else 0)
-            | (if (o.FILTER == 1) @enumToInt(HDI_MASK.FILTER) else 0)
-            | (if (o.STATE == 1) @enumToInt(HDI_MASK.STATE) else 0)
-        );
+        return @enumFromInt(HDI_MASK, (if (o.WIDTH == 1) @intFromEnum(HDI_MASK.WIDTH) else 0) | (if (o.TEXT == 1) @intFromEnum(HDI_MASK.TEXT) else 0) | (if (o.FORMAT == 1) @intFromEnum(HDI_MASK.FORMAT) else 0) | (if (o.LPARAM == 1) @intFromEnum(HDI_MASK.LPARAM) else 0) | (if (o.BITMAP == 1) @intFromEnum(HDI_MASK.BITMAP) else 0) | (if (o.IMAGE == 1) @intFromEnum(HDI_MASK.IMAGE) else 0) | (if (o.DI_SETITEM == 1) @intFromEnum(HDI_MASK.DI_SETITEM) else 0) | (if (o.ORDER == 1) @intFromEnum(HDI_MASK.ORDER) else 0) | (if (o.FILTER == 1) @intFromEnum(HDI_MASK.FILTER) else 0) | (if (o.STATE == 1) @intFromEnum(HDI_MASK.STATE) else 0));
     }
 };
 pub const HDI_WIDTH = HDI_MASK.WIDTH;
@@ -2561,11 +2528,7 @@ pub const NMREBAR_MASK_FLAGS = enum(u32) {
         LPARAM: u1 = 0,
         STYLE: u1 = 0,
     }) NMREBAR_MASK_FLAGS {
-        return @intToEnum(NMREBAR_MASK_FLAGS,
-              (if (o.ID == 1) @enumToInt(NMREBAR_MASK_FLAGS.ID) else 0)
-            | (if (o.LPARAM == 1) @enumToInt(NMREBAR_MASK_FLAGS.LPARAM) else 0)
-            | (if (o.STYLE == 1) @enumToInt(NMREBAR_MASK_FLAGS.STYLE) else 0)
-        );
+        return @enumFromInt(NMREBAR_MASK_FLAGS, (if (o.ID == 1) @intFromEnum(NMREBAR_MASK_FLAGS.ID) else 0) | (if (o.LPARAM == 1) @intFromEnum(NMREBAR_MASK_FLAGS.LPARAM) else 0) | (if (o.STYLE == 1) @intFromEnum(NMREBAR_MASK_FLAGS.STYLE) else 0));
     }
 };
 pub const RBNM_ID = NMREBAR_MASK_FLAGS.ID;
@@ -2615,19 +2578,7 @@ pub const LVCOLUMNW_FORMAT = enum(u32) {
         FIXED_RATIO: u1 = 0,
         SPLITBUTTON: u1 = 0,
     }) LVCOLUMNW_FORMAT {
-        return @intToEnum(LVCOLUMNW_FORMAT,
-              (if (o.LEFT == 1) @enumToInt(LVCOLUMNW_FORMAT.LEFT) else 0)
-            | (if (o.RIGHT == 1) @enumToInt(LVCOLUMNW_FORMAT.RIGHT) else 0)
-            | (if (o.CENTER == 1) @enumToInt(LVCOLUMNW_FORMAT.CENTER) else 0)
-            | (if (o.JUSTIFYMASK == 1) @enumToInt(LVCOLUMNW_FORMAT.JUSTIFYMASK) else 0)
-            | (if (o.IMAGE == 1) @enumToInt(LVCOLUMNW_FORMAT.IMAGE) else 0)
-            | (if (o.BITMAP_ON_RIGHT == 1) @enumToInt(LVCOLUMNW_FORMAT.BITMAP_ON_RIGHT) else 0)
-            | (if (o.COL_HAS_IMAGES == 1) @enumToInt(LVCOLUMNW_FORMAT.COL_HAS_IMAGES) else 0)
-            | (if (o.FIXED_WIDTH == 1) @enumToInt(LVCOLUMNW_FORMAT.FIXED_WIDTH) else 0)
-            | (if (o.NO_DPI_SCALE == 1) @enumToInt(LVCOLUMNW_FORMAT.NO_DPI_SCALE) else 0)
-            | (if (o.FIXED_RATIO == 1) @enumToInt(LVCOLUMNW_FORMAT.FIXED_RATIO) else 0)
-            | (if (o.SPLITBUTTON == 1) @enumToInt(LVCOLUMNW_FORMAT.SPLITBUTTON) else 0)
-        );
+        return @enumFromInt(LVCOLUMNW_FORMAT, (if (o.LEFT == 1) @intFromEnum(LVCOLUMNW_FORMAT.LEFT) else 0) | (if (o.RIGHT == 1) @intFromEnum(LVCOLUMNW_FORMAT.RIGHT) else 0) | (if (o.CENTER == 1) @intFromEnum(LVCOLUMNW_FORMAT.CENTER) else 0) | (if (o.JUSTIFYMASK == 1) @intFromEnum(LVCOLUMNW_FORMAT.JUSTIFYMASK) else 0) | (if (o.IMAGE == 1) @intFromEnum(LVCOLUMNW_FORMAT.IMAGE) else 0) | (if (o.BITMAP_ON_RIGHT == 1) @intFromEnum(LVCOLUMNW_FORMAT.BITMAP_ON_RIGHT) else 0) | (if (o.COL_HAS_IMAGES == 1) @intFromEnum(LVCOLUMNW_FORMAT.COL_HAS_IMAGES) else 0) | (if (o.FIXED_WIDTH == 1) @intFromEnum(LVCOLUMNW_FORMAT.FIXED_WIDTH) else 0) | (if (o.NO_DPI_SCALE == 1) @intFromEnum(LVCOLUMNW_FORMAT.NO_DPI_SCALE) else 0) | (if (o.FIXED_RATIO == 1) @intFromEnum(LVCOLUMNW_FORMAT.FIXED_RATIO) else 0) | (if (o.SPLITBUTTON == 1) @intFromEnum(LVCOLUMNW_FORMAT.SPLITBUTTON) else 0));
     }
 };
 pub const LVCFMT_LEFT = LVCOLUMNW_FORMAT.LEFT;
@@ -2654,12 +2605,7 @@ pub const NMPGSCROLL_KEYS = enum(u16) {
         CONTROL: u1 = 0,
         MENU: u1 = 0,
     }) NMPGSCROLL_KEYS {
-        return @intToEnum(NMPGSCROLL_KEYS,
-              (if (o.NONE == 1) @enumToInt(NMPGSCROLL_KEYS.NONE) else 0)
-            | (if (o.SHIFT == 1) @enumToInt(NMPGSCROLL_KEYS.SHIFT) else 0)
-            | (if (o.CONTROL == 1) @enumToInt(NMPGSCROLL_KEYS.CONTROL) else 0)
-            | (if (o.MENU == 1) @enumToInt(NMPGSCROLL_KEYS.MENU) else 0)
-        );
+        return @enumFromInt(NMPGSCROLL_KEYS, (if (o.NONE == 1) @intFromEnum(NMPGSCROLL_KEYS.NONE) else 0) | (if (o.SHIFT == 1) @intFromEnum(NMPGSCROLL_KEYS.SHIFT) else 0) | (if (o.CONTROL == 1) @intFromEnum(NMPGSCROLL_KEYS.CONTROL) else 0) | (if (o.MENU == 1) @intFromEnum(NMPGSCROLL_KEYS.MENU) else 0));
     }
 };
 pub const PGK_NONE = NMPGSCROLL_KEYS.NONE;
@@ -2685,15 +2631,7 @@ pub const COMBOBOX_EX_ITEM_FLAGS = enum(u32) {
         SELECTEDIMAGE: u1 = 0,
         TEXT: u1 = 0,
     }) COMBOBOX_EX_ITEM_FLAGS {
-        return @intToEnum(COMBOBOX_EX_ITEM_FLAGS,
-              (if (o.DI_SETITEM == 1) @enumToInt(COMBOBOX_EX_ITEM_FLAGS.DI_SETITEM) else 0)
-            | (if (o.IMAGE == 1) @enumToInt(COMBOBOX_EX_ITEM_FLAGS.IMAGE) else 0)
-            | (if (o.INDENT == 1) @enumToInt(COMBOBOX_EX_ITEM_FLAGS.INDENT) else 0)
-            | (if (o.LPARAM == 1) @enumToInt(COMBOBOX_EX_ITEM_FLAGS.LPARAM) else 0)
-            | (if (o.OVERLAY == 1) @enumToInt(COMBOBOX_EX_ITEM_FLAGS.OVERLAY) else 0)
-            | (if (o.SELECTEDIMAGE == 1) @enumToInt(COMBOBOX_EX_ITEM_FLAGS.SELECTEDIMAGE) else 0)
-            | (if (o.TEXT == 1) @enumToInt(COMBOBOX_EX_ITEM_FLAGS.TEXT) else 0)
-        );
+        return @enumFromInt(COMBOBOX_EX_ITEM_FLAGS, (if (o.DI_SETITEM == 1) @intFromEnum(COMBOBOX_EX_ITEM_FLAGS.DI_SETITEM) else 0) | (if (o.IMAGE == 1) @intFromEnum(COMBOBOX_EX_ITEM_FLAGS.IMAGE) else 0) | (if (o.INDENT == 1) @intFromEnum(COMBOBOX_EX_ITEM_FLAGS.INDENT) else 0) | (if (o.LPARAM == 1) @intFromEnum(COMBOBOX_EX_ITEM_FLAGS.LPARAM) else 0) | (if (o.OVERLAY == 1) @intFromEnum(COMBOBOX_EX_ITEM_FLAGS.OVERLAY) else 0) | (if (o.SELECTEDIMAGE == 1) @intFromEnum(COMBOBOX_EX_ITEM_FLAGS.SELECTEDIMAGE) else 0) | (if (o.TEXT == 1) @intFromEnum(COMBOBOX_EX_ITEM_FLAGS.TEXT) else 0));
     }
 };
 pub const CBEIF_DI_SETITEM = COMBOBOX_EX_ITEM_FLAGS.DI_SETITEM;
@@ -2741,19 +2679,7 @@ pub const TVITEM_MASK = enum(u32) {
         INTEGRAL: u1 = 0,
         STATEEX: u1 = 0,
     }) TVITEM_MASK {
-        return @intToEnum(TVITEM_MASK,
-              (if (o.CHILDREN == 1) @enumToInt(TVITEM_MASK.CHILDREN) else 0)
-            | (if (o.DI_SETITEM == 1) @enumToInt(TVITEM_MASK.DI_SETITEM) else 0)
-            | (if (o.HANDLE == 1) @enumToInt(TVITEM_MASK.HANDLE) else 0)
-            | (if (o.IMAGE == 1) @enumToInt(TVITEM_MASK.IMAGE) else 0)
-            | (if (o.PARAM == 1) @enumToInt(TVITEM_MASK.PARAM) else 0)
-            | (if (o.SELECTEDIMAGE == 1) @enumToInt(TVITEM_MASK.SELECTEDIMAGE) else 0)
-            | (if (o.STATE == 1) @enumToInt(TVITEM_MASK.STATE) else 0)
-            | (if (o.TEXT == 1) @enumToInt(TVITEM_MASK.TEXT) else 0)
-            | (if (o.EXPANDEDIMAGE == 1) @enumToInt(TVITEM_MASK.EXPANDEDIMAGE) else 0)
-            | (if (o.INTEGRAL == 1) @enumToInt(TVITEM_MASK.INTEGRAL) else 0)
-            | (if (o.STATEEX == 1) @enumToInt(TVITEM_MASK.STATEEX) else 0)
-        );
+        return @enumFromInt(TVITEM_MASK, (if (o.CHILDREN == 1) @intFromEnum(TVITEM_MASK.CHILDREN) else 0) | (if (o.DI_SETITEM == 1) @intFromEnum(TVITEM_MASK.DI_SETITEM) else 0) | (if (o.HANDLE == 1) @intFromEnum(TVITEM_MASK.HANDLE) else 0) | (if (o.IMAGE == 1) @intFromEnum(TVITEM_MASK.IMAGE) else 0) | (if (o.PARAM == 1) @intFromEnum(TVITEM_MASK.PARAM) else 0) | (if (o.SELECTEDIMAGE == 1) @intFromEnum(TVITEM_MASK.SELECTEDIMAGE) else 0) | (if (o.STATE == 1) @intFromEnum(TVITEM_MASK.STATE) else 0) | (if (o.TEXT == 1) @intFromEnum(TVITEM_MASK.TEXT) else 0) | (if (o.EXPANDEDIMAGE == 1) @intFromEnum(TVITEM_MASK.EXPANDEDIMAGE) else 0) | (if (o.INTEGRAL == 1) @intFromEnum(TVITEM_MASK.INTEGRAL) else 0) | (if (o.STATEEX == 1) @intFromEnum(TVITEM_MASK.STATEEX) else 0));
     }
 };
 pub const TVIF_CHILDREN = TVITEM_MASK.CHILDREN;
@@ -2782,13 +2708,7 @@ pub const TCITEMHEADERA_MASK = enum(u32) {
         PARAM: u1 = 0,
         STATE: u1 = 0,
     }) TCITEMHEADERA_MASK {
-        return @intToEnum(TCITEMHEADERA_MASK,
-              (if (o.IMAGE == 1) @enumToInt(TCITEMHEADERA_MASK.IMAGE) else 0)
-            | (if (o.RTLREADING == 1) @enumToInt(TCITEMHEADERA_MASK.RTLREADING) else 0)
-            | (if (o.TEXT == 1) @enumToInt(TCITEMHEADERA_MASK.TEXT) else 0)
-            | (if (o.PARAM == 1) @enumToInt(TCITEMHEADERA_MASK.PARAM) else 0)
-            | (if (o.STATE == 1) @enumToInt(TCITEMHEADERA_MASK.STATE) else 0)
-        );
+        return @enumFromInt(TCITEMHEADERA_MASK, (if (o.IMAGE == 1) @intFromEnum(TCITEMHEADERA_MASK.IMAGE) else 0) | (if (o.RTLREADING == 1) @intFromEnum(TCITEMHEADERA_MASK.RTLREADING) else 0) | (if (o.TEXT == 1) @intFromEnum(TCITEMHEADERA_MASK.TEXT) else 0) | (if (o.PARAM == 1) @intFromEnum(TCITEMHEADERA_MASK.PARAM) else 0) | (if (o.STATE == 1) @intFromEnum(TCITEMHEADERA_MASK.STATE) else 0));
     }
 };
 pub const TCIF_IMAGE = TCITEMHEADERA_MASK.IMAGE;
@@ -2892,18 +2812,7 @@ pub const NMTBHOTITEM_FLAGS = enum(u32) {
         RESELECT: u1 = 0,
         TOGGLEDROPDOWN: u1 = 0,
     }) NMTBHOTITEM_FLAGS {
-        return @intToEnum(NMTBHOTITEM_FLAGS,
-              (if (o.ACCELERATOR == 1) @enumToInt(NMTBHOTITEM_FLAGS.ACCELERATOR) else 0)
-            | (if (o.ARROWKEYS == 1) @enumToInt(NMTBHOTITEM_FLAGS.ARROWKEYS) else 0)
-            | (if (o.DUPACCEL == 1) @enumToInt(NMTBHOTITEM_FLAGS.DUPACCEL) else 0)
-            | (if (o.ENTERING == 1) @enumToInt(NMTBHOTITEM_FLAGS.ENTERING) else 0)
-            | (if (o.LEAVING == 1) @enumToInt(NMTBHOTITEM_FLAGS.LEAVING) else 0)
-            | (if (o.LMOUSE == 1) @enumToInt(NMTBHOTITEM_FLAGS.LMOUSE) else 0)
-            | (if (o.MOUSE == 1) @enumToInt(NMTBHOTITEM_FLAGS.MOUSE) else 0)
-            | (if (o.OTHER == 1) @enumToInt(NMTBHOTITEM_FLAGS.OTHER) else 0)
-            | (if (o.RESELECT == 1) @enumToInt(NMTBHOTITEM_FLAGS.RESELECT) else 0)
-            | (if (o.TOGGLEDROPDOWN == 1) @enumToInt(NMTBHOTITEM_FLAGS.TOGGLEDROPDOWN) else 0)
-        );
+        return @enumFromInt(NMTBHOTITEM_FLAGS, (if (o.ACCELERATOR == 1) @intFromEnum(NMTBHOTITEM_FLAGS.ACCELERATOR) else 0) | (if (o.ARROWKEYS == 1) @intFromEnum(NMTBHOTITEM_FLAGS.ARROWKEYS) else 0) | (if (o.DUPACCEL == 1) @intFromEnum(NMTBHOTITEM_FLAGS.DUPACCEL) else 0) | (if (o.ENTERING == 1) @intFromEnum(NMTBHOTITEM_FLAGS.ENTERING) else 0) | (if (o.LEAVING == 1) @intFromEnum(NMTBHOTITEM_FLAGS.LEAVING) else 0) | (if (o.LMOUSE == 1) @intFromEnum(NMTBHOTITEM_FLAGS.LMOUSE) else 0) | (if (o.MOUSE == 1) @intFromEnum(NMTBHOTITEM_FLAGS.MOUSE) else 0) | (if (o.OTHER == 1) @intFromEnum(NMTBHOTITEM_FLAGS.OTHER) else 0) | (if (o.RESELECT == 1) @intFromEnum(NMTBHOTITEM_FLAGS.RESELECT) else 0) | (if (o.TOGGLEDROPDOWN == 1) @intFromEnum(NMTBHOTITEM_FLAGS.TOGGLEDROPDOWN) else 0));
     }
 };
 pub const HICF_ACCELERATOR = NMTBHOTITEM_FLAGS.ACCELERATOR;
@@ -2937,16 +2846,7 @@ pub const TTTOOLINFO_FLAGS = enum(u32) {
         TRACK: u1 = 0,
         TRANSPARENT: u1 = 0,
     }) TTTOOLINFO_FLAGS {
-        return @intToEnum(TTTOOLINFO_FLAGS,
-              (if (o.ABSOLUTE == 1) @enumToInt(TTTOOLINFO_FLAGS.ABSOLUTE) else 0)
-            | (if (o.CENTERTIP == 1) @enumToInt(TTTOOLINFO_FLAGS.CENTERTIP) else 0)
-            | (if (o.IDISHWND == 1) @enumToInt(TTTOOLINFO_FLAGS.IDISHWND) else 0)
-            | (if (o.PARSELINKS == 1) @enumToInt(TTTOOLINFO_FLAGS.PARSELINKS) else 0)
-            | (if (o.RTLREADING == 1) @enumToInt(TTTOOLINFO_FLAGS.RTLREADING) else 0)
-            | (if (o.SUBCLASS == 1) @enumToInt(TTTOOLINFO_FLAGS.SUBCLASS) else 0)
-            | (if (o.TRACK == 1) @enumToInt(TTTOOLINFO_FLAGS.TRACK) else 0)
-            | (if (o.TRANSPARENT == 1) @enumToInt(TTTOOLINFO_FLAGS.TRANSPARENT) else 0)
-        );
+        return @enumFromInt(TTTOOLINFO_FLAGS, (if (o.ABSOLUTE == 1) @intFromEnum(TTTOOLINFO_FLAGS.ABSOLUTE) else 0) | (if (o.CENTERTIP == 1) @intFromEnum(TTTOOLINFO_FLAGS.CENTERTIP) else 0) | (if (o.IDISHWND == 1) @intFromEnum(TTTOOLINFO_FLAGS.IDISHWND) else 0) | (if (o.PARSELINKS == 1) @intFromEnum(TTTOOLINFO_FLAGS.PARSELINKS) else 0) | (if (o.RTLREADING == 1) @intFromEnum(TTTOOLINFO_FLAGS.RTLREADING) else 0) | (if (o.SUBCLASS == 1) @intFromEnum(TTTOOLINFO_FLAGS.SUBCLASS) else 0) | (if (o.TRACK == 1) @intFromEnum(TTTOOLINFO_FLAGS.TRACK) else 0) | (if (o.TRANSPARENT == 1) @intFromEnum(TTTOOLINFO_FLAGS.TRANSPARENT) else 0));
     }
 };
 pub const TTF_ABSOLUTE = TTTOOLINFO_FLAGS.ABSOLUTE;
@@ -2996,17 +2896,7 @@ pub const LVCOLUMNW_MASK = enum(u32) {
         DEFAULTWIDTH: u1 = 0,
         IDEALWIDTH: u1 = 0,
     }) LVCOLUMNW_MASK {
-        return @intToEnum(LVCOLUMNW_MASK,
-              (if (o.FMT == 1) @enumToInt(LVCOLUMNW_MASK.FMT) else 0)
-            | (if (o.WIDTH == 1) @enumToInt(LVCOLUMNW_MASK.WIDTH) else 0)
-            | (if (o.TEXT == 1) @enumToInt(LVCOLUMNW_MASK.TEXT) else 0)
-            | (if (o.SUBITEM == 1) @enumToInt(LVCOLUMNW_MASK.SUBITEM) else 0)
-            | (if (o.IMAGE == 1) @enumToInt(LVCOLUMNW_MASK.IMAGE) else 0)
-            | (if (o.ORDER == 1) @enumToInt(LVCOLUMNW_MASK.ORDER) else 0)
-            | (if (o.MINWIDTH == 1) @enumToInt(LVCOLUMNW_MASK.MINWIDTH) else 0)
-            | (if (o.DEFAULTWIDTH == 1) @enumToInt(LVCOLUMNW_MASK.DEFAULTWIDTH) else 0)
-            | (if (o.IDEALWIDTH == 1) @enumToInt(LVCOLUMNW_MASK.IDEALWIDTH) else 0)
-        );
+        return @enumFromInt(LVCOLUMNW_MASK, (if (o.FMT == 1) @intFromEnum(LVCOLUMNW_MASK.FMT) else 0) | (if (o.WIDTH == 1) @intFromEnum(LVCOLUMNW_MASK.WIDTH) else 0) | (if (o.TEXT == 1) @intFromEnum(LVCOLUMNW_MASK.TEXT) else 0) | (if (o.SUBITEM == 1) @intFromEnum(LVCOLUMNW_MASK.SUBITEM) else 0) | (if (o.IMAGE == 1) @intFromEnum(LVCOLUMNW_MASK.IMAGE) else 0) | (if (o.ORDER == 1) @intFromEnum(LVCOLUMNW_MASK.ORDER) else 0) | (if (o.MINWIDTH == 1) @intFromEnum(LVCOLUMNW_MASK.MINWIDTH) else 0) | (if (o.DEFAULTWIDTH == 1) @intFromEnum(LVCOLUMNW_MASK.DEFAULTWIDTH) else 0) | (if (o.IDEALWIDTH == 1) @intFromEnum(LVCOLUMNW_MASK.IDEALWIDTH) else 0));
     }
 };
 pub const LVCF_FMT = LVCOLUMNW_MASK.FMT;
@@ -3035,14 +2925,7 @@ pub const LVFINDINFOW_FLAGS = enum(u32) {
         WRAP: u1 = 0,
         NEARESTXY: u1 = 0,
     }) LVFINDINFOW_FLAGS {
-        return @intToEnum(LVFINDINFOW_FLAGS,
-              (if (o.PARAM == 1) @enumToInt(LVFINDINFOW_FLAGS.PARAM) else 0)
-            | (if (o.PARTIAL == 1) @enumToInt(LVFINDINFOW_FLAGS.PARTIAL) else 0)
-            | (if (o.STRING == 1) @enumToInt(LVFINDINFOW_FLAGS.STRING) else 0)
-            | (if (o.SUBSTRING == 1) @enumToInt(LVFINDINFOW_FLAGS.SUBSTRING) else 0)
-            | (if (o.WRAP == 1) @enumToInt(LVFINDINFOW_FLAGS.WRAP) else 0)
-            | (if (o.NEARESTXY == 1) @enumToInt(LVFINDINFOW_FLAGS.NEARESTXY) else 0)
-        );
+        return @enumFromInt(LVFINDINFOW_FLAGS, (if (o.PARAM == 1) @intFromEnum(LVFINDINFOW_FLAGS.PARAM) else 0) | (if (o.PARTIAL == 1) @intFromEnum(LVFINDINFOW_FLAGS.PARTIAL) else 0) | (if (o.STRING == 1) @intFromEnum(LVFINDINFOW_FLAGS.STRING) else 0) | (if (o.SUBSTRING == 1) @intFromEnum(LVFINDINFOW_FLAGS.SUBSTRING) else 0) | (if (o.WRAP == 1) @intFromEnum(LVFINDINFOW_FLAGS.WRAP) else 0) | (if (o.NEARESTXY == 1) @intFromEnum(LVFINDINFOW_FLAGS.NEARESTXY) else 0));
     }
 };
 pub const LVFI_PARAM = LVFINDINFOW_FLAGS.PARAM;
@@ -3085,16 +2968,7 @@ pub const TBBUTTONINFOW_MASK = enum(u32) {
         STYLE: u1 = 0,
         TEXT: u1 = 0,
     }) TBBUTTONINFOW_MASK {
-        return @intToEnum(TBBUTTONINFOW_MASK,
-              (if (o.BYINDEX == 1) @enumToInt(TBBUTTONINFOW_MASK.BYINDEX) else 0)
-            | (if (o.COMMAND == 1) @enumToInt(TBBUTTONINFOW_MASK.COMMAND) else 0)
-            | (if (o.IMAGE == 1) @enumToInt(TBBUTTONINFOW_MASK.IMAGE) else 0)
-            | (if (o.LPARAM == 1) @enumToInt(TBBUTTONINFOW_MASK.LPARAM) else 0)
-            | (if (o.SIZE == 1) @enumToInt(TBBUTTONINFOW_MASK.SIZE) else 0)
-            | (if (o.STATE == 1) @enumToInt(TBBUTTONINFOW_MASK.STATE) else 0)
-            | (if (o.STYLE == 1) @enumToInt(TBBUTTONINFOW_MASK.STYLE) else 0)
-            | (if (o.TEXT == 1) @enumToInt(TBBUTTONINFOW_MASK.TEXT) else 0)
-        );
+        return @enumFromInt(TBBUTTONINFOW_MASK, (if (o.BYINDEX == 1) @intFromEnum(TBBUTTONINFOW_MASK.BYINDEX) else 0) | (if (o.COMMAND == 1) @intFromEnum(TBBUTTONINFOW_MASK.COMMAND) else 0) | (if (o.IMAGE == 1) @intFromEnum(TBBUTTONINFOW_MASK.IMAGE) else 0) | (if (o.LPARAM == 1) @intFromEnum(TBBUTTONINFOW_MASK.LPARAM) else 0) | (if (o.SIZE == 1) @intFromEnum(TBBUTTONINFOW_MASK.SIZE) else 0) | (if (o.STATE == 1) @intFromEnum(TBBUTTONINFOW_MASK.STATE) else 0) | (if (o.STYLE == 1) @intFromEnum(TBBUTTONINFOW_MASK.STYLE) else 0) | (if (o.TEXT == 1) @intFromEnum(TBBUTTONINFOW_MASK.TEXT) else 0));
     }
 };
 pub const TBIF_BYINDEX = TBBUTTONINFOW_MASK.BYINDEX;
@@ -3127,12 +3001,7 @@ pub const LVGROUP_MASK = enum(u32) {
         FOOTER: u1 = 0,
         STATE: u1 = 0,
     }) LVGROUP_MASK {
-        return @intToEnum(LVGROUP_MASK,
-              (if (o.NONE == 1) @enumToInt(LVGROUP_MASK.NONE) else 0)
-            | (if (o.HEADER == 1) @enumToInt(LVGROUP_MASK.HEADER) else 0)
-            | (if (o.FOOTER == 1) @enumToInt(LVGROUP_MASK.FOOTER) else 0)
-            | (if (o.STATE == 1) @enumToInt(LVGROUP_MASK.STATE) else 0)
-        );
+        return @enumFromInt(LVGROUP_MASK, (if (o.NONE == 1) @intFromEnum(LVGROUP_MASK.NONE) else 0) | (if (o.HEADER == 1) @intFromEnum(LVGROUP_MASK.HEADER) else 0) | (if (o.FOOTER == 1) @intFromEnum(LVGROUP_MASK.FOOTER) else 0) | (if (o.STATE == 1) @intFromEnum(LVGROUP_MASK.STATE) else 0));
     }
 };
 pub const LVGF_NONE = LVGROUP_MASK.NONE;
@@ -3150,11 +3019,7 @@ pub const BP_PAINTPARAMS_FLAGS = enum(u32) {
         NOCLIP: u1 = 0,
         NONCLIENT: u1 = 0,
     }) BP_PAINTPARAMS_FLAGS {
-        return @intToEnum(BP_PAINTPARAMS_FLAGS,
-              (if (o.ERASE == 1) @enumToInt(BP_PAINTPARAMS_FLAGS.ERASE) else 0)
-            | (if (o.NOCLIP == 1) @enumToInt(BP_PAINTPARAMS_FLAGS.NOCLIP) else 0)
-            | (if (o.NONCLIENT == 1) @enumToInt(BP_PAINTPARAMS_FLAGS.NONCLIENT) else 0)
-        );
+        return @enumFromInt(BP_PAINTPARAMS_FLAGS, (if (o.ERASE == 1) @intFromEnum(BP_PAINTPARAMS_FLAGS.ERASE) else 0) | (if (o.NOCLIP == 1) @intFromEnum(BP_PAINTPARAMS_FLAGS.NOCLIP) else 0) | (if (o.NONCLIENT == 1) @intFromEnum(BP_PAINTPARAMS_FLAGS.NONCLIENT) else 0));
     }
 };
 pub const BPPF_ERASE = BP_PAINTPARAMS_FLAGS.ERASE;
@@ -3189,20 +3054,7 @@ pub const TVHITTESTINFO_FLAGS = enum(u32) {
         TOLEFT: u1 = 0,
         TORIGHT: u1 = 0,
     }) TVHITTESTINFO_FLAGS {
-        return @intToEnum(TVHITTESTINFO_FLAGS,
-              (if (o.ABOVE == 1) @enumToInt(TVHITTESTINFO_FLAGS.ABOVE) else 0)
-            | (if (o.BELOW == 1) @enumToInt(TVHITTESTINFO_FLAGS.BELOW) else 0)
-            | (if (o.NOWHERE == 1) @enumToInt(TVHITTESTINFO_FLAGS.NOWHERE) else 0)
-            | (if (o.ONITEM == 1) @enumToInt(TVHITTESTINFO_FLAGS.ONITEM) else 0)
-            | (if (o.ONITEMBUTTON == 1) @enumToInt(TVHITTESTINFO_FLAGS.ONITEMBUTTON) else 0)
-            | (if (o.ONITEMICON == 1) @enumToInt(TVHITTESTINFO_FLAGS.ONITEMICON) else 0)
-            | (if (o.ONITEMINDENT == 1) @enumToInt(TVHITTESTINFO_FLAGS.ONITEMINDENT) else 0)
-            | (if (o.ONITEMLABEL == 1) @enumToInt(TVHITTESTINFO_FLAGS.ONITEMLABEL) else 0)
-            | (if (o.ONITEMRIGHT == 1) @enumToInt(TVHITTESTINFO_FLAGS.ONITEMRIGHT) else 0)
-            | (if (o.ONITEMSTATEICON == 1) @enumToInt(TVHITTESTINFO_FLAGS.ONITEMSTATEICON) else 0)
-            | (if (o.TOLEFT == 1) @enumToInt(TVHITTESTINFO_FLAGS.TOLEFT) else 0)
-            | (if (o.TORIGHT == 1) @enumToInt(TVHITTESTINFO_FLAGS.TORIGHT) else 0)
-        );
+        return @enumFromInt(TVHITTESTINFO_FLAGS, (if (o.ABOVE == 1) @intFromEnum(TVHITTESTINFO_FLAGS.ABOVE) else 0) | (if (o.BELOW == 1) @intFromEnum(TVHITTESTINFO_FLAGS.BELOW) else 0) | (if (o.NOWHERE == 1) @intFromEnum(TVHITTESTINFO_FLAGS.NOWHERE) else 0) | (if (o.ONITEM == 1) @intFromEnum(TVHITTESTINFO_FLAGS.ONITEM) else 0) | (if (o.ONITEMBUTTON == 1) @intFromEnum(TVHITTESTINFO_FLAGS.ONITEMBUTTON) else 0) | (if (o.ONITEMICON == 1) @intFromEnum(TVHITTESTINFO_FLAGS.ONITEMICON) else 0) | (if (o.ONITEMINDENT == 1) @intFromEnum(TVHITTESTINFO_FLAGS.ONITEMINDENT) else 0) | (if (o.ONITEMLABEL == 1) @intFromEnum(TVHITTESTINFO_FLAGS.ONITEMLABEL) else 0) | (if (o.ONITEMRIGHT == 1) @intFromEnum(TVHITTESTINFO_FLAGS.ONITEMRIGHT) else 0) | (if (o.ONITEMSTATEICON == 1) @intFromEnum(TVHITTESTINFO_FLAGS.ONITEMSTATEICON) else 0) | (if (o.TOLEFT == 1) @intFromEnum(TVHITTESTINFO_FLAGS.TOLEFT) else 0) | (if (o.TORIGHT == 1) @intFromEnum(TVHITTESTINFO_FLAGS.TORIGHT) else 0));
     }
 };
 pub const TVHT_ABOVE = TVHITTESTINFO_FLAGS.ABOVE;
@@ -3261,11 +3113,7 @@ pub const MCGRIDINFO_FLAGS = enum(u32) {
         RECT: u1 = 0,
         NAME: u1 = 0,
     }) MCGRIDINFO_FLAGS {
-        return @intToEnum(MCGRIDINFO_FLAGS,
-              (if (o.DATE == 1) @enumToInt(MCGRIDINFO_FLAGS.DATE) else 0)
-            | (if (o.RECT == 1) @enumToInt(MCGRIDINFO_FLAGS.RECT) else 0)
-            | (if (o.NAME == 1) @enumToInt(MCGRIDINFO_FLAGS.NAME) else 0)
-        );
+        return @enumFromInt(MCGRIDINFO_FLAGS, (if (o.DATE == 1) @intFromEnum(MCGRIDINFO_FLAGS.DATE) else 0) | (if (o.RECT == 1) @intFromEnum(MCGRIDINFO_FLAGS.RECT) else 0) | (if (o.NAME == 1) @intFromEnum(MCGRIDINFO_FLAGS.NAME) else 0));
     }
 };
 pub const MCGIF_DATE = MCGRIDINFO_FLAGS.DATE;
@@ -3309,24 +3157,7 @@ pub const LVHITTESTINFO_FLAGS = enum(u32) {
         EX_ONCONTENTS: u1 = 0,
         EX_FOOTER: u1 = 0,
     }) LVHITTESTINFO_FLAGS {
-        return @intToEnum(LVHITTESTINFO_FLAGS,
-              (if (o.ABOVE == 1) @enumToInt(LVHITTESTINFO_FLAGS.ABOVE) else 0)
-            | (if (o.BELOW == 1) @enumToInt(LVHITTESTINFO_FLAGS.BELOW) else 0)
-            | (if (o.NOWHERE == 1) @enumToInt(LVHITTESTINFO_FLAGS.NOWHERE) else 0)
-            | (if (o.ONITEMICON == 1) @enumToInt(LVHITTESTINFO_FLAGS.ONITEMICON) else 0)
-            | (if (o.ONITEMLABEL == 1) @enumToInt(LVHITTESTINFO_FLAGS.ONITEMLABEL) else 0)
-            | (if (o.TOLEFT == 1) @enumToInt(LVHITTESTINFO_FLAGS.TOLEFT) else 0)
-            | (if (o.TORIGHT == 1) @enumToInt(LVHITTESTINFO_FLAGS.TORIGHT) else 0)
-            | (if (o.EX_GROUP_HEADER == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_GROUP_HEADER) else 0)
-            | (if (o.EX_GROUP_FOOTER == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_GROUP_FOOTER) else 0)
-            | (if (o.EX_GROUP_COLLAPSE == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_GROUP_COLLAPSE) else 0)
-            | (if (o.EX_GROUP_BACKGROUND == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_GROUP_BACKGROUND) else 0)
-            | (if (o.EX_GROUP_STATEICON == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_GROUP_STATEICON) else 0)
-            | (if (o.EX_GROUP_SUBSETLINK == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_GROUP_SUBSETLINK) else 0)
-            | (if (o.EX_GROUP == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_GROUP) else 0)
-            | (if (o.EX_ONCONTENTS == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_ONCONTENTS) else 0)
-            | (if (o.EX_FOOTER == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_FOOTER) else 0)
-        );
+        return @enumFromInt(LVHITTESTINFO_FLAGS, (if (o.ABOVE == 1) @intFromEnum(LVHITTESTINFO_FLAGS.ABOVE) else 0) | (if (o.BELOW == 1) @intFromEnum(LVHITTESTINFO_FLAGS.BELOW) else 0) | (if (o.NOWHERE == 1) @intFromEnum(LVHITTESTINFO_FLAGS.NOWHERE) else 0) | (if (o.ONITEMICON == 1) @intFromEnum(LVHITTESTINFO_FLAGS.ONITEMICON) else 0) | (if (o.ONITEMLABEL == 1) @intFromEnum(LVHITTESTINFO_FLAGS.ONITEMLABEL) else 0) | (if (o.TOLEFT == 1) @intFromEnum(LVHITTESTINFO_FLAGS.TOLEFT) else 0) | (if (o.TORIGHT == 1) @intFromEnum(LVHITTESTINFO_FLAGS.TORIGHT) else 0) | (if (o.EX_GROUP_HEADER == 1) @intFromEnum(LVHITTESTINFO_FLAGS.EX_GROUP_HEADER) else 0) | (if (o.EX_GROUP_FOOTER == 1) @intFromEnum(LVHITTESTINFO_FLAGS.EX_GROUP_FOOTER) else 0) | (if (o.EX_GROUP_COLLAPSE == 1) @intFromEnum(LVHITTESTINFO_FLAGS.EX_GROUP_COLLAPSE) else 0) | (if (o.EX_GROUP_BACKGROUND == 1) @intFromEnum(LVHITTESTINFO_FLAGS.EX_GROUP_BACKGROUND) else 0) | (if (o.EX_GROUP_STATEICON == 1) @intFromEnum(LVHITTESTINFO_FLAGS.EX_GROUP_STATEICON) else 0) | (if (o.EX_GROUP_SUBSETLINK == 1) @intFromEnum(LVHITTESTINFO_FLAGS.EX_GROUP_SUBSETLINK) else 0) | (if (o.EX_GROUP == 1) @intFromEnum(LVHITTESTINFO_FLAGS.EX_GROUP) else 0) | (if (o.EX_ONCONTENTS == 1) @intFromEnum(LVHITTESTINFO_FLAGS.EX_ONCONTENTS) else 0) | (if (o.EX_FOOTER == 1) @intFromEnum(LVHITTESTINFO_FLAGS.EX_FOOTER) else 0));
     }
 };
 pub const LVHT_ABOVE = LVHITTESTINFO_FLAGS.ABOVE;
@@ -3385,25 +3216,7 @@ pub const INITCOMMONCONTROLSEX_ICC = enum(u32) {
         USEREX_CLASSES: u1 = 0,
         WIN95_CLASSES: u1 = 0,
     }) INITCOMMONCONTROLSEX_ICC {
-        return @intToEnum(INITCOMMONCONTROLSEX_ICC,
-              (if (o.ANIMATE_CLASS == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.ANIMATE_CLASS) else 0)
-            | (if (o.BAR_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.BAR_CLASSES) else 0)
-            | (if (o.COOL_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.COOL_CLASSES) else 0)
-            | (if (o.DATE_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.DATE_CLASSES) else 0)
-            | (if (o.HOTKEY_CLASS == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.HOTKEY_CLASS) else 0)
-            | (if (o.INTERNET_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.INTERNET_CLASSES) else 0)
-            | (if (o.LINK_CLASS == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.LINK_CLASS) else 0)
-            | (if (o.LISTVIEW_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.LISTVIEW_CLASSES) else 0)
-            | (if (o.NATIVEFNTCTL_CLASS == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.NATIVEFNTCTL_CLASS) else 0)
-            | (if (o.PAGESCROLLER_CLASS == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.PAGESCROLLER_CLASS) else 0)
-            | (if (o.PROGRESS_CLASS == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.PROGRESS_CLASS) else 0)
-            | (if (o.STANDARD_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.STANDARD_CLASSES) else 0)
-            | (if (o.TAB_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.TAB_CLASSES) else 0)
-            | (if (o.TREEVIEW_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.TREEVIEW_CLASSES) else 0)
-            | (if (o.UPDOWN_CLASS == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.UPDOWN_CLASS) else 0)
-            | (if (o.USEREX_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.USEREX_CLASSES) else 0)
-            | (if (o.WIN95_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.WIN95_CLASSES) else 0)
-        );
+        return @enumFromInt(INITCOMMONCONTROLSEX_ICC, (if (o.ANIMATE_CLASS == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.ANIMATE_CLASS) else 0) | (if (o.BAR_CLASSES == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.BAR_CLASSES) else 0) | (if (o.COOL_CLASSES == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.COOL_CLASSES) else 0) | (if (o.DATE_CLASSES == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.DATE_CLASSES) else 0) | (if (o.HOTKEY_CLASS == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.HOTKEY_CLASS) else 0) | (if (o.INTERNET_CLASSES == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.INTERNET_CLASSES) else 0) | (if (o.LINK_CLASS == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.LINK_CLASS) else 0) | (if (o.LISTVIEW_CLASSES == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.LISTVIEW_CLASSES) else 0) | (if (o.NATIVEFNTCTL_CLASS == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.NATIVEFNTCTL_CLASS) else 0) | (if (o.PAGESCROLLER_CLASS == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.PAGESCROLLER_CLASS) else 0) | (if (o.PROGRESS_CLASS == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.PROGRESS_CLASS) else 0) | (if (o.STANDARD_CLASSES == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.STANDARD_CLASSES) else 0) | (if (o.TAB_CLASSES == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.TAB_CLASSES) else 0) | (if (o.TREEVIEW_CLASSES == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.TREEVIEW_CLASSES) else 0) | (if (o.UPDOWN_CLASS == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.UPDOWN_CLASS) else 0) | (if (o.USEREX_CLASSES == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.USEREX_CLASSES) else 0) | (if (o.WIN95_CLASSES == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.WIN95_CLASSES) else 0));
     }
 };
 pub const ICC_ANIMATE_CLASS = INITCOMMONCONTROLSEX_ICC.ANIMATE_CLASS;
@@ -3443,11 +3256,7 @@ pub const NMTBDISPINFOW_MASK = enum(u32) {
         TEXT: u1 = 0,
         DI_SETITEM: u1 = 0,
     }) NMTBDISPINFOW_MASK {
-        return @intToEnum(NMTBDISPINFOW_MASK,
-              (if (o.IMAGE == 1) @enumToInt(NMTBDISPINFOW_MASK.IMAGE) else 0)
-            | (if (o.TEXT == 1) @enumToInt(NMTBDISPINFOW_MASK.TEXT) else 0)
-            | (if (o.DI_SETITEM == 1) @enumToInt(NMTBDISPINFOW_MASK.DI_SETITEM) else 0)
-        );
+        return @enumFromInt(NMTBDISPINFOW_MASK, (if (o.IMAGE == 1) @intFromEnum(NMTBDISPINFOW_MASK.IMAGE) else 0) | (if (o.TEXT == 1) @intFromEnum(NMTBDISPINFOW_MASK.TEXT) else 0) | (if (o.DI_SETITEM == 1) @intFromEnum(NMTBDISPINFOW_MASK.DI_SETITEM) else 0));
     }
 };
 pub const TBNF_IMAGE = NMTBDISPINFOW_MASK.IMAGE;
@@ -3496,21 +3305,7 @@ pub const IMAGELIST_CREATION_FLAGS = enum(u32) {
         ORIGINALSIZE: u1 = 0,
         HIGHQUALITYSCALE: u1 = 0,
     }) IMAGELIST_CREATION_FLAGS {
-        return @intToEnum(IMAGELIST_CREATION_FLAGS,
-              (if (o.MASK == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.MASK) else 0)
-            | (if (o.COLOR == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.COLOR) else 0)
-            | (if (o.COLORDDB == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.COLORDDB) else 0)
-            | (if (o.COLOR4 == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.COLOR4) else 0)
-            | (if (o.COLOR8 == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.COLOR8) else 0)
-            | (if (o.COLOR16 == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.COLOR16) else 0)
-            | (if (o.COLOR24 == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.COLOR24) else 0)
-            | (if (o.COLOR32 == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.COLOR32) else 0)
-            | (if (o.PALETTE == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.PALETTE) else 0)
-            | (if (o.MIRROR == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.MIRROR) else 0)
-            | (if (o.PERITEMMIRROR == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.PERITEMMIRROR) else 0)
-            | (if (o.ORIGINALSIZE == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.ORIGINALSIZE) else 0)
-            | (if (o.HIGHQUALITYSCALE == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.HIGHQUALITYSCALE) else 0)
-        );
+        return @enumFromInt(IMAGELIST_CREATION_FLAGS, (if (o.MASK == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.MASK) else 0) | (if (o.COLOR == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.COLOR) else 0) | (if (o.COLORDDB == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.COLORDDB) else 0) | (if (o.COLOR4 == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.COLOR4) else 0) | (if (o.COLOR8 == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.COLOR8) else 0) | (if (o.COLOR16 == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.COLOR16) else 0) | (if (o.COLOR24 == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.COLOR24) else 0) | (if (o.COLOR32 == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.COLOR32) else 0) | (if (o.PALETTE == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.PALETTE) else 0) | (if (o.MIRROR == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.MIRROR) else 0) | (if (o.PERITEMMIRROR == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.PERITEMMIRROR) else 0) | (if (o.ORIGINALSIZE == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.ORIGINALSIZE) else 0) | (if (o.HIGHQUALITYSCALE == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.HIGHQUALITYSCALE) else 0));
     }
 };
 pub const ILC_MASK = IMAGELIST_CREATION_FLAGS.MASK;
@@ -3528,44 +3323,44 @@ pub const ILC_ORIGINALSIZE = IMAGELIST_CREATION_FLAGS.ORIGINALSIZE;
 pub const ILC_HIGHQUALITYSCALE = IMAGELIST_CREATION_FLAGS.HIGHQUALITYSCALE;
 
 // TODO: this type has a FreeFunc 'DestroyPropertySheetPage', what can Zig do with this information?
-pub const HPROPSHEETPAGE = *opaque{};
+pub const HPROPSHEETPAGE = *opaque {};
 
 // TODO: this type has a FreeFunc 'ImageList_Destroy', what can Zig do with this information?
-pub const HIMAGELIST = *opaque{};
+pub const HIMAGELIST = *opaque {};
 
-pub const HSYNTHETICPOINTERDEVICE = *opaque{};
+pub const HSYNTHETICPOINTERDEVICE = *opaque {};
 
-pub const HTREEITEM = *opaque{};
+pub const HTREEITEM = *opaque {};
 
-pub const HDSA = *opaque{};
+pub const HDSA = *opaque {};
 
-pub const HDPA = *opaque{};
+pub const HDPA = *opaque {};
 
 pub const LPFNPSPCALLBACKA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hwnd: ?HWND,
         uMsg: PSPCB_MESSAGE,
         ppsp: ?*PROPSHEETPAGEA,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hwnd: ?HWND,
         uMsg: PSPCB_MESSAGE,
         ppsp: ?*PROPSHEETPAGEA,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const LPFNPSPCALLBACKW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hwnd: ?HWND,
         uMsg: PSPCB_MESSAGE,
         ppsp: ?*PROPSHEETPAGEW,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hwnd: ?HWND,
         uMsg: PSPCB_MESSAGE,
         ppsp: ?*PROPSHEETPAGEW,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PROPSHEETPAGEA_V1 = extern struct {
     dwSize: u32,
@@ -3744,17 +3539,17 @@ pub const PROPSHEETPAGEW = extern struct {
 };
 
 pub const PFNPROPSHEETCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?HWND,
         param1: u32,
         param2: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         param0: ?HWND,
         param1: u32,
         param2: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const PROPSHEETHEADERA_V1 = extern struct {
     dwSize: u32,
@@ -3863,28 +3658,28 @@ pub const PROPSHEETHEADERW_V2 = extern struct {
 };
 
 pub const LPFNSVADDPROPSHEETPAGE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?HPROPSHEETPAGE,
         param1: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         param0: ?HPROPSHEETPAGE,
         param1: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const LPFNADDPROPSHEETPAGES = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*anyopaque,
         param1: ?LPFNSVADDPROPSHEETPAGE,
         param2: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         param0: ?*anyopaque,
         param1: ?LPFNSVADDPROPSHEETPAGE,
         param2: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const PSHNOTIFY = extern struct {
     hdr: NMHDR,
@@ -4087,7 +3882,6 @@ pub const NMHDFILTERBTNCLICK = extern struct {
     iItem: i32,
     rc: RECT,
 };
-
 
 pub const COLORMAP = extern struct {
     from: u32,
@@ -4567,17 +4361,17 @@ pub const LVCOLUMNW = extern struct {
 };
 
 pub const PFNLVCOMPARE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: LPARAM,
         param1: LPARAM,
         param2: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         param0: LPARAM,
         param1: LPARAM,
         param2: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const LVBKIMAGEA = extern struct {
     ulFlags: u32,
@@ -4640,17 +4434,17 @@ pub const LVGROUPMETRICS = extern struct {
 };
 
 pub const PFNLVGROUPCOMPARE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: i32,
         param1: i32,
         param2: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         param0: i32,
         param1: i32,
         param2: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const LVINSERTGROUPSORTED = extern struct {
     pfnGroupCompare: ?PFNLVGROUPCOMPARE,
@@ -4935,17 +4729,17 @@ pub const TVGETITEMPARTRECTINFO = extern struct {
 };
 
 pub const PFNTVCOMPARE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         lParam1: LPARAM,
         lParam2: LPARAM,
         lParamSort: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         lParam1: LPARAM,
         lParam2: LPARAM,
         lParamSort: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const TVSORTCB = extern struct {
     hParent: ?HTREEITEM,
@@ -5352,21 +5146,21 @@ pub const NMSEARCHWEB = extern struct {
 };
 
 pub const PFTASKDIALOGCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hwnd: ?HWND,
         msg: u32,
         wParam: WPARAM,
         lParam: LPARAM,
         lpRefData: isize,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         hwnd: ?HWND,
         msg: u32,
         wParam: WPARAM,
         lParam: LPARAM,
         lpRefData: isize,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const TASKDIALOG_FLAGS = enum(i32) {
     ENABLE_HYPERLINKS = 1,
@@ -5537,52 +5331,52 @@ pub const TASKDIALOGCONFIG = extern struct {
 };
 
 pub const PFNDAENUMCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         p: ?*anyopaque,
         pData: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         p: ?*anyopaque,
         pData: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const PFNDAENUMCALLBACKCONST = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         p: ?*const anyopaque,
         pData: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         p: ?*const anyopaque,
         pData: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const PFNDACOMPARE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         p1: ?*anyopaque,
         p2: ?*anyopaque,
         lParam: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         p1: ?*anyopaque,
         p2: ?*anyopaque,
         lParam: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const PFNDACOMPARECONST = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         p1: ?*const anyopaque,
         p2: ?*const anyopaque,
         lParam: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         p1: ?*const anyopaque,
         p2: ?*const anyopaque,
         lParam: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const DPASTREAMINFO = extern struct {
     iPos: i32,
@@ -5590,47 +5384,47 @@ pub const DPASTREAMINFO = extern struct {
 };
 
 pub const PFNDPASTREAM = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pinfo: ?*DPASTREAMINFO,
         pstream: ?*IStream,
         pvInstData: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         pinfo: ?*DPASTREAMINFO,
         pstream: ?*IStream,
         pvInstData: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PFNDPAMERGE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         uMsg: DPAMM_MESSAGE,
         pvDest: ?*anyopaque,
         pvSrc: ?*anyopaque,
         lParam: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-    else => *const fn(
+    else => *const fn (
         uMsg: DPAMM_MESSAGE,
         pvDest: ?*anyopaque,
         pvSrc: ?*anyopaque,
         lParam: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-} ;
+};
 
 pub const PFNDPAMERGECONST = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         uMsg: DPAMM_MESSAGE,
         pvDest: ?*const anyopaque,
         pvSrc: ?*const anyopaque,
         lParam: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-    else => *const fn(
+    else => *const fn (
         uMsg: DPAMM_MESSAGE,
         pvDest: ?*const anyopaque,
         pvSrc: ?*const anyopaque,
         lParam: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-} ;
+};
 
 pub const _LI_METRIC = enum(i32) {
     SMALL = 0,
@@ -5649,13 +5443,13 @@ pub const IImageList = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Add: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 hbmImage: ?HBITMAP,
                 hbmMask: ?HBITMAP,
                 pi: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 hbmImage: ?HBITMAP,
                 hbmMask: ?HBITMAP,
@@ -5663,13 +5457,13 @@ pub const IImageList = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ReplaceIcon: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 i: i32,
                 hicon: ?HICON,
                 pi: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 i: i32,
                 hicon: ?HICON,
@@ -5677,25 +5471,25 @@ pub const IImageList = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetOverlayImage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 iImage: i32,
                 iOverlay: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 iImage: i32,
                 iOverlay: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Replace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 i: i32,
                 hbmImage: ?HBITMAP,
                 hbmMask: ?HBITMAP,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 i: i32,
                 hbmImage: ?HBITMAP,
@@ -5703,13 +5497,13 @@ pub const IImageList = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AddMasked: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 hbmImage: ?HBITMAP,
                 crMask: u32,
                 pi: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 hbmImage: ?HBITMAP,
                 crMask: u32,
@@ -5717,33 +5511,33 @@ pub const IImageList = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Draw: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 pimldp: ?*IMAGELISTDRAWPARAMS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 pimldp: ?*IMAGELISTDRAWPARAMS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Remove: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 i: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 i: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetIcon: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 i: i32,
                 flags: u32,
                 picon: ?*?HICON,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 i: i32,
                 flags: u32,
@@ -5751,26 +5545,26 @@ pub const IImageList = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetImageInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 i: i32,
                 pImageInfo: ?*IMAGEINFO,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 i: i32,
                 pImageInfo: ?*IMAGEINFO,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Copy: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 iDst: i32,
                 punkSrc: ?*IUnknown,
                 iSrc: i32,
                 uFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 iDst: i32,
                 punkSrc: ?*IUnknown,
@@ -5779,7 +5573,7 @@ pub const IImageList = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Merge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 i1: i32,
                 punk2: ?*IUnknown,
@@ -5789,7 +5583,7 @@ pub const IImageList = extern struct {
                 riid: ?*const Guid,
                 ppv: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 i1: i32,
                 punk2: ?*IUnknown,
@@ -5801,103 +5595,103 @@ pub const IImageList = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 riid: ?*const Guid,
                 ppv: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 riid: ?*const Guid,
                 ppv: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetImageRect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 i: i32,
                 prc: ?*RECT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 i: i32,
                 prc: ?*RECT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetIconSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 cx: ?*i32,
                 cy: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 cx: ?*i32,
                 cy: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetIconSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 cx: i32,
                 cy: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 cx: i32,
                 cy: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetImageCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 pi: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 pi: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetImageCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 uNewCount: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 uNewCount: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetBkColor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 clrBk: u32,
                 pclr: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 clrBk: u32,
                 pclr: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetBkColor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 pclr: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 pclr: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         BeginDrag: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 iTrack: i32,
                 dxHotspot: i32,
                 dyHotspot: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 iTrack: i32,
                 dxHotspot: i32,
@@ -5905,21 +5699,21 @@ pub const IImageList = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EndDrag: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DragEnter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 hwndLock: ?HWND,
                 x: i32,
                 y: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 hwndLock: ?HWND,
                 x: i32,
@@ -5927,36 +5721,36 @@ pub const IImageList = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DragLeave: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 hwndLock: ?HWND,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 hwndLock: ?HWND,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DragMove: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 x: i32,
                 y: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 x: i32,
                 y: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetDragCursorImage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 punk: ?*IUnknown,
                 iDrag: i32,
                 dxHotspot: i32,
                 dyHotspot: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 punk: ?*IUnknown,
                 iDrag: i32,
@@ -5965,24 +5759,24 @@ pub const IImageList = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DragShowNolock: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 fShow: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 fShow: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDragImage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 ppt: ?*POINT,
                 pptHotspot: ?*POINT,
                 riid: ?*const Guid,
                 ppv: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 ppt: ?*POINT,
                 pptHotspot: ?*POINT,
@@ -5991,24 +5785,24 @@ pub const IImageList = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetItemFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 i: i32,
                 dwFlags: ?*IMAGE_LIST_ITEM_FLAGS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 i: i32,
                 dwFlags: ?*IMAGE_LIST_ITEM_FLAGS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetOverlayImage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList,
                 iOverlay: i32,
                 piIndex: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList,
                 iOverlay: i32,
                 piIndex: ?*i32,
@@ -6016,125 +5810,127 @@ pub const IImageList = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_Add(self: *const T, hbmImage: ?HBITMAP, hbmMask: ?HBITMAP, pi: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).Add(@ptrCast(*const IImageList, self), hbmImage, hbmMask, pi);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_ReplaceIcon(self: *const T, i: i32, hicon: ?HICON, pi: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).ReplaceIcon(@ptrCast(*const IImageList, self), i, hicon, pi);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_SetOverlayImage(self: *const T, iImage: i32, iOverlay: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).SetOverlayImage(@ptrCast(*const IImageList, self), iImage, iOverlay);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_Replace(self: *const T, i: i32, hbmImage: ?HBITMAP, hbmMask: ?HBITMAP) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).Replace(@ptrCast(*const IImageList, self), i, hbmImage, hbmMask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_AddMasked(self: *const T, hbmImage: ?HBITMAP, crMask: u32, pi: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).AddMasked(@ptrCast(*const IImageList, self), hbmImage, crMask, pi);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_Draw(self: *const T, pimldp: ?*IMAGELISTDRAWPARAMS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).Draw(@ptrCast(*const IImageList, self), pimldp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_Remove(self: *const T, i: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).Remove(@ptrCast(*const IImageList, self), i);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_GetIcon(self: *const T, i: i32, flags: u32, picon: ?*?HICON) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).GetIcon(@ptrCast(*const IImageList, self), i, flags, picon);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_GetImageInfo(self: *const T, i: i32, pImageInfo: ?*IMAGEINFO) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).GetImageInfo(@ptrCast(*const IImageList, self), i, pImageInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_Copy(self: *const T, iDst: i32, punkSrc: ?*IUnknown, iSrc: i32, uFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).Copy(@ptrCast(*const IImageList, self), iDst, punkSrc, iSrc, uFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_Merge(self: *const T, i1_: i32, punk2: ?*IUnknown, i2_: i32, dx: i32, dy: i32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).Merge(@ptrCast(*const IImageList, self), i1_, punk2, i2_, dx, dy, riid, ppv);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_Clone(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).Clone(@ptrCast(*const IImageList, self), riid, ppv);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_GetImageRect(self: *const T, i: i32, prc: ?*RECT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).GetImageRect(@ptrCast(*const IImageList, self), i, prc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_GetIconSize(self: *const T, cx: ?*i32, cy: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).GetIconSize(@ptrCast(*const IImageList, self), cx, cy);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_SetIconSize(self: *const T, cx: i32, cy: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).SetIconSize(@ptrCast(*const IImageList, self), cx, cy);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_GetImageCount(self: *const T, pi: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).GetImageCount(@ptrCast(*const IImageList, self), pi);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_SetImageCount(self: *const T, uNewCount: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).SetImageCount(@ptrCast(*const IImageList, self), uNewCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_SetBkColor(self: *const T, clrBk: u32, pclr: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).SetBkColor(@ptrCast(*const IImageList, self), clrBk, pclr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_GetBkColor(self: *const T, pclr: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).GetBkColor(@ptrCast(*const IImageList, self), pclr);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_BeginDrag(self: *const T, iTrack: i32, dxHotspot: i32, dyHotspot: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).BeginDrag(@ptrCast(*const IImageList, self), iTrack, dxHotspot, dyHotspot);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_EndDrag(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).EndDrag(@ptrCast(*const IImageList, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_DragEnter(self: *const T, hwndLock: ?HWND, x: i32, y: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).DragEnter(@ptrCast(*const IImageList, self), hwndLock, x, y);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_DragLeave(self: *const T, hwndLock: ?HWND) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).DragLeave(@ptrCast(*const IImageList, self), hwndLock);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_DragMove(self: *const T, x: i32, y: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).DragMove(@ptrCast(*const IImageList, self), x, y);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_SetDragCursorImage(self: *const T, punk: ?*IUnknown, iDrag: i32, dxHotspot: i32, dyHotspot: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).SetDragCursorImage(@ptrCast(*const IImageList, self), punk, iDrag, dxHotspot, dyHotspot);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_DragShowNolock(self: *const T, fShow: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).DragShowNolock(@ptrCast(*const IImageList, self), fShow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_GetDragImage(self: *const T, ppt: ?*POINT, pptHotspot: ?*POINT, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).GetDragImage(@ptrCast(*const IImageList, self), ppt, pptHotspot, riid, ppv);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_GetItemFlags(self: *const T, i: i32, dwFlags: ?*IMAGE_LIST_ITEM_FLAGS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).GetItemFlags(@ptrCast(*const IImageList, self), i, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_GetOverlayImage(self: *const T, iOverlay: i32, piIndex: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).GetOverlayImage(@ptrCast(*const IImageList, self), iOverlay, piIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_Add(self: *const T, hbmImage: ?HBITMAP, hbmMask: ?HBITMAP, pi: ?*i32) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).Add(@ptrCast(*const IImageList, self), hbmImage, hbmMask, pi);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_ReplaceIcon(self: *const T, i: i32, hicon: ?HICON, pi: ?*i32) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).ReplaceIcon(@ptrCast(*const IImageList, self), i, hicon, pi);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_SetOverlayImage(self: *const T, iImage: i32, iOverlay: i32) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).SetOverlayImage(@ptrCast(*const IImageList, self), iImage, iOverlay);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_Replace(self: *const T, i: i32, hbmImage: ?HBITMAP, hbmMask: ?HBITMAP) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).Replace(@ptrCast(*const IImageList, self), i, hbmImage, hbmMask);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_AddMasked(self: *const T, hbmImage: ?HBITMAP, crMask: u32, pi: ?*i32) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).AddMasked(@ptrCast(*const IImageList, self), hbmImage, crMask, pi);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_Draw(self: *const T, pimldp: ?*IMAGELISTDRAWPARAMS) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).Draw(@ptrCast(*const IImageList, self), pimldp);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_Remove(self: *const T, i: i32) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).Remove(@ptrCast(*const IImageList, self), i);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_GetIcon(self: *const T, i: i32, flags: u32, picon: ?*?HICON) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).GetIcon(@ptrCast(*const IImageList, self), i, flags, picon);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_GetImageInfo(self: *const T, i: i32, pImageInfo: ?*IMAGEINFO) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).GetImageInfo(@ptrCast(*const IImageList, self), i, pImageInfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_Copy(self: *const T, iDst: i32, punkSrc: ?*IUnknown, iSrc: i32, uFlags: u32) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).Copy(@ptrCast(*const IImageList, self), iDst, punkSrc, iSrc, uFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_Merge(self: *const T, i1_: i32, punk2: ?*IUnknown, i2_: i32, dx: i32, dy: i32, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).Merge(@ptrCast(*const IImageList, self), i1_, punk2, i2_, dx, dy, riid, ppv);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_Clone(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).Clone(@ptrCast(*const IImageList, self), riid, ppv);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_GetImageRect(self: *const T, i: i32, prc: ?*RECT) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).GetImageRect(@ptrCast(*const IImageList, self), i, prc);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_GetIconSize(self: *const T, cx: ?*i32, cy: ?*i32) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).GetIconSize(@ptrCast(*const IImageList, self), cx, cy);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_SetIconSize(self: *const T, cx: i32, cy: i32) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).SetIconSize(@ptrCast(*const IImageList, self), cx, cy);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_GetImageCount(self: *const T, pi: ?*i32) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).GetImageCount(@ptrCast(*const IImageList, self), pi);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_SetImageCount(self: *const T, uNewCount: u32) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).SetImageCount(@ptrCast(*const IImageList, self), uNewCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_SetBkColor(self: *const T, clrBk: u32, pclr: ?*u32) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).SetBkColor(@ptrCast(*const IImageList, self), clrBk, pclr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_GetBkColor(self: *const T, pclr: ?*u32) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).GetBkColor(@ptrCast(*const IImageList, self), pclr);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_BeginDrag(self: *const T, iTrack: i32, dxHotspot: i32, dyHotspot: i32) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).BeginDrag(@ptrCast(*const IImageList, self), iTrack, dxHotspot, dyHotspot);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_EndDrag(self: *const T) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).EndDrag(@ptrCast(*const IImageList, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_DragEnter(self: *const T, hwndLock: ?HWND, x: i32, y: i32) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).DragEnter(@ptrCast(*const IImageList, self), hwndLock, x, y);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_DragLeave(self: *const T, hwndLock: ?HWND) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).DragLeave(@ptrCast(*const IImageList, self), hwndLock);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_DragMove(self: *const T, x: i32, y: i32) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).DragMove(@ptrCast(*const IImageList, self), x, y);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_SetDragCursorImage(self: *const T, punk: ?*IUnknown, iDrag: i32, dxHotspot: i32, dyHotspot: i32) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).SetDragCursorImage(@ptrCast(*const IImageList, self), punk, iDrag, dxHotspot, dyHotspot);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_DragShowNolock(self: *const T, fShow: BOOL) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).DragShowNolock(@ptrCast(*const IImageList, self), fShow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_GetDragImage(self: *const T, ppt: ?*POINT, pptHotspot: ?*POINT, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).GetDragImage(@ptrCast(*const IImageList, self), ppt, pptHotspot, riid, ppv);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_GetItemFlags(self: *const T, i: i32, dwFlags: ?*IMAGE_LIST_ITEM_FLAGS) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).GetItemFlags(@ptrCast(*const IImageList, self), i, dwFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList_GetOverlayImage(self: *const T, iOverlay: i32, piIndex: ?*i32) HRESULT {
+                return @ptrCast(*const IImageList.VTable, self.vtable).GetOverlayImage(@ptrCast(*const IImageList, self), iOverlay, piIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6152,26 +5948,26 @@ pub const IImageList2 = extern struct {
     pub const VTable = extern struct {
         base: IImageList.VTable,
         Resize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList2,
                 cxNewIconSize: i32,
                 cyNewIconSize: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList2,
                 cxNewIconSize: i32,
                 cyNewIconSize: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetOriginalSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList2,
                 iImage: i32,
                 dwFlags: u32,
                 pcx: ?*i32,
                 pcy: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList2,
                 iImage: i32,
                 dwFlags: u32,
@@ -6180,13 +5976,13 @@ pub const IImageList2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetOriginalSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList2,
                 iImage: i32,
                 cx: i32,
                 cy: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList2,
                 iImage: i32,
                 cx: i32,
@@ -6194,47 +5990,47 @@ pub const IImageList2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList2,
                 punk: ?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList2,
                 punk: ?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList2,
                 riid: ?*const Guid,
                 ppv: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList2,
                 riid: ?*const Guid,
                 ppv: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ForceImagePresent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList2,
                 iImage: i32,
                 dwFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList2,
                 iImage: i32,
                 dwFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DiscardImages: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList2,
                 iFirstImage: i32,
                 iLastImage: i32,
                 dwFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList2,
                 iFirstImage: i32,
                 iLastImage: i32,
@@ -6242,27 +6038,27 @@ pub const IImageList2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         PreloadImages: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList2,
                 pimldp: ?*IMAGELISTDRAWPARAMS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList2,
                 pimldp: ?*IMAGELISTDRAWPARAMS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetStatistics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList2,
                 pils: ?*IMAGELISTSTATS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList2,
                 pils: ?*IMAGELISTSTATS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList2,
                 cx: i32,
                 cy: i32,
@@ -6270,7 +6066,7 @@ pub const IImageList2 = extern struct {
                 cInitial: i32,
                 cGrow: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList2,
                 cx: i32,
                 cy: i32,
@@ -6280,7 +6076,7 @@ pub const IImageList2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Replace2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList2,
                 i: i32,
                 hbmImage: ?HBITMAP,
@@ -6288,7 +6084,7 @@ pub const IImageList2 = extern struct {
                 punk: ?*IUnknown,
                 dwFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList2,
                 i: i32,
                 hbmImage: ?HBITMAP,
@@ -6298,7 +6094,7 @@ pub const IImageList2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ReplaceFromImageList: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IImageList2,
                 i: i32,
                 pil: ?*IImageList,
@@ -6306,7 +6102,7 @@ pub const IImageList2 = extern struct {
                 punk: ?*IUnknown,
                 dwFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IImageList2,
                 i: i32,
                 pil: ?*IImageList,
@@ -6317,57 +6113,59 @@ pub const IImageList2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IImageList.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList2_Resize(self: *const T, cxNewIconSize: i32, cyNewIconSize: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList2.VTable, self.vtable).Resize(@ptrCast(*const IImageList2, self), cxNewIconSize, cyNewIconSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList2_GetOriginalSize(self: *const T, iImage: i32, dwFlags: u32, pcx: ?*i32, pcy: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList2.VTable, self.vtable).GetOriginalSize(@ptrCast(*const IImageList2, self), iImage, dwFlags, pcx, pcy);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList2_SetOriginalSize(self: *const T, iImage: i32, cx: i32, cy: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList2.VTable, self.vtable).SetOriginalSize(@ptrCast(*const IImageList2, self), iImage, cx, cy);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList2_SetCallback(self: *const T, punk: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList2.VTable, self.vtable).SetCallback(@ptrCast(*const IImageList2, self), punk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList2_GetCallback(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList2.VTable, self.vtable).GetCallback(@ptrCast(*const IImageList2, self), riid, ppv);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList2_ForceImagePresent(self: *const T, iImage: i32, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList2.VTable, self.vtable).ForceImagePresent(@ptrCast(*const IImageList2, self), iImage, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList2_DiscardImages(self: *const T, iFirstImage: i32, iLastImage: i32, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList2.VTable, self.vtable).DiscardImages(@ptrCast(*const IImageList2, self), iFirstImage, iLastImage, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList2_PreloadImages(self: *const T, pimldp: ?*IMAGELISTDRAWPARAMS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList2.VTable, self.vtable).PreloadImages(@ptrCast(*const IImageList2, self), pimldp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList2_GetStatistics(self: *const T, pils: ?*IMAGELISTSTATS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList2.VTable, self.vtable).GetStatistics(@ptrCast(*const IImageList2, self), pils);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList2_Initialize(self: *const T, cx: i32, cy: i32, flags: IMAGELIST_CREATION_FLAGS, cInitial: i32, cGrow: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList2.VTable, self.vtable).Initialize(@ptrCast(*const IImageList2, self), cx, cy, flags, cInitial, cGrow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList2_Replace2(self: *const T, i: i32, hbmImage: ?HBITMAP, hbmMask: ?HBITMAP, punk: ?*IUnknown, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList2.VTable, self.vtable).Replace2(@ptrCast(*const IImageList2, self), i, hbmImage, hbmMask, punk, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList2_ReplaceFromImageList(self: *const T, i: i32, pil: ?*IImageList, iSrc: i32, punk: ?*IUnknown, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList2.VTable, self.vtable).ReplaceFromImageList(@ptrCast(*const IImageList2, self), i, pil, iSrc, punk, dwFlags);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IImageList.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList2_Resize(self: *const T, cxNewIconSize: i32, cyNewIconSize: i32) HRESULT {
+                return @ptrCast(*const IImageList2.VTable, self.vtable).Resize(@ptrCast(*const IImageList2, self), cxNewIconSize, cyNewIconSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList2_GetOriginalSize(self: *const T, iImage: i32, dwFlags: u32, pcx: ?*i32, pcy: ?*i32) HRESULT {
+                return @ptrCast(*const IImageList2.VTable, self.vtable).GetOriginalSize(@ptrCast(*const IImageList2, self), iImage, dwFlags, pcx, pcy);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList2_SetOriginalSize(self: *const T, iImage: i32, cx: i32, cy: i32) HRESULT {
+                return @ptrCast(*const IImageList2.VTable, self.vtable).SetOriginalSize(@ptrCast(*const IImageList2, self), iImage, cx, cy);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList2_SetCallback(self: *const T, punk: ?*IUnknown) HRESULT {
+                return @ptrCast(*const IImageList2.VTable, self.vtable).SetCallback(@ptrCast(*const IImageList2, self), punk);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList2_GetCallback(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IImageList2.VTable, self.vtable).GetCallback(@ptrCast(*const IImageList2, self), riid, ppv);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList2_ForceImagePresent(self: *const T, iImage: i32, dwFlags: u32) HRESULT {
+                return @ptrCast(*const IImageList2.VTable, self.vtable).ForceImagePresent(@ptrCast(*const IImageList2, self), iImage, dwFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList2_DiscardImages(self: *const T, iFirstImage: i32, iLastImage: i32, dwFlags: u32) HRESULT {
+                return @ptrCast(*const IImageList2.VTable, self.vtable).DiscardImages(@ptrCast(*const IImageList2, self), iFirstImage, iLastImage, dwFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList2_PreloadImages(self: *const T, pimldp: ?*IMAGELISTDRAWPARAMS) HRESULT {
+                return @ptrCast(*const IImageList2.VTable, self.vtable).PreloadImages(@ptrCast(*const IImageList2, self), pimldp);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList2_GetStatistics(self: *const T, pils: ?*IMAGELISTSTATS) HRESULT {
+                return @ptrCast(*const IImageList2.VTable, self.vtable).GetStatistics(@ptrCast(*const IImageList2, self), pils);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList2_Initialize(self: *const T, cx: i32, cy: i32, flags: IMAGELIST_CREATION_FLAGS, cInitial: i32, cGrow: i32) HRESULT {
+                return @ptrCast(*const IImageList2.VTable, self.vtable).Initialize(@ptrCast(*const IImageList2, self), cx, cy, flags, cInitial, cGrow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList2_Replace2(self: *const T, i: i32, hbmImage: ?HBITMAP, hbmMask: ?HBITMAP, punk: ?*IUnknown, dwFlags: u32) HRESULT {
+                return @ptrCast(*const IImageList2.VTable, self.vtable).Replace2(@ptrCast(*const IImageList2, self), i, hbmImage, hbmMask, punk, dwFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IImageList2_ReplaceFromImageList(self: *const T, i: i32, pil: ?*IImageList, iSrc: i32, punk: ?*IUnknown, dwFlags: u32) HRESULT {
+                return @ptrCast(*const IImageList2.VTable, self.vtable).ReplaceFromImageList(@ptrCast(*const IImageList2, self), i, pil, iSrc, punk, dwFlags);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6402,14 +6200,7 @@ pub const TA_PROPERTY_FLAG = enum(u32) {
         HASBACKGROUND: u1 = 0,
         HASPERSPECTIVE: u1 = 0,
     }) TA_PROPERTY_FLAG {
-        return @intToEnum(TA_PROPERTY_FLAG,
-              (if (o.NONE == 1) @enumToInt(TA_PROPERTY_FLAG.NONE) else 0)
-            | (if (o.HASSTAGGER == 1) @enumToInt(TA_PROPERTY_FLAG.HASSTAGGER) else 0)
-            | (if (o.ISRTLAWARE == 1) @enumToInt(TA_PROPERTY_FLAG.ISRTLAWARE) else 0)
-            | (if (o.ALLOWCOLLECTION == 1) @enumToInt(TA_PROPERTY_FLAG.ALLOWCOLLECTION) else 0)
-            | (if (o.HASBACKGROUND == 1) @enumToInt(TA_PROPERTY_FLAG.HASBACKGROUND) else 0)
-            | (if (o.HASPERSPECTIVE == 1) @enumToInt(TA_PROPERTY_FLAG.HASPERSPECTIVE) else 0)
-        );
+        return @enumFromInt(TA_PROPERTY_FLAG, (if (o.NONE == 1) @intFromEnum(TA_PROPERTY_FLAG.NONE) else 0) | (if (o.HASSTAGGER == 1) @intFromEnum(TA_PROPERTY_FLAG.HASSTAGGER) else 0) | (if (o.ISRTLAWARE == 1) @intFromEnum(TA_PROPERTY_FLAG.ISRTLAWARE) else 0) | (if (o.ALLOWCOLLECTION == 1) @intFromEnum(TA_PROPERTY_FLAG.ALLOWCOLLECTION) else 0) | (if (o.HASBACKGROUND == 1) @intFromEnum(TA_PROPERTY_FLAG.HASBACKGROUND) else 0) | (if (o.HASPERSPECTIVE == 1) @intFromEnum(TA_PROPERTY_FLAG.HASPERSPECTIVE) else 0));
     }
 };
 pub const TAPF_NONE = TA_PROPERTY_FLAG.NONE;
@@ -6547,7 +6338,7 @@ pub const WTA_OPTIONS = extern struct {
 };
 
 pub const DTT_CALLBACK_PROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hdc: ?HDC,
         pszText: [*:0]u16,
         cchText: i32,
@@ -6555,7 +6346,7 @@ pub const DTT_CALLBACK_PROC = switch (@import("builtin").zig_backend) {
         dwFlags: u32,
         lParam: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         hdc: ?HDC,
         pszText: [*:0]u16,
         cchText: i32,
@@ -6563,7 +6354,7 @@ pub const DTT_CALLBACK_PROC = switch (@import("builtin").zig_backend) {
         dwFlags: u32,
         lParam: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const DTTOPTS = extern struct {
     dwSize: u32,
@@ -7139,56 +6930,56 @@ pub const CCSTYLEW = extern struct {
 };
 
 pub const LPFNCCSTYLEA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hwndParent: ?HWND,
         pccs: ?*CCSTYLEA,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         hwndParent: ?HWND,
         pccs: ?*CCSTYLEA,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const LPFNCCSTYLEW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hwndParent: ?HWND,
         pccs: ?*CCSTYLEW,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         hwndParent: ?HWND,
         pccs: ?*CCSTYLEW,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const LPFNCCSIZETOTEXTA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         flStyle: u32,
         flExtStyle: u32,
         hfont: ?HFONT,
         pszText: ?PSTR,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         flStyle: u32,
         flExtStyle: u32,
         hfont: ?HFONT,
         pszText: ?PSTR,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const LPFNCCSIZETOTEXTW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         flStyle: u32,
         flExtStyle: u32,
         hfont: ?HFONT,
         pszText: ?PWSTR,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         flStyle: u32,
         flExtStyle: u32,
         hfont: ?HFONT,
         pszText: ?PWSTR,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const CCSTYLEFLAGA = extern struct {
     flStyle: u32,
@@ -7239,52 +7030,52 @@ pub const CCINFOW = extern struct {
 };
 
 pub const LPFNCCINFOA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         acci: ?*CCINFOA,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         acci: ?*CCINFOA,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const LPFNCCINFOW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         acci: ?*CCINFOW,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         acci: ?*CCINFOW,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const EDITWORDBREAKPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         lpch: ?PSTR,
         ichCurrent: i32,
         cch: i32,
         code: WORD_BREAK_ACTION,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         lpch: ?PSTR,
         ichCurrent: i32,
         cch: i32,
         code: WORD_BREAK_ACTION,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const EDITWORDBREAKPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         lpch: ?PWSTR,
         ichCurrent: i32,
         cch: i32,
         code: WORD_BREAK_ACTION,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         lpch: ?PWSTR,
         ichCurrent: i32,
         cch: i32,
         code: WORD_BREAK_ACTION,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const NMHDR = extern struct {
     hwndFrom: ?HWND,
@@ -7462,8 +7253,7 @@ pub const POINTER_DEVICE_CURSOR_INFO = extern struct {
     cursor: POINTER_DEVICE_CURSOR_TYPE,
 };
 
-
-pub const TBBUTTON = switch(@import("../zig.zig").arch) {
+pub const TBBUTTON = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         iBitmap: i32,
         idCommand: i32,
@@ -7513,8 +7303,7 @@ pub extern "comctl32" fn PropertySheetW(
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "comctl32" fn InitCommonControls(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "comctl32" fn InitCommonControls() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "comctl32" fn InitCommonControlsEx(
@@ -7675,8 +7464,7 @@ pub extern "comctl32" fn ImageList_BeginDrag(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "comctl32" fn ImageList_EndDrag(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "comctl32" fn ImageList_EndDrag() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "comctl32" fn ImageList_DragEnter(
@@ -7928,8 +7716,7 @@ pub extern "comctl32" fn InitMUILanguage(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "comctl32" fn GetMUILanguage(
-) callconv(@import("std").os.windows.WINAPI) u16;
+pub extern "comctl32" fn GetMUILanguage() callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "comctl32" fn DSA_Create(
@@ -8661,12 +8448,10 @@ pub extern "uxtheme" fn GetThemeSysInt(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "uxtheme" fn IsThemeActive(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "uxtheme" fn IsThemeActive() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "uxtheme" fn IsAppThemed(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "uxtheme" fn IsAppThemed() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "uxtheme" fn GetWindowTheme(
@@ -8685,8 +8470,7 @@ pub extern "uxtheme" fn IsThemeDialogTextureEnabled(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "uxtheme" fn GetThemeAppProperties(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "uxtheme" fn GetThemeAppProperties() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "uxtheme" fn SetThemeAppProperties(
@@ -8775,12 +8559,10 @@ pub extern "uxtheme" fn GetThemeStream(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "uxtheme" fn BufferedPaintInit(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub extern "uxtheme" fn BufferedPaintInit() callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "uxtheme" fn BufferedPaintUnInit(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub extern "uxtheme" fn BufferedPaintUnInit() callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "uxtheme" fn BeginBufferedPaint(
@@ -8863,8 +8645,7 @@ pub extern "uxtheme" fn BufferedPaintRenderAnimation(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "uxtheme" fn IsCompositionActive(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "uxtheme" fn IsCompositionActive() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "uxtheme" fn GetThemeTransitionDuration(
@@ -9084,7 +8865,6 @@ pub extern "user32" fn RegisterPointerDeviceNotifications(
     notifyRange: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (55)
 //--------------------------------------------------------------------------------
@@ -9205,61 +8985,61 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const DlgDirSelectComboBoxEx = thismodule.DlgDirSelectComboBoxExW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const LPFNPSPCALLBACK = *opaque{};
-        pub const PROPSHEETPAGE = *opaque{};
-        pub const HD_TEXTFILTER = *opaque{};
-        pub const HDITEM = *opaque{};
-        pub const NMHEADER = *opaque{};
-        pub const NMHDDISPINFO = *opaque{};
-        pub const TBSAVEPARAMS = *opaque{};
-        pub const TBBUTTONINFO = *opaque{};
-        pub const NMTBGETINFOTIP = *opaque{};
-        pub const NMTBDISPINFO = *opaque{};
-        pub const NMTOOLBAR = *opaque{};
-        pub const REBARBANDINFO = *opaque{};
-        pub const TTTOOLINFO = *opaque{};
-        pub const TTHITTESTINFO = *opaque{};
-        pub const NMTTDISPINFO = *opaque{};
-        pub const LVITEM = *opaque{};
-        pub const LVFINDINFO = *opaque{};
-        pub const LVCOLUMN = *opaque{};
-        pub const LVBKIMAGE = *opaque{};
-        pub const NMLVFINDITEM = *opaque{};
-        pub const NMLVDISPINFO = *opaque{};
-        pub const NMLVGETINFOTIP = *opaque{};
-        pub const TVITEM = *opaque{};
-        pub const TVITEMEX = *opaque{};
-        pub const TVINSERTSTRUCT = *opaque{};
-        pub const NMTREEVIEW = *opaque{};
-        pub const NMTVDISPINFO = *opaque{};
-        pub const NMTVDISPINFOEX = *opaque{};
-        pub const NMTVGETINFOTIP = *opaque{};
-        pub const COMBOBOXEXITEM = *opaque{};
-        pub const NMCOMBOBOXEX = *opaque{};
-        pub const NMCBEDRAGBEGIN = *opaque{};
-        pub const NMCBEENDEDIT = *opaque{};
-        pub const TCITEMHEADER = *opaque{};
-        pub const TCITEM = *opaque{};
-        pub const NMDATETIMESTRING = *opaque{};
-        pub const NMDATETIMEWMKEYDOWN = *opaque{};
-        pub const NMDATETIMEFORMAT = *opaque{};
-        pub const NMDATETIMEFORMATQUERY = *opaque{};
-        pub const CCSTYLE = *opaque{};
-        pub const LPFNCCSTYLE = *opaque{};
-        pub const LPFNCCSIZETOTEXT = *opaque{};
-        pub const CCSTYLEFLAG = *opaque{};
-        pub const CCINFO = *opaque{};
-        pub const LPFNCCINFO = *opaque{};
-        pub const EDITWORDBREAKPROC = *opaque{};
-        pub const CreatePropertySheetPage = *opaque{};
-        pub const PropertySheet = *opaque{};
-        pub const ImageList_LoadImage = *opaque{};
-        pub const DrawStatusText = *opaque{};
-        pub const CreateStatusWindow = *opaque{};
-        pub const DlgDirList = *opaque{};
-        pub const DlgDirSelectEx = *opaque{};
-        pub const DlgDirListComboBox = *opaque{};
-        pub const DlgDirSelectComboBoxEx = *opaque{};
+        pub const LPFNPSPCALLBACK = *opaque {};
+        pub const PROPSHEETPAGE = *opaque {};
+        pub const HD_TEXTFILTER = *opaque {};
+        pub const HDITEM = *opaque {};
+        pub const NMHEADER = *opaque {};
+        pub const NMHDDISPINFO = *opaque {};
+        pub const TBSAVEPARAMS = *opaque {};
+        pub const TBBUTTONINFO = *opaque {};
+        pub const NMTBGETINFOTIP = *opaque {};
+        pub const NMTBDISPINFO = *opaque {};
+        pub const NMTOOLBAR = *opaque {};
+        pub const REBARBANDINFO = *opaque {};
+        pub const TTTOOLINFO = *opaque {};
+        pub const TTHITTESTINFO = *opaque {};
+        pub const NMTTDISPINFO = *opaque {};
+        pub const LVITEM = *opaque {};
+        pub const LVFINDINFO = *opaque {};
+        pub const LVCOLUMN = *opaque {};
+        pub const LVBKIMAGE = *opaque {};
+        pub const NMLVFINDITEM = *opaque {};
+        pub const NMLVDISPINFO = *opaque {};
+        pub const NMLVGETINFOTIP = *opaque {};
+        pub const TVITEM = *opaque {};
+        pub const TVITEMEX = *opaque {};
+        pub const TVINSERTSTRUCT = *opaque {};
+        pub const NMTREEVIEW = *opaque {};
+        pub const NMTVDISPINFO = *opaque {};
+        pub const NMTVDISPINFOEX = *opaque {};
+        pub const NMTVGETINFOTIP = *opaque {};
+        pub const COMBOBOXEXITEM = *opaque {};
+        pub const NMCOMBOBOXEX = *opaque {};
+        pub const NMCBEDRAGBEGIN = *opaque {};
+        pub const NMCBEENDEDIT = *opaque {};
+        pub const TCITEMHEADER = *opaque {};
+        pub const TCITEM = *opaque {};
+        pub const NMDATETIMESTRING = *opaque {};
+        pub const NMDATETIMEWMKEYDOWN = *opaque {};
+        pub const NMDATETIMEFORMAT = *opaque {};
+        pub const NMDATETIMEFORMATQUERY = *opaque {};
+        pub const CCSTYLE = *opaque {};
+        pub const LPFNCCSTYLE = *opaque {};
+        pub const LPFNCCSIZETOTEXT = *opaque {};
+        pub const CCSTYLEFLAG = *opaque {};
+        pub const CCINFO = *opaque {};
+        pub const LPFNCCINFO = *opaque {};
+        pub const EDITWORDBREAKPROC = *opaque {};
+        pub const CreatePropertySheetPage = *opaque {};
+        pub const PropertySheet = *opaque {};
+        pub const ImageList_LoadImage = *opaque {};
+        pub const DrawStatusText = *opaque {};
+        pub const CreateStatusWindow = *opaque {};
+        pub const DlgDirList = *opaque {};
+        pub const DlgDirSelectEx = *opaque {};
+        pub const DlgDirListComboBox = *opaque {};
+        pub const DlgDirSelectComboBoxEx = *opaque {};
     } else struct {
         pub const LPFNPSPCALLBACK = @compileError("'LPFNPSPCALLBACK' requires that UNICODE be set to true or false in the root module");
         pub const PROPSHEETPAGE = @compileError("'PROPSHEETPAGE' requires that UNICODE be set to true or false in the root module");
@@ -9366,35 +9146,83 @@ const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "LPFNPSPCALLBACKA")) { _ = LPFNPSPCALLBACKA; }
-    if (@hasDecl(@This(), "LPFNPSPCALLBACKW")) { _ = LPFNPSPCALLBACKW; }
-    if (@hasDecl(@This(), "PFNPROPSHEETCALLBACK")) { _ = PFNPROPSHEETCALLBACK; }
-    if (@hasDecl(@This(), "LPFNSVADDPROPSHEETPAGE")) { _ = LPFNSVADDPROPSHEETPAGE; }
-    if (@hasDecl(@This(), "LPFNADDPROPSHEETPAGES")) { _ = LPFNADDPROPSHEETPAGES; }
-    if (@hasDecl(@This(), "PFNLVCOMPARE")) { _ = PFNLVCOMPARE; }
-    if (@hasDecl(@This(), "PFNLVGROUPCOMPARE")) { _ = PFNLVGROUPCOMPARE; }
-    if (@hasDecl(@This(), "PFNTVCOMPARE")) { _ = PFNTVCOMPARE; }
-    if (@hasDecl(@This(), "PFTASKDIALOGCALLBACK")) { _ = PFTASKDIALOGCALLBACK; }
-    if (@hasDecl(@This(), "PFNDAENUMCALLBACK")) { _ = PFNDAENUMCALLBACK; }
-    if (@hasDecl(@This(), "PFNDAENUMCALLBACKCONST")) { _ = PFNDAENUMCALLBACKCONST; }
-    if (@hasDecl(@This(), "PFNDACOMPARE")) { _ = PFNDACOMPARE; }
-    if (@hasDecl(@This(), "PFNDACOMPARECONST")) { _ = PFNDACOMPARECONST; }
-    if (@hasDecl(@This(), "PFNDPASTREAM")) { _ = PFNDPASTREAM; }
-    if (@hasDecl(@This(), "PFNDPAMERGE")) { _ = PFNDPAMERGE; }
-    if (@hasDecl(@This(), "PFNDPAMERGECONST")) { _ = PFNDPAMERGECONST; }
-    if (@hasDecl(@This(), "DTT_CALLBACK_PROC")) { _ = DTT_CALLBACK_PROC; }
-    if (@hasDecl(@This(), "LPFNCCSTYLEA")) { _ = LPFNCCSTYLEA; }
-    if (@hasDecl(@This(), "LPFNCCSTYLEW")) { _ = LPFNCCSTYLEW; }
-    if (@hasDecl(@This(), "LPFNCCSIZETOTEXTA")) { _ = LPFNCCSIZETOTEXTA; }
-    if (@hasDecl(@This(), "LPFNCCSIZETOTEXTW")) { _ = LPFNCCSIZETOTEXTW; }
-    if (@hasDecl(@This(), "LPFNCCINFOA")) { _ = LPFNCCINFOA; }
-    if (@hasDecl(@This(), "LPFNCCINFOW")) { _ = LPFNCCINFOW; }
-    if (@hasDecl(@This(), "EDITWORDBREAKPROCA")) { _ = EDITWORDBREAKPROCA; }
-    if (@hasDecl(@This(), "EDITWORDBREAKPROCW")) { _ = EDITWORDBREAKPROCW; }
+    if (@hasDecl(@This(), "LPFNPSPCALLBACKA")) {
+        _ = LPFNPSPCALLBACKA;
+    }
+    if (@hasDecl(@This(), "LPFNPSPCALLBACKW")) {
+        _ = LPFNPSPCALLBACKW;
+    }
+    if (@hasDecl(@This(), "PFNPROPSHEETCALLBACK")) {
+        _ = PFNPROPSHEETCALLBACK;
+    }
+    if (@hasDecl(@This(), "LPFNSVADDPROPSHEETPAGE")) {
+        _ = LPFNSVADDPROPSHEETPAGE;
+    }
+    if (@hasDecl(@This(), "LPFNADDPROPSHEETPAGES")) {
+        _ = LPFNADDPROPSHEETPAGES;
+    }
+    if (@hasDecl(@This(), "PFNLVCOMPARE")) {
+        _ = PFNLVCOMPARE;
+    }
+    if (@hasDecl(@This(), "PFNLVGROUPCOMPARE")) {
+        _ = PFNLVGROUPCOMPARE;
+    }
+    if (@hasDecl(@This(), "PFNTVCOMPARE")) {
+        _ = PFNTVCOMPARE;
+    }
+    if (@hasDecl(@This(), "PFTASKDIALOGCALLBACK")) {
+        _ = PFTASKDIALOGCALLBACK;
+    }
+    if (@hasDecl(@This(), "PFNDAENUMCALLBACK")) {
+        _ = PFNDAENUMCALLBACK;
+    }
+    if (@hasDecl(@This(), "PFNDAENUMCALLBACKCONST")) {
+        _ = PFNDAENUMCALLBACKCONST;
+    }
+    if (@hasDecl(@This(), "PFNDACOMPARE")) {
+        _ = PFNDACOMPARE;
+    }
+    if (@hasDecl(@This(), "PFNDACOMPARECONST")) {
+        _ = PFNDACOMPARECONST;
+    }
+    if (@hasDecl(@This(), "PFNDPASTREAM")) {
+        _ = PFNDPASTREAM;
+    }
+    if (@hasDecl(@This(), "PFNDPAMERGE")) {
+        _ = PFNDPAMERGE;
+    }
+    if (@hasDecl(@This(), "PFNDPAMERGECONST")) {
+        _ = PFNDPAMERGECONST;
+    }
+    if (@hasDecl(@This(), "DTT_CALLBACK_PROC")) {
+        _ = DTT_CALLBACK_PROC;
+    }
+    if (@hasDecl(@This(), "LPFNCCSTYLEA")) {
+        _ = LPFNCCSTYLEA;
+    }
+    if (@hasDecl(@This(), "LPFNCCSTYLEW")) {
+        _ = LPFNCCSTYLEW;
+    }
+    if (@hasDecl(@This(), "LPFNCCSIZETOTEXTA")) {
+        _ = LPFNCCSIZETOTEXTA;
+    }
+    if (@hasDecl(@This(), "LPFNCCSIZETOTEXTW")) {
+        _ = LPFNCCSIZETOTEXTW;
+    }
+    if (@hasDecl(@This(), "LPFNCCINFOA")) {
+        _ = LPFNCCINFOA;
+    }
+    if (@hasDecl(@This(), "LPFNCCINFOW")) {
+        _ = LPFNCCINFOW;
+    }
+    if (@hasDecl(@This(), "EDITWORDBREAKPROCA")) {
+        _ = EDITWORDBREAKPROCA;
+    }
+    if (@hasDecl(@This(), "EDITWORDBREAKPROCW")) {
+        _ = EDITWORDBREAKPROCW;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

@@ -7,15 +7,15 @@
 // Section: Types (3)
 //--------------------------------------------------------------------------------
 pub const PFN_PDF_CREATE_RENDERER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*IDXGIDevice,
         param1: ?*?*IPdfRendererNative,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         param0: ?*IDXGIDevice,
         param1: ?*?*IPdfRendererNative,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PDF_RENDER_PARAMS = extern struct {
     SourceRect: D2D_RECT_F,
@@ -31,14 +31,14 @@ pub const IPdfRendererNative = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         RenderPageToSurface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPdfRendererNative,
                 pdfPage: ?*IUnknown,
                 pSurface: ?*IDXGISurface,
                 offset: POINT,
                 pRenderParams: ?*PDF_RENDER_PARAMS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPdfRendererNative,
                 pdfPage: ?*IUnknown,
                 pSurface: ?*IDXGISurface,
@@ -47,13 +47,13 @@ pub const IPdfRendererNative = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RenderPageToDeviceContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPdfRendererNative,
                 pdfPage: ?*IUnknown,
                 pD2DDeviceContext: ?*ID2D1DeviceContext,
                 pRenderParams: ?*PDF_RENDER_PARAMS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPdfRendererNative,
                 pdfPage: ?*IUnknown,
                 pD2DDeviceContext: ?*ID2D1DeviceContext,
@@ -62,20 +62,21 @@ pub const IPdfRendererNative = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPdfRendererNative_RenderPageToSurface(self: *const T, pdfPage: ?*IUnknown, pSurface: ?*IDXGISurface, offset: POINT, pRenderParams: ?*PDF_RENDER_PARAMS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPdfRendererNative.VTable, self.vtable).RenderPageToSurface(@ptrCast(*const IPdfRendererNative, self), pdfPage, pSurface, offset, pRenderParams);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPdfRendererNative_RenderPageToDeviceContext(self: *const T, pdfPage: ?*IUnknown, pD2DDeviceContext: ?*ID2D1DeviceContext, pRenderParams: ?*PDF_RENDER_PARAMS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPdfRendererNative.VTable, self.vtable).RenderPageToDeviceContext(@ptrCast(*const IPdfRendererNative, self), pdfPage, pD2DDeviceContext, pRenderParams);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPdfRendererNative_RenderPageToSurface(self: *const T, pdfPage: ?*IUnknown, pSurface: ?*IDXGISurface, offset: POINT, pRenderParams: ?*PDF_RENDER_PARAMS) HRESULT {
+                return @ptrCast(*const IPdfRendererNative.VTable, self.vtable).RenderPageToSurface(@ptrCast(*const IPdfRendererNative, self), pdfPage, pSurface, offset, pRenderParams);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPdfRendererNative_RenderPageToDeviceContext(self: *const T, pdfPage: ?*IUnknown, pD2DDeviceContext: ?*ID2D1DeviceContext, pRenderParams: ?*PDF_RENDER_PARAMS) HRESULT {
+                return @ptrCast(*const IPdfRendererNative.VTable, self.vtable).RenderPageToDeviceContext(@ptrCast(*const IPdfRendererNative, self), pdfPage, pD2DDeviceContext, pRenderParams);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (1)
@@ -85,19 +86,14 @@ pub extern "windows.data.pdf" fn PdfCreateRenderer(
     ppRenderer: ?*?*IPdfRendererNative,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (10)
@@ -115,11 +111,11 @@ const POINT = @import("../../foundation.zig").POINT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFN_PDF_CREATE_RENDERER")) { _ = PFN_PDF_CREATE_RENDERER; }
+    if (@hasDecl(@This(), "PFN_PDF_CREATE_RENDERER")) {
+        _ = PFN_PDF_CREATE_RENDERER;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

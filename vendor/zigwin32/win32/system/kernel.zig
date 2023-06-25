@@ -38,7 +38,6 @@ pub const SLIST_ENTRY = extern struct {
     Next: ?*SLIST_ENTRY,
 };
 
-
 pub const QUAD = extern struct {
     Anonymous: extern union {
         UseThisFieldToCopy: i64,
@@ -168,19 +167,19 @@ pub const OBJECTID = extern struct {
 };
 
 pub const EXCEPTION_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         ExceptionRecord: ?*EXCEPTION_RECORD,
         EstablisherFrame: ?*anyopaque,
         ContextRecord: ?*CONTEXT,
         DispatcherContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) EXCEPTION_DISPOSITION,
-    else => *const fn(
+    else => *const fn (
         ExceptionRecord: ?*EXCEPTION_RECORD,
         EstablisherFrame: ?*anyopaque,
         ContextRecord: ?*CONTEXT,
         DispatcherContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) EXCEPTION_DISPOSITION,
-} ;
+};
 
 pub const NT_PRODUCT_TYPE = enum(i32) {
     WinNt = 1,
@@ -257,11 +256,7 @@ pub const NT_TIB = extern struct {
     Self: ?*NT_TIB,
 };
 
-
-
-
-
-pub const SLIST_HEADER = switch(@import("../zig.zig").arch) {
+pub const SLIST_HEADER = switch (@import("../zig.zig").arch) {
     .Arm64 => extern union {
         Anonymous: extern struct {
             Alignment: u64,
@@ -291,7 +286,7 @@ pub const SLIST_HEADER = switch(@import("../zig.zig").arch) {
         },
     },
 };
-pub const FLOATING_SAVE_AREA = switch(@import("../zig.zig").arch) {
+pub const FLOATING_SAVE_AREA = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         ControlWord: u32,
         StatusWord: u32,
@@ -357,19 +352,14 @@ pub extern "ntdll" fn RtlQueryDepthSList(
     ListHead: ?*SLIST_HEADER,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
@@ -381,11 +371,11 @@ const PSTR = @import("../foundation.zig").PSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "EXCEPTION_ROUTINE")) { _ = EXCEPTION_ROUTINE; }
+    if (@hasDecl(@This(), "EXCEPTION_ROUTINE")) {
+        _ = EXCEPTION_ROUTINE;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

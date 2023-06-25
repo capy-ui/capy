@@ -25,26 +25,26 @@ pub const COMPRESS_ALGORITHM_LZMS = COMPRESS_ALGORITHM.LZMS;
 pub const COMPRESSOR_HANDLE = isize;
 
 pub const PFN_COMPRESS_ALLOCATE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         UserContext: ?*anyopaque,
         Size: usize,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-    else => *const fn(
+    else => *const fn (
         UserContext: ?*anyopaque,
         Size: usize,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-} ;
+};
 
 pub const PFN_COMPRESS_FREE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         UserContext: ?*anyopaque,
         Memory: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         UserContext: ?*anyopaque,
         Memory: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const COMPRESS_ALLOCATION_ROUTINES = extern struct {
     Allocate: ?PFN_COMPRESS_ALLOCATE,
@@ -60,7 +60,6 @@ pub const COMPRESS_INFORMATION_CLASS = enum(i32) {
 pub const COMPRESS_INFORMATION_CLASS_INVALID = COMPRESS_INFORMATION_CLASS.INVALID;
 pub const COMPRESS_INFORMATION_CLASS_BLOCK_SIZE = COMPRESS_INFORMATION_CLASS.BLOCK_SIZE;
 pub const COMPRESS_INFORMATION_CLASS_LEVEL = COMPRESS_INFORMATION_CLASS.LEVEL;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (12)
@@ -159,19 +158,14 @@ pub extern "cabinet" fn CloseDecompressor(
     DecompressorHandle: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (1)
@@ -180,12 +174,14 @@ const BOOL = @import("../foundation.zig").BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFN_COMPRESS_ALLOCATE")) { _ = PFN_COMPRESS_ALLOCATE; }
-    if (@hasDecl(@This(), "PFN_COMPRESS_FREE")) { _ = PFN_COMPRESS_FREE; }
+    if (@hasDecl(@This(), "PFN_COMPRESS_ALLOCATE")) {
+        _ = PFN_COMPRESS_ALLOCATE;
+    }
+    if (@hasDecl(@This(), "PFN_COMPRESS_FREE")) {
+        _ = PFN_COMPRESS_FREE;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

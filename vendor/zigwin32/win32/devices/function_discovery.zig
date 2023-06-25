@@ -21,257 +21,257 @@ pub const SID_UnpairProvider = Guid.initString("89a502fc-857b-4698-a0b7-02719200
 pub const SID_DeviceDisplayStatusManager = Guid.initString("f59aa553-8309-46ca-9736-1ac3c62d6031");
 pub const SID_FunctionDiscoveryProviderRefresh = Guid.initString("2b4cbdc9-31c4-40d4-a62d-772aa174ed52");
 pub const SID_UninstallDeviceFunction = Guid.initString("c920566e-5671-4496-8025-bf0b89bd44cd");
-pub const PKEY_FunctionInstance = PROPERTYKEY { .fmtid = Guid.initString("08c0c253-a154-4746-9005-82de5317148b"), .pid = 1 };
+pub const PKEY_FunctionInstance = PROPERTYKEY{ .fmtid = Guid.initString("08c0c253-a154-4746-9005-82de5317148b"), .pid = 1 };
 pub const FMTID_FD = Guid.initString("904b03a2-471d-423c-a584-f3483238a146");
 pub const FD_Visibility_Default = @as(u32, 0);
 pub const FD_Visibility_Hidden = @as(u32, 1);
 pub const FMTID_Device = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57");
 pub const FMTID_DeviceInterface = Guid.initString("53808008-07bb-4661-bc3c-b5953e708560");
-pub const PKEY_DeviceDisplay_Address = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 51 };
-pub const PKEY_DeviceDisplay_DiscoveryMethod = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 52 };
-pub const PKEY_DeviceDisplay_IsEncrypted = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 53 };
-pub const PKEY_DeviceDisplay_IsAuthenticated = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 54 };
-pub const PKEY_DeviceDisplay_IsConnected = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 55 };
-pub const PKEY_DeviceDisplay_IsPaired = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 56 };
-pub const PKEY_DeviceDisplay_Icon = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 57 };
-pub const PKEY_DeviceDisplay_Version = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 65 };
-pub const PKEY_DeviceDisplay_Last_Seen = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 66 };
-pub const PKEY_DeviceDisplay_Last_Connected = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 67 };
-pub const PKEY_DeviceDisplay_IsShowInDisconnectedState = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 68 };
-pub const PKEY_DeviceDisplay_IsLocalMachine = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 70 };
-pub const PKEY_DeviceDisplay_MetadataPath = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 71 };
-pub const PKEY_DeviceDisplay_IsMetadataSearchInProgress = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 72 };
-pub const PKEY_DeviceDisplay_MetadataChecksum = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 73 };
-pub const PKEY_DeviceDisplay_IsNotInterestingForDisplay = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 74 };
-pub const PKEY_DeviceDisplay_LaunchDeviceStageOnDeviceConnect = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 76 };
-pub const PKEY_DeviceDisplay_LaunchDeviceStageFromExplorer = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 77 };
-pub const PKEY_DeviceDisplay_BaselineExperienceId = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 78 };
-pub const PKEY_DeviceDisplay_IsDeviceUniquelyIdentifiable = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 79 };
-pub const PKEY_DeviceDisplay_AssociationArray = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 80 };
-pub const PKEY_DeviceDisplay_DeviceDescription1 = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 81 };
-pub const PKEY_DeviceDisplay_DeviceDescription2 = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 82 };
-pub const PKEY_DeviceDisplay_IsNotWorkingProperly = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 83 };
-pub const PKEY_DeviceDisplay_IsSharedDevice = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 84 };
-pub const PKEY_DeviceDisplay_IsNetworkDevice = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 85 };
-pub const PKEY_DeviceDisplay_IsDefaultDevice = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 86 };
-pub const PKEY_DeviceDisplay_MetadataCabinet = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 87 };
-pub const PKEY_DeviceDisplay_RequiresPairingElevation = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 88 };
-pub const PKEY_DeviceDisplay_ExperienceId = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 89 };
-pub const PKEY_DeviceDisplay_Category = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 90 };
-pub const PKEY_DeviceDisplay_Category_Desc_Singular = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 91 };
-pub const PKEY_DeviceDisplay_Category_Desc_Plural = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 92 };
-pub const PKEY_DeviceDisplay_Category_Icon = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 93 };
-pub const PKEY_DeviceDisplay_CategoryGroup_Desc = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 94 };
-pub const PKEY_DeviceDisplay_CategoryGroup_Icon = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 95 };
-pub const PKEY_DeviceDisplay_PrimaryCategory = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 97 };
-pub const PKEY_DeviceDisplay_UnpairUninstall = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 98 };
-pub const PKEY_DeviceDisplay_RequiresUninstallElevation = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 99 };
-pub const PKEY_DeviceDisplay_DeviceFunctionSubRank = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 100 };
-pub const PKEY_DeviceDisplay_AlwaysShowDeviceAsConnected = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 101 };
-pub const PKEY_DeviceDisplay_FriendlyName = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 12288 };
-pub const PKEY_DeviceDisplay_Manufacturer = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 8192 };
-pub const PKEY_DeviceDisplay_ModelName = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 8194 };
-pub const PKEY_DeviceDisplay_ModelNumber = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 8195 };
-pub const PKEY_DeviceDisplay_InstallInProgress = PROPERTYKEY { .fmtid = Guid.initString("83da6326-97a6-4088-9453-a1923f573b29"), .pid = 9 };
+pub const PKEY_DeviceDisplay_Address = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 51 };
+pub const PKEY_DeviceDisplay_DiscoveryMethod = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 52 };
+pub const PKEY_DeviceDisplay_IsEncrypted = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 53 };
+pub const PKEY_DeviceDisplay_IsAuthenticated = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 54 };
+pub const PKEY_DeviceDisplay_IsConnected = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 55 };
+pub const PKEY_DeviceDisplay_IsPaired = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 56 };
+pub const PKEY_DeviceDisplay_Icon = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 57 };
+pub const PKEY_DeviceDisplay_Version = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 65 };
+pub const PKEY_DeviceDisplay_Last_Seen = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 66 };
+pub const PKEY_DeviceDisplay_Last_Connected = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 67 };
+pub const PKEY_DeviceDisplay_IsShowInDisconnectedState = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 68 };
+pub const PKEY_DeviceDisplay_IsLocalMachine = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 70 };
+pub const PKEY_DeviceDisplay_MetadataPath = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 71 };
+pub const PKEY_DeviceDisplay_IsMetadataSearchInProgress = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 72 };
+pub const PKEY_DeviceDisplay_MetadataChecksum = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 73 };
+pub const PKEY_DeviceDisplay_IsNotInterestingForDisplay = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 74 };
+pub const PKEY_DeviceDisplay_LaunchDeviceStageOnDeviceConnect = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 76 };
+pub const PKEY_DeviceDisplay_LaunchDeviceStageFromExplorer = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 77 };
+pub const PKEY_DeviceDisplay_BaselineExperienceId = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 78 };
+pub const PKEY_DeviceDisplay_IsDeviceUniquelyIdentifiable = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 79 };
+pub const PKEY_DeviceDisplay_AssociationArray = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 80 };
+pub const PKEY_DeviceDisplay_DeviceDescription1 = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 81 };
+pub const PKEY_DeviceDisplay_DeviceDescription2 = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 82 };
+pub const PKEY_DeviceDisplay_IsNotWorkingProperly = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 83 };
+pub const PKEY_DeviceDisplay_IsSharedDevice = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 84 };
+pub const PKEY_DeviceDisplay_IsNetworkDevice = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 85 };
+pub const PKEY_DeviceDisplay_IsDefaultDevice = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 86 };
+pub const PKEY_DeviceDisplay_MetadataCabinet = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 87 };
+pub const PKEY_DeviceDisplay_RequiresPairingElevation = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 88 };
+pub const PKEY_DeviceDisplay_ExperienceId = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 89 };
+pub const PKEY_DeviceDisplay_Category = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 90 };
+pub const PKEY_DeviceDisplay_Category_Desc_Singular = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 91 };
+pub const PKEY_DeviceDisplay_Category_Desc_Plural = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 92 };
+pub const PKEY_DeviceDisplay_Category_Icon = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 93 };
+pub const PKEY_DeviceDisplay_CategoryGroup_Desc = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 94 };
+pub const PKEY_DeviceDisplay_CategoryGroup_Icon = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 95 };
+pub const PKEY_DeviceDisplay_PrimaryCategory = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 97 };
+pub const PKEY_DeviceDisplay_UnpairUninstall = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 98 };
+pub const PKEY_DeviceDisplay_RequiresUninstallElevation = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 99 };
+pub const PKEY_DeviceDisplay_DeviceFunctionSubRank = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 100 };
+pub const PKEY_DeviceDisplay_AlwaysShowDeviceAsConnected = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 101 };
+pub const PKEY_DeviceDisplay_FriendlyName = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 12288 };
+pub const PKEY_DeviceDisplay_Manufacturer = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 8192 };
+pub const PKEY_DeviceDisplay_ModelName = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 8194 };
+pub const PKEY_DeviceDisplay_ModelNumber = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 8195 };
+pub const PKEY_DeviceDisplay_InstallInProgress = PROPERTYKEY{ .fmtid = Guid.initString("83da6326-97a6-4088-9453-a1923f573b29"), .pid = 9 };
 pub const FMTID_Pairing = Guid.initString("8807cae6-7db6-4f10-8ee4-435eaa1392bc");
-pub const PKEY_Pairing_ListItemText = PROPERTYKEY { .fmtid = Guid.initString("8807cae6-7db6-4f10-8ee4-435eaa1392bc"), .pid = 1 };
-pub const PKEY_Pairing_ListItemDescription = PROPERTYKEY { .fmtid = Guid.initString("8807cae6-7db6-4f10-8ee4-435eaa1392bc"), .pid = 2 };
-pub const PKEY_Pairing_ListItemIcon = PROPERTYKEY { .fmtid = Guid.initString("8807cae6-7db6-4f10-8ee4-435eaa1392bc"), .pid = 3 };
-pub const PKEY_Pairing_ListItemDefault = PROPERTYKEY { .fmtid = Guid.initString("8807cae6-7db6-4f10-8ee4-435eaa1392bc"), .pid = 4 };
-pub const PKEY_Pairing_IsWifiOnlyDevice = PROPERTYKEY { .fmtid = Guid.initString("8807cae6-7db6-4f10-8ee4-435eaa1392bc"), .pid = 16 };
-pub const PKEY_Device_BIOSVersion = PROPERTYKEY { .fmtid = Guid.initString("eaee7f1d-6a33-44d1-9441-5f46def23198"), .pid = 9 };
+pub const PKEY_Pairing_ListItemText = PROPERTYKEY{ .fmtid = Guid.initString("8807cae6-7db6-4f10-8ee4-435eaa1392bc"), .pid = 1 };
+pub const PKEY_Pairing_ListItemDescription = PROPERTYKEY{ .fmtid = Guid.initString("8807cae6-7db6-4f10-8ee4-435eaa1392bc"), .pid = 2 };
+pub const PKEY_Pairing_ListItemIcon = PROPERTYKEY{ .fmtid = Guid.initString("8807cae6-7db6-4f10-8ee4-435eaa1392bc"), .pid = 3 };
+pub const PKEY_Pairing_ListItemDefault = PROPERTYKEY{ .fmtid = Guid.initString("8807cae6-7db6-4f10-8ee4-435eaa1392bc"), .pid = 4 };
+pub const PKEY_Pairing_IsWifiOnlyDevice = PROPERTYKEY{ .fmtid = Guid.initString("8807cae6-7db6-4f10-8ee4-435eaa1392bc"), .pid = 16 };
+pub const PKEY_Device_BIOSVersion = PROPERTYKEY{ .fmtid = Guid.initString("eaee7f1d-6a33-44d1-9441-5f46def23198"), .pid = 9 };
 pub const FMTID_WSD = Guid.initString("92506491-ff95-4724-a05a-5b81885a7c92");
 pub const FMTID_PNPX = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd");
-pub const PKEY_PNPX_GlobalIdentity = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 4096 };
-pub const PKEY_PNPX_Types = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 4097 };
-pub const PKEY_PNPX_Scopes = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 4098 };
-pub const PKEY_PNPX_XAddrs = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 4099 };
-pub const PKEY_PNPX_MetadataVersion = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 4100 };
-pub const PKEY_PNPX_ID = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 4101 };
-pub const PKEY_PNPX_RemoteAddress = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 4102 };
-pub const PKEY_PNPX_RootProxy = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 4103 };
-pub const PKEY_PNPX_ManufacturerUrl = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 8193 };
-pub const PKEY_PNPX_ModelUrl = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 8196 };
-pub const PKEY_PNPX_Upc = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 8197 };
-pub const PKEY_PNPX_PresentationUrl = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 8198 };
-pub const PKEY_PNPX_FirmwareVersion = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 12289 };
-pub const PKEY_PNPX_SerialNumber = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 12290 };
-pub const PKEY_PNPX_DeviceCategory = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 12292 };
-pub const PKEY_PNPX_SecureChannel = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 28673 };
-pub const PKEY_PNPX_CompactSignature = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 28674 };
-pub const PKEY_PNPX_DeviceCertHash = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 28675 };
-pub const PKEY_PNPX_DeviceCategory_Desc = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 12293 };
-pub const PKEY_PNPX_Category_Desc_NonPlural = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 12304 };
-pub const PKEY_PNPX_PhysicalAddress = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 12294 };
-pub const PKEY_PNPX_NetworkInterfaceLuid = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 12295 };
-pub const PKEY_PNPX_NetworkInterfaceGuid = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 12296 };
-pub const PKEY_PNPX_IpAddress = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 12297 };
-pub const PKEY_PNPX_ServiceAddress = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 16384 };
-pub const PKEY_PNPX_ServiceId = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 16385 };
-pub const PKEY_PNPX_ServiceTypes = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 16386 };
-pub const PKEY_PNPX_ServiceControlUrl = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 16388 };
-pub const PKEY_PNPX_ServiceDescUrl = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 16389 };
-pub const PKEY_PNPX_ServiceEventSubUrl = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 16390 };
-pub const PKEY_PNPX_DomainName = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 20480 };
-pub const PKEY_PNPX_ShareName = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 20482 };
-pub const PKEY_SSDP_AltLocationInfo = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 24576 };
-pub const PKEY_SSDP_DevLifeTime = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 24577 };
-pub const PKEY_SSDP_NetworkInterface = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 24578 };
+pub const PKEY_PNPX_GlobalIdentity = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 4096 };
+pub const PKEY_PNPX_Types = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 4097 };
+pub const PKEY_PNPX_Scopes = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 4098 };
+pub const PKEY_PNPX_XAddrs = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 4099 };
+pub const PKEY_PNPX_MetadataVersion = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 4100 };
+pub const PKEY_PNPX_ID = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 4101 };
+pub const PKEY_PNPX_RemoteAddress = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 4102 };
+pub const PKEY_PNPX_RootProxy = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 4103 };
+pub const PKEY_PNPX_ManufacturerUrl = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 8193 };
+pub const PKEY_PNPX_ModelUrl = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 8196 };
+pub const PKEY_PNPX_Upc = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 8197 };
+pub const PKEY_PNPX_PresentationUrl = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 8198 };
+pub const PKEY_PNPX_FirmwareVersion = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 12289 };
+pub const PKEY_PNPX_SerialNumber = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 12290 };
+pub const PKEY_PNPX_DeviceCategory = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 12292 };
+pub const PKEY_PNPX_SecureChannel = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 28673 };
+pub const PKEY_PNPX_CompactSignature = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 28674 };
+pub const PKEY_PNPX_DeviceCertHash = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 28675 };
+pub const PKEY_PNPX_DeviceCategory_Desc = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 12293 };
+pub const PKEY_PNPX_Category_Desc_NonPlural = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 12304 };
+pub const PKEY_PNPX_PhysicalAddress = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 12294 };
+pub const PKEY_PNPX_NetworkInterfaceLuid = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 12295 };
+pub const PKEY_PNPX_NetworkInterfaceGuid = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 12296 };
+pub const PKEY_PNPX_IpAddress = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 12297 };
+pub const PKEY_PNPX_ServiceAddress = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 16384 };
+pub const PKEY_PNPX_ServiceId = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 16385 };
+pub const PKEY_PNPX_ServiceTypes = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 16386 };
+pub const PKEY_PNPX_ServiceControlUrl = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 16388 };
+pub const PKEY_PNPX_ServiceDescUrl = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 16389 };
+pub const PKEY_PNPX_ServiceEventSubUrl = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 16390 };
+pub const PKEY_PNPX_DomainName = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 20480 };
+pub const PKEY_PNPX_ShareName = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 20482 };
+pub const PKEY_SSDP_AltLocationInfo = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 24576 };
+pub const PKEY_SSDP_DevLifeTime = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 24577 };
+pub const PKEY_SSDP_NetworkInterface = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 24578 };
 pub const FMTID_PNPXDynamicProperty = Guid.initString("4fc5077e-b686-44be-93e3-86cafe368ccd");
-pub const PKEY_PNPX_Installable = PROPERTYKEY { .fmtid = Guid.initString("4fc5077e-b686-44be-93e3-86cafe368ccd"), .pid = 1 };
-pub const PKEY_PNPX_Associated = PROPERTYKEY { .fmtid = Guid.initString("4fc5077e-b686-44be-93e3-86cafe368ccd"), .pid = 2 };
-pub const PKEY_PNPX_CompatibleTypes = PROPERTYKEY { .fmtid = Guid.initString("4fc5077e-b686-44be-93e3-86cafe368ccd"), .pid = 3 };
-pub const PKEY_PNPX_InstallState = PROPERTYKEY { .fmtid = Guid.initString("4fc5077e-b686-44be-93e3-86cafe368ccd"), .pid = 4 };
+pub const PKEY_PNPX_Installable = PROPERTYKEY{ .fmtid = Guid.initString("4fc5077e-b686-44be-93e3-86cafe368ccd"), .pid = 1 };
+pub const PKEY_PNPX_Associated = PROPERTYKEY{ .fmtid = Guid.initString("4fc5077e-b686-44be-93e3-86cafe368ccd"), .pid = 2 };
+pub const PKEY_PNPX_CompatibleTypes = PROPERTYKEY{ .fmtid = Guid.initString("4fc5077e-b686-44be-93e3-86cafe368ccd"), .pid = 3 };
+pub const PKEY_PNPX_InstallState = PROPERTYKEY{ .fmtid = Guid.initString("4fc5077e-b686-44be-93e3-86cafe368ccd"), .pid = 4 };
 pub const PNPX_INSTALLSTATE_NOTINSTALLED = @as(u32, 0);
 pub const PNPX_INSTALLSTATE_INSTALLED = @as(u32, 1);
 pub const PNPX_INSTALLSTATE_INSTALLING = @as(u32, 2);
 pub const PNPX_INSTALLSTATE_FAILED = @as(u32, 3);
-pub const PKEY_PNPX_Removable = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 28672 };
-pub const PKEY_PNPX_IPBusEnumerated = PROPERTYKEY { .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 28688 };
-pub const PKEY_WNET_Scope = PROPERTYKEY { .fmtid = Guid.initString("debda43a-37b3-4383-91e7-4498da2995ab"), .pid = 1 };
-pub const PKEY_WNET_Type = PROPERTYKEY { .fmtid = Guid.initString("debda43a-37b3-4383-91e7-4498da2995ab"), .pid = 2 };
-pub const PKEY_WNET_DisplayType = PROPERTYKEY { .fmtid = Guid.initString("debda43a-37b3-4383-91e7-4498da2995ab"), .pid = 3 };
-pub const PKEY_WNET_Usage = PROPERTYKEY { .fmtid = Guid.initString("debda43a-37b3-4383-91e7-4498da2995ab"), .pid = 4 };
-pub const PKEY_WNET_LocalName = PROPERTYKEY { .fmtid = Guid.initString("debda43a-37b3-4383-91e7-4498da2995ab"), .pid = 5 };
-pub const PKEY_WNET_RemoteName = PROPERTYKEY { .fmtid = Guid.initString("debda43a-37b3-4383-91e7-4498da2995ab"), .pid = 6 };
-pub const PKEY_WNET_Comment = PROPERTYKEY { .fmtid = Guid.initString("debda43a-37b3-4383-91e7-4498da2995ab"), .pid = 7 };
-pub const PKEY_WNET_Provider = PROPERTYKEY { .fmtid = Guid.initString("debda43a-37b3-4383-91e7-4498da2995ab"), .pid = 8 };
-pub const PKEY_WCN_Version = PROPERTYKEY { .fmtid = Guid.initString("88190b80-4684-11da-a26a-0002b3988e81"), .pid = 1 };
-pub const PKEY_WCN_RequestType = PROPERTYKEY { .fmtid = Guid.initString("88190b81-4684-11da-a26a-0002b3988e81"), .pid = 2 };
-pub const PKEY_WCN_AuthType = PROPERTYKEY { .fmtid = Guid.initString("88190b82-4684-11da-a26a-0002b3988e81"), .pid = 3 };
-pub const PKEY_WCN_EncryptType = PROPERTYKEY { .fmtid = Guid.initString("88190b83-4684-11da-a26a-0002b3988e81"), .pid = 4 };
-pub const PKEY_WCN_ConnType = PROPERTYKEY { .fmtid = Guid.initString("88190b84-4684-11da-a26a-0002b3988e81"), .pid = 5 };
-pub const PKEY_WCN_ConfigMethods = PROPERTYKEY { .fmtid = Guid.initString("88190b85-4684-11da-a26a-0002b3988e81"), .pid = 6 };
-pub const PKEY_WCN_RfBand = PROPERTYKEY { .fmtid = Guid.initString("88190b87-4684-11da-a26a-0002b3988e81"), .pid = 8 };
-pub const PKEY_WCN_AssocState = PROPERTYKEY { .fmtid = Guid.initString("88190b88-4684-11da-a26a-0002b3988e81"), .pid = 9 };
-pub const PKEY_WCN_ConfigError = PROPERTYKEY { .fmtid = Guid.initString("88190b89-4684-11da-a26a-0002b3988e81"), .pid = 10 };
-pub const PKEY_WCN_ConfigState = PROPERTYKEY { .fmtid = Guid.initString("88190b89-4684-11da-a26a-0002b3988e81"), .pid = 11 };
-pub const PKEY_WCN_DevicePasswordId = PROPERTYKEY { .fmtid = Guid.initString("88190b89-4684-11da-a26a-0002b3988e81"), .pid = 12 };
-pub const PKEY_WCN_OSVersion = PROPERTYKEY { .fmtid = Guid.initString("88190b89-4684-11da-a26a-0002b3988e81"), .pid = 13 };
-pub const PKEY_WCN_VendorExtension = PROPERTYKEY { .fmtid = Guid.initString("88190b8a-4684-11da-a26a-0002b3988e81"), .pid = 14 };
-pub const PKEY_WCN_RegistrarType = PROPERTYKEY { .fmtid = Guid.initString("88190b8b-4684-11da-a26a-0002b3988e81"), .pid = 15 };
-pub const PKEY_Hardware_Devinst = PROPERTYKEY { .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 4097 };
-pub const PKEY_Hardware_DisplayAttribute = PROPERTYKEY { .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 5 };
-pub const PKEY_Hardware_DriverDate = PROPERTYKEY { .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 11 };
-pub const PKEY_Hardware_DriverProvider = PROPERTYKEY { .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 10 };
-pub const PKEY_Hardware_DriverVersion = PROPERTYKEY { .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 9 };
-pub const PKEY_Hardware_Function = PROPERTYKEY { .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 4099 };
-pub const PKEY_Hardware_Icon = PROPERTYKEY { .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 3 };
-pub const PKEY_Hardware_Image = PROPERTYKEY { .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 4098 };
-pub const PKEY_Hardware_Manufacturer = PROPERTYKEY { .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 6 };
-pub const PKEY_Hardware_Model = PROPERTYKEY { .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 7 };
-pub const PKEY_Hardware_Name = PROPERTYKEY { .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 2 };
-pub const PKEY_Hardware_SerialNumber = PROPERTYKEY { .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 8 };
-pub const PKEY_Hardware_ShellAttributes = PROPERTYKEY { .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 4100 };
-pub const PKEY_Hardware_Status = PROPERTYKEY { .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 4096 };
-pub const PKEY_NAME = PROPERTYKEY { .fmtid = Guid.initString("b725f130-47ef-101a-a5f1-02608c9eebac"), .pid = 10 };
-pub const PKEY_Device_DeviceDesc = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 2 };
-pub const PKEY_Device_HardwareIds = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 3 };
-pub const PKEY_Device_CompatibleIds = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 4 };
-pub const PKEY_Device_Service = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 6 };
-pub const PKEY_Device_Class = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 9 };
-pub const PKEY_Device_ClassGuid = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 10 };
-pub const PKEY_Device_Driver = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 11 };
-pub const PKEY_Device_ConfigFlags = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 12 };
-pub const PKEY_Device_Manufacturer = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 13 };
-pub const PKEY_Device_FriendlyName = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 14 };
-pub const PKEY_Device_LocationInfo = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 15 };
-pub const PKEY_Device_PDOName = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 16 };
-pub const PKEY_Device_Capabilities = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 17 };
-pub const PKEY_Device_UINumber = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 18 };
-pub const PKEY_Device_UpperFilters = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 19 };
-pub const PKEY_Device_LowerFilters = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 20 };
-pub const PKEY_Device_BusTypeGuid = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 21 };
-pub const PKEY_Device_LegacyBusType = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 22 };
-pub const PKEY_Device_BusNumber = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 23 };
-pub const PKEY_Device_EnumeratorName = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 24 };
-pub const PKEY_Device_Security = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 25 };
-pub const PKEY_Device_SecuritySDS = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 26 };
-pub const PKEY_Device_DevType = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 27 };
-pub const PKEY_Device_Exclusive = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 28 };
-pub const PKEY_Device_Characteristics = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 29 };
-pub const PKEY_Device_Address = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 30 };
-pub const PKEY_Device_UINumberDescFormat = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 31 };
-pub const PKEY_Device_PowerData = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 32 };
-pub const PKEY_Device_RemovalPolicy = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 33 };
-pub const PKEY_Device_RemovalPolicyDefault = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 34 };
-pub const PKEY_Device_RemovalPolicyOverride = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 35 };
-pub const PKEY_Device_InstallState = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 36 };
-pub const PKEY_Device_LocationPaths = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 37 };
-pub const PKEY_Device_BaseContainerId = PROPERTYKEY { .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 38 };
-pub const PKEY_Device_DevNodeStatus = PROPERTYKEY { .fmtid = Guid.initString("4340a6c5-93fa-4706-972c-7b648008a5a7"), .pid = 2 };
-pub const PKEY_Device_ProblemCode = PROPERTYKEY { .fmtid = Guid.initString("4340a6c5-93fa-4706-972c-7b648008a5a7"), .pid = 3 };
-pub const PKEY_Device_EjectionRelations = PROPERTYKEY { .fmtid = Guid.initString("4340a6c5-93fa-4706-972c-7b648008a5a7"), .pid = 4 };
-pub const PKEY_Device_RemovalRelations = PROPERTYKEY { .fmtid = Guid.initString("4340a6c5-93fa-4706-972c-7b648008a5a7"), .pid = 5 };
-pub const PKEY_Device_PowerRelations = PROPERTYKEY { .fmtid = Guid.initString("4340a6c5-93fa-4706-972c-7b648008a5a7"), .pid = 6 };
-pub const PKEY_Device_BusRelations = PROPERTYKEY { .fmtid = Guid.initString("4340a6c5-93fa-4706-972c-7b648008a5a7"), .pid = 7 };
-pub const PKEY_Device_Parent = PROPERTYKEY { .fmtid = Guid.initString("4340a6c5-93fa-4706-972c-7b648008a5a7"), .pid = 8 };
-pub const PKEY_Device_Children = PROPERTYKEY { .fmtid = Guid.initString("4340a6c5-93fa-4706-972c-7b648008a5a7"), .pid = 9 };
-pub const PKEY_Device_Siblings = PROPERTYKEY { .fmtid = Guid.initString("4340a6c5-93fa-4706-972c-7b648008a5a7"), .pid = 10 };
-pub const PKEY_Device_TransportRelations = PROPERTYKEY { .fmtid = Guid.initString("4340a6c5-93fa-4706-972c-7b648008a5a7"), .pid = 11 };
-pub const PKEY_Device_Reported = PROPERTYKEY { .fmtid = Guid.initString("80497100-8c73-48b9-aad9-ce387e19c56e"), .pid = 2 };
-pub const PKEY_Device_Legacy = PROPERTYKEY { .fmtid = Guid.initString("80497100-8c73-48b9-aad9-ce387e19c56e"), .pid = 3 };
-pub const PKEY_Device_InstanceId = PROPERTYKEY { .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 256 };
-pub const PKEY_Device_ContainerId = PROPERTYKEY { .fmtid = Guid.initString("8c7ed206-3f8a-4827-b3ab-ae9e1faefc6c"), .pid = 2 };
-pub const PKEY_Device_ModelId = PROPERTYKEY { .fmtid = Guid.initString("80d81ea6-7473-4b0c-8216-efc11a2c4c8b"), .pid = 2 };
-pub const PKEY_Device_FriendlyNameAttributes = PROPERTYKEY { .fmtid = Guid.initString("80d81ea6-7473-4b0c-8216-efc11a2c4c8b"), .pid = 3 };
-pub const PKEY_Device_ManufacturerAttributes = PROPERTYKEY { .fmtid = Guid.initString("80d81ea6-7473-4b0c-8216-efc11a2c4c8b"), .pid = 4 };
-pub const PKEY_Device_PresenceNotForDevice = PROPERTYKEY { .fmtid = Guid.initString("80d81ea6-7473-4b0c-8216-efc11a2c4c8b"), .pid = 5 };
-pub const PKEY_Device_SignalStrength = PROPERTYKEY { .fmtid = Guid.initString("80d81ea6-7473-4b0c-8216-efc11a2c4c8b"), .pid = 6 };
-pub const PKEY_Device_IsAssociateableByUserAction = PROPERTYKEY { .fmtid = Guid.initString("80d81ea6-7473-4b0c-8216-efc11a2c4c8b"), .pid = 7 };
-pub const PKEY_Numa_Proximity_Domain = PROPERTYKEY { .fmtid = Guid.initString("540b947e-8b40-45bc-a8a2-6a0b894cbda2"), .pid = 1 };
-pub const PKEY_Device_DHP_Rebalance_Policy = PROPERTYKEY { .fmtid = Guid.initString("540b947e-8b40-45bc-a8a2-6a0b894cbda2"), .pid = 2 };
-pub const PKEY_Device_Numa_Node = PROPERTYKEY { .fmtid = Guid.initString("540b947e-8b40-45bc-a8a2-6a0b894cbda2"), .pid = 3 };
-pub const PKEY_Device_BusReportedDeviceDesc = PROPERTYKEY { .fmtid = Guid.initString("540b947e-8b40-45bc-a8a2-6a0b894cbda2"), .pid = 4 };
-pub const PKEY_Device_InstallInProgress = PROPERTYKEY { .fmtid = Guid.initString("83da6326-97a6-4088-9453-a1923f573b29"), .pid = 9 };
-pub const PKEY_Device_DriverDate = PROPERTYKEY { .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 2 };
-pub const PKEY_Device_DriverVersion = PROPERTYKEY { .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 3 };
-pub const PKEY_Device_DriverDesc = PROPERTYKEY { .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 4 };
-pub const PKEY_Device_DriverInfPath = PROPERTYKEY { .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 5 };
-pub const PKEY_Device_DriverInfSection = PROPERTYKEY { .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 6 };
-pub const PKEY_Device_DriverInfSectionExt = PROPERTYKEY { .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 7 };
-pub const PKEY_Device_MatchingDeviceId = PROPERTYKEY { .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 8 };
-pub const PKEY_Device_DriverProvider = PROPERTYKEY { .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 9 };
-pub const PKEY_Device_DriverPropPageProvider = PROPERTYKEY { .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 10 };
-pub const PKEY_Device_DriverCoInstallers = PROPERTYKEY { .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 11 };
-pub const PKEY_Device_ResourcePickerTags = PROPERTYKEY { .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 12 };
-pub const PKEY_Device_ResourcePickerExceptions = PROPERTYKEY { .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 13 };
-pub const PKEY_Device_DriverRank = PROPERTYKEY { .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 14 };
-pub const PKEY_Device_DriverLogoLevel = PROPERTYKEY { .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 15 };
-pub const PKEY_Device_NoConnectSound = PROPERTYKEY { .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 17 };
-pub const PKEY_Device_GenericDriverInstalled = PROPERTYKEY { .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 18 };
-pub const PKEY_Device_AdditionalSoftwareRequested = PROPERTYKEY { .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 19 };
-pub const PKEY_Device_SafeRemovalRequired = PROPERTYKEY { .fmtid = Guid.initString("afd97640-86a3-4210-b67c-289c41aabe55"), .pid = 2 };
-pub const PKEY_Device_SafeRemovalRequiredOverride = PROPERTYKEY { .fmtid = Guid.initString("afd97640-86a3-4210-b67c-289c41aabe55"), .pid = 3 };
-pub const PKEY_DrvPkg_Model = PROPERTYKEY { .fmtid = Guid.initString("cf73bb51-3abf-44a2-85e0-9a3dc7a12132"), .pid = 2 };
-pub const PKEY_DrvPkg_VendorWebSite = PROPERTYKEY { .fmtid = Guid.initString("cf73bb51-3abf-44a2-85e0-9a3dc7a12132"), .pid = 3 };
-pub const PKEY_DrvPkg_DetailedDescription = PROPERTYKEY { .fmtid = Guid.initString("cf73bb51-3abf-44a2-85e0-9a3dc7a12132"), .pid = 4 };
-pub const PKEY_DrvPkg_DocumentationLink = PROPERTYKEY { .fmtid = Guid.initString("cf73bb51-3abf-44a2-85e0-9a3dc7a12132"), .pid = 5 };
-pub const PKEY_DrvPkg_Icon = PROPERTYKEY { .fmtid = Guid.initString("cf73bb51-3abf-44a2-85e0-9a3dc7a12132"), .pid = 6 };
-pub const PKEY_DrvPkg_BrandingIcon = PROPERTYKEY { .fmtid = Guid.initString("cf73bb51-3abf-44a2-85e0-9a3dc7a12132"), .pid = 7 };
-pub const PKEY_DeviceClass_UpperFilters = PROPERTYKEY { .fmtid = Guid.initString("4321918b-f69e-470d-a5de-4d88c75ad24b"), .pid = 19 };
-pub const PKEY_DeviceClass_LowerFilters = PROPERTYKEY { .fmtid = Guid.initString("4321918b-f69e-470d-a5de-4d88c75ad24b"), .pid = 20 };
-pub const PKEY_DeviceClass_Security = PROPERTYKEY { .fmtid = Guid.initString("4321918b-f69e-470d-a5de-4d88c75ad24b"), .pid = 25 };
-pub const PKEY_DeviceClass_SecuritySDS = PROPERTYKEY { .fmtid = Guid.initString("4321918b-f69e-470d-a5de-4d88c75ad24b"), .pid = 26 };
-pub const PKEY_DeviceClass_DevType = PROPERTYKEY { .fmtid = Guid.initString("4321918b-f69e-470d-a5de-4d88c75ad24b"), .pid = 27 };
-pub const PKEY_DeviceClass_Exclusive = PROPERTYKEY { .fmtid = Guid.initString("4321918b-f69e-470d-a5de-4d88c75ad24b"), .pid = 28 };
-pub const PKEY_DeviceClass_Characteristics = PROPERTYKEY { .fmtid = Guid.initString("4321918b-f69e-470d-a5de-4d88c75ad24b"), .pid = 29 };
-pub const PKEY_DeviceClass_Name = PROPERTYKEY { .fmtid = Guid.initString("259abffc-50a7-47ce-af08-68c9a7d73366"), .pid = 2 };
-pub const PKEY_DeviceClass_ClassName = PROPERTYKEY { .fmtid = Guid.initString("259abffc-50a7-47ce-af08-68c9a7d73366"), .pid = 3 };
-pub const PKEY_DeviceClass_Icon = PROPERTYKEY { .fmtid = Guid.initString("259abffc-50a7-47ce-af08-68c9a7d73366"), .pid = 4 };
-pub const PKEY_DeviceClass_ClassInstaller = PROPERTYKEY { .fmtid = Guid.initString("259abffc-50a7-47ce-af08-68c9a7d73366"), .pid = 5 };
-pub const PKEY_DeviceClass_PropPageProvider = PROPERTYKEY { .fmtid = Guid.initString("259abffc-50a7-47ce-af08-68c9a7d73366"), .pid = 6 };
-pub const PKEY_DeviceClass_NoInstallClass = PROPERTYKEY { .fmtid = Guid.initString("259abffc-50a7-47ce-af08-68c9a7d73366"), .pid = 7 };
-pub const PKEY_DeviceClass_NoDisplayClass = PROPERTYKEY { .fmtid = Guid.initString("259abffc-50a7-47ce-af08-68c9a7d73366"), .pid = 8 };
-pub const PKEY_DeviceClass_SilentInstall = PROPERTYKEY { .fmtid = Guid.initString("259abffc-50a7-47ce-af08-68c9a7d73366"), .pid = 9 };
-pub const PKEY_DeviceClass_NoUseClass = PROPERTYKEY { .fmtid = Guid.initString("259abffc-50a7-47ce-af08-68c9a7d73366"), .pid = 10 };
-pub const PKEY_DeviceClass_DefaultService = PROPERTYKEY { .fmtid = Guid.initString("259abffc-50a7-47ce-af08-68c9a7d73366"), .pid = 11 };
-pub const PKEY_DeviceClass_IconPath = PROPERTYKEY { .fmtid = Guid.initString("259abffc-50a7-47ce-af08-68c9a7d73366"), .pid = 12 };
-pub const PKEY_DeviceClass_ClassCoInstallers = PROPERTYKEY { .fmtid = Guid.initString("713d1703-a2e2-49f5-9214-56472ef3da5c"), .pid = 2 };
-pub const PKEY_DeviceInterface_FriendlyName = PROPERTYKEY { .fmtid = Guid.initString("026e516e-b814-414b-83cd-856d6fef4822"), .pid = 2 };
-pub const PKEY_DeviceInterface_Enabled = PROPERTYKEY { .fmtid = Guid.initString("026e516e-b814-414b-83cd-856d6fef4822"), .pid = 3 };
-pub const PKEY_DeviceInterface_ClassGuid = PROPERTYKEY { .fmtid = Guid.initString("026e516e-b814-414b-83cd-856d6fef4822"), .pid = 4 };
-pub const PKEY_DeviceInterfaceClass_DefaultInterface = PROPERTYKEY { .fmtid = Guid.initString("14c83a99-0b3f-44b7-be4c-a178d3990564"), .pid = 2 };
+pub const PKEY_PNPX_Removable = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 28672 };
+pub const PKEY_PNPX_IPBusEnumerated = PROPERTYKEY{ .fmtid = Guid.initString("656a3bb3-ecc0-43fd-8477-4ae0404a96cd"), .pid = 28688 };
+pub const PKEY_WNET_Scope = PROPERTYKEY{ .fmtid = Guid.initString("debda43a-37b3-4383-91e7-4498da2995ab"), .pid = 1 };
+pub const PKEY_WNET_Type = PROPERTYKEY{ .fmtid = Guid.initString("debda43a-37b3-4383-91e7-4498da2995ab"), .pid = 2 };
+pub const PKEY_WNET_DisplayType = PROPERTYKEY{ .fmtid = Guid.initString("debda43a-37b3-4383-91e7-4498da2995ab"), .pid = 3 };
+pub const PKEY_WNET_Usage = PROPERTYKEY{ .fmtid = Guid.initString("debda43a-37b3-4383-91e7-4498da2995ab"), .pid = 4 };
+pub const PKEY_WNET_LocalName = PROPERTYKEY{ .fmtid = Guid.initString("debda43a-37b3-4383-91e7-4498da2995ab"), .pid = 5 };
+pub const PKEY_WNET_RemoteName = PROPERTYKEY{ .fmtid = Guid.initString("debda43a-37b3-4383-91e7-4498da2995ab"), .pid = 6 };
+pub const PKEY_WNET_Comment = PROPERTYKEY{ .fmtid = Guid.initString("debda43a-37b3-4383-91e7-4498da2995ab"), .pid = 7 };
+pub const PKEY_WNET_Provider = PROPERTYKEY{ .fmtid = Guid.initString("debda43a-37b3-4383-91e7-4498da2995ab"), .pid = 8 };
+pub const PKEY_WCN_Version = PROPERTYKEY{ .fmtid = Guid.initString("88190b80-4684-11da-a26a-0002b3988e81"), .pid = 1 };
+pub const PKEY_WCN_RequestType = PROPERTYKEY{ .fmtid = Guid.initString("88190b81-4684-11da-a26a-0002b3988e81"), .pid = 2 };
+pub const PKEY_WCN_AuthType = PROPERTYKEY{ .fmtid = Guid.initString("88190b82-4684-11da-a26a-0002b3988e81"), .pid = 3 };
+pub const PKEY_WCN_EncryptType = PROPERTYKEY{ .fmtid = Guid.initString("88190b83-4684-11da-a26a-0002b3988e81"), .pid = 4 };
+pub const PKEY_WCN_ConnType = PROPERTYKEY{ .fmtid = Guid.initString("88190b84-4684-11da-a26a-0002b3988e81"), .pid = 5 };
+pub const PKEY_WCN_ConfigMethods = PROPERTYKEY{ .fmtid = Guid.initString("88190b85-4684-11da-a26a-0002b3988e81"), .pid = 6 };
+pub const PKEY_WCN_RfBand = PROPERTYKEY{ .fmtid = Guid.initString("88190b87-4684-11da-a26a-0002b3988e81"), .pid = 8 };
+pub const PKEY_WCN_AssocState = PROPERTYKEY{ .fmtid = Guid.initString("88190b88-4684-11da-a26a-0002b3988e81"), .pid = 9 };
+pub const PKEY_WCN_ConfigError = PROPERTYKEY{ .fmtid = Guid.initString("88190b89-4684-11da-a26a-0002b3988e81"), .pid = 10 };
+pub const PKEY_WCN_ConfigState = PROPERTYKEY{ .fmtid = Guid.initString("88190b89-4684-11da-a26a-0002b3988e81"), .pid = 11 };
+pub const PKEY_WCN_DevicePasswordId = PROPERTYKEY{ .fmtid = Guid.initString("88190b89-4684-11da-a26a-0002b3988e81"), .pid = 12 };
+pub const PKEY_WCN_OSVersion = PROPERTYKEY{ .fmtid = Guid.initString("88190b89-4684-11da-a26a-0002b3988e81"), .pid = 13 };
+pub const PKEY_WCN_VendorExtension = PROPERTYKEY{ .fmtid = Guid.initString("88190b8a-4684-11da-a26a-0002b3988e81"), .pid = 14 };
+pub const PKEY_WCN_RegistrarType = PROPERTYKEY{ .fmtid = Guid.initString("88190b8b-4684-11da-a26a-0002b3988e81"), .pid = 15 };
+pub const PKEY_Hardware_Devinst = PROPERTYKEY{ .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 4097 };
+pub const PKEY_Hardware_DisplayAttribute = PROPERTYKEY{ .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 5 };
+pub const PKEY_Hardware_DriverDate = PROPERTYKEY{ .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 11 };
+pub const PKEY_Hardware_DriverProvider = PROPERTYKEY{ .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 10 };
+pub const PKEY_Hardware_DriverVersion = PROPERTYKEY{ .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 9 };
+pub const PKEY_Hardware_Function = PROPERTYKEY{ .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 4099 };
+pub const PKEY_Hardware_Icon = PROPERTYKEY{ .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 3 };
+pub const PKEY_Hardware_Image = PROPERTYKEY{ .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 4098 };
+pub const PKEY_Hardware_Manufacturer = PROPERTYKEY{ .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 6 };
+pub const PKEY_Hardware_Model = PROPERTYKEY{ .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 7 };
+pub const PKEY_Hardware_Name = PROPERTYKEY{ .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 2 };
+pub const PKEY_Hardware_SerialNumber = PROPERTYKEY{ .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 8 };
+pub const PKEY_Hardware_ShellAttributes = PROPERTYKEY{ .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 4100 };
+pub const PKEY_Hardware_Status = PROPERTYKEY{ .fmtid = Guid.initString("5eaf3ef2-e0ca-4598-bf06-71ed1d9dd953"), .pid = 4096 };
+pub const PKEY_NAME = PROPERTYKEY{ .fmtid = Guid.initString("b725f130-47ef-101a-a5f1-02608c9eebac"), .pid = 10 };
+pub const PKEY_Device_DeviceDesc = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 2 };
+pub const PKEY_Device_HardwareIds = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 3 };
+pub const PKEY_Device_CompatibleIds = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 4 };
+pub const PKEY_Device_Service = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 6 };
+pub const PKEY_Device_Class = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 9 };
+pub const PKEY_Device_ClassGuid = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 10 };
+pub const PKEY_Device_Driver = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 11 };
+pub const PKEY_Device_ConfigFlags = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 12 };
+pub const PKEY_Device_Manufacturer = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 13 };
+pub const PKEY_Device_FriendlyName = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 14 };
+pub const PKEY_Device_LocationInfo = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 15 };
+pub const PKEY_Device_PDOName = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 16 };
+pub const PKEY_Device_Capabilities = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 17 };
+pub const PKEY_Device_UINumber = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 18 };
+pub const PKEY_Device_UpperFilters = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 19 };
+pub const PKEY_Device_LowerFilters = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 20 };
+pub const PKEY_Device_BusTypeGuid = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 21 };
+pub const PKEY_Device_LegacyBusType = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 22 };
+pub const PKEY_Device_BusNumber = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 23 };
+pub const PKEY_Device_EnumeratorName = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 24 };
+pub const PKEY_Device_Security = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 25 };
+pub const PKEY_Device_SecuritySDS = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 26 };
+pub const PKEY_Device_DevType = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 27 };
+pub const PKEY_Device_Exclusive = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 28 };
+pub const PKEY_Device_Characteristics = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 29 };
+pub const PKEY_Device_Address = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 30 };
+pub const PKEY_Device_UINumberDescFormat = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 31 };
+pub const PKEY_Device_PowerData = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 32 };
+pub const PKEY_Device_RemovalPolicy = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 33 };
+pub const PKEY_Device_RemovalPolicyDefault = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 34 };
+pub const PKEY_Device_RemovalPolicyOverride = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 35 };
+pub const PKEY_Device_InstallState = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 36 };
+pub const PKEY_Device_LocationPaths = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 37 };
+pub const PKEY_Device_BaseContainerId = PROPERTYKEY{ .fmtid = Guid.initString("a45c254e-df1c-4efd-8020-67d146a850e0"), .pid = 38 };
+pub const PKEY_Device_DevNodeStatus = PROPERTYKEY{ .fmtid = Guid.initString("4340a6c5-93fa-4706-972c-7b648008a5a7"), .pid = 2 };
+pub const PKEY_Device_ProblemCode = PROPERTYKEY{ .fmtid = Guid.initString("4340a6c5-93fa-4706-972c-7b648008a5a7"), .pid = 3 };
+pub const PKEY_Device_EjectionRelations = PROPERTYKEY{ .fmtid = Guid.initString("4340a6c5-93fa-4706-972c-7b648008a5a7"), .pid = 4 };
+pub const PKEY_Device_RemovalRelations = PROPERTYKEY{ .fmtid = Guid.initString("4340a6c5-93fa-4706-972c-7b648008a5a7"), .pid = 5 };
+pub const PKEY_Device_PowerRelations = PROPERTYKEY{ .fmtid = Guid.initString("4340a6c5-93fa-4706-972c-7b648008a5a7"), .pid = 6 };
+pub const PKEY_Device_BusRelations = PROPERTYKEY{ .fmtid = Guid.initString("4340a6c5-93fa-4706-972c-7b648008a5a7"), .pid = 7 };
+pub const PKEY_Device_Parent = PROPERTYKEY{ .fmtid = Guid.initString("4340a6c5-93fa-4706-972c-7b648008a5a7"), .pid = 8 };
+pub const PKEY_Device_Children = PROPERTYKEY{ .fmtid = Guid.initString("4340a6c5-93fa-4706-972c-7b648008a5a7"), .pid = 9 };
+pub const PKEY_Device_Siblings = PROPERTYKEY{ .fmtid = Guid.initString("4340a6c5-93fa-4706-972c-7b648008a5a7"), .pid = 10 };
+pub const PKEY_Device_TransportRelations = PROPERTYKEY{ .fmtid = Guid.initString("4340a6c5-93fa-4706-972c-7b648008a5a7"), .pid = 11 };
+pub const PKEY_Device_Reported = PROPERTYKEY{ .fmtid = Guid.initString("80497100-8c73-48b9-aad9-ce387e19c56e"), .pid = 2 };
+pub const PKEY_Device_Legacy = PROPERTYKEY{ .fmtid = Guid.initString("80497100-8c73-48b9-aad9-ce387e19c56e"), .pid = 3 };
+pub const PKEY_Device_InstanceId = PROPERTYKEY{ .fmtid = Guid.initString("78c34fc8-104a-4aca-9ea4-524d52996e57"), .pid = 256 };
+pub const PKEY_Device_ContainerId = PROPERTYKEY{ .fmtid = Guid.initString("8c7ed206-3f8a-4827-b3ab-ae9e1faefc6c"), .pid = 2 };
+pub const PKEY_Device_ModelId = PROPERTYKEY{ .fmtid = Guid.initString("80d81ea6-7473-4b0c-8216-efc11a2c4c8b"), .pid = 2 };
+pub const PKEY_Device_FriendlyNameAttributes = PROPERTYKEY{ .fmtid = Guid.initString("80d81ea6-7473-4b0c-8216-efc11a2c4c8b"), .pid = 3 };
+pub const PKEY_Device_ManufacturerAttributes = PROPERTYKEY{ .fmtid = Guid.initString("80d81ea6-7473-4b0c-8216-efc11a2c4c8b"), .pid = 4 };
+pub const PKEY_Device_PresenceNotForDevice = PROPERTYKEY{ .fmtid = Guid.initString("80d81ea6-7473-4b0c-8216-efc11a2c4c8b"), .pid = 5 };
+pub const PKEY_Device_SignalStrength = PROPERTYKEY{ .fmtid = Guid.initString("80d81ea6-7473-4b0c-8216-efc11a2c4c8b"), .pid = 6 };
+pub const PKEY_Device_IsAssociateableByUserAction = PROPERTYKEY{ .fmtid = Guid.initString("80d81ea6-7473-4b0c-8216-efc11a2c4c8b"), .pid = 7 };
+pub const PKEY_Numa_Proximity_Domain = PROPERTYKEY{ .fmtid = Guid.initString("540b947e-8b40-45bc-a8a2-6a0b894cbda2"), .pid = 1 };
+pub const PKEY_Device_DHP_Rebalance_Policy = PROPERTYKEY{ .fmtid = Guid.initString("540b947e-8b40-45bc-a8a2-6a0b894cbda2"), .pid = 2 };
+pub const PKEY_Device_Numa_Node = PROPERTYKEY{ .fmtid = Guid.initString("540b947e-8b40-45bc-a8a2-6a0b894cbda2"), .pid = 3 };
+pub const PKEY_Device_BusReportedDeviceDesc = PROPERTYKEY{ .fmtid = Guid.initString("540b947e-8b40-45bc-a8a2-6a0b894cbda2"), .pid = 4 };
+pub const PKEY_Device_InstallInProgress = PROPERTYKEY{ .fmtid = Guid.initString("83da6326-97a6-4088-9453-a1923f573b29"), .pid = 9 };
+pub const PKEY_Device_DriverDate = PROPERTYKEY{ .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 2 };
+pub const PKEY_Device_DriverVersion = PROPERTYKEY{ .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 3 };
+pub const PKEY_Device_DriverDesc = PROPERTYKEY{ .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 4 };
+pub const PKEY_Device_DriverInfPath = PROPERTYKEY{ .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 5 };
+pub const PKEY_Device_DriverInfSection = PROPERTYKEY{ .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 6 };
+pub const PKEY_Device_DriverInfSectionExt = PROPERTYKEY{ .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 7 };
+pub const PKEY_Device_MatchingDeviceId = PROPERTYKEY{ .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 8 };
+pub const PKEY_Device_DriverProvider = PROPERTYKEY{ .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 9 };
+pub const PKEY_Device_DriverPropPageProvider = PROPERTYKEY{ .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 10 };
+pub const PKEY_Device_DriverCoInstallers = PROPERTYKEY{ .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 11 };
+pub const PKEY_Device_ResourcePickerTags = PROPERTYKEY{ .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 12 };
+pub const PKEY_Device_ResourcePickerExceptions = PROPERTYKEY{ .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 13 };
+pub const PKEY_Device_DriverRank = PROPERTYKEY{ .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 14 };
+pub const PKEY_Device_DriverLogoLevel = PROPERTYKEY{ .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 15 };
+pub const PKEY_Device_NoConnectSound = PROPERTYKEY{ .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 17 };
+pub const PKEY_Device_GenericDriverInstalled = PROPERTYKEY{ .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 18 };
+pub const PKEY_Device_AdditionalSoftwareRequested = PROPERTYKEY{ .fmtid = Guid.initString("a8b865dd-2e3d-4094-ad97-e593a70c75d6"), .pid = 19 };
+pub const PKEY_Device_SafeRemovalRequired = PROPERTYKEY{ .fmtid = Guid.initString("afd97640-86a3-4210-b67c-289c41aabe55"), .pid = 2 };
+pub const PKEY_Device_SafeRemovalRequiredOverride = PROPERTYKEY{ .fmtid = Guid.initString("afd97640-86a3-4210-b67c-289c41aabe55"), .pid = 3 };
+pub const PKEY_DrvPkg_Model = PROPERTYKEY{ .fmtid = Guid.initString("cf73bb51-3abf-44a2-85e0-9a3dc7a12132"), .pid = 2 };
+pub const PKEY_DrvPkg_VendorWebSite = PROPERTYKEY{ .fmtid = Guid.initString("cf73bb51-3abf-44a2-85e0-9a3dc7a12132"), .pid = 3 };
+pub const PKEY_DrvPkg_DetailedDescription = PROPERTYKEY{ .fmtid = Guid.initString("cf73bb51-3abf-44a2-85e0-9a3dc7a12132"), .pid = 4 };
+pub const PKEY_DrvPkg_DocumentationLink = PROPERTYKEY{ .fmtid = Guid.initString("cf73bb51-3abf-44a2-85e0-9a3dc7a12132"), .pid = 5 };
+pub const PKEY_DrvPkg_Icon = PROPERTYKEY{ .fmtid = Guid.initString("cf73bb51-3abf-44a2-85e0-9a3dc7a12132"), .pid = 6 };
+pub const PKEY_DrvPkg_BrandingIcon = PROPERTYKEY{ .fmtid = Guid.initString("cf73bb51-3abf-44a2-85e0-9a3dc7a12132"), .pid = 7 };
+pub const PKEY_DeviceClass_UpperFilters = PROPERTYKEY{ .fmtid = Guid.initString("4321918b-f69e-470d-a5de-4d88c75ad24b"), .pid = 19 };
+pub const PKEY_DeviceClass_LowerFilters = PROPERTYKEY{ .fmtid = Guid.initString("4321918b-f69e-470d-a5de-4d88c75ad24b"), .pid = 20 };
+pub const PKEY_DeviceClass_Security = PROPERTYKEY{ .fmtid = Guid.initString("4321918b-f69e-470d-a5de-4d88c75ad24b"), .pid = 25 };
+pub const PKEY_DeviceClass_SecuritySDS = PROPERTYKEY{ .fmtid = Guid.initString("4321918b-f69e-470d-a5de-4d88c75ad24b"), .pid = 26 };
+pub const PKEY_DeviceClass_DevType = PROPERTYKEY{ .fmtid = Guid.initString("4321918b-f69e-470d-a5de-4d88c75ad24b"), .pid = 27 };
+pub const PKEY_DeviceClass_Exclusive = PROPERTYKEY{ .fmtid = Guid.initString("4321918b-f69e-470d-a5de-4d88c75ad24b"), .pid = 28 };
+pub const PKEY_DeviceClass_Characteristics = PROPERTYKEY{ .fmtid = Guid.initString("4321918b-f69e-470d-a5de-4d88c75ad24b"), .pid = 29 };
+pub const PKEY_DeviceClass_Name = PROPERTYKEY{ .fmtid = Guid.initString("259abffc-50a7-47ce-af08-68c9a7d73366"), .pid = 2 };
+pub const PKEY_DeviceClass_ClassName = PROPERTYKEY{ .fmtid = Guid.initString("259abffc-50a7-47ce-af08-68c9a7d73366"), .pid = 3 };
+pub const PKEY_DeviceClass_Icon = PROPERTYKEY{ .fmtid = Guid.initString("259abffc-50a7-47ce-af08-68c9a7d73366"), .pid = 4 };
+pub const PKEY_DeviceClass_ClassInstaller = PROPERTYKEY{ .fmtid = Guid.initString("259abffc-50a7-47ce-af08-68c9a7d73366"), .pid = 5 };
+pub const PKEY_DeviceClass_PropPageProvider = PROPERTYKEY{ .fmtid = Guid.initString("259abffc-50a7-47ce-af08-68c9a7d73366"), .pid = 6 };
+pub const PKEY_DeviceClass_NoInstallClass = PROPERTYKEY{ .fmtid = Guid.initString("259abffc-50a7-47ce-af08-68c9a7d73366"), .pid = 7 };
+pub const PKEY_DeviceClass_NoDisplayClass = PROPERTYKEY{ .fmtid = Guid.initString("259abffc-50a7-47ce-af08-68c9a7d73366"), .pid = 8 };
+pub const PKEY_DeviceClass_SilentInstall = PROPERTYKEY{ .fmtid = Guid.initString("259abffc-50a7-47ce-af08-68c9a7d73366"), .pid = 9 };
+pub const PKEY_DeviceClass_NoUseClass = PROPERTYKEY{ .fmtid = Guid.initString("259abffc-50a7-47ce-af08-68c9a7d73366"), .pid = 10 };
+pub const PKEY_DeviceClass_DefaultService = PROPERTYKEY{ .fmtid = Guid.initString("259abffc-50a7-47ce-af08-68c9a7d73366"), .pid = 11 };
+pub const PKEY_DeviceClass_IconPath = PROPERTYKEY{ .fmtid = Guid.initString("259abffc-50a7-47ce-af08-68c9a7d73366"), .pid = 12 };
+pub const PKEY_DeviceClass_ClassCoInstallers = PROPERTYKEY{ .fmtid = Guid.initString("713d1703-a2e2-49f5-9214-56472ef3da5c"), .pid = 2 };
+pub const PKEY_DeviceInterface_FriendlyName = PROPERTYKEY{ .fmtid = Guid.initString("026e516e-b814-414b-83cd-856d6fef4822"), .pid = 2 };
+pub const PKEY_DeviceInterface_Enabled = PROPERTYKEY{ .fmtid = Guid.initString("026e516e-b814-414b-83cd-856d6fef4822"), .pid = 3 };
+pub const PKEY_DeviceInterface_ClassGuid = PROPERTYKEY{ .fmtid = Guid.initString("026e516e-b814-414b-83cd-856d6fef4822"), .pid = 4 };
+pub const PKEY_DeviceInterfaceClass_DefaultInterface = PROPERTYKEY{ .fmtid = Guid.initString("14c83a99-0b3f-44b7-be4c-a178d3990564"), .pid = 2 };
 pub const FD_LONGHORN = @as(u32, 1);
 pub const MAX_FDCONSTRAINTNAME_LENGTH = @as(u32, 100);
 pub const MAX_FDCONSTRAINTVALUE_LENGTH = @as(u32, 1000);
@@ -340,13 +340,13 @@ pub const IFunctionDiscoveryNotification = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnUpdate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscoveryNotification,
                 enumQueryUpdateAction: QueryUpdateAction,
                 fdqcQueryContext: u64,
                 pIFunctionInstance: ?*IFunctionInstance,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscoveryNotification,
                 enumQueryUpdateAction: QueryUpdateAction,
                 fdqcQueryContext: u64,
@@ -354,13 +354,13 @@ pub const IFunctionDiscoveryNotification = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnError: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscoveryNotification,
                 hr: HRESULT,
                 fdqcQueryContext: u64,
                 pszProvider: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscoveryNotification,
                 hr: HRESULT,
                 fdqcQueryContext: u64,
@@ -368,13 +368,13 @@ pub const IFunctionDiscoveryNotification = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscoveryNotification,
                 dwEventID: u32,
                 fdqcQueryContext: u64,
                 pszProvider: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscoveryNotification,
                 dwEventID: u32,
                 fdqcQueryContext: u64,
@@ -383,21 +383,23 @@ pub const IFunctionDiscoveryNotification = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryNotification_OnUpdate(self: *const T, enumQueryUpdateAction: QueryUpdateAction, fdqcQueryContext: u64, pIFunctionInstance: ?*IFunctionInstance) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscoveryNotification.VTable, self.vtable).OnUpdate(@ptrCast(*const IFunctionDiscoveryNotification, self), enumQueryUpdateAction, fdqcQueryContext, pIFunctionInstance);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryNotification_OnError(self: *const T, hr: HRESULT, fdqcQueryContext: u64, pszProvider: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscoveryNotification.VTable, self.vtable).OnError(@ptrCast(*const IFunctionDiscoveryNotification, self), hr, fdqcQueryContext, pszProvider);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryNotification_OnEvent(self: *const T, dwEventID: u32, fdqcQueryContext: u64, pszProvider: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscoveryNotification.VTable, self.vtable).OnEvent(@ptrCast(*const IFunctionDiscoveryNotification, self), dwEventID, fdqcQueryContext, pszProvider);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscoveryNotification_OnUpdate(self: *const T, enumQueryUpdateAction: QueryUpdateAction, fdqcQueryContext: u64, pIFunctionInstance: ?*IFunctionInstance) HRESULT {
+                return @ptrCast(*const IFunctionDiscoveryNotification.VTable, self.vtable).OnUpdate(@ptrCast(*const IFunctionDiscoveryNotification, self), enumQueryUpdateAction, fdqcQueryContext, pIFunctionInstance);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscoveryNotification_OnError(self: *const T, hr: HRESULT, fdqcQueryContext: u64, pszProvider: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IFunctionDiscoveryNotification.VTable, self.vtable).OnError(@ptrCast(*const IFunctionDiscoveryNotification, self), hr, fdqcQueryContext, pszProvider);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscoveryNotification_OnEvent(self: *const T, dwEventID: u32, fdqcQueryContext: u64, pszProvider: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IFunctionDiscoveryNotification.VTable, self.vtable).OnEvent(@ptrCast(*const IFunctionDiscoveryNotification, self), dwEventID, fdqcQueryContext, pszProvider);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -408,14 +410,14 @@ pub const IFunctionDiscovery = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetInstanceCollection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscovery,
                 pszCategory: ?[*:0]const u16,
                 pszSubCategory: ?[*:0]const u16,
                 fIncludeAllSubCategories: BOOL,
                 ppIFunctionInstanceCollection: ?*?*IFunctionInstanceCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscovery,
                 pszCategory: ?[*:0]const u16,
                 pszSubCategory: ?[*:0]const u16,
@@ -424,19 +426,19 @@ pub const IFunctionDiscovery = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetInstance: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscovery,
                 pszFunctionInstanceIdentity: ?[*:0]const u16,
                 ppIFunctionInstance: ?*?*IFunctionInstance,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscovery,
                 pszFunctionInstanceIdentity: ?[*:0]const u16,
                 ppIFunctionInstance: ?*?*IFunctionInstance,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateInstanceCollectionQuery: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscovery,
                 pszCategory: ?[*:0]const u16,
                 pszSubCategory: ?[*:0]const u16,
@@ -445,7 +447,7 @@ pub const IFunctionDiscovery = extern struct {
                 pfdqcQueryContext: ?*u64,
                 ppIFunctionInstanceCollectionQuery: ?*?*IFunctionInstanceCollectionQuery,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscovery,
                 pszCategory: ?[*:0]const u16,
                 pszSubCategory: ?[*:0]const u16,
@@ -456,14 +458,14 @@ pub const IFunctionDiscovery = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateInstanceQuery: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscovery,
                 pszFunctionInstanceIdentity: ?[*:0]const u16,
                 pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification,
                 pfdqcQueryContext: ?*u64,
                 ppIFunctionInstanceQuery: ?*?*IFunctionInstanceQuery,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscovery,
                 pszFunctionInstanceIdentity: ?[*:0]const u16,
                 pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification,
@@ -472,7 +474,7 @@ pub const IFunctionDiscovery = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AddInstance: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscovery,
                 enumSystemVisibility: SystemVisibilityFlags,
                 pszCategory: ?[*:0]const u16,
@@ -480,7 +482,7 @@ pub const IFunctionDiscovery = extern struct {
                 pszCategoryIdentity: ?[*:0]const u16,
                 ppIFunctionInstance: ?*?*IFunctionInstance,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscovery,
                 enumSystemVisibility: SystemVisibilityFlags,
                 pszCategory: ?[*:0]const u16,
@@ -490,14 +492,14 @@ pub const IFunctionDiscovery = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RemoveInstance: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscovery,
                 enumSystemVisibility: SystemVisibilityFlags,
                 pszCategory: ?[*:0]const u16,
                 pszSubCategory: ?[*:0]const u16,
                 pszCategoryIdentity: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscovery,
                 enumSystemVisibility: SystemVisibilityFlags,
                 pszCategory: ?[*:0]const u16,
@@ -507,33 +509,35 @@ pub const IFunctionDiscovery = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscovery_GetInstanceCollection(self: *const T, pszCategory: ?[*:0]const u16, pszSubCategory: ?[*:0]const u16, fIncludeAllSubCategories: BOOL, ppIFunctionInstanceCollection: ?*?*IFunctionInstanceCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscovery.VTable, self.vtable).GetInstanceCollection(@ptrCast(*const IFunctionDiscovery, self), pszCategory, pszSubCategory, fIncludeAllSubCategories, ppIFunctionInstanceCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscovery_GetInstance(self: *const T, pszFunctionInstanceIdentity: ?[*:0]const u16, ppIFunctionInstance: ?*?*IFunctionInstance) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscovery.VTable, self.vtable).GetInstance(@ptrCast(*const IFunctionDiscovery, self), pszFunctionInstanceIdentity, ppIFunctionInstance);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscovery_CreateInstanceCollectionQuery(self: *const T, pszCategory: ?[*:0]const u16, pszSubCategory: ?[*:0]const u16, fIncludeAllSubCategories: BOOL, pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification, pfdqcQueryContext: ?*u64, ppIFunctionInstanceCollectionQuery: ?*?*IFunctionInstanceCollectionQuery) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscovery.VTable, self.vtable).CreateInstanceCollectionQuery(@ptrCast(*const IFunctionDiscovery, self), pszCategory, pszSubCategory, fIncludeAllSubCategories, pIFunctionDiscoveryNotification, pfdqcQueryContext, ppIFunctionInstanceCollectionQuery);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscovery_CreateInstanceQuery(self: *const T, pszFunctionInstanceIdentity: ?[*:0]const u16, pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification, pfdqcQueryContext: ?*u64, ppIFunctionInstanceQuery: ?*?*IFunctionInstanceQuery) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscovery.VTable, self.vtable).CreateInstanceQuery(@ptrCast(*const IFunctionDiscovery, self), pszFunctionInstanceIdentity, pIFunctionDiscoveryNotification, pfdqcQueryContext, ppIFunctionInstanceQuery);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscovery_AddInstance(self: *const T, enumSystemVisibility: SystemVisibilityFlags, pszCategory: ?[*:0]const u16, pszSubCategory: ?[*:0]const u16, pszCategoryIdentity: ?[*:0]const u16, ppIFunctionInstance: ?*?*IFunctionInstance) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscovery.VTable, self.vtable).AddInstance(@ptrCast(*const IFunctionDiscovery, self), enumSystemVisibility, pszCategory, pszSubCategory, pszCategoryIdentity, ppIFunctionInstance);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscovery_RemoveInstance(self: *const T, enumSystemVisibility: SystemVisibilityFlags, pszCategory: ?[*:0]const u16, pszSubCategory: ?[*:0]const u16, pszCategoryIdentity: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscovery.VTable, self.vtable).RemoveInstance(@ptrCast(*const IFunctionDiscovery, self), enumSystemVisibility, pszCategory, pszSubCategory, pszCategoryIdentity);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscovery_GetInstanceCollection(self: *const T, pszCategory: ?[*:0]const u16, pszSubCategory: ?[*:0]const u16, fIncludeAllSubCategories: BOOL, ppIFunctionInstanceCollection: ?*?*IFunctionInstanceCollection) HRESULT {
+                return @ptrCast(*const IFunctionDiscovery.VTable, self.vtable).GetInstanceCollection(@ptrCast(*const IFunctionDiscovery, self), pszCategory, pszSubCategory, fIncludeAllSubCategories, ppIFunctionInstanceCollection);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscovery_GetInstance(self: *const T, pszFunctionInstanceIdentity: ?[*:0]const u16, ppIFunctionInstance: ?*?*IFunctionInstance) HRESULT {
+                return @ptrCast(*const IFunctionDiscovery.VTable, self.vtable).GetInstance(@ptrCast(*const IFunctionDiscovery, self), pszFunctionInstanceIdentity, ppIFunctionInstance);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscovery_CreateInstanceCollectionQuery(self: *const T, pszCategory: ?[*:0]const u16, pszSubCategory: ?[*:0]const u16, fIncludeAllSubCategories: BOOL, pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification, pfdqcQueryContext: ?*u64, ppIFunctionInstanceCollectionQuery: ?*?*IFunctionInstanceCollectionQuery) HRESULT {
+                return @ptrCast(*const IFunctionDiscovery.VTable, self.vtable).CreateInstanceCollectionQuery(@ptrCast(*const IFunctionDiscovery, self), pszCategory, pszSubCategory, fIncludeAllSubCategories, pIFunctionDiscoveryNotification, pfdqcQueryContext, ppIFunctionInstanceCollectionQuery);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscovery_CreateInstanceQuery(self: *const T, pszFunctionInstanceIdentity: ?[*:0]const u16, pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification, pfdqcQueryContext: ?*u64, ppIFunctionInstanceQuery: ?*?*IFunctionInstanceQuery) HRESULT {
+                return @ptrCast(*const IFunctionDiscovery.VTable, self.vtable).CreateInstanceQuery(@ptrCast(*const IFunctionDiscovery, self), pszFunctionInstanceIdentity, pIFunctionDiscoveryNotification, pfdqcQueryContext, ppIFunctionInstanceQuery);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscovery_AddInstance(self: *const T, enumSystemVisibility: SystemVisibilityFlags, pszCategory: ?[*:0]const u16, pszSubCategory: ?[*:0]const u16, pszCategoryIdentity: ?[*:0]const u16, ppIFunctionInstance: ?*?*IFunctionInstance) HRESULT {
+                return @ptrCast(*const IFunctionDiscovery.VTable, self.vtable).AddInstance(@ptrCast(*const IFunctionDiscovery, self), enumSystemVisibility, pszCategory, pszSubCategory, pszCategoryIdentity, ppIFunctionInstance);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscovery_RemoveInstance(self: *const T, enumSystemVisibility: SystemVisibilityFlags, pszCategory: ?[*:0]const u16, pszSubCategory: ?[*:0]const u16, pszCategoryIdentity: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IFunctionDiscovery.VTable, self.vtable).RemoveInstance(@ptrCast(*const IFunctionDiscovery, self), enumSystemVisibility, pszCategory, pszSubCategory, pszCategoryIdentity);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -544,44 +548,44 @@ pub const IFunctionInstance = extern struct {
     pub const VTable = extern struct {
         base: IServiceProvider.VTable,
         GetID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionInstance,
                 ppszCoMemIdentity: ?*?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionInstance,
                 ppszCoMemIdentity: ?*?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetProviderInstanceID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionInstance,
                 ppszCoMemProviderInstanceIdentity: ?*?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionInstance,
                 ppszCoMemProviderInstanceIdentity: ?*?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OpenPropertyStore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionInstance,
                 dwStgAccess: u32,
                 ppIPropertyStore: ?*?*IPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionInstance,
                 dwStgAccess: u32,
                 ppIPropertyStore: ?*?*IPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCategory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionInstance,
                 ppszCoMemCategory: ?*?*u16,
                 ppszCoMemSubCategory: ?*?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionInstance,
                 ppszCoMemCategory: ?*?*u16,
                 ppszCoMemSubCategory: ?*?*u16,
@@ -589,25 +593,27 @@ pub const IFunctionInstance = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IServiceProvider.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionInstance_GetID(self: *const T, ppszCoMemIdentity: ?*?*u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionInstance.VTable, self.vtable).GetID(@ptrCast(*const IFunctionInstance, self), ppszCoMemIdentity);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionInstance_GetProviderInstanceID(self: *const T, ppszCoMemProviderInstanceIdentity: ?*?*u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionInstance.VTable, self.vtable).GetProviderInstanceID(@ptrCast(*const IFunctionInstance, self), ppszCoMemProviderInstanceIdentity);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionInstance_OpenPropertyStore(self: *const T, dwStgAccess: u32, ppIPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionInstance.VTable, self.vtable).OpenPropertyStore(@ptrCast(*const IFunctionInstance, self), dwStgAccess, ppIPropertyStore);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionInstance_GetCategory(self: *const T, ppszCoMemCategory: ?*?*u16, ppszCoMemSubCategory: ?*?*u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionInstance.VTable, self.vtable).GetCategory(@ptrCast(*const IFunctionInstance, self), ppszCoMemCategory, ppszCoMemSubCategory);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IServiceProvider.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionInstance_GetID(self: *const T, ppszCoMemIdentity: ?*?*u16) HRESULT {
+                return @ptrCast(*const IFunctionInstance.VTable, self.vtable).GetID(@ptrCast(*const IFunctionInstance, self), ppszCoMemIdentity);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionInstance_GetProviderInstanceID(self: *const T, ppszCoMemProviderInstanceIdentity: ?*?*u16) HRESULT {
+                return @ptrCast(*const IFunctionInstance.VTable, self.vtable).GetProviderInstanceID(@ptrCast(*const IFunctionInstance, self), ppszCoMemProviderInstanceIdentity);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionInstance_OpenPropertyStore(self: *const T, dwStgAccess: u32, ppIPropertyStore: ?*?*IPropertyStore) HRESULT {
+                return @ptrCast(*const IFunctionInstance.VTable, self.vtable).OpenPropertyStore(@ptrCast(*const IFunctionInstance, self), dwStgAccess, ppIPropertyStore);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionInstance_GetCategory(self: *const T, ppszCoMemCategory: ?*?*u16, ppszCoMemSubCategory: ?*?*u16) HRESULT {
+                return @ptrCast(*const IFunctionInstance.VTable, self.vtable).GetCategory(@ptrCast(*const IFunctionInstance, self), ppszCoMemCategory, ppszCoMemSubCategory);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -618,23 +624,23 @@ pub const IFunctionInstanceCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionInstanceCollection,
                 pdwCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionInstanceCollection,
                 pdwCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Get: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionInstanceCollection,
                 pszInstanceIdentity: ?[*:0]const u16,
                 pdwIndex: ?*u32,
                 ppIFunctionInstance: ?*?*IFunctionInstance,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionInstanceCollection,
                 pszInstanceIdentity: ?[*:0]const u16,
                 pdwIndex: ?*u32,
@@ -642,90 +648,92 @@ pub const IFunctionInstanceCollection = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Item: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionInstanceCollection,
                 dwIndex: u32,
                 ppIFunctionInstance: ?*?*IFunctionInstance,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionInstanceCollection,
                 dwIndex: u32,
                 ppIFunctionInstance: ?*?*IFunctionInstance,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Add: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionInstanceCollection,
                 pIFunctionInstance: ?*IFunctionInstance,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionInstanceCollection,
                 pIFunctionInstance: ?*IFunctionInstance,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Remove: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionInstanceCollection,
                 dwIndex: u32,
                 ppIFunctionInstance: ?*?*IFunctionInstance,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionInstanceCollection,
                 dwIndex: u32,
                 ppIFunctionInstance: ?*?*IFunctionInstance,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionInstanceCollection,
                 dwIndex: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionInstanceCollection,
                 dwIndex: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DeleteAll: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionInstanceCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionInstanceCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionInstanceCollection_GetCount(self: *const T, pdwCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionInstanceCollection.VTable, self.vtable).GetCount(@ptrCast(*const IFunctionInstanceCollection, self), pdwCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionInstanceCollection_Get(self: *const T, pszInstanceIdentity: ?[*:0]const u16, pdwIndex: ?*u32, ppIFunctionInstance: ?*?*IFunctionInstance) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionInstanceCollection.VTable, self.vtable).Get(@ptrCast(*const IFunctionInstanceCollection, self), pszInstanceIdentity, pdwIndex, ppIFunctionInstance);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionInstanceCollection_Item(self: *const T, dwIndex: u32, ppIFunctionInstance: ?*?*IFunctionInstance) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionInstanceCollection.VTable, self.vtable).Item(@ptrCast(*const IFunctionInstanceCollection, self), dwIndex, ppIFunctionInstance);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionInstanceCollection_Add(self: *const T, pIFunctionInstance: ?*IFunctionInstance) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionInstanceCollection.VTable, self.vtable).Add(@ptrCast(*const IFunctionInstanceCollection, self), pIFunctionInstance);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionInstanceCollection_Remove(self: *const T, dwIndex: u32, ppIFunctionInstance: ?*?*IFunctionInstance) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionInstanceCollection.VTable, self.vtable).Remove(@ptrCast(*const IFunctionInstanceCollection, self), dwIndex, ppIFunctionInstance);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionInstanceCollection_Delete(self: *const T, dwIndex: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionInstanceCollection.VTable, self.vtable).Delete(@ptrCast(*const IFunctionInstanceCollection, self), dwIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionInstanceCollection_DeleteAll(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionInstanceCollection.VTable, self.vtable).DeleteAll(@ptrCast(*const IFunctionInstanceCollection, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionInstanceCollection_GetCount(self: *const T, pdwCount: ?*u32) HRESULT {
+                return @ptrCast(*const IFunctionInstanceCollection.VTable, self.vtable).GetCount(@ptrCast(*const IFunctionInstanceCollection, self), pdwCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionInstanceCollection_Get(self: *const T, pszInstanceIdentity: ?[*:0]const u16, pdwIndex: ?*u32, ppIFunctionInstance: ?*?*IFunctionInstance) HRESULT {
+                return @ptrCast(*const IFunctionInstanceCollection.VTable, self.vtable).Get(@ptrCast(*const IFunctionInstanceCollection, self), pszInstanceIdentity, pdwIndex, ppIFunctionInstance);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionInstanceCollection_Item(self: *const T, dwIndex: u32, ppIFunctionInstance: ?*?*IFunctionInstance) HRESULT {
+                return @ptrCast(*const IFunctionInstanceCollection.VTable, self.vtable).Item(@ptrCast(*const IFunctionInstanceCollection, self), dwIndex, ppIFunctionInstance);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionInstanceCollection_Add(self: *const T, pIFunctionInstance: ?*IFunctionInstance) HRESULT {
+                return @ptrCast(*const IFunctionInstanceCollection.VTable, self.vtable).Add(@ptrCast(*const IFunctionInstanceCollection, self), pIFunctionInstance);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionInstanceCollection_Remove(self: *const T, dwIndex: u32, ppIFunctionInstance: ?*?*IFunctionInstance) HRESULT {
+                return @ptrCast(*const IFunctionInstanceCollection.VTable, self.vtable).Remove(@ptrCast(*const IFunctionInstanceCollection, self), dwIndex, ppIFunctionInstance);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionInstanceCollection_Delete(self: *const T, dwIndex: u32) HRESULT {
+                return @ptrCast(*const IFunctionInstanceCollection.VTable, self.vtable).Delete(@ptrCast(*const IFunctionInstanceCollection, self), dwIndex);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionInstanceCollection_DeleteAll(self: *const T) HRESULT {
+                return @ptrCast(*const IFunctionInstanceCollection.VTable, self.vtable).DeleteAll(@ptrCast(*const IFunctionInstanceCollection, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -735,23 +743,23 @@ pub const IPropertyStoreCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyStoreCollection,
                 pdwCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyStoreCollection,
                 pdwCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Get: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyStoreCollection,
                 pszInstanceIdentity: ?[*:0]const u16,
                 pdwIndex: ?*u32,
                 ppIPropertyStore: ?*?*IPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyStoreCollection,
                 pszInstanceIdentity: ?[*:0]const u16,
                 pdwIndex: ?*u32,
@@ -759,90 +767,92 @@ pub const IPropertyStoreCollection = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Item: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyStoreCollection,
                 dwIndex: u32,
                 ppIPropertyStore: ?*?*IPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyStoreCollection,
                 dwIndex: u32,
                 ppIPropertyStore: ?*?*IPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Add: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyStoreCollection,
                 pIPropertyStore: ?*IPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyStoreCollection,
                 pIPropertyStore: ?*IPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Remove: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyStoreCollection,
                 dwIndex: u32,
                 pIPropertyStore: ?*?*IPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyStoreCollection,
                 dwIndex: u32,
                 pIPropertyStore: ?*?*IPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyStoreCollection,
                 dwIndex: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyStoreCollection,
                 dwIndex: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DeleteAll: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyStoreCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyStoreCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStoreCollection_GetCount(self: *const T, pdwCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStoreCollection.VTable, self.vtable).GetCount(@ptrCast(*const IPropertyStoreCollection, self), pdwCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStoreCollection_Get(self: *const T, pszInstanceIdentity: ?[*:0]const u16, pdwIndex: ?*u32, ppIPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStoreCollection.VTable, self.vtable).Get(@ptrCast(*const IPropertyStoreCollection, self), pszInstanceIdentity, pdwIndex, ppIPropertyStore);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStoreCollection_Item(self: *const T, dwIndex: u32, ppIPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStoreCollection.VTable, self.vtable).Item(@ptrCast(*const IPropertyStoreCollection, self), dwIndex, ppIPropertyStore);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStoreCollection_Add(self: *const T, pIPropertyStore: ?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStoreCollection.VTable, self.vtable).Add(@ptrCast(*const IPropertyStoreCollection, self), pIPropertyStore);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStoreCollection_Remove(self: *const T, dwIndex: u32, pIPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStoreCollection.VTable, self.vtable).Remove(@ptrCast(*const IPropertyStoreCollection, self), dwIndex, pIPropertyStore);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStoreCollection_Delete(self: *const T, dwIndex: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStoreCollection.VTable, self.vtable).Delete(@ptrCast(*const IPropertyStoreCollection, self), dwIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStoreCollection_DeleteAll(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStoreCollection.VTable, self.vtable).DeleteAll(@ptrCast(*const IPropertyStoreCollection, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyStoreCollection_GetCount(self: *const T, pdwCount: ?*u32) HRESULT {
+                return @ptrCast(*const IPropertyStoreCollection.VTable, self.vtable).GetCount(@ptrCast(*const IPropertyStoreCollection, self), pdwCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyStoreCollection_Get(self: *const T, pszInstanceIdentity: ?[*:0]const u16, pdwIndex: ?*u32, ppIPropertyStore: ?*?*IPropertyStore) HRESULT {
+                return @ptrCast(*const IPropertyStoreCollection.VTable, self.vtable).Get(@ptrCast(*const IPropertyStoreCollection, self), pszInstanceIdentity, pdwIndex, ppIPropertyStore);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyStoreCollection_Item(self: *const T, dwIndex: u32, ppIPropertyStore: ?*?*IPropertyStore) HRESULT {
+                return @ptrCast(*const IPropertyStoreCollection.VTable, self.vtable).Item(@ptrCast(*const IPropertyStoreCollection, self), dwIndex, ppIPropertyStore);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyStoreCollection_Add(self: *const T, pIPropertyStore: ?*IPropertyStore) HRESULT {
+                return @ptrCast(*const IPropertyStoreCollection.VTable, self.vtable).Add(@ptrCast(*const IPropertyStoreCollection, self), pIPropertyStore);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyStoreCollection_Remove(self: *const T, dwIndex: u32, pIPropertyStore: ?*?*IPropertyStore) HRESULT {
+                return @ptrCast(*const IPropertyStoreCollection.VTable, self.vtable).Remove(@ptrCast(*const IPropertyStoreCollection, self), dwIndex, pIPropertyStore);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyStoreCollection_Delete(self: *const T, dwIndex: u32) HRESULT {
+                return @ptrCast(*const IPropertyStoreCollection.VTable, self.vtable).Delete(@ptrCast(*const IPropertyStoreCollection, self), dwIndex);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyStoreCollection_DeleteAll(self: *const T) HRESULT {
+                return @ptrCast(*const IPropertyStoreCollection.VTable, self.vtable).DeleteAll(@ptrCast(*const IPropertyStoreCollection, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -853,24 +863,26 @@ pub const IFunctionInstanceQuery = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Execute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionInstanceQuery,
                 ppIFunctionInstance: ?*?*IFunctionInstance,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionInstanceQuery,
                 ppIFunctionInstance: ?*?*IFunctionInstance,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionInstanceQuery_Execute(self: *const T, ppIFunctionInstance: ?*?*IFunctionInstance) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionInstanceQuery.VTable, self.vtable).Execute(@ptrCast(*const IFunctionInstanceQuery, self), ppIFunctionInstance);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionInstanceQuery_Execute(self: *const T, ppIFunctionInstance: ?*?*IFunctionInstance) HRESULT {
+                return @ptrCast(*const IFunctionInstanceQuery.VTable, self.vtable).Execute(@ptrCast(*const IFunctionInstanceQuery, self), ppIFunctionInstance);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -881,25 +893,25 @@ pub const IFunctionInstanceCollectionQuery = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddQueryConstraint: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionInstanceCollectionQuery,
                 pszConstraintName: ?[*:0]const u16,
                 pszConstraintValue: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionInstanceCollectionQuery,
                 pszConstraintName: ?[*:0]const u16,
                 pszConstraintValue: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AddPropertyConstraint: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionInstanceCollectionQuery,
                 Key: ?*const PROPERTYKEY,
                 pv: ?*const PROPVARIANT,
                 enumPropertyConstraint: PropertyConstraint,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionInstanceCollectionQuery,
                 Key: ?*const PROPERTYKEY,
                 pv: ?*const PROPVARIANT,
@@ -907,32 +919,34 @@ pub const IFunctionInstanceCollectionQuery = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Execute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionInstanceCollectionQuery,
                 ppIFunctionInstanceCollection: ?*?*IFunctionInstanceCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionInstanceCollectionQuery,
                 ppIFunctionInstanceCollection: ?*?*IFunctionInstanceCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionInstanceCollectionQuery_AddQueryConstraint(self: *const T, pszConstraintName: ?[*:0]const u16, pszConstraintValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionInstanceCollectionQuery.VTable, self.vtable).AddQueryConstraint(@ptrCast(*const IFunctionInstanceCollectionQuery, self), pszConstraintName, pszConstraintValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionInstanceCollectionQuery_AddPropertyConstraint(self: *const T, Key: ?*const PROPERTYKEY, pv: ?*const PROPVARIANT, enumPropertyConstraint: PropertyConstraint) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionInstanceCollectionQuery.VTable, self.vtable).AddPropertyConstraint(@ptrCast(*const IFunctionInstanceCollectionQuery, self), Key, pv, enumPropertyConstraint);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionInstanceCollectionQuery_Execute(self: *const T, ppIFunctionInstanceCollection: ?*?*IFunctionInstanceCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionInstanceCollectionQuery.VTable, self.vtable).Execute(@ptrCast(*const IFunctionInstanceCollectionQuery, self), ppIFunctionInstanceCollection);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionInstanceCollectionQuery_AddQueryConstraint(self: *const T, pszConstraintName: ?[*:0]const u16, pszConstraintValue: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IFunctionInstanceCollectionQuery.VTable, self.vtable).AddQueryConstraint(@ptrCast(*const IFunctionInstanceCollectionQuery, self), pszConstraintName, pszConstraintValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionInstanceCollectionQuery_AddPropertyConstraint(self: *const T, Key: ?*const PROPERTYKEY, pv: ?*const PROPVARIANT, enumPropertyConstraint: PropertyConstraint) HRESULT {
+                return @ptrCast(*const IFunctionInstanceCollectionQuery.VTable, self.vtable).AddPropertyConstraint(@ptrCast(*const IFunctionInstanceCollectionQuery, self), Key, pv, enumPropertyConstraint);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionInstanceCollectionQuery_Execute(self: *const T, ppIFunctionInstanceCollection: ?*?*IFunctionInstanceCollection) HRESULT {
+                return @ptrCast(*const IFunctionInstanceCollectionQuery.VTable, self.vtable).Execute(@ptrCast(*const IFunctionInstanceCollectionQuery, self), ppIFunctionInstanceCollection);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -943,14 +957,14 @@ pub const IFunctionDiscoveryProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscoveryProvider,
                 pIFunctionDiscoveryProviderFactory: ?*IFunctionDiscoveryProviderFactory,
                 pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification,
                 lcidUserDefault: u32,
                 pdwStgAccessCapabilities: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscoveryProvider,
                 pIFunctionDiscoveryProviderFactory: ?*IFunctionDiscoveryProviderFactory,
                 pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification,
@@ -959,33 +973,33 @@ pub const IFunctionDiscoveryProvider = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Query: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscoveryProvider,
                 pIFunctionDiscoveryProviderQuery: ?*IFunctionDiscoveryProviderQuery,
                 ppIFunctionInstanceCollection: ?*?*IFunctionInstanceCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscoveryProvider,
                 pIFunctionDiscoveryProviderQuery: ?*IFunctionDiscoveryProviderQuery,
                 ppIFunctionInstanceCollection: ?*?*IFunctionInstanceCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EndQuery: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscoveryProvider,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscoveryProvider,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         InstancePropertyStoreValidateAccess: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscoveryProvider,
                 pIFunctionInstance: ?*IFunctionInstance,
                 iProviderInstanceContext: isize,
                 dwStgAccess: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscoveryProvider,
                 pIFunctionInstance: ?*IFunctionInstance,
                 iProviderInstanceContext: isize,
@@ -993,14 +1007,14 @@ pub const IFunctionDiscoveryProvider = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         InstancePropertyStoreOpen: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscoveryProvider,
                 pIFunctionInstance: ?*IFunctionInstance,
                 iProviderInstanceContext: isize,
                 dwStgAccess: u32,
                 ppIPropertyStore: ?*?*IPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscoveryProvider,
                 pIFunctionInstance: ?*IFunctionInstance,
                 iProviderInstanceContext: isize,
@@ -1009,19 +1023,19 @@ pub const IFunctionDiscoveryProvider = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         InstancePropertyStoreFlush: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscoveryProvider,
                 pIFunctionInstance: ?*IFunctionInstance,
                 iProviderInstanceContext: isize,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscoveryProvider,
                 pIFunctionInstance: ?*IFunctionInstance,
                 iProviderInstanceContext: isize,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         InstanceQueryService: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscoveryProvider,
                 pIFunctionInstance: ?*IFunctionInstance,
                 iProviderInstanceContext: isize,
@@ -1029,7 +1043,7 @@ pub const IFunctionDiscoveryProvider = extern struct {
                 riid: ?*const Guid,
                 ppIUnknown: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscoveryProvider,
                 pIFunctionInstance: ?*IFunctionInstance,
                 iProviderInstanceContext: isize,
@@ -1039,12 +1053,12 @@ pub const IFunctionDiscoveryProvider = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         InstanceReleased: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscoveryProvider,
                 pIFunctionInstance: ?*IFunctionInstance,
                 iProviderInstanceContext: isize,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscoveryProvider,
                 pIFunctionInstance: ?*IFunctionInstance,
                 iProviderInstanceContext: isize,
@@ -1052,41 +1066,43 @@ pub const IFunctionDiscoveryProvider = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryProvider_Initialize(self: *const T, pIFunctionDiscoveryProviderFactory: ?*IFunctionDiscoveryProviderFactory, pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification, lcidUserDefault: u32, pdwStgAccessCapabilities: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscoveryProvider.VTable, self.vtable).Initialize(@ptrCast(*const IFunctionDiscoveryProvider, self), pIFunctionDiscoveryProviderFactory, pIFunctionDiscoveryNotification, lcidUserDefault, pdwStgAccessCapabilities);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryProvider_Query(self: *const T, pIFunctionDiscoveryProviderQuery: ?*IFunctionDiscoveryProviderQuery, ppIFunctionInstanceCollection: ?*?*IFunctionInstanceCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscoveryProvider.VTable, self.vtable).Query(@ptrCast(*const IFunctionDiscoveryProvider, self), pIFunctionDiscoveryProviderQuery, ppIFunctionInstanceCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryProvider_EndQuery(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscoveryProvider.VTable, self.vtable).EndQuery(@ptrCast(*const IFunctionDiscoveryProvider, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryProvider_InstancePropertyStoreValidateAccess(self: *const T, pIFunctionInstance: ?*IFunctionInstance, iProviderInstanceContext: isize, dwStgAccess: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscoveryProvider.VTable, self.vtable).InstancePropertyStoreValidateAccess(@ptrCast(*const IFunctionDiscoveryProvider, self), pIFunctionInstance, iProviderInstanceContext, dwStgAccess);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryProvider_InstancePropertyStoreOpen(self: *const T, pIFunctionInstance: ?*IFunctionInstance, iProviderInstanceContext: isize, dwStgAccess: u32, ppIPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscoveryProvider.VTable, self.vtable).InstancePropertyStoreOpen(@ptrCast(*const IFunctionDiscoveryProvider, self), pIFunctionInstance, iProviderInstanceContext, dwStgAccess, ppIPropertyStore);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryProvider_InstancePropertyStoreFlush(self: *const T, pIFunctionInstance: ?*IFunctionInstance, iProviderInstanceContext: isize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscoveryProvider.VTable, self.vtable).InstancePropertyStoreFlush(@ptrCast(*const IFunctionDiscoveryProvider, self), pIFunctionInstance, iProviderInstanceContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryProvider_InstanceQueryService(self: *const T, pIFunctionInstance: ?*IFunctionInstance, iProviderInstanceContext: isize, guidService: ?*const Guid, riid: ?*const Guid, ppIUnknown: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscoveryProvider.VTable, self.vtable).InstanceQueryService(@ptrCast(*const IFunctionDiscoveryProvider, self), pIFunctionInstance, iProviderInstanceContext, guidService, riid, ppIUnknown);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryProvider_InstanceReleased(self: *const T, pIFunctionInstance: ?*IFunctionInstance, iProviderInstanceContext: isize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscoveryProvider.VTable, self.vtable).InstanceReleased(@ptrCast(*const IFunctionDiscoveryProvider, self), pIFunctionInstance, iProviderInstanceContext);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscoveryProvider_Initialize(self: *const T, pIFunctionDiscoveryProviderFactory: ?*IFunctionDiscoveryProviderFactory, pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification, lcidUserDefault: u32, pdwStgAccessCapabilities: ?*u32) HRESULT {
+                return @ptrCast(*const IFunctionDiscoveryProvider.VTable, self.vtable).Initialize(@ptrCast(*const IFunctionDiscoveryProvider, self), pIFunctionDiscoveryProviderFactory, pIFunctionDiscoveryNotification, lcidUserDefault, pdwStgAccessCapabilities);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscoveryProvider_Query(self: *const T, pIFunctionDiscoveryProviderQuery: ?*IFunctionDiscoveryProviderQuery, ppIFunctionInstanceCollection: ?*?*IFunctionInstanceCollection) HRESULT {
+                return @ptrCast(*const IFunctionDiscoveryProvider.VTable, self.vtable).Query(@ptrCast(*const IFunctionDiscoveryProvider, self), pIFunctionDiscoveryProviderQuery, ppIFunctionInstanceCollection);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscoveryProvider_EndQuery(self: *const T) HRESULT {
+                return @ptrCast(*const IFunctionDiscoveryProvider.VTable, self.vtable).EndQuery(@ptrCast(*const IFunctionDiscoveryProvider, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscoveryProvider_InstancePropertyStoreValidateAccess(self: *const T, pIFunctionInstance: ?*IFunctionInstance, iProviderInstanceContext: isize, dwStgAccess: u32) HRESULT {
+                return @ptrCast(*const IFunctionDiscoveryProvider.VTable, self.vtable).InstancePropertyStoreValidateAccess(@ptrCast(*const IFunctionDiscoveryProvider, self), pIFunctionInstance, iProviderInstanceContext, dwStgAccess);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscoveryProvider_InstancePropertyStoreOpen(self: *const T, pIFunctionInstance: ?*IFunctionInstance, iProviderInstanceContext: isize, dwStgAccess: u32, ppIPropertyStore: ?*?*IPropertyStore) HRESULT {
+                return @ptrCast(*const IFunctionDiscoveryProvider.VTable, self.vtable).InstancePropertyStoreOpen(@ptrCast(*const IFunctionDiscoveryProvider, self), pIFunctionInstance, iProviderInstanceContext, dwStgAccess, ppIPropertyStore);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscoveryProvider_InstancePropertyStoreFlush(self: *const T, pIFunctionInstance: ?*IFunctionInstance, iProviderInstanceContext: isize) HRESULT {
+                return @ptrCast(*const IFunctionDiscoveryProvider.VTable, self.vtable).InstancePropertyStoreFlush(@ptrCast(*const IFunctionDiscoveryProvider, self), pIFunctionInstance, iProviderInstanceContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscoveryProvider_InstanceQueryService(self: *const T, pIFunctionInstance: ?*IFunctionInstance, iProviderInstanceContext: isize, guidService: ?*const Guid, riid: ?*const Guid, ppIUnknown: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const IFunctionDiscoveryProvider.VTable, self.vtable).InstanceQueryService(@ptrCast(*const IFunctionDiscoveryProvider, self), pIFunctionInstance, iProviderInstanceContext, guidService, riid, ppIUnknown);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscoveryProvider_InstanceReleased(self: *const T, pIFunctionInstance: ?*IFunctionInstance, iProviderInstanceContext: isize) HRESULT {
+                return @ptrCast(*const IFunctionDiscoveryProvider.VTable, self.vtable).InstanceReleased(@ptrCast(*const IFunctionDiscoveryProvider, self), pIFunctionInstance, iProviderInstanceContext);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1097,13 +1113,13 @@ pub const IProviderProperties = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IProviderProperties,
                 pIFunctionInstance: ?*IFunctionInstance,
                 iProviderInstanceContext: isize,
                 pdwCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IProviderProperties,
                 pIFunctionInstance: ?*IFunctionInstance,
                 iProviderInstanceContext: isize,
@@ -1111,14 +1127,14 @@ pub const IProviderProperties = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IProviderProperties,
                 pIFunctionInstance: ?*IFunctionInstance,
                 iProviderInstanceContext: isize,
                 dwIndex: u32,
                 pKey: ?*PROPERTYKEY,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IProviderProperties,
                 pIFunctionInstance: ?*IFunctionInstance,
                 iProviderInstanceContext: isize,
@@ -1127,14 +1143,14 @@ pub const IProviderProperties = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IProviderProperties,
                 pIFunctionInstance: ?*IFunctionInstance,
                 iProviderInstanceContext: isize,
                 Key: ?*const PROPERTYKEY,
                 ppropVar: ?*PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IProviderProperties,
                 pIFunctionInstance: ?*IFunctionInstance,
                 iProviderInstanceContext: isize,
@@ -1143,14 +1159,14 @@ pub const IProviderProperties = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IProviderProperties,
                 pIFunctionInstance: ?*IFunctionInstance,
                 iProviderInstanceContext: isize,
                 Key: ?*const PROPERTYKEY,
                 ppropVar: ?*const PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IProviderProperties,
                 pIFunctionInstance: ?*IFunctionInstance,
                 iProviderInstanceContext: isize,
@@ -1160,25 +1176,27 @@ pub const IProviderProperties = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderProperties_GetCount(self: *const T, pIFunctionInstance: ?*IFunctionInstance, iProviderInstanceContext: isize, pdwCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProviderProperties.VTable, self.vtable).GetCount(@ptrCast(*const IProviderProperties, self), pIFunctionInstance, iProviderInstanceContext, pdwCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderProperties_GetAt(self: *const T, pIFunctionInstance: ?*IFunctionInstance, iProviderInstanceContext: isize, dwIndex: u32, pKey: ?*PROPERTYKEY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProviderProperties.VTable, self.vtable).GetAt(@ptrCast(*const IProviderProperties, self), pIFunctionInstance, iProviderInstanceContext, dwIndex, pKey);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderProperties_GetValue(self: *const T, pIFunctionInstance: ?*IFunctionInstance, iProviderInstanceContext: isize, Key: ?*const PROPERTYKEY, ppropVar: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProviderProperties.VTable, self.vtable).GetValue(@ptrCast(*const IProviderProperties, self), pIFunctionInstance, iProviderInstanceContext, Key, ppropVar);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderProperties_SetValue(self: *const T, pIFunctionInstance: ?*IFunctionInstance, iProviderInstanceContext: isize, Key: ?*const PROPERTYKEY, ppropVar: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProviderProperties.VTable, self.vtable).SetValue(@ptrCast(*const IProviderProperties, self), pIFunctionInstance, iProviderInstanceContext, Key, ppropVar);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IProviderProperties_GetCount(self: *const T, pIFunctionInstance: ?*IFunctionInstance, iProviderInstanceContext: isize, pdwCount: ?*u32) HRESULT {
+                return @ptrCast(*const IProviderProperties.VTable, self.vtable).GetCount(@ptrCast(*const IProviderProperties, self), pIFunctionInstance, iProviderInstanceContext, pdwCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IProviderProperties_GetAt(self: *const T, pIFunctionInstance: ?*IFunctionInstance, iProviderInstanceContext: isize, dwIndex: u32, pKey: ?*PROPERTYKEY) HRESULT {
+                return @ptrCast(*const IProviderProperties.VTable, self.vtable).GetAt(@ptrCast(*const IProviderProperties, self), pIFunctionInstance, iProviderInstanceContext, dwIndex, pKey);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IProviderProperties_GetValue(self: *const T, pIFunctionInstance: ?*IFunctionInstance, iProviderInstanceContext: isize, Key: ?*const PROPERTYKEY, ppropVar: ?*PROPVARIANT) HRESULT {
+                return @ptrCast(*const IProviderProperties.VTable, self.vtable).GetValue(@ptrCast(*const IProviderProperties, self), pIFunctionInstance, iProviderInstanceContext, Key, ppropVar);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IProviderProperties_SetValue(self: *const T, pIFunctionInstance: ?*IFunctionInstance, iProviderInstanceContext: isize, Key: ?*const PROPERTYKEY, ppropVar: ?*const PROPVARIANT) HRESULT {
+                return @ptrCast(*const IProviderProperties.VTable, self.vtable).SetValue(@ptrCast(*const IProviderProperties, self), pIFunctionInstance, iProviderInstanceContext, Key, ppropVar);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1189,14 +1207,14 @@ pub const IProviderPublishing = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateInstance: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IProviderPublishing,
                 enumVisibilityFlags: SystemVisibilityFlags,
                 pszSubCategory: ?[*:0]const u16,
                 pszProviderInstanceIdentity: ?[*:0]const u16,
                 ppIFunctionInstance: ?*?*IFunctionInstance,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IProviderPublishing,
                 enumVisibilityFlags: SystemVisibilityFlags,
                 pszSubCategory: ?[*:0]const u16,
@@ -1205,13 +1223,13 @@ pub const IProviderPublishing = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RemoveInstance: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IProviderPublishing,
                 enumVisibilityFlags: SystemVisibilityFlags,
                 pszSubCategory: ?[*:0]const u16,
                 pszProviderInstanceIdentity: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IProviderPublishing,
                 enumVisibilityFlags: SystemVisibilityFlags,
                 pszSubCategory: ?[*:0]const u16,
@@ -1220,17 +1238,19 @@ pub const IProviderPublishing = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderPublishing_CreateInstance(self: *const T, enumVisibilityFlags: SystemVisibilityFlags, pszSubCategory: ?[*:0]const u16, pszProviderInstanceIdentity: ?[*:0]const u16, ppIFunctionInstance: ?*?*IFunctionInstance) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProviderPublishing.VTable, self.vtable).CreateInstance(@ptrCast(*const IProviderPublishing, self), enumVisibilityFlags, pszSubCategory, pszProviderInstanceIdentity, ppIFunctionInstance);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderPublishing_RemoveInstance(self: *const T, enumVisibilityFlags: SystemVisibilityFlags, pszSubCategory: ?[*:0]const u16, pszProviderInstanceIdentity: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProviderPublishing.VTable, self.vtable).RemoveInstance(@ptrCast(*const IProviderPublishing, self), enumVisibilityFlags, pszSubCategory, pszProviderInstanceIdentity);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IProviderPublishing_CreateInstance(self: *const T, enumVisibilityFlags: SystemVisibilityFlags, pszSubCategory: ?[*:0]const u16, pszProviderInstanceIdentity: ?[*:0]const u16, ppIFunctionInstance: ?*?*IFunctionInstance) HRESULT {
+                return @ptrCast(*const IProviderPublishing.VTable, self.vtable).CreateInstance(@ptrCast(*const IProviderPublishing, self), enumVisibilityFlags, pszSubCategory, pszProviderInstanceIdentity, ppIFunctionInstance);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IProviderPublishing_RemoveInstance(self: *const T, enumVisibilityFlags: SystemVisibilityFlags, pszSubCategory: ?[*:0]const u16, pszProviderInstanceIdentity: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IProviderPublishing.VTable, self.vtable).RemoveInstance(@ptrCast(*const IProviderPublishing, self), enumVisibilityFlags, pszSubCategory, pszProviderInstanceIdentity);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1241,17 +1261,17 @@ pub const IFunctionDiscoveryProviderFactory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreatePropertyStore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscoveryProviderFactory,
                 ppIPropertyStore: ?*?*IPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscoveryProviderFactory,
                 ppIPropertyStore: ?*?*IPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateInstance: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscoveryProviderFactory,
                 pszSubCategory: ?[*:0]const u16,
                 pszProviderInstanceIdentity: ?[*:0]const u16,
@@ -1260,7 +1280,7 @@ pub const IFunctionDiscoveryProviderFactory = extern struct {
                 pIFunctionDiscoveryProvider: ?*IFunctionDiscoveryProvider,
                 ppIFunctionInstance: ?*?*IFunctionInstance,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscoveryProviderFactory,
                 pszSubCategory: ?[*:0]const u16,
                 pszProviderInstanceIdentity: ?[*:0]const u16,
@@ -1271,32 +1291,34 @@ pub const IFunctionDiscoveryProviderFactory = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateFunctionInstanceCollection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscoveryProviderFactory,
                 ppIFunctionInstanceCollection: ?*?*IFunctionInstanceCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscoveryProviderFactory,
                 ppIFunctionInstanceCollection: ?*?*IFunctionInstanceCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryProviderFactory_CreatePropertyStore(self: *const T, ppIPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscoveryProviderFactory.VTable, self.vtable).CreatePropertyStore(@ptrCast(*const IFunctionDiscoveryProviderFactory, self), ppIPropertyStore);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryProviderFactory_CreateInstance(self: *const T, pszSubCategory: ?[*:0]const u16, pszProviderInstanceIdentity: ?[*:0]const u16, iProviderInstanceContext: isize, pIPropertyStore: ?*IPropertyStore, pIFunctionDiscoveryProvider: ?*IFunctionDiscoveryProvider, ppIFunctionInstance: ?*?*IFunctionInstance) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscoveryProviderFactory.VTable, self.vtable).CreateInstance(@ptrCast(*const IFunctionDiscoveryProviderFactory, self), pszSubCategory, pszProviderInstanceIdentity, iProviderInstanceContext, pIPropertyStore, pIFunctionDiscoveryProvider, ppIFunctionInstance);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryProviderFactory_CreateFunctionInstanceCollection(self: *const T, ppIFunctionInstanceCollection: ?*?*IFunctionInstanceCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscoveryProviderFactory.VTable, self.vtable).CreateFunctionInstanceCollection(@ptrCast(*const IFunctionDiscoveryProviderFactory, self), ppIFunctionInstanceCollection);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscoveryProviderFactory_CreatePropertyStore(self: *const T, ppIPropertyStore: ?*?*IPropertyStore) HRESULT {
+                return @ptrCast(*const IFunctionDiscoveryProviderFactory.VTable, self.vtable).CreatePropertyStore(@ptrCast(*const IFunctionDiscoveryProviderFactory, self), ppIPropertyStore);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscoveryProviderFactory_CreateInstance(self: *const T, pszSubCategory: ?[*:0]const u16, pszProviderInstanceIdentity: ?[*:0]const u16, iProviderInstanceContext: isize, pIPropertyStore: ?*IPropertyStore, pIFunctionDiscoveryProvider: ?*IFunctionDiscoveryProvider, ppIFunctionInstance: ?*?*IFunctionInstance) HRESULT {
+                return @ptrCast(*const IFunctionDiscoveryProviderFactory.VTable, self.vtable).CreateInstance(@ptrCast(*const IFunctionDiscoveryProviderFactory, self), pszSubCategory, pszProviderInstanceIdentity, iProviderInstanceContext, pIPropertyStore, pIFunctionDiscoveryProvider, ppIFunctionInstance);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscoveryProviderFactory_CreateFunctionInstanceCollection(self: *const T, ppIFunctionInstanceCollection: ?*?*IFunctionInstanceCollection) HRESULT {
+                return @ptrCast(*const IFunctionDiscoveryProviderFactory.VTable, self.vtable).CreateFunctionInstanceCollection(@ptrCast(*const IFunctionDiscoveryProviderFactory, self), ppIFunctionInstanceCollection);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1307,70 +1329,72 @@ pub const IFunctionDiscoveryProviderQuery = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         IsInstanceQuery: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscoveryProviderQuery,
                 pisInstanceQuery: ?*BOOL,
                 ppszConstraintValue: ?*?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscoveryProviderQuery,
                 pisInstanceQuery: ?*BOOL,
                 ppszConstraintValue: ?*?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         IsSubcategoryQuery: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscoveryProviderQuery,
                 pisSubcategoryQuery: ?*BOOL,
                 ppszConstraintValue: ?*?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscoveryProviderQuery,
                 pisSubcategoryQuery: ?*BOOL,
                 ppszConstraintValue: ?*?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetQueryConstraints: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscoveryProviderQuery,
                 ppIProviderQueryConstraints: ?*?*IProviderQueryConstraintCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscoveryProviderQuery,
                 ppIProviderQueryConstraints: ?*?*IProviderQueryConstraintCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPropertyConstraints: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscoveryProviderQuery,
                 ppIProviderPropertyConstraints: ?*?*IProviderPropertyConstraintCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscoveryProviderQuery,
                 ppIProviderPropertyConstraints: ?*?*IProviderPropertyConstraintCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryProviderQuery_IsInstanceQuery(self: *const T, pisInstanceQuery: ?*BOOL, ppszConstraintValue: ?*?*u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscoveryProviderQuery.VTable, self.vtable).IsInstanceQuery(@ptrCast(*const IFunctionDiscoveryProviderQuery, self), pisInstanceQuery, ppszConstraintValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryProviderQuery_IsSubcategoryQuery(self: *const T, pisSubcategoryQuery: ?*BOOL, ppszConstraintValue: ?*?*u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscoveryProviderQuery.VTable, self.vtable).IsSubcategoryQuery(@ptrCast(*const IFunctionDiscoveryProviderQuery, self), pisSubcategoryQuery, ppszConstraintValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryProviderQuery_GetQueryConstraints(self: *const T, ppIProviderQueryConstraints: ?*?*IProviderQueryConstraintCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscoveryProviderQuery.VTable, self.vtable).GetQueryConstraints(@ptrCast(*const IFunctionDiscoveryProviderQuery, self), ppIProviderQueryConstraints);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryProviderQuery_GetPropertyConstraints(self: *const T, ppIProviderPropertyConstraints: ?*?*IProviderPropertyConstraintCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscoveryProviderQuery.VTable, self.vtable).GetPropertyConstraints(@ptrCast(*const IFunctionDiscoveryProviderQuery, self), ppIProviderPropertyConstraints);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscoveryProviderQuery_IsInstanceQuery(self: *const T, pisInstanceQuery: ?*BOOL, ppszConstraintValue: ?*?*u16) HRESULT {
+                return @ptrCast(*const IFunctionDiscoveryProviderQuery.VTable, self.vtable).IsInstanceQuery(@ptrCast(*const IFunctionDiscoveryProviderQuery, self), pisInstanceQuery, ppszConstraintValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscoveryProviderQuery_IsSubcategoryQuery(self: *const T, pisSubcategoryQuery: ?*BOOL, ppszConstraintValue: ?*?*u16) HRESULT {
+                return @ptrCast(*const IFunctionDiscoveryProviderQuery.VTable, self.vtable).IsSubcategoryQuery(@ptrCast(*const IFunctionDiscoveryProviderQuery, self), pisSubcategoryQuery, ppszConstraintValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscoveryProviderQuery_GetQueryConstraints(self: *const T, ppIProviderQueryConstraints: ?*?*IProviderQueryConstraintCollection) HRESULT {
+                return @ptrCast(*const IFunctionDiscoveryProviderQuery.VTable, self.vtable).GetQueryConstraints(@ptrCast(*const IFunctionDiscoveryProviderQuery, self), ppIProviderQueryConstraints);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscoveryProviderQuery_GetPropertyConstraints(self: *const T, ppIProviderPropertyConstraints: ?*?*IProviderPropertyConstraintCollection) HRESULT {
+                return @ptrCast(*const IFunctionDiscoveryProviderQuery.VTable, self.vtable).GetPropertyConstraints(@ptrCast(*const IFunctionDiscoveryProviderQuery, self), ppIProviderPropertyConstraints);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1381,35 +1405,35 @@ pub const IProviderQueryConstraintCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IProviderQueryConstraintCollection,
                 pdwCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IProviderQueryConstraintCollection,
                 pdwCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Get: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IProviderQueryConstraintCollection,
                 pszConstraintName: ?[*:0]const u16,
                 ppszConstraintValue: ?*?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IProviderQueryConstraintCollection,
                 pszConstraintName: ?[*:0]const u16,
                 ppszConstraintValue: ?*?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Item: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IProviderQueryConstraintCollection,
                 dwIndex: u32,
                 ppszConstraintName: ?*?*u16,
                 ppszConstraintValue: ?*?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IProviderQueryConstraintCollection,
                 dwIndex: u32,
                 ppszConstraintName: ?*?*u16,
@@ -1417,62 +1441,64 @@ pub const IProviderQueryConstraintCollection = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IProviderQueryConstraintCollection,
                 ppszConstraintName: ?*?*u16,
                 ppszConstraintValue: ?*?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IProviderQueryConstraintCollection,
                 ppszConstraintName: ?*?*u16,
                 ppszConstraintValue: ?*?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IProviderQueryConstraintCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IProviderQueryConstraintCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IProviderQueryConstraintCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IProviderQueryConstraintCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderQueryConstraintCollection_GetCount(self: *const T, pdwCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProviderQueryConstraintCollection.VTable, self.vtable).GetCount(@ptrCast(*const IProviderQueryConstraintCollection, self), pdwCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderQueryConstraintCollection_Get(self: *const T, pszConstraintName: ?[*:0]const u16, ppszConstraintValue: ?*?*u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProviderQueryConstraintCollection.VTable, self.vtable).Get(@ptrCast(*const IProviderQueryConstraintCollection, self), pszConstraintName, ppszConstraintValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderQueryConstraintCollection_Item(self: *const T, dwIndex: u32, ppszConstraintName: ?*?*u16, ppszConstraintValue: ?*?*u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProviderQueryConstraintCollection.VTable, self.vtable).Item(@ptrCast(*const IProviderQueryConstraintCollection, self), dwIndex, ppszConstraintName, ppszConstraintValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderQueryConstraintCollection_Next(self: *const T, ppszConstraintName: ?*?*u16, ppszConstraintValue: ?*?*u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProviderQueryConstraintCollection.VTable, self.vtable).Next(@ptrCast(*const IProviderQueryConstraintCollection, self), ppszConstraintName, ppszConstraintValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderQueryConstraintCollection_Skip(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProviderQueryConstraintCollection.VTable, self.vtable).Skip(@ptrCast(*const IProviderQueryConstraintCollection, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderQueryConstraintCollection_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProviderQueryConstraintCollection.VTable, self.vtable).Reset(@ptrCast(*const IProviderQueryConstraintCollection, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IProviderQueryConstraintCollection_GetCount(self: *const T, pdwCount: ?*u32) HRESULT {
+                return @ptrCast(*const IProviderQueryConstraintCollection.VTable, self.vtable).GetCount(@ptrCast(*const IProviderQueryConstraintCollection, self), pdwCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IProviderQueryConstraintCollection_Get(self: *const T, pszConstraintName: ?[*:0]const u16, ppszConstraintValue: ?*?*u16) HRESULT {
+                return @ptrCast(*const IProviderQueryConstraintCollection.VTable, self.vtable).Get(@ptrCast(*const IProviderQueryConstraintCollection, self), pszConstraintName, ppszConstraintValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IProviderQueryConstraintCollection_Item(self: *const T, dwIndex: u32, ppszConstraintName: ?*?*u16, ppszConstraintValue: ?*?*u16) HRESULT {
+                return @ptrCast(*const IProviderQueryConstraintCollection.VTable, self.vtable).Item(@ptrCast(*const IProviderQueryConstraintCollection, self), dwIndex, ppszConstraintName, ppszConstraintValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IProviderQueryConstraintCollection_Next(self: *const T, ppszConstraintName: ?*?*u16, ppszConstraintValue: ?*?*u16) HRESULT {
+                return @ptrCast(*const IProviderQueryConstraintCollection.VTable, self.vtable).Next(@ptrCast(*const IProviderQueryConstraintCollection, self), ppszConstraintName, ppszConstraintValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IProviderQueryConstraintCollection_Skip(self: *const T) HRESULT {
+                return @ptrCast(*const IProviderQueryConstraintCollection.VTable, self.vtable).Skip(@ptrCast(*const IProviderQueryConstraintCollection, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IProviderQueryConstraintCollection_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IProviderQueryConstraintCollection.VTable, self.vtable).Reset(@ptrCast(*const IProviderQueryConstraintCollection, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1483,23 +1509,23 @@ pub const IProviderPropertyConstraintCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IProviderPropertyConstraintCollection,
                 pdwCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IProviderPropertyConstraintCollection,
                 pdwCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Get: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IProviderPropertyConstraintCollection,
                 Key: ?*const PROPERTYKEY,
                 pPropVar: ?*PROPVARIANT,
                 pdwPropertyConstraint: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IProviderPropertyConstraintCollection,
                 Key: ?*const PROPERTYKEY,
                 pPropVar: ?*PROPVARIANT,
@@ -1507,14 +1533,14 @@ pub const IProviderPropertyConstraintCollection = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Item: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IProviderPropertyConstraintCollection,
                 dwIndex: u32,
                 pKey: ?*PROPERTYKEY,
                 pPropVar: ?*PROPVARIANT,
                 pdwPropertyConstraint: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IProviderPropertyConstraintCollection,
                 dwIndex: u32,
                 pKey: ?*PROPERTYKEY,
@@ -1523,13 +1549,13 @@ pub const IProviderPropertyConstraintCollection = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IProviderPropertyConstraintCollection,
                 pKey: ?*PROPERTYKEY,
                 pPropVar: ?*PROPVARIANT,
                 pdwPropertyConstraint: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IProviderPropertyConstraintCollection,
                 pKey: ?*PROPERTYKEY,
                 pPropVar: ?*PROPVARIANT,
@@ -1537,50 +1563,52 @@ pub const IProviderPropertyConstraintCollection = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IProviderPropertyConstraintCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IProviderPropertyConstraintCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IProviderPropertyConstraintCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IProviderPropertyConstraintCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderPropertyConstraintCollection_GetCount(self: *const T, pdwCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProviderPropertyConstraintCollection.VTable, self.vtable).GetCount(@ptrCast(*const IProviderPropertyConstraintCollection, self), pdwCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderPropertyConstraintCollection_Get(self: *const T, Key: ?*const PROPERTYKEY, pPropVar: ?*PROPVARIANT, pdwPropertyConstraint: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProviderPropertyConstraintCollection.VTable, self.vtable).Get(@ptrCast(*const IProviderPropertyConstraintCollection, self), Key, pPropVar, pdwPropertyConstraint);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderPropertyConstraintCollection_Item(self: *const T, dwIndex: u32, pKey: ?*PROPERTYKEY, pPropVar: ?*PROPVARIANT, pdwPropertyConstraint: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProviderPropertyConstraintCollection.VTable, self.vtable).Item(@ptrCast(*const IProviderPropertyConstraintCollection, self), dwIndex, pKey, pPropVar, pdwPropertyConstraint);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderPropertyConstraintCollection_Next(self: *const T, pKey: ?*PROPERTYKEY, pPropVar: ?*PROPVARIANT, pdwPropertyConstraint: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProviderPropertyConstraintCollection.VTable, self.vtable).Next(@ptrCast(*const IProviderPropertyConstraintCollection, self), pKey, pPropVar, pdwPropertyConstraint);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderPropertyConstraintCollection_Skip(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProviderPropertyConstraintCollection.VTable, self.vtable).Skip(@ptrCast(*const IProviderPropertyConstraintCollection, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProviderPropertyConstraintCollection_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProviderPropertyConstraintCollection.VTable, self.vtable).Reset(@ptrCast(*const IProviderPropertyConstraintCollection, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IProviderPropertyConstraintCollection_GetCount(self: *const T, pdwCount: ?*u32) HRESULT {
+                return @ptrCast(*const IProviderPropertyConstraintCollection.VTable, self.vtable).GetCount(@ptrCast(*const IProviderPropertyConstraintCollection, self), pdwCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IProviderPropertyConstraintCollection_Get(self: *const T, Key: ?*const PROPERTYKEY, pPropVar: ?*PROPVARIANT, pdwPropertyConstraint: ?*u32) HRESULT {
+                return @ptrCast(*const IProviderPropertyConstraintCollection.VTable, self.vtable).Get(@ptrCast(*const IProviderPropertyConstraintCollection, self), Key, pPropVar, pdwPropertyConstraint);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IProviderPropertyConstraintCollection_Item(self: *const T, dwIndex: u32, pKey: ?*PROPERTYKEY, pPropVar: ?*PROPVARIANT, pdwPropertyConstraint: ?*u32) HRESULT {
+                return @ptrCast(*const IProviderPropertyConstraintCollection.VTable, self.vtable).Item(@ptrCast(*const IProviderPropertyConstraintCollection, self), dwIndex, pKey, pPropVar, pdwPropertyConstraint);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IProviderPropertyConstraintCollection_Next(self: *const T, pKey: ?*PROPERTYKEY, pPropVar: ?*PROPVARIANT, pdwPropertyConstraint: ?*u32) HRESULT {
+                return @ptrCast(*const IProviderPropertyConstraintCollection.VTable, self.vtable).Next(@ptrCast(*const IProviderPropertyConstraintCollection, self), pKey, pPropVar, pdwPropertyConstraint);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IProviderPropertyConstraintCollection_Skip(self: *const T) HRESULT {
+                return @ptrCast(*const IProviderPropertyConstraintCollection.VTable, self.vtable).Skip(@ptrCast(*const IProviderPropertyConstraintCollection, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IProviderPropertyConstraintCollection_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IProviderPropertyConstraintCollection.VTable, self.vtable).Reset(@ptrCast(*const IProviderPropertyConstraintCollection, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1591,13 +1619,13 @@ pub const IFunctionDiscoveryServiceProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFunctionDiscoveryServiceProvider,
                 pIFunctionInstance: ?*IFunctionInstance,
                 riid: ?*const Guid,
                 ppv: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFunctionDiscoveryServiceProvider,
                 pIFunctionInstance: ?*IFunctionInstance,
                 riid: ?*const Guid,
@@ -1606,13 +1634,15 @@ pub const IFunctionDiscoveryServiceProvider = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryServiceProvider_Initialize(self: *const T, pIFunctionInstance: ?*IFunctionInstance, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFunctionDiscoveryServiceProvider.VTable, self.vtable).Initialize(@ptrCast(*const IFunctionDiscoveryServiceProvider, self), pIFunctionInstance, riid, ppv);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFunctionDiscoveryServiceProvider_Initialize(self: *const T, pIFunctionInstance: ?*IFunctionInstance, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IFunctionDiscoveryServiceProvider.VTable, self.vtable).Initialize(@ptrCast(*const IFunctionDiscoveryServiceProvider, self), pIFunctionInstance, riid, ppv);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1629,52 +1659,54 @@ pub const IPNPXAssociation = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Associate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPNPXAssociation,
                 pszSubcategory: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPNPXAssociation,
                 pszSubcategory: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Unassociate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPNPXAssociation,
                 pszSubcategory: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPNPXAssociation,
                 pszSubcategory: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPNPXAssociation,
                 pszSubcategory: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPNPXAssociation,
                 pszSubcategory: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPNPXAssociation_Associate(self: *const T, pszSubcategory: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPNPXAssociation.VTable, self.vtable).Associate(@ptrCast(*const IPNPXAssociation, self), pszSubcategory);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPNPXAssociation_Unassociate(self: *const T, pszSubcategory: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPNPXAssociation.VTable, self.vtable).Unassociate(@ptrCast(*const IPNPXAssociation, self), pszSubcategory);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPNPXAssociation_Delete(self: *const T, pszSubcategory: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPNPXAssociation.VTable, self.vtable).Delete(@ptrCast(*const IPNPXAssociation, self), pszSubcategory);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPNPXAssociation_Associate(self: *const T, pszSubcategory: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPNPXAssociation.VTable, self.vtable).Associate(@ptrCast(*const IPNPXAssociation, self), pszSubcategory);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPNPXAssociation_Unassociate(self: *const T, pszSubcategory: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPNPXAssociation.VTable, self.vtable).Unassociate(@ptrCast(*const IPNPXAssociation, self), pszSubcategory);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPNPXAssociation_Delete(self: *const T, pszSubcategory: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPNPXAssociation.VTable, self.vtable).Delete(@ptrCast(*const IPNPXAssociation, self), pszSubcategory);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1685,36 +1717,36 @@ pub const IPNPXDeviceAssociation = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Associate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPNPXDeviceAssociation,
                 pszSubCategory: ?[*:0]const u16,
                 pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPNPXDeviceAssociation,
                 pszSubCategory: ?[*:0]const u16,
                 pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Unassociate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPNPXDeviceAssociation,
                 pszSubCategory: ?[*:0]const u16,
                 pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPNPXDeviceAssociation,
                 pszSubCategory: ?[*:0]const u16,
                 pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPNPXDeviceAssociation,
                 pszSubcategory: ?[*:0]const u16,
                 pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPNPXDeviceAssociation,
                 pszSubcategory: ?[*:0]const u16,
                 pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification,
@@ -1722,21 +1754,23 @@ pub const IPNPXDeviceAssociation = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPNPXDeviceAssociation_Associate(self: *const T, pszSubCategory: ?[*:0]const u16, pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPNPXDeviceAssociation.VTable, self.vtable).Associate(@ptrCast(*const IPNPXDeviceAssociation, self), pszSubCategory, pIFunctionDiscoveryNotification);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPNPXDeviceAssociation_Unassociate(self: *const T, pszSubCategory: ?[*:0]const u16, pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPNPXDeviceAssociation.VTable, self.vtable).Unassociate(@ptrCast(*const IPNPXDeviceAssociation, self), pszSubCategory, pIFunctionDiscoveryNotification);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPNPXDeviceAssociation_Delete(self: *const T, pszSubcategory: ?[*:0]const u16, pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPNPXDeviceAssociation.VTable, self.vtable).Delete(@ptrCast(*const IPNPXDeviceAssociation, self), pszSubcategory, pIFunctionDiscoveryNotification);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPNPXDeviceAssociation_Associate(self: *const T, pszSubCategory: ?[*:0]const u16, pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification) HRESULT {
+                return @ptrCast(*const IPNPXDeviceAssociation.VTable, self.vtable).Associate(@ptrCast(*const IPNPXDeviceAssociation, self), pszSubCategory, pIFunctionDiscoveryNotification);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPNPXDeviceAssociation_Unassociate(self: *const T, pszSubCategory: ?[*:0]const u16, pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification) HRESULT {
+                return @ptrCast(*const IPNPXDeviceAssociation.VTable, self.vtable).Unassociate(@ptrCast(*const IPNPXDeviceAssociation, self), pszSubCategory, pIFunctionDiscoveryNotification);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPNPXDeviceAssociation_Delete(self: *const T, pszSubcategory: ?[*:0]const u16, pIFunctionDiscoveryNotification: ?*IFunctionDiscoveryNotification) HRESULT {
+                return @ptrCast(*const IPNPXDeviceAssociation.VTable, self.vtable).Delete(@ptrCast(*const IPNPXDeviceAssociation, self), pszSubcategory, pIFunctionDiscoveryNotification);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1752,7 +1786,6 @@ pub const CLSID_FunctionInstanceCollection = &CLSID_FunctionInstanceCollection_V
 const CLSID_PropertyStoreCollection_Value = Guid.initString("edd36029-d753-4862-aa5b-5bccad2a4d29");
 pub const CLSID_PropertyStoreCollection = &CLSID_PropertyStoreCollection_Value;
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
 //--------------------------------------------------------------------------------
@@ -1762,13 +1795,9 @@ pub const CLSID_PropertyStoreCollection = &CLSID_PropertyStoreCollection_Value;
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (9)
@@ -1784,9 +1813,7 @@ const PROPVARIANT = @import("../system/com/structured_storage.zig").PROPVARIANT;
 const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

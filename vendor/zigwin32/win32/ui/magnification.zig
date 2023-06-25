@@ -29,7 +29,7 @@ pub const MAGCOLOREFFECT = extern struct {
 };
 
 pub const MagImageScalingCallback = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hwnd: ?HWND,
         srcdata: ?*anyopaque,
         srcheader: MAGIMAGEHEADER,
@@ -39,7 +39,7 @@ pub const MagImageScalingCallback = switch (@import("builtin").zig_backend) {
         clipped: RECT,
         dirty: ?HRGN,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         hwnd: ?HWND,
         srcdata: ?*anyopaque,
         srcheader: MAGIMAGEHEADER,
@@ -49,19 +49,16 @@ pub const MagImageScalingCallback = switch (@import("builtin").zig_backend) {
         clipped: RECT,
         dirty: ?HRGN,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
+};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (19)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "magnification" fn MagInitialize(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "magnification" fn MagInitialize() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "magnification" fn MagUninitialize(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "magnification" fn MagUninitialize() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "magnification" fn MagSetWindowSource(
@@ -169,19 +166,14 @@ pub extern "magnification" fn MagShowSystemCursor(
     fShowCursor: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
@@ -194,11 +186,11 @@ const RECT = @import("../foundation.zig").RECT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "MagImageScalingCallback")) { _ = MagImageScalingCallback; }
+    if (@hasDecl(@This(), "MagImageScalingCallback")) {
+        _ = MagImageScalingCallback;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

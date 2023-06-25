@@ -14,37 +14,37 @@ pub const DSSI_NO_READONLY_MESSAGE = @as(u32, 64);
 // Section: Types (6)
 //--------------------------------------------------------------------------------
 pub const PFNREADOBJECTSECURITY = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?[*:0]const u16,
         param1: u32,
         param2: ?*?*SECURITY_DESCRIPTOR,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         param0: ?[*:0]const u16,
         param1: u32,
         param2: ?*?*SECURITY_DESCRIPTOR,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PFNWRITEOBJECTSECURITY = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?[*:0]const u16,
         param1: u32,
         param2: ?*SECURITY_DESCRIPTOR,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         param0: ?[*:0]const u16,
         param1: u32,
         param2: ?*SECURITY_DESCRIPTOR,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PFNDSCREATEISECINFO = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?[*:0]const u16,
         param1: ?[*:0]const u16,
         param2: u32,
@@ -53,7 +53,7 @@ pub const PFNDSCREATEISECINFO = switch (@import("builtin").zig_backend) {
         param5: ?PFNWRITEOBJECTSECURITY,
         param6: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         param0: ?[*:0]const u16,
         param1: ?[*:0]const u16,
         param2: u32,
@@ -62,10 +62,10 @@ pub const PFNDSCREATEISECINFO = switch (@import("builtin").zig_backend) {
         param5: ?PFNWRITEOBJECTSECURITY,
         param6: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PFNDSCREATEISECINFOEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?[*:0]const u16,
         param1: ?[*:0]const u16,
         param2: ?[*:0]const u16,
@@ -77,7 +77,7 @@ pub const PFNDSCREATEISECINFOEX = switch (@import("builtin").zig_backend) {
         param8: ?PFNWRITEOBJECTSECURITY,
         param9: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         param0: ?[*:0]const u16,
         param1: ?[*:0]const u16,
         param2: ?[*:0]const u16,
@@ -89,10 +89,10 @@ pub const PFNDSCREATEISECINFOEX = switch (@import("builtin").zig_backend) {
         param8: ?PFNWRITEOBJECTSECURITY,
         param9: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PFNDSCREATESECPAGE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?[*:0]const u16,
         param1: ?[*:0]const u16,
         param2: u32,
@@ -101,7 +101,7 @@ pub const PFNDSCREATESECPAGE = switch (@import("builtin").zig_backend) {
         param5: ?PFNWRITEOBJECTSECURITY,
         param6: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         param0: ?[*:0]const u16,
         param1: ?[*:0]const u16,
         param2: u32,
@@ -110,10 +110,10 @@ pub const PFNDSCREATESECPAGE = switch (@import("builtin").zig_backend) {
         param5: ?PFNWRITEOBJECTSECURITY,
         param6: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PFNDSEDITSECURITY = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?HWND,
         param1: ?[*:0]const u16,
         param2: ?[*:0]const u16,
@@ -123,7 +123,7 @@ pub const PFNDSEDITSECURITY = switch (@import("builtin").zig_backend) {
         param6: ?PFNWRITEOBJECTSECURITY,
         param7: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         param0: ?HWND,
         param1: ?[*:0]const u16,
         param2: ?[*:0]const u16,
@@ -133,8 +133,7 @@ pub const PFNDSEDITSECURITY = switch (@import("builtin").zig_backend) {
         param6: ?PFNWRITEOBJECTSECURITY,
         param7: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
-
+};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (4)
@@ -187,19 +186,14 @@ pub extern "dssec" fn DSEditSecurity(
     lpContext: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
@@ -214,16 +208,26 @@ const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFNREADOBJECTSECURITY")) { _ = PFNREADOBJECTSECURITY; }
-    if (@hasDecl(@This(), "PFNWRITEOBJECTSECURITY")) { _ = PFNWRITEOBJECTSECURITY; }
-    if (@hasDecl(@This(), "PFNDSCREATEISECINFO")) { _ = PFNDSCREATEISECINFO; }
-    if (@hasDecl(@This(), "PFNDSCREATEISECINFOEX")) { _ = PFNDSCREATEISECINFOEX; }
-    if (@hasDecl(@This(), "PFNDSCREATESECPAGE")) { _ = PFNDSCREATESECPAGE; }
-    if (@hasDecl(@This(), "PFNDSEDITSECURITY")) { _ = PFNDSEDITSECURITY; }
+    if (@hasDecl(@This(), "PFNREADOBJECTSECURITY")) {
+        _ = PFNREADOBJECTSECURITY;
+    }
+    if (@hasDecl(@This(), "PFNWRITEOBJECTSECURITY")) {
+        _ = PFNWRITEOBJECTSECURITY;
+    }
+    if (@hasDecl(@This(), "PFNDSCREATEISECINFO")) {
+        _ = PFNDSCREATEISECINFO;
+    }
+    if (@hasDecl(@This(), "PFNDSCREATEISECINFOEX")) {
+        _ = PFNDSCREATEISECINFOEX;
+    }
+    if (@hasDecl(@This(), "PFNDSCREATESECPAGE")) {
+        _ = PFNDSCREATESECPAGE;
+    }
+    if (@hasDecl(@This(), "PFNDSEDITSECURITY")) {
+        _ = PFNDSEDITSECURITY;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

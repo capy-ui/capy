@@ -27,15 +27,7 @@ pub const CREATE_TOOLHELP_SNAPSHOT_FLAGS = enum(u32) {
         SNAPPROCESS: u1 = 0,
         SNAPTHREAD: u1 = 0,
     }) CREATE_TOOLHELP_SNAPSHOT_FLAGS {
-        return @intToEnum(CREATE_TOOLHELP_SNAPSHOT_FLAGS,
-              (if (o.INHERIT == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.INHERIT) else 0)
-            | (if (o.SNAPALL == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPALL) else 0)
-            | (if (o.SNAPHEAPLIST == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPHEAPLIST) else 0)
-            | (if (o.SNAPMODULE == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPMODULE) else 0)
-            | (if (o.SNAPMODULE32 == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPMODULE32) else 0)
-            | (if (o.SNAPPROCESS == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPPROCESS) else 0)
-            | (if (o.SNAPTHREAD == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPTHREAD) else 0)
-        );
+        return @enumFromInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS, (if (o.INHERIT == 1) @intFromEnum(CREATE_TOOLHELP_SNAPSHOT_FLAGS.INHERIT) else 0) | (if (o.SNAPALL == 1) @intFromEnum(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPALL) else 0) | (if (o.SNAPHEAPLIST == 1) @intFromEnum(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPHEAPLIST) else 0) | (if (o.SNAPMODULE == 1) @intFromEnum(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPMODULE) else 0) | (if (o.SNAPMODULE32 == 1) @intFromEnum(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPMODULE32) else 0) | (if (o.SNAPPROCESS == 1) @intFromEnum(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPPROCESS) else 0) | (if (o.SNAPTHREAD == 1) @intFromEnum(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPTHREAD) else 0));
     }
 };
 pub const TH32CS_INHERIT = CREATE_TOOLHELP_SNAPSHOT_FLAGS.INHERIT;
@@ -135,7 +127,6 @@ pub const MODULEENTRY32 = extern struct {
     szModule: [256]CHAR,
     szExePath: [260]CHAR,
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (16)
@@ -239,19 +230,14 @@ pub extern "kernel32" fn Module32Next(
     lpme: ?*MODULEENTRY32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
@@ -262,9 +248,7 @@ const HANDLE = @import("../../foundation.zig").HANDLE;
 const HINSTANCE = @import("../../foundation.zig").HINSTANCE;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

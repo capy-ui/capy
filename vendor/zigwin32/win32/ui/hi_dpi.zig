@@ -43,11 +43,7 @@ pub const DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS = enum(u32) {
         ISABLE_FONT_UPDATE: u1 = 0,
         ISABLE_RELAYOUT: u1 = 0,
     }) DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS {
-        return @intToEnum(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS,
-              (if (o.EFAULT == 1) @enumToInt(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.EFAULT) else 0)
-            | (if (o.ISABLE_FONT_UPDATE == 1) @enumToInt(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.ISABLE_FONT_UPDATE) else 0)
-            | (if (o.ISABLE_RELAYOUT == 1) @enumToInt(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.ISABLE_RELAYOUT) else 0)
-        );
+        return @enumFromInt(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS, (if (o.EFAULT == 1) @intFromEnum(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.EFAULT) else 0) | (if (o.ISABLE_FONT_UPDATE == 1) @intFromEnum(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.ISABLE_FONT_UPDATE) else 0) | (if (o.ISABLE_RELAYOUT == 1) @intFromEnum(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.ISABLE_RELAYOUT) else 0));
     }
 };
 pub const DCDC_DEFAULT = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.EFAULT;
@@ -66,12 +62,7 @@ pub const DIALOG_DPI_CHANGE_BEHAVIORS = enum(u32) {
         ISABLE_RESIZE: u1 = 0,
         ISABLE_CONTROL_RELAYOUT: u1 = 0,
     }) DIALOG_DPI_CHANGE_BEHAVIORS {
-        return @intToEnum(DIALOG_DPI_CHANGE_BEHAVIORS,
-              (if (o.EFAULT == 1) @enumToInt(DIALOG_DPI_CHANGE_BEHAVIORS.EFAULT) else 0)
-            | (if (o.ISABLE_ALL == 1) @enumToInt(DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_ALL) else 0)
-            | (if (o.ISABLE_RESIZE == 1) @enumToInt(DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_RESIZE) else 0)
-            | (if (o.ISABLE_CONTROL_RELAYOUT == 1) @enumToInt(DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_CONTROL_RELAYOUT) else 0)
-        );
+        return @enumFromInt(DIALOG_DPI_CHANGE_BEHAVIORS, (if (o.EFAULT == 1) @intFromEnum(DIALOG_DPI_CHANGE_BEHAVIORS.EFAULT) else 0) | (if (o.ISABLE_ALL == 1) @intFromEnum(DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_ALL) else 0) | (if (o.ISABLE_RESIZE == 1) @intFromEnum(DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_RESIZE) else 0) | (if (o.ISABLE_CONTROL_RELAYOUT == 1) @intFromEnum(DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_CONTROL_RELAYOUT) else 0));
     }
 };
 pub const DDC_DEFAULT = DIALOG_DPI_CHANGE_BEHAVIORS.EFAULT;
@@ -98,7 +89,6 @@ pub const MDT_EFFECTIVE_DPI = MONITOR_DPI_TYPE.EFFECTIVE_DPI;
 pub const MDT_ANGULAR_DPI = MONITOR_DPI_TYPE.ANGULAR_DPI;
 pub const MDT_RAW_DPI = MONITOR_DPI_TYPE.RAW_DPI;
 pub const MDT_DEFAULT = MONITOR_DPI_TYPE.EFFECTIVE_DPI;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (29)
@@ -176,8 +166,7 @@ pub extern "user32" fn SetThreadDpiAwarenessContext(
 ) callconv(@import("std").os.windows.WINAPI) DPI_AWARENESS_CONTEXT;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "user32" fn GetThreadDpiAwarenessContext(
-) callconv(@import("std").os.windows.WINAPI) DPI_AWARENESS_CONTEXT;
+pub extern "user32" fn GetThreadDpiAwarenessContext() callconv(@import("std").os.windows.WINAPI) DPI_AWARENESS_CONTEXT;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "user32" fn GetWindowDpiAwarenessContext(
@@ -211,8 +200,7 @@ pub extern "user32" fn GetDpiForWindow(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "user32" fn GetDpiForSystem(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "user32" fn GetDpiForSystem() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.17134'
 pub extern "user32" fn GetSystemDpiForProcess(
@@ -239,8 +227,7 @@ pub extern "user32" fn SetThreadDpiHostingBehavior(
 ) callconv(@import("std").os.windows.WINAPI) DPI_HOSTING_BEHAVIOR;
 
 // TODO: this type is limited to platform 'windows10.0.17134'
-pub extern "user32" fn GetThreadDpiHostingBehavior(
-) callconv(@import("std").os.windows.WINAPI) DPI_HOSTING_BEHAVIOR;
+pub extern "user32" fn GetThreadDpiHostingBehavior() callconv(@import("std").os.windows.WINAPI) DPI_HOSTING_BEHAVIOR;
 
 // TODO: this type is limited to platform 'windows10.0.17134'
 pub extern "user32" fn GetWindowDpiHostingBehavior(
@@ -266,19 +253,14 @@ pub extern "api-ms-win-shcore-scaling-l1-1-1" fn GetDpiForMonitor(
     dpiY: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (8)
@@ -293,9 +275,7 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

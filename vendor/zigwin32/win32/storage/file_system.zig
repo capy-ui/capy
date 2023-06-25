@@ -286,11 +286,7 @@ pub const FIND_FIRST_EX_FLAGS = enum(u32) {
         LARGE_FETCH: u1 = 0,
         ON_DISK_ENTRIES_ONLY: u1 = 0,
     }) FIND_FIRST_EX_FLAGS {
-        return @intToEnum(FIND_FIRST_EX_FLAGS,
-              (if (o.CASE_SENSITIVE == 1) @enumToInt(FIND_FIRST_EX_FLAGS.CASE_SENSITIVE) else 0)
-            | (if (o.LARGE_FETCH == 1) @enumToInt(FIND_FIRST_EX_FLAGS.LARGE_FETCH) else 0)
-            | (if (o.ON_DISK_ENTRIES_ONLY == 1) @enumToInt(FIND_FIRST_EX_FLAGS.ON_DISK_ENTRIES_ONLY) else 0)
-        );
+        return @enumFromInt(FIND_FIRST_EX_FLAGS, (if (o.CASE_SENSITIVE == 1) @intFromEnum(FIND_FIRST_EX_FLAGS.CASE_SENSITIVE) else 0) | (if (o.LARGE_FETCH == 1) @intFromEnum(FIND_FIRST_EX_FLAGS.LARGE_FETCH) else 0) | (if (o.ON_DISK_ENTRIES_ONLY == 1) @intFromEnum(FIND_FIRST_EX_FLAGS.ON_DISK_ENTRIES_ONLY) else 0));
     }
 };
 pub const FIND_FIRST_EX_CASE_SENSITIVE = FIND_FIRST_EX_FLAGS.CASE_SENSITIVE;
@@ -311,13 +307,7 @@ pub const DEFINE_DOS_DEVICE_FLAGS = enum(u32) {
         NO_BROADCAST_SYSTEM: u1 = 0,
         LUID_BROADCAST_DRIVE: u1 = 0,
     }) DEFINE_DOS_DEVICE_FLAGS {
-        return @intToEnum(DEFINE_DOS_DEVICE_FLAGS,
-              (if (o.RAW_TARGET_PATH == 1) @enumToInt(DEFINE_DOS_DEVICE_FLAGS.RAW_TARGET_PATH) else 0)
-            | (if (o.REMOVE_DEFINITION == 1) @enumToInt(DEFINE_DOS_DEVICE_FLAGS.REMOVE_DEFINITION) else 0)
-            | (if (o.EXACT_MATCH_ON_REMOVE == 1) @enumToInt(DEFINE_DOS_DEVICE_FLAGS.EXACT_MATCH_ON_REMOVE) else 0)
-            | (if (o.NO_BROADCAST_SYSTEM == 1) @enumToInt(DEFINE_DOS_DEVICE_FLAGS.NO_BROADCAST_SYSTEM) else 0)
-            | (if (o.LUID_BROADCAST_DRIVE == 1) @enumToInt(DEFINE_DOS_DEVICE_FLAGS.LUID_BROADCAST_DRIVE) else 0)
-        );
+        return @enumFromInt(DEFINE_DOS_DEVICE_FLAGS, (if (o.RAW_TARGET_PATH == 1) @intFromEnum(DEFINE_DOS_DEVICE_FLAGS.RAW_TARGET_PATH) else 0) | (if (o.REMOVE_DEFINITION == 1) @intFromEnum(DEFINE_DOS_DEVICE_FLAGS.REMOVE_DEFINITION) else 0) | (if (o.EXACT_MATCH_ON_REMOVE == 1) @intFromEnum(DEFINE_DOS_DEVICE_FLAGS.EXACT_MATCH_ON_REMOVE) else 0) | (if (o.NO_BROADCAST_SYSTEM == 1) @intFromEnum(DEFINE_DOS_DEVICE_FLAGS.NO_BROADCAST_SYSTEM) else 0) | (if (o.LUID_BROADCAST_DRIVE == 1) @intFromEnum(DEFINE_DOS_DEVICE_FLAGS.LUID_BROADCAST_DRIVE) else 0));
     }
 };
 pub const DDD_RAW_TARGET_PATH = DEFINE_DOS_DEVICE_FLAGS.RAW_TARGET_PATH;
@@ -410,43 +400,7 @@ pub const FILE_FLAGS_AND_ATTRIBUTES = enum(u32) {
         SECURITY_DELEGATION: u1 = 0,
         SECURITY_VALID_SQOS_FLAGS: u1 = 0,
     }) FILE_FLAGS_AND_ATTRIBUTES {
-        return @intToEnum(FILE_FLAGS_AND_ATTRIBUTES,
-              (if (o.FILE_ATTRIBUTE_READONLY == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_READONLY) else 0)
-            | (if (o.FILE_ATTRIBUTE_HIDDEN == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_HIDDEN) else 0)
-            | (if (o.FILE_ATTRIBUTE_SYSTEM == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_SYSTEM) else 0)
-            | (if (o.FILE_ATTRIBUTE_DIRECTORY == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_DIRECTORY) else 0)
-            | (if (o.FILE_ATTRIBUTE_ARCHIVE == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_ARCHIVE) else 0)
-            | (if (o.FILE_ATTRIBUTE_DEVICE == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_DEVICE) else 0)
-            | (if (o.FILE_ATTRIBUTE_NORMAL == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NORMAL) else 0)
-            | (if (o.FILE_ATTRIBUTE_TEMPORARY == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_TEMPORARY) else 0)
-            | (if (o.FILE_ATTRIBUTE_SPARSE_FILE == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_SPARSE_FILE) else 0)
-            | (if (o.FILE_ATTRIBUTE_REPARSE_POINT == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_REPARSE_POINT) else 0)
-            | (if (o.FILE_ATTRIBUTE_COMPRESSED == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_COMPRESSED) else 0)
-            | (if (o.FILE_ATTRIBUTE_OFFLINE == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_OFFLINE) else 0)
-            | (if (o.FILE_ATTRIBUTE_NOT_CONTENT_INDEXED == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NOT_CONTENT_INDEXED) else 0)
-            | (if (o.FILE_ATTRIBUTE_ENCRYPTED == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_ENCRYPTED) else 0)
-            | (if (o.FILE_ATTRIBUTE_INTEGRITY_STREAM == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_INTEGRITY_STREAM) else 0)
-            | (if (o.FILE_ATTRIBUTE_VIRTUAL == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_VIRTUAL) else 0)
-            | (if (o.FILE_ATTRIBUTE_NO_SCRUB_DATA == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NO_SCRUB_DATA) else 0)
-            | (if (o.FILE_ATTRIBUTE_EA == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_EA) else 0)
-            | (if (o.FILE_ATTRIBUTE_PINNED == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_PINNED) else 0)
-            | (if (o.FILE_ATTRIBUTE_UNPINNED == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_UNPINNED) else 0)
-            | (if (o.FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS) else 0)
-            | (if (o.FILE_FLAG_WRITE_THROUGH == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_WRITE_THROUGH) else 0)
-            | (if (o.FILE_FLAG_OVERLAPPED == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OVERLAPPED) else 0)
-            | (if (o.FILE_FLAG_NO_BUFFERING == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_NO_BUFFERING) else 0)
-            | (if (o.FILE_FLAG_RANDOM_ACCESS == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_RANDOM_ACCESS) else 0)
-            | (if (o.FILE_FLAG_SEQUENTIAL_SCAN == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_SEQUENTIAL_SCAN) else 0)
-            | (if (o.FILE_FLAG_DELETE_ON_CLOSE == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_DELETE_ON_CLOSE) else 0)
-            | (if (o.FILE_FLAG_BACKUP_SEMANTICS == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_BACKUP_SEMANTICS) else 0)
-            | (if (o.FILE_FLAG_POSIX_SEMANTICS == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_POSIX_SEMANTICS) else 0)
-            | (if (o.FILE_FLAG_SESSION_AWARE == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_SESSION_AWARE) else 0)
-            | (if (o.FILE_FLAG_OPEN_REPARSE_POINT == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OPEN_REPARSE_POINT) else 0)
-            | (if (o.PIPE_ACCESS_DUPLEX == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.PIPE_ACCESS_DUPLEX) else 0)
-            | (if (o.SECURITY_ANONYMOUS == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_ANONYMOUS) else 0)
-            | (if (o.SECURITY_DELEGATION == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_DELEGATION) else 0)
-            | (if (o.SECURITY_VALID_SQOS_FLAGS == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_VALID_SQOS_FLAGS) else 0)
-        );
+        return @enumFromInt(FILE_FLAGS_AND_ATTRIBUTES, (if (o.FILE_ATTRIBUTE_READONLY == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_READONLY) else 0) | (if (o.FILE_ATTRIBUTE_HIDDEN == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_HIDDEN) else 0) | (if (o.FILE_ATTRIBUTE_SYSTEM == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_SYSTEM) else 0) | (if (o.FILE_ATTRIBUTE_DIRECTORY == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_DIRECTORY) else 0) | (if (o.FILE_ATTRIBUTE_ARCHIVE == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_ARCHIVE) else 0) | (if (o.FILE_ATTRIBUTE_DEVICE == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_DEVICE) else 0) | (if (o.FILE_ATTRIBUTE_NORMAL == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NORMAL) else 0) | (if (o.FILE_ATTRIBUTE_TEMPORARY == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_TEMPORARY) else 0) | (if (o.FILE_ATTRIBUTE_SPARSE_FILE == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_SPARSE_FILE) else 0) | (if (o.FILE_ATTRIBUTE_REPARSE_POINT == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_REPARSE_POINT) else 0) | (if (o.FILE_ATTRIBUTE_COMPRESSED == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_COMPRESSED) else 0) | (if (o.FILE_ATTRIBUTE_OFFLINE == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_OFFLINE) else 0) | (if (o.FILE_ATTRIBUTE_NOT_CONTENT_INDEXED == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NOT_CONTENT_INDEXED) else 0) | (if (o.FILE_ATTRIBUTE_ENCRYPTED == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_ENCRYPTED) else 0) | (if (o.FILE_ATTRIBUTE_INTEGRITY_STREAM == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_INTEGRITY_STREAM) else 0) | (if (o.FILE_ATTRIBUTE_VIRTUAL == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_VIRTUAL) else 0) | (if (o.FILE_ATTRIBUTE_NO_SCRUB_DATA == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NO_SCRUB_DATA) else 0) | (if (o.FILE_ATTRIBUTE_EA == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_EA) else 0) | (if (o.FILE_ATTRIBUTE_PINNED == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_PINNED) else 0) | (if (o.FILE_ATTRIBUTE_UNPINNED == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_UNPINNED) else 0) | (if (o.FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS) else 0) | (if (o.FILE_FLAG_WRITE_THROUGH == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_WRITE_THROUGH) else 0) | (if (o.FILE_FLAG_OVERLAPPED == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OVERLAPPED) else 0) | (if (o.FILE_FLAG_NO_BUFFERING == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_NO_BUFFERING) else 0) | (if (o.FILE_FLAG_RANDOM_ACCESS == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_RANDOM_ACCESS) else 0) | (if (o.FILE_FLAG_SEQUENTIAL_SCAN == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_SEQUENTIAL_SCAN) else 0) | (if (o.FILE_FLAG_DELETE_ON_CLOSE == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_DELETE_ON_CLOSE) else 0) | (if (o.FILE_FLAG_BACKUP_SEMANTICS == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_BACKUP_SEMANTICS) else 0) | (if (o.FILE_FLAG_POSIX_SEMANTICS == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_POSIX_SEMANTICS) else 0) | (if (o.FILE_FLAG_SESSION_AWARE == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_SESSION_AWARE) else 0) | (if (o.FILE_FLAG_OPEN_REPARSE_POINT == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OPEN_REPARSE_POINT) else 0) | (if (o.PIPE_ACCESS_DUPLEX == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.PIPE_ACCESS_DUPLEX) else 0) | (if (o.SECURITY_ANONYMOUS == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_ANONYMOUS) else 0) | (if (o.SECURITY_DELEGATION == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_DELEGATION) else 0) | (if (o.SECURITY_VALID_SQOS_FLAGS == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_VALID_SQOS_FLAGS) else 0));
     }
 };
 pub const FILE_ATTRIBUTE_READONLY = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_READONLY;
@@ -543,26 +497,7 @@ pub const FILE_ACCESS_FLAGS = enum(u32) {
         FILE_GENERIC_WRITE: u1 = 0,
         FILE_GENERIC_EXECUTE: u1 = 0,
     }) FILE_ACCESS_FLAGS {
-        return @intToEnum(FILE_ACCESS_FLAGS,
-              (if (o.FILE_READ_DATA == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_READ_DATA) else 0)
-            | (if (o.FILE_WRITE_DATA == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_WRITE_DATA) else 0)
-            | (if (o.FILE_APPEND_DATA == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_APPEND_DATA) else 0)
-            | (if (o.FILE_READ_EA == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_READ_EA) else 0)
-            | (if (o.FILE_WRITE_EA == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_WRITE_EA) else 0)
-            | (if (o.FILE_EXECUTE == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_EXECUTE) else 0)
-            | (if (o.FILE_DELETE_CHILD == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_DELETE_CHILD) else 0)
-            | (if (o.FILE_READ_ATTRIBUTES == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_READ_ATTRIBUTES) else 0)
-            | (if (o.FILE_WRITE_ATTRIBUTES == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_WRITE_ATTRIBUTES) else 0)
-            | (if (o.READ_CONTROL == 1) @enumToInt(FILE_ACCESS_FLAGS.READ_CONTROL) else 0)
-            | (if (o.SYNCHRONIZE == 1) @enumToInt(FILE_ACCESS_FLAGS.SYNCHRONIZE) else 0)
-            | (if (o.STANDARD_RIGHTS_REQUIRED == 1) @enumToInt(FILE_ACCESS_FLAGS.STANDARD_RIGHTS_REQUIRED) else 0)
-            | (if (o.STANDARD_RIGHTS_ALL == 1) @enumToInt(FILE_ACCESS_FLAGS.STANDARD_RIGHTS_ALL) else 0)
-            | (if (o.SPECIFIC_RIGHTS_ALL == 1) @enumToInt(FILE_ACCESS_FLAGS.SPECIFIC_RIGHTS_ALL) else 0)
-            | (if (o.FILE_ALL_ACCESS == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_ALL_ACCESS) else 0)
-            | (if (o.FILE_GENERIC_READ == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_GENERIC_READ) else 0)
-            | (if (o.FILE_GENERIC_WRITE == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_GENERIC_WRITE) else 0)
-            | (if (o.FILE_GENERIC_EXECUTE == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_GENERIC_EXECUTE) else 0)
-        );
+        return @enumFromInt(FILE_ACCESS_FLAGS, (if (o.FILE_READ_DATA == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_READ_DATA) else 0) | (if (o.FILE_WRITE_DATA == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_WRITE_DATA) else 0) | (if (o.FILE_APPEND_DATA == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_APPEND_DATA) else 0) | (if (o.FILE_READ_EA == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_READ_EA) else 0) | (if (o.FILE_WRITE_EA == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_WRITE_EA) else 0) | (if (o.FILE_EXECUTE == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_EXECUTE) else 0) | (if (o.FILE_DELETE_CHILD == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_DELETE_CHILD) else 0) | (if (o.FILE_READ_ATTRIBUTES == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_READ_ATTRIBUTES) else 0) | (if (o.FILE_WRITE_ATTRIBUTES == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_WRITE_ATTRIBUTES) else 0) | (if (o.READ_CONTROL == 1) @intFromEnum(FILE_ACCESS_FLAGS.READ_CONTROL) else 0) | (if (o.SYNCHRONIZE == 1) @intFromEnum(FILE_ACCESS_FLAGS.SYNCHRONIZE) else 0) | (if (o.STANDARD_RIGHTS_REQUIRED == 1) @intFromEnum(FILE_ACCESS_FLAGS.STANDARD_RIGHTS_REQUIRED) else 0) | (if (o.STANDARD_RIGHTS_ALL == 1) @intFromEnum(FILE_ACCESS_FLAGS.STANDARD_RIGHTS_ALL) else 0) | (if (o.SPECIFIC_RIGHTS_ALL == 1) @intFromEnum(FILE_ACCESS_FLAGS.SPECIFIC_RIGHTS_ALL) else 0) | (if (o.FILE_ALL_ACCESS == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_ALL_ACCESS) else 0) | (if (o.FILE_GENERIC_READ == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_GENERIC_READ) else 0) | (if (o.FILE_GENERIC_WRITE == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_GENERIC_WRITE) else 0) | (if (o.FILE_GENERIC_EXECUTE == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_GENERIC_EXECUTE) else 0));
     }
 };
 pub const FILE_READ_DATA = FILE_ACCESS_FLAGS.FILE_READ_DATA;
@@ -602,11 +537,7 @@ pub const GET_FILE_VERSION_INFO_FLAGS = enum(u32) {
         NEUTRAL: u1 = 0,
         PREFETCHED: u1 = 0,
     }) GET_FILE_VERSION_INFO_FLAGS {
-        return @intToEnum(GET_FILE_VERSION_INFO_FLAGS,
-              (if (o.LOCALISED == 1) @enumToInt(GET_FILE_VERSION_INFO_FLAGS.LOCALISED) else 0)
-            | (if (o.NEUTRAL == 1) @enumToInt(GET_FILE_VERSION_INFO_FLAGS.NEUTRAL) else 0)
-            | (if (o.PREFETCHED == 1) @enumToInt(GET_FILE_VERSION_INFO_FLAGS.PREFETCHED) else 0)
-        );
+        return @enumFromInt(GET_FILE_VERSION_INFO_FLAGS, (if (o.LOCALISED == 1) @intFromEnum(GET_FILE_VERSION_INFO_FLAGS.LOCALISED) else 0) | (if (o.NEUTRAL == 1) @intFromEnum(GET_FILE_VERSION_INFO_FLAGS.NEUTRAL) else 0) | (if (o.PREFETCHED == 1) @intFromEnum(GET_FILE_VERSION_INFO_FLAGS.PREFETCHED) else 0));
     }
 };
 pub const FILE_VER_GET_LOCALISED = GET_FILE_VERSION_INFO_FLAGS.LOCALISED;
@@ -628,11 +559,7 @@ pub const VER_FIND_FILE_STATUS = enum(u32) {
         FILEINUSE: u1 = 0,
         BUFFTOOSMALL: u1 = 0,
     }) VER_FIND_FILE_STATUS {
-        return @intToEnum(VER_FIND_FILE_STATUS,
-              (if (o.CURNEDEST == 1) @enumToInt(VER_FIND_FILE_STATUS.CURNEDEST) else 0)
-            | (if (o.FILEINUSE == 1) @enumToInt(VER_FIND_FILE_STATUS.FILEINUSE) else 0)
-            | (if (o.BUFFTOOSMALL == 1) @enumToInt(VER_FIND_FILE_STATUS.BUFFTOOSMALL) else 0)
-        );
+        return @enumFromInt(VER_FIND_FILE_STATUS, (if (o.CURNEDEST == 1) @intFromEnum(VER_FIND_FILE_STATUS.CURNEDEST) else 0) | (if (o.FILEINUSE == 1) @intFromEnum(VER_FIND_FILE_STATUS.FILEINUSE) else 0) | (if (o.BUFFTOOSMALL == 1) @intFromEnum(VER_FIND_FILE_STATUS.BUFFTOOSMALL) else 0));
     }
 };
 pub const VFF_CURNEDEST = VER_FIND_FILE_STATUS.CURNEDEST;
@@ -692,29 +619,7 @@ pub const VER_INSTALL_FILE_STATUS = enum(u32) {
         CANNOTLOADLZ32: u1 = 0,
         CANNOTLOADCABINET: u1 = 0,
     }) VER_INSTALL_FILE_STATUS {
-        return @intToEnum(VER_INSTALL_FILE_STATUS,
-              (if (o.TEMPFILE == 1) @enumToInt(VER_INSTALL_FILE_STATUS.TEMPFILE) else 0)
-            | (if (o.MISMATCH == 1) @enumToInt(VER_INSTALL_FILE_STATUS.MISMATCH) else 0)
-            | (if (o.SRCOLD == 1) @enumToInt(VER_INSTALL_FILE_STATUS.SRCOLD) else 0)
-            | (if (o.DIFFLANG == 1) @enumToInt(VER_INSTALL_FILE_STATUS.DIFFLANG) else 0)
-            | (if (o.DIFFCODEPG == 1) @enumToInt(VER_INSTALL_FILE_STATUS.DIFFCODEPG) else 0)
-            | (if (o.DIFFTYPE == 1) @enumToInt(VER_INSTALL_FILE_STATUS.DIFFTYPE) else 0)
-            | (if (o.WRITEPROT == 1) @enumToInt(VER_INSTALL_FILE_STATUS.WRITEPROT) else 0)
-            | (if (o.FILEINUSE == 1) @enumToInt(VER_INSTALL_FILE_STATUS.FILEINUSE) else 0)
-            | (if (o.OUTOFSPACE == 1) @enumToInt(VER_INSTALL_FILE_STATUS.OUTOFSPACE) else 0)
-            | (if (o.ACCESSVIOLATION == 1) @enumToInt(VER_INSTALL_FILE_STATUS.ACCESSVIOLATION) else 0)
-            | (if (o.SHARINGVIOLATION == 1) @enumToInt(VER_INSTALL_FILE_STATUS.SHARINGVIOLATION) else 0)
-            | (if (o.CANNOTCREATE == 1) @enumToInt(VER_INSTALL_FILE_STATUS.CANNOTCREATE) else 0)
-            | (if (o.CANNOTDELETE == 1) @enumToInt(VER_INSTALL_FILE_STATUS.CANNOTDELETE) else 0)
-            | (if (o.CANNOTRENAME == 1) @enumToInt(VER_INSTALL_FILE_STATUS.CANNOTRENAME) else 0)
-            | (if (o.CANNOTDELETECUR == 1) @enumToInt(VER_INSTALL_FILE_STATUS.CANNOTDELETECUR) else 0)
-            | (if (o.OUTOFMEMORY == 1) @enumToInt(VER_INSTALL_FILE_STATUS.OUTOFMEMORY) else 0)
-            | (if (o.CANNOTREADSRC == 1) @enumToInt(VER_INSTALL_FILE_STATUS.CANNOTREADSRC) else 0)
-            | (if (o.CANNOTREADDST == 1) @enumToInt(VER_INSTALL_FILE_STATUS.CANNOTREADDST) else 0)
-            | (if (o.BUFFTOOSMALL == 1) @enumToInt(VER_INSTALL_FILE_STATUS.BUFFTOOSMALL) else 0)
-            | (if (o.CANNOTLOADLZ32 == 1) @enumToInt(VER_INSTALL_FILE_STATUS.CANNOTLOADLZ32) else 0)
-            | (if (o.CANNOTLOADCABINET == 1) @enumToInt(VER_INSTALL_FILE_STATUS.CANNOTLOADCABINET) else 0)
-        );
+        return @enumFromInt(VER_INSTALL_FILE_STATUS, (if (o.TEMPFILE == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.TEMPFILE) else 0) | (if (o.MISMATCH == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.MISMATCH) else 0) | (if (o.SRCOLD == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.SRCOLD) else 0) | (if (o.DIFFLANG == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.DIFFLANG) else 0) | (if (o.DIFFCODEPG == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.DIFFCODEPG) else 0) | (if (o.DIFFTYPE == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.DIFFTYPE) else 0) | (if (o.WRITEPROT == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.WRITEPROT) else 0) | (if (o.FILEINUSE == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.FILEINUSE) else 0) | (if (o.OUTOFSPACE == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.OUTOFSPACE) else 0) | (if (o.ACCESSVIOLATION == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.ACCESSVIOLATION) else 0) | (if (o.SHARINGVIOLATION == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.SHARINGVIOLATION) else 0) | (if (o.CANNOTCREATE == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.CANNOTCREATE) else 0) | (if (o.CANNOTDELETE == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.CANNOTDELETE) else 0) | (if (o.CANNOTRENAME == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.CANNOTRENAME) else 0) | (if (o.CANNOTDELETECUR == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.CANNOTDELETECUR) else 0) | (if (o.OUTOFMEMORY == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.OUTOFMEMORY) else 0) | (if (o.CANNOTREADSRC == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.CANNOTREADSRC) else 0) | (if (o.CANNOTREADDST == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.CANNOTREADDST) else 0) | (if (o.BUFFTOOSMALL == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.BUFFTOOSMALL) else 0) | (if (o.CANNOTLOADLZ32 == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.CANNOTLOADLZ32) else 0) | (if (o.CANNOTLOADCABINET == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.CANNOTLOADCABINET) else 0));
     }
 };
 pub const VIF_TEMPFILE = VER_INSTALL_FILE_STATUS.TEMPFILE;
@@ -755,14 +660,7 @@ pub const VS_FIXEDFILEINFO_FILE_FLAGS = enum(u32) {
         INFOINFERRED: u1 = 0,
         SPECIALBUILD: u1 = 0,
     }) VS_FIXEDFILEINFO_FILE_FLAGS {
-        return @intToEnum(VS_FIXEDFILEINFO_FILE_FLAGS,
-              (if (o.DEBUG == 1) @enumToInt(VS_FIXEDFILEINFO_FILE_FLAGS.DEBUG) else 0)
-            | (if (o.PRERELEASE == 1) @enumToInt(VS_FIXEDFILEINFO_FILE_FLAGS.PRERELEASE) else 0)
-            | (if (o.PATCHED == 1) @enumToInt(VS_FIXEDFILEINFO_FILE_FLAGS.PATCHED) else 0)
-            | (if (o.PRIVATEBUILD == 1) @enumToInt(VS_FIXEDFILEINFO_FILE_FLAGS.PRIVATEBUILD) else 0)
-            | (if (o.INFOINFERRED == 1) @enumToInt(VS_FIXEDFILEINFO_FILE_FLAGS.INFOINFERRED) else 0)
-            | (if (o.SPECIALBUILD == 1) @enumToInt(VS_FIXEDFILEINFO_FILE_FLAGS.SPECIALBUILD) else 0)
-        );
+        return @enumFromInt(VS_FIXEDFILEINFO_FILE_FLAGS, (if (o.DEBUG == 1) @intFromEnum(VS_FIXEDFILEINFO_FILE_FLAGS.DEBUG) else 0) | (if (o.PRERELEASE == 1) @intFromEnum(VS_FIXEDFILEINFO_FILE_FLAGS.PRERELEASE) else 0) | (if (o.PATCHED == 1) @intFromEnum(VS_FIXEDFILEINFO_FILE_FLAGS.PATCHED) else 0) | (if (o.PRIVATEBUILD == 1) @intFromEnum(VS_FIXEDFILEINFO_FILE_FLAGS.PRIVATEBUILD) else 0) | (if (o.INFOINFERRED == 1) @intFromEnum(VS_FIXEDFILEINFO_FILE_FLAGS.INFOINFERRED) else 0) | (if (o.SPECIALBUILD == 1) @intFromEnum(VS_FIXEDFILEINFO_FILE_FLAGS.SPECIALBUILD) else 0));
     }
 };
 pub const VS_FF_DEBUG = VS_FIXEDFILEINFO_FILE_FLAGS.DEBUG;
@@ -884,12 +782,7 @@ pub const FILE_SHARE_MODE = enum(u32) {
         READ: u1 = 0,
         WRITE: u1 = 0,
     }) FILE_SHARE_MODE {
-        return @intToEnum(FILE_SHARE_MODE,
-              (if (o.NONE == 1) @enumToInt(FILE_SHARE_MODE.NONE) else 0)
-            | (if (o.DELETE == 1) @enumToInt(FILE_SHARE_MODE.DELETE) else 0)
-            | (if (o.READ == 1) @enumToInt(FILE_SHARE_MODE.READ) else 0)
-            | (if (o.WRITE == 1) @enumToInt(FILE_SHARE_MODE.WRITE) else 0)
-        );
+        return @enumFromInt(FILE_SHARE_MODE, (if (o.NONE == 1) @intFromEnum(FILE_SHARE_MODE.NONE) else 0) | (if (o.DELETE == 1) @intFromEnum(FILE_SHARE_MODE.DELETE) else 0) | (if (o.READ == 1) @intFromEnum(FILE_SHARE_MODE.READ) else 0) | (if (o.WRITE == 1) @intFromEnum(FILE_SHARE_MODE.WRITE) else 0));
     }
 };
 pub const FILE_SHARE_NONE = FILE_SHARE_MODE.NONE;
@@ -915,15 +808,7 @@ pub const SHARE_TYPE = enum(u32) {
         TEMPORARY: u1 = 0,
         MASK: u1 = 0,
     }) SHARE_TYPE {
-        return @intToEnum(SHARE_TYPE,
-              (if (o.DISKTREE == 1) @enumToInt(SHARE_TYPE.DISKTREE) else 0)
-            | (if (o.PRINTQ == 1) @enumToInt(SHARE_TYPE.PRINTQ) else 0)
-            | (if (o.DEVICE == 1) @enumToInt(SHARE_TYPE.DEVICE) else 0)
-            | (if (o.IPC == 1) @enumToInt(SHARE_TYPE.IPC) else 0)
-            | (if (o.SPECIAL == 1) @enumToInt(SHARE_TYPE.SPECIAL) else 0)
-            | (if (o.TEMPORARY == 1) @enumToInt(SHARE_TYPE.TEMPORARY) else 0)
-            | (if (o.MASK == 1) @enumToInt(SHARE_TYPE.MASK) else 0)
-        );
+        return @enumFromInt(SHARE_TYPE, (if (o.DISKTREE == 1) @intFromEnum(SHARE_TYPE.DISKTREE) else 0) | (if (o.PRINTQ == 1) @intFromEnum(SHARE_TYPE.PRINTQ) else 0) | (if (o.DEVICE == 1) @intFromEnum(SHARE_TYPE.DEVICE) else 0) | (if (o.IPC == 1) @intFromEnum(SHARE_TYPE.IPC) else 0) | (if (o.SPECIAL == 1) @intFromEnum(SHARE_TYPE.SPECIAL) else 0) | (if (o.TEMPORARY == 1) @intFromEnum(SHARE_TYPE.TEMPORARY) else 0) | (if (o.MASK == 1) @intFromEnum(SHARE_TYPE.MASK) else 0));
     }
 };
 pub const STYPE_DISKTREE = SHARE_TYPE.DISKTREE;
@@ -946,12 +831,7 @@ pub const CLFS_FLAG = enum(u32) {
         NO_FLAGS: u1 = 0,
         USE_RESERVATION: u1 = 0,
     }) CLFS_FLAG {
-        return @intToEnum(CLFS_FLAG,
-              (if (o.FORCE_APPEND == 1) @enumToInt(CLFS_FLAG.FORCE_APPEND) else 0)
-            | (if (o.FORCE_FLUSH == 1) @enumToInt(CLFS_FLAG.FORCE_FLUSH) else 0)
-            | (if (o.NO_FLAGS == 1) @enumToInt(CLFS_FLAG.NO_FLAGS) else 0)
-            | (if (o.USE_RESERVATION == 1) @enumToInt(CLFS_FLAG.USE_RESERVATION) else 0)
-        );
+        return @enumFromInt(CLFS_FLAG, (if (o.FORCE_APPEND == 1) @intFromEnum(CLFS_FLAG.FORCE_APPEND) else 0) | (if (o.FORCE_FLUSH == 1) @intFromEnum(CLFS_FLAG.FORCE_FLUSH) else 0) | (if (o.NO_FLAGS == 1) @intFromEnum(CLFS_FLAG.NO_FLAGS) else 0) | (if (o.USE_RESERVATION == 1) @intFromEnum(CLFS_FLAG.USE_RESERVATION) else 0));
     }
 };
 pub const CLFS_FLAG_FORCE_APPEND = CLFS_FLAG.FORCE_APPEND;
@@ -984,14 +864,7 @@ pub const MOVE_FILE_FLAGS = enum(u32) {
         WRITE_THROUGH: u1 = 0,
         FAIL_IF_NOT_TRACKABLE: u1 = 0,
     }) MOVE_FILE_FLAGS {
-        return @intToEnum(MOVE_FILE_FLAGS,
-              (if (o.COPY_ALLOWED == 1) @enumToInt(MOVE_FILE_FLAGS.COPY_ALLOWED) else 0)
-            | (if (o.CREATE_HARDLINK == 1) @enumToInt(MOVE_FILE_FLAGS.CREATE_HARDLINK) else 0)
-            | (if (o.DELAY_UNTIL_REBOOT == 1) @enumToInt(MOVE_FILE_FLAGS.DELAY_UNTIL_REBOOT) else 0)
-            | (if (o.REPLACE_EXISTING == 1) @enumToInt(MOVE_FILE_FLAGS.REPLACE_EXISTING) else 0)
-            | (if (o.WRITE_THROUGH == 1) @enumToInt(MOVE_FILE_FLAGS.WRITE_THROUGH) else 0)
-            | (if (o.FAIL_IF_NOT_TRACKABLE == 1) @enumToInt(MOVE_FILE_FLAGS.FAIL_IF_NOT_TRACKABLE) else 0)
-        );
+        return @enumFromInt(MOVE_FILE_FLAGS, (if (o.COPY_ALLOWED == 1) @intFromEnum(MOVE_FILE_FLAGS.COPY_ALLOWED) else 0) | (if (o.CREATE_HARDLINK == 1) @intFromEnum(MOVE_FILE_FLAGS.CREATE_HARDLINK) else 0) | (if (o.DELAY_UNTIL_REBOOT == 1) @intFromEnum(MOVE_FILE_FLAGS.DELAY_UNTIL_REBOOT) else 0) | (if (o.REPLACE_EXISTING == 1) @intFromEnum(MOVE_FILE_FLAGS.REPLACE_EXISTING) else 0) | (if (o.WRITE_THROUGH == 1) @intFromEnum(MOVE_FILE_FLAGS.WRITE_THROUGH) else 0) | (if (o.FAIL_IF_NOT_TRACKABLE == 1) @intFromEnum(MOVE_FILE_FLAGS.FAIL_IF_NOT_TRACKABLE) else 0));
     }
 };
 pub const MOVEFILE_COPY_ALLOWED = MOVE_FILE_FLAGS.COPY_ALLOWED;
@@ -1043,23 +916,7 @@ pub const LZOPENFILE_STYLE = enum(u32) {
         WRITE: u1 = 0,
         VERIFY: u1 = 0,
     }) LZOPENFILE_STYLE {
-        return @intToEnum(LZOPENFILE_STYLE,
-              (if (o.CANCEL == 1) @enumToInt(LZOPENFILE_STYLE.CANCEL) else 0)
-            | (if (o.CREATE == 1) @enumToInt(LZOPENFILE_STYLE.CREATE) else 0)
-            | (if (o.DELETE == 1) @enumToInt(LZOPENFILE_STYLE.DELETE) else 0)
-            | (if (o.EXIST == 1) @enumToInt(LZOPENFILE_STYLE.EXIST) else 0)
-            | (if (o.PARSE == 1) @enumToInt(LZOPENFILE_STYLE.PARSE) else 0)
-            | (if (o.PROMPT == 1) @enumToInt(LZOPENFILE_STYLE.PROMPT) else 0)
-            | (if (o.READ == 1) @enumToInt(LZOPENFILE_STYLE.READ) else 0)
-            | (if (o.READWRITE == 1) @enumToInt(LZOPENFILE_STYLE.READWRITE) else 0)
-            | (if (o.REOPEN == 1) @enumToInt(LZOPENFILE_STYLE.REOPEN) else 0)
-            | (if (o.SHARE_DENY_NONE == 1) @enumToInt(LZOPENFILE_STYLE.SHARE_DENY_NONE) else 0)
-            | (if (o.SHARE_DENY_READ == 1) @enumToInt(LZOPENFILE_STYLE.SHARE_DENY_READ) else 0)
-            | (if (o.SHARE_DENY_WRITE == 1) @enumToInt(LZOPENFILE_STYLE.SHARE_DENY_WRITE) else 0)
-            | (if (o.SHARE_EXCLUSIVE == 1) @enumToInt(LZOPENFILE_STYLE.SHARE_EXCLUSIVE) else 0)
-            | (if (o.WRITE == 1) @enumToInt(LZOPENFILE_STYLE.WRITE) else 0)
-            | (if (o.VERIFY == 1) @enumToInt(LZOPENFILE_STYLE.VERIFY) else 0)
-        );
+        return @enumFromInt(LZOPENFILE_STYLE, (if (o.CANCEL == 1) @intFromEnum(LZOPENFILE_STYLE.CANCEL) else 0) | (if (o.CREATE == 1) @intFromEnum(LZOPENFILE_STYLE.CREATE) else 0) | (if (o.DELETE == 1) @intFromEnum(LZOPENFILE_STYLE.DELETE) else 0) | (if (o.EXIST == 1) @intFromEnum(LZOPENFILE_STYLE.EXIST) else 0) | (if (o.PARSE == 1) @intFromEnum(LZOPENFILE_STYLE.PARSE) else 0) | (if (o.PROMPT == 1) @intFromEnum(LZOPENFILE_STYLE.PROMPT) else 0) | (if (o.READ == 1) @intFromEnum(LZOPENFILE_STYLE.READ) else 0) | (if (o.READWRITE == 1) @intFromEnum(LZOPENFILE_STYLE.READWRITE) else 0) | (if (o.REOPEN == 1) @intFromEnum(LZOPENFILE_STYLE.REOPEN) else 0) | (if (o.SHARE_DENY_NONE == 1) @intFromEnum(LZOPENFILE_STYLE.SHARE_DENY_NONE) else 0) | (if (o.SHARE_DENY_READ == 1) @intFromEnum(LZOPENFILE_STYLE.SHARE_DENY_READ) else 0) | (if (o.SHARE_DENY_WRITE == 1) @intFromEnum(LZOPENFILE_STYLE.SHARE_DENY_WRITE) else 0) | (if (o.SHARE_EXCLUSIVE == 1) @intFromEnum(LZOPENFILE_STYLE.SHARE_EXCLUSIVE) else 0) | (if (o.WRITE == 1) @intFromEnum(LZOPENFILE_STYLE.WRITE) else 0) | (if (o.VERIFY == 1) @intFromEnum(LZOPENFILE_STYLE.VERIFY) else 0));
     }
 };
 pub const OF_CANCEL = LZOPENFILE_STYLE.CANCEL;
@@ -1099,16 +956,7 @@ pub const FILE_NOTIFY_CHANGE = enum(u32) {
         CREATION: u1 = 0,
         SECURITY: u1 = 0,
     }) FILE_NOTIFY_CHANGE {
-        return @intToEnum(FILE_NOTIFY_CHANGE,
-              (if (o.FILE_NAME == 1) @enumToInt(FILE_NOTIFY_CHANGE.FILE_NAME) else 0)
-            | (if (o.DIR_NAME == 1) @enumToInt(FILE_NOTIFY_CHANGE.DIR_NAME) else 0)
-            | (if (o.ATTRIBUTES == 1) @enumToInt(FILE_NOTIFY_CHANGE.ATTRIBUTES) else 0)
-            | (if (o.SIZE == 1) @enumToInt(FILE_NOTIFY_CHANGE.SIZE) else 0)
-            | (if (o.LAST_WRITE == 1) @enumToInt(FILE_NOTIFY_CHANGE.LAST_WRITE) else 0)
-            | (if (o.LAST_ACCESS == 1) @enumToInt(FILE_NOTIFY_CHANGE.LAST_ACCESS) else 0)
-            | (if (o.CREATION == 1) @enumToInt(FILE_NOTIFY_CHANGE.CREATION) else 0)
-            | (if (o.SECURITY == 1) @enumToInt(FILE_NOTIFY_CHANGE.SECURITY) else 0)
-        );
+        return @enumFromInt(FILE_NOTIFY_CHANGE, (if (o.FILE_NAME == 1) @intFromEnum(FILE_NOTIFY_CHANGE.FILE_NAME) else 0) | (if (o.DIR_NAME == 1) @intFromEnum(FILE_NOTIFY_CHANGE.DIR_NAME) else 0) | (if (o.ATTRIBUTES == 1) @intFromEnum(FILE_NOTIFY_CHANGE.ATTRIBUTES) else 0) | (if (o.SIZE == 1) @intFromEnum(FILE_NOTIFY_CHANGE.SIZE) else 0) | (if (o.LAST_WRITE == 1) @intFromEnum(FILE_NOTIFY_CHANGE.LAST_WRITE) else 0) | (if (o.LAST_ACCESS == 1) @intFromEnum(FILE_NOTIFY_CHANGE.LAST_ACCESS) else 0) | (if (o.CREATION == 1) @intFromEnum(FILE_NOTIFY_CHANGE.CREATION) else 0) | (if (o.SECURITY == 1) @intFromEnum(FILE_NOTIFY_CHANGE.SECURITY) else 0));
     }
 };
 pub const FILE_NOTIFY_CHANGE_FILE_NAME = FILE_NOTIFY_CHANGE.FILE_NAME;
@@ -1155,11 +1003,7 @@ pub const REPLACE_FILE_FLAGS = enum(u32) {
         IGNORE_MERGE_ERRORS: u1 = 0,
         IGNORE_ACL_ERRORS: u1 = 0,
     }) REPLACE_FILE_FLAGS {
-        return @intToEnum(REPLACE_FILE_FLAGS,
-              (if (o.WRITE_THROUGH == 1) @enumToInt(REPLACE_FILE_FLAGS.WRITE_THROUGH) else 0)
-            | (if (o.IGNORE_MERGE_ERRORS == 1) @enumToInt(REPLACE_FILE_FLAGS.IGNORE_MERGE_ERRORS) else 0)
-            | (if (o.IGNORE_ACL_ERRORS == 1) @enumToInt(REPLACE_FILE_FLAGS.IGNORE_ACL_ERRORS) else 0)
-        );
+        return @enumFromInt(REPLACE_FILE_FLAGS, (if (o.WRITE_THROUGH == 1) @intFromEnum(REPLACE_FILE_FLAGS.WRITE_THROUGH) else 0) | (if (o.IGNORE_MERGE_ERRORS == 1) @intFromEnum(REPLACE_FILE_FLAGS.IGNORE_MERGE_ERRORS) else 0) | (if (o.IGNORE_ACL_ERRORS == 1) @intFromEnum(REPLACE_FILE_FLAGS.IGNORE_ACL_ERRORS) else 0));
     }
 };
 pub const REPLACEFILE_WRITE_THROUGH = REPLACE_FILE_FLAGS.WRITE_THROUGH;
@@ -1244,10 +1088,7 @@ pub const LOCK_FILE_FLAGS = enum(u32) {
         EXCLUSIVE_LOCK: u1 = 0,
         FAIL_IMMEDIATELY: u1 = 0,
     }) LOCK_FILE_FLAGS {
-        return @intToEnum(LOCK_FILE_FLAGS,
-              (if (o.EXCLUSIVE_LOCK == 1) @enumToInt(LOCK_FILE_FLAGS.EXCLUSIVE_LOCK) else 0)
-            | (if (o.FAIL_IMMEDIATELY == 1) @enumToInt(LOCK_FILE_FLAGS.FAIL_IMMEDIATELY) else 0)
-        );
+        return @enumFromInt(LOCK_FILE_FLAGS, (if (o.EXCLUSIVE_LOCK == 1) @intFromEnum(LOCK_FILE_FLAGS.EXCLUSIVE_LOCK) else 0) | (if (o.FAIL_IMMEDIATELY == 1) @intFromEnum(LOCK_FILE_FLAGS.FAIL_IMMEDIATELY) else 0));
     }
 };
 pub const LOCKFILE_EXCLUSIVE_LOCK = LOCK_FILE_FLAGS.EXCLUSIVE_LOCK;
@@ -1381,11 +1222,7 @@ pub const FILE_INFO_FLAGS_PERMISSIONS = enum(u32) {
         WRITE: u1 = 0,
         CREATE: u1 = 0,
     }) FILE_INFO_FLAGS_PERMISSIONS {
-        return @intToEnum(FILE_INFO_FLAGS_PERMISSIONS,
-              (if (o.READ == 1) @enumToInt(FILE_INFO_FLAGS_PERMISSIONS.READ) else 0)
-            | (if (o.WRITE == 1) @enumToInt(FILE_INFO_FLAGS_PERMISSIONS.WRITE) else 0)
-            | (if (o.CREATE == 1) @enumToInt(FILE_INFO_FLAGS_PERMISSIONS.CREATE) else 0)
-        );
+        return @enumFromInt(FILE_INFO_FLAGS_PERMISSIONS, (if (o.READ == 1) @intFromEnum(FILE_INFO_FLAGS_PERMISSIONS.READ) else 0) | (if (o.WRITE == 1) @intFromEnum(FILE_INFO_FLAGS_PERMISSIONS.WRITE) else 0) | (if (o.CREATE == 1) @intFromEnum(FILE_INFO_FLAGS_PERMISSIONS.CREATE) else 0));
     }
 };
 pub const PERM_FILE_READ = FILE_INFO_FLAGS_PERMISSIONS.READ;
@@ -1400,10 +1237,7 @@ pub const SYMBOLIC_LINK_FLAGS = enum(u32) {
         DIRECTORY: u1 = 0,
         ALLOW_UNPRIVILEGED_CREATE: u1 = 0,
     }) SYMBOLIC_LINK_FLAGS {
-        return @intToEnum(SYMBOLIC_LINK_FLAGS,
-              (if (o.DIRECTORY == 1) @enumToInt(SYMBOLIC_LINK_FLAGS.DIRECTORY) else 0)
-            | (if (o.ALLOW_UNPRIVILEGED_CREATE == 1) @enumToInt(SYMBOLIC_LINK_FLAGS.ALLOW_UNPRIVILEGED_CREATE) else 0)
-        );
+        return @enumFromInt(SYMBOLIC_LINK_FLAGS, (if (o.DIRECTORY == 1) @intFromEnum(SYMBOLIC_LINK_FLAGS.DIRECTORY) else 0) | (if (o.ALLOW_UNPRIVILEGED_CREATE == 1) @intFromEnum(SYMBOLIC_LINK_FLAGS.ALLOW_UNPRIVILEGED_CREATE) else 0));
     }
 };
 pub const SYMBOLIC_LINK_FLAG_DIRECTORY = SYMBOLIC_LINK_FLAGS.DIRECTORY;
@@ -2800,41 +2634,41 @@ pub const MediaLabelInfo = extern struct {
 };
 
 pub const MAXMEDIALABEL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pMaxSize: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         pMaxSize: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const CLAIMMEDIALABEL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pBuffer: ?*const u8,
         nBufferSize: u32,
         pLabelInfo: ?*MediaLabelInfo,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         pBuffer: ?*const u8,
         nBufferSize: u32,
         pLabelInfo: ?*MediaLabelInfo,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const CLAIMMEDIALABELEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pBuffer: ?*const u8,
         nBufferSize: u32,
         pLabelInfo: ?*MediaLabelInfo,
         LabelGuid: ?*Guid,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         pBuffer: ?*const u8,
         nBufferSize: u32,
         pLabelInfo: ?*MediaLabelInfo,
         LabelGuid: ?*Guid,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const CLS_LSN = extern struct {
     Internal: u64,
@@ -2983,26 +2817,26 @@ pub const CLS_ARCHIVE_DESCRIPTOR = extern struct {
 };
 
 pub const CLFS_BLOCK_ALLOCATION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         cbBufferLength: u32,
         pvUserContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-    else => *const fn(
+    else => *const fn (
         cbBufferLength: u32,
         pvUserContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-} ;
+};
 
 pub const CLFS_BLOCK_DEALLOCATION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pvBuffer: ?*anyopaque,
         pvUserContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         pvBuffer: ?*anyopaque,
         pvUserContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const CLFS_LOG_ARCHIVE_MODE = enum(i32) {
     Enabled = 1,
@@ -3012,15 +2846,15 @@ pub const ClfsLogArchiveEnabled = CLFS_LOG_ARCHIVE_MODE.Enabled;
 pub const ClfsLogArchiveDisabled = CLFS_LOG_ARCHIVE_MODE.Disabled;
 
 pub const PCLFS_COMPLETION_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pvOverlapped: ?*anyopaque,
         ulReserved: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         pvOverlapped: ?*anyopaque,
         ulReserved: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const CLFS_MGMT_POLICY_TYPE = enum(i32) {
     MaximumSize = 0,
@@ -3108,43 +2942,43 @@ pub const CLFS_MGMT_NOTIFICATION = extern struct {
 };
 
 pub const PLOG_TAIL_ADVANCE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hLogFile: ?HANDLE,
         lsnTarget: CLS_LSN,
         pvClientContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         hLogFile: ?HANDLE,
         lsnTarget: CLS_LSN,
         pvClientContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PLOG_FULL_HANDLER_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hLogFile: ?HANDLE,
         dwError: u32,
         fLogIsPinned: BOOL,
         pvClientContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         hLogFile: ?HANDLE,
         dwError: u32,
         fLogIsPinned: BOOL,
         pvClientContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PLOG_UNPINNED_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hLogFile: ?HANDLE,
         pvClientContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         hLogFile: ?HANDLE,
         pvClientContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const LOG_MANAGEMENT_CALLBACKS = extern struct {
     CallbackContext: ?*anyopaque,
@@ -3166,17 +3000,17 @@ pub const IDiskQuotaUser = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaUser,
                 pulID: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaUser,
                 pulID: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaUser,
                 pszAccountContainer: ?PWSTR,
                 cchAccountContainer: u32,
@@ -3185,7 +3019,7 @@ pub const IDiskQuotaUser = extern struct {
                 pszDisplayName: ?PWSTR,
                 cchDisplayName: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaUser,
                 pszAccountContainer: ?PWSTR,
                 cchAccountContainer: u32,
@@ -3196,212 +3030,214 @@ pub const IDiskQuotaUser = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSidLength: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaUser,
                 pdwLength: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaUser,
                 pdwLength: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaUser,
                 pbSidBuffer: ?*u8,
                 cbSidBuffer: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaUser,
                 pbSidBuffer: ?*u8,
                 cbSidBuffer: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetQuotaThreshold: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaUser,
                 pllThreshold: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaUser,
                 pllThreshold: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetQuotaThresholdText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaUser,
                 pszText: ?PWSTR,
                 cchText: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaUser,
                 pszText: ?PWSTR,
                 cchText: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetQuotaLimit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaUser,
                 pllLimit: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaUser,
                 pllLimit: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetQuotaLimitText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaUser,
                 pszText: ?PWSTR,
                 cchText: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaUser,
                 pszText: ?PWSTR,
                 cchText: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetQuotaUsed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaUser,
                 pllUsed: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaUser,
                 pllUsed: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetQuotaUsedText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaUser,
                 pszText: ?PWSTR,
                 cchText: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaUser,
                 pszText: ?PWSTR,
                 cchText: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetQuotaInformation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaUser,
                 pbQuotaInfo: ?*anyopaque,
                 cbQuotaInfo: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaUser,
                 pbQuotaInfo: ?*anyopaque,
                 cbQuotaInfo: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetQuotaThreshold: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaUser,
                 llThreshold: i64,
                 fWriteThrough: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaUser,
                 llThreshold: i64,
                 fWriteThrough: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetQuotaLimit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaUser,
                 llLimit: i64,
                 fWriteThrough: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaUser,
                 llLimit: i64,
                 fWriteThrough: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Invalidate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaUser,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaUser,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAccountStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaUser,
                 pdwStatus: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaUser,
                 pdwStatus: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetID(self: *const T, pulID: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetID(@ptrCast(*const IDiskQuotaUser, self), pulID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetName(self: *const T, pszAccountContainer: ?PWSTR, cchAccountContainer: u32, pszLogonName: ?PWSTR, cchLogonName: u32, pszDisplayName: ?PWSTR, cchDisplayName: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetName(@ptrCast(*const IDiskQuotaUser, self), pszAccountContainer, cchAccountContainer, pszLogonName, cchLogonName, pszDisplayName, cchDisplayName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetSidLength(self: *const T, pdwLength: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetSidLength(@ptrCast(*const IDiskQuotaUser, self), pdwLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetSid(self: *const T, pbSidBuffer: ?*u8, cbSidBuffer: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetSid(@ptrCast(*const IDiskQuotaUser, self), pbSidBuffer, cbSidBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetQuotaThreshold(self: *const T, pllThreshold: ?*i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaThreshold(@ptrCast(*const IDiskQuotaUser, self), pllThreshold);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetQuotaThresholdText(self: *const T, pszText: ?PWSTR, cchText: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaThresholdText(@ptrCast(*const IDiskQuotaUser, self), pszText, cchText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetQuotaLimit(self: *const T, pllLimit: ?*i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaLimit(@ptrCast(*const IDiskQuotaUser, self), pllLimit);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetQuotaLimitText(self: *const T, pszText: ?PWSTR, cchText: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaLimitText(@ptrCast(*const IDiskQuotaUser, self), pszText, cchText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetQuotaUsed(self: *const T, pllUsed: ?*i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaUsed(@ptrCast(*const IDiskQuotaUser, self), pllUsed);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetQuotaUsedText(self: *const T, pszText: ?PWSTR, cchText: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaUsedText(@ptrCast(*const IDiskQuotaUser, self), pszText, cchText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetQuotaInformation(self: *const T, pbQuotaInfo: ?*anyopaque, cbQuotaInfo: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaInformation(@ptrCast(*const IDiskQuotaUser, self), pbQuotaInfo, cbQuotaInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_SetQuotaThreshold(self: *const T, llThreshold: i64, fWriteThrough: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).SetQuotaThreshold(@ptrCast(*const IDiskQuotaUser, self), llThreshold, fWriteThrough);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_SetQuotaLimit(self: *const T, llLimit: i64, fWriteThrough: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).SetQuotaLimit(@ptrCast(*const IDiskQuotaUser, self), llLimit, fWriteThrough);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_Invalidate(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).Invalidate(@ptrCast(*const IDiskQuotaUser, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUser_GetAccountStatus(self: *const T, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetAccountStatus(@ptrCast(*const IDiskQuotaUser, self), pdwStatus);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaUser_GetID(self: *const T, pulID: ?*u32) HRESULT {
+                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetID(@ptrCast(*const IDiskQuotaUser, self), pulID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaUser_GetName(self: *const T, pszAccountContainer: ?PWSTR, cchAccountContainer: u32, pszLogonName: ?PWSTR, cchLogonName: u32, pszDisplayName: ?PWSTR, cchDisplayName: u32) HRESULT {
+                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetName(@ptrCast(*const IDiskQuotaUser, self), pszAccountContainer, cchAccountContainer, pszLogonName, cchLogonName, pszDisplayName, cchDisplayName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaUser_GetSidLength(self: *const T, pdwLength: ?*u32) HRESULT {
+                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetSidLength(@ptrCast(*const IDiskQuotaUser, self), pdwLength);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaUser_GetSid(self: *const T, pbSidBuffer: ?*u8, cbSidBuffer: u32) HRESULT {
+                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetSid(@ptrCast(*const IDiskQuotaUser, self), pbSidBuffer, cbSidBuffer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaUser_GetQuotaThreshold(self: *const T, pllThreshold: ?*i64) HRESULT {
+                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaThreshold(@ptrCast(*const IDiskQuotaUser, self), pllThreshold);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaUser_GetQuotaThresholdText(self: *const T, pszText: ?PWSTR, cchText: u32) HRESULT {
+                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaThresholdText(@ptrCast(*const IDiskQuotaUser, self), pszText, cchText);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaUser_GetQuotaLimit(self: *const T, pllLimit: ?*i64) HRESULT {
+                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaLimit(@ptrCast(*const IDiskQuotaUser, self), pllLimit);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaUser_GetQuotaLimitText(self: *const T, pszText: ?PWSTR, cchText: u32) HRESULT {
+                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaLimitText(@ptrCast(*const IDiskQuotaUser, self), pszText, cchText);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaUser_GetQuotaUsed(self: *const T, pllUsed: ?*i64) HRESULT {
+                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaUsed(@ptrCast(*const IDiskQuotaUser, self), pllUsed);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaUser_GetQuotaUsedText(self: *const T, pszText: ?PWSTR, cchText: u32) HRESULT {
+                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaUsedText(@ptrCast(*const IDiskQuotaUser, self), pszText, cchText);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaUser_GetQuotaInformation(self: *const T, pbQuotaInfo: ?*anyopaque, cbQuotaInfo: u32) HRESULT {
+                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaInformation(@ptrCast(*const IDiskQuotaUser, self), pbQuotaInfo, cbQuotaInfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaUser_SetQuotaThreshold(self: *const T, llThreshold: i64, fWriteThrough: BOOL) HRESULT {
+                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).SetQuotaThreshold(@ptrCast(*const IDiskQuotaUser, self), llThreshold, fWriteThrough);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaUser_SetQuotaLimit(self: *const T, llLimit: i64, fWriteThrough: BOOL) HRESULT {
+                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).SetQuotaLimit(@ptrCast(*const IDiskQuotaUser, self), llLimit, fWriteThrough);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaUser_Invalidate(self: *const T) HRESULT {
+                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).Invalidate(@ptrCast(*const IDiskQuotaUser, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaUser_GetAccountStatus(self: *const T, pdwStatus: ?*u32) HRESULT {
+                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetAccountStatus(@ptrCast(*const IDiskQuotaUser, self), pdwStatus);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3412,13 +3248,13 @@ pub const IEnumDiskQuotaUsers = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumDiskQuotaUsers,
                 cUsers: u32,
                 rgUsers: ?*?*IDiskQuotaUser,
                 pcUsersFetched: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumDiskQuotaUsers,
                 cUsers: u32,
                 rgUsers: ?*?*IDiskQuotaUser,
@@ -3426,54 +3262,56 @@ pub const IEnumDiskQuotaUsers = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumDiskQuotaUsers,
                 cUsers: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumDiskQuotaUsers,
                 cUsers: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumDiskQuotaUsers,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumDiskQuotaUsers,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumDiskQuotaUsers,
                 ppEnum: ?*?*IEnumDiskQuotaUsers,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumDiskQuotaUsers,
                 ppEnum: ?*?*IEnumDiskQuotaUsers,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDiskQuotaUsers_Next(self: *const T, cUsers: u32, rgUsers: ?*?*IDiskQuotaUser, pcUsersFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDiskQuotaUsers.VTable, self.vtable).Next(@ptrCast(*const IEnumDiskQuotaUsers, self), cUsers, rgUsers, pcUsersFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDiskQuotaUsers_Skip(self: *const T, cUsers: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDiskQuotaUsers.VTable, self.vtable).Skip(@ptrCast(*const IEnumDiskQuotaUsers, self), cUsers);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDiskQuotaUsers_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDiskQuotaUsers.VTable, self.vtable).Reset(@ptrCast(*const IEnumDiskQuotaUsers, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDiskQuotaUsers_Clone(self: *const T, ppEnum: ?*?*IEnumDiskQuotaUsers) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDiskQuotaUsers.VTable, self.vtable).Clone(@ptrCast(*const IEnumDiskQuotaUsers, self), ppEnum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumDiskQuotaUsers_Next(self: *const T, cUsers: u32, rgUsers: ?*?*IDiskQuotaUser, pcUsersFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumDiskQuotaUsers.VTable, self.vtable).Next(@ptrCast(*const IEnumDiskQuotaUsers, self), cUsers, rgUsers, pcUsersFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumDiskQuotaUsers_Skip(self: *const T, cUsers: u32) HRESULT {
+                return @ptrCast(*const IEnumDiskQuotaUsers.VTable, self.vtable).Skip(@ptrCast(*const IEnumDiskQuotaUsers, self), cUsers);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumDiskQuotaUsers_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumDiskQuotaUsers.VTable, self.vtable).Reset(@ptrCast(*const IEnumDiskQuotaUsers, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumDiskQuotaUsers_Clone(self: *const T, ppEnum: ?*?*IEnumDiskQuotaUsers) HRESULT {
+                return @ptrCast(*const IEnumDiskQuotaUsers.VTable, self.vtable).Clone(@ptrCast(*const IEnumDiskQuotaUsers, self), ppEnum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3484,62 +3322,64 @@ pub const IDiskQuotaUserBatch = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Add: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaUserBatch,
                 pUser: ?*IDiskQuotaUser,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaUserBatch,
                 pUser: ?*IDiskQuotaUser,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Remove: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaUserBatch,
                 pUser: ?*IDiskQuotaUser,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaUserBatch,
                 pUser: ?*IDiskQuotaUser,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RemoveAll: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaUserBatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaUserBatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FlushToDisk: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaUserBatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaUserBatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUserBatch_Add(self: *const T, pUser: ?*IDiskQuotaUser) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaUserBatch.VTable, self.vtable).Add(@ptrCast(*const IDiskQuotaUserBatch, self), pUser);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUserBatch_Remove(self: *const T, pUser: ?*IDiskQuotaUser) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaUserBatch.VTable, self.vtable).Remove(@ptrCast(*const IDiskQuotaUserBatch, self), pUser);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUserBatch_RemoveAll(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaUserBatch.VTable, self.vtable).RemoveAll(@ptrCast(*const IDiskQuotaUserBatch, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaUserBatch_FlushToDisk(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaUserBatch.VTable, self.vtable).FlushToDisk(@ptrCast(*const IDiskQuotaUserBatch, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaUserBatch_Add(self: *const T, pUser: ?*IDiskQuotaUser) HRESULT {
+                return @ptrCast(*const IDiskQuotaUserBatch.VTable, self.vtable).Add(@ptrCast(*const IDiskQuotaUserBatch, self), pUser);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaUserBatch_Remove(self: *const T, pUser: ?*IDiskQuotaUser) HRESULT {
+                return @ptrCast(*const IDiskQuotaUserBatch.VTable, self.vtable).Remove(@ptrCast(*const IDiskQuotaUserBatch, self), pUser);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaUserBatch_RemoveAll(self: *const T) HRESULT {
+                return @ptrCast(*const IDiskQuotaUserBatch.VTable, self.vtable).RemoveAll(@ptrCast(*const IDiskQuotaUserBatch, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaUserBatch_FlushToDisk(self: *const T) HRESULT {
+                return @ptrCast(*const IDiskQuotaUserBatch.VTable, self.vtable).FlushToDisk(@ptrCast(*const IDiskQuotaUserBatch, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3550,129 +3390,129 @@ pub const IDiskQuotaControl = extern struct {
     pub const VTable = extern struct {
         base: IConnectionPointContainer.VTable,
         Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaControl,
                 pszPath: ?[*:0]const u16,
                 bReadWrite: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaControl,
                 pszPath: ?[*:0]const u16,
                 bReadWrite: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetQuotaState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaControl,
                 dwState: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaControl,
                 dwState: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetQuotaState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaControl,
                 pdwState: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaControl,
                 pdwState: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetQuotaLogFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaControl,
                 dwFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaControl,
                 dwFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetQuotaLogFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaControl,
                 pdwFlags: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaControl,
                 pdwFlags: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetDefaultQuotaThreshold: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaControl,
                 llThreshold: i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaControl,
                 llThreshold: i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDefaultQuotaThreshold: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaControl,
                 pllThreshold: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaControl,
                 pllThreshold: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDefaultQuotaThresholdText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaControl,
                 pszText: ?PWSTR,
                 cchText: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaControl,
                 pszText: ?PWSTR,
                 cchText: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetDefaultQuotaLimit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaControl,
                 llLimit: i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaControl,
                 llLimit: i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDefaultQuotaLimit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaControl,
                 pllLimit: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaControl,
                 pllLimit: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDefaultQuotaLimitText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaControl,
                 pszText: ?PWSTR,
                 cchText: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaControl,
                 pszText: ?PWSTR,
                 cchText: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AddUserSid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaControl,
                 pUserSid: ?PSID,
                 fNameResolution: DISKQUOTA_USERNAME_RESOLVE,
                 ppUser: ?*?*IDiskQuotaUser,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaControl,
                 pUserSid: ?PSID,
                 fNameResolution: DISKQUOTA_USERNAME_RESOLVE,
@@ -3680,13 +3520,13 @@ pub const IDiskQuotaControl = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AddUserName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaControl,
                 pszLogonName: ?[*:0]const u16,
                 fNameResolution: DISKQUOTA_USERNAME_RESOLVE,
                 ppUser: ?*?*IDiskQuotaUser,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaControl,
                 pszLogonName: ?[*:0]const u16,
                 fNameResolution: DISKQUOTA_USERNAME_RESOLVE,
@@ -3694,23 +3534,23 @@ pub const IDiskQuotaControl = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DeleteUser: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaControl,
                 pUser: ?*IDiskQuotaUser,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaControl,
                 pUser: ?*IDiskQuotaUser,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FindUserSid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaControl,
                 pUserSid: ?PSID,
                 fNameResolution: DISKQUOTA_USERNAME_RESOLVE,
                 ppUser: ?*?*IDiskQuotaUser,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaControl,
                 pUserSid: ?PSID,
                 fNameResolution: DISKQUOTA_USERNAME_RESOLVE,
@@ -3718,26 +3558,26 @@ pub const IDiskQuotaControl = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FindUserName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaControl,
                 pszLogonName: ?[*:0]const u16,
                 ppUser: ?*?*IDiskQuotaUser,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaControl,
                 pszLogonName: ?[*:0]const u16,
                 ppUser: ?*?*IDiskQuotaUser,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateEnumUsers: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaControl,
                 rgpUserSids: ?*?PSID,
                 cpSids: u32,
                 fNameResolution: DISKQUOTA_USERNAME_RESOLVE,
                 ppEnum: ?*?*IEnumDiskQuotaUsers,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaControl,
                 rgpUserSids: ?*?PSID,
                 cpSids: u32,
@@ -3746,130 +3586,132 @@ pub const IDiskQuotaControl = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateUserBatch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaControl,
                 ppBatch: ?*?*IDiskQuotaUserBatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaControl,
                 ppBatch: ?*?*IDiskQuotaUserBatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         InvalidateSidNameCache: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaControl,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaControl,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GiveUserNameResolutionPriority: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaControl,
                 pUser: ?*IDiskQuotaUser,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaControl,
                 pUser: ?*IDiskQuotaUser,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ShutdownNameResolution: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaControl,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaControl,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IConnectionPointContainer.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_Initialize(self: *const T, pszPath: ?[*:0]const u16, bReadWrite: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).Initialize(@ptrCast(*const IDiskQuotaControl, self), pszPath, bReadWrite);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_SetQuotaState(self: *const T, dwState: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).SetQuotaState(@ptrCast(*const IDiskQuotaControl, self), dwState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_GetQuotaState(self: *const T, pdwState: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GetQuotaState(@ptrCast(*const IDiskQuotaControl, self), pdwState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_SetQuotaLogFlags(self: *const T, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).SetQuotaLogFlags(@ptrCast(*const IDiskQuotaControl, self), dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_GetQuotaLogFlags(self: *const T, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GetQuotaLogFlags(@ptrCast(*const IDiskQuotaControl, self), pdwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_SetDefaultQuotaThreshold(self: *const T, llThreshold: i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).SetDefaultQuotaThreshold(@ptrCast(*const IDiskQuotaControl, self), llThreshold);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_GetDefaultQuotaThreshold(self: *const T, pllThreshold: ?*i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GetDefaultQuotaThreshold(@ptrCast(*const IDiskQuotaControl, self), pllThreshold);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_GetDefaultQuotaThresholdText(self: *const T, pszText: ?PWSTR, cchText: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GetDefaultQuotaThresholdText(@ptrCast(*const IDiskQuotaControl, self), pszText, cchText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_SetDefaultQuotaLimit(self: *const T, llLimit: i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).SetDefaultQuotaLimit(@ptrCast(*const IDiskQuotaControl, self), llLimit);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_GetDefaultQuotaLimit(self: *const T, pllLimit: ?*i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GetDefaultQuotaLimit(@ptrCast(*const IDiskQuotaControl, self), pllLimit);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_GetDefaultQuotaLimitText(self: *const T, pszText: ?PWSTR, cchText: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GetDefaultQuotaLimitText(@ptrCast(*const IDiskQuotaControl, self), pszText, cchText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_AddUserSid(self: *const T, pUserSid: ?PSID, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppUser: ?*?*IDiskQuotaUser) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).AddUserSid(@ptrCast(*const IDiskQuotaControl, self), pUserSid, fNameResolution, ppUser);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_AddUserName(self: *const T, pszLogonName: ?[*:0]const u16, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppUser: ?*?*IDiskQuotaUser) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).AddUserName(@ptrCast(*const IDiskQuotaControl, self), pszLogonName, fNameResolution, ppUser);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_DeleteUser(self: *const T, pUser: ?*IDiskQuotaUser) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).DeleteUser(@ptrCast(*const IDiskQuotaControl, self), pUser);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_FindUserSid(self: *const T, pUserSid: ?PSID, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppUser: ?*?*IDiskQuotaUser) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).FindUserSid(@ptrCast(*const IDiskQuotaControl, self), pUserSid, fNameResolution, ppUser);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_FindUserName(self: *const T, pszLogonName: ?[*:0]const u16, ppUser: ?*?*IDiskQuotaUser) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).FindUserName(@ptrCast(*const IDiskQuotaControl, self), pszLogonName, ppUser);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_CreateEnumUsers(self: *const T, rgpUserSids: ?*?PSID, cpSids: u32, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppEnum: ?*?*IEnumDiskQuotaUsers) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).CreateEnumUsers(@ptrCast(*const IDiskQuotaControl, self), rgpUserSids, cpSids, fNameResolution, ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_CreateUserBatch(self: *const T, ppBatch: ?*?*IDiskQuotaUserBatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).CreateUserBatch(@ptrCast(*const IDiskQuotaControl, self), ppBatch);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_InvalidateSidNameCache(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).InvalidateSidNameCache(@ptrCast(*const IDiskQuotaControl, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_GiveUserNameResolutionPriority(self: *const T, pUser: ?*IDiskQuotaUser) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GiveUserNameResolutionPriority(@ptrCast(*const IDiskQuotaControl, self), pUser);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaControl_ShutdownNameResolution(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).ShutdownNameResolution(@ptrCast(*const IDiskQuotaControl, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IConnectionPointContainer.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaControl_Initialize(self: *const T, pszPath: ?[*:0]const u16, bReadWrite: BOOL) HRESULT {
+                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).Initialize(@ptrCast(*const IDiskQuotaControl, self), pszPath, bReadWrite);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaControl_SetQuotaState(self: *const T, dwState: u32) HRESULT {
+                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).SetQuotaState(@ptrCast(*const IDiskQuotaControl, self), dwState);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaControl_GetQuotaState(self: *const T, pdwState: ?*u32) HRESULT {
+                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GetQuotaState(@ptrCast(*const IDiskQuotaControl, self), pdwState);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaControl_SetQuotaLogFlags(self: *const T, dwFlags: u32) HRESULT {
+                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).SetQuotaLogFlags(@ptrCast(*const IDiskQuotaControl, self), dwFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaControl_GetQuotaLogFlags(self: *const T, pdwFlags: ?*u32) HRESULT {
+                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GetQuotaLogFlags(@ptrCast(*const IDiskQuotaControl, self), pdwFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaControl_SetDefaultQuotaThreshold(self: *const T, llThreshold: i64) HRESULT {
+                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).SetDefaultQuotaThreshold(@ptrCast(*const IDiskQuotaControl, self), llThreshold);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaControl_GetDefaultQuotaThreshold(self: *const T, pllThreshold: ?*i64) HRESULT {
+                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GetDefaultQuotaThreshold(@ptrCast(*const IDiskQuotaControl, self), pllThreshold);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaControl_GetDefaultQuotaThresholdText(self: *const T, pszText: ?PWSTR, cchText: u32) HRESULT {
+                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GetDefaultQuotaThresholdText(@ptrCast(*const IDiskQuotaControl, self), pszText, cchText);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaControl_SetDefaultQuotaLimit(self: *const T, llLimit: i64) HRESULT {
+                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).SetDefaultQuotaLimit(@ptrCast(*const IDiskQuotaControl, self), llLimit);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaControl_GetDefaultQuotaLimit(self: *const T, pllLimit: ?*i64) HRESULT {
+                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GetDefaultQuotaLimit(@ptrCast(*const IDiskQuotaControl, self), pllLimit);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaControl_GetDefaultQuotaLimitText(self: *const T, pszText: ?PWSTR, cchText: u32) HRESULT {
+                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GetDefaultQuotaLimitText(@ptrCast(*const IDiskQuotaControl, self), pszText, cchText);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaControl_AddUserSid(self: *const T, pUserSid: ?PSID, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppUser: ?*?*IDiskQuotaUser) HRESULT {
+                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).AddUserSid(@ptrCast(*const IDiskQuotaControl, self), pUserSid, fNameResolution, ppUser);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaControl_AddUserName(self: *const T, pszLogonName: ?[*:0]const u16, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppUser: ?*?*IDiskQuotaUser) HRESULT {
+                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).AddUserName(@ptrCast(*const IDiskQuotaControl, self), pszLogonName, fNameResolution, ppUser);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaControl_DeleteUser(self: *const T, pUser: ?*IDiskQuotaUser) HRESULT {
+                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).DeleteUser(@ptrCast(*const IDiskQuotaControl, self), pUser);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaControl_FindUserSid(self: *const T, pUserSid: ?PSID, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppUser: ?*?*IDiskQuotaUser) HRESULT {
+                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).FindUserSid(@ptrCast(*const IDiskQuotaControl, self), pUserSid, fNameResolution, ppUser);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaControl_FindUserName(self: *const T, pszLogonName: ?[*:0]const u16, ppUser: ?*?*IDiskQuotaUser) HRESULT {
+                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).FindUserName(@ptrCast(*const IDiskQuotaControl, self), pszLogonName, ppUser);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaControl_CreateEnumUsers(self: *const T, rgpUserSids: ?*?PSID, cpSids: u32, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppEnum: ?*?*IEnumDiskQuotaUsers) HRESULT {
+                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).CreateEnumUsers(@ptrCast(*const IDiskQuotaControl, self), rgpUserSids, cpSids, fNameResolution, ppEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaControl_CreateUserBatch(self: *const T, ppBatch: ?*?*IDiskQuotaUserBatch) HRESULT {
+                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).CreateUserBatch(@ptrCast(*const IDiskQuotaControl, self), ppBatch);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaControl_InvalidateSidNameCache(self: *const T) HRESULT {
+                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).InvalidateSidNameCache(@ptrCast(*const IDiskQuotaControl, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaControl_GiveUserNameResolutionPriority(self: *const T, pUser: ?*IDiskQuotaUser) HRESULT {
+                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GiveUserNameResolutionPriority(@ptrCast(*const IDiskQuotaControl, self), pUser);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaControl_ShutdownNameResolution(self: *const T) HRESULT {
+                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).ShutdownNameResolution(@ptrCast(*const IDiskQuotaControl, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3880,24 +3722,26 @@ pub const IDiskQuotaEvents = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnUserNameChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDiskQuotaEvents,
                 pUser: ?*IDiskQuotaUser,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDiskQuotaEvents,
                 pUser: ?*IDiskQuotaUser,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiskQuotaEvents_OnUserNameChanged(self: *const T, pUser: ?*IDiskQuotaUser) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiskQuotaEvents.VTable, self.vtable).OnUserNameChanged(@ptrCast(*const IDiskQuotaEvents, self), pUser);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDiskQuotaEvents_OnUserNameChanged(self: *const T, pUser: ?*IDiskQuotaUser) HRESULT {
+                return @ptrCast(*const IDiskQuotaEvents.VTable, self.vtable).OnUserNameChanged(@ptrCast(*const IDiskQuotaEvents, self), pUser);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3992,28 +3836,28 @@ pub const ENCRYPTION_PROTECTOR_LIST = extern struct {
 };
 
 pub const WofEnumEntryProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         EntryInfo: ?*const anyopaque,
         UserData: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         EntryInfo: ?*const anyopaque,
         UserData: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const WofEnumFilesProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         FilePath: ?[*:0]const u16,
         ExternalFileInfo: ?*anyopaque,
         UserData: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         FilePath: ?[*:0]const u16,
         ExternalFileInfo: ?*anyopaque,
         UserData: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const WIM_ENTRY_INFO = extern struct {
     WimEntryInfoSize: u32,
@@ -4422,7 +4266,10 @@ pub const STAT_SERVER_0 = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_IO_COMPLETION = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PFN_IO_COMPLETION = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 pub const FH_OVERLAPPED = extern struct {
     Internal: usize,
@@ -4446,22 +4293,22 @@ pub const FIO_CONTEXT = extern struct {
 };
 
 pub const FCACHE_CREATE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         lpstrName: ?PSTR,
         lpvData: ?*anyopaque,
         cbFileSize: ?*u32,
         cbFileSizeHigh: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
-    else => *const fn(
+    else => *const fn (
         lpstrName: ?PSTR,
         lpvData: ?*anyopaque,
         cbFileSize: ?*u32,
         cbFileSizeHigh: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
-} ;
+};
 
 pub const FCACHE_RICHCREATE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         lpstrName: ?PSTR,
         lpvData: ?*anyopaque,
         cbFileSize: ?*u32,
@@ -4471,7 +4318,7 @@ pub const FCACHE_RICHCREATE_CALLBACK = switch (@import("builtin").zig_backend) {
         pfStoredWithDots: ?*BOOL,
         pfStoredWithTerminatingDot: ?*BOOL,
     ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
-    else => *const fn(
+    else => *const fn (
         lpstrName: ?PSTR,
         lpvData: ?*anyopaque,
         cbFileSize: ?*u32,
@@ -4481,60 +4328,60 @@ pub const FCACHE_RICHCREATE_CALLBACK = switch (@import("builtin").zig_backend) {
         pfStoredWithDots: ?*BOOL,
         pfStoredWithTerminatingDot: ?*BOOL,
     ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
-} ;
+};
 
 pub const CACHE_KEY_COMPARE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         cbKey1: u32,
         lpbKey1: ?*u8,
         cbKey2: u32,
         lpbKey2: ?*u8,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         cbKey1: u32,
         lpbKey1: ?*u8,
         cbKey2: u32,
         lpbKey2: ?*u8,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const CACHE_KEY_HASH = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         lpbKey: ?*u8,
         cbKey: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         lpbKey: ?*u8,
         cbKey: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const CACHE_READ_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         cb: u32,
         lpb: ?*u8,
         lpvContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         cb: u32,
         lpb: ?*u8,
         lpvContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const CACHE_DESTROY_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         cb: u32,
         lpb: ?*u8,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         cb: u32,
         lpb: ?*u8,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const CACHE_ACCESS_CHECK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
         hClientToken: ?HANDLE,
         dwDesiredAccess: u32,
@@ -4544,7 +4391,7 @@ pub const CACHE_ACCESS_CHECK = switch (@import("builtin").zig_backend) {
         GrantedAccess: ?*u32,
         AccessStatus: ?*i32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
         hClientToken: ?HANDLE,
         dwDesiredAccess: u32,
@@ -4554,7 +4401,7 @@ pub const CACHE_ACCESS_CHECK = switch (@import("builtin").zig_backend) {
         GrantedAccess: ?*u32,
         AccessStatus: ?*i32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const NAME_CACHE_CONTEXT = extern struct {
     m_dwSignature: u32,
@@ -4806,34 +4653,34 @@ pub const OFSTRUCT = extern struct {
 };
 
 pub const PFE_EXPORT_FUNC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         // TODO: what to do with BytesParamIndex 2?
         pbData: ?*u8,
         pvCallbackContext: ?*anyopaque,
         ulLength: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         // TODO: what to do with BytesParamIndex 2?
         pbData: ?*u8,
         pvCallbackContext: ?*anyopaque,
         ulLength: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PFE_IMPORT_FUNC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         // TODO: what to do with BytesParamIndex 2?
         pbData: ?*u8,
         pvCallbackContext: ?*anyopaque,
         ulLength: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         // TODO: what to do with BytesParamIndex 2?
         pbData: ?*u8,
         pvCallbackContext: ?*anyopaque,
         ulLength: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const WIN32_STREAM_ID = extern struct {
     dwStreamId: WIN_STREAM_ID,
@@ -4844,7 +4691,7 @@ pub const WIN32_STREAM_ID = extern struct {
 };
 
 pub const LPPROGRESS_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         TotalFileSize: LARGE_INTEGER,
         TotalBytesTransferred: LARGE_INTEGER,
         StreamSize: LARGE_INTEGER,
@@ -4855,7 +4702,7 @@ pub const LPPROGRESS_ROUTINE = switch (@import("builtin").zig_backend) {
         hDestinationFile: ?HANDLE,
         lpData: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         TotalFileSize: LARGE_INTEGER,
         TotalBytesTransferred: LARGE_INTEGER,
         StreamSize: LARGE_INTEGER,
@@ -4866,7 +4713,7 @@ pub const LPPROGRESS_ROUTINE = switch (@import("builtin").zig_backend) {
         hDestinationFile: ?HANDLE,
         lpData: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const COPYFILE2_MESSAGE_TYPE = enum(i32) {
     NONE = 0,
@@ -4981,15 +4828,15 @@ pub const COPYFILE2_MESSAGE = extern struct {
 };
 
 pub const PCOPYFILE2_PROGRESS_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pMessage: ?*const COPYFILE2_MESSAGE,
         pvCallbackContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) COPYFILE2_MESSAGE_ACTION,
-    else => *const fn(
+    else => *const fn (
         pMessage: ?*const COPYFILE2_MESSAGE,
         pvCallbackContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) COPYFILE2_MESSAGE_ACTION,
-} ;
+};
 
 pub const COPYFILE2_EXTENDED_PARAMETERS = extern struct {
     dwSize: u32,
@@ -5206,7 +5053,6 @@ pub const FILE_ID_DESCRIPTOR = extern struct {
         ExtendedFileId: FILE_ID_128,
     },
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (411)
@@ -5537,8 +5383,7 @@ pub extern "kernel32" fn GetFullPathNameA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetLogicalDrives(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "kernel32" fn GetLogicalDrives() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn GetLogicalDriveStringsW(
@@ -5849,8 +5694,7 @@ pub extern "kernel32" fn FindNextStreamW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn AreFileApisANSI(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "kernel32" fn AreFileApisANSI() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn GetTempPathA(
@@ -5894,12 +5738,10 @@ pub extern "kernel32" fn GetTempFileNameA(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn SetFileApisToOEM(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "kernel32" fn SetFileApisToOEM() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn SetFileApisToANSI(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "kernel32" fn SetFileApisToANSI() callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "kernel32" fn GetTempPath2W(
     BufferLength: u32,
@@ -6646,11 +6488,9 @@ pub extern "advapi32" fn FreeEncryptedFileMetadata(
     pbMetadata: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "kernel32" fn LZStart(
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub extern "kernel32" fn LZStart() callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "kernel32" fn LZDone(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "kernel32" fn LZDone() callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "kernel32" fn CopyLZFile(
     hfSource: i32,
@@ -8227,7 +8067,6 @@ pub extern "ntdll" fn NtCreateFile(
     EaLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (93)
 //--------------------------------------------------------------------------------
@@ -8424,99 +8263,99 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const CreateSymbolicLinkTransacted = thismodule.CreateSymbolicLinkTransactedW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const WIN32_FIND_DATA = *opaque{};
-        pub const NTMS_DRIVEINFORMATION = *opaque{};
-        pub const NTMS_CHANGERINFORMATION = *opaque{};
-        pub const NTMS_PMIDINFORMATION = *opaque{};
-        pub const NTMS_PARTITIONINFORMATION = *opaque{};
-        pub const NTMS_DRIVETYPEINFORMATION = *opaque{};
-        pub const NTMS_CHANGERTYPEINFORMATION = *opaque{};
-        pub const NTMS_LIBREQUESTINFORMATION = *opaque{};
-        pub const NTMS_OPREQUESTINFORMATION = *opaque{};
-        pub const NTMS_OBJECTINFORMATION = *opaque{};
-        pub const NTMS_I1_LIBREQUESTINFORMATION = *opaque{};
-        pub const NTMS_I1_PMIDINFORMATION = *opaque{};
-        pub const NTMS_I1_PARTITIONINFORMATION = *opaque{};
-        pub const NTMS_I1_OPREQUESTINFORMATION = *opaque{};
-        pub const NTMS_I1_OBJECTINFORMATION = *opaque{};
-        pub const SearchPath = *opaque{};
-        pub const CreateDirectory = *opaque{};
-        pub const CreateFile = *opaque{};
-        pub const DefineDosDevice = *opaque{};
-        pub const DeleteFile = *opaque{};
-        pub const DeleteVolumeMountPoint = *opaque{};
-        pub const FindFirstChangeNotification = *opaque{};
-        pub const FindFirstFile = *opaque{};
-        pub const FindFirstFileEx = *opaque{};
-        pub const FindFirstVolume = *opaque{};
-        pub const FindNextFile = *opaque{};
-        pub const FindNextVolume = *opaque{};
-        pub const GetDiskFreeSpace = *opaque{};
-        pub const GetDiskFreeSpaceEx = *opaque{};
-        pub const GetDiskSpaceInformation = *opaque{};
-        pub const GetDriveType = *opaque{};
-        pub const GetFileAttributes = *opaque{};
-        pub const GetFileAttributesEx = *opaque{};
-        pub const GetFinalPathNameByHandle = *opaque{};
-        pub const GetFullPathName = *opaque{};
-        pub const GetLogicalDriveStrings = *opaque{};
-        pub const GetLongPathName = *opaque{};
-        pub const GetShortPathName = *opaque{};
-        pub const GetTempFileName = *opaque{};
-        pub const GetVolumeInformation = *opaque{};
-        pub const GetVolumePathName = *opaque{};
-        pub const QueryDosDevice = *opaque{};
-        pub const RemoveDirectory = *opaque{};
-        pub const SetFileAttributes = *opaque{};
-        pub const GetTempPath = *opaque{};
-        pub const GetVolumeNameForVolumeMountPoint = *opaque{};
-        pub const GetVolumePathNamesForVolumeName = *opaque{};
-        pub const GetCompressedFileSize = *opaque{};
-        pub const GetTempPath2 = *opaque{};
-        pub const VerFindFile = *opaque{};
-        pub const VerInstallFile = *opaque{};
-        pub const GetFileVersionInfoSize = *opaque{};
-        pub const GetFileVersionInfo = *opaque{};
-        pub const GetFileVersionInfoSizeEx = *opaque{};
-        pub const GetFileVersionInfoEx = *opaque{};
-        pub const VerLanguageName = *opaque{};
-        pub const VerQueryValue = *opaque{};
-        pub const GetExpandedName = *opaque{};
-        pub const LZOpenFile = *opaque{};
-        pub const GetBinaryType = *opaque{};
-        pub const GetLongPathNameTransacted = *opaque{};
-        pub const SetFileShortName = *opaque{};
-        pub const EncryptFile = *opaque{};
-        pub const DecryptFile = *opaque{};
-        pub const FileEncryptionStatus = *opaque{};
-        pub const OpenEncryptedFileRaw = *opaque{};
-        pub const CreateDirectoryEx = *opaque{};
-        pub const CreateDirectoryTransacted = *opaque{};
-        pub const RemoveDirectoryTransacted = *opaque{};
-        pub const GetFullPathNameTransacted = *opaque{};
-        pub const CreateFileTransacted = *opaque{};
-        pub const SetFileAttributesTransacted = *opaque{};
-        pub const GetFileAttributesTransacted = *opaque{};
-        pub const GetCompressedFileSizeTransacted = *opaque{};
-        pub const DeleteFileTransacted = *opaque{};
-        pub const CheckNameLegalDOS8Dot3 = *opaque{};
-        pub const FindFirstFileTransacted = *opaque{};
-        pub const CopyFile = *opaque{};
-        pub const CopyFileEx = *opaque{};
-        pub const CopyFileTransacted = *opaque{};
-        pub const MoveFile = *opaque{};
-        pub const MoveFileEx = *opaque{};
-        pub const MoveFileWithProgress = *opaque{};
-        pub const MoveFileTransacted = *opaque{};
-        pub const ReplaceFile = *opaque{};
-        pub const CreateHardLink = *opaque{};
-        pub const CreateHardLinkTransacted = *opaque{};
-        pub const SetVolumeLabel = *opaque{};
-        pub const FindFirstVolumeMountPoint = *opaque{};
-        pub const FindNextVolumeMountPoint = *opaque{};
-        pub const SetVolumeMountPoint = *opaque{};
-        pub const CreateSymbolicLink = *opaque{};
-        pub const CreateSymbolicLinkTransacted = *opaque{};
+        pub const WIN32_FIND_DATA = *opaque {};
+        pub const NTMS_DRIVEINFORMATION = *opaque {};
+        pub const NTMS_CHANGERINFORMATION = *opaque {};
+        pub const NTMS_PMIDINFORMATION = *opaque {};
+        pub const NTMS_PARTITIONINFORMATION = *opaque {};
+        pub const NTMS_DRIVETYPEINFORMATION = *opaque {};
+        pub const NTMS_CHANGERTYPEINFORMATION = *opaque {};
+        pub const NTMS_LIBREQUESTINFORMATION = *opaque {};
+        pub const NTMS_OPREQUESTINFORMATION = *opaque {};
+        pub const NTMS_OBJECTINFORMATION = *opaque {};
+        pub const NTMS_I1_LIBREQUESTINFORMATION = *opaque {};
+        pub const NTMS_I1_PMIDINFORMATION = *opaque {};
+        pub const NTMS_I1_PARTITIONINFORMATION = *opaque {};
+        pub const NTMS_I1_OPREQUESTINFORMATION = *opaque {};
+        pub const NTMS_I1_OBJECTINFORMATION = *opaque {};
+        pub const SearchPath = *opaque {};
+        pub const CreateDirectory = *opaque {};
+        pub const CreateFile = *opaque {};
+        pub const DefineDosDevice = *opaque {};
+        pub const DeleteFile = *opaque {};
+        pub const DeleteVolumeMountPoint = *opaque {};
+        pub const FindFirstChangeNotification = *opaque {};
+        pub const FindFirstFile = *opaque {};
+        pub const FindFirstFileEx = *opaque {};
+        pub const FindFirstVolume = *opaque {};
+        pub const FindNextFile = *opaque {};
+        pub const FindNextVolume = *opaque {};
+        pub const GetDiskFreeSpace = *opaque {};
+        pub const GetDiskFreeSpaceEx = *opaque {};
+        pub const GetDiskSpaceInformation = *opaque {};
+        pub const GetDriveType = *opaque {};
+        pub const GetFileAttributes = *opaque {};
+        pub const GetFileAttributesEx = *opaque {};
+        pub const GetFinalPathNameByHandle = *opaque {};
+        pub const GetFullPathName = *opaque {};
+        pub const GetLogicalDriveStrings = *opaque {};
+        pub const GetLongPathName = *opaque {};
+        pub const GetShortPathName = *opaque {};
+        pub const GetTempFileName = *opaque {};
+        pub const GetVolumeInformation = *opaque {};
+        pub const GetVolumePathName = *opaque {};
+        pub const QueryDosDevice = *opaque {};
+        pub const RemoveDirectory = *opaque {};
+        pub const SetFileAttributes = *opaque {};
+        pub const GetTempPath = *opaque {};
+        pub const GetVolumeNameForVolumeMountPoint = *opaque {};
+        pub const GetVolumePathNamesForVolumeName = *opaque {};
+        pub const GetCompressedFileSize = *opaque {};
+        pub const GetTempPath2 = *opaque {};
+        pub const VerFindFile = *opaque {};
+        pub const VerInstallFile = *opaque {};
+        pub const GetFileVersionInfoSize = *opaque {};
+        pub const GetFileVersionInfo = *opaque {};
+        pub const GetFileVersionInfoSizeEx = *opaque {};
+        pub const GetFileVersionInfoEx = *opaque {};
+        pub const VerLanguageName = *opaque {};
+        pub const VerQueryValue = *opaque {};
+        pub const GetExpandedName = *opaque {};
+        pub const LZOpenFile = *opaque {};
+        pub const GetBinaryType = *opaque {};
+        pub const GetLongPathNameTransacted = *opaque {};
+        pub const SetFileShortName = *opaque {};
+        pub const EncryptFile = *opaque {};
+        pub const DecryptFile = *opaque {};
+        pub const FileEncryptionStatus = *opaque {};
+        pub const OpenEncryptedFileRaw = *opaque {};
+        pub const CreateDirectoryEx = *opaque {};
+        pub const CreateDirectoryTransacted = *opaque {};
+        pub const RemoveDirectoryTransacted = *opaque {};
+        pub const GetFullPathNameTransacted = *opaque {};
+        pub const CreateFileTransacted = *opaque {};
+        pub const SetFileAttributesTransacted = *opaque {};
+        pub const GetFileAttributesTransacted = *opaque {};
+        pub const GetCompressedFileSizeTransacted = *opaque {};
+        pub const DeleteFileTransacted = *opaque {};
+        pub const CheckNameLegalDOS8Dot3 = *opaque {};
+        pub const FindFirstFileTransacted = *opaque {};
+        pub const CopyFile = *opaque {};
+        pub const CopyFileEx = *opaque {};
+        pub const CopyFileTransacted = *opaque {};
+        pub const MoveFile = *opaque {};
+        pub const MoveFileEx = *opaque {};
+        pub const MoveFileWithProgress = *opaque {};
+        pub const MoveFileTransacted = *opaque {};
+        pub const ReplaceFile = *opaque {};
+        pub const CreateHardLink = *opaque {};
+        pub const CreateHardLinkTransacted = *opaque {};
+        pub const SetVolumeLabel = *opaque {};
+        pub const FindFirstVolumeMountPoint = *opaque {};
+        pub const FindNextVolumeMountPoint = *opaque {};
+        pub const SetVolumeMountPoint = *opaque {};
+        pub const CreateSymbolicLink = *opaque {};
+        pub const CreateSymbolicLinkTransacted = *opaque {};
     } else struct {
         pub const WIN32_FIND_DATA = @compileError("'WIN32_FIND_DATA' requires that UNICODE be set to true or false in the root module");
         pub const NTMS_DRIVEINFORMATION = @compileError("'NTMS_DRIVEINFORMATION' requires that UNICODE be set to true or false in the root module");
@@ -8644,32 +8483,74 @@ const ULARGE_INTEGER = @import("../foundation.zig").ULARGE_INTEGER;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "MAXMEDIALABEL")) { _ = MAXMEDIALABEL; }
-    if (@hasDecl(@This(), "CLAIMMEDIALABEL")) { _ = CLAIMMEDIALABEL; }
-    if (@hasDecl(@This(), "CLAIMMEDIALABELEX")) { _ = CLAIMMEDIALABELEX; }
-    if (@hasDecl(@This(), "CLFS_BLOCK_ALLOCATION")) { _ = CLFS_BLOCK_ALLOCATION; }
-    if (@hasDecl(@This(), "CLFS_BLOCK_DEALLOCATION")) { _ = CLFS_BLOCK_DEALLOCATION; }
-    if (@hasDecl(@This(), "PCLFS_COMPLETION_ROUTINE")) { _ = PCLFS_COMPLETION_ROUTINE; }
-    if (@hasDecl(@This(), "PLOG_TAIL_ADVANCE_CALLBACK")) { _ = PLOG_TAIL_ADVANCE_CALLBACK; }
-    if (@hasDecl(@This(), "PLOG_FULL_HANDLER_CALLBACK")) { _ = PLOG_FULL_HANDLER_CALLBACK; }
-    if (@hasDecl(@This(), "PLOG_UNPINNED_CALLBACK")) { _ = PLOG_UNPINNED_CALLBACK; }
-    if (@hasDecl(@This(), "WofEnumEntryProc")) { _ = WofEnumEntryProc; }
-    if (@hasDecl(@This(), "WofEnumFilesProc")) { _ = WofEnumFilesProc; }
-    if (@hasDecl(@This(), "FCACHE_CREATE_CALLBACK")) { _ = FCACHE_CREATE_CALLBACK; }
-    if (@hasDecl(@This(), "FCACHE_RICHCREATE_CALLBACK")) { _ = FCACHE_RICHCREATE_CALLBACK; }
-    if (@hasDecl(@This(), "CACHE_KEY_COMPARE")) { _ = CACHE_KEY_COMPARE; }
-    if (@hasDecl(@This(), "CACHE_KEY_HASH")) { _ = CACHE_KEY_HASH; }
-    if (@hasDecl(@This(), "CACHE_READ_CALLBACK")) { _ = CACHE_READ_CALLBACK; }
-    if (@hasDecl(@This(), "CACHE_DESTROY_CALLBACK")) { _ = CACHE_DESTROY_CALLBACK; }
-    if (@hasDecl(@This(), "CACHE_ACCESS_CHECK")) { _ = CACHE_ACCESS_CHECK; }
-    if (@hasDecl(@This(), "PFE_EXPORT_FUNC")) { _ = PFE_EXPORT_FUNC; }
-    if (@hasDecl(@This(), "PFE_IMPORT_FUNC")) { _ = PFE_IMPORT_FUNC; }
-    if (@hasDecl(@This(), "LPPROGRESS_ROUTINE")) { _ = LPPROGRESS_ROUTINE; }
-    if (@hasDecl(@This(), "PCOPYFILE2_PROGRESS_ROUTINE")) { _ = PCOPYFILE2_PROGRESS_ROUTINE; }
+    if (@hasDecl(@This(), "MAXMEDIALABEL")) {
+        _ = MAXMEDIALABEL;
+    }
+    if (@hasDecl(@This(), "CLAIMMEDIALABEL")) {
+        _ = CLAIMMEDIALABEL;
+    }
+    if (@hasDecl(@This(), "CLAIMMEDIALABELEX")) {
+        _ = CLAIMMEDIALABELEX;
+    }
+    if (@hasDecl(@This(), "CLFS_BLOCK_ALLOCATION")) {
+        _ = CLFS_BLOCK_ALLOCATION;
+    }
+    if (@hasDecl(@This(), "CLFS_BLOCK_DEALLOCATION")) {
+        _ = CLFS_BLOCK_DEALLOCATION;
+    }
+    if (@hasDecl(@This(), "PCLFS_COMPLETION_ROUTINE")) {
+        _ = PCLFS_COMPLETION_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PLOG_TAIL_ADVANCE_CALLBACK")) {
+        _ = PLOG_TAIL_ADVANCE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PLOG_FULL_HANDLER_CALLBACK")) {
+        _ = PLOG_FULL_HANDLER_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PLOG_UNPINNED_CALLBACK")) {
+        _ = PLOG_UNPINNED_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WofEnumEntryProc")) {
+        _ = WofEnumEntryProc;
+    }
+    if (@hasDecl(@This(), "WofEnumFilesProc")) {
+        _ = WofEnumFilesProc;
+    }
+    if (@hasDecl(@This(), "FCACHE_CREATE_CALLBACK")) {
+        _ = FCACHE_CREATE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "FCACHE_RICHCREATE_CALLBACK")) {
+        _ = FCACHE_RICHCREATE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "CACHE_KEY_COMPARE")) {
+        _ = CACHE_KEY_COMPARE;
+    }
+    if (@hasDecl(@This(), "CACHE_KEY_HASH")) {
+        _ = CACHE_KEY_HASH;
+    }
+    if (@hasDecl(@This(), "CACHE_READ_CALLBACK")) {
+        _ = CACHE_READ_CALLBACK;
+    }
+    if (@hasDecl(@This(), "CACHE_DESTROY_CALLBACK")) {
+        _ = CACHE_DESTROY_CALLBACK;
+    }
+    if (@hasDecl(@This(), "CACHE_ACCESS_CHECK")) {
+        _ = CACHE_ACCESS_CHECK;
+    }
+    if (@hasDecl(@This(), "PFE_EXPORT_FUNC")) {
+        _ = PFE_EXPORT_FUNC;
+    }
+    if (@hasDecl(@This(), "PFE_IMPORT_FUNC")) {
+        _ = PFE_IMPORT_FUNC;
+    }
+    if (@hasDecl(@This(), "LPPROGRESS_ROUTINE")) {
+        _ = LPPROGRESS_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PCOPYFILE2_PROGRESS_ROUTINE")) {
+        _ = PCOPYFILE2_PROGRESS_ROUTINE;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

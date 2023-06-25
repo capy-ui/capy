@@ -793,22 +793,22 @@ pub const RSVP_MSG_OBJS = extern struct {
 };
 
 pub const PALLOCMEM = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         Size: u32,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-    else => *const fn(
+    else => *const fn (
         Size: u32,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-} ;
+};
 
 pub const PFREEMEM = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const policy_decision = extern struct {
     lpvResult: u32,
@@ -817,7 +817,7 @@ pub const policy_decision = extern struct {
 };
 
 pub const CBADMITRESULT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         LpmHandle: LPM_HANDLE,
         RequestHandle: RHANDLE,
         ulPcmActionFlags: u32,
@@ -825,7 +825,7 @@ pub const CBADMITRESULT = switch (@import("builtin").zig_backend) {
         PolicyDecisionsCount: i32,
         pPolicyDecisions: ?*policy_decision,
     ) callconv(@import("std").os.windows.WINAPI) ?*u32,
-    else => *const fn(
+    else => *const fn (
         LpmHandle: LPM_HANDLE,
         RequestHandle: RHANDLE,
         ulPcmActionFlags: u32,
@@ -833,24 +833,24 @@ pub const CBADMITRESULT = switch (@import("builtin").zig_backend) {
         PolicyDecisionsCount: i32,
         pPolicyDecisions: ?*policy_decision,
     ) callconv(@import("std").os.windows.WINAPI) ?*u32,
-} ;
+};
 
 pub const CBGETRSVPOBJECTS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         LpmHandle: LPM_HANDLE,
         RequestHandle: RHANDLE,
         LpmError: i32,
         RsvpObjectsCount: i32,
         ppRsvpObjects: ?*?*RsvpObjHdr,
     ) callconv(@import("std").os.windows.WINAPI) ?*u32,
-    else => *const fn(
+    else => *const fn (
         LpmHandle: LPM_HANDLE,
         RequestHandle: RHANDLE,
         LpmError: i32,
         RsvpObjectsCount: i32,
         ppRsvpObjects: ?*?*RsvpObjHdr,
     ) callconv(@import("std").os.windows.WINAPI) ?*u32,
-} ;
+};
 
 pub const LPM_INIT_INFO = extern struct {
     PcmVersionNumber: u32,
@@ -994,7 +994,7 @@ pub const QOS_TCP_TRAFFIC = extern struct {
 };
 
 pub const TCI_NOTIFY_HANDLER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         ClRegCtx: ?HANDLE,
         ClIfcCtx: ?HANDLE,
         Event: u32,
@@ -1003,7 +1003,7 @@ pub const TCI_NOTIFY_HANDLER = switch (@import("builtin").zig_backend) {
         // TODO: what to do with BytesParamIndex 4?
         Buffer: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         ClRegCtx: ?HANDLE,
         ClIfcCtx: ?HANDLE,
         Event: u32,
@@ -1012,40 +1012,40 @@ pub const TCI_NOTIFY_HANDLER = switch (@import("builtin").zig_backend) {
         // TODO: what to do with BytesParamIndex 4?
         Buffer: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const TCI_ADD_FLOW_COMPLETE_HANDLER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         ClFlowCtx: ?HANDLE,
         Status: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         ClFlowCtx: ?HANDLE,
         Status: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const TCI_MOD_FLOW_COMPLETE_HANDLER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         ClFlowCtx: ?HANDLE,
         Status: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         ClFlowCtx: ?HANDLE,
         Status: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const TCI_DEL_FLOW_COMPLETE_HANDLER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         ClFlowCtx: ?HANDLE,
         Status: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         ClFlowCtx: ?HANDLE,
         Status: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const TCI_CLIENT_FUNC_LIST = extern struct {
     ClNotifyHandler: ?TCI_NOTIFY_HANDLER,
@@ -1364,7 +1364,6 @@ pub const QOS = extern struct {
     ProviderSpecific: WSABUF,
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (31)
 //--------------------------------------------------------------------------------
@@ -1413,7 +1412,9 @@ pub extern "qwave" fn QOSAddSocketToFlow(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 // This function from dll 'qwave' is being skipped because it has some sort of issue
-pub fn QOSRemoveSocketFromFlow() void { @panic("this function is not working"); }
+pub fn QOSRemoveSocketFromFlow() void {
+    @panic("this function is not working");
+}
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "qwave" fn QOSSetFlow(
@@ -1608,7 +1609,6 @@ pub extern "traffic" fn TcEnumerateFlows(
     Buffer: ?*ENUMERATION_BUFFER,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (4)
 //--------------------------------------------------------------------------------
@@ -1627,10 +1627,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const TcGetFlowName = thismodule.TcGetFlowNameW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const TcOpenInterface = *opaque{};
-        pub const TcQueryFlow = *opaque{};
-        pub const TcSetFlow = *opaque{};
-        pub const TcGetFlowName = *opaque{};
+        pub const TcOpenInterface = *opaque {};
+        pub const TcQueryFlow = *opaque {};
+        pub const TcSetFlow = *opaque {};
+        pub const TcGetFlowName = *opaque {};
     } else struct {
         pub const TcOpenInterface = @compileError("'TcOpenInterface' requires that UNICODE be set to true or false in the root module");
         pub const TcQueryFlow = @compileError("'TcQueryFlow' requires that UNICODE be set to true or false in the root module");
@@ -1656,18 +1656,32 @@ const WSABUF = @import("../networking/win_sock.zig").WSABUF;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PALLOCMEM")) { _ = PALLOCMEM; }
-    if (@hasDecl(@This(), "PFREEMEM")) { _ = PFREEMEM; }
-    if (@hasDecl(@This(), "CBADMITRESULT")) { _ = CBADMITRESULT; }
-    if (@hasDecl(@This(), "CBGETRSVPOBJECTS")) { _ = CBGETRSVPOBJECTS; }
-    if (@hasDecl(@This(), "TCI_NOTIFY_HANDLER")) { _ = TCI_NOTIFY_HANDLER; }
-    if (@hasDecl(@This(), "TCI_ADD_FLOW_COMPLETE_HANDLER")) { _ = TCI_ADD_FLOW_COMPLETE_HANDLER; }
-    if (@hasDecl(@This(), "TCI_MOD_FLOW_COMPLETE_HANDLER")) { _ = TCI_MOD_FLOW_COMPLETE_HANDLER; }
-    if (@hasDecl(@This(), "TCI_DEL_FLOW_COMPLETE_HANDLER")) { _ = TCI_DEL_FLOW_COMPLETE_HANDLER; }
+    if (@hasDecl(@This(), "PALLOCMEM")) {
+        _ = PALLOCMEM;
+    }
+    if (@hasDecl(@This(), "PFREEMEM")) {
+        _ = PFREEMEM;
+    }
+    if (@hasDecl(@This(), "CBADMITRESULT")) {
+        _ = CBADMITRESULT;
+    }
+    if (@hasDecl(@This(), "CBGETRSVPOBJECTS")) {
+        _ = CBGETRSVPOBJECTS;
+    }
+    if (@hasDecl(@This(), "TCI_NOTIFY_HANDLER")) {
+        _ = TCI_NOTIFY_HANDLER;
+    }
+    if (@hasDecl(@This(), "TCI_ADD_FLOW_COMPLETE_HANDLER")) {
+        _ = TCI_ADD_FLOW_COMPLETE_HANDLER;
+    }
+    if (@hasDecl(@This(), "TCI_MOD_FLOW_COMPLETE_HANDLER")) {
+        _ = TCI_MOD_FLOW_COMPLETE_HANDLER;
+    }
+    if (@hasDecl(@This(), "TCI_DEL_FLOW_COMPLETE_HANDLER")) {
+        _ = TCI_DEL_FLOW_COMPLETE_HANDLER;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

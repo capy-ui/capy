@@ -133,31 +133,7 @@ pub const DDE_INITIALIZE_COMMAND = enum(u32) {
         MF_POSTMSGS: u1 = 0,
         MF_SENDMSGS: u1 = 0,
     }) DDE_INITIALIZE_COMMAND {
-        return @intToEnum(DDE_INITIALIZE_COMMAND,
-              (if (o.APPCLASS_MONITOR == 1) @enumToInt(DDE_INITIALIZE_COMMAND.APPCLASS_MONITOR) else 0)
-            | (if (o.APPCLASS_STANDARD == 1) @enumToInt(DDE_INITIALIZE_COMMAND.APPCLASS_STANDARD) else 0)
-            | (if (o.APPCMD_CLIENTONLY == 1) @enumToInt(DDE_INITIALIZE_COMMAND.APPCMD_CLIENTONLY) else 0)
-            | (if (o.APPCMD_FILTERINITS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.APPCMD_FILTERINITS) else 0)
-            | (if (o.CBF_FAIL_ALLSVRXACTIONS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.CBF_FAIL_ALLSVRXACTIONS) else 0)
-            | (if (o.CBF_FAIL_ADVISES == 1) @enumToInt(DDE_INITIALIZE_COMMAND.CBF_FAIL_ADVISES) else 0)
-            | (if (o.CBF_FAIL_CONNECTIONS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.CBF_FAIL_CONNECTIONS) else 0)
-            | (if (o.CBF_FAIL_EXECUTES == 1) @enumToInt(DDE_INITIALIZE_COMMAND.CBF_FAIL_EXECUTES) else 0)
-            | (if (o.CBF_FAIL_POKES == 1) @enumToInt(DDE_INITIALIZE_COMMAND.CBF_FAIL_POKES) else 0)
-            | (if (o.CBF_FAIL_REQUESTS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.CBF_FAIL_REQUESTS) else 0)
-            | (if (o.CBF_FAIL_SELFCONNECTIONS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.CBF_FAIL_SELFCONNECTIONS) else 0)
-            | (if (o.CBF_SKIP_ALLNOTIFICATIONS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.CBF_SKIP_ALLNOTIFICATIONS) else 0)
-            | (if (o.CBF_SKIP_CONNECT_CONFIRMS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.CBF_SKIP_CONNECT_CONFIRMS) else 0)
-            | (if (o.CBF_SKIP_DISCONNECTS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.CBF_SKIP_DISCONNECTS) else 0)
-            | (if (o.CBF_SKIP_REGISTRATIONS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.CBF_SKIP_REGISTRATIONS) else 0)
-            | (if (o.CBF_SKIP_UNREGISTRATIONS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.CBF_SKIP_UNREGISTRATIONS) else 0)
-            | (if (o.MF_CALLBACKS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.MF_CALLBACKS) else 0)
-            | (if (o.MF_CONV == 1) @enumToInt(DDE_INITIALIZE_COMMAND.MF_CONV) else 0)
-            | (if (o.MF_ERRORS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.MF_ERRORS) else 0)
-            | (if (o.MF_HSZ_INFO == 1) @enumToInt(DDE_INITIALIZE_COMMAND.MF_HSZ_INFO) else 0)
-            | (if (o.MF_LINKS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.MF_LINKS) else 0)
-            | (if (o.MF_POSTMSGS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.MF_POSTMSGS) else 0)
-            | (if (o.MF_SENDMSGS == 1) @enumToInt(DDE_INITIALIZE_COMMAND.MF_SENDMSGS) else 0)
-        );
+        return @enumFromInt(DDE_INITIALIZE_COMMAND, (if (o.APPCLASS_MONITOR == 1) @intFromEnum(DDE_INITIALIZE_COMMAND.APPCLASS_MONITOR) else 0) | (if (o.APPCLASS_STANDARD == 1) @intFromEnum(DDE_INITIALIZE_COMMAND.APPCLASS_STANDARD) else 0) | (if (o.APPCMD_CLIENTONLY == 1) @intFromEnum(DDE_INITIALIZE_COMMAND.APPCMD_CLIENTONLY) else 0) | (if (o.APPCMD_FILTERINITS == 1) @intFromEnum(DDE_INITIALIZE_COMMAND.APPCMD_FILTERINITS) else 0) | (if (o.CBF_FAIL_ALLSVRXACTIONS == 1) @intFromEnum(DDE_INITIALIZE_COMMAND.CBF_FAIL_ALLSVRXACTIONS) else 0) | (if (o.CBF_FAIL_ADVISES == 1) @intFromEnum(DDE_INITIALIZE_COMMAND.CBF_FAIL_ADVISES) else 0) | (if (o.CBF_FAIL_CONNECTIONS == 1) @intFromEnum(DDE_INITIALIZE_COMMAND.CBF_FAIL_CONNECTIONS) else 0) | (if (o.CBF_FAIL_EXECUTES == 1) @intFromEnum(DDE_INITIALIZE_COMMAND.CBF_FAIL_EXECUTES) else 0) | (if (o.CBF_FAIL_POKES == 1) @intFromEnum(DDE_INITIALIZE_COMMAND.CBF_FAIL_POKES) else 0) | (if (o.CBF_FAIL_REQUESTS == 1) @intFromEnum(DDE_INITIALIZE_COMMAND.CBF_FAIL_REQUESTS) else 0) | (if (o.CBF_FAIL_SELFCONNECTIONS == 1) @intFromEnum(DDE_INITIALIZE_COMMAND.CBF_FAIL_SELFCONNECTIONS) else 0) | (if (o.CBF_SKIP_ALLNOTIFICATIONS == 1) @intFromEnum(DDE_INITIALIZE_COMMAND.CBF_SKIP_ALLNOTIFICATIONS) else 0) | (if (o.CBF_SKIP_CONNECT_CONFIRMS == 1) @intFromEnum(DDE_INITIALIZE_COMMAND.CBF_SKIP_CONNECT_CONFIRMS) else 0) | (if (o.CBF_SKIP_DISCONNECTS == 1) @intFromEnum(DDE_INITIALIZE_COMMAND.CBF_SKIP_DISCONNECTS) else 0) | (if (o.CBF_SKIP_REGISTRATIONS == 1) @intFromEnum(DDE_INITIALIZE_COMMAND.CBF_SKIP_REGISTRATIONS) else 0) | (if (o.CBF_SKIP_UNREGISTRATIONS == 1) @intFromEnum(DDE_INITIALIZE_COMMAND.CBF_SKIP_UNREGISTRATIONS) else 0) | (if (o.MF_CALLBACKS == 1) @intFromEnum(DDE_INITIALIZE_COMMAND.MF_CALLBACKS) else 0) | (if (o.MF_CONV == 1) @intFromEnum(DDE_INITIALIZE_COMMAND.MF_CONV) else 0) | (if (o.MF_ERRORS == 1) @intFromEnum(DDE_INITIALIZE_COMMAND.MF_ERRORS) else 0) | (if (o.MF_HSZ_INFO == 1) @intFromEnum(DDE_INITIALIZE_COMMAND.MF_HSZ_INFO) else 0) | (if (o.MF_LINKS == 1) @intFromEnum(DDE_INITIALIZE_COMMAND.MF_LINKS) else 0) | (if (o.MF_POSTMSGS == 1) @intFromEnum(DDE_INITIALIZE_COMMAND.MF_POSTMSGS) else 0) | (if (o.MF_SENDMSGS == 1) @intFromEnum(DDE_INITIALIZE_COMMAND.MF_SENDMSGS) else 0));
     }
 };
 pub const APPCLASS_MONITOR = DDE_INITIALIZE_COMMAND.APPCLASS_MONITOR;
@@ -287,17 +263,7 @@ pub const CONVINFO_STATUS = enum(u32) {
         ISSELF: u1 = 0,
         TERMINATED: u1 = 0,
     }) CONVINFO_STATUS {
-        return @intToEnum(CONVINFO_STATUS,
-              (if (o.ADVISE == 1) @enumToInt(CONVINFO_STATUS.ADVISE) else 0)
-            | (if (o.BLOCKED == 1) @enumToInt(CONVINFO_STATUS.BLOCKED) else 0)
-            | (if (o.BLOCKNEXT == 1) @enumToInt(CONVINFO_STATUS.BLOCKNEXT) else 0)
-            | (if (o.CLIENT == 1) @enumToInt(CONVINFO_STATUS.CLIENT) else 0)
-            | (if (o.CONNECTED == 1) @enumToInt(CONVINFO_STATUS.CONNECTED) else 0)
-            | (if (o.INLIST == 1) @enumToInt(CONVINFO_STATUS.INLIST) else 0)
-            | (if (o.ISLOCAL == 1) @enumToInt(CONVINFO_STATUS.ISLOCAL) else 0)
-            | (if (o.ISSELF == 1) @enumToInt(CONVINFO_STATUS.ISSELF) else 0)
-            | (if (o.TERMINATED == 1) @enumToInt(CONVINFO_STATUS.TERMINATED) else 0)
-        );
+        return @enumFromInt(CONVINFO_STATUS, (if (o.ADVISE == 1) @intFromEnum(CONVINFO_STATUS.ADVISE) else 0) | (if (o.BLOCKED == 1) @intFromEnum(CONVINFO_STATUS.BLOCKED) else 0) | (if (o.BLOCKNEXT == 1) @intFromEnum(CONVINFO_STATUS.BLOCKNEXT) else 0) | (if (o.CLIENT == 1) @intFromEnum(CONVINFO_STATUS.CLIENT) else 0) | (if (o.CONNECTED == 1) @intFromEnum(CONVINFO_STATUS.CONNECTED) else 0) | (if (o.INLIST == 1) @intFromEnum(CONVINFO_STATUS.INLIST) else 0) | (if (o.ISLOCAL == 1) @intFromEnum(CONVINFO_STATUS.ISLOCAL) else 0) | (if (o.ISSELF == 1) @intFromEnum(CONVINFO_STATUS.ISSELF) else 0) | (if (o.TERMINATED == 1) @intFromEnum(CONVINFO_STATUS.TERMINATED) else 0));
     }
 };
 pub const ST_ADVISE = CONVINFO_STATUS.ADVISE;
@@ -310,13 +276,13 @@ pub const ST_ISLOCAL = CONVINFO_STATUS.ISLOCAL;
 pub const ST_ISSELF = CONVINFO_STATUS.ISSELF;
 pub const ST_TERMINATED = CONVINFO_STATUS.TERMINATED;
 
-pub const HSZ = *opaque{};
+pub const HSZ = *opaque {};
 
-pub const HCONV = *opaque{};
+pub const HCONV = *opaque {};
 
-pub const HCONVLIST = *opaque{};
+pub const HCONVLIST = *opaque {};
 
-pub const HDDEDATA = *opaque{};
+pub const HDDEDATA = *opaque {};
 
 pub const DDEACK = extern struct {
     _bitfield: u16,
@@ -385,7 +351,7 @@ pub const CONVINFO = extern struct {
 };
 
 pub const PFNCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         wType: u32,
         wFmt: u32,
         hConv: ?HCONV,
@@ -395,7 +361,7 @@ pub const PFNCALLBACK = switch (@import("builtin").zig_backend) {
         dwData1: usize,
         dwData2: usize,
     ) callconv(@import("std").os.windows.WINAPI) ?HDDEDATA,
-    else => *const fn(
+    else => *const fn (
         wType: u32,
         wFmt: u32,
         hConv: ?HCONV,
@@ -405,7 +371,7 @@ pub const PFNCALLBACK = switch (@import("builtin").zig_backend) {
         dwData1: usize,
         dwData2: usize,
     ) callconv(@import("std").os.windows.WINAPI) ?HDDEDATA,
-} ;
+};
 
 pub const DDEML_MSG_HOOK_DATA = extern struct {
     uiLo: usize,
@@ -506,7 +472,6 @@ pub const COPYDATASTRUCT = extern struct {
     cbData: u32,
     lpData: ?*anyopaque,
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (77)
@@ -789,16 +754,13 @@ pub extern "user32" fn OpenClipboard(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn CloseClipboard(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "user32" fn CloseClipboard() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetClipboardSequenceNumber(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "user32" fn GetClipboardSequenceNumber() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetClipboardOwner(
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+pub extern "user32" fn GetClipboardOwner() callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetClipboardViewer(
@@ -806,8 +768,7 @@ pub extern "user32" fn SetClipboardViewer(
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetClipboardViewer(
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+pub extern "user32" fn GetClipboardViewer() callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn ChangeClipboardChain(
@@ -837,8 +798,7 @@ pub extern "user32" fn RegisterClipboardFormatW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn CountClipboardFormats(
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub extern "user32" fn CountClipboardFormats() callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn EnumClipboardFormats(
@@ -860,8 +820,7 @@ pub extern "user32" fn GetClipboardFormatNameW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn EmptyClipboard(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "user32" fn EmptyClipboard() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn IsClipboardFormatAvailable(
@@ -875,8 +834,7 @@ pub extern "user32" fn GetPriorityClipboardFormat(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetOpenClipboardWindow(
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+pub extern "user32" fn GetOpenClipboardWindow() callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn AddClipboardFormatListener(
@@ -988,7 +946,6 @@ pub extern "kernel32" fn GetAtomNameW(
     nSize: i32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (13)
 //--------------------------------------------------------------------------------
@@ -1025,19 +982,19 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetAtomName = thismodule.GetAtomNameW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const MONHSZSTRUCT = *opaque{};
-        pub const DdeInitialize = *opaque{};
-        pub const DdeCreateStringHandle = *opaque{};
-        pub const DdeQueryString = *opaque{};
-        pub const RegisterClipboardFormat = *opaque{};
-        pub const GetClipboardFormatName = *opaque{};
-        pub const GlobalAddAtom = *opaque{};
-        pub const GlobalAddAtomEx = *opaque{};
-        pub const GlobalFindAtom = *opaque{};
-        pub const GlobalGetAtomName = *opaque{};
-        pub const AddAtom = *opaque{};
-        pub const FindAtom = *opaque{};
-        pub const GetAtomName = *opaque{};
+        pub const MONHSZSTRUCT = *opaque {};
+        pub const DdeInitialize = *opaque {};
+        pub const DdeCreateStringHandle = *opaque {};
+        pub const DdeQueryString = *opaque {};
+        pub const RegisterClipboardFormat = *opaque {};
+        pub const GetClipboardFormatName = *opaque {};
+        pub const GlobalAddAtom = *opaque {};
+        pub const GlobalAddAtomEx = *opaque {};
+        pub const GlobalFindAtom = *opaque {};
+        pub const GlobalGetAtomName = *opaque {};
+        pub const AddAtom = *opaque {};
+        pub const FindAtom = *opaque {};
+        pub const GetAtomName = *opaque {};
     } else struct {
         pub const MONHSZSTRUCT = @compileError("'MONHSZSTRUCT' requires that UNICODE be set to true or false in the root module");
         pub const DdeInitialize = @compileError("'DdeInitialize' requires that UNICODE be set to true or false in the root module");
@@ -1072,11 +1029,11 @@ const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFNCALLBACK")) { _ = PFNCALLBACK; }
+    if (@hasDecl(@This(), "PFNCALLBACK")) {
+        _ = PFNCALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

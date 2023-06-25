@@ -32,13 +32,13 @@ pub const IEmptyVolumeCacheCallBack = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ScanProgress: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEmptyVolumeCacheCallBack,
                 dwlSpaceUsed: u64,
                 dwFlags: u32,
                 pcwszStatus: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEmptyVolumeCacheCallBack,
                 dwlSpaceUsed: u64,
                 dwFlags: u32,
@@ -46,14 +46,14 @@ pub const IEmptyVolumeCacheCallBack = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         PurgeProgress: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEmptyVolumeCacheCallBack,
                 dwlSpaceFreed: u64,
                 dwlSpaceToFree: u64,
                 dwFlags: u32,
                 pcwszStatus: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEmptyVolumeCacheCallBack,
                 dwlSpaceFreed: u64,
                 dwlSpaceToFree: u64,
@@ -63,17 +63,19 @@ pub const IEmptyVolumeCacheCallBack = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEmptyVolumeCacheCallBack_ScanProgress(self: *const T, dwlSpaceUsed: u64, dwFlags: u32, pcwszStatus: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEmptyVolumeCacheCallBack.VTable, self.vtable).ScanProgress(@ptrCast(*const IEmptyVolumeCacheCallBack, self), dwlSpaceUsed, dwFlags, pcwszStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEmptyVolumeCacheCallBack_PurgeProgress(self: *const T, dwlSpaceFreed: u64, dwlSpaceToFree: u64, dwFlags: u32, pcwszStatus: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEmptyVolumeCacheCallBack.VTable, self.vtable).PurgeProgress(@ptrCast(*const IEmptyVolumeCacheCallBack, self), dwlSpaceFreed, dwlSpaceToFree, dwFlags, pcwszStatus);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEmptyVolumeCacheCallBack_ScanProgress(self: *const T, dwlSpaceUsed: u64, dwFlags: u32, pcwszStatus: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IEmptyVolumeCacheCallBack.VTable, self.vtable).ScanProgress(@ptrCast(*const IEmptyVolumeCacheCallBack, self), dwlSpaceUsed, dwFlags, pcwszStatus);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEmptyVolumeCacheCallBack_PurgeProgress(self: *const T, dwlSpaceFreed: u64, dwlSpaceToFree: u64, dwFlags: u32, pcwszStatus: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IEmptyVolumeCacheCallBack.VTable, self.vtable).PurgeProgress(@ptrCast(*const IEmptyVolumeCacheCallBack, self), dwlSpaceFreed, dwlSpaceToFree, dwFlags, pcwszStatus);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -84,7 +86,7 @@ pub const IEmptyVolumeCache = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEmptyVolumeCache,
                 hkRegKey: ?HKEY,
                 pcwszVolume: ?[*:0]const u16,
@@ -92,7 +94,7 @@ pub const IEmptyVolumeCache = extern struct {
                 ppwszDescription: ?*?PWSTR,
                 pdwFlags: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEmptyVolumeCache,
                 hkRegKey: ?HKEY,
                 pcwszVolume: ?[*:0]const u16,
@@ -102,74 +104,76 @@ pub const IEmptyVolumeCache = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSpaceUsed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEmptyVolumeCache,
                 pdwlSpaceUsed: ?*u64,
                 picb: ?*IEmptyVolumeCacheCallBack,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEmptyVolumeCache,
                 pdwlSpaceUsed: ?*u64,
                 picb: ?*IEmptyVolumeCacheCallBack,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Purge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEmptyVolumeCache,
                 dwlSpaceToFree: u64,
                 picb: ?*IEmptyVolumeCacheCallBack,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEmptyVolumeCache,
                 dwlSpaceToFree: u64,
                 picb: ?*IEmptyVolumeCacheCallBack,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ShowProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEmptyVolumeCache,
                 hwnd: ?HWND,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEmptyVolumeCache,
                 hwnd: ?HWND,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Deactivate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEmptyVolumeCache,
                 pdwFlags: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEmptyVolumeCache,
                 pdwFlags: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEmptyVolumeCache_Initialize(self: *const T, hkRegKey: ?HKEY, pcwszVolume: ?[*:0]const u16, ppwszDisplayName: ?*?PWSTR, ppwszDescription: ?*?PWSTR, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEmptyVolumeCache.VTable, self.vtable).Initialize(@ptrCast(*const IEmptyVolumeCache, self), hkRegKey, pcwszVolume, ppwszDisplayName, ppwszDescription, pdwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEmptyVolumeCache_GetSpaceUsed(self: *const T, pdwlSpaceUsed: ?*u64, picb: ?*IEmptyVolumeCacheCallBack) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEmptyVolumeCache.VTable, self.vtable).GetSpaceUsed(@ptrCast(*const IEmptyVolumeCache, self), pdwlSpaceUsed, picb);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEmptyVolumeCache_Purge(self: *const T, dwlSpaceToFree: u64, picb: ?*IEmptyVolumeCacheCallBack) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEmptyVolumeCache.VTable, self.vtable).Purge(@ptrCast(*const IEmptyVolumeCache, self), dwlSpaceToFree, picb);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEmptyVolumeCache_ShowProperties(self: *const T, hwnd: ?HWND) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEmptyVolumeCache.VTable, self.vtable).ShowProperties(@ptrCast(*const IEmptyVolumeCache, self), hwnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEmptyVolumeCache_Deactivate(self: *const T, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEmptyVolumeCache.VTable, self.vtable).Deactivate(@ptrCast(*const IEmptyVolumeCache, self), pdwFlags);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEmptyVolumeCache_Initialize(self: *const T, hkRegKey: ?HKEY, pcwszVolume: ?[*:0]const u16, ppwszDisplayName: ?*?PWSTR, ppwszDescription: ?*?PWSTR, pdwFlags: ?*u32) HRESULT {
+                return @ptrCast(*const IEmptyVolumeCache.VTable, self.vtable).Initialize(@ptrCast(*const IEmptyVolumeCache, self), hkRegKey, pcwszVolume, ppwszDisplayName, ppwszDescription, pdwFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEmptyVolumeCache_GetSpaceUsed(self: *const T, pdwlSpaceUsed: ?*u64, picb: ?*IEmptyVolumeCacheCallBack) HRESULT {
+                return @ptrCast(*const IEmptyVolumeCache.VTable, self.vtable).GetSpaceUsed(@ptrCast(*const IEmptyVolumeCache, self), pdwlSpaceUsed, picb);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEmptyVolumeCache_Purge(self: *const T, dwlSpaceToFree: u64, picb: ?*IEmptyVolumeCacheCallBack) HRESULT {
+                return @ptrCast(*const IEmptyVolumeCache.VTable, self.vtable).Purge(@ptrCast(*const IEmptyVolumeCache, self), dwlSpaceToFree, picb);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEmptyVolumeCache_ShowProperties(self: *const T, hwnd: ?HWND) HRESULT {
+                return @ptrCast(*const IEmptyVolumeCache.VTable, self.vtable).ShowProperties(@ptrCast(*const IEmptyVolumeCache, self), hwnd);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEmptyVolumeCache_Deactivate(self: *const T, pdwFlags: ?*u32) HRESULT {
+                return @ptrCast(*const IEmptyVolumeCache.VTable, self.vtable).Deactivate(@ptrCast(*const IEmptyVolumeCache, self), pdwFlags);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -180,7 +184,7 @@ pub const IEmptyVolumeCache2 = extern struct {
     pub const VTable = extern struct {
         base: IEmptyVolumeCache.VTable,
         InitializeEx: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEmptyVolumeCache2,
                 hkRegKey: ?HKEY,
                 pcwszVolume: ?[*:0]const u16,
@@ -190,7 +194,7 @@ pub const IEmptyVolumeCache2 = extern struct {
                 ppwszBtnText: ?*?PWSTR,
                 pdwFlags: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEmptyVolumeCache2,
                 hkRegKey: ?HKEY,
                 pcwszVolume: ?[*:0]const u16,
@@ -203,13 +207,15 @@ pub const IEmptyVolumeCache2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IEmptyVolumeCache.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEmptyVolumeCache2_InitializeEx(self: *const T, hkRegKey: ?HKEY, pcwszVolume: ?[*:0]const u16, pcwszKeyName: ?[*:0]const u16, ppwszDisplayName: ?*?PWSTR, ppwszDescription: ?*?PWSTR, ppwszBtnText: ?*?PWSTR, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEmptyVolumeCache2.VTable, self.vtable).InitializeEx(@ptrCast(*const IEmptyVolumeCache2, self), hkRegKey, pcwszVolume, pcwszKeyName, ppwszDisplayName, ppwszDescription, ppwszBtnText, pdwFlags);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IEmptyVolumeCache.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEmptyVolumeCache2_InitializeEx(self: *const T, hkRegKey: ?HKEY, pcwszVolume: ?[*:0]const u16, pcwszKeyName: ?[*:0]const u16, ppwszDisplayName: ?*?PWSTR, ppwszDescription: ?*?PWSTR, ppwszBtnText: ?*?PWSTR, pdwFlags: ?*u32) HRESULT {
+                return @ptrCast(*const IEmptyVolumeCache2.VTable, self.vtable).InitializeEx(@ptrCast(*const IEmptyVolumeCache2, self), hkRegKey, pcwszVolume, pcwszKeyName, ppwszDisplayName, ppwszDescription, ppwszBtnText, pdwFlags);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -220,22 +226,22 @@ pub const IReconcileInitiator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetAbortCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IReconcileInitiator,
                 punkForAbort: ?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IReconcileInitiator,
                 punkForAbort: ?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetProgressFeedback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IReconcileInitiator,
                 ulProgress: u32,
                 ulProgressMax: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IReconcileInitiator,
                 ulProgress: u32,
                 ulProgressMax: u32,
@@ -243,17 +249,19 @@ pub const IReconcileInitiator = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReconcileInitiator_SetAbortCallback(self: *const T, punkForAbort: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReconcileInitiator.VTable, self.vtable).SetAbortCallback(@ptrCast(*const IReconcileInitiator, self), punkForAbort);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReconcileInitiator_SetProgressFeedback(self: *const T, ulProgress: u32, ulProgressMax: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReconcileInitiator.VTable, self.vtable).SetProgressFeedback(@ptrCast(*const IReconcileInitiator, self), ulProgress, ulProgressMax);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IReconcileInitiator_SetAbortCallback(self: *const T, punkForAbort: ?*IUnknown) HRESULT {
+                return @ptrCast(*const IReconcileInitiator.VTable, self.vtable).SetAbortCallback(@ptrCast(*const IReconcileInitiator, self), punkForAbort);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IReconcileInitiator_SetProgressFeedback(self: *const T, ulProgress: u32, ulProgressMax: u32) HRESULT {
+                return @ptrCast(*const IReconcileInitiator.VTable, self.vtable).SetProgressFeedback(@ptrCast(*const IReconcileInitiator, self), ulProgress, ulProgressMax);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -283,7 +291,7 @@ pub const IReconcilableObject = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Reconcile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IReconcilableObject,
                 pInitiator: ?*IReconcileInitiator,
                 dwFlags: u32,
@@ -295,7 +303,7 @@ pub const IReconcilableObject = extern struct {
                 pstgNewResidues: ?*IStorage,
                 pvReserved: ?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IReconcilableObject,
                 pInitiator: ?*IReconcileInitiator,
                 dwFlags: u32,
@@ -309,28 +317,30 @@ pub const IReconcilableObject = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetProgressFeedbackMaxEstimate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IReconcilableObject,
                 pulProgressMax: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IReconcilableObject,
                 pulProgressMax: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReconcilableObject_Reconcile(self: *const T, pInitiator: ?*IReconcileInitiator, dwFlags: u32, hwndOwner: ?HWND, hwndProgressFeedback: ?HWND, ulcInput: u32, rgpmkOtherInput: [*]?*IMoniker, plOutIndex: ?*i32, pstgNewResidues: ?*IStorage, pvReserved: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReconcilableObject.VTable, self.vtable).Reconcile(@ptrCast(*const IReconcilableObject, self), pInitiator, dwFlags, hwndOwner, hwndProgressFeedback, ulcInput, rgpmkOtherInput, plOutIndex, pstgNewResidues, pvReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IReconcilableObject_GetProgressFeedbackMaxEstimate(self: *const T, pulProgressMax: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReconcilableObject.VTable, self.vtable).GetProgressFeedbackMaxEstimate(@ptrCast(*const IReconcilableObject, self), pulProgressMax);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IReconcilableObject_Reconcile(self: *const T, pInitiator: ?*IReconcileInitiator, dwFlags: u32, hwndOwner: ?HWND, hwndProgressFeedback: ?HWND, ulcInput: u32, rgpmkOtherInput: [*]?*IMoniker, plOutIndex: ?*i32, pstgNewResidues: ?*IStorage, pvReserved: ?*anyopaque) HRESULT {
+                return @ptrCast(*const IReconcilableObject.VTable, self.vtable).Reconcile(@ptrCast(*const IReconcilableObject, self), pInitiator, dwFlags, hwndOwner, hwndProgressFeedback, ulcInput, rgpmkOtherInput, plOutIndex, pstgNewResidues, pvReserved);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IReconcilableObject_GetProgressFeedbackMaxEstimate(self: *const T, pulProgressMax: ?*u32) HRESULT {
+                return @ptrCast(*const IReconcilableObject.VTable, self.vtable).GetProgressFeedbackMaxEstimate(@ptrCast(*const IReconcilableObject, self), pulProgressMax);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -340,24 +350,26 @@ pub const IBriefcaseInitiator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         IsMonikerInBriefcase: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IBriefcaseInitiator,
                 pmk: ?*IMoniker,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IBriefcaseInitiator,
                 pmk: ?*IMoniker,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBriefcaseInitiator_IsMonikerInBriefcase(self: *const T, pmk: ?*IMoniker) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBriefcaseInitiator.VTable, self.vtable).IsMonikerInBriefcase(@ptrCast(*const IBriefcaseInitiator, self), pmk);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IBriefcaseInitiator_IsMonikerInBriefcase(self: *const T, pmk: ?*IMoniker) HRESULT {
+                return @ptrCast(*const IBriefcaseInitiator.VTable, self.vtable).IsMonikerInBriefcase(@ptrCast(*const IBriefcaseInitiator, self), pmk);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -368,43 +380,43 @@ pub const IActiveDesktopP = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetSafeMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IActiveDesktopP,
                 dwFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IActiveDesktopP,
                 dwFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnsureUpdateHTML: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IActiveDesktopP,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IActiveDesktopP,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetScheme: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IActiveDesktopP,
                 pwszSchemeName: ?[*:0]const u16,
                 dwFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IActiveDesktopP,
                 pwszSchemeName: ?[*:0]const u16,
                 dwFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetScheme: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IActiveDesktopP,
                 pwszSchemeName: [*:0]u16,
                 pdwcchBuffer: ?*u32,
                 dwFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IActiveDesktopP,
                 pwszSchemeName: [*:0]u16,
                 pdwcchBuffer: ?*u32,
@@ -413,25 +425,27 @@ pub const IActiveDesktopP = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveDesktopP_SetSafeMode(self: *const T, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveDesktopP.VTable, self.vtable).SetSafeMode(@ptrCast(*const IActiveDesktopP, self), dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveDesktopP_EnsureUpdateHTML(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveDesktopP.VTable, self.vtable).EnsureUpdateHTML(@ptrCast(*const IActiveDesktopP, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveDesktopP_SetScheme(self: *const T, pwszSchemeName: ?[*:0]const u16, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveDesktopP.VTable, self.vtable).SetScheme(@ptrCast(*const IActiveDesktopP, self), pwszSchemeName, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveDesktopP_GetScheme(self: *const T, pwszSchemeName: [*:0]u16, pdwcchBuffer: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActiveDesktopP.VTable, self.vtable).GetScheme(@ptrCast(*const IActiveDesktopP, self), pwszSchemeName, pdwcchBuffer, dwFlags);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IActiveDesktopP_SetSafeMode(self: *const T, dwFlags: u32) HRESULT {
+                return @ptrCast(*const IActiveDesktopP.VTable, self.vtable).SetSafeMode(@ptrCast(*const IActiveDesktopP, self), dwFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IActiveDesktopP_EnsureUpdateHTML(self: *const T) HRESULT {
+                return @ptrCast(*const IActiveDesktopP.VTable, self.vtable).EnsureUpdateHTML(@ptrCast(*const IActiveDesktopP, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IActiveDesktopP_SetScheme(self: *const T, pwszSchemeName: ?[*:0]const u16, dwFlags: u32) HRESULT {
+                return @ptrCast(*const IActiveDesktopP.VTable, self.vtable).SetScheme(@ptrCast(*const IActiveDesktopP, self), pwszSchemeName, dwFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IActiveDesktopP_GetScheme(self: *const T, pwszSchemeName: [*:0]u16, pdwcchBuffer: ?*u32, dwFlags: u32) HRESULT {
+                return @ptrCast(*const IActiveDesktopP.VTable, self.vtable).GetScheme(@ptrCast(*const IActiveDesktopP, self), pwszSchemeName, pdwcchBuffer, dwFlags);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -442,67 +456,68 @@ pub const IADesktopP2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ReReadWallpaper: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IADesktopP2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IADesktopP2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetADObjectFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IADesktopP2,
                 pdwFlags: ?*u32,
                 dwMask: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IADesktopP2,
                 pdwFlags: ?*u32,
                 dwMask: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         UpdateAllDesktopSubscriptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IADesktopP2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IADesktopP2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         MakeDynamicChanges: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IADesktopP2,
                 pOleObj: ?*IOleObject,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IADesktopP2,
                 pOleObj: ?*IOleObject,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADesktopP2_ReReadWallpaper(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IADesktopP2.VTable, self.vtable).ReReadWallpaper(@ptrCast(*const IADesktopP2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADesktopP2_GetADObjectFlags(self: *const T, pdwFlags: ?*u32, dwMask: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IADesktopP2.VTable, self.vtable).GetADObjectFlags(@ptrCast(*const IADesktopP2, self), pdwFlags, dwMask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADesktopP2_UpdateAllDesktopSubscriptions(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IADesktopP2.VTable, self.vtable).UpdateAllDesktopSubscriptions(@ptrCast(*const IADesktopP2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IADesktopP2_MakeDynamicChanges(self: *const T, pOleObj: ?*IOleObject) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IADesktopP2.VTable, self.vtable).MakeDynamicChanges(@ptrCast(*const IADesktopP2, self), pOleObj);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IADesktopP2_ReReadWallpaper(self: *const T) HRESULT {
+                return @ptrCast(*const IADesktopP2.VTable, self.vtable).ReReadWallpaper(@ptrCast(*const IADesktopP2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IADesktopP2_GetADObjectFlags(self: *const T, pdwFlags: ?*u32, dwMask: u32) HRESULT {
+                return @ptrCast(*const IADesktopP2.VTable, self.vtable).GetADObjectFlags(@ptrCast(*const IADesktopP2, self), pdwFlags, dwMask);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IADesktopP2_UpdateAllDesktopSubscriptions(self: *const T) HRESULT {
+                return @ptrCast(*const IADesktopP2.VTable, self.vtable).UpdateAllDesktopSubscriptions(@ptrCast(*const IADesktopP2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IADesktopP2_MakeDynamicChanges(self: *const T, pOleObj: ?*IOleObject) HRESULT {
+                return @ptrCast(*const IADesktopP2.VTable, self.vtable).MakeDynamicChanges(@ptrCast(*const IADesktopP2, self), pOleObj);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -513,13 +528,9 @@ pub const IADesktopP2 = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (9)
@@ -535,9 +546,7 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

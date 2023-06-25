@@ -86,10 +86,10 @@ pub const WCN_FLAG_DISCOVERY_VE = @as(u32, 1);
 pub const WCN_FLAG_AUTHENTICATED_VE = @as(u32, 2);
 pub const WCN_FLAG_ENCRYPTED_VE = @as(u32, 4);
 pub const SID_WcnProvider = Guid.initString("c100beca-d33a-4a4b-bf23-bbef4663d017");
-pub const PKEY_WCN_DeviceType_Category = PROPERTYKEY { .fmtid = Guid.initString("88190b8b-4684-11da-a26a-0002b3988e81"), .pid = 16 };
-pub const PKEY_WCN_DeviceType_SubCategoryOUI = PROPERTYKEY { .fmtid = Guid.initString("88190b8b-4684-11da-a26a-0002b3988e81"), .pid = 17 };
-pub const PKEY_WCN_DeviceType_SubCategory = PROPERTYKEY { .fmtid = Guid.initString("88190b8b-4684-11da-a26a-0002b3988e81"), .pid = 18 };
-pub const PKEY_WCN_SSID = PROPERTYKEY { .fmtid = Guid.initString("88190b8b-4684-11da-a26a-0002b3988e81"), .pid = 32 };
+pub const PKEY_WCN_DeviceType_Category = PROPERTYKEY{ .fmtid = Guid.initString("88190b8b-4684-11da-a26a-0002b3988e81"), .pid = 16 };
+pub const PKEY_WCN_DeviceType_SubCategoryOUI = PROPERTYKEY{ .fmtid = Guid.initString("88190b8b-4684-11da-a26a-0002b3988e81"), .pid = 17 };
+pub const PKEY_WCN_DeviceType_SubCategory = PROPERTYKEY{ .fmtid = Guid.initString("88190b8b-4684-11da-a26a-0002b3988e81"), .pid = 18 };
+pub const PKEY_WCN_SSID = PROPERTYKEY{ .fmtid = Guid.initString("88190b8b-4684-11da-a26a-0002b3988e81"), .pid = 32 };
 
 //--------------------------------------------------------------------------------
 // Section: Types (22)
@@ -572,13 +572,13 @@ pub const IWCNDevice = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetPassword: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWCNDevice,
                 Type: WCN_PASSWORD_TYPE,
                 dwPasswordLength: u32,
                 pbPassword: [*:0]const u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWCNDevice,
                 Type: WCN_PASSWORD_TYPE,
                 dwPasswordLength: u32,
@@ -586,24 +586,24 @@ pub const IWCNDevice = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Connect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWCNDevice,
                 pNotify: ?*IWCNConnectNotify,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWCNDevice,
                 pNotify: ?*IWCNConnectNotify,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWCNDevice,
                 AttributeType: WCN_ATTRIBUTE_TYPE,
                 dwMaxBufferSize: u32,
                 pbBuffer: [*:0]u8,
                 pdwBufferUsed: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWCNDevice,
                 AttributeType: WCN_ATTRIBUTE_TYPE,
                 dwMaxBufferSize: u32,
@@ -612,25 +612,25 @@ pub const IWCNDevice = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetIntegerAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWCNDevice,
                 AttributeType: WCN_ATTRIBUTE_TYPE,
                 puInteger: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWCNDevice,
                 AttributeType: WCN_ATTRIBUTE_TYPE,
                 puInteger: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetStringAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWCNDevice,
                 AttributeType: WCN_ATTRIBUTE_TYPE,
                 cchMaxString: u32,
                 wszString: [*:0]u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWCNDevice,
                 AttributeType: WCN_ATTRIBUTE_TYPE,
                 cchMaxString: u32,
@@ -638,36 +638,36 @@ pub const IWCNDevice = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetNetworkProfile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWCNDevice,
                 cchMaxStringLength: u32,
                 wszProfile: [*:0]u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWCNDevice,
                 cchMaxStringLength: u32,
                 wszProfile: [*:0]u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetNetworkProfile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWCNDevice,
                 pszProfileXml: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWCNDevice,
                 pszProfileXml: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetVendorExtension: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWCNDevice,
                 pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC,
                 dwMaxBufferSize: u32,
                 pbBuffer: [*:0]u8,
                 pdwBufferUsed: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWCNDevice,
                 pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC,
                 dwMaxBufferSize: u32,
@@ -676,13 +676,13 @@ pub const IWCNDevice = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetVendorExtension: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWCNDevice,
                 pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC,
                 cbBuffer: u32,
                 pbBuffer: [*:0]const u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWCNDevice,
                 pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC,
                 cbBuffer: u32,
@@ -690,15 +690,15 @@ pub const IWCNDevice = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Unadvise: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWCNDevice,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWCNDevice,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetNFCPasswordParams: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWCNDevice,
                 Type: WCN_PASSWORD_TYPE,
                 dwOOBPasswordID: u32,
@@ -709,7 +709,7 @@ pub const IWCNDevice = extern struct {
                 dwDHKeyBlobLength: u32,
                 pbDHKeyBlob: ?[*:0]const u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWCNDevice,
                 Type: WCN_PASSWORD_TYPE,
                 dwOOBPasswordID: u32,
@@ -723,53 +723,55 @@ pub const IWCNDevice = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_SetPassword(self: *const T, Type: WCN_PASSWORD_TYPE, dwPasswordLength: u32, pbPassword: [*:0]const u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWCNDevice.VTable, self.vtable).SetPassword(@ptrCast(*const IWCNDevice, self), Type, dwPasswordLength, pbPassword);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_Connect(self: *const T, pNotify: ?*IWCNConnectNotify) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWCNDevice.VTable, self.vtable).Connect(@ptrCast(*const IWCNDevice, self), pNotify);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_GetAttribute(self: *const T, AttributeType: WCN_ATTRIBUTE_TYPE, dwMaxBufferSize: u32, pbBuffer: [*:0]u8, pdwBufferUsed: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWCNDevice.VTable, self.vtable).GetAttribute(@ptrCast(*const IWCNDevice, self), AttributeType, dwMaxBufferSize, pbBuffer, pdwBufferUsed);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_GetIntegerAttribute(self: *const T, AttributeType: WCN_ATTRIBUTE_TYPE, puInteger: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWCNDevice.VTable, self.vtable).GetIntegerAttribute(@ptrCast(*const IWCNDevice, self), AttributeType, puInteger);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_GetStringAttribute(self: *const T, AttributeType: WCN_ATTRIBUTE_TYPE, cchMaxString: u32, wszString: [*:0]u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWCNDevice.VTable, self.vtable).GetStringAttribute(@ptrCast(*const IWCNDevice, self), AttributeType, cchMaxString, wszString);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_GetNetworkProfile(self: *const T, cchMaxStringLength: u32, wszProfile: [*:0]u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWCNDevice.VTable, self.vtable).GetNetworkProfile(@ptrCast(*const IWCNDevice, self), cchMaxStringLength, wszProfile);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_SetNetworkProfile(self: *const T, pszProfileXml: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWCNDevice.VTable, self.vtable).SetNetworkProfile(@ptrCast(*const IWCNDevice, self), pszProfileXml);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_GetVendorExtension(self: *const T, pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC, dwMaxBufferSize: u32, pbBuffer: [*:0]u8, pdwBufferUsed: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWCNDevice.VTable, self.vtable).GetVendorExtension(@ptrCast(*const IWCNDevice, self), pVendorExtSpec, dwMaxBufferSize, pbBuffer, pdwBufferUsed);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_SetVendorExtension(self: *const T, pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC, cbBuffer: u32, pbBuffer: [*:0]const u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWCNDevice.VTable, self.vtable).SetVendorExtension(@ptrCast(*const IWCNDevice, self), pVendorExtSpec, cbBuffer, pbBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_Unadvise(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWCNDevice.VTable, self.vtable).Unadvise(@ptrCast(*const IWCNDevice, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNDevice_SetNFCPasswordParams(self: *const T, Type: WCN_PASSWORD_TYPE, dwOOBPasswordID: u32, dwPasswordLength: u32, pbPassword: ?[*:0]const u8, dwRemotePublicKeyHashLength: u32, pbRemotePublicKeyHash: ?[*:0]const u8, dwDHKeyBlobLength: u32, pbDHKeyBlob: ?[*:0]const u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWCNDevice.VTable, self.vtable).SetNFCPasswordParams(@ptrCast(*const IWCNDevice, self), Type, dwOOBPasswordID, dwPasswordLength, pbPassword, dwRemotePublicKeyHashLength, pbRemotePublicKeyHash, dwDHKeyBlobLength, pbDHKeyBlob);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWCNDevice_SetPassword(self: *const T, Type: WCN_PASSWORD_TYPE, dwPasswordLength: u32, pbPassword: [*:0]const u8) HRESULT {
+                return @ptrCast(*const IWCNDevice.VTable, self.vtable).SetPassword(@ptrCast(*const IWCNDevice, self), Type, dwPasswordLength, pbPassword);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWCNDevice_Connect(self: *const T, pNotify: ?*IWCNConnectNotify) HRESULT {
+                return @ptrCast(*const IWCNDevice.VTable, self.vtable).Connect(@ptrCast(*const IWCNDevice, self), pNotify);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWCNDevice_GetAttribute(self: *const T, AttributeType: WCN_ATTRIBUTE_TYPE, dwMaxBufferSize: u32, pbBuffer: [*:0]u8, pdwBufferUsed: ?*u32) HRESULT {
+                return @ptrCast(*const IWCNDevice.VTable, self.vtable).GetAttribute(@ptrCast(*const IWCNDevice, self), AttributeType, dwMaxBufferSize, pbBuffer, pdwBufferUsed);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWCNDevice_GetIntegerAttribute(self: *const T, AttributeType: WCN_ATTRIBUTE_TYPE, puInteger: ?*u32) HRESULT {
+                return @ptrCast(*const IWCNDevice.VTable, self.vtable).GetIntegerAttribute(@ptrCast(*const IWCNDevice, self), AttributeType, puInteger);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWCNDevice_GetStringAttribute(self: *const T, AttributeType: WCN_ATTRIBUTE_TYPE, cchMaxString: u32, wszString: [*:0]u16) HRESULT {
+                return @ptrCast(*const IWCNDevice.VTable, self.vtable).GetStringAttribute(@ptrCast(*const IWCNDevice, self), AttributeType, cchMaxString, wszString);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWCNDevice_GetNetworkProfile(self: *const T, cchMaxStringLength: u32, wszProfile: [*:0]u16) HRESULT {
+                return @ptrCast(*const IWCNDevice.VTable, self.vtable).GetNetworkProfile(@ptrCast(*const IWCNDevice, self), cchMaxStringLength, wszProfile);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWCNDevice_SetNetworkProfile(self: *const T, pszProfileXml: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IWCNDevice.VTable, self.vtable).SetNetworkProfile(@ptrCast(*const IWCNDevice, self), pszProfileXml);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWCNDevice_GetVendorExtension(self: *const T, pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC, dwMaxBufferSize: u32, pbBuffer: [*:0]u8, pdwBufferUsed: ?*u32) HRESULT {
+                return @ptrCast(*const IWCNDevice.VTable, self.vtable).GetVendorExtension(@ptrCast(*const IWCNDevice, self), pVendorExtSpec, dwMaxBufferSize, pbBuffer, pdwBufferUsed);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWCNDevice_SetVendorExtension(self: *const T, pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC, cbBuffer: u32, pbBuffer: [*:0]const u8) HRESULT {
+                return @ptrCast(*const IWCNDevice.VTable, self.vtable).SetVendorExtension(@ptrCast(*const IWCNDevice, self), pVendorExtSpec, cbBuffer, pbBuffer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWCNDevice_Unadvise(self: *const T) HRESULT {
+                return @ptrCast(*const IWCNDevice.VTable, self.vtable).Unadvise(@ptrCast(*const IWCNDevice, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWCNDevice_SetNFCPasswordParams(self: *const T, Type: WCN_PASSWORD_TYPE, dwOOBPasswordID: u32, dwPasswordLength: u32, pbPassword: ?[*:0]const u8, dwRemotePublicKeyHashLength: u32, pbRemotePublicKeyHash: ?[*:0]const u8, dwDHKeyBlobLength: u32, pbDHKeyBlob: ?[*:0]const u8) HRESULT {
+                return @ptrCast(*const IWCNDevice.VTable, self.vtable).SetNFCPasswordParams(@ptrCast(*const IWCNDevice, self), Type, dwOOBPasswordID, dwPasswordLength, pbPassword, dwRemotePublicKeyHashLength, pbRemotePublicKeyHash, dwDHKeyBlobLength, pbDHKeyBlob);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -780,39 +782,40 @@ pub const IWCNConnectNotify = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ConnectSucceeded: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWCNConnectNotify,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWCNConnectNotify,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ConnectFailed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWCNConnectNotify,
                 hrFailure: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWCNConnectNotify,
                 hrFailure: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNConnectNotify_ConnectSucceeded(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWCNConnectNotify.VTable, self.vtable).ConnectSucceeded(@ptrCast(*const IWCNConnectNotify, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWCNConnectNotify_ConnectFailed(self: *const T, hrFailure: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWCNConnectNotify.VTable, self.vtable).ConnectFailed(@ptrCast(*const IWCNConnectNotify, self), hrFailure);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWCNConnectNotify_ConnectSucceeded(self: *const T) HRESULT {
+                return @ptrCast(*const IWCNConnectNotify.VTable, self.vtable).ConnectSucceeded(@ptrCast(*const IWCNConnectNotify, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWCNConnectNotify_ConnectFailed(self: *const T, hrFailure: HRESULT) HRESULT {
+                return @ptrCast(*const IWCNConnectNotify.VTable, self.vtable).ConnectFailed(@ptrCast(*const IWCNConnectNotify, self), hrFailure);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -823,13 +826,9 @@ pub const IWCNConnectNotify = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
@@ -841,9 +840,7 @@ const PROPERTYKEY = @import("../ui/shell/properties_system.zig").PROPERTYKEY;
 const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

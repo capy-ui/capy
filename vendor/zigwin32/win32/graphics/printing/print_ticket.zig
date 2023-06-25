@@ -29,7 +29,6 @@ pub const kPTPageScope = EPrintTicketScope.PageScope;
 pub const kPTDocumentScope = EPrintTicketScope.DocumentScope;
 pub const kPTJobScope = EPrintTicketScope.JobScope;
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (11)
 //--------------------------------------------------------------------------------
@@ -120,19 +119,14 @@ pub extern "prntvpt" fn PTConvertDevModeToPrintTicket(
     pPrintTicket: ?*IStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
@@ -145,9 +139,7 @@ const IStream = @import("../../system/com.zig").IStream;
 const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

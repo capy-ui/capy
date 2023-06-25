@@ -102,13 +102,11 @@ pub const WNV_REDIRECT_PARAM = extern struct {
     NewPA: WNV_IP_ADDRESS,
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (2)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windowsServer2012'
-pub extern "wnvapi" fn WnvOpen(
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+pub extern "wnvapi" fn WnvOpen() callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "wnvapi" fn WnvRequestNotification(
@@ -118,19 +116,14 @@ pub extern "wnvapi" fn WnvRequestNotification(
     BytesTransferred: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
@@ -143,9 +136,7 @@ const NL_DAD_STATE = @import("../networking/win_sock.zig").NL_DAD_STATE;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

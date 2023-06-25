@@ -558,25 +558,25 @@ pub const IDirectMusic = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         EnumPort: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusic,
                 dwIndex: u32,
                 pPortCaps: ?*DMUS_PORTCAPS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusic,
                 dwIndex: u32,
                 pPortCaps: ?*DMUS_PORTCAPS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateMusicBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusic,
                 pBufferDesc: ?*DMUS_BUFFERDESC,
                 ppBuffer: ?*?*IDirectMusicBuffer,
                 pUnkOuter: ?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusic,
                 pBufferDesc: ?*DMUS_BUFFERDESC,
                 ppBuffer: ?*?*IDirectMusicBuffer,
@@ -584,14 +584,14 @@ pub const IDirectMusic = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreatePort: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusic,
                 rclsidPort: ?*const Guid,
                 pPortParams: ?*DMUS_PORTPARAMS8,
                 ppPort: ?*?*IDirectMusicPort,
                 pUnkOuter: ?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusic,
                 rclsidPort: ?*const Guid,
                 pPortParams: ?*DMUS_PORTPARAMS8,
@@ -600,66 +600,66 @@ pub const IDirectMusic = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumMasterClock: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusic,
                 dwIndex: u32,
                 lpClockInfo: ?*DMUS_CLOCKINFO8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusic,
                 dwIndex: u32,
                 lpClockInfo: ?*DMUS_CLOCKINFO8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetMasterClock: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusic,
                 pguidClock: ?*Guid,
                 ppReferenceClock: ?*?*IReferenceClock,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusic,
                 pguidClock: ?*Guid,
                 ppReferenceClock: ?*?*IReferenceClock,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetMasterClock: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusic,
                 rguidClock: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusic,
                 rguidClock: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Activate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusic,
                 fEnable: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusic,
                 fEnable: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDefaultPort: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusic,
                 pguidPort: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusic,
                 pguidPort: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetDirectSound: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusic,
                 pDirectSound: ?*IDirectSound,
                 hWnd: ?HWND,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusic,
                 pDirectSound: ?*IDirectSound,
                 hWnd: ?HWND,
@@ -667,45 +667,47 @@ pub const IDirectMusic = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_EnumPort(self: *const T, dwIndex: u32, pPortCaps: ?*DMUS_PORTCAPS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusic.VTable, self.vtable).EnumPort(@ptrCast(*const IDirectMusic, self), dwIndex, pPortCaps);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_CreateMusicBuffer(self: *const T, pBufferDesc: ?*DMUS_BUFFERDESC, ppBuffer: ?*?*IDirectMusicBuffer, pUnkOuter: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusic.VTable, self.vtable).CreateMusicBuffer(@ptrCast(*const IDirectMusic, self), pBufferDesc, ppBuffer, pUnkOuter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_CreatePort(self: *const T, rclsidPort: ?*const Guid, pPortParams: ?*DMUS_PORTPARAMS8, ppPort: ?*?*IDirectMusicPort, pUnkOuter: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusic.VTable, self.vtable).CreatePort(@ptrCast(*const IDirectMusic, self), rclsidPort, pPortParams, ppPort, pUnkOuter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_EnumMasterClock(self: *const T, dwIndex: u32, lpClockInfo: ?*DMUS_CLOCKINFO8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusic.VTable, self.vtable).EnumMasterClock(@ptrCast(*const IDirectMusic, self), dwIndex, lpClockInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_GetMasterClock(self: *const T, pguidClock: ?*Guid, ppReferenceClock: ?*?*IReferenceClock) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusic.VTable, self.vtable).GetMasterClock(@ptrCast(*const IDirectMusic, self), pguidClock, ppReferenceClock);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_SetMasterClock(self: *const T, rguidClock: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusic.VTable, self.vtable).SetMasterClock(@ptrCast(*const IDirectMusic, self), rguidClock);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_Activate(self: *const T, fEnable: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusic.VTable, self.vtable).Activate(@ptrCast(*const IDirectMusic, self), fEnable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_GetDefaultPort(self: *const T, pguidPort: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusic.VTable, self.vtable).GetDefaultPort(@ptrCast(*const IDirectMusic, self), pguidPort);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic_SetDirectSound(self: *const T, pDirectSound: ?*IDirectSound, hWnd: ?HWND) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusic.VTable, self.vtable).SetDirectSound(@ptrCast(*const IDirectMusic, self), pDirectSound, hWnd);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusic_EnumPort(self: *const T, dwIndex: u32, pPortCaps: ?*DMUS_PORTCAPS) HRESULT {
+                return @ptrCast(*const IDirectMusic.VTable, self.vtable).EnumPort(@ptrCast(*const IDirectMusic, self), dwIndex, pPortCaps);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusic_CreateMusicBuffer(self: *const T, pBufferDesc: ?*DMUS_BUFFERDESC, ppBuffer: ?*?*IDirectMusicBuffer, pUnkOuter: ?*IUnknown) HRESULT {
+                return @ptrCast(*const IDirectMusic.VTable, self.vtable).CreateMusicBuffer(@ptrCast(*const IDirectMusic, self), pBufferDesc, ppBuffer, pUnkOuter);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusic_CreatePort(self: *const T, rclsidPort: ?*const Guid, pPortParams: ?*DMUS_PORTPARAMS8, ppPort: ?*?*IDirectMusicPort, pUnkOuter: ?*IUnknown) HRESULT {
+                return @ptrCast(*const IDirectMusic.VTable, self.vtable).CreatePort(@ptrCast(*const IDirectMusic, self), rclsidPort, pPortParams, ppPort, pUnkOuter);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusic_EnumMasterClock(self: *const T, dwIndex: u32, lpClockInfo: ?*DMUS_CLOCKINFO8) HRESULT {
+                return @ptrCast(*const IDirectMusic.VTable, self.vtable).EnumMasterClock(@ptrCast(*const IDirectMusic, self), dwIndex, lpClockInfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusic_GetMasterClock(self: *const T, pguidClock: ?*Guid, ppReferenceClock: ?*?*IReferenceClock) HRESULT {
+                return @ptrCast(*const IDirectMusic.VTable, self.vtable).GetMasterClock(@ptrCast(*const IDirectMusic, self), pguidClock, ppReferenceClock);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusic_SetMasterClock(self: *const T, rguidClock: ?*const Guid) HRESULT {
+                return @ptrCast(*const IDirectMusic.VTable, self.vtable).SetMasterClock(@ptrCast(*const IDirectMusic, self), rguidClock);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusic_Activate(self: *const T, fEnable: BOOL) HRESULT {
+                return @ptrCast(*const IDirectMusic.VTable, self.vtable).Activate(@ptrCast(*const IDirectMusic, self), fEnable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusic_GetDefaultPort(self: *const T, pguidPort: ?*Guid) HRESULT {
+                return @ptrCast(*const IDirectMusic.VTable, self.vtable).GetDefaultPort(@ptrCast(*const IDirectMusic, self), pguidPort);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusic_SetDirectSound(self: *const T, pDirectSound: ?*IDirectSound, hWnd: ?HWND) HRESULT {
+                return @ptrCast(*const IDirectMusic.VTable, self.vtable).SetDirectSound(@ptrCast(*const IDirectMusic, self), pDirectSound, hWnd);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -715,24 +717,26 @@ pub const IDirectMusic8 = extern struct {
     pub const VTable = extern struct {
         base: IDirectMusic.VTable,
         SetExternalMasterClock: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusic8,
                 pClock: ?*IReferenceClock,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusic8,
                 pClock: ?*IReferenceClock,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDirectMusic.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusic8_SetExternalMasterClock(self: *const T, pClock: ?*IReferenceClock) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusic8.VTable, self.vtable).SetExternalMasterClock(@ptrCast(*const IDirectMusic8, self), pClock);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDirectMusic.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusic8_SetExternalMasterClock(self: *const T, pClock: ?*IReferenceClock) HRESULT {
+                return @ptrCast(*const IDirectMusic8.VTable, self.vtable).SetExternalMasterClock(@ptrCast(*const IDirectMusic8, self), pClock);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -742,31 +746,31 @@ pub const IDirectMusicBuffer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Flush: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicBuffer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicBuffer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         TotalTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicBuffer,
                 prtTime: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicBuffer,
                 prtTime: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         PackStructured: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicBuffer,
                 rt: i64,
                 dwChannelGroup: u32,
                 dwChannelMessage: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicBuffer,
                 rt: i64,
                 dwChannelGroup: u32,
@@ -774,14 +778,14 @@ pub const IDirectMusicBuffer = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         PackUnstructured: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicBuffer,
                 rt: i64,
                 dwChannelGroup: u32,
                 cb: u32,
                 lpb: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicBuffer,
                 rt: i64,
                 dwChannelGroup: u32,
@@ -790,22 +794,22 @@ pub const IDirectMusicBuffer = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ResetReadPtr: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicBuffer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicBuffer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetNextEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicBuffer,
                 prt: ?*i64,
                 pdwChannelGroup: ?*u32,
                 pdwLength: ?*u32,
                 ppData: ?*?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicBuffer,
                 prt: ?*i64,
                 pdwChannelGroup: ?*u32,
@@ -814,132 +818,134 @@ pub const IDirectMusicBuffer = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetRawBufferPtr: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicBuffer,
                 ppData: ?*?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicBuffer,
                 ppData: ?*?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetStartTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicBuffer,
                 prt: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicBuffer,
                 prt: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetUsedBytes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicBuffer,
                 pcb: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicBuffer,
                 pcb: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetMaxBytes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicBuffer,
                 pcb: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicBuffer,
                 pcb: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetBufferFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicBuffer,
                 pGuidFormat: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicBuffer,
                 pGuidFormat: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetStartTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicBuffer,
                 rt: i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicBuffer,
                 rt: i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetUsedBytes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicBuffer,
                 cb: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicBuffer,
                 cb: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_Flush(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).Flush(@ptrCast(*const IDirectMusicBuffer, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_TotalTime(self: *const T, prtTime: ?*i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).TotalTime(@ptrCast(*const IDirectMusicBuffer, self), prtTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_PackStructured(self: *const T, rt: i64, dwChannelGroup: u32, dwChannelMessage: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).PackStructured(@ptrCast(*const IDirectMusicBuffer, self), rt, dwChannelGroup, dwChannelMessage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_PackUnstructured(self: *const T, rt: i64, dwChannelGroup: u32, cb: u32, lpb: ?*u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).PackUnstructured(@ptrCast(*const IDirectMusicBuffer, self), rt, dwChannelGroup, cb, lpb);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_ResetReadPtr(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).ResetReadPtr(@ptrCast(*const IDirectMusicBuffer, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_GetNextEvent(self: *const T, prt: ?*i64, pdwChannelGroup: ?*u32, pdwLength: ?*u32, ppData: ?*?*u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).GetNextEvent(@ptrCast(*const IDirectMusicBuffer, self), prt, pdwChannelGroup, pdwLength, ppData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_GetRawBufferPtr(self: *const T, ppData: ?*?*u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).GetRawBufferPtr(@ptrCast(*const IDirectMusicBuffer, self), ppData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_GetStartTime(self: *const T, prt: ?*i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).GetStartTime(@ptrCast(*const IDirectMusicBuffer, self), prt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_GetUsedBytes(self: *const T, pcb: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).GetUsedBytes(@ptrCast(*const IDirectMusicBuffer, self), pcb);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_GetMaxBytes(self: *const T, pcb: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).GetMaxBytes(@ptrCast(*const IDirectMusicBuffer, self), pcb);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_GetBufferFormat(self: *const T, pGuidFormat: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).GetBufferFormat(@ptrCast(*const IDirectMusicBuffer, self), pGuidFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_SetStartTime(self: *const T, rt: i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).SetStartTime(@ptrCast(*const IDirectMusicBuffer, self), rt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicBuffer_SetUsedBytes(self: *const T, cb: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).SetUsedBytes(@ptrCast(*const IDirectMusicBuffer, self), cb);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicBuffer_Flush(self: *const T) HRESULT {
+                return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).Flush(@ptrCast(*const IDirectMusicBuffer, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicBuffer_TotalTime(self: *const T, prtTime: ?*i64) HRESULT {
+                return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).TotalTime(@ptrCast(*const IDirectMusicBuffer, self), prtTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicBuffer_PackStructured(self: *const T, rt: i64, dwChannelGroup: u32, dwChannelMessage: u32) HRESULT {
+                return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).PackStructured(@ptrCast(*const IDirectMusicBuffer, self), rt, dwChannelGroup, dwChannelMessage);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicBuffer_PackUnstructured(self: *const T, rt: i64, dwChannelGroup: u32, cb: u32, lpb: ?*u8) HRESULT {
+                return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).PackUnstructured(@ptrCast(*const IDirectMusicBuffer, self), rt, dwChannelGroup, cb, lpb);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicBuffer_ResetReadPtr(self: *const T) HRESULT {
+                return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).ResetReadPtr(@ptrCast(*const IDirectMusicBuffer, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicBuffer_GetNextEvent(self: *const T, prt: ?*i64, pdwChannelGroup: ?*u32, pdwLength: ?*u32, ppData: ?*?*u8) HRESULT {
+                return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).GetNextEvent(@ptrCast(*const IDirectMusicBuffer, self), prt, pdwChannelGroup, pdwLength, ppData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicBuffer_GetRawBufferPtr(self: *const T, ppData: ?*?*u8) HRESULT {
+                return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).GetRawBufferPtr(@ptrCast(*const IDirectMusicBuffer, self), ppData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicBuffer_GetStartTime(self: *const T, prt: ?*i64) HRESULT {
+                return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).GetStartTime(@ptrCast(*const IDirectMusicBuffer, self), prt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicBuffer_GetUsedBytes(self: *const T, pcb: ?*u32) HRESULT {
+                return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).GetUsedBytes(@ptrCast(*const IDirectMusicBuffer, self), pcb);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicBuffer_GetMaxBytes(self: *const T, pcb: ?*u32) HRESULT {
+                return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).GetMaxBytes(@ptrCast(*const IDirectMusicBuffer, self), pcb);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicBuffer_GetBufferFormat(self: *const T, pGuidFormat: ?*Guid) HRESULT {
+                return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).GetBufferFormat(@ptrCast(*const IDirectMusicBuffer, self), pGuidFormat);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicBuffer_SetStartTime(self: *const T, rt: i64) HRESULT {
+                return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).SetStartTime(@ptrCast(*const IDirectMusicBuffer, self), rt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicBuffer_SetUsedBytes(self: *const T, cb: u32) HRESULT {
+                return @ptrCast(*const IDirectMusicBuffer.VTable, self.vtable).SetUsedBytes(@ptrCast(*const IDirectMusicBuffer, self), cb);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -949,38 +955,40 @@ pub const IDirectMusicInstrument = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetPatch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicInstrument,
                 pdwPatch: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicInstrument,
                 pdwPatch: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetPatch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicInstrument,
                 dwPatch: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicInstrument,
                 dwPatch: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicInstrument_GetPatch(self: *const T, pdwPatch: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicInstrument.VTable, self.vtable).GetPatch(@ptrCast(*const IDirectMusicInstrument, self), pdwPatch);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicInstrument_SetPatch(self: *const T, dwPatch: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicInstrument.VTable, self.vtable).SetPatch(@ptrCast(*const IDirectMusicInstrument, self), dwPatch);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicInstrument_GetPatch(self: *const T, pdwPatch: ?*u32) HRESULT {
+                return @ptrCast(*const IDirectMusicInstrument.VTable, self.vtable).GetPatch(@ptrCast(*const IDirectMusicInstrument, self), pdwPatch);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicInstrument_SetPatch(self: *const T, dwPatch: u32) HRESULT {
+                return @ptrCast(*const IDirectMusicInstrument.VTable, self.vtable).SetPatch(@ptrCast(*const IDirectMusicInstrument, self), dwPatch);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -991,9 +999,11 @@ pub const IDirectMusicDownloadedInstrument = extern struct {
         base: IUnknown.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1003,26 +1013,26 @@ pub const IDirectMusicCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetInstrument: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicCollection,
                 dwPatch: u32,
                 ppInstrument: ?*?*IDirectMusicInstrument,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicCollection,
                 dwPatch: u32,
                 ppInstrument: ?*?*IDirectMusicInstrument,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumInstrument: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicCollection,
                 dwIndex: u32,
                 pdwPatch: ?*u32,
                 pwszName: ?PWSTR,
                 dwNameLen: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicCollection,
                 dwIndex: u32,
                 pdwPatch: ?*u32,
@@ -1032,17 +1042,19 @@ pub const IDirectMusicCollection = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicCollection_GetInstrument(self: *const T, dwPatch: u32, ppInstrument: ?*?*IDirectMusicInstrument) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicCollection.VTable, self.vtable).GetInstrument(@ptrCast(*const IDirectMusicCollection, self), dwPatch, ppInstrument);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicCollection_EnumInstrument(self: *const T, dwIndex: u32, pdwPatch: ?*u32, pwszName: ?PWSTR, dwNameLen: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicCollection.VTable, self.vtable).EnumInstrument(@ptrCast(*const IDirectMusicCollection, self), dwIndex, pdwPatch, pwszName, dwNameLen);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicCollection_GetInstrument(self: *const T, dwPatch: u32, ppInstrument: ?*?*IDirectMusicInstrument) HRESULT {
+                return @ptrCast(*const IDirectMusicCollection.VTable, self.vtable).GetInstrument(@ptrCast(*const IDirectMusicCollection, self), dwPatch, ppInstrument);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicCollection_EnumInstrument(self: *const T, dwIndex: u32, pdwPatch: ?*u32, pwszName: ?PWSTR, dwNameLen: u32) HRESULT {
+                return @ptrCast(*const IDirectMusicCollection.VTable, self.vtable).EnumInstrument(@ptrCast(*const IDirectMusicCollection, self), dwIndex, pdwPatch, pwszName, dwNameLen);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1052,12 +1064,12 @@ pub const IDirectMusicDownload = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicDownload,
                 ppvBuffer: ?*?*anyopaque,
                 pdwSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicDownload,
                 ppvBuffer: ?*?*anyopaque,
                 pdwSize: ?*u32,
@@ -1065,13 +1077,15 @@ pub const IDirectMusicDownload = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicDownload_GetBuffer(self: *const T, ppvBuffer: ?*?*anyopaque, pdwSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicDownload.VTable, self.vtable).GetBuffer(@ptrCast(*const IDirectMusicDownload, self), ppvBuffer, pdwSize);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicDownload_GetBuffer(self: *const T, ppvBuffer: ?*?*anyopaque, pdwSize: ?*u32) HRESULT {
+                return @ptrCast(*const IDirectMusicDownload.VTable, self.vtable).GetBuffer(@ptrCast(*const IDirectMusicDownload, self), ppvBuffer, pdwSize);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1081,100 +1095,102 @@ pub const IDirectMusicPortDownload = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicPortDownload,
                 dwDLId: u32,
                 ppIDMDownload: ?*?*IDirectMusicDownload,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicPortDownload,
                 dwDLId: u32,
                 ppIDMDownload: ?*?*IDirectMusicDownload,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AllocateBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicPortDownload,
                 dwSize: u32,
                 ppIDMDownload: ?*?*IDirectMusicDownload,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicPortDownload,
                 dwSize: u32,
                 ppIDMDownload: ?*?*IDirectMusicDownload,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDLId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicPortDownload,
                 pdwStartDLId: ?*u32,
                 dwCount: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicPortDownload,
                 pdwStartDLId: ?*u32,
                 dwCount: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAppend: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicPortDownload,
                 pdwAppend: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicPortDownload,
                 pdwAppend: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Download: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicPortDownload,
                 pIDMDownload: ?*IDirectMusicDownload,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicPortDownload,
                 pIDMDownload: ?*IDirectMusicDownload,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Unload: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicPortDownload,
                 pIDMDownload: ?*IDirectMusicDownload,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicPortDownload,
                 pIDMDownload: ?*IDirectMusicDownload,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPortDownload_GetBuffer(self: *const T, dwDLId: u32, ppIDMDownload: ?*?*IDirectMusicDownload) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicPortDownload.VTable, self.vtable).GetBuffer(@ptrCast(*const IDirectMusicPortDownload, self), dwDLId, ppIDMDownload);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPortDownload_AllocateBuffer(self: *const T, dwSize: u32, ppIDMDownload: ?*?*IDirectMusicDownload) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicPortDownload.VTable, self.vtable).AllocateBuffer(@ptrCast(*const IDirectMusicPortDownload, self), dwSize, ppIDMDownload);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPortDownload_GetDLId(self: *const T, pdwStartDLId: ?*u32, dwCount: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicPortDownload.VTable, self.vtable).GetDLId(@ptrCast(*const IDirectMusicPortDownload, self), pdwStartDLId, dwCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPortDownload_GetAppend(self: *const T, pdwAppend: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicPortDownload.VTable, self.vtable).GetAppend(@ptrCast(*const IDirectMusicPortDownload, self), pdwAppend);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPortDownload_Download(self: *const T, pIDMDownload: ?*IDirectMusicDownload) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicPortDownload.VTable, self.vtable).Download(@ptrCast(*const IDirectMusicPortDownload, self), pIDMDownload);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPortDownload_Unload(self: *const T, pIDMDownload: ?*IDirectMusicDownload) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicPortDownload.VTable, self.vtable).Unload(@ptrCast(*const IDirectMusicPortDownload, self), pIDMDownload);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicPortDownload_GetBuffer(self: *const T, dwDLId: u32, ppIDMDownload: ?*?*IDirectMusicDownload) HRESULT {
+                return @ptrCast(*const IDirectMusicPortDownload.VTable, self.vtable).GetBuffer(@ptrCast(*const IDirectMusicPortDownload, self), dwDLId, ppIDMDownload);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicPortDownload_AllocateBuffer(self: *const T, dwSize: u32, ppIDMDownload: ?*?*IDirectMusicDownload) HRESULT {
+                return @ptrCast(*const IDirectMusicPortDownload.VTable, self.vtable).AllocateBuffer(@ptrCast(*const IDirectMusicPortDownload, self), dwSize, ppIDMDownload);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicPortDownload_GetDLId(self: *const T, pdwStartDLId: ?*u32, dwCount: u32) HRESULT {
+                return @ptrCast(*const IDirectMusicPortDownload.VTable, self.vtable).GetDLId(@ptrCast(*const IDirectMusicPortDownload, self), pdwStartDLId, dwCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicPortDownload_GetAppend(self: *const T, pdwAppend: ?*u32) HRESULT {
+                return @ptrCast(*const IDirectMusicPortDownload.VTable, self.vtable).GetAppend(@ptrCast(*const IDirectMusicPortDownload, self), pdwAppend);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicPortDownload_Download(self: *const T, pIDMDownload: ?*IDirectMusicDownload) HRESULT {
+                return @ptrCast(*const IDirectMusicPortDownload.VTable, self.vtable).Download(@ptrCast(*const IDirectMusicPortDownload, self), pIDMDownload);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicPortDownload_Unload(self: *const T, pIDMDownload: ?*IDirectMusicDownload) HRESULT {
+                return @ptrCast(*const IDirectMusicPortDownload.VTable, self.vtable).Unload(@ptrCast(*const IDirectMusicPortDownload, self), pIDMDownload);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1184,44 +1200,44 @@ pub const IDirectMusicPort = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         PlayBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicPort,
                 pBuffer: ?*IDirectMusicBuffer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicPort,
                 pBuffer: ?*IDirectMusicBuffer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetReadNotificationHandle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicPort,
                 hEvent: ?HANDLE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicPort,
                 hEvent: ?HANDLE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Read: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicPort,
                 pBuffer: ?*IDirectMusicBuffer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicPort,
                 pBuffer: ?*IDirectMusicBuffer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DownloadInstrument: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicPort,
                 pInstrument: ?*IDirectMusicInstrument,
                 ppDownloadedInstrument: ?*?*IDirectMusicDownloadedInstrument,
                 pNoteRanges: ?*DMUS_NOTERANGE,
                 dwNumNoteRanges: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicPort,
                 pInstrument: ?*IDirectMusicInstrument,
                 ppDownloadedInstrument: ?*?*IDirectMusicDownloadedInstrument,
@@ -1230,55 +1246,55 @@ pub const IDirectMusicPort = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         UnloadInstrument: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicPort,
                 pDownloadedInstrument: ?*IDirectMusicDownloadedInstrument,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicPort,
                 pDownloadedInstrument: ?*IDirectMusicDownloadedInstrument,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetLatencyClock: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicPort,
                 ppClock: ?*?*IReferenceClock,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicPort,
                 ppClock: ?*?*IReferenceClock,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetRunningStats: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicPort,
                 pStats: ?*DMUS_SYNTHSTATS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicPort,
                 pStats: ?*DMUS_SYNTHSTATS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Compact: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicPort,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicPort,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCaps: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicPort,
                 pPortCaps: ?*DMUS_PORTCAPS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicPort,
                 pPortCaps: ?*DMUS_PORTCAPS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DeviceIoControl: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicPort,
                 dwIoControlCode: u32,
                 lpInBuffer: ?*anyopaque,
@@ -1288,7 +1304,7 @@ pub const IDirectMusicPort = extern struct {
                 lpBytesReturned: ?*u32,
                 lpOverlapped: ?*OVERLAPPED,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicPort,
                 dwIoControlCode: u32,
                 lpInBuffer: ?*anyopaque,
@@ -1300,43 +1316,43 @@ pub const IDirectMusicPort = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetNumChannelGroups: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicPort,
                 dwChannelGroups: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicPort,
                 dwChannelGroups: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetNumChannelGroups: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicPort,
                 pdwChannelGroups: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicPort,
                 pdwChannelGroups: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Activate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicPort,
                 fActive: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicPort,
                 fActive: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetChannelPriority: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicPort,
                 dwChannelGroup: u32,
                 dwChannel: u32,
                 dwPriority: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicPort,
                 dwChannelGroup: u32,
                 dwChannel: u32,
@@ -1344,13 +1360,13 @@ pub const IDirectMusicPort = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetChannelPriority: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicPort,
                 dwChannelGroup: u32,
                 dwChannel: u32,
                 pdwPriority: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicPort,
                 dwChannelGroup: u32,
                 dwChannel: u32,
@@ -1358,25 +1374,25 @@ pub const IDirectMusicPort = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetDirectSound: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicPort,
                 pDirectSound: ?*IDirectSound,
                 pDirectSoundBuffer: ?*IDirectSoundBuffer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicPort,
                 pDirectSound: ?*IDirectSound,
                 pDirectSoundBuffer: ?*IDirectSoundBuffer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicPort,
                 pWaveFormatEx: ?*WAVEFORMATEX,
                 pdwWaveFormatExSize: ?*u32,
                 pdwBufferSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicPort,
                 pWaveFormatEx: ?*WAVEFORMATEX,
                 pdwWaveFormatExSize: ?*u32,
@@ -1385,77 +1401,79 @@ pub const IDirectMusicPort = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_PlayBuffer(self: *const T, pBuffer: ?*IDirectMusicBuffer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).PlayBuffer(@ptrCast(*const IDirectMusicPort, self), pBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_SetReadNotificationHandle(self: *const T, hEvent: ?HANDLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).SetReadNotificationHandle(@ptrCast(*const IDirectMusicPort, self), hEvent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_Read(self: *const T, pBuffer: ?*IDirectMusicBuffer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).Read(@ptrCast(*const IDirectMusicPort, self), pBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_DownloadInstrument(self: *const T, pInstrument: ?*IDirectMusicInstrument, ppDownloadedInstrument: ?*?*IDirectMusicDownloadedInstrument, pNoteRanges: ?*DMUS_NOTERANGE, dwNumNoteRanges: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).DownloadInstrument(@ptrCast(*const IDirectMusicPort, self), pInstrument, ppDownloadedInstrument, pNoteRanges, dwNumNoteRanges);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_UnloadInstrument(self: *const T, pDownloadedInstrument: ?*IDirectMusicDownloadedInstrument) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).UnloadInstrument(@ptrCast(*const IDirectMusicPort, self), pDownloadedInstrument);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_GetLatencyClock(self: *const T, ppClock: ?*?*IReferenceClock) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).GetLatencyClock(@ptrCast(*const IDirectMusicPort, self), ppClock);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_GetRunningStats(self: *const T, pStats: ?*DMUS_SYNTHSTATS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).GetRunningStats(@ptrCast(*const IDirectMusicPort, self), pStats);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_Compact(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).Compact(@ptrCast(*const IDirectMusicPort, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_GetCaps(self: *const T, pPortCaps: ?*DMUS_PORTCAPS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectMusicPort, self), pPortCaps);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_DeviceIoControl(self: *const T, dwIoControlCode: u32, lpInBuffer: ?*anyopaque, nInBufferSize: u32, lpOutBuffer: ?*anyopaque, nOutBufferSize: u32, lpBytesReturned: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).DeviceIoControl(@ptrCast(*const IDirectMusicPort, self), dwIoControlCode, lpInBuffer, nInBufferSize, lpOutBuffer, nOutBufferSize, lpBytesReturned, lpOverlapped);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_SetNumChannelGroups(self: *const T, dwChannelGroups: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).SetNumChannelGroups(@ptrCast(*const IDirectMusicPort, self), dwChannelGroups);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_GetNumChannelGroups(self: *const T, pdwChannelGroups: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).GetNumChannelGroups(@ptrCast(*const IDirectMusicPort, self), pdwChannelGroups);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_Activate(self: *const T, fActive: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).Activate(@ptrCast(*const IDirectMusicPort, self), fActive);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_SetChannelPriority(self: *const T, dwChannelGroup: u32, dwChannel: u32, dwPriority: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).SetChannelPriority(@ptrCast(*const IDirectMusicPort, self), dwChannelGroup, dwChannel, dwPriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_GetChannelPriority(self: *const T, dwChannelGroup: u32, dwChannel: u32, pdwPriority: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).GetChannelPriority(@ptrCast(*const IDirectMusicPort, self), dwChannelGroup, dwChannel, pdwPriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_SetDirectSound(self: *const T, pDirectSound: ?*IDirectSound, pDirectSoundBuffer: ?*IDirectSoundBuffer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).SetDirectSound(@ptrCast(*const IDirectMusicPort, self), pDirectSound, pDirectSoundBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicPort_GetFormat(self: *const T, pWaveFormatEx: ?*WAVEFORMATEX, pdwWaveFormatExSize: ?*u32, pdwBufferSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).GetFormat(@ptrCast(*const IDirectMusicPort, self), pWaveFormatEx, pdwWaveFormatExSize, pdwBufferSize);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicPort_PlayBuffer(self: *const T, pBuffer: ?*IDirectMusicBuffer) HRESULT {
+                return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).PlayBuffer(@ptrCast(*const IDirectMusicPort, self), pBuffer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicPort_SetReadNotificationHandle(self: *const T, hEvent: ?HANDLE) HRESULT {
+                return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).SetReadNotificationHandle(@ptrCast(*const IDirectMusicPort, self), hEvent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicPort_Read(self: *const T, pBuffer: ?*IDirectMusicBuffer) HRESULT {
+                return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).Read(@ptrCast(*const IDirectMusicPort, self), pBuffer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicPort_DownloadInstrument(self: *const T, pInstrument: ?*IDirectMusicInstrument, ppDownloadedInstrument: ?*?*IDirectMusicDownloadedInstrument, pNoteRanges: ?*DMUS_NOTERANGE, dwNumNoteRanges: u32) HRESULT {
+                return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).DownloadInstrument(@ptrCast(*const IDirectMusicPort, self), pInstrument, ppDownloadedInstrument, pNoteRanges, dwNumNoteRanges);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicPort_UnloadInstrument(self: *const T, pDownloadedInstrument: ?*IDirectMusicDownloadedInstrument) HRESULT {
+                return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).UnloadInstrument(@ptrCast(*const IDirectMusicPort, self), pDownloadedInstrument);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicPort_GetLatencyClock(self: *const T, ppClock: ?*?*IReferenceClock) HRESULT {
+                return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).GetLatencyClock(@ptrCast(*const IDirectMusicPort, self), ppClock);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicPort_GetRunningStats(self: *const T, pStats: ?*DMUS_SYNTHSTATS) HRESULT {
+                return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).GetRunningStats(@ptrCast(*const IDirectMusicPort, self), pStats);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicPort_Compact(self: *const T) HRESULT {
+                return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).Compact(@ptrCast(*const IDirectMusicPort, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicPort_GetCaps(self: *const T, pPortCaps: ?*DMUS_PORTCAPS) HRESULT {
+                return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectMusicPort, self), pPortCaps);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicPort_DeviceIoControl(self: *const T, dwIoControlCode: u32, lpInBuffer: ?*anyopaque, nInBufferSize: u32, lpOutBuffer: ?*anyopaque, nOutBufferSize: u32, lpBytesReturned: ?*u32, lpOverlapped: ?*OVERLAPPED) HRESULT {
+                return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).DeviceIoControl(@ptrCast(*const IDirectMusicPort, self), dwIoControlCode, lpInBuffer, nInBufferSize, lpOutBuffer, nOutBufferSize, lpBytesReturned, lpOverlapped);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicPort_SetNumChannelGroups(self: *const T, dwChannelGroups: u32) HRESULT {
+                return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).SetNumChannelGroups(@ptrCast(*const IDirectMusicPort, self), dwChannelGroups);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicPort_GetNumChannelGroups(self: *const T, pdwChannelGroups: ?*u32) HRESULT {
+                return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).GetNumChannelGroups(@ptrCast(*const IDirectMusicPort, self), pdwChannelGroups);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicPort_Activate(self: *const T, fActive: BOOL) HRESULT {
+                return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).Activate(@ptrCast(*const IDirectMusicPort, self), fActive);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicPort_SetChannelPriority(self: *const T, dwChannelGroup: u32, dwChannel: u32, dwPriority: u32) HRESULT {
+                return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).SetChannelPriority(@ptrCast(*const IDirectMusicPort, self), dwChannelGroup, dwChannel, dwPriority);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicPort_GetChannelPriority(self: *const T, dwChannelGroup: u32, dwChannel: u32, pdwPriority: ?*u32) HRESULT {
+                return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).GetChannelPriority(@ptrCast(*const IDirectMusicPort, self), dwChannelGroup, dwChannel, pdwPriority);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicPort_SetDirectSound(self: *const T, pDirectSound: ?*IDirectSound, pDirectSoundBuffer: ?*IDirectSoundBuffer) HRESULT {
+                return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).SetDirectSound(@ptrCast(*const IDirectMusicPort, self), pDirectSound, pDirectSoundBuffer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicPort_GetFormat(self: *const T, pWaveFormatEx: ?*WAVEFORMATEX, pdwWaveFormatExSize: ?*u32, pdwBufferSize: ?*u32) HRESULT {
+                return @ptrCast(*const IDirectMusicPort.VTable, self.vtable).GetFormat(@ptrCast(*const IDirectMusicPort, self), pWaveFormatEx, pdwWaveFormatExSize, pdwBufferSize);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1465,7 +1483,7 @@ pub const IDirectMusicThru = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ThruChannel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicThru,
                 dwSourceChannelGroup: u32,
                 dwSourceChannel: u32,
@@ -1473,7 +1491,7 @@ pub const IDirectMusicThru = extern struct {
                 dwDestinationChannel: u32,
                 pDestinationPort: ?*IDirectMusicPort,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicThru,
                 dwSourceChannelGroup: u32,
                 dwSourceChannel: u32,
@@ -1484,13 +1502,15 @@ pub const IDirectMusicThru = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicThru_ThruChannel(self: *const T, dwSourceChannelGroup: u32, dwSourceChannel: u32, dwDestinationChannelGroup: u32, dwDestinationChannel: u32, pDestinationPort: ?*IDirectMusicPort) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicThru.VTable, self.vtable).ThruChannel(@ptrCast(*const IDirectMusicThru, self), dwSourceChannelGroup, dwSourceChannel, dwDestinationChannelGroup, dwDestinationChannel, pDestinationPort);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicThru_ThruChannel(self: *const T, dwSourceChannelGroup: u32, dwSourceChannel: u32, dwDestinationChannelGroup: u32, dwDestinationChannel: u32, pDestinationPort: ?*IDirectMusicPort) HRESULT {
+                return @ptrCast(*const IDirectMusicThru.VTable, self.vtable).ThruChannel(@ptrCast(*const IDirectMusicThru, self), dwSourceChannelGroup, dwSourceChannel, dwDestinationChannelGroup, dwDestinationChannel, pDestinationPort);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1505,41 +1525,41 @@ pub const IDirectMusicSynth = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Open: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynth,
                 pPortParams: ?*DMUS_PORTPARAMS8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynth,
                 pPortParams: ?*DMUS_PORTPARAMS8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Close: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynth,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynth,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetNumChannelGroups: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynth,
                 dwGroups: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynth,
                 dwGroups: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Download: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynth,
                 phDownload: ?*?HANDLE,
                 pvData: ?*anyopaque,
                 pbFree: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynth,
                 phDownload: ?*?HANDLE,
                 pvData: ?*anyopaque,
@@ -1547,13 +1567,13 @@ pub const IDirectMusicSynth = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Unload: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynth,
                 hDownload: ?HANDLE,
                 lpFreeHandle: isize,
                 hUserData: ?HANDLE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynth,
                 hDownload: ?HANDLE,
                 lpFreeHandle: isize,
@@ -1561,13 +1581,13 @@ pub const IDirectMusicSynth = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         PlayBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynth,
                 rt: i64,
                 pbBuffer: ?*u8,
                 cbBuffer: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynth,
                 rt: i64,
                 pbBuffer: ?*u8,
@@ -1575,73 +1595,73 @@ pub const IDirectMusicSynth = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetRunningStats: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynth,
                 pStats: ?*DMUS_SYNTHSTATS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynth,
                 pStats: ?*DMUS_SYNTHSTATS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPortCaps: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynth,
                 pCaps: ?*DMUS_PORTCAPS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynth,
                 pCaps: ?*DMUS_PORTCAPS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetMasterClock: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynth,
                 pClock: ?*IReferenceClock,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynth,
                 pClock: ?*IReferenceClock,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetLatencyClock: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynth,
                 ppClock: ?*?*IReferenceClock,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynth,
                 ppClock: ?*?*IReferenceClock,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Activate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynth,
                 fEnable: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynth,
                 fEnable: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetSynthSink: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynth,
                 pSynthSink: ?*IDirectMusicSynthSink,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynth,
                 pSynthSink: ?*IDirectMusicSynthSink,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Render: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynth,
                 pBuffer: ?*i16,
                 dwLength: u32,
                 llPosition: i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynth,
                 pBuffer: ?*i16,
                 dwLength: u32,
@@ -1649,13 +1669,13 @@ pub const IDirectMusicSynth = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetChannelPriority: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynth,
                 dwChannelGroup: u32,
                 dwChannel: u32,
                 dwPriority: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynth,
                 dwChannelGroup: u32,
                 dwChannel: u32,
@@ -1663,13 +1683,13 @@ pub const IDirectMusicSynth = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetChannelPriority: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynth,
                 dwChannelGroup: u32,
                 dwChannel: u32,
                 pdwPriority: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynth,
                 dwChannelGroup: u32,
                 dwChannel: u32,
@@ -1677,100 +1697,102 @@ pub const IDirectMusicSynth = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynth,
                 pWaveFormatEx: ?*WAVEFORMATEX,
                 pdwWaveFormatExSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynth,
                 pWaveFormatEx: ?*WAVEFORMATEX,
                 pdwWaveFormatExSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAppend: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynth,
                 pdwAppend: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynth,
                 pdwAppend: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_Open(self: *const T, pPortParams: ?*DMUS_PORTPARAMS8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).Open(@ptrCast(*const IDirectMusicSynth, self), pPortParams);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).Close(@ptrCast(*const IDirectMusicSynth, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_SetNumChannelGroups(self: *const T, dwGroups: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).SetNumChannelGroups(@ptrCast(*const IDirectMusicSynth, self), dwGroups);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_Download(self: *const T, phDownload: ?*?HANDLE, pvData: ?*anyopaque, pbFree: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).Download(@ptrCast(*const IDirectMusicSynth, self), phDownload, pvData, pbFree);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_Unload(self: *const T, hDownload: ?HANDLE, lpFreeHandle: isize, hUserData: ?HANDLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).Unload(@ptrCast(*const IDirectMusicSynth, self), hDownload, lpFreeHandle, hUserData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_PlayBuffer(self: *const T, rt: i64, pbBuffer: ?*u8, cbBuffer: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).PlayBuffer(@ptrCast(*const IDirectMusicSynth, self), rt, pbBuffer, cbBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_GetRunningStats(self: *const T, pStats: ?*DMUS_SYNTHSTATS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).GetRunningStats(@ptrCast(*const IDirectMusicSynth, self), pStats);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_GetPortCaps(self: *const T, pCaps: ?*DMUS_PORTCAPS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).GetPortCaps(@ptrCast(*const IDirectMusicSynth, self), pCaps);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_SetMasterClock(self: *const T, pClock: ?*IReferenceClock) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).SetMasterClock(@ptrCast(*const IDirectMusicSynth, self), pClock);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_GetLatencyClock(self: *const T, ppClock: ?*?*IReferenceClock) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).GetLatencyClock(@ptrCast(*const IDirectMusicSynth, self), ppClock);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_Activate(self: *const T, fEnable: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).Activate(@ptrCast(*const IDirectMusicSynth, self), fEnable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_SetSynthSink(self: *const T, pSynthSink: ?*IDirectMusicSynthSink) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).SetSynthSink(@ptrCast(*const IDirectMusicSynth, self), pSynthSink);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_Render(self: *const T, pBuffer: ?*i16, dwLength: u32, llPosition: i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).Render(@ptrCast(*const IDirectMusicSynth, self), pBuffer, dwLength, llPosition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_SetChannelPriority(self: *const T, dwChannelGroup: u32, dwChannel: u32, dwPriority: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).SetChannelPriority(@ptrCast(*const IDirectMusicSynth, self), dwChannelGroup, dwChannel, dwPriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_GetChannelPriority(self: *const T, dwChannelGroup: u32, dwChannel: u32, pdwPriority: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).GetChannelPriority(@ptrCast(*const IDirectMusicSynth, self), dwChannelGroup, dwChannel, pdwPriority);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_GetFormat(self: *const T, pWaveFormatEx: ?*WAVEFORMATEX, pdwWaveFormatExSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).GetFormat(@ptrCast(*const IDirectMusicSynth, self), pWaveFormatEx, pdwWaveFormatExSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_GetAppend(self: *const T, pdwAppend: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).GetAppend(@ptrCast(*const IDirectMusicSynth, self), pdwAppend);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynth_Open(self: *const T, pPortParams: ?*DMUS_PORTPARAMS8) HRESULT {
+                return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).Open(@ptrCast(*const IDirectMusicSynth, self), pPortParams);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynth_Close(self: *const T) HRESULT {
+                return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).Close(@ptrCast(*const IDirectMusicSynth, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynth_SetNumChannelGroups(self: *const T, dwGroups: u32) HRESULT {
+                return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).SetNumChannelGroups(@ptrCast(*const IDirectMusicSynth, self), dwGroups);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynth_Download(self: *const T, phDownload: ?*?HANDLE, pvData: ?*anyopaque, pbFree: ?*i32) HRESULT {
+                return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).Download(@ptrCast(*const IDirectMusicSynth, self), phDownload, pvData, pbFree);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynth_Unload(self: *const T, hDownload: ?HANDLE, lpFreeHandle: isize, hUserData: ?HANDLE) HRESULT {
+                return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).Unload(@ptrCast(*const IDirectMusicSynth, self), hDownload, lpFreeHandle, hUserData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynth_PlayBuffer(self: *const T, rt: i64, pbBuffer: ?*u8, cbBuffer: u32) HRESULT {
+                return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).PlayBuffer(@ptrCast(*const IDirectMusicSynth, self), rt, pbBuffer, cbBuffer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynth_GetRunningStats(self: *const T, pStats: ?*DMUS_SYNTHSTATS) HRESULT {
+                return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).GetRunningStats(@ptrCast(*const IDirectMusicSynth, self), pStats);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynth_GetPortCaps(self: *const T, pCaps: ?*DMUS_PORTCAPS) HRESULT {
+                return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).GetPortCaps(@ptrCast(*const IDirectMusicSynth, self), pCaps);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynth_SetMasterClock(self: *const T, pClock: ?*IReferenceClock) HRESULT {
+                return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).SetMasterClock(@ptrCast(*const IDirectMusicSynth, self), pClock);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynth_GetLatencyClock(self: *const T, ppClock: ?*?*IReferenceClock) HRESULT {
+                return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).GetLatencyClock(@ptrCast(*const IDirectMusicSynth, self), ppClock);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynth_Activate(self: *const T, fEnable: BOOL) HRESULT {
+                return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).Activate(@ptrCast(*const IDirectMusicSynth, self), fEnable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynth_SetSynthSink(self: *const T, pSynthSink: ?*IDirectMusicSynthSink) HRESULT {
+                return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).SetSynthSink(@ptrCast(*const IDirectMusicSynth, self), pSynthSink);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynth_Render(self: *const T, pBuffer: ?*i16, dwLength: u32, llPosition: i64) HRESULT {
+                return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).Render(@ptrCast(*const IDirectMusicSynth, self), pBuffer, dwLength, llPosition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynth_SetChannelPriority(self: *const T, dwChannelGroup: u32, dwChannel: u32, dwPriority: u32) HRESULT {
+                return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).SetChannelPriority(@ptrCast(*const IDirectMusicSynth, self), dwChannelGroup, dwChannel, dwPriority);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynth_GetChannelPriority(self: *const T, dwChannelGroup: u32, dwChannel: u32, pdwPriority: ?*u32) HRESULT {
+                return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).GetChannelPriority(@ptrCast(*const IDirectMusicSynth, self), dwChannelGroup, dwChannel, pdwPriority);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynth_GetFormat(self: *const T, pWaveFormatEx: ?*WAVEFORMATEX, pdwWaveFormatExSize: ?*u32) HRESULT {
+                return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).GetFormat(@ptrCast(*const IDirectMusicSynth, self), pWaveFormatEx, pdwWaveFormatExSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynth_GetAppend(self: *const T, pdwAppend: ?*u32) HRESULT {
+                return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).GetAppend(@ptrCast(*const IDirectMusicSynth, self), pdwAppend);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1780,7 +1802,7 @@ pub const IDirectMusicSynth8 = extern struct {
     pub const VTable = extern struct {
         base: IDirectMusicSynth.VTable,
         PlayVoice: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynth8,
                 rt: i64,
                 dwVoiceId: u32,
@@ -1793,7 +1815,7 @@ pub const IDirectMusicSynth8 = extern struct {
                 stLoopStart: u64,
                 stLoopEnd: u64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynth8,
                 rt: i64,
                 dwVoiceId: u32,
@@ -1808,25 +1830,25 @@ pub const IDirectMusicSynth8 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         StopVoice: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynth8,
                 rt: i64,
                 dwVoiceId: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynth8,
                 rt: i64,
                 dwVoiceId: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetVoiceState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynth8,
                 dwVoice: ?*u32,
                 cbVoice: u32,
                 dwVoiceState: ?*DMUS_VOICE_STATE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynth8,
                 dwVoice: ?*u32,
                 cbVoice: u32,
@@ -1834,26 +1856,26 @@ pub const IDirectMusicSynth8 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Refresh: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynth8,
                 dwDownloadID: u32,
                 dwFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynth8,
                 dwDownloadID: u32,
                 dwFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AssignChannelToBuses: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynth8,
                 dwChannelGroup: u32,
                 dwChannel: u32,
                 pdwBuses: ?*u32,
                 cBuses: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynth8,
                 dwChannelGroup: u32,
                 dwChannel: u32,
@@ -1863,29 +1885,31 @@ pub const IDirectMusicSynth8 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDirectMusicSynth.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth8_PlayVoice(self: *const T, rt: i64, dwVoiceId: u32, dwChannelGroup: u32, dwChannel: u32, dwDLId: u32, prPitch: i32, vrVolume: i32, stVoiceStart: u64, stLoopStart: u64, stLoopEnd: u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynth8.VTable, self.vtable).PlayVoice(@ptrCast(*const IDirectMusicSynth8, self), rt, dwVoiceId, dwChannelGroup, dwChannel, dwDLId, prPitch, vrVolume, stVoiceStart, stLoopStart, stLoopEnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth8_StopVoice(self: *const T, rt: i64, dwVoiceId: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynth8.VTable, self.vtable).StopVoice(@ptrCast(*const IDirectMusicSynth8, self), rt, dwVoiceId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth8_GetVoiceState(self: *const T, dwVoice: ?*u32, cbVoice: u32, dwVoiceState: ?*DMUS_VOICE_STATE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynth8.VTable, self.vtable).GetVoiceState(@ptrCast(*const IDirectMusicSynth8, self), dwVoice, cbVoice, dwVoiceState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth8_Refresh(self: *const T, dwDownloadID: u32, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynth8.VTable, self.vtable).Refresh(@ptrCast(*const IDirectMusicSynth8, self), dwDownloadID, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth8_AssignChannelToBuses(self: *const T, dwChannelGroup: u32, dwChannel: u32, pdwBuses: ?*u32, cBuses: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynth8.VTable, self.vtable).AssignChannelToBuses(@ptrCast(*const IDirectMusicSynth8, self), dwChannelGroup, dwChannel, pdwBuses, cBuses);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDirectMusicSynth.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynth8_PlayVoice(self: *const T, rt: i64, dwVoiceId: u32, dwChannelGroup: u32, dwChannel: u32, dwDLId: u32, prPitch: i32, vrVolume: i32, stVoiceStart: u64, stLoopStart: u64, stLoopEnd: u64) HRESULT {
+                return @ptrCast(*const IDirectMusicSynth8.VTable, self.vtable).PlayVoice(@ptrCast(*const IDirectMusicSynth8, self), rt, dwVoiceId, dwChannelGroup, dwChannel, dwDLId, prPitch, vrVolume, stVoiceStart, stLoopStart, stLoopEnd);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynth8_StopVoice(self: *const T, rt: i64, dwVoiceId: u32) HRESULT {
+                return @ptrCast(*const IDirectMusicSynth8.VTable, self.vtable).StopVoice(@ptrCast(*const IDirectMusicSynth8, self), rt, dwVoiceId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynth8_GetVoiceState(self: *const T, dwVoice: ?*u32, cbVoice: u32, dwVoiceState: ?*DMUS_VOICE_STATE) HRESULT {
+                return @ptrCast(*const IDirectMusicSynth8.VTable, self.vtable).GetVoiceState(@ptrCast(*const IDirectMusicSynth8, self), dwVoice, cbVoice, dwVoiceState);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynth8_Refresh(self: *const T, dwDownloadID: u32, dwFlags: u32) HRESULT {
+                return @ptrCast(*const IDirectMusicSynth8.VTable, self.vtable).Refresh(@ptrCast(*const IDirectMusicSynth8, self), dwDownloadID, dwFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynth8_AssignChannelToBuses(self: *const T, dwChannelGroup: u32, dwChannel: u32, pdwBuses: ?*u32, cBuses: u32) HRESULT {
+                return @ptrCast(*const IDirectMusicSynth8.VTable, self.vtable).AssignChannelToBuses(@ptrCast(*const IDirectMusicSynth8, self), dwChannelGroup, dwChannel, pdwBuses, cBuses);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1895,128 +1919,130 @@ pub const IDirectMusicSynthSink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Init: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynthSink,
                 pSynth: ?*IDirectMusicSynth,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynthSink,
                 pSynth: ?*IDirectMusicSynth,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetMasterClock: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynthSink,
                 pClock: ?*IReferenceClock,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynthSink,
                 pClock: ?*IReferenceClock,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetLatencyClock: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynthSink,
                 ppClock: ?*?*IReferenceClock,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynthSink,
                 ppClock: ?*?*IReferenceClock,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Activate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynthSink,
                 fEnable: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynthSink,
                 fEnable: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SampleToRefTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynthSink,
                 llSampleTime: i64,
                 prfTime: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynthSink,
                 llSampleTime: i64,
                 prfTime: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RefTimeToSample: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynthSink,
                 rfTime: i64,
                 pllSampleTime: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynthSink,
                 rfTime: i64,
                 pllSampleTime: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetDirectSound: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynthSink,
                 pDirectSound: ?*IDirectSound,
                 pDirectSoundBuffer: ?*IDirectSoundBuffer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynthSink,
                 pDirectSound: ?*IDirectSound,
                 pDirectSoundBuffer: ?*IDirectSoundBuffer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDesiredBufferSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectMusicSynthSink,
                 pdwBufferSizeInSamples: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectMusicSynthSink,
                 pdwBufferSizeInSamples: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynthSink_Init(self: *const T, pSynth: ?*IDirectMusicSynth) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynthSink.VTable, self.vtable).Init(@ptrCast(*const IDirectMusicSynthSink, self), pSynth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynthSink_SetMasterClock(self: *const T, pClock: ?*IReferenceClock) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynthSink.VTable, self.vtable).SetMasterClock(@ptrCast(*const IDirectMusicSynthSink, self), pClock);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynthSink_GetLatencyClock(self: *const T, ppClock: ?*?*IReferenceClock) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynthSink.VTable, self.vtable).GetLatencyClock(@ptrCast(*const IDirectMusicSynthSink, self), ppClock);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynthSink_Activate(self: *const T, fEnable: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynthSink.VTable, self.vtable).Activate(@ptrCast(*const IDirectMusicSynthSink, self), fEnable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynthSink_SampleToRefTime(self: *const T, llSampleTime: i64, prfTime: ?*i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynthSink.VTable, self.vtable).SampleToRefTime(@ptrCast(*const IDirectMusicSynthSink, self), llSampleTime, prfTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynthSink_RefTimeToSample(self: *const T, rfTime: i64, pllSampleTime: ?*i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynthSink.VTable, self.vtable).RefTimeToSample(@ptrCast(*const IDirectMusicSynthSink, self), rfTime, pllSampleTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynthSink_SetDirectSound(self: *const T, pDirectSound: ?*IDirectSound, pDirectSoundBuffer: ?*IDirectSoundBuffer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynthSink.VTable, self.vtable).SetDirectSound(@ptrCast(*const IDirectMusicSynthSink, self), pDirectSound, pDirectSoundBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynthSink_GetDesiredBufferSize(self: *const T, pdwBufferSizeInSamples: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectMusicSynthSink.VTable, self.vtable).GetDesiredBufferSize(@ptrCast(*const IDirectMusicSynthSink, self), pdwBufferSizeInSamples);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynthSink_Init(self: *const T, pSynth: ?*IDirectMusicSynth) HRESULT {
+                return @ptrCast(*const IDirectMusicSynthSink.VTable, self.vtable).Init(@ptrCast(*const IDirectMusicSynthSink, self), pSynth);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynthSink_SetMasterClock(self: *const T, pClock: ?*IReferenceClock) HRESULT {
+                return @ptrCast(*const IDirectMusicSynthSink.VTable, self.vtable).SetMasterClock(@ptrCast(*const IDirectMusicSynthSink, self), pClock);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynthSink_GetLatencyClock(self: *const T, ppClock: ?*?*IReferenceClock) HRESULT {
+                return @ptrCast(*const IDirectMusicSynthSink.VTable, self.vtable).GetLatencyClock(@ptrCast(*const IDirectMusicSynthSink, self), ppClock);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynthSink_Activate(self: *const T, fEnable: BOOL) HRESULT {
+                return @ptrCast(*const IDirectMusicSynthSink.VTable, self.vtable).Activate(@ptrCast(*const IDirectMusicSynthSink, self), fEnable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynthSink_SampleToRefTime(self: *const T, llSampleTime: i64, prfTime: ?*i64) HRESULT {
+                return @ptrCast(*const IDirectMusicSynthSink.VTable, self.vtable).SampleToRefTime(@ptrCast(*const IDirectMusicSynthSink, self), llSampleTime, prfTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynthSink_RefTimeToSample(self: *const T, rfTime: i64, pllSampleTime: ?*i64) HRESULT {
+                return @ptrCast(*const IDirectMusicSynthSink.VTable, self.vtable).RefTimeToSample(@ptrCast(*const IDirectMusicSynthSink, self), rfTime, pllSampleTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynthSink_SetDirectSound(self: *const T, pDirectSound: ?*IDirectSound, pDirectSoundBuffer: ?*IDirectSoundBuffer) HRESULT {
+                return @ptrCast(*const IDirectMusicSynthSink.VTable, self.vtable).SetDirectSound(@ptrCast(*const IDirectMusicSynthSink, self), pDirectSound, pDirectSoundBuffer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectMusicSynthSink_GetDesiredBufferSize(self: *const T, pdwBufferSizeInSamples: ?*u32) HRESULT {
+                return @ptrCast(*const IDirectMusicSynthSink.VTable, self.vtable).GetDesiredBufferSize(@ptrCast(*const IDirectMusicSynthSink, self), pdwBufferSizeInSamples);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2100,37 +2126,37 @@ pub const DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_W_DATA = extern struct {
 };
 
 pub const LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK1 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_1_DATA,
         param1: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         param0: ?*DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_1_DATA,
         param1: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_A_DATA,
         param1: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         param0: ?*DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_A_DATA,
         param1: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_W_DATA,
         param1: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         param0: ?*DSPROPERTY_DIRECTSOUNDDEVICE_DESCRIPTION_W_DATA,
         param1: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const DSPROPERTY_DIRECTSOUNDDEVICE_ENUMERATE_1_DATA = extern struct {
     Callback: ?LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK1,
@@ -2171,7 +2197,6 @@ pub const MIDIOPENDESC = extern struct {
     rgIds: [1]MIDIOPENSTRMID align(1),
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
 //--------------------------------------------------------------------------------
@@ -2188,7 +2213,7 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
         pub const LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK = thismodule.LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK = *opaque{};
+        pub const LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK = *opaque {};
     } else struct {
         pub const LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK = @compileError("'LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK' requires that UNICODE be set to true or false in the root module");
     },
@@ -2215,13 +2240,17 @@ const WAVEFORMATEX = @import("../../media/audio.zig").WAVEFORMATEX;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK1")) { _ = LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK1; }
-    if (@hasDecl(@This(), "LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKA")) { _ = LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKA; }
-    if (@hasDecl(@This(), "LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKW")) { _ = LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKW; }
+    if (@hasDecl(@This(), "LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK1")) {
+        _ = LPFNDIRECTSOUNDDEVICEENUMERATECALLBACK1;
+    }
+    if (@hasDecl(@This(), "LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKA")) {
+        _ = LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKA;
+    }
+    if (@hasDecl(@This(), "LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKW")) {
+        _ = LPFNDIRECTSOUNDDEVICEENUMERATECALLBACKW;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

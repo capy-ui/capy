@@ -120,65 +120,61 @@ pub const VBS_BASIC_ENCLAVE_EXCEPTION_AMD64 = extern struct {
 };
 
 pub const VBS_BASIC_ENCLAVE_BASIC_CALL_RETURN_FROM_ENCLAVE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         ReturnValue: usize,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         ReturnValue: usize,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
-
-
-
+};
 
 pub const VBS_BASIC_ENCLAVE_BASIC_CALL_COMMIT_PAGES = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         EnclaveAddress: ?*anyopaque,
         NumberOfBytes: usize,
         SourceAddress: ?*anyopaque,
         PageProtection: u32,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         EnclaveAddress: ?*anyopaque,
         NumberOfBytes: usize,
         SourceAddress: ?*anyopaque,
         PageProtection: u32,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const VBS_BASIC_ENCLAVE_BASIC_CALL_DECOMMIT_PAGES = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         EnclaveAddress: ?*anyopaque,
         NumberOfBytes: usize,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         EnclaveAddress: ?*anyopaque,
         NumberOfBytes: usize,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const VBS_BASIC_ENCLAVE_BASIC_CALL_PROTECT_PAGES = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         EnclaveAddress: ?*anyopaque,
         NumberOfytes: usize,
         PageProtection: u32,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         EnclaveAddress: ?*anyopaque,
         NumberOfytes: usize,
         PageProtection: u32,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
-
+};
 
 pub const VBS_BASIC_ENCLAVE_BASIC_CALL_GET_ENCLAVE_INFORMATION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         EnclaveInfo: ?*ENCLAVE_INFORMATION,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         EnclaveInfo: ?*ENCLAVE_INFORMATION,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const ENCLAVE_VBS_BASIC_KEY_REQUEST = extern struct {
     RequestSize: u32,
@@ -189,62 +185,62 @@ pub const ENCLAVE_VBS_BASIC_KEY_REQUEST = extern struct {
 };
 
 pub const VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_KEY = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         KeyRequest: ?*ENCLAVE_VBS_BASIC_KEY_REQUEST,
         RequestedKeySize: u32,
         ReturnedKey: [*:0]u8,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         KeyRequest: ?*ENCLAVE_VBS_BASIC_KEY_REQUEST,
         RequestedKeySize: u32,
         ReturnedKey: [*:0]u8,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_REPORT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         EnclaveData: ?*const u8,
         // TODO: what to do with BytesParamIndex 2?
         Report: ?*anyopaque,
         BufferSize: u32,
         OutputSize: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         EnclaveData: ?*const u8,
         // TODO: what to do with BytesParamIndex 2?
         Report: ?*anyopaque,
         BufferSize: u32,
         OutputSize: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const VBS_BASIC_ENCLAVE_BASIC_CALL_VERIFY_REPORT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         // TODO: what to do with BytesParamIndex 1?
         Report: ?*const anyopaque,
         ReportSize: u32,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         // TODO: what to do with BytesParamIndex 1?
         Report: ?*const anyopaque,
         ReportSize: u32,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_RANDOM_DATA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         // TODO: what to do with BytesParamIndex 1?
         Buffer: ?*u8,
         NumberOfBytes: u32,
         Generation: ?*u64,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         // TODO: what to do with BytesParamIndex 1?
         Buffer: ?*u8,
         NumberOfBytes: u32,
         Generation: ?*u64,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const VBS_BASIC_ENCLAVE_SYSCALL_PAGE = extern struct {
     ReturnFromEnclave: ?VBS_BASIC_ENCLAVE_BASIC_CALL_RETURN_FROM_ENCLAVE,
@@ -262,81 +258,77 @@ pub const VBS_BASIC_ENCLAVE_SYSCALL_PAGE = extern struct {
     GenerateRandomData: ?VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_RANDOM_DATA,
 };
 
-
-
-
-
-pub const VBS_BASIC_ENCLAVE_BASIC_CALL_RETURN_FROM_EXCEPTION = switch(@import("../zig.zig").arch) {
+pub const VBS_BASIC_ENCLAVE_BASIC_CALL_RETURN_FROM_EXCEPTION = switch (@import("../zig.zig").arch) {
     .X64 => switch (@import("builtin").zig_backend) {
-        .stage1 => fn(
+        .stage1 => fn (
             ExceptionRecord: ?*VBS_BASIC_ENCLAVE_EXCEPTION_AMD64,
         ) callconv(@import("std").os.windows.WINAPI) i32,
-        else => *const fn(
+        else => *const fn (
             ExceptionRecord: ?*VBS_BASIC_ENCLAVE_EXCEPTION_AMD64,
         ) callconv(@import("std").os.windows.WINAPI) i32,
-    } ,
+    },
     .X86, .Arm64 => switch (@import("builtin").zig_backend) {
-        .stage1 => fn(
+        .stage1 => fn (
             ExceptionRecord: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) i32,
-        else => *const fn(
+        else => *const fn (
             ExceptionRecord: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) i32,
-    } ,
+    },
 };
-pub const VBS_BASIC_ENCLAVE_BASIC_CALL_TERMINATE_THREAD = switch(@import("../zig.zig").arch) {
+pub const VBS_BASIC_ENCLAVE_BASIC_CALL_TERMINATE_THREAD = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => switch (@import("builtin").zig_backend) {
-        .stage1 => fn(
+        .stage1 => fn (
             ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR64,
         ) callconv(@import("std").os.windows.WINAPI) i32,
-        else => *const fn(
+        else => *const fn (
             ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR64,
         ) callconv(@import("std").os.windows.WINAPI) i32,
-    } ,
+    },
     .X86 => switch (@import("builtin").zig_backend) {
-        .stage1 => fn(
+        .stage1 => fn (
             ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR32,
         ) callconv(@import("std").os.windows.WINAPI) i32,
-        else => *const fn(
+        else => *const fn (
             ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR32,
         ) callconv(@import("std").os.windows.WINAPI) i32,
-    } ,
+    },
 };
-pub const VBS_BASIC_ENCLAVE_BASIC_CALL_INTERRUPT_THREAD = switch(@import("../zig.zig").arch) {
+pub const VBS_BASIC_ENCLAVE_BASIC_CALL_INTERRUPT_THREAD = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => switch (@import("builtin").zig_backend) {
-        .stage1 => fn(
+        .stage1 => fn (
             ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR64,
         ) callconv(@import("std").os.windows.WINAPI) i32,
-        else => *const fn(
+        else => *const fn (
             ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR64,
         ) callconv(@import("std").os.windows.WINAPI) i32,
-    } ,
+    },
     .X86 => switch (@import("builtin").zig_backend) {
-        .stage1 => fn(
+        .stage1 => fn (
             ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR32,
         ) callconv(@import("std").os.windows.WINAPI) i32,
-        else => *const fn(
+        else => *const fn (
             ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR32,
         ) callconv(@import("std").os.windows.WINAPI) i32,
-    } ,
+    },
 };
-pub const VBS_BASIC_ENCLAVE_BASIC_CALL_CREATE_THREAD = switch(@import("../zig.zig").arch) {
+pub const VBS_BASIC_ENCLAVE_BASIC_CALL_CREATE_THREAD = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => switch (@import("builtin").zig_backend) {
-        .stage1 => fn(
+        .stage1 => fn (
             ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR64,
         ) callconv(@import("std").os.windows.WINAPI) i32,
-        else => *const fn(
+        else => *const fn (
             ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR64,
         ) callconv(@import("std").os.windows.WINAPI) i32,
-    } ,
+    },
     .X86 => switch (@import("builtin").zig_backend) {
-        .stage1 => fn(
+        .stage1 => fn (
             ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR32,
         ) callconv(@import("std").os.windows.WINAPI) i32,
-        else => *const fn(
+        else => *const fn (
             ThreadDescriptor: ?*VBS_BASIC_ENCLAVE_THREAD_DESCRIPTOR32,
         ) callconv(@import("std").os.windows.WINAPI) i32,
-    } ,
+    },
 };
 
 //--------------------------------------------------------------------------------
@@ -347,20 +339,16 @@ pub extern "kernel32" fn SetEnvironmentStringsW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetCommandLineA(
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+pub extern "kernel32" fn GetCommandLineA() callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetCommandLineW(
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+pub extern "kernel32" fn GetCommandLineW() callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetEnvironmentStrings(
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+pub extern "kernel32" fn GetEnvironmentStrings() callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetEnvironmentStringsW(
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+pub extern "kernel32" fn GetEnvironmentStringsW() callconv(@import("std").os.windows.WINAPI) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn FreeEnvironmentStringsA(
@@ -591,7 +579,6 @@ pub extern "vertdll" fn EnclaveGetEnclaveInformation(
     EnclaveInformation: ?*ENCLAVE_INFORMATION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (10)
 //--------------------------------------------------------------------------------
@@ -622,16 +609,16 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const LoadEnclaveImage = thismodule.LoadEnclaveImageW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const GetCommandLine = *opaque{};
-        pub const FreeEnvironmentStrings = *opaque{};
-        pub const GetEnvironmentVariable = *opaque{};
-        pub const SetEnvironmentVariable = *opaque{};
-        pub const ExpandEnvironmentStrings = *opaque{};
-        pub const SetCurrentDirectory = *opaque{};
-        pub const GetCurrentDirectory = *opaque{};
-        pub const NeedCurrentDirectoryForExePath = *opaque{};
-        pub const ExpandEnvironmentStringsForUser = *opaque{};
-        pub const LoadEnclaveImage = *opaque{};
+        pub const GetCommandLine = *opaque {};
+        pub const FreeEnvironmentStrings = *opaque {};
+        pub const GetEnvironmentVariable = *opaque {};
+        pub const SetEnvironmentVariable = *opaque {};
+        pub const ExpandEnvironmentStrings = *opaque {};
+        pub const SetCurrentDirectory = *opaque {};
+        pub const GetCurrentDirectory = *opaque {};
+        pub const NeedCurrentDirectoryForExePath = *opaque {};
+        pub const ExpandEnvironmentStringsForUser = *opaque {};
+        pub const LoadEnclaveImage = *opaque {};
     } else struct {
         pub const GetCommandLine = @compileError("'GetCommandLine' requires that UNICODE be set to true or false in the root module");
         pub const FreeEnvironmentStrings = @compileError("'FreeEnvironmentStrings' requires that UNICODE be set to true or false in the root module");
@@ -656,27 +643,59 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_RETURN_FROM_ENCLAVE")) { _ = VBS_BASIC_ENCLAVE_BASIC_CALL_RETURN_FROM_ENCLAVE; }
-    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_COMMIT_PAGES")) { _ = VBS_BASIC_ENCLAVE_BASIC_CALL_COMMIT_PAGES; }
-    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_DECOMMIT_PAGES")) { _ = VBS_BASIC_ENCLAVE_BASIC_CALL_DECOMMIT_PAGES; }
-    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_PROTECT_PAGES")) { _ = VBS_BASIC_ENCLAVE_BASIC_CALL_PROTECT_PAGES; }
-    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_GET_ENCLAVE_INFORMATION")) { _ = VBS_BASIC_ENCLAVE_BASIC_CALL_GET_ENCLAVE_INFORMATION; }
-    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_KEY")) { _ = VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_KEY; }
-    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_REPORT")) { _ = VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_REPORT; }
-    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_VERIFY_REPORT")) { _ = VBS_BASIC_ENCLAVE_BASIC_CALL_VERIFY_REPORT; }
-    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_RANDOM_DATA")) { _ = VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_RANDOM_DATA; }
-    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_RETURN_FROM_EXCEPTION")) { _ = VBS_BASIC_ENCLAVE_BASIC_CALL_RETURN_FROM_EXCEPTION; }
-    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_RETURN_FROM_EXCEPTION")) { _ = VBS_BASIC_ENCLAVE_BASIC_CALL_RETURN_FROM_EXCEPTION; }
-    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_TERMINATE_THREAD")) { _ = VBS_BASIC_ENCLAVE_BASIC_CALL_TERMINATE_THREAD; }
-    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_TERMINATE_THREAD")) { _ = VBS_BASIC_ENCLAVE_BASIC_CALL_TERMINATE_THREAD; }
-    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_INTERRUPT_THREAD")) { _ = VBS_BASIC_ENCLAVE_BASIC_CALL_INTERRUPT_THREAD; }
-    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_INTERRUPT_THREAD")) { _ = VBS_BASIC_ENCLAVE_BASIC_CALL_INTERRUPT_THREAD; }
-    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_CREATE_THREAD")) { _ = VBS_BASIC_ENCLAVE_BASIC_CALL_CREATE_THREAD; }
-    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_CREATE_THREAD")) { _ = VBS_BASIC_ENCLAVE_BASIC_CALL_CREATE_THREAD; }
+    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_RETURN_FROM_ENCLAVE")) {
+        _ = VBS_BASIC_ENCLAVE_BASIC_CALL_RETURN_FROM_ENCLAVE;
+    }
+    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_COMMIT_PAGES")) {
+        _ = VBS_BASIC_ENCLAVE_BASIC_CALL_COMMIT_PAGES;
+    }
+    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_DECOMMIT_PAGES")) {
+        _ = VBS_BASIC_ENCLAVE_BASIC_CALL_DECOMMIT_PAGES;
+    }
+    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_PROTECT_PAGES")) {
+        _ = VBS_BASIC_ENCLAVE_BASIC_CALL_PROTECT_PAGES;
+    }
+    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_GET_ENCLAVE_INFORMATION")) {
+        _ = VBS_BASIC_ENCLAVE_BASIC_CALL_GET_ENCLAVE_INFORMATION;
+    }
+    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_KEY")) {
+        _ = VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_KEY;
+    }
+    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_REPORT")) {
+        _ = VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_REPORT;
+    }
+    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_VERIFY_REPORT")) {
+        _ = VBS_BASIC_ENCLAVE_BASIC_CALL_VERIFY_REPORT;
+    }
+    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_RANDOM_DATA")) {
+        _ = VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_RANDOM_DATA;
+    }
+    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_RETURN_FROM_EXCEPTION")) {
+        _ = VBS_BASIC_ENCLAVE_BASIC_CALL_RETURN_FROM_EXCEPTION;
+    }
+    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_RETURN_FROM_EXCEPTION")) {
+        _ = VBS_BASIC_ENCLAVE_BASIC_CALL_RETURN_FROM_EXCEPTION;
+    }
+    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_TERMINATE_THREAD")) {
+        _ = VBS_BASIC_ENCLAVE_BASIC_CALL_TERMINATE_THREAD;
+    }
+    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_TERMINATE_THREAD")) {
+        _ = VBS_BASIC_ENCLAVE_BASIC_CALL_TERMINATE_THREAD;
+    }
+    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_INTERRUPT_THREAD")) {
+        _ = VBS_BASIC_ENCLAVE_BASIC_CALL_INTERRUPT_THREAD;
+    }
+    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_INTERRUPT_THREAD")) {
+        _ = VBS_BASIC_ENCLAVE_BASIC_CALL_INTERRUPT_THREAD;
+    }
+    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_CREATE_THREAD")) {
+        _ = VBS_BASIC_ENCLAVE_BASIC_CALL_CREATE_THREAD;
+    }
+    if (@hasDecl(@This(), "VBS_BASIC_ENCLAVE_BASIC_CALL_CREATE_THREAD")) {
+        _ = VBS_BASIC_ENCLAVE_BASIC_CALL_CREATE_THREAD;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

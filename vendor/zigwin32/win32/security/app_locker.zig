@@ -48,12 +48,7 @@ pub const SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS = enum(u32) {
         MAKE_INERT: u1 = 0,
         WANT_FLAGS: u1 = 0,
     }) SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS {
-        return @intToEnum(SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS,
-              (if (o.NULL_IF_EQUAL == 1) @enumToInt(SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.NULL_IF_EQUAL) else 0)
-            | (if (o.COMPARE_ONLY == 1) @enumToInt(SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.COMPARE_ONLY) else 0)
-            | (if (o.MAKE_INERT == 1) @enumToInt(SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.MAKE_INERT) else 0)
-            | (if (o.WANT_FLAGS == 1) @enumToInt(SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.WANT_FLAGS) else 0)
-        );
+        return @enumFromInt(SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS, (if (o.NULL_IF_EQUAL == 1) @intFromEnum(SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.NULL_IF_EQUAL) else 0) | (if (o.COMPARE_ONLY == 1) @intFromEnum(SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.COMPARE_ONLY) else 0) | (if (o.MAKE_INERT == 1) @intFromEnum(SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.MAKE_INERT) else 0) | (if (o.WANT_FLAGS == 1) @intFromEnum(SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.WANT_FLAGS) else 0));
     }
 };
 pub const SAFER_TOKEN_NULL_IF_EQUAL = SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.NULL_IF_EQUAL;
@@ -199,7 +194,6 @@ pub const SAFER_URLZONE_IDENTIFICATION = extern struct {
     dwSaferFlags: u32,
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (10)
 //--------------------------------------------------------------------------------
@@ -287,19 +281,14 @@ pub extern "advapi32" fn SaferiIsExecutableFileType(
     bFromShellExecute: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (9)
@@ -315,9 +304,7 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const SAFER_LEVEL_HANDLE = @import("../security.zig").SAFER_LEVEL_HANDLE;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

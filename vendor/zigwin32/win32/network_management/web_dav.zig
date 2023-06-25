@@ -43,16 +43,16 @@ pub const RetryRequest = AUTHNEXTSTEP.RetryRequest;
 pub const CancelRequest = AUTHNEXTSTEP.CancelRequest;
 
 pub const PFNDAVAUTHCALLBACK_FREECRED = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pbuffer: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         pbuffer: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PFNDAVAUTHCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         lpwzServerName: ?PWSTR,
         lpwzRemoteName: ?PWSTR,
         dwAuthScheme: u32,
@@ -61,7 +61,7 @@ pub const PFNDAVAUTHCALLBACK = switch (@import("builtin").zig_backend) {
         NextStep: ?*AUTHNEXTSTEP,
         pFreeCred: ?*?PFNDAVAUTHCALLBACK_FREECRED,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         lpwzServerName: ?PWSTR,
         lpwzRemoteName: ?PWSTR,
         dwAuthScheme: u32,
@@ -70,8 +70,7 @@ pub const PFNDAVAUTHCALLBACK = switch (@import("builtin").zig_backend) {
         NextStep: ?*AUTHNEXTSTEP,
         pFreeCred: ?*?PFNDAVAUTHCALLBACK_FREECRED,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
-
+};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (11)
@@ -149,19 +148,14 @@ pub extern "davclnt" fn DavUnregisterAuthCallback(
     hCallback: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (3)
@@ -172,12 +166,14 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFNDAVAUTHCALLBACK_FREECRED")) { _ = PFNDAVAUTHCALLBACK_FREECRED; }
-    if (@hasDecl(@This(), "PFNDAVAUTHCALLBACK")) { _ = PFNDAVAUTHCALLBACK; }
+    if (@hasDecl(@This(), "PFNDAVAUTHCALLBACK_FREECRED")) {
+        _ = PFNDAVAUTHCALLBACK_FREECRED;
+    }
+    if (@hasDecl(@This(), "PFNDAVAUTHCALLBACK")) {
+        _ = PFNDAVAUTHCALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

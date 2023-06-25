@@ -214,34 +214,7 @@ pub const OPEN_FILENAME_FLAGS = enum(u32) {
         DONTADDTORECENT: u1 = 0,
         FORCESHOWHIDDEN: u1 = 0,
     }) OPEN_FILENAME_FLAGS {
-        return @intToEnum(OPEN_FILENAME_FLAGS,
-              (if (o.READONLY == 1) @enumToInt(OPEN_FILENAME_FLAGS.READONLY) else 0)
-            | (if (o.OVERWRITEPROMPT == 1) @enumToInt(OPEN_FILENAME_FLAGS.OVERWRITEPROMPT) else 0)
-            | (if (o.HIDEREADONLY == 1) @enumToInt(OPEN_FILENAME_FLAGS.HIDEREADONLY) else 0)
-            | (if (o.NOCHANGEDIR == 1) @enumToInt(OPEN_FILENAME_FLAGS.NOCHANGEDIR) else 0)
-            | (if (o.SHOWHELP == 1) @enumToInt(OPEN_FILENAME_FLAGS.SHOWHELP) else 0)
-            | (if (o.ENABLEHOOK == 1) @enumToInt(OPEN_FILENAME_FLAGS.ENABLEHOOK) else 0)
-            | (if (o.ENABLETEMPLATE == 1) @enumToInt(OPEN_FILENAME_FLAGS.ENABLETEMPLATE) else 0)
-            | (if (o.ENABLETEMPLATEHANDLE == 1) @enumToInt(OPEN_FILENAME_FLAGS.ENABLETEMPLATEHANDLE) else 0)
-            | (if (o.NOVALIDATE == 1) @enumToInt(OPEN_FILENAME_FLAGS.NOVALIDATE) else 0)
-            | (if (o.ALLOWMULTISELECT == 1) @enumToInt(OPEN_FILENAME_FLAGS.ALLOWMULTISELECT) else 0)
-            | (if (o.EXTENSIONDIFFERENT == 1) @enumToInt(OPEN_FILENAME_FLAGS.EXTENSIONDIFFERENT) else 0)
-            | (if (o.PATHMUSTEXIST == 1) @enumToInt(OPEN_FILENAME_FLAGS.PATHMUSTEXIST) else 0)
-            | (if (o.FILEMUSTEXIST == 1) @enumToInt(OPEN_FILENAME_FLAGS.FILEMUSTEXIST) else 0)
-            | (if (o.CREATEPROMPT == 1) @enumToInt(OPEN_FILENAME_FLAGS.CREATEPROMPT) else 0)
-            | (if (o.SHAREAWARE == 1) @enumToInt(OPEN_FILENAME_FLAGS.SHAREAWARE) else 0)
-            | (if (o.NOREADONLYRETURN == 1) @enumToInt(OPEN_FILENAME_FLAGS.NOREADONLYRETURN) else 0)
-            | (if (o.NOTESTFILECREATE == 1) @enumToInt(OPEN_FILENAME_FLAGS.NOTESTFILECREATE) else 0)
-            | (if (o.NONETWORKBUTTON == 1) @enumToInt(OPEN_FILENAME_FLAGS.NONETWORKBUTTON) else 0)
-            | (if (o.NOLONGNAMES == 1) @enumToInt(OPEN_FILENAME_FLAGS.NOLONGNAMES) else 0)
-            | (if (o.EXPLORER == 1) @enumToInt(OPEN_FILENAME_FLAGS.EXPLORER) else 0)
-            | (if (o.NODEREFERENCELINKS == 1) @enumToInt(OPEN_FILENAME_FLAGS.NODEREFERENCELINKS) else 0)
-            | (if (o.LONGNAMES == 1) @enumToInt(OPEN_FILENAME_FLAGS.LONGNAMES) else 0)
-            | (if (o.ENABLEINCLUDENOTIFY == 1) @enumToInt(OPEN_FILENAME_FLAGS.ENABLEINCLUDENOTIFY) else 0)
-            | (if (o.ENABLESIZING == 1) @enumToInt(OPEN_FILENAME_FLAGS.ENABLESIZING) else 0)
-            | (if (o.DONTADDTORECENT == 1) @enumToInt(OPEN_FILENAME_FLAGS.DONTADDTORECENT) else 0)
-            | (if (o.FORCESHOWHIDDEN == 1) @enumToInt(OPEN_FILENAME_FLAGS.FORCESHOWHIDDEN) else 0)
-        );
+        return @enumFromInt(OPEN_FILENAME_FLAGS, (if (o.READONLY == 1) @intFromEnum(OPEN_FILENAME_FLAGS.READONLY) else 0) | (if (o.OVERWRITEPROMPT == 1) @intFromEnum(OPEN_FILENAME_FLAGS.OVERWRITEPROMPT) else 0) | (if (o.HIDEREADONLY == 1) @intFromEnum(OPEN_FILENAME_FLAGS.HIDEREADONLY) else 0) | (if (o.NOCHANGEDIR == 1) @intFromEnum(OPEN_FILENAME_FLAGS.NOCHANGEDIR) else 0) | (if (o.SHOWHELP == 1) @intFromEnum(OPEN_FILENAME_FLAGS.SHOWHELP) else 0) | (if (o.ENABLEHOOK == 1) @intFromEnum(OPEN_FILENAME_FLAGS.ENABLEHOOK) else 0) | (if (o.ENABLETEMPLATE == 1) @intFromEnum(OPEN_FILENAME_FLAGS.ENABLETEMPLATE) else 0) | (if (o.ENABLETEMPLATEHANDLE == 1) @intFromEnum(OPEN_FILENAME_FLAGS.ENABLETEMPLATEHANDLE) else 0) | (if (o.NOVALIDATE == 1) @intFromEnum(OPEN_FILENAME_FLAGS.NOVALIDATE) else 0) | (if (o.ALLOWMULTISELECT == 1) @intFromEnum(OPEN_FILENAME_FLAGS.ALLOWMULTISELECT) else 0) | (if (o.EXTENSIONDIFFERENT == 1) @intFromEnum(OPEN_FILENAME_FLAGS.EXTENSIONDIFFERENT) else 0) | (if (o.PATHMUSTEXIST == 1) @intFromEnum(OPEN_FILENAME_FLAGS.PATHMUSTEXIST) else 0) | (if (o.FILEMUSTEXIST == 1) @intFromEnum(OPEN_FILENAME_FLAGS.FILEMUSTEXIST) else 0) | (if (o.CREATEPROMPT == 1) @intFromEnum(OPEN_FILENAME_FLAGS.CREATEPROMPT) else 0) | (if (o.SHAREAWARE == 1) @intFromEnum(OPEN_FILENAME_FLAGS.SHAREAWARE) else 0) | (if (o.NOREADONLYRETURN == 1) @intFromEnum(OPEN_FILENAME_FLAGS.NOREADONLYRETURN) else 0) | (if (o.NOTESTFILECREATE == 1) @intFromEnum(OPEN_FILENAME_FLAGS.NOTESTFILECREATE) else 0) | (if (o.NONETWORKBUTTON == 1) @intFromEnum(OPEN_FILENAME_FLAGS.NONETWORKBUTTON) else 0) | (if (o.NOLONGNAMES == 1) @intFromEnum(OPEN_FILENAME_FLAGS.NOLONGNAMES) else 0) | (if (o.EXPLORER == 1) @intFromEnum(OPEN_FILENAME_FLAGS.EXPLORER) else 0) | (if (o.NODEREFERENCELINKS == 1) @intFromEnum(OPEN_FILENAME_FLAGS.NODEREFERENCELINKS) else 0) | (if (o.LONGNAMES == 1) @intFromEnum(OPEN_FILENAME_FLAGS.LONGNAMES) else 0) | (if (o.ENABLEINCLUDENOTIFY == 1) @intFromEnum(OPEN_FILENAME_FLAGS.ENABLEINCLUDENOTIFY) else 0) | (if (o.ENABLESIZING == 1) @intFromEnum(OPEN_FILENAME_FLAGS.ENABLESIZING) else 0) | (if (o.DONTADDTORECENT == 1) @intFromEnum(OPEN_FILENAME_FLAGS.DONTADDTORECENT) else 0) | (if (o.FORCESHOWHIDDEN == 1) @intFromEnum(OPEN_FILENAME_FLAGS.FORCESHOWHIDDEN) else 0));
     }
 };
 pub const OFN_READONLY = OPEN_FILENAME_FLAGS.READONLY;
@@ -279,10 +252,7 @@ pub const OPEN_FILENAME_FLAGS_EX = enum(u32) {
         NE: u1 = 0,
         PLACESBAR: u1 = 0,
     }) OPEN_FILENAME_FLAGS_EX {
-        return @intToEnum(OPEN_FILENAME_FLAGS_EX,
-              (if (o.NE == 1) @enumToInt(OPEN_FILENAME_FLAGS_EX.NE) else 0)
-            | (if (o.PLACESBAR == 1) @enumToInt(OPEN_FILENAME_FLAGS_EX.PLACESBAR) else 0)
-        );
+        return @enumFromInt(OPEN_FILENAME_FLAGS_EX, (if (o.NE == 1) @intFromEnum(OPEN_FILENAME_FLAGS_EX.NE) else 0) | (if (o.PLACESBAR == 1) @intFromEnum(OPEN_FILENAME_FLAGS_EX.PLACESBAR) else 0));
     }
 };
 pub const OFN_EX_NONE = OPEN_FILENAME_FLAGS_EX.NE;
@@ -329,26 +299,7 @@ pub const PAGESETUPDLG_FLAGS = enum(u32) {
         RETURNDEFAULT: u1 = 0,
         SHOWHELP: u1 = 0,
     }) PAGESETUPDLG_FLAGS {
-        return @intToEnum(PAGESETUPDLG_FLAGS,
-              (if (o.DEFAULTMINMARGINS == 1) @enumToInt(PAGESETUPDLG_FLAGS.DEFAULTMINMARGINS) else 0)
-            | (if (o.DISABLEMARGINS == 1) @enumToInt(PAGESETUPDLG_FLAGS.DISABLEMARGINS) else 0)
-            | (if (o.DISABLEORIENTATION == 1) @enumToInt(PAGESETUPDLG_FLAGS.DISABLEORIENTATION) else 0)
-            | (if (o.DISABLEPAGEPAINTING == 1) @enumToInt(PAGESETUPDLG_FLAGS.DISABLEPAGEPAINTING) else 0)
-            | (if (o.DISABLEPAPER == 1) @enumToInt(PAGESETUPDLG_FLAGS.DISABLEPAPER) else 0)
-            | (if (o.DISABLEPRINTER == 1) @enumToInt(PAGESETUPDLG_FLAGS.DISABLEPRINTER) else 0)
-            | (if (o.ENABLEPAGEPAINTHOOK == 1) @enumToInt(PAGESETUPDLG_FLAGS.ENABLEPAGEPAINTHOOK) else 0)
-            | (if (o.ENABLEPAGESETUPHOOK == 1) @enumToInt(PAGESETUPDLG_FLAGS.ENABLEPAGESETUPHOOK) else 0)
-            | (if (o.ENABLEPAGESETUPTEMPLATE == 1) @enumToInt(PAGESETUPDLG_FLAGS.ENABLEPAGESETUPTEMPLATE) else 0)
-            | (if (o.ENABLEPAGESETUPTEMPLATEHANDLE == 1) @enumToInt(PAGESETUPDLG_FLAGS.ENABLEPAGESETUPTEMPLATEHANDLE) else 0)
-            | (if (o.INHUNDREDTHSOFMILLIMETERS == 1) @enumToInt(PAGESETUPDLG_FLAGS.INHUNDREDTHSOFMILLIMETERS) else 0)
-            | (if (o.INTHOUSANDTHSOFINCHES == 1) @enumToInt(PAGESETUPDLG_FLAGS.INTHOUSANDTHSOFINCHES) else 0)
-            | (if (o.MARGINS == 1) @enumToInt(PAGESETUPDLG_FLAGS.MARGINS) else 0)
-            | (if (o.MINMARGINS == 1) @enumToInt(PAGESETUPDLG_FLAGS.MINMARGINS) else 0)
-            | (if (o.NONETWORKBUTTON == 1) @enumToInt(PAGESETUPDLG_FLAGS.NONETWORKBUTTON) else 0)
-            | (if (o.NOWARNING == 1) @enumToInt(PAGESETUPDLG_FLAGS.NOWARNING) else 0)
-            | (if (o.RETURNDEFAULT == 1) @enumToInt(PAGESETUPDLG_FLAGS.RETURNDEFAULT) else 0)
-            | (if (o.SHOWHELP == 1) @enumToInt(PAGESETUPDLG_FLAGS.SHOWHELP) else 0)
-        );
+        return @enumFromInt(PAGESETUPDLG_FLAGS, (if (o.DEFAULTMINMARGINS == 1) @intFromEnum(PAGESETUPDLG_FLAGS.DEFAULTMINMARGINS) else 0) | (if (o.DISABLEMARGINS == 1) @intFromEnum(PAGESETUPDLG_FLAGS.DISABLEMARGINS) else 0) | (if (o.DISABLEORIENTATION == 1) @intFromEnum(PAGESETUPDLG_FLAGS.DISABLEORIENTATION) else 0) | (if (o.DISABLEPAGEPAINTING == 1) @intFromEnum(PAGESETUPDLG_FLAGS.DISABLEPAGEPAINTING) else 0) | (if (o.DISABLEPAPER == 1) @intFromEnum(PAGESETUPDLG_FLAGS.DISABLEPAPER) else 0) | (if (o.DISABLEPRINTER == 1) @intFromEnum(PAGESETUPDLG_FLAGS.DISABLEPRINTER) else 0) | (if (o.ENABLEPAGEPAINTHOOK == 1) @intFromEnum(PAGESETUPDLG_FLAGS.ENABLEPAGEPAINTHOOK) else 0) | (if (o.ENABLEPAGESETUPHOOK == 1) @intFromEnum(PAGESETUPDLG_FLAGS.ENABLEPAGESETUPHOOK) else 0) | (if (o.ENABLEPAGESETUPTEMPLATE == 1) @intFromEnum(PAGESETUPDLG_FLAGS.ENABLEPAGESETUPTEMPLATE) else 0) | (if (o.ENABLEPAGESETUPTEMPLATEHANDLE == 1) @intFromEnum(PAGESETUPDLG_FLAGS.ENABLEPAGESETUPTEMPLATEHANDLE) else 0) | (if (o.INHUNDREDTHSOFMILLIMETERS == 1) @intFromEnum(PAGESETUPDLG_FLAGS.INHUNDREDTHSOFMILLIMETERS) else 0) | (if (o.INTHOUSANDTHSOFINCHES == 1) @intFromEnum(PAGESETUPDLG_FLAGS.INTHOUSANDTHSOFINCHES) else 0) | (if (o.MARGINS == 1) @intFromEnum(PAGESETUPDLG_FLAGS.MARGINS) else 0) | (if (o.MINMARGINS == 1) @intFromEnum(PAGESETUPDLG_FLAGS.MINMARGINS) else 0) | (if (o.NONETWORKBUTTON == 1) @intFromEnum(PAGESETUPDLG_FLAGS.NONETWORKBUTTON) else 0) | (if (o.NOWARNING == 1) @intFromEnum(PAGESETUPDLG_FLAGS.NOWARNING) else 0) | (if (o.RETURNDEFAULT == 1) @intFromEnum(PAGESETUPDLG_FLAGS.RETURNDEFAULT) else 0) | (if (o.SHOWHELP == 1) @intFromEnum(PAGESETUPDLG_FLAGS.SHOWHELP) else 0));
     }
 };
 pub const PSD_DEFAULTMINMARGINS = PAGESETUPDLG_FLAGS.DEFAULTMINMARGINS;
@@ -431,35 +382,7 @@ pub const CHOOSEFONT_FLAGS = enum(u32) {
         USESTYLE: u1 = 0,
         WYSIWYG: u1 = 0,
     }) CHOOSEFONT_FLAGS {
-        return @intToEnum(CHOOSEFONT_FLAGS,
-              (if (o.APPLY == 1) @enumToInt(CHOOSEFONT_FLAGS.APPLY) else 0)
-            | (if (o.ANSIONLY == 1) @enumToInt(CHOOSEFONT_FLAGS.ANSIONLY) else 0)
-            | (if (o.BOTH == 1) @enumToInt(CHOOSEFONT_FLAGS.BOTH) else 0)
-            | (if (o.EFFECTS == 1) @enumToInt(CHOOSEFONT_FLAGS.EFFECTS) else 0)
-            | (if (o.ENABLEHOOK == 1) @enumToInt(CHOOSEFONT_FLAGS.ENABLEHOOK) else 0)
-            | (if (o.ENABLETEMPLATE == 1) @enumToInt(CHOOSEFONT_FLAGS.ENABLETEMPLATE) else 0)
-            | (if (o.ENABLETEMPLATEHANDLE == 1) @enumToInt(CHOOSEFONT_FLAGS.ENABLETEMPLATEHANDLE) else 0)
-            | (if (o.FIXEDPITCHONLY == 1) @enumToInt(CHOOSEFONT_FLAGS.FIXEDPITCHONLY) else 0)
-            | (if (o.FORCEFONTEXIST == 1) @enumToInt(CHOOSEFONT_FLAGS.FORCEFONTEXIST) else 0)
-            | (if (o.INACTIVEFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.INACTIVEFONTS) else 0)
-            | (if (o.INITTOLOGFONTSTRUCT == 1) @enumToInt(CHOOSEFONT_FLAGS.INITTOLOGFONTSTRUCT) else 0)
-            | (if (o.LIMITSIZE == 1) @enumToInt(CHOOSEFONT_FLAGS.LIMITSIZE) else 0)
-            | (if (o.NOOEMFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.NOOEMFONTS) else 0)
-            | (if (o.NOFACESEL == 1) @enumToInt(CHOOSEFONT_FLAGS.NOFACESEL) else 0)
-            | (if (o.NOSCRIPTSEL == 1) @enumToInt(CHOOSEFONT_FLAGS.NOSCRIPTSEL) else 0)
-            | (if (o.NOSIMULATIONS == 1) @enumToInt(CHOOSEFONT_FLAGS.NOSIMULATIONS) else 0)
-            | (if (o.NOSIZESEL == 1) @enumToInt(CHOOSEFONT_FLAGS.NOSIZESEL) else 0)
-            | (if (o.NOSTYLESEL == 1) @enumToInt(CHOOSEFONT_FLAGS.NOSTYLESEL) else 0)
-            | (if (o.NOVERTFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.NOVERTFONTS) else 0)
-            | (if (o.PRINTERFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.PRINTERFONTS) else 0)
-            | (if (o.SCALABLEONLY == 1) @enumToInt(CHOOSEFONT_FLAGS.SCALABLEONLY) else 0)
-            | (if (o.SCREENFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.SCREENFONTS) else 0)
-            | (if (o.SELECTSCRIPT == 1) @enumToInt(CHOOSEFONT_FLAGS.SELECTSCRIPT) else 0)
-            | (if (o.SHOWHELP == 1) @enumToInt(CHOOSEFONT_FLAGS.SHOWHELP) else 0)
-            | (if (o.TTONLY == 1) @enumToInt(CHOOSEFONT_FLAGS.TTONLY) else 0)
-            | (if (o.USESTYLE == 1) @enumToInt(CHOOSEFONT_FLAGS.USESTYLE) else 0)
-            | (if (o.WYSIWYG == 1) @enumToInt(CHOOSEFONT_FLAGS.WYSIWYG) else 0)
-        );
+        return @enumFromInt(CHOOSEFONT_FLAGS, (if (o.APPLY == 1) @intFromEnum(CHOOSEFONT_FLAGS.APPLY) else 0) | (if (o.ANSIONLY == 1) @intFromEnum(CHOOSEFONT_FLAGS.ANSIONLY) else 0) | (if (o.BOTH == 1) @intFromEnum(CHOOSEFONT_FLAGS.BOTH) else 0) | (if (o.EFFECTS == 1) @intFromEnum(CHOOSEFONT_FLAGS.EFFECTS) else 0) | (if (o.ENABLEHOOK == 1) @intFromEnum(CHOOSEFONT_FLAGS.ENABLEHOOK) else 0) | (if (o.ENABLETEMPLATE == 1) @intFromEnum(CHOOSEFONT_FLAGS.ENABLETEMPLATE) else 0) | (if (o.ENABLETEMPLATEHANDLE == 1) @intFromEnum(CHOOSEFONT_FLAGS.ENABLETEMPLATEHANDLE) else 0) | (if (o.FIXEDPITCHONLY == 1) @intFromEnum(CHOOSEFONT_FLAGS.FIXEDPITCHONLY) else 0) | (if (o.FORCEFONTEXIST == 1) @intFromEnum(CHOOSEFONT_FLAGS.FORCEFONTEXIST) else 0) | (if (o.INACTIVEFONTS == 1) @intFromEnum(CHOOSEFONT_FLAGS.INACTIVEFONTS) else 0) | (if (o.INITTOLOGFONTSTRUCT == 1) @intFromEnum(CHOOSEFONT_FLAGS.INITTOLOGFONTSTRUCT) else 0) | (if (o.LIMITSIZE == 1) @intFromEnum(CHOOSEFONT_FLAGS.LIMITSIZE) else 0) | (if (o.NOOEMFONTS == 1) @intFromEnum(CHOOSEFONT_FLAGS.NOOEMFONTS) else 0) | (if (o.NOFACESEL == 1) @intFromEnum(CHOOSEFONT_FLAGS.NOFACESEL) else 0) | (if (o.NOSCRIPTSEL == 1) @intFromEnum(CHOOSEFONT_FLAGS.NOSCRIPTSEL) else 0) | (if (o.NOSIMULATIONS == 1) @intFromEnum(CHOOSEFONT_FLAGS.NOSIMULATIONS) else 0) | (if (o.NOSIZESEL == 1) @intFromEnum(CHOOSEFONT_FLAGS.NOSIZESEL) else 0) | (if (o.NOSTYLESEL == 1) @intFromEnum(CHOOSEFONT_FLAGS.NOSTYLESEL) else 0) | (if (o.NOVERTFONTS == 1) @intFromEnum(CHOOSEFONT_FLAGS.NOVERTFONTS) else 0) | (if (o.PRINTERFONTS == 1) @intFromEnum(CHOOSEFONT_FLAGS.PRINTERFONTS) else 0) | (if (o.SCALABLEONLY == 1) @intFromEnum(CHOOSEFONT_FLAGS.SCALABLEONLY) else 0) | (if (o.SCREENFONTS == 1) @intFromEnum(CHOOSEFONT_FLAGS.SCREENFONTS) else 0) | (if (o.SELECTSCRIPT == 1) @intFromEnum(CHOOSEFONT_FLAGS.SELECTSCRIPT) else 0) | (if (o.SHOWHELP == 1) @intFromEnum(CHOOSEFONT_FLAGS.SHOWHELP) else 0) | (if (o.TTONLY == 1) @intFromEnum(CHOOSEFONT_FLAGS.TTONLY) else 0) | (if (o.USESTYLE == 1) @intFromEnum(CHOOSEFONT_FLAGS.USESTYLE) else 0) | (if (o.WYSIWYG == 1) @intFromEnum(CHOOSEFONT_FLAGS.WYSIWYG) else 0));
     }
 };
 pub const CF_APPLY = CHOOSEFONT_FLAGS.APPLY;
@@ -530,25 +453,7 @@ pub const FINDREPLACE_FLAGS = enum(u32) {
         SHOWHELP: u1 = 0,
         WHOLEWORD: u1 = 0,
     }) FINDREPLACE_FLAGS {
-        return @intToEnum(FINDREPLACE_FLAGS,
-              (if (o.DIALOGTERM == 1) @enumToInt(FINDREPLACE_FLAGS.DIALOGTERM) else 0)
-            | (if (o.DOWN == 1) @enumToInt(FINDREPLACE_FLAGS.DOWN) else 0)
-            | (if (o.ENABLEHOOK == 1) @enumToInt(FINDREPLACE_FLAGS.ENABLEHOOK) else 0)
-            | (if (o.ENABLETEMPLATE == 1) @enumToInt(FINDREPLACE_FLAGS.ENABLETEMPLATE) else 0)
-            | (if (o.ENABLETEMPLATEHANDLE == 1) @enumToInt(FINDREPLACE_FLAGS.ENABLETEMPLATEHANDLE) else 0)
-            | (if (o.FINDNEXT == 1) @enumToInt(FINDREPLACE_FLAGS.FINDNEXT) else 0)
-            | (if (o.HIDEUPDOWN == 1) @enumToInt(FINDREPLACE_FLAGS.HIDEUPDOWN) else 0)
-            | (if (o.HIDEMATCHCASE == 1) @enumToInt(FINDREPLACE_FLAGS.HIDEMATCHCASE) else 0)
-            | (if (o.HIDEWHOLEWORD == 1) @enumToInt(FINDREPLACE_FLAGS.HIDEWHOLEWORD) else 0)
-            | (if (o.MATCHCASE == 1) @enumToInt(FINDREPLACE_FLAGS.MATCHCASE) else 0)
-            | (if (o.NOMATCHCASE == 1) @enumToInt(FINDREPLACE_FLAGS.NOMATCHCASE) else 0)
-            | (if (o.NOUPDOWN == 1) @enumToInt(FINDREPLACE_FLAGS.NOUPDOWN) else 0)
-            | (if (o.NOWHOLEWORD == 1) @enumToInt(FINDREPLACE_FLAGS.NOWHOLEWORD) else 0)
-            | (if (o.REPLACE == 1) @enumToInt(FINDREPLACE_FLAGS.REPLACE) else 0)
-            | (if (o.REPLACEALL == 1) @enumToInt(FINDREPLACE_FLAGS.REPLACEALL) else 0)
-            | (if (o.SHOWHELP == 1) @enumToInt(FINDREPLACE_FLAGS.SHOWHELP) else 0)
-            | (if (o.WHOLEWORD == 1) @enumToInt(FINDREPLACE_FLAGS.WHOLEWORD) else 0)
-        );
+        return @enumFromInt(FINDREPLACE_FLAGS, (if (o.DIALOGTERM == 1) @intFromEnum(FINDREPLACE_FLAGS.DIALOGTERM) else 0) | (if (o.DOWN == 1) @intFromEnum(FINDREPLACE_FLAGS.DOWN) else 0) | (if (o.ENABLEHOOK == 1) @intFromEnum(FINDREPLACE_FLAGS.ENABLEHOOK) else 0) | (if (o.ENABLETEMPLATE == 1) @intFromEnum(FINDREPLACE_FLAGS.ENABLETEMPLATE) else 0) | (if (o.ENABLETEMPLATEHANDLE == 1) @intFromEnum(FINDREPLACE_FLAGS.ENABLETEMPLATEHANDLE) else 0) | (if (o.FINDNEXT == 1) @intFromEnum(FINDREPLACE_FLAGS.FINDNEXT) else 0) | (if (o.HIDEUPDOWN == 1) @intFromEnum(FINDREPLACE_FLAGS.HIDEUPDOWN) else 0) | (if (o.HIDEMATCHCASE == 1) @intFromEnum(FINDREPLACE_FLAGS.HIDEMATCHCASE) else 0) | (if (o.HIDEWHOLEWORD == 1) @intFromEnum(FINDREPLACE_FLAGS.HIDEWHOLEWORD) else 0) | (if (o.MATCHCASE == 1) @intFromEnum(FINDREPLACE_FLAGS.MATCHCASE) else 0) | (if (o.NOMATCHCASE == 1) @intFromEnum(FINDREPLACE_FLAGS.NOMATCHCASE) else 0) | (if (o.NOUPDOWN == 1) @intFromEnum(FINDREPLACE_FLAGS.NOUPDOWN) else 0) | (if (o.NOWHOLEWORD == 1) @intFromEnum(FINDREPLACE_FLAGS.NOWHOLEWORD) else 0) | (if (o.REPLACE == 1) @intFromEnum(FINDREPLACE_FLAGS.REPLACE) else 0) | (if (o.REPLACEALL == 1) @intFromEnum(FINDREPLACE_FLAGS.REPLACEALL) else 0) | (if (o.SHOWHELP == 1) @intFromEnum(FINDREPLACE_FLAGS.SHOWHELP) else 0) | (if (o.WHOLEWORD == 1) @intFromEnum(FINDREPLACE_FLAGS.WHOLEWORD) else 0));
     }
 };
 pub const FR_DIALOGTERM = FINDREPLACE_FLAGS.DIALOGTERM;
@@ -628,35 +533,7 @@ pub const PRINTDLGEX_FLAGS = enum(u32) {
         PRINTSETUP: u1 = 0,
         SHOWHELP: u1 = 0,
     }) PRINTDLGEX_FLAGS {
-        return @intToEnum(PRINTDLGEX_FLAGS,
-              (if (o.ALLPAGES == 1) @enumToInt(PRINTDLGEX_FLAGS.ALLPAGES) else 0)
-            | (if (o.COLLATE == 1) @enumToInt(PRINTDLGEX_FLAGS.COLLATE) else 0)
-            | (if (o.CURRENTPAGE == 1) @enumToInt(PRINTDLGEX_FLAGS.CURRENTPAGE) else 0)
-            | (if (o.DISABLEPRINTTOFILE == 1) @enumToInt(PRINTDLGEX_FLAGS.DISABLEPRINTTOFILE) else 0)
-            | (if (o.ENABLEPRINTTEMPLATE == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLEPRINTTEMPLATE) else 0)
-            | (if (o.ENABLEPRINTTEMPLATEHANDLE == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLEPRINTTEMPLATEHANDLE) else 0)
-            | (if (o.EXCLUSIONFLAGS == 1) @enumToInt(PRINTDLGEX_FLAGS.EXCLUSIONFLAGS) else 0)
-            | (if (o.HIDEPRINTTOFILE == 1) @enumToInt(PRINTDLGEX_FLAGS.HIDEPRINTTOFILE) else 0)
-            | (if (o.NOCURRENTPAGE == 1) @enumToInt(PRINTDLGEX_FLAGS.NOCURRENTPAGE) else 0)
-            | (if (o.NOPAGENUMS == 1) @enumToInt(PRINTDLGEX_FLAGS.NOPAGENUMS) else 0)
-            | (if (o.NOSELECTION == 1) @enumToInt(PRINTDLGEX_FLAGS.NOSELECTION) else 0)
-            | (if (o.NOWARNING == 1) @enumToInt(PRINTDLGEX_FLAGS.NOWARNING) else 0)
-            | (if (o.PAGENUMS == 1) @enumToInt(PRINTDLGEX_FLAGS.PAGENUMS) else 0)
-            | (if (o.PRINTTOFILE == 1) @enumToInt(PRINTDLGEX_FLAGS.PRINTTOFILE) else 0)
-            | (if (o.RETURNDC == 1) @enumToInt(PRINTDLGEX_FLAGS.RETURNDC) else 0)
-            | (if (o.RETURNDEFAULT == 1) @enumToInt(PRINTDLGEX_FLAGS.RETURNDEFAULT) else 0)
-            | (if (o.RETURNIC == 1) @enumToInt(PRINTDLGEX_FLAGS.RETURNIC) else 0)
-            | (if (o.SELECTION == 1) @enumToInt(PRINTDLGEX_FLAGS.SELECTION) else 0)
-            | (if (o.USEDEVMODECOPIES == 1) @enumToInt(PRINTDLGEX_FLAGS.USEDEVMODECOPIES) else 0)
-            | (if (o.USELARGETEMPLATE == 1) @enumToInt(PRINTDLGEX_FLAGS.USELARGETEMPLATE) else 0)
-            | (if (o.ENABLEPRINTHOOK == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLEPRINTHOOK) else 0)
-            | (if (o.ENABLESETUPHOOK == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLESETUPHOOK) else 0)
-            | (if (o.ENABLESETUPTEMPLATE == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLESETUPTEMPLATE) else 0)
-            | (if (o.ENABLESETUPTEMPLATEHANDLE == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLESETUPTEMPLATEHANDLE) else 0)
-            | (if (o.NONETWORKBUTTON == 1) @enumToInt(PRINTDLGEX_FLAGS.NONETWORKBUTTON) else 0)
-            | (if (o.PRINTSETUP == 1) @enumToInt(PRINTDLGEX_FLAGS.PRINTSETUP) else 0)
-            | (if (o.SHOWHELP == 1) @enumToInt(PRINTDLGEX_FLAGS.SHOWHELP) else 0)
-        );
+        return @enumFromInt(PRINTDLGEX_FLAGS, (if (o.ALLPAGES == 1) @intFromEnum(PRINTDLGEX_FLAGS.ALLPAGES) else 0) | (if (o.COLLATE == 1) @intFromEnum(PRINTDLGEX_FLAGS.COLLATE) else 0) | (if (o.CURRENTPAGE == 1) @intFromEnum(PRINTDLGEX_FLAGS.CURRENTPAGE) else 0) | (if (o.DISABLEPRINTTOFILE == 1) @intFromEnum(PRINTDLGEX_FLAGS.DISABLEPRINTTOFILE) else 0) | (if (o.ENABLEPRINTTEMPLATE == 1) @intFromEnum(PRINTDLGEX_FLAGS.ENABLEPRINTTEMPLATE) else 0) | (if (o.ENABLEPRINTTEMPLATEHANDLE == 1) @intFromEnum(PRINTDLGEX_FLAGS.ENABLEPRINTTEMPLATEHANDLE) else 0) | (if (o.EXCLUSIONFLAGS == 1) @intFromEnum(PRINTDLGEX_FLAGS.EXCLUSIONFLAGS) else 0) | (if (o.HIDEPRINTTOFILE == 1) @intFromEnum(PRINTDLGEX_FLAGS.HIDEPRINTTOFILE) else 0) | (if (o.NOCURRENTPAGE == 1) @intFromEnum(PRINTDLGEX_FLAGS.NOCURRENTPAGE) else 0) | (if (o.NOPAGENUMS == 1) @intFromEnum(PRINTDLGEX_FLAGS.NOPAGENUMS) else 0) | (if (o.NOSELECTION == 1) @intFromEnum(PRINTDLGEX_FLAGS.NOSELECTION) else 0) | (if (o.NOWARNING == 1) @intFromEnum(PRINTDLGEX_FLAGS.NOWARNING) else 0) | (if (o.PAGENUMS == 1) @intFromEnum(PRINTDLGEX_FLAGS.PAGENUMS) else 0) | (if (o.PRINTTOFILE == 1) @intFromEnum(PRINTDLGEX_FLAGS.PRINTTOFILE) else 0) | (if (o.RETURNDC == 1) @intFromEnum(PRINTDLGEX_FLAGS.RETURNDC) else 0) | (if (o.RETURNDEFAULT == 1) @intFromEnum(PRINTDLGEX_FLAGS.RETURNDEFAULT) else 0) | (if (o.RETURNIC == 1) @intFromEnum(PRINTDLGEX_FLAGS.RETURNIC) else 0) | (if (o.SELECTION == 1) @intFromEnum(PRINTDLGEX_FLAGS.SELECTION) else 0) | (if (o.USEDEVMODECOPIES == 1) @intFromEnum(PRINTDLGEX_FLAGS.USEDEVMODECOPIES) else 0) | (if (o.USELARGETEMPLATE == 1) @intFromEnum(PRINTDLGEX_FLAGS.USELARGETEMPLATE) else 0) | (if (o.ENABLEPRINTHOOK == 1) @intFromEnum(PRINTDLGEX_FLAGS.ENABLEPRINTHOOK) else 0) | (if (o.ENABLESETUPHOOK == 1) @intFromEnum(PRINTDLGEX_FLAGS.ENABLESETUPHOOK) else 0) | (if (o.ENABLESETUPTEMPLATE == 1) @intFromEnum(PRINTDLGEX_FLAGS.ENABLESETUPTEMPLATE) else 0) | (if (o.ENABLESETUPTEMPLATEHANDLE == 1) @intFromEnum(PRINTDLGEX_FLAGS.ENABLESETUPTEMPLATEHANDLE) else 0) | (if (o.NONETWORKBUTTON == 1) @intFromEnum(PRINTDLGEX_FLAGS.NONETWORKBUTTON) else 0) | (if (o.PRINTSETUP == 1) @intFromEnum(PRINTDLGEX_FLAGS.PRINTSETUP) else 0) | (if (o.SHOWHELP == 1) @intFromEnum(PRINTDLGEX_FLAGS.SHOWHELP) else 0));
     }
 };
 pub const PD_ALLPAGES = PRINTDLGEX_FLAGS.ALLPAGES;
@@ -704,14 +581,7 @@ pub const CHOOSEFONT_FONT_TYPE = enum(u16) {
         SCREEN_FONTTYPE: u1 = 0,
         SIMULATED_FONTTYPE: u1 = 0,
     }) CHOOSEFONT_FONT_TYPE {
-        return @intToEnum(CHOOSEFONT_FONT_TYPE,
-              (if (o.BOLD_FONTTYPE == 1) @enumToInt(CHOOSEFONT_FONT_TYPE.BOLD_FONTTYPE) else 0)
-            | (if (o.ITALIC_FONTTYPE == 1) @enumToInt(CHOOSEFONT_FONT_TYPE.ITALIC_FONTTYPE) else 0)
-            | (if (o.PRINTER_FONTTYPE == 1) @enumToInt(CHOOSEFONT_FONT_TYPE.PRINTER_FONTTYPE) else 0)
-            | (if (o.REGULAR_FONTTYPE == 1) @enumToInt(CHOOSEFONT_FONT_TYPE.REGULAR_FONTTYPE) else 0)
-            | (if (o.SCREEN_FONTTYPE == 1) @enumToInt(CHOOSEFONT_FONT_TYPE.SCREEN_FONTTYPE) else 0)
-            | (if (o.SIMULATED_FONTTYPE == 1) @enumToInt(CHOOSEFONT_FONT_TYPE.SIMULATED_FONTTYPE) else 0)
-        );
+        return @enumFromInt(CHOOSEFONT_FONT_TYPE, (if (o.BOLD_FONTTYPE == 1) @intFromEnum(CHOOSEFONT_FONT_TYPE.BOLD_FONTTYPE) else 0) | (if (o.ITALIC_FONTTYPE == 1) @intFromEnum(CHOOSEFONT_FONT_TYPE.ITALIC_FONTTYPE) else 0) | (if (o.PRINTER_FONTTYPE == 1) @intFromEnum(CHOOSEFONT_FONT_TYPE.PRINTER_FONTTYPE) else 0) | (if (o.REGULAR_FONTTYPE == 1) @intFromEnum(CHOOSEFONT_FONT_TYPE.REGULAR_FONTTYPE) else 0) | (if (o.SCREEN_FONTTYPE == 1) @intFromEnum(CHOOSEFONT_FONT_TYPE.SCREEN_FONTTYPE) else 0) | (if (o.SIMULATED_FONTTYPE == 1) @intFromEnum(CHOOSEFONT_FONT_TYPE.SIMULATED_FONTTYPE) else 0));
     }
 };
 pub const BOLD_FONTTYPE = CHOOSEFONT_FONT_TYPE.BOLD_FONTTYPE;
@@ -722,110 +592,94 @@ pub const SCREEN_FONTTYPE = CHOOSEFONT_FONT_TYPE.SCREEN_FONTTYPE;
 pub const SIMULATED_FONTTYPE = CHOOSEFONT_FONT_TYPE.SIMULATED_FONTTYPE;
 
 pub const LPOFNHOOKPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?HWND,
         param1: u32,
         param2: WPARAM,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) usize,
-    else => *const fn(
+    else => *const fn (
         param0: ?HWND,
         param1: u32,
         param2: WPARAM,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) usize,
-} ;
-
-
-
-
+};
 
 pub const LPCCHOOKPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?HWND,
         param1: u32,
         param2: WPARAM,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) usize,
-    else => *const fn(
+    else => *const fn (
         param0: ?HWND,
         param1: u32,
         param2: WPARAM,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) usize,
-} ;
-
-
-
-
-
-
+};
 
 pub const LPFRHOOKPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?HWND,
         param1: u32,
         param2: WPARAM,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) usize,
-    else => *const fn(
+    else => *const fn (
         param0: ?HWND,
         param1: u32,
         param2: WPARAM,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) usize,
-} ;
-
-
+};
 
 pub const LPCFHOOKPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?HWND,
         param1: u32,
         param2: WPARAM,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) usize,
-    else => *const fn(
+    else => *const fn (
         param0: ?HWND,
         param1: u32,
         param2: WPARAM,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) usize,
-} ;
-
-
+};
 
 pub const LPPRINTHOOKPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?HWND,
         param1: u32,
         param2: WPARAM,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) usize,
-    else => *const fn(
+    else => *const fn (
         param0: ?HWND,
         param1: u32,
         param2: WPARAM,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) usize,
-} ;
+};
 
 pub const LPSETUPHOOKPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?HWND,
         param1: u32,
         param2: WPARAM,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) usize,
-    else => *const fn(
+    else => *const fn (
         param0: ?HWND,
         param1: u32,
         param2: WPARAM,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) usize,
-} ;
-
-
+};
 
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IPrintDialogCallback_Value = Guid.initString("5852a2c3-6530-11d1-b6a3-0000f8757bf9");
@@ -834,23 +688,23 @@ pub const IPrintDialogCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         InitDone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintDialogCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintDialogCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SelectionChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintDialogCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintDialogCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         HandleMessage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintDialogCallback,
                 hDlg: ?HWND,
                 uMsg: u32,
@@ -858,7 +712,7 @@ pub const IPrintDialogCallback = extern struct {
                 lParam: LPARAM,
                 pResult: ?*LRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintDialogCallback,
                 hDlg: ?HWND,
                 uMsg: u32,
@@ -869,21 +723,23 @@ pub const IPrintDialogCallback = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogCallback_InitDone(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDialogCallback.VTable, self.vtable).InitDone(@ptrCast(*const IPrintDialogCallback, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogCallback_SelectionChange(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDialogCallback.VTable, self.vtable).SelectionChange(@ptrCast(*const IPrintDialogCallback, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogCallback_HandleMessage(self: *const T, hDlg: ?HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM, pResult: ?*LRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDialogCallback.VTable, self.vtable).HandleMessage(@ptrCast(*const IPrintDialogCallback, self), hDlg, uMsg, wParam, lParam, pResult);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintDialogCallback_InitDone(self: *const T) HRESULT {
+                return @ptrCast(*const IPrintDialogCallback.VTable, self.vtable).InitDone(@ptrCast(*const IPrintDialogCallback, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintDialogCallback_SelectionChange(self: *const T) HRESULT {
+                return @ptrCast(*const IPrintDialogCallback.VTable, self.vtable).SelectionChange(@ptrCast(*const IPrintDialogCallback, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintDialogCallback_HandleMessage(self: *const T, hDlg: ?HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM, pResult: ?*LRESULT) HRESULT {
+                return @ptrCast(*const IPrintDialogCallback.VTable, self.vtable).HandleMessage(@ptrCast(*const IPrintDialogCallback, self), hDlg, uMsg, wParam, lParam, pResult);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -894,36 +750,36 @@ pub const IPrintDialogServices = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCurrentDevMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintDialogServices,
                 pDevMode: ?*DEVMODEA,
                 pcbSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintDialogServices,
                 pDevMode: ?*DEVMODEA,
                 pcbSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCurrentPrinterName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintDialogServices,
                 pPrinterName: ?[*:0]u16,
                 pcchSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintDialogServices,
                 pPrinterName: ?[*:0]u16,
                 pcchSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCurrentPortName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintDialogServices,
                 pPortName: ?[*:0]u16,
                 pcchSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintDialogServices,
                 pPortName: ?[*:0]u16,
                 pcchSize: ?*u32,
@@ -931,83 +787,57 @@ pub const IPrintDialogServices = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogServices_GetCurrentDevMode(self: *const T, pDevMode: ?*DEVMODEA, pcbSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDialogServices.VTable, self.vtable).GetCurrentDevMode(@ptrCast(*const IPrintDialogServices, self), pDevMode, pcbSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogServices_GetCurrentPrinterName(self: *const T, pPrinterName: ?[*:0]u16, pcchSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDialogServices.VTable, self.vtable).GetCurrentPrinterName(@ptrCast(*const IPrintDialogServices, self), pPrinterName, pcchSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogServices_GetCurrentPortName(self: *const T, pPortName: ?[*:0]u16, pcchSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDialogServices.VTable, self.vtable).GetCurrentPortName(@ptrCast(*const IPrintDialogServices, self), pPortName, pcchSize);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintDialogServices_GetCurrentDevMode(self: *const T, pDevMode: ?*DEVMODEA, pcbSize: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintDialogServices.VTable, self.vtable).GetCurrentDevMode(@ptrCast(*const IPrintDialogServices, self), pDevMode, pcbSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintDialogServices_GetCurrentPrinterName(self: *const T, pPrinterName: ?[*:0]u16, pcchSize: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintDialogServices.VTable, self.vtable).GetCurrentPrinterName(@ptrCast(*const IPrintDialogServices, self), pPrinterName, pcchSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintDialogServices_GetCurrentPortName(self: *const T, pPortName: ?[*:0]u16, pcchSize: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintDialogServices.VTable, self.vtable).GetCurrentPortName(@ptrCast(*const IPrintDialogServices, self), pPortName, pcchSize);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
-
-
-
-
 pub const LPPAGEPAINTHOOK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?HWND,
         param1: u32,
         param2: WPARAM,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) usize,
-    else => *const fn(
+    else => *const fn (
         param0: ?HWND,
         param1: u32,
         param2: WPARAM,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) usize,
-} ;
+};
 
 pub const LPPAGESETUPHOOK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?HWND,
         param1: u32,
         param2: WPARAM,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) usize,
-    else => *const fn(
+    else => *const fn (
         param0: ?HWND,
         param1: u32,
         param2: WPARAM,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) usize,
-} ;
+};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-pub const OPENFILENAME_NT4A = switch(@import("../../zig.zig").arch) {
+pub const OPENFILENAME_NT4A = switch (@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         lStructSize: u32,
         hwndOwner: ?HWND,
@@ -1053,7 +883,7 @@ pub const OPENFILENAME_NT4A = switch(@import("../../zig.zig").arch) {
         lpTemplateName: ?[*:0]const u8 align(1),
     },
 };
-pub const OPENFILENAME_NT4W = switch(@import("../../zig.zig").arch) {
+pub const OPENFILENAME_NT4W = switch (@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         lStructSize: u32,
         hwndOwner: ?HWND,
@@ -1099,7 +929,7 @@ pub const OPENFILENAME_NT4W = switch(@import("../../zig.zig").arch) {
         lpTemplateName: ?[*:0]const u16 align(1),
     },
 };
-pub const OPENFILENAMEA = switch(@import("../../zig.zig").arch) {
+pub const OPENFILENAMEA = switch (@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         lStructSize: u32,
         hwndOwner: ?HWND,
@@ -1151,7 +981,7 @@ pub const OPENFILENAMEA = switch(@import("../../zig.zig").arch) {
         FlagsEx: OPEN_FILENAME_FLAGS_EX align(1),
     },
 };
-pub const OPENFILENAMEW = switch(@import("../../zig.zig").arch) {
+pub const OPENFILENAMEW = switch (@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         lStructSize: u32,
         hwndOwner: ?HWND,
@@ -1203,7 +1033,7 @@ pub const OPENFILENAMEW = switch(@import("../../zig.zig").arch) {
         FlagsEx: OPEN_FILENAME_FLAGS_EX align(1),
     },
 };
-pub const OFNOTIFYA = switch(@import("../../zig.zig").arch) {
+pub const OFNOTIFYA = switch (@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         hdr: NMHDR,
         lpOFN: ?*OPENFILENAMEA,
@@ -1215,7 +1045,7 @@ pub const OFNOTIFYA = switch(@import("../../zig.zig").arch) {
         pszFile: ?PSTR align(1),
     },
 };
-pub const OFNOTIFYW = switch(@import("../../zig.zig").arch) {
+pub const OFNOTIFYW = switch (@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         hdr: NMHDR,
         lpOFN: ?*OPENFILENAMEW,
@@ -1227,7 +1057,7 @@ pub const OFNOTIFYW = switch(@import("../../zig.zig").arch) {
         pszFile: ?PWSTR align(1),
     },
 };
-pub const OFNOTIFYEXA = switch(@import("../../zig.zig").arch) {
+pub const OFNOTIFYEXA = switch (@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         hdr: NMHDR,
         lpOFN: ?*OPENFILENAMEA,
@@ -1241,7 +1071,7 @@ pub const OFNOTIFYEXA = switch(@import("../../zig.zig").arch) {
         pidl: ?*anyopaque align(1),
     },
 };
-pub const OFNOTIFYEXW = switch(@import("../../zig.zig").arch) {
+pub const OFNOTIFYEXW = switch (@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         hdr: NMHDR,
         lpOFN: ?*OPENFILENAMEW,
@@ -1255,7 +1085,7 @@ pub const OFNOTIFYEXW = switch(@import("../../zig.zig").arch) {
         pidl: ?*anyopaque align(1),
     },
 };
-pub const CHOOSECOLORA = switch(@import("../../zig.zig").arch) {
+pub const CHOOSECOLORA = switch (@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         lStructSize: u32,
         hwndOwner: ?HWND,
@@ -1279,7 +1109,7 @@ pub const CHOOSECOLORA = switch(@import("../../zig.zig").arch) {
         lpTemplateName: ?[*:0]const u8 align(1),
     },
 };
-pub const CHOOSECOLORW = switch(@import("../../zig.zig").arch) {
+pub const CHOOSECOLORW = switch (@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         lStructSize: u32,
         hwndOwner: ?HWND,
@@ -1303,7 +1133,7 @@ pub const CHOOSECOLORW = switch(@import("../../zig.zig").arch) {
         lpTemplateName: ?[*:0]const u16 align(1),
     },
 };
-pub const FINDREPLACEA = switch(@import("../../zig.zig").arch) {
+pub const FINDREPLACEA = switch (@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         lStructSize: u32,
         hwndOwner: ?HWND,
@@ -1331,7 +1161,7 @@ pub const FINDREPLACEA = switch(@import("../../zig.zig").arch) {
         lpTemplateName: ?[*:0]const u8 align(1),
     },
 };
-pub const FINDREPLACEW = switch(@import("../../zig.zig").arch) {
+pub const FINDREPLACEW = switch (@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         lStructSize: u32,
         hwndOwner: ?HWND,
@@ -1359,7 +1189,7 @@ pub const FINDREPLACEW = switch(@import("../../zig.zig").arch) {
         lpTemplateName: ?[*:0]const u16 align(1),
     },
 };
-pub const CHOOSEFONTA = switch(@import("../../zig.zig").arch) {
+pub const CHOOSEFONTA = switch (@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         lStructSize: u32,
         hwndOwner: ?HWND,
@@ -1397,7 +1227,7 @@ pub const CHOOSEFONTA = switch(@import("../../zig.zig").arch) {
         nSizeMax: i32 align(1),
     },
 };
-pub const CHOOSEFONTW = switch(@import("../../zig.zig").arch) {
+pub const CHOOSEFONTW = switch (@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         lStructSize: u32,
         hwndOwner: ?HWND,
@@ -1435,7 +1265,7 @@ pub const CHOOSEFONTW = switch(@import("../../zig.zig").arch) {
         nSizeMax: i32 align(1),
     },
 };
-pub const PRINTDLGA = switch(@import("../../zig.zig").arch) {
+pub const PRINTDLGA = switch (@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         lStructSize: u32,
         hwndOwner: ?HWND,
@@ -1479,7 +1309,7 @@ pub const PRINTDLGA = switch(@import("../../zig.zig").arch) {
         hSetupTemplate: isize align(1),
     },
 };
-pub const PRINTDLGW = switch(@import("../../zig.zig").arch) {
+pub const PRINTDLGW = switch (@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         lStructSize: u32,
         hwndOwner: ?HWND,
@@ -1523,7 +1353,7 @@ pub const PRINTDLGW = switch(@import("../../zig.zig").arch) {
         hSetupTemplate: isize align(1),
     },
 };
-pub const PRINTPAGERANGE = switch(@import("../../zig.zig").arch) {
+pub const PRINTPAGERANGE = switch (@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         nFromPage: u32,
         nToPage: u32,
@@ -1533,7 +1363,7 @@ pub const PRINTPAGERANGE = switch(@import("../../zig.zig").arch) {
         nToPage: u32 align(1),
     },
 };
-pub const PRINTDLGEXA = switch(@import("../../zig.zig").arch) {
+pub const PRINTDLGEXA = switch (@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         lStructSize: u32,
         hwndOwner: ?HWND,
@@ -1581,7 +1411,7 @@ pub const PRINTDLGEXA = switch(@import("../../zig.zig").arch) {
         dwResultAction: u32 align(1),
     },
 };
-pub const PRINTDLGEXW = switch(@import("../../zig.zig").arch) {
+pub const PRINTDLGEXW = switch (@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         lStructSize: u32,
         hwndOwner: ?HWND,
@@ -1629,7 +1459,7 @@ pub const PRINTDLGEXW = switch(@import("../../zig.zig").arch) {
         dwResultAction: u32 align(1),
     },
 };
-pub const DEVNAMES = switch(@import("../../zig.zig").arch) {
+pub const DEVNAMES = switch (@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         wDriverOffset: u16,
         wDeviceOffset: u16,
@@ -1643,7 +1473,7 @@ pub const DEVNAMES = switch(@import("../../zig.zig").arch) {
         wDefault: u16 align(1),
     },
 };
-pub const PAGESETUPDLGA = switch(@import("../../zig.zig").arch) {
+pub const PAGESETUPDLGA = switch (@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         lStructSize: u32,
         hwndOwner: ?HWND,
@@ -1677,7 +1507,7 @@ pub const PAGESETUPDLGA = switch(@import("../../zig.zig").arch) {
         hPageSetupTemplate: isize align(1),
     },
 };
-pub const PAGESETUPDLGW = switch(@import("../../zig.zig").arch) {
+pub const PAGESETUPDLGW = switch (@import("../../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         lStructSize: u32,
         hwndOwner: ?HWND,
@@ -1802,8 +1632,7 @@ pub extern "comdlg32" fn PrintDlgExW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "comdlg32" fn CommDlgExtendedError(
-) callconv(@import("std").os.windows.WINAPI) COMMON_DLG_ERRORS;
+pub extern "comdlg32" fn CommDlgExtendedError() callconv(@import("std").os.windows.WINAPI) COMMON_DLG_ERRORS;
 
 pub extern "comdlg32" fn PageSetupDlgA(
     param0: ?*PAGESETUPDLGA,
@@ -1812,7 +1641,6 @@ pub extern "comdlg32" fn PageSetupDlgA(
 pub extern "comdlg32" fn PageSetupDlgW(
     param0: ?*PAGESETUPDLGW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (20)
@@ -1864,26 +1692,26 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
         pub const PageSetupDlg = thismodule.PageSetupDlgW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const OPENFILENAME_NT4 = *opaque{};
-        pub const OPENFILENAME = *opaque{};
-        pub const OFNOTIFY = *opaque{};
-        pub const OFNOTIFYEX = *opaque{};
-        pub const CHOOSECOLOR = *opaque{};
-        pub const FINDREPLACE = *opaque{};
-        pub const CHOOSEFONT = *opaque{};
-        pub const PRINTDLG = *opaque{};
-        pub const PRINTDLGEX = *opaque{};
-        pub const PAGESETUPDLG = *opaque{};
-        pub const GetOpenFileName = *opaque{};
-        pub const GetSaveFileName = *opaque{};
-        pub const GetFileTitle = *opaque{};
-        pub const ChooseColor = *opaque{};
-        pub const FindText = *opaque{};
-        pub const ReplaceText = *opaque{};
-        pub const ChooseFont = *opaque{};
-        pub const PrintDlg = *opaque{};
-        pub const PrintDlgEx = *opaque{};
-        pub const PageSetupDlg = *opaque{};
+        pub const OPENFILENAME_NT4 = *opaque {};
+        pub const OPENFILENAME = *opaque {};
+        pub const OFNOTIFY = *opaque {};
+        pub const OFNOTIFYEX = *opaque {};
+        pub const CHOOSECOLOR = *opaque {};
+        pub const FINDREPLACE = *opaque {};
+        pub const CHOOSEFONT = *opaque {};
+        pub const PRINTDLG = *opaque {};
+        pub const PRINTDLGEX = *opaque {};
+        pub const PAGESETUPDLG = *opaque {};
+        pub const GetOpenFileName = *opaque {};
+        pub const GetSaveFileName = *opaque {};
+        pub const GetFileTitle = *opaque {};
+        pub const ChooseColor = *opaque {};
+        pub const FindText = *opaque {};
+        pub const ReplaceText = *opaque {};
+        pub const ChooseFont = *opaque {};
+        pub const PrintDlg = *opaque {};
+        pub const PrintDlgEx = *opaque {};
+        pub const PageSetupDlg = *opaque {};
     } else struct {
         pub const OPENFILENAME_NT4 = @compileError("'OPENFILENAME_NT4' requires that UNICODE be set to true or false in the root module");
         pub const OPENFILENAME = @compileError("'OPENFILENAME' requires that UNICODE be set to true or false in the root module");
@@ -1932,18 +1760,32 @@ const WPARAM = @import("../../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "LPOFNHOOKPROC")) { _ = LPOFNHOOKPROC; }
-    if (@hasDecl(@This(), "LPCCHOOKPROC")) { _ = LPCCHOOKPROC; }
-    if (@hasDecl(@This(), "LPFRHOOKPROC")) { _ = LPFRHOOKPROC; }
-    if (@hasDecl(@This(), "LPCFHOOKPROC")) { _ = LPCFHOOKPROC; }
-    if (@hasDecl(@This(), "LPPRINTHOOKPROC")) { _ = LPPRINTHOOKPROC; }
-    if (@hasDecl(@This(), "LPSETUPHOOKPROC")) { _ = LPSETUPHOOKPROC; }
-    if (@hasDecl(@This(), "LPPAGEPAINTHOOK")) { _ = LPPAGEPAINTHOOK; }
-    if (@hasDecl(@This(), "LPPAGESETUPHOOK")) { _ = LPPAGESETUPHOOK; }
+    if (@hasDecl(@This(), "LPOFNHOOKPROC")) {
+        _ = LPOFNHOOKPROC;
+    }
+    if (@hasDecl(@This(), "LPCCHOOKPROC")) {
+        _ = LPCCHOOKPROC;
+    }
+    if (@hasDecl(@This(), "LPFRHOOKPROC")) {
+        _ = LPFRHOOKPROC;
+    }
+    if (@hasDecl(@This(), "LPCFHOOKPROC")) {
+        _ = LPCFHOOKPROC;
+    }
+    if (@hasDecl(@This(), "LPPRINTHOOKPROC")) {
+        _ = LPPRINTHOOKPROC;
+    }
+    if (@hasDecl(@This(), "LPSETUPHOOKPROC")) {
+        _ = LPSETUPHOOKPROC;
+    }
+    if (@hasDecl(@This(), "LPPAGEPAINTHOOK")) {
+        _ = LPPAGEPAINTHOOK;
+    }
+    if (@hasDecl(@This(), "LPPAGESETUPHOOK")) {
+        _ = LPPAGESETUPHOOK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

@@ -33,24 +33,24 @@ pub const ICatalog = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         GetCollection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ICatalog,
                 bstrCollName: ?BSTR,
                 ppCatalogCollection: ?*?*IDispatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ICatalog,
                 bstrCollName: ?BSTR,
                 ppCatalogCollection: ?*?*IDispatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Connect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ICatalog,
                 bstrConnectString: ?BSTR,
                 ppCatalogCollection: ?*?*IDispatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ICatalog,
                 bstrConnectString: ?BSTR,
                 ppCatalogCollection: ?*?*IDispatch,
@@ -59,12 +59,12 @@ pub const ICatalog = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MajorVersion: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ICatalog,
                 retval: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const ICatalog,
                 retval: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -72,37 +72,39 @@ pub const ICatalog = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MinorVersion: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ICatalog,
                 retval: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const ICatalog,
                 retval: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICatalog_GetCollection(self: *const T, bstrCollName: ?BSTR, ppCatalogCollection: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICatalog.VTable, self.vtable).GetCollection(@ptrCast(*const ICatalog, self), bstrCollName, ppCatalogCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICatalog_Connect(self: *const T, bstrConnectString: ?BSTR, ppCatalogCollection: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICatalog.VTable, self.vtable).Connect(@ptrCast(*const ICatalog, self), bstrConnectString, ppCatalogCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICatalog_get_MajorVersion(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICatalog.VTable, self.vtable).get_MajorVersion(@ptrCast(*const ICatalog, self), retval);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICatalog_get_MinorVersion(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICatalog.VTable, self.vtable).get_MinorVersion(@ptrCast(*const ICatalog, self), retval);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICatalog_GetCollection(self: *const T, bstrCollName: ?BSTR, ppCatalogCollection: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const ICatalog.VTable, self.vtable).GetCollection(@ptrCast(*const ICatalog, self), bstrCollName, ppCatalogCollection);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICatalog_Connect(self: *const T, bstrConnectString: ?BSTR, ppCatalogCollection: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const ICatalog.VTable, self.vtable).Connect(@ptrCast(*const ICatalog, self), bstrConnectString, ppCatalogCollection);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICatalog_get_MajorVersion(self: *const T, retval: ?*i32) HRESULT {
+                return @ptrCast(*const ICatalog.VTable, self.vtable).get_MajorVersion(@ptrCast(*const ICatalog, self), retval);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICatalog_get_MinorVersion(self: *const T, retval: ?*i32) HRESULT {
+                return @ptrCast(*const ICatalog.VTable, self.vtable).get_MinorVersion(@ptrCast(*const ICatalog, self), retval);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -112,13 +114,13 @@ pub const IComponentUtil = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         InstallComponent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IComponentUtil,
                 bstrDLLFile: ?BSTR,
                 bstrTypelibFile: ?BSTR,
                 bstrProxyStubDLLFile: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IComponentUtil,
                 bstrDLLFile: ?BSTR,
                 bstrTypelibFile: ?BSTR,
@@ -126,33 +128,33 @@ pub const IComponentUtil = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ImportComponent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IComponentUtil,
                 bstrCLSID: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IComponentUtil,
                 bstrCLSID: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ImportComponentByName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IComponentUtil,
                 bstrProgID: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IComponentUtil,
                 bstrProgID: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCLSIDs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IComponentUtil,
                 bstrDLLFile: ?BSTR,
                 bstrTypelibFile: ?BSTR,
                 aCLSIDs: ?*?*SAFEARRAY,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IComponentUtil,
                 bstrDLLFile: ?BSTR,
                 bstrTypelibFile: ?BSTR,
@@ -161,25 +163,27 @@ pub const IComponentUtil = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComponentUtil_InstallComponent(self: *const T, bstrDLLFile: ?BSTR, bstrTypelibFile: ?BSTR, bstrProxyStubDLLFile: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IComponentUtil.VTable, self.vtable).InstallComponent(@ptrCast(*const IComponentUtil, self), bstrDLLFile, bstrTypelibFile, bstrProxyStubDLLFile);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComponentUtil_ImportComponent(self: *const T, bstrCLSID: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IComponentUtil.VTable, self.vtable).ImportComponent(@ptrCast(*const IComponentUtil, self), bstrCLSID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComponentUtil_ImportComponentByName(self: *const T, bstrProgID: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IComponentUtil.VTable, self.vtable).ImportComponentByName(@ptrCast(*const IComponentUtil, self), bstrProgID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComponentUtil_GetCLSIDs(self: *const T, bstrDLLFile: ?BSTR, bstrTypelibFile: ?BSTR, aCLSIDs: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IComponentUtil.VTable, self.vtable).GetCLSIDs(@ptrCast(*const IComponentUtil, self), bstrDLLFile, bstrTypelibFile, aCLSIDs);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IComponentUtil_InstallComponent(self: *const T, bstrDLLFile: ?BSTR, bstrTypelibFile: ?BSTR, bstrProxyStubDLLFile: ?BSTR) HRESULT {
+                return @ptrCast(*const IComponentUtil.VTable, self.vtable).InstallComponent(@ptrCast(*const IComponentUtil, self), bstrDLLFile, bstrTypelibFile, bstrProxyStubDLLFile);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IComponentUtil_ImportComponent(self: *const T, bstrCLSID: ?BSTR) HRESULT {
+                return @ptrCast(*const IComponentUtil.VTable, self.vtable).ImportComponent(@ptrCast(*const IComponentUtil, self), bstrCLSID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IComponentUtil_ImportComponentByName(self: *const T, bstrProgID: ?BSTR) HRESULT {
+                return @ptrCast(*const IComponentUtil.VTable, self.vtable).ImportComponentByName(@ptrCast(*const IComponentUtil, self), bstrProgID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IComponentUtil_GetCLSIDs(self: *const T, bstrDLLFile: ?BSTR, bstrTypelibFile: ?BSTR, aCLSIDs: ?*?*SAFEARRAY) HRESULT {
+                return @ptrCast(*const IComponentUtil.VTable, self.vtable).GetCLSIDs(@ptrCast(*const IComponentUtil, self), bstrDLLFile, bstrTypelibFile, aCLSIDs);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -189,13 +193,13 @@ pub const IPackageUtil = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         InstallPackage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPackageUtil,
                 bstrPackageFile: ?BSTR,
                 bstrInstallPath: ?BSTR,
                 lOptions: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPackageUtil,
                 bstrPackageFile: ?BSTR,
                 bstrInstallPath: ?BSTR,
@@ -203,13 +207,13 @@ pub const IPackageUtil = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ExportPackage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPackageUtil,
                 bstrPackageID: ?BSTR,
                 bstrPackageFile: ?BSTR,
                 lOptions: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPackageUtil,
                 bstrPackageID: ?BSTR,
                 bstrPackageFile: ?BSTR,
@@ -217,32 +221,34 @@ pub const IPackageUtil = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ShutdownPackage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPackageUtil,
                 bstrPackageID: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPackageUtil,
                 bstrPackageID: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPackageUtil_InstallPackage(self: *const T, bstrPackageFile: ?BSTR, bstrInstallPath: ?BSTR, lOptions: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPackageUtil.VTable, self.vtable).InstallPackage(@ptrCast(*const IPackageUtil, self), bstrPackageFile, bstrInstallPath, lOptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPackageUtil_ExportPackage(self: *const T, bstrPackageID: ?BSTR, bstrPackageFile: ?BSTR, lOptions: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPackageUtil.VTable, self.vtable).ExportPackage(@ptrCast(*const IPackageUtil, self), bstrPackageID, bstrPackageFile, lOptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPackageUtil_ShutdownPackage(self: *const T, bstrPackageID: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPackageUtil.VTable, self.vtable).ShutdownPackage(@ptrCast(*const IPackageUtil, self), bstrPackageID);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPackageUtil_InstallPackage(self: *const T, bstrPackageFile: ?BSTR, bstrInstallPath: ?BSTR, lOptions: i32) HRESULT {
+                return @ptrCast(*const IPackageUtil.VTable, self.vtable).InstallPackage(@ptrCast(*const IPackageUtil, self), bstrPackageFile, bstrInstallPath, lOptions);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPackageUtil_ExportPackage(self: *const T, bstrPackageID: ?BSTR, bstrPackageFile: ?BSTR, lOptions: i32) HRESULT {
+                return @ptrCast(*const IPackageUtil.VTable, self.vtable).ExportPackage(@ptrCast(*const IPackageUtil, self), bstrPackageID, bstrPackageFile, lOptions);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPackageUtil_ShutdownPackage(self: *const T, bstrPackageID: ?BSTR) HRESULT {
+                return @ptrCast(*const IPackageUtil.VTable, self.vtable).ShutdownPackage(@ptrCast(*const IPackageUtil, self), bstrPackageID);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -252,13 +258,13 @@ pub const IRemoteComponentUtil = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         InstallRemoteComponent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IRemoteComponentUtil,
                 bstrServer: ?BSTR,
                 bstrPackageID: ?BSTR,
                 bstrCLSID: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IRemoteComponentUtil,
                 bstrServer: ?BSTR,
                 bstrPackageID: ?BSTR,
@@ -266,13 +272,13 @@ pub const IRemoteComponentUtil = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         InstallRemoteComponentByName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IRemoteComponentUtil,
                 bstrServer: ?BSTR,
                 bstrPackageName: ?BSTR,
                 bstrProgID: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IRemoteComponentUtil,
                 bstrServer: ?BSTR,
                 bstrPackageName: ?BSTR,
@@ -281,17 +287,19 @@ pub const IRemoteComponentUtil = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteComponentUtil_InstallRemoteComponent(self: *const T, bstrServer: ?BSTR, bstrPackageID: ?BSTR, bstrCLSID: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteComponentUtil.VTable, self.vtable).InstallRemoteComponent(@ptrCast(*const IRemoteComponentUtil, self), bstrServer, bstrPackageID, bstrCLSID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRemoteComponentUtil_InstallRemoteComponentByName(self: *const T, bstrServer: ?BSTR, bstrPackageName: ?BSTR, bstrProgID: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteComponentUtil.VTable, self.vtable).InstallRemoteComponentByName(@ptrCast(*const IRemoteComponentUtil, self), bstrServer, bstrPackageName, bstrProgID);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRemoteComponentUtil_InstallRemoteComponent(self: *const T, bstrServer: ?BSTR, bstrPackageID: ?BSTR, bstrCLSID: ?BSTR) HRESULT {
+                return @ptrCast(*const IRemoteComponentUtil.VTable, self.vtable).InstallRemoteComponent(@ptrCast(*const IRemoteComponentUtil, self), bstrServer, bstrPackageID, bstrCLSID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRemoteComponentUtil_InstallRemoteComponentByName(self: *const T, bstrServer: ?BSTR, bstrPackageName: ?BSTR, bstrProgID: ?BSTR) HRESULT {
+                return @ptrCast(*const IRemoteComponentUtil.VTable, self.vtable).InstallRemoteComponentByName(@ptrCast(*const IRemoteComponentUtil, self), bstrServer, bstrPackageName, bstrProgID);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -301,38 +309,40 @@ pub const IRoleAssociationUtil = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         AssociateRole: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IRoleAssociationUtil,
                 bstrRoleID: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IRoleAssociationUtil,
                 bstrRoleID: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AssociateRoleByName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IRoleAssociationUtil,
                 bstrRoleName: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IRoleAssociationUtil,
                 bstrRoleName: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRoleAssociationUtil_AssociateRole(self: *const T, bstrRoleID: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRoleAssociationUtil.VTable, self.vtable).AssociateRole(@ptrCast(*const IRoleAssociationUtil, self), bstrRoleID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRoleAssociationUtil_AssociateRoleByName(self: *const T, bstrRoleName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRoleAssociationUtil.VTable, self.vtable).AssociateRoleByName(@ptrCast(*const IRoleAssociationUtil, self), bstrRoleName);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRoleAssociationUtil_AssociateRole(self: *const T, bstrRoleID: ?BSTR) HRESULT {
+                return @ptrCast(*const IRoleAssociationUtil.VTable, self.vtable).AssociateRole(@ptrCast(*const IRoleAssociationUtil, self), bstrRoleID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRoleAssociationUtil_AssociateRoleByName(self: *const T, bstrRoleName: ?BSTR) HRESULT {
+                return @ptrCast(*const IRoleAssociationUtil.VTable, self.vtable).AssociateRoleByName(@ptrCast(*const IRoleAssociationUtil, self), bstrRoleName);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -439,7 +449,6 @@ pub const mtsErrNotDeletable = __MIDL___MIDL_itf_mtxadmin_0107_0003.NotDeletable
 pub const mtsErrSession = __MIDL___MIDL_itf_mtxadmin_0107_0003.Session;
 pub const mtsErrCompFileNoRegistrar = __MIDL___MIDL_itf_mtxadmin_0107_0003.CompFileNoRegistrar;
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
 //--------------------------------------------------------------------------------
@@ -449,13 +458,9 @@ pub const mtsErrCompFileNoRegistrar = __MIDL___MIDL_itf_mtxadmin_0107_0003.CompF
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
@@ -467,9 +472,7 @@ const IDispatch = @import("../system/com.zig").IDispatch;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

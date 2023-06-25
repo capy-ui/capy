@@ -20,13 +20,13 @@ pub const IIsolatedAppLauncher = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Launch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IIsolatedAppLauncher,
                 appUserModelId: ?[*:0]const u16,
                 arguments: ?[*:0]const u16,
                 telemetryParameters: ?*const IsolatedAppLauncherTelemetryParameters,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IIsolatedAppLauncher,
                 appUserModelId: ?[*:0]const u16,
                 arguments: ?[*:0]const u16,
@@ -35,16 +35,17 @@ pub const IIsolatedAppLauncher = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IIsolatedAppLauncher_Launch(self: *const T, appUserModelId: ?[*:0]const u16, arguments: ?[*:0]const u16, telemetryParameters: ?*const IsolatedAppLauncherTelemetryParameters) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IIsolatedAppLauncher.VTable, self.vtable).Launch(@ptrCast(*const IIsolatedAppLauncher, self), appUserModelId, arguments, telemetryParameters);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IIsolatedAppLauncher_Launch(self: *const T, appUserModelId: ?[*:0]const u16, arguments: ?[*:0]const u16, telemetryParameters: ?*const IsolatedAppLauncherTelemetryParameters) HRESULT {
+                return @ptrCast(*const IIsolatedAppLauncher.VTable, self.vtable).Launch(@ptrCast(*const IIsolatedAppLauncher, self), appUserModelId, arguments, telemetryParameters);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (10)
@@ -111,19 +112,14 @@ pub extern "userenv" fn DeriveAppContainerSidFromAppContainerName(
     ppsidAppContainerSid: ?*?PSID,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (9)
@@ -139,9 +135,7 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

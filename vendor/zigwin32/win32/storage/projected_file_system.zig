@@ -44,23 +44,7 @@ pub const PRJ_NOTIFY_TYPES = enum(u32) {
         FILE_PRE_CONVERT_TO_FULL: u1 = 0,
         USE_EXISTING_MASK: u1 = 0,
     }) PRJ_NOTIFY_TYPES {
-        return @intToEnum(PRJ_NOTIFY_TYPES,
-              (if (o.NONE == 1) @enumToInt(PRJ_NOTIFY_TYPES.NONE) else 0)
-            | (if (o.SUPPRESS_NOTIFICATIONS == 1) @enumToInt(PRJ_NOTIFY_TYPES.SUPPRESS_NOTIFICATIONS) else 0)
-            | (if (o.FILE_OPENED == 1) @enumToInt(PRJ_NOTIFY_TYPES.FILE_OPENED) else 0)
-            | (if (o.NEW_FILE_CREATED == 1) @enumToInt(PRJ_NOTIFY_TYPES.NEW_FILE_CREATED) else 0)
-            | (if (o.FILE_OVERWRITTEN == 1) @enumToInt(PRJ_NOTIFY_TYPES.FILE_OVERWRITTEN) else 0)
-            | (if (o.PRE_DELETE == 1) @enumToInt(PRJ_NOTIFY_TYPES.PRE_DELETE) else 0)
-            | (if (o.PRE_RENAME == 1) @enumToInt(PRJ_NOTIFY_TYPES.PRE_RENAME) else 0)
-            | (if (o.PRE_SET_HARDLINK == 1) @enumToInt(PRJ_NOTIFY_TYPES.PRE_SET_HARDLINK) else 0)
-            | (if (o.FILE_RENAMED == 1) @enumToInt(PRJ_NOTIFY_TYPES.FILE_RENAMED) else 0)
-            | (if (o.HARDLINK_CREATED == 1) @enumToInt(PRJ_NOTIFY_TYPES.HARDLINK_CREATED) else 0)
-            | (if (o.FILE_HANDLE_CLOSED_NO_MODIFICATION == 1) @enumToInt(PRJ_NOTIFY_TYPES.FILE_HANDLE_CLOSED_NO_MODIFICATION) else 0)
-            | (if (o.FILE_HANDLE_CLOSED_FILE_MODIFIED == 1) @enumToInt(PRJ_NOTIFY_TYPES.FILE_HANDLE_CLOSED_FILE_MODIFIED) else 0)
-            | (if (o.FILE_HANDLE_CLOSED_FILE_DELETED == 1) @enumToInt(PRJ_NOTIFY_TYPES.FILE_HANDLE_CLOSED_FILE_DELETED) else 0)
-            | (if (o.FILE_PRE_CONVERT_TO_FULL == 1) @enumToInt(PRJ_NOTIFY_TYPES.FILE_PRE_CONVERT_TO_FULL) else 0)
-            | (if (o.USE_EXISTING_MASK == 1) @enumToInt(PRJ_NOTIFY_TYPES.USE_EXISTING_MASK) else 0)
-        );
+        return @enumFromInt(PRJ_NOTIFY_TYPES, (if (o.NONE == 1) @intFromEnum(PRJ_NOTIFY_TYPES.NONE) else 0) | (if (o.SUPPRESS_NOTIFICATIONS == 1) @intFromEnum(PRJ_NOTIFY_TYPES.SUPPRESS_NOTIFICATIONS) else 0) | (if (o.FILE_OPENED == 1) @intFromEnum(PRJ_NOTIFY_TYPES.FILE_OPENED) else 0) | (if (o.NEW_FILE_CREATED == 1) @intFromEnum(PRJ_NOTIFY_TYPES.NEW_FILE_CREATED) else 0) | (if (o.FILE_OVERWRITTEN == 1) @intFromEnum(PRJ_NOTIFY_TYPES.FILE_OVERWRITTEN) else 0) | (if (o.PRE_DELETE == 1) @intFromEnum(PRJ_NOTIFY_TYPES.PRE_DELETE) else 0) | (if (o.PRE_RENAME == 1) @intFromEnum(PRJ_NOTIFY_TYPES.PRE_RENAME) else 0) | (if (o.PRE_SET_HARDLINK == 1) @intFromEnum(PRJ_NOTIFY_TYPES.PRE_SET_HARDLINK) else 0) | (if (o.FILE_RENAMED == 1) @intFromEnum(PRJ_NOTIFY_TYPES.FILE_RENAMED) else 0) | (if (o.HARDLINK_CREATED == 1) @intFromEnum(PRJ_NOTIFY_TYPES.HARDLINK_CREATED) else 0) | (if (o.FILE_HANDLE_CLOSED_NO_MODIFICATION == 1) @intFromEnum(PRJ_NOTIFY_TYPES.FILE_HANDLE_CLOSED_NO_MODIFICATION) else 0) | (if (o.FILE_HANDLE_CLOSED_FILE_MODIFIED == 1) @intFromEnum(PRJ_NOTIFY_TYPES.FILE_HANDLE_CLOSED_FILE_MODIFIED) else 0) | (if (o.FILE_HANDLE_CLOSED_FILE_DELETED == 1) @intFromEnum(PRJ_NOTIFY_TYPES.FILE_HANDLE_CLOSED_FILE_DELETED) else 0) | (if (o.FILE_PRE_CONVERT_TO_FULL == 1) @intFromEnum(PRJ_NOTIFY_TYPES.FILE_PRE_CONVERT_TO_FULL) else 0) | (if (o.USE_EXISTING_MASK == 1) @intFromEnum(PRJ_NOTIFY_TYPES.USE_EXISTING_MASK) else 0));
     }
 };
 pub const PRJ_NOTIFY_NONE = PRJ_NOTIFY_TYPES.NONE;
@@ -134,10 +118,7 @@ pub const PRJ_STARTVIRTUALIZING_FLAGS = enum(u32) {
         NONE: u1 = 0,
         USE_NEGATIVE_PATH_CACHE: u1 = 0,
     }) PRJ_STARTVIRTUALIZING_FLAGS {
-        return @intToEnum(PRJ_STARTVIRTUALIZING_FLAGS,
-              (if (o.NONE == 1) @enumToInt(PRJ_STARTVIRTUALIZING_FLAGS.NONE) else 0)
-            | (if (o.USE_NEGATIVE_PATH_CACHE == 1) @enumToInt(PRJ_STARTVIRTUALIZING_FLAGS.USE_NEGATIVE_PATH_CACHE) else 0)
-        );
+        return @enumFromInt(PRJ_STARTVIRTUALIZING_FLAGS, (if (o.NONE == 1) @intFromEnum(PRJ_STARTVIRTUALIZING_FLAGS.NONE) else 0) | (if (o.USE_NEGATIVE_PATH_CACHE == 1) @intFromEnum(PRJ_STARTVIRTUALIZING_FLAGS.USE_NEGATIVE_PATH_CACHE) else 0));
     }
 };
 pub const PRJ_FLAG_NONE = PRJ_STARTVIRTUALIZING_FLAGS.NONE;
@@ -214,16 +195,7 @@ pub const PRJ_UPDATE_TYPES = enum(u32) {
         ALLOW_READ_ONLY: u1 = 0,
         MAX_VAL: u1 = 0,
     }) PRJ_UPDATE_TYPES {
-        return @intToEnum(PRJ_UPDATE_TYPES,
-              (if (o.NONE == 1) @enumToInt(PRJ_UPDATE_TYPES.NONE) else 0)
-            | (if (o.ALLOW_DIRTY_METADATA == 1) @enumToInt(PRJ_UPDATE_TYPES.ALLOW_DIRTY_METADATA) else 0)
-            | (if (o.ALLOW_DIRTY_DATA == 1) @enumToInt(PRJ_UPDATE_TYPES.ALLOW_DIRTY_DATA) else 0)
-            | (if (o.ALLOW_TOMBSTONE == 1) @enumToInt(PRJ_UPDATE_TYPES.ALLOW_TOMBSTONE) else 0)
-            | (if (o.RESERVED1 == 1) @enumToInt(PRJ_UPDATE_TYPES.RESERVED1) else 0)
-            | (if (o.RESERVED2 == 1) @enumToInt(PRJ_UPDATE_TYPES.RESERVED2) else 0)
-            | (if (o.ALLOW_READ_ONLY == 1) @enumToInt(PRJ_UPDATE_TYPES.ALLOW_READ_ONLY) else 0)
-            | (if (o.MAX_VAL == 1) @enumToInt(PRJ_UPDATE_TYPES.MAX_VAL) else 0)
-        );
+        return @enumFromInt(PRJ_UPDATE_TYPES, (if (o.NONE == 1) @intFromEnum(PRJ_UPDATE_TYPES.NONE) else 0) | (if (o.ALLOW_DIRTY_METADATA == 1) @intFromEnum(PRJ_UPDATE_TYPES.ALLOW_DIRTY_METADATA) else 0) | (if (o.ALLOW_DIRTY_DATA == 1) @intFromEnum(PRJ_UPDATE_TYPES.ALLOW_DIRTY_DATA) else 0) | (if (o.ALLOW_TOMBSTONE == 1) @intFromEnum(PRJ_UPDATE_TYPES.ALLOW_TOMBSTONE) else 0) | (if (o.RESERVED1 == 1) @intFromEnum(PRJ_UPDATE_TYPES.RESERVED1) else 0) | (if (o.RESERVED2 == 1) @intFromEnum(PRJ_UPDATE_TYPES.RESERVED2) else 0) | (if (o.ALLOW_READ_ONLY == 1) @intFromEnum(PRJ_UPDATE_TYPES.ALLOW_READ_ONLY) else 0) | (if (o.MAX_VAL == 1) @intFromEnum(PRJ_UPDATE_TYPES.MAX_VAL) else 0));
     }
 };
 pub const PRJ_UPDATE_NONE = PRJ_UPDATE_TYPES.NONE;
@@ -249,13 +221,7 @@ pub const PRJ_UPDATE_FAILURE_CAUSES = enum(u32) {
         TOMBSTONE: u1 = 0,
         READ_ONLY: u1 = 0,
     }) PRJ_UPDATE_FAILURE_CAUSES {
-        return @intToEnum(PRJ_UPDATE_FAILURE_CAUSES,
-              (if (o.NONE == 1) @enumToInt(PRJ_UPDATE_FAILURE_CAUSES.NONE) else 0)
-            | (if (o.DIRTY_METADATA == 1) @enumToInt(PRJ_UPDATE_FAILURE_CAUSES.DIRTY_METADATA) else 0)
-            | (if (o.DIRTY_DATA == 1) @enumToInt(PRJ_UPDATE_FAILURE_CAUSES.DIRTY_DATA) else 0)
-            | (if (o.TOMBSTONE == 1) @enumToInt(PRJ_UPDATE_FAILURE_CAUSES.TOMBSTONE) else 0)
-            | (if (o.READ_ONLY == 1) @enumToInt(PRJ_UPDATE_FAILURE_CAUSES.READ_ONLY) else 0)
-        );
+        return @enumFromInt(PRJ_UPDATE_FAILURE_CAUSES, (if (o.NONE == 1) @intFromEnum(PRJ_UPDATE_FAILURE_CAUSES.NONE) else 0) | (if (o.DIRTY_METADATA == 1) @intFromEnum(PRJ_UPDATE_FAILURE_CAUSES.DIRTY_METADATA) else 0) | (if (o.DIRTY_DATA == 1) @intFromEnum(PRJ_UPDATE_FAILURE_CAUSES.DIRTY_DATA) else 0) | (if (o.TOMBSTONE == 1) @intFromEnum(PRJ_UPDATE_FAILURE_CAUSES.TOMBSTONE) else 0) | (if (o.READ_ONLY == 1) @intFromEnum(PRJ_UPDATE_FAILURE_CAUSES.READ_ONLY) else 0));
     }
 };
 pub const PRJ_UPDATE_FAILURE_CAUSE_NONE = PRJ_UPDATE_FAILURE_CAUSES.NONE;
@@ -278,13 +244,7 @@ pub const PRJ_FILE_STATE = enum(u32) {
         FULL: u1 = 0,
         TOMBSTONE: u1 = 0,
     }) PRJ_FILE_STATE {
-        return @intToEnum(PRJ_FILE_STATE,
-              (if (o.PLACEHOLDER == 1) @enumToInt(PRJ_FILE_STATE.PLACEHOLDER) else 0)
-            | (if (o.HYDRATED_PLACEHOLDER == 1) @enumToInt(PRJ_FILE_STATE.HYDRATED_PLACEHOLDER) else 0)
-            | (if (o.DIRTY_PLACEHOLDER == 1) @enumToInt(PRJ_FILE_STATE.DIRTY_PLACEHOLDER) else 0)
-            | (if (o.FULL == 1) @enumToInt(PRJ_FILE_STATE.FULL) else 0)
-            | (if (o.TOMBSTONE == 1) @enumToInt(PRJ_FILE_STATE.TOMBSTONE) else 0)
-        );
+        return @enumFromInt(PRJ_FILE_STATE, (if (o.PLACEHOLDER == 1) @intFromEnum(PRJ_FILE_STATE.PLACEHOLDER) else 0) | (if (o.HYDRATED_PLACEHOLDER == 1) @intFromEnum(PRJ_FILE_STATE.HYDRATED_PLACEHOLDER) else 0) | (if (o.DIRTY_PLACEHOLDER == 1) @intFromEnum(PRJ_FILE_STATE.DIRTY_PLACEHOLDER) else 0) | (if (o.FULL == 1) @intFromEnum(PRJ_FILE_STATE.FULL) else 0) | (if (o.TOMBSTONE == 1) @intFromEnum(PRJ_FILE_STATE.TOMBSTONE) else 0));
     }
 };
 pub const PRJ_FILE_STATE_PLACEHOLDER = PRJ_FILE_STATE.PLACEHOLDER;
@@ -315,72 +275,72 @@ pub const PRJ_CALLBACK_DATA = extern struct {
 };
 
 pub const PRJ_START_DIRECTORY_ENUMERATION_CB = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         callbackData: ?*const PRJ_CALLBACK_DATA,
         enumerationId: ?*const Guid,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         callbackData: ?*const PRJ_CALLBACK_DATA,
         enumerationId: ?*const Guid,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PRJ_GET_DIRECTORY_ENUMERATION_CB = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         callbackData: ?*const PRJ_CALLBACK_DATA,
         enumerationId: ?*const Guid,
         searchExpression: ?[*:0]const u16,
         dirEntryBufferHandle: PRJ_DIR_ENTRY_BUFFER_HANDLE,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         callbackData: ?*const PRJ_CALLBACK_DATA,
         enumerationId: ?*const Guid,
         searchExpression: ?[*:0]const u16,
         dirEntryBufferHandle: PRJ_DIR_ENTRY_BUFFER_HANDLE,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PRJ_END_DIRECTORY_ENUMERATION_CB = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         callbackData: ?*const PRJ_CALLBACK_DATA,
         enumerationId: ?*const Guid,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         callbackData: ?*const PRJ_CALLBACK_DATA,
         enumerationId: ?*const Guid,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PRJ_GET_PLACEHOLDER_INFO_CB = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         callbackData: ?*const PRJ_CALLBACK_DATA,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         callbackData: ?*const PRJ_CALLBACK_DATA,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PRJ_GET_FILE_DATA_CB = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         callbackData: ?*const PRJ_CALLBACK_DATA,
         byteOffset: u64,
         length: u32,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         callbackData: ?*const PRJ_CALLBACK_DATA,
         byteOffset: u64,
         length: u32,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PRJ_QUERY_FILE_NAME_CB = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         callbackData: ?*const PRJ_CALLBACK_DATA,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         callbackData: ?*const PRJ_CALLBACK_DATA,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PRJ_NOTIFICATION_PARAMETERS = extern union {
     PostCreate: extern struct {
@@ -395,30 +355,30 @@ pub const PRJ_NOTIFICATION_PARAMETERS = extern union {
 };
 
 pub const PRJ_NOTIFICATION_CB = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         callbackData: ?*const PRJ_CALLBACK_DATA,
         isDirectory: BOOLEAN,
         notification: PRJ_NOTIFICATION,
         destinationFileName: ?[*:0]const u16,
         operationParameters: ?*PRJ_NOTIFICATION_PARAMETERS,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         callbackData: ?*const PRJ_CALLBACK_DATA,
         isDirectory: BOOLEAN,
         notification: PRJ_NOTIFICATION,
         destinationFileName: ?[*:0]const u16,
         operationParameters: ?*PRJ_NOTIFICATION_PARAMETERS,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PRJ_CANCEL_COMMAND_CB = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         callbackData: ?*const PRJ_CALLBACK_DATA,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         callbackData: ?*const PRJ_CALLBACK_DATA,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PRJ_CALLBACKS = extern struct {
     StartDirectoryEnumerationCallback: ?PRJ_START_DIRECTORY_ENUMERATION_CB,
@@ -449,7 +409,6 @@ pub const PRJ_COMPLETE_COMMAND_EXTENDED_PARAMETERS = extern struct {
         },
     },
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (19)
@@ -509,11 +468,15 @@ pub extern "projectedfslib" fn PrjWritePlaceholderInfo2(
 
 // TODO: this type is limited to platform 'windows10.0.17763'
 // This function from dll 'PROJECTEDFSLIB' is being skipped because it has some sort of issue
-pub fn PrjUpdateFileIfNeeded() void { @panic("this function is not working"); }
+pub fn PrjUpdateFileIfNeeded() void {
+    @panic("this function is not working");
+}
 
 // TODO: this type is limited to platform 'windows10.0.17763'
 // This function from dll 'PROJECTEDFSLIB' is being skipped because it has some sort of issue
-pub fn PrjDeleteFile() void { @panic("this function is not working"); }
+pub fn PrjDeleteFile() void {
+    @panic("this function is not working");
+}
 
 // TODO: this type is limited to platform 'windows10.0.17763'
 pub extern "projectedfslib" fn PrjWriteFileData(
@@ -582,19 +545,14 @@ pub extern "projectedfslib" fn PrjDoesNameContainWildCards(
     fileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
@@ -607,18 +565,32 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PRJ_START_DIRECTORY_ENUMERATION_CB")) { _ = PRJ_START_DIRECTORY_ENUMERATION_CB; }
-    if (@hasDecl(@This(), "PRJ_GET_DIRECTORY_ENUMERATION_CB")) { _ = PRJ_GET_DIRECTORY_ENUMERATION_CB; }
-    if (@hasDecl(@This(), "PRJ_END_DIRECTORY_ENUMERATION_CB")) { _ = PRJ_END_DIRECTORY_ENUMERATION_CB; }
-    if (@hasDecl(@This(), "PRJ_GET_PLACEHOLDER_INFO_CB")) { _ = PRJ_GET_PLACEHOLDER_INFO_CB; }
-    if (@hasDecl(@This(), "PRJ_GET_FILE_DATA_CB")) { _ = PRJ_GET_FILE_DATA_CB; }
-    if (@hasDecl(@This(), "PRJ_QUERY_FILE_NAME_CB")) { _ = PRJ_QUERY_FILE_NAME_CB; }
-    if (@hasDecl(@This(), "PRJ_NOTIFICATION_CB")) { _ = PRJ_NOTIFICATION_CB; }
-    if (@hasDecl(@This(), "PRJ_CANCEL_COMMAND_CB")) { _ = PRJ_CANCEL_COMMAND_CB; }
+    if (@hasDecl(@This(), "PRJ_START_DIRECTORY_ENUMERATION_CB")) {
+        _ = PRJ_START_DIRECTORY_ENUMERATION_CB;
+    }
+    if (@hasDecl(@This(), "PRJ_GET_DIRECTORY_ENUMERATION_CB")) {
+        _ = PRJ_GET_DIRECTORY_ENUMERATION_CB;
+    }
+    if (@hasDecl(@This(), "PRJ_END_DIRECTORY_ENUMERATION_CB")) {
+        _ = PRJ_END_DIRECTORY_ENUMERATION_CB;
+    }
+    if (@hasDecl(@This(), "PRJ_GET_PLACEHOLDER_INFO_CB")) {
+        _ = PRJ_GET_PLACEHOLDER_INFO_CB;
+    }
+    if (@hasDecl(@This(), "PRJ_GET_FILE_DATA_CB")) {
+        _ = PRJ_GET_FILE_DATA_CB;
+    }
+    if (@hasDecl(@This(), "PRJ_QUERY_FILE_NAME_CB")) {
+        _ = PRJ_QUERY_FILE_NAME_CB;
+    }
+    if (@hasDecl(@This(), "PRJ_NOTIFICATION_CB")) {
+        _ = PRJ_NOTIFICATION_CB;
+    }
+    if (@hasDecl(@This(), "PRJ_CANCEL_COMMAND_CB")) {
+        _ = PRJ_CANCEL_COMMAND_CB;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

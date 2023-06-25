@@ -25,11 +25,10 @@ pub usingnamespace switch (@import("zig.zig").unicode_mode) {
         pub const GetWindowLongPtr = thismodule.GetWindowLongPtrW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const SetWindowLongPtr = *opaque{};
-        pub const GetWindowLongPtr = *opaque{};
+        pub const SetWindowLongPtr = *opaque {};
+        pub const GetWindowLongPtr = *opaque {};
     } else struct {
         pub const SetWindowLongPtr = @compileError("'SetWindowLongPtr' requires that UNICODE be set to true or false in the root module");
         pub const GetWindowLongPtr = @compileError("'GetWindowLongPtr' requires that UNICODE be set to true or false in the root module");
     },
 };
-

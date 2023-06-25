@@ -36,32 +36,32 @@ pub const DXC_CP_UTF16 = DXC_CP.UTF16;
 pub const DXC_CP_UTF8 = DXC_CP.UTF8;
 
 pub const DxcCreateInstanceProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         rclsid: ?*const Guid,
         riid: ?*const Guid,
         ppv: ?*?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         rclsid: ?*const Guid,
         riid: ?*const Guid,
         ppv: ?*?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const DxcCreateInstance2Proc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pMalloc: ?*IMalloc,
         rclsid: ?*const Guid,
         riid: ?*const Guid,
         ppv: ?*?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         pMalloc: ?*IMalloc,
         rclsid: ?*const Guid,
         riid: ?*const Guid,
         ppv: ?*?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const DxcShaderHash = extern struct {
     Flags: u32,
@@ -74,34 +74,36 @@ pub const IDxcBlob = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetBufferPointer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
         },
         GetBufferSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) usize,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) usize,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcBlob_GetBufferPointer(self: *const T) callconv(.Inline) ?*anyopaque {
-            return @ptrCast(*const IDxcBlob.VTable, self.vtable).GetBufferPointer(@ptrCast(*const IDxcBlob, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcBlob_GetBufferSize(self: *const T) callconv(.Inline) usize {
-            return @ptrCast(*const IDxcBlob.VTable, self.vtable).GetBufferSize(@ptrCast(*const IDxcBlob, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcBlob_GetBufferPointer(self: *const T) ?*anyopaque {
+                return @ptrCast(*const IDxcBlob.VTable, self.vtable).GetBufferPointer(@ptrCast(*const IDxcBlob, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcBlob_GetBufferSize(self: *const T) usize {
+                return @ptrCast(*const IDxcBlob.VTable, self.vtable).GetBufferSize(@ptrCast(*const IDxcBlob, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -111,12 +113,12 @@ pub const IDxcBlobEncoding = extern struct {
     pub const VTable = extern struct {
         base: IDxcBlob.VTable,
         GetEncoding: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcBlobEncoding,
                 pKnown: ?*BOOL,
                 pCodePage: ?*DXC_CP,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcBlobEncoding,
                 pKnown: ?*BOOL,
                 pCodePage: ?*DXC_CP,
@@ -124,13 +126,15 @@ pub const IDxcBlobEncoding = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDxcBlob.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcBlobEncoding_GetEncoding(self: *const T, pKnown: ?*BOOL, pCodePage: ?*DXC_CP) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcBlobEncoding.VTable, self.vtable).GetEncoding(@ptrCast(*const IDxcBlobEncoding, self), pKnown, pCodePage);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDxcBlob.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcBlobEncoding_GetEncoding(self: *const T, pKnown: ?*BOOL, pCodePage: ?*DXC_CP) HRESULT {
+                return @ptrCast(*const IDxcBlobEncoding.VTable, self.vtable).GetEncoding(@ptrCast(*const IDxcBlobEncoding, self), pKnown, pCodePage);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -140,34 +144,36 @@ pub const IDxcBlobUtf16 = extern struct {
     pub const VTable = extern struct {
         base: IDxcBlobEncoding.VTable,
         GetStringPointer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcBlobUtf16,
             ) callconv(@import("std").os.windows.WINAPI) ?PWSTR,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcBlobUtf16,
             ) callconv(@import("std").os.windows.WINAPI) ?PWSTR,
         },
         GetStringLength: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcBlobUtf16,
             ) callconv(@import("std").os.windows.WINAPI) usize,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcBlobUtf16,
             ) callconv(@import("std").os.windows.WINAPI) usize,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDxcBlobEncoding.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcBlobUtf16_GetStringPointer(self: *const T) callconv(.Inline) ?PWSTR {
-            return @ptrCast(*const IDxcBlobUtf16.VTable, self.vtable).GetStringPointer(@ptrCast(*const IDxcBlobUtf16, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcBlobUtf16_GetStringLength(self: *const T) callconv(.Inline) usize {
-            return @ptrCast(*const IDxcBlobUtf16.VTable, self.vtable).GetStringLength(@ptrCast(*const IDxcBlobUtf16, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDxcBlobEncoding.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcBlobUtf16_GetStringPointer(self: *const T) ?PWSTR {
+                return @ptrCast(*const IDxcBlobUtf16.VTable, self.vtable).GetStringPointer(@ptrCast(*const IDxcBlobUtf16, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcBlobUtf16_GetStringLength(self: *const T) usize {
+                return @ptrCast(*const IDxcBlobUtf16.VTable, self.vtable).GetStringLength(@ptrCast(*const IDxcBlobUtf16, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -177,34 +183,36 @@ pub const IDxcBlobUtf8 = extern struct {
     pub const VTable = extern struct {
         base: IDxcBlobEncoding.VTable,
         GetStringPointer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcBlobUtf8,
             ) callconv(@import("std").os.windows.WINAPI) ?PSTR,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcBlobUtf8,
             ) callconv(@import("std").os.windows.WINAPI) ?PSTR,
         },
         GetStringLength: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcBlobUtf8,
             ) callconv(@import("std").os.windows.WINAPI) usize,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcBlobUtf8,
             ) callconv(@import("std").os.windows.WINAPI) usize,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDxcBlobEncoding.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcBlobUtf8_GetStringPointer(self: *const T) callconv(.Inline) ?PSTR {
-            return @ptrCast(*const IDxcBlobUtf8.VTable, self.vtable).GetStringPointer(@ptrCast(*const IDxcBlobUtf8, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcBlobUtf8_GetStringLength(self: *const T) callconv(.Inline) usize {
-            return @ptrCast(*const IDxcBlobUtf8.VTable, self.vtable).GetStringLength(@ptrCast(*const IDxcBlobUtf8, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDxcBlobEncoding.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcBlobUtf8_GetStringPointer(self: *const T) ?PSTR {
+                return @ptrCast(*const IDxcBlobUtf8.VTable, self.vtable).GetStringPointer(@ptrCast(*const IDxcBlobUtf8, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcBlobUtf8_GetStringLength(self: *const T) usize {
+                return @ptrCast(*const IDxcBlobUtf8.VTable, self.vtable).GetStringLength(@ptrCast(*const IDxcBlobUtf8, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -214,12 +222,12 @@ pub const IDxcIncludeHandler = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         LoadSource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcIncludeHandler,
                 pFilename: ?[*:0]const u16,
                 ppIncludeSource: ?*?*IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcIncludeHandler,
                 pFilename: ?[*:0]const u16,
                 ppIncludeSource: ?*?*IDxcBlob,
@@ -227,13 +235,15 @@ pub const IDxcIncludeHandler = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcIncludeHandler_LoadSource(self: *const T, pFilename: ?[*:0]const u16, ppIncludeSource: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcIncludeHandler.VTable, self.vtable).LoadSource(@ptrCast(*const IDxcIncludeHandler, self), pFilename, ppIncludeSource);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcIncludeHandler_LoadSource(self: *const T, pFilename: ?[*:0]const u16, ppIncludeSource: ?*?*IDxcBlob) HRESULT {
+                return @ptrCast(*const IDxcIncludeHandler.VTable, self.vtable).LoadSource(@ptrCast(*const IDxcIncludeHandler, self), pFilename, ppIncludeSource);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -254,52 +264,52 @@ pub const IDxcCompilerArgs = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetArguments: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcCompilerArgs,
             ) callconv(@import("std").os.windows.WINAPI) ?*?PWSTR,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcCompilerArgs,
             ) callconv(@import("std").os.windows.WINAPI) ?*?PWSTR,
         },
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcCompilerArgs,
             ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcCompilerArgs,
             ) callconv(@import("std").os.windows.WINAPI) u32,
         },
         AddArguments: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcCompilerArgs,
                 pArguments: ?[*]?PWSTR,
                 argCount: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcCompilerArgs,
                 pArguments: ?[*]?PWSTR,
                 argCount: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AddArgumentsUTF8: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcCompilerArgs,
                 pArguments: ?[*]?PSTR,
                 argCount: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcCompilerArgs,
                 pArguments: ?[*]?PSTR,
                 argCount: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AddDefines: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcCompilerArgs,
                 pDefines: [*]const DxcDefine,
                 defineCount: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcCompilerArgs,
                 pDefines: [*]const DxcDefine,
                 defineCount: u32,
@@ -307,29 +317,31 @@ pub const IDxcCompilerArgs = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcCompilerArgs_GetArguments(self: *const T) callconv(.Inline) ?*?PWSTR {
-            return @ptrCast(*const IDxcCompilerArgs.VTable, self.vtable).GetArguments(@ptrCast(*const IDxcCompilerArgs, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcCompilerArgs_GetCount(self: *const T) callconv(.Inline) u32 {
-            return @ptrCast(*const IDxcCompilerArgs.VTable, self.vtable).GetCount(@ptrCast(*const IDxcCompilerArgs, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcCompilerArgs_AddArguments(self: *const T, pArguments: ?[*]?PWSTR, argCount: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcCompilerArgs.VTable, self.vtable).AddArguments(@ptrCast(*const IDxcCompilerArgs, self), pArguments, argCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcCompilerArgs_AddArgumentsUTF8(self: *const T, pArguments: ?[*]?PSTR, argCount: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcCompilerArgs.VTable, self.vtable).AddArgumentsUTF8(@ptrCast(*const IDxcCompilerArgs, self), pArguments, argCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcCompilerArgs_AddDefines(self: *const T, pDefines: [*]const DxcDefine, defineCount: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcCompilerArgs.VTable, self.vtable).AddDefines(@ptrCast(*const IDxcCompilerArgs, self), pDefines, defineCount);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcCompilerArgs_GetArguments(self: *const T) ?*?PWSTR {
+                return @ptrCast(*const IDxcCompilerArgs.VTable, self.vtable).GetArguments(@ptrCast(*const IDxcCompilerArgs, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcCompilerArgs_GetCount(self: *const T) u32 {
+                return @ptrCast(*const IDxcCompilerArgs.VTable, self.vtable).GetCount(@ptrCast(*const IDxcCompilerArgs, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcCompilerArgs_AddArguments(self: *const T, pArguments: ?[*]?PWSTR, argCount: u32) HRESULT {
+                return @ptrCast(*const IDxcCompilerArgs.VTable, self.vtable).AddArguments(@ptrCast(*const IDxcCompilerArgs, self), pArguments, argCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcCompilerArgs_AddArgumentsUTF8(self: *const T, pArguments: ?[*]?PSTR, argCount: u32) HRESULT {
+                return @ptrCast(*const IDxcCompilerArgs.VTable, self.vtable).AddArgumentsUTF8(@ptrCast(*const IDxcCompilerArgs, self), pArguments, argCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcCompilerArgs_AddDefines(self: *const T, pDefines: [*]const DxcDefine, defineCount: u32) HRESULT {
+                return @ptrCast(*const IDxcCompilerArgs.VTable, self.vtable).AddDefines(@ptrCast(*const IDxcCompilerArgs, self), pDefines, defineCount);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -339,24 +351,24 @@ pub const IDxcLibrary = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetMalloc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcLibrary,
                 pMalloc: ?*IMalloc,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcLibrary,
                 pMalloc: ?*IMalloc,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateBlobFromBlob: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcLibrary,
                 pBlob: ?*IDxcBlob,
                 offset: u32,
                 length: u32,
                 ppResult: ?*?*IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcLibrary,
                 pBlob: ?*IDxcBlob,
                 offset: u32,
@@ -365,13 +377,13 @@ pub const IDxcLibrary = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateBlobFromFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcLibrary,
                 pFileName: ?[*:0]const u16,
                 codePage: ?*DXC_CP,
                 pBlobEncoding: ?*?*IDxcBlobEncoding,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcLibrary,
                 pFileName: ?[*:0]const u16,
                 codePage: ?*DXC_CP,
@@ -379,7 +391,7 @@ pub const IDxcLibrary = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateBlobWithEncodingFromPinned: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcLibrary,
                 // TODO: what to do with BytesParamIndex 1?
                 pText: ?*const anyopaque,
@@ -387,7 +399,7 @@ pub const IDxcLibrary = extern struct {
                 codePage: DXC_CP,
                 pBlobEncoding: ?*?*IDxcBlobEncoding,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcLibrary,
                 // TODO: what to do with BytesParamIndex 1?
                 pText: ?*const anyopaque,
@@ -397,7 +409,7 @@ pub const IDxcLibrary = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateBlobWithEncodingOnHeapCopy: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcLibrary,
                 // TODO: what to do with BytesParamIndex 1?
                 pText: ?*const anyopaque,
@@ -405,7 +417,7 @@ pub const IDxcLibrary = extern struct {
                 codePage: DXC_CP,
                 pBlobEncoding: ?*?*IDxcBlobEncoding,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcLibrary,
                 // TODO: what to do with BytesParamIndex 1?
                 pText: ?*const anyopaque,
@@ -415,7 +427,7 @@ pub const IDxcLibrary = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateBlobWithEncodingOnMalloc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcLibrary,
                 // TODO: what to do with BytesParamIndex 2?
                 pText: ?*const anyopaque,
@@ -424,7 +436,7 @@ pub const IDxcLibrary = extern struct {
                 codePage: DXC_CP,
                 pBlobEncoding: ?*?*IDxcBlobEncoding,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcLibrary,
                 // TODO: what to do with BytesParamIndex 2?
                 pText: ?*const anyopaque,
@@ -435,46 +447,46 @@ pub const IDxcLibrary = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateIncludeHandler: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcLibrary,
                 ppResult: ?*?*IDxcIncludeHandler,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcLibrary,
                 ppResult: ?*?*IDxcIncludeHandler,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateStreamFromBlobReadOnly: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcLibrary,
                 pBlob: ?*IDxcBlob,
                 ppStream: ?*?*IStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcLibrary,
                 pBlob: ?*IDxcBlob,
                 ppStream: ?*?*IStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetBlobAsUtf8: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcLibrary,
                 pBlob: ?*IDxcBlob,
                 pBlobEncoding: ?*?*IDxcBlobEncoding,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcLibrary,
                 pBlob: ?*IDxcBlob,
                 pBlobEncoding: ?*?*IDxcBlobEncoding,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetBlobAsUtf16: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcLibrary,
                 pBlob: ?*IDxcBlob,
                 pBlobEncoding: ?*?*IDxcBlobEncoding,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcLibrary,
                 pBlob: ?*IDxcBlob,
                 pBlobEncoding: ?*?*IDxcBlobEncoding,
@@ -482,49 +494,51 @@ pub const IDxcLibrary = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcLibrary_SetMalloc(self: *const T, pMalloc: ?*IMalloc) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcLibrary.VTable, self.vtable).SetMalloc(@ptrCast(*const IDxcLibrary, self), pMalloc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcLibrary_CreateBlobFromBlob(self: *const T, pBlob: ?*IDxcBlob, offset: u32, length: u32, ppResult: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcLibrary.VTable, self.vtable).CreateBlobFromBlob(@ptrCast(*const IDxcLibrary, self), pBlob, offset, length, ppResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcLibrary_CreateBlobFromFile(self: *const T, pFileName: ?[*:0]const u16, codePage: ?*DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcLibrary.VTable, self.vtable).CreateBlobFromFile(@ptrCast(*const IDxcLibrary, self), pFileName, codePage, pBlobEncoding);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcLibrary_CreateBlobWithEncodingFromPinned(self: *const T, pText: ?*const anyopaque, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcLibrary.VTable, self.vtable).CreateBlobWithEncodingFromPinned(@ptrCast(*const IDxcLibrary, self), pText, size, codePage, pBlobEncoding);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcLibrary_CreateBlobWithEncodingOnHeapCopy(self: *const T, pText: ?*const anyopaque, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcLibrary.VTable, self.vtable).CreateBlobWithEncodingOnHeapCopy(@ptrCast(*const IDxcLibrary, self), pText, size, codePage, pBlobEncoding);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcLibrary_CreateBlobWithEncodingOnMalloc(self: *const T, pText: ?*const anyopaque, pIMalloc: ?*IMalloc, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcLibrary.VTable, self.vtable).CreateBlobWithEncodingOnMalloc(@ptrCast(*const IDxcLibrary, self), pText, pIMalloc, size, codePage, pBlobEncoding);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcLibrary_CreateIncludeHandler(self: *const T, ppResult: ?*?*IDxcIncludeHandler) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcLibrary.VTable, self.vtable).CreateIncludeHandler(@ptrCast(*const IDxcLibrary, self), ppResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcLibrary_CreateStreamFromBlobReadOnly(self: *const T, pBlob: ?*IDxcBlob, ppStream: ?*?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcLibrary.VTable, self.vtable).CreateStreamFromBlobReadOnly(@ptrCast(*const IDxcLibrary, self), pBlob, ppStream);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcLibrary_GetBlobAsUtf8(self: *const T, pBlob: ?*IDxcBlob, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcLibrary.VTable, self.vtable).GetBlobAsUtf8(@ptrCast(*const IDxcLibrary, self), pBlob, pBlobEncoding);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcLibrary_GetBlobAsUtf16(self: *const T, pBlob: ?*IDxcBlob, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcLibrary.VTable, self.vtable).GetBlobAsUtf16(@ptrCast(*const IDxcLibrary, self), pBlob, pBlobEncoding);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcLibrary_SetMalloc(self: *const T, pMalloc: ?*IMalloc) HRESULT {
+                return @ptrCast(*const IDxcLibrary.VTable, self.vtable).SetMalloc(@ptrCast(*const IDxcLibrary, self), pMalloc);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcLibrary_CreateBlobFromBlob(self: *const T, pBlob: ?*IDxcBlob, offset: u32, length: u32, ppResult: ?*?*IDxcBlob) HRESULT {
+                return @ptrCast(*const IDxcLibrary.VTable, self.vtable).CreateBlobFromBlob(@ptrCast(*const IDxcLibrary, self), pBlob, offset, length, ppResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcLibrary_CreateBlobFromFile(self: *const T, pFileName: ?[*:0]const u16, codePage: ?*DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) HRESULT {
+                return @ptrCast(*const IDxcLibrary.VTable, self.vtable).CreateBlobFromFile(@ptrCast(*const IDxcLibrary, self), pFileName, codePage, pBlobEncoding);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcLibrary_CreateBlobWithEncodingFromPinned(self: *const T, pText: ?*const anyopaque, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) HRESULT {
+                return @ptrCast(*const IDxcLibrary.VTable, self.vtable).CreateBlobWithEncodingFromPinned(@ptrCast(*const IDxcLibrary, self), pText, size, codePage, pBlobEncoding);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcLibrary_CreateBlobWithEncodingOnHeapCopy(self: *const T, pText: ?*const anyopaque, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) HRESULT {
+                return @ptrCast(*const IDxcLibrary.VTable, self.vtable).CreateBlobWithEncodingOnHeapCopy(@ptrCast(*const IDxcLibrary, self), pText, size, codePage, pBlobEncoding);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcLibrary_CreateBlobWithEncodingOnMalloc(self: *const T, pText: ?*const anyopaque, pIMalloc: ?*IMalloc, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) HRESULT {
+                return @ptrCast(*const IDxcLibrary.VTable, self.vtable).CreateBlobWithEncodingOnMalloc(@ptrCast(*const IDxcLibrary, self), pText, pIMalloc, size, codePage, pBlobEncoding);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcLibrary_CreateIncludeHandler(self: *const T, ppResult: ?*?*IDxcIncludeHandler) HRESULT {
+                return @ptrCast(*const IDxcLibrary.VTable, self.vtable).CreateIncludeHandler(@ptrCast(*const IDxcLibrary, self), ppResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcLibrary_CreateStreamFromBlobReadOnly(self: *const T, pBlob: ?*IDxcBlob, ppStream: ?*?*IStream) HRESULT {
+                return @ptrCast(*const IDxcLibrary.VTable, self.vtable).CreateStreamFromBlobReadOnly(@ptrCast(*const IDxcLibrary, self), pBlob, ppStream);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcLibrary_GetBlobAsUtf8(self: *const T, pBlob: ?*IDxcBlob, pBlobEncoding: ?*?*IDxcBlobEncoding) HRESULT {
+                return @ptrCast(*const IDxcLibrary.VTable, self.vtable).GetBlobAsUtf8(@ptrCast(*const IDxcLibrary, self), pBlob, pBlobEncoding);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcLibrary_GetBlobAsUtf16(self: *const T, pBlob: ?*IDxcBlob, pBlobEncoding: ?*?*IDxcBlobEncoding) HRESULT {
+                return @ptrCast(*const IDxcLibrary.VTable, self.vtable).GetBlobAsUtf16(@ptrCast(*const IDxcLibrary, self), pBlob, pBlobEncoding);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -534,52 +548,54 @@ pub const IDxcOperationResult = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcOperationResult,
                 pStatus: ?*HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcOperationResult,
                 pStatus: ?*HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetResult: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcOperationResult,
                 ppResult: ?*?*IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcOperationResult,
                 ppResult: ?*?*IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetErrorBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcOperationResult,
                 ppErrors: ?*?*IDxcBlobEncoding,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcOperationResult,
                 ppErrors: ?*?*IDxcBlobEncoding,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcOperationResult_GetStatus(self: *const T, pStatus: ?*HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcOperationResult.VTable, self.vtable).GetStatus(@ptrCast(*const IDxcOperationResult, self), pStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcOperationResult_GetResult(self: *const T, ppResult: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcOperationResult.VTable, self.vtable).GetResult(@ptrCast(*const IDxcOperationResult, self), ppResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcOperationResult_GetErrorBuffer(self: *const T, ppErrors: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcOperationResult.VTable, self.vtable).GetErrorBuffer(@ptrCast(*const IDxcOperationResult, self), ppErrors);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcOperationResult_GetStatus(self: *const T, pStatus: ?*HRESULT) HRESULT {
+                return @ptrCast(*const IDxcOperationResult.VTable, self.vtable).GetStatus(@ptrCast(*const IDxcOperationResult, self), pStatus);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcOperationResult_GetResult(self: *const T, ppResult: ?*?*IDxcBlob) HRESULT {
+                return @ptrCast(*const IDxcOperationResult.VTable, self.vtable).GetResult(@ptrCast(*const IDxcOperationResult, self), ppResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcOperationResult_GetErrorBuffer(self: *const T, ppErrors: ?*?*IDxcBlobEncoding) HRESULT {
+                return @ptrCast(*const IDxcOperationResult.VTable, self.vtable).GetErrorBuffer(@ptrCast(*const IDxcOperationResult, self), ppErrors);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -589,7 +605,7 @@ pub const IDxcCompiler = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Compile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcCompiler,
                 pSource: ?*IDxcBlob,
                 pSourceName: ?[*:0]const u16,
@@ -602,7 +618,7 @@ pub const IDxcCompiler = extern struct {
                 pIncludeHandler: ?*IDxcIncludeHandler,
                 ppResult: ?*?*IDxcOperationResult,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcCompiler,
                 pSource: ?*IDxcBlob,
                 pSourceName: ?[*:0]const u16,
@@ -617,7 +633,7 @@ pub const IDxcCompiler = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Preprocess: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcCompiler,
                 pSource: ?*IDxcBlob,
                 pSourceName: ?[*:0]const u16,
@@ -628,7 +644,7 @@ pub const IDxcCompiler = extern struct {
                 pIncludeHandler: ?*IDxcIncludeHandler,
                 ppResult: ?*?*IDxcOperationResult,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcCompiler,
                 pSource: ?*IDxcBlob,
                 pSourceName: ?[*:0]const u16,
@@ -641,12 +657,12 @@ pub const IDxcCompiler = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Disassemble: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcCompiler,
                 pSource: ?*IDxcBlob,
                 ppDisassembly: ?*?*IDxcBlobEncoding,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcCompiler,
                 pSource: ?*IDxcBlob,
                 ppDisassembly: ?*?*IDxcBlobEncoding,
@@ -654,21 +670,23 @@ pub const IDxcCompiler = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcCompiler_Compile(self: *const T, pSource: ?*IDxcBlob, pSourceName: ?[*:0]const u16, pEntryPoint: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pArguments: ?[*]?PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, ppResult: ?*?*IDxcOperationResult) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcCompiler.VTable, self.vtable).Compile(@ptrCast(*const IDxcCompiler, self), pSource, pSourceName, pEntryPoint, pTargetProfile, pArguments, argCount, pDefines, defineCount, pIncludeHandler, ppResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcCompiler_Preprocess(self: *const T, pSource: ?*IDxcBlob, pSourceName: ?[*:0]const u16, pArguments: ?[*]?PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, ppResult: ?*?*IDxcOperationResult) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcCompiler.VTable, self.vtable).Preprocess(@ptrCast(*const IDxcCompiler, self), pSource, pSourceName, pArguments, argCount, pDefines, defineCount, pIncludeHandler, ppResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcCompiler_Disassemble(self: *const T, pSource: ?*IDxcBlob, ppDisassembly: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcCompiler.VTable, self.vtable).Disassemble(@ptrCast(*const IDxcCompiler, self), pSource, ppDisassembly);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcCompiler_Compile(self: *const T, pSource: ?*IDxcBlob, pSourceName: ?[*:0]const u16, pEntryPoint: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pArguments: ?[*]?PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, ppResult: ?*?*IDxcOperationResult) HRESULT {
+                return @ptrCast(*const IDxcCompiler.VTable, self.vtable).Compile(@ptrCast(*const IDxcCompiler, self), pSource, pSourceName, pEntryPoint, pTargetProfile, pArguments, argCount, pDefines, defineCount, pIncludeHandler, ppResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcCompiler_Preprocess(self: *const T, pSource: ?*IDxcBlob, pSourceName: ?[*:0]const u16, pArguments: ?[*]?PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, ppResult: ?*?*IDxcOperationResult) HRESULT {
+                return @ptrCast(*const IDxcCompiler.VTable, self.vtable).Preprocess(@ptrCast(*const IDxcCompiler, self), pSource, pSourceName, pArguments, argCount, pDefines, defineCount, pIncludeHandler, ppResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcCompiler_Disassemble(self: *const T, pSource: ?*IDxcBlob, ppDisassembly: ?*?*IDxcBlobEncoding) HRESULT {
+                return @ptrCast(*const IDxcCompiler.VTable, self.vtable).Disassemble(@ptrCast(*const IDxcCompiler, self), pSource, ppDisassembly);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -678,7 +696,7 @@ pub const IDxcCompiler2 = extern struct {
     pub const VTable = extern struct {
         base: IDxcCompiler.VTable,
         CompileWithDebug: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcCompiler2,
                 pSource: ?*IDxcBlob,
                 pSourceName: ?[*:0]const u16,
@@ -693,7 +711,7 @@ pub const IDxcCompiler2 = extern struct {
                 ppDebugBlobName: ?*?PWSTR,
                 ppDebugBlob: ?*?*IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcCompiler2,
                 pSource: ?*IDxcBlob,
                 pSourceName: ?[*:0]const u16,
@@ -711,13 +729,15 @@ pub const IDxcCompiler2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDxcCompiler.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcCompiler2_CompileWithDebug(self: *const T, pSource: ?*IDxcBlob, pSourceName: ?[*:0]const u16, pEntryPoint: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pArguments: ?[*]?PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, ppResult: ?*?*IDxcOperationResult, ppDebugBlobName: ?*?PWSTR, ppDebugBlob: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcCompiler2.VTable, self.vtable).CompileWithDebug(@ptrCast(*const IDxcCompiler2, self), pSource, pSourceName, pEntryPoint, pTargetProfile, pArguments, argCount, pDefines, defineCount, pIncludeHandler, ppResult, ppDebugBlobName, ppDebugBlob);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDxcCompiler.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcCompiler2_CompileWithDebug(self: *const T, pSource: ?*IDxcBlob, pSourceName: ?[*:0]const u16, pEntryPoint: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pArguments: ?[*]?PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, ppResult: ?*?*IDxcOperationResult, ppDebugBlobName: ?*?PWSTR, ppDebugBlob: ?*?*IDxcBlob) HRESULT {
+                return @ptrCast(*const IDxcCompiler2.VTable, self.vtable).CompileWithDebug(@ptrCast(*const IDxcCompiler2, self), pSource, pSourceName, pEntryPoint, pTargetProfile, pArguments, argCount, pDefines, defineCount, pIncludeHandler, ppResult, ppDebugBlobName, ppDebugBlob);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -727,19 +747,19 @@ pub const IDxcLinker = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         RegisterLibrary: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcLinker,
                 pLibName: ?[*:0]const u16,
                 pLib: ?*IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcLinker,
                 pLibName: ?[*:0]const u16,
                 pLib: ?*IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Link: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcLinker,
                 pEntryName: ?[*:0]const u16,
                 pTargetProfile: ?[*:0]const u16,
@@ -749,7 +769,7 @@ pub const IDxcLinker = extern struct {
                 argCount: u32,
                 ppResult: ?*?*IDxcOperationResult,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcLinker,
                 pEntryName: ?[*:0]const u16,
                 pTargetProfile: ?[*:0]const u16,
@@ -762,17 +782,19 @@ pub const IDxcLinker = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcLinker_RegisterLibrary(self: *const T, pLibName: ?[*:0]const u16, pLib: ?*IDxcBlob) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcLinker.VTable, self.vtable).RegisterLibrary(@ptrCast(*const IDxcLinker, self), pLibName, pLib);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcLinker_Link(self: *const T, pEntryName: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pLibNames: [*]const ?[*:0]const u16, libCount: u32, pArguments: ?[*]const ?[*:0]const u16, argCount: u32, ppResult: ?*?*IDxcOperationResult) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcLinker.VTable, self.vtable).Link(@ptrCast(*const IDxcLinker, self), pEntryName, pTargetProfile, pLibNames, libCount, pArguments, argCount, ppResult);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcLinker_RegisterLibrary(self: *const T, pLibName: ?[*:0]const u16, pLib: ?*IDxcBlob) HRESULT {
+                return @ptrCast(*const IDxcLinker.VTable, self.vtable).RegisterLibrary(@ptrCast(*const IDxcLinker, self), pLibName, pLib);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcLinker_Link(self: *const T, pEntryName: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pLibNames: [*]const ?[*:0]const u16, libCount: u32, pArguments: ?[*]const ?[*:0]const u16, argCount: u32, ppResult: ?*?*IDxcOperationResult) HRESULT {
+                return @ptrCast(*const IDxcLinker.VTable, self.vtable).Link(@ptrCast(*const IDxcLinker, self), pEntryName, pTargetProfile, pLibNames, libCount, pArguments, argCount, ppResult);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -782,14 +804,14 @@ pub const IDxcUtils = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateBlobFromBlob: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcUtils,
                 pBlob: ?*IDxcBlob,
                 offset: u32,
                 length: u32,
                 ppResult: ?*?*IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcUtils,
                 pBlob: ?*IDxcBlob,
                 offset: u32,
@@ -798,7 +820,7 @@ pub const IDxcUtils = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateBlobFromPinned: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcUtils,
                 // TODO: what to do with BytesParamIndex 1?
                 pData: ?*const anyopaque,
@@ -806,7 +828,7 @@ pub const IDxcUtils = extern struct {
                 codePage: DXC_CP,
                 pBlobEncoding: ?*?*IDxcBlobEncoding,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcUtils,
                 // TODO: what to do with BytesParamIndex 1?
                 pData: ?*const anyopaque,
@@ -816,7 +838,7 @@ pub const IDxcUtils = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         MoveToBlob: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcUtils,
                 // TODO: what to do with BytesParamIndex 2?
                 pData: ?*const anyopaque,
@@ -825,7 +847,7 @@ pub const IDxcUtils = extern struct {
                 codePage: DXC_CP,
                 pBlobEncoding: ?*?*IDxcBlobEncoding,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcUtils,
                 // TODO: what to do with BytesParamIndex 2?
                 pData: ?*const anyopaque,
@@ -836,7 +858,7 @@ pub const IDxcUtils = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateBlob: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcUtils,
                 // TODO: what to do with BytesParamIndex 1?
                 pData: ?*const anyopaque,
@@ -844,7 +866,7 @@ pub const IDxcUtils = extern struct {
                 codePage: DXC_CP,
                 pBlobEncoding: ?*?*IDxcBlobEncoding,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcUtils,
                 // TODO: what to do with BytesParamIndex 1?
                 pData: ?*const anyopaque,
@@ -854,13 +876,13 @@ pub const IDxcUtils = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         LoadFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcUtils,
                 pFileName: ?[*:0]const u16,
                 pCodePage: ?*DXC_CP,
                 pBlobEncoding: ?*?*IDxcBlobEncoding,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcUtils,
                 pFileName: ?[*:0]const u16,
                 pCodePage: ?*DXC_CP,
@@ -868,60 +890,60 @@ pub const IDxcUtils = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateReadOnlyStreamFromBlob: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcUtils,
                 pBlob: ?*IDxcBlob,
                 ppStream: ?*?*IStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcUtils,
                 pBlob: ?*IDxcBlob,
                 ppStream: ?*?*IStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateDefaultIncludeHandler: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcUtils,
                 ppResult: ?*?*IDxcIncludeHandler,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcUtils,
                 ppResult: ?*?*IDxcIncludeHandler,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetBlobAsUtf8: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcUtils,
                 pBlob: ?*IDxcBlob,
                 pBlobEncoding: ?*?*IDxcBlobUtf8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcUtils,
                 pBlob: ?*IDxcBlob,
                 pBlobEncoding: ?*?*IDxcBlobUtf8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetBlobAsUtf16: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcUtils,
                 pBlob: ?*IDxcBlob,
                 pBlobEncoding: ?*?*IDxcBlobUtf16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcUtils,
                 pBlob: ?*IDxcBlob,
                 pBlobEncoding: ?*?*IDxcBlobUtf16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDxilContainerPart: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcUtils,
                 pShader: ?*const DxcBuffer,
                 DxcPart: u32,
                 ppPartData: ?*?*anyopaque,
                 pPartSizeInBytes: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcUtils,
                 pShader: ?*const DxcBuffer,
                 DxcPart: u32,
@@ -930,13 +952,13 @@ pub const IDxcUtils = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateReflection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcUtils,
                 pData: ?*const DxcBuffer,
                 iid: ?*const Guid,
                 ppvReflection: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcUtils,
                 pData: ?*const DxcBuffer,
                 iid: ?*const Guid,
@@ -944,7 +966,7 @@ pub const IDxcUtils = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         BuildArguments: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcUtils,
                 pSourceName: ?[*:0]const u16,
                 pEntryPoint: ?[*:0]const u16,
@@ -955,7 +977,7 @@ pub const IDxcUtils = extern struct {
                 defineCount: u32,
                 ppArgs: ?*?*IDxcCompilerArgs,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcUtils,
                 pSourceName: ?[*:0]const u16,
                 pEntryPoint: ?[*:0]const u16,
@@ -968,13 +990,13 @@ pub const IDxcUtils = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPDBContents: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcUtils,
                 pPDBBlob: ?*IDxcBlob,
                 ppHash: ?*?*IDxcBlob,
                 ppContainer: ?*?*IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcUtils,
                 pPDBBlob: ?*IDxcBlob,
                 ppHash: ?*?*IDxcBlob,
@@ -983,61 +1005,63 @@ pub const IDxcUtils = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcUtils_CreateBlobFromBlob(self: *const T, pBlob: ?*IDxcBlob, offset: u32, length: u32, ppResult: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcUtils.VTable, self.vtable).CreateBlobFromBlob(@ptrCast(*const IDxcUtils, self), pBlob, offset, length, ppResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcUtils_CreateBlobFromPinned(self: *const T, pData: ?*const anyopaque, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcUtils.VTable, self.vtable).CreateBlobFromPinned(@ptrCast(*const IDxcUtils, self), pData, size, codePage, pBlobEncoding);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcUtils_MoveToBlob(self: *const T, pData: ?*const anyopaque, pIMalloc: ?*IMalloc, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcUtils.VTable, self.vtable).MoveToBlob(@ptrCast(*const IDxcUtils, self), pData, pIMalloc, size, codePage, pBlobEncoding);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcUtils_CreateBlob(self: *const T, pData: ?*const anyopaque, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcUtils.VTable, self.vtable).CreateBlob(@ptrCast(*const IDxcUtils, self), pData, size, codePage, pBlobEncoding);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcUtils_LoadFile(self: *const T, pFileName: ?[*:0]const u16, pCodePage: ?*DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcUtils.VTable, self.vtable).LoadFile(@ptrCast(*const IDxcUtils, self), pFileName, pCodePage, pBlobEncoding);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcUtils_CreateReadOnlyStreamFromBlob(self: *const T, pBlob: ?*IDxcBlob, ppStream: ?*?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcUtils.VTable, self.vtable).CreateReadOnlyStreamFromBlob(@ptrCast(*const IDxcUtils, self), pBlob, ppStream);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcUtils_CreateDefaultIncludeHandler(self: *const T, ppResult: ?*?*IDxcIncludeHandler) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcUtils.VTable, self.vtable).CreateDefaultIncludeHandler(@ptrCast(*const IDxcUtils, self), ppResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcUtils_GetBlobAsUtf8(self: *const T, pBlob: ?*IDxcBlob, pBlobEncoding: ?*?*IDxcBlobUtf8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcUtils.VTable, self.vtable).GetBlobAsUtf8(@ptrCast(*const IDxcUtils, self), pBlob, pBlobEncoding);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcUtils_GetBlobAsUtf16(self: *const T, pBlob: ?*IDxcBlob, pBlobEncoding: ?*?*IDxcBlobUtf16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcUtils.VTable, self.vtable).GetBlobAsUtf16(@ptrCast(*const IDxcUtils, self), pBlob, pBlobEncoding);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcUtils_GetDxilContainerPart(self: *const T, pShader: ?*const DxcBuffer, DxcPart: u32, ppPartData: ?*?*anyopaque, pPartSizeInBytes: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcUtils.VTable, self.vtable).GetDxilContainerPart(@ptrCast(*const IDxcUtils, self), pShader, DxcPart, ppPartData, pPartSizeInBytes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcUtils_CreateReflection(self: *const T, pData: ?*const DxcBuffer, iid: ?*const Guid, ppvReflection: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcUtils.VTable, self.vtable).CreateReflection(@ptrCast(*const IDxcUtils, self), pData, iid, ppvReflection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcUtils_BuildArguments(self: *const T, pSourceName: ?[*:0]const u16, pEntryPoint: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pArguments: ?[*]?PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, ppArgs: ?*?*IDxcCompilerArgs) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcUtils.VTable, self.vtable).BuildArguments(@ptrCast(*const IDxcUtils, self), pSourceName, pEntryPoint, pTargetProfile, pArguments, argCount, pDefines, defineCount, ppArgs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcUtils_GetPDBContents(self: *const T, pPDBBlob: ?*IDxcBlob, ppHash: ?*?*IDxcBlob, ppContainer: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcUtils.VTable, self.vtable).GetPDBContents(@ptrCast(*const IDxcUtils, self), pPDBBlob, ppHash, ppContainer);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcUtils_CreateBlobFromBlob(self: *const T, pBlob: ?*IDxcBlob, offset: u32, length: u32, ppResult: ?*?*IDxcBlob) HRESULT {
+                return @ptrCast(*const IDxcUtils.VTable, self.vtable).CreateBlobFromBlob(@ptrCast(*const IDxcUtils, self), pBlob, offset, length, ppResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcUtils_CreateBlobFromPinned(self: *const T, pData: ?*const anyopaque, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) HRESULT {
+                return @ptrCast(*const IDxcUtils.VTable, self.vtable).CreateBlobFromPinned(@ptrCast(*const IDxcUtils, self), pData, size, codePage, pBlobEncoding);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcUtils_MoveToBlob(self: *const T, pData: ?*const anyopaque, pIMalloc: ?*IMalloc, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) HRESULT {
+                return @ptrCast(*const IDxcUtils.VTable, self.vtable).MoveToBlob(@ptrCast(*const IDxcUtils, self), pData, pIMalloc, size, codePage, pBlobEncoding);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcUtils_CreateBlob(self: *const T, pData: ?*const anyopaque, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) HRESULT {
+                return @ptrCast(*const IDxcUtils.VTable, self.vtable).CreateBlob(@ptrCast(*const IDxcUtils, self), pData, size, codePage, pBlobEncoding);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcUtils_LoadFile(self: *const T, pFileName: ?[*:0]const u16, pCodePage: ?*DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) HRESULT {
+                return @ptrCast(*const IDxcUtils.VTable, self.vtable).LoadFile(@ptrCast(*const IDxcUtils, self), pFileName, pCodePage, pBlobEncoding);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcUtils_CreateReadOnlyStreamFromBlob(self: *const T, pBlob: ?*IDxcBlob, ppStream: ?*?*IStream) HRESULT {
+                return @ptrCast(*const IDxcUtils.VTable, self.vtable).CreateReadOnlyStreamFromBlob(@ptrCast(*const IDxcUtils, self), pBlob, ppStream);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcUtils_CreateDefaultIncludeHandler(self: *const T, ppResult: ?*?*IDxcIncludeHandler) HRESULT {
+                return @ptrCast(*const IDxcUtils.VTable, self.vtable).CreateDefaultIncludeHandler(@ptrCast(*const IDxcUtils, self), ppResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcUtils_GetBlobAsUtf8(self: *const T, pBlob: ?*IDxcBlob, pBlobEncoding: ?*?*IDxcBlobUtf8) HRESULT {
+                return @ptrCast(*const IDxcUtils.VTable, self.vtable).GetBlobAsUtf8(@ptrCast(*const IDxcUtils, self), pBlob, pBlobEncoding);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcUtils_GetBlobAsUtf16(self: *const T, pBlob: ?*IDxcBlob, pBlobEncoding: ?*?*IDxcBlobUtf16) HRESULT {
+                return @ptrCast(*const IDxcUtils.VTable, self.vtable).GetBlobAsUtf16(@ptrCast(*const IDxcUtils, self), pBlob, pBlobEncoding);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcUtils_GetDxilContainerPart(self: *const T, pShader: ?*const DxcBuffer, DxcPart: u32, ppPartData: ?*?*anyopaque, pPartSizeInBytes: ?*u32) HRESULT {
+                return @ptrCast(*const IDxcUtils.VTable, self.vtable).GetDxilContainerPart(@ptrCast(*const IDxcUtils, self), pShader, DxcPart, ppPartData, pPartSizeInBytes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcUtils_CreateReflection(self: *const T, pData: ?*const DxcBuffer, iid: ?*const Guid, ppvReflection: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IDxcUtils.VTable, self.vtable).CreateReflection(@ptrCast(*const IDxcUtils, self), pData, iid, ppvReflection);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcUtils_BuildArguments(self: *const T, pSourceName: ?[*:0]const u16, pEntryPoint: ?[*:0]const u16, pTargetProfile: ?[*:0]const u16, pArguments: ?[*]?PWSTR, argCount: u32, pDefines: [*]const DxcDefine, defineCount: u32, ppArgs: ?*?*IDxcCompilerArgs) HRESULT {
+                return @ptrCast(*const IDxcUtils.VTable, self.vtable).BuildArguments(@ptrCast(*const IDxcUtils, self), pSourceName, pEntryPoint, pTargetProfile, pArguments, argCount, pDefines, defineCount, ppArgs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcUtils_GetPDBContents(self: *const T, pPDBBlob: ?*IDxcBlob, ppHash: ?*?*IDxcBlob, ppContainer: ?*?*IDxcBlob) HRESULT {
+                return @ptrCast(*const IDxcUtils.VTable, self.vtable).GetPDBContents(@ptrCast(*const IDxcUtils, self), pPDBBlob, ppHash, ppContainer);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1074,24 +1098,24 @@ pub const IDxcResult = extern struct {
     pub const VTable = extern struct {
         base: IDxcOperationResult.VTable,
         HasOutput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcResult,
                 dxcOutKind: DXC_OUT_KIND,
             ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcResult,
                 dxcOutKind: DXC_OUT_KIND,
             ) callconv(@import("std").os.windows.WINAPI) BOOL,
         },
         GetOutput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcResult,
                 dxcOutKind: DXC_OUT_KIND,
                 iid: ?*const Guid,
                 ppvObject: ?*?*anyopaque,
                 ppOutputName: ?*?*IDxcBlobUtf16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcResult,
                 dxcOutKind: DXC_OUT_KIND,
                 iid: ?*const Guid,
@@ -1100,56 +1124,58 @@ pub const IDxcResult = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetNumOutputs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcResult,
             ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcResult,
             ) callconv(@import("std").os.windows.WINAPI) u32,
         },
         GetOutputByIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcResult,
                 Index: u32,
             ) callconv(@import("std").os.windows.WINAPI) DXC_OUT_KIND,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcResult,
                 Index: u32,
             ) callconv(@import("std").os.windows.WINAPI) DXC_OUT_KIND,
         },
         PrimaryOutput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcResult,
             ) callconv(@import("std").os.windows.WINAPI) DXC_OUT_KIND,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcResult,
             ) callconv(@import("std").os.windows.WINAPI) DXC_OUT_KIND,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDxcOperationResult.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcResult_HasOutput(self: *const T, dxcOutKind: DXC_OUT_KIND) callconv(.Inline) BOOL {
-            return @ptrCast(*const IDxcResult.VTable, self.vtable).HasOutput(@ptrCast(*const IDxcResult, self), dxcOutKind);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcResult_GetOutput(self: *const T, dxcOutKind: DXC_OUT_KIND, iid: ?*const Guid, ppvObject: ?*?*anyopaque, ppOutputName: ?*?*IDxcBlobUtf16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcResult.VTable, self.vtable).GetOutput(@ptrCast(*const IDxcResult, self), dxcOutKind, iid, ppvObject, ppOutputName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcResult_GetNumOutputs(self: *const T) callconv(.Inline) u32 {
-            return @ptrCast(*const IDxcResult.VTable, self.vtable).GetNumOutputs(@ptrCast(*const IDxcResult, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcResult_GetOutputByIndex(self: *const T, Index: u32) callconv(.Inline) DXC_OUT_KIND {
-            return @ptrCast(*const IDxcResult.VTable, self.vtable).GetOutputByIndex(@ptrCast(*const IDxcResult, self), Index);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcResult_PrimaryOutput(self: *const T) callconv(.Inline) DXC_OUT_KIND {
-            return @ptrCast(*const IDxcResult.VTable, self.vtable).PrimaryOutput(@ptrCast(*const IDxcResult, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDxcOperationResult.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcResult_HasOutput(self: *const T, dxcOutKind: DXC_OUT_KIND) BOOL {
+                return @ptrCast(*const IDxcResult.VTable, self.vtable).HasOutput(@ptrCast(*const IDxcResult, self), dxcOutKind);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcResult_GetOutput(self: *const T, dxcOutKind: DXC_OUT_KIND, iid: ?*const Guid, ppvObject: ?*?*anyopaque, ppOutputName: ?*?*IDxcBlobUtf16) HRESULT {
+                return @ptrCast(*const IDxcResult.VTable, self.vtable).GetOutput(@ptrCast(*const IDxcResult, self), dxcOutKind, iid, ppvObject, ppOutputName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcResult_GetNumOutputs(self: *const T) u32 {
+                return @ptrCast(*const IDxcResult.VTable, self.vtable).GetNumOutputs(@ptrCast(*const IDxcResult, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcResult_GetOutputByIndex(self: *const T, Index: u32) DXC_OUT_KIND {
+                return @ptrCast(*const IDxcResult.VTable, self.vtable).GetOutputByIndex(@ptrCast(*const IDxcResult, self), Index);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcResult_PrimaryOutput(self: *const T) DXC_OUT_KIND {
+                return @ptrCast(*const IDxcResult.VTable, self.vtable).PrimaryOutput(@ptrCast(*const IDxcResult, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1159,15 +1185,15 @@ pub const IDxcExtraOutputs = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetOutputCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcExtraOutputs,
             ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcExtraOutputs,
             ) callconv(@import("std").os.windows.WINAPI) u32,
         },
         GetOutput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcExtraOutputs,
                 uIndex: u32,
                 iid: ?*const Guid,
@@ -1175,7 +1201,7 @@ pub const IDxcExtraOutputs = extern struct {
                 ppOutputType: ?*?*IDxcBlobUtf16,
                 ppOutputName: ?*?*IDxcBlobUtf16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcExtraOutputs,
                 uIndex: u32,
                 iid: ?*const Guid,
@@ -1186,17 +1212,19 @@ pub const IDxcExtraOutputs = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcExtraOutputs_GetOutputCount(self: *const T) callconv(.Inline) u32 {
-            return @ptrCast(*const IDxcExtraOutputs.VTable, self.vtable).GetOutputCount(@ptrCast(*const IDxcExtraOutputs, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcExtraOutputs_GetOutput(self: *const T, uIndex: u32, iid: ?*const Guid, ppvObject: ?*?*anyopaque, ppOutputType: ?*?*IDxcBlobUtf16, ppOutputName: ?*?*IDxcBlobUtf16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcExtraOutputs.VTable, self.vtable).GetOutput(@ptrCast(*const IDxcExtraOutputs, self), uIndex, iid, ppvObject, ppOutputType, ppOutputName);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcExtraOutputs_GetOutputCount(self: *const T) u32 {
+                return @ptrCast(*const IDxcExtraOutputs.VTable, self.vtable).GetOutputCount(@ptrCast(*const IDxcExtraOutputs, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcExtraOutputs_GetOutput(self: *const T, uIndex: u32, iid: ?*const Guid, ppvObject: ?*?*anyopaque, ppOutputType: ?*?*IDxcBlobUtf16, ppOutputName: ?*?*IDxcBlobUtf16) HRESULT {
+                return @ptrCast(*const IDxcExtraOutputs.VTable, self.vtable).GetOutput(@ptrCast(*const IDxcExtraOutputs, self), uIndex, iid, ppvObject, ppOutputType, ppOutputName);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1206,7 +1234,7 @@ pub const IDxcCompiler3 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Compile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcCompiler3,
                 pSource: ?*const DxcBuffer,
                 pArguments: ?[*]?PWSTR,
@@ -1215,7 +1243,7 @@ pub const IDxcCompiler3 = extern struct {
                 riid: ?*const Guid,
                 ppResult: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcCompiler3,
                 pSource: ?*const DxcBuffer,
                 pArguments: ?[*]?PWSTR,
@@ -1226,13 +1254,13 @@ pub const IDxcCompiler3 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Disassemble: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcCompiler3,
                 pObject: ?*const DxcBuffer,
                 riid: ?*const Guid,
                 ppResult: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcCompiler3,
                 pObject: ?*const DxcBuffer,
                 riid: ?*const Guid,
@@ -1241,17 +1269,19 @@ pub const IDxcCompiler3 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcCompiler3_Compile(self: *const T, pSource: ?*const DxcBuffer, pArguments: ?[*]?PWSTR, argCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, riid: ?*const Guid, ppResult: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcCompiler3.VTable, self.vtable).Compile(@ptrCast(*const IDxcCompiler3, self), pSource, pArguments, argCount, pIncludeHandler, riid, ppResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcCompiler3_Disassemble(self: *const T, pObject: ?*const DxcBuffer, riid: ?*const Guid, ppResult: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcCompiler3.VTable, self.vtable).Disassemble(@ptrCast(*const IDxcCompiler3, self), pObject, riid, ppResult);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcCompiler3_Compile(self: *const T, pSource: ?*const DxcBuffer, pArguments: ?[*]?PWSTR, argCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, riid: ?*const Guid, ppResult: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IDxcCompiler3.VTable, self.vtable).Compile(@ptrCast(*const IDxcCompiler3, self), pSource, pArguments, argCount, pIncludeHandler, riid, ppResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcCompiler3_Disassemble(self: *const T, pObject: ?*const DxcBuffer, riid: ?*const Guid, ppResult: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IDxcCompiler3.VTable, self.vtable).Disassemble(@ptrCast(*const IDxcCompiler3, self), pObject, riid, ppResult);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1261,13 +1291,13 @@ pub const IDxcValidator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Validate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcValidator,
                 pShader: ?*IDxcBlob,
                 Flags: u32,
                 ppResult: ?*?*IDxcOperationResult,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcValidator,
                 pShader: ?*IDxcBlob,
                 Flags: u32,
@@ -1276,13 +1306,15 @@ pub const IDxcValidator = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcValidator_Validate(self: *const T, pShader: ?*IDxcBlob, Flags: u32, ppResult: ?*?*IDxcOperationResult) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcValidator.VTable, self.vtable).Validate(@ptrCast(*const IDxcValidator, self), pShader, Flags, ppResult);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcValidator_Validate(self: *const T, pShader: ?*IDxcBlob, Flags: u32, ppResult: ?*?*IDxcOperationResult) HRESULT {
+                return @ptrCast(*const IDxcValidator.VTable, self.vtable).Validate(@ptrCast(*const IDxcValidator, self), pShader, Flags, ppResult);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1292,14 +1324,14 @@ pub const IDxcValidator2 = extern struct {
     pub const VTable = extern struct {
         base: IDxcValidator.VTable,
         ValidateWithDebug: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcValidator2,
                 pShader: ?*IDxcBlob,
                 Flags: u32,
                 pOptDebugBitcode: ?*DxcBuffer,
                 ppResult: ?*?*IDxcOperationResult,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcValidator2,
                 pShader: ?*IDxcBlob,
                 Flags: u32,
@@ -1309,13 +1341,15 @@ pub const IDxcValidator2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDxcValidator.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcValidator2_ValidateWithDebug(self: *const T, pShader: ?*IDxcBlob, Flags: u32, pOptDebugBitcode: ?*DxcBuffer, ppResult: ?*?*IDxcOperationResult) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcValidator2.VTable, self.vtable).ValidateWithDebug(@ptrCast(*const IDxcValidator2, self), pShader, Flags, pOptDebugBitcode, ppResult);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDxcValidator.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcValidator2_ValidateWithDebug(self: *const T, pShader: ?*IDxcBlob, Flags: u32, pOptDebugBitcode: ?*DxcBuffer, ppResult: ?*?*IDxcOperationResult) HRESULT {
+                return @ptrCast(*const IDxcValidator2.VTable, self.vtable).ValidateWithDebug(@ptrCast(*const IDxcValidator2, self), pShader, Flags, pOptDebugBitcode, ppResult);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1325,68 +1359,70 @@ pub const IDxcContainerBuilder = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Load: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcContainerBuilder,
                 pDxilContainerHeader: ?*IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcContainerBuilder,
                 pDxilContainerHeader: ?*IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AddPart: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcContainerBuilder,
                 fourCC: u32,
                 pSource: ?*IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcContainerBuilder,
                 fourCC: u32,
                 pSource: ?*IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RemovePart: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcContainerBuilder,
                 fourCC: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcContainerBuilder,
                 fourCC: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SerializeContainer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcContainerBuilder,
                 ppResult: ?*?*IDxcOperationResult,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcContainerBuilder,
                 ppResult: ?*?*IDxcOperationResult,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcContainerBuilder_Load(self: *const T, pDxilContainerHeader: ?*IDxcBlob) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcContainerBuilder.VTable, self.vtable).Load(@ptrCast(*const IDxcContainerBuilder, self), pDxilContainerHeader);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcContainerBuilder_AddPart(self: *const T, fourCC: u32, pSource: ?*IDxcBlob) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcContainerBuilder.VTable, self.vtable).AddPart(@ptrCast(*const IDxcContainerBuilder, self), fourCC, pSource);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcContainerBuilder_RemovePart(self: *const T, fourCC: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcContainerBuilder.VTable, self.vtable).RemovePart(@ptrCast(*const IDxcContainerBuilder, self), fourCC);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcContainerBuilder_SerializeContainer(self: *const T, ppResult: ?*?*IDxcOperationResult) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcContainerBuilder.VTable, self.vtable).SerializeContainer(@ptrCast(*const IDxcContainerBuilder, self), ppResult);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcContainerBuilder_Load(self: *const T, pDxilContainerHeader: ?*IDxcBlob) HRESULT {
+                return @ptrCast(*const IDxcContainerBuilder.VTable, self.vtable).Load(@ptrCast(*const IDxcContainerBuilder, self), pDxilContainerHeader);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcContainerBuilder_AddPart(self: *const T, fourCC: u32, pSource: ?*IDxcBlob) HRESULT {
+                return @ptrCast(*const IDxcContainerBuilder.VTable, self.vtable).AddPart(@ptrCast(*const IDxcContainerBuilder, self), fourCC, pSource);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcContainerBuilder_RemovePart(self: *const T, fourCC: u32) HRESULT {
+                return @ptrCast(*const IDxcContainerBuilder.VTable, self.vtable).RemovePart(@ptrCast(*const IDxcContainerBuilder, self), fourCC);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcContainerBuilder_SerializeContainer(self: *const T, ppResult: ?*?*IDxcOperationResult) HRESULT {
+                return @ptrCast(*const IDxcContainerBuilder.VTable, self.vtable).SerializeContainer(@ptrCast(*const IDxcContainerBuilder, self), ppResult);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1396,12 +1432,12 @@ pub const IDxcAssembler = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AssembleToContainer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcAssembler,
                 pShader: ?*IDxcBlob,
                 ppResult: ?*?*IDxcOperationResult,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcAssembler,
                 pShader: ?*IDxcBlob,
                 ppResult: ?*?*IDxcOperationResult,
@@ -1409,13 +1445,15 @@ pub const IDxcAssembler = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcAssembler_AssembleToContainer(self: *const T, pShader: ?*IDxcBlob, ppResult: ?*?*IDxcOperationResult) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcAssembler.VTable, self.vtable).AssembleToContainer(@ptrCast(*const IDxcAssembler, self), pShader, ppResult);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcAssembler_AssembleToContainer(self: *const T, pShader: ?*IDxcBlob, ppResult: ?*?*IDxcOperationResult) HRESULT {
+                return @ptrCast(*const IDxcAssembler.VTable, self.vtable).AssembleToContainer(@ptrCast(*const IDxcAssembler, self), pShader, ppResult);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1425,69 +1463,69 @@ pub const IDxcContainerReflection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Load: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcContainerReflection,
                 pContainer: ?*IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcContainerReflection,
                 pContainer: ?*IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPartCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcContainerReflection,
                 pResult: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcContainerReflection,
                 pResult: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPartKind: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcContainerReflection,
                 idx: u32,
                 pResult: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcContainerReflection,
                 idx: u32,
                 pResult: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPartContent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcContainerReflection,
                 idx: u32,
                 ppResult: ?*?*IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcContainerReflection,
                 idx: u32,
                 ppResult: ?*?*IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FindFirstPartKind: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcContainerReflection,
                 kind: u32,
                 pResult: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcContainerReflection,
                 kind: u32,
                 pResult: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPartReflection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcContainerReflection,
                 idx: u32,
                 iid: ?*const Guid,
                 ppvObject: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcContainerReflection,
                 idx: u32,
                 iid: ?*const Guid,
@@ -1496,33 +1534,35 @@ pub const IDxcContainerReflection = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcContainerReflection_Load(self: *const T, pContainer: ?*IDxcBlob) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcContainerReflection.VTable, self.vtable).Load(@ptrCast(*const IDxcContainerReflection, self), pContainer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcContainerReflection_GetPartCount(self: *const T, pResult: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcContainerReflection.VTable, self.vtable).GetPartCount(@ptrCast(*const IDxcContainerReflection, self), pResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcContainerReflection_GetPartKind(self: *const T, idx: u32, pResult: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcContainerReflection.VTable, self.vtable).GetPartKind(@ptrCast(*const IDxcContainerReflection, self), idx, pResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcContainerReflection_GetPartContent(self: *const T, idx: u32, ppResult: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcContainerReflection.VTable, self.vtable).GetPartContent(@ptrCast(*const IDxcContainerReflection, self), idx, ppResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcContainerReflection_FindFirstPartKind(self: *const T, kind: u32, pResult: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcContainerReflection.VTable, self.vtable).FindFirstPartKind(@ptrCast(*const IDxcContainerReflection, self), kind, pResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcContainerReflection_GetPartReflection(self: *const T, idx: u32, iid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcContainerReflection.VTable, self.vtable).GetPartReflection(@ptrCast(*const IDxcContainerReflection, self), idx, iid, ppvObject);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcContainerReflection_Load(self: *const T, pContainer: ?*IDxcBlob) HRESULT {
+                return @ptrCast(*const IDxcContainerReflection.VTable, self.vtable).Load(@ptrCast(*const IDxcContainerReflection, self), pContainer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcContainerReflection_GetPartCount(self: *const T, pResult: ?*u32) HRESULT {
+                return @ptrCast(*const IDxcContainerReflection.VTable, self.vtable).GetPartCount(@ptrCast(*const IDxcContainerReflection, self), pResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcContainerReflection_GetPartKind(self: *const T, idx: u32, pResult: ?*u32) HRESULT {
+                return @ptrCast(*const IDxcContainerReflection.VTable, self.vtable).GetPartKind(@ptrCast(*const IDxcContainerReflection, self), idx, pResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcContainerReflection_GetPartContent(self: *const T, idx: u32, ppResult: ?*?*IDxcBlob) HRESULT {
+                return @ptrCast(*const IDxcContainerReflection.VTable, self.vtable).GetPartContent(@ptrCast(*const IDxcContainerReflection, self), idx, ppResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcContainerReflection_FindFirstPartKind(self: *const T, kind: u32, pResult: ?*u32) HRESULT {
+                return @ptrCast(*const IDxcContainerReflection.VTable, self.vtable).FindFirstPartKind(@ptrCast(*const IDxcContainerReflection, self), kind, pResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcContainerReflection_GetPartReflection(self: *const T, idx: u32, iid: ?*const Guid, ppvObject: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IDxcContainerReflection.VTable, self.vtable).GetPartReflection(@ptrCast(*const IDxcContainerReflection, self), idx, iid, ppvObject);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1532,54 +1572,54 @@ pub const IDxcOptimizerPass = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetOptionName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcOptimizerPass,
                 ppResult: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcOptimizerPass,
                 ppResult: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcOptimizerPass,
                 ppResult: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcOptimizerPass,
                 ppResult: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetOptionArgCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcOptimizerPass,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcOptimizerPass,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetOptionArgName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcOptimizerPass,
                 argIndex: u32,
                 ppResult: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcOptimizerPass,
                 argIndex: u32,
                 ppResult: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetOptionArgDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcOptimizerPass,
                 argIndex: u32,
                 ppResult: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcOptimizerPass,
                 argIndex: u32,
                 ppResult: ?*?PWSTR,
@@ -1587,29 +1627,31 @@ pub const IDxcOptimizerPass = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcOptimizerPass_GetOptionName(self: *const T, ppResult: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcOptimizerPass.VTable, self.vtable).GetOptionName(@ptrCast(*const IDxcOptimizerPass, self), ppResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcOptimizerPass_GetDescription(self: *const T, ppResult: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcOptimizerPass.VTable, self.vtable).GetDescription(@ptrCast(*const IDxcOptimizerPass, self), ppResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcOptimizerPass_GetOptionArgCount(self: *const T, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcOptimizerPass.VTable, self.vtable).GetOptionArgCount(@ptrCast(*const IDxcOptimizerPass, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcOptimizerPass_GetOptionArgName(self: *const T, argIndex: u32, ppResult: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcOptimizerPass.VTable, self.vtable).GetOptionArgName(@ptrCast(*const IDxcOptimizerPass, self), argIndex, ppResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcOptimizerPass_GetOptionArgDescription(self: *const T, argIndex: u32, ppResult: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcOptimizerPass.VTable, self.vtable).GetOptionArgDescription(@ptrCast(*const IDxcOptimizerPass, self), argIndex, ppResult);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcOptimizerPass_GetOptionName(self: *const T, ppResult: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IDxcOptimizerPass.VTable, self.vtable).GetOptionName(@ptrCast(*const IDxcOptimizerPass, self), ppResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcOptimizerPass_GetDescription(self: *const T, ppResult: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IDxcOptimizerPass.VTable, self.vtable).GetDescription(@ptrCast(*const IDxcOptimizerPass, self), ppResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcOptimizerPass_GetOptionArgCount(self: *const T, pCount: ?*u32) HRESULT {
+                return @ptrCast(*const IDxcOptimizerPass.VTable, self.vtable).GetOptionArgCount(@ptrCast(*const IDxcOptimizerPass, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcOptimizerPass_GetOptionArgName(self: *const T, argIndex: u32, ppResult: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IDxcOptimizerPass.VTable, self.vtable).GetOptionArgName(@ptrCast(*const IDxcOptimizerPass, self), argIndex, ppResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcOptimizerPass_GetOptionArgDescription(self: *const T, argIndex: u32, ppResult: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IDxcOptimizerPass.VTable, self.vtable).GetOptionArgDescription(@ptrCast(*const IDxcOptimizerPass, self), argIndex, ppResult);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1619,29 +1661,29 @@ pub const IDxcOptimizer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetAvailablePassCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcOptimizer,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcOptimizer,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAvailablePass: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcOptimizer,
                 index: u32,
                 ppResult: ?*?*IDxcOptimizerPass,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcOptimizer,
                 index: u32,
                 ppResult: ?*?*IDxcOptimizerPass,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RunOptimizer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcOptimizer,
                 pBlob: ?*IDxcBlob,
                 ppOptions: [*]?PWSTR,
@@ -1649,7 +1691,7 @@ pub const IDxcOptimizer = extern struct {
                 pOutputModule: ?*?*IDxcBlob,
                 ppOutputText: ?*?*IDxcBlobEncoding,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcOptimizer,
                 pBlob: ?*IDxcBlob,
                 ppOptions: [*]?PWSTR,
@@ -1660,21 +1702,23 @@ pub const IDxcOptimizer = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcOptimizer_GetAvailablePassCount(self: *const T, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcOptimizer.VTable, self.vtable).GetAvailablePassCount(@ptrCast(*const IDxcOptimizer, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcOptimizer_GetAvailablePass(self: *const T, index: u32, ppResult: ?*?*IDxcOptimizerPass) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcOptimizer.VTable, self.vtable).GetAvailablePass(@ptrCast(*const IDxcOptimizer, self), index, ppResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcOptimizer_RunOptimizer(self: *const T, pBlob: ?*IDxcBlob, ppOptions: [*]?PWSTR, optionCount: u32, pOutputModule: ?*?*IDxcBlob, ppOutputText: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcOptimizer.VTable, self.vtable).RunOptimizer(@ptrCast(*const IDxcOptimizer, self), pBlob, ppOptions, optionCount, pOutputModule, ppOutputText);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcOptimizer_GetAvailablePassCount(self: *const T, pCount: ?*u32) HRESULT {
+                return @ptrCast(*const IDxcOptimizer.VTable, self.vtable).GetAvailablePassCount(@ptrCast(*const IDxcOptimizer, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcOptimizer_GetAvailablePass(self: *const T, index: u32, ppResult: ?*?*IDxcOptimizerPass) HRESULT {
+                return @ptrCast(*const IDxcOptimizer.VTable, self.vtable).GetAvailablePass(@ptrCast(*const IDxcOptimizer, self), index, ppResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcOptimizer_RunOptimizer(self: *const T, pBlob: ?*IDxcBlob, ppOptions: [*]?PWSTR, optionCount: u32, pOutputModule: ?*?*IDxcBlob, ppOutputText: ?*?*IDxcBlobEncoding) HRESULT {
+                return @ptrCast(*const IDxcOptimizer.VTable, self.vtable).RunOptimizer(@ptrCast(*const IDxcOptimizer, self), pBlob, ppOptions, optionCount, pOutputModule, ppOutputText);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1684,40 +1728,42 @@ pub const IDxcVersionInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetVersion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcVersionInfo,
                 pMajor: ?*u32,
                 pMinor: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcVersionInfo,
                 pMajor: ?*u32,
                 pMinor: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcVersionInfo,
                 pFlags: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcVersionInfo,
                 pFlags: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcVersionInfo_GetVersion(self: *const T, pMajor: ?*u32, pMinor: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcVersionInfo.VTable, self.vtable).GetVersion(@ptrCast(*const IDxcVersionInfo, self), pMajor, pMinor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcVersionInfo_GetFlags(self: *const T, pFlags: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcVersionInfo.VTable, self.vtable).GetFlags(@ptrCast(*const IDxcVersionInfo, self), pFlags);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcVersionInfo_GetVersion(self: *const T, pMajor: ?*u32, pMinor: ?*u32) HRESULT {
+                return @ptrCast(*const IDxcVersionInfo.VTable, self.vtable).GetVersion(@ptrCast(*const IDxcVersionInfo, self), pMajor, pMinor);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcVersionInfo_GetFlags(self: *const T, pFlags: ?*u32) HRESULT {
+                return @ptrCast(*const IDxcVersionInfo.VTable, self.vtable).GetFlags(@ptrCast(*const IDxcVersionInfo, self), pFlags);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1727,12 +1773,12 @@ pub const IDxcVersionInfo2 = extern struct {
     pub const VTable = extern struct {
         base: IDxcVersionInfo.VTable,
         GetCommitInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcVersionInfo2,
                 pCommitCount: ?*u32,
                 pCommitHash: ?*?*i8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcVersionInfo2,
                 pCommitCount: ?*u32,
                 pCommitHash: ?*?*i8,
@@ -1740,13 +1786,15 @@ pub const IDxcVersionInfo2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDxcVersionInfo.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcVersionInfo2_GetCommitInfo(self: *const T, pCommitCount: ?*u32, pCommitHash: ?*?*i8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcVersionInfo2.VTable, self.vtable).GetCommitInfo(@ptrCast(*const IDxcVersionInfo2, self), pCommitCount, pCommitHash);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDxcVersionInfo.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcVersionInfo2_GetCommitInfo(self: *const T, pCommitCount: ?*u32, pCommitHash: ?*?*i8) HRESULT {
+                return @ptrCast(*const IDxcVersionInfo2.VTable, self.vtable).GetCommitInfo(@ptrCast(*const IDxcVersionInfo2, self), pCommitCount, pCommitHash);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1756,24 +1804,26 @@ pub const IDxcVersionInfo3 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCustomVersionString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcVersionInfo3,
                 pVersionString: ?*?*i8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcVersionInfo3,
                 pVersionString: ?*?*i8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcVersionInfo3_GetCustomVersionString(self: *const T, pVersionString: ?*?*i8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcVersionInfo3.VTable, self.vtable).GetCustomVersionString(@ptrCast(*const IDxcVersionInfo3, self), pVersionString);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcVersionInfo3_GetCustomVersionString(self: *const T, pVersionString: ?*?*i8) HRESULT {
+                return @ptrCast(*const IDxcVersionInfo3.VTable, self.vtable).GetCustomVersionString(@ptrCast(*const IDxcVersionInfo3, self), pVersionString);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1788,111 +1838,111 @@ pub const IDxcPdbUtils = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Load: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcPdbUtils,
                 pPdbOrDxil: ?*IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcPdbUtils,
                 pPdbOrDxil: ?*IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSourceCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcPdbUtils,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcPdbUtils,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcPdbUtils,
                 uIndex: u32,
                 ppResult: ?*?*IDxcBlobEncoding,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcPdbUtils,
                 uIndex: u32,
                 ppResult: ?*?*IDxcBlobEncoding,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSourceName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcPdbUtils,
                 uIndex: u32,
                 pResult: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcPdbUtils,
                 uIndex: u32,
                 pResult: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFlagCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcPdbUtils,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcPdbUtils,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFlag: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcPdbUtils,
                 uIndex: u32,
                 pResult: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcPdbUtils,
                 uIndex: u32,
                 pResult: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetArgCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcPdbUtils,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcPdbUtils,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetArg: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcPdbUtils,
                 uIndex: u32,
                 pResult: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcPdbUtils,
                 uIndex: u32,
                 pResult: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetArgPairCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcPdbUtils,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcPdbUtils,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetArgPair: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcPdbUtils,
                 uIndex: u32,
                 pName: ?*?BSTR,
                 pValue: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcPdbUtils,
                 uIndex: u32,
                 pName: ?*?BSTR,
@@ -1900,251 +1950,252 @@ pub const IDxcPdbUtils = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDefineCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcPdbUtils,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcPdbUtils,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDefine: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcPdbUtils,
                 uIndex: u32,
                 pResult: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcPdbUtils,
                 uIndex: u32,
                 pResult: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetTargetProfile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcPdbUtils,
                 pResult: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcPdbUtils,
                 pResult: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetEntryPoint: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcPdbUtils,
                 pResult: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcPdbUtils,
                 pResult: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetMainFileName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcPdbUtils,
                 pResult: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcPdbUtils,
                 pResult: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetHash: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcPdbUtils,
                 ppResult: ?*?*IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcPdbUtils,
                 ppResult: ?*?*IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcPdbUtils,
                 pResult: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcPdbUtils,
                 pResult: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         IsFullPDB: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcPdbUtils,
             ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcPdbUtils,
             ) callconv(@import("std").os.windows.WINAPI) BOOL,
         },
         GetFullPDB: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcPdbUtils,
                 ppFullPDB: ?*?*IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcPdbUtils,
                 ppFullPDB: ?*?*IDxcBlob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetVersionInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcPdbUtils,
                 ppVersionInfo: ?*?*IDxcVersionInfo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcPdbUtils,
                 ppVersionInfo: ?*?*IDxcVersionInfo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetCompiler: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcPdbUtils,
                 pCompiler: ?*IDxcCompiler3,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcPdbUtils,
                 pCompiler: ?*IDxcCompiler3,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CompileForFullPDB: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcPdbUtils,
                 ppResult: ?*?*IDxcResult,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcPdbUtils,
                 ppResult: ?*?*IDxcResult,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OverrideArgs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcPdbUtils,
                 pArgPairs: ?*DxcArgPair,
                 uNumArgPairs: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcPdbUtils,
                 pArgPairs: ?*DxcArgPair,
                 uNumArgPairs: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OverrideRootSignature: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDxcPdbUtils,
                 pRootSignature: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDxcPdbUtils,
                 pRootSignature: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcPdbUtils_Load(self: *const T, pPdbOrDxil: ?*IDxcBlob) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).Load(@ptrCast(*const IDxcPdbUtils, self), pPdbOrDxil);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcPdbUtils_GetSourceCount(self: *const T, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetSourceCount(@ptrCast(*const IDxcPdbUtils, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcPdbUtils_GetSource(self: *const T, uIndex: u32, ppResult: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetSource(@ptrCast(*const IDxcPdbUtils, self), uIndex, ppResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcPdbUtils_GetSourceName(self: *const T, uIndex: u32, pResult: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetSourceName(@ptrCast(*const IDxcPdbUtils, self), uIndex, pResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcPdbUtils_GetFlagCount(self: *const T, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetFlagCount(@ptrCast(*const IDxcPdbUtils, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcPdbUtils_GetFlag(self: *const T, uIndex: u32, pResult: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetFlag(@ptrCast(*const IDxcPdbUtils, self), uIndex, pResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcPdbUtils_GetArgCount(self: *const T, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetArgCount(@ptrCast(*const IDxcPdbUtils, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcPdbUtils_GetArg(self: *const T, uIndex: u32, pResult: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetArg(@ptrCast(*const IDxcPdbUtils, self), uIndex, pResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcPdbUtils_GetArgPairCount(self: *const T, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetArgPairCount(@ptrCast(*const IDxcPdbUtils, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcPdbUtils_GetArgPair(self: *const T, uIndex: u32, pName: ?*?BSTR, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetArgPair(@ptrCast(*const IDxcPdbUtils, self), uIndex, pName, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcPdbUtils_GetDefineCount(self: *const T, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetDefineCount(@ptrCast(*const IDxcPdbUtils, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcPdbUtils_GetDefine(self: *const T, uIndex: u32, pResult: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetDefine(@ptrCast(*const IDxcPdbUtils, self), uIndex, pResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcPdbUtils_GetTargetProfile(self: *const T, pResult: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetTargetProfile(@ptrCast(*const IDxcPdbUtils, self), pResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcPdbUtils_GetEntryPoint(self: *const T, pResult: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetEntryPoint(@ptrCast(*const IDxcPdbUtils, self), pResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcPdbUtils_GetMainFileName(self: *const T, pResult: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetMainFileName(@ptrCast(*const IDxcPdbUtils, self), pResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcPdbUtils_GetHash(self: *const T, ppResult: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetHash(@ptrCast(*const IDxcPdbUtils, self), ppResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcPdbUtils_GetName(self: *const T, pResult: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetName(@ptrCast(*const IDxcPdbUtils, self), pResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcPdbUtils_IsFullPDB(self: *const T) callconv(.Inline) BOOL {
-            return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).IsFullPDB(@ptrCast(*const IDxcPdbUtils, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcPdbUtils_GetFullPDB(self: *const T, ppFullPDB: ?*?*IDxcBlob) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetFullPDB(@ptrCast(*const IDxcPdbUtils, self), ppFullPDB);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcPdbUtils_GetVersionInfo(self: *const T, ppVersionInfo: ?*?*IDxcVersionInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetVersionInfo(@ptrCast(*const IDxcPdbUtils, self), ppVersionInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcPdbUtils_SetCompiler(self: *const T, pCompiler: ?*IDxcCompiler3) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).SetCompiler(@ptrCast(*const IDxcPdbUtils, self), pCompiler);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcPdbUtils_CompileForFullPDB(self: *const T, ppResult: ?*?*IDxcResult) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).CompileForFullPDB(@ptrCast(*const IDxcPdbUtils, self), ppResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcPdbUtils_OverrideArgs(self: *const T, pArgPairs: ?*DxcArgPair, uNumArgPairs: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).OverrideArgs(@ptrCast(*const IDxcPdbUtils, self), pArgPairs, uNumArgPairs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcPdbUtils_OverrideRootSignature(self: *const T, pRootSignature: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).OverrideRootSignature(@ptrCast(*const IDxcPdbUtils, self), pRootSignature);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcPdbUtils_Load(self: *const T, pPdbOrDxil: ?*IDxcBlob) HRESULT {
+                return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).Load(@ptrCast(*const IDxcPdbUtils, self), pPdbOrDxil);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcPdbUtils_GetSourceCount(self: *const T, pCount: ?*u32) HRESULT {
+                return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetSourceCount(@ptrCast(*const IDxcPdbUtils, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcPdbUtils_GetSource(self: *const T, uIndex: u32, ppResult: ?*?*IDxcBlobEncoding) HRESULT {
+                return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetSource(@ptrCast(*const IDxcPdbUtils, self), uIndex, ppResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcPdbUtils_GetSourceName(self: *const T, uIndex: u32, pResult: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetSourceName(@ptrCast(*const IDxcPdbUtils, self), uIndex, pResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcPdbUtils_GetFlagCount(self: *const T, pCount: ?*u32) HRESULT {
+                return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetFlagCount(@ptrCast(*const IDxcPdbUtils, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcPdbUtils_GetFlag(self: *const T, uIndex: u32, pResult: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetFlag(@ptrCast(*const IDxcPdbUtils, self), uIndex, pResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcPdbUtils_GetArgCount(self: *const T, pCount: ?*u32) HRESULT {
+                return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetArgCount(@ptrCast(*const IDxcPdbUtils, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcPdbUtils_GetArg(self: *const T, uIndex: u32, pResult: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetArg(@ptrCast(*const IDxcPdbUtils, self), uIndex, pResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcPdbUtils_GetArgPairCount(self: *const T, pCount: ?*u32) HRESULT {
+                return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetArgPairCount(@ptrCast(*const IDxcPdbUtils, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcPdbUtils_GetArgPair(self: *const T, uIndex: u32, pName: ?*?BSTR, pValue: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetArgPair(@ptrCast(*const IDxcPdbUtils, self), uIndex, pName, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcPdbUtils_GetDefineCount(self: *const T, pCount: ?*u32) HRESULT {
+                return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetDefineCount(@ptrCast(*const IDxcPdbUtils, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcPdbUtils_GetDefine(self: *const T, uIndex: u32, pResult: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetDefine(@ptrCast(*const IDxcPdbUtils, self), uIndex, pResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcPdbUtils_GetTargetProfile(self: *const T, pResult: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetTargetProfile(@ptrCast(*const IDxcPdbUtils, self), pResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcPdbUtils_GetEntryPoint(self: *const T, pResult: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetEntryPoint(@ptrCast(*const IDxcPdbUtils, self), pResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcPdbUtils_GetMainFileName(self: *const T, pResult: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetMainFileName(@ptrCast(*const IDxcPdbUtils, self), pResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcPdbUtils_GetHash(self: *const T, ppResult: ?*?*IDxcBlob) HRESULT {
+                return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetHash(@ptrCast(*const IDxcPdbUtils, self), ppResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcPdbUtils_GetName(self: *const T, pResult: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetName(@ptrCast(*const IDxcPdbUtils, self), pResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcPdbUtils_IsFullPDB(self: *const T) BOOL {
+                return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).IsFullPDB(@ptrCast(*const IDxcPdbUtils, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcPdbUtils_GetFullPDB(self: *const T, ppFullPDB: ?*?*IDxcBlob) HRESULT {
+                return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetFullPDB(@ptrCast(*const IDxcPdbUtils, self), ppFullPDB);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcPdbUtils_GetVersionInfo(self: *const T, ppVersionInfo: ?*?*IDxcVersionInfo) HRESULT {
+                return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).GetVersionInfo(@ptrCast(*const IDxcPdbUtils, self), ppVersionInfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcPdbUtils_SetCompiler(self: *const T, pCompiler: ?*IDxcCompiler3) HRESULT {
+                return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).SetCompiler(@ptrCast(*const IDxcPdbUtils, self), pCompiler);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcPdbUtils_CompileForFullPDB(self: *const T, ppResult: ?*?*IDxcResult) HRESULT {
+                return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).CompileForFullPDB(@ptrCast(*const IDxcPdbUtils, self), ppResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcPdbUtils_OverrideArgs(self: *const T, pArgPairs: ?*DxcArgPair, uNumArgPairs: u32) HRESULT {
+                return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).OverrideArgs(@ptrCast(*const IDxcPdbUtils, self), pArgPairs, uNumArgPairs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDxcPdbUtils_OverrideRootSignature(self: *const T, pRootSignature: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IDxcPdbUtils.VTable, self.vtable).OverrideRootSignature(@ptrCast(*const IDxcPdbUtils, self), pRootSignature);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (2)
@@ -2162,19 +2213,14 @@ pub extern "dxcompiler" fn DxcCreateInstance2(
     ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (9)
@@ -2191,12 +2237,14 @@ const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "DxcCreateInstanceProc")) { _ = DxcCreateInstanceProc; }
-    if (@hasDecl(@This(), "DxcCreateInstance2Proc")) { _ = DxcCreateInstance2Proc; }
+    if (@hasDecl(@This(), "DxcCreateInstanceProc")) {
+        _ = DxcCreateInstanceProc;
+    }
+    if (@hasDecl(@This(), "DxcCreateInstance2Proc")) {
+        _ = DxcCreateInstance2Proc;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

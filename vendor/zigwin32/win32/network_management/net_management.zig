@@ -1978,9 +1978,7 @@ pub const NET_REQUEST_PROVISION_OPTIONS = enum(u32) {
     pub fn initFlags(o: struct {
         R: u1 = 0,
     }) NET_REQUEST_PROVISION_OPTIONS {
-        return @intToEnum(NET_REQUEST_PROVISION_OPTIONS,
-              (if (o.R == 1) @enumToInt(NET_REQUEST_PROVISION_OPTIONS.R) else 0)
-        );
+        return @enumFromInt(NET_REQUEST_PROVISION_OPTIONS, (if (o.R == 1) @intFromEnum(NET_REQUEST_PROVISION_OPTIONS.R) else 0));
     }
 };
 pub const NETSETUP_PROVISION_ONLINE_CALLER = NET_REQUEST_PROVISION_OPTIONS.R;
@@ -2023,25 +2021,7 @@ pub const NET_JOIN_DOMAIN_JOIN_OPTIONS = enum(u32) {
         NO_ACCT_REUSE: u1 = 0,
         IGNORE_UNSUPPORTED_FLAGS: u1 = 0,
     }) NET_JOIN_DOMAIN_JOIN_OPTIONS {
-        return @intToEnum(NET_JOIN_DOMAIN_JOIN_OPTIONS,
-              (if (o.JOIN_DOMAIN == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.JOIN_DOMAIN) else 0)
-            | (if (o.ACCT_CREATE == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.ACCT_CREATE) else 0)
-            | (if (o.WIN9X_UPGRADE == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.WIN9X_UPGRADE) else 0)
-            | (if (o.DOMAIN_JOIN_IF_JOINED == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.DOMAIN_JOIN_IF_JOINED) else 0)
-            | (if (o.JOIN_UNSECURE == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.JOIN_UNSECURE) else 0)
-            | (if (o.MACHINE_PWD_PASSED == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.MACHINE_PWD_PASSED) else 0)
-            | (if (o.DEFER_SPN_SET == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.DEFER_SPN_SET) else 0)
-            | (if (o.JOIN_DC_ACCOUNT == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.JOIN_DC_ACCOUNT) else 0)
-            | (if (o.JOIN_WITH_NEW_NAME == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.JOIN_WITH_NEW_NAME) else 0)
-            | (if (o.JOIN_READONLY == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.JOIN_READONLY) else 0)
-            | (if (o.AMBIGUOUS_DC == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.AMBIGUOUS_DC) else 0)
-            | (if (o.NO_NETLOGON_CACHE == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.NO_NETLOGON_CACHE) else 0)
-            | (if (o.DONT_CONTROL_SERVICES == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.DONT_CONTROL_SERVICES) else 0)
-            | (if (o.SET_MACHINE_NAME == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.SET_MACHINE_NAME) else 0)
-            | (if (o.FORCE_SPN_SET == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.FORCE_SPN_SET) else 0)
-            | (if (o.NO_ACCT_REUSE == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.NO_ACCT_REUSE) else 0)
-            | (if (o.IGNORE_UNSUPPORTED_FLAGS == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.IGNORE_UNSUPPORTED_FLAGS) else 0)
-        );
+        return @enumFromInt(NET_JOIN_DOMAIN_JOIN_OPTIONS, (if (o.JOIN_DOMAIN == 1) @intFromEnum(NET_JOIN_DOMAIN_JOIN_OPTIONS.JOIN_DOMAIN) else 0) | (if (o.ACCT_CREATE == 1) @intFromEnum(NET_JOIN_DOMAIN_JOIN_OPTIONS.ACCT_CREATE) else 0) | (if (o.WIN9X_UPGRADE == 1) @intFromEnum(NET_JOIN_DOMAIN_JOIN_OPTIONS.WIN9X_UPGRADE) else 0) | (if (o.DOMAIN_JOIN_IF_JOINED == 1) @intFromEnum(NET_JOIN_DOMAIN_JOIN_OPTIONS.DOMAIN_JOIN_IF_JOINED) else 0) | (if (o.JOIN_UNSECURE == 1) @intFromEnum(NET_JOIN_DOMAIN_JOIN_OPTIONS.JOIN_UNSECURE) else 0) | (if (o.MACHINE_PWD_PASSED == 1) @intFromEnum(NET_JOIN_DOMAIN_JOIN_OPTIONS.MACHINE_PWD_PASSED) else 0) | (if (o.DEFER_SPN_SET == 1) @intFromEnum(NET_JOIN_DOMAIN_JOIN_OPTIONS.DEFER_SPN_SET) else 0) | (if (o.JOIN_DC_ACCOUNT == 1) @intFromEnum(NET_JOIN_DOMAIN_JOIN_OPTIONS.JOIN_DC_ACCOUNT) else 0) | (if (o.JOIN_WITH_NEW_NAME == 1) @intFromEnum(NET_JOIN_DOMAIN_JOIN_OPTIONS.JOIN_WITH_NEW_NAME) else 0) | (if (o.JOIN_READONLY == 1) @intFromEnum(NET_JOIN_DOMAIN_JOIN_OPTIONS.JOIN_READONLY) else 0) | (if (o.AMBIGUOUS_DC == 1) @intFromEnum(NET_JOIN_DOMAIN_JOIN_OPTIONS.AMBIGUOUS_DC) else 0) | (if (o.NO_NETLOGON_CACHE == 1) @intFromEnum(NET_JOIN_DOMAIN_JOIN_OPTIONS.NO_NETLOGON_CACHE) else 0) | (if (o.DONT_CONTROL_SERVICES == 1) @intFromEnum(NET_JOIN_DOMAIN_JOIN_OPTIONS.DONT_CONTROL_SERVICES) else 0) | (if (o.SET_MACHINE_NAME == 1) @intFromEnum(NET_JOIN_DOMAIN_JOIN_OPTIONS.SET_MACHINE_NAME) else 0) | (if (o.FORCE_SPN_SET == 1) @intFromEnum(NET_JOIN_DOMAIN_JOIN_OPTIONS.FORCE_SPN_SET) else 0) | (if (o.NO_ACCT_REUSE == 1) @intFromEnum(NET_JOIN_DOMAIN_JOIN_OPTIONS.NO_ACCT_REUSE) else 0) | (if (o.IGNORE_UNSUPPORTED_FLAGS == 1) @intFromEnum(NET_JOIN_DOMAIN_JOIN_OPTIONS.IGNORE_UNSUPPORTED_FLAGS) else 0));
     }
 };
 pub const NETSETUP_JOIN_DOMAIN = NET_JOIN_DOMAIN_JOIN_OPTIONS.JOIN_DOMAIN;
@@ -2153,40 +2133,7 @@ pub const NET_SERVER_TYPE = enum(u32) {
         DOMAIN_ENUM: u1 = 0,
         ALL: u1 = 0,
     }) NET_SERVER_TYPE {
-        return @intToEnum(NET_SERVER_TYPE,
-              (if (o.WORKSTATION == 1) @enumToInt(NET_SERVER_TYPE.WORKSTATION) else 0)
-            | (if (o.SERVER == 1) @enumToInt(NET_SERVER_TYPE.SERVER) else 0)
-            | (if (o.SQLSERVER == 1) @enumToInt(NET_SERVER_TYPE.SQLSERVER) else 0)
-            | (if (o.DOMAIN_CTRL == 1) @enumToInt(NET_SERVER_TYPE.DOMAIN_CTRL) else 0)
-            | (if (o.DOMAIN_BAKCTRL == 1) @enumToInt(NET_SERVER_TYPE.DOMAIN_BAKCTRL) else 0)
-            | (if (o.TIME_SOURCE == 1) @enumToInt(NET_SERVER_TYPE.TIME_SOURCE) else 0)
-            | (if (o.AFP == 1) @enumToInt(NET_SERVER_TYPE.AFP) else 0)
-            | (if (o.NOVELL == 1) @enumToInt(NET_SERVER_TYPE.NOVELL) else 0)
-            | (if (o.DOMAIN_MEMBER == 1) @enumToInt(NET_SERVER_TYPE.DOMAIN_MEMBER) else 0)
-            | (if (o.PRINTQ_SERVER == 1) @enumToInt(NET_SERVER_TYPE.PRINTQ_SERVER) else 0)
-            | (if (o.DIALIN_SERVER == 1) @enumToInt(NET_SERVER_TYPE.DIALIN_SERVER) else 0)
-            | (if (o.XENIX_SERVER == 1) @enumToInt(NET_SERVER_TYPE.XENIX_SERVER) else 0)
-            | (if (o.NT == 1) @enumToInt(NET_SERVER_TYPE.NT) else 0)
-            | (if (o.WFW == 1) @enumToInt(NET_SERVER_TYPE.WFW) else 0)
-            | (if (o.SERVER_MFPN == 1) @enumToInt(NET_SERVER_TYPE.SERVER_MFPN) else 0)
-            | (if (o.SERVER_NT == 1) @enumToInt(NET_SERVER_TYPE.SERVER_NT) else 0)
-            | (if (o.POTENTIAL_BROWSER == 1) @enumToInt(NET_SERVER_TYPE.POTENTIAL_BROWSER) else 0)
-            | (if (o.BACKUP_BROWSER == 1) @enumToInt(NET_SERVER_TYPE.BACKUP_BROWSER) else 0)
-            | (if (o.MASTER_BROWSER == 1) @enumToInt(NET_SERVER_TYPE.MASTER_BROWSER) else 0)
-            | (if (o.DOMAIN_MASTER == 1) @enumToInt(NET_SERVER_TYPE.DOMAIN_MASTER) else 0)
-            | (if (o.SERVER_OSF == 1) @enumToInt(NET_SERVER_TYPE.SERVER_OSF) else 0)
-            | (if (o.SERVER_VMS == 1) @enumToInt(NET_SERVER_TYPE.SERVER_VMS) else 0)
-            | (if (o.WINDOWS == 1) @enumToInt(NET_SERVER_TYPE.WINDOWS) else 0)
-            | (if (o.DFS == 1) @enumToInt(NET_SERVER_TYPE.DFS) else 0)
-            | (if (o.CLUSTER_NT == 1) @enumToInt(NET_SERVER_TYPE.CLUSTER_NT) else 0)
-            | (if (o.TERMINALSERVER == 1) @enumToInt(NET_SERVER_TYPE.TERMINALSERVER) else 0)
-            | (if (o.CLUSTER_VS_NT == 1) @enumToInt(NET_SERVER_TYPE.CLUSTER_VS_NT) else 0)
-            | (if (o.DCE == 1) @enumToInt(NET_SERVER_TYPE.DCE) else 0)
-            | (if (o.ALTERNATE_XPORT == 1) @enumToInt(NET_SERVER_TYPE.ALTERNATE_XPORT) else 0)
-            | (if (o.LOCAL_LIST_ONLY == 1) @enumToInt(NET_SERVER_TYPE.LOCAL_LIST_ONLY) else 0)
-            | (if (o.DOMAIN_ENUM == 1) @enumToInt(NET_SERVER_TYPE.DOMAIN_ENUM) else 0)
-            | (if (o.ALL == 1) @enumToInt(NET_SERVER_TYPE.ALL) else 0)
-        );
+        return @enumFromInt(NET_SERVER_TYPE, (if (o.WORKSTATION == 1) @intFromEnum(NET_SERVER_TYPE.WORKSTATION) else 0) | (if (o.SERVER == 1) @intFromEnum(NET_SERVER_TYPE.SERVER) else 0) | (if (o.SQLSERVER == 1) @intFromEnum(NET_SERVER_TYPE.SQLSERVER) else 0) | (if (o.DOMAIN_CTRL == 1) @intFromEnum(NET_SERVER_TYPE.DOMAIN_CTRL) else 0) | (if (o.DOMAIN_BAKCTRL == 1) @intFromEnum(NET_SERVER_TYPE.DOMAIN_BAKCTRL) else 0) | (if (o.TIME_SOURCE == 1) @intFromEnum(NET_SERVER_TYPE.TIME_SOURCE) else 0) | (if (o.AFP == 1) @intFromEnum(NET_SERVER_TYPE.AFP) else 0) | (if (o.NOVELL == 1) @intFromEnum(NET_SERVER_TYPE.NOVELL) else 0) | (if (o.DOMAIN_MEMBER == 1) @intFromEnum(NET_SERVER_TYPE.DOMAIN_MEMBER) else 0) | (if (o.PRINTQ_SERVER == 1) @intFromEnum(NET_SERVER_TYPE.PRINTQ_SERVER) else 0) | (if (o.DIALIN_SERVER == 1) @intFromEnum(NET_SERVER_TYPE.DIALIN_SERVER) else 0) | (if (o.XENIX_SERVER == 1) @intFromEnum(NET_SERVER_TYPE.XENIX_SERVER) else 0) | (if (o.NT == 1) @intFromEnum(NET_SERVER_TYPE.NT) else 0) | (if (o.WFW == 1) @intFromEnum(NET_SERVER_TYPE.WFW) else 0) | (if (o.SERVER_MFPN == 1) @intFromEnum(NET_SERVER_TYPE.SERVER_MFPN) else 0) | (if (o.SERVER_NT == 1) @intFromEnum(NET_SERVER_TYPE.SERVER_NT) else 0) | (if (o.POTENTIAL_BROWSER == 1) @intFromEnum(NET_SERVER_TYPE.POTENTIAL_BROWSER) else 0) | (if (o.BACKUP_BROWSER == 1) @intFromEnum(NET_SERVER_TYPE.BACKUP_BROWSER) else 0) | (if (o.MASTER_BROWSER == 1) @intFromEnum(NET_SERVER_TYPE.MASTER_BROWSER) else 0) | (if (o.DOMAIN_MASTER == 1) @intFromEnum(NET_SERVER_TYPE.DOMAIN_MASTER) else 0) | (if (o.SERVER_OSF == 1) @intFromEnum(NET_SERVER_TYPE.SERVER_OSF) else 0) | (if (o.SERVER_VMS == 1) @intFromEnum(NET_SERVER_TYPE.SERVER_VMS) else 0) | (if (o.WINDOWS == 1) @intFromEnum(NET_SERVER_TYPE.WINDOWS) else 0) | (if (o.DFS == 1) @intFromEnum(NET_SERVER_TYPE.DFS) else 0) | (if (o.CLUSTER_NT == 1) @intFromEnum(NET_SERVER_TYPE.CLUSTER_NT) else 0) | (if (o.TERMINALSERVER == 1) @intFromEnum(NET_SERVER_TYPE.TERMINALSERVER) else 0) | (if (o.CLUSTER_VS_NT == 1) @intFromEnum(NET_SERVER_TYPE.CLUSTER_VS_NT) else 0) | (if (o.DCE == 1) @intFromEnum(NET_SERVER_TYPE.DCE) else 0) | (if (o.ALTERNATE_XPORT == 1) @intFromEnum(NET_SERVER_TYPE.ALTERNATE_XPORT) else 0) | (if (o.LOCAL_LIST_ONLY == 1) @intFromEnum(NET_SERVER_TYPE.LOCAL_LIST_ONLY) else 0) | (if (o.DOMAIN_ENUM == 1) @intFromEnum(NET_SERVER_TYPE.DOMAIN_ENUM) else 0) | (if (o.ALL == 1) @intFromEnum(NET_SERVER_TYPE.ALL) else 0));
     }
 };
 pub const SV_TYPE_WORKSTATION = NET_SERVER_TYPE.WORKSTATION;
@@ -2237,13 +2184,7 @@ pub const NET_USER_ENUM_FILTER_FLAGS = enum(u32) {
         WORKSTATION_TRUST_ACCOUNT: u1 = 0,
         SERVER_TRUST_ACCOUNT: u1 = 0,
     }) NET_USER_ENUM_FILTER_FLAGS {
-        return @intToEnum(NET_USER_ENUM_FILTER_FLAGS,
-              (if (o.TEMP_DUPLICATE_ACCOUNT == 1) @enumToInt(NET_USER_ENUM_FILTER_FLAGS.TEMP_DUPLICATE_ACCOUNT) else 0)
-            | (if (o.NORMAL_ACCOUNT == 1) @enumToInt(NET_USER_ENUM_FILTER_FLAGS.NORMAL_ACCOUNT) else 0)
-            | (if (o.INTERDOMAIN_TRUST_ACCOUNT == 1) @enumToInt(NET_USER_ENUM_FILTER_FLAGS.INTERDOMAIN_TRUST_ACCOUNT) else 0)
-            | (if (o.WORKSTATION_TRUST_ACCOUNT == 1) @enumToInt(NET_USER_ENUM_FILTER_FLAGS.WORKSTATION_TRUST_ACCOUNT) else 0)
-            | (if (o.SERVER_TRUST_ACCOUNT == 1) @enumToInt(NET_USER_ENUM_FILTER_FLAGS.SERVER_TRUST_ACCOUNT) else 0)
-        );
+        return @enumFromInt(NET_USER_ENUM_FILTER_FLAGS, (if (o.TEMP_DUPLICATE_ACCOUNT == 1) @intFromEnum(NET_USER_ENUM_FILTER_FLAGS.TEMP_DUPLICATE_ACCOUNT) else 0) | (if (o.NORMAL_ACCOUNT == 1) @intFromEnum(NET_USER_ENUM_FILTER_FLAGS.NORMAL_ACCOUNT) else 0) | (if (o.INTERDOMAIN_TRUST_ACCOUNT == 1) @intFromEnum(NET_USER_ENUM_FILTER_FLAGS.INTERDOMAIN_TRUST_ACCOUNT) else 0) | (if (o.WORKSTATION_TRUST_ACCOUNT == 1) @intFromEnum(NET_USER_ENUM_FILTER_FLAGS.WORKSTATION_TRUST_ACCOUNT) else 0) | (if (o.SERVER_TRUST_ACCOUNT == 1) @intFromEnum(NET_USER_ENUM_FILTER_FLAGS.SERVER_TRUST_ACCOUNT) else 0));
     }
 };
 pub const FILTER_TEMP_DUPLICATE_ACCOUNT = NET_USER_ENUM_FILTER_FLAGS.TEMP_DUPLICATE_ACCOUNT;
@@ -2266,13 +2207,7 @@ pub const NETSETUP_PROVISION = enum(u32) {
         SKIP_ACCOUNT_SEARCH: u1 = 0,
         ROOT_CA_CERTS: u1 = 0,
     }) NETSETUP_PROVISION {
-        return @intToEnum(NETSETUP_PROVISION,
-              (if (o.DOWNLEVEL_PRIV_SUPPORT == 1) @enumToInt(NETSETUP_PROVISION.DOWNLEVEL_PRIV_SUPPORT) else 0)
-            | (if (o.REUSE_ACCOUNT == 1) @enumToInt(NETSETUP_PROVISION.REUSE_ACCOUNT) else 0)
-            | (if (o.USE_DEFAULT_PASSWORD == 1) @enumToInt(NETSETUP_PROVISION.USE_DEFAULT_PASSWORD) else 0)
-            | (if (o.SKIP_ACCOUNT_SEARCH == 1) @enumToInt(NETSETUP_PROVISION.SKIP_ACCOUNT_SEARCH) else 0)
-            | (if (o.ROOT_CA_CERTS == 1) @enumToInt(NETSETUP_PROVISION.ROOT_CA_CERTS) else 0)
-        );
+        return @enumFromInt(NETSETUP_PROVISION, (if (o.DOWNLEVEL_PRIV_SUPPORT == 1) @intFromEnum(NETSETUP_PROVISION.DOWNLEVEL_PRIV_SUPPORT) else 0) | (if (o.REUSE_ACCOUNT == 1) @intFromEnum(NETSETUP_PROVISION.REUSE_ACCOUNT) else 0) | (if (o.USE_DEFAULT_PASSWORD == 1) @intFromEnum(NETSETUP_PROVISION.USE_DEFAULT_PASSWORD) else 0) | (if (o.SKIP_ACCOUNT_SEARCH == 1) @intFromEnum(NETSETUP_PROVISION.SKIP_ACCOUNT_SEARCH) else 0) | (if (o.ROOT_CA_CERTS == 1) @intFromEnum(NETSETUP_PROVISION.ROOT_CA_CERTS) else 0));
     }
 };
 pub const NETSETUP_PROVISION_DOWNLEVEL_PRIV_SUPPORT = NETSETUP_PROVISION.DOWNLEVEL_PRIV_SUPPORT;
@@ -2315,23 +2250,7 @@ pub const USER_ACCOUNT_FLAGS = enum(u32) {
         PASSWORD_EXPIRED: u1 = 0,
         TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION: u1 = 0,
     }) USER_ACCOUNT_FLAGS {
-        return @intToEnum(USER_ACCOUNT_FLAGS,
-              (if (o.SCRIPT == 1) @enumToInt(USER_ACCOUNT_FLAGS.SCRIPT) else 0)
-            | (if (o.ACCOUNTDISABLE == 1) @enumToInt(USER_ACCOUNT_FLAGS.ACCOUNTDISABLE) else 0)
-            | (if (o.HOMEDIR_REQUIRED == 1) @enumToInt(USER_ACCOUNT_FLAGS.HOMEDIR_REQUIRED) else 0)
-            | (if (o.PASSWD_NOTREQD == 1) @enumToInt(USER_ACCOUNT_FLAGS.PASSWD_NOTREQD) else 0)
-            | (if (o.PASSWD_CANT_CHANGE == 1) @enumToInt(USER_ACCOUNT_FLAGS.PASSWD_CANT_CHANGE) else 0)
-            | (if (o.LOCKOUT == 1) @enumToInt(USER_ACCOUNT_FLAGS.LOCKOUT) else 0)
-            | (if (o.DONT_EXPIRE_PASSWD == 1) @enumToInt(USER_ACCOUNT_FLAGS.DONT_EXPIRE_PASSWD) else 0)
-            | (if (o.ENCRYPTED_TEXT_PASSWORD_ALLOWED == 1) @enumToInt(USER_ACCOUNT_FLAGS.ENCRYPTED_TEXT_PASSWORD_ALLOWED) else 0)
-            | (if (o.NOT_DELEGATED == 1) @enumToInt(USER_ACCOUNT_FLAGS.NOT_DELEGATED) else 0)
-            | (if (o.SMARTCARD_REQUIRED == 1) @enumToInt(USER_ACCOUNT_FLAGS.SMARTCARD_REQUIRED) else 0)
-            | (if (o.USE_DES_KEY_ONLY == 1) @enumToInt(USER_ACCOUNT_FLAGS.USE_DES_KEY_ONLY) else 0)
-            | (if (o.DONT_REQUIRE_PREAUTH == 1) @enumToInt(USER_ACCOUNT_FLAGS.DONT_REQUIRE_PREAUTH) else 0)
-            | (if (o.TRUSTED_FOR_DELEGATION == 1) @enumToInt(USER_ACCOUNT_FLAGS.TRUSTED_FOR_DELEGATION) else 0)
-            | (if (o.PASSWORD_EXPIRED == 1) @enumToInt(USER_ACCOUNT_FLAGS.PASSWORD_EXPIRED) else 0)
-            | (if (o.TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION == 1) @enumToInt(USER_ACCOUNT_FLAGS.TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION) else 0)
-        );
+        return @enumFromInt(USER_ACCOUNT_FLAGS, (if (o.SCRIPT == 1) @intFromEnum(USER_ACCOUNT_FLAGS.SCRIPT) else 0) | (if (o.ACCOUNTDISABLE == 1) @intFromEnum(USER_ACCOUNT_FLAGS.ACCOUNTDISABLE) else 0) | (if (o.HOMEDIR_REQUIRED == 1) @intFromEnum(USER_ACCOUNT_FLAGS.HOMEDIR_REQUIRED) else 0) | (if (o.PASSWD_NOTREQD == 1) @intFromEnum(USER_ACCOUNT_FLAGS.PASSWD_NOTREQD) else 0) | (if (o.PASSWD_CANT_CHANGE == 1) @intFromEnum(USER_ACCOUNT_FLAGS.PASSWD_CANT_CHANGE) else 0) | (if (o.LOCKOUT == 1) @intFromEnum(USER_ACCOUNT_FLAGS.LOCKOUT) else 0) | (if (o.DONT_EXPIRE_PASSWD == 1) @intFromEnum(USER_ACCOUNT_FLAGS.DONT_EXPIRE_PASSWD) else 0) | (if (o.ENCRYPTED_TEXT_PASSWORD_ALLOWED == 1) @intFromEnum(USER_ACCOUNT_FLAGS.ENCRYPTED_TEXT_PASSWORD_ALLOWED) else 0) | (if (o.NOT_DELEGATED == 1) @intFromEnum(USER_ACCOUNT_FLAGS.NOT_DELEGATED) else 0) | (if (o.SMARTCARD_REQUIRED == 1) @intFromEnum(USER_ACCOUNT_FLAGS.SMARTCARD_REQUIRED) else 0) | (if (o.USE_DES_KEY_ONLY == 1) @intFromEnum(USER_ACCOUNT_FLAGS.USE_DES_KEY_ONLY) else 0) | (if (o.DONT_REQUIRE_PREAUTH == 1) @intFromEnum(USER_ACCOUNT_FLAGS.DONT_REQUIRE_PREAUTH) else 0) | (if (o.TRUSTED_FOR_DELEGATION == 1) @intFromEnum(USER_ACCOUNT_FLAGS.TRUSTED_FOR_DELEGATION) else 0) | (if (o.PASSWORD_EXPIRED == 1) @intFromEnum(USER_ACCOUNT_FLAGS.PASSWORD_EXPIRED) else 0) | (if (o.TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION == 1) @intFromEnum(USER_ACCOUNT_FLAGS.TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION) else 0));
     }
 };
 pub const UF_SCRIPT = USER_ACCOUNT_FLAGS.SCRIPT;
@@ -2362,12 +2281,7 @@ pub const AF_OP = enum(u32) {
         SERVER: u1 = 0,
         ACCOUNTS: u1 = 0,
     }) AF_OP {
-        return @intToEnum(AF_OP,
-              (if (o.PRINT == 1) @enumToInt(AF_OP.PRINT) else 0)
-            | (if (o.COMM == 1) @enumToInt(AF_OP.COMM) else 0)
-            | (if (o.SERVER == 1) @enumToInt(AF_OP.SERVER) else 0)
-            | (if (o.ACCOUNTS == 1) @enumToInt(AF_OP.ACCOUNTS) else 0)
-        );
+        return @enumFromInt(AF_OP, (if (o.PRINT == 1) @intFromEnum(AF_OP.PRINT) else 0) | (if (o.COMM == 1) @intFromEnum(AF_OP.COMM) else 0) | (if (o.SERVER == 1) @intFromEnum(AF_OP.SERVER) else 0) | (if (o.ACCOUNTS == 1) @intFromEnum(AF_OP.ACCOUNTS) else 0));
     }
 };
 pub const AF_OP_PRINT = AF_OP.PRINT;
@@ -4407,13 +4321,13 @@ pub const IEnumNetCfgBindingInterface = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumNetCfgBindingInterface,
                 celt: u32,
                 rgelt: [*]?*INetCfgBindingInterface,
                 pceltFetched: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumNetCfgBindingInterface,
                 celt: u32,
                 rgelt: [*]?*INetCfgBindingInterface,
@@ -4421,54 +4335,56 @@ pub const IEnumNetCfgBindingInterface = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumNetCfgBindingInterface,
                 celt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumNetCfgBindingInterface,
                 celt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumNetCfgBindingInterface,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumNetCfgBindingInterface,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumNetCfgBindingInterface,
                 ppenum: ?*?*IEnumNetCfgBindingInterface,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumNetCfgBindingInterface,
                 ppenum: ?*?*IEnumNetCfgBindingInterface,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetCfgBindingInterface_Next(self: *const T, celt: u32, rgelt: [*]?*INetCfgBindingInterface, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetCfgBindingInterface.VTable, self.vtable).Next(@ptrCast(*const IEnumNetCfgBindingInterface, self), celt, rgelt, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetCfgBindingInterface_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetCfgBindingInterface.VTable, self.vtable).Skip(@ptrCast(*const IEnumNetCfgBindingInterface, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetCfgBindingInterface_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetCfgBindingInterface.VTable, self.vtable).Reset(@ptrCast(*const IEnumNetCfgBindingInterface, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetCfgBindingInterface_Clone(self: *const T, ppenum: ?*?*IEnumNetCfgBindingInterface) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetCfgBindingInterface.VTable, self.vtable).Clone(@ptrCast(*const IEnumNetCfgBindingInterface, self), ppenum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetCfgBindingInterface_Next(self: *const T, celt: u32, rgelt: [*]?*INetCfgBindingInterface, pceltFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumNetCfgBindingInterface.VTable, self.vtable).Next(@ptrCast(*const IEnumNetCfgBindingInterface, self), celt, rgelt, pceltFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetCfgBindingInterface_Skip(self: *const T, celt: u32) HRESULT {
+                return @ptrCast(*const IEnumNetCfgBindingInterface.VTable, self.vtable).Skip(@ptrCast(*const IEnumNetCfgBindingInterface, self), celt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetCfgBindingInterface_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumNetCfgBindingInterface.VTable, self.vtable).Reset(@ptrCast(*const IEnumNetCfgBindingInterface, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetCfgBindingInterface_Clone(self: *const T, ppenum: ?*?*IEnumNetCfgBindingInterface) HRESULT {
+                return @ptrCast(*const IEnumNetCfgBindingInterface.VTable, self.vtable).Clone(@ptrCast(*const IEnumNetCfgBindingInterface, self), ppenum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4478,13 +4394,13 @@ pub const IEnumNetCfgBindingPath = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumNetCfgBindingPath,
                 celt: u32,
                 rgelt: [*]?*INetCfgBindingPath,
                 pceltFetched: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumNetCfgBindingPath,
                 celt: u32,
                 rgelt: [*]?*INetCfgBindingPath,
@@ -4492,54 +4408,56 @@ pub const IEnumNetCfgBindingPath = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumNetCfgBindingPath,
                 celt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumNetCfgBindingPath,
                 celt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumNetCfgBindingPath,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumNetCfgBindingPath,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumNetCfgBindingPath,
                 ppenum: ?*?*IEnumNetCfgBindingPath,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumNetCfgBindingPath,
                 ppenum: ?*?*IEnumNetCfgBindingPath,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetCfgBindingPath_Next(self: *const T, celt: u32, rgelt: [*]?*INetCfgBindingPath, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetCfgBindingPath.VTable, self.vtable).Next(@ptrCast(*const IEnumNetCfgBindingPath, self), celt, rgelt, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetCfgBindingPath_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetCfgBindingPath.VTable, self.vtable).Skip(@ptrCast(*const IEnumNetCfgBindingPath, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetCfgBindingPath_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetCfgBindingPath.VTable, self.vtable).Reset(@ptrCast(*const IEnumNetCfgBindingPath, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetCfgBindingPath_Clone(self: *const T, ppenum: ?*?*IEnumNetCfgBindingPath) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetCfgBindingPath.VTable, self.vtable).Clone(@ptrCast(*const IEnumNetCfgBindingPath, self), ppenum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetCfgBindingPath_Next(self: *const T, celt: u32, rgelt: [*]?*INetCfgBindingPath, pceltFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumNetCfgBindingPath.VTable, self.vtable).Next(@ptrCast(*const IEnumNetCfgBindingPath, self), celt, rgelt, pceltFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetCfgBindingPath_Skip(self: *const T, celt: u32) HRESULT {
+                return @ptrCast(*const IEnumNetCfgBindingPath.VTable, self.vtable).Skip(@ptrCast(*const IEnumNetCfgBindingPath, self), celt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetCfgBindingPath_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumNetCfgBindingPath.VTable, self.vtable).Reset(@ptrCast(*const IEnumNetCfgBindingPath, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetCfgBindingPath_Clone(self: *const T, ppenum: ?*?*IEnumNetCfgBindingPath) HRESULT {
+                return @ptrCast(*const IEnumNetCfgBindingPath.VTable, self.vtable).Clone(@ptrCast(*const IEnumNetCfgBindingPath, self), ppenum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4549,13 +4467,13 @@ pub const IEnumNetCfgComponent = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumNetCfgComponent,
                 celt: u32,
                 rgelt: [*]?*INetCfgComponent,
                 pceltFetched: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumNetCfgComponent,
                 celt: u32,
                 rgelt: [*]?*INetCfgComponent,
@@ -4563,54 +4481,56 @@ pub const IEnumNetCfgComponent = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumNetCfgComponent,
                 celt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumNetCfgComponent,
                 celt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumNetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumNetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumNetCfgComponent,
                 ppenum: ?*?*IEnumNetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumNetCfgComponent,
                 ppenum: ?*?*IEnumNetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetCfgComponent_Next(self: *const T, celt: u32, rgelt: [*]?*INetCfgComponent, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetCfgComponent.VTable, self.vtable).Next(@ptrCast(*const IEnumNetCfgComponent, self), celt, rgelt, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetCfgComponent_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetCfgComponent.VTable, self.vtable).Skip(@ptrCast(*const IEnumNetCfgComponent, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetCfgComponent_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetCfgComponent.VTable, self.vtable).Reset(@ptrCast(*const IEnumNetCfgComponent, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumNetCfgComponent_Clone(self: *const T, ppenum: ?*?*IEnumNetCfgComponent) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumNetCfgComponent.VTable, self.vtable).Clone(@ptrCast(*const IEnumNetCfgComponent, self), ppenum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetCfgComponent_Next(self: *const T, celt: u32, rgelt: [*]?*INetCfgComponent, pceltFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumNetCfgComponent.VTable, self.vtable).Next(@ptrCast(*const IEnumNetCfgComponent, self), celt, rgelt, pceltFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetCfgComponent_Skip(self: *const T, celt: u32) HRESULT {
+                return @ptrCast(*const IEnumNetCfgComponent.VTable, self.vtable).Skip(@ptrCast(*const IEnumNetCfgComponent, self), celt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetCfgComponent_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumNetCfgComponent.VTable, self.vtable).Reset(@ptrCast(*const IEnumNetCfgComponent, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumNetCfgComponent_Clone(self: *const T, ppenum: ?*?*IEnumNetCfgComponent) HRESULT {
+                return @ptrCast(*const IEnumNetCfgComponent.VTable, self.vtable).Clone(@ptrCast(*const IEnumNetCfgComponent, self), ppenum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4620,71 +4540,71 @@ pub const INetCfg = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfg,
                 pvReserved: ?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfg,
                 pvReserved: ?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Uninitialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfg,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfg,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Apply: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfg,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfg,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfg,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfg,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumComponents: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfg,
                 pguidClass: ?*const Guid,
                 ppenumComponent: ?*?*IEnumNetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfg,
                 pguidClass: ?*const Guid,
                 ppenumComponent: ?*?*IEnumNetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FindComponent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfg,
                 pszwInfId: ?[*:0]const u16,
                 pComponent: ?*?*INetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfg,
                 pszwInfId: ?[*:0]const u16,
                 pComponent: ?*?*INetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         QueryNetCfgClass: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfg,
                 pguidClass: ?*const Guid,
                 riid: ?*const Guid,
                 ppvObject: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfg,
                 pguidClass: ?*const Guid,
                 riid: ?*const Guid,
@@ -4693,37 +4613,39 @@ pub const INetCfg = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfg_Initialize(self: *const T, pvReserved: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfg.VTable, self.vtable).Initialize(@ptrCast(*const INetCfg, self), pvReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfg_Uninitialize(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfg.VTable, self.vtable).Uninitialize(@ptrCast(*const INetCfg, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfg_Apply(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfg.VTable, self.vtable).Apply(@ptrCast(*const INetCfg, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfg_Cancel(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfg.VTable, self.vtable).Cancel(@ptrCast(*const INetCfg, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfg_EnumComponents(self: *const T, pguidClass: ?*const Guid, ppenumComponent: ?*?*IEnumNetCfgComponent) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfg.VTable, self.vtable).EnumComponents(@ptrCast(*const INetCfg, self), pguidClass, ppenumComponent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfg_FindComponent(self: *const T, pszwInfId: ?[*:0]const u16, pComponent: ?*?*INetCfgComponent) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfg.VTable, self.vtable).FindComponent(@ptrCast(*const INetCfg, self), pszwInfId, pComponent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfg_QueryNetCfgClass(self: *const T, pguidClass: ?*const Guid, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfg.VTable, self.vtable).QueryNetCfgClass(@ptrCast(*const INetCfg, self), pguidClass, riid, ppvObject);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfg_Initialize(self: *const T, pvReserved: ?*anyopaque) HRESULT {
+                return @ptrCast(*const INetCfg.VTable, self.vtable).Initialize(@ptrCast(*const INetCfg, self), pvReserved);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfg_Uninitialize(self: *const T) HRESULT {
+                return @ptrCast(*const INetCfg.VTable, self.vtable).Uninitialize(@ptrCast(*const INetCfg, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfg_Apply(self: *const T) HRESULT {
+                return @ptrCast(*const INetCfg.VTable, self.vtable).Apply(@ptrCast(*const INetCfg, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfg_Cancel(self: *const T) HRESULT {
+                return @ptrCast(*const INetCfg.VTable, self.vtable).Cancel(@ptrCast(*const INetCfg, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfg_EnumComponents(self: *const T, pguidClass: ?*const Guid, ppenumComponent: ?*?*IEnumNetCfgComponent) HRESULT {
+                return @ptrCast(*const INetCfg.VTable, self.vtable).EnumComponents(@ptrCast(*const INetCfg, self), pguidClass, ppenumComponent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfg_FindComponent(self: *const T, pszwInfId: ?[*:0]const u16, pComponent: ?*?*INetCfgComponent) HRESULT {
+                return @ptrCast(*const INetCfg.VTable, self.vtable).FindComponent(@ptrCast(*const INetCfg, self), pszwInfId, pComponent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfg_QueryNetCfgClass(self: *const T, pguidClass: ?*const Guid, riid: ?*const Guid, ppvObject: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const INetCfg.VTable, self.vtable).QueryNetCfgClass(@ptrCast(*const INetCfg, self), pguidClass, riid, ppvObject);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4733,13 +4655,13 @@ pub const INetCfgLock = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AcquireWriteLock: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgLock,
                 cmsTimeout: u32,
                 pszwClientDescription: ?[*:0]const u16,
                 ppszwClientDescription: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgLock,
                 cmsTimeout: u32,
                 pszwClientDescription: ?[*:0]const u16,
@@ -4747,40 +4669,42 @@ pub const INetCfgLock = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ReleaseWriteLock: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgLock,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgLock,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         IsWriteLocked: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgLock,
                 ppszwClientDescription: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgLock,
                 ppszwClientDescription: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgLock_AcquireWriteLock(self: *const T, cmsTimeout: u32, pszwClientDescription: ?[*:0]const u16, ppszwClientDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgLock.VTable, self.vtable).AcquireWriteLock(@ptrCast(*const INetCfgLock, self), cmsTimeout, pszwClientDescription, ppszwClientDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgLock_ReleaseWriteLock(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgLock.VTable, self.vtable).ReleaseWriteLock(@ptrCast(*const INetCfgLock, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgLock_IsWriteLocked(self: *const T, ppszwClientDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgLock.VTable, self.vtable).IsWriteLocked(@ptrCast(*const INetCfgLock, self), ppszwClientDescription);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgLock_AcquireWriteLock(self: *const T, cmsTimeout: u32, pszwClientDescription: ?[*:0]const u16, ppszwClientDescription: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const INetCfgLock.VTable, self.vtable).AcquireWriteLock(@ptrCast(*const INetCfgLock, self), cmsTimeout, pszwClientDescription, ppszwClientDescription);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgLock_ReleaseWriteLock(self: *const T) HRESULT {
+                return @ptrCast(*const INetCfgLock.VTable, self.vtable).ReleaseWriteLock(@ptrCast(*const INetCfgLock, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgLock_IsWriteLocked(self: *const T, ppszwClientDescription: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const INetCfgLock.VTable, self.vtable).IsWriteLocked(@ptrCast(*const INetCfgLock, self), ppszwClientDescription);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4790,52 +4714,54 @@ pub const INetCfgBindingInterface = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgBindingInterface,
                 ppszwInterfaceName: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgBindingInterface,
                 ppszwInterfaceName: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetUpperComponent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgBindingInterface,
                 ppnccItem: ?*?*INetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgBindingInterface,
                 ppnccItem: ?*?*INetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetLowerComponent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgBindingInterface,
                 ppnccItem: ?*?*INetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgBindingInterface,
                 ppnccItem: ?*?*INetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgBindingInterface_GetName(self: *const T, ppszwInterfaceName: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgBindingInterface.VTable, self.vtable).GetName(@ptrCast(*const INetCfgBindingInterface, self), ppszwInterfaceName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgBindingInterface_GetUpperComponent(self: *const T, ppnccItem: ?*?*INetCfgComponent) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgBindingInterface.VTable, self.vtable).GetUpperComponent(@ptrCast(*const INetCfgBindingInterface, self), ppnccItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgBindingInterface_GetLowerComponent(self: *const T, ppnccItem: ?*?*INetCfgComponent) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgBindingInterface.VTable, self.vtable).GetLowerComponent(@ptrCast(*const INetCfgBindingInterface, self), ppnccItem);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgBindingInterface_GetName(self: *const T, ppszwInterfaceName: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const INetCfgBindingInterface.VTable, self.vtable).GetName(@ptrCast(*const INetCfgBindingInterface, self), ppszwInterfaceName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgBindingInterface_GetUpperComponent(self: *const T, ppnccItem: ?*?*INetCfgComponent) HRESULT {
+                return @ptrCast(*const INetCfgBindingInterface.VTable, self.vtable).GetUpperComponent(@ptrCast(*const INetCfgBindingInterface, self), ppnccItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgBindingInterface_GetLowerComponent(self: *const T, ppnccItem: ?*?*INetCfgComponent) HRESULT {
+                return @ptrCast(*const INetCfgBindingInterface.VTable, self.vtable).GetLowerComponent(@ptrCast(*const INetCfgBindingInterface, self), ppnccItem);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4845,120 +4771,122 @@ pub const INetCfgBindingPath = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         IsSamePathAs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgBindingPath,
                 pPath: ?*INetCfgBindingPath,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgBindingPath,
                 pPath: ?*INetCfgBindingPath,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         IsSubPathOf: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgBindingPath,
                 pPath: ?*INetCfgBindingPath,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgBindingPath,
                 pPath: ?*INetCfgBindingPath,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         IsEnabled: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgBindingPath,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgBindingPath,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Enable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgBindingPath,
                 fEnable: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgBindingPath,
                 fEnable: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPathToken: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgBindingPath,
                 ppszwPathToken: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgBindingPath,
                 ppszwPathToken: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetOwner: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgBindingPath,
                 ppComponent: ?*?*INetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgBindingPath,
                 ppComponent: ?*?*INetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDepth: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgBindingPath,
                 pcInterfaces: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgBindingPath,
                 pcInterfaces: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumBindingInterfaces: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgBindingPath,
                 ppenumInterface: ?*?*IEnumNetCfgBindingInterface,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgBindingPath,
                 ppenumInterface: ?*?*IEnumNetCfgBindingInterface,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgBindingPath_IsSamePathAs(self: *const T, pPath: ?*INetCfgBindingPath) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgBindingPath.VTable, self.vtable).IsSamePathAs(@ptrCast(*const INetCfgBindingPath, self), pPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgBindingPath_IsSubPathOf(self: *const T, pPath: ?*INetCfgBindingPath) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgBindingPath.VTable, self.vtable).IsSubPathOf(@ptrCast(*const INetCfgBindingPath, self), pPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgBindingPath_IsEnabled(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgBindingPath.VTable, self.vtable).IsEnabled(@ptrCast(*const INetCfgBindingPath, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgBindingPath_Enable(self: *const T, fEnable: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgBindingPath.VTable, self.vtable).Enable(@ptrCast(*const INetCfgBindingPath, self), fEnable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgBindingPath_GetPathToken(self: *const T, ppszwPathToken: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgBindingPath.VTable, self.vtable).GetPathToken(@ptrCast(*const INetCfgBindingPath, self), ppszwPathToken);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgBindingPath_GetOwner(self: *const T, ppComponent: ?*?*INetCfgComponent) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgBindingPath.VTable, self.vtable).GetOwner(@ptrCast(*const INetCfgBindingPath, self), ppComponent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgBindingPath_GetDepth(self: *const T, pcInterfaces: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgBindingPath.VTable, self.vtable).GetDepth(@ptrCast(*const INetCfgBindingPath, self), pcInterfaces);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgBindingPath_EnumBindingInterfaces(self: *const T, ppenumInterface: ?*?*IEnumNetCfgBindingInterface) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgBindingPath.VTable, self.vtable).EnumBindingInterfaces(@ptrCast(*const INetCfgBindingPath, self), ppenumInterface);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgBindingPath_IsSamePathAs(self: *const T, pPath: ?*INetCfgBindingPath) HRESULT {
+                return @ptrCast(*const INetCfgBindingPath.VTable, self.vtable).IsSamePathAs(@ptrCast(*const INetCfgBindingPath, self), pPath);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgBindingPath_IsSubPathOf(self: *const T, pPath: ?*INetCfgBindingPath) HRESULT {
+                return @ptrCast(*const INetCfgBindingPath.VTable, self.vtable).IsSubPathOf(@ptrCast(*const INetCfgBindingPath, self), pPath);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgBindingPath_IsEnabled(self: *const T) HRESULT {
+                return @ptrCast(*const INetCfgBindingPath.VTable, self.vtable).IsEnabled(@ptrCast(*const INetCfgBindingPath, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgBindingPath_Enable(self: *const T, fEnable: BOOL) HRESULT {
+                return @ptrCast(*const INetCfgBindingPath.VTable, self.vtable).Enable(@ptrCast(*const INetCfgBindingPath, self), fEnable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgBindingPath_GetPathToken(self: *const T, ppszwPathToken: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const INetCfgBindingPath.VTable, self.vtable).GetPathToken(@ptrCast(*const INetCfgBindingPath, self), ppszwPathToken);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgBindingPath_GetOwner(self: *const T, ppComponent: ?*?*INetCfgComponent) HRESULT {
+                return @ptrCast(*const INetCfgBindingPath.VTable, self.vtable).GetOwner(@ptrCast(*const INetCfgBindingPath, self), ppComponent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgBindingPath_GetDepth(self: *const T, pcInterfaces: ?*u32) HRESULT {
+                return @ptrCast(*const INetCfgBindingPath.VTable, self.vtable).GetDepth(@ptrCast(*const INetCfgBindingPath, self), pcInterfaces);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgBindingPath_EnumBindingInterfaces(self: *const T, ppenumInterface: ?*?*IEnumNetCfgBindingInterface) HRESULT {
+                return @ptrCast(*const INetCfgBindingPath.VTable, self.vtable).EnumBindingInterfaces(@ptrCast(*const INetCfgBindingPath, self), ppenumInterface);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4968,40 +4896,42 @@ pub const INetCfgClass = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         FindComponent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgClass,
                 pszwInfId: ?[*:0]const u16,
                 ppnccItem: ?*?*INetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgClass,
                 pszwInfId: ?[*:0]const u16,
                 ppnccItem: ?*?*INetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumComponents: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgClass,
                 ppenumComponent: ?*?*IEnumNetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgClass,
                 ppenumComponent: ?*?*IEnumNetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgClass_FindComponent(self: *const T, pszwInfId: ?[*:0]const u16, ppnccItem: ?*?*INetCfgComponent) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgClass.VTable, self.vtable).FindComponent(@ptrCast(*const INetCfgClass, self), pszwInfId, ppnccItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgClass_EnumComponents(self: *const T, ppenumComponent: ?*?*IEnumNetCfgComponent) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgClass.VTable, self.vtable).EnumComponents(@ptrCast(*const INetCfgClass, self), ppenumComponent);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgClass_FindComponent(self: *const T, pszwInfId: ?[*:0]const u16, ppnccItem: ?*?*INetCfgComponent) HRESULT {
+                return @ptrCast(*const INetCfgClass.VTable, self.vtable).FindComponent(@ptrCast(*const INetCfgClass, self), pszwInfId, ppnccItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgClass_EnumComponents(self: *const T, ppenumComponent: ?*?*IEnumNetCfgComponent) HRESULT {
+                return @ptrCast(*const INetCfgClass.VTable, self.vtable).EnumComponents(@ptrCast(*const INetCfgClass, self), ppenumComponent);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5029,13 +4959,13 @@ pub const INetCfgClassSetup = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SelectAndInstall: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgClassSetup,
                 hwndParent: ?HWND,
                 pOboToken: ?*OBO_TOKEN,
                 ppnccItem: ?*?*INetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgClassSetup,
                 hwndParent: ?HWND,
                 pOboToken: ?*OBO_TOKEN,
@@ -5043,7 +4973,7 @@ pub const INetCfgClassSetup = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Install: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgClassSetup,
                 pszwInfId: ?[*:0]const u16,
                 pOboToken: ?*OBO_TOKEN,
@@ -5053,7 +4983,7 @@ pub const INetCfgClassSetup = extern struct {
                 pszwAnswerSections: ?[*:0]const u16,
                 ppnccItem: ?*?*INetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgClassSetup,
                 pszwInfId: ?[*:0]const u16,
                 pOboToken: ?*OBO_TOKEN,
@@ -5065,13 +4995,13 @@ pub const INetCfgClassSetup = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DeInstall: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgClassSetup,
                 pComponent: ?*INetCfgComponent,
                 pOboToken: ?*OBO_TOKEN,
                 pmszwRefs: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgClassSetup,
                 pComponent: ?*INetCfgComponent,
                 pOboToken: ?*OBO_TOKEN,
@@ -5080,21 +5010,23 @@ pub const INetCfgClassSetup = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgClassSetup_SelectAndInstall(self: *const T, hwndParent: ?HWND, pOboToken: ?*OBO_TOKEN, ppnccItem: ?*?*INetCfgComponent) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgClassSetup.VTable, self.vtable).SelectAndInstall(@ptrCast(*const INetCfgClassSetup, self), hwndParent, pOboToken, ppnccItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgClassSetup_Install(self: *const T, pszwInfId: ?[*:0]const u16, pOboToken: ?*OBO_TOKEN, dwSetupFlags: u32, dwUpgradeFromBuildNo: u32, pszwAnswerFile: ?[*:0]const u16, pszwAnswerSections: ?[*:0]const u16, ppnccItem: ?*?*INetCfgComponent) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgClassSetup.VTable, self.vtable).Install(@ptrCast(*const INetCfgClassSetup, self), pszwInfId, pOboToken, dwSetupFlags, dwUpgradeFromBuildNo, pszwAnswerFile, pszwAnswerSections, ppnccItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgClassSetup_DeInstall(self: *const T, pComponent: ?*INetCfgComponent, pOboToken: ?*OBO_TOKEN, pmszwRefs: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgClassSetup.VTable, self.vtable).DeInstall(@ptrCast(*const INetCfgClassSetup, self), pComponent, pOboToken, pmszwRefs);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgClassSetup_SelectAndInstall(self: *const T, hwndParent: ?HWND, pOboToken: ?*OBO_TOKEN, ppnccItem: ?*?*INetCfgComponent) HRESULT {
+                return @ptrCast(*const INetCfgClassSetup.VTable, self.vtable).SelectAndInstall(@ptrCast(*const INetCfgClassSetup, self), hwndParent, pOboToken, ppnccItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgClassSetup_Install(self: *const T, pszwInfId: ?[*:0]const u16, pOboToken: ?*OBO_TOKEN, dwSetupFlags: u32, dwUpgradeFromBuildNo: u32, pszwAnswerFile: ?[*:0]const u16, pszwAnswerSections: ?[*:0]const u16, ppnccItem: ?*?*INetCfgComponent) HRESULT {
+                return @ptrCast(*const INetCfgClassSetup.VTable, self.vtable).Install(@ptrCast(*const INetCfgClassSetup, self), pszwInfId, pOboToken, dwSetupFlags, dwUpgradeFromBuildNo, pszwAnswerFile, pszwAnswerSections, ppnccItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgClassSetup_DeInstall(self: *const T, pComponent: ?*INetCfgComponent, pOboToken: ?*OBO_TOKEN, pmszwRefs: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const INetCfgClassSetup.VTable, self.vtable).DeInstall(@ptrCast(*const INetCfgClassSetup, self), pComponent, pOboToken, pmszwRefs);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5104,13 +5036,13 @@ pub const INetCfgClassSetup2 = extern struct {
     pub const VTable = extern struct {
         base: INetCfgClassSetup.VTable,
         UpdateNonEnumeratedComponent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgClassSetup2,
                 pIComp: ?*INetCfgComponent,
                 dwSetupFlags: u32,
                 dwUpgradeFromBuildNo: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgClassSetup2,
                 pIComp: ?*INetCfgComponent,
                 dwSetupFlags: u32,
@@ -5119,13 +5051,15 @@ pub const INetCfgClassSetup2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace INetCfgClassSetup.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgClassSetup2_UpdateNonEnumeratedComponent(self: *const T, pIComp: ?*INetCfgComponent, dwSetupFlags: u32, dwUpgradeFromBuildNo: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgClassSetup2.VTable, self.vtable).UpdateNonEnumeratedComponent(@ptrCast(*const INetCfgClassSetup2, self), pIComp, dwSetupFlags, dwUpgradeFromBuildNo);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace INetCfgClassSetup.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgClassSetup2_UpdateNonEnumeratedComponent(self: *const T, pIComp: ?*INetCfgComponent, dwSetupFlags: u32, dwUpgradeFromBuildNo: u32) HRESULT {
+                return @ptrCast(*const INetCfgClassSetup2.VTable, self.vtable).UpdateNonEnumeratedComponent(@ptrCast(*const INetCfgClassSetup2, self), pIComp, dwSetupFlags, dwUpgradeFromBuildNo);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5175,123 +5109,123 @@ pub const INetCfgComponent = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDisplayName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponent,
                 ppszwDisplayName: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponent,
                 ppszwDisplayName: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetDisplayName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponent,
                 pszwDisplayName: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponent,
                 pszwDisplayName: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetHelpText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponent,
                 pszwHelpText: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponent,
                 pszwHelpText: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponent,
                 ppszwId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponent,
                 ppszwId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCharacteristics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponent,
                 pdwCharacteristics: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponent,
                 pdwCharacteristics: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetInstanceGuid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponent,
                 pGuid: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponent,
                 pGuid: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPnpDevNodeId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponent,
                 ppszwDevNodeId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponent,
                 ppszwDevNodeId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetClassGuid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponent,
                 pGuid: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponent,
                 pGuid: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetBindName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponent,
                 ppszwBindName: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponent,
                 ppszwBindName: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDeviceStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponent,
                 pulStatus: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponent,
                 pulStatus: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OpenParamKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponent,
                 phkey: ?*?HKEY,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponent,
                 phkey: ?*?HKEY,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RaisePropertyUi: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponent,
                 hwndParent: ?HWND,
                 dwFlags: u32,
                 punkContext: ?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponent,
                 hwndParent: ?HWND,
                 dwFlags: u32,
@@ -5300,57 +5234,59 @@ pub const INetCfgComponent = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponent_GetDisplayName(self: *const T, ppszwDisplayName: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponent.VTable, self.vtable).GetDisplayName(@ptrCast(*const INetCfgComponent, self), ppszwDisplayName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponent_SetDisplayName(self: *const T, pszwDisplayName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponent.VTable, self.vtable).SetDisplayName(@ptrCast(*const INetCfgComponent, self), pszwDisplayName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponent_GetHelpText(self: *const T, pszwHelpText: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponent.VTable, self.vtable).GetHelpText(@ptrCast(*const INetCfgComponent, self), pszwHelpText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponent_GetId(self: *const T, ppszwId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponent.VTable, self.vtable).GetId(@ptrCast(*const INetCfgComponent, self), ppszwId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponent_GetCharacteristics(self: *const T, pdwCharacteristics: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponent.VTable, self.vtable).GetCharacteristics(@ptrCast(*const INetCfgComponent, self), pdwCharacteristics);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponent_GetInstanceGuid(self: *const T, pGuid: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponent.VTable, self.vtable).GetInstanceGuid(@ptrCast(*const INetCfgComponent, self), pGuid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponent_GetPnpDevNodeId(self: *const T, ppszwDevNodeId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponent.VTable, self.vtable).GetPnpDevNodeId(@ptrCast(*const INetCfgComponent, self), ppszwDevNodeId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponent_GetClassGuid(self: *const T, pGuid: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponent.VTable, self.vtable).GetClassGuid(@ptrCast(*const INetCfgComponent, self), pGuid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponent_GetBindName(self: *const T, ppszwBindName: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponent.VTable, self.vtable).GetBindName(@ptrCast(*const INetCfgComponent, self), ppszwBindName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponent_GetDeviceStatus(self: *const T, pulStatus: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponent.VTable, self.vtable).GetDeviceStatus(@ptrCast(*const INetCfgComponent, self), pulStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponent_OpenParamKey(self: *const T, phkey: ?*?HKEY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponent.VTable, self.vtable).OpenParamKey(@ptrCast(*const INetCfgComponent, self), phkey);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponent_RaisePropertyUi(self: *const T, hwndParent: ?HWND, dwFlags: u32, punkContext: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponent.VTable, self.vtable).RaisePropertyUi(@ptrCast(*const INetCfgComponent, self), hwndParent, dwFlags, punkContext);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponent_GetDisplayName(self: *const T, ppszwDisplayName: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const INetCfgComponent.VTable, self.vtable).GetDisplayName(@ptrCast(*const INetCfgComponent, self), ppszwDisplayName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponent_SetDisplayName(self: *const T, pszwDisplayName: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const INetCfgComponent.VTable, self.vtable).SetDisplayName(@ptrCast(*const INetCfgComponent, self), pszwDisplayName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponent_GetHelpText(self: *const T, pszwHelpText: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const INetCfgComponent.VTable, self.vtable).GetHelpText(@ptrCast(*const INetCfgComponent, self), pszwHelpText);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponent_GetId(self: *const T, ppszwId: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const INetCfgComponent.VTable, self.vtable).GetId(@ptrCast(*const INetCfgComponent, self), ppszwId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponent_GetCharacteristics(self: *const T, pdwCharacteristics: ?*u32) HRESULT {
+                return @ptrCast(*const INetCfgComponent.VTable, self.vtable).GetCharacteristics(@ptrCast(*const INetCfgComponent, self), pdwCharacteristics);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponent_GetInstanceGuid(self: *const T, pGuid: ?*Guid) HRESULT {
+                return @ptrCast(*const INetCfgComponent.VTable, self.vtable).GetInstanceGuid(@ptrCast(*const INetCfgComponent, self), pGuid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponent_GetPnpDevNodeId(self: *const T, ppszwDevNodeId: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const INetCfgComponent.VTable, self.vtable).GetPnpDevNodeId(@ptrCast(*const INetCfgComponent, self), ppszwDevNodeId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponent_GetClassGuid(self: *const T, pGuid: ?*Guid) HRESULT {
+                return @ptrCast(*const INetCfgComponent.VTable, self.vtable).GetClassGuid(@ptrCast(*const INetCfgComponent, self), pGuid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponent_GetBindName(self: *const T, ppszwBindName: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const INetCfgComponent.VTable, self.vtable).GetBindName(@ptrCast(*const INetCfgComponent, self), ppszwBindName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponent_GetDeviceStatus(self: *const T, pulStatus: ?*u32) HRESULT {
+                return @ptrCast(*const INetCfgComponent.VTable, self.vtable).GetDeviceStatus(@ptrCast(*const INetCfgComponent, self), pulStatus);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponent_OpenParamKey(self: *const T, phkey: ?*?HKEY) HRESULT {
+                return @ptrCast(*const INetCfgComponent.VTable, self.vtable).OpenParamKey(@ptrCast(*const INetCfgComponent, self), phkey);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponent_RaisePropertyUi(self: *const T, hwndParent: ?HWND, dwFlags: u32, punkContext: ?*IUnknown) HRESULT {
+                return @ptrCast(*const INetCfgComponent.VTable, self.vtable).RaisePropertyUi(@ptrCast(*const INetCfgComponent, self), hwndParent, dwFlags, punkContext);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5374,88 +5310,88 @@ pub const INetCfgComponentBindings = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         BindTo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentBindings,
                 pnccItem: ?*INetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentBindings,
                 pnccItem: ?*INetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         UnbindFrom: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentBindings,
                 pnccItem: ?*INetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentBindings,
                 pnccItem: ?*INetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SupportsBindingInterface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentBindings,
                 dwFlags: u32,
                 pszwInterfaceName: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentBindings,
                 dwFlags: u32,
                 pszwInterfaceName: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         IsBoundTo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentBindings,
                 pnccItem: ?*INetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentBindings,
                 pnccItem: ?*INetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         IsBindableTo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentBindings,
                 pnccItem: ?*INetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentBindings,
                 pnccItem: ?*INetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumBindingPaths: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentBindings,
                 dwFlags: u32,
                 ppIEnum: ?*?*IEnumNetCfgBindingPath,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentBindings,
                 dwFlags: u32,
                 ppIEnum: ?*?*IEnumNetCfgBindingPath,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         MoveBefore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentBindings,
                 pncbItemSrc: ?*INetCfgBindingPath,
                 pncbItemDest: ?*INetCfgBindingPath,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentBindings,
                 pncbItemSrc: ?*INetCfgBindingPath,
                 pncbItemDest: ?*INetCfgBindingPath,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         MoveAfter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentBindings,
                 pncbItemSrc: ?*INetCfgBindingPath,
                 pncbItemDest: ?*INetCfgBindingPath,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentBindings,
                 pncbItemSrc: ?*INetCfgBindingPath,
                 pncbItemDest: ?*INetCfgBindingPath,
@@ -5463,41 +5399,43 @@ pub const INetCfgComponentBindings = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentBindings_BindTo(self: *const T, pnccItem: ?*INetCfgComponent) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentBindings.VTable, self.vtable).BindTo(@ptrCast(*const INetCfgComponentBindings, self), pnccItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentBindings_UnbindFrom(self: *const T, pnccItem: ?*INetCfgComponent) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentBindings.VTable, self.vtable).UnbindFrom(@ptrCast(*const INetCfgComponentBindings, self), pnccItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentBindings_SupportsBindingInterface(self: *const T, dwFlags: u32, pszwInterfaceName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentBindings.VTable, self.vtable).SupportsBindingInterface(@ptrCast(*const INetCfgComponentBindings, self), dwFlags, pszwInterfaceName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentBindings_IsBoundTo(self: *const T, pnccItem: ?*INetCfgComponent) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentBindings.VTable, self.vtable).IsBoundTo(@ptrCast(*const INetCfgComponentBindings, self), pnccItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentBindings_IsBindableTo(self: *const T, pnccItem: ?*INetCfgComponent) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentBindings.VTable, self.vtable).IsBindableTo(@ptrCast(*const INetCfgComponentBindings, self), pnccItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentBindings_EnumBindingPaths(self: *const T, dwFlags: u32, ppIEnum: ?*?*IEnumNetCfgBindingPath) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentBindings.VTable, self.vtable).EnumBindingPaths(@ptrCast(*const INetCfgComponentBindings, self), dwFlags, ppIEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentBindings_MoveBefore(self: *const T, pncbItemSrc: ?*INetCfgBindingPath, pncbItemDest: ?*INetCfgBindingPath) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentBindings.VTable, self.vtable).MoveBefore(@ptrCast(*const INetCfgComponentBindings, self), pncbItemSrc, pncbItemDest);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentBindings_MoveAfter(self: *const T, pncbItemSrc: ?*INetCfgBindingPath, pncbItemDest: ?*INetCfgBindingPath) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentBindings.VTable, self.vtable).MoveAfter(@ptrCast(*const INetCfgComponentBindings, self), pncbItemSrc, pncbItemDest);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentBindings_BindTo(self: *const T, pnccItem: ?*INetCfgComponent) HRESULT {
+                return @ptrCast(*const INetCfgComponentBindings.VTable, self.vtable).BindTo(@ptrCast(*const INetCfgComponentBindings, self), pnccItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentBindings_UnbindFrom(self: *const T, pnccItem: ?*INetCfgComponent) HRESULT {
+                return @ptrCast(*const INetCfgComponentBindings.VTable, self.vtable).UnbindFrom(@ptrCast(*const INetCfgComponentBindings, self), pnccItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentBindings_SupportsBindingInterface(self: *const T, dwFlags: u32, pszwInterfaceName: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const INetCfgComponentBindings.VTable, self.vtable).SupportsBindingInterface(@ptrCast(*const INetCfgComponentBindings, self), dwFlags, pszwInterfaceName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentBindings_IsBoundTo(self: *const T, pnccItem: ?*INetCfgComponent) HRESULT {
+                return @ptrCast(*const INetCfgComponentBindings.VTable, self.vtable).IsBoundTo(@ptrCast(*const INetCfgComponentBindings, self), pnccItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentBindings_IsBindableTo(self: *const T, pnccItem: ?*INetCfgComponent) HRESULT {
+                return @ptrCast(*const INetCfgComponentBindings.VTable, self.vtable).IsBindableTo(@ptrCast(*const INetCfgComponentBindings, self), pnccItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentBindings_EnumBindingPaths(self: *const T, dwFlags: u32, ppIEnum: ?*?*IEnumNetCfgBindingPath) HRESULT {
+                return @ptrCast(*const INetCfgComponentBindings.VTable, self.vtable).EnumBindingPaths(@ptrCast(*const INetCfgComponentBindings, self), dwFlags, ppIEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentBindings_MoveBefore(self: *const T, pncbItemSrc: ?*INetCfgBindingPath, pncbItemDest: ?*INetCfgBindingPath) HRESULT {
+                return @ptrCast(*const INetCfgComponentBindings.VTable, self.vtable).MoveBefore(@ptrCast(*const INetCfgComponentBindings, self), pncbItemSrc, pncbItemDest);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentBindings_MoveAfter(self: *const T, pncbItemSrc: ?*INetCfgBindingPath, pncbItemDest: ?*INetCfgBindingPath) HRESULT {
+                return @ptrCast(*const INetCfgComponentBindings.VTable, self.vtable).MoveAfter(@ptrCast(*const INetCfgComponentBindings, self), pncbItemSrc, pncbItemDest);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5507,13 +5445,13 @@ pub const INetCfgSysPrep = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         HrSetupSetFirstDword: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgSysPrep,
                 pwszSection: ?[*:0]const u16,
                 pwszKey: ?[*:0]const u16,
                 dwValue: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgSysPrep,
                 pwszSection: ?[*:0]const u16,
                 pwszKey: ?[*:0]const u16,
@@ -5521,13 +5459,13 @@ pub const INetCfgSysPrep = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         HrSetupSetFirstString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgSysPrep,
                 pwszSection: ?[*:0]const u16,
                 pwszKey: ?[*:0]const u16,
                 pwszValue: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgSysPrep,
                 pwszSection: ?[*:0]const u16,
                 pwszKey: ?[*:0]const u16,
@@ -5535,13 +5473,13 @@ pub const INetCfgSysPrep = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         HrSetupSetFirstStringAsBool: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgSysPrep,
                 pwszSection: ?[*:0]const u16,
                 pwszKey: ?[*:0]const u16,
                 fValue: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgSysPrep,
                 pwszSection: ?[*:0]const u16,
                 pwszKey: ?[*:0]const u16,
@@ -5549,13 +5487,13 @@ pub const INetCfgSysPrep = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         HrSetupSetFirstMultiSzField: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgSysPrep,
                 pwszSection: ?[*:0]const u16,
                 pwszKey: ?[*:0]const u16,
                 pmszValue: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgSysPrep,
                 pwszSection: ?[*:0]const u16,
                 pwszKey: ?[*:0]const u16,
@@ -5564,25 +5502,27 @@ pub const INetCfgSysPrep = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgSysPrep_HrSetupSetFirstDword(self: *const T, pwszSection: ?[*:0]const u16, pwszKey: ?[*:0]const u16, dwValue: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgSysPrep.VTable, self.vtable).HrSetupSetFirstDword(@ptrCast(*const INetCfgSysPrep, self), pwszSection, pwszKey, dwValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgSysPrep_HrSetupSetFirstString(self: *const T, pwszSection: ?[*:0]const u16, pwszKey: ?[*:0]const u16, pwszValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgSysPrep.VTable, self.vtable).HrSetupSetFirstString(@ptrCast(*const INetCfgSysPrep, self), pwszSection, pwszKey, pwszValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgSysPrep_HrSetupSetFirstStringAsBool(self: *const T, pwszSection: ?[*:0]const u16, pwszKey: ?[*:0]const u16, fValue: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgSysPrep.VTable, self.vtable).HrSetupSetFirstStringAsBool(@ptrCast(*const INetCfgSysPrep, self), pwszSection, pwszKey, fValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgSysPrep_HrSetupSetFirstMultiSzField(self: *const T, pwszSection: ?[*:0]const u16, pwszKey: ?[*:0]const u16, pmszValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgSysPrep.VTable, self.vtable).HrSetupSetFirstMultiSzField(@ptrCast(*const INetCfgSysPrep, self), pwszSection, pwszKey, pmszValue);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgSysPrep_HrSetupSetFirstDword(self: *const T, pwszSection: ?[*:0]const u16, pwszKey: ?[*:0]const u16, dwValue: u32) HRESULT {
+                return @ptrCast(*const INetCfgSysPrep.VTable, self.vtable).HrSetupSetFirstDword(@ptrCast(*const INetCfgSysPrep, self), pwszSection, pwszKey, dwValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgSysPrep_HrSetupSetFirstString(self: *const T, pwszSection: ?[*:0]const u16, pwszKey: ?[*:0]const u16, pwszValue: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const INetCfgSysPrep.VTable, self.vtable).HrSetupSetFirstString(@ptrCast(*const INetCfgSysPrep, self), pwszSection, pwszKey, pwszValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgSysPrep_HrSetupSetFirstStringAsBool(self: *const T, pwszSection: ?[*:0]const u16, pwszKey: ?[*:0]const u16, fValue: BOOL) HRESULT {
+                return @ptrCast(*const INetCfgSysPrep.VTable, self.vtable).HrSetupSetFirstStringAsBool(@ptrCast(*const INetCfgSysPrep, self), pwszSection, pwszKey, fValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgSysPrep_HrSetupSetFirstMultiSzField(self: *const T, pwszSection: ?[*:0]const u16, pwszKey: ?[*:0]const u16, pmszValue: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const INetCfgSysPrep.VTable, self.vtable).HrSetupSetFirstMultiSzField(@ptrCast(*const INetCfgSysPrep, self), pwszSection, pwszKey, pmszValue);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5599,7 +5539,7 @@ pub const INetCfgPnpReconfigCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SendPnpReconfig: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgPnpReconfigCallback,
                 Layer: NCPNP_RECONFIG_LAYER,
                 pszwUpper: ?[*:0]const u16,
@@ -5608,7 +5548,7 @@ pub const INetCfgPnpReconfigCallback = extern struct {
                 pvData: ?*anyopaque,
                 dwSizeOfData: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgPnpReconfigCallback,
                 Layer: NCPNP_RECONFIG_LAYER,
                 pszwUpper: ?[*:0]const u16,
@@ -5620,13 +5560,15 @@ pub const INetCfgPnpReconfigCallback = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgPnpReconfigCallback_SendPnpReconfig(self: *const T, Layer: NCPNP_RECONFIG_LAYER, pszwUpper: ?[*:0]const u16, pszwLower: ?[*:0]const u16, pvData: ?*anyopaque, dwSizeOfData: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgPnpReconfigCallback.VTable, self.vtable).SendPnpReconfig(@ptrCast(*const INetCfgPnpReconfigCallback, self), Layer, pszwUpper, pszwLower, pvData, dwSizeOfData);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgPnpReconfigCallback_SendPnpReconfig(self: *const T, Layer: NCPNP_RECONFIG_LAYER, pszwUpper: ?[*:0]const u16, pszwLower: ?[*:0]const u16, pvData: ?*anyopaque, dwSizeOfData: u32) HRESULT {
+                return @ptrCast(*const INetCfgPnpReconfigCallback.VTable, self.vtable).SendPnpReconfig(@ptrCast(*const INetCfgPnpReconfigCallback, self), Layer, pszwUpper, pszwLower, pvData, dwSizeOfData);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5636,13 +5578,13 @@ pub const INetCfgComponentControl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentControl,
                 pIComp: ?*INetCfgComponent,
                 pINetCfg: ?*INetCfg,
                 fInstalling: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentControl,
                 pIComp: ?*INetCfgComponent,
                 pINetCfg: ?*INetCfg,
@@ -5650,52 +5592,54 @@ pub const INetCfgComponentControl = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ApplyRegistryChanges: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentControl,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentControl,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ApplyPnpChanges: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentControl,
                 pICallback: ?*INetCfgPnpReconfigCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentControl,
                 pICallback: ?*INetCfgPnpReconfigCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CancelChanges: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentControl,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentControl,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentControl_Initialize(self: *const T, pIComp: ?*INetCfgComponent, pINetCfg: ?*INetCfg, fInstalling: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentControl.VTable, self.vtable).Initialize(@ptrCast(*const INetCfgComponentControl, self), pIComp, pINetCfg, fInstalling);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentControl_ApplyRegistryChanges(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentControl.VTable, self.vtable).ApplyRegistryChanges(@ptrCast(*const INetCfgComponentControl, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentControl_ApplyPnpChanges(self: *const T, pICallback: ?*INetCfgPnpReconfigCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentControl.VTable, self.vtable).ApplyPnpChanges(@ptrCast(*const INetCfgComponentControl, self), pICallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentControl_CancelChanges(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentControl.VTable, self.vtable).CancelChanges(@ptrCast(*const INetCfgComponentControl, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentControl_Initialize(self: *const T, pIComp: ?*INetCfgComponent, pINetCfg: ?*INetCfg, fInstalling: BOOL) HRESULT {
+                return @ptrCast(*const INetCfgComponentControl.VTable, self.vtable).Initialize(@ptrCast(*const INetCfgComponentControl, self), pIComp, pINetCfg, fInstalling);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentControl_ApplyRegistryChanges(self: *const T) HRESULT {
+                return @ptrCast(*const INetCfgComponentControl.VTable, self.vtable).ApplyRegistryChanges(@ptrCast(*const INetCfgComponentControl, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentControl_ApplyPnpChanges(self: *const T, pICallback: ?*INetCfgPnpReconfigCallback) HRESULT {
+                return @ptrCast(*const INetCfgComponentControl.VTable, self.vtable).ApplyPnpChanges(@ptrCast(*const INetCfgComponentControl, self), pICallback);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentControl_CancelChanges(self: *const T) HRESULT {
+                return @ptrCast(*const INetCfgComponentControl.VTable, self.vtable).CancelChanges(@ptrCast(*const INetCfgComponentControl, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5727,68 +5671,70 @@ pub const INetCfgComponentSetup = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Install: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentSetup,
                 dwSetupFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentSetup,
                 dwSetupFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Upgrade: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentSetup,
                 dwSetupFlags: u32,
                 dwUpgradeFomBuildNo: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentSetup,
                 dwSetupFlags: u32,
                 dwUpgradeFomBuildNo: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ReadAnswerFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentSetup,
                 pszwAnswerFile: ?[*:0]const u16,
                 pszwAnswerSections: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentSetup,
                 pszwAnswerFile: ?[*:0]const u16,
                 pszwAnswerSections: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Removing: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentSetup,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentSetup,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentSetup_Install(self: *const T, dwSetupFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentSetup.VTable, self.vtable).Install(@ptrCast(*const INetCfgComponentSetup, self), dwSetupFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentSetup_Upgrade(self: *const T, dwSetupFlags: u32, dwUpgradeFomBuildNo: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentSetup.VTable, self.vtable).Upgrade(@ptrCast(*const INetCfgComponentSetup, self), dwSetupFlags, dwUpgradeFomBuildNo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentSetup_ReadAnswerFile(self: *const T, pszwAnswerFile: ?[*:0]const u16, pszwAnswerSections: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentSetup.VTable, self.vtable).ReadAnswerFile(@ptrCast(*const INetCfgComponentSetup, self), pszwAnswerFile, pszwAnswerSections);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentSetup_Removing(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentSetup.VTable, self.vtable).Removing(@ptrCast(*const INetCfgComponentSetup, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentSetup_Install(self: *const T, dwSetupFlags: u32) HRESULT {
+                return @ptrCast(*const INetCfgComponentSetup.VTable, self.vtable).Install(@ptrCast(*const INetCfgComponentSetup, self), dwSetupFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentSetup_Upgrade(self: *const T, dwSetupFlags: u32, dwUpgradeFomBuildNo: u32) HRESULT {
+                return @ptrCast(*const INetCfgComponentSetup.VTable, self.vtable).Upgrade(@ptrCast(*const INetCfgComponentSetup, self), dwSetupFlags, dwUpgradeFomBuildNo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentSetup_ReadAnswerFile(self: *const T, pszwAnswerFile: ?[*:0]const u16, pszwAnswerSections: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const INetCfgComponentSetup.VTable, self.vtable).ReadAnswerFile(@ptrCast(*const INetCfgComponentSetup, self), pszwAnswerFile, pszwAnswerSections);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentSetup_Removing(self: *const T) HRESULT {
+                return @ptrCast(*const INetCfgComponentSetup.VTable, self.vtable).Removing(@ptrCast(*const INetCfgComponentSetup, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5803,27 +5749,27 @@ pub const INetCfgComponentPropertyUi = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         QueryPropertyUi: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentPropertyUi,
                 pUnkReserved: ?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentPropertyUi,
                 pUnkReserved: ?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentPropertyUi,
                 pUnkReserved: ?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentPropertyUi,
                 pUnkReserved: ?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         MergePropPages: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentPropertyUi,
                 pdwDefPages: ?*u32,
                 pahpspPrivate: ?*?*u8,
@@ -5831,7 +5777,7 @@ pub const INetCfgComponentPropertyUi = extern struct {
                 hwndParent: ?HWND,
                 pszStartPage: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentPropertyUi,
                 pdwDefPages: ?*u32,
                 pahpspPrivate: ?*?*u8,
@@ -5841,60 +5787,62 @@ pub const INetCfgComponentPropertyUi = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ValidateProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentPropertyUi,
                 hwndSheet: ?HWND,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentPropertyUi,
                 hwndSheet: ?HWND,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ApplyProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentPropertyUi,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentPropertyUi,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CancelProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentPropertyUi,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentPropertyUi,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentPropertyUi_QueryPropertyUi(self: *const T, pUnkReserved: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentPropertyUi.VTable, self.vtable).QueryPropertyUi(@ptrCast(*const INetCfgComponentPropertyUi, self), pUnkReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentPropertyUi_SetContext(self: *const T, pUnkReserved: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentPropertyUi.VTable, self.vtable).SetContext(@ptrCast(*const INetCfgComponentPropertyUi, self), pUnkReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentPropertyUi_MergePropPages(self: *const T, pdwDefPages: ?*u32, pahpspPrivate: ?*?*u8, pcPages: ?*u32, hwndParent: ?HWND, pszStartPage: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentPropertyUi.VTable, self.vtable).MergePropPages(@ptrCast(*const INetCfgComponentPropertyUi, self), pdwDefPages, pahpspPrivate, pcPages, hwndParent, pszStartPage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentPropertyUi_ValidateProperties(self: *const T, hwndSheet: ?HWND) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentPropertyUi.VTable, self.vtable).ValidateProperties(@ptrCast(*const INetCfgComponentPropertyUi, self), hwndSheet);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentPropertyUi_ApplyProperties(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentPropertyUi.VTable, self.vtable).ApplyProperties(@ptrCast(*const INetCfgComponentPropertyUi, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentPropertyUi_CancelProperties(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentPropertyUi.VTable, self.vtable).CancelProperties(@ptrCast(*const INetCfgComponentPropertyUi, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentPropertyUi_QueryPropertyUi(self: *const T, pUnkReserved: ?*IUnknown) HRESULT {
+                return @ptrCast(*const INetCfgComponentPropertyUi.VTable, self.vtable).QueryPropertyUi(@ptrCast(*const INetCfgComponentPropertyUi, self), pUnkReserved);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentPropertyUi_SetContext(self: *const T, pUnkReserved: ?*IUnknown) HRESULT {
+                return @ptrCast(*const INetCfgComponentPropertyUi.VTable, self.vtable).SetContext(@ptrCast(*const INetCfgComponentPropertyUi, self), pUnkReserved);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentPropertyUi_MergePropPages(self: *const T, pdwDefPages: ?*u32, pahpspPrivate: ?*?*u8, pcPages: ?*u32, hwndParent: ?HWND, pszStartPage: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const INetCfgComponentPropertyUi.VTable, self.vtable).MergePropPages(@ptrCast(*const INetCfgComponentPropertyUi, self), pdwDefPages, pahpspPrivate, pcPages, hwndParent, pszStartPage);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentPropertyUi_ValidateProperties(self: *const T, hwndSheet: ?HWND) HRESULT {
+                return @ptrCast(*const INetCfgComponentPropertyUi.VTable, self.vtable).ValidateProperties(@ptrCast(*const INetCfgComponentPropertyUi, self), hwndSheet);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentPropertyUi_ApplyProperties(self: *const T) HRESULT {
+                return @ptrCast(*const INetCfgComponentPropertyUi.VTable, self.vtable).ApplyProperties(@ptrCast(*const INetCfgComponentPropertyUi, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentPropertyUi_CancelProperties(self: *const T) HRESULT {
+                return @ptrCast(*const INetCfgComponentPropertyUi.VTable, self.vtable).CancelProperties(@ptrCast(*const INetCfgComponentPropertyUi, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5929,24 +5877,24 @@ pub const INetCfgComponentNotifyBinding = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         QueryBindingPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentNotifyBinding,
                 dwChangeFlag: u32,
                 pIPath: ?*INetCfgBindingPath,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentNotifyBinding,
                 dwChangeFlag: u32,
                 pIPath: ?*INetCfgBindingPath,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         NotifyBindingPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentNotifyBinding,
                 dwChangeFlag: u32,
                 pIPath: ?*INetCfgBindingPath,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentNotifyBinding,
                 dwChangeFlag: u32,
                 pIPath: ?*INetCfgBindingPath,
@@ -5954,17 +5902,19 @@ pub const INetCfgComponentNotifyBinding = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentNotifyBinding_QueryBindingPath(self: *const T, dwChangeFlag: u32, pIPath: ?*INetCfgBindingPath) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentNotifyBinding.VTable, self.vtable).QueryBindingPath(@ptrCast(*const INetCfgComponentNotifyBinding, self), dwChangeFlag, pIPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentNotifyBinding_NotifyBindingPath(self: *const T, dwChangeFlag: u32, pIPath: ?*INetCfgBindingPath) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentNotifyBinding.VTable, self.vtable).NotifyBindingPath(@ptrCast(*const INetCfgComponentNotifyBinding, self), dwChangeFlag, pIPath);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentNotifyBinding_QueryBindingPath(self: *const T, dwChangeFlag: u32, pIPath: ?*INetCfgBindingPath) HRESULT {
+                return @ptrCast(*const INetCfgComponentNotifyBinding.VTable, self.vtable).QueryBindingPath(@ptrCast(*const INetCfgComponentNotifyBinding, self), dwChangeFlag, pIPath);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentNotifyBinding_NotifyBindingPath(self: *const T, dwChangeFlag: u32, pIPath: ?*INetCfgBindingPath) HRESULT {
+                return @ptrCast(*const INetCfgComponentNotifyBinding.VTable, self.vtable).NotifyBindingPath(@ptrCast(*const INetCfgComponentNotifyBinding, self), dwChangeFlag, pIPath);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5974,46 +5924,46 @@ pub const INetCfgComponentNotifyGlobal = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSupportedNotifications: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentNotifyGlobal,
                 dwNotifications: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentNotifyGlobal,
                 dwNotifications: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SysQueryBindingPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentNotifyGlobal,
                 dwChangeFlag: u32,
                 pIPath: ?*INetCfgBindingPath,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentNotifyGlobal,
                 dwChangeFlag: u32,
                 pIPath: ?*INetCfgBindingPath,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SysNotifyBindingPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentNotifyGlobal,
                 dwChangeFlag: u32,
                 pIPath: ?*INetCfgBindingPath,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentNotifyGlobal,
                 dwChangeFlag: u32,
                 pIPath: ?*INetCfgBindingPath,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SysNotifyComponent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentNotifyGlobal,
                 dwChangeFlag: u32,
                 pIComp: ?*INetCfgComponent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentNotifyGlobal,
                 dwChangeFlag: u32,
                 pIComp: ?*INetCfgComponent,
@@ -6021,25 +5971,27 @@ pub const INetCfgComponentNotifyGlobal = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentNotifyGlobal_GetSupportedNotifications(self: *const T, dwNotifications: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentNotifyGlobal.VTable, self.vtable).GetSupportedNotifications(@ptrCast(*const INetCfgComponentNotifyGlobal, self), dwNotifications);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentNotifyGlobal_SysQueryBindingPath(self: *const T, dwChangeFlag: u32, pIPath: ?*INetCfgBindingPath) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentNotifyGlobal.VTable, self.vtable).SysQueryBindingPath(@ptrCast(*const INetCfgComponentNotifyGlobal, self), dwChangeFlag, pIPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentNotifyGlobal_SysNotifyBindingPath(self: *const T, dwChangeFlag: u32, pIPath: ?*INetCfgBindingPath) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentNotifyGlobal.VTable, self.vtable).SysNotifyBindingPath(@ptrCast(*const INetCfgComponentNotifyGlobal, self), dwChangeFlag, pIPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentNotifyGlobal_SysNotifyComponent(self: *const T, dwChangeFlag: u32, pIComp: ?*INetCfgComponent) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentNotifyGlobal.VTable, self.vtable).SysNotifyComponent(@ptrCast(*const INetCfgComponentNotifyGlobal, self), dwChangeFlag, pIComp);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentNotifyGlobal_GetSupportedNotifications(self: *const T, dwNotifications: ?*u32) HRESULT {
+                return @ptrCast(*const INetCfgComponentNotifyGlobal.VTable, self.vtable).GetSupportedNotifications(@ptrCast(*const INetCfgComponentNotifyGlobal, self), dwNotifications);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentNotifyGlobal_SysQueryBindingPath(self: *const T, dwChangeFlag: u32, pIPath: ?*INetCfgBindingPath) HRESULT {
+                return @ptrCast(*const INetCfgComponentNotifyGlobal.VTable, self.vtable).SysQueryBindingPath(@ptrCast(*const INetCfgComponentNotifyGlobal, self), dwChangeFlag, pIPath);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentNotifyGlobal_SysNotifyBindingPath(self: *const T, dwChangeFlag: u32, pIPath: ?*INetCfgBindingPath) HRESULT {
+                return @ptrCast(*const INetCfgComponentNotifyGlobal.VTable, self.vtable).SysNotifyBindingPath(@ptrCast(*const INetCfgComponentNotifyGlobal, self), dwChangeFlag, pIPath);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentNotifyGlobal_SysNotifyComponent(self: *const T, dwChangeFlag: u32, pIComp: ?*INetCfgComponent) HRESULT {
+                return @ptrCast(*const INetCfgComponentNotifyGlobal.VTable, self.vtable).SysNotifyComponent(@ptrCast(*const INetCfgComponentNotifyGlobal, self), dwChangeFlag, pIComp);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6049,13 +6001,13 @@ pub const INetCfgComponentUpperEdge = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetInterfaceIdsForAdapter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentUpperEdge,
                 pAdapter: ?*INetCfgComponent,
                 pdwNumInterfaces: ?*u32,
                 ppguidInterfaceIds: ?[*]?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentUpperEdge,
                 pAdapter: ?*INetCfgComponent,
                 pdwNumInterfaces: ?*u32,
@@ -6063,21 +6015,21 @@ pub const INetCfgComponentUpperEdge = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AddInterfacesToAdapter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentUpperEdge,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentUpperEdge,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RemoveInterfacesFromAdapter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentUpperEdge,
                 pAdapter: ?*INetCfgComponent,
                 dwNumInterfaces: u32,
                 pguidInterfaceIds: [*]const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentUpperEdge,
                 pAdapter: ?*INetCfgComponent,
                 dwNumInterfaces: u32,
@@ -6086,21 +6038,23 @@ pub const INetCfgComponentUpperEdge = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentUpperEdge_GetInterfaceIdsForAdapter(self: *const T, pAdapter: ?*INetCfgComponent, pdwNumInterfaces: ?*u32, ppguidInterfaceIds: ?[*]?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentUpperEdge.VTable, self.vtable).GetInterfaceIdsForAdapter(@ptrCast(*const INetCfgComponentUpperEdge, self), pAdapter, pdwNumInterfaces, ppguidInterfaceIds);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentUpperEdge_AddInterfacesToAdapter(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentUpperEdge.VTable, self.vtable).AddInterfacesToAdapter(@ptrCast(*const INetCfgComponentUpperEdge, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentUpperEdge_RemoveInterfacesFromAdapter(self: *const T, pAdapter: ?*INetCfgComponent, dwNumInterfaces: u32, pguidInterfaceIds: [*]const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentUpperEdge.VTable, self.vtable).RemoveInterfacesFromAdapter(@ptrCast(*const INetCfgComponentUpperEdge, self), pAdapter, dwNumInterfaces, pguidInterfaceIds);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentUpperEdge_GetInterfaceIdsForAdapter(self: *const T, pAdapter: ?*INetCfgComponent, pdwNumInterfaces: ?*u32, ppguidInterfaceIds: ?[*]?*Guid) HRESULT {
+                return @ptrCast(*const INetCfgComponentUpperEdge.VTable, self.vtable).GetInterfaceIdsForAdapter(@ptrCast(*const INetCfgComponentUpperEdge, self), pAdapter, pdwNumInterfaces, ppguidInterfaceIds);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentUpperEdge_AddInterfacesToAdapter(self: *const T) HRESULT {
+                return @ptrCast(*const INetCfgComponentUpperEdge.VTable, self.vtable).AddInterfacesToAdapter(@ptrCast(*const INetCfgComponentUpperEdge, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentUpperEdge_RemoveInterfacesFromAdapter(self: *const T, pAdapter: ?*INetCfgComponent, dwNumInterfaces: u32, pguidInterfaceIds: [*]const Guid) HRESULT {
+                return @ptrCast(*const INetCfgComponentUpperEdge.VTable, self.vtable).RemoveInterfacesFromAdapter(@ptrCast(*const INetCfgComponentUpperEdge, self), pAdapter, dwNumInterfaces, pguidInterfaceIds);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6110,24 +6064,26 @@ pub const INetLanConnectionUiInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDeviceGuid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetLanConnectionUiInfo,
                 pguid: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetLanConnectionUiInfo,
                 pguid: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetLanConnectionUiInfo_GetDeviceGuid(self: *const T, pguid: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetLanConnectionUiInfo.VTable, self.vtable).GetDeviceGuid(@ptrCast(*const INetLanConnectionUiInfo, self), pguid);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetLanConnectionUiInfo_GetDeviceGuid(self: *const T, pguid: ?*Guid) HRESULT {
+                return @ptrCast(*const INetLanConnectionUiInfo.VTable, self.vtable).GetDeviceGuid(@ptrCast(*const INetLanConnectionUiInfo, self), pguid);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6190,24 +6146,26 @@ pub const INetRasConnectionIpUiInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetUiInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetRasConnectionIpUiInfo,
                 pInfo: ?*RASCON_IPUI,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetRasConnectionIpUiInfo,
                 pInfo: ?*RASCON_IPUI,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetRasConnectionIpUiInfo_GetUiInfo(self: *const T, pInfo: ?*RASCON_IPUI) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetRasConnectionIpUiInfo.VTable, self.vtable).GetUiInfo(@ptrCast(*const INetRasConnectionIpUiInfo, self), pInfo);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetRasConnectionIpUiInfo_GetUiInfo(self: *const T, pInfo: ?*RASCON_IPUI) HRESULT {
+                return @ptrCast(*const INetRasConnectionIpUiInfo.VTable, self.vtable).GetUiInfo(@ptrCast(*const INetRasConnectionIpUiInfo, self), pInfo);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6217,13 +6175,13 @@ pub const INetCfgComponentSysPrep = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SaveAdapterParameters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentSysPrep,
                 pncsp: ?*INetCfgSysPrep,
                 pszwAnswerSections: ?[*:0]const u16,
                 pAdapterInstanceGuid: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentSysPrep,
                 pncsp: ?*INetCfgSysPrep,
                 pszwAnswerSections: ?[*:0]const u16,
@@ -6231,13 +6189,13 @@ pub const INetCfgComponentSysPrep = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RestoreAdapterParameters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const INetCfgComponentSysPrep,
                 pszwAnswerFile: ?[*:0]const u16,
                 pszwAnswerSection: ?[*:0]const u16,
                 pAdapterInstanceGuid: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const INetCfgComponentSysPrep,
                 pszwAnswerFile: ?[*:0]const u16,
                 pszwAnswerSection: ?[*:0]const u16,
@@ -6246,17 +6204,19 @@ pub const INetCfgComponentSysPrep = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentSysPrep_SaveAdapterParameters(self: *const T, pncsp: ?*INetCfgSysPrep, pszwAnswerSections: ?[*:0]const u16, pAdapterInstanceGuid: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentSysPrep.VTable, self.vtable).SaveAdapterParameters(@ptrCast(*const INetCfgComponentSysPrep, self), pncsp, pszwAnswerSections, pAdapterInstanceGuid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentSysPrep_RestoreAdapterParameters(self: *const T, pszwAnswerFile: ?[*:0]const u16, pszwAnswerSection: ?[*:0]const u16, pAdapterInstanceGuid: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INetCfgComponentSysPrep.VTable, self.vtable).RestoreAdapterParameters(@ptrCast(*const INetCfgComponentSysPrep, self), pszwAnswerFile, pszwAnswerSection, pAdapterInstanceGuid);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentSysPrep_SaveAdapterParameters(self: *const T, pncsp: ?*INetCfgSysPrep, pszwAnswerSections: ?[*:0]const u16, pAdapterInstanceGuid: ?*Guid) HRESULT {
+                return @ptrCast(*const INetCfgComponentSysPrep.VTable, self.vtable).SaveAdapterParameters(@ptrCast(*const INetCfgComponentSysPrep, self), pncsp, pszwAnswerSections, pAdapterInstanceGuid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn INetCfgComponentSysPrep_RestoreAdapterParameters(self: *const T, pszwAnswerFile: ?[*:0]const u16, pszwAnswerSection: ?[*:0]const u16, pAdapterInstanceGuid: ?*Guid) HRESULT {
+                return @ptrCast(*const INetCfgComponentSysPrep.VTable, self.vtable).RestoreAdapterParameters(@ptrCast(*const INetCfgComponentSysPrep, self), pszwAnswerFile, pszwAnswerSection, pAdapterInstanceGuid);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6269,24 +6229,24 @@ pub const IProvisioningDomain = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Add: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IProvisioningDomain,
                 pszwPathToFolder: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IProvisioningDomain,
                 pszwPathToFolder: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Query: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IProvisioningDomain,
                 pszwDomain: ?[*:0]const u16,
                 pszwLanguage: ?[*:0]const u16,
                 pszwXPathQuery: ?[*:0]const u16,
                 Nodes: ?*?*IXMLDOMNodeList,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IProvisioningDomain,
                 pszwDomain: ?[*:0]const u16,
                 pszwLanguage: ?[*:0]const u16,
@@ -6296,17 +6256,19 @@ pub const IProvisioningDomain = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProvisioningDomain_Add(self: *const T, pszwPathToFolder: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProvisioningDomain.VTable, self.vtable).Add(@ptrCast(*const IProvisioningDomain, self), pszwPathToFolder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProvisioningDomain_Query(self: *const T, pszwDomain: ?[*:0]const u16, pszwLanguage: ?[*:0]const u16, pszwXPathQuery: ?[*:0]const u16, Nodes: ?*?*IXMLDOMNodeList) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProvisioningDomain.VTable, self.vtable).Query(@ptrCast(*const IProvisioningDomain, self), pszwDomain, pszwLanguage, pszwXPathQuery, Nodes);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IProvisioningDomain_Add(self: *const T, pszwPathToFolder: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IProvisioningDomain.VTable, self.vtable).Add(@ptrCast(*const IProvisioningDomain, self), pszwPathToFolder);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IProvisioningDomain_Query(self: *const T, pszwDomain: ?[*:0]const u16, pszwLanguage: ?[*:0]const u16, pszwXPathQuery: ?[*:0]const u16, Nodes: ?*?*IXMLDOMNodeList) HRESULT {
+                return @ptrCast(*const IProvisioningDomain.VTable, self.vtable).Query(@ptrCast(*const IProvisioningDomain, self), pszwDomain, pszwLanguage, pszwXPathQuery, Nodes);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6316,14 +6278,14 @@ pub const IProvisioningProfileWireless = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateProfile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IProvisioningProfileWireless,
                 bstrXMLWirelessConfigProfile: ?BSTR,
                 bstrXMLConnectionConfigProfile: ?BSTR,
                 pAdapterInstanceGuid: ?*Guid,
                 pulStatus: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IProvisioningProfileWireless,
                 bstrXMLWirelessConfigProfile: ?BSTR,
                 bstrXMLConnectionConfigProfile: ?BSTR,
@@ -6333,13 +6295,15 @@ pub const IProvisioningProfileWireless = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProvisioningProfileWireless_CreateProfile(self: *const T, bstrXMLWirelessConfigProfile: ?BSTR, bstrXMLConnectionConfigProfile: ?BSTR, pAdapterInstanceGuid: ?*Guid, pulStatus: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProvisioningProfileWireless.VTable, self.vtable).CreateProfile(@ptrCast(*const IProvisioningProfileWireless, self), bstrXMLWirelessConfigProfile, bstrXMLConnectionConfigProfile, pAdapterInstanceGuid, pulStatus);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IProvisioningProfileWireless_CreateProfile(self: *const T, bstrXMLWirelessConfigProfile: ?BSTR, bstrXMLConnectionConfigProfile: ?BSTR, pAdapterInstanceGuid: ?*Guid, pulStatus: ?*u32) HRESULT {
+                return @ptrCast(*const IProvisioningProfileWireless.VTable, self.vtable).CreateProfile(@ptrCast(*const IProvisioningProfileWireless, self), bstrXMLWirelessConfigProfile, bstrXMLConnectionConfigProfile, pAdapterInstanceGuid, pulStatus);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6358,20 +6322,19 @@ pub const RTR_INFO_BLOCK_HEADER = extern struct {
 };
 
 pub const WORKERFUNCTION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         param0: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const MPR_PROTOCOL_0 = extern struct {
     dwProtocolId: u32,
     wszProtocol: [41]u16,
     wszDLLName: [49]u16,
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (175)
@@ -7733,7 +7696,6 @@ pub extern "rtutils" fn MprSetupProtocolFree(
     lpBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (19)
 //--------------------------------------------------------------------------------
@@ -7782,25 +7744,25 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const RouterGetErrorString = thismodule.RouterGetErrorStringW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const TraceRegisterEx = *opaque{};
-        pub const TraceDeregister = *opaque{};
-        pub const TraceDeregisterEx = *opaque{};
-        pub const TraceGetConsole = *opaque{};
-        pub const TracePrintf = *opaque{};
-        pub const TracePrintfEx = *opaque{};
-        pub const TraceVprintfEx = *opaque{};
-        pub const TracePutsEx = *opaque{};
-        pub const TraceDumpEx = *opaque{};
-        pub const LogError = *opaque{};
-        pub const LogEvent = *opaque{};
-        pub const RouterLogRegister = *opaque{};
-        pub const RouterLogDeregister = *opaque{};
-        pub const RouterLogEvent = *opaque{};
-        pub const RouterLogEventData = *opaque{};
-        pub const RouterLogEventString = *opaque{};
-        pub const RouterLogEventEx = *opaque{};
-        pub const RouterLogEventValistEx = *opaque{};
-        pub const RouterGetErrorString = *opaque{};
+        pub const TraceRegisterEx = *opaque {};
+        pub const TraceDeregister = *opaque {};
+        pub const TraceDeregisterEx = *opaque {};
+        pub const TraceGetConsole = *opaque {};
+        pub const TracePrintf = *opaque {};
+        pub const TracePrintfEx = *opaque {};
+        pub const TraceVprintfEx = *opaque {};
+        pub const TracePutsEx = *opaque {};
+        pub const TraceDumpEx = *opaque {};
+        pub const LogError = *opaque {};
+        pub const LogEvent = *opaque {};
+        pub const RouterLogRegister = *opaque {};
+        pub const RouterLogDeregister = *opaque {};
+        pub const RouterLogEvent = *opaque {};
+        pub const RouterLogEventData = *opaque {};
+        pub const RouterLogEventString = *opaque {};
+        pub const RouterLogEventEx = *opaque {};
+        pub const RouterLogEventValistEx = *opaque {};
+        pub const RouterGetErrorString = *opaque {};
     } else struct {
         pub const TraceRegisterEx = @compileError("'TraceRegisterEx' requires that UNICODE be set to true or false in the root module");
         pub const TraceDeregister = @compileError("'TraceDeregister' requires that UNICODE be set to true or false in the root module");
@@ -7847,11 +7809,11 @@ const SID_NAME_USE = @import("../security.zig").SID_NAME_USE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "WORKERFUNCTION")) { _ = WORKERFUNCTION; }
+    if (@hasDecl(@This(), "WORKERFUNCTION")) {
+        _ = WORKERFUNCTION;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

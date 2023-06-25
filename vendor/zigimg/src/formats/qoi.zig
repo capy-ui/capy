@@ -93,8 +93,8 @@ pub const Header = extern struct {
         std.mem.copy(u8, result[0..4], &correct_magic);
         std.mem.writeIntBig(u32, result[4..8], header.width);
         std.mem.writeIntBig(u32, result[8..12], header.height);
-        result[12] = @enumToInt(header.format);
-        result[13] = @enumToInt(header.colorspace);
+        result[12] = @intFromEnum(header.format);
+        result[13] = @intFromEnum(header.colorspace);
         return result;
     }
 

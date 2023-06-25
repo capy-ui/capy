@@ -5,19 +5,19 @@
 pub const SIDESHOW_ENDPOINT_SIMPLE_CONTENT_FORMAT = Guid.initString("a9a5353f-2d4b-47ce-93ee-759f3a7dda4f");
 pub const SIDESHOW_ENDPOINT_ICAL = Guid.initString("4dff36b5-9dde-4f76-9a2a-96435047063d");
 pub const SIDESHOW_CAPABILITY_DEVICE_PROPERTIES = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99");
-pub const SIDESHOW_CAPABILITY_DEVICE_ID = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 1 };
-pub const SIDESHOW_CAPABILITY_SCREEN_TYPE = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 2 };
-pub const SIDESHOW_CAPABILITY_SCREEN_WIDTH = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 3 };
-pub const SIDESHOW_CAPABILITY_SCREEN_HEIGHT = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 4 };
-pub const SIDESHOW_CAPABILITY_COLOR_DEPTH = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 5 };
-pub const SIDESHOW_CAPABILITY_COLOR_TYPE = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 6 };
-pub const SIDESHOW_CAPABILITY_DATA_CACHE = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 7 };
-pub const SIDESHOW_CAPABILITY_SUPPORTED_LANGUAGES = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 8 };
-pub const SIDESHOW_CAPABILITY_CURRENT_LANGUAGE = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 9 };
-pub const SIDESHOW_CAPABILITY_SUPPORTED_THEMES = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 10 };
-pub const SIDESHOW_CAPABILITY_SUPPORTED_IMAGE_FORMATS = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 14 };
-pub const SIDESHOW_CAPABILITY_CLIENT_AREA_WIDTH = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 15 };
-pub const SIDESHOW_CAPABILITY_CLIENT_AREA_HEIGHT = PROPERTYKEY { .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 16 };
+pub const SIDESHOW_CAPABILITY_DEVICE_ID = PROPERTYKEY{ .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 1 };
+pub const SIDESHOW_CAPABILITY_SCREEN_TYPE = PROPERTYKEY{ .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 2 };
+pub const SIDESHOW_CAPABILITY_SCREEN_WIDTH = PROPERTYKEY{ .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 3 };
+pub const SIDESHOW_CAPABILITY_SCREEN_HEIGHT = PROPERTYKEY{ .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 4 };
+pub const SIDESHOW_CAPABILITY_COLOR_DEPTH = PROPERTYKEY{ .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 5 };
+pub const SIDESHOW_CAPABILITY_COLOR_TYPE = PROPERTYKEY{ .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 6 };
+pub const SIDESHOW_CAPABILITY_DATA_CACHE = PROPERTYKEY{ .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 7 };
+pub const SIDESHOW_CAPABILITY_SUPPORTED_LANGUAGES = PROPERTYKEY{ .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 8 };
+pub const SIDESHOW_CAPABILITY_CURRENT_LANGUAGE = PROPERTYKEY{ .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 9 };
+pub const SIDESHOW_CAPABILITY_SUPPORTED_THEMES = PROPERTYKEY{ .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 10 };
+pub const SIDESHOW_CAPABILITY_SUPPORTED_IMAGE_FORMATS = PROPERTYKEY{ .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 14 };
+pub const SIDESHOW_CAPABILITY_CLIENT_AREA_WIDTH = PROPERTYKEY{ .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 15 };
+pub const SIDESHOW_CAPABILITY_CLIENT_AREA_HEIGHT = PROPERTYKEY{ .fmtid = Guid.initString("8abc88a8-857b-4ad7-a35a-b5942f492b99"), .pid = 16 };
 pub const GUID_DEVINTERFACE_SIDESHOW = Guid.initString("152e5811-feb9-4b00-90f4-d32947ae1681");
 pub const SIDESHOW_CONTENT_MISSING_EVENT = Guid.initString("5007fba8-d313-439f-bea2-a50201d3e9a8");
 pub const SIDESHOW_APPLICATION_EVENT = Guid.initString("4cb572fa-1d3b-49b3-a17a-2e6bff052854");
@@ -50,13 +50,13 @@ pub const ISideShowSession = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         RegisterContent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowSession,
                 in_applicationId: ?*Guid,
                 in_endpointId: ?*Guid,
                 out_ppIContent: ?*?*ISideShowContentManager,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowSession,
                 in_applicationId: ?*Guid,
                 in_endpointId: ?*Guid,
@@ -64,12 +64,12 @@ pub const ISideShowSession = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RegisterNotifications: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowSession,
                 in_applicationId: ?*Guid,
                 out_ppINotification: ?*?*ISideShowNotificationManager,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowSession,
                 in_applicationId: ?*Guid,
                 out_ppINotification: ?*?*ISideShowNotificationManager,
@@ -77,17 +77,19 @@ pub const ISideShowSession = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowSession_RegisterContent(self: *const T, in_applicationId: ?*Guid, in_endpointId: ?*Guid, out_ppIContent: ?*?*ISideShowContentManager) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowSession.VTable, self.vtable).RegisterContent(@ptrCast(*const ISideShowSession, self), in_applicationId, in_endpointId, out_ppIContent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowSession_RegisterNotifications(self: *const T, in_applicationId: ?*Guid, out_ppINotification: ?*?*ISideShowNotificationManager) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowSession.VTable, self.vtable).RegisterNotifications(@ptrCast(*const ISideShowSession, self), in_applicationId, out_ppINotification);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowSession_RegisterContent(self: *const T, in_applicationId: ?*Guid, in_endpointId: ?*Guid, out_ppIContent: ?*?*ISideShowContentManager) HRESULT {
+                return @ptrCast(*const ISideShowSession.VTable, self.vtable).RegisterContent(@ptrCast(*const ISideShowSession, self), in_applicationId, in_endpointId, out_ppIContent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowSession_RegisterNotifications(self: *const T, in_applicationId: ?*Guid, out_ppINotification: ?*?*ISideShowNotificationManager) HRESULT {
+                return @ptrCast(*const ISideShowSession.VTable, self.vtable).RegisterNotifications(@ptrCast(*const ISideShowSession, self), in_applicationId, out_ppINotification);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -97,50 +99,52 @@ pub const ISideShowNotificationManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Show: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowNotificationManager,
                 in_pINotification: ?*ISideShowNotification,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowNotificationManager,
                 in_pINotification: ?*ISideShowNotification,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Revoke: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowNotificationManager,
                 in_notificationId: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowNotificationManager,
                 in_notificationId: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RevokeAll: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowNotificationManager,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowNotificationManager,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowNotificationManager_Show(self: *const T, in_pINotification: ?*ISideShowNotification) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowNotificationManager.VTable, self.vtable).Show(@ptrCast(*const ISideShowNotificationManager, self), in_pINotification);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowNotificationManager_Revoke(self: *const T, in_notificationId: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowNotificationManager.VTable, self.vtable).Revoke(@ptrCast(*const ISideShowNotificationManager, self), in_notificationId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowNotificationManager_RevokeAll(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowNotificationManager.VTable, self.vtable).RevokeAll(@ptrCast(*const ISideShowNotificationManager, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowNotificationManager_Show(self: *const T, in_pINotification: ?*ISideShowNotification) HRESULT {
+                return @ptrCast(*const ISideShowNotificationManager.VTable, self.vtable).Show(@ptrCast(*const ISideShowNotificationManager, self), in_pINotification);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowNotificationManager_Revoke(self: *const T, in_notificationId: u32) HRESULT {
+                return @ptrCast(*const ISideShowNotificationManager.VTable, self.vtable).Revoke(@ptrCast(*const ISideShowNotificationManager, self), in_notificationId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowNotificationManager_RevokeAll(self: *const T) HRESULT {
+                return @ptrCast(*const ISideShowNotificationManager.VTable, self.vtable).RevokeAll(@ptrCast(*const ISideShowNotificationManager, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -152,12 +156,12 @@ pub const ISideShowNotification = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NotificationId: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowNotification,
                 out_pNotificationId: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowNotification,
                 out_pNotificationId: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -165,12 +169,12 @@ pub const ISideShowNotification = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NotificationId: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowNotification,
                 in_notificationId: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowNotification,
                 in_notificationId: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -178,12 +182,12 @@ pub const ISideShowNotification = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Title: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowNotification,
                 out_ppwszTitle: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowNotification,
                 out_ppwszTitle: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -191,12 +195,12 @@ pub const ISideShowNotification = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Title: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowNotification,
                 in_pwszTitle: ?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowNotification,
                 in_pwszTitle: ?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -204,12 +208,12 @@ pub const ISideShowNotification = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Message: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowNotification,
                 out_ppwszMessage: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowNotification,
                 out_ppwszMessage: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -217,12 +221,12 @@ pub const ISideShowNotification = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Message: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowNotification,
                 in_pwszMessage: ?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowNotification,
                 in_pwszMessage: ?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -230,12 +234,12 @@ pub const ISideShowNotification = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Image: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowNotification,
                 out_phIcon: ?*?HICON,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowNotification,
                 out_phIcon: ?*?HICON,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -243,12 +247,12 @@ pub const ISideShowNotification = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Image: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowNotification,
                 in_hIcon: ?HICON,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowNotification,
                 in_hIcon: ?HICON,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -256,12 +260,12 @@ pub const ISideShowNotification = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExpirationTime: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowNotification,
                 out_pTime: ?*SYSTEMTIME,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowNotification,
                 out_pTime: ?*SYSTEMTIME,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -269,61 +273,63 @@ pub const ISideShowNotification = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ExpirationTime: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowNotification,
                 in_pTime: ?*SYSTEMTIME,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowNotification,
                 in_pTime: ?*SYSTEMTIME,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowNotification_get_NotificationId(self: *const T, out_pNotificationId: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowNotification.VTable, self.vtable).get_NotificationId(@ptrCast(*const ISideShowNotification, self), out_pNotificationId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowNotification_put_NotificationId(self: *const T, in_notificationId: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowNotification.VTable, self.vtable).put_NotificationId(@ptrCast(*const ISideShowNotification, self), in_notificationId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowNotification_get_Title(self: *const T, out_ppwszTitle: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowNotification.VTable, self.vtable).get_Title(@ptrCast(*const ISideShowNotification, self), out_ppwszTitle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowNotification_put_Title(self: *const T, in_pwszTitle: ?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowNotification.VTable, self.vtable).put_Title(@ptrCast(*const ISideShowNotification, self), in_pwszTitle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowNotification_get_Message(self: *const T, out_ppwszMessage: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowNotification.VTable, self.vtable).get_Message(@ptrCast(*const ISideShowNotification, self), out_ppwszMessage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowNotification_put_Message(self: *const T, in_pwszMessage: ?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowNotification.VTable, self.vtable).put_Message(@ptrCast(*const ISideShowNotification, self), in_pwszMessage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowNotification_get_Image(self: *const T, out_phIcon: ?*?HICON) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowNotification.VTable, self.vtable).get_Image(@ptrCast(*const ISideShowNotification, self), out_phIcon);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowNotification_put_Image(self: *const T, in_hIcon: ?HICON) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowNotification.VTable, self.vtable).put_Image(@ptrCast(*const ISideShowNotification, self), in_hIcon);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowNotification_get_ExpirationTime(self: *const T, out_pTime: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowNotification.VTable, self.vtable).get_ExpirationTime(@ptrCast(*const ISideShowNotification, self), out_pTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowNotification_put_ExpirationTime(self: *const T, in_pTime: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowNotification.VTable, self.vtable).put_ExpirationTime(@ptrCast(*const ISideShowNotification, self), in_pTime);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowNotification_get_NotificationId(self: *const T, out_pNotificationId: ?*u32) HRESULT {
+                return @ptrCast(*const ISideShowNotification.VTable, self.vtable).get_NotificationId(@ptrCast(*const ISideShowNotification, self), out_pNotificationId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowNotification_put_NotificationId(self: *const T, in_notificationId: u32) HRESULT {
+                return @ptrCast(*const ISideShowNotification.VTable, self.vtable).put_NotificationId(@ptrCast(*const ISideShowNotification, self), in_notificationId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowNotification_get_Title(self: *const T, out_ppwszTitle: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const ISideShowNotification.VTable, self.vtable).get_Title(@ptrCast(*const ISideShowNotification, self), out_ppwszTitle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowNotification_put_Title(self: *const T, in_pwszTitle: ?PWSTR) HRESULT {
+                return @ptrCast(*const ISideShowNotification.VTable, self.vtable).put_Title(@ptrCast(*const ISideShowNotification, self), in_pwszTitle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowNotification_get_Message(self: *const T, out_ppwszMessage: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const ISideShowNotification.VTable, self.vtable).get_Message(@ptrCast(*const ISideShowNotification, self), out_ppwszMessage);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowNotification_put_Message(self: *const T, in_pwszMessage: ?PWSTR) HRESULT {
+                return @ptrCast(*const ISideShowNotification.VTable, self.vtable).put_Message(@ptrCast(*const ISideShowNotification, self), in_pwszMessage);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowNotification_get_Image(self: *const T, out_phIcon: ?*?HICON) HRESULT {
+                return @ptrCast(*const ISideShowNotification.VTable, self.vtable).get_Image(@ptrCast(*const ISideShowNotification, self), out_phIcon);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowNotification_put_Image(self: *const T, in_hIcon: ?HICON) HRESULT {
+                return @ptrCast(*const ISideShowNotification.VTable, self.vtable).put_Image(@ptrCast(*const ISideShowNotification, self), in_hIcon);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowNotification_get_ExpirationTime(self: *const T, out_pTime: ?*SYSTEMTIME) HRESULT {
+                return @ptrCast(*const ISideShowNotification.VTable, self.vtable).get_ExpirationTime(@ptrCast(*const ISideShowNotification, self), out_pTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowNotification_put_ExpirationTime(self: *const T, in_pTime: ?*SYSTEMTIME) HRESULT {
+                return @ptrCast(*const ISideShowNotification.VTable, self.vtable).put_ExpirationTime(@ptrCast(*const ISideShowNotification, self), in_pTime);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -333,78 +339,80 @@ pub const ISideShowContentManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Add: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowContentManager,
                 in_pIContent: ?*ISideShowContent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowContentManager,
                 in_pIContent: ?*ISideShowContent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Remove: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowContentManager,
                 in_contentId: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowContentManager,
                 in_contentId: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RemoveAll: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowContentManager,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowContentManager,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetEventSink: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowContentManager,
                 in_pIEvents: ?*ISideShowEvents,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowContentManager,
                 in_pIEvents: ?*ISideShowEvents,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDeviceCapabilities: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowContentManager,
                 out_ppCollection: ?*?*ISideShowCapabilitiesCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowContentManager,
                 out_ppCollection: ?*?*ISideShowCapabilitiesCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowContentManager_Add(self: *const T, in_pIContent: ?*ISideShowContent) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowContentManager.VTable, self.vtable).Add(@ptrCast(*const ISideShowContentManager, self), in_pIContent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowContentManager_Remove(self: *const T, in_contentId: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowContentManager.VTable, self.vtable).Remove(@ptrCast(*const ISideShowContentManager, self), in_contentId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowContentManager_RemoveAll(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowContentManager.VTable, self.vtable).RemoveAll(@ptrCast(*const ISideShowContentManager, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowContentManager_SetEventSink(self: *const T, in_pIEvents: ?*ISideShowEvents) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowContentManager.VTable, self.vtable).SetEventSink(@ptrCast(*const ISideShowContentManager, self), in_pIEvents);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowContentManager_GetDeviceCapabilities(self: *const T, out_ppCollection: ?*?*ISideShowCapabilitiesCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowContentManager.VTable, self.vtable).GetDeviceCapabilities(@ptrCast(*const ISideShowContentManager, self), out_ppCollection);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowContentManager_Add(self: *const T, in_pIContent: ?*ISideShowContent) HRESULT {
+                return @ptrCast(*const ISideShowContentManager.VTable, self.vtable).Add(@ptrCast(*const ISideShowContentManager, self), in_pIContent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowContentManager_Remove(self: *const T, in_contentId: u32) HRESULT {
+                return @ptrCast(*const ISideShowContentManager.VTable, self.vtable).Remove(@ptrCast(*const ISideShowContentManager, self), in_contentId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowContentManager_RemoveAll(self: *const T) HRESULT {
+                return @ptrCast(*const ISideShowContentManager.VTable, self.vtable).RemoveAll(@ptrCast(*const ISideShowContentManager, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowContentManager_SetEventSink(self: *const T, in_pIEvents: ?*ISideShowEvents) HRESULT {
+                return @ptrCast(*const ISideShowContentManager.VTable, self.vtable).SetEventSink(@ptrCast(*const ISideShowContentManager, self), in_pIEvents);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowContentManager_GetDeviceCapabilities(self: *const T, out_ppCollection: ?*?*ISideShowCapabilitiesCollection) HRESULT {
+                return @ptrCast(*const ISideShowContentManager.VTable, self.vtable).GetDeviceCapabilities(@ptrCast(*const ISideShowContentManager, self), out_ppCollection);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -414,13 +422,13 @@ pub const ISideShowContent = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetContent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowContent,
                 in_pICapabilities: ?*ISideShowCapabilities,
                 out_pdwSize: ?*u32,
                 out_ppbData: ?[*]?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowContent,
                 in_pICapabilities: ?*ISideShowCapabilities,
                 out_pdwSize: ?*u32,
@@ -430,12 +438,12 @@ pub const ISideShowContent = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ContentId: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowContent,
                 out_pcontentId: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowContent,
                 out_pcontentId: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -443,33 +451,35 @@ pub const ISideShowContent = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DifferentiateContent: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowContent,
                 out_pfDifferentiateContent: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowContent,
                 out_pfDifferentiateContent: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowContent_GetContent(self: *const T, in_pICapabilities: ?*ISideShowCapabilities, out_pdwSize: ?*u32, out_ppbData: ?[*]?*u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowContent.VTable, self.vtable).GetContent(@ptrCast(*const ISideShowContent, self), in_pICapabilities, out_pdwSize, out_ppbData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowContent_get_ContentId(self: *const T, out_pcontentId: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowContent.VTable, self.vtable).get_ContentId(@ptrCast(*const ISideShowContent, self), out_pcontentId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowContent_get_DifferentiateContent(self: *const T, out_pfDifferentiateContent: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowContent.VTable, self.vtable).get_DifferentiateContent(@ptrCast(*const ISideShowContent, self), out_pfDifferentiateContent);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowContent_GetContent(self: *const T, in_pICapabilities: ?*ISideShowCapabilities, out_pdwSize: ?*u32, out_ppbData: ?[*]?*u8) HRESULT {
+                return @ptrCast(*const ISideShowContent.VTable, self.vtable).GetContent(@ptrCast(*const ISideShowContent, self), in_pICapabilities, out_pdwSize, out_ppbData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowContent_get_ContentId(self: *const T, out_pcontentId: ?*u32) HRESULT {
+                return @ptrCast(*const ISideShowContent.VTable, self.vtable).get_ContentId(@ptrCast(*const ISideShowContent, self), out_pcontentId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowContent_get_DifferentiateContent(self: *const T, out_pfDifferentiateContent: ?*BOOL) HRESULT {
+                return @ptrCast(*const ISideShowContent.VTable, self.vtable).get_DifferentiateContent(@ptrCast(*const ISideShowContent, self), out_pfDifferentiateContent);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -479,26 +489,26 @@ pub const ISideShowEvents = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ContentMissing: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowEvents,
                 in_contentId: u32,
                 out_ppIContent: ?*?*ISideShowContent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowEvents,
                 in_contentId: u32,
                 out_ppIContent: ?*?*ISideShowContent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ApplicationEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowEvents,
                 in_pICapabilities: ?*ISideShowCapabilities,
                 in_dwEventId: u32,
                 in_dwEventSize: u32,
                 in_pbEventData: ?[*:0]const u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowEvents,
                 in_pICapabilities: ?*ISideShowCapabilities,
                 in_dwEventId: u32,
@@ -507,46 +517,48 @@ pub const ISideShowEvents = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DeviceAdded: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowEvents,
                 in_pIDevice: ?*ISideShowCapabilities,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowEvents,
                 in_pIDevice: ?*ISideShowCapabilities,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DeviceRemoved: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowEvents,
                 in_pIDevice: ?*ISideShowCapabilities,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowEvents,
                 in_pIDevice: ?*ISideShowCapabilities,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowEvents_ContentMissing(self: *const T, in_contentId: u32, out_ppIContent: ?*?*ISideShowContent) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowEvents.VTable, self.vtable).ContentMissing(@ptrCast(*const ISideShowEvents, self), in_contentId, out_ppIContent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowEvents_ApplicationEvent(self: *const T, in_pICapabilities: ?*ISideShowCapabilities, in_dwEventId: u32, in_dwEventSize: u32, in_pbEventData: ?[*:0]const u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowEvents.VTable, self.vtable).ApplicationEvent(@ptrCast(*const ISideShowEvents, self), in_pICapabilities, in_dwEventId, in_dwEventSize, in_pbEventData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowEvents_DeviceAdded(self: *const T, in_pIDevice: ?*ISideShowCapabilities) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowEvents.VTable, self.vtable).DeviceAdded(@ptrCast(*const ISideShowEvents, self), in_pIDevice);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowEvents_DeviceRemoved(self: *const T, in_pIDevice: ?*ISideShowCapabilities) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowEvents.VTable, self.vtable).DeviceRemoved(@ptrCast(*const ISideShowEvents, self), in_pIDevice);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowEvents_ContentMissing(self: *const T, in_contentId: u32, out_ppIContent: ?*?*ISideShowContent) HRESULT {
+                return @ptrCast(*const ISideShowEvents.VTable, self.vtable).ContentMissing(@ptrCast(*const ISideShowEvents, self), in_contentId, out_ppIContent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowEvents_ApplicationEvent(self: *const T, in_pICapabilities: ?*ISideShowCapabilities, in_dwEventId: u32, in_dwEventSize: u32, in_pbEventData: ?[*:0]const u8) HRESULT {
+                return @ptrCast(*const ISideShowEvents.VTable, self.vtable).ApplicationEvent(@ptrCast(*const ISideShowEvents, self), in_pICapabilities, in_dwEventId, in_dwEventSize, in_pbEventData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowEvents_DeviceAdded(self: *const T, in_pIDevice: ?*ISideShowCapabilities) HRESULT {
+                return @ptrCast(*const ISideShowEvents.VTable, self.vtable).DeviceAdded(@ptrCast(*const ISideShowEvents, self), in_pIDevice);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowEvents_DeviceRemoved(self: *const T, in_pIDevice: ?*ISideShowCapabilities) HRESULT {
+                return @ptrCast(*const ISideShowEvents.VTable, self.vtable).DeviceRemoved(@ptrCast(*const ISideShowEvents, self), in_pIDevice);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -556,12 +568,12 @@ pub const ISideShowCapabilities = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCapability: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowCapabilities,
                 in_keyCapability: ?*const PROPERTYKEY,
                 inout_pValue: ?*PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowCapabilities,
                 in_keyCapability: ?*const PROPERTYKEY,
                 inout_pValue: ?*PROPVARIANT,
@@ -569,13 +581,15 @@ pub const ISideShowCapabilities = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowCapabilities_GetCapability(self: *const T, in_keyCapability: ?*const PROPERTYKEY, inout_pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowCapabilities.VTable, self.vtable).GetCapability(@ptrCast(*const ISideShowCapabilities, self), in_keyCapability, inout_pValue);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowCapabilities_GetCapability(self: *const T, in_keyCapability: ?*const PROPERTYKEY, inout_pValue: ?*PROPVARIANT) HRESULT {
+                return @ptrCast(*const ISideShowCapabilities.VTable, self.vtable).GetCapability(@ptrCast(*const ISideShowCapabilities, self), in_keyCapability, inout_pValue);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -585,22 +599,22 @@ pub const ISideShowCapabilitiesCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowCapabilitiesCollection,
                 out_pdwCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowCapabilitiesCollection,
                 out_pdwCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowCapabilitiesCollection,
                 in_dwIndex: u32,
                 out_ppCapabilities: ?*?*ISideShowCapabilities,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowCapabilitiesCollection,
                 in_dwIndex: u32,
                 out_ppCapabilities: ?*?*ISideShowCapabilities,
@@ -608,17 +622,19 @@ pub const ISideShowCapabilitiesCollection = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowCapabilitiesCollection_GetCount(self: *const T, out_pdwCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowCapabilitiesCollection.VTable, self.vtable).GetCount(@ptrCast(*const ISideShowCapabilitiesCollection, self), out_pdwCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowCapabilitiesCollection_GetAt(self: *const T, in_dwIndex: u32, out_ppCapabilities: ?*?*ISideShowCapabilities) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowCapabilitiesCollection.VTable, self.vtable).GetAt(@ptrCast(*const ISideShowCapabilitiesCollection, self), in_dwIndex, out_ppCapabilities);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowCapabilitiesCollection_GetCount(self: *const T, out_pdwCount: ?*u32) HRESULT {
+                return @ptrCast(*const ISideShowCapabilitiesCollection.VTable, self.vtable).GetCount(@ptrCast(*const ISideShowCapabilitiesCollection, self), out_pdwCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowCapabilitiesCollection_GetAt(self: *const T, in_dwIndex: u32, out_ppCapabilities: ?*?*ISideShowCapabilities) HRESULT {
+                return @ptrCast(*const ISideShowCapabilitiesCollection.VTable, self.vtable).GetAt(@ptrCast(*const ISideShowCapabilitiesCollection, self), in_dwIndex, out_ppCapabilities);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -628,12 +644,12 @@ pub const ISideShowBulkCapabilities = extern struct {
     pub const VTable = extern struct {
         base: ISideShowCapabilities.VTable,
         GetCapabilities: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowBulkCapabilities,
                 in_keyCollection: ?*ISideShowKeyCollection,
                 inout_pValues: ?*?*ISideShowPropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowBulkCapabilities,
                 in_keyCollection: ?*ISideShowKeyCollection,
                 inout_pValues: ?*?*ISideShowPropVariantCollection,
@@ -641,13 +657,15 @@ pub const ISideShowBulkCapabilities = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISideShowCapabilities.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowBulkCapabilities_GetCapabilities(self: *const T, in_keyCollection: ?*ISideShowKeyCollection, inout_pValues: ?*?*ISideShowPropVariantCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowBulkCapabilities.VTable, self.vtable).GetCapabilities(@ptrCast(*const ISideShowBulkCapabilities, self), in_keyCollection, inout_pValues);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace ISideShowCapabilities.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowBulkCapabilities_GetCapabilities(self: *const T, in_keyCollection: ?*ISideShowKeyCollection, inout_pValues: ?*?*ISideShowPropVariantCollection) HRESULT {
+                return @ptrCast(*const ISideShowBulkCapabilities.VTable, self.vtable).GetCapabilities(@ptrCast(*const ISideShowBulkCapabilities, self), in_keyCollection, inout_pValues);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -657,80 +675,82 @@ pub const ISideShowKeyCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Add: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowKeyCollection,
                 Key: ?*const PROPERTYKEY,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowKeyCollection,
                 Key: ?*const PROPERTYKEY,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clear: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowKeyCollection,
                 dwIndex: u32,
                 pKey: ?*PROPERTYKEY,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowKeyCollection,
                 dwIndex: u32,
                 pKey: ?*PROPERTYKEY,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowKeyCollection,
                 pcElems: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowKeyCollection,
                 pcElems: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RemoveAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowKeyCollection,
                 dwIndex: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowKeyCollection,
                 dwIndex: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowKeyCollection_Add(self: *const T, Key: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowKeyCollection.VTable, self.vtable).Add(@ptrCast(*const ISideShowKeyCollection, self), Key);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowKeyCollection_Clear(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowKeyCollection.VTable, self.vtable).Clear(@ptrCast(*const ISideShowKeyCollection, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowKeyCollection_GetAt(self: *const T, dwIndex: u32, pKey: ?*PROPERTYKEY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowKeyCollection.VTable, self.vtable).GetAt(@ptrCast(*const ISideShowKeyCollection, self), dwIndex, pKey);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowKeyCollection_GetCount(self: *const T, pcElems: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowKeyCollection.VTable, self.vtable).GetCount(@ptrCast(*const ISideShowKeyCollection, self), pcElems);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowKeyCollection_RemoveAt(self: *const T, dwIndex: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowKeyCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const ISideShowKeyCollection, self), dwIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowKeyCollection_Add(self: *const T, Key: ?*const PROPERTYKEY) HRESULT {
+                return @ptrCast(*const ISideShowKeyCollection.VTable, self.vtable).Add(@ptrCast(*const ISideShowKeyCollection, self), Key);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowKeyCollection_Clear(self: *const T) HRESULT {
+                return @ptrCast(*const ISideShowKeyCollection.VTable, self.vtable).Clear(@ptrCast(*const ISideShowKeyCollection, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowKeyCollection_GetAt(self: *const T, dwIndex: u32, pKey: ?*PROPERTYKEY) HRESULT {
+                return @ptrCast(*const ISideShowKeyCollection.VTable, self.vtable).GetAt(@ptrCast(*const ISideShowKeyCollection, self), dwIndex, pKey);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowKeyCollection_GetCount(self: *const T, pcElems: ?*u32) HRESULT {
+                return @ptrCast(*const ISideShowKeyCollection.VTable, self.vtable).GetCount(@ptrCast(*const ISideShowKeyCollection, self), pcElems);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowKeyCollection_RemoveAt(self: *const T, dwIndex: u32) HRESULT {
+                return @ptrCast(*const ISideShowKeyCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const ISideShowKeyCollection, self), dwIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -740,80 +760,82 @@ pub const ISideShowPropVariantCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Add: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowPropVariantCollection,
                 pValue: ?*const PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowPropVariantCollection,
                 pValue: ?*const PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clear: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowPropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowPropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowPropVariantCollection,
                 dwIndex: u32,
                 pValue: ?*PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowPropVariantCollection,
                 dwIndex: u32,
                 pValue: ?*PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowPropVariantCollection,
                 pcElems: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowPropVariantCollection,
                 pcElems: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RemoveAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISideShowPropVariantCollection,
                 dwIndex: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISideShowPropVariantCollection,
                 dwIndex: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowPropVariantCollection_Add(self: *const T, pValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowPropVariantCollection.VTable, self.vtable).Add(@ptrCast(*const ISideShowPropVariantCollection, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowPropVariantCollection_Clear(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowPropVariantCollection.VTable, self.vtable).Clear(@ptrCast(*const ISideShowPropVariantCollection, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowPropVariantCollection_GetAt(self: *const T, dwIndex: u32, pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowPropVariantCollection.VTable, self.vtable).GetAt(@ptrCast(*const ISideShowPropVariantCollection, self), dwIndex, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowPropVariantCollection_GetCount(self: *const T, pcElems: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowPropVariantCollection.VTable, self.vtable).GetCount(@ptrCast(*const ISideShowPropVariantCollection, self), pcElems);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowPropVariantCollection_RemoveAt(self: *const T, dwIndex: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISideShowPropVariantCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const ISideShowPropVariantCollection, self), dwIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowPropVariantCollection_Add(self: *const T, pValue: ?*const PROPVARIANT) HRESULT {
+                return @ptrCast(*const ISideShowPropVariantCollection.VTable, self.vtable).Add(@ptrCast(*const ISideShowPropVariantCollection, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowPropVariantCollection_Clear(self: *const T) HRESULT {
+                return @ptrCast(*const ISideShowPropVariantCollection.VTable, self.vtable).Clear(@ptrCast(*const ISideShowPropVariantCollection, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowPropVariantCollection_GetAt(self: *const T, dwIndex: u32, pValue: ?*PROPVARIANT) HRESULT {
+                return @ptrCast(*const ISideShowPropVariantCollection.VTable, self.vtable).GetAt(@ptrCast(*const ISideShowPropVariantCollection, self), dwIndex, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowPropVariantCollection_GetCount(self: *const T, pcElems: ?*u32) HRESULT {
+                return @ptrCast(*const ISideShowPropVariantCollection.VTable, self.vtable).GetCount(@ptrCast(*const ISideShowPropVariantCollection, self), pcElems);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISideShowPropVariantCollection_RemoveAt(self: *const T, dwIndex: u32) HRESULT {
+                return @ptrCast(*const ISideShowPropVariantCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const ISideShowPropVariantCollection, self), dwIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -928,7 +950,6 @@ pub const EVENT_DATA_HEADER = extern struct {
     cbEventDataSid: u32 align(1),
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
 //--------------------------------------------------------------------------------
@@ -938,13 +959,9 @@ pub const EVENT_DATA_HEADER = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (9)
@@ -960,9 +977,7 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

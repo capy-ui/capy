@@ -198,18 +198,7 @@ pub const ENUM_SERVICE_TYPE = enum(u32) {
         USER_OWN_PROCESS: u1 = 0,
         USER_SHARE_PROCESS: u1 = 0,
     }) ENUM_SERVICE_TYPE {
-        return @intToEnum(ENUM_SERVICE_TYPE,
-              (if (o.DRIVER == 1) @enumToInt(ENUM_SERVICE_TYPE.DRIVER) else 0)
-            | (if (o.FILE_SYSTEM_DRIVER_ == 1) @enumToInt(ENUM_SERVICE_TYPE.FILE_SYSTEM_DRIVER_) else 0)
-            | (if (o.KERNEL_DRIVER == 1) @enumToInt(ENUM_SERVICE_TYPE.KERNEL_DRIVER) else 0)
-            | (if (o.WIN32 == 1) @enumToInt(ENUM_SERVICE_TYPE.WIN32) else 0)
-            | (if (o.WIN32_OWN_PROCESS_ == 1) @enumToInt(ENUM_SERVICE_TYPE.WIN32_OWN_PROCESS_) else 0)
-            | (if (o.WIN32_SHARE_PROCESS == 1) @enumToInt(ENUM_SERVICE_TYPE.WIN32_SHARE_PROCESS) else 0)
-            | (if (o.ADAPTER == 1) @enumToInt(ENUM_SERVICE_TYPE.ADAPTER) else 0)
-            | (if (o.RECOGNIZER_DRIVER == 1) @enumToInt(ENUM_SERVICE_TYPE.RECOGNIZER_DRIVER) else 0)
-            | (if (o.USER_OWN_PROCESS == 1) @enumToInt(ENUM_SERVICE_TYPE.USER_OWN_PROCESS) else 0)
-            | (if (o.USER_SHARE_PROCESS == 1) @enumToInt(ENUM_SERVICE_TYPE.USER_SHARE_PROCESS) else 0)
-        );
+        return @enumFromInt(ENUM_SERVICE_TYPE, (if (o.DRIVER == 1) @intFromEnum(ENUM_SERVICE_TYPE.DRIVER) else 0) | (if (o.FILE_SYSTEM_DRIVER_ == 1) @intFromEnum(ENUM_SERVICE_TYPE.FILE_SYSTEM_DRIVER_) else 0) | (if (o.KERNEL_DRIVER == 1) @intFromEnum(ENUM_SERVICE_TYPE.KERNEL_DRIVER) else 0) | (if (o.WIN32 == 1) @intFromEnum(ENUM_SERVICE_TYPE.WIN32) else 0) | (if (o.WIN32_OWN_PROCESS_ == 1) @intFromEnum(ENUM_SERVICE_TYPE.WIN32_OWN_PROCESS_) else 0) | (if (o.WIN32_SHARE_PROCESS == 1) @intFromEnum(ENUM_SERVICE_TYPE.WIN32_SHARE_PROCESS) else 0) | (if (o.ADAPTER == 1) @intFromEnum(ENUM_SERVICE_TYPE.ADAPTER) else 0) | (if (o.RECOGNIZER_DRIVER == 1) @intFromEnum(ENUM_SERVICE_TYPE.RECOGNIZER_DRIVER) else 0) | (if (o.USER_OWN_PROCESS == 1) @intFromEnum(ENUM_SERVICE_TYPE.USER_OWN_PROCESS) else 0) | (if (o.USER_SHARE_PROCESS == 1) @intFromEnum(ENUM_SERVICE_TYPE.USER_SHARE_PROCESS) else 0));
     }
 };
 pub const SERVICE_DRIVER = ENUM_SERVICE_TYPE.DRIVER;
@@ -262,18 +251,7 @@ pub const SERVICE_NOTIFY = enum(u32) {
         STOP_PENDING: u1 = 0,
         STOPPED: u1 = 0,
     }) SERVICE_NOTIFY {
-        return @intToEnum(SERVICE_NOTIFY,
-              (if (o.CREATED == 1) @enumToInt(SERVICE_NOTIFY.CREATED) else 0)
-            | (if (o.CONTINUE_PENDING == 1) @enumToInt(SERVICE_NOTIFY.CONTINUE_PENDING) else 0)
-            | (if (o.DELETE_PENDING == 1) @enumToInt(SERVICE_NOTIFY.DELETE_PENDING) else 0)
-            | (if (o.DELETED == 1) @enumToInt(SERVICE_NOTIFY.DELETED) else 0)
-            | (if (o.PAUSE_PENDING == 1) @enumToInt(SERVICE_NOTIFY.PAUSE_PENDING) else 0)
-            | (if (o.PAUSED == 1) @enumToInt(SERVICE_NOTIFY.PAUSED) else 0)
-            | (if (o.RUNNING == 1) @enumToInt(SERVICE_NOTIFY.RUNNING) else 0)
-            | (if (o.START_PENDING == 1) @enumToInt(SERVICE_NOTIFY.START_PENDING) else 0)
-            | (if (o.STOP_PENDING == 1) @enumToInt(SERVICE_NOTIFY.STOP_PENDING) else 0)
-            | (if (o.STOPPED == 1) @enumToInt(SERVICE_NOTIFY.STOPPED) else 0)
-        );
+        return @enumFromInt(SERVICE_NOTIFY, (if (o.CREATED == 1) @intFromEnum(SERVICE_NOTIFY.CREATED) else 0) | (if (o.CONTINUE_PENDING == 1) @intFromEnum(SERVICE_NOTIFY.CONTINUE_PENDING) else 0) | (if (o.DELETE_PENDING == 1) @intFromEnum(SERVICE_NOTIFY.DELETE_PENDING) else 0) | (if (o.DELETED == 1) @intFromEnum(SERVICE_NOTIFY.DELETED) else 0) | (if (o.PAUSE_PENDING == 1) @intFromEnum(SERVICE_NOTIFY.PAUSE_PENDING) else 0) | (if (o.PAUSED == 1) @intFromEnum(SERVICE_NOTIFY.PAUSED) else 0) | (if (o.RUNNING == 1) @intFromEnum(SERVICE_NOTIFY.RUNNING) else 0) | (if (o.START_PENDING == 1) @intFromEnum(SERVICE_NOTIFY.START_PENDING) else 0) | (if (o.STOP_PENDING == 1) @intFromEnum(SERVICE_NOTIFY.STOP_PENDING) else 0) | (if (o.STOPPED == 1) @intFromEnum(SERVICE_NOTIFY.STOPPED) else 0));
     }
 };
 pub const SERVICE_NOTIFY_CREATED = SERVICE_NOTIFY.CREATED;
@@ -557,48 +535,48 @@ pub const QUERY_SERVICE_CONFIGW = extern struct {
 };
 
 pub const SERVICE_MAIN_FUNCTIONW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwNumServicesArgs: u32,
         lpServiceArgVectors: ?*?PWSTR,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         dwNumServicesArgs: u32,
         lpServiceArgVectors: ?*?PWSTR,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const SERVICE_MAIN_FUNCTIONA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwNumServicesArgs: u32,
         lpServiceArgVectors: ?*?*i8,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         dwNumServicesArgs: u32,
         lpServiceArgVectors: ?*?*i8,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const LPSERVICE_MAIN_FUNCTIONW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwNumServicesArgs: u32,
         lpServiceArgVectors: ?*?PWSTR,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         dwNumServicesArgs: u32,
         lpServiceArgVectors: ?*?PWSTR,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const LPSERVICE_MAIN_FUNCTIONA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwNumServicesArgs: u32,
         lpServiceArgVectors: ?*?PSTR,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         dwNumServicesArgs: u32,
         lpServiceArgVectors: ?*?PSTR,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const SERVICE_TABLE_ENTRYA = extern struct {
     lpServiceName: ?PSTR,
@@ -611,61 +589,61 @@ pub const SERVICE_TABLE_ENTRYW = extern struct {
 };
 
 pub const HANDLER_FUNCTION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwControl: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         dwControl: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const HANDLER_FUNCTION_EX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwControl: u32,
         dwEventType: u32,
         lpEventData: ?*anyopaque,
         lpContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         dwControl: u32,
         dwEventType: u32,
         lpEventData: ?*anyopaque,
         lpContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const LPHANDLER_FUNCTION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwControl: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         dwControl: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const LPHANDLER_FUNCTION_EX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwControl: u32,
         dwEventType: u32,
         lpEventData: ?*anyopaque,
         lpContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         dwControl: u32,
         dwEventType: u32,
         lpEventData: ?*anyopaque,
         lpContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PFN_SC_NOTIFY_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pParameter: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         pParameter: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const SERVICE_NOTIFY_1 = extern struct {
     dwVersion: u32,
@@ -721,15 +699,15 @@ pub const SC_EVENT_PROPERTY_CHANGE = SC_EVENT_TYPE.PROPERTY_CHANGE;
 pub const SC_EVENT_STATUS_CHANGE = SC_EVENT_TYPE.STATUS_CHANGE;
 
 pub const PSC_NOTIFICATION_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwNotify: u32,
         pCallbackContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         dwNotify: u32,
         pCallbackContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const _SC_NOTIFICATION_REGISTRATION = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -760,7 +738,6 @@ pub const SERVICE_SHARED_DIRECTORY_TYPE = enum(i32) {
     e = 0,
 };
 pub const ServiceSharedDirectoryPersistentState = SERVICE_SHARED_DIRECTORY_TYPE.e;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (56)
@@ -1242,7 +1219,6 @@ pub extern "api-ms-win-service-core-l1-1-5" fn GetSharedServiceDirectory(
     RequiredBufferLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (31)
 //--------------------------------------------------------------------------------
@@ -1315,37 +1291,37 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const ControlServiceEx = thismodule.ControlServiceExW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const SERVICE_DESCRIPTION = *opaque{};
-        pub const SERVICE_FAILURE_ACTIONS = *opaque{};
-        pub const SERVICE_REQUIRED_PRIVILEGES_INFO = *opaque{};
-        pub const ENUM_SERVICE_STATUS = *opaque{};
-        pub const ENUM_SERVICE_STATUS_PROCESS = *opaque{};
-        pub const QUERY_SERVICE_LOCK_STATUS = *opaque{};
-        pub const QUERY_SERVICE_CONFIG = *opaque{};
-        pub const SERVICE_MAIN_FUNCTION = *opaque{};
-        pub const LPSERVICE_MAIN_FUNCTION = *opaque{};
-        pub const SERVICE_TABLE_ENTRY = *opaque{};
-        pub const SERVICE_NOTIFY_2 = *opaque{};
-        pub const SERVICE_CONTROL_STATUS_REASON_PARAMS = *opaque{};
-        pub const ChangeServiceConfig = *opaque{};
-        pub const ChangeServiceConfig2 = *opaque{};
-        pub const CreateService = *opaque{};
-        pub const EnumDependentServices = *opaque{};
-        pub const EnumServicesStatus = *opaque{};
-        pub const EnumServicesStatusEx = *opaque{};
-        pub const GetServiceKeyName = *opaque{};
-        pub const GetServiceDisplayName = *opaque{};
-        pub const OpenSCManager = *opaque{};
-        pub const OpenService = *opaque{};
-        pub const QueryServiceConfig = *opaque{};
-        pub const QueryServiceConfig2 = *opaque{};
-        pub const QueryServiceLockStatus = *opaque{};
-        pub const RegisterServiceCtrlHandler = *opaque{};
-        pub const RegisterServiceCtrlHandlerEx = *opaque{};
-        pub const StartServiceCtrlDispatcher = *opaque{};
-        pub const StartService = *opaque{};
-        pub const NotifyServiceStatusChange = *opaque{};
-        pub const ControlServiceEx = *opaque{};
+        pub const SERVICE_DESCRIPTION = *opaque {};
+        pub const SERVICE_FAILURE_ACTIONS = *opaque {};
+        pub const SERVICE_REQUIRED_PRIVILEGES_INFO = *opaque {};
+        pub const ENUM_SERVICE_STATUS = *opaque {};
+        pub const ENUM_SERVICE_STATUS_PROCESS = *opaque {};
+        pub const QUERY_SERVICE_LOCK_STATUS = *opaque {};
+        pub const QUERY_SERVICE_CONFIG = *opaque {};
+        pub const SERVICE_MAIN_FUNCTION = *opaque {};
+        pub const LPSERVICE_MAIN_FUNCTION = *opaque {};
+        pub const SERVICE_TABLE_ENTRY = *opaque {};
+        pub const SERVICE_NOTIFY_2 = *opaque {};
+        pub const SERVICE_CONTROL_STATUS_REASON_PARAMS = *opaque {};
+        pub const ChangeServiceConfig = *opaque {};
+        pub const ChangeServiceConfig2 = *opaque {};
+        pub const CreateService = *opaque {};
+        pub const EnumDependentServices = *opaque {};
+        pub const EnumServicesStatus = *opaque {};
+        pub const EnumServicesStatusEx = *opaque {};
+        pub const GetServiceKeyName = *opaque {};
+        pub const GetServiceDisplayName = *opaque {};
+        pub const OpenSCManager = *opaque {};
+        pub const OpenService = *opaque {};
+        pub const QueryServiceConfig = *opaque {};
+        pub const QueryServiceConfig2 = *opaque {};
+        pub const QueryServiceLockStatus = *opaque {};
+        pub const RegisterServiceCtrlHandler = *opaque {};
+        pub const RegisterServiceCtrlHandlerEx = *opaque {};
+        pub const StartServiceCtrlDispatcher = *opaque {};
+        pub const StartService = *opaque {};
+        pub const NotifyServiceStatusChange = *opaque {};
+        pub const ControlServiceEx = *opaque {};
     } else struct {
         pub const SERVICE_DESCRIPTION = @compileError("'SERVICE_DESCRIPTION' requires that UNICODE be set to true or false in the root module");
         pub const SERVICE_FAILURE_ACTIONS = @compileError("'SERVICE_FAILURE_ACTIONS' requires that UNICODE be set to true or false in the root module");
@@ -1397,20 +1373,38 @@ const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "SERVICE_MAIN_FUNCTIONW")) { _ = SERVICE_MAIN_FUNCTIONW; }
-    if (@hasDecl(@This(), "SERVICE_MAIN_FUNCTIONA")) { _ = SERVICE_MAIN_FUNCTIONA; }
-    if (@hasDecl(@This(), "LPSERVICE_MAIN_FUNCTIONW")) { _ = LPSERVICE_MAIN_FUNCTIONW; }
-    if (@hasDecl(@This(), "LPSERVICE_MAIN_FUNCTIONA")) { _ = LPSERVICE_MAIN_FUNCTIONA; }
-    if (@hasDecl(@This(), "HANDLER_FUNCTION")) { _ = HANDLER_FUNCTION; }
-    if (@hasDecl(@This(), "HANDLER_FUNCTION_EX")) { _ = HANDLER_FUNCTION_EX; }
-    if (@hasDecl(@This(), "LPHANDLER_FUNCTION")) { _ = LPHANDLER_FUNCTION; }
-    if (@hasDecl(@This(), "LPHANDLER_FUNCTION_EX")) { _ = LPHANDLER_FUNCTION_EX; }
-    if (@hasDecl(@This(), "PFN_SC_NOTIFY_CALLBACK")) { _ = PFN_SC_NOTIFY_CALLBACK; }
-    if (@hasDecl(@This(), "PSC_NOTIFICATION_CALLBACK")) { _ = PSC_NOTIFICATION_CALLBACK; }
+    if (@hasDecl(@This(), "SERVICE_MAIN_FUNCTIONW")) {
+        _ = SERVICE_MAIN_FUNCTIONW;
+    }
+    if (@hasDecl(@This(), "SERVICE_MAIN_FUNCTIONA")) {
+        _ = SERVICE_MAIN_FUNCTIONA;
+    }
+    if (@hasDecl(@This(), "LPSERVICE_MAIN_FUNCTIONW")) {
+        _ = LPSERVICE_MAIN_FUNCTIONW;
+    }
+    if (@hasDecl(@This(), "LPSERVICE_MAIN_FUNCTIONA")) {
+        _ = LPSERVICE_MAIN_FUNCTIONA;
+    }
+    if (@hasDecl(@This(), "HANDLER_FUNCTION")) {
+        _ = HANDLER_FUNCTION;
+    }
+    if (@hasDecl(@This(), "HANDLER_FUNCTION_EX")) {
+        _ = HANDLER_FUNCTION_EX;
+    }
+    if (@hasDecl(@This(), "LPHANDLER_FUNCTION")) {
+        _ = LPHANDLER_FUNCTION;
+    }
+    if (@hasDecl(@This(), "LPHANDLER_FUNCTION_EX")) {
+        _ = LPHANDLER_FUNCTION_EX;
+    }
+    if (@hasDecl(@This(), "PFN_SC_NOTIFY_CALLBACK")) {
+        _ = PFN_SC_NOTIFY_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PSC_NOTIFICATION_CALLBACK")) {
+        _ = PSC_NOTIFICATION_CALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

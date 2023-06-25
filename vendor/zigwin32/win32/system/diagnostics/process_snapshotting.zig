@@ -7,9 +7,9 @@ pub const PSS_PERF_RESOLUTION = @as(u32, 1000000);
 //--------------------------------------------------------------------------------
 // Section: Types (23)
 //--------------------------------------------------------------------------------
-pub const HPSS = *opaque{};
+pub const HPSS = *opaque {};
 
-pub const HPSSWALK = *opaque{};
+pub const HPSSWALK = *opaque {};
 
 pub const PSS_HANDLE_FLAGS = enum(u32) {
     NONE = 0,
@@ -25,13 +25,7 @@ pub const PSS_HANDLE_FLAGS = enum(u32) {
         HAVE_BASIC_INFORMATION: u1 = 0,
         HAVE_TYPE_SPECIFIC_INFORMATION: u1 = 0,
     }) PSS_HANDLE_FLAGS {
-        return @intToEnum(PSS_HANDLE_FLAGS,
-              (if (o.NONE == 1) @enumToInt(PSS_HANDLE_FLAGS.NONE) else 0)
-            | (if (o.HAVE_TYPE == 1) @enumToInt(PSS_HANDLE_FLAGS.HAVE_TYPE) else 0)
-            | (if (o.HAVE_NAME == 1) @enumToInt(PSS_HANDLE_FLAGS.HAVE_NAME) else 0)
-            | (if (o.HAVE_BASIC_INFORMATION == 1) @enumToInt(PSS_HANDLE_FLAGS.HAVE_BASIC_INFORMATION) else 0)
-            | (if (o.HAVE_TYPE_SPECIFIC_INFORMATION == 1) @enumToInt(PSS_HANDLE_FLAGS.HAVE_TYPE_SPECIFIC_INFORMATION) else 0)
-        );
+        return @enumFromInt(PSS_HANDLE_FLAGS, (if (o.NONE == 1) @intFromEnum(PSS_HANDLE_FLAGS.NONE) else 0) | (if (o.HAVE_TYPE == 1) @intFromEnum(PSS_HANDLE_FLAGS.HAVE_TYPE) else 0) | (if (o.HAVE_NAME == 1) @intFromEnum(PSS_HANDLE_FLAGS.HAVE_NAME) else 0) | (if (o.HAVE_BASIC_INFORMATION == 1) @intFromEnum(PSS_HANDLE_FLAGS.HAVE_BASIC_INFORMATION) else 0) | (if (o.HAVE_TYPE_SPECIFIC_INFORMATION == 1) @intFromEnum(PSS_HANDLE_FLAGS.HAVE_TYPE_SPECIFIC_INFORMATION) else 0));
     }
 };
 pub const PSS_HANDLE_NONE = PSS_HANDLE_FLAGS.NONE;
@@ -105,30 +99,7 @@ pub const PSS_CAPTURE_FLAGS = enum(u32) {
         REATE_MEASURE_PERFORMANCE: u1 = 0,
         REATE_RELEASE_SECTION: u1 = 0,
     }) PSS_CAPTURE_FLAGS {
-        return @intToEnum(PSS_CAPTURE_FLAGS,
-              (if (o.APTURE_NONE == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_NONE) else 0)
-            | (if (o.APTURE_VA_CLONE == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_VA_CLONE) else 0)
-            | (if (o.APTURE_RESERVED_00000002 == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_RESERVED_00000002) else 0)
-            | (if (o.APTURE_HANDLES == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_HANDLES) else 0)
-            | (if (o.APTURE_HANDLE_NAME_INFORMATION == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_HANDLE_NAME_INFORMATION) else 0)
-            | (if (o.APTURE_HANDLE_BASIC_INFORMATION == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_HANDLE_BASIC_INFORMATION) else 0)
-            | (if (o.APTURE_HANDLE_TYPE_SPECIFIC_INFORMATION == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_HANDLE_TYPE_SPECIFIC_INFORMATION) else 0)
-            | (if (o.APTURE_HANDLE_TRACE == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_HANDLE_TRACE) else 0)
-            | (if (o.APTURE_THREADS == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_THREADS) else 0)
-            | (if (o.APTURE_THREAD_CONTEXT == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_THREAD_CONTEXT) else 0)
-            | (if (o.APTURE_THREAD_CONTEXT_EXTENDED == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_THREAD_CONTEXT_EXTENDED) else 0)
-            | (if (o.APTURE_RESERVED_00000400 == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_RESERVED_00000400) else 0)
-            | (if (o.APTURE_VA_SPACE == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_VA_SPACE) else 0)
-            | (if (o.APTURE_VA_SPACE_SECTION_INFORMATION == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_VA_SPACE_SECTION_INFORMATION) else 0)
-            | (if (o.APTURE_IPT_TRACE == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_IPT_TRACE) else 0)
-            | (if (o.APTURE_RESERVED_00004000 == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_RESERVED_00004000) else 0)
-            | (if (o.REATE_BREAKAWAY_OPTIONAL == 1) @enumToInt(PSS_CAPTURE_FLAGS.REATE_BREAKAWAY_OPTIONAL) else 0)
-            | (if (o.REATE_BREAKAWAY == 1) @enumToInt(PSS_CAPTURE_FLAGS.REATE_BREAKAWAY) else 0)
-            | (if (o.REATE_FORCE_BREAKAWAY == 1) @enumToInt(PSS_CAPTURE_FLAGS.REATE_FORCE_BREAKAWAY) else 0)
-            | (if (o.REATE_USE_VM_ALLOCATIONS == 1) @enumToInt(PSS_CAPTURE_FLAGS.REATE_USE_VM_ALLOCATIONS) else 0)
-            | (if (o.REATE_MEASURE_PERFORMANCE == 1) @enumToInt(PSS_CAPTURE_FLAGS.REATE_MEASURE_PERFORMANCE) else 0)
-            | (if (o.REATE_RELEASE_SECTION == 1) @enumToInt(PSS_CAPTURE_FLAGS.REATE_RELEASE_SECTION) else 0)
-        );
+        return @enumFromInt(PSS_CAPTURE_FLAGS, (if (o.APTURE_NONE == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_NONE) else 0) | (if (o.APTURE_VA_CLONE == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_VA_CLONE) else 0) | (if (o.APTURE_RESERVED_00000002 == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_RESERVED_00000002) else 0) | (if (o.APTURE_HANDLES == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_HANDLES) else 0) | (if (o.APTURE_HANDLE_NAME_INFORMATION == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_HANDLE_NAME_INFORMATION) else 0) | (if (o.APTURE_HANDLE_BASIC_INFORMATION == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_HANDLE_BASIC_INFORMATION) else 0) | (if (o.APTURE_HANDLE_TYPE_SPECIFIC_INFORMATION == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_HANDLE_TYPE_SPECIFIC_INFORMATION) else 0) | (if (o.APTURE_HANDLE_TRACE == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_HANDLE_TRACE) else 0) | (if (o.APTURE_THREADS == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_THREADS) else 0) | (if (o.APTURE_THREAD_CONTEXT == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_THREAD_CONTEXT) else 0) | (if (o.APTURE_THREAD_CONTEXT_EXTENDED == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_THREAD_CONTEXT_EXTENDED) else 0) | (if (o.APTURE_RESERVED_00000400 == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_RESERVED_00000400) else 0) | (if (o.APTURE_VA_SPACE == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_VA_SPACE) else 0) | (if (o.APTURE_VA_SPACE_SECTION_INFORMATION == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_VA_SPACE_SECTION_INFORMATION) else 0) | (if (o.APTURE_IPT_TRACE == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_IPT_TRACE) else 0) | (if (o.APTURE_RESERVED_00004000 == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_RESERVED_00004000) else 0) | (if (o.REATE_BREAKAWAY_OPTIONAL == 1) @intFromEnum(PSS_CAPTURE_FLAGS.REATE_BREAKAWAY_OPTIONAL) else 0) | (if (o.REATE_BREAKAWAY == 1) @intFromEnum(PSS_CAPTURE_FLAGS.REATE_BREAKAWAY) else 0) | (if (o.REATE_FORCE_BREAKAWAY == 1) @intFromEnum(PSS_CAPTURE_FLAGS.REATE_FORCE_BREAKAWAY) else 0) | (if (o.REATE_USE_VM_ALLOCATIONS == 1) @intFromEnum(PSS_CAPTURE_FLAGS.REATE_USE_VM_ALLOCATIONS) else 0) | (if (o.REATE_MEASURE_PERFORMANCE == 1) @intFromEnum(PSS_CAPTURE_FLAGS.REATE_MEASURE_PERFORMANCE) else 0) | (if (o.REATE_RELEASE_SECTION == 1) @intFromEnum(PSS_CAPTURE_FLAGS.REATE_RELEASE_SECTION) else 0));
     }
 };
 pub const PSS_CAPTURE_NONE = PSS_CAPTURE_FLAGS.APTURE_NONE;
@@ -192,10 +163,7 @@ pub const PSS_DUPLICATE_FLAGS = enum(u32) {
         NONE: u1 = 0,
         CLOSE_SOURCE: u1 = 0,
     }) PSS_DUPLICATE_FLAGS {
-        return @intToEnum(PSS_DUPLICATE_FLAGS,
-              (if (o.NONE == 1) @enumToInt(PSS_DUPLICATE_FLAGS.NONE) else 0)
-            | (if (o.CLOSE_SOURCE == 1) @enumToInt(PSS_DUPLICATE_FLAGS.CLOSE_SOURCE) else 0)
-        );
+        return @enumFromInt(PSS_DUPLICATE_FLAGS, (if (o.NONE == 1) @intFromEnum(PSS_DUPLICATE_FLAGS.NONE) else 0) | (if (o.CLOSE_SOURCE == 1) @intFromEnum(PSS_DUPLICATE_FLAGS.CLOSE_SOURCE) else 0));
     }
 };
 pub const PSS_DUPLICATE_NONE = PSS_DUPLICATE_FLAGS.NONE;
@@ -217,14 +185,7 @@ pub const PSS_PROCESS_FLAGS = enum(u32) {
         RESERVED_04: u1 = 0,
         FROZEN: u1 = 0,
     }) PSS_PROCESS_FLAGS {
-        return @intToEnum(PSS_PROCESS_FLAGS,
-              (if (o.NONE == 1) @enumToInt(PSS_PROCESS_FLAGS.NONE) else 0)
-            | (if (o.PROTECTED == 1) @enumToInt(PSS_PROCESS_FLAGS.PROTECTED) else 0)
-            | (if (o.WOW64 == 1) @enumToInt(PSS_PROCESS_FLAGS.WOW64) else 0)
-            | (if (o.RESERVED_03 == 1) @enumToInt(PSS_PROCESS_FLAGS.RESERVED_03) else 0)
-            | (if (o.RESERVED_04 == 1) @enumToInt(PSS_PROCESS_FLAGS.RESERVED_04) else 0)
-            | (if (o.FROZEN == 1) @enumToInt(PSS_PROCESS_FLAGS.FROZEN) else 0)
-        );
+        return @enumFromInt(PSS_PROCESS_FLAGS, (if (o.NONE == 1) @intFromEnum(PSS_PROCESS_FLAGS.NONE) else 0) | (if (o.PROTECTED == 1) @intFromEnum(PSS_PROCESS_FLAGS.PROTECTED) else 0) | (if (o.WOW64 == 1) @intFromEnum(PSS_PROCESS_FLAGS.WOW64) else 0) | (if (o.RESERVED_03 == 1) @intFromEnum(PSS_PROCESS_FLAGS.RESERVED_03) else 0) | (if (o.RESERVED_04 == 1) @intFromEnum(PSS_PROCESS_FLAGS.RESERVED_04) else 0) | (if (o.FROZEN == 1) @intFromEnum(PSS_PROCESS_FLAGS.FROZEN) else 0));
     }
 };
 pub const PSS_PROCESS_FLAGS_NONE = PSS_PROCESS_FLAGS.NONE;
@@ -394,10 +355,7 @@ pub const PSS_THREAD_FLAGS = enum(u32) {
         NONE: u1 = 0,
         TERMINATED: u1 = 0,
     }) PSS_THREAD_FLAGS {
-        return @intToEnum(PSS_THREAD_FLAGS,
-              (if (o.NONE == 1) @enumToInt(PSS_THREAD_FLAGS.NONE) else 0)
-            | (if (o.TERMINATED == 1) @enumToInt(PSS_THREAD_FLAGS.TERMINATED) else 0)
-        );
+        return @enumFromInt(PSS_THREAD_FLAGS, (if (o.NONE == 1) @intFromEnum(PSS_THREAD_FLAGS.NONE) else 0) | (if (o.TERMINATED == 1) @intFromEnum(PSS_THREAD_FLAGS.TERMINATED) else 0));
     }
 };
 pub const PSS_THREAD_FLAGS_NONE = PSS_THREAD_FLAGS.NONE;
@@ -430,7 +388,6 @@ pub const PSS_ALLOCATOR = extern struct {
     AllocRoutine: isize,
     FreeRoutine: isize,
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (10)
@@ -469,7 +426,9 @@ pub extern "kernel32" fn PssWalkSnapshot(
 
 // TODO: this type is limited to platform 'windows8.1'
 // This function from dll 'KERNEL32' is being skipped because it has some sort of issue
-pub fn PssDuplicateSnapshot() void { @panic("this function is not working"); }
+pub fn PssDuplicateSnapshot() void {
+    @panic("this function is not working");
+}
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "kernel32" fn PssWalkMarkerCreate(
@@ -499,19 +458,14 @@ pub extern "kernel32" fn PssWalkMarkerSeekToBeginning(
     WalkMarkerHandle: ?HPSSWALK,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
@@ -525,9 +479,7 @@ const MEMORY_BASIC_INFORMATION = @import("../../system/memory.zig").MEMORY_BASIC
 const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

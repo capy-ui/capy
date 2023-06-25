@@ -112,20 +112,7 @@ pub const CRYPTUI_WIZ_FLAGS = enum(u32) {
         EXPORT_PRIVATE_KEY: u1 = 0,
         EXPORT_NO_DELETE_PRIVATE_KEY: u1 = 0,
     }) CRYPTUI_WIZ_FLAGS {
-        return @intToEnum(CRYPTUI_WIZ_FLAGS,
-              (if (o.NO_UI == 1) @enumToInt(CRYPTUI_WIZ_FLAGS.NO_UI) else 0)
-            | (if (o.IGNORE_NO_UI_FLAG_FOR_CSPS == 1) @enumToInt(CRYPTUI_WIZ_FLAGS.IGNORE_NO_UI_FLAG_FOR_CSPS) else 0)
-            | (if (o.NO_UI_EXCEPT_CSP == 1) @enumToInt(CRYPTUI_WIZ_FLAGS.NO_UI_EXCEPT_CSP) else 0)
-            | (if (o.IMPORT_ALLOW_CERT == 1) @enumToInt(CRYPTUI_WIZ_FLAGS.IMPORT_ALLOW_CERT) else 0)
-            | (if (o.IMPORT_ALLOW_CRL == 1) @enumToInt(CRYPTUI_WIZ_FLAGS.IMPORT_ALLOW_CRL) else 0)
-            | (if (o.IMPORT_ALLOW_CTL == 1) @enumToInt(CRYPTUI_WIZ_FLAGS.IMPORT_ALLOW_CTL) else 0)
-            | (if (o.IMPORT_NO_CHANGE_DEST_STORE == 1) @enumToInt(CRYPTUI_WIZ_FLAGS.IMPORT_NO_CHANGE_DEST_STORE) else 0)
-            | (if (o.IMPORT_TO_LOCALMACHINE == 1) @enumToInt(CRYPTUI_WIZ_FLAGS.IMPORT_TO_LOCALMACHINE) else 0)
-            | (if (o.IMPORT_TO_CURRENTUSER == 1) @enumToInt(CRYPTUI_WIZ_FLAGS.IMPORT_TO_CURRENTUSER) else 0)
-            | (if (o.IMPORT_REMOTE_DEST_STORE == 1) @enumToInt(CRYPTUI_WIZ_FLAGS.IMPORT_REMOTE_DEST_STORE) else 0)
-            | (if (o.EXPORT_PRIVATE_KEY == 1) @enumToInt(CRYPTUI_WIZ_FLAGS.EXPORT_PRIVATE_KEY) else 0)
-            | (if (o.EXPORT_NO_DELETE_PRIVATE_KEY == 1) @enumToInt(CRYPTUI_WIZ_FLAGS.EXPORT_NO_DELETE_PRIVATE_KEY) else 0)
-        );
+        return @enumFromInt(CRYPTUI_WIZ_FLAGS, (if (o.NO_UI == 1) @intFromEnum(CRYPTUI_WIZ_FLAGS.NO_UI) else 0) | (if (o.IGNORE_NO_UI_FLAG_FOR_CSPS == 1) @intFromEnum(CRYPTUI_WIZ_FLAGS.IGNORE_NO_UI_FLAG_FOR_CSPS) else 0) | (if (o.NO_UI_EXCEPT_CSP == 1) @intFromEnum(CRYPTUI_WIZ_FLAGS.NO_UI_EXCEPT_CSP) else 0) | (if (o.IMPORT_ALLOW_CERT == 1) @intFromEnum(CRYPTUI_WIZ_FLAGS.IMPORT_ALLOW_CERT) else 0) | (if (o.IMPORT_ALLOW_CRL == 1) @intFromEnum(CRYPTUI_WIZ_FLAGS.IMPORT_ALLOW_CRL) else 0) | (if (o.IMPORT_ALLOW_CTL == 1) @intFromEnum(CRYPTUI_WIZ_FLAGS.IMPORT_ALLOW_CTL) else 0) | (if (o.IMPORT_NO_CHANGE_DEST_STORE == 1) @intFromEnum(CRYPTUI_WIZ_FLAGS.IMPORT_NO_CHANGE_DEST_STORE) else 0) | (if (o.IMPORT_TO_LOCALMACHINE == 1) @intFromEnum(CRYPTUI_WIZ_FLAGS.IMPORT_TO_LOCALMACHINE) else 0) | (if (o.IMPORT_TO_CURRENTUSER == 1) @intFromEnum(CRYPTUI_WIZ_FLAGS.IMPORT_TO_CURRENTUSER) else 0) | (if (o.IMPORT_REMOTE_DEST_STORE == 1) @intFromEnum(CRYPTUI_WIZ_FLAGS.IMPORT_REMOTE_DEST_STORE) else 0) | (if (o.EXPORT_PRIVATE_KEY == 1) @intFromEnum(CRYPTUI_WIZ_FLAGS.EXPORT_PRIVATE_KEY) else 0) | (if (o.EXPORT_NO_DELETE_PRIVATE_KEY == 1) @intFromEnum(CRYPTUI_WIZ_FLAGS.EXPORT_NO_DELETE_PRIVATE_KEY) else 0));
     }
 };
 pub const CRYPTUI_WIZ_NO_UI = CRYPTUI_WIZ_FLAGS.NO_UI;
@@ -184,27 +171,7 @@ pub const CRYPTUI_VIEWCERTIFICATE_FLAGS = enum(u32) {
         DISABLE_ISSUERSTATEMENT: u1 = 0,
         CACHE_ONLY_URL_RETRIEVAL: u1 = 0,
     }) CRYPTUI_VIEWCERTIFICATE_FLAGS {
-        return @intToEnum(CRYPTUI_VIEWCERTIFICATE_FLAGS,
-              (if (o.HIDE_HIERARCHYPAGE == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.HIDE_HIERARCHYPAGE) else 0)
-            | (if (o.HIDE_DETAILPAGE == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.HIDE_DETAILPAGE) else 0)
-            | (if (o.DISABLE_EDITPROPERTIES == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.DISABLE_EDITPROPERTIES) else 0)
-            | (if (o.ENABLE_EDITPROPERTIES == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.ENABLE_EDITPROPERTIES) else 0)
-            | (if (o.DISABLE_ADDTOSTORE == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.DISABLE_ADDTOSTORE) else 0)
-            | (if (o.ENABLE_ADDTOSTORE == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.ENABLE_ADDTOSTORE) else 0)
-            | (if (o.ACCEPT_DECLINE_STYLE == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.ACCEPT_DECLINE_STYLE) else 0)
-            | (if (o.IGNORE_UNTRUSTED_ROOT == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.IGNORE_UNTRUSTED_ROOT) else 0)
-            | (if (o.DONT_OPEN_STORES == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.DONT_OPEN_STORES) else 0)
-            | (if (o.ONLY_OPEN_ROOT_STORE == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.ONLY_OPEN_ROOT_STORE) else 0)
-            | (if (o.WARN_UNTRUSTED_ROOT == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.WARN_UNTRUSTED_ROOT) else 0)
-            | (if (o.ENABLE_REVOCATION_CHECKING == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.ENABLE_REVOCATION_CHECKING) else 0)
-            | (if (o.WARN_REMOTE_TRUST == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.WARN_REMOTE_TRUST) else 0)
-            | (if (o.DISABLE_EXPORT == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.DISABLE_EXPORT) else 0)
-            | (if (o.ENABLE_REVOCATION_CHECK_END_CERT == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.ENABLE_REVOCATION_CHECK_END_CERT) else 0)
-            | (if (o.ENABLE_REVOCATION_CHECK_CHAIN == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.ENABLE_REVOCATION_CHECK_CHAIN) else 0)
-            | (if (o.DISABLE_HTMLLINK == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.DISABLE_HTMLLINK) else 0)
-            | (if (o.DISABLE_ISSUERSTATEMENT == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.DISABLE_ISSUERSTATEMENT) else 0)
-            | (if (o.CACHE_ONLY_URL_RETRIEVAL == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.CACHE_ONLY_URL_RETRIEVAL) else 0)
-        );
+        return @enumFromInt(CRYPTUI_VIEWCERTIFICATE_FLAGS, (if (o.HIDE_HIERARCHYPAGE == 1) @intFromEnum(CRYPTUI_VIEWCERTIFICATE_FLAGS.HIDE_HIERARCHYPAGE) else 0) | (if (o.HIDE_DETAILPAGE == 1) @intFromEnum(CRYPTUI_VIEWCERTIFICATE_FLAGS.HIDE_DETAILPAGE) else 0) | (if (o.DISABLE_EDITPROPERTIES == 1) @intFromEnum(CRYPTUI_VIEWCERTIFICATE_FLAGS.DISABLE_EDITPROPERTIES) else 0) | (if (o.ENABLE_EDITPROPERTIES == 1) @intFromEnum(CRYPTUI_VIEWCERTIFICATE_FLAGS.ENABLE_EDITPROPERTIES) else 0) | (if (o.DISABLE_ADDTOSTORE == 1) @intFromEnum(CRYPTUI_VIEWCERTIFICATE_FLAGS.DISABLE_ADDTOSTORE) else 0) | (if (o.ENABLE_ADDTOSTORE == 1) @intFromEnum(CRYPTUI_VIEWCERTIFICATE_FLAGS.ENABLE_ADDTOSTORE) else 0) | (if (o.ACCEPT_DECLINE_STYLE == 1) @intFromEnum(CRYPTUI_VIEWCERTIFICATE_FLAGS.ACCEPT_DECLINE_STYLE) else 0) | (if (o.IGNORE_UNTRUSTED_ROOT == 1) @intFromEnum(CRYPTUI_VIEWCERTIFICATE_FLAGS.IGNORE_UNTRUSTED_ROOT) else 0) | (if (o.DONT_OPEN_STORES == 1) @intFromEnum(CRYPTUI_VIEWCERTIFICATE_FLAGS.DONT_OPEN_STORES) else 0) | (if (o.ONLY_OPEN_ROOT_STORE == 1) @intFromEnum(CRYPTUI_VIEWCERTIFICATE_FLAGS.ONLY_OPEN_ROOT_STORE) else 0) | (if (o.WARN_UNTRUSTED_ROOT == 1) @intFromEnum(CRYPTUI_VIEWCERTIFICATE_FLAGS.WARN_UNTRUSTED_ROOT) else 0) | (if (o.ENABLE_REVOCATION_CHECKING == 1) @intFromEnum(CRYPTUI_VIEWCERTIFICATE_FLAGS.ENABLE_REVOCATION_CHECKING) else 0) | (if (o.WARN_REMOTE_TRUST == 1) @intFromEnum(CRYPTUI_VIEWCERTIFICATE_FLAGS.WARN_REMOTE_TRUST) else 0) | (if (o.DISABLE_EXPORT == 1) @intFromEnum(CRYPTUI_VIEWCERTIFICATE_FLAGS.DISABLE_EXPORT) else 0) | (if (o.ENABLE_REVOCATION_CHECK_END_CERT == 1) @intFromEnum(CRYPTUI_VIEWCERTIFICATE_FLAGS.ENABLE_REVOCATION_CHECK_END_CERT) else 0) | (if (o.ENABLE_REVOCATION_CHECK_CHAIN == 1) @intFromEnum(CRYPTUI_VIEWCERTIFICATE_FLAGS.ENABLE_REVOCATION_CHECK_CHAIN) else 0) | (if (o.DISABLE_HTMLLINK == 1) @intFromEnum(CRYPTUI_VIEWCERTIFICATE_FLAGS.DISABLE_HTMLLINK) else 0) | (if (o.DISABLE_ISSUERSTATEMENT == 1) @intFromEnum(CRYPTUI_VIEWCERTIFICATE_FLAGS.DISABLE_ISSUERSTATEMENT) else 0) | (if (o.CACHE_ONLY_URL_RETRIEVAL == 1) @intFromEnum(CRYPTUI_VIEWCERTIFICATE_FLAGS.CACHE_ONLY_URL_RETRIEVAL) else 0));
     }
 };
 pub const CRYPTUI_HIDE_HIERARCHYPAGE = CRYPTUI_VIEWCERTIFICATE_FLAGS.HIDE_HIERARCHYPAGE;
@@ -244,14 +211,7 @@ pub const CERT_SELECT_STRUCT_FLAGS = enum(u32) {
         ENABLETEMPLATE: u1 = 0,
         ENABLETEMPLATEHANDLE: u1 = 0,
     }) CERT_SELECT_STRUCT_FLAGS {
-        return @intToEnum(CERT_SELECT_STRUCT_FLAGS,
-              (if (o.HIDE_PROPERTIES == 1) @enumToInt(CERT_SELECT_STRUCT_FLAGS.HIDE_PROPERTIES) else 0)
-            | (if (o.ENABLEHOOK == 1) @enumToInt(CERT_SELECT_STRUCT_FLAGS.ENABLEHOOK) else 0)
-            | (if (o.ALLOWMULTISELECT == 1) @enumToInt(CERT_SELECT_STRUCT_FLAGS.ALLOWMULTISELECT) else 0)
-            | (if (o.SHOW_HELP == 1) @enumToInt(CERT_SELECT_STRUCT_FLAGS.SHOW_HELP) else 0)
-            | (if (o.ENABLETEMPLATE == 1) @enumToInt(CERT_SELECT_STRUCT_FLAGS.ENABLETEMPLATE) else 0)
-            | (if (o.ENABLETEMPLATEHANDLE == 1) @enumToInt(CERT_SELECT_STRUCT_FLAGS.ENABLETEMPLATEHANDLE) else 0)
-        );
+        return @enumFromInt(CERT_SELECT_STRUCT_FLAGS, (if (o.HIDE_PROPERTIES == 1) @intFromEnum(CERT_SELECT_STRUCT_FLAGS.HIDE_PROPERTIES) else 0) | (if (o.ENABLEHOOK == 1) @intFromEnum(CERT_SELECT_STRUCT_FLAGS.ENABLEHOOK) else 0) | (if (o.ALLOWMULTISELECT == 1) @intFromEnum(CERT_SELECT_STRUCT_FLAGS.ALLOWMULTISELECT) else 0) | (if (o.SHOW_HELP == 1) @intFromEnum(CERT_SELECT_STRUCT_FLAGS.SHOW_HELP) else 0) | (if (o.ENABLETEMPLATE == 1) @intFromEnum(CERT_SELECT_STRUCT_FLAGS.ENABLETEMPLATE) else 0) | (if (o.ENABLETEMPLATEHANDLE == 1) @intFromEnum(CERT_SELECT_STRUCT_FLAGS.ENABLETEMPLATEHANDLE) else 0));
     }
 };
 pub const CSS_HIDE_PROPERTIES = CERT_SELECT_STRUCT_FLAGS.HIDE_PROPERTIES;
@@ -345,18 +305,7 @@ pub const CERT_VIEWPROPERTIES_STRUCT_FLAGS = enum(u32) {
         HIDE_DETAILPAGE: u1 = 0,
         ADD_CERT_STORES: u1 = 0,
     }) CERT_VIEWPROPERTIES_STRUCT_FLAGS {
-        return @intToEnum(CERT_VIEWPROPERTIES_STRUCT_FLAGS,
-              (if (o.ENABLEHOOK == 1) @enumToInt(CERT_VIEWPROPERTIES_STRUCT_FLAGS.ENABLEHOOK) else 0)
-            | (if (o.SHOW_HELP == 1) @enumToInt(CERT_VIEWPROPERTIES_STRUCT_FLAGS.SHOW_HELP) else 0)
-            | (if (o.SHOW_HELPICON == 1) @enumToInt(CERT_VIEWPROPERTIES_STRUCT_FLAGS.SHOW_HELPICON) else 0)
-            | (if (o.ENABLETEMPLATE == 1) @enumToInt(CERT_VIEWPROPERTIES_STRUCT_FLAGS.ENABLETEMPLATE) else 0)
-            | (if (o.HIDE_ADVANCEPAGE == 1) @enumToInt(CERT_VIEWPROPERTIES_STRUCT_FLAGS.HIDE_ADVANCEPAGE) else 0)
-            | (if (o.HIDE_TRUSTPAGE == 1) @enumToInt(CERT_VIEWPROPERTIES_STRUCT_FLAGS.HIDE_TRUSTPAGE) else 0)
-            | (if (o.NO_NAMECHANGE == 1) @enumToInt(CERT_VIEWPROPERTIES_STRUCT_FLAGS.NO_NAMECHANGE) else 0)
-            | (if (o.NO_EDITTRUST == 1) @enumToInt(CERT_VIEWPROPERTIES_STRUCT_FLAGS.NO_EDITTRUST) else 0)
-            | (if (o.HIDE_DETAILPAGE == 1) @enumToInt(CERT_VIEWPROPERTIES_STRUCT_FLAGS.HIDE_DETAILPAGE) else 0)
-            | (if (o.ADD_CERT_STORES == 1) @enumToInt(CERT_VIEWPROPERTIES_STRUCT_FLAGS.ADD_CERT_STORES) else 0)
-        );
+        return @enumFromInt(CERT_VIEWPROPERTIES_STRUCT_FLAGS, (if (o.ENABLEHOOK == 1) @intFromEnum(CERT_VIEWPROPERTIES_STRUCT_FLAGS.ENABLEHOOK) else 0) | (if (o.SHOW_HELP == 1) @intFromEnum(CERT_VIEWPROPERTIES_STRUCT_FLAGS.SHOW_HELP) else 0) | (if (o.SHOW_HELPICON == 1) @intFromEnum(CERT_VIEWPROPERTIES_STRUCT_FLAGS.SHOW_HELPICON) else 0) | (if (o.ENABLETEMPLATE == 1) @intFromEnum(CERT_VIEWPROPERTIES_STRUCT_FLAGS.ENABLETEMPLATE) else 0) | (if (o.HIDE_ADVANCEPAGE == 1) @intFromEnum(CERT_VIEWPROPERTIES_STRUCT_FLAGS.HIDE_ADVANCEPAGE) else 0) | (if (o.HIDE_TRUSTPAGE == 1) @intFromEnum(CERT_VIEWPROPERTIES_STRUCT_FLAGS.HIDE_TRUSTPAGE) else 0) | (if (o.NO_NAMECHANGE == 1) @intFromEnum(CERT_VIEWPROPERTIES_STRUCT_FLAGS.NO_NAMECHANGE) else 0) | (if (o.NO_EDITTRUST == 1) @intFromEnum(CERT_VIEWPROPERTIES_STRUCT_FLAGS.NO_EDITTRUST) else 0) | (if (o.HIDE_DETAILPAGE == 1) @intFromEnum(CERT_VIEWPROPERTIES_STRUCT_FLAGS.HIDE_DETAILPAGE) else 0) | (if (o.ADD_CERT_STORES == 1) @intFromEnum(CERT_VIEWPROPERTIES_STRUCT_FLAGS.ADD_CERT_STORES) else 0));
     }
 };
 pub const CM_ENABLEHOOK = CERT_VIEWPROPERTIES_STRUCT_FLAGS.ENABLEHOOK;
@@ -404,34 +353,34 @@ pub const CTL_MODIFY_REQUEST_ADD_NOT_TRUSTED = CTL_MODIFY_REQUEST_OPERATION.ADD_
 pub const CTL_MODIFY_REQUEST_REMOVE = CTL_MODIFY_REQUEST_OPERATION.REMOVE;
 
 pub const PFNCMFILTERPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pCertContext: ?*const CERT_CONTEXT,
         param1: LPARAM,
         param2: u32,
         param3: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         pCertContext: ?*const CERT_CONTEXT,
         param1: LPARAM,
         param2: u32,
         param3: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const PFNCMHOOKPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hwndDialog: ?HWND,
         message: u32,
         wParam: WPARAM,
         lParam: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hwndDialog: ?HWND,
         message: u32,
         wParam: WPARAM,
         lParam: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const CERT_SELECT_STRUCT_A = extern struct {
     dwSize: u32,
@@ -538,19 +487,19 @@ pub const CMFLTR = extern struct {
 };
 
 pub const PFNTRUSTHELPER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pCertContext: ?*const CERT_CONTEXT,
         lCustData: LPARAM,
         fLeafCertificate: BOOL,
         pbTrustBlob: ?*u8,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         pCertContext: ?*const CERT_CONTEXT,
         lCustData: LPARAM,
         fLeafCertificate: BOOL,
         pbTrustBlob: ?*u8,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const CERT_VERIFY_CERTIFICATE_TRUST = extern struct {
     cbSize: u32,
@@ -581,17 +530,17 @@ pub const CTL_MODIFY_REQUEST = extern struct {
 };
 
 pub const PFNCFILTERPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pCertContext: ?*const CERT_CONTEXT,
         pfInitialSelectedCert: ?*BOOL,
         pvCallbackData: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         pCertContext: ?*const CERT_CONTEXT,
         pfInitialSelectedCert: ?*BOOL,
         pvCallbackData: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const CERT_SELECTUI_INPUT = extern struct {
     hStore: ?*anyopaque,
@@ -766,7 +715,6 @@ pub const CRYPTUI_WIZ_IMPORT_SRC_INFO = extern struct {
     pwszPassword: ?[*:0]const u16,
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (10)
 //--------------------------------------------------------------------------------
@@ -847,7 +795,6 @@ pub extern "cryptui" fn CryptUIWizImport(
     hDestCertStore: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (4)
 //--------------------------------------------------------------------------------
@@ -866,10 +813,10 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
         pub const CryptUIDlgViewCertificate = thismodule.CryptUIDlgViewCertificateW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const CERT_SELECT_STRUCT_ = *opaque{};
-        pub const CERT_VIEWPROPERTIES_STRUCT_ = *opaque{};
-        pub const CRYPTUI_VIEWCERTIFICATE_STRUCT = *opaque{};
-        pub const CryptUIDlgViewCertificate = *opaque{};
+        pub const CERT_SELECT_STRUCT_ = *opaque {};
+        pub const CERT_VIEWPROPERTIES_STRUCT_ = *opaque {};
+        pub const CRYPTUI_VIEWCERTIFICATE_STRUCT = *opaque {};
+        pub const CryptUIDlgViewCertificate = *opaque {};
     } else struct {
         pub const CERT_SELECT_STRUCT_ = @compileError("'CERT_SELECT_STRUCT_' requires that UNICODE be set to true or false in the root module");
         pub const CERT_VIEWPROPERTIES_STRUCT_ = @compileError("'CERT_VIEWPROPERTIES_STRUCT_' requires that UNICODE be set to true or false in the root module");
@@ -904,14 +851,20 @@ const WPARAM = @import("../../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFNCMFILTERPROC")) { _ = PFNCMFILTERPROC; }
-    if (@hasDecl(@This(), "PFNCMHOOKPROC")) { _ = PFNCMHOOKPROC; }
-    if (@hasDecl(@This(), "PFNTRUSTHELPER")) { _ = PFNTRUSTHELPER; }
-    if (@hasDecl(@This(), "PFNCFILTERPROC")) { _ = PFNCFILTERPROC; }
+    if (@hasDecl(@This(), "PFNCMFILTERPROC")) {
+        _ = PFNCMFILTERPROC;
+    }
+    if (@hasDecl(@This(), "PFNCMHOOKPROC")) {
+        _ = PFNCMHOOKPROC;
+    }
+    if (@hasDecl(@This(), "PFNTRUSTHELPER")) {
+        _ = PFNTRUSTHELPER;
+    }
+    if (@hasDecl(@This(), "PFNCFILTERPROC")) {
+        _ = PFNCFILTERPROC;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

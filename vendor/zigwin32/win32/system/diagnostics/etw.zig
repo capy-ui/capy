@@ -479,13 +479,7 @@ pub const TRACE_MESSAGE_FLAGS = enum(u32) {
         SYSTEMINFO: u1 = 0,
         TIMESTAMP: u1 = 0,
     }) TRACE_MESSAGE_FLAGS {
-        return @intToEnum(TRACE_MESSAGE_FLAGS,
-              (if (o.COMPONENTID == 1) @enumToInt(TRACE_MESSAGE_FLAGS.COMPONENTID) else 0)
-            | (if (o.GUID == 1) @enumToInt(TRACE_MESSAGE_FLAGS.GUID) else 0)
-            | (if (o.SEQUENCE == 1) @enumToInt(TRACE_MESSAGE_FLAGS.SEQUENCE) else 0)
-            | (if (o.SYSTEMINFO == 1) @enumToInt(TRACE_MESSAGE_FLAGS.SYSTEMINFO) else 0)
-            | (if (o.TIMESTAMP == 1) @enumToInt(TRACE_MESSAGE_FLAGS.TIMESTAMP) else 0)
-        );
+        return @enumFromInt(TRACE_MESSAGE_FLAGS, (if (o.COMPONENTID == 1) @intFromEnum(TRACE_MESSAGE_FLAGS.COMPONENTID) else 0) | (if (o.GUID == 1) @intFromEnum(TRACE_MESSAGE_FLAGS.GUID) else 0) | (if (o.SEQUENCE == 1) @intFromEnum(TRACE_MESSAGE_FLAGS.SEQUENCE) else 0) | (if (o.SYSTEMINFO == 1) @intFromEnum(TRACE_MESSAGE_FLAGS.SYSTEMINFO) else 0) | (if (o.TIMESTAMP == 1) @intFromEnum(TRACE_MESSAGE_FLAGS.TIMESTAMP) else 0));
     }
 };
 pub const TRACE_MESSAGE_COMPONENTID = TRACE_MESSAGE_FLAGS.COMPONENTID;
@@ -572,35 +566,7 @@ pub const EVENT_TRACE_FLAG = enum(u32) {
         VAMAP: u1 = 0,
         VIRTUAL_ALLOC: u1 = 0,
     }) EVENT_TRACE_FLAG {
-        return @intToEnum(EVENT_TRACE_FLAG,
-              (if (o.ALPC == 1) @enumToInt(EVENT_TRACE_FLAG.ALPC) else 0)
-            | (if (o.CSWITCH == 1) @enumToInt(EVENT_TRACE_FLAG.CSWITCH) else 0)
-            | (if (o.DBGPRINT == 1) @enumToInt(EVENT_TRACE_FLAG.DBGPRINT) else 0)
-            | (if (o.DISK_FILE_IO == 1) @enumToInt(EVENT_TRACE_FLAG.DISK_FILE_IO) else 0)
-            | (if (o.DISK_IO == 1) @enumToInt(EVENT_TRACE_FLAG.DISK_IO) else 0)
-            | (if (o.DISK_IO_INIT == 1) @enumToInt(EVENT_TRACE_FLAG.DISK_IO_INIT) else 0)
-            | (if (o.DISPATCHER == 1) @enumToInt(EVENT_TRACE_FLAG.DISPATCHER) else 0)
-            | (if (o.DPC == 1) @enumToInt(EVENT_TRACE_FLAG.DPC) else 0)
-            | (if (o.DRIVER == 1) @enumToInt(EVENT_TRACE_FLAG.DRIVER) else 0)
-            | (if (o.FILE_IO == 1) @enumToInt(EVENT_TRACE_FLAG.FILE_IO) else 0)
-            | (if (o.FILE_IO_INIT == 1) @enumToInt(EVENT_TRACE_FLAG.FILE_IO_INIT) else 0)
-            | (if (o.IMAGE_LOAD == 1) @enumToInt(EVENT_TRACE_FLAG.IMAGE_LOAD) else 0)
-            | (if (o.INTERRUPT == 1) @enumToInt(EVENT_TRACE_FLAG.INTERRUPT) else 0)
-            | (if (o.JOB == 1) @enumToInt(EVENT_TRACE_FLAG.JOB) else 0)
-            | (if (o.MEMORY_HARD_FAULTS == 1) @enumToInt(EVENT_TRACE_FLAG.MEMORY_HARD_FAULTS) else 0)
-            | (if (o.MEMORY_PAGE_FAULTS == 1) @enumToInt(EVENT_TRACE_FLAG.MEMORY_PAGE_FAULTS) else 0)
-            | (if (o.NETWORK_TCPIP == 1) @enumToInt(EVENT_TRACE_FLAG.NETWORK_TCPIP) else 0)
-            | (if (o.NO_SYSCONFIG == 1) @enumToInt(EVENT_TRACE_FLAG.NO_SYSCONFIG) else 0)
-            | (if (o.PROCESS == 1) @enumToInt(EVENT_TRACE_FLAG.PROCESS) else 0)
-            | (if (o.PROCESS_COUNTERS == 1) @enumToInt(EVENT_TRACE_FLAG.PROCESS_COUNTERS) else 0)
-            | (if (o.PROFILE == 1) @enumToInt(EVENT_TRACE_FLAG.PROFILE) else 0)
-            | (if (o.REGISTRY == 1) @enumToInt(EVENT_TRACE_FLAG.REGISTRY) else 0)
-            | (if (o.SPLIT_IO == 1) @enumToInt(EVENT_TRACE_FLAG.SPLIT_IO) else 0)
-            | (if (o.SYSTEMCALL == 1) @enumToInt(EVENT_TRACE_FLAG.SYSTEMCALL) else 0)
-            | (if (o.THREAD == 1) @enumToInt(EVENT_TRACE_FLAG.THREAD) else 0)
-            | (if (o.VAMAP == 1) @enumToInt(EVENT_TRACE_FLAG.VAMAP) else 0)
-            | (if (o.VIRTUAL_ALLOC == 1) @enumToInt(EVENT_TRACE_FLAG.VIRTUAL_ALLOC) else 0)
-        );
+        return @enumFromInt(EVENT_TRACE_FLAG, (if (o.ALPC == 1) @intFromEnum(EVENT_TRACE_FLAG.ALPC) else 0) | (if (o.CSWITCH == 1) @intFromEnum(EVENT_TRACE_FLAG.CSWITCH) else 0) | (if (o.DBGPRINT == 1) @intFromEnum(EVENT_TRACE_FLAG.DBGPRINT) else 0) | (if (o.DISK_FILE_IO == 1) @intFromEnum(EVENT_TRACE_FLAG.DISK_FILE_IO) else 0) | (if (o.DISK_IO == 1) @intFromEnum(EVENT_TRACE_FLAG.DISK_IO) else 0) | (if (o.DISK_IO_INIT == 1) @intFromEnum(EVENT_TRACE_FLAG.DISK_IO_INIT) else 0) | (if (o.DISPATCHER == 1) @intFromEnum(EVENT_TRACE_FLAG.DISPATCHER) else 0) | (if (o.DPC == 1) @intFromEnum(EVENT_TRACE_FLAG.DPC) else 0) | (if (o.DRIVER == 1) @intFromEnum(EVENT_TRACE_FLAG.DRIVER) else 0) | (if (o.FILE_IO == 1) @intFromEnum(EVENT_TRACE_FLAG.FILE_IO) else 0) | (if (o.FILE_IO_INIT == 1) @intFromEnum(EVENT_TRACE_FLAG.FILE_IO_INIT) else 0) | (if (o.IMAGE_LOAD == 1) @intFromEnum(EVENT_TRACE_FLAG.IMAGE_LOAD) else 0) | (if (o.INTERRUPT == 1) @intFromEnum(EVENT_TRACE_FLAG.INTERRUPT) else 0) | (if (o.JOB == 1) @intFromEnum(EVENT_TRACE_FLAG.JOB) else 0) | (if (o.MEMORY_HARD_FAULTS == 1) @intFromEnum(EVENT_TRACE_FLAG.MEMORY_HARD_FAULTS) else 0) | (if (o.MEMORY_PAGE_FAULTS == 1) @intFromEnum(EVENT_TRACE_FLAG.MEMORY_PAGE_FAULTS) else 0) | (if (o.NETWORK_TCPIP == 1) @intFromEnum(EVENT_TRACE_FLAG.NETWORK_TCPIP) else 0) | (if (o.NO_SYSCONFIG == 1) @intFromEnum(EVENT_TRACE_FLAG.NO_SYSCONFIG) else 0) | (if (o.PROCESS == 1) @intFromEnum(EVENT_TRACE_FLAG.PROCESS) else 0) | (if (o.PROCESS_COUNTERS == 1) @intFromEnum(EVENT_TRACE_FLAG.PROCESS_COUNTERS) else 0) | (if (o.PROFILE == 1) @intFromEnum(EVENT_TRACE_FLAG.PROFILE) else 0) | (if (o.REGISTRY == 1) @intFromEnum(EVENT_TRACE_FLAG.REGISTRY) else 0) | (if (o.SPLIT_IO == 1) @intFromEnum(EVENT_TRACE_FLAG.SPLIT_IO) else 0) | (if (o.SYSTEMCALL == 1) @intFromEnum(EVENT_TRACE_FLAG.SYSTEMCALL) else 0) | (if (o.THREAD == 1) @intFromEnum(EVENT_TRACE_FLAG.THREAD) else 0) | (if (o.VAMAP == 1) @intFromEnum(EVENT_TRACE_FLAG.VAMAP) else 0) | (if (o.VIRTUAL_ALLOC == 1) @intFromEnum(EVENT_TRACE_FLAG.VIRTUAL_ALLOC) else 0));
     }
 };
 pub const EVENT_TRACE_FLAG_ALPC = EVENT_TRACE_FLAG.ALPC;
@@ -1125,43 +1091,49 @@ pub const EVENT_TRACE = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PEVENT_TRACE_BUFFER_CALLBACKW = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PEVENT_TRACE_BUFFER_CALLBACKW = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PEVENT_TRACE_BUFFER_CALLBACKA = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PEVENT_TRACE_BUFFER_CALLBACKA = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 pub const PEVENT_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pEvent: ?*EVENT_TRACE,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         pEvent: ?*EVENT_TRACE,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PEVENT_RECORD_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         EventRecord: ?*EVENT_RECORD,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         EventRecord: ?*EVENT_RECORD,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const WMIDPREQUEST = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         RequestCode: WMIDPREQUESTCODE,
         RequestContext: ?*anyopaque,
         BufferSize: ?*u32,
         Buffer: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         RequestCode: WMIDPREQUESTCODE,
         RequestContext: ?*anyopaque,
         BufferSize: ?*u32,
         Buffer: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const EVENT_TRACE_LOGFILEW = extern struct {
     LogFileName: ?PWSTR,
@@ -1413,7 +1385,7 @@ pub const EventProviderUseDescriptorType = EVENT_INFO_CLASS.EventProviderUseDesc
 pub const MaxEventInfo = EVENT_INFO_CLASS.MaxEventInfo;
 
 pub const PENABLECALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         SourceId: ?*const Guid,
         IsEnabled: ENABLECALLBACK_ENABLED_STATE,
         Level: u8,
@@ -1422,7 +1394,7 @@ pub const PENABLECALLBACK = switch (@import("builtin").zig_backend) {
         FilterData: ?*EVENT_FILTER_DESCRIPTOR,
         CallbackContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         SourceId: ?*const Guid,
         IsEnabled: ENABLECALLBACK_ENABLED_STATE,
         Level: u8,
@@ -1431,7 +1403,7 @@ pub const PENABLECALLBACK = switch (@import("builtin").zig_backend) {
         FilterData: ?*EVENT_FILTER_DESCRIPTOR,
         CallbackContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const EVENT_HEADER_EXTENDED_DATA_ITEM = extern struct {
     Reserved1: u16,
@@ -1993,182 +1965,184 @@ pub const ITraceEvent = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITraceEvent,
                 NewEvent: ?*?*ITraceEvent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITraceEvent,
                 NewEvent: ?*?*ITraceEvent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetUserContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITraceEvent,
                 UserContext: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITraceEvent,
                 UserContext: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetEventRecord: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITraceEvent,
                 EventRecord: ?*?*EVENT_RECORD,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITraceEvent,
                 EventRecord: ?*?*EVENT_RECORD,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetPayload: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITraceEvent,
                 Payload: [*:0]u8,
                 PayloadSize: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITraceEvent,
                 Payload: [*:0]u8,
                 PayloadSize: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetEventDescriptor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITraceEvent,
                 EventDescriptor: ?*const EVENT_DESCRIPTOR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITraceEvent,
                 EventDescriptor: ?*const EVENT_DESCRIPTOR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetProcessId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITraceEvent,
                 ProcessId: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITraceEvent,
                 ProcessId: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetProcessorIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITraceEvent,
                 ProcessorIndex: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITraceEvent,
                 ProcessorIndex: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetThreadId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITraceEvent,
                 ThreadId: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITraceEvent,
                 ThreadId: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetThreadTimes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITraceEvent,
                 KernelTime: u32,
                 UserTime: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITraceEvent,
                 KernelTime: u32,
                 UserTime: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetActivityId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITraceEvent,
                 ActivityId: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITraceEvent,
                 ActivityId: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetTimeStamp: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITraceEvent,
                 TimeStamp: ?*LARGE_INTEGER,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITraceEvent,
                 TimeStamp: ?*LARGE_INTEGER,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetProviderId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITraceEvent,
                 ProviderId: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITraceEvent,
                 ProviderId: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_Clone(self: *const T, NewEvent: ?*?*ITraceEvent) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITraceEvent.VTable, self.vtable).Clone(@ptrCast(*const ITraceEvent, self), NewEvent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_GetUserContext(self: *const T, UserContext: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITraceEvent.VTable, self.vtable).GetUserContext(@ptrCast(*const ITraceEvent, self), UserContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_GetEventRecord(self: *const T, EventRecord: ?*?*EVENT_RECORD) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITraceEvent.VTable, self.vtable).GetEventRecord(@ptrCast(*const ITraceEvent, self), EventRecord);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_SetPayload(self: *const T, Payload: [*:0]u8, PayloadSize: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetPayload(@ptrCast(*const ITraceEvent, self), Payload, PayloadSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_SetEventDescriptor(self: *const T, EventDescriptor: ?*const EVENT_DESCRIPTOR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetEventDescriptor(@ptrCast(*const ITraceEvent, self), EventDescriptor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_SetProcessId(self: *const T, ProcessId: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetProcessId(@ptrCast(*const ITraceEvent, self), ProcessId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_SetProcessorIndex(self: *const T, ProcessorIndex: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetProcessorIndex(@ptrCast(*const ITraceEvent, self), ProcessorIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_SetThreadId(self: *const T, ThreadId: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetThreadId(@ptrCast(*const ITraceEvent, self), ThreadId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_SetThreadTimes(self: *const T, KernelTime: u32, UserTime: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetThreadTimes(@ptrCast(*const ITraceEvent, self), KernelTime, UserTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_SetActivityId(self: *const T, ActivityId: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetActivityId(@ptrCast(*const ITraceEvent, self), ActivityId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_SetTimeStamp(self: *const T, TimeStamp: ?*LARGE_INTEGER) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetTimeStamp(@ptrCast(*const ITraceEvent, self), TimeStamp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEvent_SetProviderId(self: *const T, ProviderId: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetProviderId(@ptrCast(*const ITraceEvent, self), ProviderId);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITraceEvent_Clone(self: *const T, NewEvent: ?*?*ITraceEvent) HRESULT {
+                return @ptrCast(*const ITraceEvent.VTable, self.vtable).Clone(@ptrCast(*const ITraceEvent, self), NewEvent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITraceEvent_GetUserContext(self: *const T, UserContext: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const ITraceEvent.VTable, self.vtable).GetUserContext(@ptrCast(*const ITraceEvent, self), UserContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITraceEvent_GetEventRecord(self: *const T, EventRecord: ?*?*EVENT_RECORD) HRESULT {
+                return @ptrCast(*const ITraceEvent.VTable, self.vtable).GetEventRecord(@ptrCast(*const ITraceEvent, self), EventRecord);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITraceEvent_SetPayload(self: *const T, Payload: [*:0]u8, PayloadSize: u32) HRESULT {
+                return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetPayload(@ptrCast(*const ITraceEvent, self), Payload, PayloadSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITraceEvent_SetEventDescriptor(self: *const T, EventDescriptor: ?*const EVENT_DESCRIPTOR) HRESULT {
+                return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetEventDescriptor(@ptrCast(*const ITraceEvent, self), EventDescriptor);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITraceEvent_SetProcessId(self: *const T, ProcessId: u32) HRESULT {
+                return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetProcessId(@ptrCast(*const ITraceEvent, self), ProcessId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITraceEvent_SetProcessorIndex(self: *const T, ProcessorIndex: u32) HRESULT {
+                return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetProcessorIndex(@ptrCast(*const ITraceEvent, self), ProcessorIndex);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITraceEvent_SetThreadId(self: *const T, ThreadId: u32) HRESULT {
+                return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetThreadId(@ptrCast(*const ITraceEvent, self), ThreadId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITraceEvent_SetThreadTimes(self: *const T, KernelTime: u32, UserTime: u32) HRESULT {
+                return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetThreadTimes(@ptrCast(*const ITraceEvent, self), KernelTime, UserTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITraceEvent_SetActivityId(self: *const T, ActivityId: ?*const Guid) HRESULT {
+                return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetActivityId(@ptrCast(*const ITraceEvent, self), ActivityId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITraceEvent_SetTimeStamp(self: *const T, TimeStamp: ?*LARGE_INTEGER) HRESULT {
+                return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetTimeStamp(@ptrCast(*const ITraceEvent, self), TimeStamp);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITraceEvent_SetProviderId(self: *const T, ProviderId: ?*const Guid) HRESULT {
+                return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetProviderId(@ptrCast(*const ITraceEvent, self), ProviderId);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2179,34 +2153,34 @@ pub const ITraceEventCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnBeginProcessTrace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITraceEventCallback,
                 HeaderEvent: ?*ITraceEvent,
                 Relogger: ?*ITraceRelogger,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITraceEventCallback,
                 HeaderEvent: ?*ITraceEvent,
                 Relogger: ?*ITraceRelogger,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnFinalizeProcessTrace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITraceEventCallback,
                 Relogger: ?*ITraceRelogger,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITraceEventCallback,
                 Relogger: ?*ITraceRelogger,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITraceEventCallback,
                 Event: ?*ITraceEvent,
                 Relogger: ?*ITraceRelogger,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITraceEventCallback,
                 Event: ?*ITraceEvent,
                 Relogger: ?*ITraceRelogger,
@@ -2214,21 +2188,23 @@ pub const ITraceEventCallback = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEventCallback_OnBeginProcessTrace(self: *const T, HeaderEvent: ?*ITraceEvent, Relogger: ?*ITraceRelogger) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITraceEventCallback.VTable, self.vtable).OnBeginProcessTrace(@ptrCast(*const ITraceEventCallback, self), HeaderEvent, Relogger);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEventCallback_OnFinalizeProcessTrace(self: *const T, Relogger: ?*ITraceRelogger) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITraceEventCallback.VTable, self.vtable).OnFinalizeProcessTrace(@ptrCast(*const ITraceEventCallback, self), Relogger);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceEventCallback_OnEvent(self: *const T, Event: ?*ITraceEvent, Relogger: ?*ITraceRelogger) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITraceEventCallback.VTable, self.vtable).OnEvent(@ptrCast(*const ITraceEventCallback, self), Event, Relogger);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITraceEventCallback_OnBeginProcessTrace(self: *const T, HeaderEvent: ?*ITraceEvent, Relogger: ?*ITraceRelogger) HRESULT {
+                return @ptrCast(*const ITraceEventCallback.VTable, self.vtable).OnBeginProcessTrace(@ptrCast(*const ITraceEventCallback, self), HeaderEvent, Relogger);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITraceEventCallback_OnFinalizeProcessTrace(self: *const T, Relogger: ?*ITraceRelogger) HRESULT {
+                return @ptrCast(*const ITraceEventCallback.VTable, self.vtable).OnFinalizeProcessTrace(@ptrCast(*const ITraceEventCallback, self), Relogger);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITraceEventCallback_OnEvent(self: *const T, Event: ?*ITraceEvent, Relogger: ?*ITraceRelogger) HRESULT {
+                return @ptrCast(*const ITraceEventCallback.VTable, self.vtable).OnEvent(@ptrCast(*const ITraceEventCallback, self), Event, Relogger);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2239,13 +2215,13 @@ pub const ITraceRelogger = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddLogfileTraceStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITraceRelogger,
                 LogfileName: ?BSTR,
                 UserContext: ?*anyopaque,
                 TraceHandle: ?*u64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITraceRelogger,
                 LogfileName: ?BSTR,
                 UserContext: ?*anyopaque,
@@ -2253,13 +2229,13 @@ pub const ITraceRelogger = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AddRealtimeTraceStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITraceRelogger,
                 LoggerName: ?BSTR,
                 UserContext: ?*anyopaque,
                 TraceHandle: ?*u64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITraceRelogger,
                 LoggerName: ?BSTR,
                 UserContext: ?*anyopaque,
@@ -2267,33 +2243,33 @@ pub const ITraceRelogger = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RegisterCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITraceRelogger,
                 Callback: ?*ITraceEventCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITraceRelogger,
                 Callback: ?*ITraceEventCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Inject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITraceRelogger,
                 Event: ?*ITraceEvent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITraceRelogger,
                 Event: ?*ITraceEvent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateEventInstance: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITraceRelogger,
                 TraceHandle: u64,
                 Flags: u32,
                 Event: ?*?*ITraceEvent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITraceRelogger,
                 TraceHandle: u64,
                 Flags: u32,
@@ -2301,85 +2277,86 @@ pub const ITraceRelogger = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ProcessTrace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITraceRelogger,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITraceRelogger,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetOutputFilename: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITraceRelogger,
                 LogfileName: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITraceRelogger,
                 LogfileName: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetCompressionMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITraceRelogger,
                 CompressionMode: BOOLEAN,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITraceRelogger,
                 CompressionMode: BOOLEAN,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITraceRelogger,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITraceRelogger,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_AddLogfileTraceStream(self: *const T, LogfileName: ?BSTR, UserContext: ?*anyopaque, TraceHandle: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITraceRelogger.VTable, self.vtable).AddLogfileTraceStream(@ptrCast(*const ITraceRelogger, self), LogfileName, UserContext, TraceHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_AddRealtimeTraceStream(self: *const T, LoggerName: ?BSTR, UserContext: ?*anyopaque, TraceHandle: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITraceRelogger.VTable, self.vtable).AddRealtimeTraceStream(@ptrCast(*const ITraceRelogger, self), LoggerName, UserContext, TraceHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_RegisterCallback(self: *const T, Callback: ?*ITraceEventCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITraceRelogger.VTable, self.vtable).RegisterCallback(@ptrCast(*const ITraceRelogger, self), Callback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_Inject(self: *const T, Event: ?*ITraceEvent) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITraceRelogger.VTable, self.vtable).Inject(@ptrCast(*const ITraceRelogger, self), Event);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_CreateEventInstance(self: *const T, TraceHandle: u64, Flags: u32, Event: ?*?*ITraceEvent) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITraceRelogger.VTable, self.vtable).CreateEventInstance(@ptrCast(*const ITraceRelogger, self), TraceHandle, Flags, Event);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_ProcessTrace(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITraceRelogger.VTable, self.vtable).ProcessTrace(@ptrCast(*const ITraceRelogger, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_SetOutputFilename(self: *const T, LogfileName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITraceRelogger.VTable, self.vtable).SetOutputFilename(@ptrCast(*const ITraceRelogger, self), LogfileName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_SetCompressionMode(self: *const T, CompressionMode: BOOLEAN) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITraceRelogger.VTable, self.vtable).SetCompressionMode(@ptrCast(*const ITraceRelogger, self), CompressionMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITraceRelogger_Cancel(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITraceRelogger.VTable, self.vtable).Cancel(@ptrCast(*const ITraceRelogger, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITraceRelogger_AddLogfileTraceStream(self: *const T, LogfileName: ?BSTR, UserContext: ?*anyopaque, TraceHandle: ?*u64) HRESULT {
+                return @ptrCast(*const ITraceRelogger.VTable, self.vtable).AddLogfileTraceStream(@ptrCast(*const ITraceRelogger, self), LogfileName, UserContext, TraceHandle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITraceRelogger_AddRealtimeTraceStream(self: *const T, LoggerName: ?BSTR, UserContext: ?*anyopaque, TraceHandle: ?*u64) HRESULT {
+                return @ptrCast(*const ITraceRelogger.VTable, self.vtable).AddRealtimeTraceStream(@ptrCast(*const ITraceRelogger, self), LoggerName, UserContext, TraceHandle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITraceRelogger_RegisterCallback(self: *const T, Callback: ?*ITraceEventCallback) HRESULT {
+                return @ptrCast(*const ITraceRelogger.VTable, self.vtable).RegisterCallback(@ptrCast(*const ITraceRelogger, self), Callback);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITraceRelogger_Inject(self: *const T, Event: ?*ITraceEvent) HRESULT {
+                return @ptrCast(*const ITraceRelogger.VTable, self.vtable).Inject(@ptrCast(*const ITraceRelogger, self), Event);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITraceRelogger_CreateEventInstance(self: *const T, TraceHandle: u64, Flags: u32, Event: ?*?*ITraceEvent) HRESULT {
+                return @ptrCast(*const ITraceRelogger.VTable, self.vtable).CreateEventInstance(@ptrCast(*const ITraceRelogger, self), TraceHandle, Flags, Event);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITraceRelogger_ProcessTrace(self: *const T) HRESULT {
+                return @ptrCast(*const ITraceRelogger.VTable, self.vtable).ProcessTrace(@ptrCast(*const ITraceRelogger, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITraceRelogger_SetOutputFilename(self: *const T, LogfileName: ?BSTR) HRESULT {
+                return @ptrCast(*const ITraceRelogger.VTable, self.vtable).SetOutputFilename(@ptrCast(*const ITraceRelogger, self), LogfileName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITraceRelogger_SetCompressionMode(self: *const T, CompressionMode: BOOLEAN) HRESULT {
+                return @ptrCast(*const ITraceRelogger.VTable, self.vtable).SetCompressionMode(@ptrCast(*const ITraceRelogger, self), CompressionMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITraceRelogger_Cancel(self: *const T) HRESULT {
+                return @ptrCast(*const ITraceRelogger.VTable, self.vtable).Cancel(@ptrCast(*const ITraceRelogger, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (80)
@@ -3005,7 +2982,6 @@ pub extern "advapi32" fn CveEventWrite(
     AdditionalDetails: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (11)
 //--------------------------------------------------------------------------------
@@ -3038,17 +3014,17 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
         pub const OpenTrace = thismodule.OpenTraceW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const PEVENT_TRACE_BUFFER_CALLBACK = *opaque{};
-        pub const EVENT_TRACE_LOGFILE = *opaque{};
-        pub const StartTrace = *opaque{};
-        pub const StopTrace = *opaque{};
-        pub const QueryTrace = *opaque{};
-        pub const UpdateTrace = *opaque{};
-        pub const FlushTrace = *opaque{};
-        pub const ControlTrace = *opaque{};
-        pub const QueryAllTraces = *opaque{};
-        pub const RegisterTraceGuids = *opaque{};
-        pub const OpenTrace = *opaque{};
+        pub const PEVENT_TRACE_BUFFER_CALLBACK = *opaque {};
+        pub const EVENT_TRACE_LOGFILE = *opaque {};
+        pub const StartTrace = *opaque {};
+        pub const StopTrace = *opaque {};
+        pub const QueryTrace = *opaque {};
+        pub const UpdateTrace = *opaque {};
+        pub const FlushTrace = *opaque {};
+        pub const ControlTrace = *opaque {};
+        pub const QueryAllTraces = *opaque {};
+        pub const RegisterTraceGuids = *opaque {};
+        pub const OpenTrace = *opaque {};
     } else struct {
         pub const PEVENT_TRACE_BUFFER_CALLBACK = @compileError("'PEVENT_TRACE_BUFFER_CALLBACK' requires that UNICODE be set to true or false in the root module");
         pub const EVENT_TRACE_LOGFILE = @compileError("'EVENT_TRACE_LOGFILE' requires that UNICODE be set to true or false in the root module");
@@ -3082,14 +3058,20 @@ const TIME_ZONE_INFORMATION = @import("../../system/time.zig").TIME_ZONE_INFORMA
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PEVENT_CALLBACK")) { _ = PEVENT_CALLBACK; }
-    if (@hasDecl(@This(), "PEVENT_RECORD_CALLBACK")) { _ = PEVENT_RECORD_CALLBACK; }
-    if (@hasDecl(@This(), "WMIDPREQUEST")) { _ = WMIDPREQUEST; }
-    if (@hasDecl(@This(), "PENABLECALLBACK")) { _ = PENABLECALLBACK; }
+    if (@hasDecl(@This(), "PEVENT_CALLBACK")) {
+        _ = PEVENT_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PEVENT_RECORD_CALLBACK")) {
+        _ = PEVENT_RECORD_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WMIDPREQUEST")) {
+        _ = WMIDPREQUEST;
+    }
+    if (@hasDecl(@This(), "PENABLECALLBACK")) {
+        _ = PENABLECALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

@@ -64,7 +64,6 @@ pub const DFS_INFO_1 = extern struct {
     EntryPath: ?PWSTR,
 };
 
-
 pub const DFS_INFO_2 = extern struct {
     EntryPath: ?PWSTR,
     Comment: ?PWSTR,
@@ -72,13 +71,11 @@ pub const DFS_INFO_2 = extern struct {
     NumberOfStorages: u32,
 };
 
-
 pub const DFS_STORAGE_INFO = extern struct {
     State: u32,
     ServerName: ?PWSTR,
     ShareName: ?PWSTR,
 };
-
 
 pub const DFS_STORAGE_INFO_1 = extern struct {
     State: u32,
@@ -95,7 +92,6 @@ pub const DFS_INFO_3 = extern struct {
     Storage: ?*DFS_STORAGE_INFO,
 };
 
-
 pub const DFS_INFO_4 = extern struct {
     EntryPath: ?PWSTR,
     Comment: ?PWSTR,
@@ -105,7 +101,6 @@ pub const DFS_INFO_4 = extern struct {
     NumberOfStorages: u32,
     Storage: ?*DFS_STORAGE_INFO,
 };
-
 
 pub const DFS_INFO_5 = extern struct {
     EntryPath: ?PWSTR,
@@ -261,13 +256,13 @@ pub const DFS_GET_PKT_ENTRY_STATE_ARG = extern struct {
     Buffer: [1]u16,
 };
 
-pub const DFS_INFO_1_32 = switch(@import("../zig.zig").arch) {
+pub const DFS_INFO_1_32 = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         EntryPath: u32,
     },
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-pub const DFS_INFO_2_32 = switch(@import("../zig.zig").arch) {
+pub const DFS_INFO_2_32 = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         EntryPath: u32,
         Comment: u32,
@@ -276,7 +271,7 @@ pub const DFS_INFO_2_32 = switch(@import("../zig.zig").arch) {
     },
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-pub const DFS_STORAGE_INFO_0_32 = switch(@import("../zig.zig").arch) {
+pub const DFS_STORAGE_INFO_0_32 = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         State: u32,
         ServerName: u32,
@@ -284,7 +279,7 @@ pub const DFS_STORAGE_INFO_0_32 = switch(@import("../zig.zig").arch) {
     },
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-pub const DFS_INFO_3_32 = switch(@import("../zig.zig").arch) {
+pub const DFS_INFO_3_32 = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         EntryPath: u32,
         Comment: u32,
@@ -294,7 +289,7 @@ pub const DFS_INFO_3_32 = switch(@import("../zig.zig").arch) {
     },
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-pub const DFS_INFO_4_32 = switch(@import("../zig.zig").arch) {
+pub const DFS_INFO_4_32 = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         EntryPath: u32,
         Comment: u32,
@@ -488,19 +483,14 @@ pub extern "netapi32" fn NetDfsGetSupportedNamespaceVersion(
     ppVersionInfo: ?*?*DFS_SUPPORTED_NAMESPACE_VERSION_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (3)
@@ -510,9 +500,7 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

@@ -152,50 +152,52 @@ pub const IItemEnumerator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Current: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IItemEnumerator,
                 Item: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IItemEnumerator,
                 Item: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         MoveNext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IItemEnumerator,
                 ItemValid: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IItemEnumerator,
                 ItemValid: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IItemEnumerator,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IItemEnumerator,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IItemEnumerator_Current(self: *const T, Item: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IItemEnumerator.VTable, self.vtable).Current(@ptrCast(*const IItemEnumerator, self), Item);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IItemEnumerator_MoveNext(self: *const T, ItemValid: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IItemEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IItemEnumerator, self), ItemValid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IItemEnumerator_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IItemEnumerator.VTable, self.vtable).Reset(@ptrCast(*const IItemEnumerator, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IItemEnumerator_Current(self: *const T, Item: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IItemEnumerator.VTable, self.vtable).Current(@ptrCast(*const IItemEnumerator, self), Item);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IItemEnumerator_MoveNext(self: *const T, ItemValid: ?*BOOL) HRESULT {
+                return @ptrCast(*const IItemEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IItemEnumerator, self), ItemValid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IItemEnumerator_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IItemEnumerator.VTable, self.vtable).Reset(@ptrCast(*const IItemEnumerator, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -206,13 +208,13 @@ pub const ISettingsIdentity = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsIdentity,
                 Reserved: ?*anyopaque,
                 Name: ?[*:0]const u16,
                 Value: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsIdentity,
                 Reserved: ?*anyopaque,
                 Name: ?[*:0]const u16,
@@ -220,13 +222,13 @@ pub const ISettingsIdentity = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsIdentity,
                 Reserved: ?*anyopaque,
                 Name: ?[*:0]const u16,
                 Value: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsIdentity,
                 Reserved: ?*anyopaque,
                 Name: ?[*:0]const u16,
@@ -234,46 +236,48 @@ pub const ISettingsIdentity = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsIdentity,
                 Flags: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsIdentity,
                 Flags: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsIdentity,
                 Flags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsIdentity,
                 Flags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsIdentity_GetAttribute(self: *const T, Reserved: ?*anyopaque, Name: ?[*:0]const u16, Value: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsIdentity.VTable, self.vtable).GetAttribute(@ptrCast(*const ISettingsIdentity, self), Reserved, Name, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsIdentity_SetAttribute(self: *const T, Reserved: ?*anyopaque, Name: ?[*:0]const u16, Value: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsIdentity.VTable, self.vtable).SetAttribute(@ptrCast(*const ISettingsIdentity, self), Reserved, Name, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsIdentity_GetFlags(self: *const T, Flags: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsIdentity.VTable, self.vtable).GetFlags(@ptrCast(*const ISettingsIdentity, self), Flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsIdentity_SetFlags(self: *const T, Flags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsIdentity.VTable, self.vtable).SetFlags(@ptrCast(*const ISettingsIdentity, self), Flags);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsIdentity_GetAttribute(self: *const T, Reserved: ?*anyopaque, Name: ?[*:0]const u16, Value: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISettingsIdentity.VTable, self.vtable).GetAttribute(@ptrCast(*const ISettingsIdentity, self), Reserved, Name, Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsIdentity_SetAttribute(self: *const T, Reserved: ?*anyopaque, Name: ?[*:0]const u16, Value: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const ISettingsIdentity.VTable, self.vtable).SetAttribute(@ptrCast(*const ISettingsIdentity, self), Reserved, Name, Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsIdentity_GetFlags(self: *const T, Flags: ?*u32) HRESULT {
+                return @ptrCast(*const ISettingsIdentity.VTable, self.vtable).GetFlags(@ptrCast(*const ISettingsIdentity, self), Flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsIdentity_SetFlags(self: *const T, Flags: u32) HRESULT {
+                return @ptrCast(*const ISettingsIdentity.VTable, self.vtable).SetFlags(@ptrCast(*const ISettingsIdentity, self), Flags);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -284,93 +288,93 @@ pub const ITargetInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetTargetMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITargetInfo,
                 TargetMode: ?*WcmTargetMode,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITargetInfo,
                 TargetMode: ?*WcmTargetMode,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetTargetMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITargetInfo,
                 TargetMode: WcmTargetMode,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITargetInfo,
                 TargetMode: WcmTargetMode,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetTemporaryStoreLocation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITargetInfo,
                 TemporaryStoreLocation: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITargetInfo,
                 TemporaryStoreLocation: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetTemporaryStoreLocation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITargetInfo,
                 TemporaryStoreLocation: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITargetInfo,
                 TemporaryStoreLocation: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetTargetID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITargetInfo,
                 TargetID: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITargetInfo,
                 TargetID: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetTargetID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITargetInfo,
                 TargetID: Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITargetInfo,
                 TargetID: Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetTargetProcessorArchitecture: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITargetInfo,
                 ProcessorArchitecture: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITargetInfo,
                 ProcessorArchitecture: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetTargetProcessorArchitecture: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITargetInfo,
                 ProcessorArchitecture: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITargetInfo,
                 ProcessorArchitecture: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITargetInfo,
                 Offline: BOOL,
                 Property: ?[*:0]const u16,
                 Value: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITargetInfo,
                 Offline: BOOL,
                 Property: ?[*:0]const u16,
@@ -378,13 +382,13 @@ pub const ITargetInfo = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITargetInfo,
                 Offline: BOOL,
                 Property: ?[*:0]const u16,
                 Value: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITargetInfo,
                 Offline: BOOL,
                 Property: ?[*:0]const u16,
@@ -392,23 +396,23 @@ pub const ITargetInfo = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetEnumerator: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITargetInfo,
                 Enumerator: ?*?*IItemEnumerator,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITargetInfo,
                 Enumerator: ?*?*IItemEnumerator,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ExpandTarget: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITargetInfo,
                 Offline: BOOL,
                 Location: ?[*:0]const u16,
                 ExpandedLocation: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITargetInfo,
                 Offline: BOOL,
                 Location: ?[*:0]const u16,
@@ -416,13 +420,13 @@ pub const ITargetInfo = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ExpandTargetPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITargetInfo,
                 Offline: BOOL,
                 Location: ?[*:0]const u16,
                 ExpandedLocation: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITargetInfo,
                 Offline: BOOL,
                 Location: ?[*:0]const u16,
@@ -430,49 +434,49 @@ pub const ITargetInfo = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetModulePath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITargetInfo,
                 Module: ?[*:0]const u16,
                 Path: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITargetInfo,
                 Module: ?[*:0]const u16,
                 Path: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         LoadModule: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITargetInfo,
                 Module: ?[*:0]const u16,
                 ModuleHandle: ?*?HINSTANCE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITargetInfo,
                 Module: ?[*:0]const u16,
                 ModuleHandle: ?*?HINSTANCE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetWow64Context: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITargetInfo,
                 InstallerModule: ?[*:0]const u16,
                 Wow64Context: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITargetInfo,
                 InstallerModule: ?[*:0]const u16,
                 Wow64Context: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         TranslateWow64: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITargetInfo,
                 ClientArchitecture: ?[*:0]const u16,
                 Value: ?[*:0]const u16,
                 TranslatedValue: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITargetInfo,
                 ClientArchitecture: ?[*:0]const u16,
                 Value: ?[*:0]const u16,
@@ -480,134 +484,136 @@ pub const ITargetInfo = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetSchemaHiveLocation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITargetInfo,
                 pwzHiveDir: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITargetInfo,
                 pwzHiveDir: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSchemaHiveLocation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITargetInfo,
                 pHiveLocation: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITargetInfo,
                 pHiveLocation: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetSchemaHiveMountName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITargetInfo,
                 pwzMountName: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITargetInfo,
                 pwzMountName: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSchemaHiveMountName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ITargetInfo,
                 pMountName: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ITargetInfo,
                 pMountName: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_GetTargetMode(self: *const T, TargetMode: ?*WcmTargetMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITargetInfo.VTable, self.vtable).GetTargetMode(@ptrCast(*const ITargetInfo, self), TargetMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_SetTargetMode(self: *const T, TargetMode: WcmTargetMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITargetInfo.VTable, self.vtable).SetTargetMode(@ptrCast(*const ITargetInfo, self), TargetMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_GetTemporaryStoreLocation(self: *const T, TemporaryStoreLocation: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITargetInfo.VTable, self.vtable).GetTemporaryStoreLocation(@ptrCast(*const ITargetInfo, self), TemporaryStoreLocation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_SetTemporaryStoreLocation(self: *const T, TemporaryStoreLocation: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITargetInfo.VTable, self.vtable).SetTemporaryStoreLocation(@ptrCast(*const ITargetInfo, self), TemporaryStoreLocation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_GetTargetID(self: *const T, TargetID: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITargetInfo.VTable, self.vtable).GetTargetID(@ptrCast(*const ITargetInfo, self), TargetID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_SetTargetID(self: *const T, TargetID: Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITargetInfo.VTable, self.vtable).SetTargetID(@ptrCast(*const ITargetInfo, self), TargetID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_GetTargetProcessorArchitecture(self: *const T, ProcessorArchitecture: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITargetInfo.VTable, self.vtable).GetTargetProcessorArchitecture(@ptrCast(*const ITargetInfo, self), ProcessorArchitecture);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_SetTargetProcessorArchitecture(self: *const T, ProcessorArchitecture: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITargetInfo.VTable, self.vtable).SetTargetProcessorArchitecture(@ptrCast(*const ITargetInfo, self), ProcessorArchitecture);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_GetProperty(self: *const T, Offline: BOOL, Property: ?[*:0]const u16, Value: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITargetInfo.VTable, self.vtable).GetProperty(@ptrCast(*const ITargetInfo, self), Offline, Property, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_SetProperty(self: *const T, Offline: BOOL, Property: ?[*:0]const u16, Value: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITargetInfo.VTable, self.vtable).SetProperty(@ptrCast(*const ITargetInfo, self), Offline, Property, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_GetEnumerator(self: *const T, Enumerator: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITargetInfo.VTable, self.vtable).GetEnumerator(@ptrCast(*const ITargetInfo, self), Enumerator);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_ExpandTarget(self: *const T, Offline: BOOL, Location: ?[*:0]const u16, ExpandedLocation: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITargetInfo.VTable, self.vtable).ExpandTarget(@ptrCast(*const ITargetInfo, self), Offline, Location, ExpandedLocation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_ExpandTargetPath(self: *const T, Offline: BOOL, Location: ?[*:0]const u16, ExpandedLocation: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITargetInfo.VTable, self.vtable).ExpandTargetPath(@ptrCast(*const ITargetInfo, self), Offline, Location, ExpandedLocation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_SetModulePath(self: *const T, Module: ?[*:0]const u16, Path: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITargetInfo.VTable, self.vtable).SetModulePath(@ptrCast(*const ITargetInfo, self), Module, Path);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_LoadModule(self: *const T, Module: ?[*:0]const u16, ModuleHandle: ?*?HINSTANCE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITargetInfo.VTable, self.vtable).LoadModule(@ptrCast(*const ITargetInfo, self), Module, ModuleHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_SetWow64Context(self: *const T, InstallerModule: ?[*:0]const u16, Wow64Context: ?*u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITargetInfo.VTable, self.vtable).SetWow64Context(@ptrCast(*const ITargetInfo, self), InstallerModule, Wow64Context);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_TranslateWow64(self: *const T, ClientArchitecture: ?[*:0]const u16, Value: ?[*:0]const u16, TranslatedValue: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITargetInfo.VTable, self.vtable).TranslateWow64(@ptrCast(*const ITargetInfo, self), ClientArchitecture, Value, TranslatedValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_SetSchemaHiveLocation(self: *const T, pwzHiveDir: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITargetInfo.VTable, self.vtable).SetSchemaHiveLocation(@ptrCast(*const ITargetInfo, self), pwzHiveDir);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_GetSchemaHiveLocation(self: *const T, pHiveLocation: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITargetInfo.VTable, self.vtable).GetSchemaHiveLocation(@ptrCast(*const ITargetInfo, self), pHiveLocation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_SetSchemaHiveMountName(self: *const T, pwzMountName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITargetInfo.VTable, self.vtable).SetSchemaHiveMountName(@ptrCast(*const ITargetInfo, self), pwzMountName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITargetInfo_GetSchemaHiveMountName(self: *const T, pMountName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITargetInfo.VTable, self.vtable).GetSchemaHiveMountName(@ptrCast(*const ITargetInfo, self), pMountName);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITargetInfo_GetTargetMode(self: *const T, TargetMode: ?*WcmTargetMode) HRESULT {
+                return @ptrCast(*const ITargetInfo.VTable, self.vtable).GetTargetMode(@ptrCast(*const ITargetInfo, self), TargetMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITargetInfo_SetTargetMode(self: *const T, TargetMode: WcmTargetMode) HRESULT {
+                return @ptrCast(*const ITargetInfo.VTable, self.vtable).SetTargetMode(@ptrCast(*const ITargetInfo, self), TargetMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITargetInfo_GetTemporaryStoreLocation(self: *const T, TemporaryStoreLocation: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ITargetInfo.VTable, self.vtable).GetTemporaryStoreLocation(@ptrCast(*const ITargetInfo, self), TemporaryStoreLocation);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITargetInfo_SetTemporaryStoreLocation(self: *const T, TemporaryStoreLocation: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const ITargetInfo.VTable, self.vtable).SetTemporaryStoreLocation(@ptrCast(*const ITargetInfo, self), TemporaryStoreLocation);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITargetInfo_GetTargetID(self: *const T, TargetID: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ITargetInfo.VTable, self.vtable).GetTargetID(@ptrCast(*const ITargetInfo, self), TargetID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITargetInfo_SetTargetID(self: *const T, TargetID: Guid) HRESULT {
+                return @ptrCast(*const ITargetInfo.VTable, self.vtable).SetTargetID(@ptrCast(*const ITargetInfo, self), TargetID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITargetInfo_GetTargetProcessorArchitecture(self: *const T, ProcessorArchitecture: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ITargetInfo.VTable, self.vtable).GetTargetProcessorArchitecture(@ptrCast(*const ITargetInfo, self), ProcessorArchitecture);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITargetInfo_SetTargetProcessorArchitecture(self: *const T, ProcessorArchitecture: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const ITargetInfo.VTable, self.vtable).SetTargetProcessorArchitecture(@ptrCast(*const ITargetInfo, self), ProcessorArchitecture);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITargetInfo_GetProperty(self: *const T, Offline: BOOL, Property: ?[*:0]const u16, Value: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ITargetInfo.VTable, self.vtable).GetProperty(@ptrCast(*const ITargetInfo, self), Offline, Property, Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITargetInfo_SetProperty(self: *const T, Offline: BOOL, Property: ?[*:0]const u16, Value: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const ITargetInfo.VTable, self.vtable).SetProperty(@ptrCast(*const ITargetInfo, self), Offline, Property, Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITargetInfo_GetEnumerator(self: *const T, Enumerator: ?*?*IItemEnumerator) HRESULT {
+                return @ptrCast(*const ITargetInfo.VTable, self.vtable).GetEnumerator(@ptrCast(*const ITargetInfo, self), Enumerator);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITargetInfo_ExpandTarget(self: *const T, Offline: BOOL, Location: ?[*:0]const u16, ExpandedLocation: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ITargetInfo.VTable, self.vtable).ExpandTarget(@ptrCast(*const ITargetInfo, self), Offline, Location, ExpandedLocation);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITargetInfo_ExpandTargetPath(self: *const T, Offline: BOOL, Location: ?[*:0]const u16, ExpandedLocation: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ITargetInfo.VTable, self.vtable).ExpandTargetPath(@ptrCast(*const ITargetInfo, self), Offline, Location, ExpandedLocation);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITargetInfo_SetModulePath(self: *const T, Module: ?[*:0]const u16, Path: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const ITargetInfo.VTable, self.vtable).SetModulePath(@ptrCast(*const ITargetInfo, self), Module, Path);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITargetInfo_LoadModule(self: *const T, Module: ?[*:0]const u16, ModuleHandle: ?*?HINSTANCE) HRESULT {
+                return @ptrCast(*const ITargetInfo.VTable, self.vtable).LoadModule(@ptrCast(*const ITargetInfo, self), Module, ModuleHandle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITargetInfo_SetWow64Context(self: *const T, InstallerModule: ?[*:0]const u16, Wow64Context: ?*u8) HRESULT {
+                return @ptrCast(*const ITargetInfo.VTable, self.vtable).SetWow64Context(@ptrCast(*const ITargetInfo, self), InstallerModule, Wow64Context);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITargetInfo_TranslateWow64(self: *const T, ClientArchitecture: ?[*:0]const u16, Value: ?[*:0]const u16, TranslatedValue: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ITargetInfo.VTable, self.vtable).TranslateWow64(@ptrCast(*const ITargetInfo, self), ClientArchitecture, Value, TranslatedValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITargetInfo_SetSchemaHiveLocation(self: *const T, pwzHiveDir: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const ITargetInfo.VTable, self.vtable).SetSchemaHiveLocation(@ptrCast(*const ITargetInfo, self), pwzHiveDir);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITargetInfo_GetSchemaHiveLocation(self: *const T, pHiveLocation: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ITargetInfo.VTable, self.vtable).GetSchemaHiveLocation(@ptrCast(*const ITargetInfo, self), pHiveLocation);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITargetInfo_SetSchemaHiveMountName(self: *const T, pwzMountName: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const ITargetInfo.VTable, self.vtable).SetSchemaHiveMountName(@ptrCast(*const ITargetInfo, self), pwzMountName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ITargetInfo_GetSchemaHiveMountName(self: *const T, pMountName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ITargetInfo.VTable, self.vtable).GetSchemaHiveMountName(@ptrCast(*const ITargetInfo, self), pMountName);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -618,13 +624,13 @@ pub const ISettingsEngine = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetNamespaces: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsEngine,
                 Flags: WcmNamespaceEnumerationFlags,
                 Reserved: ?*anyopaque,
                 Namespaces: ?*?*IItemEnumerator,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsEngine,
                 Flags: WcmNamespaceEnumerationFlags,
                 Reserved: ?*anyopaque,
@@ -632,14 +638,14 @@ pub const ISettingsEngine = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetNamespace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsEngine,
                 SettingsID: ?*ISettingsIdentity,
                 Access: WcmNamespaceAccess,
                 Reserved: ?*anyopaque,
                 NamespaceItem: ?*?*ISettingsNamespace,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsEngine,
                 SettingsID: ?*ISettingsIdentity,
                 Access: WcmNamespaceAccess,
@@ -648,68 +654,68 @@ pub const ISettingsEngine = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetErrorDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsEngine,
                 HResult: i32,
                 Message: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsEngine,
                 HResult: i32,
                 Message: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateSettingsIdentity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsEngine,
                 SettingsID: ?*?*ISettingsIdentity,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsEngine,
                 SettingsID: ?*?*ISettingsIdentity,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetStoreStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsEngine,
                 Reserved: ?*anyopaque,
                 Status: ?*WcmUserStatus,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsEngine,
                 Reserved: ?*anyopaque,
                 Status: ?*WcmUserStatus,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         LoadStore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsEngine,
                 Flags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsEngine,
                 Flags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         UnloadStore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsEngine,
                 Reserved: ?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsEngine,
                 Reserved: ?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RegisterNamespace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsEngine,
                 SettingsID: ?*ISettingsIdentity,
                 Stream: ?*IStream,
                 PushSettings: BOOL,
                 Results: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsEngine,
                 SettingsID: ?*ISettingsIdentity,
                 Stream: ?*IStream,
@@ -718,55 +724,55 @@ pub const ISettingsEngine = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         UnregisterNamespace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsEngine,
                 SettingsID: ?*ISettingsIdentity,
                 RemoveSettings: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsEngine,
                 SettingsID: ?*ISettingsIdentity,
                 RemoveSettings: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateTargetInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsEngine,
                 Target: ?*?*ITargetInfo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsEngine,
                 Target: ?*?*ITargetInfo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetTargetInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsEngine,
                 Target: ?*?*ITargetInfo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsEngine,
                 Target: ?*?*ITargetInfo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetTargetInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsEngine,
                 Target: ?*ITargetInfo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsEngine,
                 Target: ?*ITargetInfo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateSettingsContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsEngine,
                 Flags: u32,
                 Reserved: ?*anyopaque,
                 SettingsContext: ?*?*ISettingsContext,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsEngine,
                 Flags: u32,
                 Reserved: ?*anyopaque,
@@ -774,23 +780,23 @@ pub const ISettingsEngine = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetSettingsContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsEngine,
                 SettingsContext: ?*ISettingsContext,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsEngine,
                 SettingsContext: ?*ISettingsContext,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ApplySettingsContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsEngine,
                 SettingsContext: ?*ISettingsContext,
                 pppwzIdentities: ?*?*?PWSTR,
                 pcIdentities: ?*usize,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsEngine,
                 SettingsContext: ?*ISettingsContext,
                 pppwzIdentities: ?*?*?PWSTR,
@@ -798,84 +804,86 @@ pub const ISettingsEngine = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSettingsContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsEngine,
                 SettingsContext: ?*?*ISettingsContext,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsEngine,
                 SettingsContext: ?*?*ISettingsContext,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_GetNamespaces(self: *const T, Flags: WcmNamespaceEnumerationFlags, Reserved: ?*anyopaque, Namespaces: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsEngine.VTable, self.vtable).GetNamespaces(@ptrCast(*const ISettingsEngine, self), Flags, Reserved, Namespaces);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_GetNamespace(self: *const T, SettingsID: ?*ISettingsIdentity, Access: WcmNamespaceAccess, Reserved: ?*anyopaque, NamespaceItem: ?*?*ISettingsNamespace) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsEngine.VTable, self.vtable).GetNamespace(@ptrCast(*const ISettingsEngine, self), SettingsID, Access, Reserved, NamespaceItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_GetErrorDescription(self: *const T, HResult: i32, Message: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsEngine.VTable, self.vtable).GetErrorDescription(@ptrCast(*const ISettingsEngine, self), HResult, Message);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_CreateSettingsIdentity(self: *const T, SettingsID: ?*?*ISettingsIdentity) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsEngine.VTable, self.vtable).CreateSettingsIdentity(@ptrCast(*const ISettingsEngine, self), SettingsID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_GetStoreStatus(self: *const T, Reserved: ?*anyopaque, Status: ?*WcmUserStatus) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsEngine.VTable, self.vtable).GetStoreStatus(@ptrCast(*const ISettingsEngine, self), Reserved, Status);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_LoadStore(self: *const T, Flags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsEngine.VTable, self.vtable).LoadStore(@ptrCast(*const ISettingsEngine, self), Flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_UnloadStore(self: *const T, Reserved: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsEngine.VTable, self.vtable).UnloadStore(@ptrCast(*const ISettingsEngine, self), Reserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_RegisterNamespace(self: *const T, SettingsID: ?*ISettingsIdentity, Stream: ?*IStream, PushSettings: BOOL, Results: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsEngine.VTable, self.vtable).RegisterNamespace(@ptrCast(*const ISettingsEngine, self), SettingsID, Stream, PushSettings, Results);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_UnregisterNamespace(self: *const T, SettingsID: ?*ISettingsIdentity, RemoveSettings: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsEngine.VTable, self.vtable).UnregisterNamespace(@ptrCast(*const ISettingsEngine, self), SettingsID, RemoveSettings);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_CreateTargetInfo(self: *const T, Target: ?*?*ITargetInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsEngine.VTable, self.vtable).CreateTargetInfo(@ptrCast(*const ISettingsEngine, self), Target);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_GetTargetInfo(self: *const T, Target: ?*?*ITargetInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsEngine.VTable, self.vtable).GetTargetInfo(@ptrCast(*const ISettingsEngine, self), Target);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_SetTargetInfo(self: *const T, Target: ?*ITargetInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsEngine.VTable, self.vtable).SetTargetInfo(@ptrCast(*const ISettingsEngine, self), Target);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_CreateSettingsContext(self: *const T, Flags: u32, Reserved: ?*anyopaque, SettingsContext: ?*?*ISettingsContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsEngine.VTable, self.vtable).CreateSettingsContext(@ptrCast(*const ISettingsEngine, self), Flags, Reserved, SettingsContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_SetSettingsContext(self: *const T, SettingsContext: ?*ISettingsContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsEngine.VTable, self.vtable).SetSettingsContext(@ptrCast(*const ISettingsEngine, self), SettingsContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_ApplySettingsContext(self: *const T, SettingsContext: ?*ISettingsContext, pppwzIdentities: ?*?*?PWSTR, pcIdentities: ?*usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsEngine.VTable, self.vtable).ApplySettingsContext(@ptrCast(*const ISettingsEngine, self), SettingsContext, pppwzIdentities, pcIdentities);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsEngine_GetSettingsContext(self: *const T, SettingsContext: ?*?*ISettingsContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsEngine.VTable, self.vtable).GetSettingsContext(@ptrCast(*const ISettingsEngine, self), SettingsContext);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsEngine_GetNamespaces(self: *const T, Flags: WcmNamespaceEnumerationFlags, Reserved: ?*anyopaque, Namespaces: ?*?*IItemEnumerator) HRESULT {
+                return @ptrCast(*const ISettingsEngine.VTable, self.vtable).GetNamespaces(@ptrCast(*const ISettingsEngine, self), Flags, Reserved, Namespaces);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsEngine_GetNamespace(self: *const T, SettingsID: ?*ISettingsIdentity, Access: WcmNamespaceAccess, Reserved: ?*anyopaque, NamespaceItem: ?*?*ISettingsNamespace) HRESULT {
+                return @ptrCast(*const ISettingsEngine.VTable, self.vtable).GetNamespace(@ptrCast(*const ISettingsEngine, self), SettingsID, Access, Reserved, NamespaceItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsEngine_GetErrorDescription(self: *const T, HResult: i32, Message: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISettingsEngine.VTable, self.vtable).GetErrorDescription(@ptrCast(*const ISettingsEngine, self), HResult, Message);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsEngine_CreateSettingsIdentity(self: *const T, SettingsID: ?*?*ISettingsIdentity) HRESULT {
+                return @ptrCast(*const ISettingsEngine.VTable, self.vtable).CreateSettingsIdentity(@ptrCast(*const ISettingsEngine, self), SettingsID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsEngine_GetStoreStatus(self: *const T, Reserved: ?*anyopaque, Status: ?*WcmUserStatus) HRESULT {
+                return @ptrCast(*const ISettingsEngine.VTable, self.vtable).GetStoreStatus(@ptrCast(*const ISettingsEngine, self), Reserved, Status);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsEngine_LoadStore(self: *const T, Flags: u32) HRESULT {
+                return @ptrCast(*const ISettingsEngine.VTable, self.vtable).LoadStore(@ptrCast(*const ISettingsEngine, self), Flags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsEngine_UnloadStore(self: *const T, Reserved: ?*anyopaque) HRESULT {
+                return @ptrCast(*const ISettingsEngine.VTable, self.vtable).UnloadStore(@ptrCast(*const ISettingsEngine, self), Reserved);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsEngine_RegisterNamespace(self: *const T, SettingsID: ?*ISettingsIdentity, Stream: ?*IStream, PushSettings: BOOL, Results: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISettingsEngine.VTable, self.vtable).RegisterNamespace(@ptrCast(*const ISettingsEngine, self), SettingsID, Stream, PushSettings, Results);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsEngine_UnregisterNamespace(self: *const T, SettingsID: ?*ISettingsIdentity, RemoveSettings: BOOL) HRESULT {
+                return @ptrCast(*const ISettingsEngine.VTable, self.vtable).UnregisterNamespace(@ptrCast(*const ISettingsEngine, self), SettingsID, RemoveSettings);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsEngine_CreateTargetInfo(self: *const T, Target: ?*?*ITargetInfo) HRESULT {
+                return @ptrCast(*const ISettingsEngine.VTable, self.vtable).CreateTargetInfo(@ptrCast(*const ISettingsEngine, self), Target);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsEngine_GetTargetInfo(self: *const T, Target: ?*?*ITargetInfo) HRESULT {
+                return @ptrCast(*const ISettingsEngine.VTable, self.vtable).GetTargetInfo(@ptrCast(*const ISettingsEngine, self), Target);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsEngine_SetTargetInfo(self: *const T, Target: ?*ITargetInfo) HRESULT {
+                return @ptrCast(*const ISettingsEngine.VTable, self.vtable).SetTargetInfo(@ptrCast(*const ISettingsEngine, self), Target);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsEngine_CreateSettingsContext(self: *const T, Flags: u32, Reserved: ?*anyopaque, SettingsContext: ?*?*ISettingsContext) HRESULT {
+                return @ptrCast(*const ISettingsEngine.VTable, self.vtable).CreateSettingsContext(@ptrCast(*const ISettingsEngine, self), Flags, Reserved, SettingsContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsEngine_SetSettingsContext(self: *const T, SettingsContext: ?*ISettingsContext) HRESULT {
+                return @ptrCast(*const ISettingsEngine.VTable, self.vtable).SetSettingsContext(@ptrCast(*const ISettingsEngine, self), SettingsContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsEngine_ApplySettingsContext(self: *const T, SettingsContext: ?*ISettingsContext, pppwzIdentities: ?*?*?PWSTR, pcIdentities: ?*usize) HRESULT {
+                return @ptrCast(*const ISettingsEngine.VTable, self.vtable).ApplySettingsContext(@ptrCast(*const ISettingsEngine, self), SettingsContext, pppwzIdentities, pcIdentities);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsEngine_GetSettingsContext(self: *const T, SettingsContext: ?*?*ISettingsContext) HRESULT {
+                return @ptrCast(*const ISettingsEngine.VTable, self.vtable).GetSettingsContext(@ptrCast(*const ISettingsEngine, self), SettingsContext);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -886,75 +894,75 @@ pub const ISettingsItem = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsItem,
                 Name: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsItem,
                 Name: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsItem,
                 Value: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsItem,
                 Value: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsItem,
                 Value: ?*const VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsItem,
                 Value: ?*const VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSettingType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsItem,
                 Type: ?*WcmSettingType,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsItem,
                 Type: ?*WcmSettingType,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDataType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsItem,
                 Type: ?*WcmDataType,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsItem,
                 Type: ?*WcmDataType,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetValueRaw: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsItem,
                 Data: [*]?*u8,
                 DataSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsItem,
                 Data: [*]?*u8,
                 DataSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetValueRaw: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsItem,
                 DataType: i32,
                 Data: [*:0]const u8,
                 DataSize: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsItem,
                 DataType: i32,
                 Data: [*:0]const u8,
@@ -962,262 +970,264 @@ pub const ISettingsItem = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         HasChild: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsItem,
                 ItemHasChild: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsItem,
                 ItemHasChild: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Children: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsItem,
                 Children: ?*?*IItemEnumerator,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsItem,
                 Children: ?*?*IItemEnumerator,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetChild: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsItem,
                 Name: ?[*:0]const u16,
                 Child: ?*?*ISettingsItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsItem,
                 Name: ?[*:0]const u16,
                 Child: ?*?*ISettingsItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSettingByPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsItem,
                 Path: ?[*:0]const u16,
                 Setting: ?*?*ISettingsItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsItem,
                 Path: ?[*:0]const u16,
                 Setting: ?*?*ISettingsItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateSettingByPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsItem,
                 Path: ?[*:0]const u16,
                 Setting: ?*?*ISettingsItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsItem,
                 Path: ?[*:0]const u16,
                 Setting: ?*?*ISettingsItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RemoveSettingByPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsItem,
                 Path: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsItem,
                 Path: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetListKeyInformation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsItem,
                 KeyName: ?*?BSTR,
                 DataType: ?*WcmDataType,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsItem,
                 KeyName: ?*?BSTR,
                 DataType: ?*WcmDataType,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateListElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsItem,
                 KeyData: ?*const VARIANT,
                 Child: ?*?*ISettingsItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsItem,
                 KeyData: ?*const VARIANT,
                 Child: ?*?*ISettingsItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RemoveListElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsItem,
                 ElementName: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsItem,
                 ElementName: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Attributes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsItem,
                 Attributes: ?*?*IItemEnumerator,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsItem,
                 Attributes: ?*?*IItemEnumerator,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsItem,
                 Name: ?[*:0]const u16,
                 Value: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsItem,
                 Name: ?[*:0]const u16,
                 Value: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsItem,
                 Path: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsItem,
                 Path: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetRestrictionFacets: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsItem,
                 RestrictionFacets: ?*WcmRestrictionFacets,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsItem,
                 RestrictionFacets: ?*WcmRestrictionFacets,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetRestriction: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsItem,
                 RestrictionFacet: WcmRestrictionFacets,
                 FacetData: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsItem,
                 RestrictionFacet: WcmRestrictionFacets,
                 FacetData: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetKeyValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsItem,
                 Value: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsItem,
                 Value: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetName(self: *const T, Name: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetName(@ptrCast(*const ISettingsItem, self), Name);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetValue(self: *const T, Value: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetValue(@ptrCast(*const ISettingsItem, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_SetValue(self: *const T, Value: ?*const VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsItem.VTable, self.vtable).SetValue(@ptrCast(*const ISettingsItem, self), Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetSettingType(self: *const T, Type: ?*WcmSettingType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetSettingType(@ptrCast(*const ISettingsItem, self), Type);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetDataType(self: *const T, Type: ?*WcmDataType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetDataType(@ptrCast(*const ISettingsItem, self), Type);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetValueRaw(self: *const T, Data: [*]?*u8, DataSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetValueRaw(@ptrCast(*const ISettingsItem, self), Data, DataSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_SetValueRaw(self: *const T, DataType: i32, Data: [*:0]const u8, DataSize: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsItem.VTable, self.vtable).SetValueRaw(@ptrCast(*const ISettingsItem, self), DataType, Data, DataSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_HasChild(self: *const T, ItemHasChild: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsItem.VTable, self.vtable).HasChild(@ptrCast(*const ISettingsItem, self), ItemHasChild);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_Children(self: *const T, Children: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsItem.VTable, self.vtable).Children(@ptrCast(*const ISettingsItem, self), Children);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetChild(self: *const T, Name: ?[*:0]const u16, Child: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetChild(@ptrCast(*const ISettingsItem, self), Name, Child);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetSettingByPath(self: *const T, Path: ?[*:0]const u16, Setting: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetSettingByPath(@ptrCast(*const ISettingsItem, self), Path, Setting);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_CreateSettingByPath(self: *const T, Path: ?[*:0]const u16, Setting: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsItem.VTable, self.vtable).CreateSettingByPath(@ptrCast(*const ISettingsItem, self), Path, Setting);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_RemoveSettingByPath(self: *const T, Path: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsItem.VTable, self.vtable).RemoveSettingByPath(@ptrCast(*const ISettingsItem, self), Path);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetListKeyInformation(self: *const T, KeyName: ?*?BSTR, DataType: ?*WcmDataType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetListKeyInformation(@ptrCast(*const ISettingsItem, self), KeyName, DataType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_CreateListElement(self: *const T, KeyData: ?*const VARIANT, Child: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsItem.VTable, self.vtable).CreateListElement(@ptrCast(*const ISettingsItem, self), KeyData, Child);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_RemoveListElement(self: *const T, ElementName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsItem.VTable, self.vtable).RemoveListElement(@ptrCast(*const ISettingsItem, self), ElementName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_Attributes(self: *const T, Attributes: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsItem.VTable, self.vtable).Attributes(@ptrCast(*const ISettingsItem, self), Attributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetAttribute(self: *const T, Name: ?[*:0]const u16, Value: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetAttribute(@ptrCast(*const ISettingsItem, self), Name, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetPath(self: *const T, Path: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetPath(@ptrCast(*const ISettingsItem, self), Path);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetRestrictionFacets(self: *const T, RestrictionFacets: ?*WcmRestrictionFacets) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetRestrictionFacets(@ptrCast(*const ISettingsItem, self), RestrictionFacets);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetRestriction(self: *const T, RestrictionFacet: WcmRestrictionFacets, FacetData: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetRestriction(@ptrCast(*const ISettingsItem, self), RestrictionFacet, FacetData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsItem_GetKeyValue(self: *const T, Value: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetKeyValue(@ptrCast(*const ISettingsItem, self), Value);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsItem_GetName(self: *const T, Name: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetName(@ptrCast(*const ISettingsItem, self), Name);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsItem_GetValue(self: *const T, Value: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetValue(@ptrCast(*const ISettingsItem, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsItem_SetValue(self: *const T, Value: ?*const VARIANT) HRESULT {
+                return @ptrCast(*const ISettingsItem.VTable, self.vtable).SetValue(@ptrCast(*const ISettingsItem, self), Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsItem_GetSettingType(self: *const T, Type: ?*WcmSettingType) HRESULT {
+                return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetSettingType(@ptrCast(*const ISettingsItem, self), Type);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsItem_GetDataType(self: *const T, Type: ?*WcmDataType) HRESULT {
+                return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetDataType(@ptrCast(*const ISettingsItem, self), Type);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsItem_GetValueRaw(self: *const T, Data: [*]?*u8, DataSize: ?*u32) HRESULT {
+                return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetValueRaw(@ptrCast(*const ISettingsItem, self), Data, DataSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsItem_SetValueRaw(self: *const T, DataType: i32, Data: [*:0]const u8, DataSize: u32) HRESULT {
+                return @ptrCast(*const ISettingsItem.VTable, self.vtable).SetValueRaw(@ptrCast(*const ISettingsItem, self), DataType, Data, DataSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsItem_HasChild(self: *const T, ItemHasChild: ?*BOOL) HRESULT {
+                return @ptrCast(*const ISettingsItem.VTable, self.vtable).HasChild(@ptrCast(*const ISettingsItem, self), ItemHasChild);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsItem_Children(self: *const T, Children: ?*?*IItemEnumerator) HRESULT {
+                return @ptrCast(*const ISettingsItem.VTable, self.vtable).Children(@ptrCast(*const ISettingsItem, self), Children);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsItem_GetChild(self: *const T, Name: ?[*:0]const u16, Child: ?*?*ISettingsItem) HRESULT {
+                return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetChild(@ptrCast(*const ISettingsItem, self), Name, Child);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsItem_GetSettingByPath(self: *const T, Path: ?[*:0]const u16, Setting: ?*?*ISettingsItem) HRESULT {
+                return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetSettingByPath(@ptrCast(*const ISettingsItem, self), Path, Setting);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsItem_CreateSettingByPath(self: *const T, Path: ?[*:0]const u16, Setting: ?*?*ISettingsItem) HRESULT {
+                return @ptrCast(*const ISettingsItem.VTable, self.vtable).CreateSettingByPath(@ptrCast(*const ISettingsItem, self), Path, Setting);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsItem_RemoveSettingByPath(self: *const T, Path: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const ISettingsItem.VTable, self.vtable).RemoveSettingByPath(@ptrCast(*const ISettingsItem, self), Path);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsItem_GetListKeyInformation(self: *const T, KeyName: ?*?BSTR, DataType: ?*WcmDataType) HRESULT {
+                return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetListKeyInformation(@ptrCast(*const ISettingsItem, self), KeyName, DataType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsItem_CreateListElement(self: *const T, KeyData: ?*const VARIANT, Child: ?*?*ISettingsItem) HRESULT {
+                return @ptrCast(*const ISettingsItem.VTable, self.vtable).CreateListElement(@ptrCast(*const ISettingsItem, self), KeyData, Child);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsItem_RemoveListElement(self: *const T, ElementName: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const ISettingsItem.VTable, self.vtable).RemoveListElement(@ptrCast(*const ISettingsItem, self), ElementName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsItem_Attributes(self: *const T, Attributes: ?*?*IItemEnumerator) HRESULT {
+                return @ptrCast(*const ISettingsItem.VTable, self.vtable).Attributes(@ptrCast(*const ISettingsItem, self), Attributes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsItem_GetAttribute(self: *const T, Name: ?[*:0]const u16, Value: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetAttribute(@ptrCast(*const ISettingsItem, self), Name, Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsItem_GetPath(self: *const T, Path: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetPath(@ptrCast(*const ISettingsItem, self), Path);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsItem_GetRestrictionFacets(self: *const T, RestrictionFacets: ?*WcmRestrictionFacets) HRESULT {
+                return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetRestrictionFacets(@ptrCast(*const ISettingsItem, self), RestrictionFacets);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsItem_GetRestriction(self: *const T, RestrictionFacet: WcmRestrictionFacets, FacetData: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetRestriction(@ptrCast(*const ISettingsItem, self), RestrictionFacet, FacetData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsItem_GetKeyValue(self: *const T, Value: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISettingsItem.VTable, self.vtable).GetKeyValue(@ptrCast(*const ISettingsItem, self), Value);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1228,78 +1238,78 @@ pub const ISettingsNamespace = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetIdentity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsNamespace,
                 SettingsID: ?*?*ISettingsIdentity,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsNamespace,
                 SettingsID: ?*?*ISettingsIdentity,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Settings: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsNamespace,
                 Settings: ?*?*IItemEnumerator,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsNamespace,
                 Settings: ?*?*IItemEnumerator,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Save: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsNamespace,
                 PushSettings: BOOL,
                 Result: ?*?*ISettingsResult,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsNamespace,
                 PushSettings: BOOL,
                 Result: ?*?*ISettingsResult,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSettingByPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsNamespace,
                 Path: ?[*:0]const u16,
                 Setting: ?*?*ISettingsItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsNamespace,
                 Path: ?[*:0]const u16,
                 Setting: ?*?*ISettingsItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateSettingByPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsNamespace,
                 Path: ?[*:0]const u16,
                 Setting: ?*?*ISettingsItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsNamespace,
                 Path: ?[*:0]const u16,
                 Setting: ?*?*ISettingsItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RemoveSettingByPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsNamespace,
                 Path: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsNamespace,
                 Path: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsNamespace,
                 Name: ?[*:0]const u16,
                 Value: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsNamespace,
                 Name: ?[*:0]const u16,
                 Value: ?*VARIANT,
@@ -1307,37 +1317,39 @@ pub const ISettingsNamespace = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsNamespace_GetIdentity(self: *const T, SettingsID: ?*?*ISettingsIdentity) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsNamespace.VTable, self.vtable).GetIdentity(@ptrCast(*const ISettingsNamespace, self), SettingsID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsNamespace_Settings(self: *const T, Settings: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsNamespace.VTable, self.vtable).Settings(@ptrCast(*const ISettingsNamespace, self), Settings);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsNamespace_Save(self: *const T, PushSettings: BOOL, Result: ?*?*ISettingsResult) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsNamespace.VTable, self.vtable).Save(@ptrCast(*const ISettingsNamespace, self), PushSettings, Result);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsNamespace_GetSettingByPath(self: *const T, Path: ?[*:0]const u16, Setting: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsNamespace.VTable, self.vtable).GetSettingByPath(@ptrCast(*const ISettingsNamespace, self), Path, Setting);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsNamespace_CreateSettingByPath(self: *const T, Path: ?[*:0]const u16, Setting: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsNamespace.VTable, self.vtable).CreateSettingByPath(@ptrCast(*const ISettingsNamespace, self), Path, Setting);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsNamespace_RemoveSettingByPath(self: *const T, Path: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsNamespace.VTable, self.vtable).RemoveSettingByPath(@ptrCast(*const ISettingsNamespace, self), Path);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsNamespace_GetAttribute(self: *const T, Name: ?[*:0]const u16, Value: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsNamespace.VTable, self.vtable).GetAttribute(@ptrCast(*const ISettingsNamespace, self), Name, Value);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsNamespace_GetIdentity(self: *const T, SettingsID: ?*?*ISettingsIdentity) HRESULT {
+                return @ptrCast(*const ISettingsNamespace.VTable, self.vtable).GetIdentity(@ptrCast(*const ISettingsNamespace, self), SettingsID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsNamespace_Settings(self: *const T, Settings: ?*?*IItemEnumerator) HRESULT {
+                return @ptrCast(*const ISettingsNamespace.VTable, self.vtable).Settings(@ptrCast(*const ISettingsNamespace, self), Settings);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsNamespace_Save(self: *const T, PushSettings: BOOL, Result: ?*?*ISettingsResult) HRESULT {
+                return @ptrCast(*const ISettingsNamespace.VTable, self.vtable).Save(@ptrCast(*const ISettingsNamespace, self), PushSettings, Result);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsNamespace_GetSettingByPath(self: *const T, Path: ?[*:0]const u16, Setting: ?*?*ISettingsItem) HRESULT {
+                return @ptrCast(*const ISettingsNamespace.VTable, self.vtable).GetSettingByPath(@ptrCast(*const ISettingsNamespace, self), Path, Setting);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsNamespace_CreateSettingByPath(self: *const T, Path: ?[*:0]const u16, Setting: ?*?*ISettingsItem) HRESULT {
+                return @ptrCast(*const ISettingsNamespace.VTable, self.vtable).CreateSettingByPath(@ptrCast(*const ISettingsNamespace, self), Path, Setting);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsNamespace_RemoveSettingByPath(self: *const T, Path: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const ISettingsNamespace.VTable, self.vtable).RemoveSettingByPath(@ptrCast(*const ISettingsNamespace, self), Path);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsNamespace_GetAttribute(self: *const T, Name: ?[*:0]const u16, Value: ?*VARIANT) HRESULT {
+                return @ptrCast(*const ISettingsNamespace.VTable, self.vtable).GetAttribute(@ptrCast(*const ISettingsNamespace, self), Name, Value);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1348,94 +1360,96 @@ pub const ISettingsResult = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsResult,
                 description: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsResult,
                 description: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetErrorCode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsResult,
                 hrOut: ?*HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsResult,
                 hrOut: ?*HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetContextDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsResult,
                 description: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsResult,
                 description: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetLine: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsResult,
                 dwLine: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsResult,
                 dwLine: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetColumn: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsResult,
                 dwColumn: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsResult,
                 dwColumn: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsResult,
                 file: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsResult,
                 file: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsResult_GetDescription(self: *const T, description: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsResult.VTable, self.vtable).GetDescription(@ptrCast(*const ISettingsResult, self), description);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsResult_GetErrorCode(self: *const T, hrOut: ?*HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsResult.VTable, self.vtable).GetErrorCode(@ptrCast(*const ISettingsResult, self), hrOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsResult_GetContextDescription(self: *const T, description: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsResult.VTable, self.vtable).GetContextDescription(@ptrCast(*const ISettingsResult, self), description);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsResult_GetLine(self: *const T, dwLine: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsResult.VTable, self.vtable).GetLine(@ptrCast(*const ISettingsResult, self), dwLine);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsResult_GetColumn(self: *const T, dwColumn: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsResult.VTable, self.vtable).GetColumn(@ptrCast(*const ISettingsResult, self), dwColumn);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsResult_GetSource(self: *const T, file: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsResult.VTable, self.vtable).GetSource(@ptrCast(*const ISettingsResult, self), file);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsResult_GetDescription(self: *const T, description: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISettingsResult.VTable, self.vtable).GetDescription(@ptrCast(*const ISettingsResult, self), description);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsResult_GetErrorCode(self: *const T, hrOut: ?*HRESULT) HRESULT {
+                return @ptrCast(*const ISettingsResult.VTable, self.vtable).GetErrorCode(@ptrCast(*const ISettingsResult, self), hrOut);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsResult_GetContextDescription(self: *const T, description: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISettingsResult.VTable, self.vtable).GetContextDescription(@ptrCast(*const ISettingsResult, self), description);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsResult_GetLine(self: *const T, dwLine: ?*u32) HRESULT {
+                return @ptrCast(*const ISettingsResult.VTable, self.vtable).GetLine(@ptrCast(*const ISettingsResult, self), dwLine);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsResult_GetColumn(self: *const T, dwColumn: ?*u32) HRESULT {
+                return @ptrCast(*const ISettingsResult.VTable, self.vtable).GetColumn(@ptrCast(*const ISettingsResult, self), dwColumn);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsResult_GetSource(self: *const T, file: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISettingsResult.VTable, self.vtable).GetSource(@ptrCast(*const ISettingsResult, self), file);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1446,26 +1460,26 @@ pub const ISettingsContext = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Serialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsContext,
                 pStream: ?*IStream,
                 pTarget: ?*ITargetInfo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsContext,
                 pStream: ?*IStream,
                 pTarget: ?*ITargetInfo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Deserialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsContext,
                 pStream: ?*IStream,
                 pTarget: ?*ITargetInfo,
                 pppResults: [*]?*?*ISettingsResult,
                 pcResultCount: ?*usize,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsContext,
                 pStream: ?*IStream,
                 pTarget: ?*ITargetInfo,
@@ -1474,44 +1488,44 @@ pub const ISettingsContext = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetUserData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsContext,
                 pUserData: ?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsContext,
                 pUserData: ?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetUserData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsContext,
                 pUserData: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsContext,
                 pUserData: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetNamespaces: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsContext,
                 ppNamespaceIds: ?*?*IItemEnumerator,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsContext,
                 ppNamespaceIds: ?*?*IItemEnumerator,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetStoredSettings: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsContext,
                 pIdentity: ?*ISettingsIdentity,
                 ppAddedSettings: ?*?*IItemEnumerator,
                 ppModifiedSettings: ?*?*IItemEnumerator,
                 ppDeletedSettings: ?*?*IItemEnumerator,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsContext,
                 pIdentity: ?*ISettingsIdentity,
                 ppAddedSettings: ?*?*IItemEnumerator,
@@ -1520,12 +1534,12 @@ pub const ISettingsContext = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RevertSetting: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISettingsContext,
                 pIdentity: ?*ISettingsIdentity,
                 pwzSetting: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISettingsContext,
                 pIdentity: ?*ISettingsIdentity,
                 pwzSetting: ?[*:0]const u16,
@@ -1533,40 +1547,41 @@ pub const ISettingsContext = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsContext_Serialize(self: *const T, pStream: ?*IStream, pTarget: ?*ITargetInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsContext.VTable, self.vtable).Serialize(@ptrCast(*const ISettingsContext, self), pStream, pTarget);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsContext_Deserialize(self: *const T, pStream: ?*IStream, pTarget: ?*ITargetInfo, pppResults: [*]?*?*ISettingsResult, pcResultCount: ?*usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsContext.VTable, self.vtable).Deserialize(@ptrCast(*const ISettingsContext, self), pStream, pTarget, pppResults, pcResultCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsContext_SetUserData(self: *const T, pUserData: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsContext.VTable, self.vtable).SetUserData(@ptrCast(*const ISettingsContext, self), pUserData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsContext_GetUserData(self: *const T, pUserData: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsContext.VTable, self.vtable).GetUserData(@ptrCast(*const ISettingsContext, self), pUserData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsContext_GetNamespaces(self: *const T, ppNamespaceIds: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsContext.VTable, self.vtable).GetNamespaces(@ptrCast(*const ISettingsContext, self), ppNamespaceIds);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsContext_GetStoredSettings(self: *const T, pIdentity: ?*ISettingsIdentity, ppAddedSettings: ?*?*IItemEnumerator, ppModifiedSettings: ?*?*IItemEnumerator, ppDeletedSettings: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsContext.VTable, self.vtable).GetStoredSettings(@ptrCast(*const ISettingsContext, self), pIdentity, ppAddedSettings, ppModifiedSettings, ppDeletedSettings);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISettingsContext_RevertSetting(self: *const T, pIdentity: ?*ISettingsIdentity, pwzSetting: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISettingsContext.VTable, self.vtable).RevertSetting(@ptrCast(*const ISettingsContext, self), pIdentity, pwzSetting);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsContext_Serialize(self: *const T, pStream: ?*IStream, pTarget: ?*ITargetInfo) HRESULT {
+                return @ptrCast(*const ISettingsContext.VTable, self.vtable).Serialize(@ptrCast(*const ISettingsContext, self), pStream, pTarget);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsContext_Deserialize(self: *const T, pStream: ?*IStream, pTarget: ?*ITargetInfo, pppResults: [*]?*?*ISettingsResult, pcResultCount: ?*usize) HRESULT {
+                return @ptrCast(*const ISettingsContext.VTable, self.vtable).Deserialize(@ptrCast(*const ISettingsContext, self), pStream, pTarget, pppResults, pcResultCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsContext_SetUserData(self: *const T, pUserData: ?*anyopaque) HRESULT {
+                return @ptrCast(*const ISettingsContext.VTable, self.vtable).SetUserData(@ptrCast(*const ISettingsContext, self), pUserData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsContext_GetUserData(self: *const T, pUserData: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const ISettingsContext.VTable, self.vtable).GetUserData(@ptrCast(*const ISettingsContext, self), pUserData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsContext_GetNamespaces(self: *const T, ppNamespaceIds: ?*?*IItemEnumerator) HRESULT {
+                return @ptrCast(*const ISettingsContext.VTable, self.vtable).GetNamespaces(@ptrCast(*const ISettingsContext, self), ppNamespaceIds);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsContext_GetStoredSettings(self: *const T, pIdentity: ?*ISettingsIdentity, ppAddedSettings: ?*?*IItemEnumerator, ppModifiedSettings: ?*?*IItemEnumerator, ppDeletedSettings: ?*?*IItemEnumerator) HRESULT {
+                return @ptrCast(*const ISettingsContext.VTable, self.vtable).GetStoredSettings(@ptrCast(*const ISettingsContext, self), pIdentity, ppAddedSettings, ppModifiedSettings, ppDeletedSettings);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISettingsContext_RevertSetting(self: *const T, pIdentity: ?*ISettingsIdentity, pwzSetting: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const ISettingsContext.VTable, self.vtable).RevertSetting(@ptrCast(*const ISettingsContext, self), pIdentity, pwzSetting);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -1577,13 +1592,9 @@ pub const ISettingsContext = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (9)
@@ -1599,9 +1610,7 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

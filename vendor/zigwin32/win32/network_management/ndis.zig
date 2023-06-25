@@ -3454,27 +3454,27 @@ pub const WDIAG_IHV_WLAN_ID = extern struct {
 };
 
 pub const DOT11EXT_ALLOCATE_BUFFER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwByteCount: u32,
         ppvBuffer: ?*?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         dwByteCount: u32,
         ppvBuffer: ?*?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_FREE_BUFFER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pvMemory: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         pvMemory: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const DOT11EXT_SET_PROFILE_CUSTOM_USER_DATA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDot11SvcHandle: ?HANDLE,
         hConnectSession: ?HANDLE,
         dwSessionID: u32,
@@ -3482,7 +3482,7 @@ pub const DOT11EXT_SET_PROFILE_CUSTOM_USER_DATA = switch (@import("builtin").zig
         // TODO: what to do with BytesParamIndex 3?
         pvData: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hDot11SvcHandle: ?HANDLE,
         hConnectSession: ?HANDLE,
         dwSessionID: u32,
@@ -3490,113 +3490,113 @@ pub const DOT11EXT_SET_PROFILE_CUSTOM_USER_DATA = switch (@import("builtin").zig
         // TODO: what to do with BytesParamIndex 3?
         pvData: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_GET_PROFILE_CUSTOM_USER_DATA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDot11SvcHandle: ?HANDLE,
         hConnectSession: ?HANDLE,
         dwSessionID: u32,
         pdwDataSize: ?*u32,
         ppvData: ?*?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hDot11SvcHandle: ?HANDLE,
         hConnectSession: ?HANDLE,
         dwSessionID: u32,
         pdwDataSize: ?*u32,
         ppvData: ?*?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_SET_CURRENT_PROFILE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDot11SvcHandle: ?HANDLE,
         hConnectSession: ?HANDLE,
         pIhvConnProfile: ?*DOT11EXT_IHV_CONNECTIVITY_PROFILE,
         pIhvSecProfile: ?*DOT11EXT_IHV_SECURITY_PROFILE,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hDot11SvcHandle: ?HANDLE,
         hConnectSession: ?HANDLE,
         pIhvConnProfile: ?*DOT11EXT_IHV_CONNECTIVITY_PROFILE,
         pIhvSecProfile: ?*DOT11EXT_IHV_SECURITY_PROFILE,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_SEND_UI_REQUEST = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDot11SvcHandle: ?HANDLE,
         pIhvUIRequest: ?*DOT11EXT_IHV_UI_REQUEST,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hDot11SvcHandle: ?HANDLE,
         pIhvUIRequest: ?*DOT11EXT_IHV_UI_REQUEST,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_PRE_ASSOCIATE_COMPLETION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDot11SvcHandle: ?HANDLE,
         hConnectSession: ?HANDLE,
         dwReasonCode: u32,
         dwWin32Error: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hDot11SvcHandle: ?HANDLE,
         hConnectSession: ?HANDLE,
         dwReasonCode: u32,
         dwWin32Error: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_POST_ASSOCIATE_COMPLETION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDot11SvcHandle: ?HANDLE,
         hSecuritySessionID: ?HANDLE,
         pPeer: ?*?*u8,
         dwReasonCode: u32,
         dwWin32Error: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hDot11SvcHandle: ?HANDLE,
         hSecuritySessionID: ?HANDLE,
         pPeer: ?*?*u8,
         dwReasonCode: u32,
         dwWin32Error: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_SEND_NOTIFICATION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDot11SvcHandle: ?HANDLE,
         pNotificationData: ?*L2_NOTIFICATION_DATA,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hDot11SvcHandle: ?HANDLE,
         pNotificationData: ?*L2_NOTIFICATION_DATA,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_SEND_PACKET = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDot11SvcHandle: ?HANDLE,
         uPacketLen: u32,
         // TODO: what to do with BytesParamIndex 1?
         pvPacket: ?*anyopaque,
         hSendCompletion: ?HANDLE,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hDot11SvcHandle: ?HANDLE,
         uPacketLen: u32,
         // TODO: what to do with BytesParamIndex 1?
         pvPacket: ?*anyopaque,
         hSendCompletion: ?HANDLE,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_SET_ETHERTYPE_HANDLING = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDot11SvcHandle: ?HANDLE,
         uMaxBackLog: u32,
         uNumOfExemption: u32,
@@ -3604,7 +3604,7 @@ pub const DOT11EXT_SET_ETHERTYPE_HANDLING = switch (@import("builtin").zig_backe
         uNumOfRegistration: u32,
         pusRegistration: ?[*:0]u16,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hDot11SvcHandle: ?HANDLE,
         uMaxBackLog: u32,
         uNumOfExemption: u32,
@@ -3612,89 +3612,89 @@ pub const DOT11EXT_SET_ETHERTYPE_HANDLING = switch (@import("builtin").zig_backe
         uNumOfRegistration: u32,
         pusRegistration: ?[*:0]u16,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_SET_AUTH_ALGORITHM = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDot11SvcHandle: ?HANDLE,
         dwAuthAlgo: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hDot11SvcHandle: ?HANDLE,
         dwAuthAlgo: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_SET_UNICAST_CIPHER_ALGORITHM = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDot11SvcHandle: ?HANDLE,
         dwUnicastCipherAlgo: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hDot11SvcHandle: ?HANDLE,
         dwUnicastCipherAlgo: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_SET_MULTICAST_CIPHER_ALGORITHM = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDot11SvcHandle: ?HANDLE,
         dwMulticastCipherAlgo: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hDot11SvcHandle: ?HANDLE,
         dwMulticastCipherAlgo: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_SET_DEFAULT_KEY = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDot11SvcHandle: ?HANDLE,
         pKey: ?*DOT11_CIPHER_DEFAULT_KEY_VALUE,
         dot11Direction: DOT11_DIRECTION,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hDot11SvcHandle: ?HANDLE,
         pKey: ?*DOT11_CIPHER_DEFAULT_KEY_VALUE,
         dot11Direction: DOT11_DIRECTION,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_SET_KEY_MAPPING_KEY = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDot11SvcHandle: ?HANDLE,
         pKey: ?*DOT11_CIPHER_KEY_MAPPING_KEY_VALUE,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hDot11SvcHandle: ?HANDLE,
         pKey: ?*DOT11_CIPHER_KEY_MAPPING_KEY_VALUE,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_SET_DEFAULT_KEY_ID = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDot11SvcHandle: ?HANDLE,
         uDefaultKeyId: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hDot11SvcHandle: ?HANDLE,
         uDefaultKeyId: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_SET_EXCLUDE_UNENCRYPTED = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDot11SvcHandle: ?HANDLE,
         bExcludeUnencrypted: BOOL,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hDot11SvcHandle: ?HANDLE,
         bExcludeUnencrypted: BOOL,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_NIC_SPECIFIC_EXTENSION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDot11SvcHandle: ?HANDLE,
         dwInBufferSize: u32,
         // TODO: what to do with BytesParamIndex 1?
@@ -3703,7 +3703,7 @@ pub const DOT11EXT_NIC_SPECIFIC_EXTENSION = switch (@import("builtin").zig_backe
         // TODO: what to do with BytesParamIndex 3?
         pvOutBuffer: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hDot11SvcHandle: ?HANDLE,
         dwInBufferSize: u32,
         // TODO: what to do with BytesParamIndex 1?
@@ -3712,163 +3712,161 @@ pub const DOT11EXT_NIC_SPECIFIC_EXTENSION = switch (@import("builtin").zig_backe
         // TODO: what to do with BytesParamIndex 3?
         pvOutBuffer: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_ONEX_START = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDot11SvcHandle: ?HANDLE,
         pEapAttributes: ?*EAP_ATTRIBUTES,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hDot11SvcHandle: ?HANDLE,
         pEapAttributes: ?*EAP_ATTRIBUTES,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_ONEX_STOP = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDot11SvcHandle: ?HANDLE,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hDot11SvcHandle: ?HANDLE,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_PROCESS_ONEX_PACKET = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDot11SvcHandle: ?HANDLE,
         dwInPacketSize: u32,
         // TODO: what to do with BytesParamIndex 1?
         pvInPacket: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hDot11SvcHandle: ?HANDLE,
         dwInPacketSize: u32,
         // TODO: what to do with BytesParamIndex 1?
         pvInPacket: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_REQUEST_VIRTUAL_STATION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDot11PrimaryHandle: ?HANDLE,
         pvReserved: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hDot11PrimaryHandle: ?HANDLE,
         pvReserved: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_RELEASE_VIRTUAL_STATION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDot11PrimaryHandle: ?HANDLE,
         pvReserved: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hDot11PrimaryHandle: ?HANDLE,
         pvReserved: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_QUERY_VIRTUAL_STATION_PROPERTIES = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDot11SvcHandle: ?HANDLE,
         pbIsVirtualStation: ?*BOOL,
         pgPrimary: ?*Guid,
         pvReserved: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hDot11SvcHandle: ?HANDLE,
         pbIsVirtualStation: ?*BOOL,
         pgPrimary: ?*Guid,
         pvReserved: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_SET_VIRTUAL_STATION_AP_PROPERTIES = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDot11SvcHandle: ?HANDLE,
         hConnectSession: ?HANDLE,
         dwNumProperties: u32,
         pProperties: [*]DOT11EXT_VIRTUAL_STATION_AP_PROPERTY,
         pvReserved: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hDot11SvcHandle: ?HANDLE,
         hConnectSession: ?HANDLE,
         dwNumProperties: u32,
         pProperties: [*]DOT11EXT_VIRTUAL_STATION_AP_PROPERTY,
         pvReserved: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXTIHV_GET_VERSION_INFO = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pDot11IHVVersionInfo: ?*DOT11_IHV_VERSION_INFO,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         pDot11IHVVersionInfo: ?*DOT11_IHV_VERSION_INFO,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXTIHV_INIT_SERVICE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwVerNumUsed: u32,
         pDot11ExtAPI: ?*DOT11EXT_APIS,
         pvReserved: ?*anyopaque,
         pDot11IHVHandlers: ?*DOT11EXT_IHV_HANDLERS,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         dwVerNumUsed: u32,
         pDot11ExtAPI: ?*DOT11EXT_APIS,
         pvReserved: ?*anyopaque,
         pDot11IHVHandlers: ?*DOT11EXT_IHV_HANDLERS,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXTIHV_INIT_VIRTUAL_STATION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pDot11ExtVSAPI: ?*DOT11EXT_VIRTUAL_STATION_APIS,
         pvReserved: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         pDot11ExtVSAPI: ?*DOT11EXT_VIRTUAL_STATION_APIS,
         pvReserved: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXTIHV_DEINIT_SERVICE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 pub const DOT11EXTIHV_INIT_ADAPTER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pDot11Adapter: ?*DOT11_ADAPTER,
         hDot11SvcHandle: ?HANDLE,
         phIhvExtAdapter: ?*?HANDLE,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         pDot11Adapter: ?*DOT11_ADAPTER,
         hDot11SvcHandle: ?HANDLE,
         phIhvExtAdapter: ?*?HANDLE,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXTIHV_DEINIT_ADAPTER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hIhvExtAdapter: ?HANDLE,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         hIhvExtAdapter: ?HANDLE,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const DOT11EXTIHV_PERFORM_PRE_ASSOCIATE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hIhvExtAdapter: ?HANDLE,
         hConnectSession: ?HANDLE,
         pIhvProfileParams: ?*DOT11EXT_IHV_PROFILE_PARAMS,
@@ -3877,7 +3875,7 @@ pub const DOT11EXTIHV_PERFORM_PRE_ASSOCIATE = switch (@import("builtin").zig_bac
         pConnectableBssid: ?*DOT11_BSS_LIST,
         pdwReasonCode: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hIhvExtAdapter: ?HANDLE,
         hConnectSession: ?HANDLE,
         pIhvProfileParams: ?*DOT11EXT_IHV_PROFILE_PARAMS,
@@ -3886,19 +3884,19 @@ pub const DOT11EXTIHV_PERFORM_PRE_ASSOCIATE = switch (@import("builtin").zig_bac
         pConnectableBssid: ?*DOT11_BSS_LIST,
         pdwReasonCode: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXTIHV_ADAPTER_RESET = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hIhvExtAdapter: ?HANDLE,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hIhvExtAdapter: ?HANDLE,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXTIHV_PERFORM_POST_ASSOCIATE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hIhvExtAdapter: ?HANDLE,
         hSecuritySessionID: ?HANDLE,
         pPortState: ?*DOT11_PORT_STATE,
@@ -3906,7 +3904,7 @@ pub const DOT11EXTIHV_PERFORM_POST_ASSOCIATE = switch (@import("builtin").zig_ba
         // TODO: what to do with BytesParamIndex 3?
         pDot11AssocParams: ?*DOT11_ASSOCIATION_COMPLETION_PARAMETERS,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hIhvExtAdapter: ?HANDLE,
         hSecuritySessionID: ?HANDLE,
         pPortState: ?*DOT11_PORT_STATE,
@@ -3914,40 +3912,40 @@ pub const DOT11EXTIHV_PERFORM_POST_ASSOCIATE = switch (@import("builtin").zig_ba
         // TODO: what to do with BytesParamIndex 3?
         pDot11AssocParams: ?*DOT11_ASSOCIATION_COMPLETION_PARAMETERS,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXTIHV_STOP_POST_ASSOCIATE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hIhvExtAdapter: ?HANDLE,
         pPeer: ?*?*u8,
         dot11AssocStatus: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hIhvExtAdapter: ?HANDLE,
         pPeer: ?*?*u8,
         dot11AssocStatus: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXTIHV_VALIDATE_PROFILE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hIhvExtAdapter: ?HANDLE,
         pIhvProfileParams: ?*DOT11EXT_IHV_PROFILE_PARAMS,
         pIhvConnProfile: ?*DOT11EXT_IHV_CONNECTIVITY_PROFILE,
         pIhvSecProfile: ?*DOT11EXT_IHV_SECURITY_PROFILE,
         pdwReasonCode: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hIhvExtAdapter: ?HANDLE,
         pIhvProfileParams: ?*DOT11EXT_IHV_PROFILE_PARAMS,
         pIhvConnProfile: ?*DOT11EXT_IHV_CONNECTIVITY_PROFILE,
         pIhvSecProfile: ?*DOT11EXT_IHV_SECURITY_PROFILE,
         pdwReasonCode: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXTIHV_PERFORM_CAPABILITY_MATCH = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hIhvExtAdapter: ?HANDLE,
         pIhvProfileParams: ?*DOT11EXT_IHV_PROFILE_PARAMS,
         pIhvConnProfile: ?*DOT11EXT_IHV_CONNECTIVITY_PROFILE,
@@ -3955,7 +3953,7 @@ pub const DOT11EXTIHV_PERFORM_CAPABILITY_MATCH = switch (@import("builtin").zig_
         pConnectableBssid: ?*DOT11_BSS_LIST,
         pdwReasonCode: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hIhvExtAdapter: ?HANDLE,
         pIhvProfileParams: ?*DOT11EXT_IHV_PROFILE_PARAMS,
         pIhvConnProfile: ?*DOT11EXT_IHV_CONNECTIVITY_PROFILE,
@@ -3963,10 +3961,10 @@ pub const DOT11EXTIHV_PERFORM_CAPABILITY_MATCH = switch (@import("builtin").zig_
         pConnectableBssid: ?*DOT11_BSS_LIST,
         pdwReasonCode: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXTIHV_CREATE_DISCOVERY_PROFILES = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hIhvExtAdapter: ?HANDLE,
         bInsecure: BOOL,
         pIhvProfileParams: ?*DOT11EXT_IHV_PROFILE_PARAMS,
@@ -3974,7 +3972,7 @@ pub const DOT11EXTIHV_CREATE_DISCOVERY_PROFILES = switch (@import("builtin").zig
         pIhvDiscoveryProfileList: ?*DOT11EXT_IHV_DISCOVERY_PROFILE_LIST,
         pdwReasonCode: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hIhvExtAdapter: ?HANDLE,
         bInsecure: BOOL,
         pIhvProfileParams: ?*DOT11EXT_IHV_PROFILE_PARAMS,
@@ -3982,114 +3980,114 @@ pub const DOT11EXTIHV_CREATE_DISCOVERY_PROFILES = switch (@import("builtin").zig
         pIhvDiscoveryProfileList: ?*DOT11EXT_IHV_DISCOVERY_PROFILE_LIST,
         pdwReasonCode: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXTIHV_PROCESS_SESSION_CHANGE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         uEventType: u32,
         pSessionNotification: ?*WTSSESSION_NOTIFICATION,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         uEventType: u32,
         pSessionNotification: ?*WTSSESSION_NOTIFICATION,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXTIHV_RECEIVE_INDICATION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hIhvExtAdapter: ?HANDLE,
         indicationType: DOT11EXT_IHV_INDICATION_TYPE,
         uBufferLength: u32,
         // TODO: what to do with BytesParamIndex 2?
         pvBuffer: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hIhvExtAdapter: ?HANDLE,
         indicationType: DOT11EXT_IHV_INDICATION_TYPE,
         uBufferLength: u32,
         // TODO: what to do with BytesParamIndex 2?
         pvBuffer: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXTIHV_RECEIVE_PACKET = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hIhvExtAdapter: ?HANDLE,
         dwInBufferSize: u32,
         // TODO: what to do with BytesParamIndex 1?
         pvInBuffer: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hIhvExtAdapter: ?HANDLE,
         dwInBufferSize: u32,
         // TODO: what to do with BytesParamIndex 1?
         pvInBuffer: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXTIHV_SEND_PACKET_COMPLETION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hSendCompletion: ?HANDLE,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hSendCompletion: ?HANDLE,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXTIHV_IS_UI_REQUEST_PENDING = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         guidUIRequest: Guid,
         pbIsRequestPending: ?*BOOL,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         guidUIRequest: Guid,
         pbIsRequestPending: ?*BOOL,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXTIHV_PROCESS_UI_RESPONSE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         guidUIRequest: Guid,
         dwByteCount: u32,
         // TODO: what to do with BytesParamIndex 1?
         pvResponseBuffer: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         guidUIRequest: Guid,
         dwByteCount: u32,
         // TODO: what to do with BytesParamIndex 1?
         pvResponseBuffer: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXTIHV_QUERY_UI_REQUEST = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hIhvExtAdapter: ?HANDLE,
         connectionPhase: DOT11EXT_IHV_CONNECTION_PHASE,
         ppIhvUIRequest: ?*?*DOT11EXT_IHV_UI_REQUEST,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hIhvExtAdapter: ?HANDLE,
         connectionPhase: DOT11EXT_IHV_CONNECTION_PHASE,
         ppIhvUIRequest: ?*?*DOT11EXT_IHV_UI_REQUEST,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXTIHV_ONEX_INDICATE_RESULT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hIhvExtAdapter: ?HANDLE,
         msOneXResult: DOT11_MSONEX_RESULT,
         pDot11MsOneXResultParams: ?*DOT11_MSONEX_RESULT_PARAMS,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hIhvExtAdapter: ?HANDLE,
         msOneXResult: DOT11_MSONEX_RESULT,
         pDot11MsOneXResultParams: ?*DOT11_MSONEX_RESULT_PARAMS,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXTIHV_CONTROL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hIhvExtAdapter: ?HANDLE,
         dwInBufferSize: u32,
         // TODO: what to do with BytesParamIndex 1?
@@ -4099,7 +4097,7 @@ pub const DOT11EXTIHV_CONTROL = switch (@import("builtin").zig_backend) {
         pOutBuffer: ?*u8,
         pdwBytesReturned: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hIhvExtAdapter: ?HANDLE,
         dwInBufferSize: u32,
         // TODO: what to do with BytesParamIndex 1?
@@ -4109,7 +4107,7 @@ pub const DOT11EXTIHV_CONTROL = switch (@import("builtin").zig_backend) {
         pOutBuffer: ?*u8,
         pdwBytesReturned: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DOT11EXT_APIS = extern struct {
     Dot11ExtAllocateBuffer: ?DOT11EXT_ALLOCATE_BUFFER,
@@ -4165,7 +4163,6 @@ pub const DOT11EXT_VIRTUAL_STATION_APIS = extern struct {
     Dot11ExtSetVirtualStationAPProperties: ?DOT11EXT_SET_VIRTUAL_STATION_AP_PROPERTIES,
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
 //--------------------------------------------------------------------------------
@@ -4175,13 +4172,9 @@ pub const DOT11EXT_VIRTUAL_STATION_APIS = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (28)
@@ -4217,58 +4210,152 @@ const WTSSESSION_NOTIFICATION = @import("../system/remote_desktop.zig").WTSSESSI
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "DOT11EXT_ALLOCATE_BUFFER")) { _ = DOT11EXT_ALLOCATE_BUFFER; }
-    if (@hasDecl(@This(), "DOT11EXT_FREE_BUFFER")) { _ = DOT11EXT_FREE_BUFFER; }
-    if (@hasDecl(@This(), "DOT11EXT_SET_PROFILE_CUSTOM_USER_DATA")) { _ = DOT11EXT_SET_PROFILE_CUSTOM_USER_DATA; }
-    if (@hasDecl(@This(), "DOT11EXT_GET_PROFILE_CUSTOM_USER_DATA")) { _ = DOT11EXT_GET_PROFILE_CUSTOM_USER_DATA; }
-    if (@hasDecl(@This(), "DOT11EXT_SET_CURRENT_PROFILE")) { _ = DOT11EXT_SET_CURRENT_PROFILE; }
-    if (@hasDecl(@This(), "DOT11EXT_SEND_UI_REQUEST")) { _ = DOT11EXT_SEND_UI_REQUEST; }
-    if (@hasDecl(@This(), "DOT11EXT_PRE_ASSOCIATE_COMPLETION")) { _ = DOT11EXT_PRE_ASSOCIATE_COMPLETION; }
-    if (@hasDecl(@This(), "DOT11EXT_POST_ASSOCIATE_COMPLETION")) { _ = DOT11EXT_POST_ASSOCIATE_COMPLETION; }
-    if (@hasDecl(@This(), "DOT11EXT_SEND_NOTIFICATION")) { _ = DOT11EXT_SEND_NOTIFICATION; }
-    if (@hasDecl(@This(), "DOT11EXT_SEND_PACKET")) { _ = DOT11EXT_SEND_PACKET; }
-    if (@hasDecl(@This(), "DOT11EXT_SET_ETHERTYPE_HANDLING")) { _ = DOT11EXT_SET_ETHERTYPE_HANDLING; }
-    if (@hasDecl(@This(), "DOT11EXT_SET_AUTH_ALGORITHM")) { _ = DOT11EXT_SET_AUTH_ALGORITHM; }
-    if (@hasDecl(@This(), "DOT11EXT_SET_UNICAST_CIPHER_ALGORITHM")) { _ = DOT11EXT_SET_UNICAST_CIPHER_ALGORITHM; }
-    if (@hasDecl(@This(), "DOT11EXT_SET_MULTICAST_CIPHER_ALGORITHM")) { _ = DOT11EXT_SET_MULTICAST_CIPHER_ALGORITHM; }
-    if (@hasDecl(@This(), "DOT11EXT_SET_DEFAULT_KEY")) { _ = DOT11EXT_SET_DEFAULT_KEY; }
-    if (@hasDecl(@This(), "DOT11EXT_SET_KEY_MAPPING_KEY")) { _ = DOT11EXT_SET_KEY_MAPPING_KEY; }
-    if (@hasDecl(@This(), "DOT11EXT_SET_DEFAULT_KEY_ID")) { _ = DOT11EXT_SET_DEFAULT_KEY_ID; }
-    if (@hasDecl(@This(), "DOT11EXT_SET_EXCLUDE_UNENCRYPTED")) { _ = DOT11EXT_SET_EXCLUDE_UNENCRYPTED; }
-    if (@hasDecl(@This(), "DOT11EXT_NIC_SPECIFIC_EXTENSION")) { _ = DOT11EXT_NIC_SPECIFIC_EXTENSION; }
-    if (@hasDecl(@This(), "DOT11EXT_ONEX_START")) { _ = DOT11EXT_ONEX_START; }
-    if (@hasDecl(@This(), "DOT11EXT_ONEX_STOP")) { _ = DOT11EXT_ONEX_STOP; }
-    if (@hasDecl(@This(), "DOT11EXT_PROCESS_ONEX_PACKET")) { _ = DOT11EXT_PROCESS_ONEX_PACKET; }
-    if (@hasDecl(@This(), "DOT11EXT_REQUEST_VIRTUAL_STATION")) { _ = DOT11EXT_REQUEST_VIRTUAL_STATION; }
-    if (@hasDecl(@This(), "DOT11EXT_RELEASE_VIRTUAL_STATION")) { _ = DOT11EXT_RELEASE_VIRTUAL_STATION; }
-    if (@hasDecl(@This(), "DOT11EXT_QUERY_VIRTUAL_STATION_PROPERTIES")) { _ = DOT11EXT_QUERY_VIRTUAL_STATION_PROPERTIES; }
-    if (@hasDecl(@This(), "DOT11EXT_SET_VIRTUAL_STATION_AP_PROPERTIES")) { _ = DOT11EXT_SET_VIRTUAL_STATION_AP_PROPERTIES; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_GET_VERSION_INFO")) { _ = DOT11EXTIHV_GET_VERSION_INFO; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_INIT_SERVICE")) { _ = DOT11EXTIHV_INIT_SERVICE; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_INIT_VIRTUAL_STATION")) { _ = DOT11EXTIHV_INIT_VIRTUAL_STATION; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_DEINIT_SERVICE")) { _ = DOT11EXTIHV_DEINIT_SERVICE; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_INIT_ADAPTER")) { _ = DOT11EXTIHV_INIT_ADAPTER; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_DEINIT_ADAPTER")) { _ = DOT11EXTIHV_DEINIT_ADAPTER; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_PERFORM_PRE_ASSOCIATE")) { _ = DOT11EXTIHV_PERFORM_PRE_ASSOCIATE; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_ADAPTER_RESET")) { _ = DOT11EXTIHV_ADAPTER_RESET; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_PERFORM_POST_ASSOCIATE")) { _ = DOT11EXTIHV_PERFORM_POST_ASSOCIATE; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_STOP_POST_ASSOCIATE")) { _ = DOT11EXTIHV_STOP_POST_ASSOCIATE; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_VALIDATE_PROFILE")) { _ = DOT11EXTIHV_VALIDATE_PROFILE; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_PERFORM_CAPABILITY_MATCH")) { _ = DOT11EXTIHV_PERFORM_CAPABILITY_MATCH; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_CREATE_DISCOVERY_PROFILES")) { _ = DOT11EXTIHV_CREATE_DISCOVERY_PROFILES; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_PROCESS_SESSION_CHANGE")) { _ = DOT11EXTIHV_PROCESS_SESSION_CHANGE; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_RECEIVE_INDICATION")) { _ = DOT11EXTIHV_RECEIVE_INDICATION; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_RECEIVE_PACKET")) { _ = DOT11EXTIHV_RECEIVE_PACKET; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_SEND_PACKET_COMPLETION")) { _ = DOT11EXTIHV_SEND_PACKET_COMPLETION; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_IS_UI_REQUEST_PENDING")) { _ = DOT11EXTIHV_IS_UI_REQUEST_PENDING; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_PROCESS_UI_RESPONSE")) { _ = DOT11EXTIHV_PROCESS_UI_RESPONSE; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_QUERY_UI_REQUEST")) { _ = DOT11EXTIHV_QUERY_UI_REQUEST; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_ONEX_INDICATE_RESULT")) { _ = DOT11EXTIHV_ONEX_INDICATE_RESULT; }
-    if (@hasDecl(@This(), "DOT11EXTIHV_CONTROL")) { _ = DOT11EXTIHV_CONTROL; }
+    if (@hasDecl(@This(), "DOT11EXT_ALLOCATE_BUFFER")) {
+        _ = DOT11EXT_ALLOCATE_BUFFER;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_FREE_BUFFER")) {
+        _ = DOT11EXT_FREE_BUFFER;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SET_PROFILE_CUSTOM_USER_DATA")) {
+        _ = DOT11EXT_SET_PROFILE_CUSTOM_USER_DATA;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_GET_PROFILE_CUSTOM_USER_DATA")) {
+        _ = DOT11EXT_GET_PROFILE_CUSTOM_USER_DATA;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SET_CURRENT_PROFILE")) {
+        _ = DOT11EXT_SET_CURRENT_PROFILE;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SEND_UI_REQUEST")) {
+        _ = DOT11EXT_SEND_UI_REQUEST;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_PRE_ASSOCIATE_COMPLETION")) {
+        _ = DOT11EXT_PRE_ASSOCIATE_COMPLETION;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_POST_ASSOCIATE_COMPLETION")) {
+        _ = DOT11EXT_POST_ASSOCIATE_COMPLETION;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SEND_NOTIFICATION")) {
+        _ = DOT11EXT_SEND_NOTIFICATION;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SEND_PACKET")) {
+        _ = DOT11EXT_SEND_PACKET;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SET_ETHERTYPE_HANDLING")) {
+        _ = DOT11EXT_SET_ETHERTYPE_HANDLING;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SET_AUTH_ALGORITHM")) {
+        _ = DOT11EXT_SET_AUTH_ALGORITHM;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SET_UNICAST_CIPHER_ALGORITHM")) {
+        _ = DOT11EXT_SET_UNICAST_CIPHER_ALGORITHM;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SET_MULTICAST_CIPHER_ALGORITHM")) {
+        _ = DOT11EXT_SET_MULTICAST_CIPHER_ALGORITHM;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SET_DEFAULT_KEY")) {
+        _ = DOT11EXT_SET_DEFAULT_KEY;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SET_KEY_MAPPING_KEY")) {
+        _ = DOT11EXT_SET_KEY_MAPPING_KEY;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SET_DEFAULT_KEY_ID")) {
+        _ = DOT11EXT_SET_DEFAULT_KEY_ID;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SET_EXCLUDE_UNENCRYPTED")) {
+        _ = DOT11EXT_SET_EXCLUDE_UNENCRYPTED;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_NIC_SPECIFIC_EXTENSION")) {
+        _ = DOT11EXT_NIC_SPECIFIC_EXTENSION;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_ONEX_START")) {
+        _ = DOT11EXT_ONEX_START;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_ONEX_STOP")) {
+        _ = DOT11EXT_ONEX_STOP;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_PROCESS_ONEX_PACKET")) {
+        _ = DOT11EXT_PROCESS_ONEX_PACKET;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_REQUEST_VIRTUAL_STATION")) {
+        _ = DOT11EXT_REQUEST_VIRTUAL_STATION;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_RELEASE_VIRTUAL_STATION")) {
+        _ = DOT11EXT_RELEASE_VIRTUAL_STATION;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_QUERY_VIRTUAL_STATION_PROPERTIES")) {
+        _ = DOT11EXT_QUERY_VIRTUAL_STATION_PROPERTIES;
+    }
+    if (@hasDecl(@This(), "DOT11EXT_SET_VIRTUAL_STATION_AP_PROPERTIES")) {
+        _ = DOT11EXT_SET_VIRTUAL_STATION_AP_PROPERTIES;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_GET_VERSION_INFO")) {
+        _ = DOT11EXTIHV_GET_VERSION_INFO;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_INIT_SERVICE")) {
+        _ = DOT11EXTIHV_INIT_SERVICE;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_INIT_VIRTUAL_STATION")) {
+        _ = DOT11EXTIHV_INIT_VIRTUAL_STATION;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_DEINIT_SERVICE")) {
+        _ = DOT11EXTIHV_DEINIT_SERVICE;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_INIT_ADAPTER")) {
+        _ = DOT11EXTIHV_INIT_ADAPTER;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_DEINIT_ADAPTER")) {
+        _ = DOT11EXTIHV_DEINIT_ADAPTER;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_PERFORM_PRE_ASSOCIATE")) {
+        _ = DOT11EXTIHV_PERFORM_PRE_ASSOCIATE;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_ADAPTER_RESET")) {
+        _ = DOT11EXTIHV_ADAPTER_RESET;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_PERFORM_POST_ASSOCIATE")) {
+        _ = DOT11EXTIHV_PERFORM_POST_ASSOCIATE;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_STOP_POST_ASSOCIATE")) {
+        _ = DOT11EXTIHV_STOP_POST_ASSOCIATE;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_VALIDATE_PROFILE")) {
+        _ = DOT11EXTIHV_VALIDATE_PROFILE;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_PERFORM_CAPABILITY_MATCH")) {
+        _ = DOT11EXTIHV_PERFORM_CAPABILITY_MATCH;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_CREATE_DISCOVERY_PROFILES")) {
+        _ = DOT11EXTIHV_CREATE_DISCOVERY_PROFILES;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_PROCESS_SESSION_CHANGE")) {
+        _ = DOT11EXTIHV_PROCESS_SESSION_CHANGE;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_RECEIVE_INDICATION")) {
+        _ = DOT11EXTIHV_RECEIVE_INDICATION;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_RECEIVE_PACKET")) {
+        _ = DOT11EXTIHV_RECEIVE_PACKET;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_SEND_PACKET_COMPLETION")) {
+        _ = DOT11EXTIHV_SEND_PACKET_COMPLETION;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_IS_UI_REQUEST_PENDING")) {
+        _ = DOT11EXTIHV_IS_UI_REQUEST_PENDING;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_PROCESS_UI_RESPONSE")) {
+        _ = DOT11EXTIHV_PROCESS_UI_RESPONSE;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_QUERY_UI_REQUEST")) {
+        _ = DOT11EXTIHV_QUERY_UI_REQUEST;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_ONEX_INDICATE_RESULT")) {
+        _ = DOT11EXTIHV_ONEX_INDICATE_RESULT;
+    }
+    if (@hasDecl(@This(), "DOT11EXTIHV_CONTROL")) {
+        _ = DOT11EXTIHV_CONTROL;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

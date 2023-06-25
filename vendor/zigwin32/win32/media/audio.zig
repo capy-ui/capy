@@ -109,24 +109,24 @@ pub const DEVICE_STATE_DISABLED = @as(u32, 2);
 pub const DEVICE_STATE_NOTPRESENT = @as(u32, 4);
 pub const DEVICE_STATE_UNPLUGGED = @as(u32, 8);
 pub const DEVICE_STATEMASK_ALL = @as(u32, 15);
-pub const PKEY_AudioEndpoint_FormFactor = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 0 };
-pub const PKEY_AudioEndpoint_ControlPanelPageProvider = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 1 };
-pub const PKEY_AudioEndpoint_Association = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 2 };
-pub const PKEY_AudioEndpoint_PhysicalSpeakers = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 3 };
-pub const PKEY_AudioEndpoint_GUID = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 4 };
-pub const PKEY_AudioEndpoint_Disable_SysFx = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 5 };
+pub const PKEY_AudioEndpoint_FormFactor = PROPERTYKEY{ .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 0 };
+pub const PKEY_AudioEndpoint_ControlPanelPageProvider = PROPERTYKEY{ .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 1 };
+pub const PKEY_AudioEndpoint_Association = PROPERTYKEY{ .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 2 };
+pub const PKEY_AudioEndpoint_PhysicalSpeakers = PROPERTYKEY{ .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 3 };
+pub const PKEY_AudioEndpoint_GUID = PROPERTYKEY{ .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 4 };
+pub const PKEY_AudioEndpoint_Disable_SysFx = PROPERTYKEY{ .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 5 };
 pub const ENDPOINT_SYSFX_ENABLED = @as(u32, 0);
 pub const ENDPOINT_SYSFX_DISABLED = @as(u32, 1);
-pub const PKEY_AudioEndpoint_FullRangeSpeakers = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 6 };
-pub const PKEY_AudioEndpoint_Supports_EventDriven_Mode = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 7 };
-pub const PKEY_AudioEndpoint_JackSubType = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 8 };
-pub const PKEY_AudioEndpoint_Default_VolumeInDb = PROPERTYKEY { .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 9 };
-pub const PKEY_AudioEngine_DeviceFormat = PROPERTYKEY { .fmtid = Guid.initString("f19f064d-082c-4e27-bc73-6882a1bb8e4c"), .pid = 0 };
-pub const PKEY_AudioEngine_OEMFormat = PROPERTYKEY { .fmtid = Guid.initString("e4870e26-3cc5-4cd2-ba46-ca0a9a70ed04"), .pid = 3 };
-pub const PKEY_AudioEndpointLogo_IconEffects = PROPERTYKEY { .fmtid = Guid.initString("f1ab780d-2010-4ed3-a3a6-8b87f0f0c476"), .pid = 0 };
-pub const PKEY_AudioEndpointLogo_IconPath = PROPERTYKEY { .fmtid = Guid.initString("f1ab780d-2010-4ed3-a3a6-8b87f0f0c476"), .pid = 1 };
-pub const PKEY_AudioEndpointSettings_MenuText = PROPERTYKEY { .fmtid = Guid.initString("14242002-0320-4de4-9555-a7d82b73c286"), .pid = 0 };
-pub const PKEY_AudioEndpointSettings_LaunchContract = PROPERTYKEY { .fmtid = Guid.initString("14242002-0320-4de4-9555-a7d82b73c286"), .pid = 1 };
+pub const PKEY_AudioEndpoint_FullRangeSpeakers = PROPERTYKEY{ .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 6 };
+pub const PKEY_AudioEndpoint_Supports_EventDriven_Mode = PROPERTYKEY{ .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 7 };
+pub const PKEY_AudioEndpoint_JackSubType = PROPERTYKEY{ .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 8 };
+pub const PKEY_AudioEndpoint_Default_VolumeInDb = PROPERTYKEY{ .fmtid = Guid.initString("1da5d803-d492-4edd-8c23-e0c0ffee7f0e"), .pid = 9 };
+pub const PKEY_AudioEngine_DeviceFormat = PROPERTYKEY{ .fmtid = Guid.initString("f19f064d-082c-4e27-bc73-6882a1bb8e4c"), .pid = 0 };
+pub const PKEY_AudioEngine_OEMFormat = PROPERTYKEY{ .fmtid = Guid.initString("e4870e26-3cc5-4cd2-ba46-ca0a9a70ed04"), .pid = 3 };
+pub const PKEY_AudioEndpointLogo_IconEffects = PROPERTYKEY{ .fmtid = Guid.initString("f1ab780d-2010-4ed3-a3a6-8b87f0f0c476"), .pid = 0 };
+pub const PKEY_AudioEndpointLogo_IconPath = PROPERTYKEY{ .fmtid = Guid.initString("f1ab780d-2010-4ed3-a3a6-8b87f0f0c476"), .pid = 1 };
+pub const PKEY_AudioEndpointSettings_MenuText = PROPERTYKEY{ .fmtid = Guid.initString("14242002-0320-4de4-9555-a7d82b73c286"), .pid = 0 };
+pub const PKEY_AudioEndpointSettings_LaunchContract = PROPERTYKEY{ .fmtid = Guid.initString("14242002-0320-4de4-9555-a7d82b73c286"), .pid = 1 };
 pub const DEVINTERFACE_AUDIO_RENDER = Guid.initString("e6327cad-dcec-4949-ae8a-991e976a79d2");
 pub const DEVINTERFACE_AUDIO_CAPTURE = Guid.initString("2eef81be-33fa-4800-9670-1cd474972c3f");
 pub const DEVINTERFACE_MIDI_OUTPUT = Guid.initString("6dc23320-ab33-4ce4-80d4-bbb3ebbf2814");
@@ -482,38 +482,38 @@ pub const ACMDM_STREAM_UPDATE = @as(u32, 24659);
 // Section: Types (229)
 //--------------------------------------------------------------------------------
 pub const LPWAVECALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hdrvr: ?HDRVR,
         uMsg: u32,
         dwUser: usize,
         dw1: usize,
         dw2: usize,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         hdrvr: ?HDRVR,
         uMsg: u32,
         dwUser: usize,
         dw1: usize,
         dw2: usize,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const LPMIDICALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hdrvr: ?HDRVR,
         uMsg: u32,
         dwUser: usize,
         dw1: usize,
         dw2: usize,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         hdrvr: ?HDRVR,
         uMsg: u32,
         dwUser: usize,
         dw1: usize,
         dw2: usize,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const MIDI_WAVE_OPEN_TYPE = enum(u32) {
     CALLBACK_TYPEMASK = 458752,
@@ -546,21 +546,7 @@ pub const MIDI_WAVE_OPEN_TYPE = enum(u32) {
         WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE: u1 = 0,
         MIDI_IO_STATUS: u1 = 0,
     }) MIDI_WAVE_OPEN_TYPE {
-        return @intToEnum(MIDI_WAVE_OPEN_TYPE,
-              (if (o.CALLBACK_TYPEMASK == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.CALLBACK_TYPEMASK) else 0)
-            | (if (o.CALLBACK_NULL == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.CALLBACK_NULL) else 0)
-            | (if (o.CALLBACK_WINDOW == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.CALLBACK_WINDOW) else 0)
-            | (if (o.CALLBACK_TASK == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.CALLBACK_TASK) else 0)
-            | (if (o.CALLBACK_FUNCTION == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.CALLBACK_FUNCTION) else 0)
-            | (if (o.CALLBACK_EVENT == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.CALLBACK_EVENT) else 0)
-            | (if (o.WAVE_FORMAT_QUERY == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.WAVE_FORMAT_QUERY) else 0)
-            | (if (o.WAVE_ALLOWSYNC == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.WAVE_ALLOWSYNC) else 0)
-            | (if (o.WAVE_MAPPED == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.WAVE_MAPPED) else 0)
-            | (if (o.WAVE_FORMAT_DIRECT == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.WAVE_FORMAT_DIRECT) else 0)
-            | (if (o.WAVE_FORMAT_DIRECT_QUERY == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.WAVE_FORMAT_DIRECT_QUERY) else 0)
-            | (if (o.WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE) else 0)
-            | (if (o.MIDI_IO_STATUS == 1) @enumToInt(MIDI_WAVE_OPEN_TYPE.MIDI_IO_STATUS) else 0)
-        );
+        return @enumFromInt(MIDI_WAVE_OPEN_TYPE, (if (o.CALLBACK_TYPEMASK == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.CALLBACK_TYPEMASK) else 0) | (if (o.CALLBACK_NULL == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.CALLBACK_NULL) else 0) | (if (o.CALLBACK_WINDOW == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.CALLBACK_WINDOW) else 0) | (if (o.CALLBACK_TASK == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.CALLBACK_TASK) else 0) | (if (o.CALLBACK_FUNCTION == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.CALLBACK_FUNCTION) else 0) | (if (o.CALLBACK_EVENT == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.CALLBACK_EVENT) else 0) | (if (o.WAVE_FORMAT_QUERY == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.WAVE_FORMAT_QUERY) else 0) | (if (o.WAVE_ALLOWSYNC == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.WAVE_ALLOWSYNC) else 0) | (if (o.WAVE_MAPPED == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.WAVE_MAPPED) else 0) | (if (o.WAVE_FORMAT_DIRECT == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.WAVE_FORMAT_DIRECT) else 0) | (if (o.WAVE_FORMAT_DIRECT_QUERY == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.WAVE_FORMAT_DIRECT_QUERY) else 0) | (if (o.WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE) else 0) | (if (o.MIDI_IO_STATUS == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.MIDI_IO_STATUS) else 0));
     }
 };
 pub const CALLBACK_TYPEMASK = MIDI_WAVE_OPEN_TYPE.CALLBACK_TYPEMASK;
@@ -629,31 +615,31 @@ pub const AUDIO_VOLUME_NOTIFICATION_DATA = extern struct {
     afChannelVolumes: [1]f32,
 };
 
-pub const HMIDI = *opaque{};
+pub const HMIDI = *opaque {};
 
-pub const HMIDIIN = *opaque{};
+pub const HMIDIIN = *opaque {};
 
-pub const HMIDIOUT = *opaque{};
+pub const HMIDIOUT = *opaque {};
 
-pub const HMIDISTRM = *opaque{};
+pub const HMIDISTRM = *opaque {};
 
-pub const HMIXER = *opaque{};
+pub const HMIXER = *opaque {};
 
-pub const HMIXEROBJ = *opaque{};
+pub const HMIXEROBJ = *opaque {};
 
-pub const HWAVE = *opaque{};
+pub const HWAVE = *opaque {};
 
-pub const HWAVEOUT = *opaque{};
+pub const HWAVEOUT = *opaque {};
 
-pub const HWAVEIN = *opaque{};
+pub const HWAVEIN = *opaque {};
 
-pub const HACMDRIVERID = *opaque{};
+pub const HACMDRIVERID = *opaque {};
 
-pub const HACMDRIVER = *opaque{};
+pub const HACMDRIVER = *opaque {};
 
-pub const HACMSTREAM = *opaque{};
+pub const HACMSTREAM = *opaque {};
 
-pub const HACMOBJ = *opaque{};
+pub const HACMOBJ = *opaque {};
 
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IMessageFilter_Value = Guid.initString("00000016-0000-0000-c000-000000000046");
@@ -662,14 +648,14 @@ pub const IMessageFilter = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         HandleInComingCall: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMessageFilter,
                 dwCallType: u32,
                 htaskCaller: ?HTASK,
                 dwTickCount: u32,
                 lpInterfaceInfo: ?*INTERFACEINFO,
             ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMessageFilter,
                 dwCallType: u32,
                 htaskCaller: ?HTASK,
@@ -678,13 +664,13 @@ pub const IMessageFilter = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) u32,
         },
         RetryRejectedCall: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMessageFilter,
                 htaskCallee: ?HTASK,
                 dwTickCount: u32,
                 dwRejectType: u32,
             ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMessageFilter,
                 htaskCallee: ?HTASK,
                 dwTickCount: u32,
@@ -692,13 +678,13 @@ pub const IMessageFilter = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) u32,
         },
         MessagePending: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMessageFilter,
                 htaskCallee: ?HTASK,
                 dwTickCount: u32,
                 dwPendingType: u32,
             ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMessageFilter,
                 htaskCallee: ?HTASK,
                 dwTickCount: u32,
@@ -707,21 +693,23 @@ pub const IMessageFilter = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMessageFilter_HandleInComingCall(self: *const T, dwCallType: u32, htaskCaller: ?HTASK, dwTickCount: u32, lpInterfaceInfo: ?*INTERFACEINFO) callconv(.Inline) u32 {
-            return @ptrCast(*const IMessageFilter.VTable, self.vtable).HandleInComingCall(@ptrCast(*const IMessageFilter, self), dwCallType, htaskCaller, dwTickCount, lpInterfaceInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMessageFilter_RetryRejectedCall(self: *const T, htaskCallee: ?HTASK, dwTickCount: u32, dwRejectType: u32) callconv(.Inline) u32 {
-            return @ptrCast(*const IMessageFilter.VTable, self.vtable).RetryRejectedCall(@ptrCast(*const IMessageFilter, self), htaskCallee, dwTickCount, dwRejectType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMessageFilter_MessagePending(self: *const T, htaskCallee: ?HTASK, dwTickCount: u32, dwPendingType: u32) callconv(.Inline) u32 {
-            return @ptrCast(*const IMessageFilter.VTable, self.vtable).MessagePending(@ptrCast(*const IMessageFilter, self), htaskCallee, dwTickCount, dwPendingType);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMessageFilter_HandleInComingCall(self: *const T, dwCallType: u32, htaskCaller: ?HTASK, dwTickCount: u32, lpInterfaceInfo: ?*INTERFACEINFO) u32 {
+                return @ptrCast(*const IMessageFilter.VTable, self.vtable).HandleInComingCall(@ptrCast(*const IMessageFilter, self), dwCallType, htaskCaller, dwTickCount, lpInterfaceInfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMessageFilter_RetryRejectedCall(self: *const T, htaskCallee: ?HTASK, dwTickCount: u32, dwRejectType: u32) u32 {
+                return @ptrCast(*const IMessageFilter.VTable, self.vtable).RetryRejectedCall(@ptrCast(*const IMessageFilter, self), htaskCallee, dwTickCount, dwRejectType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMessageFilter_MessagePending(self: *const T, htaskCallee: ?HTASK, dwTickCount: u32, dwPendingType: u32) u32 {
+                return @ptrCast(*const IMessageFilter.VTable, self.vtable).MessagePending(@ptrCast(*const IMessageFilter, self), htaskCallee, dwTickCount, dwPendingType);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1325,12 +1313,7 @@ pub const AUDCLNT_STREAMOPTIONS = enum(u32) {
         MATCH_FORMAT: u1 = 0,
         AMBISONICS: u1 = 0,
     }) AUDCLNT_STREAMOPTIONS {
-        return @intToEnum(AUDCLNT_STREAMOPTIONS,
-              (if (o.NONE == 1) @enumToInt(AUDCLNT_STREAMOPTIONS.NONE) else 0)
-            | (if (o.RAW == 1) @enumToInt(AUDCLNT_STREAMOPTIONS.RAW) else 0)
-            | (if (o.MATCH_FORMAT == 1) @enumToInt(AUDCLNT_STREAMOPTIONS.MATCH_FORMAT) else 0)
-            | (if (o.AMBISONICS == 1) @enumToInt(AUDCLNT_STREAMOPTIONS.AMBISONICS) else 0)
-        );
+        return @enumFromInt(AUDCLNT_STREAMOPTIONS, (if (o.NONE == 1) @intFromEnum(AUDCLNT_STREAMOPTIONS.NONE) else 0) | (if (o.RAW == 1) @intFromEnum(AUDCLNT_STREAMOPTIONS.RAW) else 0) | (if (o.MATCH_FORMAT == 1) @intFromEnum(AUDCLNT_STREAMOPTIONS.MATCH_FORMAT) else 0) | (if (o.AMBISONICS == 1) @intFromEnum(AUDCLNT_STREAMOPTIONS.AMBISONICS) else 0));
     }
 };
 pub const AUDCLNT_STREAMOPTIONS_NONE = AUDCLNT_STREAMOPTIONS.NONE;
@@ -1352,7 +1335,7 @@ pub const IAudioClient = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioClient,
                 ShareMode: AUDCLNT_SHAREMODE,
                 StreamFlags: u32,
@@ -1361,7 +1344,7 @@ pub const IAudioClient = extern struct {
                 pFormat: ?*const WAVEFORMATEX,
                 AudioSessionGuid: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioClient,
                 ShareMode: AUDCLNT_SHAREMODE,
                 StreamFlags: u32,
@@ -1372,43 +1355,43 @@ pub const IAudioClient = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetBufferSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioClient,
                 pNumBufferFrames: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioClient,
                 pNumBufferFrames: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetStreamLatency: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioClient,
                 phnsLatency: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioClient,
                 phnsLatency: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCurrentPadding: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioClient,
                 pNumPaddingFrames: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioClient,
                 pNumPaddingFrames: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         IsFormatSupported: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioClient,
                 ShareMode: AUDCLNT_SHAREMODE,
                 pFormat: ?*const WAVEFORMATEX,
                 ppClosestMatch: ?*?*WAVEFORMATEX,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioClient,
                 ShareMode: AUDCLNT_SHAREMODE,
                 pFormat: ?*const WAVEFORMATEX,
@@ -1416,68 +1399,68 @@ pub const IAudioClient = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetMixFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioClient,
                 ppDeviceFormat: ?*?*WAVEFORMATEX,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioClient,
                 ppDeviceFormat: ?*?*WAVEFORMATEX,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDevicePeriod: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioClient,
                 phnsDefaultDevicePeriod: ?*i64,
                 phnsMinimumDevicePeriod: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioClient,
                 phnsDefaultDevicePeriod: ?*i64,
                 phnsMinimumDevicePeriod: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Start: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioClient,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioClient,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Stop: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioClient,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioClient,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioClient,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioClient,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetEventHandle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioClient,
                 eventHandle: ?HANDLE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioClient,
                 eventHandle: ?HANDLE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetService: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioClient,
                 riid: ?*const Guid,
                 ppv: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioClient,
                 riid: ?*const Guid,
                 ppv: ?*?*anyopaque,
@@ -1485,57 +1468,59 @@ pub const IAudioClient = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClient_Initialize(self: *const T, ShareMode: AUDCLNT_SHAREMODE, StreamFlags: u32, hnsBufferDuration: i64, hnsPeriodicity: i64, pFormat: ?*const WAVEFORMATEX, AudioSessionGuid: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioClient.VTable, self.vtable).Initialize(@ptrCast(*const IAudioClient, self), ShareMode, StreamFlags, hnsBufferDuration, hnsPeriodicity, pFormat, AudioSessionGuid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClient_GetBufferSize(self: *const T, pNumBufferFrames: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioClient.VTable, self.vtable).GetBufferSize(@ptrCast(*const IAudioClient, self), pNumBufferFrames);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClient_GetStreamLatency(self: *const T, phnsLatency: ?*i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioClient.VTable, self.vtable).GetStreamLatency(@ptrCast(*const IAudioClient, self), phnsLatency);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClient_GetCurrentPadding(self: *const T, pNumPaddingFrames: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioClient.VTable, self.vtable).GetCurrentPadding(@ptrCast(*const IAudioClient, self), pNumPaddingFrames);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClient_IsFormatSupported(self: *const T, ShareMode: AUDCLNT_SHAREMODE, pFormat: ?*const WAVEFORMATEX, ppClosestMatch: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioClient.VTable, self.vtable).IsFormatSupported(@ptrCast(*const IAudioClient, self), ShareMode, pFormat, ppClosestMatch);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClient_GetMixFormat(self: *const T, ppDeviceFormat: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioClient.VTable, self.vtable).GetMixFormat(@ptrCast(*const IAudioClient, self), ppDeviceFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClient_GetDevicePeriod(self: *const T, phnsDefaultDevicePeriod: ?*i64, phnsMinimumDevicePeriod: ?*i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioClient.VTable, self.vtable).GetDevicePeriod(@ptrCast(*const IAudioClient, self), phnsDefaultDevicePeriod, phnsMinimumDevicePeriod);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClient_Start(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioClient.VTable, self.vtable).Start(@ptrCast(*const IAudioClient, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClient_Stop(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioClient.VTable, self.vtable).Stop(@ptrCast(*const IAudioClient, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClient_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioClient.VTable, self.vtable).Reset(@ptrCast(*const IAudioClient, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClient_SetEventHandle(self: *const T, eventHandle: ?HANDLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioClient.VTable, self.vtable).SetEventHandle(@ptrCast(*const IAudioClient, self), eventHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClient_GetService(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioClient.VTable, self.vtable).GetService(@ptrCast(*const IAudioClient, self), riid, ppv);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioClient_Initialize(self: *const T, ShareMode: AUDCLNT_SHAREMODE, StreamFlags: u32, hnsBufferDuration: i64, hnsPeriodicity: i64, pFormat: ?*const WAVEFORMATEX, AudioSessionGuid: ?*const Guid) HRESULT {
+                return @ptrCast(*const IAudioClient.VTable, self.vtable).Initialize(@ptrCast(*const IAudioClient, self), ShareMode, StreamFlags, hnsBufferDuration, hnsPeriodicity, pFormat, AudioSessionGuid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioClient_GetBufferSize(self: *const T, pNumBufferFrames: ?*u32) HRESULT {
+                return @ptrCast(*const IAudioClient.VTable, self.vtable).GetBufferSize(@ptrCast(*const IAudioClient, self), pNumBufferFrames);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioClient_GetStreamLatency(self: *const T, phnsLatency: ?*i64) HRESULT {
+                return @ptrCast(*const IAudioClient.VTable, self.vtable).GetStreamLatency(@ptrCast(*const IAudioClient, self), phnsLatency);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioClient_GetCurrentPadding(self: *const T, pNumPaddingFrames: ?*u32) HRESULT {
+                return @ptrCast(*const IAudioClient.VTable, self.vtable).GetCurrentPadding(@ptrCast(*const IAudioClient, self), pNumPaddingFrames);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioClient_IsFormatSupported(self: *const T, ShareMode: AUDCLNT_SHAREMODE, pFormat: ?*const WAVEFORMATEX, ppClosestMatch: ?*?*WAVEFORMATEX) HRESULT {
+                return @ptrCast(*const IAudioClient.VTable, self.vtable).IsFormatSupported(@ptrCast(*const IAudioClient, self), ShareMode, pFormat, ppClosestMatch);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioClient_GetMixFormat(self: *const T, ppDeviceFormat: ?*?*WAVEFORMATEX) HRESULT {
+                return @ptrCast(*const IAudioClient.VTable, self.vtable).GetMixFormat(@ptrCast(*const IAudioClient, self), ppDeviceFormat);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioClient_GetDevicePeriod(self: *const T, phnsDefaultDevicePeriod: ?*i64, phnsMinimumDevicePeriod: ?*i64) HRESULT {
+                return @ptrCast(*const IAudioClient.VTable, self.vtable).GetDevicePeriod(@ptrCast(*const IAudioClient, self), phnsDefaultDevicePeriod, phnsMinimumDevicePeriod);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioClient_Start(self: *const T) HRESULT {
+                return @ptrCast(*const IAudioClient.VTable, self.vtable).Start(@ptrCast(*const IAudioClient, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioClient_Stop(self: *const T) HRESULT {
+                return @ptrCast(*const IAudioClient.VTable, self.vtable).Stop(@ptrCast(*const IAudioClient, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioClient_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IAudioClient.VTable, self.vtable).Reset(@ptrCast(*const IAudioClient, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioClient_SetEventHandle(self: *const T, eventHandle: ?HANDLE) HRESULT {
+                return @ptrCast(*const IAudioClient.VTable, self.vtable).SetEventHandle(@ptrCast(*const IAudioClient, self), eventHandle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioClient_GetService(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IAudioClient.VTable, self.vtable).GetService(@ptrCast(*const IAudioClient, self), riid, ppv);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1546,36 +1531,36 @@ pub const IAudioClient2 = extern struct {
     pub const VTable = extern struct {
         base: IAudioClient.VTable,
         IsOffloadCapable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioClient2,
                 Category: AUDIO_STREAM_CATEGORY,
                 pbOffloadCapable: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioClient2,
                 Category: AUDIO_STREAM_CATEGORY,
                 pbOffloadCapable: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetClientProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioClient2,
                 pProperties: ?*const AudioClientProperties,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioClient2,
                 pProperties: ?*const AudioClientProperties,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetBufferSizeLimits: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioClient2,
                 pFormat: ?*const WAVEFORMATEX,
                 bEventDriven: BOOL,
                 phnsMinBufferDuration: ?*i64,
                 phnsMaxBufferDuration: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioClient2,
                 pFormat: ?*const WAVEFORMATEX,
                 bEventDriven: BOOL,
@@ -1585,21 +1570,23 @@ pub const IAudioClient2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IAudioClient.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClient2_IsOffloadCapable(self: *const T, Category: AUDIO_STREAM_CATEGORY, pbOffloadCapable: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioClient2.VTable, self.vtable).IsOffloadCapable(@ptrCast(*const IAudioClient2, self), Category, pbOffloadCapable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClient2_SetClientProperties(self: *const T, pProperties: ?*const AudioClientProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioClient2.VTable, self.vtable).SetClientProperties(@ptrCast(*const IAudioClient2, self), pProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClient2_GetBufferSizeLimits(self: *const T, pFormat: ?*const WAVEFORMATEX, bEventDriven: BOOL, phnsMinBufferDuration: ?*i64, phnsMaxBufferDuration: ?*i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioClient2.VTable, self.vtable).GetBufferSizeLimits(@ptrCast(*const IAudioClient2, self), pFormat, bEventDriven, phnsMinBufferDuration, phnsMaxBufferDuration);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IAudioClient.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioClient2_IsOffloadCapable(self: *const T, Category: AUDIO_STREAM_CATEGORY, pbOffloadCapable: ?*BOOL) HRESULT {
+                return @ptrCast(*const IAudioClient2.VTable, self.vtable).IsOffloadCapable(@ptrCast(*const IAudioClient2, self), Category, pbOffloadCapable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioClient2_SetClientProperties(self: *const T, pProperties: ?*const AudioClientProperties) HRESULT {
+                return @ptrCast(*const IAudioClient2.VTable, self.vtable).SetClientProperties(@ptrCast(*const IAudioClient2, self), pProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioClient2_GetBufferSizeLimits(self: *const T, pFormat: ?*const WAVEFORMATEX, bEventDriven: BOOL, phnsMinBufferDuration: ?*i64, phnsMaxBufferDuration: ?*i64) HRESULT {
+                return @ptrCast(*const IAudioClient2.VTable, self.vtable).GetBufferSizeLimits(@ptrCast(*const IAudioClient2, self), pFormat, bEventDriven, phnsMinBufferDuration, phnsMaxBufferDuration);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1614,7 +1601,7 @@ pub const IAudioClient3 = extern struct {
     pub const VTable = extern struct {
         base: IAudioClient2.VTable,
         GetSharedModeEnginePeriod: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioClient3,
                 pFormat: ?*const WAVEFORMATEX,
                 pDefaultPeriodInFrames: ?*u32,
@@ -1622,7 +1609,7 @@ pub const IAudioClient3 = extern struct {
                 pMinPeriodInFrames: ?*u32,
                 pMaxPeriodInFrames: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioClient3,
                 pFormat: ?*const WAVEFORMATEX,
                 pDefaultPeriodInFrames: ?*u32,
@@ -1632,26 +1619,26 @@ pub const IAudioClient3 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCurrentSharedModeEnginePeriod: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioClient3,
                 ppFormat: ?*?*WAVEFORMATEX,
                 pCurrentPeriodInFrames: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioClient3,
                 ppFormat: ?*?*WAVEFORMATEX,
                 pCurrentPeriodInFrames: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         InitializeSharedAudioStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioClient3,
                 StreamFlags: u32,
                 PeriodInFrames: u32,
                 pFormat: ?*const WAVEFORMATEX,
                 AudioSessionGuid: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioClient3,
                 StreamFlags: u32,
                 PeriodInFrames: u32,
@@ -1661,21 +1648,23 @@ pub const IAudioClient3 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IAudioClient2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClient3_GetSharedModeEnginePeriod(self: *const T, pFormat: ?*const WAVEFORMATEX, pDefaultPeriodInFrames: ?*u32, pFundamentalPeriodInFrames: ?*u32, pMinPeriodInFrames: ?*u32, pMaxPeriodInFrames: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioClient3.VTable, self.vtable).GetSharedModeEnginePeriod(@ptrCast(*const IAudioClient3, self), pFormat, pDefaultPeriodInFrames, pFundamentalPeriodInFrames, pMinPeriodInFrames, pMaxPeriodInFrames);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClient3_GetCurrentSharedModeEnginePeriod(self: *const T, ppFormat: ?*?*WAVEFORMATEX, pCurrentPeriodInFrames: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioClient3.VTable, self.vtable).GetCurrentSharedModeEnginePeriod(@ptrCast(*const IAudioClient3, self), ppFormat, pCurrentPeriodInFrames);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClient3_InitializeSharedAudioStream(self: *const T, StreamFlags: u32, PeriodInFrames: u32, pFormat: ?*const WAVEFORMATEX, AudioSessionGuid: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioClient3.VTable, self.vtable).InitializeSharedAudioStream(@ptrCast(*const IAudioClient3, self), StreamFlags, PeriodInFrames, pFormat, AudioSessionGuid);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IAudioClient2.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioClient3_GetSharedModeEnginePeriod(self: *const T, pFormat: ?*const WAVEFORMATEX, pDefaultPeriodInFrames: ?*u32, pFundamentalPeriodInFrames: ?*u32, pMinPeriodInFrames: ?*u32, pMaxPeriodInFrames: ?*u32) HRESULT {
+                return @ptrCast(*const IAudioClient3.VTable, self.vtable).GetSharedModeEnginePeriod(@ptrCast(*const IAudioClient3, self), pFormat, pDefaultPeriodInFrames, pFundamentalPeriodInFrames, pMinPeriodInFrames, pMaxPeriodInFrames);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioClient3_GetCurrentSharedModeEnginePeriod(self: *const T, ppFormat: ?*?*WAVEFORMATEX, pCurrentPeriodInFrames: ?*u32) HRESULT {
+                return @ptrCast(*const IAudioClient3.VTable, self.vtable).GetCurrentSharedModeEnginePeriod(@ptrCast(*const IAudioClient3, self), ppFormat, pCurrentPeriodInFrames);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioClient3_InitializeSharedAudioStream(self: *const T, StreamFlags: u32, PeriodInFrames: u32, pFormat: ?*const WAVEFORMATEX, AudioSessionGuid: ?*const Guid) HRESULT {
+                return @ptrCast(*const IAudioClient3.VTable, self.vtable).InitializeSharedAudioStream(@ptrCast(*const IAudioClient3, self), StreamFlags, PeriodInFrames, pFormat, AudioSessionGuid);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1686,24 +1675,24 @@ pub const IAudioRenderClient = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioRenderClient,
                 NumFramesRequested: u32,
                 ppData: ?*?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioRenderClient,
                 NumFramesRequested: u32,
                 ppData: ?*?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ReleaseBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioRenderClient,
                 NumFramesWritten: u32,
                 dwFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioRenderClient,
                 NumFramesWritten: u32,
                 dwFlags: u32,
@@ -1711,17 +1700,19 @@ pub const IAudioRenderClient = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioRenderClient_GetBuffer(self: *const T, NumFramesRequested: u32, ppData: ?*?*u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioRenderClient.VTable, self.vtable).GetBuffer(@ptrCast(*const IAudioRenderClient, self), NumFramesRequested, ppData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioRenderClient_ReleaseBuffer(self: *const T, NumFramesWritten: u32, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioRenderClient.VTable, self.vtable).ReleaseBuffer(@ptrCast(*const IAudioRenderClient, self), NumFramesWritten, dwFlags);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioRenderClient_GetBuffer(self: *const T, NumFramesRequested: u32, ppData: ?*?*u8) HRESULT {
+                return @ptrCast(*const IAudioRenderClient.VTable, self.vtable).GetBuffer(@ptrCast(*const IAudioRenderClient, self), NumFramesRequested, ppData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioRenderClient_ReleaseBuffer(self: *const T, NumFramesWritten: u32, dwFlags: u32) HRESULT {
+                return @ptrCast(*const IAudioRenderClient.VTable, self.vtable).ReleaseBuffer(@ptrCast(*const IAudioRenderClient, self), NumFramesWritten, dwFlags);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1732,7 +1723,7 @@ pub const IAudioCaptureClient = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioCaptureClient,
                 ppData: ?*?*u8,
                 pNumFramesToRead: ?*u32,
@@ -1740,7 +1731,7 @@ pub const IAudioCaptureClient = extern struct {
                 pu64DevicePosition: ?*u64,
                 pu64QPCPosition: ?*u64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioCaptureClient,
                 ppData: ?*?*u8,
                 pNumFramesToRead: ?*u32,
@@ -1750,42 +1741,44 @@ pub const IAudioCaptureClient = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ReleaseBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioCaptureClient,
                 NumFramesRead: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioCaptureClient,
                 NumFramesRead: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetNextPacketSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioCaptureClient,
                 pNumFramesInNextPacket: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioCaptureClient,
                 pNumFramesInNextPacket: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioCaptureClient_GetBuffer(self: *const T, ppData: ?*?*u8, pNumFramesToRead: ?*u32, pdwFlags: ?*u32, pu64DevicePosition: ?*u64, pu64QPCPosition: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioCaptureClient.VTable, self.vtable).GetBuffer(@ptrCast(*const IAudioCaptureClient, self), ppData, pNumFramesToRead, pdwFlags, pu64DevicePosition, pu64QPCPosition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioCaptureClient_ReleaseBuffer(self: *const T, NumFramesRead: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioCaptureClient.VTable, self.vtable).ReleaseBuffer(@ptrCast(*const IAudioCaptureClient, self), NumFramesRead);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioCaptureClient_GetNextPacketSize(self: *const T, pNumFramesInNextPacket: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioCaptureClient.VTable, self.vtable).GetNextPacketSize(@ptrCast(*const IAudioCaptureClient, self), pNumFramesInNextPacket);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioCaptureClient_GetBuffer(self: *const T, ppData: ?*?*u8, pNumFramesToRead: ?*u32, pdwFlags: ?*u32, pu64DevicePosition: ?*u64, pu64QPCPosition: ?*u64) HRESULT {
+                return @ptrCast(*const IAudioCaptureClient.VTable, self.vtable).GetBuffer(@ptrCast(*const IAudioCaptureClient, self), ppData, pNumFramesToRead, pdwFlags, pu64DevicePosition, pu64QPCPosition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioCaptureClient_ReleaseBuffer(self: *const T, NumFramesRead: u32) HRESULT {
+                return @ptrCast(*const IAudioCaptureClient.VTable, self.vtable).ReleaseBuffer(@ptrCast(*const IAudioCaptureClient, self), NumFramesRead);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioCaptureClient_GetNextPacketSize(self: *const T, pNumFramesInNextPacket: ?*u32) HRESULT {
+                return @ptrCast(*const IAudioCaptureClient.VTable, self.vtable).GetNextPacketSize(@ptrCast(*const IAudioCaptureClient, self), pNumFramesInNextPacket);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1796,54 +1789,56 @@ pub const IAudioClock = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetFrequency: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioClock,
                 pu64Frequency: ?*u64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioClock,
                 pu64Frequency: ?*u64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPosition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioClock,
                 pu64Position: ?*u64,
                 pu64QPCPosition: ?*u64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioClock,
                 pu64Position: ?*u64,
                 pu64QPCPosition: ?*u64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCharacteristics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioClock,
                 pdwCharacteristics: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioClock,
                 pdwCharacteristics: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClock_GetFrequency(self: *const T, pu64Frequency: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioClock.VTable, self.vtable).GetFrequency(@ptrCast(*const IAudioClock, self), pu64Frequency);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClock_GetPosition(self: *const T, pu64Position: ?*u64, pu64QPCPosition: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioClock.VTable, self.vtable).GetPosition(@ptrCast(*const IAudioClock, self), pu64Position, pu64QPCPosition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClock_GetCharacteristics(self: *const T, pdwCharacteristics: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioClock.VTable, self.vtable).GetCharacteristics(@ptrCast(*const IAudioClock, self), pdwCharacteristics);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioClock_GetFrequency(self: *const T, pu64Frequency: ?*u64) HRESULT {
+                return @ptrCast(*const IAudioClock.VTable, self.vtable).GetFrequency(@ptrCast(*const IAudioClock, self), pu64Frequency);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioClock_GetPosition(self: *const T, pu64Position: ?*u64, pu64QPCPosition: ?*u64) HRESULT {
+                return @ptrCast(*const IAudioClock.VTable, self.vtable).GetPosition(@ptrCast(*const IAudioClock, self), pu64Position, pu64QPCPosition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioClock_GetCharacteristics(self: *const T, pdwCharacteristics: ?*u32) HRESULT {
+                return @ptrCast(*const IAudioClock.VTable, self.vtable).GetCharacteristics(@ptrCast(*const IAudioClock, self), pdwCharacteristics);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1854,12 +1849,12 @@ pub const IAudioClock2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDevicePosition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioClock2,
                 DevicePosition: ?*u64,
                 QPCPosition: ?*u64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioClock2,
                 DevicePosition: ?*u64,
                 QPCPosition: ?*u64,
@@ -1867,13 +1862,15 @@ pub const IAudioClock2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClock2_GetDevicePosition(self: *const T, DevicePosition: ?*u64, QPCPosition: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioClock2.VTable, self.vtable).GetDevicePosition(@ptrCast(*const IAudioClock2, self), DevicePosition, QPCPosition);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioClock2_GetDevicePosition(self: *const T, DevicePosition: ?*u64, QPCPosition: ?*u64) HRESULT {
+                return @ptrCast(*const IAudioClock2.VTable, self.vtable).GetDevicePosition(@ptrCast(*const IAudioClock2, self), DevicePosition, QPCPosition);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1884,24 +1881,26 @@ pub const IAudioClockAdjustment = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetSampleRate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioClockAdjustment,
                 flSampleRate: f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioClockAdjustment,
                 flSampleRate: f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClockAdjustment_SetSampleRate(self: *const T, flSampleRate: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioClockAdjustment.VTable, self.vtable).SetSampleRate(@ptrCast(*const IAudioClockAdjustment, self), flSampleRate);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioClockAdjustment_SetSampleRate(self: *const T, flSampleRate: f32) HRESULT {
+                return @ptrCast(*const IAudioClockAdjustment.VTable, self.vtable).SetSampleRate(@ptrCast(*const IAudioClockAdjustment, self), flSampleRate);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1912,70 +1911,72 @@ pub const ISimpleAudioVolume = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetMasterVolume: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISimpleAudioVolume,
                 fLevel: f32,
                 EventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISimpleAudioVolume,
                 fLevel: f32,
                 EventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetMasterVolume: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISimpleAudioVolume,
                 pfLevel: ?*f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISimpleAudioVolume,
                 pfLevel: ?*f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetMute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISimpleAudioVolume,
                 bMute: BOOL,
                 EventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISimpleAudioVolume,
                 bMute: BOOL,
                 EventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetMute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISimpleAudioVolume,
                 pbMute: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISimpleAudioVolume,
                 pbMute: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimpleAudioVolume_SetMasterVolume(self: *const T, fLevel: f32, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISimpleAudioVolume.VTable, self.vtable).SetMasterVolume(@ptrCast(*const ISimpleAudioVolume, self), fLevel, EventContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimpleAudioVolume_GetMasterVolume(self: *const T, pfLevel: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISimpleAudioVolume.VTable, self.vtable).GetMasterVolume(@ptrCast(*const ISimpleAudioVolume, self), pfLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimpleAudioVolume_SetMute(self: *const T, bMute: BOOL, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISimpleAudioVolume.VTable, self.vtable).SetMute(@ptrCast(*const ISimpleAudioVolume, self), bMute, EventContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISimpleAudioVolume_GetMute(self: *const T, pbMute: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISimpleAudioVolume.VTable, self.vtable).GetMute(@ptrCast(*const ISimpleAudioVolume, self), pbMute);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISimpleAudioVolume_SetMasterVolume(self: *const T, fLevel: f32, EventContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const ISimpleAudioVolume.VTable, self.vtable).SetMasterVolume(@ptrCast(*const ISimpleAudioVolume, self), fLevel, EventContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISimpleAudioVolume_GetMasterVolume(self: *const T, pfLevel: ?*f32) HRESULT {
+                return @ptrCast(*const ISimpleAudioVolume.VTable, self.vtable).GetMasterVolume(@ptrCast(*const ISimpleAudioVolume, self), pfLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISimpleAudioVolume_SetMute(self: *const T, bMute: BOOL, EventContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const ISimpleAudioVolume.VTable, self.vtable).SetMute(@ptrCast(*const ISimpleAudioVolume, self), bMute, EventContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISimpleAudioVolume_GetMute(self: *const T, pbMute: ?*BOOL) HRESULT {
+                return @ptrCast(*const ISimpleAudioVolume.VTable, self.vtable).GetMute(@ptrCast(*const ISimpleAudioVolume, self), pbMute);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1987,10 +1988,7 @@ pub const AUDIO_DUCKING_OPTIONS = enum(u32) {
         EFAULT: u1 = 0,
         O_NOT_DUCK_OTHER_STREAMS: u1 = 0,
     }) AUDIO_DUCKING_OPTIONS {
-        return @intToEnum(AUDIO_DUCKING_OPTIONS,
-              (if (o.EFAULT == 1) @enumToInt(AUDIO_DUCKING_OPTIONS.EFAULT) else 0)
-            | (if (o.O_NOT_DUCK_OTHER_STREAMS == 1) @enumToInt(AUDIO_DUCKING_OPTIONS.O_NOT_DUCK_OTHER_STREAMS) else 0)
-        );
+        return @enumFromInt(AUDIO_DUCKING_OPTIONS, (if (o.EFAULT == 1) @intFromEnum(AUDIO_DUCKING_OPTIONS.EFAULT) else 0) | (if (o.O_NOT_DUCK_OTHER_STREAMS == 1) @intFromEnum(AUDIO_DUCKING_OPTIONS.O_NOT_DUCK_OTHER_STREAMS) else 0));
     }
 };
 pub const AUDIO_DUCKING_OPTIONS_DEFAULT = AUDIO_DUCKING_OPTIONS.EFAULT;
@@ -2002,24 +2000,26 @@ pub const IAudioClientDuckingControl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetDuckingOptionsForCurrentStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioClientDuckingControl,
                 options: AUDIO_DUCKING_OPTIONS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioClientDuckingControl,
                 options: AUDIO_DUCKING_OPTIONS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClientDuckingControl_SetDuckingOptionsForCurrentStream(self: *const T, options: AUDIO_DUCKING_OPTIONS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioClientDuckingControl.VTable, self.vtable).SetDuckingOptionsForCurrentStream(@ptrCast(*const IAudioClientDuckingControl, self), options);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioClientDuckingControl_SetDuckingOptionsForCurrentStream(self: *const T, options: AUDIO_DUCKING_OPTIONS) HRESULT {
+                return @ptrCast(*const IAudioClientDuckingControl.VTable, self.vtable).SetDuckingOptionsForCurrentStream(@ptrCast(*const IAudioClientDuckingControl, self), options);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2042,22 +2042,24 @@ pub const IAudioEffectsChangedNotificationClient = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnAudioEffectsChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioEffectsChangedNotificationClient,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioEffectsChangedNotificationClient,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEffectsChangedNotificationClient_OnAudioEffectsChanged(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEffectsChangedNotificationClient.VTable, self.vtable).OnAudioEffectsChanged(@ptrCast(*const IAudioEffectsChangedNotificationClient, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioEffectsChangedNotificationClient_OnAudioEffectsChanged(self: *const T) HRESULT {
+                return @ptrCast(*const IAudioEffectsChangedNotificationClient.VTable, self.vtable).OnAudioEffectsChanged(@ptrCast(*const IAudioEffectsChangedNotificationClient, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2067,44 +2069,44 @@ pub const IAudioEffectsManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         RegisterAudioEffectsChangedNotificationCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioEffectsManager,
                 client: ?*IAudioEffectsChangedNotificationClient,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioEffectsManager,
                 client: ?*IAudioEffectsChangedNotificationClient,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         UnregisterAudioEffectsChangedNotificationCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioEffectsManager,
                 client: ?*IAudioEffectsChangedNotificationClient,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioEffectsManager,
                 client: ?*IAudioEffectsChangedNotificationClient,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAudioEffects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioEffectsManager,
                 effects: ?*?*AUDIO_EFFECT,
                 numEffects: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioEffectsManager,
                 effects: ?*?*AUDIO_EFFECT,
                 numEffects: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetAudioEffectState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioEffectsManager,
                 effectId: Guid,
                 state: AUDIO_EFFECT_STATE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioEffectsManager,
                 effectId: Guid,
                 state: AUDIO_EFFECT_STATE,
@@ -2112,25 +2114,27 @@ pub const IAudioEffectsManager = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEffectsManager_RegisterAudioEffectsChangedNotificationCallback(self: *const T, client: ?*IAudioEffectsChangedNotificationClient) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEffectsManager.VTable, self.vtable).RegisterAudioEffectsChangedNotificationCallback(@ptrCast(*const IAudioEffectsManager, self), client);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEffectsManager_UnregisterAudioEffectsChangedNotificationCallback(self: *const T, client: ?*IAudioEffectsChangedNotificationClient) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEffectsManager.VTable, self.vtable).UnregisterAudioEffectsChangedNotificationCallback(@ptrCast(*const IAudioEffectsManager, self), client);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEffectsManager_GetAudioEffects(self: *const T, effects: ?*?*AUDIO_EFFECT, numEffects: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEffectsManager.VTable, self.vtable).GetAudioEffects(@ptrCast(*const IAudioEffectsManager, self), effects, numEffects);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEffectsManager_SetAudioEffectState(self: *const T, effectId: Guid, state: AUDIO_EFFECT_STATE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEffectsManager.VTable, self.vtable).SetAudioEffectState(@ptrCast(*const IAudioEffectsManager, self), effectId, state);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioEffectsManager_RegisterAudioEffectsChangedNotificationCallback(self: *const T, client: ?*IAudioEffectsChangedNotificationClient) HRESULT {
+                return @ptrCast(*const IAudioEffectsManager.VTable, self.vtable).RegisterAudioEffectsChangedNotificationCallback(@ptrCast(*const IAudioEffectsManager, self), client);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioEffectsManager_UnregisterAudioEffectsChangedNotificationCallback(self: *const T, client: ?*IAudioEffectsChangedNotificationClient) HRESULT {
+                return @ptrCast(*const IAudioEffectsManager.VTable, self.vtable).UnregisterAudioEffectsChangedNotificationCallback(@ptrCast(*const IAudioEffectsManager, self), client);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioEffectsManager_GetAudioEffects(self: *const T, effects: ?*?*AUDIO_EFFECT, numEffects: ?*u32) HRESULT {
+                return @ptrCast(*const IAudioEffectsManager.VTable, self.vtable).GetAudioEffects(@ptrCast(*const IAudioEffectsManager, self), effects, numEffects);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioEffectsManager_SetAudioEffectState(self: *const T, effectId: Guid, state: AUDIO_EFFECT_STATE) HRESULT {
+                return @ptrCast(*const IAudioEffectsManager.VTable, self.vtable).SetAudioEffectState(@ptrCast(*const IAudioEffectsManager, self), effectId, state);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2141,58 +2145,58 @@ pub const IAudioStreamVolume = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetChannelCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioStreamVolume,
                 pdwCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioStreamVolume,
                 pdwCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetChannelVolume: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioStreamVolume,
                 dwIndex: u32,
                 fLevel: f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioStreamVolume,
                 dwIndex: u32,
                 fLevel: f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetChannelVolume: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioStreamVolume,
                 dwIndex: u32,
                 pfLevel: ?*f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioStreamVolume,
                 dwIndex: u32,
                 pfLevel: ?*f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetAllVolumes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioStreamVolume,
                 dwCount: u32,
                 pfVolumes: [*]const f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioStreamVolume,
                 dwCount: u32,
                 pfVolumes: [*]const f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAllVolumes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioStreamVolume,
                 dwCount: u32,
                 pfVolumes: [*]f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioStreamVolume,
                 dwCount: u32,
                 pfVolumes: [*]f32,
@@ -2200,29 +2204,31 @@ pub const IAudioStreamVolume = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioStreamVolume_GetChannelCount(self: *const T, pdwCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioStreamVolume.VTable, self.vtable).GetChannelCount(@ptrCast(*const IAudioStreamVolume, self), pdwCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioStreamVolume_SetChannelVolume(self: *const T, dwIndex: u32, fLevel: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioStreamVolume.VTable, self.vtable).SetChannelVolume(@ptrCast(*const IAudioStreamVolume, self), dwIndex, fLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioStreamVolume_GetChannelVolume(self: *const T, dwIndex: u32, pfLevel: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioStreamVolume.VTable, self.vtable).GetChannelVolume(@ptrCast(*const IAudioStreamVolume, self), dwIndex, pfLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioStreamVolume_SetAllVolumes(self: *const T, dwCount: u32, pfVolumes: [*]const f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioStreamVolume.VTable, self.vtable).SetAllVolumes(@ptrCast(*const IAudioStreamVolume, self), dwCount, pfVolumes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioStreamVolume_GetAllVolumes(self: *const T, dwCount: u32, pfVolumes: [*]f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioStreamVolume.VTable, self.vtable).GetAllVolumes(@ptrCast(*const IAudioStreamVolume, self), dwCount, pfVolumes);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioStreamVolume_GetChannelCount(self: *const T, pdwCount: ?*u32) HRESULT {
+                return @ptrCast(*const IAudioStreamVolume.VTable, self.vtable).GetChannelCount(@ptrCast(*const IAudioStreamVolume, self), pdwCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioStreamVolume_SetChannelVolume(self: *const T, dwIndex: u32, fLevel: f32) HRESULT {
+                return @ptrCast(*const IAudioStreamVolume.VTable, self.vtable).SetChannelVolume(@ptrCast(*const IAudioStreamVolume, self), dwIndex, fLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioStreamVolume_GetChannelVolume(self: *const T, dwIndex: u32, pfLevel: ?*f32) HRESULT {
+                return @ptrCast(*const IAudioStreamVolume.VTable, self.vtable).GetChannelVolume(@ptrCast(*const IAudioStreamVolume, self), dwIndex, pfLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioStreamVolume_SetAllVolumes(self: *const T, dwCount: u32, pfVolumes: [*]const f32) HRESULT {
+                return @ptrCast(*const IAudioStreamVolume.VTable, self.vtable).SetAllVolumes(@ptrCast(*const IAudioStreamVolume, self), dwCount, pfVolumes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioStreamVolume_GetAllVolumes(self: *const T, dwCount: u32, pfVolumes: [*]f32) HRESULT {
+                return @ptrCast(*const IAudioStreamVolume.VTable, self.vtable).GetAllVolumes(@ptrCast(*const IAudioStreamVolume, self), dwCount, pfVolumes);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2260,46 +2266,46 @@ pub const IAudioAmbisonicsControl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioAmbisonicsControl,
                 pAmbisonicsParams: [*]const AMBISONICS_PARAMS,
                 cbAmbisonicsParams: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioAmbisonicsControl,
                 pAmbisonicsParams: [*]const AMBISONICS_PARAMS,
                 cbAmbisonicsParams: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetHeadTracking: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioAmbisonicsControl,
                 bEnableHeadTracking: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioAmbisonicsControl,
                 bEnableHeadTracking: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetHeadTracking: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioAmbisonicsControl,
                 pbEnableHeadTracking: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioAmbisonicsControl,
                 pbEnableHeadTracking: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetRotation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioAmbisonicsControl,
                 X: f32,
                 Y: f32,
                 Z: f32,
                 W: f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioAmbisonicsControl,
                 X: f32,
                 Y: f32,
@@ -2309,25 +2315,27 @@ pub const IAudioAmbisonicsControl = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioAmbisonicsControl_SetData(self: *const T, pAmbisonicsParams: [*]const AMBISONICS_PARAMS, cbAmbisonicsParams: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioAmbisonicsControl.VTable, self.vtable).SetData(@ptrCast(*const IAudioAmbisonicsControl, self), pAmbisonicsParams, cbAmbisonicsParams);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioAmbisonicsControl_SetHeadTracking(self: *const T, bEnableHeadTracking: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioAmbisonicsControl.VTable, self.vtable).SetHeadTracking(@ptrCast(*const IAudioAmbisonicsControl, self), bEnableHeadTracking);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioAmbisonicsControl_GetHeadTracking(self: *const T, pbEnableHeadTracking: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioAmbisonicsControl.VTable, self.vtable).GetHeadTracking(@ptrCast(*const IAudioAmbisonicsControl, self), pbEnableHeadTracking);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioAmbisonicsControl_SetRotation(self: *const T, X: f32, Y: f32, Z: f32, W: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioAmbisonicsControl.VTable, self.vtable).SetRotation(@ptrCast(*const IAudioAmbisonicsControl, self), X, Y, Z, W);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioAmbisonicsControl_SetData(self: *const T, pAmbisonicsParams: [*]const AMBISONICS_PARAMS, cbAmbisonicsParams: u32) HRESULT {
+                return @ptrCast(*const IAudioAmbisonicsControl.VTable, self.vtable).SetData(@ptrCast(*const IAudioAmbisonicsControl, self), pAmbisonicsParams, cbAmbisonicsParams);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioAmbisonicsControl_SetHeadTracking(self: *const T, bEnableHeadTracking: BOOL) HRESULT {
+                return @ptrCast(*const IAudioAmbisonicsControl.VTable, self.vtable).SetHeadTracking(@ptrCast(*const IAudioAmbisonicsControl, self), bEnableHeadTracking);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioAmbisonicsControl_GetHeadTracking(self: *const T, pbEnableHeadTracking: ?*BOOL) HRESULT {
+                return @ptrCast(*const IAudioAmbisonicsControl.VTable, self.vtable).GetHeadTracking(@ptrCast(*const IAudioAmbisonicsControl, self), pbEnableHeadTracking);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioAmbisonicsControl_SetRotation(self: *const T, X: f32, Y: f32, Z: f32, W: f32) HRESULT {
+                return @ptrCast(*const IAudioAmbisonicsControl.VTable, self.vtable).SetRotation(@ptrCast(*const IAudioAmbisonicsControl, self), X, Y, Z, W);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2338,23 +2346,23 @@ pub const IChannelAudioVolume = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetChannelCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IChannelAudioVolume,
                 pdwCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IChannelAudioVolume,
                 pdwCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetChannelVolume: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IChannelAudioVolume,
                 dwIndex: u32,
                 fLevel: f32,
                 EventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IChannelAudioVolume,
                 dwIndex: u32,
                 fLevel: f32,
@@ -2362,25 +2370,25 @@ pub const IChannelAudioVolume = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetChannelVolume: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IChannelAudioVolume,
                 dwIndex: u32,
                 pfLevel: ?*f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IChannelAudioVolume,
                 dwIndex: u32,
                 pfLevel: ?*f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetAllVolumes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IChannelAudioVolume,
                 dwCount: u32,
                 pfVolumes: [*]const f32,
                 EventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IChannelAudioVolume,
                 dwCount: u32,
                 pfVolumes: [*]const f32,
@@ -2388,12 +2396,12 @@ pub const IChannelAudioVolume = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAllVolumes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IChannelAudioVolume,
                 dwCount: u32,
                 pfVolumes: [*]f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IChannelAudioVolume,
                 dwCount: u32,
                 pfVolumes: [*]f32,
@@ -2401,29 +2409,31 @@ pub const IChannelAudioVolume = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelAudioVolume_GetChannelCount(self: *const T, pdwCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IChannelAudioVolume.VTable, self.vtable).GetChannelCount(@ptrCast(*const IChannelAudioVolume, self), pdwCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelAudioVolume_SetChannelVolume(self: *const T, dwIndex: u32, fLevel: f32, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IChannelAudioVolume.VTable, self.vtable).SetChannelVolume(@ptrCast(*const IChannelAudioVolume, self), dwIndex, fLevel, EventContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelAudioVolume_GetChannelVolume(self: *const T, dwIndex: u32, pfLevel: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IChannelAudioVolume.VTable, self.vtable).GetChannelVolume(@ptrCast(*const IChannelAudioVolume, self), dwIndex, pfLevel);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelAudioVolume_SetAllVolumes(self: *const T, dwCount: u32, pfVolumes: [*]const f32, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IChannelAudioVolume.VTable, self.vtable).SetAllVolumes(@ptrCast(*const IChannelAudioVolume, self), dwCount, pfVolumes, EventContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IChannelAudioVolume_GetAllVolumes(self: *const T, dwCount: u32, pfVolumes: [*]f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IChannelAudioVolume.VTable, self.vtable).GetAllVolumes(@ptrCast(*const IChannelAudioVolume, self), dwCount, pfVolumes);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IChannelAudioVolume_GetChannelCount(self: *const T, pdwCount: ?*u32) HRESULT {
+                return @ptrCast(*const IChannelAudioVolume.VTable, self.vtable).GetChannelCount(@ptrCast(*const IChannelAudioVolume, self), pdwCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IChannelAudioVolume_SetChannelVolume(self: *const T, dwIndex: u32, fLevel: f32, EventContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const IChannelAudioVolume.VTable, self.vtable).SetChannelVolume(@ptrCast(*const IChannelAudioVolume, self), dwIndex, fLevel, EventContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IChannelAudioVolume_GetChannelVolume(self: *const T, dwIndex: u32, pfLevel: ?*f32) HRESULT {
+                return @ptrCast(*const IChannelAudioVolume.VTable, self.vtable).GetChannelVolume(@ptrCast(*const IChannelAudioVolume, self), dwIndex, pfLevel);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IChannelAudioVolume_SetAllVolumes(self: *const T, dwCount: u32, pfVolumes: [*]const f32, EventContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const IChannelAudioVolume.VTable, self.vtable).SetAllVolumes(@ptrCast(*const IChannelAudioVolume, self), dwCount, pfVolumes, EventContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IChannelAudioVolume_GetAllVolumes(self: *const T, dwCount: u32, pfVolumes: [*]f32) HRESULT {
+                return @ptrCast(*const IChannelAudioVolume.VTable, self.vtable).GetAllVolumes(@ptrCast(*const IChannelAudioVolume, self), dwCount, pfVolumes);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2469,27 +2479,7 @@ pub const AudioObjectType = enum(u32) {
         BottomBackRight: u1 = 0,
         BackCenter: u1 = 0,
     }) AudioObjectType {
-        return @intToEnum(AudioObjectType,
-              (if (o.None == 1) @enumToInt(AudioObjectType.None) else 0)
-            | (if (o.Dynamic == 1) @enumToInt(AudioObjectType.Dynamic) else 0)
-            | (if (o.FrontLeft == 1) @enumToInt(AudioObjectType.FrontLeft) else 0)
-            | (if (o.FrontRight == 1) @enumToInt(AudioObjectType.FrontRight) else 0)
-            | (if (o.FrontCenter == 1) @enumToInt(AudioObjectType.FrontCenter) else 0)
-            | (if (o.LowFrequency == 1) @enumToInt(AudioObjectType.LowFrequency) else 0)
-            | (if (o.SideLeft == 1) @enumToInt(AudioObjectType.SideLeft) else 0)
-            | (if (o.SideRight == 1) @enumToInt(AudioObjectType.SideRight) else 0)
-            | (if (o.BackLeft == 1) @enumToInt(AudioObjectType.BackLeft) else 0)
-            | (if (o.BackRight == 1) @enumToInt(AudioObjectType.BackRight) else 0)
-            | (if (o.TopFrontLeft == 1) @enumToInt(AudioObjectType.TopFrontLeft) else 0)
-            | (if (o.TopFrontRight == 1) @enumToInt(AudioObjectType.TopFrontRight) else 0)
-            | (if (o.TopBackLeft == 1) @enumToInt(AudioObjectType.TopBackLeft) else 0)
-            | (if (o.TopBackRight == 1) @enumToInt(AudioObjectType.TopBackRight) else 0)
-            | (if (o.BottomFrontLeft == 1) @enumToInt(AudioObjectType.BottomFrontLeft) else 0)
-            | (if (o.BottomFrontRight == 1) @enumToInt(AudioObjectType.BottomFrontRight) else 0)
-            | (if (o.BottomBackLeft == 1) @enumToInt(AudioObjectType.BottomBackLeft) else 0)
-            | (if (o.BottomBackRight == 1) @enumToInt(AudioObjectType.BottomBackRight) else 0)
-            | (if (o.BackCenter == 1) @enumToInt(AudioObjectType.BackCenter) else 0)
-        );
+        return @enumFromInt(AudioObjectType, (if (o.None == 1) @intFromEnum(AudioObjectType.None) else 0) | (if (o.Dynamic == 1) @intFromEnum(AudioObjectType.Dynamic) else 0) | (if (o.FrontLeft == 1) @intFromEnum(AudioObjectType.FrontLeft) else 0) | (if (o.FrontRight == 1) @intFromEnum(AudioObjectType.FrontRight) else 0) | (if (o.FrontCenter == 1) @intFromEnum(AudioObjectType.FrontCenter) else 0) | (if (o.LowFrequency == 1) @intFromEnum(AudioObjectType.LowFrequency) else 0) | (if (o.SideLeft == 1) @intFromEnum(AudioObjectType.SideLeft) else 0) | (if (o.SideRight == 1) @intFromEnum(AudioObjectType.SideRight) else 0) | (if (o.BackLeft == 1) @intFromEnum(AudioObjectType.BackLeft) else 0) | (if (o.BackRight == 1) @intFromEnum(AudioObjectType.BackRight) else 0) | (if (o.TopFrontLeft == 1) @intFromEnum(AudioObjectType.TopFrontLeft) else 0) | (if (o.TopFrontRight == 1) @intFromEnum(AudioObjectType.TopFrontRight) else 0) | (if (o.TopBackLeft == 1) @intFromEnum(AudioObjectType.TopBackLeft) else 0) | (if (o.TopBackRight == 1) @intFromEnum(AudioObjectType.TopBackRight) else 0) | (if (o.BottomFrontLeft == 1) @intFromEnum(AudioObjectType.BottomFrontLeft) else 0) | (if (o.BottomFrontRight == 1) @intFromEnum(AudioObjectType.BottomFrontRight) else 0) | (if (o.BottomBackLeft == 1) @intFromEnum(AudioObjectType.BottomBackLeft) else 0) | (if (o.BottomBackRight == 1) @intFromEnum(AudioObjectType.BottomBackRight) else 0) | (if (o.BackCenter == 1) @intFromEnum(AudioObjectType.BackCenter) else 0));
     }
 };
 pub const AudioObjectType_None = AudioObjectType.None;
@@ -2520,10 +2510,7 @@ pub const SPATIAL_AUDIO_STREAM_OPTIONS = enum(u32) {
         NONE: u1 = 0,
         OFFLOAD: u1 = 0,
     }) SPATIAL_AUDIO_STREAM_OPTIONS {
-        return @intToEnum(SPATIAL_AUDIO_STREAM_OPTIONS,
-              (if (o.NONE == 1) @enumToInt(SPATIAL_AUDIO_STREAM_OPTIONS.NONE) else 0)
-            | (if (o.OFFLOAD == 1) @enumToInt(SPATIAL_AUDIO_STREAM_OPTIONS.OFFLOAD) else 0)
-        );
+        return @enumFromInt(SPATIAL_AUDIO_STREAM_OPTIONS, (if (o.NONE == 1) @intFromEnum(SPATIAL_AUDIO_STREAM_OPTIONS.NONE) else 0) | (if (o.OFFLOAD == 1) @intFromEnum(SPATIAL_AUDIO_STREAM_OPTIONS.OFFLOAD) else 0));
     }
 };
 pub const SPATIAL_AUDIO_STREAM_OPTIONS_NONE = SPATIAL_AUDIO_STREAM_OPTIONS.NONE;
@@ -2556,22 +2543,22 @@ pub const IAudioFormatEnumerator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioFormatEnumerator,
                 count: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioFormatEnumerator,
                 count: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioFormatEnumerator,
                 index: u32,
                 format: ?*?*WAVEFORMATEX,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioFormatEnumerator,
                 index: u32,
                 format: ?*?*WAVEFORMATEX,
@@ -2579,17 +2566,19 @@ pub const IAudioFormatEnumerator = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioFormatEnumerator_GetCount(self: *const T, count: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioFormatEnumerator.VTable, self.vtable).GetCount(@ptrCast(*const IAudioFormatEnumerator, self), count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioFormatEnumerator_GetFormat(self: *const T, index: u32, format: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioFormatEnumerator.VTable, self.vtable).GetFormat(@ptrCast(*const IAudioFormatEnumerator, self), index, format);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioFormatEnumerator_GetCount(self: *const T, count: ?*u32) HRESULT {
+                return @ptrCast(*const IAudioFormatEnumerator.VTable, self.vtable).GetCount(@ptrCast(*const IAudioFormatEnumerator, self), count);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioFormatEnumerator_GetFormat(self: *const T, index: u32, format: ?*?*WAVEFORMATEX) HRESULT {
+                return @ptrCast(*const IAudioFormatEnumerator.VTable, self.vtable).GetFormat(@ptrCast(*const IAudioFormatEnumerator, self), index, format);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2600,68 +2589,70 @@ pub const ISpatialAudioObjectBase = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObjectBase,
                 buffer: ?*?*u8,
                 bufferLength: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObjectBase,
                 buffer: ?*?*u8,
                 bufferLength: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetEndOfStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObjectBase,
                 frameCount: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObjectBase,
                 frameCount: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         IsActive: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObjectBase,
                 isActive: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObjectBase,
                 isActive: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAudioObjectType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObjectBase,
                 audioObjectType: ?*AudioObjectType,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObjectBase,
                 audioObjectType: ?*AudioObjectType,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectBase_GetBuffer(self: *const T, buffer: ?*?*u8, bufferLength: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectBase.VTable, self.vtable).GetBuffer(@ptrCast(*const ISpatialAudioObjectBase, self), buffer, bufferLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectBase_SetEndOfStream(self: *const T, frameCount: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectBase.VTable, self.vtable).SetEndOfStream(@ptrCast(*const ISpatialAudioObjectBase, self), frameCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectBase_IsActive(self: *const T, isActive: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectBase.VTable, self.vtable).IsActive(@ptrCast(*const ISpatialAudioObjectBase, self), isActive);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectBase_GetAudioObjectType(self: *const T, audioObjectType: ?*AudioObjectType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectBase.VTable, self.vtable).GetAudioObjectType(@ptrCast(*const ISpatialAudioObjectBase, self), audioObjectType);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObjectBase_GetBuffer(self: *const T, buffer: ?*?*u8, bufferLength: ?*u32) HRESULT {
+                return @ptrCast(*const ISpatialAudioObjectBase.VTable, self.vtable).GetBuffer(@ptrCast(*const ISpatialAudioObjectBase, self), buffer, bufferLength);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObjectBase_SetEndOfStream(self: *const T, frameCount: u32) HRESULT {
+                return @ptrCast(*const ISpatialAudioObjectBase.VTable, self.vtable).SetEndOfStream(@ptrCast(*const ISpatialAudioObjectBase, self), frameCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObjectBase_IsActive(self: *const T, isActive: ?*BOOL) HRESULT {
+                return @ptrCast(*const ISpatialAudioObjectBase.VTable, self.vtable).IsActive(@ptrCast(*const ISpatialAudioObjectBase, self), isActive);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObjectBase_GetAudioObjectType(self: *const T, audioObjectType: ?*AudioObjectType) HRESULT {
+                return @ptrCast(*const ISpatialAudioObjectBase.VTable, self.vtable).GetAudioObjectType(@ptrCast(*const ISpatialAudioObjectBase, self), audioObjectType);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2672,13 +2663,13 @@ pub const ISpatialAudioObject = extern struct {
     pub const VTable = extern struct {
         base: ISpatialAudioObjectBase.VTable,
         SetPosition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObject,
                 x: f32,
                 y: f32,
                 z: f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObject,
                 x: f32,
                 y: f32,
@@ -2686,28 +2677,30 @@ pub const ISpatialAudioObject = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetVolume: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObject,
                 volume: f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObject,
                 volume: f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISpatialAudioObjectBase.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObject_SetPosition(self: *const T, x: f32, y: f32, z: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObject.VTable, self.vtable).SetPosition(@ptrCast(*const ISpatialAudioObject, self), x, y, z);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObject_SetVolume(self: *const T, volume: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObject.VTable, self.vtable).SetVolume(@ptrCast(*const ISpatialAudioObject, self), volume);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace ISpatialAudioObjectBase.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObject_SetPosition(self: *const T, x: f32, y: f32, z: f32) HRESULT {
+                return @ptrCast(*const ISpatialAudioObject.VTable, self.vtable).SetPosition(@ptrCast(*const ISpatialAudioObject, self), x, y, z);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObject_SetVolume(self: *const T, volume: f32) HRESULT {
+                return @ptrCast(*const ISpatialAudioObject.VTable, self.vtable).SetVolume(@ptrCast(*const ISpatialAudioObject, self), volume);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2718,104 +2711,106 @@ pub const ISpatialAudioObjectRenderStreamBase = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetAvailableDynamicObjectCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObjectRenderStreamBase,
                 value: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObjectRenderStreamBase,
                 value: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetService: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObjectRenderStreamBase,
                 riid: ?*const Guid,
                 service: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObjectRenderStreamBase,
                 riid: ?*const Guid,
                 service: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Start: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObjectRenderStreamBase,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObjectRenderStreamBase,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Stop: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObjectRenderStreamBase,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObjectRenderStreamBase,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObjectRenderStreamBase,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObjectRenderStreamBase,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         BeginUpdatingAudioObjects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObjectRenderStreamBase,
                 availableDynamicObjectCount: ?*u32,
                 frameCountPerBuffer: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObjectRenderStreamBase,
                 availableDynamicObjectCount: ?*u32,
                 frameCountPerBuffer: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EndUpdatingAudioObjects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObjectRenderStreamBase,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObjectRenderStreamBase,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectRenderStreamBase_GetAvailableDynamicObjectCount(self: *const T, value: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectRenderStreamBase.VTable, self.vtable).GetAvailableDynamicObjectCount(@ptrCast(*const ISpatialAudioObjectRenderStreamBase, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectRenderStreamBase_GetService(self: *const T, riid: ?*const Guid, service: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectRenderStreamBase.VTable, self.vtable).GetService(@ptrCast(*const ISpatialAudioObjectRenderStreamBase, self), riid, service);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectRenderStreamBase_Start(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectRenderStreamBase.VTable, self.vtable).Start(@ptrCast(*const ISpatialAudioObjectRenderStreamBase, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectRenderStreamBase_Stop(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectRenderStreamBase.VTable, self.vtable).Stop(@ptrCast(*const ISpatialAudioObjectRenderStreamBase, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectRenderStreamBase_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectRenderStreamBase.VTable, self.vtable).Reset(@ptrCast(*const ISpatialAudioObjectRenderStreamBase, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectRenderStreamBase_BeginUpdatingAudioObjects(self: *const T, availableDynamicObjectCount: ?*u32, frameCountPerBuffer: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectRenderStreamBase.VTable, self.vtable).BeginUpdatingAudioObjects(@ptrCast(*const ISpatialAudioObjectRenderStreamBase, self), availableDynamicObjectCount, frameCountPerBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectRenderStreamBase_EndUpdatingAudioObjects(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectRenderStreamBase.VTable, self.vtable).EndUpdatingAudioObjects(@ptrCast(*const ISpatialAudioObjectRenderStreamBase, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObjectRenderStreamBase_GetAvailableDynamicObjectCount(self: *const T, value: ?*u32) HRESULT {
+                return @ptrCast(*const ISpatialAudioObjectRenderStreamBase.VTable, self.vtable).GetAvailableDynamicObjectCount(@ptrCast(*const ISpatialAudioObjectRenderStreamBase, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObjectRenderStreamBase_GetService(self: *const T, riid: ?*const Guid, service: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const ISpatialAudioObjectRenderStreamBase.VTable, self.vtable).GetService(@ptrCast(*const ISpatialAudioObjectRenderStreamBase, self), riid, service);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObjectRenderStreamBase_Start(self: *const T) HRESULT {
+                return @ptrCast(*const ISpatialAudioObjectRenderStreamBase.VTable, self.vtable).Start(@ptrCast(*const ISpatialAudioObjectRenderStreamBase, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObjectRenderStreamBase_Stop(self: *const T) HRESULT {
+                return @ptrCast(*const ISpatialAudioObjectRenderStreamBase.VTable, self.vtable).Stop(@ptrCast(*const ISpatialAudioObjectRenderStreamBase, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObjectRenderStreamBase_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const ISpatialAudioObjectRenderStreamBase.VTable, self.vtable).Reset(@ptrCast(*const ISpatialAudioObjectRenderStreamBase, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObjectRenderStreamBase_BeginUpdatingAudioObjects(self: *const T, availableDynamicObjectCount: ?*u32, frameCountPerBuffer: ?*u32) HRESULT {
+                return @ptrCast(*const ISpatialAudioObjectRenderStreamBase.VTable, self.vtable).BeginUpdatingAudioObjects(@ptrCast(*const ISpatialAudioObjectRenderStreamBase, self), availableDynamicObjectCount, frameCountPerBuffer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObjectRenderStreamBase_EndUpdatingAudioObjects(self: *const T) HRESULT {
+                return @ptrCast(*const ISpatialAudioObjectRenderStreamBase.VTable, self.vtable).EndUpdatingAudioObjects(@ptrCast(*const ISpatialAudioObjectRenderStreamBase, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2826,12 +2821,12 @@ pub const ISpatialAudioObjectRenderStream = extern struct {
     pub const VTable = extern struct {
         base: ISpatialAudioObjectRenderStreamBase.VTable,
         ActivateSpatialAudioObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObjectRenderStream,
                 type: AudioObjectType,
                 audioObject: ?*?*ISpatialAudioObject,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObjectRenderStream,
                 type: AudioObjectType,
                 audioObject: ?*?*ISpatialAudioObject,
@@ -2839,13 +2834,15 @@ pub const ISpatialAudioObjectRenderStream = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISpatialAudioObjectRenderStreamBase.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectRenderStream_ActivateSpatialAudioObject(self: *const T, type_: AudioObjectType, audioObject: ?*?*ISpatialAudioObject) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectRenderStream.VTable, self.vtable).ActivateSpatialAudioObject(@ptrCast(*const ISpatialAudioObjectRenderStream, self), type_, audioObject);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace ISpatialAudioObjectRenderStreamBase.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObjectRenderStream_ActivateSpatialAudioObject(self: *const T, type_: AudioObjectType, audioObject: ?*?*ISpatialAudioObject) HRESULT {
+                return @ptrCast(*const ISpatialAudioObjectRenderStream.VTable, self.vtable).ActivateSpatialAudioObject(@ptrCast(*const ISpatialAudioObjectRenderStream, self), type_, audioObject);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2856,13 +2853,13 @@ pub const ISpatialAudioObjectRenderStreamNotify = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnAvailableDynamicObjectCountChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObjectRenderStreamNotify,
                 sender: ?*ISpatialAudioObjectRenderStreamBase,
                 hnsComplianceDeadlineTime: i64,
                 availableDynamicObjectCountChange: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObjectRenderStreamNotify,
                 sender: ?*ISpatialAudioObjectRenderStreamBase,
                 hnsComplianceDeadlineTime: i64,
@@ -2871,13 +2868,15 @@ pub const ISpatialAudioObjectRenderStreamNotify = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectRenderStreamNotify_OnAvailableDynamicObjectCountChange(self: *const T, sender: ?*ISpatialAudioObjectRenderStreamBase, hnsComplianceDeadlineTime: i64, availableDynamicObjectCountChange: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectRenderStreamNotify.VTable, self.vtable).OnAvailableDynamicObjectCountChange(@ptrCast(*const ISpatialAudioObjectRenderStreamNotify, self), sender, hnsComplianceDeadlineTime, availableDynamicObjectCountChange);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObjectRenderStreamNotify_OnAvailableDynamicObjectCountChange(self: *const T, sender: ?*ISpatialAudioObjectRenderStreamBase, hnsComplianceDeadlineTime: i64, availableDynamicObjectCountChange: u32) HRESULT {
+                return @ptrCast(*const ISpatialAudioObjectRenderStreamNotify.VTable, self.vtable).OnAvailableDynamicObjectCountChange(@ptrCast(*const ISpatialAudioObjectRenderStreamNotify, self), sender, hnsComplianceDeadlineTime, availableDynamicObjectCountChange);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2888,14 +2887,14 @@ pub const ISpatialAudioClient = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetStaticObjectPosition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioClient,
                 type: AudioObjectType,
                 x: ?*f32,
                 y: ?*f32,
                 z: ?*f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioClient,
                 type: AudioObjectType,
                 x: ?*f32,
@@ -2904,77 +2903,77 @@ pub const ISpatialAudioClient = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetNativeStaticObjectTypeMask: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioClient,
                 mask: ?*AudioObjectType,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioClient,
                 mask: ?*AudioObjectType,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetMaxDynamicObjectCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioClient,
                 value: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioClient,
                 value: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSupportedAudioObjectFormatEnumerator: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioClient,
                 enumerator: ?*?*IAudioFormatEnumerator,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioClient,
                 enumerator: ?*?*IAudioFormatEnumerator,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetMaxFrameCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioClient,
                 objectFormat: ?*const WAVEFORMATEX,
                 frameCountPerBuffer: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioClient,
                 objectFormat: ?*const WAVEFORMATEX,
                 frameCountPerBuffer: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         IsAudioObjectFormatSupported: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioClient,
                 objectFormat: ?*const WAVEFORMATEX,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioClient,
                 objectFormat: ?*const WAVEFORMATEX,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         IsSpatialAudioStreamAvailable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioClient,
                 streamUuid: ?*const Guid,
                 auxiliaryInfo: ?*const PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioClient,
                 streamUuid: ?*const Guid,
                 auxiliaryInfo: ?*const PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ActivateSpatialAudioStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioClient,
                 activationParams: ?*const PROPVARIANT,
                 riid: ?*const Guid,
                 stream: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioClient,
                 activationParams: ?*const PROPVARIANT,
                 riid: ?*const Guid,
@@ -2983,41 +2982,43 @@ pub const ISpatialAudioClient = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioClient_GetStaticObjectPosition(self: *const T, type_: AudioObjectType, x: ?*f32, y: ?*f32, z: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioClient.VTable, self.vtable).GetStaticObjectPosition(@ptrCast(*const ISpatialAudioClient, self), type_, x, y, z);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioClient_GetNativeStaticObjectTypeMask(self: *const T, mask: ?*AudioObjectType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioClient.VTable, self.vtable).GetNativeStaticObjectTypeMask(@ptrCast(*const ISpatialAudioClient, self), mask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioClient_GetMaxDynamicObjectCount(self: *const T, value: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioClient.VTable, self.vtable).GetMaxDynamicObjectCount(@ptrCast(*const ISpatialAudioClient, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioClient_GetSupportedAudioObjectFormatEnumerator(self: *const T, enumerator: ?*?*IAudioFormatEnumerator) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioClient.VTable, self.vtable).GetSupportedAudioObjectFormatEnumerator(@ptrCast(*const ISpatialAudioClient, self), enumerator);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioClient_GetMaxFrameCount(self: *const T, objectFormat: ?*const WAVEFORMATEX, frameCountPerBuffer: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioClient.VTable, self.vtable).GetMaxFrameCount(@ptrCast(*const ISpatialAudioClient, self), objectFormat, frameCountPerBuffer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioClient_IsAudioObjectFormatSupported(self: *const T, objectFormat: ?*const WAVEFORMATEX) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioClient.VTable, self.vtable).IsAudioObjectFormatSupported(@ptrCast(*const ISpatialAudioClient, self), objectFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioClient_IsSpatialAudioStreamAvailable(self: *const T, streamUuid: ?*const Guid, auxiliaryInfo: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioClient.VTable, self.vtable).IsSpatialAudioStreamAvailable(@ptrCast(*const ISpatialAudioClient, self), streamUuid, auxiliaryInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioClient_ActivateSpatialAudioStream(self: *const T, activationParams: ?*const PROPVARIANT, riid: ?*const Guid, stream: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioClient.VTable, self.vtable).ActivateSpatialAudioStream(@ptrCast(*const ISpatialAudioClient, self), activationParams, riid, stream);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioClient_GetStaticObjectPosition(self: *const T, type_: AudioObjectType, x: ?*f32, y: ?*f32, z: ?*f32) HRESULT {
+                return @ptrCast(*const ISpatialAudioClient.VTable, self.vtable).GetStaticObjectPosition(@ptrCast(*const ISpatialAudioClient, self), type_, x, y, z);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioClient_GetNativeStaticObjectTypeMask(self: *const T, mask: ?*AudioObjectType) HRESULT {
+                return @ptrCast(*const ISpatialAudioClient.VTable, self.vtable).GetNativeStaticObjectTypeMask(@ptrCast(*const ISpatialAudioClient, self), mask);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioClient_GetMaxDynamicObjectCount(self: *const T, value: ?*u32) HRESULT {
+                return @ptrCast(*const ISpatialAudioClient.VTable, self.vtable).GetMaxDynamicObjectCount(@ptrCast(*const ISpatialAudioClient, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioClient_GetSupportedAudioObjectFormatEnumerator(self: *const T, enumerator: ?*?*IAudioFormatEnumerator) HRESULT {
+                return @ptrCast(*const ISpatialAudioClient.VTable, self.vtable).GetSupportedAudioObjectFormatEnumerator(@ptrCast(*const ISpatialAudioClient, self), enumerator);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioClient_GetMaxFrameCount(self: *const T, objectFormat: ?*const WAVEFORMATEX, frameCountPerBuffer: ?*u32) HRESULT {
+                return @ptrCast(*const ISpatialAudioClient.VTable, self.vtable).GetMaxFrameCount(@ptrCast(*const ISpatialAudioClient, self), objectFormat, frameCountPerBuffer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioClient_IsAudioObjectFormatSupported(self: *const T, objectFormat: ?*const WAVEFORMATEX) HRESULT {
+                return @ptrCast(*const ISpatialAudioClient.VTable, self.vtable).IsAudioObjectFormatSupported(@ptrCast(*const ISpatialAudioClient, self), objectFormat);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioClient_IsSpatialAudioStreamAvailable(self: *const T, streamUuid: ?*const Guid, auxiliaryInfo: ?*const PROPVARIANT) HRESULT {
+                return @ptrCast(*const ISpatialAudioClient.VTable, self.vtable).IsSpatialAudioStreamAvailable(@ptrCast(*const ISpatialAudioClient, self), streamUuid, auxiliaryInfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioClient_ActivateSpatialAudioStream(self: *const T, activationParams: ?*const PROPVARIANT, riid: ?*const Guid, stream: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const ISpatialAudioClient.VTable, self.vtable).ActivateSpatialAudioStream(@ptrCast(*const ISpatialAudioClient, self), activationParams, riid, stream);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3027,26 +3028,26 @@ pub const ISpatialAudioClient2 = extern struct {
     pub const VTable = extern struct {
         base: ISpatialAudioClient.VTable,
         IsOffloadCapable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioClient2,
                 category: AUDIO_STREAM_CATEGORY,
                 isOffloadCapable: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioClient2,
                 category: AUDIO_STREAM_CATEGORY,
                 isOffloadCapable: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetMaxFrameCountForCategory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioClient2,
                 category: AUDIO_STREAM_CATEGORY,
                 offloadEnabled: BOOL,
                 objectFormat: ?*const WAVEFORMATEX,
                 frameCountPerBuffer: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioClient2,
                 category: AUDIO_STREAM_CATEGORY,
                 offloadEnabled: BOOL,
@@ -3056,17 +3057,19 @@ pub const ISpatialAudioClient2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISpatialAudioClient.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioClient2_IsOffloadCapable(self: *const T, category: AUDIO_STREAM_CATEGORY, isOffloadCapable: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioClient2.VTable, self.vtable).IsOffloadCapable(@ptrCast(*const ISpatialAudioClient2, self), category, isOffloadCapable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioClient2_GetMaxFrameCountForCategory(self: *const T, category: AUDIO_STREAM_CATEGORY, offloadEnabled: BOOL, objectFormat: ?*const WAVEFORMATEX, frameCountPerBuffer: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioClient2.VTable, self.vtable).GetMaxFrameCountForCategory(@ptrCast(*const ISpatialAudioClient2, self), category, offloadEnabled, objectFormat, frameCountPerBuffer);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace ISpatialAudioClient.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioClient2_IsOffloadCapable(self: *const T, category: AUDIO_STREAM_CATEGORY, isOffloadCapable: ?*BOOL) HRESULT {
+                return @ptrCast(*const ISpatialAudioClient2.VTable, self.vtable).IsOffloadCapable(@ptrCast(*const ISpatialAudioClient2, self), category, isOffloadCapable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioClient2_GetMaxFrameCountForCategory(self: *const T, category: AUDIO_STREAM_CATEGORY, offloadEnabled: BOOL, objectFormat: ?*const WAVEFORMATEX, frameCountPerBuffer: ?*u32) HRESULT {
+                return @ptrCast(*const ISpatialAudioClient2.VTable, self.vtable).GetMaxFrameCountForCategory(@ptrCast(*const ISpatialAudioClient2, self), category, offloadEnabled, objectFormat, frameCountPerBuffer);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3174,13 +3177,13 @@ pub const ISpatialAudioObjectForHrtf = extern struct {
     pub const VTable = extern struct {
         base: ISpatialAudioObjectBase.VTable,
         SetPosition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObjectForHrtf,
                 x: f32,
                 y: f32,
                 z: f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObjectForHrtf,
                 x: f32,
                 y: f32,
@@ -3188,84 +3191,86 @@ pub const ISpatialAudioObjectForHrtf = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetGain: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObjectForHrtf,
                 gain: f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObjectForHrtf,
                 gain: f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetOrientation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObjectForHrtf,
                 orientation: ?*const ?*f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObjectForHrtf,
                 orientation: ?*const ?*f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetEnvironment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObjectForHrtf,
                 environment: SpatialAudioHrtfEnvironmentType,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObjectForHrtf,
                 environment: SpatialAudioHrtfEnvironmentType,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetDistanceDecay: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObjectForHrtf,
                 distanceDecay: ?*SpatialAudioHrtfDistanceDecay,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObjectForHrtf,
                 distanceDecay: ?*SpatialAudioHrtfDistanceDecay,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetDirectivity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObjectForHrtf,
                 directivity: ?*SpatialAudioHrtfDirectivityUnion,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObjectForHrtf,
                 directivity: ?*SpatialAudioHrtfDirectivityUnion,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISpatialAudioObjectBase.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectForHrtf_SetPosition(self: *const T, x: f32, y: f32, z: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectForHrtf.VTable, self.vtable).SetPosition(@ptrCast(*const ISpatialAudioObjectForHrtf, self), x, y, z);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectForHrtf_SetGain(self: *const T, gain: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectForHrtf.VTable, self.vtable).SetGain(@ptrCast(*const ISpatialAudioObjectForHrtf, self), gain);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectForHrtf_SetOrientation(self: *const T, orientation: ?*const ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectForHrtf.VTable, self.vtable).SetOrientation(@ptrCast(*const ISpatialAudioObjectForHrtf, self), orientation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectForHrtf_SetEnvironment(self: *const T, environment: SpatialAudioHrtfEnvironmentType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectForHrtf.VTable, self.vtable).SetEnvironment(@ptrCast(*const ISpatialAudioObjectForHrtf, self), environment);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectForHrtf_SetDistanceDecay(self: *const T, distanceDecay: ?*SpatialAudioHrtfDistanceDecay) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectForHrtf.VTable, self.vtable).SetDistanceDecay(@ptrCast(*const ISpatialAudioObjectForHrtf, self), distanceDecay);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectForHrtf_SetDirectivity(self: *const T, directivity: ?*SpatialAudioHrtfDirectivityUnion) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectForHrtf.VTable, self.vtable).SetDirectivity(@ptrCast(*const ISpatialAudioObjectForHrtf, self), directivity);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace ISpatialAudioObjectBase.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObjectForHrtf_SetPosition(self: *const T, x: f32, y: f32, z: f32) HRESULT {
+                return @ptrCast(*const ISpatialAudioObjectForHrtf.VTable, self.vtable).SetPosition(@ptrCast(*const ISpatialAudioObjectForHrtf, self), x, y, z);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObjectForHrtf_SetGain(self: *const T, gain: f32) HRESULT {
+                return @ptrCast(*const ISpatialAudioObjectForHrtf.VTable, self.vtable).SetGain(@ptrCast(*const ISpatialAudioObjectForHrtf, self), gain);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObjectForHrtf_SetOrientation(self: *const T, orientation: ?*const ?*f32) HRESULT {
+                return @ptrCast(*const ISpatialAudioObjectForHrtf.VTable, self.vtable).SetOrientation(@ptrCast(*const ISpatialAudioObjectForHrtf, self), orientation);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObjectForHrtf_SetEnvironment(self: *const T, environment: SpatialAudioHrtfEnvironmentType) HRESULT {
+                return @ptrCast(*const ISpatialAudioObjectForHrtf.VTable, self.vtable).SetEnvironment(@ptrCast(*const ISpatialAudioObjectForHrtf, self), environment);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObjectForHrtf_SetDistanceDecay(self: *const T, distanceDecay: ?*SpatialAudioHrtfDistanceDecay) HRESULT {
+                return @ptrCast(*const ISpatialAudioObjectForHrtf.VTable, self.vtable).SetDistanceDecay(@ptrCast(*const ISpatialAudioObjectForHrtf, self), distanceDecay);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObjectForHrtf_SetDirectivity(self: *const T, directivity: ?*SpatialAudioHrtfDirectivityUnion) HRESULT {
+                return @ptrCast(*const ISpatialAudioObjectForHrtf.VTable, self.vtable).SetDirectivity(@ptrCast(*const ISpatialAudioObjectForHrtf, self), directivity);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3276,12 +3281,12 @@ pub const ISpatialAudioObjectRenderStreamForHrtf = extern struct {
     pub const VTable = extern struct {
         base: ISpatialAudioObjectRenderStreamBase.VTable,
         ActivateSpatialAudioObjectForHrtf: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObjectRenderStreamForHrtf,
                 type: AudioObjectType,
                 audioObject: ?*?*ISpatialAudioObjectForHrtf,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObjectRenderStreamForHrtf,
                 type: AudioObjectType,
                 audioObject: ?*?*ISpatialAudioObjectForHrtf,
@@ -3289,13 +3294,15 @@ pub const ISpatialAudioObjectRenderStreamForHrtf = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISpatialAudioObjectRenderStreamBase.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectRenderStreamForHrtf_ActivateSpatialAudioObjectForHrtf(self: *const T, type_: AudioObjectType, audioObject: ?*?*ISpatialAudioObjectForHrtf) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectRenderStreamForHrtf.VTable, self.vtable).ActivateSpatialAudioObjectForHrtf(@ptrCast(*const ISpatialAudioObjectRenderStreamForHrtf, self), type_, audioObject);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace ISpatialAudioObjectRenderStreamBase.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObjectRenderStreamForHrtf_ActivateSpatialAudioObjectForHrtf(self: *const T, type_: AudioObjectType, audioObject: ?*?*ISpatialAudioObjectForHrtf) HRESULT {
+                return @ptrCast(*const ISpatialAudioObjectRenderStreamForHrtf.VTable, self.vtable).ActivateSpatialAudioObjectForHrtf(@ptrCast(*const ISpatialAudioObjectRenderStreamForHrtf, self), type_, audioObject);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3364,45 +3371,45 @@ pub const IMMNotificationClient = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnDeviceStateChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMMNotificationClient,
                 pwstrDeviceId: ?[*:0]const u16,
                 dwNewState: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMMNotificationClient,
                 pwstrDeviceId: ?[*:0]const u16,
                 dwNewState: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnDeviceAdded: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMMNotificationClient,
                 pwstrDeviceId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMMNotificationClient,
                 pwstrDeviceId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnDeviceRemoved: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMMNotificationClient,
                 pwstrDeviceId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMMNotificationClient,
                 pwstrDeviceId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnDefaultDeviceChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMMNotificationClient,
                 flow: EDataFlow,
                 role: ERole,
                 pwstrDefaultDeviceId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMMNotificationClient,
                 flow: EDataFlow,
                 role: ERole,
@@ -3410,12 +3417,12 @@ pub const IMMNotificationClient = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnPropertyValueChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMMNotificationClient,
                 pwstrDeviceId: ?[*:0]const u16,
                 key: PROPERTYKEY,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMMNotificationClient,
                 pwstrDeviceId: ?[*:0]const u16,
                 key: PROPERTYKEY,
@@ -3423,29 +3430,31 @@ pub const IMMNotificationClient = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMMNotificationClient_OnDeviceStateChanged(self: *const T, pwstrDeviceId: ?[*:0]const u16, dwNewState: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMMNotificationClient.VTable, self.vtable).OnDeviceStateChanged(@ptrCast(*const IMMNotificationClient, self), pwstrDeviceId, dwNewState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMMNotificationClient_OnDeviceAdded(self: *const T, pwstrDeviceId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMMNotificationClient.VTable, self.vtable).OnDeviceAdded(@ptrCast(*const IMMNotificationClient, self), pwstrDeviceId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMMNotificationClient_OnDeviceRemoved(self: *const T, pwstrDeviceId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMMNotificationClient.VTable, self.vtable).OnDeviceRemoved(@ptrCast(*const IMMNotificationClient, self), pwstrDeviceId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMMNotificationClient_OnDefaultDeviceChanged(self: *const T, flow: EDataFlow, role: ERole, pwstrDefaultDeviceId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMMNotificationClient.VTable, self.vtable).OnDefaultDeviceChanged(@ptrCast(*const IMMNotificationClient, self), flow, role, pwstrDefaultDeviceId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMMNotificationClient_OnPropertyValueChanged(self: *const T, pwstrDeviceId: ?[*:0]const u16, key: PROPERTYKEY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMMNotificationClient.VTable, self.vtable).OnPropertyValueChanged(@ptrCast(*const IMMNotificationClient, self), pwstrDeviceId, key);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMMNotificationClient_OnDeviceStateChanged(self: *const T, pwstrDeviceId: ?[*:0]const u16, dwNewState: u32) HRESULT {
+                return @ptrCast(*const IMMNotificationClient.VTable, self.vtable).OnDeviceStateChanged(@ptrCast(*const IMMNotificationClient, self), pwstrDeviceId, dwNewState);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMMNotificationClient_OnDeviceAdded(self: *const T, pwstrDeviceId: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IMMNotificationClient.VTable, self.vtable).OnDeviceAdded(@ptrCast(*const IMMNotificationClient, self), pwstrDeviceId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMMNotificationClient_OnDeviceRemoved(self: *const T, pwstrDeviceId: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IMMNotificationClient.VTable, self.vtable).OnDeviceRemoved(@ptrCast(*const IMMNotificationClient, self), pwstrDeviceId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMMNotificationClient_OnDefaultDeviceChanged(self: *const T, flow: EDataFlow, role: ERole, pwstrDefaultDeviceId: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IMMNotificationClient.VTable, self.vtable).OnDefaultDeviceChanged(@ptrCast(*const IMMNotificationClient, self), flow, role, pwstrDefaultDeviceId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMMNotificationClient_OnPropertyValueChanged(self: *const T, pwstrDeviceId: ?[*:0]const u16, key: PROPERTYKEY) HRESULT {
+                return @ptrCast(*const IMMNotificationClient.VTable, self.vtable).OnPropertyValueChanged(@ptrCast(*const IMMNotificationClient, self), pwstrDeviceId, key);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3456,14 +3465,14 @@ pub const IMMDevice = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Activate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMMDevice,
                 iid: ?*const Guid,
                 dwClsCtx: u32,
                 pActivationParams: ?*PROPVARIANT,
                 ppInterface: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMMDevice,
                 iid: ?*const Guid,
                 dwClsCtx: u32,
@@ -3472,58 +3481,60 @@ pub const IMMDevice = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OpenPropertyStore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMMDevice,
                 stgmAccess: u32,
                 ppProperties: ?*?*IPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMMDevice,
                 stgmAccess: u32,
                 ppProperties: ?*?*IPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMMDevice,
                 ppstrId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMMDevice,
                 ppstrId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMMDevice,
                 pdwState: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMMDevice,
                 pdwState: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMMDevice_Activate(self: *const T, iid: ?*const Guid, dwClsCtx: u32, pActivationParams: ?*PROPVARIANT, ppInterface: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMMDevice.VTable, self.vtable).Activate(@ptrCast(*const IMMDevice, self), iid, dwClsCtx, pActivationParams, ppInterface);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMMDevice_OpenPropertyStore(self: *const T, stgmAccess: u32, ppProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMMDevice.VTable, self.vtable).OpenPropertyStore(@ptrCast(*const IMMDevice, self), stgmAccess, ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMMDevice_GetId(self: *const T, ppstrId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMMDevice.VTable, self.vtable).GetId(@ptrCast(*const IMMDevice, self), ppstrId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMMDevice_GetState(self: *const T, pdwState: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMMDevice.VTable, self.vtable).GetState(@ptrCast(*const IMMDevice, self), pdwState);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMMDevice_Activate(self: *const T, iid: ?*const Guid, dwClsCtx: u32, pActivationParams: ?*PROPVARIANT, ppInterface: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IMMDevice.VTable, self.vtable).Activate(@ptrCast(*const IMMDevice, self), iid, dwClsCtx, pActivationParams, ppInterface);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMMDevice_OpenPropertyStore(self: *const T, stgmAccess: u32, ppProperties: ?*?*IPropertyStore) HRESULT {
+                return @ptrCast(*const IMMDevice.VTable, self.vtable).OpenPropertyStore(@ptrCast(*const IMMDevice, self), stgmAccess, ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMMDevice_GetId(self: *const T, ppstrId: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IMMDevice.VTable, self.vtable).GetId(@ptrCast(*const IMMDevice, self), ppstrId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMMDevice_GetState(self: *const T, pdwState: ?*u32) HRESULT {
+                return @ptrCast(*const IMMDevice.VTable, self.vtable).GetState(@ptrCast(*const IMMDevice, self), pdwState);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3534,22 +3545,22 @@ pub const IMMDeviceCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMMDeviceCollection,
                 pcDevices: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMMDeviceCollection,
                 pcDevices: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Item: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMMDeviceCollection,
                 nDevice: u32,
                 ppDevice: ?*?*IMMDevice,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMMDeviceCollection,
                 nDevice: u32,
                 ppDevice: ?*?*IMMDevice,
@@ -3557,17 +3568,19 @@ pub const IMMDeviceCollection = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMMDeviceCollection_GetCount(self: *const T, pcDevices: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMMDeviceCollection.VTable, self.vtable).GetCount(@ptrCast(*const IMMDeviceCollection, self), pcDevices);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMMDeviceCollection_Item(self: *const T, nDevice: u32, ppDevice: ?*?*IMMDevice) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMMDeviceCollection.VTable, self.vtable).Item(@ptrCast(*const IMMDeviceCollection, self), nDevice, ppDevice);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMMDeviceCollection_GetCount(self: *const T, pcDevices: ?*u32) HRESULT {
+                return @ptrCast(*const IMMDeviceCollection.VTable, self.vtable).GetCount(@ptrCast(*const IMMDeviceCollection, self), pcDevices);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMMDeviceCollection_Item(self: *const T, nDevice: u32, ppDevice: ?*?*IMMDevice) HRESULT {
+                return @ptrCast(*const IMMDeviceCollection.VTable, self.vtable).Item(@ptrCast(*const IMMDeviceCollection, self), nDevice, ppDevice);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3578,24 +3591,26 @@ pub const IMMEndpoint = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDataFlow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMMEndpoint,
                 pDataFlow: ?*EDataFlow,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMMEndpoint,
                 pDataFlow: ?*EDataFlow,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMMEndpoint_GetDataFlow(self: *const T, pDataFlow: ?*EDataFlow) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMMEndpoint.VTable, self.vtable).GetDataFlow(@ptrCast(*const IMMEndpoint, self), pDataFlow);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMMEndpoint_GetDataFlow(self: *const T, pDataFlow: ?*EDataFlow) HRESULT {
+                return @ptrCast(*const IMMEndpoint.VTable, self.vtable).GetDataFlow(@ptrCast(*const IMMEndpoint, self), pDataFlow);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3606,13 +3621,13 @@ pub const IMMDeviceEnumerator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         EnumAudioEndpoints: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMMDeviceEnumerator,
                 dataFlow: EDataFlow,
                 dwStateMask: u32,
                 ppDevices: ?*?*IMMDeviceCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMMDeviceEnumerator,
                 dataFlow: EDataFlow,
                 dwStateMask: u32,
@@ -3620,13 +3635,13 @@ pub const IMMDeviceEnumerator = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDefaultAudioEndpoint: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMMDeviceEnumerator,
                 dataFlow: EDataFlow,
                 role: ERole,
                 ppEndpoint: ?*?*IMMDevice,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMMDeviceEnumerator,
                 dataFlow: EDataFlow,
                 role: ERole,
@@ -3634,62 +3649,64 @@ pub const IMMDeviceEnumerator = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDevice: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMMDeviceEnumerator,
                 pwstrId: ?[*:0]const u16,
                 ppDevice: ?*?*IMMDevice,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMMDeviceEnumerator,
                 pwstrId: ?[*:0]const u16,
                 ppDevice: ?*?*IMMDevice,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RegisterEndpointNotificationCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMMDeviceEnumerator,
                 pClient: ?*IMMNotificationClient,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMMDeviceEnumerator,
                 pClient: ?*IMMNotificationClient,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         UnregisterEndpointNotificationCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMMDeviceEnumerator,
                 pClient: ?*IMMNotificationClient,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMMDeviceEnumerator,
                 pClient: ?*IMMNotificationClient,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMMDeviceEnumerator_EnumAudioEndpoints(self: *const T, dataFlow: EDataFlow, dwStateMask: u32, ppDevices: ?*?*IMMDeviceCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMMDeviceEnumerator.VTable, self.vtable).EnumAudioEndpoints(@ptrCast(*const IMMDeviceEnumerator, self), dataFlow, dwStateMask, ppDevices);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMMDeviceEnumerator_GetDefaultAudioEndpoint(self: *const T, dataFlow: EDataFlow, role: ERole, ppEndpoint: ?*?*IMMDevice) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMMDeviceEnumerator.VTable, self.vtable).GetDefaultAudioEndpoint(@ptrCast(*const IMMDeviceEnumerator, self), dataFlow, role, ppEndpoint);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMMDeviceEnumerator_GetDevice(self: *const T, pwstrId: ?[*:0]const u16, ppDevice: ?*?*IMMDevice) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMMDeviceEnumerator.VTable, self.vtable).GetDevice(@ptrCast(*const IMMDeviceEnumerator, self), pwstrId, ppDevice);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMMDeviceEnumerator_RegisterEndpointNotificationCallback(self: *const T, pClient: ?*IMMNotificationClient) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMMDeviceEnumerator.VTable, self.vtable).RegisterEndpointNotificationCallback(@ptrCast(*const IMMDeviceEnumerator, self), pClient);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMMDeviceEnumerator_UnregisterEndpointNotificationCallback(self: *const T, pClient: ?*IMMNotificationClient) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMMDeviceEnumerator.VTable, self.vtable).UnregisterEndpointNotificationCallback(@ptrCast(*const IMMDeviceEnumerator, self), pClient);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMMDeviceEnumerator_EnumAudioEndpoints(self: *const T, dataFlow: EDataFlow, dwStateMask: u32, ppDevices: ?*?*IMMDeviceCollection) HRESULT {
+                return @ptrCast(*const IMMDeviceEnumerator.VTable, self.vtable).EnumAudioEndpoints(@ptrCast(*const IMMDeviceEnumerator, self), dataFlow, dwStateMask, ppDevices);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMMDeviceEnumerator_GetDefaultAudioEndpoint(self: *const T, dataFlow: EDataFlow, role: ERole, ppEndpoint: ?*?*IMMDevice) HRESULT {
+                return @ptrCast(*const IMMDeviceEnumerator.VTable, self.vtable).GetDefaultAudioEndpoint(@ptrCast(*const IMMDeviceEnumerator, self), dataFlow, role, ppEndpoint);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMMDeviceEnumerator_GetDevice(self: *const T, pwstrId: ?[*:0]const u16, ppDevice: ?*?*IMMDevice) HRESULT {
+                return @ptrCast(*const IMMDeviceEnumerator.VTable, self.vtable).GetDevice(@ptrCast(*const IMMDeviceEnumerator, self), pwstrId, ppDevice);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMMDeviceEnumerator_RegisterEndpointNotificationCallback(self: *const T, pClient: ?*IMMNotificationClient) HRESULT {
+                return @ptrCast(*const IMMDeviceEnumerator.VTable, self.vtable).RegisterEndpointNotificationCallback(@ptrCast(*const IMMDeviceEnumerator, self), pClient);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMMDeviceEnumerator_UnregisterEndpointNotificationCallback(self: *const T, pClient: ?*IMMNotificationClient) HRESULT {
+                return @ptrCast(*const IMMDeviceEnumerator.VTable, self.vtable).UnregisterEndpointNotificationCallback(@ptrCast(*const IMMDeviceEnumerator, self), pClient);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3699,14 +3716,14 @@ pub const IMMDeviceActivator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Activate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMMDeviceActivator,
                 iid: ?*const Guid,
                 pDevice: ?*IMMDevice,
                 pActivationParams: ?*PROPVARIANT,
                 ppInterface: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMMDeviceActivator,
                 iid: ?*const Guid,
                 pDevice: ?*IMMDevice,
@@ -3716,13 +3733,15 @@ pub const IMMDeviceActivator = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMMDeviceActivator_Activate(self: *const T, iid: ?*const Guid, pDevice: ?*IMMDevice, pActivationParams: ?*PROPVARIANT, ppInterface: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMMDeviceActivator.VTable, self.vtable).Activate(@ptrCast(*const IMMDeviceActivator, self), iid, pDevice, pActivationParams, ppInterface);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMMDeviceActivator_Activate(self: *const T, iid: ?*const Guid, pDevice: ?*IMMDevice, pActivationParams: ?*PROPVARIANT, ppInterface: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IMMDeviceActivator.VTable, self.vtable).Activate(@ptrCast(*const IMMDeviceActivator, self), iid, pDevice, pActivationParams, ppInterface);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3733,24 +3752,26 @@ pub const IActivateAudioInterfaceCompletionHandler = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ActivateCompleted: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IActivateAudioInterfaceCompletionHandler,
                 activateOperation: ?*IActivateAudioInterfaceAsyncOperation,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IActivateAudioInterfaceCompletionHandler,
                 activateOperation: ?*IActivateAudioInterfaceAsyncOperation,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActivateAudioInterfaceCompletionHandler_ActivateCompleted(self: *const T, activateOperation: ?*IActivateAudioInterfaceAsyncOperation) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActivateAudioInterfaceCompletionHandler.VTable, self.vtable).ActivateCompleted(@ptrCast(*const IActivateAudioInterfaceCompletionHandler, self), activateOperation);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IActivateAudioInterfaceCompletionHandler_ActivateCompleted(self: *const T, activateOperation: ?*IActivateAudioInterfaceAsyncOperation) HRESULT {
+                return @ptrCast(*const IActivateAudioInterfaceCompletionHandler.VTable, self.vtable).ActivateCompleted(@ptrCast(*const IActivateAudioInterfaceCompletionHandler, self), activateOperation);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3761,12 +3782,12 @@ pub const IActivateAudioInterfaceAsyncOperation = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetActivateResult: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IActivateAudioInterfaceAsyncOperation,
                 activateResult: ?*HRESULT,
                 activatedInterface: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IActivateAudioInterfaceAsyncOperation,
                 activateResult: ?*HRESULT,
                 activatedInterface: ?*?*IUnknown,
@@ -3774,13 +3795,15 @@ pub const IActivateAudioInterfaceAsyncOperation = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActivateAudioInterfaceAsyncOperation_GetActivateResult(self: *const T, activateResult: ?*HRESULT, activatedInterface: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IActivateAudioInterfaceAsyncOperation.VTable, self.vtable).GetActivateResult(@ptrCast(*const IActivateAudioInterfaceAsyncOperation, self), activateResult, activatedInterface);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IActivateAudioInterfaceAsyncOperation_GetActivateResult(self: *const T, activateResult: ?*HRESULT, activatedInterface: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const IActivateAudioInterfaceAsyncOperation.VTable, self.vtable).GetActivateResult(@ptrCast(*const IActivateAudioInterfaceAsyncOperation, self), activateResult, activatedInterface);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3808,12 +3831,12 @@ pub const IAudioSystemEffectsPropertyChangeNotificationClient = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnPropertyChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSystemEffectsPropertyChangeNotificationClient,
                 type: __MIDL___MIDL_itf_mmdeviceapi_0000_0008_0002,
                 key: PROPERTYKEY,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSystemEffectsPropertyChangeNotificationClient,
                 type: __MIDL___MIDL_itf_mmdeviceapi_0000_0008_0002,
                 key: PROPERTYKEY,
@@ -3821,13 +3844,15 @@ pub const IAudioSystemEffectsPropertyChangeNotificationClient = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSystemEffectsPropertyChangeNotificationClient_OnPropertyChanged(self: *const T, type_: __MIDL___MIDL_itf_mmdeviceapi_0000_0008_0002, key: PROPERTYKEY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSystemEffectsPropertyChangeNotificationClient.VTable, self.vtable).OnPropertyChanged(@ptrCast(*const IAudioSystemEffectsPropertyChangeNotificationClient, self), type_, key);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSystemEffectsPropertyChangeNotificationClient_OnPropertyChanged(self: *const T, type_: __MIDL___MIDL_itf_mmdeviceapi_0000_0008_0002, key: PROPERTYKEY) HRESULT {
+                return @ptrCast(*const IAudioSystemEffectsPropertyChangeNotificationClient.VTable, self.vtable).OnPropertyChanged(@ptrCast(*const IAudioSystemEffectsPropertyChangeNotificationClient, self), type_, key);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3837,110 +3862,112 @@ pub const IAudioSystemEffectsPropertyStore = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OpenDefaultPropertyStore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSystemEffectsPropertyStore,
                 stgmAccess: u32,
                 propStore: ?*?*IPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSystemEffectsPropertyStore,
                 stgmAccess: u32,
                 propStore: ?*?*IPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OpenUserPropertyStore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSystemEffectsPropertyStore,
                 stgmAccess: u32,
                 propStore: ?*?*IPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSystemEffectsPropertyStore,
                 stgmAccess: u32,
                 propStore: ?*?*IPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OpenVolatilePropertyStore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSystemEffectsPropertyStore,
                 stgmAccess: u32,
                 propStore: ?*?*IPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSystemEffectsPropertyStore,
                 stgmAccess: u32,
                 propStore: ?*?*IPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ResetUserPropertyStore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSystemEffectsPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSystemEffectsPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ResetVolatilePropertyStore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSystemEffectsPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSystemEffectsPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RegisterPropertyChangeNotification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSystemEffectsPropertyStore,
                 callback: ?*IAudioSystemEffectsPropertyChangeNotificationClient,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSystemEffectsPropertyStore,
                 callback: ?*IAudioSystemEffectsPropertyChangeNotificationClient,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         UnregisterPropertyChangeNotification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSystemEffectsPropertyStore,
                 callback: ?*IAudioSystemEffectsPropertyChangeNotificationClient,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSystemEffectsPropertyStore,
                 callback: ?*IAudioSystemEffectsPropertyChangeNotificationClient,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSystemEffectsPropertyStore_OpenDefaultPropertyStore(self: *const T, stgmAccess: u32, propStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSystemEffectsPropertyStore.VTable, self.vtable).OpenDefaultPropertyStore(@ptrCast(*const IAudioSystemEffectsPropertyStore, self), stgmAccess, propStore);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSystemEffectsPropertyStore_OpenUserPropertyStore(self: *const T, stgmAccess: u32, propStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSystemEffectsPropertyStore.VTable, self.vtable).OpenUserPropertyStore(@ptrCast(*const IAudioSystemEffectsPropertyStore, self), stgmAccess, propStore);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSystemEffectsPropertyStore_OpenVolatilePropertyStore(self: *const T, stgmAccess: u32, propStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSystemEffectsPropertyStore.VTable, self.vtable).OpenVolatilePropertyStore(@ptrCast(*const IAudioSystemEffectsPropertyStore, self), stgmAccess, propStore);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSystemEffectsPropertyStore_ResetUserPropertyStore(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSystemEffectsPropertyStore.VTable, self.vtable).ResetUserPropertyStore(@ptrCast(*const IAudioSystemEffectsPropertyStore, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSystemEffectsPropertyStore_ResetVolatilePropertyStore(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSystemEffectsPropertyStore.VTable, self.vtable).ResetVolatilePropertyStore(@ptrCast(*const IAudioSystemEffectsPropertyStore, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSystemEffectsPropertyStore_RegisterPropertyChangeNotification(self: *const T, callback: ?*IAudioSystemEffectsPropertyChangeNotificationClient) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSystemEffectsPropertyStore.VTable, self.vtable).RegisterPropertyChangeNotification(@ptrCast(*const IAudioSystemEffectsPropertyStore, self), callback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSystemEffectsPropertyStore_UnregisterPropertyChangeNotification(self: *const T, callback: ?*IAudioSystemEffectsPropertyChangeNotificationClient) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSystemEffectsPropertyStore.VTable, self.vtable).UnregisterPropertyChangeNotification(@ptrCast(*const IAudioSystemEffectsPropertyStore, self), callback);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSystemEffectsPropertyStore_OpenDefaultPropertyStore(self: *const T, stgmAccess: u32, propStore: ?*?*IPropertyStore) HRESULT {
+                return @ptrCast(*const IAudioSystemEffectsPropertyStore.VTable, self.vtable).OpenDefaultPropertyStore(@ptrCast(*const IAudioSystemEffectsPropertyStore, self), stgmAccess, propStore);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSystemEffectsPropertyStore_OpenUserPropertyStore(self: *const T, stgmAccess: u32, propStore: ?*?*IPropertyStore) HRESULT {
+                return @ptrCast(*const IAudioSystemEffectsPropertyStore.VTable, self.vtable).OpenUserPropertyStore(@ptrCast(*const IAudioSystemEffectsPropertyStore, self), stgmAccess, propStore);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSystemEffectsPropertyStore_OpenVolatilePropertyStore(self: *const T, stgmAccess: u32, propStore: ?*?*IPropertyStore) HRESULT {
+                return @ptrCast(*const IAudioSystemEffectsPropertyStore.VTable, self.vtable).OpenVolatilePropertyStore(@ptrCast(*const IAudioSystemEffectsPropertyStore, self), stgmAccess, propStore);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSystemEffectsPropertyStore_ResetUserPropertyStore(self: *const T) HRESULT {
+                return @ptrCast(*const IAudioSystemEffectsPropertyStore.VTable, self.vtable).ResetUserPropertyStore(@ptrCast(*const IAudioSystemEffectsPropertyStore, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSystemEffectsPropertyStore_ResetVolatilePropertyStore(self: *const T) HRESULT {
+                return @ptrCast(*const IAudioSystemEffectsPropertyStore.VTable, self.vtable).ResetVolatilePropertyStore(@ptrCast(*const IAudioSystemEffectsPropertyStore, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSystemEffectsPropertyStore_RegisterPropertyChangeNotification(self: *const T, callback: ?*IAudioSystemEffectsPropertyChangeNotificationClient) HRESULT {
+                return @ptrCast(*const IAudioSystemEffectsPropertyStore.VTable, self.vtable).RegisterPropertyChangeNotification(@ptrCast(*const IAudioSystemEffectsPropertyStore, self), callback);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSystemEffectsPropertyStore_UnregisterPropertyChangeNotification(self: *const T, callback: ?*IAudioSystemEffectsPropertyChangeNotificationClient) HRESULT {
+                return @ptrCast(*const IAudioSystemEffectsPropertyStore.VTable, self.vtable).UnregisterPropertyChangeNotification(@ptrCast(*const IAudioSystemEffectsPropertyStore, self), callback);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3978,24 +4005,24 @@ pub const IPerChannelDbLevel = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetChannelCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPerChannelDbLevel,
                 pcChannels: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPerChannelDbLevel,
                 pcChannels: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetLevelRange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPerChannelDbLevel,
                 nChannel: u32,
                 pfMinLevelDB: ?*f32,
                 pfMaxLevelDB: ?*f32,
                 pfStepping: ?*f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPerChannelDbLevel,
                 nChannel: u32,
                 pfMinLevelDB: ?*f32,
@@ -4004,25 +4031,25 @@ pub const IPerChannelDbLevel = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPerChannelDbLevel,
                 nChannel: u32,
                 pfLevelDB: ?*f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPerChannelDbLevel,
                 nChannel: u32,
                 pfLevelDB: ?*f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPerChannelDbLevel,
                 nChannel: u32,
                 fLevelDB: f32,
                 pguidEventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPerChannelDbLevel,
                 nChannel: u32,
                 fLevelDB: f32,
@@ -4030,25 +4057,25 @@ pub const IPerChannelDbLevel = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetLevelUniform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPerChannelDbLevel,
                 fLevelDB: f32,
                 pguidEventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPerChannelDbLevel,
                 fLevelDB: f32,
                 pguidEventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetLevelAllChannels: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPerChannelDbLevel,
                 aLevelsDB: [*]f32,
                 cChannels: u32,
                 pguidEventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPerChannelDbLevel,
                 aLevelsDB: [*]f32,
                 cChannels: u32,
@@ -4057,33 +4084,35 @@ pub const IPerChannelDbLevel = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPerChannelDbLevel_GetChannelCount(self: *const T, pcChannels: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPerChannelDbLevel.VTable, self.vtable).GetChannelCount(@ptrCast(*const IPerChannelDbLevel, self), pcChannels);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPerChannelDbLevel_GetLevelRange(self: *const T, nChannel: u32, pfMinLevelDB: ?*f32, pfMaxLevelDB: ?*f32, pfStepping: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPerChannelDbLevel.VTable, self.vtable).GetLevelRange(@ptrCast(*const IPerChannelDbLevel, self), nChannel, pfMinLevelDB, pfMaxLevelDB, pfStepping);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPerChannelDbLevel_GetLevel(self: *const T, nChannel: u32, pfLevelDB: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPerChannelDbLevel.VTable, self.vtable).GetLevel(@ptrCast(*const IPerChannelDbLevel, self), nChannel, pfLevelDB);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPerChannelDbLevel_SetLevel(self: *const T, nChannel: u32, fLevelDB: f32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPerChannelDbLevel.VTable, self.vtable).SetLevel(@ptrCast(*const IPerChannelDbLevel, self), nChannel, fLevelDB, pguidEventContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPerChannelDbLevel_SetLevelUniform(self: *const T, fLevelDB: f32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPerChannelDbLevel.VTable, self.vtable).SetLevelUniform(@ptrCast(*const IPerChannelDbLevel, self), fLevelDB, pguidEventContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPerChannelDbLevel_SetLevelAllChannels(self: *const T, aLevelsDB: [*]f32, cChannels: u32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPerChannelDbLevel.VTable, self.vtable).SetLevelAllChannels(@ptrCast(*const IPerChannelDbLevel, self), aLevelsDB, cChannels, pguidEventContext);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPerChannelDbLevel_GetChannelCount(self: *const T, pcChannels: ?*u32) HRESULT {
+                return @ptrCast(*const IPerChannelDbLevel.VTable, self.vtable).GetChannelCount(@ptrCast(*const IPerChannelDbLevel, self), pcChannels);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPerChannelDbLevel_GetLevelRange(self: *const T, nChannel: u32, pfMinLevelDB: ?*f32, pfMaxLevelDB: ?*f32, pfStepping: ?*f32) HRESULT {
+                return @ptrCast(*const IPerChannelDbLevel.VTable, self.vtable).GetLevelRange(@ptrCast(*const IPerChannelDbLevel, self), nChannel, pfMinLevelDB, pfMaxLevelDB, pfStepping);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPerChannelDbLevel_GetLevel(self: *const T, nChannel: u32, pfLevelDB: ?*f32) HRESULT {
+                return @ptrCast(*const IPerChannelDbLevel.VTable, self.vtable).GetLevel(@ptrCast(*const IPerChannelDbLevel, self), nChannel, pfLevelDB);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPerChannelDbLevel_SetLevel(self: *const T, nChannel: u32, fLevelDB: f32, pguidEventContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const IPerChannelDbLevel.VTable, self.vtable).SetLevel(@ptrCast(*const IPerChannelDbLevel, self), nChannel, fLevelDB, pguidEventContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPerChannelDbLevel_SetLevelUniform(self: *const T, fLevelDB: f32, pguidEventContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const IPerChannelDbLevel.VTable, self.vtable).SetLevelUniform(@ptrCast(*const IPerChannelDbLevel, self), fLevelDB, pguidEventContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPerChannelDbLevel_SetLevelAllChannels(self: *const T, aLevelsDB: [*]f32, cChannels: u32, pguidEventContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const IPerChannelDbLevel.VTable, self.vtable).SetLevelAllChannels(@ptrCast(*const IPerChannelDbLevel, self), aLevelsDB, cChannels, pguidEventContext);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4095,9 +4124,11 @@ pub const IAudioVolumeLevel = extern struct {
         base: IPerChannelDbLevel.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPerChannelDbLevel.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPerChannelDbLevel.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4108,40 +4139,42 @@ pub const IAudioChannelConfig = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetChannelConfig: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioChannelConfig,
                 dwConfig: u32,
                 pguidEventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioChannelConfig,
                 dwConfig: u32,
                 pguidEventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetChannelConfig: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioChannelConfig,
                 pdwConfig: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioChannelConfig,
                 pdwConfig: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioChannelConfig_SetChannelConfig(self: *const T, dwConfig: u32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioChannelConfig.VTable, self.vtable).SetChannelConfig(@ptrCast(*const IAudioChannelConfig, self), dwConfig, pguidEventContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioChannelConfig_GetChannelConfig(self: *const T, pdwConfig: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioChannelConfig.VTable, self.vtable).GetChannelConfig(@ptrCast(*const IAudioChannelConfig, self), pdwConfig);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioChannelConfig_SetChannelConfig(self: *const T, dwConfig: u32, pguidEventContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const IAudioChannelConfig.VTable, self.vtable).SetChannelConfig(@ptrCast(*const IAudioChannelConfig, self), dwConfig, pguidEventContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioChannelConfig_GetChannelConfig(self: *const T, pdwConfig: ?*u32) HRESULT {
+                return @ptrCast(*const IAudioChannelConfig.VTable, self.vtable).GetChannelConfig(@ptrCast(*const IAudioChannelConfig, self), pdwConfig);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4152,22 +4185,22 @@ pub const IAudioLoudness = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetEnabled: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioLoudness,
                 pbEnabled: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioLoudness,
                 pbEnabled: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetEnabled: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioLoudness,
                 bEnable: BOOL,
                 pguidEventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioLoudness,
                 bEnable: BOOL,
                 pguidEventContext: ?*const Guid,
@@ -4175,17 +4208,19 @@ pub const IAudioLoudness = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioLoudness_GetEnabled(self: *const T, pbEnabled: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioLoudness.VTable, self.vtable).GetEnabled(@ptrCast(*const IAudioLoudness, self), pbEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioLoudness_SetEnabled(self: *const T, bEnable: BOOL, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioLoudness.VTable, self.vtable).SetEnabled(@ptrCast(*const IAudioLoudness, self), bEnable, pguidEventContext);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioLoudness_GetEnabled(self: *const T, pbEnabled: ?*BOOL) HRESULT {
+                return @ptrCast(*const IAudioLoudness.VTable, self.vtable).GetEnabled(@ptrCast(*const IAudioLoudness, self), pbEnabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioLoudness_SetEnabled(self: *const T, bEnable: BOOL, pguidEventContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const IAudioLoudness.VTable, self.vtable).SetEnabled(@ptrCast(*const IAudioLoudness, self), bEnable, pguidEventContext);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4196,22 +4231,22 @@ pub const IAudioInputSelector = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSelection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioInputSelector,
                 pnIdSelected: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioInputSelector,
                 pnIdSelected: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetSelection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioInputSelector,
                 nIdSelect: u32,
                 pguidEventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioInputSelector,
                 nIdSelect: u32,
                 pguidEventContext: ?*const Guid,
@@ -4219,17 +4254,19 @@ pub const IAudioInputSelector = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioInputSelector_GetSelection(self: *const T, pnIdSelected: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioInputSelector.VTable, self.vtable).GetSelection(@ptrCast(*const IAudioInputSelector, self), pnIdSelected);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioInputSelector_SetSelection(self: *const T, nIdSelect: u32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioInputSelector.VTable, self.vtable).SetSelection(@ptrCast(*const IAudioInputSelector, self), nIdSelect, pguidEventContext);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioInputSelector_GetSelection(self: *const T, pnIdSelected: ?*u32) HRESULT {
+                return @ptrCast(*const IAudioInputSelector.VTable, self.vtable).GetSelection(@ptrCast(*const IAudioInputSelector, self), pnIdSelected);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioInputSelector_SetSelection(self: *const T, nIdSelect: u32, pguidEventContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const IAudioInputSelector.VTable, self.vtable).SetSelection(@ptrCast(*const IAudioInputSelector, self), nIdSelect, pguidEventContext);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4240,22 +4277,22 @@ pub const IAudioOutputSelector = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSelection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioOutputSelector,
                 pnIdSelected: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioOutputSelector,
                 pnIdSelected: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetSelection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioOutputSelector,
                 nIdSelect: u32,
                 pguidEventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioOutputSelector,
                 nIdSelect: u32,
                 pguidEventContext: ?*const Guid,
@@ -4263,17 +4300,19 @@ pub const IAudioOutputSelector = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioOutputSelector_GetSelection(self: *const T, pnIdSelected: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioOutputSelector.VTable, self.vtable).GetSelection(@ptrCast(*const IAudioOutputSelector, self), pnIdSelected);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioOutputSelector_SetSelection(self: *const T, nIdSelect: u32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioOutputSelector.VTable, self.vtable).SetSelection(@ptrCast(*const IAudioOutputSelector, self), nIdSelect, pguidEventContext);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioOutputSelector_GetSelection(self: *const T, pnIdSelected: ?*u32) HRESULT {
+                return @ptrCast(*const IAudioOutputSelector.VTable, self.vtable).GetSelection(@ptrCast(*const IAudioOutputSelector, self), pnIdSelected);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioOutputSelector_SetSelection(self: *const T, nIdSelect: u32, pguidEventContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const IAudioOutputSelector.VTable, self.vtable).SetSelection(@ptrCast(*const IAudioOutputSelector, self), nIdSelect, pguidEventContext);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4284,40 +4323,42 @@ pub const IAudioMute = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetMute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioMute,
                 bMuted: BOOL,
                 pguidEventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioMute,
                 bMuted: BOOL,
                 pguidEventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetMute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioMute,
                 pbMuted: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioMute,
                 pbMuted: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioMute_SetMute(self: *const T, bMuted: BOOL, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioMute.VTable, self.vtable).SetMute(@ptrCast(*const IAudioMute, self), bMuted, pguidEventContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioMute_GetMute(self: *const T, pbMuted: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioMute.VTable, self.vtable).GetMute(@ptrCast(*const IAudioMute, self), pbMuted);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioMute_SetMute(self: *const T, bMuted: BOOL, pguidEventContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const IAudioMute.VTable, self.vtable).SetMute(@ptrCast(*const IAudioMute, self), bMuted, pguidEventContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioMute_GetMute(self: *const T, pbMuted: ?*BOOL) HRESULT {
+                return @ptrCast(*const IAudioMute.VTable, self.vtable).GetMute(@ptrCast(*const IAudioMute, self), pbMuted);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4329,9 +4370,11 @@ pub const IAudioBass = extern struct {
         base: IPerChannelDbLevel.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPerChannelDbLevel.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPerChannelDbLevel.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4343,9 +4386,11 @@ pub const IAudioMidrange = extern struct {
         base: IPerChannelDbLevel.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPerChannelDbLevel.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPerChannelDbLevel.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4357,9 +4402,11 @@ pub const IAudioTreble = extern struct {
         base: IPerChannelDbLevel.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPerChannelDbLevel.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPerChannelDbLevel.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4370,22 +4417,22 @@ pub const IAudioAutoGainControl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetEnabled: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioAutoGainControl,
                 pbEnabled: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioAutoGainControl,
                 pbEnabled: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetEnabled: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioAutoGainControl,
                 bEnable: BOOL,
                 pguidEventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioAutoGainControl,
                 bEnable: BOOL,
                 pguidEventContext: ?*const Guid,
@@ -4393,17 +4440,19 @@ pub const IAudioAutoGainControl = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioAutoGainControl_GetEnabled(self: *const T, pbEnabled: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioAutoGainControl.VTable, self.vtable).GetEnabled(@ptrCast(*const IAudioAutoGainControl, self), pbEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioAutoGainControl_SetEnabled(self: *const T, bEnable: BOOL, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioAutoGainControl.VTable, self.vtable).SetEnabled(@ptrCast(*const IAudioAutoGainControl, self), bEnable, pguidEventContext);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioAutoGainControl_GetEnabled(self: *const T, pbEnabled: ?*BOOL) HRESULT {
+                return @ptrCast(*const IAudioAutoGainControl.VTable, self.vtable).GetEnabled(@ptrCast(*const IAudioAutoGainControl, self), pbEnabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioAutoGainControl_SetEnabled(self: *const T, bEnable: BOOL, pguidEventContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const IAudioAutoGainControl.VTable, self.vtable).SetEnabled(@ptrCast(*const IAudioAutoGainControl, self), bEnable, pguidEventContext);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4414,22 +4463,22 @@ pub const IAudioPeakMeter = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetChannelCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioPeakMeter,
                 pcChannels: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioPeakMeter,
                 pcChannels: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioPeakMeter,
                 nChannel: u32,
                 pfLevel: ?*f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioPeakMeter,
                 nChannel: u32,
                 pfLevel: ?*f32,
@@ -4437,17 +4486,19 @@ pub const IAudioPeakMeter = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioPeakMeter_GetChannelCount(self: *const T, pcChannels: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioPeakMeter.VTable, self.vtable).GetChannelCount(@ptrCast(*const IAudioPeakMeter, self), pcChannels);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioPeakMeter_GetLevel(self: *const T, nChannel: u32, pfLevel: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioPeakMeter.VTable, self.vtable).GetLevel(@ptrCast(*const IAudioPeakMeter, self), nChannel, pfLevel);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioPeakMeter_GetChannelCount(self: *const T, pcChannels: ?*u32) HRESULT {
+                return @ptrCast(*const IAudioPeakMeter.VTable, self.vtable).GetChannelCount(@ptrCast(*const IAudioPeakMeter, self), pcChannels);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioPeakMeter_GetLevel(self: *const T, nChannel: u32, pfLevel: ?*f32) HRESULT {
+                return @ptrCast(*const IAudioPeakMeter.VTable, self.vtable).GetLevel(@ptrCast(*const IAudioPeakMeter, self), nChannel, pfLevel);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4458,35 +4509,35 @@ pub const IDeviceSpecificProperty = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDeviceSpecificProperty,
                 pVType: ?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDeviceSpecificProperty,
                 pVType: ?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDeviceSpecificProperty,
                 pvValue: ?*anyopaque,
                 pcbValue: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDeviceSpecificProperty,
                 pvValue: ?*anyopaque,
                 pcbValue: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDeviceSpecificProperty,
                 pvValue: ?*anyopaque,
                 cbValue: u32,
                 pguidEventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDeviceSpecificProperty,
                 pvValue: ?*anyopaque,
                 cbValue: u32,
@@ -4494,13 +4545,13 @@ pub const IDeviceSpecificProperty = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Get4BRange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDeviceSpecificProperty,
                 plMin: ?*i32,
                 plMax: ?*i32,
                 plStepping: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDeviceSpecificProperty,
                 plMin: ?*i32,
                 plMax: ?*i32,
@@ -4509,25 +4560,27 @@ pub const IDeviceSpecificProperty = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceSpecificProperty_GetType(self: *const T, pVType: ?*u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDeviceSpecificProperty.VTable, self.vtable).GetType(@ptrCast(*const IDeviceSpecificProperty, self), pVType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceSpecificProperty_GetValue(self: *const T, pvValue: ?*anyopaque, pcbValue: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDeviceSpecificProperty.VTable, self.vtable).GetValue(@ptrCast(*const IDeviceSpecificProperty, self), pvValue, pcbValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceSpecificProperty_SetValue(self: *const T, pvValue: ?*anyopaque, cbValue: u32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDeviceSpecificProperty.VTable, self.vtable).SetValue(@ptrCast(*const IDeviceSpecificProperty, self), pvValue, cbValue, pguidEventContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceSpecificProperty_Get4BRange(self: *const T, plMin: ?*i32, plMax: ?*i32, plStepping: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDeviceSpecificProperty.VTable, self.vtable).Get4BRange(@ptrCast(*const IDeviceSpecificProperty, self), plMin, plMax, plStepping);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDeviceSpecificProperty_GetType(self: *const T, pVType: ?*u16) HRESULT {
+                return @ptrCast(*const IDeviceSpecificProperty.VTable, self.vtable).GetType(@ptrCast(*const IDeviceSpecificProperty, self), pVType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDeviceSpecificProperty_GetValue(self: *const T, pvValue: ?*anyopaque, pcbValue: ?*u32) HRESULT {
+                return @ptrCast(*const IDeviceSpecificProperty.VTable, self.vtable).GetValue(@ptrCast(*const IDeviceSpecificProperty, self), pvValue, pcbValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDeviceSpecificProperty_SetValue(self: *const T, pvValue: ?*anyopaque, cbValue: u32, pguidEventContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const IDeviceSpecificProperty.VTable, self.vtable).SetValue(@ptrCast(*const IDeviceSpecificProperty, self), pvValue, cbValue, pguidEventContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDeviceSpecificProperty_Get4BRange(self: *const T, plMin: ?*i32, plMax: ?*i32, plStepping: ?*i32) HRESULT {
+                return @ptrCast(*const IDeviceSpecificProperty.VTable, self.vtable).Get4BRange(@ptrCast(*const IDeviceSpecificProperty, self), plMin, plMax, plStepping);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4538,22 +4591,22 @@ pub const IPartsList = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPartsList,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPartsList,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPart: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPartsList,
                 nIndex: u32,
                 ppPart: ?*?*IPart,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPartsList,
                 nIndex: u32,
                 ppPart: ?*?*IPart,
@@ -4561,17 +4614,19 @@ pub const IPartsList = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPartsList_GetCount(self: *const T, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPartsList.VTable, self.vtable).GetCount(@ptrCast(*const IPartsList, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPartsList_GetPart(self: *const T, nIndex: u32, ppPart: ?*?*IPart) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPartsList.VTable, self.vtable).GetPart(@ptrCast(*const IPartsList, self), nIndex, ppPart);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPartsList_GetCount(self: *const T, pCount: ?*u32) HRESULT {
+                return @ptrCast(*const IPartsList.VTable, self.vtable).GetCount(@ptrCast(*const IPartsList, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPartsList_GetPart(self: *const T, nIndex: u32, ppPart: ?*?*IPart) HRESULT {
+                return @ptrCast(*const IPartsList.VTable, self.vtable).GetPart(@ptrCast(*const IPartsList, self), nIndex, ppPart);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4582,115 +4637,115 @@ pub const IPart = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPart,
                 ppwstrName: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPart,
                 ppwstrName: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetLocalId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPart,
                 pnId: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPart,
                 pnId: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetGlobalId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPart,
                 ppwstrGlobalId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPart,
                 ppwstrGlobalId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPartType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPart,
                 pPartType: ?*PartType,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPart,
                 pPartType: ?*PartType,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSubType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPart,
                 pSubType: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPart,
                 pSubType: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetControlInterfaceCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPart,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPart,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetControlInterface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPart,
                 nIndex: u32,
                 ppInterfaceDesc: ?*?*IControlInterface,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPart,
                 nIndex: u32,
                 ppInterfaceDesc: ?*?*IControlInterface,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumPartsIncoming: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPart,
                 ppParts: ?*?*IPartsList,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPart,
                 ppParts: ?*?*IPartsList,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumPartsOutgoing: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPart,
                 ppParts: ?*?*IPartsList,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPart,
                 ppParts: ?*?*IPartsList,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetTopologyObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPart,
                 ppTopology: ?*?*IDeviceTopology,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPart,
                 ppTopology: ?*?*IDeviceTopology,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Activate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPart,
                 dwClsContext: u32,
                 refiid: ?*const Guid,
                 ppvObject: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPart,
                 dwClsContext: u32,
                 refiid: ?*const Guid,
@@ -4698,84 +4753,86 @@ pub const IPart = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RegisterControlChangeCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPart,
                 riid: ?*const Guid,
                 pNotify: ?*IControlChangeNotify,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPart,
                 riid: ?*const Guid,
                 pNotify: ?*IControlChangeNotify,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         UnregisterControlChangeCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPart,
                 pNotify: ?*IControlChangeNotify,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPart,
                 pNotify: ?*IControlChangeNotify,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPart_GetName(self: *const T, ppwstrName: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPart.VTable, self.vtable).GetName(@ptrCast(*const IPart, self), ppwstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPart_GetLocalId(self: *const T, pnId: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPart.VTable, self.vtable).GetLocalId(@ptrCast(*const IPart, self), pnId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPart_GetGlobalId(self: *const T, ppwstrGlobalId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPart.VTable, self.vtable).GetGlobalId(@ptrCast(*const IPart, self), ppwstrGlobalId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPart_GetPartType(self: *const T, pPartType: ?*PartType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPart.VTable, self.vtable).GetPartType(@ptrCast(*const IPart, self), pPartType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPart_GetSubType(self: *const T, pSubType: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPart.VTable, self.vtable).GetSubType(@ptrCast(*const IPart, self), pSubType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPart_GetControlInterfaceCount(self: *const T, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPart.VTable, self.vtable).GetControlInterfaceCount(@ptrCast(*const IPart, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPart_GetControlInterface(self: *const T, nIndex: u32, ppInterfaceDesc: ?*?*IControlInterface) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPart.VTable, self.vtable).GetControlInterface(@ptrCast(*const IPart, self), nIndex, ppInterfaceDesc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPart_EnumPartsIncoming(self: *const T, ppParts: ?*?*IPartsList) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPart.VTable, self.vtable).EnumPartsIncoming(@ptrCast(*const IPart, self), ppParts);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPart_EnumPartsOutgoing(self: *const T, ppParts: ?*?*IPartsList) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPart.VTable, self.vtable).EnumPartsOutgoing(@ptrCast(*const IPart, self), ppParts);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPart_GetTopologyObject(self: *const T, ppTopology: ?*?*IDeviceTopology) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPart.VTable, self.vtable).GetTopologyObject(@ptrCast(*const IPart, self), ppTopology);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPart_Activate(self: *const T, dwClsContext: u32, refiid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPart.VTable, self.vtable).Activate(@ptrCast(*const IPart, self), dwClsContext, refiid, ppvObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPart_RegisterControlChangeCallback(self: *const T, riid: ?*const Guid, pNotify: ?*IControlChangeNotify) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPart.VTable, self.vtable).RegisterControlChangeCallback(@ptrCast(*const IPart, self), riid, pNotify);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPart_UnregisterControlChangeCallback(self: *const T, pNotify: ?*IControlChangeNotify) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPart.VTable, self.vtable).UnregisterControlChangeCallback(@ptrCast(*const IPart, self), pNotify);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPart_GetName(self: *const T, ppwstrName: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IPart.VTable, self.vtable).GetName(@ptrCast(*const IPart, self), ppwstrName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPart_GetLocalId(self: *const T, pnId: ?*u32) HRESULT {
+                return @ptrCast(*const IPart.VTable, self.vtable).GetLocalId(@ptrCast(*const IPart, self), pnId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPart_GetGlobalId(self: *const T, ppwstrGlobalId: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IPart.VTable, self.vtable).GetGlobalId(@ptrCast(*const IPart, self), ppwstrGlobalId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPart_GetPartType(self: *const T, pPartType: ?*PartType) HRESULT {
+                return @ptrCast(*const IPart.VTable, self.vtable).GetPartType(@ptrCast(*const IPart, self), pPartType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPart_GetSubType(self: *const T, pSubType: ?*Guid) HRESULT {
+                return @ptrCast(*const IPart.VTable, self.vtable).GetSubType(@ptrCast(*const IPart, self), pSubType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPart_GetControlInterfaceCount(self: *const T, pCount: ?*u32) HRESULT {
+                return @ptrCast(*const IPart.VTable, self.vtable).GetControlInterfaceCount(@ptrCast(*const IPart, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPart_GetControlInterface(self: *const T, nIndex: u32, ppInterfaceDesc: ?*?*IControlInterface) HRESULT {
+                return @ptrCast(*const IPart.VTable, self.vtable).GetControlInterface(@ptrCast(*const IPart, self), nIndex, ppInterfaceDesc);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPart_EnumPartsIncoming(self: *const T, ppParts: ?*?*IPartsList) HRESULT {
+                return @ptrCast(*const IPart.VTable, self.vtable).EnumPartsIncoming(@ptrCast(*const IPart, self), ppParts);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPart_EnumPartsOutgoing(self: *const T, ppParts: ?*?*IPartsList) HRESULT {
+                return @ptrCast(*const IPart.VTable, self.vtable).EnumPartsOutgoing(@ptrCast(*const IPart, self), ppParts);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPart_GetTopologyObject(self: *const T, ppTopology: ?*?*IDeviceTopology) HRESULT {
+                return @ptrCast(*const IPart.VTable, self.vtable).GetTopologyObject(@ptrCast(*const IPart, self), ppTopology);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPart_Activate(self: *const T, dwClsContext: u32, refiid: ?*const Guid, ppvObject: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IPart.VTable, self.vtable).Activate(@ptrCast(*const IPart, self), dwClsContext, refiid, ppvObject);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPart_RegisterControlChangeCallback(self: *const T, riid: ?*const Guid, pNotify: ?*IControlChangeNotify) HRESULT {
+                return @ptrCast(*const IPart.VTable, self.vtable).RegisterControlChangeCallback(@ptrCast(*const IPart, self), riid, pNotify);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPart_UnregisterControlChangeCallback(self: *const T, pNotify: ?*IControlChangeNotify) HRESULT {
+                return @ptrCast(*const IPart.VTable, self.vtable).UnregisterControlChangeCallback(@ptrCast(*const IPart, self), pNotify);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4786,120 +4843,122 @@ pub const IConnector = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IConnector,
                 pType: ?*ConnectorType,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IConnector,
                 pType: ?*ConnectorType,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDataFlow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IConnector,
                 pFlow: ?*DataFlow,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IConnector,
                 pFlow: ?*DataFlow,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ConnectTo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IConnector,
                 pConnectTo: ?*IConnector,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IConnector,
                 pConnectTo: ?*IConnector,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Disconnect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IConnector,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IConnector,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         IsConnected: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IConnector,
                 pbConnected: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IConnector,
                 pbConnected: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetConnectedTo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IConnector,
                 ppConTo: ?*?*IConnector,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IConnector,
                 ppConTo: ?*?*IConnector,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetConnectorIdConnectedTo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IConnector,
                 ppwstrConnectorId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IConnector,
                 ppwstrConnectorId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDeviceIdConnectedTo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IConnector,
                 ppwstrDeviceId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IConnector,
                 ppwstrDeviceId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConnector_GetType(self: *const T, pType: ?*ConnectorType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IConnector.VTable, self.vtable).GetType(@ptrCast(*const IConnector, self), pType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConnector_GetDataFlow(self: *const T, pFlow: ?*DataFlow) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IConnector.VTable, self.vtable).GetDataFlow(@ptrCast(*const IConnector, self), pFlow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConnector_ConnectTo(self: *const T, pConnectTo: ?*IConnector) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IConnector.VTable, self.vtable).ConnectTo(@ptrCast(*const IConnector, self), pConnectTo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConnector_Disconnect(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IConnector.VTable, self.vtable).Disconnect(@ptrCast(*const IConnector, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConnector_IsConnected(self: *const T, pbConnected: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IConnector.VTable, self.vtable).IsConnected(@ptrCast(*const IConnector, self), pbConnected);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConnector_GetConnectedTo(self: *const T, ppConTo: ?*?*IConnector) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IConnector.VTable, self.vtable).GetConnectedTo(@ptrCast(*const IConnector, self), ppConTo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConnector_GetConnectorIdConnectedTo(self: *const T, ppwstrConnectorId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IConnector.VTable, self.vtable).GetConnectorIdConnectedTo(@ptrCast(*const IConnector, self), ppwstrConnectorId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConnector_GetDeviceIdConnectedTo(self: *const T, ppwstrDeviceId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IConnector.VTable, self.vtable).GetDeviceIdConnectedTo(@ptrCast(*const IConnector, self), ppwstrDeviceId);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IConnector_GetType(self: *const T, pType: ?*ConnectorType) HRESULT {
+                return @ptrCast(*const IConnector.VTable, self.vtable).GetType(@ptrCast(*const IConnector, self), pType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IConnector_GetDataFlow(self: *const T, pFlow: ?*DataFlow) HRESULT {
+                return @ptrCast(*const IConnector.VTable, self.vtable).GetDataFlow(@ptrCast(*const IConnector, self), pFlow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IConnector_ConnectTo(self: *const T, pConnectTo: ?*IConnector) HRESULT {
+                return @ptrCast(*const IConnector.VTable, self.vtable).ConnectTo(@ptrCast(*const IConnector, self), pConnectTo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IConnector_Disconnect(self: *const T) HRESULT {
+                return @ptrCast(*const IConnector.VTable, self.vtable).Disconnect(@ptrCast(*const IConnector, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IConnector_IsConnected(self: *const T, pbConnected: ?*BOOL) HRESULT {
+                return @ptrCast(*const IConnector.VTable, self.vtable).IsConnected(@ptrCast(*const IConnector, self), pbConnected);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IConnector_GetConnectedTo(self: *const T, ppConTo: ?*?*IConnector) HRESULT {
+                return @ptrCast(*const IConnector.VTable, self.vtable).GetConnectedTo(@ptrCast(*const IConnector, self), ppConTo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IConnector_GetConnectorIdConnectedTo(self: *const T, ppwstrConnectorId: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IConnector.VTable, self.vtable).GetConnectorIdConnectedTo(@ptrCast(*const IConnector, self), ppwstrConnectorId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IConnector_GetDeviceIdConnectedTo(self: *const T, ppwstrDeviceId: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IConnector.VTable, self.vtable).GetDeviceIdConnectedTo(@ptrCast(*const IConnector, self), ppwstrDeviceId);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4911,9 +4970,11 @@ pub const ISubunit = extern struct {
         base: IUnknown.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4924,38 +4985,40 @@ pub const IControlInterface = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IControlInterface,
                 ppwstrName: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IControlInterface,
                 ppwstrName: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetIID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IControlInterface,
                 pIID: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IControlInterface,
                 pIID: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IControlInterface_GetName(self: *const T, ppwstrName: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IControlInterface.VTable, self.vtable).GetName(@ptrCast(*const IControlInterface, self), ppwstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IControlInterface_GetIID(self: *const T, pIID: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IControlInterface.VTable, self.vtable).GetIID(@ptrCast(*const IControlInterface, self), pIID);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IControlInterface_GetName(self: *const T, ppwstrName: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IControlInterface.VTable, self.vtable).GetName(@ptrCast(*const IControlInterface, self), ppwstrName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IControlInterface_GetIID(self: *const T, pIID: ?*Guid) HRESULT {
+                return @ptrCast(*const IControlInterface.VTable, self.vtable).GetIID(@ptrCast(*const IControlInterface, self), pIID);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4966,12 +5029,12 @@ pub const IControlChangeNotify = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnNotify: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IControlChangeNotify,
                 dwSenderProcessId: u32,
                 pguidEventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IControlChangeNotify,
                 dwSenderProcessId: u32,
                 pguidEventContext: ?*const Guid,
@@ -4979,13 +5042,15 @@ pub const IControlChangeNotify = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IControlChangeNotify_OnNotify(self: *const T, dwSenderProcessId: u32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IControlChangeNotify.VTable, self.vtable).OnNotify(@ptrCast(*const IControlChangeNotify, self), dwSenderProcessId, pguidEventContext);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IControlChangeNotify_OnNotify(self: *const T, dwSenderProcessId: u32, pguidEventContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const IControlChangeNotify.VTable, self.vtable).OnNotify(@ptrCast(*const IControlChangeNotify, self), dwSenderProcessId, pguidEventContext);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4996,80 +5061,80 @@ pub const IDeviceTopology = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetConnectorCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDeviceTopology,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDeviceTopology,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetConnector: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDeviceTopology,
                 nIndex: u32,
                 ppConnector: ?*?*IConnector,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDeviceTopology,
                 nIndex: u32,
                 ppConnector: ?*?*IConnector,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSubunitCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDeviceTopology,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDeviceTopology,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSubunit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDeviceTopology,
                 nIndex: u32,
                 ppSubunit: ?*?*ISubunit,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDeviceTopology,
                 nIndex: u32,
                 ppSubunit: ?*?*ISubunit,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPartById: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDeviceTopology,
                 nId: u32,
                 ppPart: ?*?*IPart,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDeviceTopology,
                 nId: u32,
                 ppPart: ?*?*IPart,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDeviceId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDeviceTopology,
                 ppwstrDeviceId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDeviceTopology,
                 ppwstrDeviceId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSignalPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDeviceTopology,
                 pIPartFrom: ?*IPart,
                 pIPartTo: ?*IPart,
                 bRejectMixedPaths: BOOL,
                 ppParts: ?*?*IPartsList,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDeviceTopology,
                 pIPartFrom: ?*IPart,
                 pIPartTo: ?*IPart,
@@ -5079,37 +5144,39 @@ pub const IDeviceTopology = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceTopology_GetConnectorCount(self: *const T, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDeviceTopology.VTable, self.vtable).GetConnectorCount(@ptrCast(*const IDeviceTopology, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceTopology_GetConnector(self: *const T, nIndex: u32, ppConnector: ?*?*IConnector) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDeviceTopology.VTable, self.vtable).GetConnector(@ptrCast(*const IDeviceTopology, self), nIndex, ppConnector);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceTopology_GetSubunitCount(self: *const T, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDeviceTopology.VTable, self.vtable).GetSubunitCount(@ptrCast(*const IDeviceTopology, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceTopology_GetSubunit(self: *const T, nIndex: u32, ppSubunit: ?*?*ISubunit) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDeviceTopology.VTable, self.vtable).GetSubunit(@ptrCast(*const IDeviceTopology, self), nIndex, ppSubunit);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceTopology_GetPartById(self: *const T, nId: u32, ppPart: ?*?*IPart) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDeviceTopology.VTable, self.vtable).GetPartById(@ptrCast(*const IDeviceTopology, self), nId, ppPart);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceTopology_GetDeviceId(self: *const T, ppwstrDeviceId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDeviceTopology.VTable, self.vtable).GetDeviceId(@ptrCast(*const IDeviceTopology, self), ppwstrDeviceId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceTopology_GetSignalPath(self: *const T, pIPartFrom: ?*IPart, pIPartTo: ?*IPart, bRejectMixedPaths: BOOL, ppParts: ?*?*IPartsList) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDeviceTopology.VTable, self.vtable).GetSignalPath(@ptrCast(*const IDeviceTopology, self), pIPartFrom, pIPartTo, bRejectMixedPaths, ppParts);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDeviceTopology_GetConnectorCount(self: *const T, pCount: ?*u32) HRESULT {
+                return @ptrCast(*const IDeviceTopology.VTable, self.vtable).GetConnectorCount(@ptrCast(*const IDeviceTopology, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDeviceTopology_GetConnector(self: *const T, nIndex: u32, ppConnector: ?*?*IConnector) HRESULT {
+                return @ptrCast(*const IDeviceTopology.VTable, self.vtable).GetConnector(@ptrCast(*const IDeviceTopology, self), nIndex, ppConnector);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDeviceTopology_GetSubunitCount(self: *const T, pCount: ?*u32) HRESULT {
+                return @ptrCast(*const IDeviceTopology.VTable, self.vtable).GetSubunitCount(@ptrCast(*const IDeviceTopology, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDeviceTopology_GetSubunit(self: *const T, nIndex: u32, ppSubunit: ?*?*ISubunit) HRESULT {
+                return @ptrCast(*const IDeviceTopology.VTable, self.vtable).GetSubunit(@ptrCast(*const IDeviceTopology, self), nIndex, ppSubunit);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDeviceTopology_GetPartById(self: *const T, nId: u32, ppPart: ?*?*IPart) HRESULT {
+                return @ptrCast(*const IDeviceTopology.VTable, self.vtable).GetPartById(@ptrCast(*const IDeviceTopology, self), nId, ppPart);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDeviceTopology_GetDeviceId(self: *const T, ppwstrDeviceId: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IDeviceTopology.VTable, self.vtable).GetDeviceId(@ptrCast(*const IDeviceTopology, self), ppwstrDeviceId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDeviceTopology_GetSignalPath(self: *const T, pIPartFrom: ?*IPart, pIPartTo: ?*IPart, bRejectMixedPaths: BOOL, ppParts: ?*?*IPartsList) HRESULT {
+                return @ptrCast(*const IDeviceTopology.VTable, self.vtable).GetSignalPath(@ptrCast(*const IDeviceTopology, self), pIPartFrom, pIPartTo, bRejectMixedPaths, ppParts);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5135,37 +5202,37 @@ pub const IAudioSessionEvents = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnDisplayNameChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionEvents,
                 NewDisplayName: ?[*:0]const u16,
                 EventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionEvents,
                 NewDisplayName: ?[*:0]const u16,
                 EventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnIconPathChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionEvents,
                 NewIconPath: ?[*:0]const u16,
                 EventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionEvents,
                 NewIconPath: ?[*:0]const u16,
                 EventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnSimpleVolumeChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionEvents,
                 NewVolume: f32,
                 NewMute: BOOL,
                 EventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionEvents,
                 NewVolume: f32,
                 NewMute: BOOL,
@@ -5173,14 +5240,14 @@ pub const IAudioSessionEvents = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnChannelVolumeChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionEvents,
                 ChannelCount: u32,
                 NewChannelVolumeArray: [*]f32,
                 ChangedChannel: u32,
                 EventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionEvents,
                 ChannelCount: u32,
                 NewChannelVolumeArray: [*]f32,
@@ -5189,70 +5256,72 @@ pub const IAudioSessionEvents = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnGroupingParamChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionEvents,
                 NewGroupingParam: ?*const Guid,
                 EventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionEvents,
                 NewGroupingParam: ?*const Guid,
                 EventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnStateChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionEvents,
                 NewState: AudioSessionState,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionEvents,
                 NewState: AudioSessionState,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnSessionDisconnected: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionEvents,
                 DisconnectReason: AudioSessionDisconnectReason,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionEvents,
                 DisconnectReason: AudioSessionDisconnectReason,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionEvents_OnDisplayNameChanged(self: *const T, NewDisplayName: ?[*:0]const u16, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionEvents.VTable, self.vtable).OnDisplayNameChanged(@ptrCast(*const IAudioSessionEvents, self), NewDisplayName, EventContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionEvents_OnIconPathChanged(self: *const T, NewIconPath: ?[*:0]const u16, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionEvents.VTable, self.vtable).OnIconPathChanged(@ptrCast(*const IAudioSessionEvents, self), NewIconPath, EventContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionEvents_OnSimpleVolumeChanged(self: *const T, NewVolume: f32, NewMute: BOOL, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionEvents.VTable, self.vtable).OnSimpleVolumeChanged(@ptrCast(*const IAudioSessionEvents, self), NewVolume, NewMute, EventContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionEvents_OnChannelVolumeChanged(self: *const T, ChannelCount: u32, NewChannelVolumeArray: [*]f32, ChangedChannel: u32, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionEvents.VTable, self.vtable).OnChannelVolumeChanged(@ptrCast(*const IAudioSessionEvents, self), ChannelCount, NewChannelVolumeArray, ChangedChannel, EventContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionEvents_OnGroupingParamChanged(self: *const T, NewGroupingParam: ?*const Guid, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionEvents.VTable, self.vtable).OnGroupingParamChanged(@ptrCast(*const IAudioSessionEvents, self), NewGroupingParam, EventContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionEvents_OnStateChanged(self: *const T, NewState: AudioSessionState) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionEvents.VTable, self.vtable).OnStateChanged(@ptrCast(*const IAudioSessionEvents, self), NewState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionEvents_OnSessionDisconnected(self: *const T, DisconnectReason: AudioSessionDisconnectReason) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionEvents.VTable, self.vtable).OnSessionDisconnected(@ptrCast(*const IAudioSessionEvents, self), DisconnectReason);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionEvents_OnDisplayNameChanged(self: *const T, NewDisplayName: ?[*:0]const u16, EventContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const IAudioSessionEvents.VTable, self.vtable).OnDisplayNameChanged(@ptrCast(*const IAudioSessionEvents, self), NewDisplayName, EventContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionEvents_OnIconPathChanged(self: *const T, NewIconPath: ?[*:0]const u16, EventContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const IAudioSessionEvents.VTable, self.vtable).OnIconPathChanged(@ptrCast(*const IAudioSessionEvents, self), NewIconPath, EventContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionEvents_OnSimpleVolumeChanged(self: *const T, NewVolume: f32, NewMute: BOOL, EventContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const IAudioSessionEvents.VTable, self.vtable).OnSimpleVolumeChanged(@ptrCast(*const IAudioSessionEvents, self), NewVolume, NewMute, EventContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionEvents_OnChannelVolumeChanged(self: *const T, ChannelCount: u32, NewChannelVolumeArray: [*]f32, ChangedChannel: u32, EventContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const IAudioSessionEvents.VTable, self.vtable).OnChannelVolumeChanged(@ptrCast(*const IAudioSessionEvents, self), ChannelCount, NewChannelVolumeArray, ChangedChannel, EventContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionEvents_OnGroupingParamChanged(self: *const T, NewGroupingParam: ?*const Guid, EventContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const IAudioSessionEvents.VTable, self.vtable).OnGroupingParamChanged(@ptrCast(*const IAudioSessionEvents, self), NewGroupingParam, EventContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionEvents_OnStateChanged(self: *const T, NewState: AudioSessionState) HRESULT {
+                return @ptrCast(*const IAudioSessionEvents.VTable, self.vtable).OnStateChanged(@ptrCast(*const IAudioSessionEvents, self), NewState);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionEvents_OnSessionDisconnected(self: *const T, DisconnectReason: AudioSessionDisconnectReason) HRESULT {
+                return @ptrCast(*const IAudioSessionEvents.VTable, self.vtable).OnSessionDisconnected(@ptrCast(*const IAudioSessionEvents, self), DisconnectReason);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5263,142 +5332,144 @@ pub const IAudioSessionControl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionControl,
                 pRetVal: ?*AudioSessionState,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionControl,
                 pRetVal: ?*AudioSessionState,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDisplayName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionControl,
                 pRetVal: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionControl,
                 pRetVal: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetDisplayName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionControl,
                 Value: ?[*:0]const u16,
                 EventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionControl,
                 Value: ?[*:0]const u16,
                 EventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetIconPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionControl,
                 pRetVal: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionControl,
                 pRetVal: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetIconPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionControl,
                 Value: ?[*:0]const u16,
                 EventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionControl,
                 Value: ?[*:0]const u16,
                 EventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetGroupingParam: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionControl,
                 pRetVal: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionControl,
                 pRetVal: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetGroupingParam: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionControl,
                 Override: ?*const Guid,
                 EventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionControl,
                 Override: ?*const Guid,
                 EventContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RegisterAudioSessionNotification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionControl,
                 NewNotifications: ?*IAudioSessionEvents,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionControl,
                 NewNotifications: ?*IAudioSessionEvents,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         UnregisterAudioSessionNotification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionControl,
                 NewNotifications: ?*IAudioSessionEvents,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionControl,
                 NewNotifications: ?*IAudioSessionEvents,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionControl_GetState(self: *const T, pRetVal: ?*AudioSessionState) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionControl.VTable, self.vtable).GetState(@ptrCast(*const IAudioSessionControl, self), pRetVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionControl_GetDisplayName(self: *const T, pRetVal: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionControl.VTable, self.vtable).GetDisplayName(@ptrCast(*const IAudioSessionControl, self), pRetVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionControl_SetDisplayName(self: *const T, Value: ?[*:0]const u16, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionControl.VTable, self.vtable).SetDisplayName(@ptrCast(*const IAudioSessionControl, self), Value, EventContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionControl_GetIconPath(self: *const T, pRetVal: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionControl.VTable, self.vtable).GetIconPath(@ptrCast(*const IAudioSessionControl, self), pRetVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionControl_SetIconPath(self: *const T, Value: ?[*:0]const u16, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionControl.VTable, self.vtable).SetIconPath(@ptrCast(*const IAudioSessionControl, self), Value, EventContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionControl_GetGroupingParam(self: *const T, pRetVal: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionControl.VTable, self.vtable).GetGroupingParam(@ptrCast(*const IAudioSessionControl, self), pRetVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionControl_SetGroupingParam(self: *const T, Override: ?*const Guid, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionControl.VTable, self.vtable).SetGroupingParam(@ptrCast(*const IAudioSessionControl, self), Override, EventContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionControl_RegisterAudioSessionNotification(self: *const T, NewNotifications: ?*IAudioSessionEvents) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionControl.VTable, self.vtable).RegisterAudioSessionNotification(@ptrCast(*const IAudioSessionControl, self), NewNotifications);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionControl_UnregisterAudioSessionNotification(self: *const T, NewNotifications: ?*IAudioSessionEvents) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionControl.VTable, self.vtable).UnregisterAudioSessionNotification(@ptrCast(*const IAudioSessionControl, self), NewNotifications);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionControl_GetState(self: *const T, pRetVal: ?*AudioSessionState) HRESULT {
+                return @ptrCast(*const IAudioSessionControl.VTable, self.vtable).GetState(@ptrCast(*const IAudioSessionControl, self), pRetVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionControl_GetDisplayName(self: *const T, pRetVal: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IAudioSessionControl.VTable, self.vtable).GetDisplayName(@ptrCast(*const IAudioSessionControl, self), pRetVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionControl_SetDisplayName(self: *const T, Value: ?[*:0]const u16, EventContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const IAudioSessionControl.VTable, self.vtable).SetDisplayName(@ptrCast(*const IAudioSessionControl, self), Value, EventContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionControl_GetIconPath(self: *const T, pRetVal: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IAudioSessionControl.VTable, self.vtable).GetIconPath(@ptrCast(*const IAudioSessionControl, self), pRetVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionControl_SetIconPath(self: *const T, Value: ?[*:0]const u16, EventContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const IAudioSessionControl.VTable, self.vtable).SetIconPath(@ptrCast(*const IAudioSessionControl, self), Value, EventContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionControl_GetGroupingParam(self: *const T, pRetVal: ?*Guid) HRESULT {
+                return @ptrCast(*const IAudioSessionControl.VTable, self.vtable).GetGroupingParam(@ptrCast(*const IAudioSessionControl, self), pRetVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionControl_SetGroupingParam(self: *const T, Override: ?*const Guid, EventContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const IAudioSessionControl.VTable, self.vtable).SetGroupingParam(@ptrCast(*const IAudioSessionControl, self), Override, EventContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionControl_RegisterAudioSessionNotification(self: *const T, NewNotifications: ?*IAudioSessionEvents) HRESULT {
+                return @ptrCast(*const IAudioSessionControl.VTable, self.vtable).RegisterAudioSessionNotification(@ptrCast(*const IAudioSessionControl, self), NewNotifications);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionControl_UnregisterAudioSessionNotification(self: *const T, NewNotifications: ?*IAudioSessionEvents) HRESULT {
+                return @ptrCast(*const IAudioSessionControl.VTable, self.vtable).UnregisterAudioSessionNotification(@ptrCast(*const IAudioSessionControl, self), NewNotifications);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5409,78 +5480,80 @@ pub const IAudioSessionControl2 = extern struct {
     pub const VTable = extern struct {
         base: IAudioSessionControl.VTable,
         GetSessionIdentifier: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionControl2,
                 pRetVal: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionControl2,
                 pRetVal: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSessionInstanceIdentifier: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionControl2,
                 pRetVal: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionControl2,
                 pRetVal: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetProcessId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionControl2,
                 pRetVal: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionControl2,
                 pRetVal: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         IsSystemSoundsSession: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionControl2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionControl2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetDuckingPreference: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionControl2,
                 optOut: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionControl2,
                 optOut: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IAudioSessionControl.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionControl2_GetSessionIdentifier(self: *const T, pRetVal: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionControl2.VTable, self.vtable).GetSessionIdentifier(@ptrCast(*const IAudioSessionControl2, self), pRetVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionControl2_GetSessionInstanceIdentifier(self: *const T, pRetVal: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionControl2.VTable, self.vtable).GetSessionInstanceIdentifier(@ptrCast(*const IAudioSessionControl2, self), pRetVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionControl2_GetProcessId(self: *const T, pRetVal: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionControl2.VTable, self.vtable).GetProcessId(@ptrCast(*const IAudioSessionControl2, self), pRetVal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionControl2_IsSystemSoundsSession(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionControl2.VTable, self.vtable).IsSystemSoundsSession(@ptrCast(*const IAudioSessionControl2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionControl2_SetDuckingPreference(self: *const T, optOut: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionControl2.VTable, self.vtable).SetDuckingPreference(@ptrCast(*const IAudioSessionControl2, self), optOut);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IAudioSessionControl.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionControl2_GetSessionIdentifier(self: *const T, pRetVal: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IAudioSessionControl2.VTable, self.vtable).GetSessionIdentifier(@ptrCast(*const IAudioSessionControl2, self), pRetVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionControl2_GetSessionInstanceIdentifier(self: *const T, pRetVal: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IAudioSessionControl2.VTable, self.vtable).GetSessionInstanceIdentifier(@ptrCast(*const IAudioSessionControl2, self), pRetVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionControl2_GetProcessId(self: *const T, pRetVal: ?*u32) HRESULT {
+                return @ptrCast(*const IAudioSessionControl2.VTable, self.vtable).GetProcessId(@ptrCast(*const IAudioSessionControl2, self), pRetVal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionControl2_IsSystemSoundsSession(self: *const T) HRESULT {
+                return @ptrCast(*const IAudioSessionControl2.VTable, self.vtable).IsSystemSoundsSession(@ptrCast(*const IAudioSessionControl2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionControl2_SetDuckingPreference(self: *const T, optOut: BOOL) HRESULT {
+                return @ptrCast(*const IAudioSessionControl2.VTable, self.vtable).SetDuckingPreference(@ptrCast(*const IAudioSessionControl2, self), optOut);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5491,13 +5564,13 @@ pub const IAudioSessionManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetAudioSessionControl: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionManager,
                 AudioSessionGuid: ?*const Guid,
                 StreamFlags: u32,
                 SessionControl: ?*?*IAudioSessionControl,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionManager,
                 AudioSessionGuid: ?*const Guid,
                 StreamFlags: u32,
@@ -5505,13 +5578,13 @@ pub const IAudioSessionManager = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSimpleAudioVolume: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionManager,
                 AudioSessionGuid: ?*const Guid,
                 StreamFlags: u32,
                 AudioVolume: ?*?*ISimpleAudioVolume,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionManager,
                 AudioSessionGuid: ?*const Guid,
                 StreamFlags: u32,
@@ -5520,17 +5593,19 @@ pub const IAudioSessionManager = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionManager_GetAudioSessionControl(self: *const T, AudioSessionGuid: ?*const Guid, StreamFlags: u32, SessionControl: ?*?*IAudioSessionControl) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionManager.VTable, self.vtable).GetAudioSessionControl(@ptrCast(*const IAudioSessionManager, self), AudioSessionGuid, StreamFlags, SessionControl);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionManager_GetSimpleAudioVolume(self: *const T, AudioSessionGuid: ?*const Guid, StreamFlags: u32, AudioVolume: ?*?*ISimpleAudioVolume) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionManager.VTable, self.vtable).GetSimpleAudioVolume(@ptrCast(*const IAudioSessionManager, self), AudioSessionGuid, StreamFlags, AudioVolume);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionManager_GetAudioSessionControl(self: *const T, AudioSessionGuid: ?*const Guid, StreamFlags: u32, SessionControl: ?*?*IAudioSessionControl) HRESULT {
+                return @ptrCast(*const IAudioSessionManager.VTable, self.vtable).GetAudioSessionControl(@ptrCast(*const IAudioSessionManager, self), AudioSessionGuid, StreamFlags, SessionControl);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionManager_GetSimpleAudioVolume(self: *const T, AudioSessionGuid: ?*const Guid, StreamFlags: u32, AudioVolume: ?*?*ISimpleAudioVolume) HRESULT {
+                return @ptrCast(*const IAudioSessionManager.VTable, self.vtable).GetSimpleAudioVolume(@ptrCast(*const IAudioSessionManager, self), AudioSessionGuid, StreamFlags, AudioVolume);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5541,40 +5616,42 @@ pub const IAudioVolumeDuckNotification = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnVolumeDuckNotification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioVolumeDuckNotification,
                 sessionID: ?[*:0]const u16,
                 countCommunicationSessions: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioVolumeDuckNotification,
                 sessionID: ?[*:0]const u16,
                 countCommunicationSessions: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnVolumeUnduckNotification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioVolumeDuckNotification,
                 sessionID: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioVolumeDuckNotification,
                 sessionID: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioVolumeDuckNotification_OnVolumeDuckNotification(self: *const T, sessionID: ?[*:0]const u16, countCommunicationSessions: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioVolumeDuckNotification.VTable, self.vtable).OnVolumeDuckNotification(@ptrCast(*const IAudioVolumeDuckNotification, self), sessionID, countCommunicationSessions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioVolumeDuckNotification_OnVolumeUnduckNotification(self: *const T, sessionID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioVolumeDuckNotification.VTable, self.vtable).OnVolumeUnduckNotification(@ptrCast(*const IAudioVolumeDuckNotification, self), sessionID);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioVolumeDuckNotification_OnVolumeDuckNotification(self: *const T, sessionID: ?[*:0]const u16, countCommunicationSessions: u32) HRESULT {
+                return @ptrCast(*const IAudioVolumeDuckNotification.VTable, self.vtable).OnVolumeDuckNotification(@ptrCast(*const IAudioVolumeDuckNotification, self), sessionID, countCommunicationSessions);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioVolumeDuckNotification_OnVolumeUnduckNotification(self: *const T, sessionID: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IAudioVolumeDuckNotification.VTable, self.vtable).OnVolumeUnduckNotification(@ptrCast(*const IAudioVolumeDuckNotification, self), sessionID);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5585,24 +5662,26 @@ pub const IAudioSessionNotification = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnSessionCreated: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionNotification,
                 NewSession: ?*IAudioSessionControl,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionNotification,
                 NewSession: ?*IAudioSessionControl,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionNotification_OnSessionCreated(self: *const T, NewSession: ?*IAudioSessionControl) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionNotification.VTable, self.vtable).OnSessionCreated(@ptrCast(*const IAudioSessionNotification, self), NewSession);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionNotification_OnSessionCreated(self: *const T, NewSession: ?*IAudioSessionControl) HRESULT {
+                return @ptrCast(*const IAudioSessionNotification.VTable, self.vtable).OnSessionCreated(@ptrCast(*const IAudioSessionNotification, self), NewSession);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5613,22 +5692,22 @@ pub const IAudioSessionEnumerator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionEnumerator,
                 SessionCount: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionEnumerator,
                 SessionCount: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSession: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionEnumerator,
                 SessionCount: i32,
                 Session: ?*?*IAudioSessionControl,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionEnumerator,
                 SessionCount: i32,
                 Session: ?*?*IAudioSessionControl,
@@ -5636,17 +5715,19 @@ pub const IAudioSessionEnumerator = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionEnumerator_GetCount(self: *const T, SessionCount: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionEnumerator.VTable, self.vtable).GetCount(@ptrCast(*const IAudioSessionEnumerator, self), SessionCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionEnumerator_GetSession(self: *const T, SessionCount: i32, Session: ?*?*IAudioSessionControl) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionEnumerator.VTable, self.vtable).GetSession(@ptrCast(*const IAudioSessionEnumerator, self), SessionCount, Session);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionEnumerator_GetCount(self: *const T, SessionCount: ?*i32) HRESULT {
+                return @ptrCast(*const IAudioSessionEnumerator.VTable, self.vtable).GetCount(@ptrCast(*const IAudioSessionEnumerator, self), SessionCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionEnumerator_GetSession(self: *const T, SessionCount: i32, Session: ?*?*IAudioSessionControl) HRESULT {
+                return @ptrCast(*const IAudioSessionEnumerator.VTable, self.vtable).GetSession(@ptrCast(*const IAudioSessionEnumerator, self), SessionCount, Session);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5657,82 +5738,84 @@ pub const IAudioSessionManager2 = extern struct {
     pub const VTable = extern struct {
         base: IAudioSessionManager.VTable,
         GetSessionEnumerator: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionManager2,
                 SessionEnum: ?*?*IAudioSessionEnumerator,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionManager2,
                 SessionEnum: ?*?*IAudioSessionEnumerator,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RegisterSessionNotification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionManager2,
                 SessionNotification: ?*IAudioSessionNotification,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionManager2,
                 SessionNotification: ?*IAudioSessionNotification,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         UnregisterSessionNotification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionManager2,
                 SessionNotification: ?*IAudioSessionNotification,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionManager2,
                 SessionNotification: ?*IAudioSessionNotification,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RegisterDuckNotification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionManager2,
                 sessionID: ?[*:0]const u16,
                 duckNotification: ?*IAudioVolumeDuckNotification,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionManager2,
                 sessionID: ?[*:0]const u16,
                 duckNotification: ?*IAudioVolumeDuckNotification,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         UnregisterDuckNotification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioSessionManager2,
                 duckNotification: ?*IAudioVolumeDuckNotification,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioSessionManager2,
                 duckNotification: ?*IAudioVolumeDuckNotification,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IAudioSessionManager.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionManager2_GetSessionEnumerator(self: *const T, SessionEnum: ?*?*IAudioSessionEnumerator) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionManager2.VTable, self.vtable).GetSessionEnumerator(@ptrCast(*const IAudioSessionManager2, self), SessionEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionManager2_RegisterSessionNotification(self: *const T, SessionNotification: ?*IAudioSessionNotification) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionManager2.VTable, self.vtable).RegisterSessionNotification(@ptrCast(*const IAudioSessionManager2, self), SessionNotification);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionManager2_UnregisterSessionNotification(self: *const T, SessionNotification: ?*IAudioSessionNotification) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionManager2.VTable, self.vtable).UnregisterSessionNotification(@ptrCast(*const IAudioSessionManager2, self), SessionNotification);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionManager2_RegisterDuckNotification(self: *const T, sessionID: ?[*:0]const u16, duckNotification: ?*IAudioVolumeDuckNotification) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionManager2.VTable, self.vtable).RegisterDuckNotification(@ptrCast(*const IAudioSessionManager2, self), sessionID, duckNotification);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioSessionManager2_UnregisterDuckNotification(self: *const T, duckNotification: ?*IAudioVolumeDuckNotification) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioSessionManager2.VTable, self.vtable).UnregisterDuckNotification(@ptrCast(*const IAudioSessionManager2, self), duckNotification);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IAudioSessionManager.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionManager2_GetSessionEnumerator(self: *const T, SessionEnum: ?*?*IAudioSessionEnumerator) HRESULT {
+                return @ptrCast(*const IAudioSessionManager2.VTable, self.vtable).GetSessionEnumerator(@ptrCast(*const IAudioSessionManager2, self), SessionEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionManager2_RegisterSessionNotification(self: *const T, SessionNotification: ?*IAudioSessionNotification) HRESULT {
+                return @ptrCast(*const IAudioSessionManager2.VTable, self.vtable).RegisterSessionNotification(@ptrCast(*const IAudioSessionManager2, self), SessionNotification);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionManager2_UnregisterSessionNotification(self: *const T, SessionNotification: ?*IAudioSessionNotification) HRESULT {
+                return @ptrCast(*const IAudioSessionManager2.VTable, self.vtable).UnregisterSessionNotification(@ptrCast(*const IAudioSessionManager2, self), SessionNotification);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionManager2_RegisterDuckNotification(self: *const T, sessionID: ?[*:0]const u16, duckNotification: ?*IAudioVolumeDuckNotification) HRESULT {
+                return @ptrCast(*const IAudioSessionManager2.VTable, self.vtable).RegisterDuckNotification(@ptrCast(*const IAudioSessionManager2, self), sessionID, duckNotification);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioSessionManager2_UnregisterDuckNotification(self: *const T, duckNotification: ?*IAudioVolumeDuckNotification) HRESULT {
+                return @ptrCast(*const IAudioSessionManager2.VTable, self.vtable).UnregisterDuckNotification(@ptrCast(*const IAudioSessionManager2, self), duckNotification);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5797,80 +5880,82 @@ pub const ISpatialAudioMetadataItems = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetFrameCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioMetadataItems,
                 frameCount: ?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioMetadataItems,
                 frameCount: ?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetItemCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioMetadataItems,
                 itemCount: ?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioMetadataItems,
                 itemCount: ?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetMaxItemCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioMetadataItems,
                 maxItemCount: ?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioMetadataItems,
                 maxItemCount: ?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetMaxValueBufferLength: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioMetadataItems,
                 maxValueBufferLength: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioMetadataItems,
                 maxValueBufferLength: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioMetadataItems,
                 info: ?*SpatialAudioMetadataItemsInfo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioMetadataItems,
                 info: ?*SpatialAudioMetadataItemsInfo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataItems_GetFrameCount(self: *const T, frameCount: ?*u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioMetadataItems.VTable, self.vtable).GetFrameCount(@ptrCast(*const ISpatialAudioMetadataItems, self), frameCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataItems_GetItemCount(self: *const T, itemCount: ?*u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioMetadataItems.VTable, self.vtable).GetItemCount(@ptrCast(*const ISpatialAudioMetadataItems, self), itemCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataItems_GetMaxItemCount(self: *const T, maxItemCount: ?*u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioMetadataItems.VTable, self.vtable).GetMaxItemCount(@ptrCast(*const ISpatialAudioMetadataItems, self), maxItemCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataItems_GetMaxValueBufferLength(self: *const T, maxValueBufferLength: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioMetadataItems.VTable, self.vtable).GetMaxValueBufferLength(@ptrCast(*const ISpatialAudioMetadataItems, self), maxValueBufferLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataItems_GetInfo(self: *const T, info: ?*SpatialAudioMetadataItemsInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioMetadataItems.VTable, self.vtable).GetInfo(@ptrCast(*const ISpatialAudioMetadataItems, self), info);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioMetadataItems_GetFrameCount(self: *const T, frameCount: ?*u16) HRESULT {
+                return @ptrCast(*const ISpatialAudioMetadataItems.VTable, self.vtable).GetFrameCount(@ptrCast(*const ISpatialAudioMetadataItems, self), frameCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioMetadataItems_GetItemCount(self: *const T, itemCount: ?*u16) HRESULT {
+                return @ptrCast(*const ISpatialAudioMetadataItems.VTable, self.vtable).GetItemCount(@ptrCast(*const ISpatialAudioMetadataItems, self), itemCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioMetadataItems_GetMaxItemCount(self: *const T, maxItemCount: ?*u16) HRESULT {
+                return @ptrCast(*const ISpatialAudioMetadataItems.VTable, self.vtable).GetMaxItemCount(@ptrCast(*const ISpatialAudioMetadataItems, self), maxItemCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioMetadataItems_GetMaxValueBufferLength(self: *const T, maxValueBufferLength: ?*u32) HRESULT {
+                return @ptrCast(*const ISpatialAudioMetadataItems.VTable, self.vtable).GetMaxValueBufferLength(@ptrCast(*const ISpatialAudioMetadataItems, self), maxValueBufferLength);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioMetadataItems_GetInfo(self: *const T, info: ?*SpatialAudioMetadataItemsInfo) HRESULT {
+                return @ptrCast(*const ISpatialAudioMetadataItems.VTable, self.vtable).GetInfo(@ptrCast(*const ISpatialAudioMetadataItems, self), info);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5881,34 +5966,34 @@ pub const ISpatialAudioMetadataWriter = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Open: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioMetadataWriter,
                 metadataItems: ?*ISpatialAudioMetadataItems,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioMetadataWriter,
                 metadataItems: ?*ISpatialAudioMetadataItems,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         WriteNextItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioMetadataWriter,
                 frameOffset: u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioMetadataWriter,
                 frameOffset: u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         WriteNextItemCommand: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioMetadataWriter,
                 commandID: u8,
                 // TODO: what to do with BytesParamIndex 2?
                 valueBuffer: ?*const anyopaque,
                 valueBufferLength: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioMetadataWriter,
                 commandID: u8,
                 // TODO: what to do with BytesParamIndex 2?
@@ -5917,34 +6002,36 @@ pub const ISpatialAudioMetadataWriter = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Close: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioMetadataWriter,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioMetadataWriter,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataWriter_Open(self: *const T, metadataItems: ?*ISpatialAudioMetadataItems) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioMetadataWriter.VTable, self.vtable).Open(@ptrCast(*const ISpatialAudioMetadataWriter, self), metadataItems);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataWriter_WriteNextItem(self: *const T, frameOffset: u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioMetadataWriter.VTable, self.vtable).WriteNextItem(@ptrCast(*const ISpatialAudioMetadataWriter, self), frameOffset);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataWriter_WriteNextItemCommand(self: *const T, commandID: u8, valueBuffer: ?*const anyopaque, valueBufferLength: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioMetadataWriter.VTable, self.vtable).WriteNextItemCommand(@ptrCast(*const ISpatialAudioMetadataWriter, self), commandID, valueBuffer, valueBufferLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataWriter_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioMetadataWriter.VTable, self.vtable).Close(@ptrCast(*const ISpatialAudioMetadataWriter, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioMetadataWriter_Open(self: *const T, metadataItems: ?*ISpatialAudioMetadataItems) HRESULT {
+                return @ptrCast(*const ISpatialAudioMetadataWriter.VTable, self.vtable).Open(@ptrCast(*const ISpatialAudioMetadataWriter, self), metadataItems);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioMetadataWriter_WriteNextItem(self: *const T, frameOffset: u16) HRESULT {
+                return @ptrCast(*const ISpatialAudioMetadataWriter.VTable, self.vtable).WriteNextItem(@ptrCast(*const ISpatialAudioMetadataWriter, self), frameOffset);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioMetadataWriter_WriteNextItemCommand(self: *const T, commandID: u8, valueBuffer: ?*const anyopaque, valueBufferLength: u32) HRESULT {
+                return @ptrCast(*const ISpatialAudioMetadataWriter.VTable, self.vtable).WriteNextItemCommand(@ptrCast(*const ISpatialAudioMetadataWriter, self), commandID, valueBuffer, valueBufferLength);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioMetadataWriter_Close(self: *const T) HRESULT {
+                return @ptrCast(*const ISpatialAudioMetadataWriter.VTable, self.vtable).Close(@ptrCast(*const ISpatialAudioMetadataWriter, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5955,29 +6042,29 @@ pub const ISpatialAudioMetadataReader = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Open: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioMetadataReader,
                 metadataItems: ?*ISpatialAudioMetadataItems,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioMetadataReader,
                 metadataItems: ?*ISpatialAudioMetadataItems,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ReadNextItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioMetadataReader,
                 commandCount: ?*u8,
                 frameOffset: ?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioMetadataReader,
                 commandCount: ?*u8,
                 frameOffset: ?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ReadNextItemCommand: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioMetadataReader,
                 commandID: ?*u8,
                 // TODO: what to do with BytesParamIndex 2?
@@ -5985,7 +6072,7 @@ pub const ISpatialAudioMetadataReader = extern struct {
                 maxValueBufferLength: u32,
                 valueBufferLength: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioMetadataReader,
                 commandID: ?*u8,
                 // TODO: what to do with BytesParamIndex 2?
@@ -5995,34 +6082,36 @@ pub const ISpatialAudioMetadataReader = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Close: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioMetadataReader,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioMetadataReader,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataReader_Open(self: *const T, metadataItems: ?*ISpatialAudioMetadataItems) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioMetadataReader.VTable, self.vtable).Open(@ptrCast(*const ISpatialAudioMetadataReader, self), metadataItems);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataReader_ReadNextItem(self: *const T, commandCount: ?*u8, frameOffset: ?*u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioMetadataReader.VTable, self.vtable).ReadNextItem(@ptrCast(*const ISpatialAudioMetadataReader, self), commandCount, frameOffset);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataReader_ReadNextItemCommand(self: *const T, commandID: ?*u8, valueBuffer: ?*anyopaque, maxValueBufferLength: u32, valueBufferLength: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioMetadataReader.VTable, self.vtable).ReadNextItemCommand(@ptrCast(*const ISpatialAudioMetadataReader, self), commandID, valueBuffer, maxValueBufferLength, valueBufferLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataReader_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioMetadataReader.VTable, self.vtable).Close(@ptrCast(*const ISpatialAudioMetadataReader, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioMetadataReader_Open(self: *const T, metadataItems: ?*ISpatialAudioMetadataItems) HRESULT {
+                return @ptrCast(*const ISpatialAudioMetadataReader.VTable, self.vtable).Open(@ptrCast(*const ISpatialAudioMetadataReader, self), metadataItems);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioMetadataReader_ReadNextItem(self: *const T, commandCount: ?*u8, frameOffset: ?*u16) HRESULT {
+                return @ptrCast(*const ISpatialAudioMetadataReader.VTable, self.vtable).ReadNextItem(@ptrCast(*const ISpatialAudioMetadataReader, self), commandCount, frameOffset);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioMetadataReader_ReadNextItemCommand(self: *const T, commandID: ?*u8, valueBuffer: ?*anyopaque, maxValueBufferLength: u32, valueBufferLength: ?*u32) HRESULT {
+                return @ptrCast(*const ISpatialAudioMetadataReader.VTable, self.vtable).ReadNextItemCommand(@ptrCast(*const ISpatialAudioMetadataReader, self), commandID, valueBuffer, maxValueBufferLength, valueBufferLength);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioMetadataReader_Close(self: *const T) HRESULT {
+                return @ptrCast(*const ISpatialAudioMetadataReader.VTable, self.vtable).Close(@ptrCast(*const ISpatialAudioMetadataReader, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6033,24 +6122,24 @@ pub const ISpatialAudioMetadataCopier = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Open: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioMetadataCopier,
                 metadataItems: ?*ISpatialAudioMetadataItems,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioMetadataCopier,
                 metadataItems: ?*ISpatialAudioMetadataItems,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CopyMetadataForFrames: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioMetadataCopier,
                 copyFrameCount: u16,
                 copyMode: SpatialAudioMetadataCopyMode,
                 dstMetadataItems: ?*ISpatialAudioMetadataItems,
                 itemsCopied: ?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioMetadataCopier,
                 copyFrameCount: u16,
                 copyMode: SpatialAudioMetadataCopyMode,
@@ -6059,30 +6148,32 @@ pub const ISpatialAudioMetadataCopier = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Close: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioMetadataCopier,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioMetadataCopier,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataCopier_Open(self: *const T, metadataItems: ?*ISpatialAudioMetadataItems) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioMetadataCopier.VTable, self.vtable).Open(@ptrCast(*const ISpatialAudioMetadataCopier, self), metadataItems);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataCopier_CopyMetadataForFrames(self: *const T, copyFrameCount: u16, copyMode: SpatialAudioMetadataCopyMode, dstMetadataItems: ?*ISpatialAudioMetadataItems, itemsCopied: ?*u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioMetadataCopier.VTable, self.vtable).CopyMetadataForFrames(@ptrCast(*const ISpatialAudioMetadataCopier, self), copyFrameCount, copyMode, dstMetadataItems, itemsCopied);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataCopier_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioMetadataCopier.VTable, self.vtable).Close(@ptrCast(*const ISpatialAudioMetadataCopier, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioMetadataCopier_Open(self: *const T, metadataItems: ?*ISpatialAudioMetadataItems) HRESULT {
+                return @ptrCast(*const ISpatialAudioMetadataCopier.VTable, self.vtable).Open(@ptrCast(*const ISpatialAudioMetadataCopier, self), metadataItems);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioMetadataCopier_CopyMetadataForFrames(self: *const T, copyFrameCount: u16, copyMode: SpatialAudioMetadataCopyMode, dstMetadataItems: ?*ISpatialAudioMetadataItems, itemsCopied: ?*u16) HRESULT {
+                return @ptrCast(*const ISpatialAudioMetadataCopier.VTable, self.vtable).CopyMetadataForFrames(@ptrCast(*const ISpatialAudioMetadataCopier, self), copyFrameCount, copyMode, dstMetadataItems, itemsCopied);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioMetadataCopier_Close(self: *const T) HRESULT {
+                return @ptrCast(*const ISpatialAudioMetadataCopier.VTable, self.vtable).Close(@ptrCast(*const ISpatialAudioMetadataCopier, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6093,13 +6184,13 @@ pub const ISpatialAudioMetadataItemsBuffer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AttachToBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioMetadataItemsBuffer,
                 // TODO: what to do with BytesParamIndex 1?
                 buffer: ?*u8,
                 bufferLength: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioMetadataItemsBuffer,
                 // TODO: what to do with BytesParamIndex 1?
                 buffer: ?*u8,
@@ -6107,13 +6198,13 @@ pub const ISpatialAudioMetadataItemsBuffer = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AttachToPopulatedBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioMetadataItemsBuffer,
                 // TODO: what to do with BytesParamIndex 1?
                 buffer: ?*u8,
                 bufferLength: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioMetadataItemsBuffer,
                 // TODO: what to do with BytesParamIndex 1?
                 buffer: ?*u8,
@@ -6121,30 +6212,32 @@ pub const ISpatialAudioMetadataItemsBuffer = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DetachBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioMetadataItemsBuffer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioMetadataItemsBuffer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataItemsBuffer_AttachToBuffer(self: *const T, buffer: ?*u8, bufferLength: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioMetadataItemsBuffer.VTable, self.vtable).AttachToBuffer(@ptrCast(*const ISpatialAudioMetadataItemsBuffer, self), buffer, bufferLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataItemsBuffer_AttachToPopulatedBuffer(self: *const T, buffer: ?*u8, bufferLength: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioMetadataItemsBuffer.VTable, self.vtable).AttachToPopulatedBuffer(@ptrCast(*const ISpatialAudioMetadataItemsBuffer, self), buffer, bufferLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataItemsBuffer_DetachBuffer(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioMetadataItemsBuffer.VTable, self.vtable).DetachBuffer(@ptrCast(*const ISpatialAudioMetadataItemsBuffer, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioMetadataItemsBuffer_AttachToBuffer(self: *const T, buffer: ?*u8, bufferLength: u32) HRESULT {
+                return @ptrCast(*const ISpatialAudioMetadataItemsBuffer.VTable, self.vtable).AttachToBuffer(@ptrCast(*const ISpatialAudioMetadataItemsBuffer, self), buffer, bufferLength);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioMetadataItemsBuffer_AttachToPopulatedBuffer(self: *const T, buffer: ?*u8, bufferLength: u32) HRESULT {
+                return @ptrCast(*const ISpatialAudioMetadataItemsBuffer.VTable, self.vtable).AttachToPopulatedBuffer(@ptrCast(*const ISpatialAudioMetadataItemsBuffer, self), buffer, bufferLength);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioMetadataItemsBuffer_DetachBuffer(self: *const T) HRESULT {
+                return @ptrCast(*const ISpatialAudioMetadataItemsBuffer.VTable, self.vtable).DetachBuffer(@ptrCast(*const ISpatialAudioMetadataItemsBuffer, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6155,14 +6248,14 @@ pub const ISpatialAudioMetadataClient = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ActivateSpatialAudioMetadataItems: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioMetadataClient,
                 maxItemCount: u16,
                 frameCount: u16,
                 metadataItemsBuffer: ?*?*ISpatialAudioMetadataItemsBuffer,
                 metadataItems: ?*?*ISpatialAudioMetadataItems,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioMetadataClient,
                 maxItemCount: u16,
                 frameCount: u16,
@@ -6171,74 +6264,76 @@ pub const ISpatialAudioMetadataClient = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSpatialAudioMetadataItemsBufferLength: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioMetadataClient,
                 maxItemCount: u16,
                 bufferLength: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioMetadataClient,
                 maxItemCount: u16,
                 bufferLength: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ActivateSpatialAudioMetadataWriter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioMetadataClient,
                 overflowMode: SpatialAudioMetadataWriterOverflowMode,
                 metadataWriter: ?*?*ISpatialAudioMetadataWriter,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioMetadataClient,
                 overflowMode: SpatialAudioMetadataWriterOverflowMode,
                 metadataWriter: ?*?*ISpatialAudioMetadataWriter,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ActivateSpatialAudioMetadataCopier: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioMetadataClient,
                 metadataCopier: ?*?*ISpatialAudioMetadataCopier,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioMetadataClient,
                 metadataCopier: ?*?*ISpatialAudioMetadataCopier,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ActivateSpatialAudioMetadataReader: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioMetadataClient,
                 metadataReader: ?*?*ISpatialAudioMetadataReader,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioMetadataClient,
                 metadataReader: ?*?*ISpatialAudioMetadataReader,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataClient_ActivateSpatialAudioMetadataItems(self: *const T, maxItemCount: u16, frameCount: u16, metadataItemsBuffer: ?*?*ISpatialAudioMetadataItemsBuffer, metadataItems: ?*?*ISpatialAudioMetadataItems) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioMetadataClient.VTable, self.vtable).ActivateSpatialAudioMetadataItems(@ptrCast(*const ISpatialAudioMetadataClient, self), maxItemCount, frameCount, metadataItemsBuffer, metadataItems);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataClient_GetSpatialAudioMetadataItemsBufferLength(self: *const T, maxItemCount: u16, bufferLength: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioMetadataClient.VTable, self.vtable).GetSpatialAudioMetadataItemsBufferLength(@ptrCast(*const ISpatialAudioMetadataClient, self), maxItemCount, bufferLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataClient_ActivateSpatialAudioMetadataWriter(self: *const T, overflowMode: SpatialAudioMetadataWriterOverflowMode, metadataWriter: ?*?*ISpatialAudioMetadataWriter) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioMetadataClient.VTable, self.vtable).ActivateSpatialAudioMetadataWriter(@ptrCast(*const ISpatialAudioMetadataClient, self), overflowMode, metadataWriter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataClient_ActivateSpatialAudioMetadataCopier(self: *const T, metadataCopier: ?*?*ISpatialAudioMetadataCopier) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioMetadataClient.VTable, self.vtable).ActivateSpatialAudioMetadataCopier(@ptrCast(*const ISpatialAudioMetadataClient, self), metadataCopier);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataClient_ActivateSpatialAudioMetadataReader(self: *const T, metadataReader: ?*?*ISpatialAudioMetadataReader) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioMetadataClient.VTable, self.vtable).ActivateSpatialAudioMetadataReader(@ptrCast(*const ISpatialAudioMetadataClient, self), metadataReader);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioMetadataClient_ActivateSpatialAudioMetadataItems(self: *const T, maxItemCount: u16, frameCount: u16, metadataItemsBuffer: ?*?*ISpatialAudioMetadataItemsBuffer, metadataItems: ?*?*ISpatialAudioMetadataItems) HRESULT {
+                return @ptrCast(*const ISpatialAudioMetadataClient.VTable, self.vtable).ActivateSpatialAudioMetadataItems(@ptrCast(*const ISpatialAudioMetadataClient, self), maxItemCount, frameCount, metadataItemsBuffer, metadataItems);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioMetadataClient_GetSpatialAudioMetadataItemsBufferLength(self: *const T, maxItemCount: u16, bufferLength: ?*u32) HRESULT {
+                return @ptrCast(*const ISpatialAudioMetadataClient.VTable, self.vtable).GetSpatialAudioMetadataItemsBufferLength(@ptrCast(*const ISpatialAudioMetadataClient, self), maxItemCount, bufferLength);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioMetadataClient_ActivateSpatialAudioMetadataWriter(self: *const T, overflowMode: SpatialAudioMetadataWriterOverflowMode, metadataWriter: ?*?*ISpatialAudioMetadataWriter) HRESULT {
+                return @ptrCast(*const ISpatialAudioMetadataClient.VTable, self.vtable).ActivateSpatialAudioMetadataWriter(@ptrCast(*const ISpatialAudioMetadataClient, self), overflowMode, metadataWriter);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioMetadataClient_ActivateSpatialAudioMetadataCopier(self: *const T, metadataCopier: ?*?*ISpatialAudioMetadataCopier) HRESULT {
+                return @ptrCast(*const ISpatialAudioMetadataClient.VTable, self.vtable).ActivateSpatialAudioMetadataCopier(@ptrCast(*const ISpatialAudioMetadataClient, self), metadataCopier);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioMetadataClient_ActivateSpatialAudioMetadataReader(self: *const T, metadataReader: ?*?*ISpatialAudioMetadataReader) HRESULT {
+                return @ptrCast(*const ISpatialAudioMetadataClient.VTable, self.vtable).ActivateSpatialAudioMetadataReader(@ptrCast(*const ISpatialAudioMetadataClient, self), metadataReader);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6249,14 +6344,14 @@ pub const ISpatialAudioObjectForMetadataCommands = extern struct {
     pub const VTable = extern struct {
         base: ISpatialAudioObjectBase.VTable,
         WriteNextMetadataCommand: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObjectForMetadataCommands,
                 commandID: u8,
                 // TODO: what to do with BytesParamIndex 2?
                 valueBuffer: ?*anyopaque,
                 valueBufferLength: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObjectForMetadataCommands,
                 commandID: u8,
                 // TODO: what to do with BytesParamIndex 2?
@@ -6266,13 +6361,15 @@ pub const ISpatialAudioObjectForMetadataCommands = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISpatialAudioObjectBase.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectForMetadataCommands_WriteNextMetadataCommand(self: *const T, commandID: u8, valueBuffer: ?*anyopaque, valueBufferLength: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectForMetadataCommands.VTable, self.vtable).WriteNextMetadataCommand(@ptrCast(*const ISpatialAudioObjectForMetadataCommands, self), commandID, valueBuffer, valueBufferLength);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace ISpatialAudioObjectBase.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObjectForMetadataCommands_WriteNextMetadataCommand(self: *const T, commandID: u8, valueBuffer: ?*anyopaque, valueBufferLength: u32) HRESULT {
+                return @ptrCast(*const ISpatialAudioObjectForMetadataCommands.VTable, self.vtable).WriteNextMetadataCommand(@ptrCast(*const ISpatialAudioObjectForMetadataCommands, self), commandID, valueBuffer, valueBufferLength);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6283,24 +6380,26 @@ pub const ISpatialAudioObjectForMetadataItems = extern struct {
     pub const VTable = extern struct {
         base: ISpatialAudioObjectBase.VTable,
         GetSpatialAudioMetadataItems: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObjectForMetadataItems,
                 metadataItems: ?*?*ISpatialAudioMetadataItems,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObjectForMetadataItems,
                 metadataItems: ?*?*ISpatialAudioMetadataItems,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISpatialAudioObjectBase.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectForMetadataItems_GetSpatialAudioMetadataItems(self: *const T, metadataItems: ?*?*ISpatialAudioMetadataItems) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectForMetadataItems.VTable, self.vtable).GetSpatialAudioMetadataItems(@ptrCast(*const ISpatialAudioObjectForMetadataItems, self), metadataItems);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace ISpatialAudioObjectBase.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObjectForMetadataItems_GetSpatialAudioMetadataItems(self: *const T, metadataItems: ?*?*ISpatialAudioMetadataItems) HRESULT {
+                return @ptrCast(*const ISpatialAudioObjectForMetadataItems.VTable, self.vtable).GetSpatialAudioMetadataItems(@ptrCast(*const ISpatialAudioObjectForMetadataItems, self), metadataItems);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6311,24 +6410,24 @@ pub const ISpatialAudioObjectRenderStreamForMetadata = extern struct {
     pub const VTable = extern struct {
         base: ISpatialAudioObjectRenderStreamBase.VTable,
         ActivateSpatialAudioObjectForMetadataCommands: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObjectRenderStreamForMetadata,
                 type: AudioObjectType,
                 audioObject: ?*?*ISpatialAudioObjectForMetadataCommands,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObjectRenderStreamForMetadata,
                 type: AudioObjectType,
                 audioObject: ?*?*ISpatialAudioObjectForMetadataCommands,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ActivateSpatialAudioObjectForMetadataItems: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISpatialAudioObjectRenderStreamForMetadata,
                 type: AudioObjectType,
                 audioObject: ?*?*ISpatialAudioObjectForMetadataItems,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISpatialAudioObjectRenderStreamForMetadata,
                 type: AudioObjectType,
                 audioObject: ?*?*ISpatialAudioObjectForMetadataItems,
@@ -6336,17 +6435,19 @@ pub const ISpatialAudioObjectRenderStreamForMetadata = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace ISpatialAudioObjectRenderStreamBase.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectRenderStreamForMetadata_ActivateSpatialAudioObjectForMetadataCommands(self: *const T, type_: AudioObjectType, audioObject: ?*?*ISpatialAudioObjectForMetadataCommands) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectRenderStreamForMetadata.VTable, self.vtable).ActivateSpatialAudioObjectForMetadataCommands(@ptrCast(*const ISpatialAudioObjectRenderStreamForMetadata, self), type_, audioObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectRenderStreamForMetadata_ActivateSpatialAudioObjectForMetadataItems(self: *const T, type_: AudioObjectType, audioObject: ?*?*ISpatialAudioObjectForMetadataItems) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISpatialAudioObjectRenderStreamForMetadata.VTable, self.vtable).ActivateSpatialAudioObjectForMetadataItems(@ptrCast(*const ISpatialAudioObjectRenderStreamForMetadata, self), type_, audioObject);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace ISpatialAudioObjectRenderStreamBase.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObjectRenderStreamForMetadata_ActivateSpatialAudioObjectForMetadataCommands(self: *const T, type_: AudioObjectType, audioObject: ?*?*ISpatialAudioObjectForMetadataCommands) HRESULT {
+                return @ptrCast(*const ISpatialAudioObjectRenderStreamForMetadata.VTable, self.vtable).ActivateSpatialAudioObjectForMetadataCommands(@ptrCast(*const ISpatialAudioObjectRenderStreamForMetadata, self), type_, audioObject);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISpatialAudioObjectRenderStreamForMetadata_ActivateSpatialAudioObjectForMetadataItems(self: *const T, type_: AudioObjectType, audioObject: ?*?*ISpatialAudioObjectForMetadataItems) HRESULT {
+                return @ptrCast(*const ISpatialAudioObjectRenderStreamForMetadata.VTable, self.vtable).ActivateSpatialAudioObjectForMetadataItems(@ptrCast(*const ISpatialAudioObjectRenderStreamForMetadata, self), type_, audioObject);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6377,7 +6478,10 @@ pub const AUDIOCLIENT_ACTIVATION_PARAMS = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PAudioStateMonitorCallback = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PAudioStateMonitorCallback = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 pub const AudioStateMonitorSoundLevel = enum(i32) {
     Muted = 0,
@@ -6394,13 +6498,13 @@ pub const IAudioStateMonitor = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         RegisterCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioStateMonitor,
                 callback: ?PAudioStateMonitorCallback,
                 context: ?*anyopaque,
                 registration: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioStateMonitor,
                 callback: ?PAudioStateMonitorCallback,
                 context: ?*anyopaque,
@@ -6408,72 +6512,74 @@ pub const IAudioStateMonitor = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         UnregisterCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioStateMonitor,
                 registration: i64,
             ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioStateMonitor,
                 registration: i64,
             ) callconv(@import("std").os.windows.WINAPI) void,
         },
         GetSoundLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAudioStateMonitor,
             ) callconv(@import("std").os.windows.WINAPI) AudioStateMonitorSoundLevel,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAudioStateMonitor,
             ) callconv(@import("std").os.windows.WINAPI) AudioStateMonitorSoundLevel,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioStateMonitor_RegisterCallback(self: *const T, callback: ?PAudioStateMonitorCallback, context: ?*anyopaque, registration: ?*i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioStateMonitor.VTable, self.vtable).RegisterCallback(@ptrCast(*const IAudioStateMonitor, self), callback, context, registration);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioStateMonitor_UnregisterCallback(self: *const T, registration: i64) callconv(.Inline) void {
-            return @ptrCast(*const IAudioStateMonitor.VTable, self.vtable).UnregisterCallback(@ptrCast(*const IAudioStateMonitor, self), registration);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioStateMonitor_GetSoundLevel(self: *const T) callconv(.Inline) AudioStateMonitorSoundLevel {
-            return @ptrCast(*const IAudioStateMonitor.VTable, self.vtable).GetSoundLevel(@ptrCast(*const IAudioStateMonitor, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioStateMonitor_RegisterCallback(self: *const T, callback: ?PAudioStateMonitorCallback, context: ?*anyopaque, registration: ?*i64) HRESULT {
+                return @ptrCast(*const IAudioStateMonitor.VTable, self.vtable).RegisterCallback(@ptrCast(*const IAudioStateMonitor, self), callback, context, registration);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioStateMonitor_UnregisterCallback(self: *const T, registration: i64) void {
+                return @ptrCast(*const IAudioStateMonitor.VTable, self.vtable).UnregisterCallback(@ptrCast(*const IAudioStateMonitor, self), registration);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAudioStateMonitor_GetSoundLevel(self: *const T) AudioStateMonitorSoundLevel {
+                return @ptrCast(*const IAudioStateMonitor.VTable, self.vtable).GetSoundLevel(@ptrCast(*const IAudioStateMonitor, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
 pub const ACMDRIVERENUMCB = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hadid: ?HACMDRIVERID,
         dwInstance: usize,
         fdwSupport: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         hadid: ?HACMDRIVERID,
         dwInstance: usize,
         fdwSupport: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const LPACMDRIVERPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: usize,
         param1: ?HACMDRIVERID,
         param2: u32,
         param3: LPARAM,
         param4: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-    else => *const fn(
+    else => *const fn (
         param0: usize,
         param1: ?HACMDRIVERID,
         param2: u32,
         param3: LPARAM,
         param4: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-} ;
+};
 
 pub const ACMDRIVERDETAILSA = extern struct {
     cbStruct: u32 align(1),
@@ -6534,34 +6640,34 @@ pub const ACMFORMATTAGDETAILSW = extern struct {
 };
 
 pub const ACMFORMATTAGENUMCBA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hadid: ?HACMDRIVERID,
         paftd: ?*ACMFORMATTAGDETAILSA,
         dwInstance: usize,
         fdwSupport: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         hadid: ?HACMDRIVERID,
         paftd: ?*ACMFORMATTAGDETAILSA,
         dwInstance: usize,
         fdwSupport: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const ACMFORMATTAGENUMCBW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hadid: ?HACMDRIVERID,
         paftd: ?*ACMFORMATTAGDETAILSW,
         dwInstance: usize,
         fdwSupport: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         hadid: ?HACMDRIVERID,
         paftd: ?*ACMFORMATTAGDETAILSW,
         dwInstance: usize,
         fdwSupport: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const ACMFORMATDETAILSA = extern struct {
     cbStruct: u32 align(1),
@@ -6584,64 +6690,64 @@ pub const tACMFORMATDETAILSW = extern struct {
 };
 
 pub const ACMFORMATENUMCBA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hadid: ?HACMDRIVERID,
         pafd: ?*ACMFORMATDETAILSA,
         dwInstance: usize,
         fdwSupport: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         hadid: ?HACMDRIVERID,
         pafd: ?*ACMFORMATDETAILSA,
         dwInstance: usize,
         fdwSupport: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const ACMFORMATENUMCBW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hadid: ?HACMDRIVERID,
         pafd: ?*tACMFORMATDETAILSW,
         dwInstance: usize,
         fdwSupport: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         hadid: ?HACMDRIVERID,
         pafd: ?*tACMFORMATDETAILSW,
         dwInstance: usize,
         fdwSupport: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const ACMFORMATCHOOSEHOOKPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hwnd: ?HWND,
         uMsg: u32,
         wParam: WPARAM,
         lParam: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hwnd: ?HWND,
         uMsg: u32,
         wParam: WPARAM,
         lParam: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const ACMFORMATCHOOSEHOOKPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hwnd: ?HWND,
         uMsg: u32,
         wParam: WPARAM,
         lParam: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hwnd: ?HWND,
         uMsg: u32,
         wParam: WPARAM,
         lParam: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const ACMFORMATCHOOSEA = extern struct {
     cbStruct: u32 align(1),
@@ -6702,34 +6808,34 @@ pub const ACMFILTERTAGDETAILSW = extern struct {
 };
 
 pub const ACMFILTERTAGENUMCBA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hadid: ?HACMDRIVERID,
         paftd: ?*ACMFILTERTAGDETAILSA,
         dwInstance: usize,
         fdwSupport: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         hadid: ?HACMDRIVERID,
         paftd: ?*ACMFILTERTAGDETAILSA,
         dwInstance: usize,
         fdwSupport: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const ACMFILTERTAGENUMCBW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hadid: ?HACMDRIVERID,
         paftd: ?*ACMFILTERTAGDETAILSW,
         dwInstance: usize,
         fdwSupport: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         hadid: ?HACMDRIVERID,
         paftd: ?*ACMFILTERTAGDETAILSW,
         dwInstance: usize,
         fdwSupport: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const ACMFILTERDETAILSA = extern struct {
     cbStruct: u32 align(1),
@@ -6752,64 +6858,64 @@ pub const ACMFILTERDETAILSW = extern struct {
 };
 
 pub const ACMFILTERENUMCBA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hadid: ?HACMDRIVERID,
         pafd: ?*ACMFILTERDETAILSA,
         dwInstance: usize,
         fdwSupport: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         hadid: ?HACMDRIVERID,
         pafd: ?*ACMFILTERDETAILSA,
         dwInstance: usize,
         fdwSupport: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const ACMFILTERENUMCBW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hadid: ?HACMDRIVERID,
         pafd: ?*ACMFILTERDETAILSW,
         dwInstance: usize,
         fdwSupport: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         hadid: ?HACMDRIVERID,
         pafd: ?*ACMFILTERDETAILSW,
         dwInstance: usize,
         fdwSupport: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const ACMFILTERCHOOSEHOOKPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hwnd: ?HWND,
         uMsg: u32,
         wParam: WPARAM,
         lParam: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hwnd: ?HWND,
         uMsg: u32,
         wParam: WPARAM,
         lParam: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const ACMFILTERCHOOSEHOOKPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hwnd: ?HWND,
         uMsg: u32,
         wParam: WPARAM,
         lParam: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hwnd: ?HWND,
         uMsg: u32,
         wParam: WPARAM,
         lParam: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const ACMFILTERCHOOSEA = extern struct {
     cbStruct: u32 align(1),
@@ -6848,7 +6954,6 @@ pub const ACMFILTERCHOOSEW = extern struct {
     lCustData: LPARAM align(1),
     pfnHook: ?ACMFILTERCHOOSEHOOKPROCW align(1),
 };
-
 
 pub const tACMDRVOPENDESCA = extern struct {
     cbStruct: u32 align(1),
@@ -6927,8 +7032,7 @@ pub const ACMDRVFORMATSUGGEST = extern struct {
     cbwfxDst: u32 align(1),
 };
 
-
-pub const ACMSTREAMHEADER = switch(@import("../zig.zig").arch) {
+pub const ACMSTREAMHEADER = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         cbStruct: u32 align(1),
         fdwStatus: u32 align(1),
@@ -6991,8 +7095,7 @@ pub extern "winmm" fn PlaySoundW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveOutGetNumDevs(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "winmm" fn waveOutGetNumDevs() callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "winmm" fn waveOutGetDevCapsA(
     uDeviceID: usize,
@@ -7136,8 +7239,7 @@ pub extern "winmm" fn waveOutMessage(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn waveInGetNumDevs(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "winmm" fn waveInGetNumDevs() callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "winmm" fn waveInGetDevCapsA(
     uDeviceID: usize,
@@ -7242,8 +7344,7 @@ pub extern "winmm" fn waveInMessage(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiOutGetNumDevs(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "winmm" fn midiOutGetNumDevs() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiStreamOpen(
@@ -7434,8 +7535,7 @@ pub extern "winmm" fn midiOutMessage(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn midiInGetNumDevs(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "winmm" fn midiInGetNumDevs() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn midiInGetDevCapsA(
@@ -7535,8 +7635,7 @@ pub extern "winmm" fn midiInMessage(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn auxGetNumDevs(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "winmm" fn auxGetNumDevs() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn auxGetDevCapsA(
@@ -7575,8 +7674,7 @@ pub extern "winmm" fn auxOutMessage(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "winmm" fn mixerGetNumDevs(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "winmm" fn mixerGetNumDevs() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "winmm" fn mixerGetDevCapsA(
@@ -7724,8 +7822,7 @@ pub extern "windows.media.mediacontrol" fn CreateCaptureAudioStateMonitorForCate
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "msacm32" fn acmGetVersion(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "msacm32" fn acmGetVersion() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "msacm32" fn acmMetrics(
@@ -8032,7 +8129,6 @@ pub extern "msacm32" fn acmStreamUnprepareHeader(
     fdwUnprepare: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (56)
 //--------------------------------------------------------------------------------
@@ -8155,62 +8251,62 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const acmFilterChoose = thismodule.acmFilterChooseW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const WAVEOUTCAPS = *opaque{};
-        pub const WAVEOUTCAPS2 = *opaque{};
-        pub const WAVEINCAPS = *opaque{};
-        pub const WAVEINCAPS2 = *opaque{};
-        pub const MIDIOUTCAPS = *opaque{};
-        pub const MIDIOUTCAPS2 = *opaque{};
-        pub const MIDIINCAPS = *opaque{};
-        pub const MIDIINCAPS2 = *opaque{};
-        pub const AUXCAPS = *opaque{};
-        pub const AUXCAPS2 = *opaque{};
-        pub const MIXERCAPS = *opaque{};
-        pub const MIXERCAPS2 = *opaque{};
-        pub const MIXERLINE = *opaque{};
-        pub const MIXERCONTROL = *opaque{};
-        pub const MIXERLINECONTROLS = *opaque{};
-        pub const MIXERCONTROLDETAILS_LISTTEXT = *opaque{};
-        pub const ACMDRIVERDETAILS = *opaque{};
-        pub const ACMFORMATTAGDETAILS = *opaque{};
-        pub const ACMFORMATTAGENUMCB = *opaque{};
-        pub const ACMFORMATENUMCB = *opaque{};
-        pub const ACMFORMATCHOOSEHOOKPROC = *opaque{};
-        pub const ACMFORMATCHOOSE = *opaque{};
-        pub const ACMFILTERTAGDETAILS = *opaque{};
-        pub const ACMFILTERTAGENUMCB = *opaque{};
-        pub const ACMFILTERDETAILS = *opaque{};
-        pub const ACMFILTERENUMCB = *opaque{};
-        pub const ACMFILTERCHOOSEHOOKPROC = *opaque{};
-        pub const ACMFILTERCHOOSE = *opaque{};
-        pub const tACMDRVOPENDESC = *opaque{};
-        pub const sndPlaySound = *opaque{};
-        pub const PlaySound = *opaque{};
-        pub const waveOutGetDevCaps = *opaque{};
-        pub const waveOutGetErrorText = *opaque{};
-        pub const waveInGetDevCaps = *opaque{};
-        pub const waveInGetErrorText = *opaque{};
-        pub const midiOutGetDevCaps = *opaque{};
-        pub const midiOutGetErrorText = *opaque{};
-        pub const midiInGetDevCaps = *opaque{};
-        pub const midiInGetErrorText = *opaque{};
-        pub const auxGetDevCaps = *opaque{};
-        pub const mixerGetDevCaps = *opaque{};
-        pub const mixerGetLineInfo = *opaque{};
-        pub const mixerGetLineControls = *opaque{};
-        pub const mixerGetControlDetails = *opaque{};
-        pub const acmDriverAdd = *opaque{};
-        pub const acmDriverDetails = *opaque{};
-        pub const acmFormatTagDetails = *opaque{};
-        pub const acmFormatTagEnum = *opaque{};
-        pub const acmFormatDetails = *opaque{};
-        pub const acmFormatEnum = *opaque{};
-        pub const acmFormatChoose = *opaque{};
-        pub const acmFilterTagDetails = *opaque{};
-        pub const acmFilterTagEnum = *opaque{};
-        pub const acmFilterDetails = *opaque{};
-        pub const acmFilterEnum = *opaque{};
-        pub const acmFilterChoose = *opaque{};
+        pub const WAVEOUTCAPS = *opaque {};
+        pub const WAVEOUTCAPS2 = *opaque {};
+        pub const WAVEINCAPS = *opaque {};
+        pub const WAVEINCAPS2 = *opaque {};
+        pub const MIDIOUTCAPS = *opaque {};
+        pub const MIDIOUTCAPS2 = *opaque {};
+        pub const MIDIINCAPS = *opaque {};
+        pub const MIDIINCAPS2 = *opaque {};
+        pub const AUXCAPS = *opaque {};
+        pub const AUXCAPS2 = *opaque {};
+        pub const MIXERCAPS = *opaque {};
+        pub const MIXERCAPS2 = *opaque {};
+        pub const MIXERLINE = *opaque {};
+        pub const MIXERCONTROL = *opaque {};
+        pub const MIXERLINECONTROLS = *opaque {};
+        pub const MIXERCONTROLDETAILS_LISTTEXT = *opaque {};
+        pub const ACMDRIVERDETAILS = *opaque {};
+        pub const ACMFORMATTAGDETAILS = *opaque {};
+        pub const ACMFORMATTAGENUMCB = *opaque {};
+        pub const ACMFORMATENUMCB = *opaque {};
+        pub const ACMFORMATCHOOSEHOOKPROC = *opaque {};
+        pub const ACMFORMATCHOOSE = *opaque {};
+        pub const ACMFILTERTAGDETAILS = *opaque {};
+        pub const ACMFILTERTAGENUMCB = *opaque {};
+        pub const ACMFILTERDETAILS = *opaque {};
+        pub const ACMFILTERENUMCB = *opaque {};
+        pub const ACMFILTERCHOOSEHOOKPROC = *opaque {};
+        pub const ACMFILTERCHOOSE = *opaque {};
+        pub const tACMDRVOPENDESC = *opaque {};
+        pub const sndPlaySound = *opaque {};
+        pub const PlaySound = *opaque {};
+        pub const waveOutGetDevCaps = *opaque {};
+        pub const waveOutGetErrorText = *opaque {};
+        pub const waveInGetDevCaps = *opaque {};
+        pub const waveInGetErrorText = *opaque {};
+        pub const midiOutGetDevCaps = *opaque {};
+        pub const midiOutGetErrorText = *opaque {};
+        pub const midiInGetDevCaps = *opaque {};
+        pub const midiInGetErrorText = *opaque {};
+        pub const auxGetDevCaps = *opaque {};
+        pub const mixerGetDevCaps = *opaque {};
+        pub const mixerGetLineInfo = *opaque {};
+        pub const mixerGetLineControls = *opaque {};
+        pub const mixerGetControlDetails = *opaque {};
+        pub const acmDriverAdd = *opaque {};
+        pub const acmDriverDetails = *opaque {};
+        pub const acmFormatTagDetails = *opaque {};
+        pub const acmFormatTagEnum = *opaque {};
+        pub const acmFormatDetails = *opaque {};
+        pub const acmFormatEnum = *opaque {};
+        pub const acmFormatChoose = *opaque {};
+        pub const acmFilterTagDetails = *opaque {};
+        pub const acmFilterTagEnum = *opaque {};
+        pub const acmFilterDetails = *opaque {};
+        pub const acmFilterEnum = *opaque {};
+        pub const acmFilterChoose = *opaque {};
     } else struct {
         pub const WAVEOUTCAPS = @compileError("'WAVEOUTCAPS' requires that UNICODE be set to true or false in the root module");
         pub const WAVEOUTCAPS2 = @compileError("'WAVEOUTCAPS2' requires that UNICODE be set to true or false in the root module");
@@ -8297,26 +8393,56 @@ const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "LPWAVECALLBACK")) { _ = LPWAVECALLBACK; }
-    if (@hasDecl(@This(), "LPMIDICALLBACK")) { _ = LPMIDICALLBACK; }
-    if (@hasDecl(@This(), "ACMDRIVERENUMCB")) { _ = ACMDRIVERENUMCB; }
-    if (@hasDecl(@This(), "LPACMDRIVERPROC")) { _ = LPACMDRIVERPROC; }
-    if (@hasDecl(@This(), "ACMFORMATTAGENUMCBA")) { _ = ACMFORMATTAGENUMCBA; }
-    if (@hasDecl(@This(), "ACMFORMATTAGENUMCBW")) { _ = ACMFORMATTAGENUMCBW; }
-    if (@hasDecl(@This(), "ACMFORMATENUMCBA")) { _ = ACMFORMATENUMCBA; }
-    if (@hasDecl(@This(), "ACMFORMATENUMCBW")) { _ = ACMFORMATENUMCBW; }
-    if (@hasDecl(@This(), "ACMFORMATCHOOSEHOOKPROCA")) { _ = ACMFORMATCHOOSEHOOKPROCA; }
-    if (@hasDecl(@This(), "ACMFORMATCHOOSEHOOKPROCW")) { _ = ACMFORMATCHOOSEHOOKPROCW; }
-    if (@hasDecl(@This(), "ACMFILTERTAGENUMCBA")) { _ = ACMFILTERTAGENUMCBA; }
-    if (@hasDecl(@This(), "ACMFILTERTAGENUMCBW")) { _ = ACMFILTERTAGENUMCBW; }
-    if (@hasDecl(@This(), "ACMFILTERENUMCBA")) { _ = ACMFILTERENUMCBA; }
-    if (@hasDecl(@This(), "ACMFILTERENUMCBW")) { _ = ACMFILTERENUMCBW; }
-    if (@hasDecl(@This(), "ACMFILTERCHOOSEHOOKPROCA")) { _ = ACMFILTERCHOOSEHOOKPROCA; }
-    if (@hasDecl(@This(), "ACMFILTERCHOOSEHOOKPROCW")) { _ = ACMFILTERCHOOSEHOOKPROCW; }
+    if (@hasDecl(@This(), "LPWAVECALLBACK")) {
+        _ = LPWAVECALLBACK;
+    }
+    if (@hasDecl(@This(), "LPMIDICALLBACK")) {
+        _ = LPMIDICALLBACK;
+    }
+    if (@hasDecl(@This(), "ACMDRIVERENUMCB")) {
+        _ = ACMDRIVERENUMCB;
+    }
+    if (@hasDecl(@This(), "LPACMDRIVERPROC")) {
+        _ = LPACMDRIVERPROC;
+    }
+    if (@hasDecl(@This(), "ACMFORMATTAGENUMCBA")) {
+        _ = ACMFORMATTAGENUMCBA;
+    }
+    if (@hasDecl(@This(), "ACMFORMATTAGENUMCBW")) {
+        _ = ACMFORMATTAGENUMCBW;
+    }
+    if (@hasDecl(@This(), "ACMFORMATENUMCBA")) {
+        _ = ACMFORMATENUMCBA;
+    }
+    if (@hasDecl(@This(), "ACMFORMATENUMCBW")) {
+        _ = ACMFORMATENUMCBW;
+    }
+    if (@hasDecl(@This(), "ACMFORMATCHOOSEHOOKPROCA")) {
+        _ = ACMFORMATCHOOSEHOOKPROCA;
+    }
+    if (@hasDecl(@This(), "ACMFORMATCHOOSEHOOKPROCW")) {
+        _ = ACMFORMATCHOOSEHOOKPROCW;
+    }
+    if (@hasDecl(@This(), "ACMFILTERTAGENUMCBA")) {
+        _ = ACMFILTERTAGENUMCBA;
+    }
+    if (@hasDecl(@This(), "ACMFILTERTAGENUMCBW")) {
+        _ = ACMFILTERTAGENUMCBW;
+    }
+    if (@hasDecl(@This(), "ACMFILTERENUMCBA")) {
+        _ = ACMFILTERENUMCBA;
+    }
+    if (@hasDecl(@This(), "ACMFILTERENUMCBW")) {
+        _ = ACMFILTERENUMCBW;
+    }
+    if (@hasDecl(@This(), "ACMFILTERCHOOSEHOOKPROCA")) {
+        _ = ACMFILTERCHOOSEHOOKPROCA;
+    }
+    if (@hasDecl(@This(), "ACMFILTERCHOOSEHOOKPROCW")) {
+        _ = ACMFILTERCHOOSEHOOKPROCW;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

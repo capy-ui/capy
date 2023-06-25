@@ -1081,31 +1081,31 @@ pub const IWiaDevMgr = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         EnumDeviceInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDevMgr,
                 lFlag: i32,
                 ppIEnum: ?*?*IEnumWIA_DEV_INFO,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDevMgr,
                 lFlag: i32,
                 ppIEnum: ?*?*IEnumWIA_DEV_INFO,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateDevice: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDevMgr,
                 bstrDeviceID: ?BSTR,
                 ppWiaItemRoot: ?*?*IWiaItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDevMgr,
                 bstrDeviceID: ?BSTR,
                 ppWiaItemRoot: ?*?*IWiaItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SelectDeviceDlg: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDevMgr,
                 hwndParent: ?HWND,
                 lDeviceType: i32,
@@ -1113,7 +1113,7 @@ pub const IWiaDevMgr = extern struct {
                 pbstrDeviceID: ?*?BSTR,
                 ppItemRoot: ?*?*IWiaItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDevMgr,
                 hwndParent: ?HWND,
                 lDeviceType: i32,
@@ -1123,14 +1123,14 @@ pub const IWiaDevMgr = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SelectDeviceDlgID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDevMgr,
                 hwndParent: ?HWND,
                 lDeviceType: i32,
                 lFlags: i32,
                 pbstrDeviceID: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDevMgr,
                 hwndParent: ?HWND,
                 lDeviceType: i32,
@@ -1139,7 +1139,7 @@ pub const IWiaDevMgr = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetImageDlg: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDevMgr,
                 hwndParent: ?HWND,
                 lDeviceType: i32,
@@ -1149,7 +1149,7 @@ pub const IWiaDevMgr = extern struct {
                 bstrFilename: ?BSTR,
                 pguidFormat: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDevMgr,
                 hwndParent: ?HWND,
                 lDeviceType: i32,
@@ -1161,7 +1161,7 @@ pub const IWiaDevMgr = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RegisterEventCallbackProgram: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDevMgr,
                 lFlags: i32,
                 bstrDeviceID: ?BSTR,
@@ -1171,7 +1171,7 @@ pub const IWiaDevMgr = extern struct {
                 bstrDescription: ?BSTR,
                 bstrIcon: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDevMgr,
                 lFlags: i32,
                 bstrDeviceID: ?BSTR,
@@ -1183,7 +1183,7 @@ pub const IWiaDevMgr = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RegisterEventCallbackInterface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDevMgr,
                 lFlags: i32,
                 bstrDeviceID: ?BSTR,
@@ -1191,7 +1191,7 @@ pub const IWiaDevMgr = extern struct {
                 pIWiaEventCallback: ?*IWiaEventCallback,
                 pEventObject: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDevMgr,
                 lFlags: i32,
                 bstrDeviceID: ?BSTR,
@@ -1201,7 +1201,7 @@ pub const IWiaDevMgr = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RegisterEventCallbackCLSID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDevMgr,
                 lFlags: i32,
                 bstrDeviceID: ?BSTR,
@@ -1211,7 +1211,7 @@ pub const IWiaDevMgr = extern struct {
                 bstrDescription: ?BSTR,
                 bstrIcon: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDevMgr,
                 lFlags: i32,
                 bstrDeviceID: ?BSTR,
@@ -1223,12 +1223,12 @@ pub const IWiaDevMgr = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AddDeviceDlg: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDevMgr,
                 hwndParent: ?HWND,
                 lFlags: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDevMgr,
                 hwndParent: ?HWND,
                 lFlags: i32,
@@ -1236,45 +1236,47 @@ pub const IWiaDevMgr = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr_EnumDeviceInfo(self: *const T, lFlag: i32, ppIEnum: ?*?*IEnumWIA_DEV_INFO) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).EnumDeviceInfo(@ptrCast(*const IWiaDevMgr, self), lFlag, ppIEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr_CreateDevice(self: *const T, bstrDeviceID: ?BSTR, ppWiaItemRoot: ?*?*IWiaItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).CreateDevice(@ptrCast(*const IWiaDevMgr, self), bstrDeviceID, ppWiaItemRoot);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr_SelectDeviceDlg(self: *const T, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, pbstrDeviceID: ?*?BSTR, ppItemRoot: ?*?*IWiaItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).SelectDeviceDlg(@ptrCast(*const IWiaDevMgr, self), hwndParent, lDeviceType, lFlags, pbstrDeviceID, ppItemRoot);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr_SelectDeviceDlgID(self: *const T, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, pbstrDeviceID: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).SelectDeviceDlgID(@ptrCast(*const IWiaDevMgr, self), hwndParent, lDeviceType, lFlags, pbstrDeviceID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr_GetImageDlg(self: *const T, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, lIntent: i32, pItemRoot: ?*IWiaItem, bstrFilename: ?BSTR, pguidFormat: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).GetImageDlg(@ptrCast(*const IWiaDevMgr, self), hwndParent, lDeviceType, lFlags, lIntent, pItemRoot, bstrFilename, pguidFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr_RegisterEventCallbackProgram(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, bstrCommandline: ?BSTR, bstrName: ?BSTR, bstrDescription: ?BSTR, bstrIcon: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).RegisterEventCallbackProgram(@ptrCast(*const IWiaDevMgr, self), lFlags, bstrDeviceID, pEventGUID, bstrCommandline, bstrName, bstrDescription, bstrIcon);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr_RegisterEventCallbackInterface(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, pIWiaEventCallback: ?*IWiaEventCallback, pEventObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).RegisterEventCallbackInterface(@ptrCast(*const IWiaDevMgr, self), lFlags, bstrDeviceID, pEventGUID, pIWiaEventCallback, pEventObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr_RegisterEventCallbackCLSID(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, pClsID: ?*const Guid, bstrName: ?BSTR, bstrDescription: ?BSTR, bstrIcon: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).RegisterEventCallbackCLSID(@ptrCast(*const IWiaDevMgr, self), lFlags, bstrDeviceID, pEventGUID, pClsID, bstrName, bstrDescription, bstrIcon);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr_AddDeviceDlg(self: *const T, hwndParent: ?HWND, lFlags: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).AddDeviceDlg(@ptrCast(*const IWiaDevMgr, self), hwndParent, lFlags);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDevMgr_EnumDeviceInfo(self: *const T, lFlag: i32, ppIEnum: ?*?*IEnumWIA_DEV_INFO) HRESULT {
+                return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).EnumDeviceInfo(@ptrCast(*const IWiaDevMgr, self), lFlag, ppIEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDevMgr_CreateDevice(self: *const T, bstrDeviceID: ?BSTR, ppWiaItemRoot: ?*?*IWiaItem) HRESULT {
+                return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).CreateDevice(@ptrCast(*const IWiaDevMgr, self), bstrDeviceID, ppWiaItemRoot);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDevMgr_SelectDeviceDlg(self: *const T, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, pbstrDeviceID: ?*?BSTR, ppItemRoot: ?*?*IWiaItem) HRESULT {
+                return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).SelectDeviceDlg(@ptrCast(*const IWiaDevMgr, self), hwndParent, lDeviceType, lFlags, pbstrDeviceID, ppItemRoot);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDevMgr_SelectDeviceDlgID(self: *const T, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, pbstrDeviceID: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).SelectDeviceDlgID(@ptrCast(*const IWiaDevMgr, self), hwndParent, lDeviceType, lFlags, pbstrDeviceID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDevMgr_GetImageDlg(self: *const T, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, lIntent: i32, pItemRoot: ?*IWiaItem, bstrFilename: ?BSTR, pguidFormat: ?*Guid) HRESULT {
+                return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).GetImageDlg(@ptrCast(*const IWiaDevMgr, self), hwndParent, lDeviceType, lFlags, lIntent, pItemRoot, bstrFilename, pguidFormat);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDevMgr_RegisterEventCallbackProgram(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, bstrCommandline: ?BSTR, bstrName: ?BSTR, bstrDescription: ?BSTR, bstrIcon: ?BSTR) HRESULT {
+                return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).RegisterEventCallbackProgram(@ptrCast(*const IWiaDevMgr, self), lFlags, bstrDeviceID, pEventGUID, bstrCommandline, bstrName, bstrDescription, bstrIcon);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDevMgr_RegisterEventCallbackInterface(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, pIWiaEventCallback: ?*IWiaEventCallback, pEventObject: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).RegisterEventCallbackInterface(@ptrCast(*const IWiaDevMgr, self), lFlags, bstrDeviceID, pEventGUID, pIWiaEventCallback, pEventObject);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDevMgr_RegisterEventCallbackCLSID(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, pClsID: ?*const Guid, bstrName: ?BSTR, bstrDescription: ?BSTR, bstrIcon: ?BSTR) HRESULT {
+                return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).RegisterEventCallbackCLSID(@ptrCast(*const IWiaDevMgr, self), lFlags, bstrDeviceID, pEventGUID, pClsID, bstrName, bstrDescription, bstrIcon);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDevMgr_AddDeviceDlg(self: *const T, hwndParent: ?HWND, lFlags: i32) HRESULT {
+                return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).AddDeviceDlg(@ptrCast(*const IWiaDevMgr, self), hwndParent, lFlags);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1285,13 +1287,13 @@ pub const IEnumWIA_DEV_INFO = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWIA_DEV_INFO,
                 celt: u32,
                 rgelt: ?*?*IWiaPropertyStorage,
                 pceltFetched: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWIA_DEV_INFO,
                 celt: u32,
                 rgelt: ?*?*IWiaPropertyStorage,
@@ -1299,68 +1301,70 @@ pub const IEnumWIA_DEV_INFO = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWIA_DEV_INFO,
                 celt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWIA_DEV_INFO,
                 celt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWIA_DEV_INFO,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWIA_DEV_INFO,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWIA_DEV_INFO,
                 ppIEnum: ?*?*IEnumWIA_DEV_INFO,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWIA_DEV_INFO,
                 ppIEnum: ?*?*IEnumWIA_DEV_INFO,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWIA_DEV_INFO,
                 celt: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWIA_DEV_INFO,
                 celt: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_DEV_INFO_Next(self: *const T, celt: u32, rgelt: ?*?*IWiaPropertyStorage, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWIA_DEV_INFO.VTable, self.vtable).Next(@ptrCast(*const IEnumWIA_DEV_INFO, self), celt, rgelt, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_DEV_INFO_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWIA_DEV_INFO.VTable, self.vtable).Skip(@ptrCast(*const IEnumWIA_DEV_INFO, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_DEV_INFO_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWIA_DEV_INFO.VTable, self.vtable).Reset(@ptrCast(*const IEnumWIA_DEV_INFO, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_DEV_INFO_Clone(self: *const T, ppIEnum: ?*?*IEnumWIA_DEV_INFO) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWIA_DEV_INFO.VTable, self.vtable).Clone(@ptrCast(*const IEnumWIA_DEV_INFO, self), ppIEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_DEV_INFO_GetCount(self: *const T, celt: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWIA_DEV_INFO.VTable, self.vtable).GetCount(@ptrCast(*const IEnumWIA_DEV_INFO, self), celt);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWIA_DEV_INFO_Next(self: *const T, celt: u32, rgelt: ?*?*IWiaPropertyStorage, pceltFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumWIA_DEV_INFO.VTable, self.vtable).Next(@ptrCast(*const IEnumWIA_DEV_INFO, self), celt, rgelt, pceltFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWIA_DEV_INFO_Skip(self: *const T, celt: u32) HRESULT {
+                return @ptrCast(*const IEnumWIA_DEV_INFO.VTable, self.vtable).Skip(@ptrCast(*const IEnumWIA_DEV_INFO, self), celt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWIA_DEV_INFO_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumWIA_DEV_INFO.VTable, self.vtable).Reset(@ptrCast(*const IEnumWIA_DEV_INFO, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWIA_DEV_INFO_Clone(self: *const T, ppIEnum: ?*?*IEnumWIA_DEV_INFO) HRESULT {
+                return @ptrCast(*const IEnumWIA_DEV_INFO.VTable, self.vtable).Clone(@ptrCast(*const IEnumWIA_DEV_INFO, self), ppIEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWIA_DEV_INFO_GetCount(self: *const T, celt: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumWIA_DEV_INFO.VTable, self.vtable).GetCount(@ptrCast(*const IEnumWIA_DEV_INFO, self), celt);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1371,7 +1375,7 @@ pub const IWiaEventCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ImageEventCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaEventCallback,
                 pEventGUID: ?*const Guid,
                 bstrEventDescription: ?BSTR,
@@ -1382,7 +1386,7 @@ pub const IWiaEventCallback = extern struct {
                 pulEventType: ?*u32,
                 ulReserved: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaEventCallback,
                 pEventGUID: ?*const Guid,
                 bstrEventDescription: ?BSTR,
@@ -1396,13 +1400,15 @@ pub const IWiaEventCallback = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaEventCallback_ImageEventCallback(self: *const T, pEventGUID: ?*const Guid, bstrEventDescription: ?BSTR, bstrDeviceID: ?BSTR, bstrDeviceDescription: ?BSTR, dwDeviceType: u32, bstrFullItemName: ?BSTR, pulEventType: ?*u32, ulReserved: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaEventCallback.VTable, self.vtable).ImageEventCallback(@ptrCast(*const IWiaEventCallback, self), pEventGUID, bstrEventDescription, bstrDeviceID, bstrDeviceDescription, dwDeviceType, bstrFullItemName, pulEventType, ulReserved);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaEventCallback_ImageEventCallback(self: *const T, pEventGUID: ?*const Guid, bstrEventDescription: ?BSTR, bstrDeviceID: ?BSTR, bstrDeviceDescription: ?BSTR, dwDeviceType: u32, bstrFullItemName: ?BSTR, pulEventType: ?*u32, ulReserved: u32) HRESULT {
+                return @ptrCast(*const IWiaEventCallback.VTable, self.vtable).ImageEventCallback(@ptrCast(*const IWiaEventCallback, self), pEventGUID, bstrEventDescription, bstrDeviceID, bstrDeviceDescription, dwDeviceType, bstrFullItemName, pulEventType, ulReserved);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1420,7 +1426,7 @@ pub const IWiaDataCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         BandedDataCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDataCallback,
                 lMessage: i32,
                 lStatus: i32,
@@ -1431,7 +1437,7 @@ pub const IWiaDataCallback = extern struct {
                 lResLength: i32,
                 pbBuffer: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDataCallback,
                 lMessage: i32,
                 lStatus: i32,
@@ -1445,13 +1451,15 @@ pub const IWiaDataCallback = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDataCallback_BandedDataCallback(self: *const T, lMessage: i32, lStatus: i32, lPercentComplete: i32, lOffset: i32, lLength: i32, lReserved: i32, lResLength: i32, pbBuffer: ?*u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDataCallback.VTable, self.vtable).BandedDataCallback(@ptrCast(*const IWiaDataCallback, self), lMessage, lStatus, lPercentComplete, lOffset, lLength, lReserved, lResLength, pbBuffer);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDataCallback_BandedDataCallback(self: *const T, lMessage: i32, lStatus: i32, lPercentComplete: i32, lOffset: i32, lLength: i32, lReserved: i32, lResLength: i32, pbBuffer: ?*u8) HRESULT {
+                return @ptrCast(*const IWiaDataCallback.VTable, self.vtable).BandedDataCallback(@ptrCast(*const IWiaDataCallback, self), lMessage, lStatus, lPercentComplete, lOffset, lLength, lReserved, lResLength, pbBuffer);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1480,84 +1488,86 @@ pub const IWiaDataTransfer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         idtGetData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDataTransfer,
                 pMedium: ?*STGMEDIUM,
                 pIWiaDataCallback: ?*IWiaDataCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDataTransfer,
                 pMedium: ?*STGMEDIUM,
                 pIWiaDataCallback: ?*IWiaDataCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         idtGetBandedData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDataTransfer,
                 pWiaDataTransInfo: ?*WIA_DATA_TRANSFER_INFO,
                 pIWiaDataCallback: ?*IWiaDataCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDataTransfer,
                 pWiaDataTransInfo: ?*WIA_DATA_TRANSFER_INFO,
                 pIWiaDataCallback: ?*IWiaDataCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         idtQueryGetData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDataTransfer,
                 pfe: ?*WIA_FORMAT_INFO,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDataTransfer,
                 pfe: ?*WIA_FORMAT_INFO,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         idtEnumWIA_FORMAT_INFO: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDataTransfer,
                 ppEnum: ?*?*IEnumWIA_FORMAT_INFO,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDataTransfer,
                 ppEnum: ?*?*IEnumWIA_FORMAT_INFO,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         idtGetExtendedTransferInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDataTransfer,
                 pExtendedTransferInfo: ?*WIA_EXTENDED_TRANSFER_INFO,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDataTransfer,
                 pExtendedTransferInfo: ?*WIA_EXTENDED_TRANSFER_INFO,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDataTransfer_idtGetData(self: *const T, pMedium: ?*STGMEDIUM, pIWiaDataCallback: ?*IWiaDataCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDataTransfer.VTable, self.vtable).idtGetData(@ptrCast(*const IWiaDataTransfer, self), pMedium, pIWiaDataCallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDataTransfer_idtGetBandedData(self: *const T, pWiaDataTransInfo: ?*WIA_DATA_TRANSFER_INFO, pIWiaDataCallback: ?*IWiaDataCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDataTransfer.VTable, self.vtable).idtGetBandedData(@ptrCast(*const IWiaDataTransfer, self), pWiaDataTransInfo, pIWiaDataCallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDataTransfer_idtQueryGetData(self: *const T, pfe: ?*WIA_FORMAT_INFO) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDataTransfer.VTable, self.vtable).idtQueryGetData(@ptrCast(*const IWiaDataTransfer, self), pfe);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDataTransfer_idtEnumWIA_FORMAT_INFO(self: *const T, ppEnum: ?*?*IEnumWIA_FORMAT_INFO) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDataTransfer.VTable, self.vtable).idtEnumWIA_FORMAT_INFO(@ptrCast(*const IWiaDataTransfer, self), ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDataTransfer_idtGetExtendedTransferInfo(self: *const T, pExtendedTransferInfo: ?*WIA_EXTENDED_TRANSFER_INFO) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDataTransfer.VTable, self.vtable).idtGetExtendedTransferInfo(@ptrCast(*const IWiaDataTransfer, self), pExtendedTransferInfo);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDataTransfer_idtGetData(self: *const T, pMedium: ?*STGMEDIUM, pIWiaDataCallback: ?*IWiaDataCallback) HRESULT {
+                return @ptrCast(*const IWiaDataTransfer.VTable, self.vtable).idtGetData(@ptrCast(*const IWiaDataTransfer, self), pMedium, pIWiaDataCallback);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDataTransfer_idtGetBandedData(self: *const T, pWiaDataTransInfo: ?*WIA_DATA_TRANSFER_INFO, pIWiaDataCallback: ?*IWiaDataCallback) HRESULT {
+                return @ptrCast(*const IWiaDataTransfer.VTable, self.vtable).idtGetBandedData(@ptrCast(*const IWiaDataTransfer, self), pWiaDataTransInfo, pIWiaDataCallback);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDataTransfer_idtQueryGetData(self: *const T, pfe: ?*WIA_FORMAT_INFO) HRESULT {
+                return @ptrCast(*const IWiaDataTransfer.VTable, self.vtable).idtQueryGetData(@ptrCast(*const IWiaDataTransfer, self), pfe);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDataTransfer_idtEnumWIA_FORMAT_INFO(self: *const T, ppEnum: ?*?*IEnumWIA_FORMAT_INFO) HRESULT {
+                return @ptrCast(*const IWiaDataTransfer.VTable, self.vtable).idtEnumWIA_FORMAT_INFO(@ptrCast(*const IWiaDataTransfer, self), ppEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDataTransfer_idtGetExtendedTransferInfo(self: *const T, pExtendedTransferInfo: ?*WIA_EXTENDED_TRANSFER_INFO) HRESULT {
+                return @ptrCast(*const IWiaDataTransfer.VTable, self.vtable).idtGetExtendedTransferInfo(@ptrCast(*const IWiaDataTransfer, self), pExtendedTransferInfo);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1568,54 +1578,54 @@ pub const IWiaItem = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetItemType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem,
                 pItemType: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem,
                 pItemType: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AnalyzeItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem,
                 lFlags: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem,
                 lFlags: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumChildItems: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem,
                 ppIEnumWiaItem: ?*?*IEnumWiaItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem,
                 ppIEnumWiaItem: ?*?*IEnumWiaItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DeleteItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem,
                 lFlags: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem,
                 lFlags: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateChildItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem,
                 lFlags: i32,
                 bstrItemName: ?BSTR,
                 bstrFullItemName: ?BSTR,
                 ppIWiaItem: ?*?*IWiaItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem,
                 lFlags: i32,
                 bstrItemName: ?BSTR,
@@ -1624,13 +1634,13 @@ pub const IWiaItem = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumRegisterEventInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem,
                 lFlags: i32,
                 pEventGUID: ?*const Guid,
                 ppIEnum: ?*?*IEnumWIA_DEV_CAPS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem,
                 lFlags: i32,
                 pEventGUID: ?*const Guid,
@@ -1638,13 +1648,13 @@ pub const IWiaItem = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FindItemByName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem,
                 lFlags: i32,
                 bstrFullItemName: ?BSTR,
                 ppIWiaItem: ?*?*IWiaItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem,
                 lFlags: i32,
                 bstrFullItemName: ?BSTR,
@@ -1652,7 +1662,7 @@ pub const IWiaItem = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DeviceDlg: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem,
                 hwndParent: ?HWND,
                 lFlags: i32,
@@ -1660,7 +1670,7 @@ pub const IWiaItem = extern struct {
                 plItemCount: ?*i32,
                 ppIWiaItem: ?*?*?*IWiaItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem,
                 hwndParent: ?HWND,
                 lFlags: i32,
@@ -1670,13 +1680,13 @@ pub const IWiaItem = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DeviceCommand: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem,
                 lFlags: i32,
                 pCmdGUID: ?*const Guid,
                 pIWiaItem: ?*?*IWiaItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem,
                 lFlags: i32,
                 pCmdGUID: ?*const Guid,
@@ -1684,64 +1694,64 @@ pub const IWiaItem = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetRootItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem,
                 ppIWiaItem: ?*?*IWiaItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem,
                 ppIWiaItem: ?*?*IWiaItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumDeviceCapabilities: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem,
                 lFlags: i32,
                 ppIEnumWIA_DEV_CAPS: ?*?*IEnumWIA_DEV_CAPS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem,
                 lFlags: i32,
                 ppIEnumWIA_DEV_CAPS: ?*?*IEnumWIA_DEV_CAPS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DumpItemData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem,
                 bstrData: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem,
                 bstrData: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DumpDrvItemData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem,
                 bstrData: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem,
                 bstrData: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DumpTreeItemData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem,
                 bstrData: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem,
                 bstrData: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Diagnostic: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem,
                 ulSize: u32,
                 pBuffer: [*:0]u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem,
                 ulSize: u32,
                 pBuffer: [*:0]u8,
@@ -1749,69 +1759,71 @@ pub const IWiaItem = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_GetItemType(self: *const T, pItemType: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem.VTable, self.vtable).GetItemType(@ptrCast(*const IWiaItem, self), pItemType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_AnalyzeItem(self: *const T, lFlags: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem.VTable, self.vtable).AnalyzeItem(@ptrCast(*const IWiaItem, self), lFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_EnumChildItems(self: *const T, ppIEnumWiaItem: ?*?*IEnumWiaItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem.VTable, self.vtable).EnumChildItems(@ptrCast(*const IWiaItem, self), ppIEnumWiaItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_DeleteItem(self: *const T, lFlags: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem.VTable, self.vtable).DeleteItem(@ptrCast(*const IWiaItem, self), lFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_CreateChildItem(self: *const T, lFlags: i32, bstrItemName: ?BSTR, bstrFullItemName: ?BSTR, ppIWiaItem: ?*?*IWiaItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem.VTable, self.vtable).CreateChildItem(@ptrCast(*const IWiaItem, self), lFlags, bstrItemName, bstrFullItemName, ppIWiaItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_EnumRegisterEventInfo(self: *const T, lFlags: i32, pEventGUID: ?*const Guid, ppIEnum: ?*?*IEnumWIA_DEV_CAPS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem.VTable, self.vtable).EnumRegisterEventInfo(@ptrCast(*const IWiaItem, self), lFlags, pEventGUID, ppIEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_FindItemByName(self: *const T, lFlags: i32, bstrFullItemName: ?BSTR, ppIWiaItem: ?*?*IWiaItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem.VTable, self.vtable).FindItemByName(@ptrCast(*const IWiaItem, self), lFlags, bstrFullItemName, ppIWiaItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_DeviceDlg(self: *const T, hwndParent: ?HWND, lFlags: i32, lIntent: i32, plItemCount: ?*i32, ppIWiaItem: ?*?*?*IWiaItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem.VTable, self.vtable).DeviceDlg(@ptrCast(*const IWiaItem, self), hwndParent, lFlags, lIntent, plItemCount, ppIWiaItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_DeviceCommand(self: *const T, lFlags: i32, pCmdGUID: ?*const Guid, pIWiaItem: ?*?*IWiaItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem.VTable, self.vtable).DeviceCommand(@ptrCast(*const IWiaItem, self), lFlags, pCmdGUID, pIWiaItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_GetRootItem(self: *const T, ppIWiaItem: ?*?*IWiaItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem.VTable, self.vtable).GetRootItem(@ptrCast(*const IWiaItem, self), ppIWiaItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_EnumDeviceCapabilities(self: *const T, lFlags: i32, ppIEnumWIA_DEV_CAPS: ?*?*IEnumWIA_DEV_CAPS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem.VTable, self.vtable).EnumDeviceCapabilities(@ptrCast(*const IWiaItem, self), lFlags, ppIEnumWIA_DEV_CAPS);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_DumpItemData(self: *const T, bstrData: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem.VTable, self.vtable).DumpItemData(@ptrCast(*const IWiaItem, self), bstrData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_DumpDrvItemData(self: *const T, bstrData: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem.VTable, self.vtable).DumpDrvItemData(@ptrCast(*const IWiaItem, self), bstrData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_DumpTreeItemData(self: *const T, bstrData: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem.VTable, self.vtable).DumpTreeItemData(@ptrCast(*const IWiaItem, self), bstrData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem_Diagnostic(self: *const T, ulSize: u32, pBuffer: [*:0]u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem.VTable, self.vtable).Diagnostic(@ptrCast(*const IWiaItem, self), ulSize, pBuffer);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem_GetItemType(self: *const T, pItemType: ?*i32) HRESULT {
+                return @ptrCast(*const IWiaItem.VTable, self.vtable).GetItemType(@ptrCast(*const IWiaItem, self), pItemType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem_AnalyzeItem(self: *const T, lFlags: i32) HRESULT {
+                return @ptrCast(*const IWiaItem.VTable, self.vtable).AnalyzeItem(@ptrCast(*const IWiaItem, self), lFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem_EnumChildItems(self: *const T, ppIEnumWiaItem: ?*?*IEnumWiaItem) HRESULT {
+                return @ptrCast(*const IWiaItem.VTable, self.vtable).EnumChildItems(@ptrCast(*const IWiaItem, self), ppIEnumWiaItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem_DeleteItem(self: *const T, lFlags: i32) HRESULT {
+                return @ptrCast(*const IWiaItem.VTable, self.vtable).DeleteItem(@ptrCast(*const IWiaItem, self), lFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem_CreateChildItem(self: *const T, lFlags: i32, bstrItemName: ?BSTR, bstrFullItemName: ?BSTR, ppIWiaItem: ?*?*IWiaItem) HRESULT {
+                return @ptrCast(*const IWiaItem.VTable, self.vtable).CreateChildItem(@ptrCast(*const IWiaItem, self), lFlags, bstrItemName, bstrFullItemName, ppIWiaItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem_EnumRegisterEventInfo(self: *const T, lFlags: i32, pEventGUID: ?*const Guid, ppIEnum: ?*?*IEnumWIA_DEV_CAPS) HRESULT {
+                return @ptrCast(*const IWiaItem.VTable, self.vtable).EnumRegisterEventInfo(@ptrCast(*const IWiaItem, self), lFlags, pEventGUID, ppIEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem_FindItemByName(self: *const T, lFlags: i32, bstrFullItemName: ?BSTR, ppIWiaItem: ?*?*IWiaItem) HRESULT {
+                return @ptrCast(*const IWiaItem.VTable, self.vtable).FindItemByName(@ptrCast(*const IWiaItem, self), lFlags, bstrFullItemName, ppIWiaItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem_DeviceDlg(self: *const T, hwndParent: ?HWND, lFlags: i32, lIntent: i32, plItemCount: ?*i32, ppIWiaItem: ?*?*?*IWiaItem) HRESULT {
+                return @ptrCast(*const IWiaItem.VTable, self.vtable).DeviceDlg(@ptrCast(*const IWiaItem, self), hwndParent, lFlags, lIntent, plItemCount, ppIWiaItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem_DeviceCommand(self: *const T, lFlags: i32, pCmdGUID: ?*const Guid, pIWiaItem: ?*?*IWiaItem) HRESULT {
+                return @ptrCast(*const IWiaItem.VTable, self.vtable).DeviceCommand(@ptrCast(*const IWiaItem, self), lFlags, pCmdGUID, pIWiaItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem_GetRootItem(self: *const T, ppIWiaItem: ?*?*IWiaItem) HRESULT {
+                return @ptrCast(*const IWiaItem.VTable, self.vtable).GetRootItem(@ptrCast(*const IWiaItem, self), ppIWiaItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem_EnumDeviceCapabilities(self: *const T, lFlags: i32, ppIEnumWIA_DEV_CAPS: ?*?*IEnumWIA_DEV_CAPS) HRESULT {
+                return @ptrCast(*const IWiaItem.VTable, self.vtable).EnumDeviceCapabilities(@ptrCast(*const IWiaItem, self), lFlags, ppIEnumWIA_DEV_CAPS);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem_DumpItemData(self: *const T, bstrData: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWiaItem.VTable, self.vtable).DumpItemData(@ptrCast(*const IWiaItem, self), bstrData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem_DumpDrvItemData(self: *const T, bstrData: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWiaItem.VTable, self.vtable).DumpDrvItemData(@ptrCast(*const IWiaItem, self), bstrData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem_DumpTreeItemData(self: *const T, bstrData: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWiaItem.VTable, self.vtable).DumpTreeItemData(@ptrCast(*const IWiaItem, self), bstrData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem_Diagnostic(self: *const T, ulSize: u32, pBuffer: [*:0]u8) HRESULT {
+                return @ptrCast(*const IWiaItem.VTable, self.vtable).Diagnostic(@ptrCast(*const IWiaItem, self), ulSize, pBuffer);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1822,13 +1834,13 @@ pub const IWiaPropertyStorage = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ReadMultiple: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaPropertyStorage,
                 cpspec: u32,
                 rgpspec: [*]const PROPSPEC,
                 rgpropvar: [*]PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaPropertyStorage,
                 cpspec: u32,
                 rgpspec: [*]const PROPSPEC,
@@ -1836,14 +1848,14 @@ pub const IWiaPropertyStorage = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         WriteMultiple: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaPropertyStorage,
                 cpspec: u32,
                 rgpspec: ?*const PROPSPEC,
                 rgpropvar: ?*const PROPVARIANT,
                 propidNameFirst: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaPropertyStorage,
                 cpspec: u32,
                 rgpspec: ?*const PROPSPEC,
@@ -1852,25 +1864,25 @@ pub const IWiaPropertyStorage = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DeleteMultiple: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaPropertyStorage,
                 cpspec: u32,
                 rgpspec: [*]const PROPSPEC,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaPropertyStorage,
                 cpspec: u32,
                 rgpspec: [*]const PROPSPEC,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ReadPropertyNames: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaPropertyStorage,
                 cpropid: u32,
                 rgpropid: [*]const u32,
                 rglpwstrName: [*]?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaPropertyStorage,
                 cpropid: u32,
                 rgpropid: [*]const u32,
@@ -1878,13 +1890,13 @@ pub const IWiaPropertyStorage = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         WritePropertyNames: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaPropertyStorage,
                 cpropid: u32,
                 rgpropid: [*]const u32,
                 rglpwstrName: [*]const ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaPropertyStorage,
                 cpropid: u32,
                 rgpropid: [*]const u32,
@@ -1892,53 +1904,53 @@ pub const IWiaPropertyStorage = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DeletePropertyNames: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaPropertyStorage,
                 cpropid: u32,
                 rgpropid: [*]const u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaPropertyStorage,
                 cpropid: u32,
                 rgpropid: [*]const u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Commit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaPropertyStorage,
                 grfCommitFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaPropertyStorage,
                 grfCommitFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Revert: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaPropertyStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaPropertyStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Enum: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaPropertyStorage,
                 ppenum: ?*?*IEnumSTATPROPSTG,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaPropertyStorage,
                 ppenum: ?*?*IEnumSTATPROPSTG,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetTimes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaPropertyStorage,
                 pctime: ?*const FILETIME,
                 patime: ?*const FILETIME,
                 pmtime: ?*const FILETIME,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaPropertyStorage,
                 pctime: ?*const FILETIME,
                 patime: ?*const FILETIME,
@@ -1946,34 +1958,34 @@ pub const IWiaPropertyStorage = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetClass: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaPropertyStorage,
                 clsid: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaPropertyStorage,
                 clsid: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Stat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaPropertyStorage,
                 pstatpsstg: ?*STATPROPSETSTG,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaPropertyStorage,
                 pstatpsstg: ?*STATPROPSETSTG,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPropertyAttributes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaPropertyStorage,
                 cpspec: u32,
                 rgpspec: [*]PROPSPEC,
                 rgflags: [*]u32,
                 rgpropvar: [*]PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaPropertyStorage,
                 cpspec: u32,
                 rgpspec: [*]PROPSPEC,
@@ -1982,34 +1994,34 @@ pub const IWiaPropertyStorage = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaPropertyStorage,
                 pulNumProps: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaPropertyStorage,
                 pulNumProps: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPropertyStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaPropertyStorage,
                 pCompatibilityId: ?*Guid,
                 ppIStream: ?*?*IStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaPropertyStorage,
                 pCompatibilityId: ?*Guid,
                 ppIStream: ?*?*IStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetPropertyStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaPropertyStorage,
                 pCompatibilityId: ?*Guid,
                 pIStream: ?*IStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaPropertyStorage,
                 pCompatibilityId: ?*Guid,
                 pIStream: ?*IStream,
@@ -2017,73 +2029,75 @@ pub const IWiaPropertyStorage = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_ReadMultiple(self: *const T, cpspec: u32, rgpspec: [*]const PROPSPEC, rgpropvar: [*]PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).ReadMultiple(@ptrCast(*const IWiaPropertyStorage, self), cpspec, rgpspec, rgpropvar);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_WriteMultiple(self: *const T, cpspec: u32, rgpspec: ?*const PROPSPEC, rgpropvar: ?*const PROPVARIANT, propidNameFirst: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).WriteMultiple(@ptrCast(*const IWiaPropertyStorage, self), cpspec, rgpspec, rgpropvar, propidNameFirst);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_DeleteMultiple(self: *const T, cpspec: u32, rgpspec: [*]const PROPSPEC) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).DeleteMultiple(@ptrCast(*const IWiaPropertyStorage, self), cpspec, rgpspec);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_ReadPropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).ReadPropertyNames(@ptrCast(*const IWiaPropertyStorage, self), cpropid, rgpropid, rglpwstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_WritePropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]const ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).WritePropertyNames(@ptrCast(*const IWiaPropertyStorage, self), cpropid, rgpropid, rglpwstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_DeletePropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).DeletePropertyNames(@ptrCast(*const IWiaPropertyStorage, self), cpropid, rgpropid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_Commit(self: *const T, grfCommitFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).Commit(@ptrCast(*const IWiaPropertyStorage, self), grfCommitFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_Revert(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).Revert(@ptrCast(*const IWiaPropertyStorage, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_Enum(self: *const T, ppenum: ?*?*IEnumSTATPROPSTG) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).Enum(@ptrCast(*const IWiaPropertyStorage, self), ppenum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_SetTimes(self: *const T, pctime: ?*const FILETIME, patime: ?*const FILETIME, pmtime: ?*const FILETIME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).SetTimes(@ptrCast(*const IWiaPropertyStorage, self), pctime, patime, pmtime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_SetClass(self: *const T, clsid: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).SetClass(@ptrCast(*const IWiaPropertyStorage, self), clsid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_Stat(self: *const T, pstatpsstg: ?*STATPROPSETSTG) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).Stat(@ptrCast(*const IWiaPropertyStorage, self), pstatpsstg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_GetPropertyAttributes(self: *const T, cpspec: u32, rgpspec: [*]PROPSPEC, rgflags: [*]u32, rgpropvar: [*]PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).GetPropertyAttributes(@ptrCast(*const IWiaPropertyStorage, self), cpspec, rgpspec, rgflags, rgpropvar);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_GetCount(self: *const T, pulNumProps: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).GetCount(@ptrCast(*const IWiaPropertyStorage, self), pulNumProps);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_GetPropertyStream(self: *const T, pCompatibilityId: ?*Guid, ppIStream: ?*?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).GetPropertyStream(@ptrCast(*const IWiaPropertyStorage, self), pCompatibilityId, ppIStream);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_SetPropertyStream(self: *const T, pCompatibilityId: ?*Guid, pIStream: ?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).SetPropertyStream(@ptrCast(*const IWiaPropertyStorage, self), pCompatibilityId, pIStream);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaPropertyStorage_ReadMultiple(self: *const T, cpspec: u32, rgpspec: [*]const PROPSPEC, rgpropvar: [*]PROPVARIANT) HRESULT {
+                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).ReadMultiple(@ptrCast(*const IWiaPropertyStorage, self), cpspec, rgpspec, rgpropvar);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaPropertyStorage_WriteMultiple(self: *const T, cpspec: u32, rgpspec: ?*const PROPSPEC, rgpropvar: ?*const PROPVARIANT, propidNameFirst: u32) HRESULT {
+                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).WriteMultiple(@ptrCast(*const IWiaPropertyStorage, self), cpspec, rgpspec, rgpropvar, propidNameFirst);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaPropertyStorage_DeleteMultiple(self: *const T, cpspec: u32, rgpspec: [*]const PROPSPEC) HRESULT {
+                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).DeleteMultiple(@ptrCast(*const IWiaPropertyStorage, self), cpspec, rgpspec);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaPropertyStorage_ReadPropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]?PWSTR) HRESULT {
+                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).ReadPropertyNames(@ptrCast(*const IWiaPropertyStorage, self), cpropid, rgpropid, rglpwstrName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaPropertyStorage_WritePropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]const ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).WritePropertyNames(@ptrCast(*const IWiaPropertyStorage, self), cpropid, rgpropid, rglpwstrName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaPropertyStorage_DeletePropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32) HRESULT {
+                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).DeletePropertyNames(@ptrCast(*const IWiaPropertyStorage, self), cpropid, rgpropid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaPropertyStorage_Commit(self: *const T, grfCommitFlags: u32) HRESULT {
+                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).Commit(@ptrCast(*const IWiaPropertyStorage, self), grfCommitFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaPropertyStorage_Revert(self: *const T) HRESULT {
+                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).Revert(@ptrCast(*const IWiaPropertyStorage, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaPropertyStorage_Enum(self: *const T, ppenum: ?*?*IEnumSTATPROPSTG) HRESULT {
+                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).Enum(@ptrCast(*const IWiaPropertyStorage, self), ppenum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaPropertyStorage_SetTimes(self: *const T, pctime: ?*const FILETIME, patime: ?*const FILETIME, pmtime: ?*const FILETIME) HRESULT {
+                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).SetTimes(@ptrCast(*const IWiaPropertyStorage, self), pctime, patime, pmtime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaPropertyStorage_SetClass(self: *const T, clsid: ?*const Guid) HRESULT {
+                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).SetClass(@ptrCast(*const IWiaPropertyStorage, self), clsid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaPropertyStorage_Stat(self: *const T, pstatpsstg: ?*STATPROPSETSTG) HRESULT {
+                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).Stat(@ptrCast(*const IWiaPropertyStorage, self), pstatpsstg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaPropertyStorage_GetPropertyAttributes(self: *const T, cpspec: u32, rgpspec: [*]PROPSPEC, rgflags: [*]u32, rgpropvar: [*]PROPVARIANT) HRESULT {
+                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).GetPropertyAttributes(@ptrCast(*const IWiaPropertyStorage, self), cpspec, rgpspec, rgflags, rgpropvar);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaPropertyStorage_GetCount(self: *const T, pulNumProps: ?*u32) HRESULT {
+                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).GetCount(@ptrCast(*const IWiaPropertyStorage, self), pulNumProps);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaPropertyStorage_GetPropertyStream(self: *const T, pCompatibilityId: ?*Guid, ppIStream: ?*?*IStream) HRESULT {
+                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).GetPropertyStream(@ptrCast(*const IWiaPropertyStorage, self), pCompatibilityId, ppIStream);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaPropertyStorage_SetPropertyStream(self: *const T, pCompatibilityId: ?*Guid, pIStream: ?*IStream) HRESULT {
+                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).SetPropertyStream(@ptrCast(*const IWiaPropertyStorage, self), pCompatibilityId, pIStream);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2094,13 +2108,13 @@ pub const IEnumWiaItem = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWiaItem,
                 celt: u32,
                 ppIWiaItem: ?*?*IWiaItem,
                 pceltFetched: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWiaItem,
                 celt: u32,
                 ppIWiaItem: ?*?*IWiaItem,
@@ -2108,68 +2122,70 @@ pub const IEnumWiaItem = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWiaItem,
                 celt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWiaItem,
                 celt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWiaItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWiaItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWiaItem,
                 ppIEnum: ?*?*IEnumWiaItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWiaItem,
                 ppIEnum: ?*?*IEnumWiaItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWiaItem,
                 celt: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWiaItem,
                 celt: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWiaItem_Next(self: *const T, celt: u32, ppIWiaItem: ?*?*IWiaItem, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWiaItem.VTable, self.vtable).Next(@ptrCast(*const IEnumWiaItem, self), celt, ppIWiaItem, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWiaItem_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWiaItem.VTable, self.vtable).Skip(@ptrCast(*const IEnumWiaItem, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWiaItem_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWiaItem.VTable, self.vtable).Reset(@ptrCast(*const IEnumWiaItem, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWiaItem_Clone(self: *const T, ppIEnum: ?*?*IEnumWiaItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWiaItem.VTable, self.vtable).Clone(@ptrCast(*const IEnumWiaItem, self), ppIEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWiaItem_GetCount(self: *const T, celt: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWiaItem.VTable, self.vtable).GetCount(@ptrCast(*const IEnumWiaItem, self), celt);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWiaItem_Next(self: *const T, celt: u32, ppIWiaItem: ?*?*IWiaItem, pceltFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumWiaItem.VTable, self.vtable).Next(@ptrCast(*const IEnumWiaItem, self), celt, ppIWiaItem, pceltFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWiaItem_Skip(self: *const T, celt: u32) HRESULT {
+                return @ptrCast(*const IEnumWiaItem.VTable, self.vtable).Skip(@ptrCast(*const IEnumWiaItem, self), celt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWiaItem_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumWiaItem.VTable, self.vtable).Reset(@ptrCast(*const IEnumWiaItem, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWiaItem_Clone(self: *const T, ppIEnum: ?*?*IEnumWiaItem) HRESULT {
+                return @ptrCast(*const IEnumWiaItem.VTable, self.vtable).Clone(@ptrCast(*const IEnumWiaItem, self), ppIEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWiaItem_GetCount(self: *const T, celt: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumWiaItem.VTable, self.vtable).GetCount(@ptrCast(*const IEnumWiaItem, self), celt);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2189,13 +2205,13 @@ pub const IEnumWIA_DEV_CAPS = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWIA_DEV_CAPS,
                 celt: u32,
                 rgelt: ?*WIA_DEV_CAP,
                 pceltFetched: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWIA_DEV_CAPS,
                 celt: u32,
                 rgelt: ?*WIA_DEV_CAP,
@@ -2203,68 +2219,70 @@ pub const IEnumWIA_DEV_CAPS = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWIA_DEV_CAPS,
                 celt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWIA_DEV_CAPS,
                 celt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWIA_DEV_CAPS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWIA_DEV_CAPS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWIA_DEV_CAPS,
                 ppIEnum: ?*?*IEnumWIA_DEV_CAPS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWIA_DEV_CAPS,
                 ppIEnum: ?*?*IEnumWIA_DEV_CAPS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWIA_DEV_CAPS,
                 pcelt: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWIA_DEV_CAPS,
                 pcelt: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_DEV_CAPS_Next(self: *const T, celt: u32, rgelt: ?*WIA_DEV_CAP, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWIA_DEV_CAPS.VTable, self.vtable).Next(@ptrCast(*const IEnumWIA_DEV_CAPS, self), celt, rgelt, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_DEV_CAPS_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWIA_DEV_CAPS.VTable, self.vtable).Skip(@ptrCast(*const IEnumWIA_DEV_CAPS, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_DEV_CAPS_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWIA_DEV_CAPS.VTable, self.vtable).Reset(@ptrCast(*const IEnumWIA_DEV_CAPS, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_DEV_CAPS_Clone(self: *const T, ppIEnum: ?*?*IEnumWIA_DEV_CAPS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWIA_DEV_CAPS.VTable, self.vtable).Clone(@ptrCast(*const IEnumWIA_DEV_CAPS, self), ppIEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_DEV_CAPS_GetCount(self: *const T, pcelt: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWIA_DEV_CAPS.VTable, self.vtable).GetCount(@ptrCast(*const IEnumWIA_DEV_CAPS, self), pcelt);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWIA_DEV_CAPS_Next(self: *const T, celt: u32, rgelt: ?*WIA_DEV_CAP, pceltFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumWIA_DEV_CAPS.VTable, self.vtable).Next(@ptrCast(*const IEnumWIA_DEV_CAPS, self), celt, rgelt, pceltFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWIA_DEV_CAPS_Skip(self: *const T, celt: u32) HRESULT {
+                return @ptrCast(*const IEnumWIA_DEV_CAPS.VTable, self.vtable).Skip(@ptrCast(*const IEnumWIA_DEV_CAPS, self), celt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWIA_DEV_CAPS_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumWIA_DEV_CAPS.VTable, self.vtable).Reset(@ptrCast(*const IEnumWIA_DEV_CAPS, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWIA_DEV_CAPS_Clone(self: *const T, ppIEnum: ?*?*IEnumWIA_DEV_CAPS) HRESULT {
+                return @ptrCast(*const IEnumWIA_DEV_CAPS.VTable, self.vtable).Clone(@ptrCast(*const IEnumWIA_DEV_CAPS, self), ppIEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWIA_DEV_CAPS_GetCount(self: *const T, pcelt: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumWIA_DEV_CAPS.VTable, self.vtable).GetCount(@ptrCast(*const IEnumWIA_DEV_CAPS, self), pcelt);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2275,13 +2293,13 @@ pub const IEnumWIA_FORMAT_INFO = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWIA_FORMAT_INFO,
                 celt: u32,
                 rgelt: ?*WIA_FORMAT_INFO,
                 pceltFetched: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWIA_FORMAT_INFO,
                 celt: u32,
                 rgelt: ?*WIA_FORMAT_INFO,
@@ -2289,68 +2307,70 @@ pub const IEnumWIA_FORMAT_INFO = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWIA_FORMAT_INFO,
                 celt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWIA_FORMAT_INFO,
                 celt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWIA_FORMAT_INFO,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWIA_FORMAT_INFO,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWIA_FORMAT_INFO,
                 ppIEnum: ?*?*IEnumWIA_FORMAT_INFO,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWIA_FORMAT_INFO,
                 ppIEnum: ?*?*IEnumWIA_FORMAT_INFO,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWIA_FORMAT_INFO,
                 pcelt: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWIA_FORMAT_INFO,
                 pcelt: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_FORMAT_INFO_Next(self: *const T, celt: u32, rgelt: ?*WIA_FORMAT_INFO, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWIA_FORMAT_INFO.VTable, self.vtable).Next(@ptrCast(*const IEnumWIA_FORMAT_INFO, self), celt, rgelt, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_FORMAT_INFO_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWIA_FORMAT_INFO.VTable, self.vtable).Skip(@ptrCast(*const IEnumWIA_FORMAT_INFO, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_FORMAT_INFO_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWIA_FORMAT_INFO.VTable, self.vtable).Reset(@ptrCast(*const IEnumWIA_FORMAT_INFO, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_FORMAT_INFO_Clone(self: *const T, ppIEnum: ?*?*IEnumWIA_FORMAT_INFO) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWIA_FORMAT_INFO.VTable, self.vtable).Clone(@ptrCast(*const IEnumWIA_FORMAT_INFO, self), ppIEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWIA_FORMAT_INFO_GetCount(self: *const T, pcelt: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWIA_FORMAT_INFO.VTable, self.vtable).GetCount(@ptrCast(*const IEnumWIA_FORMAT_INFO, self), pcelt);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWIA_FORMAT_INFO_Next(self: *const T, celt: u32, rgelt: ?*WIA_FORMAT_INFO, pceltFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumWIA_FORMAT_INFO.VTable, self.vtable).Next(@ptrCast(*const IEnumWIA_FORMAT_INFO, self), celt, rgelt, pceltFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWIA_FORMAT_INFO_Skip(self: *const T, celt: u32) HRESULT {
+                return @ptrCast(*const IEnumWIA_FORMAT_INFO.VTable, self.vtable).Skip(@ptrCast(*const IEnumWIA_FORMAT_INFO, self), celt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWIA_FORMAT_INFO_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumWIA_FORMAT_INFO.VTable, self.vtable).Reset(@ptrCast(*const IEnumWIA_FORMAT_INFO, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWIA_FORMAT_INFO_Clone(self: *const T, ppIEnum: ?*?*IEnumWIA_FORMAT_INFO) HRESULT {
+                return @ptrCast(*const IEnumWIA_FORMAT_INFO.VTable, self.vtable).Clone(@ptrCast(*const IEnumWIA_FORMAT_INFO, self), ppIEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWIA_FORMAT_INFO_GetCount(self: *const T, pcelt: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumWIA_FORMAT_INFO.VTable, self.vtable).GetCount(@ptrCast(*const IEnumWIA_FORMAT_INFO, self), pcelt);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2361,34 +2381,34 @@ pub const IWiaLog = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         InitializeLog: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaLog,
                 hInstance: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaLog,
                 hInstance: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         hResult: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaLog,
                 hResult: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaLog,
                 hResult: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Log: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaLog,
                 lFlags: i32,
                 lResID: i32,
                 lDetail: i32,
                 bstrText: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaLog,
                 lFlags: i32,
                 lResID: i32,
@@ -2398,21 +2418,23 @@ pub const IWiaLog = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaLog_InitializeLog(self: *const T, hInstance: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaLog.VTable, self.vtable).InitializeLog(@ptrCast(*const IWiaLog, self), hInstance);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaLog_hResult(self: *const T, hResult: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaLog.VTable, self.vtable).hResult(@ptrCast(*const IWiaLog, self), hResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaLog_Log(self: *const T, lFlags: i32, lResID: i32, lDetail: i32, bstrText: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaLog.VTable, self.vtable).Log(@ptrCast(*const IWiaLog, self), lFlags, lResID, lDetail, bstrText);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaLog_InitializeLog(self: *const T, hInstance: i32) HRESULT {
+                return @ptrCast(*const IWiaLog.VTable, self.vtable).InitializeLog(@ptrCast(*const IWiaLog, self), hInstance);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaLog_hResult(self: *const T, hResult: HRESULT) HRESULT {
+                return @ptrCast(*const IWiaLog.VTable, self.vtable).hResult(@ptrCast(*const IWiaLog, self), hResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaLog_Log(self: *const T, lFlags: i32, lResID: i32, lDetail: i32, bstrText: ?BSTR) HRESULT {
+                return @ptrCast(*const IWiaLog.VTable, self.vtable).Log(@ptrCast(*const IWiaLog, self), lFlags, lResID, lDetail, bstrText);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2423,34 +2445,34 @@ pub const IWiaLogEx = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         InitializeLogEx: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaLogEx,
                 hInstance: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaLogEx,
                 hInstance: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         hResult: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaLogEx,
                 hResult: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaLogEx,
                 hResult: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Log: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaLogEx,
                 lFlags: i32,
                 lResID: i32,
                 lDetail: i32,
                 bstrText: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaLogEx,
                 lFlags: i32,
                 lResID: i32,
@@ -2459,19 +2481,19 @@ pub const IWiaLogEx = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         hResultEx: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaLogEx,
                 lMethodId: i32,
                 hResult: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaLogEx,
                 lMethodId: i32,
                 hResult: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         LogEx: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaLogEx,
                 lMethodId: i32,
                 lFlags: i32,
@@ -2479,7 +2501,7 @@ pub const IWiaLogEx = extern struct {
                 lDetail: i32,
                 bstrText: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaLogEx,
                 lMethodId: i32,
                 lFlags: i32,
@@ -2490,29 +2512,31 @@ pub const IWiaLogEx = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaLogEx_InitializeLogEx(self: *const T, hInstance: ?*u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaLogEx.VTable, self.vtable).InitializeLogEx(@ptrCast(*const IWiaLogEx, self), hInstance);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaLogEx_hResult(self: *const T, hResult: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaLogEx.VTable, self.vtable).hResult(@ptrCast(*const IWiaLogEx, self), hResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaLogEx_Log(self: *const T, lFlags: i32, lResID: i32, lDetail: i32, bstrText: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaLogEx.VTable, self.vtable).Log(@ptrCast(*const IWiaLogEx, self), lFlags, lResID, lDetail, bstrText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaLogEx_hResultEx(self: *const T, lMethodId: i32, hResult: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaLogEx.VTable, self.vtable).hResultEx(@ptrCast(*const IWiaLogEx, self), lMethodId, hResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaLogEx_LogEx(self: *const T, lMethodId: i32, lFlags: i32, lResID: i32, lDetail: i32, bstrText: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaLogEx.VTable, self.vtable).LogEx(@ptrCast(*const IWiaLogEx, self), lMethodId, lFlags, lResID, lDetail, bstrText);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaLogEx_InitializeLogEx(self: *const T, hInstance: ?*u8) HRESULT {
+                return @ptrCast(*const IWiaLogEx.VTable, self.vtable).InitializeLogEx(@ptrCast(*const IWiaLogEx, self), hInstance);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaLogEx_hResult(self: *const T, hResult: HRESULT) HRESULT {
+                return @ptrCast(*const IWiaLogEx.VTable, self.vtable).hResult(@ptrCast(*const IWiaLogEx, self), hResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaLogEx_Log(self: *const T, lFlags: i32, lResID: i32, lDetail: i32, bstrText: ?BSTR) HRESULT {
+                return @ptrCast(*const IWiaLogEx.VTable, self.vtable).Log(@ptrCast(*const IWiaLogEx, self), lFlags, lResID, lDetail, bstrText);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaLogEx_hResultEx(self: *const T, lMethodId: i32, hResult: HRESULT) HRESULT {
+                return @ptrCast(*const IWiaLogEx.VTable, self.vtable).hResultEx(@ptrCast(*const IWiaLogEx, self), lMethodId, hResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaLogEx_LogEx(self: *const T, lMethodId: i32, lFlags: i32, lResID: i32, lDetail: i32, bstrText: ?BSTR) HRESULT {
+                return @ptrCast(*const IWiaLogEx.VTable, self.vtable).LogEx(@ptrCast(*const IWiaLogEx, self), lMethodId, lFlags, lResID, lDetail, bstrText);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2523,22 +2547,24 @@ pub const IWiaNotifyDevMgr = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         NewDeviceArrival: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaNotifyDevMgr,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaNotifyDevMgr,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaNotifyDevMgr_NewDeviceArrival(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaNotifyDevMgr.VTable, self.vtable).NewDeviceArrival(@ptrCast(*const IWiaNotifyDevMgr, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaNotifyDevMgr_NewDeviceArrival(self: *const T) HRESULT {
+                return @ptrCast(*const IWiaNotifyDevMgr.VTable, self.vtable).NewDeviceArrival(@ptrCast(*const IWiaNotifyDevMgr, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2549,17 +2575,17 @@ pub const IWiaItemExtras = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetExtendedErrorInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItemExtras,
                 bstrErrorText: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItemExtras,
                 bstrErrorText: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Escape: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItemExtras,
                 dwEscapeCode: u32,
                 lpInData: [*:0]u8,
@@ -2568,7 +2594,7 @@ pub const IWiaItemExtras = extern struct {
                 dwOutDataSize: u32,
                 pdwActualDataSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItemExtras,
                 dwEscapeCode: u32,
                 lpInData: [*:0]u8,
@@ -2579,30 +2605,32 @@ pub const IWiaItemExtras = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CancelPendingIO: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItemExtras,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItemExtras,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItemExtras_GetExtendedErrorInfo(self: *const T, bstrErrorText: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItemExtras.VTable, self.vtable).GetExtendedErrorInfo(@ptrCast(*const IWiaItemExtras, self), bstrErrorText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItemExtras_Escape(self: *const T, dwEscapeCode: u32, lpInData: [*:0]u8, cbInDataSize: u32, pOutData: ?*u8, dwOutDataSize: u32, pdwActualDataSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItemExtras.VTable, self.vtable).Escape(@ptrCast(*const IWiaItemExtras, self), dwEscapeCode, lpInData, cbInDataSize, pOutData, dwOutDataSize, pdwActualDataSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItemExtras_CancelPendingIO(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItemExtras.VTable, self.vtable).CancelPendingIO(@ptrCast(*const IWiaItemExtras, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItemExtras_GetExtendedErrorInfo(self: *const T, bstrErrorText: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWiaItemExtras.VTable, self.vtable).GetExtendedErrorInfo(@ptrCast(*const IWiaItemExtras, self), bstrErrorText);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItemExtras_Escape(self: *const T, dwEscapeCode: u32, lpInData: [*:0]u8, cbInDataSize: u32, pOutData: ?*u8, dwOutDataSize: u32, pdwActualDataSize: ?*u32) HRESULT {
+                return @ptrCast(*const IWiaItemExtras.VTable, self.vtable).Escape(@ptrCast(*const IWiaItemExtras, self), dwEscapeCode, lpInData, cbInDataSize, pOutData, dwOutDataSize, pdwActualDataSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItemExtras_CancelPendingIO(self: *const T) HRESULT {
+                return @ptrCast(*const IWiaItemExtras.VTable, self.vtable).CancelPendingIO(@ptrCast(*const IWiaItemExtras, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2612,24 +2640,24 @@ pub const IWiaAppErrorHandler = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaAppErrorHandler,
                 phwnd: ?*?HWND,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaAppErrorHandler,
                 phwnd: ?*?HWND,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ReportStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaAppErrorHandler,
                 lFlags: i32,
                 pWiaItem2: ?*IWiaItem2,
                 hrStatus: HRESULT,
                 lPercentComplete: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaAppErrorHandler,
                 lFlags: i32,
                 pWiaItem2: ?*IWiaItem2,
@@ -2639,17 +2667,19 @@ pub const IWiaAppErrorHandler = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaAppErrorHandler_GetWindow(self: *const T, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaAppErrorHandler.VTable, self.vtable).GetWindow(@ptrCast(*const IWiaAppErrorHandler, self), phwnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaAppErrorHandler_ReportStatus(self: *const T, lFlags: i32, pWiaItem2: ?*IWiaItem2, hrStatus: HRESULT, lPercentComplete: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaAppErrorHandler.VTable, self.vtable).ReportStatus(@ptrCast(*const IWiaAppErrorHandler, self), lFlags, pWiaItem2, hrStatus, lPercentComplete);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaAppErrorHandler_GetWindow(self: *const T, phwnd: ?*?HWND) HRESULT {
+                return @ptrCast(*const IWiaAppErrorHandler.VTable, self.vtable).GetWindow(@ptrCast(*const IWiaAppErrorHandler, self), phwnd);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaAppErrorHandler_ReportStatus(self: *const T, lFlags: i32, pWiaItem2: ?*IWiaItem2, hrStatus: HRESULT, lPercentComplete: i32) HRESULT {
+                return @ptrCast(*const IWiaAppErrorHandler.VTable, self.vtable).ReportStatus(@ptrCast(*const IWiaAppErrorHandler, self), lFlags, pWiaItem2, hrStatus, lPercentComplete);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2659,7 +2689,7 @@ pub const IWiaErrorHandler = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ReportStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaErrorHandler,
                 lFlags: i32,
                 hwndParent: ?HWND,
@@ -2667,7 +2697,7 @@ pub const IWiaErrorHandler = extern struct {
                 hrStatus: HRESULT,
                 lPercentComplete: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaErrorHandler,
                 lFlags: i32,
                 hwndParent: ?HWND,
@@ -2677,14 +2707,14 @@ pub const IWiaErrorHandler = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetStatusDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaErrorHandler,
                 lFlags: i32,
                 pWiaItem2: ?*IWiaItem2,
                 hrStatus: HRESULT,
                 pbstrDescription: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaErrorHandler,
                 lFlags: i32,
                 pWiaItem2: ?*IWiaItem2,
@@ -2694,17 +2724,19 @@ pub const IWiaErrorHandler = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaErrorHandler_ReportStatus(self: *const T, lFlags: i32, hwndParent: ?HWND, pWiaItem2: ?*IWiaItem2, hrStatus: HRESULT, lPercentComplete: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaErrorHandler.VTable, self.vtable).ReportStatus(@ptrCast(*const IWiaErrorHandler, self), lFlags, hwndParent, pWiaItem2, hrStatus, lPercentComplete);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaErrorHandler_GetStatusDescription(self: *const T, lFlags: i32, pWiaItem2: ?*IWiaItem2, hrStatus: HRESULT, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaErrorHandler.VTable, self.vtable).GetStatusDescription(@ptrCast(*const IWiaErrorHandler, self), lFlags, pWiaItem2, hrStatus, pbstrDescription);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaErrorHandler_ReportStatus(self: *const T, lFlags: i32, hwndParent: ?HWND, pWiaItem2: ?*IWiaItem2, hrStatus: HRESULT, lPercentComplete: i32) HRESULT {
+                return @ptrCast(*const IWiaErrorHandler.VTable, self.vtable).ReportStatus(@ptrCast(*const IWiaErrorHandler, self), lFlags, hwndParent, pWiaItem2, hrStatus, lPercentComplete);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaErrorHandler_GetStatusDescription(self: *const T, lFlags: i32, pWiaItem2: ?*IWiaItem2, hrStatus: HRESULT, pbstrDescription: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWiaErrorHandler.VTable, self.vtable).GetStatusDescription(@ptrCast(*const IWiaErrorHandler, self), lFlags, pWiaItem2, hrStatus, pbstrDescription);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2714,25 +2746,25 @@ pub const IWiaTransfer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Download: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaTransfer,
                 lFlags: i32,
                 pIWiaTransferCallback: ?*IWiaTransferCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaTransfer,
                 lFlags: i32,
                 pIWiaTransferCallback: ?*IWiaTransferCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Upload: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaTransfer,
                 lFlags: i32,
                 pSource: ?*IStream,
                 pIWiaTransferCallback: ?*IWiaTransferCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaTransfer,
                 lFlags: i32,
                 pSource: ?*IStream,
@@ -2740,44 +2772,46 @@ pub const IWiaTransfer = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaTransfer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaTransfer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumWIA_FORMAT_INFO: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaTransfer,
                 ppEnum: ?*?*IEnumWIA_FORMAT_INFO,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaTransfer,
                 ppEnum: ?*?*IEnumWIA_FORMAT_INFO,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaTransfer_Download(self: *const T, lFlags: i32, pIWiaTransferCallback: ?*IWiaTransferCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaTransfer.VTable, self.vtable).Download(@ptrCast(*const IWiaTransfer, self), lFlags, pIWiaTransferCallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaTransfer_Upload(self: *const T, lFlags: i32, pSource: ?*IStream, pIWiaTransferCallback: ?*IWiaTransferCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaTransfer.VTable, self.vtable).Upload(@ptrCast(*const IWiaTransfer, self), lFlags, pSource, pIWiaTransferCallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaTransfer_Cancel(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaTransfer.VTable, self.vtable).Cancel(@ptrCast(*const IWiaTransfer, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaTransfer_EnumWIA_FORMAT_INFO(self: *const T, ppEnum: ?*?*IEnumWIA_FORMAT_INFO) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaTransfer.VTable, self.vtable).EnumWIA_FORMAT_INFO(@ptrCast(*const IWiaTransfer, self), ppEnum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaTransfer_Download(self: *const T, lFlags: i32, pIWiaTransferCallback: ?*IWiaTransferCallback) HRESULT {
+                return @ptrCast(*const IWiaTransfer.VTable, self.vtable).Download(@ptrCast(*const IWiaTransfer, self), lFlags, pIWiaTransferCallback);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaTransfer_Upload(self: *const T, lFlags: i32, pSource: ?*IStream, pIWiaTransferCallback: ?*IWiaTransferCallback) HRESULT {
+                return @ptrCast(*const IWiaTransfer.VTable, self.vtable).Upload(@ptrCast(*const IWiaTransfer, self), lFlags, pSource, pIWiaTransferCallback);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaTransfer_Cancel(self: *const T) HRESULT {
+                return @ptrCast(*const IWiaTransfer.VTable, self.vtable).Cancel(@ptrCast(*const IWiaTransfer, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaTransfer_EnumWIA_FORMAT_INFO(self: *const T, ppEnum: ?*?*IEnumWIA_FORMAT_INFO) HRESULT {
+                return @ptrCast(*const IWiaTransfer.VTable, self.vtable).EnumWIA_FORMAT_INFO(@ptrCast(*const IWiaTransfer, self), ppEnum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2794,26 +2828,26 @@ pub const IWiaTransferCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         TransferCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaTransferCallback,
                 lFlags: i32,
                 pWiaTransferParams: ?*WiaTransferParams,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaTransferCallback,
                 lFlags: i32,
                 pWiaTransferParams: ?*WiaTransferParams,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetNextStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaTransferCallback,
                 lFlags: i32,
                 bstrItemName: ?BSTR,
                 bstrFullItemName: ?BSTR,
                 ppDestination: ?*?*IStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaTransferCallback,
                 lFlags: i32,
                 bstrItemName: ?BSTR,
@@ -2823,17 +2857,19 @@ pub const IWiaTransferCallback = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaTransferCallback_TransferCallback(self: *const T, lFlags: i32, pWiaTransferParams: ?*WiaTransferParams) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaTransferCallback.VTable, self.vtable).TransferCallback(@ptrCast(*const IWiaTransferCallback, self), lFlags, pWiaTransferParams);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaTransferCallback_GetNextStream(self: *const T, lFlags: i32, bstrItemName: ?BSTR, bstrFullItemName: ?BSTR, ppDestination: ?*?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaTransferCallback.VTable, self.vtable).GetNextStream(@ptrCast(*const IWiaTransferCallback, self), lFlags, bstrItemName, bstrFullItemName, ppDestination);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaTransferCallback_TransferCallback(self: *const T, lFlags: i32, pWiaTransferParams: ?*WiaTransferParams) HRESULT {
+                return @ptrCast(*const IWiaTransferCallback.VTable, self.vtable).TransferCallback(@ptrCast(*const IWiaTransferCallback, self), lFlags, pWiaTransferParams);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaTransferCallback_GetNextStream(self: *const T, lFlags: i32, bstrItemName: ?BSTR, bstrFullItemName: ?BSTR, ppDestination: ?*?*IStream) HRESULT {
+                return @ptrCast(*const IWiaTransferCallback.VTable, self.vtable).GetNextStream(@ptrCast(*const IWiaTransferCallback, self), lFlags, bstrItemName, bstrFullItemName, ppDestination);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2843,13 +2879,13 @@ pub const IWiaSegmentationFilter = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         DetectRegions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaSegmentationFilter,
                 lFlags: i32,
                 pInputStream: ?*IStream,
                 pWiaItem2: ?*IWiaItem2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaSegmentationFilter,
                 lFlags: i32,
                 pInputStream: ?*IStream,
@@ -2858,13 +2894,15 @@ pub const IWiaSegmentationFilter = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaSegmentationFilter_DetectRegions(self: *const T, lFlags: i32, pInputStream: ?*IStream, pWiaItem2: ?*IWiaItem2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaSegmentationFilter.VTable, self.vtable).DetectRegions(@ptrCast(*const IWiaSegmentationFilter, self), lFlags, pInputStream, pWiaItem2);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaSegmentationFilter_DetectRegions(self: *const T, lFlags: i32, pInputStream: ?*IStream, pWiaItem2: ?*IWiaItem2) HRESULT {
+                return @ptrCast(*const IWiaSegmentationFilter.VTable, self.vtable).DetectRegions(@ptrCast(*const IWiaSegmentationFilter, self), lFlags, pInputStream, pWiaItem2);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2874,36 +2912,36 @@ pub const IWiaImageFilter = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         InitializeFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaImageFilter,
                 pWiaItem2: ?*IWiaItem2,
                 pWiaTransferCallback: ?*IWiaTransferCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaImageFilter,
                 pWiaItem2: ?*IWiaItem2,
                 pWiaTransferCallback: ?*IWiaTransferCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetNewCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaImageFilter,
                 pWiaTransferCallback: ?*IWiaTransferCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaImageFilter,
                 pWiaTransferCallback: ?*IWiaTransferCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FilterPreviewImage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaImageFilter,
                 lFlags: i32,
                 pWiaChildItem2: ?*IWiaItem2,
                 InputImageExtents: RECT,
                 pInputStream: ?*IStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaImageFilter,
                 lFlags: i32,
                 pWiaChildItem2: ?*IWiaItem2,
@@ -2912,36 +2950,38 @@ pub const IWiaImageFilter = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ApplyProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaImageFilter,
                 pWiaPropertyStorage: ?*IWiaPropertyStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaImageFilter,
                 pWiaPropertyStorage: ?*IWiaPropertyStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaImageFilter_InitializeFilter(self: *const T, pWiaItem2: ?*IWiaItem2, pWiaTransferCallback: ?*IWiaTransferCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaImageFilter.VTable, self.vtable).InitializeFilter(@ptrCast(*const IWiaImageFilter, self), pWiaItem2, pWiaTransferCallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaImageFilter_SetNewCallback(self: *const T, pWiaTransferCallback: ?*IWiaTransferCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaImageFilter.VTable, self.vtable).SetNewCallback(@ptrCast(*const IWiaImageFilter, self), pWiaTransferCallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaImageFilter_FilterPreviewImage(self: *const T, lFlags: i32, pWiaChildItem2: ?*IWiaItem2, InputImageExtents: RECT, pInputStream: ?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaImageFilter.VTable, self.vtable).FilterPreviewImage(@ptrCast(*const IWiaImageFilter, self), lFlags, pWiaChildItem2, InputImageExtents, pInputStream);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaImageFilter_ApplyProperties(self: *const T, pWiaPropertyStorage: ?*IWiaPropertyStorage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaImageFilter.VTable, self.vtable).ApplyProperties(@ptrCast(*const IWiaImageFilter, self), pWiaPropertyStorage);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaImageFilter_InitializeFilter(self: *const T, pWiaItem2: ?*IWiaItem2, pWiaTransferCallback: ?*IWiaTransferCallback) HRESULT {
+                return @ptrCast(*const IWiaImageFilter.VTable, self.vtable).InitializeFilter(@ptrCast(*const IWiaImageFilter, self), pWiaItem2, pWiaTransferCallback);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaImageFilter_SetNewCallback(self: *const T, pWiaTransferCallback: ?*IWiaTransferCallback) HRESULT {
+                return @ptrCast(*const IWiaImageFilter.VTable, self.vtable).SetNewCallback(@ptrCast(*const IWiaImageFilter, self), pWiaTransferCallback);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaImageFilter_FilterPreviewImage(self: *const T, lFlags: i32, pWiaChildItem2: ?*IWiaItem2, InputImageExtents: RECT, pInputStream: ?*IStream) HRESULT {
+                return @ptrCast(*const IWiaImageFilter.VTable, self.vtable).FilterPreviewImage(@ptrCast(*const IWiaImageFilter, self), lFlags, pWiaChildItem2, InputImageExtents, pInputStream);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaImageFilter_ApplyProperties(self: *const T, pWiaPropertyStorage: ?*IWiaPropertyStorage) HRESULT {
+                return @ptrCast(*const IWiaImageFilter.VTable, self.vtable).ApplyProperties(@ptrCast(*const IWiaImageFilter, self), pWiaPropertyStorage);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2951,13 +2991,13 @@ pub const IWiaPreview = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetNewPreview: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaPreview,
                 lFlags: i32,
                 pWiaItem2: ?*IWiaItem2,
                 pWiaTransferCallback: ?*IWiaTransferCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaPreview,
                 lFlags: i32,
                 pWiaItem2: ?*IWiaItem2,
@@ -2965,13 +3005,13 @@ pub const IWiaPreview = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         UpdatePreview: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaPreview,
                 lFlags: i32,
                 pChildWiaItem2: ?*IWiaItem2,
                 pWiaTransferCallback: ?*IWiaTransferCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaPreview,
                 lFlags: i32,
                 pChildWiaItem2: ?*IWiaItem2,
@@ -2979,44 +3019,46 @@ pub const IWiaPreview = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DetectRegions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaPreview,
                 lFlags: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaPreview,
                 lFlags: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clear: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaPreview,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaPreview,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPreview_GetNewPreview(self: *const T, lFlags: i32, pWiaItem2: ?*IWiaItem2, pWiaTransferCallback: ?*IWiaTransferCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaPreview.VTable, self.vtable).GetNewPreview(@ptrCast(*const IWiaPreview, self), lFlags, pWiaItem2, pWiaTransferCallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPreview_UpdatePreview(self: *const T, lFlags: i32, pChildWiaItem2: ?*IWiaItem2, pWiaTransferCallback: ?*IWiaTransferCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaPreview.VTable, self.vtable).UpdatePreview(@ptrCast(*const IWiaPreview, self), lFlags, pChildWiaItem2, pWiaTransferCallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPreview_DetectRegions(self: *const T, lFlags: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaPreview.VTable, self.vtable).DetectRegions(@ptrCast(*const IWiaPreview, self), lFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPreview_Clear(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaPreview.VTable, self.vtable).Clear(@ptrCast(*const IWiaPreview, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaPreview_GetNewPreview(self: *const T, lFlags: i32, pWiaItem2: ?*IWiaItem2, pWiaTransferCallback: ?*IWiaTransferCallback) HRESULT {
+                return @ptrCast(*const IWiaPreview.VTable, self.vtable).GetNewPreview(@ptrCast(*const IWiaPreview, self), lFlags, pWiaItem2, pWiaTransferCallback);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaPreview_UpdatePreview(self: *const T, lFlags: i32, pChildWiaItem2: ?*IWiaItem2, pWiaTransferCallback: ?*IWiaTransferCallback) HRESULT {
+                return @ptrCast(*const IWiaPreview.VTable, self.vtable).UpdatePreview(@ptrCast(*const IWiaPreview, self), lFlags, pChildWiaItem2, pWiaTransferCallback);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaPreview_DetectRegions(self: *const T, lFlags: i32) HRESULT {
+                return @ptrCast(*const IWiaPreview.VTable, self.vtable).DetectRegions(@ptrCast(*const IWiaPreview, self), lFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaPreview_Clear(self: *const T) HRESULT {
+                return @ptrCast(*const IWiaPreview.VTable, self.vtable).Clear(@ptrCast(*const IWiaPreview, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3026,13 +3068,13 @@ pub const IEnumWiaItem2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWiaItem2,
                 cElt: u32,
                 ppIWiaItem2: ?*?*IWiaItem2,
                 pcEltFetched: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWiaItem2,
                 cElt: u32,
                 ppIWiaItem2: ?*?*IWiaItem2,
@@ -3040,68 +3082,70 @@ pub const IEnumWiaItem2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWiaItem2,
                 cElt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWiaItem2,
                 cElt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWiaItem2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWiaItem2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWiaItem2,
                 ppIEnum: ?*?*IEnumWiaItem2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWiaItem2,
                 ppIEnum: ?*?*IEnumWiaItem2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumWiaItem2,
                 cElt: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumWiaItem2,
                 cElt: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWiaItem2_Next(self: *const T, cElt: u32, ppIWiaItem2: ?*?*IWiaItem2, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWiaItem2.VTable, self.vtable).Next(@ptrCast(*const IEnumWiaItem2, self), cElt, ppIWiaItem2, pcEltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWiaItem2_Skip(self: *const T, cElt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWiaItem2.VTable, self.vtable).Skip(@ptrCast(*const IEnumWiaItem2, self), cElt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWiaItem2_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWiaItem2.VTable, self.vtable).Reset(@ptrCast(*const IEnumWiaItem2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWiaItem2_Clone(self: *const T, ppIEnum: ?*?*IEnumWiaItem2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWiaItem2.VTable, self.vtable).Clone(@ptrCast(*const IEnumWiaItem2, self), ppIEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumWiaItem2_GetCount(self: *const T, cElt: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumWiaItem2.VTable, self.vtable).GetCount(@ptrCast(*const IEnumWiaItem2, self), cElt);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWiaItem2_Next(self: *const T, cElt: u32, ppIWiaItem2: ?*?*IWiaItem2, pcEltFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumWiaItem2.VTable, self.vtable).Next(@ptrCast(*const IEnumWiaItem2, self), cElt, ppIWiaItem2, pcEltFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWiaItem2_Skip(self: *const T, cElt: u32) HRESULT {
+                return @ptrCast(*const IEnumWiaItem2.VTable, self.vtable).Skip(@ptrCast(*const IEnumWiaItem2, self), cElt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWiaItem2_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumWiaItem2.VTable, self.vtable).Reset(@ptrCast(*const IEnumWiaItem2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWiaItem2_Clone(self: *const T, ppIEnum: ?*?*IEnumWiaItem2) HRESULT {
+                return @ptrCast(*const IEnumWiaItem2.VTable, self.vtable).Clone(@ptrCast(*const IEnumWiaItem2, self), ppIEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumWiaItem2_GetCount(self: *const T, cElt: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumWiaItem2.VTable, self.vtable).GetCount(@ptrCast(*const IEnumWiaItem2, self), cElt);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3111,14 +3155,14 @@ pub const IWiaItem2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateChildItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem2,
                 lItemFlags: i32,
                 lCreationFlags: i32,
                 bstrItemName: ?BSTR,
                 ppIWiaItem2: ?*?*IWiaItem2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem2,
                 lItemFlags: i32,
                 lCreationFlags: i32,
@@ -3127,35 +3171,35 @@ pub const IWiaItem2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DeleteItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem2,
                 lFlags: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem2,
                 lFlags: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumChildItems: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem2,
                 pCategoryGUID: ?*const Guid,
                 ppIEnumWiaItem2: ?*?*IEnumWiaItem2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem2,
                 pCategoryGUID: ?*const Guid,
                 ppIEnumWiaItem2: ?*?*IEnumWiaItem2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FindItemByName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem2,
                 lFlags: i32,
                 bstrFullItemName: ?BSTR,
                 ppIWiaItem2: ?*?*IWiaItem2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem2,
                 lFlags: i32,
                 bstrFullItemName: ?BSTR,
@@ -3163,27 +3207,27 @@ pub const IWiaItem2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetItemCategory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem2,
                 pItemCategoryGUID: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem2,
                 pItemCategoryGUID: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetItemType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem2,
                 pItemType: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem2,
                 pItemType: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DeviceDlg: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem2,
                 lFlags: i32,
                 hwndParent: ?HWND,
@@ -3193,7 +3237,7 @@ pub const IWiaItem2 = extern struct {
                 ppbstrFilePaths: ?*?*?BSTR,
                 ppItem: ?*?*IWiaItem2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem2,
                 lFlags: i32,
                 hwndParent: ?HWND,
@@ -3205,13 +3249,13 @@ pub const IWiaItem2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DeviceCommand: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem2,
                 lFlags: i32,
                 pCmdGUID: ?*const Guid,
                 ppIWiaItem2: ?*?*IWiaItem2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem2,
                 lFlags: i32,
                 pCmdGUID: ?*const Guid,
@@ -3219,26 +3263,26 @@ pub const IWiaItem2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumDeviceCapabilities: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem2,
                 lFlags: i32,
                 ppIEnumWIA_DEV_CAPS: ?*?*IEnumWIA_DEV_CAPS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem2,
                 lFlags: i32,
                 ppIEnumWIA_DEV_CAPS: ?*?*IEnumWIA_DEV_CAPS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CheckExtension: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem2,
                 lFlags: i32,
                 bstrName: ?BSTR,
                 riidExtensionInterface: ?*const Guid,
                 pbExtensionExists: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem2,
                 lFlags: i32,
                 bstrName: ?BSTR,
@@ -3247,14 +3291,14 @@ pub const IWiaItem2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetExtension: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem2,
                 lFlags: i32,
                 bstrName: ?BSTR,
                 riidExtensionInterface: ?*const Guid,
                 ppOut: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem2,
                 lFlags: i32,
                 bstrName: ?BSTR,
@@ -3263,45 +3307,45 @@ pub const IWiaItem2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetParentItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem2,
                 ppIWiaItem2: ?*?*IWiaItem2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem2,
                 ppIWiaItem2: ?*?*IWiaItem2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetRootItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem2,
                 ppIWiaItem2: ?*?*IWiaItem2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem2,
                 ppIWiaItem2: ?*?*IWiaItem2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPreviewComponent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem2,
                 lFlags: i32,
                 ppWiaPreview: ?*?*IWiaPreview,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem2,
                 lFlags: i32,
                 ppWiaPreview: ?*?*IWiaPreview,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumRegisterEventInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem2,
                 lFlags: i32,
                 pEventGUID: ?*const Guid,
                 ppIEnum: ?*?*IEnumWIA_DEV_CAPS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem2,
                 lFlags: i32,
                 pEventGUID: ?*const Guid,
@@ -3309,12 +3353,12 @@ pub const IWiaItem2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Diagnostic: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaItem2,
                 ulSize: u32,
                 pBuffer: [*:0]u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaItem2,
                 ulSize: u32,
                 pBuffer: [*:0]u8,
@@ -3322,73 +3366,75 @@ pub const IWiaItem2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem2_CreateChildItem(self: *const T, lItemFlags: i32, lCreationFlags: i32, bstrItemName: ?BSTR, ppIWiaItem2: ?*?*IWiaItem2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem2.VTable, self.vtable).CreateChildItem(@ptrCast(*const IWiaItem2, self), lItemFlags, lCreationFlags, bstrItemName, ppIWiaItem2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem2_DeleteItem(self: *const T, lFlags: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem2.VTable, self.vtable).DeleteItem(@ptrCast(*const IWiaItem2, self), lFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem2_EnumChildItems(self: *const T, pCategoryGUID: ?*const Guid, ppIEnumWiaItem2: ?*?*IEnumWiaItem2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem2.VTable, self.vtable).EnumChildItems(@ptrCast(*const IWiaItem2, self), pCategoryGUID, ppIEnumWiaItem2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem2_FindItemByName(self: *const T, lFlags: i32, bstrFullItemName: ?BSTR, ppIWiaItem2: ?*?*IWiaItem2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem2.VTable, self.vtable).FindItemByName(@ptrCast(*const IWiaItem2, self), lFlags, bstrFullItemName, ppIWiaItem2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem2_GetItemCategory(self: *const T, pItemCategoryGUID: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem2.VTable, self.vtable).GetItemCategory(@ptrCast(*const IWiaItem2, self), pItemCategoryGUID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem2_GetItemType(self: *const T, pItemType: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem2.VTable, self.vtable).GetItemType(@ptrCast(*const IWiaItem2, self), pItemType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem2_DeviceDlg(self: *const T, lFlags: i32, hwndParent: ?HWND, bstrFolderName: ?BSTR, bstrFilename: ?BSTR, plNumFiles: ?*i32, ppbstrFilePaths: ?*?*?BSTR, ppItem: ?*?*IWiaItem2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem2.VTable, self.vtable).DeviceDlg(@ptrCast(*const IWiaItem2, self), lFlags, hwndParent, bstrFolderName, bstrFilename, plNumFiles, ppbstrFilePaths, ppItem);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem2_DeviceCommand(self: *const T, lFlags: i32, pCmdGUID: ?*const Guid, ppIWiaItem2: ?*?*IWiaItem2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem2.VTable, self.vtable).DeviceCommand(@ptrCast(*const IWiaItem2, self), lFlags, pCmdGUID, ppIWiaItem2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem2_EnumDeviceCapabilities(self: *const T, lFlags: i32, ppIEnumWIA_DEV_CAPS: ?*?*IEnumWIA_DEV_CAPS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem2.VTable, self.vtable).EnumDeviceCapabilities(@ptrCast(*const IWiaItem2, self), lFlags, ppIEnumWIA_DEV_CAPS);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem2_CheckExtension(self: *const T, lFlags: i32, bstrName: ?BSTR, riidExtensionInterface: ?*const Guid, pbExtensionExists: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem2.VTable, self.vtable).CheckExtension(@ptrCast(*const IWiaItem2, self), lFlags, bstrName, riidExtensionInterface, pbExtensionExists);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem2_GetExtension(self: *const T, lFlags: i32, bstrName: ?BSTR, riidExtensionInterface: ?*const Guid, ppOut: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem2.VTable, self.vtable).GetExtension(@ptrCast(*const IWiaItem2, self), lFlags, bstrName, riidExtensionInterface, ppOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem2_GetParentItem(self: *const T, ppIWiaItem2: ?*?*IWiaItem2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem2.VTable, self.vtable).GetParentItem(@ptrCast(*const IWiaItem2, self), ppIWiaItem2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem2_GetRootItem(self: *const T, ppIWiaItem2: ?*?*IWiaItem2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem2.VTable, self.vtable).GetRootItem(@ptrCast(*const IWiaItem2, self), ppIWiaItem2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem2_GetPreviewComponent(self: *const T, lFlags: i32, ppWiaPreview: ?*?*IWiaPreview) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem2.VTable, self.vtable).GetPreviewComponent(@ptrCast(*const IWiaItem2, self), lFlags, ppWiaPreview);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem2_EnumRegisterEventInfo(self: *const T, lFlags: i32, pEventGUID: ?*const Guid, ppIEnum: ?*?*IEnumWIA_DEV_CAPS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem2.VTable, self.vtable).EnumRegisterEventInfo(@ptrCast(*const IWiaItem2, self), lFlags, pEventGUID, ppIEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaItem2_Diagnostic(self: *const T, ulSize: u32, pBuffer: [*:0]u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaItem2.VTable, self.vtable).Diagnostic(@ptrCast(*const IWiaItem2, self), ulSize, pBuffer);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem2_CreateChildItem(self: *const T, lItemFlags: i32, lCreationFlags: i32, bstrItemName: ?BSTR, ppIWiaItem2: ?*?*IWiaItem2) HRESULT {
+                return @ptrCast(*const IWiaItem2.VTable, self.vtable).CreateChildItem(@ptrCast(*const IWiaItem2, self), lItemFlags, lCreationFlags, bstrItemName, ppIWiaItem2);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem2_DeleteItem(self: *const T, lFlags: i32) HRESULT {
+                return @ptrCast(*const IWiaItem2.VTable, self.vtable).DeleteItem(@ptrCast(*const IWiaItem2, self), lFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem2_EnumChildItems(self: *const T, pCategoryGUID: ?*const Guid, ppIEnumWiaItem2: ?*?*IEnumWiaItem2) HRESULT {
+                return @ptrCast(*const IWiaItem2.VTable, self.vtable).EnumChildItems(@ptrCast(*const IWiaItem2, self), pCategoryGUID, ppIEnumWiaItem2);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem2_FindItemByName(self: *const T, lFlags: i32, bstrFullItemName: ?BSTR, ppIWiaItem2: ?*?*IWiaItem2) HRESULT {
+                return @ptrCast(*const IWiaItem2.VTable, self.vtable).FindItemByName(@ptrCast(*const IWiaItem2, self), lFlags, bstrFullItemName, ppIWiaItem2);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem2_GetItemCategory(self: *const T, pItemCategoryGUID: ?*Guid) HRESULT {
+                return @ptrCast(*const IWiaItem2.VTable, self.vtable).GetItemCategory(@ptrCast(*const IWiaItem2, self), pItemCategoryGUID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem2_GetItemType(self: *const T, pItemType: ?*i32) HRESULT {
+                return @ptrCast(*const IWiaItem2.VTable, self.vtable).GetItemType(@ptrCast(*const IWiaItem2, self), pItemType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem2_DeviceDlg(self: *const T, lFlags: i32, hwndParent: ?HWND, bstrFolderName: ?BSTR, bstrFilename: ?BSTR, plNumFiles: ?*i32, ppbstrFilePaths: ?*?*?BSTR, ppItem: ?*?*IWiaItem2) HRESULT {
+                return @ptrCast(*const IWiaItem2.VTable, self.vtable).DeviceDlg(@ptrCast(*const IWiaItem2, self), lFlags, hwndParent, bstrFolderName, bstrFilename, plNumFiles, ppbstrFilePaths, ppItem);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem2_DeviceCommand(self: *const T, lFlags: i32, pCmdGUID: ?*const Guid, ppIWiaItem2: ?*?*IWiaItem2) HRESULT {
+                return @ptrCast(*const IWiaItem2.VTable, self.vtable).DeviceCommand(@ptrCast(*const IWiaItem2, self), lFlags, pCmdGUID, ppIWiaItem2);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem2_EnumDeviceCapabilities(self: *const T, lFlags: i32, ppIEnumWIA_DEV_CAPS: ?*?*IEnumWIA_DEV_CAPS) HRESULT {
+                return @ptrCast(*const IWiaItem2.VTable, self.vtable).EnumDeviceCapabilities(@ptrCast(*const IWiaItem2, self), lFlags, ppIEnumWIA_DEV_CAPS);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem2_CheckExtension(self: *const T, lFlags: i32, bstrName: ?BSTR, riidExtensionInterface: ?*const Guid, pbExtensionExists: ?*BOOL) HRESULT {
+                return @ptrCast(*const IWiaItem2.VTable, self.vtable).CheckExtension(@ptrCast(*const IWiaItem2, self), lFlags, bstrName, riidExtensionInterface, pbExtensionExists);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem2_GetExtension(self: *const T, lFlags: i32, bstrName: ?BSTR, riidExtensionInterface: ?*const Guid, ppOut: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IWiaItem2.VTable, self.vtable).GetExtension(@ptrCast(*const IWiaItem2, self), lFlags, bstrName, riidExtensionInterface, ppOut);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem2_GetParentItem(self: *const T, ppIWiaItem2: ?*?*IWiaItem2) HRESULT {
+                return @ptrCast(*const IWiaItem2.VTable, self.vtable).GetParentItem(@ptrCast(*const IWiaItem2, self), ppIWiaItem2);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem2_GetRootItem(self: *const T, ppIWiaItem2: ?*?*IWiaItem2) HRESULT {
+                return @ptrCast(*const IWiaItem2.VTable, self.vtable).GetRootItem(@ptrCast(*const IWiaItem2, self), ppIWiaItem2);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem2_GetPreviewComponent(self: *const T, lFlags: i32, ppWiaPreview: ?*?*IWiaPreview) HRESULT {
+                return @ptrCast(*const IWiaItem2.VTable, self.vtable).GetPreviewComponent(@ptrCast(*const IWiaItem2, self), lFlags, ppWiaPreview);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem2_EnumRegisterEventInfo(self: *const T, lFlags: i32, pEventGUID: ?*const Guid, ppIEnum: ?*?*IEnumWIA_DEV_CAPS) HRESULT {
+                return @ptrCast(*const IWiaItem2.VTable, self.vtable).EnumRegisterEventInfo(@ptrCast(*const IWiaItem2, self), lFlags, pEventGUID, ppIEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaItem2_Diagnostic(self: *const T, ulSize: u32, pBuffer: [*:0]u8) HRESULT {
+                return @ptrCast(*const IWiaItem2.VTable, self.vtable).Diagnostic(@ptrCast(*const IWiaItem2, self), ulSize, pBuffer);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3398,25 +3444,25 @@ pub const IWiaDevMgr2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         EnumDeviceInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDevMgr2,
                 lFlags: i32,
                 ppIEnum: ?*?*IEnumWIA_DEV_INFO,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDevMgr2,
                 lFlags: i32,
                 ppIEnum: ?*?*IEnumWIA_DEV_INFO,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateDevice: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDevMgr2,
                 lFlags: i32,
                 bstrDeviceID: ?BSTR,
                 ppWiaItem2Root: ?*?*IWiaItem2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDevMgr2,
                 lFlags: i32,
                 bstrDeviceID: ?BSTR,
@@ -3424,7 +3470,7 @@ pub const IWiaDevMgr2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SelectDeviceDlg: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDevMgr2,
                 hwndParent: ?HWND,
                 lDeviceType: i32,
@@ -3432,7 +3478,7 @@ pub const IWiaDevMgr2 = extern struct {
                 pbstrDeviceID: ?*?BSTR,
                 ppItemRoot: ?*?*IWiaItem2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDevMgr2,
                 hwndParent: ?HWND,
                 lDeviceType: i32,
@@ -3442,14 +3488,14 @@ pub const IWiaDevMgr2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SelectDeviceDlgID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDevMgr2,
                 hwndParent: ?HWND,
                 lDeviceType: i32,
                 lFlags: i32,
                 pbstrDeviceID: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDevMgr2,
                 hwndParent: ?HWND,
                 lDeviceType: i32,
@@ -3458,7 +3504,7 @@ pub const IWiaDevMgr2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RegisterEventCallbackInterface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDevMgr2,
                 lFlags: i32,
                 bstrDeviceID: ?BSTR,
@@ -3466,7 +3512,7 @@ pub const IWiaDevMgr2 = extern struct {
                 pIWiaEventCallback: ?*IWiaEventCallback,
                 pEventObject: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDevMgr2,
                 lFlags: i32,
                 bstrDeviceID: ?BSTR,
@@ -3476,7 +3522,7 @@ pub const IWiaDevMgr2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RegisterEventCallbackProgram: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDevMgr2,
                 lFlags: i32,
                 bstrDeviceID: ?BSTR,
@@ -3487,7 +3533,7 @@ pub const IWiaDevMgr2 = extern struct {
                 bstrDescription: ?BSTR,
                 bstrIcon: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDevMgr2,
                 lFlags: i32,
                 bstrDeviceID: ?BSTR,
@@ -3500,7 +3546,7 @@ pub const IWiaDevMgr2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RegisterEventCallbackCLSID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDevMgr2,
                 lFlags: i32,
                 bstrDeviceID: ?BSTR,
@@ -3510,7 +3556,7 @@ pub const IWiaDevMgr2 = extern struct {
                 bstrDescription: ?BSTR,
                 bstrIcon: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDevMgr2,
                 lFlags: i32,
                 bstrDeviceID: ?BSTR,
@@ -3522,7 +3568,7 @@ pub const IWiaDevMgr2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetImageDlg: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDevMgr2,
                 lFlags: i32,
                 bstrDeviceID: ?BSTR,
@@ -3533,7 +3579,7 @@ pub const IWiaDevMgr2 = extern struct {
                 ppbstrFilePaths: ?*?*?BSTR,
                 ppItem: ?*?*IWiaItem2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDevMgr2,
                 lFlags: i32,
                 bstrDeviceID: ?BSTR,
@@ -3547,41 +3593,43 @@ pub const IWiaDevMgr2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr2_EnumDeviceInfo(self: *const T, lFlags: i32, ppIEnum: ?*?*IEnumWIA_DEV_INFO) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDevMgr2.VTable, self.vtable).EnumDeviceInfo(@ptrCast(*const IWiaDevMgr2, self), lFlags, ppIEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr2_CreateDevice(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, ppWiaItem2Root: ?*?*IWiaItem2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDevMgr2.VTable, self.vtable).CreateDevice(@ptrCast(*const IWiaDevMgr2, self), lFlags, bstrDeviceID, ppWiaItem2Root);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr2_SelectDeviceDlg(self: *const T, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, pbstrDeviceID: ?*?BSTR, ppItemRoot: ?*?*IWiaItem2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDevMgr2.VTable, self.vtable).SelectDeviceDlg(@ptrCast(*const IWiaDevMgr2, self), hwndParent, lDeviceType, lFlags, pbstrDeviceID, ppItemRoot);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr2_SelectDeviceDlgID(self: *const T, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, pbstrDeviceID: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDevMgr2.VTable, self.vtable).SelectDeviceDlgID(@ptrCast(*const IWiaDevMgr2, self), hwndParent, lDeviceType, lFlags, pbstrDeviceID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr2_RegisterEventCallbackInterface(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, pIWiaEventCallback: ?*IWiaEventCallback, pEventObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDevMgr2.VTable, self.vtable).RegisterEventCallbackInterface(@ptrCast(*const IWiaDevMgr2, self), lFlags, bstrDeviceID, pEventGUID, pIWiaEventCallback, pEventObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr2_RegisterEventCallbackProgram(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, bstrFullAppName: ?BSTR, bstrCommandLineArg: ?BSTR, bstrName: ?BSTR, bstrDescription: ?BSTR, bstrIcon: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDevMgr2.VTable, self.vtable).RegisterEventCallbackProgram(@ptrCast(*const IWiaDevMgr2, self), lFlags, bstrDeviceID, pEventGUID, bstrFullAppName, bstrCommandLineArg, bstrName, bstrDescription, bstrIcon);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr2_RegisterEventCallbackCLSID(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, pClsID: ?*const Guid, bstrName: ?BSTR, bstrDescription: ?BSTR, bstrIcon: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDevMgr2.VTable, self.vtable).RegisterEventCallbackCLSID(@ptrCast(*const IWiaDevMgr2, self), lFlags, bstrDeviceID, pEventGUID, pClsID, bstrName, bstrDescription, bstrIcon);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDevMgr2_GetImageDlg(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, hwndParent: ?HWND, bstrFolderName: ?BSTR, bstrFilename: ?BSTR, plNumFiles: ?*i32, ppbstrFilePaths: ?*?*?BSTR, ppItem: ?*?*IWiaItem2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDevMgr2.VTable, self.vtable).GetImageDlg(@ptrCast(*const IWiaDevMgr2, self), lFlags, bstrDeviceID, hwndParent, bstrFolderName, bstrFilename, plNumFiles, ppbstrFilePaths, ppItem);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDevMgr2_EnumDeviceInfo(self: *const T, lFlags: i32, ppIEnum: ?*?*IEnumWIA_DEV_INFO) HRESULT {
+                return @ptrCast(*const IWiaDevMgr2.VTable, self.vtable).EnumDeviceInfo(@ptrCast(*const IWiaDevMgr2, self), lFlags, ppIEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDevMgr2_CreateDevice(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, ppWiaItem2Root: ?*?*IWiaItem2) HRESULT {
+                return @ptrCast(*const IWiaDevMgr2.VTable, self.vtable).CreateDevice(@ptrCast(*const IWiaDevMgr2, self), lFlags, bstrDeviceID, ppWiaItem2Root);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDevMgr2_SelectDeviceDlg(self: *const T, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, pbstrDeviceID: ?*?BSTR, ppItemRoot: ?*?*IWiaItem2) HRESULT {
+                return @ptrCast(*const IWiaDevMgr2.VTable, self.vtable).SelectDeviceDlg(@ptrCast(*const IWiaDevMgr2, self), hwndParent, lDeviceType, lFlags, pbstrDeviceID, ppItemRoot);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDevMgr2_SelectDeviceDlgID(self: *const T, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, pbstrDeviceID: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWiaDevMgr2.VTable, self.vtable).SelectDeviceDlgID(@ptrCast(*const IWiaDevMgr2, self), hwndParent, lDeviceType, lFlags, pbstrDeviceID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDevMgr2_RegisterEventCallbackInterface(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, pIWiaEventCallback: ?*IWiaEventCallback, pEventObject: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const IWiaDevMgr2.VTable, self.vtable).RegisterEventCallbackInterface(@ptrCast(*const IWiaDevMgr2, self), lFlags, bstrDeviceID, pEventGUID, pIWiaEventCallback, pEventObject);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDevMgr2_RegisterEventCallbackProgram(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, bstrFullAppName: ?BSTR, bstrCommandLineArg: ?BSTR, bstrName: ?BSTR, bstrDescription: ?BSTR, bstrIcon: ?BSTR) HRESULT {
+                return @ptrCast(*const IWiaDevMgr2.VTable, self.vtable).RegisterEventCallbackProgram(@ptrCast(*const IWiaDevMgr2, self), lFlags, bstrDeviceID, pEventGUID, bstrFullAppName, bstrCommandLineArg, bstrName, bstrDescription, bstrIcon);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDevMgr2_RegisterEventCallbackCLSID(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, pClsID: ?*const Guid, bstrName: ?BSTR, bstrDescription: ?BSTR, bstrIcon: ?BSTR) HRESULT {
+                return @ptrCast(*const IWiaDevMgr2.VTable, self.vtable).RegisterEventCallbackCLSID(@ptrCast(*const IWiaDevMgr2, self), lFlags, bstrDeviceID, pEventGUID, pClsID, bstrName, bstrDescription, bstrIcon);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDevMgr2_GetImageDlg(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, hwndParent: ?HWND, bstrFolderName: ?BSTR, bstrFilename: ?BSTR, plNumFiles: ?*i32, ppbstrFilePaths: ?*?*?BSTR, ppItem: ?*?*IWiaItem2) HRESULT {
+                return @ptrCast(*const IWiaDevMgr2.VTable, self.vtable).GetImageDlg(@ptrCast(*const IWiaDevMgr2, self), lFlags, bstrDeviceID, hwndParent, bstrFolderName, bstrFilename, plNumFiles, ppbstrFilePaths, ppItem);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3629,7 +3677,7 @@ pub const IWiaMiniDrv = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         drvInitializeWia: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0000: ?*u8,
                 __MIDL__IWiaMiniDrv0001: i32,
@@ -3641,7 +3689,7 @@ pub const IWiaMiniDrv = extern struct {
                 __MIDL__IWiaMiniDrv0007: ?*?*IUnknown,
                 __MIDL__IWiaMiniDrv0008: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0000: ?*u8,
                 __MIDL__IWiaMiniDrv0001: i32,
@@ -3655,14 +3703,14 @@ pub const IWiaMiniDrv = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         drvAcquireItemData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0009: ?*u8,
                 __MIDL__IWiaMiniDrv0010: i32,
                 __MIDL__IWiaMiniDrv0011: ?*MINIDRV_TRANSFER_CONTEXT,
                 __MIDL__IWiaMiniDrv0012: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0009: ?*u8,
                 __MIDL__IWiaMiniDrv0010: i32,
@@ -3671,13 +3719,13 @@ pub const IWiaMiniDrv = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         drvInitItemProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0013: ?*u8,
                 __MIDL__IWiaMiniDrv0014: i32,
                 __MIDL__IWiaMiniDrv0015: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0013: ?*u8,
                 __MIDL__IWiaMiniDrv0014: i32,
@@ -3685,7 +3733,7 @@ pub const IWiaMiniDrv = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         drvValidateItemProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0016: ?*u8,
                 __MIDL__IWiaMiniDrv0017: i32,
@@ -3693,7 +3741,7 @@ pub const IWiaMiniDrv = extern struct {
                 __MIDL__IWiaMiniDrv0019: ?*const PROPSPEC,
                 __MIDL__IWiaMiniDrv0020: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0016: ?*u8,
                 __MIDL__IWiaMiniDrv0017: i32,
@@ -3703,14 +3751,14 @@ pub const IWiaMiniDrv = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         drvWriteItemProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0021: ?*u8,
                 __MIDL__IWiaMiniDrv0022: i32,
                 __MIDL__IWiaMiniDrv0023: ?*MINIDRV_TRANSFER_CONTEXT,
                 __MIDL__IWiaMiniDrv0024: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0021: ?*u8,
                 __MIDL__IWiaMiniDrv0022: i32,
@@ -3719,7 +3767,7 @@ pub const IWiaMiniDrv = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         drvReadItemProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0025: ?*u8,
                 __MIDL__IWiaMiniDrv0026: i32,
@@ -3727,7 +3775,7 @@ pub const IWiaMiniDrv = extern struct {
                 __MIDL__IWiaMiniDrv0028: ?*const PROPSPEC,
                 __MIDL__IWiaMiniDrv0029: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0025: ?*u8,
                 __MIDL__IWiaMiniDrv0026: i32,
@@ -3737,13 +3785,13 @@ pub const IWiaMiniDrv = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         drvLockWiaDevice: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0030: ?*u8,
                 __MIDL__IWiaMiniDrv0031: i32,
                 __MIDL__IWiaMiniDrv0032: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0030: ?*u8,
                 __MIDL__IWiaMiniDrv0031: i32,
@@ -3751,13 +3799,13 @@ pub const IWiaMiniDrv = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         drvUnLockWiaDevice: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0033: ?*u8,
                 __MIDL__IWiaMiniDrv0034: i32,
                 __MIDL__IWiaMiniDrv0035: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0033: ?*u8,
                 __MIDL__IWiaMiniDrv0034: i32,
@@ -3765,13 +3813,13 @@ pub const IWiaMiniDrv = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         drvAnalyzeItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0036: ?*u8,
                 __MIDL__IWiaMiniDrv0037: i32,
                 __MIDL__IWiaMiniDrv0038: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0036: ?*u8,
                 __MIDL__IWiaMiniDrv0037: i32,
@@ -3779,14 +3827,14 @@ pub const IWiaMiniDrv = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         drvGetDeviceErrorStr: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0039: i32,
                 __MIDL__IWiaMiniDrv0040: i32,
                 __MIDL__IWiaMiniDrv0041: ?*?PWSTR,
                 __MIDL__IWiaMiniDrv0042: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0039: i32,
                 __MIDL__IWiaMiniDrv0040: i32,
@@ -3795,7 +3843,7 @@ pub const IWiaMiniDrv = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         drvDeviceCommand: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0043: ?*u8,
                 __MIDL__IWiaMiniDrv0044: i32,
@@ -3803,7 +3851,7 @@ pub const IWiaMiniDrv = extern struct {
                 __MIDL__IWiaMiniDrv0046: ?*?*IWiaDrvItem,
                 __MIDL__IWiaMiniDrv0047: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0043: ?*u8,
                 __MIDL__IWiaMiniDrv0044: i32,
@@ -3813,7 +3861,7 @@ pub const IWiaMiniDrv = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         drvGetCapabilities: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0048: ?*u8,
                 __MIDL__IWiaMiniDrv0049: i32,
@@ -3821,7 +3869,7 @@ pub const IWiaMiniDrv = extern struct {
                 __MIDL__IWiaMiniDrv0051: ?*?*WIA_DEV_CAP_DRV,
                 __MIDL__IWiaMiniDrv0052: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0048: ?*u8,
                 __MIDL__IWiaMiniDrv0049: i32,
@@ -3831,13 +3879,13 @@ pub const IWiaMiniDrv = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         drvDeleteItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0053: ?*u8,
                 __MIDL__IWiaMiniDrv0054: i32,
                 __MIDL__IWiaMiniDrv0055: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0053: ?*u8,
                 __MIDL__IWiaMiniDrv0054: i32,
@@ -3845,13 +3893,13 @@ pub const IWiaMiniDrv = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         drvFreeDrvItemContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0056: i32,
                 __MIDL__IWiaMiniDrv0057: ?*u8,
                 __MIDL__IWiaMiniDrv0058: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0056: i32,
                 __MIDL__IWiaMiniDrv0057: ?*u8,
@@ -3859,7 +3907,7 @@ pub const IWiaMiniDrv = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         drvGetWiaFormatInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0059: ?*u8,
                 __MIDL__IWiaMiniDrv0060: i32,
@@ -3867,7 +3915,7 @@ pub const IWiaMiniDrv = extern struct {
                 __MIDL__IWiaMiniDrv0062: ?*?*WIA_FORMAT_INFO,
                 __MIDL__IWiaMiniDrv0063: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0059: ?*u8,
                 __MIDL__IWiaMiniDrv0060: i32,
@@ -3877,13 +3925,13 @@ pub const IWiaMiniDrv = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         drvNotifyPnpEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaMiniDrv,
                 pEventGUID: ?*const Guid,
                 bstrDeviceID: ?BSTR,
                 ulReserved: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaMiniDrv,
                 pEventGUID: ?*const Guid,
                 bstrDeviceID: ?BSTR,
@@ -3891,88 +3939,90 @@ pub const IWiaMiniDrv = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         drvUnInitializeWia: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0064: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaMiniDrv,
                 __MIDL__IWiaMiniDrv0064: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaMiniDrv_drvInitializeWia(self: *const T, __MIDL__IWiaMiniDrv0000: ?*u8, __MIDL__IWiaMiniDrv0001: i32, __MIDL__IWiaMiniDrv0002: ?BSTR, __MIDL__IWiaMiniDrv0003: ?BSTR, __MIDL__IWiaMiniDrv0004: ?*IUnknown, __MIDL__IWiaMiniDrv0005: ?*IUnknown, __MIDL__IWiaMiniDrv0006: ?*?*IWiaDrvItem, __MIDL__IWiaMiniDrv0007: ?*?*IUnknown, __MIDL__IWiaMiniDrv0008: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvInitializeWia(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0000, __MIDL__IWiaMiniDrv0001, __MIDL__IWiaMiniDrv0002, __MIDL__IWiaMiniDrv0003, __MIDL__IWiaMiniDrv0004, __MIDL__IWiaMiniDrv0005, __MIDL__IWiaMiniDrv0006, __MIDL__IWiaMiniDrv0007, __MIDL__IWiaMiniDrv0008);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaMiniDrv_drvAcquireItemData(self: *const T, __MIDL__IWiaMiniDrv0009: ?*u8, __MIDL__IWiaMiniDrv0010: i32, __MIDL__IWiaMiniDrv0011: ?*MINIDRV_TRANSFER_CONTEXT, __MIDL__IWiaMiniDrv0012: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvAcquireItemData(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0009, __MIDL__IWiaMiniDrv0010, __MIDL__IWiaMiniDrv0011, __MIDL__IWiaMiniDrv0012);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaMiniDrv_drvInitItemProperties(self: *const T, __MIDL__IWiaMiniDrv0013: ?*u8, __MIDL__IWiaMiniDrv0014: i32, __MIDL__IWiaMiniDrv0015: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvInitItemProperties(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0013, __MIDL__IWiaMiniDrv0014, __MIDL__IWiaMiniDrv0015);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaMiniDrv_drvValidateItemProperties(self: *const T, __MIDL__IWiaMiniDrv0016: ?*u8, __MIDL__IWiaMiniDrv0017: i32, __MIDL__IWiaMiniDrv0018: u32, __MIDL__IWiaMiniDrv0019: ?*const PROPSPEC, __MIDL__IWiaMiniDrv0020: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvValidateItemProperties(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0016, __MIDL__IWiaMiniDrv0017, __MIDL__IWiaMiniDrv0018, __MIDL__IWiaMiniDrv0019, __MIDL__IWiaMiniDrv0020);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaMiniDrv_drvWriteItemProperties(self: *const T, __MIDL__IWiaMiniDrv0021: ?*u8, __MIDL__IWiaMiniDrv0022: i32, __MIDL__IWiaMiniDrv0023: ?*MINIDRV_TRANSFER_CONTEXT, __MIDL__IWiaMiniDrv0024: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvWriteItemProperties(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0021, __MIDL__IWiaMiniDrv0022, __MIDL__IWiaMiniDrv0023, __MIDL__IWiaMiniDrv0024);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaMiniDrv_drvReadItemProperties(self: *const T, __MIDL__IWiaMiniDrv0025: ?*u8, __MIDL__IWiaMiniDrv0026: i32, __MIDL__IWiaMiniDrv0027: u32, __MIDL__IWiaMiniDrv0028: ?*const PROPSPEC, __MIDL__IWiaMiniDrv0029: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvReadItemProperties(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0025, __MIDL__IWiaMiniDrv0026, __MIDL__IWiaMiniDrv0027, __MIDL__IWiaMiniDrv0028, __MIDL__IWiaMiniDrv0029);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaMiniDrv_drvLockWiaDevice(self: *const T, __MIDL__IWiaMiniDrv0030: ?*u8, __MIDL__IWiaMiniDrv0031: i32, __MIDL__IWiaMiniDrv0032: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvLockWiaDevice(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0030, __MIDL__IWiaMiniDrv0031, __MIDL__IWiaMiniDrv0032);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaMiniDrv_drvUnLockWiaDevice(self: *const T, __MIDL__IWiaMiniDrv0033: ?*u8, __MIDL__IWiaMiniDrv0034: i32, __MIDL__IWiaMiniDrv0035: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvUnLockWiaDevice(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0033, __MIDL__IWiaMiniDrv0034, __MIDL__IWiaMiniDrv0035);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaMiniDrv_drvAnalyzeItem(self: *const T, __MIDL__IWiaMiniDrv0036: ?*u8, __MIDL__IWiaMiniDrv0037: i32, __MIDL__IWiaMiniDrv0038: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvAnalyzeItem(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0036, __MIDL__IWiaMiniDrv0037, __MIDL__IWiaMiniDrv0038);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaMiniDrv_drvGetDeviceErrorStr(self: *const T, __MIDL__IWiaMiniDrv0039: i32, __MIDL__IWiaMiniDrv0040: i32, __MIDL__IWiaMiniDrv0041: ?*?PWSTR, __MIDL__IWiaMiniDrv0042: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvGetDeviceErrorStr(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0039, __MIDL__IWiaMiniDrv0040, __MIDL__IWiaMiniDrv0041, __MIDL__IWiaMiniDrv0042);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaMiniDrv_drvDeviceCommand(self: *const T, __MIDL__IWiaMiniDrv0043: ?*u8, __MIDL__IWiaMiniDrv0044: i32, __MIDL__IWiaMiniDrv0045: ?*const Guid, __MIDL__IWiaMiniDrv0046: ?*?*IWiaDrvItem, __MIDL__IWiaMiniDrv0047: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvDeviceCommand(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0043, __MIDL__IWiaMiniDrv0044, __MIDL__IWiaMiniDrv0045, __MIDL__IWiaMiniDrv0046, __MIDL__IWiaMiniDrv0047);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaMiniDrv_drvGetCapabilities(self: *const T, __MIDL__IWiaMiniDrv0048: ?*u8, __MIDL__IWiaMiniDrv0049: i32, __MIDL__IWiaMiniDrv0050: ?*i32, __MIDL__IWiaMiniDrv0051: ?*?*WIA_DEV_CAP_DRV, __MIDL__IWiaMiniDrv0052: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvGetCapabilities(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0048, __MIDL__IWiaMiniDrv0049, __MIDL__IWiaMiniDrv0050, __MIDL__IWiaMiniDrv0051, __MIDL__IWiaMiniDrv0052);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaMiniDrv_drvDeleteItem(self: *const T, __MIDL__IWiaMiniDrv0053: ?*u8, __MIDL__IWiaMiniDrv0054: i32, __MIDL__IWiaMiniDrv0055: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvDeleteItem(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0053, __MIDL__IWiaMiniDrv0054, __MIDL__IWiaMiniDrv0055);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaMiniDrv_drvFreeDrvItemContext(self: *const T, __MIDL__IWiaMiniDrv0056: i32, __MIDL__IWiaMiniDrv0057: ?*u8, __MIDL__IWiaMiniDrv0058: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvFreeDrvItemContext(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0056, __MIDL__IWiaMiniDrv0057, __MIDL__IWiaMiniDrv0058);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaMiniDrv_drvGetWiaFormatInfo(self: *const T, __MIDL__IWiaMiniDrv0059: ?*u8, __MIDL__IWiaMiniDrv0060: i32, __MIDL__IWiaMiniDrv0061: ?*i32, __MIDL__IWiaMiniDrv0062: ?*?*WIA_FORMAT_INFO, __MIDL__IWiaMiniDrv0063: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvGetWiaFormatInfo(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0059, __MIDL__IWiaMiniDrv0060, __MIDL__IWiaMiniDrv0061, __MIDL__IWiaMiniDrv0062, __MIDL__IWiaMiniDrv0063);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaMiniDrv_drvNotifyPnpEvent(self: *const T, pEventGUID: ?*const Guid, bstrDeviceID: ?BSTR, ulReserved: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvNotifyPnpEvent(@ptrCast(*const IWiaMiniDrv, self), pEventGUID, bstrDeviceID, ulReserved);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaMiniDrv_drvUnInitializeWia(self: *const T, __MIDL__IWiaMiniDrv0064: ?*u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvUnInitializeWia(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0064);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaMiniDrv_drvInitializeWia(self: *const T, __MIDL__IWiaMiniDrv0000: ?*u8, __MIDL__IWiaMiniDrv0001: i32, __MIDL__IWiaMiniDrv0002: ?BSTR, __MIDL__IWiaMiniDrv0003: ?BSTR, __MIDL__IWiaMiniDrv0004: ?*IUnknown, __MIDL__IWiaMiniDrv0005: ?*IUnknown, __MIDL__IWiaMiniDrv0006: ?*?*IWiaDrvItem, __MIDL__IWiaMiniDrv0007: ?*?*IUnknown, __MIDL__IWiaMiniDrv0008: ?*i32) HRESULT {
+                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvInitializeWia(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0000, __MIDL__IWiaMiniDrv0001, __MIDL__IWiaMiniDrv0002, __MIDL__IWiaMiniDrv0003, __MIDL__IWiaMiniDrv0004, __MIDL__IWiaMiniDrv0005, __MIDL__IWiaMiniDrv0006, __MIDL__IWiaMiniDrv0007, __MIDL__IWiaMiniDrv0008);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaMiniDrv_drvAcquireItemData(self: *const T, __MIDL__IWiaMiniDrv0009: ?*u8, __MIDL__IWiaMiniDrv0010: i32, __MIDL__IWiaMiniDrv0011: ?*MINIDRV_TRANSFER_CONTEXT, __MIDL__IWiaMiniDrv0012: ?*i32) HRESULT {
+                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvAcquireItemData(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0009, __MIDL__IWiaMiniDrv0010, __MIDL__IWiaMiniDrv0011, __MIDL__IWiaMiniDrv0012);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaMiniDrv_drvInitItemProperties(self: *const T, __MIDL__IWiaMiniDrv0013: ?*u8, __MIDL__IWiaMiniDrv0014: i32, __MIDL__IWiaMiniDrv0015: ?*i32) HRESULT {
+                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvInitItemProperties(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0013, __MIDL__IWiaMiniDrv0014, __MIDL__IWiaMiniDrv0015);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaMiniDrv_drvValidateItemProperties(self: *const T, __MIDL__IWiaMiniDrv0016: ?*u8, __MIDL__IWiaMiniDrv0017: i32, __MIDL__IWiaMiniDrv0018: u32, __MIDL__IWiaMiniDrv0019: ?*const PROPSPEC, __MIDL__IWiaMiniDrv0020: ?*i32) HRESULT {
+                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvValidateItemProperties(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0016, __MIDL__IWiaMiniDrv0017, __MIDL__IWiaMiniDrv0018, __MIDL__IWiaMiniDrv0019, __MIDL__IWiaMiniDrv0020);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaMiniDrv_drvWriteItemProperties(self: *const T, __MIDL__IWiaMiniDrv0021: ?*u8, __MIDL__IWiaMiniDrv0022: i32, __MIDL__IWiaMiniDrv0023: ?*MINIDRV_TRANSFER_CONTEXT, __MIDL__IWiaMiniDrv0024: ?*i32) HRESULT {
+                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvWriteItemProperties(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0021, __MIDL__IWiaMiniDrv0022, __MIDL__IWiaMiniDrv0023, __MIDL__IWiaMiniDrv0024);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaMiniDrv_drvReadItemProperties(self: *const T, __MIDL__IWiaMiniDrv0025: ?*u8, __MIDL__IWiaMiniDrv0026: i32, __MIDL__IWiaMiniDrv0027: u32, __MIDL__IWiaMiniDrv0028: ?*const PROPSPEC, __MIDL__IWiaMiniDrv0029: ?*i32) HRESULT {
+                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvReadItemProperties(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0025, __MIDL__IWiaMiniDrv0026, __MIDL__IWiaMiniDrv0027, __MIDL__IWiaMiniDrv0028, __MIDL__IWiaMiniDrv0029);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaMiniDrv_drvLockWiaDevice(self: *const T, __MIDL__IWiaMiniDrv0030: ?*u8, __MIDL__IWiaMiniDrv0031: i32, __MIDL__IWiaMiniDrv0032: ?*i32) HRESULT {
+                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvLockWiaDevice(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0030, __MIDL__IWiaMiniDrv0031, __MIDL__IWiaMiniDrv0032);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaMiniDrv_drvUnLockWiaDevice(self: *const T, __MIDL__IWiaMiniDrv0033: ?*u8, __MIDL__IWiaMiniDrv0034: i32, __MIDL__IWiaMiniDrv0035: ?*i32) HRESULT {
+                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvUnLockWiaDevice(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0033, __MIDL__IWiaMiniDrv0034, __MIDL__IWiaMiniDrv0035);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaMiniDrv_drvAnalyzeItem(self: *const T, __MIDL__IWiaMiniDrv0036: ?*u8, __MIDL__IWiaMiniDrv0037: i32, __MIDL__IWiaMiniDrv0038: ?*i32) HRESULT {
+                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvAnalyzeItem(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0036, __MIDL__IWiaMiniDrv0037, __MIDL__IWiaMiniDrv0038);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaMiniDrv_drvGetDeviceErrorStr(self: *const T, __MIDL__IWiaMiniDrv0039: i32, __MIDL__IWiaMiniDrv0040: i32, __MIDL__IWiaMiniDrv0041: ?*?PWSTR, __MIDL__IWiaMiniDrv0042: ?*i32) HRESULT {
+                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvGetDeviceErrorStr(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0039, __MIDL__IWiaMiniDrv0040, __MIDL__IWiaMiniDrv0041, __MIDL__IWiaMiniDrv0042);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaMiniDrv_drvDeviceCommand(self: *const T, __MIDL__IWiaMiniDrv0043: ?*u8, __MIDL__IWiaMiniDrv0044: i32, __MIDL__IWiaMiniDrv0045: ?*const Guid, __MIDL__IWiaMiniDrv0046: ?*?*IWiaDrvItem, __MIDL__IWiaMiniDrv0047: ?*i32) HRESULT {
+                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvDeviceCommand(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0043, __MIDL__IWiaMiniDrv0044, __MIDL__IWiaMiniDrv0045, __MIDL__IWiaMiniDrv0046, __MIDL__IWiaMiniDrv0047);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaMiniDrv_drvGetCapabilities(self: *const T, __MIDL__IWiaMiniDrv0048: ?*u8, __MIDL__IWiaMiniDrv0049: i32, __MIDL__IWiaMiniDrv0050: ?*i32, __MIDL__IWiaMiniDrv0051: ?*?*WIA_DEV_CAP_DRV, __MIDL__IWiaMiniDrv0052: ?*i32) HRESULT {
+                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvGetCapabilities(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0048, __MIDL__IWiaMiniDrv0049, __MIDL__IWiaMiniDrv0050, __MIDL__IWiaMiniDrv0051, __MIDL__IWiaMiniDrv0052);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaMiniDrv_drvDeleteItem(self: *const T, __MIDL__IWiaMiniDrv0053: ?*u8, __MIDL__IWiaMiniDrv0054: i32, __MIDL__IWiaMiniDrv0055: ?*i32) HRESULT {
+                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvDeleteItem(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0053, __MIDL__IWiaMiniDrv0054, __MIDL__IWiaMiniDrv0055);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaMiniDrv_drvFreeDrvItemContext(self: *const T, __MIDL__IWiaMiniDrv0056: i32, __MIDL__IWiaMiniDrv0057: ?*u8, __MIDL__IWiaMiniDrv0058: ?*i32) HRESULT {
+                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvFreeDrvItemContext(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0056, __MIDL__IWiaMiniDrv0057, __MIDL__IWiaMiniDrv0058);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaMiniDrv_drvGetWiaFormatInfo(self: *const T, __MIDL__IWiaMiniDrv0059: ?*u8, __MIDL__IWiaMiniDrv0060: i32, __MIDL__IWiaMiniDrv0061: ?*i32, __MIDL__IWiaMiniDrv0062: ?*?*WIA_FORMAT_INFO, __MIDL__IWiaMiniDrv0063: ?*i32) HRESULT {
+                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvGetWiaFormatInfo(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0059, __MIDL__IWiaMiniDrv0060, __MIDL__IWiaMiniDrv0061, __MIDL__IWiaMiniDrv0062, __MIDL__IWiaMiniDrv0063);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaMiniDrv_drvNotifyPnpEvent(self: *const T, pEventGUID: ?*const Guid, bstrDeviceID: ?BSTR, ulReserved: u32) HRESULT {
+                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvNotifyPnpEvent(@ptrCast(*const IWiaMiniDrv, self), pEventGUID, bstrDeviceID, ulReserved);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaMiniDrv_drvUnInitializeWia(self: *const T, __MIDL__IWiaMiniDrv0064: ?*u8) HRESULT {
+                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvUnInitializeWia(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0064);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3982,7 +4032,7 @@ pub const IWiaMiniDrvCallBack = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         MiniDrvCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaMiniDrvCallBack,
                 lReason: i32,
                 lStatus: i32,
@@ -3992,7 +4042,7 @@ pub const IWiaMiniDrvCallBack = extern struct {
                 pTranCtx: ?*MINIDRV_TRANSFER_CONTEXT,
                 lReserved: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaMiniDrvCallBack,
                 lReason: i32,
                 lStatus: i32,
@@ -4005,13 +4055,15 @@ pub const IWiaMiniDrvCallBack = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaMiniDrvCallBack_MiniDrvCallback(self: *const T, lReason: i32, lStatus: i32, lPercentComplete: i32, lOffset: i32, lLength: i32, pTranCtx: ?*MINIDRV_TRANSFER_CONTEXT, lReserved: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaMiniDrvCallBack.VTable, self.vtable).MiniDrvCallback(@ptrCast(*const IWiaMiniDrvCallBack, self), lReason, lStatus, lPercentComplete, lOffset, lLength, pTranCtx, lReserved);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaMiniDrvCallBack_MiniDrvCallback(self: *const T, lReason: i32, lStatus: i32, lPercentComplete: i32, lOffset: i32, lLength: i32, pTranCtx: ?*MINIDRV_TRANSFER_CONTEXT, lReserved: i32) HRESULT {
+                return @ptrCast(*const IWiaMiniDrvCallBack.VTable, self.vtable).MiniDrvCallback(@ptrCast(*const IWiaMiniDrvCallBack, self), lReason, lStatus, lPercentComplete, lOffset, lLength, pTranCtx, lReserved);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4021,14 +4073,14 @@ pub const IWiaMiniDrvTransferCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetNextStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaMiniDrvTransferCallback,
                 lFlags: i32,
                 bstrItemName: ?BSTR,
                 bstrFullItemName: ?BSTR,
                 ppIStream: ?*?*IStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaMiniDrvTransferCallback,
                 lFlags: i32,
                 bstrItemName: ?BSTR,
@@ -4037,12 +4089,12 @@ pub const IWiaMiniDrvTransferCallback = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SendMessage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaMiniDrvTransferCallback,
                 lFlags: i32,
                 pWiaTransferParams: ?*WiaTransferParams,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaMiniDrvTransferCallback,
                 lFlags: i32,
                 pWiaTransferParams: ?*WiaTransferParams,
@@ -4050,17 +4102,19 @@ pub const IWiaMiniDrvTransferCallback = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaMiniDrvTransferCallback_GetNextStream(self: *const T, lFlags: i32, bstrItemName: ?BSTR, bstrFullItemName: ?BSTR, ppIStream: ?*?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaMiniDrvTransferCallback.VTable, self.vtable).GetNextStream(@ptrCast(*const IWiaMiniDrvTransferCallback, self), lFlags, bstrItemName, bstrFullItemName, ppIStream);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaMiniDrvTransferCallback_SendMessage(self: *const T, lFlags: i32, pWiaTransferParams: ?*WiaTransferParams) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaMiniDrvTransferCallback.VTable, self.vtable).SendMessage(@ptrCast(*const IWiaMiniDrvTransferCallback, self), lFlags, pWiaTransferParams);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaMiniDrvTransferCallback_GetNextStream(self: *const T, lFlags: i32, bstrItemName: ?BSTR, bstrFullItemName: ?BSTR, ppIStream: ?*?*IStream) HRESULT {
+                return @ptrCast(*const IWiaMiniDrvTransferCallback.VTable, self.vtable).GetNextStream(@ptrCast(*const IWiaMiniDrvTransferCallback, self), lFlags, bstrItemName, bstrFullItemName, ppIStream);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaMiniDrvTransferCallback_SendMessage(self: *const T, lFlags: i32, pWiaTransferParams: ?*WiaTransferParams) HRESULT {
+                return @ptrCast(*const IWiaMiniDrvTransferCallback.VTable, self.vtable).SendMessage(@ptrCast(*const IWiaMiniDrvTransferCallback, self), lFlags, pWiaTransferParams);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4070,83 +4124,83 @@ pub const IWiaDrvItem = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetItemFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0000: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0000: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDeviceSpecContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0001: ?*?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0001: ?*?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFullItemName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0002: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0002: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetItemName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0003: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0003: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AddItemToFolder: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0004: ?*IWiaDrvItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0004: ?*IWiaDrvItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         UnlinkItemTree: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0005: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0005: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RemoveItemFromFolder: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0006: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0006: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FindItemByName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0007: i32,
                 __MIDL__IWiaDrvItem0008: ?BSTR,
                 __MIDL__IWiaDrvItem0009: ?*?*IWiaDrvItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0007: i32,
                 __MIDL__IWiaDrvItem0008: ?BSTR,
@@ -4154,114 +4208,116 @@ pub const IWiaDrvItem = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FindChildItemByName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0010: ?BSTR,
                 __MIDL__IWiaDrvItem0011: ?*?*IWiaDrvItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0010: ?BSTR,
                 __MIDL__IWiaDrvItem0011: ?*?*IWiaDrvItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetParentItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0012: ?*?*IWiaDrvItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0012: ?*?*IWiaDrvItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFirstChildItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0013: ?*?*IWiaDrvItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0013: ?*?*IWiaDrvItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetNextSiblingItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0014: ?*?*IWiaDrvItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0014: ?*?*IWiaDrvItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DumpItemData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0015: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaDrvItem,
                 __MIDL__IWiaDrvItem0015: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDrvItem_GetItemFlags(self: *const T, __MIDL__IWiaDrvItem0000: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).GetItemFlags(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0000);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDrvItem_GetDeviceSpecContext(self: *const T, __MIDL__IWiaDrvItem0001: ?*?*u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).GetDeviceSpecContext(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0001);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDrvItem_GetFullItemName(self: *const T, __MIDL__IWiaDrvItem0002: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).GetFullItemName(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0002);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDrvItem_GetItemName(self: *const T, __MIDL__IWiaDrvItem0003: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).GetItemName(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0003);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDrvItem_AddItemToFolder(self: *const T, __MIDL__IWiaDrvItem0004: ?*IWiaDrvItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).AddItemToFolder(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0004);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDrvItem_UnlinkItemTree(self: *const T, __MIDL__IWiaDrvItem0005: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).UnlinkItemTree(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0005);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDrvItem_RemoveItemFromFolder(self: *const T, __MIDL__IWiaDrvItem0006: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).RemoveItemFromFolder(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0006);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDrvItem_FindItemByName(self: *const T, __MIDL__IWiaDrvItem0007: i32, __MIDL__IWiaDrvItem0008: ?BSTR, __MIDL__IWiaDrvItem0009: ?*?*IWiaDrvItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).FindItemByName(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0007, __MIDL__IWiaDrvItem0008, __MIDL__IWiaDrvItem0009);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDrvItem_FindChildItemByName(self: *const T, __MIDL__IWiaDrvItem0010: ?BSTR, __MIDL__IWiaDrvItem0011: ?*?*IWiaDrvItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).FindChildItemByName(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0010, __MIDL__IWiaDrvItem0011);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDrvItem_GetParentItem(self: *const T, __MIDL__IWiaDrvItem0012: ?*?*IWiaDrvItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).GetParentItem(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0012);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDrvItem_GetFirstChildItem(self: *const T, __MIDL__IWiaDrvItem0013: ?*?*IWiaDrvItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).GetFirstChildItem(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0013);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDrvItem_GetNextSiblingItem(self: *const T, __MIDL__IWiaDrvItem0014: ?*?*IWiaDrvItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).GetNextSiblingItem(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0014);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaDrvItem_DumpItemData(self: *const T, __MIDL__IWiaDrvItem0015: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).DumpItemData(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0015);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDrvItem_GetItemFlags(self: *const T, __MIDL__IWiaDrvItem0000: ?*i32) HRESULT {
+                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).GetItemFlags(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0000);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDrvItem_GetDeviceSpecContext(self: *const T, __MIDL__IWiaDrvItem0001: ?*?*u8) HRESULT {
+                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).GetDeviceSpecContext(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0001);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDrvItem_GetFullItemName(self: *const T, __MIDL__IWiaDrvItem0002: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).GetFullItemName(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0002);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDrvItem_GetItemName(self: *const T, __MIDL__IWiaDrvItem0003: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).GetItemName(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0003);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDrvItem_AddItemToFolder(self: *const T, __MIDL__IWiaDrvItem0004: ?*IWiaDrvItem) HRESULT {
+                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).AddItemToFolder(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0004);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDrvItem_UnlinkItemTree(self: *const T, __MIDL__IWiaDrvItem0005: i32) HRESULT {
+                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).UnlinkItemTree(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0005);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDrvItem_RemoveItemFromFolder(self: *const T, __MIDL__IWiaDrvItem0006: i32) HRESULT {
+                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).RemoveItemFromFolder(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0006);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDrvItem_FindItemByName(self: *const T, __MIDL__IWiaDrvItem0007: i32, __MIDL__IWiaDrvItem0008: ?BSTR, __MIDL__IWiaDrvItem0009: ?*?*IWiaDrvItem) HRESULT {
+                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).FindItemByName(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0007, __MIDL__IWiaDrvItem0008, __MIDL__IWiaDrvItem0009);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDrvItem_FindChildItemByName(self: *const T, __MIDL__IWiaDrvItem0010: ?BSTR, __MIDL__IWiaDrvItem0011: ?*?*IWiaDrvItem) HRESULT {
+                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).FindChildItemByName(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0010, __MIDL__IWiaDrvItem0011);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDrvItem_GetParentItem(self: *const T, __MIDL__IWiaDrvItem0012: ?*?*IWiaDrvItem) HRESULT {
+                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).GetParentItem(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0012);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDrvItem_GetFirstChildItem(self: *const T, __MIDL__IWiaDrvItem0013: ?*?*IWiaDrvItem) HRESULT {
+                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).GetFirstChildItem(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0013);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDrvItem_GetNextSiblingItem(self: *const T, __MIDL__IWiaDrvItem0014: ?*?*IWiaDrvItem) HRESULT {
+                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).GetNextSiblingItem(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0014);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaDrvItem_DumpItemData(self: *const T, __MIDL__IWiaDrvItem0015: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).DumpItemData(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0015);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4387,12 +4443,12 @@ pub const IWiaVideo = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PreviewVisible: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaVideo,
                 pbPreviewVisible: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaVideo,
                 pbPreviewVisible: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -4400,12 +4456,12 @@ pub const IWiaVideo = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PreviewVisible: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaVideo,
                 bPreviewVisible: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaVideo,
                 bPreviewVisible: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -4413,12 +4469,12 @@ pub const IWiaVideo = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ImagesDirectory: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaVideo,
                 pbstrImageDirectory: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaVideo,
                 pbstrImageDirectory: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -4426,25 +4482,25 @@ pub const IWiaVideo = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ImagesDirectory: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaVideo,
                 bstrImageDirectory: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaVideo,
                 bstrImageDirectory: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateVideoByWiaDevID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaVideo,
                 bstrWiaDeviceID: ?BSTR,
                 hwndParent: ?HWND,
                 bStretchToFitParent: BOOL,
                 bAutoBeginPlayback: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaVideo,
                 bstrWiaDeviceID: ?BSTR,
                 hwndParent: ?HWND,
@@ -4453,14 +4509,14 @@ pub const IWiaVideo = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateVideoByDevNum: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaVideo,
                 uiDeviceNumber: u32,
                 hwndParent: ?HWND,
                 bStretchToFitParent: BOOL,
                 bAutoBeginPlayback: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaVideo,
                 uiDeviceNumber: u32,
                 hwndParent: ?HWND,
@@ -4469,14 +4525,14 @@ pub const IWiaVideo = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateVideoByName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaVideo,
                 bstrFriendlyName: ?BSTR,
                 hwndParent: ?HWND,
                 bStretchToFitParent: BOOL,
                 bAutoBeginPlayback: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaVideo,
                 bstrFriendlyName: ?BSTR,
                 hwndParent: ?HWND,
@@ -4485,116 +4541,118 @@ pub const IWiaVideo = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DestroyVideo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaVideo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaVideo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Play: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaVideo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaVideo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Pause: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaVideo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaVideo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         TakePicture: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaVideo,
                 pbstrNewImageFilename: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaVideo,
                 pbstrNewImageFilename: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ResizeVideo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaVideo,
                 bStretchToFitParent: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaVideo,
                 bStretchToFitParent: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCurrentState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaVideo,
                 pState: ?*WIAVIDEO_STATE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaVideo,
                 pState: ?*WIAVIDEO_STATE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_get_PreviewVisible(self: *const T, pbPreviewVisible: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).get_PreviewVisible(@ptrCast(*const IWiaVideo, self), pbPreviewVisible);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_put_PreviewVisible(self: *const T, bPreviewVisible: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).put_PreviewVisible(@ptrCast(*const IWiaVideo, self), bPreviewVisible);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_get_ImagesDirectory(self: *const T, pbstrImageDirectory: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).get_ImagesDirectory(@ptrCast(*const IWiaVideo, self), pbstrImageDirectory);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_put_ImagesDirectory(self: *const T, bstrImageDirectory: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).put_ImagesDirectory(@ptrCast(*const IWiaVideo, self), bstrImageDirectory);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_CreateVideoByWiaDevID(self: *const T, bstrWiaDeviceID: ?BSTR, hwndParent: ?HWND, bStretchToFitParent: BOOL, bAutoBeginPlayback: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).CreateVideoByWiaDevID(@ptrCast(*const IWiaVideo, self), bstrWiaDeviceID, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_CreateVideoByDevNum(self: *const T, uiDeviceNumber: u32, hwndParent: ?HWND, bStretchToFitParent: BOOL, bAutoBeginPlayback: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).CreateVideoByDevNum(@ptrCast(*const IWiaVideo, self), uiDeviceNumber, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_CreateVideoByName(self: *const T, bstrFriendlyName: ?BSTR, hwndParent: ?HWND, bStretchToFitParent: BOOL, bAutoBeginPlayback: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).CreateVideoByName(@ptrCast(*const IWiaVideo, self), bstrFriendlyName, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_DestroyVideo(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).DestroyVideo(@ptrCast(*const IWiaVideo, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_Play(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).Play(@ptrCast(*const IWiaVideo, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_Pause(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).Pause(@ptrCast(*const IWiaVideo, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_TakePicture(self: *const T, pbstrNewImageFilename: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).TakePicture(@ptrCast(*const IWiaVideo, self), pbstrNewImageFilename);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_ResizeVideo(self: *const T, bStretchToFitParent: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).ResizeVideo(@ptrCast(*const IWiaVideo, self), bStretchToFitParent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaVideo_GetCurrentState(self: *const T, pState: ?*WIAVIDEO_STATE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaVideo.VTable, self.vtable).GetCurrentState(@ptrCast(*const IWiaVideo, self), pState);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaVideo_get_PreviewVisible(self: *const T, pbPreviewVisible: ?*BOOL) HRESULT {
+                return @ptrCast(*const IWiaVideo.VTable, self.vtable).get_PreviewVisible(@ptrCast(*const IWiaVideo, self), pbPreviewVisible);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaVideo_put_PreviewVisible(self: *const T, bPreviewVisible: BOOL) HRESULT {
+                return @ptrCast(*const IWiaVideo.VTable, self.vtable).put_PreviewVisible(@ptrCast(*const IWiaVideo, self), bPreviewVisible);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaVideo_get_ImagesDirectory(self: *const T, pbstrImageDirectory: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWiaVideo.VTable, self.vtable).get_ImagesDirectory(@ptrCast(*const IWiaVideo, self), pbstrImageDirectory);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaVideo_put_ImagesDirectory(self: *const T, bstrImageDirectory: ?BSTR) HRESULT {
+                return @ptrCast(*const IWiaVideo.VTable, self.vtable).put_ImagesDirectory(@ptrCast(*const IWiaVideo, self), bstrImageDirectory);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaVideo_CreateVideoByWiaDevID(self: *const T, bstrWiaDeviceID: ?BSTR, hwndParent: ?HWND, bStretchToFitParent: BOOL, bAutoBeginPlayback: BOOL) HRESULT {
+                return @ptrCast(*const IWiaVideo.VTable, self.vtable).CreateVideoByWiaDevID(@ptrCast(*const IWiaVideo, self), bstrWiaDeviceID, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaVideo_CreateVideoByDevNum(self: *const T, uiDeviceNumber: u32, hwndParent: ?HWND, bStretchToFitParent: BOOL, bAutoBeginPlayback: BOOL) HRESULT {
+                return @ptrCast(*const IWiaVideo.VTable, self.vtable).CreateVideoByDevNum(@ptrCast(*const IWiaVideo, self), uiDeviceNumber, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaVideo_CreateVideoByName(self: *const T, bstrFriendlyName: ?BSTR, hwndParent: ?HWND, bStretchToFitParent: BOOL, bAutoBeginPlayback: BOOL) HRESULT {
+                return @ptrCast(*const IWiaVideo.VTable, self.vtable).CreateVideoByName(@ptrCast(*const IWiaVideo, self), bstrFriendlyName, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaVideo_DestroyVideo(self: *const T) HRESULT {
+                return @ptrCast(*const IWiaVideo.VTable, self.vtable).DestroyVideo(@ptrCast(*const IWiaVideo, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaVideo_Play(self: *const T) HRESULT {
+                return @ptrCast(*const IWiaVideo.VTable, self.vtable).Play(@ptrCast(*const IWiaVideo, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaVideo_Pause(self: *const T) HRESULT {
+                return @ptrCast(*const IWiaVideo.VTable, self.vtable).Pause(@ptrCast(*const IWiaVideo, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaVideo_TakePicture(self: *const T, pbstrNewImageFilename: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IWiaVideo.VTable, self.vtable).TakePicture(@ptrCast(*const IWiaVideo, self), pbstrNewImageFilename);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaVideo_ResizeVideo(self: *const T, bStretchToFitParent: BOOL) HRESULT {
+                return @ptrCast(*const IWiaVideo.VTable, self.vtable).ResizeVideo(@ptrCast(*const IWiaVideo, self), bStretchToFitParent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaVideo_GetCurrentState(self: *const T, pState: ?*WIAVIDEO_STATE) HRESULT {
+                return @ptrCast(*const IWiaVideo.VTable, self.vtable).GetCurrentState(@ptrCast(*const IWiaVideo, self), pState);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4616,23 +4674,23 @@ pub const IWiaUIExtension2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         DeviceDialog: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaUIExtension2,
                 pDeviceDialogData: ?*DEVICEDIALOGDATA2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaUIExtension2,
                 pDeviceDialogData: ?*DEVICEDIALOGDATA2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDeviceIcon: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaUIExtension2,
                 bstrDeviceId: ?BSTR,
                 phIcon: ?*?HICON,
                 nSize: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaUIExtension2,
                 bstrDeviceId: ?BSTR,
                 phIcon: ?*?HICON,
@@ -4641,17 +4699,19 @@ pub const IWiaUIExtension2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaUIExtension2_DeviceDialog(self: *const T, pDeviceDialogData: ?*DEVICEDIALOGDATA2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaUIExtension2.VTable, self.vtable).DeviceDialog(@ptrCast(*const IWiaUIExtension2, self), pDeviceDialogData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaUIExtension2_GetDeviceIcon(self: *const T, bstrDeviceId: ?BSTR, phIcon: ?*?HICON, nSize: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaUIExtension2.VTable, self.vtable).GetDeviceIcon(@ptrCast(*const IWiaUIExtension2, self), bstrDeviceId, phIcon, nSize);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaUIExtension2_DeviceDialog(self: *const T, pDeviceDialogData: ?*DEVICEDIALOGDATA2) HRESULT {
+                return @ptrCast(*const IWiaUIExtension2.VTable, self.vtable).DeviceDialog(@ptrCast(*const IWiaUIExtension2, self), pDeviceDialogData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaUIExtension2_GetDeviceIcon(self: *const T, bstrDeviceId: ?BSTR, phIcon: ?*?HICON, nSize: u32) HRESULT {
+                return @ptrCast(*const IWiaUIExtension2.VTable, self.vtable).GetDeviceIcon(@ptrCast(*const IWiaUIExtension2, self), bstrDeviceId, phIcon, nSize);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4671,23 +4731,23 @@ pub const IWiaUIExtension = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         DeviceDialog: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaUIExtension,
                 pDeviceDialogData: ?*DEVICEDIALOGDATA,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaUIExtension,
                 pDeviceDialogData: ?*DEVICEDIALOGDATA,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDeviceIcon: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaUIExtension,
                 bstrDeviceId: ?BSTR,
                 phIcon: ?*?HICON,
                 nSize: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaUIExtension,
                 bstrDeviceId: ?BSTR,
                 phIcon: ?*?HICON,
@@ -4695,14 +4755,14 @@ pub const IWiaUIExtension = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDeviceBitmapLogo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWiaUIExtension,
                 bstrDeviceId: ?BSTR,
                 phBitmap: ?*?HBITMAP,
                 nMaxWidth: u32,
                 nMaxHeight: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWiaUIExtension,
                 bstrDeviceId: ?BSTR,
                 phBitmap: ?*?HBITMAP,
@@ -4712,32 +4772,34 @@ pub const IWiaUIExtension = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaUIExtension_DeviceDialog(self: *const T, pDeviceDialogData: ?*DEVICEDIALOGDATA) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaUIExtension.VTable, self.vtable).DeviceDialog(@ptrCast(*const IWiaUIExtension, self), pDeviceDialogData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaUIExtension_GetDeviceIcon(self: *const T, bstrDeviceId: ?BSTR, phIcon: ?*?HICON, nSize: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaUIExtension.VTable, self.vtable).GetDeviceIcon(@ptrCast(*const IWiaUIExtension, self), bstrDeviceId, phIcon, nSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaUIExtension_GetDeviceBitmapLogo(self: *const T, bstrDeviceId: ?BSTR, phBitmap: ?*?HBITMAP, nMaxWidth: u32, nMaxHeight: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWiaUIExtension.VTable, self.vtable).GetDeviceBitmapLogo(@ptrCast(*const IWiaUIExtension, self), bstrDeviceId, phBitmap, nMaxWidth, nMaxHeight);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaUIExtension_DeviceDialog(self: *const T, pDeviceDialogData: ?*DEVICEDIALOGDATA) HRESULT {
+                return @ptrCast(*const IWiaUIExtension.VTable, self.vtable).DeviceDialog(@ptrCast(*const IWiaUIExtension, self), pDeviceDialogData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaUIExtension_GetDeviceIcon(self: *const T, bstrDeviceId: ?BSTR, phIcon: ?*?HICON, nSize: u32) HRESULT {
+                return @ptrCast(*const IWiaUIExtension.VTable, self.vtable).GetDeviceIcon(@ptrCast(*const IWiaUIExtension, self), bstrDeviceId, phIcon, nSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWiaUIExtension_GetDeviceBitmapLogo(self: *const T, bstrDeviceId: ?BSTR, phBitmap: ?*?HBITMAP, nMaxWidth: u32, nMaxHeight: u32) HRESULT {
+                return @ptrCast(*const IWiaUIExtension.VTable, self.vtable).GetDeviceBitmapLogo(@ptrCast(*const IWiaUIExtension, self), bstrDeviceId, phBitmap, nMaxWidth, nMaxHeight);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
 pub const DeviceDialogFunction = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*DEVICEDIALOGDATA,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         param0: ?*DEVICEDIALOGDATA,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const RANGEVALUE = extern struct {
     lMin: i32,
@@ -4814,7 +4876,6 @@ pub const TWAIN_CAPABILITY = extern struct {
     Data: [1]u8,
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
 //--------------------------------------------------------------------------------
@@ -4824,13 +4885,9 @@ pub const TWAIN_CAPABILITY = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (19)
@@ -4857,11 +4914,11 @@ const STGMEDIUM = @import("../system/com.zig").STGMEDIUM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "DeviceDialogFunction")) { _ = DeviceDialogFunction; }
+    if (@hasDecl(@This(), "DeviceDialogFunction")) {
+        _ = DeviceDialogFunction;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

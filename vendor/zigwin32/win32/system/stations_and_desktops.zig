@@ -32,19 +32,7 @@ pub const BROADCAST_SYSTEM_MESSAGE_FLAGS = enum(u32) {
         LUID: u1 = 0,
         RETURNHDESK: u1 = 0,
     }) BROADCAST_SYSTEM_MESSAGE_FLAGS {
-        return @intToEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS,
-              (if (o.ALLOWSFW == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.ALLOWSFW) else 0)
-            | (if (o.FLUSHDISK == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.FLUSHDISK) else 0)
-            | (if (o.FORCEIFHUNG == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.FORCEIFHUNG) else 0)
-            | (if (o.IGNORECURRENTTASK == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.IGNORECURRENTTASK) else 0)
-            | (if (o.NOHANG == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.NOHANG) else 0)
-            | (if (o.NOTIMEOUTIFNOTHUNG == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.NOTIMEOUTIFNOTHUNG) else 0)
-            | (if (o.POSTMESSAGE == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.POSTMESSAGE) else 0)
-            | (if (o.QUERY == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.QUERY) else 0)
-            | (if (o.SENDNOTIFYMESSAGE == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.SENDNOTIFYMESSAGE) else 0)
-            | (if (o.LUID == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.LUID) else 0)
-            | (if (o.RETURNHDESK == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.RETURNHDESK) else 0)
-        );
+        return @enumFromInt(BROADCAST_SYSTEM_MESSAGE_FLAGS, (if (o.ALLOWSFW == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.ALLOWSFW) else 0) | (if (o.FLUSHDISK == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.FLUSHDISK) else 0) | (if (o.FORCEIFHUNG == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.FORCEIFHUNG) else 0) | (if (o.IGNORECURRENTTASK == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.IGNORECURRENTTASK) else 0) | (if (o.NOHANG == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.NOHANG) else 0) | (if (o.NOTIMEOUTIFNOTHUNG == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.NOTIMEOUTIFNOTHUNG) else 0) | (if (o.POSTMESSAGE == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.POSTMESSAGE) else 0) | (if (o.QUERY == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.QUERY) else 0) | (if (o.SENDNOTIFYMESSAGE == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.SENDNOTIFYMESSAGE) else 0) | (if (o.LUID == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.LUID) else 0) | (if (o.RETURNHDESK == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.RETURNHDESK) else 0));
     }
 };
 pub const BSF_ALLOWSFW = BROADCAST_SYSTEM_MESSAGE_FLAGS.ALLOWSFW;
@@ -69,11 +57,7 @@ pub const BROADCAST_SYSTEM_MESSAGE_INFO = enum(u32) {
         LLDESKTOPS: u1 = 0,
         PPLICATIONS: u1 = 0,
     }) BROADCAST_SYSTEM_MESSAGE_INFO {
-        return @intToEnum(BROADCAST_SYSTEM_MESSAGE_INFO,
-              (if (o.LLCOMPONENTS == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_INFO.LLCOMPONENTS) else 0)
-            | (if (o.LLDESKTOPS == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_INFO.LLDESKTOPS) else 0)
-            | (if (o.PPLICATIONS == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_INFO.PPLICATIONS) else 0)
-        );
+        return @enumFromInt(BROADCAST_SYSTEM_MESSAGE_INFO, (if (o.LLCOMPONENTS == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_INFO.LLCOMPONENTS) else 0) | (if (o.LLDESKTOPS == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_INFO.LLDESKTOPS) else 0) | (if (o.PPLICATIONS == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_INFO.PPLICATIONS) else 0));
     }
 };
 pub const BSM_ALLCOMPONENTS = BROADCAST_SYSTEM_MESSAGE_INFO.LLCOMPONENTS;
@@ -96,54 +80,54 @@ pub const UOI_TYPE = USER_OBJECT_INFORMATION_INDEX.TYPE;
 pub const UOI_USER_SID = USER_OBJECT_INFORMATION_INDEX.USER_SID;
 
 pub const WINSTAENUMPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?PSTR,
         param1: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         param0: ?PSTR,
         param1: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const WINSTAENUMPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?PWSTR,
         param1: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         param0: ?PWSTR,
         param1: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const DESKTOPENUMPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?PSTR,
         param1: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         param0: ?PSTR,
         param1: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const DESKTOPENUMPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?PWSTR,
         param1: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         param0: ?PWSTR,
         param1: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 // TODO: this type has a FreeFunc 'CloseWindowStation', what can Zig do with this information?
-pub const HWINSTA = *opaque{};
+pub const HWINSTA = *opaque {};
 
 // TODO: this type has a FreeFunc 'CloseDesktop', what can Zig do with this information?
-pub const HDESK = *opaque{};
+pub const HDESK = *opaque {};
 
 pub const USEROBJECTFLAGS = extern struct {
     fInherit: BOOL,
@@ -157,7 +141,6 @@ pub const BSMINFO = extern struct {
     hwnd: ?HWND,
     luid: LUID,
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (31)
@@ -323,8 +306,7 @@ pub extern "user32" fn SetProcessWindowStation(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetProcessWindowStation(
-) callconv(@import("std").os.windows.WINAPI) ?HWINSTA;
+pub extern "user32" fn GetProcessWindowStation() callconv(@import("std").os.windows.WINAPI) ?HWINSTA;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetUserObjectInformationA(
@@ -401,7 +383,6 @@ pub extern "user32" fn BroadcastSystemMessageW(
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (13)
 //--------------------------------------------------------------------------------
@@ -438,19 +419,19 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const BroadcastSystemMessage = thismodule.BroadcastSystemMessageW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const WINSTAENUMPROC = *opaque{};
-        pub const DESKTOPENUMPROC = *opaque{};
-        pub const CreateDesktop = *opaque{};
-        pub const CreateDesktopEx = *opaque{};
-        pub const OpenDesktop = *opaque{};
-        pub const EnumDesktops = *opaque{};
-        pub const CreateWindowStation = *opaque{};
-        pub const OpenWindowStation = *opaque{};
-        pub const EnumWindowStations = *opaque{};
-        pub const GetUserObjectInformation = *opaque{};
-        pub const SetUserObjectInformation = *opaque{};
-        pub const BroadcastSystemMessageEx = *opaque{};
-        pub const BroadcastSystemMessage = *opaque{};
+        pub const WINSTAENUMPROC = *opaque {};
+        pub const DESKTOPENUMPROC = *opaque {};
+        pub const CreateDesktop = *opaque {};
+        pub const CreateDesktopEx = *opaque {};
+        pub const OpenDesktop = *opaque {};
+        pub const EnumDesktops = *opaque {};
+        pub const CreateWindowStation = *opaque {};
+        pub const OpenWindowStation = *opaque {};
+        pub const EnumWindowStations = *opaque {};
+        pub const GetUserObjectInformation = *opaque {};
+        pub const SetUserObjectInformation = *opaque {};
+        pub const BroadcastSystemMessageEx = *opaque {};
+        pub const BroadcastSystemMessage = *opaque {};
     } else struct {
         pub const WINSTAENUMPROC = @compileError("'WINSTAENUMPROC' requires that UNICODE be set to true or false in the root module");
         pub const DESKTOPENUMPROC = @compileError("'DESKTOPENUMPROC' requires that UNICODE be set to true or false in the root module");
@@ -485,14 +466,20 @@ const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "WINSTAENUMPROCA")) { _ = WINSTAENUMPROCA; }
-    if (@hasDecl(@This(), "WINSTAENUMPROCW")) { _ = WINSTAENUMPROCW; }
-    if (@hasDecl(@This(), "DESKTOPENUMPROCA")) { _ = DESKTOPENUMPROCA; }
-    if (@hasDecl(@This(), "DESKTOPENUMPROCW")) { _ = DESKTOPENUMPROCW; }
+    if (@hasDecl(@This(), "WINSTAENUMPROCA")) {
+        _ = WINSTAENUMPROCA;
+    }
+    if (@hasDecl(@This(), "WINSTAENUMPROCW")) {
+        _ = WINSTAENUMPROCW;
+    }
+    if (@hasDecl(@This(), "DESKTOPENUMPROCA")) {
+        _ = DESKTOPENUMPROCA;
+    }
+    if (@hasDecl(@This(), "DESKTOPENUMPROCW")) {
+        _ = DESKTOPENUMPROCW;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

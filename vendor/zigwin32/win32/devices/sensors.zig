@@ -8,32 +8,32 @@ pub const SENSOR_EVENT_DATA_UPDATED = Guid.initString("2ed0f2a4-0087-41d3-87db-6
 pub const SENSOR_EVENT_PROPERTY_CHANGED = Guid.initString("2358f099-84c9-4d3d-90df-c2421e2b2045");
 pub const SENSOR_EVENT_ACCELEROMETER_SHAKE = Guid.initString("825f5a94-0f48-4396-9ca0-6ecb5c99d915");
 pub const SENSOR_EVENT_PARAMETER_COMMON_GUID = Guid.initString("64346e30-8728-4b34-bdf6-4f52442c5c28");
-pub const SENSOR_EVENT_PARAMETER_EVENT_ID = PROPERTYKEY { .fmtid = Guid.initString("64346e30-8728-4b34-bdf6-4f52442c5c28"), .pid = 2 };
-pub const SENSOR_EVENT_PARAMETER_STATE = PROPERTYKEY { .fmtid = Guid.initString("64346e30-8728-4b34-bdf6-4f52442c5c28"), .pid = 3 };
+pub const SENSOR_EVENT_PARAMETER_EVENT_ID = PROPERTYKEY{ .fmtid = Guid.initString("64346e30-8728-4b34-bdf6-4f52442c5c28"), .pid = 2 };
+pub const SENSOR_EVENT_PARAMETER_STATE = PROPERTYKEY{ .fmtid = Guid.initString("64346e30-8728-4b34-bdf6-4f52442c5c28"), .pid = 3 };
 pub const SENSOR_ERROR_PARAMETER_COMMON_GUID = Guid.initString("77112bcd-fce1-4f43-b8b8-a88256adb4b3");
 pub const SENSOR_PROPERTY_COMMON_GUID = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920");
-pub const SENSOR_PROPERTY_TYPE = PROPERTYKEY { .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 2 };
-pub const SENSOR_PROPERTY_STATE = PROPERTYKEY { .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 3 };
-pub const SENSOR_PROPERTY_PERSISTENT_UNIQUE_ID = PROPERTYKEY { .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 5 };
-pub const SENSOR_PROPERTY_MANUFACTURER = PROPERTYKEY { .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 6 };
-pub const SENSOR_PROPERTY_MODEL = PROPERTYKEY { .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 7 };
-pub const SENSOR_PROPERTY_SERIAL_NUMBER = PROPERTYKEY { .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 8 };
-pub const SENSOR_PROPERTY_FRIENDLY_NAME = PROPERTYKEY { .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 9 };
-pub const SENSOR_PROPERTY_DESCRIPTION = PROPERTYKEY { .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 10 };
-pub const SENSOR_PROPERTY_CONNECTION_TYPE = PROPERTYKEY { .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 11 };
-pub const SENSOR_PROPERTY_MIN_REPORT_INTERVAL = PROPERTYKEY { .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 12 };
-pub const SENSOR_PROPERTY_CURRENT_REPORT_INTERVAL = PROPERTYKEY { .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 13 };
-pub const SENSOR_PROPERTY_CHANGE_SENSITIVITY = PROPERTYKEY { .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 14 };
-pub const SENSOR_PROPERTY_DEVICE_PATH = PROPERTYKEY { .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 15 };
-pub const SENSOR_PROPERTY_LIGHT_RESPONSE_CURVE = PROPERTYKEY { .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 16 };
-pub const SENSOR_PROPERTY_ACCURACY = PROPERTYKEY { .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 17 };
-pub const SENSOR_PROPERTY_RESOLUTION = PROPERTYKEY { .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 18 };
-pub const SENSOR_PROPERTY_LOCATION_DESIRED_ACCURACY = PROPERTYKEY { .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 19 };
-pub const SENSOR_PROPERTY_RANGE_MINIMUM = PROPERTYKEY { .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 20 };
-pub const SENSOR_PROPERTY_RANGE_MAXIMUM = PROPERTYKEY { .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 21 };
-pub const SENSOR_PROPERTY_HID_USAGE = PROPERTYKEY { .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 22 };
-pub const SENSOR_PROPERTY_RADIO_STATE = PROPERTYKEY { .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 23 };
-pub const SENSOR_PROPERTY_RADIO_STATE_PREVIOUS = PROPERTYKEY { .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 24 };
+pub const SENSOR_PROPERTY_TYPE = PROPERTYKEY{ .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 2 };
+pub const SENSOR_PROPERTY_STATE = PROPERTYKEY{ .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 3 };
+pub const SENSOR_PROPERTY_PERSISTENT_UNIQUE_ID = PROPERTYKEY{ .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 5 };
+pub const SENSOR_PROPERTY_MANUFACTURER = PROPERTYKEY{ .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 6 };
+pub const SENSOR_PROPERTY_MODEL = PROPERTYKEY{ .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 7 };
+pub const SENSOR_PROPERTY_SERIAL_NUMBER = PROPERTYKEY{ .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 8 };
+pub const SENSOR_PROPERTY_FRIENDLY_NAME = PROPERTYKEY{ .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 9 };
+pub const SENSOR_PROPERTY_DESCRIPTION = PROPERTYKEY{ .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 10 };
+pub const SENSOR_PROPERTY_CONNECTION_TYPE = PROPERTYKEY{ .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 11 };
+pub const SENSOR_PROPERTY_MIN_REPORT_INTERVAL = PROPERTYKEY{ .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 12 };
+pub const SENSOR_PROPERTY_CURRENT_REPORT_INTERVAL = PROPERTYKEY{ .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 13 };
+pub const SENSOR_PROPERTY_CHANGE_SENSITIVITY = PROPERTYKEY{ .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 14 };
+pub const SENSOR_PROPERTY_DEVICE_PATH = PROPERTYKEY{ .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 15 };
+pub const SENSOR_PROPERTY_LIGHT_RESPONSE_CURVE = PROPERTYKEY{ .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 16 };
+pub const SENSOR_PROPERTY_ACCURACY = PROPERTYKEY{ .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 17 };
+pub const SENSOR_PROPERTY_RESOLUTION = PROPERTYKEY{ .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 18 };
+pub const SENSOR_PROPERTY_LOCATION_DESIRED_ACCURACY = PROPERTYKEY{ .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 19 };
+pub const SENSOR_PROPERTY_RANGE_MINIMUM = PROPERTYKEY{ .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 20 };
+pub const SENSOR_PROPERTY_RANGE_MAXIMUM = PROPERTYKEY{ .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 21 };
+pub const SENSOR_PROPERTY_HID_USAGE = PROPERTYKEY{ .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 22 };
+pub const SENSOR_PROPERTY_RADIO_STATE = PROPERTYKEY{ .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 23 };
+pub const SENSOR_PROPERTY_RADIO_STATE_PREVIOUS = PROPERTYKEY{ .fmtid = Guid.initString("7f8383ec-d3ec-495c-a8cf-b8bbe85c2920"), .pid = 24 };
 pub const SENSOR_CATEGORY_ALL = Guid.initString("c317c286-c468-4288-9975-d4c4587c442c");
 pub const SENSOR_CATEGORY_LOCATION = Guid.initString("bfa794e4-f964-4fdb-90f6-51056bfe4b44");
 pub const SENSOR_CATEGORY_ENVIRONMENTAL = Guid.initString("323439aa-7f66-492b-ba0c-73e9aa0a65d5");
@@ -102,150 +102,150 @@ pub const SENSOR_TYPE_BARCODE_SCANNER = Guid.initString("990b3d8f-85bb-45ff-914d
 pub const SENSOR_TYPE_CUSTOM = Guid.initString("e83af229-8640-4d18-a213-e22675ebb2c3");
 pub const SENSOR_TYPE_UNKNOWN = Guid.initString("10ba83e3-ef4f-41ed-9885-a87d6435a8e1");
 pub const SENSOR_DATA_TYPE_COMMON_GUID = Guid.initString("db5e0cf2-cf1f-4c18-b46c-d86011d62150");
-pub const SENSOR_DATA_TYPE_TIMESTAMP = PROPERTYKEY { .fmtid = Guid.initString("db5e0cf2-cf1f-4c18-b46c-d86011d62150"), .pid = 2 };
+pub const SENSOR_DATA_TYPE_TIMESTAMP = PROPERTYKEY{ .fmtid = Guid.initString("db5e0cf2-cf1f-4c18-b46c-d86011d62150"), .pid = 2 };
 pub const SENSOR_DATA_TYPE_LOCATION_GUID = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4");
-pub const SENSOR_DATA_TYPE_LATITUDE_DEGREES = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 2 };
-pub const SENSOR_DATA_TYPE_LONGITUDE_DEGREES = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 3 };
-pub const SENSOR_DATA_TYPE_ALTITUDE_SEALEVEL_METERS = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 4 };
-pub const SENSOR_DATA_TYPE_ALTITUDE_ELLIPSOID_METERS = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 5 };
-pub const SENSOR_DATA_TYPE_SPEED_KNOTS = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 6 };
-pub const SENSOR_DATA_TYPE_TRUE_HEADING_DEGREES = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 7 };
-pub const SENSOR_DATA_TYPE_MAGNETIC_HEADING_DEGREES = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 8 };
-pub const SENSOR_DATA_TYPE_MAGNETIC_VARIATION = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 9 };
-pub const SENSOR_DATA_TYPE_FIX_QUALITY = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 10 };
-pub const SENSOR_DATA_TYPE_FIX_TYPE = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 11 };
-pub const SENSOR_DATA_TYPE_POSITION_DILUTION_OF_PRECISION = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 12 };
-pub const SENSOR_DATA_TYPE_HORIZONAL_DILUTION_OF_PRECISION = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 13 };
-pub const SENSOR_DATA_TYPE_VERTICAL_DILUTION_OF_PRECISION = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 14 };
-pub const SENSOR_DATA_TYPE_SATELLITES_USED_COUNT = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 15 };
-pub const SENSOR_DATA_TYPE_SATELLITES_USED_PRNS = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 16 };
-pub const SENSOR_DATA_TYPE_SATELLITES_IN_VIEW = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 17 };
-pub const SENSOR_DATA_TYPE_SATELLITES_IN_VIEW_PRNS = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 18 };
-pub const SENSOR_DATA_TYPE_SATELLITES_IN_VIEW_ELEVATION = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 19 };
-pub const SENSOR_DATA_TYPE_SATELLITES_IN_VIEW_AZIMUTH = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 20 };
-pub const SENSOR_DATA_TYPE_SATELLITES_IN_VIEW_STN_RATIO = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 21 };
-pub const SENSOR_DATA_TYPE_ERROR_RADIUS_METERS = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 22 };
-pub const SENSOR_DATA_TYPE_ADDRESS1 = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 23 };
-pub const SENSOR_DATA_TYPE_ADDRESS2 = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 24 };
-pub const SENSOR_DATA_TYPE_CITY = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 25 };
-pub const SENSOR_DATA_TYPE_STATE_PROVINCE = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 26 };
-pub const SENSOR_DATA_TYPE_POSTALCODE = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 27 };
-pub const SENSOR_DATA_TYPE_COUNTRY_REGION = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 28 };
-pub const SENSOR_DATA_TYPE_ALTITUDE_ELLIPSOID_ERROR_METERS = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 29 };
-pub const SENSOR_DATA_TYPE_ALTITUDE_SEALEVEL_ERROR_METERS = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 30 };
-pub const SENSOR_DATA_TYPE_GPS_SELECTION_MODE = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 31 };
-pub const SENSOR_DATA_TYPE_GPS_OPERATION_MODE = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 32 };
-pub const SENSOR_DATA_TYPE_GPS_STATUS = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 33 };
-pub const SENSOR_DATA_TYPE_GEOIDAL_SEPARATION = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 34 };
-pub const SENSOR_DATA_TYPE_DGPS_DATA_AGE = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 35 };
-pub const SENSOR_DATA_TYPE_ALTITUDE_ANTENNA_SEALEVEL_METERS = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 36 };
-pub const SENSOR_DATA_TYPE_DIFFERENTIAL_REFERENCE_STATION_ID = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 37 };
-pub const SENSOR_DATA_TYPE_NMEA_SENTENCE = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 38 };
-pub const SENSOR_DATA_TYPE_SATELLITES_IN_VIEW_ID = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 39 };
-pub const SENSOR_DATA_TYPE_LOCATION_SOURCE = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 40 };
-pub const SENSOR_DATA_TYPE_SATELLITES_USED_PRNS_AND_CONSTELLATIONS = PROPERTYKEY { .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 41 };
+pub const SENSOR_DATA_TYPE_LATITUDE_DEGREES = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 2 };
+pub const SENSOR_DATA_TYPE_LONGITUDE_DEGREES = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 3 };
+pub const SENSOR_DATA_TYPE_ALTITUDE_SEALEVEL_METERS = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 4 };
+pub const SENSOR_DATA_TYPE_ALTITUDE_ELLIPSOID_METERS = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 5 };
+pub const SENSOR_DATA_TYPE_SPEED_KNOTS = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 6 };
+pub const SENSOR_DATA_TYPE_TRUE_HEADING_DEGREES = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 7 };
+pub const SENSOR_DATA_TYPE_MAGNETIC_HEADING_DEGREES = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 8 };
+pub const SENSOR_DATA_TYPE_MAGNETIC_VARIATION = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 9 };
+pub const SENSOR_DATA_TYPE_FIX_QUALITY = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 10 };
+pub const SENSOR_DATA_TYPE_FIX_TYPE = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 11 };
+pub const SENSOR_DATA_TYPE_POSITION_DILUTION_OF_PRECISION = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 12 };
+pub const SENSOR_DATA_TYPE_HORIZONAL_DILUTION_OF_PRECISION = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 13 };
+pub const SENSOR_DATA_TYPE_VERTICAL_DILUTION_OF_PRECISION = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 14 };
+pub const SENSOR_DATA_TYPE_SATELLITES_USED_COUNT = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 15 };
+pub const SENSOR_DATA_TYPE_SATELLITES_USED_PRNS = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 16 };
+pub const SENSOR_DATA_TYPE_SATELLITES_IN_VIEW = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 17 };
+pub const SENSOR_DATA_TYPE_SATELLITES_IN_VIEW_PRNS = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 18 };
+pub const SENSOR_DATA_TYPE_SATELLITES_IN_VIEW_ELEVATION = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 19 };
+pub const SENSOR_DATA_TYPE_SATELLITES_IN_VIEW_AZIMUTH = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 20 };
+pub const SENSOR_DATA_TYPE_SATELLITES_IN_VIEW_STN_RATIO = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 21 };
+pub const SENSOR_DATA_TYPE_ERROR_RADIUS_METERS = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 22 };
+pub const SENSOR_DATA_TYPE_ADDRESS1 = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 23 };
+pub const SENSOR_DATA_TYPE_ADDRESS2 = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 24 };
+pub const SENSOR_DATA_TYPE_CITY = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 25 };
+pub const SENSOR_DATA_TYPE_STATE_PROVINCE = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 26 };
+pub const SENSOR_DATA_TYPE_POSTALCODE = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 27 };
+pub const SENSOR_DATA_TYPE_COUNTRY_REGION = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 28 };
+pub const SENSOR_DATA_TYPE_ALTITUDE_ELLIPSOID_ERROR_METERS = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 29 };
+pub const SENSOR_DATA_TYPE_ALTITUDE_SEALEVEL_ERROR_METERS = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 30 };
+pub const SENSOR_DATA_TYPE_GPS_SELECTION_MODE = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 31 };
+pub const SENSOR_DATA_TYPE_GPS_OPERATION_MODE = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 32 };
+pub const SENSOR_DATA_TYPE_GPS_STATUS = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 33 };
+pub const SENSOR_DATA_TYPE_GEOIDAL_SEPARATION = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 34 };
+pub const SENSOR_DATA_TYPE_DGPS_DATA_AGE = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 35 };
+pub const SENSOR_DATA_TYPE_ALTITUDE_ANTENNA_SEALEVEL_METERS = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 36 };
+pub const SENSOR_DATA_TYPE_DIFFERENTIAL_REFERENCE_STATION_ID = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 37 };
+pub const SENSOR_DATA_TYPE_NMEA_SENTENCE = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 38 };
+pub const SENSOR_DATA_TYPE_SATELLITES_IN_VIEW_ID = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 39 };
+pub const SENSOR_DATA_TYPE_LOCATION_SOURCE = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 40 };
+pub const SENSOR_DATA_TYPE_SATELLITES_USED_PRNS_AND_CONSTELLATIONS = PROPERTYKEY{ .fmtid = Guid.initString("055c74d8-ca6f-47d6-95c6-1ed3637a0ff4"), .pid = 41 };
 pub const SENSOR_DATA_TYPE_ENVIRONMENTAL_GUID = Guid.initString("8b0aa2f1-2d57-42ee-8cc0-4d27622b46c4");
-pub const SENSOR_DATA_TYPE_TEMPERATURE_CELSIUS = PROPERTYKEY { .fmtid = Guid.initString("8b0aa2f1-2d57-42ee-8cc0-4d27622b46c4"), .pid = 2 };
-pub const SENSOR_DATA_TYPE_RELATIVE_HUMIDITY_PERCENT = PROPERTYKEY { .fmtid = Guid.initString("8b0aa2f1-2d57-42ee-8cc0-4d27622b46c4"), .pid = 3 };
-pub const SENSOR_DATA_TYPE_ATMOSPHERIC_PRESSURE_BAR = PROPERTYKEY { .fmtid = Guid.initString("8b0aa2f1-2d57-42ee-8cc0-4d27622b46c4"), .pid = 4 };
-pub const SENSOR_DATA_TYPE_WIND_DIRECTION_DEGREES_ANTICLOCKWISE = PROPERTYKEY { .fmtid = Guid.initString("8b0aa2f1-2d57-42ee-8cc0-4d27622b46c4"), .pid = 5 };
-pub const SENSOR_DATA_TYPE_WIND_SPEED_METERS_PER_SECOND = PROPERTYKEY { .fmtid = Guid.initString("8b0aa2f1-2d57-42ee-8cc0-4d27622b46c4"), .pid = 6 };
+pub const SENSOR_DATA_TYPE_TEMPERATURE_CELSIUS = PROPERTYKEY{ .fmtid = Guid.initString("8b0aa2f1-2d57-42ee-8cc0-4d27622b46c4"), .pid = 2 };
+pub const SENSOR_DATA_TYPE_RELATIVE_HUMIDITY_PERCENT = PROPERTYKEY{ .fmtid = Guid.initString("8b0aa2f1-2d57-42ee-8cc0-4d27622b46c4"), .pid = 3 };
+pub const SENSOR_DATA_TYPE_ATMOSPHERIC_PRESSURE_BAR = PROPERTYKEY{ .fmtid = Guid.initString("8b0aa2f1-2d57-42ee-8cc0-4d27622b46c4"), .pid = 4 };
+pub const SENSOR_DATA_TYPE_WIND_DIRECTION_DEGREES_ANTICLOCKWISE = PROPERTYKEY{ .fmtid = Guid.initString("8b0aa2f1-2d57-42ee-8cc0-4d27622b46c4"), .pid = 5 };
+pub const SENSOR_DATA_TYPE_WIND_SPEED_METERS_PER_SECOND = PROPERTYKEY{ .fmtid = Guid.initString("8b0aa2f1-2d57-42ee-8cc0-4d27622b46c4"), .pid = 6 };
 pub const SENSOR_DATA_TYPE_MOTION_GUID = Guid.initString("3f8a69a2-07c5-4e48-a965-cd797aab56d5");
-pub const SENSOR_DATA_TYPE_ACCELERATION_X_G = PROPERTYKEY { .fmtid = Guid.initString("3f8a69a2-07c5-4e48-a965-cd797aab56d5"), .pid = 2 };
-pub const SENSOR_DATA_TYPE_ACCELERATION_Y_G = PROPERTYKEY { .fmtid = Guid.initString("3f8a69a2-07c5-4e48-a965-cd797aab56d5"), .pid = 3 };
-pub const SENSOR_DATA_TYPE_ACCELERATION_Z_G = PROPERTYKEY { .fmtid = Guid.initString("3f8a69a2-07c5-4e48-a965-cd797aab56d5"), .pid = 4 };
-pub const SENSOR_DATA_TYPE_ANGULAR_ACCELERATION_X_DEGREES_PER_SECOND_SQUARED = PROPERTYKEY { .fmtid = Guid.initString("3f8a69a2-07c5-4e48-a965-cd797aab56d5"), .pid = 5 };
-pub const SENSOR_DATA_TYPE_ANGULAR_ACCELERATION_Y_DEGREES_PER_SECOND_SQUARED = PROPERTYKEY { .fmtid = Guid.initString("3f8a69a2-07c5-4e48-a965-cd797aab56d5"), .pid = 6 };
-pub const SENSOR_DATA_TYPE_ANGULAR_ACCELERATION_Z_DEGREES_PER_SECOND_SQUARED = PROPERTYKEY { .fmtid = Guid.initString("3f8a69a2-07c5-4e48-a965-cd797aab56d5"), .pid = 7 };
-pub const SENSOR_DATA_TYPE_SPEED_METERS_PER_SECOND = PROPERTYKEY { .fmtid = Guid.initString("3f8a69a2-07c5-4e48-a965-cd797aab56d5"), .pid = 8 };
-pub const SENSOR_DATA_TYPE_MOTION_STATE = PROPERTYKEY { .fmtid = Guid.initString("3f8a69a2-07c5-4e48-a965-cd797aab56d5"), .pid = 9 };
-pub const SENSOR_DATA_TYPE_ANGULAR_VELOCITY_X_DEGREES_PER_SECOND = PROPERTYKEY { .fmtid = Guid.initString("3f8a69a2-07c5-4e48-a965-cd797aab56d5"), .pid = 10 };
-pub const SENSOR_DATA_TYPE_ANGULAR_VELOCITY_Y_DEGREES_PER_SECOND = PROPERTYKEY { .fmtid = Guid.initString("3f8a69a2-07c5-4e48-a965-cd797aab56d5"), .pid = 11 };
-pub const SENSOR_DATA_TYPE_ANGULAR_VELOCITY_Z_DEGREES_PER_SECOND = PROPERTYKEY { .fmtid = Guid.initString("3f8a69a2-07c5-4e48-a965-cd797aab56d5"), .pid = 12 };
+pub const SENSOR_DATA_TYPE_ACCELERATION_X_G = PROPERTYKEY{ .fmtid = Guid.initString("3f8a69a2-07c5-4e48-a965-cd797aab56d5"), .pid = 2 };
+pub const SENSOR_DATA_TYPE_ACCELERATION_Y_G = PROPERTYKEY{ .fmtid = Guid.initString("3f8a69a2-07c5-4e48-a965-cd797aab56d5"), .pid = 3 };
+pub const SENSOR_DATA_TYPE_ACCELERATION_Z_G = PROPERTYKEY{ .fmtid = Guid.initString("3f8a69a2-07c5-4e48-a965-cd797aab56d5"), .pid = 4 };
+pub const SENSOR_DATA_TYPE_ANGULAR_ACCELERATION_X_DEGREES_PER_SECOND_SQUARED = PROPERTYKEY{ .fmtid = Guid.initString("3f8a69a2-07c5-4e48-a965-cd797aab56d5"), .pid = 5 };
+pub const SENSOR_DATA_TYPE_ANGULAR_ACCELERATION_Y_DEGREES_PER_SECOND_SQUARED = PROPERTYKEY{ .fmtid = Guid.initString("3f8a69a2-07c5-4e48-a965-cd797aab56d5"), .pid = 6 };
+pub const SENSOR_DATA_TYPE_ANGULAR_ACCELERATION_Z_DEGREES_PER_SECOND_SQUARED = PROPERTYKEY{ .fmtid = Guid.initString("3f8a69a2-07c5-4e48-a965-cd797aab56d5"), .pid = 7 };
+pub const SENSOR_DATA_TYPE_SPEED_METERS_PER_SECOND = PROPERTYKEY{ .fmtid = Guid.initString("3f8a69a2-07c5-4e48-a965-cd797aab56d5"), .pid = 8 };
+pub const SENSOR_DATA_TYPE_MOTION_STATE = PROPERTYKEY{ .fmtid = Guid.initString("3f8a69a2-07c5-4e48-a965-cd797aab56d5"), .pid = 9 };
+pub const SENSOR_DATA_TYPE_ANGULAR_VELOCITY_X_DEGREES_PER_SECOND = PROPERTYKEY{ .fmtid = Guid.initString("3f8a69a2-07c5-4e48-a965-cd797aab56d5"), .pid = 10 };
+pub const SENSOR_DATA_TYPE_ANGULAR_VELOCITY_Y_DEGREES_PER_SECOND = PROPERTYKEY{ .fmtid = Guid.initString("3f8a69a2-07c5-4e48-a965-cd797aab56d5"), .pid = 11 };
+pub const SENSOR_DATA_TYPE_ANGULAR_VELOCITY_Z_DEGREES_PER_SECOND = PROPERTYKEY{ .fmtid = Guid.initString("3f8a69a2-07c5-4e48-a965-cd797aab56d5"), .pid = 12 };
 pub const SENSOR_DATA_TYPE_ORIENTATION_GUID = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd");
-pub const SENSOR_DATA_TYPE_TILT_X_DEGREES = PROPERTYKEY { .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 2 };
-pub const SENSOR_DATA_TYPE_TILT_Y_DEGREES = PROPERTYKEY { .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 3 };
-pub const SENSOR_DATA_TYPE_TILT_Z_DEGREES = PROPERTYKEY { .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 4 };
-pub const SENSOR_DATA_TYPE_MAGNETIC_HEADING_X_DEGREES = PROPERTYKEY { .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 5 };
-pub const SENSOR_DATA_TYPE_MAGNETIC_HEADING_Y_DEGREES = PROPERTYKEY { .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 6 };
-pub const SENSOR_DATA_TYPE_MAGNETIC_HEADING_Z_DEGREES = PROPERTYKEY { .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 7 };
-pub const SENSOR_DATA_TYPE_DISTANCE_X_METERS = PROPERTYKEY { .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 8 };
-pub const SENSOR_DATA_TYPE_DISTANCE_Y_METERS = PROPERTYKEY { .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 9 };
-pub const SENSOR_DATA_TYPE_DISTANCE_Z_METERS = PROPERTYKEY { .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 10 };
-pub const SENSOR_DATA_TYPE_MAGNETIC_HEADING_COMPENSATED_MAGNETIC_NORTH_DEGREES = PROPERTYKEY { .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 11 };
-pub const SENSOR_DATA_TYPE_MAGNETIC_HEADING_COMPENSATED_TRUE_NORTH_DEGREES = PROPERTYKEY { .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 12 };
-pub const SENSOR_DATA_TYPE_MAGNETIC_HEADING_MAGNETIC_NORTH_DEGREES = PROPERTYKEY { .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 13 };
-pub const SENSOR_DATA_TYPE_MAGNETIC_HEADING_TRUE_NORTH_DEGREES = PROPERTYKEY { .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 14 };
-pub const SENSOR_DATA_TYPE_QUADRANT_ANGLE_DEGREES = PROPERTYKEY { .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 15 };
-pub const SENSOR_DATA_TYPE_ROTATION_MATRIX = PROPERTYKEY { .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 16 };
-pub const SENSOR_DATA_TYPE_QUATERNION = PROPERTYKEY { .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 17 };
-pub const SENSOR_DATA_TYPE_SIMPLE_DEVICE_ORIENTATION = PROPERTYKEY { .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 18 };
-pub const SENSOR_DATA_TYPE_MAGNETIC_FIELD_STRENGTH_X_MILLIGAUSS = PROPERTYKEY { .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 19 };
-pub const SENSOR_DATA_TYPE_MAGNETIC_FIELD_STRENGTH_Y_MILLIGAUSS = PROPERTYKEY { .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 20 };
-pub const SENSOR_DATA_TYPE_MAGNETIC_FIELD_STRENGTH_Z_MILLIGAUSS = PROPERTYKEY { .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 21 };
-pub const SENSOR_DATA_TYPE_MAGNETOMETER_ACCURACY = PROPERTYKEY { .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 22 };
+pub const SENSOR_DATA_TYPE_TILT_X_DEGREES = PROPERTYKEY{ .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 2 };
+pub const SENSOR_DATA_TYPE_TILT_Y_DEGREES = PROPERTYKEY{ .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 3 };
+pub const SENSOR_DATA_TYPE_TILT_Z_DEGREES = PROPERTYKEY{ .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 4 };
+pub const SENSOR_DATA_TYPE_MAGNETIC_HEADING_X_DEGREES = PROPERTYKEY{ .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 5 };
+pub const SENSOR_DATA_TYPE_MAGNETIC_HEADING_Y_DEGREES = PROPERTYKEY{ .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 6 };
+pub const SENSOR_DATA_TYPE_MAGNETIC_HEADING_Z_DEGREES = PROPERTYKEY{ .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 7 };
+pub const SENSOR_DATA_TYPE_DISTANCE_X_METERS = PROPERTYKEY{ .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 8 };
+pub const SENSOR_DATA_TYPE_DISTANCE_Y_METERS = PROPERTYKEY{ .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 9 };
+pub const SENSOR_DATA_TYPE_DISTANCE_Z_METERS = PROPERTYKEY{ .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 10 };
+pub const SENSOR_DATA_TYPE_MAGNETIC_HEADING_COMPENSATED_MAGNETIC_NORTH_DEGREES = PROPERTYKEY{ .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 11 };
+pub const SENSOR_DATA_TYPE_MAGNETIC_HEADING_COMPENSATED_TRUE_NORTH_DEGREES = PROPERTYKEY{ .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 12 };
+pub const SENSOR_DATA_TYPE_MAGNETIC_HEADING_MAGNETIC_NORTH_DEGREES = PROPERTYKEY{ .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 13 };
+pub const SENSOR_DATA_TYPE_MAGNETIC_HEADING_TRUE_NORTH_DEGREES = PROPERTYKEY{ .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 14 };
+pub const SENSOR_DATA_TYPE_QUADRANT_ANGLE_DEGREES = PROPERTYKEY{ .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 15 };
+pub const SENSOR_DATA_TYPE_ROTATION_MATRIX = PROPERTYKEY{ .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 16 };
+pub const SENSOR_DATA_TYPE_QUATERNION = PROPERTYKEY{ .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 17 };
+pub const SENSOR_DATA_TYPE_SIMPLE_DEVICE_ORIENTATION = PROPERTYKEY{ .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 18 };
+pub const SENSOR_DATA_TYPE_MAGNETIC_FIELD_STRENGTH_X_MILLIGAUSS = PROPERTYKEY{ .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 19 };
+pub const SENSOR_DATA_TYPE_MAGNETIC_FIELD_STRENGTH_Y_MILLIGAUSS = PROPERTYKEY{ .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 20 };
+pub const SENSOR_DATA_TYPE_MAGNETIC_FIELD_STRENGTH_Z_MILLIGAUSS = PROPERTYKEY{ .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 21 };
+pub const SENSOR_DATA_TYPE_MAGNETOMETER_ACCURACY = PROPERTYKEY{ .fmtid = Guid.initString("1637d8a2-4248-4275-865d-558de84aedfd"), .pid = 22 };
 pub const SENSOR_DATA_TYPE_GUID_MECHANICAL_GUID = Guid.initString("38564a7c-f2f2-49bb-9b2b-ba60f66a58df");
-pub const SENSOR_DATA_TYPE_BOOLEAN_SWITCH_STATE = PROPERTYKEY { .fmtid = Guid.initString("38564a7c-f2f2-49bb-9b2b-ba60f66a58df"), .pid = 2 };
-pub const SENSOR_DATA_TYPE_MULTIVALUE_SWITCH_STATE = PROPERTYKEY { .fmtid = Guid.initString("38564a7c-f2f2-49bb-9b2b-ba60f66a58df"), .pid = 3 };
-pub const SENSOR_DATA_TYPE_FORCE_NEWTONS = PROPERTYKEY { .fmtid = Guid.initString("38564a7c-f2f2-49bb-9b2b-ba60f66a58df"), .pid = 4 };
-pub const SENSOR_DATA_TYPE_ABSOLUTE_PRESSURE_PASCAL = PROPERTYKEY { .fmtid = Guid.initString("38564a7c-f2f2-49bb-9b2b-ba60f66a58df"), .pid = 5 };
-pub const SENSOR_DATA_TYPE_GAUGE_PRESSURE_PASCAL = PROPERTYKEY { .fmtid = Guid.initString("38564a7c-f2f2-49bb-9b2b-ba60f66a58df"), .pid = 6 };
-pub const SENSOR_DATA_TYPE_STRAIN = PROPERTYKEY { .fmtid = Guid.initString("38564a7c-f2f2-49bb-9b2b-ba60f66a58df"), .pid = 7 };
-pub const SENSOR_DATA_TYPE_WEIGHT_KILOGRAMS = PROPERTYKEY { .fmtid = Guid.initString("38564a7c-f2f2-49bb-9b2b-ba60f66a58df"), .pid = 8 };
-pub const SENSOR_DATA_TYPE_BOOLEAN_SWITCH_ARRAY_STATES = PROPERTYKEY { .fmtid = Guid.initString("38564a7c-f2f2-49bb-9b2b-ba60f66a58df"), .pid = 10 };
+pub const SENSOR_DATA_TYPE_BOOLEAN_SWITCH_STATE = PROPERTYKEY{ .fmtid = Guid.initString("38564a7c-f2f2-49bb-9b2b-ba60f66a58df"), .pid = 2 };
+pub const SENSOR_DATA_TYPE_MULTIVALUE_SWITCH_STATE = PROPERTYKEY{ .fmtid = Guid.initString("38564a7c-f2f2-49bb-9b2b-ba60f66a58df"), .pid = 3 };
+pub const SENSOR_DATA_TYPE_FORCE_NEWTONS = PROPERTYKEY{ .fmtid = Guid.initString("38564a7c-f2f2-49bb-9b2b-ba60f66a58df"), .pid = 4 };
+pub const SENSOR_DATA_TYPE_ABSOLUTE_PRESSURE_PASCAL = PROPERTYKEY{ .fmtid = Guid.initString("38564a7c-f2f2-49bb-9b2b-ba60f66a58df"), .pid = 5 };
+pub const SENSOR_DATA_TYPE_GAUGE_PRESSURE_PASCAL = PROPERTYKEY{ .fmtid = Guid.initString("38564a7c-f2f2-49bb-9b2b-ba60f66a58df"), .pid = 6 };
+pub const SENSOR_DATA_TYPE_STRAIN = PROPERTYKEY{ .fmtid = Guid.initString("38564a7c-f2f2-49bb-9b2b-ba60f66a58df"), .pid = 7 };
+pub const SENSOR_DATA_TYPE_WEIGHT_KILOGRAMS = PROPERTYKEY{ .fmtid = Guid.initString("38564a7c-f2f2-49bb-9b2b-ba60f66a58df"), .pid = 8 };
+pub const SENSOR_DATA_TYPE_BOOLEAN_SWITCH_ARRAY_STATES = PROPERTYKEY{ .fmtid = Guid.initString("38564a7c-f2f2-49bb-9b2b-ba60f66a58df"), .pid = 10 };
 pub const SENSOR_DATA_TYPE_BIOMETRIC_GUID = Guid.initString("2299288a-6d9e-4b0b-b7ec-3528f89e40af");
-pub const SENSOR_DATA_TYPE_HUMAN_PRESENCE = PROPERTYKEY { .fmtid = Guid.initString("2299288a-6d9e-4b0b-b7ec-3528f89e40af"), .pid = 2 };
-pub const SENSOR_DATA_TYPE_HUMAN_PROXIMITY_METERS = PROPERTYKEY { .fmtid = Guid.initString("2299288a-6d9e-4b0b-b7ec-3528f89e40af"), .pid = 3 };
-pub const SENSOR_DATA_TYPE_TOUCH_STATE = PROPERTYKEY { .fmtid = Guid.initString("2299288a-6d9e-4b0b-b7ec-3528f89e40af"), .pid = 4 };
+pub const SENSOR_DATA_TYPE_HUMAN_PRESENCE = PROPERTYKEY{ .fmtid = Guid.initString("2299288a-6d9e-4b0b-b7ec-3528f89e40af"), .pid = 2 };
+pub const SENSOR_DATA_TYPE_HUMAN_PROXIMITY_METERS = PROPERTYKEY{ .fmtid = Guid.initString("2299288a-6d9e-4b0b-b7ec-3528f89e40af"), .pid = 3 };
+pub const SENSOR_DATA_TYPE_TOUCH_STATE = PROPERTYKEY{ .fmtid = Guid.initString("2299288a-6d9e-4b0b-b7ec-3528f89e40af"), .pid = 4 };
 pub const SENSOR_DATA_TYPE_LIGHT_GUID = Guid.initString("e4c77ce2-dcb7-46e9-8439-4fec548833a6");
-pub const SENSOR_DATA_TYPE_LIGHT_LEVEL_LUX = PROPERTYKEY { .fmtid = Guid.initString("e4c77ce2-dcb7-46e9-8439-4fec548833a6"), .pid = 2 };
-pub const SENSOR_DATA_TYPE_LIGHT_TEMPERATURE_KELVIN = PROPERTYKEY { .fmtid = Guid.initString("e4c77ce2-dcb7-46e9-8439-4fec548833a6"), .pid = 3 };
-pub const SENSOR_DATA_TYPE_LIGHT_CHROMACITY = PROPERTYKEY { .fmtid = Guid.initString("e4c77ce2-dcb7-46e9-8439-4fec548833a6"), .pid = 4 };
+pub const SENSOR_DATA_TYPE_LIGHT_LEVEL_LUX = PROPERTYKEY{ .fmtid = Guid.initString("e4c77ce2-dcb7-46e9-8439-4fec548833a6"), .pid = 2 };
+pub const SENSOR_DATA_TYPE_LIGHT_TEMPERATURE_KELVIN = PROPERTYKEY{ .fmtid = Guid.initString("e4c77ce2-dcb7-46e9-8439-4fec548833a6"), .pid = 3 };
+pub const SENSOR_DATA_TYPE_LIGHT_CHROMACITY = PROPERTYKEY{ .fmtid = Guid.initString("e4c77ce2-dcb7-46e9-8439-4fec548833a6"), .pid = 4 };
 pub const SENSOR_DATA_TYPE_SCANNER_GUID = Guid.initString("d7a59a3c-3421-44ab-8d3a-9de8ab6c4cae");
-pub const SENSOR_DATA_TYPE_RFID_TAG_40_BIT = PROPERTYKEY { .fmtid = Guid.initString("d7a59a3c-3421-44ab-8d3a-9de8ab6c4cae"), .pid = 2 };
+pub const SENSOR_DATA_TYPE_RFID_TAG_40_BIT = PROPERTYKEY{ .fmtid = Guid.initString("d7a59a3c-3421-44ab-8d3a-9de8ab6c4cae"), .pid = 2 };
 pub const SENSOR_DATA_TYPE_ELECTRICAL_GUID = Guid.initString("bbb246d1-e242-4780-a2d3-cded84f35842");
-pub const SENSOR_DATA_TYPE_VOLTAGE_VOLTS = PROPERTYKEY { .fmtid = Guid.initString("bbb246d1-e242-4780-a2d3-cded84f35842"), .pid = 2 };
-pub const SENSOR_DATA_TYPE_CURRENT_AMPS = PROPERTYKEY { .fmtid = Guid.initString("bbb246d1-e242-4780-a2d3-cded84f35842"), .pid = 3 };
-pub const SENSOR_DATA_TYPE_CAPACITANCE_FARAD = PROPERTYKEY { .fmtid = Guid.initString("bbb246d1-e242-4780-a2d3-cded84f35842"), .pid = 4 };
-pub const SENSOR_DATA_TYPE_RESISTANCE_OHMS = PROPERTYKEY { .fmtid = Guid.initString("bbb246d1-e242-4780-a2d3-cded84f35842"), .pid = 5 };
-pub const SENSOR_DATA_TYPE_INDUCTANCE_HENRY = PROPERTYKEY { .fmtid = Guid.initString("bbb246d1-e242-4780-a2d3-cded84f35842"), .pid = 6 };
-pub const SENSOR_DATA_TYPE_ELECTRICAL_POWER_WATTS = PROPERTYKEY { .fmtid = Guid.initString("bbb246d1-e242-4780-a2d3-cded84f35842"), .pid = 7 };
-pub const SENSOR_DATA_TYPE_ELECTRICAL_PERCENT_OF_RANGE = PROPERTYKEY { .fmtid = Guid.initString("bbb246d1-e242-4780-a2d3-cded84f35842"), .pid = 8 };
-pub const SENSOR_DATA_TYPE_ELECTRICAL_FREQUENCY_HERTZ = PROPERTYKEY { .fmtid = Guid.initString("bbb246d1-e242-4780-a2d3-cded84f35842"), .pid = 9 };
+pub const SENSOR_DATA_TYPE_VOLTAGE_VOLTS = PROPERTYKEY{ .fmtid = Guid.initString("bbb246d1-e242-4780-a2d3-cded84f35842"), .pid = 2 };
+pub const SENSOR_DATA_TYPE_CURRENT_AMPS = PROPERTYKEY{ .fmtid = Guid.initString("bbb246d1-e242-4780-a2d3-cded84f35842"), .pid = 3 };
+pub const SENSOR_DATA_TYPE_CAPACITANCE_FARAD = PROPERTYKEY{ .fmtid = Guid.initString("bbb246d1-e242-4780-a2d3-cded84f35842"), .pid = 4 };
+pub const SENSOR_DATA_TYPE_RESISTANCE_OHMS = PROPERTYKEY{ .fmtid = Guid.initString("bbb246d1-e242-4780-a2d3-cded84f35842"), .pid = 5 };
+pub const SENSOR_DATA_TYPE_INDUCTANCE_HENRY = PROPERTYKEY{ .fmtid = Guid.initString("bbb246d1-e242-4780-a2d3-cded84f35842"), .pid = 6 };
+pub const SENSOR_DATA_TYPE_ELECTRICAL_POWER_WATTS = PROPERTYKEY{ .fmtid = Guid.initString("bbb246d1-e242-4780-a2d3-cded84f35842"), .pid = 7 };
+pub const SENSOR_DATA_TYPE_ELECTRICAL_PERCENT_OF_RANGE = PROPERTYKEY{ .fmtid = Guid.initString("bbb246d1-e242-4780-a2d3-cded84f35842"), .pid = 8 };
+pub const SENSOR_DATA_TYPE_ELECTRICAL_FREQUENCY_HERTZ = PROPERTYKEY{ .fmtid = Guid.initString("bbb246d1-e242-4780-a2d3-cded84f35842"), .pid = 9 };
 pub const SENSOR_DATA_TYPE_CUSTOM_GUID = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f");
-pub const SENSOR_DATA_TYPE_CUSTOM_USAGE = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 5 };
-pub const SENSOR_DATA_TYPE_CUSTOM_BOOLEAN_ARRAY = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 6 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE1 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 7 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE2 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 8 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE3 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 9 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE4 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 10 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE5 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 11 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE6 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 12 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE7 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 13 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE8 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 14 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE9 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 15 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE10 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 16 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE11 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 17 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE12 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 18 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE13 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 19 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE14 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 20 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE15 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 21 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE16 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 22 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE17 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 23 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE18 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 24 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE19 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 25 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE20 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 26 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE21 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 27 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE22 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 28 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE23 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 29 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE24 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 30 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE25 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 31 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE26 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 32 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE27 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 33 };
-pub const SENSOR_DATA_TYPE_CUSTOM_VALUE28 = PROPERTYKEY { .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 34 };
+pub const SENSOR_DATA_TYPE_CUSTOM_USAGE = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 5 };
+pub const SENSOR_DATA_TYPE_CUSTOM_BOOLEAN_ARRAY = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 6 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE1 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 7 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE2 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 8 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE3 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 9 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE4 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 10 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE5 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 11 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE6 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 12 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE7 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 13 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE8 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 14 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE9 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 15 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE10 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 16 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE11 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 17 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE12 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 18 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE13 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 19 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE14 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 20 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE15 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 21 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE16 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 22 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE17 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 23 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE18 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 24 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE19 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 25 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE20 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 26 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE21 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 27 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE22 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 28 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE23 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 29 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE24 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 30 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE25 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 31 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE26 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 32 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE27 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 33 };
+pub const SENSOR_DATA_TYPE_CUSTOM_VALUE28 = PROPERTYKEY{ .fmtid = Guid.initString("b14c764f-07cf-41e8-9d82-ebe3d0776a6f"), .pid = 34 };
 pub const SENSOR_PROPERTY_TEST_GUID = Guid.initString("e1e962f4-6e65-45f7-9c36-d487b7b1bd34");
-pub const SENSOR_PROPERTY_CLEAR_ASSISTANCE_DATA = PROPERTYKEY { .fmtid = Guid.initString("e1e962f4-6e65-45f7-9c36-d487b7b1bd34"), .pid = 2 };
-pub const SENSOR_PROPERTY_TURN_ON_OFF_NMEA = PROPERTYKEY { .fmtid = Guid.initString("e1e962f4-6e65-45f7-9c36-d487b7b1bd34"), .pid = 3 };
+pub const SENSOR_PROPERTY_CLEAR_ASSISTANCE_DATA = PROPERTYKEY{ .fmtid = Guid.initString("e1e962f4-6e65-45f7-9c36-d487b7b1bd34"), .pid = 2 };
+pub const SENSOR_PROPERTY_TURN_ON_OFF_NMEA = PROPERTYKEY{ .fmtid = Guid.initString("e1e962f4-6e65-45f7-9c36-d487b7b1bd34"), .pid = 3 };
 pub const GNSS_CLEAR_ALL_ASSISTANCE_DATA = @as(u32, 1);
 pub const GUID_SensorCategory_All = Guid.initString("c317c286-c468-4288-9975-d4c4587c442c");
 pub const GUID_SensorCategory_Biometric = Guid.initString("ca19690f-a2c7-477d-a99e-99ec6e2b5648");
@@ -377,59 +377,59 @@ pub const ISensorManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSensorsByCategory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensorManager,
                 sensorCategory: ?*Guid,
                 ppSensorsFound: ?*?*ISensorCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensorManager,
                 sensorCategory: ?*Guid,
                 ppSensorsFound: ?*?*ISensorCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSensorsByType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensorManager,
                 sensorType: ?*Guid,
                 ppSensorsFound: ?*?*ISensorCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensorManager,
                 sensorType: ?*Guid,
                 ppSensorsFound: ?*?*ISensorCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSensorByID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensorManager,
                 sensorID: ?*Guid,
                 ppSensor: ?*?*ISensor,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensorManager,
                 sensorID: ?*Guid,
                 ppSensor: ?*?*ISensor,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetEventSink: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensorManager,
                 pEvents: ?*ISensorManagerEvents,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensorManager,
                 pEvents: ?*ISensorManagerEvents,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RequestPermissions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensorManager,
                 hParent: ?HWND,
                 pSensors: ?*ISensorCollection,
                 fModal: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensorManager,
                 hParent: ?HWND,
                 pSensors: ?*ISensorCollection,
@@ -438,29 +438,31 @@ pub const ISensorManager = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensorManager_GetSensorsByCategory(self: *const T, sensorCategory: ?*Guid, ppSensorsFound: ?*?*ISensorCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorManager.VTable, self.vtable).GetSensorsByCategory(@ptrCast(*const ISensorManager, self), sensorCategory, ppSensorsFound);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensorManager_GetSensorsByType(self: *const T, sensorType: ?*Guid, ppSensorsFound: ?*?*ISensorCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorManager.VTable, self.vtable).GetSensorsByType(@ptrCast(*const ISensorManager, self), sensorType, ppSensorsFound);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensorManager_GetSensorByID(self: *const T, sensorID: ?*Guid, ppSensor: ?*?*ISensor) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorManager.VTable, self.vtable).GetSensorByID(@ptrCast(*const ISensorManager, self), sensorID, ppSensor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensorManager_SetEventSink(self: *const T, pEvents: ?*ISensorManagerEvents) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorManager.VTable, self.vtable).SetEventSink(@ptrCast(*const ISensorManager, self), pEvents);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensorManager_RequestPermissions(self: *const T, hParent: ?HWND, pSensors: ?*ISensorCollection, fModal: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorManager.VTable, self.vtable).RequestPermissions(@ptrCast(*const ISensorManager, self), hParent, pSensors, fModal);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensorManager_GetSensorsByCategory(self: *const T, sensorCategory: ?*Guid, ppSensorsFound: ?*?*ISensorCollection) HRESULT {
+                return @ptrCast(*const ISensorManager.VTable, self.vtable).GetSensorsByCategory(@ptrCast(*const ISensorManager, self), sensorCategory, ppSensorsFound);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensorManager_GetSensorsByType(self: *const T, sensorType: ?*Guid, ppSensorsFound: ?*?*ISensorCollection) HRESULT {
+                return @ptrCast(*const ISensorManager.VTable, self.vtable).GetSensorsByType(@ptrCast(*const ISensorManager, self), sensorType, ppSensorsFound);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensorManager_GetSensorByID(self: *const T, sensorID: ?*Guid, ppSensor: ?*?*ISensor) HRESULT {
+                return @ptrCast(*const ISensorManager.VTable, self.vtable).GetSensorByID(@ptrCast(*const ISensorManager, self), sensorID, ppSensor);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensorManager_SetEventSink(self: *const T, pEvents: ?*ISensorManagerEvents) HRESULT {
+                return @ptrCast(*const ISensorManager.VTable, self.vtable).SetEventSink(@ptrCast(*const ISensorManager, self), pEvents);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensorManager_RequestPermissions(self: *const T, hParent: ?HWND, pSensors: ?*ISensorCollection, fModal: BOOL) HRESULT {
+                return @ptrCast(*const ISensorManager.VTable, self.vtable).RequestPermissions(@ptrCast(*const ISensorManager, self), hParent, pSensors, fModal);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -471,38 +473,40 @@ pub const ILocationPermissions = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetGlobalLocationPermission: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ILocationPermissions,
                 pfEnabled: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ILocationPermissions,
                 pfEnabled: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CheckLocationCapability: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ILocationPermissions,
                 dwClientThreadId: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ILocationPermissions,
                 dwClientThreadId: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILocationPermissions_GetGlobalLocationPermission(self: *const T, pfEnabled: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ILocationPermissions.VTable, self.vtable).GetGlobalLocationPermission(@ptrCast(*const ILocationPermissions, self), pfEnabled);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILocationPermissions_CheckLocationCapability(self: *const T, dwClientThreadId: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ILocationPermissions.VTable, self.vtable).CheckLocationCapability(@ptrCast(*const ILocationPermissions, self), dwClientThreadId);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ILocationPermissions_GetGlobalLocationPermission(self: *const T, pfEnabled: ?*BOOL) HRESULT {
+                return @ptrCast(*const ILocationPermissions.VTable, self.vtable).GetGlobalLocationPermission(@ptrCast(*const ILocationPermissions, self), pfEnabled);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ILocationPermissions_CheckLocationCapability(self: *const T, dwClientThreadId: u32) HRESULT {
+                return @ptrCast(*const ILocationPermissions.VTable, self.vtable).CheckLocationCapability(@ptrCast(*const ILocationPermissions, self), dwClientThreadId);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -513,94 +517,96 @@ pub const ISensorCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensorCollection,
                 ulIndex: u32,
                 ppSensor: ?*?*ISensor,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensorCollection,
                 ulIndex: u32,
                 ppSensor: ?*?*ISensor,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensorCollection,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensorCollection,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Add: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensorCollection,
                 pSensor: ?*ISensor,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensorCollection,
                 pSensor: ?*ISensor,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Remove: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensorCollection,
                 pSensor: ?*ISensor,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensorCollection,
                 pSensor: ?*ISensor,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RemoveByID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensorCollection,
                 sensorID: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensorCollection,
                 sensorID: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clear: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensorCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensorCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensorCollection_GetAt(self: *const T, ulIndex: u32, ppSensor: ?*?*ISensor) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorCollection.VTable, self.vtable).GetAt(@ptrCast(*const ISensorCollection, self), ulIndex, ppSensor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensorCollection_GetCount(self: *const T, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorCollection.VTable, self.vtable).GetCount(@ptrCast(*const ISensorCollection, self), pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensorCollection_Add(self: *const T, pSensor: ?*ISensor) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorCollection.VTable, self.vtable).Add(@ptrCast(*const ISensorCollection, self), pSensor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensorCollection_Remove(self: *const T, pSensor: ?*ISensor) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorCollection.VTable, self.vtable).Remove(@ptrCast(*const ISensorCollection, self), pSensor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensorCollection_RemoveByID(self: *const T, sensorID: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorCollection.VTable, self.vtable).RemoveByID(@ptrCast(*const ISensorCollection, self), sensorID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensorCollection_Clear(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorCollection.VTable, self.vtable).Clear(@ptrCast(*const ISensorCollection, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensorCollection_GetAt(self: *const T, ulIndex: u32, ppSensor: ?*?*ISensor) HRESULT {
+                return @ptrCast(*const ISensorCollection.VTable, self.vtable).GetAt(@ptrCast(*const ISensorCollection, self), ulIndex, ppSensor);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensorCollection_GetCount(self: *const T, pCount: ?*u32) HRESULT {
+                return @ptrCast(*const ISensorCollection.VTable, self.vtable).GetCount(@ptrCast(*const ISensorCollection, self), pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensorCollection_Add(self: *const T, pSensor: ?*ISensor) HRESULT {
+                return @ptrCast(*const ISensorCollection.VTable, self.vtable).Add(@ptrCast(*const ISensorCollection, self), pSensor);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensorCollection_Remove(self: *const T, pSensor: ?*ISensor) HRESULT {
+                return @ptrCast(*const ISensorCollection.VTable, self.vtable).Remove(@ptrCast(*const ISensorCollection, self), pSensor);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensorCollection_RemoveByID(self: *const T, sensorID: ?*Guid) HRESULT {
+                return @ptrCast(*const ISensorCollection.VTable, self.vtable).RemoveByID(@ptrCast(*const ISensorCollection, self), sensorID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensorCollection_Clear(self: *const T) HRESULT {
+                return @ptrCast(*const ISensorCollection.VTable, self.vtable).Clear(@ptrCast(*const ISensorCollection, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -611,234 +617,236 @@ pub const ISensor = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensor,
                 pID: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensor,
                 pID: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCategory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensor,
                 pSensorCategory: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensor,
                 pSensorCategory: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensor,
                 pSensorType: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensor,
                 pSensorType: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFriendlyName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensor,
                 pFriendlyName: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensor,
                 pFriendlyName: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensor,
                 key: ?*const PROPERTYKEY,
                 pProperty: ?*PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensor,
                 key: ?*const PROPERTYKEY,
                 pProperty: ?*PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensor,
                 pKeys: ?*IPortableDeviceKeyCollection,
                 ppProperties: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensor,
                 pKeys: ?*IPortableDeviceKeyCollection,
                 ppProperties: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSupportedDataFields: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensor,
                 ppDataFields: ?*?*IPortableDeviceKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensor,
                 ppDataFields: ?*?*IPortableDeviceKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensor,
                 pProperties: ?*IPortableDeviceValues,
                 ppResults: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensor,
                 pProperties: ?*IPortableDeviceValues,
                 ppResults: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SupportsDataField: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensor,
                 key: ?*const PROPERTYKEY,
                 pIsSupported: ?*i16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensor,
                 key: ?*const PROPERTYKEY,
                 pIsSupported: ?*i16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensor,
                 pState: ?*SensorState,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensor,
                 pState: ?*SensorState,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensor,
                 ppDataReport: ?*?*ISensorDataReport,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensor,
                 ppDataReport: ?*?*ISensorDataReport,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SupportsEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensor,
                 eventGuid: ?*const Guid,
                 pIsSupported: ?*i16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensor,
                 eventGuid: ?*const Guid,
                 pIsSupported: ?*i16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetEventInterest: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensor,
                 ppValues: ?[*]?*Guid,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensor,
                 ppValues: ?[*]?*Guid,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetEventInterest: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensor,
                 pValues: ?[*]Guid,
                 count: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensor,
                 pValues: ?[*]Guid,
                 count: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetEventSink: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensor,
                 pEvents: ?*ISensorEvents,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensor,
                 pEvents: ?*ISensorEvents,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensor_GetID(self: *const T, pID: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).GetID(@ptrCast(*const ISensor, self), pID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensor_GetCategory(self: *const T, pSensorCategory: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).GetCategory(@ptrCast(*const ISensor, self), pSensorCategory);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensor_GetType(self: *const T, pSensorType: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).GetType(@ptrCast(*const ISensor, self), pSensorType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensor_GetFriendlyName(self: *const T, pFriendlyName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).GetFriendlyName(@ptrCast(*const ISensor, self), pFriendlyName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensor_GetProperty(self: *const T, key: ?*const PROPERTYKEY, pProperty: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).GetProperty(@ptrCast(*const ISensor, self), key, pProperty);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensor_GetProperties(self: *const T, pKeys: ?*IPortableDeviceKeyCollection, ppProperties: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).GetProperties(@ptrCast(*const ISensor, self), pKeys, ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensor_GetSupportedDataFields(self: *const T, ppDataFields: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).GetSupportedDataFields(@ptrCast(*const ISensor, self), ppDataFields);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensor_SetProperties(self: *const T, pProperties: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).SetProperties(@ptrCast(*const ISensor, self), pProperties, ppResults);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensor_SupportsDataField(self: *const T, key: ?*const PROPERTYKEY, pIsSupported: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).SupportsDataField(@ptrCast(*const ISensor, self), key, pIsSupported);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensor_GetState(self: *const T, pState: ?*SensorState) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).GetState(@ptrCast(*const ISensor, self), pState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensor_GetData(self: *const T, ppDataReport: ?*?*ISensorDataReport) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).GetData(@ptrCast(*const ISensor, self), ppDataReport);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensor_SupportsEvent(self: *const T, eventGuid: ?*const Guid, pIsSupported: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).SupportsEvent(@ptrCast(*const ISensor, self), eventGuid, pIsSupported);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensor_GetEventInterest(self: *const T, ppValues: ?[*]?*Guid, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).GetEventInterest(@ptrCast(*const ISensor, self), ppValues, pCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensor_SetEventInterest(self: *const T, pValues: ?[*]Guid, count: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).SetEventInterest(@ptrCast(*const ISensor, self), pValues, count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensor_SetEventSink(self: *const T, pEvents: ?*ISensorEvents) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).SetEventSink(@ptrCast(*const ISensor, self), pEvents);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensor_GetID(self: *const T, pID: ?*Guid) HRESULT {
+                return @ptrCast(*const ISensor.VTable, self.vtable).GetID(@ptrCast(*const ISensor, self), pID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensor_GetCategory(self: *const T, pSensorCategory: ?*Guid) HRESULT {
+                return @ptrCast(*const ISensor.VTable, self.vtable).GetCategory(@ptrCast(*const ISensor, self), pSensorCategory);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensor_GetType(self: *const T, pSensorType: ?*Guid) HRESULT {
+                return @ptrCast(*const ISensor.VTable, self.vtable).GetType(@ptrCast(*const ISensor, self), pSensorType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensor_GetFriendlyName(self: *const T, pFriendlyName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ISensor.VTable, self.vtable).GetFriendlyName(@ptrCast(*const ISensor, self), pFriendlyName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensor_GetProperty(self: *const T, key: ?*const PROPERTYKEY, pProperty: ?*PROPVARIANT) HRESULT {
+                return @ptrCast(*const ISensor.VTable, self.vtable).GetProperty(@ptrCast(*const ISensor, self), key, pProperty);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensor_GetProperties(self: *const T, pKeys: ?*IPortableDeviceKeyCollection, ppProperties: ?*?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const ISensor.VTable, self.vtable).GetProperties(@ptrCast(*const ISensor, self), pKeys, ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensor_GetSupportedDataFields(self: *const T, ppDataFields: ?*?*IPortableDeviceKeyCollection) HRESULT {
+                return @ptrCast(*const ISensor.VTable, self.vtable).GetSupportedDataFields(@ptrCast(*const ISensor, self), ppDataFields);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensor_SetProperties(self: *const T, pProperties: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const ISensor.VTable, self.vtable).SetProperties(@ptrCast(*const ISensor, self), pProperties, ppResults);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensor_SupportsDataField(self: *const T, key: ?*const PROPERTYKEY, pIsSupported: ?*i16) HRESULT {
+                return @ptrCast(*const ISensor.VTable, self.vtable).SupportsDataField(@ptrCast(*const ISensor, self), key, pIsSupported);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensor_GetState(self: *const T, pState: ?*SensorState) HRESULT {
+                return @ptrCast(*const ISensor.VTable, self.vtable).GetState(@ptrCast(*const ISensor, self), pState);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensor_GetData(self: *const T, ppDataReport: ?*?*ISensorDataReport) HRESULT {
+                return @ptrCast(*const ISensor.VTable, self.vtable).GetData(@ptrCast(*const ISensor, self), ppDataReport);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensor_SupportsEvent(self: *const T, eventGuid: ?*const Guid, pIsSupported: ?*i16) HRESULT {
+                return @ptrCast(*const ISensor.VTable, self.vtable).SupportsEvent(@ptrCast(*const ISensor, self), eventGuid, pIsSupported);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensor_GetEventInterest(self: *const T, ppValues: ?[*]?*Guid, pCount: ?*u32) HRESULT {
+                return @ptrCast(*const ISensor.VTable, self.vtable).GetEventInterest(@ptrCast(*const ISensor, self), ppValues, pCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensor_SetEventInterest(self: *const T, pValues: ?[*]Guid, count: u32) HRESULT {
+                return @ptrCast(*const ISensor.VTable, self.vtable).SetEventInterest(@ptrCast(*const ISensor, self), pValues, count);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensor_SetEventSink(self: *const T, pEvents: ?*ISensorEvents) HRESULT {
+                return @ptrCast(*const ISensor.VTable, self.vtable).SetEventSink(@ptrCast(*const ISensor, self), pEvents);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -849,34 +857,34 @@ pub const ISensorDataReport = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetTimestamp: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensorDataReport,
                 pTimeStamp: ?*SYSTEMTIME,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensorDataReport,
                 pTimeStamp: ?*SYSTEMTIME,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSensorValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensorDataReport,
                 pKey: ?*const PROPERTYKEY,
                 pValue: ?*PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensorDataReport,
                 pKey: ?*const PROPERTYKEY,
                 pValue: ?*PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSensorValues: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensorDataReport,
                 pKeys: ?*IPortableDeviceKeyCollection,
                 ppValues: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensorDataReport,
                 pKeys: ?*IPortableDeviceKeyCollection,
                 ppValues: ?*?*IPortableDeviceValues,
@@ -884,21 +892,23 @@ pub const ISensorDataReport = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensorDataReport_GetTimestamp(self: *const T, pTimeStamp: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorDataReport.VTable, self.vtable).GetTimestamp(@ptrCast(*const ISensorDataReport, self), pTimeStamp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensorDataReport_GetSensorValue(self: *const T, pKey: ?*const PROPERTYKEY, pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorDataReport.VTable, self.vtable).GetSensorValue(@ptrCast(*const ISensorDataReport, self), pKey, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensorDataReport_GetSensorValues(self: *const T, pKeys: ?*IPortableDeviceKeyCollection, ppValues: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorDataReport.VTable, self.vtable).GetSensorValues(@ptrCast(*const ISensorDataReport, self), pKeys, ppValues);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensorDataReport_GetTimestamp(self: *const T, pTimeStamp: ?*SYSTEMTIME) HRESULT {
+                return @ptrCast(*const ISensorDataReport.VTable, self.vtable).GetTimestamp(@ptrCast(*const ISensorDataReport, self), pTimeStamp);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensorDataReport_GetSensorValue(self: *const T, pKey: ?*const PROPERTYKEY, pValue: ?*PROPVARIANT) HRESULT {
+                return @ptrCast(*const ISensorDataReport.VTable, self.vtable).GetSensorValue(@ptrCast(*const ISensorDataReport, self), pKey, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensorDataReport_GetSensorValues(self: *const T, pKeys: ?*IPortableDeviceKeyCollection, ppValues: ?*?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const ISensorDataReport.VTable, self.vtable).GetSensorValues(@ptrCast(*const ISensorDataReport, self), pKeys, ppValues);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -909,12 +919,12 @@ pub const ISensorManagerEvents = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnSensorEnter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensorManagerEvents,
                 pSensor: ?*ISensor,
                 state: SensorState,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensorManagerEvents,
                 pSensor: ?*ISensor,
                 state: SensorState,
@@ -922,13 +932,15 @@ pub const ISensorManagerEvents = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensorManagerEvents_OnSensorEnter(self: *const T, pSensor: ?*ISensor, state: SensorState) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorManagerEvents.VTable, self.vtable).OnSensorEnter(@ptrCast(*const ISensorManagerEvents, self), pSensor, state);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensorManagerEvents_OnSensorEnter(self: *const T, pSensor: ?*ISensor, state: SensorState) HRESULT {
+                return @ptrCast(*const ISensorManagerEvents.VTable, self.vtable).OnSensorEnter(@ptrCast(*const ISensorManagerEvents, self), pSensor, state);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -939,37 +951,37 @@ pub const ISensorEvents = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnStateChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensorEvents,
                 pSensor: ?*ISensor,
                 state: SensorState,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensorEvents,
                 pSensor: ?*ISensor,
                 state: SensorState,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnDataUpdated: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensorEvents,
                 pSensor: ?*ISensor,
                 pNewData: ?*ISensorDataReport,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensorEvents,
                 pSensor: ?*ISensor,
                 pNewData: ?*ISensorDataReport,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensorEvents,
                 pSensor: ?*ISensor,
                 eventID: ?*const Guid,
                 pEventData: ?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensorEvents,
                 pSensor: ?*ISensor,
                 eventID: ?*const Guid,
@@ -977,36 +989,38 @@ pub const ISensorEvents = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnLeave: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISensorEvents,
                 ID: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISensorEvents,
                 ID: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensorEvents_OnStateChanged(self: *const T, pSensor: ?*ISensor, state: SensorState) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorEvents.VTable, self.vtable).OnStateChanged(@ptrCast(*const ISensorEvents, self), pSensor, state);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensorEvents_OnDataUpdated(self: *const T, pSensor: ?*ISensor, pNewData: ?*ISensorDataReport) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorEvents.VTable, self.vtable).OnDataUpdated(@ptrCast(*const ISensorEvents, self), pSensor, pNewData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensorEvents_OnEvent(self: *const T, pSensor: ?*ISensor, eventID: ?*const Guid, pEventData: ?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorEvents.VTable, self.vtable).OnEvent(@ptrCast(*const ISensorEvents, self), pSensor, eventID, pEventData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensorEvents_OnLeave(self: *const T, ID: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorEvents.VTable, self.vtable).OnLeave(@ptrCast(*const ISensorEvents, self), ID);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensorEvents_OnStateChanged(self: *const T, pSensor: ?*ISensor, state: SensorState) HRESULT {
+                return @ptrCast(*const ISensorEvents.VTable, self.vtable).OnStateChanged(@ptrCast(*const ISensorEvents, self), pSensor, state);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensorEvents_OnDataUpdated(self: *const T, pSensor: ?*ISensor, pNewData: ?*ISensorDataReport) HRESULT {
+                return @ptrCast(*const ISensorEvents.VTable, self.vtable).OnDataUpdated(@ptrCast(*const ISensorEvents, self), pSensor, pNewData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensorEvents_OnEvent(self: *const T, pSensor: ?*ISensor, eventID: ?*const Guid, pEventData: ?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const ISensorEvents.VTable, self.vtable).OnEvent(@ptrCast(*const ISensorEvents, self), pSensor, eventID, pEventData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISensorEvents_OnLeave(self: *const T, ID: ?*Guid) HRESULT {
+                return @ptrCast(*const ISensorEvents.VTable, self.vtable).OnLeave(@ptrCast(*const ISensorEvents, self), ID);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1204,7 +1218,6 @@ pub const AXIS_X = AXIS.X;
 pub const AXIS_Y = AXIS.Y;
 pub const AXIS_Z = AXIS.Z;
 pub const AXIS_MAX = AXIS.MAX;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (40)
@@ -1432,19 +1445,14 @@ pub extern "sensorsutilsv2" fn IsGUIDPresentInList(
     guidElem: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (14)
@@ -1465,9 +1473,7 @@ const PROPVARIANT = @import("../system/com/structured_storage.zig").PROPVARIANT;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

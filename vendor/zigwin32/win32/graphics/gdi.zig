@@ -1304,17 +1304,7 @@ pub const ETO_OPTIONS = enum(u32) {
         PDY: u1 = 0,
         REVERSE_INDEX_MAP: u1 = 0,
     }) ETO_OPTIONS {
-        return @intToEnum(ETO_OPTIONS,
-              (if (o.OPAQUE == 1) @enumToInt(ETO_OPTIONS.OPAQUE) else 0)
-            | (if (o.CLIPPED == 1) @enumToInt(ETO_OPTIONS.CLIPPED) else 0)
-            | (if (o.GLYPH_INDEX == 1) @enumToInt(ETO_OPTIONS.GLYPH_INDEX) else 0)
-            | (if (o.RTLREADING == 1) @enumToInt(ETO_OPTIONS.RTLREADING) else 0)
-            | (if (o.NUMERICSLOCAL == 1) @enumToInt(ETO_OPTIONS.NUMERICSLOCAL) else 0)
-            | (if (o.NUMERICSLATIN == 1) @enumToInt(ETO_OPTIONS.NUMERICSLATIN) else 0)
-            | (if (o.IGNORELANGUAGE == 1) @enumToInt(ETO_OPTIONS.IGNORELANGUAGE) else 0)
-            | (if (o.PDY == 1) @enumToInt(ETO_OPTIONS.PDY) else 0)
-            | (if (o.REVERSE_INDEX_MAP == 1) @enumToInt(ETO_OPTIONS.REVERSE_INDEX_MAP) else 0)
-        );
+        return @enumFromInt(ETO_OPTIONS, (if (o.OPAQUE == 1) @intFromEnum(ETO_OPTIONS.OPAQUE) else 0) | (if (o.CLIPPED == 1) @intFromEnum(ETO_OPTIONS.CLIPPED) else 0) | (if (o.GLYPH_INDEX == 1) @intFromEnum(ETO_OPTIONS.GLYPH_INDEX) else 0) | (if (o.RTLREADING == 1) @intFromEnum(ETO_OPTIONS.RTLREADING) else 0) | (if (o.NUMERICSLOCAL == 1) @intFromEnum(ETO_OPTIONS.NUMERICSLOCAL) else 0) | (if (o.NUMERICSLATIN == 1) @intFromEnum(ETO_OPTIONS.NUMERICSLATIN) else 0) | (if (o.IGNORELANGUAGE == 1) @intFromEnum(ETO_OPTIONS.IGNORELANGUAGE) else 0) | (if (o.PDY == 1) @intFromEnum(ETO_OPTIONS.PDY) else 0) | (if (o.REVERSE_INDEX_MAP == 1) @intFromEnum(ETO_OPTIONS.REVERSE_INDEX_MAP) else 0));
     }
 };
 pub const ETO_OPAQUE = ETO_OPTIONS.OPAQUE;
@@ -1428,18 +1418,7 @@ pub const DRAWEDGE_FLAGS = enum(u32) {
         EDGE_ETCHED: u1 = 0,
         EDGE_BUMP: u1 = 0,
     }) DRAWEDGE_FLAGS {
-        return @intToEnum(DRAWEDGE_FLAGS,
-              (if (o.BDR_RAISEDOUTER == 1) @enumToInt(DRAWEDGE_FLAGS.BDR_RAISEDOUTER) else 0)
-            | (if (o.BDR_SUNKENOUTER == 1) @enumToInt(DRAWEDGE_FLAGS.BDR_SUNKENOUTER) else 0)
-            | (if (o.BDR_RAISEDINNER == 1) @enumToInt(DRAWEDGE_FLAGS.BDR_RAISEDINNER) else 0)
-            | (if (o.BDR_SUNKENINNER == 1) @enumToInt(DRAWEDGE_FLAGS.BDR_SUNKENINNER) else 0)
-            | (if (o.BDR_OUTER == 1) @enumToInt(DRAWEDGE_FLAGS.BDR_OUTER) else 0)
-            | (if (o.BDR_INNER == 1) @enumToInt(DRAWEDGE_FLAGS.BDR_INNER) else 0)
-            | (if (o.BDR_RAISED == 1) @enumToInt(DRAWEDGE_FLAGS.BDR_RAISED) else 0)
-            | (if (o.BDR_SUNKEN == 1) @enumToInt(DRAWEDGE_FLAGS.BDR_SUNKEN) else 0)
-            | (if (o.EDGE_ETCHED == 1) @enumToInt(DRAWEDGE_FLAGS.EDGE_ETCHED) else 0)
-            | (if (o.EDGE_BUMP == 1) @enumToInt(DRAWEDGE_FLAGS.EDGE_BUMP) else 0)
-        );
+        return @enumFromInt(DRAWEDGE_FLAGS, (if (o.BDR_RAISEDOUTER == 1) @intFromEnum(DRAWEDGE_FLAGS.BDR_RAISEDOUTER) else 0) | (if (o.BDR_SUNKENOUTER == 1) @intFromEnum(DRAWEDGE_FLAGS.BDR_SUNKENOUTER) else 0) | (if (o.BDR_RAISEDINNER == 1) @intFromEnum(DRAWEDGE_FLAGS.BDR_RAISEDINNER) else 0) | (if (o.BDR_SUNKENINNER == 1) @intFromEnum(DRAWEDGE_FLAGS.BDR_SUNKENINNER) else 0) | (if (o.BDR_OUTER == 1) @intFromEnum(DRAWEDGE_FLAGS.BDR_OUTER) else 0) | (if (o.BDR_INNER == 1) @intFromEnum(DRAWEDGE_FLAGS.BDR_INNER) else 0) | (if (o.BDR_RAISED == 1) @intFromEnum(DRAWEDGE_FLAGS.BDR_RAISED) else 0) | (if (o.BDR_SUNKEN == 1) @intFromEnum(DRAWEDGE_FLAGS.BDR_SUNKEN) else 0) | (if (o.EDGE_ETCHED == 1) @intFromEnum(DRAWEDGE_FLAGS.EDGE_ETCHED) else 0) | (if (o.EDGE_BUMP == 1) @intFromEnum(DRAWEDGE_FLAGS.EDGE_BUMP) else 0));
     }
 };
 pub const BDR_RAISEDOUTER = DRAWEDGE_FLAGS.BDR_RAISEDOUTER;
@@ -1518,24 +1497,7 @@ pub const DFCS_STATE = enum(u32) {
         FLAT: u1 = 0,
         MONO: u1 = 0,
     }) DFCS_STATE {
-        return @intToEnum(DFCS_STATE,
-              (if (o.CAPTIONCLOSE == 1) @enumToInt(DFCS_STATE.CAPTIONCLOSE) else 0)
-            | (if (o.CAPTIONMIN == 1) @enumToInt(DFCS_STATE.CAPTIONMIN) else 0)
-            | (if (o.CAPTIONMAX == 1) @enumToInt(DFCS_STATE.CAPTIONMAX) else 0)
-            | (if (o.CAPTIONRESTORE == 1) @enumToInt(DFCS_STATE.CAPTIONRESTORE) else 0)
-            | (if (o.CAPTIONHELP == 1) @enumToInt(DFCS_STATE.CAPTIONHELP) else 0)
-            | (if (o.SCROLLCOMBOBOX == 1) @enumToInt(DFCS_STATE.SCROLLCOMBOBOX) else 0)
-            | (if (o.SCROLLSIZEGRIP == 1) @enumToInt(DFCS_STATE.SCROLLSIZEGRIP) else 0)
-            | (if (o.SCROLLSIZEGRIPRIGHT == 1) @enumToInt(DFCS_STATE.SCROLLSIZEGRIPRIGHT) else 0)
-            | (if (o.INACTIVE == 1) @enumToInt(DFCS_STATE.INACTIVE) else 0)
-            | (if (o.PUSHED == 1) @enumToInt(DFCS_STATE.PUSHED) else 0)
-            | (if (o.CHECKED == 1) @enumToInt(DFCS_STATE.CHECKED) else 0)
-            | (if (o.TRANSPARENT == 1) @enumToInt(DFCS_STATE.TRANSPARENT) else 0)
-            | (if (o.HOT == 1) @enumToInt(DFCS_STATE.HOT) else 0)
-            | (if (o.ADJUSTRECT == 1) @enumToInt(DFCS_STATE.ADJUSTRECT) else 0)
-            | (if (o.FLAT == 1) @enumToInt(DFCS_STATE.FLAT) else 0)
-            | (if (o.MONO == 1) @enumToInt(DFCS_STATE.MONO) else 0)
-        );
+        return @enumFromInt(DFCS_STATE, (if (o.CAPTIONCLOSE == 1) @intFromEnum(DFCS_STATE.CAPTIONCLOSE) else 0) | (if (o.CAPTIONMIN == 1) @intFromEnum(DFCS_STATE.CAPTIONMIN) else 0) | (if (o.CAPTIONMAX == 1) @intFromEnum(DFCS_STATE.CAPTIONMAX) else 0) | (if (o.CAPTIONRESTORE == 1) @intFromEnum(DFCS_STATE.CAPTIONRESTORE) else 0) | (if (o.CAPTIONHELP == 1) @intFromEnum(DFCS_STATE.CAPTIONHELP) else 0) | (if (o.SCROLLCOMBOBOX == 1) @intFromEnum(DFCS_STATE.SCROLLCOMBOBOX) else 0) | (if (o.SCROLLSIZEGRIP == 1) @intFromEnum(DFCS_STATE.SCROLLSIZEGRIP) else 0) | (if (o.SCROLLSIZEGRIPRIGHT == 1) @intFromEnum(DFCS_STATE.SCROLLSIZEGRIPRIGHT) else 0) | (if (o.INACTIVE == 1) @intFromEnum(DFCS_STATE.INACTIVE) else 0) | (if (o.PUSHED == 1) @intFromEnum(DFCS_STATE.PUSHED) else 0) | (if (o.CHECKED == 1) @intFromEnum(DFCS_STATE.CHECKED) else 0) | (if (o.TRANSPARENT == 1) @intFromEnum(DFCS_STATE.TRANSPARENT) else 0) | (if (o.HOT == 1) @intFromEnum(DFCS_STATE.HOT) else 0) | (if (o.ADJUSTRECT == 1) @intFromEnum(DFCS_STATE.ADJUSTRECT) else 0) | (if (o.FLAT == 1) @intFromEnum(DFCS_STATE.FLAT) else 0) | (if (o.MONO == 1) @intFromEnum(DFCS_STATE.MONO) else 0));
     }
 };
 pub const DFCS_CAPTIONCLOSE = DFCS_STATE.CAPTIONCLOSE;
@@ -1595,19 +1557,7 @@ pub const CDS_TYPE = enum(u32) {
         DISABLE_UNSAFE_MODES: u1 = 0,
         RESET_EX: u1 = 0,
     }) CDS_TYPE {
-        return @intToEnum(CDS_TYPE,
-              (if (o.FULLSCREEN == 1) @enumToInt(CDS_TYPE.FULLSCREEN) else 0)
-            | (if (o.GLOBAL == 1) @enumToInt(CDS_TYPE.GLOBAL) else 0)
-            | (if (o.NORESET == 1) @enumToInt(CDS_TYPE.NORESET) else 0)
-            | (if (o.RESET == 1) @enumToInt(CDS_TYPE.RESET) else 0)
-            | (if (o.SET_PRIMARY == 1) @enumToInt(CDS_TYPE.SET_PRIMARY) else 0)
-            | (if (o.TEST == 1) @enumToInt(CDS_TYPE.TEST) else 0)
-            | (if (o.UPDATEREGISTRY == 1) @enumToInt(CDS_TYPE.UPDATEREGISTRY) else 0)
-            | (if (o.VIDEOPARAMETERS == 1) @enumToInt(CDS_TYPE.VIDEOPARAMETERS) else 0)
-            | (if (o.ENABLE_UNSAFE_MODES == 1) @enumToInt(CDS_TYPE.ENABLE_UNSAFE_MODES) else 0)
-            | (if (o.DISABLE_UNSAFE_MODES == 1) @enumToInt(CDS_TYPE.DISABLE_UNSAFE_MODES) else 0)
-            | (if (o.RESET_EX == 1) @enumToInt(CDS_TYPE.RESET_EX) else 0)
-        );
+        return @enumFromInt(CDS_TYPE, (if (o.FULLSCREEN == 1) @intFromEnum(CDS_TYPE.FULLSCREEN) else 0) | (if (o.GLOBAL == 1) @intFromEnum(CDS_TYPE.GLOBAL) else 0) | (if (o.NORESET == 1) @intFromEnum(CDS_TYPE.NORESET) else 0) | (if (o.RESET == 1) @intFromEnum(CDS_TYPE.RESET) else 0) | (if (o.SET_PRIMARY == 1) @intFromEnum(CDS_TYPE.SET_PRIMARY) else 0) | (if (o.TEST == 1) @intFromEnum(CDS_TYPE.TEST) else 0) | (if (o.UPDATEREGISTRY == 1) @intFromEnum(CDS_TYPE.UPDATEREGISTRY) else 0) | (if (o.VIDEOPARAMETERS == 1) @intFromEnum(CDS_TYPE.VIDEOPARAMETERS) else 0) | (if (o.ENABLE_UNSAFE_MODES == 1) @intFromEnum(CDS_TYPE.ENABLE_UNSAFE_MODES) else 0) | (if (o.DISABLE_UNSAFE_MODES == 1) @intFromEnum(CDS_TYPE.DISABLE_UNSAFE_MODES) else 0) | (if (o.RESET_EX == 1) @intFromEnum(CDS_TYPE.RESET_EX) else 0));
     }
 };
 pub const CDS_FULLSCREEN = CDS_TYPE.FULLSCREEN;
@@ -1668,19 +1618,7 @@ pub const DRAWSTATE_FLAGS = enum(u32) {
         S_PREFIXONLY: u1 = 0,
         S_RIGHT: u1 = 0,
     }) DRAWSTATE_FLAGS {
-        return @intToEnum(DRAWSTATE_FLAGS,
-              (if (o.T_COMPLEX == 1) @enumToInt(DRAWSTATE_FLAGS.T_COMPLEX) else 0)
-            | (if (o.T_TEXT == 1) @enumToInt(DRAWSTATE_FLAGS.T_TEXT) else 0)
-            | (if (o.T_PREFIXTEXT == 1) @enumToInt(DRAWSTATE_FLAGS.T_PREFIXTEXT) else 0)
-            | (if (o.T_ICON == 1) @enumToInt(DRAWSTATE_FLAGS.T_ICON) else 0)
-            | (if (o.T_BITMAP == 1) @enumToInt(DRAWSTATE_FLAGS.T_BITMAP) else 0)
-            | (if (o.S_UNION == 1) @enumToInt(DRAWSTATE_FLAGS.S_UNION) else 0)
-            | (if (o.S_DISABLED == 1) @enumToInt(DRAWSTATE_FLAGS.S_DISABLED) else 0)
-            | (if (o.S_MONO == 1) @enumToInt(DRAWSTATE_FLAGS.S_MONO) else 0)
-            | (if (o.S_HIDEPREFIX == 1) @enumToInt(DRAWSTATE_FLAGS.S_HIDEPREFIX) else 0)
-            | (if (o.S_PREFIXONLY == 1) @enumToInt(DRAWSTATE_FLAGS.S_PREFIXONLY) else 0)
-            | (if (o.S_RIGHT == 1) @enumToInt(DRAWSTATE_FLAGS.S_RIGHT) else 0)
-        );
+        return @enumFromInt(DRAWSTATE_FLAGS, (if (o.T_COMPLEX == 1) @intFromEnum(DRAWSTATE_FLAGS.T_COMPLEX) else 0) | (if (o.T_TEXT == 1) @intFromEnum(DRAWSTATE_FLAGS.T_TEXT) else 0) | (if (o.T_PREFIXTEXT == 1) @intFromEnum(DRAWSTATE_FLAGS.T_PREFIXTEXT) else 0) | (if (o.T_ICON == 1) @intFromEnum(DRAWSTATE_FLAGS.T_ICON) else 0) | (if (o.T_BITMAP == 1) @intFromEnum(DRAWSTATE_FLAGS.T_BITMAP) else 0) | (if (o.S_UNION == 1) @intFromEnum(DRAWSTATE_FLAGS.S_UNION) else 0) | (if (o.S_DISABLED == 1) @intFromEnum(DRAWSTATE_FLAGS.S_DISABLED) else 0) | (if (o.S_MONO == 1) @intFromEnum(DRAWSTATE_FLAGS.S_MONO) else 0) | (if (o.S_HIDEPREFIX == 1) @intFromEnum(DRAWSTATE_FLAGS.S_HIDEPREFIX) else 0) | (if (o.S_PREFIXONLY == 1) @intFromEnum(DRAWSTATE_FLAGS.S_PREFIXONLY) else 0) | (if (o.S_RIGHT == 1) @intFromEnum(DRAWSTATE_FLAGS.S_RIGHT) else 0));
     }
 };
 pub const DST_COMPLEX = DRAWSTATE_FLAGS.T_COMPLEX;
@@ -1724,20 +1662,7 @@ pub const REDRAW_WINDOW_FLAGS = enum(u32) {
         FRAME: u1 = 0,
         NOFRAME: u1 = 0,
     }) REDRAW_WINDOW_FLAGS {
-        return @intToEnum(REDRAW_WINDOW_FLAGS,
-              (if (o.INVALIDATE == 1) @enumToInt(REDRAW_WINDOW_FLAGS.INVALIDATE) else 0)
-            | (if (o.INTERNALPAINT == 1) @enumToInt(REDRAW_WINDOW_FLAGS.INTERNALPAINT) else 0)
-            | (if (o.ERASE == 1) @enumToInt(REDRAW_WINDOW_FLAGS.ERASE) else 0)
-            | (if (o.VALIDATE == 1) @enumToInt(REDRAW_WINDOW_FLAGS.VALIDATE) else 0)
-            | (if (o.NOINTERNALPAINT == 1) @enumToInt(REDRAW_WINDOW_FLAGS.NOINTERNALPAINT) else 0)
-            | (if (o.NOERASE == 1) @enumToInt(REDRAW_WINDOW_FLAGS.NOERASE) else 0)
-            | (if (o.NOCHILDREN == 1) @enumToInt(REDRAW_WINDOW_FLAGS.NOCHILDREN) else 0)
-            | (if (o.ALLCHILDREN == 1) @enumToInt(REDRAW_WINDOW_FLAGS.ALLCHILDREN) else 0)
-            | (if (o.UPDATENOW == 1) @enumToInt(REDRAW_WINDOW_FLAGS.UPDATENOW) else 0)
-            | (if (o.ERASENOW == 1) @enumToInt(REDRAW_WINDOW_FLAGS.ERASENOW) else 0)
-            | (if (o.FRAME == 1) @enumToInt(REDRAW_WINDOW_FLAGS.FRAME) else 0)
-            | (if (o.NOFRAME == 1) @enumToInt(REDRAW_WINDOW_FLAGS.NOFRAME) else 0)
-        );
+        return @enumFromInt(REDRAW_WINDOW_FLAGS, (if (o.INVALIDATE == 1) @intFromEnum(REDRAW_WINDOW_FLAGS.INVALIDATE) else 0) | (if (o.INTERNALPAINT == 1) @intFromEnum(REDRAW_WINDOW_FLAGS.INTERNALPAINT) else 0) | (if (o.ERASE == 1) @intFromEnum(REDRAW_WINDOW_FLAGS.ERASE) else 0) | (if (o.VALIDATE == 1) @intFromEnum(REDRAW_WINDOW_FLAGS.VALIDATE) else 0) | (if (o.NOINTERNALPAINT == 1) @intFromEnum(REDRAW_WINDOW_FLAGS.NOINTERNALPAINT) else 0) | (if (o.NOERASE == 1) @intFromEnum(REDRAW_WINDOW_FLAGS.NOERASE) else 0) | (if (o.NOCHILDREN == 1) @intFromEnum(REDRAW_WINDOW_FLAGS.NOCHILDREN) else 0) | (if (o.ALLCHILDREN == 1) @intFromEnum(REDRAW_WINDOW_FLAGS.ALLCHILDREN) else 0) | (if (o.UPDATENOW == 1) @intFromEnum(REDRAW_WINDOW_FLAGS.UPDATENOW) else 0) | (if (o.ERASENOW == 1) @intFromEnum(REDRAW_WINDOW_FLAGS.ERASENOW) else 0) | (if (o.FRAME == 1) @intFromEnum(REDRAW_WINDOW_FLAGS.FRAME) else 0) | (if (o.NOFRAME == 1) @intFromEnum(REDRAW_WINDOW_FLAGS.NOFRAME) else 0));
     }
 };
 pub const RDW_INVALIDATE = REDRAW_WINDOW_FLAGS.INVALIDATE;
@@ -1838,26 +1763,7 @@ pub const PEN_STYLE = enum(u32) {
         JOIN_MASK: u1 = 0,
         TYPE_MASK: u1 = 0,
     }) PEN_STYLE {
-        return @intToEnum(PEN_STYLE,
-              (if (o.GEOMETRIC == 1) @enumToInt(PEN_STYLE.GEOMETRIC) else 0)
-            | (if (o.COSMETIC == 1) @enumToInt(PEN_STYLE.COSMETIC) else 0)
-            | (if (o.DASH == 1) @enumToInt(PEN_STYLE.DASH) else 0)
-            | (if (o.DOT == 1) @enumToInt(PEN_STYLE.DOT) else 0)
-            | (if (o.DASHDOT == 1) @enumToInt(PEN_STYLE.DASHDOT) else 0)
-            | (if (o.DASHDOTDOT == 1) @enumToInt(PEN_STYLE.DASHDOTDOT) else 0)
-            | (if (o.NULL == 1) @enumToInt(PEN_STYLE.NULL) else 0)
-            | (if (o.INSIDEFRAME == 1) @enumToInt(PEN_STYLE.INSIDEFRAME) else 0)
-            | (if (o.USERSTYLE == 1) @enumToInt(PEN_STYLE.USERSTYLE) else 0)
-            | (if (o.ALTERNATE == 1) @enumToInt(PEN_STYLE.ALTERNATE) else 0)
-            | (if (o.STYLE_MASK == 1) @enumToInt(PEN_STYLE.STYLE_MASK) else 0)
-            | (if (o.ENDCAP_SQUARE == 1) @enumToInt(PEN_STYLE.ENDCAP_SQUARE) else 0)
-            | (if (o.ENDCAP_FLAT == 1) @enumToInt(PEN_STYLE.ENDCAP_FLAT) else 0)
-            | (if (o.ENDCAP_MASK == 1) @enumToInt(PEN_STYLE.ENDCAP_MASK) else 0)
-            | (if (o.JOIN_BEVEL == 1) @enumToInt(PEN_STYLE.JOIN_BEVEL) else 0)
-            | (if (o.JOIN_MITER == 1) @enumToInt(PEN_STYLE.JOIN_MITER) else 0)
-            | (if (o.JOIN_MASK == 1) @enumToInt(PEN_STYLE.JOIN_MASK) else 0)
-            | (if (o.TYPE_MASK == 1) @enumToInt(PEN_STYLE.TYPE_MASK) else 0)
-        );
+        return @enumFromInt(PEN_STYLE, (if (o.GEOMETRIC == 1) @intFromEnum(PEN_STYLE.GEOMETRIC) else 0) | (if (o.COSMETIC == 1) @intFromEnum(PEN_STYLE.COSMETIC) else 0) | (if (o.DASH == 1) @intFromEnum(PEN_STYLE.DASH) else 0) | (if (o.DOT == 1) @intFromEnum(PEN_STYLE.DOT) else 0) | (if (o.DASHDOT == 1) @intFromEnum(PEN_STYLE.DASHDOT) else 0) | (if (o.DASHDOTDOT == 1) @intFromEnum(PEN_STYLE.DASHDOTDOT) else 0) | (if (o.NULL == 1) @intFromEnum(PEN_STYLE.NULL) else 0) | (if (o.INSIDEFRAME == 1) @intFromEnum(PEN_STYLE.INSIDEFRAME) else 0) | (if (o.USERSTYLE == 1) @intFromEnum(PEN_STYLE.USERSTYLE) else 0) | (if (o.ALTERNATE == 1) @intFromEnum(PEN_STYLE.ALTERNATE) else 0) | (if (o.STYLE_MASK == 1) @intFromEnum(PEN_STYLE.STYLE_MASK) else 0) | (if (o.ENDCAP_SQUARE == 1) @intFromEnum(PEN_STYLE.ENDCAP_SQUARE) else 0) | (if (o.ENDCAP_FLAT == 1) @intFromEnum(PEN_STYLE.ENDCAP_FLAT) else 0) | (if (o.ENDCAP_MASK == 1) @intFromEnum(PEN_STYLE.ENDCAP_MASK) else 0) | (if (o.JOIN_BEVEL == 1) @intFromEnum(PEN_STYLE.JOIN_BEVEL) else 0) | (if (o.JOIN_MITER == 1) @intFromEnum(PEN_STYLE.JOIN_MITER) else 0) | (if (o.JOIN_MASK == 1) @intFromEnum(PEN_STYLE.JOIN_MASK) else 0) | (if (o.TYPE_MASK == 1) @intFromEnum(PEN_STYLE.TYPE_MASK) else 0));
     }
 };
 pub const PS_GEOMETRIC = PEN_STYLE.GEOMETRIC;
@@ -1894,12 +1800,7 @@ pub const TTEMBED_FLAGS = enum(u32) {
         SUBSET: u1 = 0,
         TTCOMPRESSED: u1 = 0,
     }) TTEMBED_FLAGS {
-        return @intToEnum(TTEMBED_FLAGS,
-              (if (o.EMBEDEUDC == 1) @enumToInt(TTEMBED_FLAGS.EMBEDEUDC) else 0)
-            | (if (o.RAW == 1) @enumToInt(TTEMBED_FLAGS.RAW) else 0)
-            | (if (o.SUBSET == 1) @enumToInt(TTEMBED_FLAGS.SUBSET) else 0)
-            | (if (o.TTCOMPRESSED == 1) @enumToInt(TTEMBED_FLAGS.TTCOMPRESSED) else 0)
-        );
+        return @enumFromInt(TTEMBED_FLAGS, (if (o.EMBEDEUDC == 1) @intFromEnum(TTEMBED_FLAGS.EMBEDEUDC) else 0) | (if (o.RAW == 1) @intFromEnum(TTEMBED_FLAGS.RAW) else 0) | (if (o.SUBSET == 1) @intFromEnum(TTEMBED_FLAGS.SUBSET) else 0) | (if (o.TTCOMPRESSED == 1) @intFromEnum(TTEMBED_FLAGS.TTCOMPRESSED) else 0));
     }
 };
 pub const TTEMBED_EMBEDEUDC = TTEMBED_FLAGS.EMBEDEUDC;
@@ -1958,31 +1859,7 @@ pub const DRAW_TEXT_FORMAT = enum(u32) {
         WORDBREAK: u1 = 0,
         WORD_ELLIPSIS: u1 = 0,
     }) DRAW_TEXT_FORMAT {
-        return @intToEnum(DRAW_TEXT_FORMAT,
-              (if (o.BOTTOM == 1) @enumToInt(DRAW_TEXT_FORMAT.BOTTOM) else 0)
-            | (if (o.CALCRECT == 1) @enumToInt(DRAW_TEXT_FORMAT.CALCRECT) else 0)
-            | (if (o.CENTER == 1) @enumToInt(DRAW_TEXT_FORMAT.CENTER) else 0)
-            | (if (o.EDITCONTROL == 1) @enumToInt(DRAW_TEXT_FORMAT.EDITCONTROL) else 0)
-            | (if (o.END_ELLIPSIS == 1) @enumToInt(DRAW_TEXT_FORMAT.END_ELLIPSIS) else 0)
-            | (if (o.EXPANDTABS == 1) @enumToInt(DRAW_TEXT_FORMAT.EXPANDTABS) else 0)
-            | (if (o.EXTERNALLEADING == 1) @enumToInt(DRAW_TEXT_FORMAT.EXTERNALLEADING) else 0)
-            | (if (o.HIDEPREFIX == 1) @enumToInt(DRAW_TEXT_FORMAT.HIDEPREFIX) else 0)
-            | (if (o.INTERNAL == 1) @enumToInt(DRAW_TEXT_FORMAT.INTERNAL) else 0)
-            | (if (o.LEFT == 1) @enumToInt(DRAW_TEXT_FORMAT.LEFT) else 0)
-            | (if (o.MODIFYSTRING == 1) @enumToInt(DRAW_TEXT_FORMAT.MODIFYSTRING) else 0)
-            | (if (o.NOCLIP == 1) @enumToInt(DRAW_TEXT_FORMAT.NOCLIP) else 0)
-            | (if (o.NOFULLWIDTHCHARBREAK == 1) @enumToInt(DRAW_TEXT_FORMAT.NOFULLWIDTHCHARBREAK) else 0)
-            | (if (o.NOPREFIX == 1) @enumToInt(DRAW_TEXT_FORMAT.NOPREFIX) else 0)
-            | (if (o.PATH_ELLIPSIS == 1) @enumToInt(DRAW_TEXT_FORMAT.PATH_ELLIPSIS) else 0)
-            | (if (o.PREFIXONLY == 1) @enumToInt(DRAW_TEXT_FORMAT.PREFIXONLY) else 0)
-            | (if (o.RIGHT == 1) @enumToInt(DRAW_TEXT_FORMAT.RIGHT) else 0)
-            | (if (o.RTLREADING == 1) @enumToInt(DRAW_TEXT_FORMAT.RTLREADING) else 0)
-            | (if (o.SINGLELINE == 1) @enumToInt(DRAW_TEXT_FORMAT.SINGLELINE) else 0)
-            | (if (o.TABSTOP == 1) @enumToInt(DRAW_TEXT_FORMAT.TABSTOP) else 0)
-            | (if (o.VCENTER == 1) @enumToInt(DRAW_TEXT_FORMAT.VCENTER) else 0)
-            | (if (o.WORDBREAK == 1) @enumToInt(DRAW_TEXT_FORMAT.WORDBREAK) else 0)
-            | (if (o.WORD_ELLIPSIS == 1) @enumToInt(DRAW_TEXT_FORMAT.WORD_ELLIPSIS) else 0)
-        );
+        return @enumFromInt(DRAW_TEXT_FORMAT, (if (o.BOTTOM == 1) @intFromEnum(DRAW_TEXT_FORMAT.BOTTOM) else 0) | (if (o.CALCRECT == 1) @intFromEnum(DRAW_TEXT_FORMAT.CALCRECT) else 0) | (if (o.CENTER == 1) @intFromEnum(DRAW_TEXT_FORMAT.CENTER) else 0) | (if (o.EDITCONTROL == 1) @intFromEnum(DRAW_TEXT_FORMAT.EDITCONTROL) else 0) | (if (o.END_ELLIPSIS == 1) @intFromEnum(DRAW_TEXT_FORMAT.END_ELLIPSIS) else 0) | (if (o.EXPANDTABS == 1) @intFromEnum(DRAW_TEXT_FORMAT.EXPANDTABS) else 0) | (if (o.EXTERNALLEADING == 1) @intFromEnum(DRAW_TEXT_FORMAT.EXTERNALLEADING) else 0) | (if (o.HIDEPREFIX == 1) @intFromEnum(DRAW_TEXT_FORMAT.HIDEPREFIX) else 0) | (if (o.INTERNAL == 1) @intFromEnum(DRAW_TEXT_FORMAT.INTERNAL) else 0) | (if (o.LEFT == 1) @intFromEnum(DRAW_TEXT_FORMAT.LEFT) else 0) | (if (o.MODIFYSTRING == 1) @intFromEnum(DRAW_TEXT_FORMAT.MODIFYSTRING) else 0) | (if (o.NOCLIP == 1) @intFromEnum(DRAW_TEXT_FORMAT.NOCLIP) else 0) | (if (o.NOFULLWIDTHCHARBREAK == 1) @intFromEnum(DRAW_TEXT_FORMAT.NOFULLWIDTHCHARBREAK) else 0) | (if (o.NOPREFIX == 1) @intFromEnum(DRAW_TEXT_FORMAT.NOPREFIX) else 0) | (if (o.PATH_ELLIPSIS == 1) @intFromEnum(DRAW_TEXT_FORMAT.PATH_ELLIPSIS) else 0) | (if (o.PREFIXONLY == 1) @intFromEnum(DRAW_TEXT_FORMAT.PREFIXONLY) else 0) | (if (o.RIGHT == 1) @intFromEnum(DRAW_TEXT_FORMAT.RIGHT) else 0) | (if (o.RTLREADING == 1) @intFromEnum(DRAW_TEXT_FORMAT.RTLREADING) else 0) | (if (o.SINGLELINE == 1) @intFromEnum(DRAW_TEXT_FORMAT.SINGLELINE) else 0) | (if (o.TABSTOP == 1) @intFromEnum(DRAW_TEXT_FORMAT.TABSTOP) else 0) | (if (o.VCENTER == 1) @intFromEnum(DRAW_TEXT_FORMAT.VCENTER) else 0) | (if (o.WORDBREAK == 1) @intFromEnum(DRAW_TEXT_FORMAT.WORDBREAK) else 0) | (if (o.WORD_ELLIPSIS == 1) @intFromEnum(DRAW_TEXT_FORMAT.WORD_ELLIPSIS) else 0));
     }
 };
 pub const DT_BOTTOM = DRAW_TEXT_FORMAT.BOTTOM;
@@ -2043,19 +1920,7 @@ pub const GET_DCX_FLAGS = enum(u32) {
         INTERSECTUPDATE: u1 = 0,
         VALIDATE: u1 = 0,
     }) GET_DCX_FLAGS {
-        return @intToEnum(GET_DCX_FLAGS,
-              (if (o.WINDOW == 1) @enumToInt(GET_DCX_FLAGS.WINDOW) else 0)
-            | (if (o.CACHE == 1) @enumToInt(GET_DCX_FLAGS.CACHE) else 0)
-            | (if (o.PARENTCLIP == 1) @enumToInt(GET_DCX_FLAGS.PARENTCLIP) else 0)
-            | (if (o.CLIPSIBLINGS == 1) @enumToInt(GET_DCX_FLAGS.CLIPSIBLINGS) else 0)
-            | (if (o.CLIPCHILDREN == 1) @enumToInt(GET_DCX_FLAGS.CLIPCHILDREN) else 0)
-            | (if (o.NORESETATTRS == 1) @enumToInt(GET_DCX_FLAGS.NORESETATTRS) else 0)
-            | (if (o.LOCKWINDOWUPDATE == 1) @enumToInt(GET_DCX_FLAGS.LOCKWINDOWUPDATE) else 0)
-            | (if (o.EXCLUDERGN == 1) @enumToInt(GET_DCX_FLAGS.EXCLUDERGN) else 0)
-            | (if (o.INTERSECTRGN == 1) @enumToInt(GET_DCX_FLAGS.INTERSECTRGN) else 0)
-            | (if (o.INTERSECTUPDATE == 1) @enumToInt(GET_DCX_FLAGS.INTERSECTUPDATE) else 0)
-            | (if (o.VALIDATE == 1) @enumToInt(GET_DCX_FLAGS.VALIDATE) else 0)
-        );
+        return @enumFromInt(GET_DCX_FLAGS, (if (o.WINDOW == 1) @intFromEnum(GET_DCX_FLAGS.WINDOW) else 0) | (if (o.CACHE == 1) @intFromEnum(GET_DCX_FLAGS.CACHE) else 0) | (if (o.PARENTCLIP == 1) @intFromEnum(GET_DCX_FLAGS.PARENTCLIP) else 0) | (if (o.CLIPSIBLINGS == 1) @intFromEnum(GET_DCX_FLAGS.CLIPSIBLINGS) else 0) | (if (o.CLIPCHILDREN == 1) @intFromEnum(GET_DCX_FLAGS.CLIPCHILDREN) else 0) | (if (o.NORESETATTRS == 1) @intFromEnum(GET_DCX_FLAGS.NORESETATTRS) else 0) | (if (o.LOCKWINDOWUPDATE == 1) @intFromEnum(GET_DCX_FLAGS.LOCKWINDOWUPDATE) else 0) | (if (o.EXCLUDERGN == 1) @intFromEnum(GET_DCX_FLAGS.EXCLUDERGN) else 0) | (if (o.INTERSECTRGN == 1) @intFromEnum(GET_DCX_FLAGS.INTERSECTRGN) else 0) | (if (o.INTERSECTUPDATE == 1) @intFromEnum(GET_DCX_FLAGS.INTERSECTUPDATE) else 0) | (if (o.VALIDATE == 1) @intFromEnum(GET_DCX_FLAGS.VALIDATE) else 0));
     }
 };
 pub const DCX_WINDOW = GET_DCX_FLAGS.WINDOW;
@@ -2174,16 +2039,7 @@ pub const FONT_CLIP_PRECISION = enum(u32) {
         STROKE_PRECIS: u1 = 0,
         TT_ALWAYS: u1 = 0,
     }) FONT_CLIP_PRECISION {
-        return @intToEnum(FONT_CLIP_PRECISION,
-              (if (o.CHARACTER_PRECIS == 1) @enumToInt(FONT_CLIP_PRECISION.CHARACTER_PRECIS) else 0)
-            | (if (o.DEFAULT_PRECIS == 1) @enumToInt(FONT_CLIP_PRECISION.DEFAULT_PRECIS) else 0)
-            | (if (o.DFA_DISABLE == 1) @enumToInt(FONT_CLIP_PRECISION.DFA_DISABLE) else 0)
-            | (if (o.EMBEDDED == 1) @enumToInt(FONT_CLIP_PRECISION.EMBEDDED) else 0)
-            | (if (o.LH_ANGLES == 1) @enumToInt(FONT_CLIP_PRECISION.LH_ANGLES) else 0)
-            | (if (o.MASK == 1) @enumToInt(FONT_CLIP_PRECISION.MASK) else 0)
-            | (if (o.STROKE_PRECIS == 1) @enumToInt(FONT_CLIP_PRECISION.STROKE_PRECIS) else 0)
-            | (if (o.TT_ALWAYS == 1) @enumToInt(FONT_CLIP_PRECISION.TT_ALWAYS) else 0)
-        );
+        return @enumFromInt(FONT_CLIP_PRECISION, (if (o.CHARACTER_PRECIS == 1) @intFromEnum(FONT_CLIP_PRECISION.CHARACTER_PRECIS) else 0) | (if (o.DEFAULT_PRECIS == 1) @intFromEnum(FONT_CLIP_PRECISION.DEFAULT_PRECIS) else 0) | (if (o.DFA_DISABLE == 1) @intFromEnum(FONT_CLIP_PRECISION.DFA_DISABLE) else 0) | (if (o.EMBEDDED == 1) @intFromEnum(FONT_CLIP_PRECISION.EMBEDDED) else 0) | (if (o.LH_ANGLES == 1) @intFromEnum(FONT_CLIP_PRECISION.LH_ANGLES) else 0) | (if (o.MASK == 1) @intFromEnum(FONT_CLIP_PRECISION.MASK) else 0) | (if (o.STROKE_PRECIS == 1) @intFromEnum(FONT_CLIP_PRECISION.STROKE_PRECIS) else 0) | (if (o.TT_ALWAYS == 1) @intFromEnum(FONT_CLIP_PRECISION.TT_ALWAYS) else 0));
     }
 };
 pub const CLIP_CHARACTER_PRECIS = FONT_CLIP_PRECISION.CHARACTER_PRECIS;
@@ -2237,10 +2093,7 @@ pub const DC_LAYOUT = enum(u32) {
         BITMAPORIENTATIONPRESERVED: u1 = 0,
         RTL: u1 = 0,
     }) DC_LAYOUT {
-        return @intToEnum(DC_LAYOUT,
-              (if (o.BITMAPORIENTATIONPRESERVED == 1) @enumToInt(DC_LAYOUT.BITMAPORIENTATIONPRESERVED) else 0)
-            | (if (o.RTL == 1) @enumToInt(DC_LAYOUT.RTL) else 0)
-        );
+        return @enumFromInt(DC_LAYOUT, (if (o.BITMAPORIENTATIONPRESERVED == 1) @intFromEnum(DC_LAYOUT.BITMAPORIENTATIONPRESERVED) else 0) | (if (o.RTL == 1) @intFromEnum(DC_LAYOUT.RTL) else 0));
     }
 };
 pub const LAYOUT_BITMAPORIENTATIONPRESERVED = DC_LAYOUT.BITMAPORIENTATIONPRESERVED;
@@ -2367,10 +2220,7 @@ pub const TTLOAD_EMBEDDED_FONT_STATUS = enum(u32) {
         SUBSETTED: u1 = 0,
         IN_SYSSTARTUP: u1 = 0,
     }) TTLOAD_EMBEDDED_FONT_STATUS {
-        return @intToEnum(TTLOAD_EMBEDDED_FONT_STATUS,
-              (if (o.SUBSETTED == 1) @enumToInt(TTLOAD_EMBEDDED_FONT_STATUS.SUBSETTED) else 0)
-            | (if (o.IN_SYSSTARTUP == 1) @enumToInt(TTLOAD_EMBEDDED_FONT_STATUS.IN_SYSSTARTUP) else 0)
-        );
+        return @enumFromInt(TTLOAD_EMBEDDED_FONT_STATUS, (if (o.SUBSETTED == 1) @intFromEnum(TTLOAD_EMBEDDED_FONT_STATUS.SUBSETTED) else 0) | (if (o.IN_SYSSTARTUP == 1) @intFromEnum(TTLOAD_EMBEDDED_FONT_STATUS.IN_SYSSTARTUP) else 0));
     }
 };
 pub const TTLOAD_FONT_SUBSETTED = TTLOAD_EMBEDDED_FONT_STATUS.SUBSETTED;
@@ -2451,23 +2301,7 @@ pub const GET_CHARACTER_PLACEMENT_FLAGS = enum(u32) {
         SYMSWAPOFF: u1 = 0,
         USEKERNING: u1 = 0,
     }) GET_CHARACTER_PLACEMENT_FLAGS {
-        return @intToEnum(GET_CHARACTER_PLACEMENT_FLAGS,
-              (if (o.CLASSIN == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.CLASSIN) else 0)
-            | (if (o.DIACRITIC == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.DIACRITIC) else 0)
-            | (if (o.DISPLAYZWG == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.DISPLAYZWG) else 0)
-            | (if (o.GLYPHSHAPE == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.GLYPHSHAPE) else 0)
-            | (if (o.JUSTIFY == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.JUSTIFY) else 0)
-            | (if (o.KASHIDA == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.KASHIDA) else 0)
-            | (if (o.LIGATE == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.LIGATE) else 0)
-            | (if (o.MAXEXTENT == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.MAXEXTENT) else 0)
-            | (if (o.NEUTRALOVERRIDE == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.NEUTRALOVERRIDE) else 0)
-            | (if (o.NUMERICOVERRIDE == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.NUMERICOVERRIDE) else 0)
-            | (if (o.NUMERICSLATIN == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.NUMERICSLATIN) else 0)
-            | (if (o.NUMERICSLOCAL == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.NUMERICSLOCAL) else 0)
-            | (if (o.REORDER == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.REORDER) else 0)
-            | (if (o.SYMSWAPOFF == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.SYMSWAPOFF) else 0)
-            | (if (o.USEKERNING == 1) @enumToInt(GET_CHARACTER_PLACEMENT_FLAGS.USEKERNING) else 0)
-        );
+        return @enumFromInt(GET_CHARACTER_PLACEMENT_FLAGS, (if (o.CLASSIN == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.CLASSIN) else 0) | (if (o.DIACRITIC == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.DIACRITIC) else 0) | (if (o.DISPLAYZWG == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.DISPLAYZWG) else 0) | (if (o.GLYPHSHAPE == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.GLYPHSHAPE) else 0) | (if (o.JUSTIFY == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.JUSTIFY) else 0) | (if (o.KASHIDA == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.KASHIDA) else 0) | (if (o.LIGATE == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.LIGATE) else 0) | (if (o.MAXEXTENT == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.MAXEXTENT) else 0) | (if (o.NEUTRALOVERRIDE == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.NEUTRALOVERRIDE) else 0) | (if (o.NUMERICOVERRIDE == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.NUMERICOVERRIDE) else 0) | (if (o.NUMERICSLATIN == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.NUMERICSLATIN) else 0) | (if (o.NUMERICSLOCAL == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.NUMERICSLOCAL) else 0) | (if (o.REORDER == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.REORDER) else 0) | (if (o.SYMSWAPOFF == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.SYMSWAPOFF) else 0) | (if (o.USEKERNING == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.USEKERNING) else 0));
     }
 };
 pub const GCP_CLASSIN = GET_CHARACTER_PLACEMENT_FLAGS.CLASSIN;
@@ -2528,27 +2362,7 @@ pub const DRAW_EDGE_FLAGS = enum(u32) {
         TOPLEFT: u1 = 0,
         TOPRIGHT: u1 = 0,
     }) DRAW_EDGE_FLAGS {
-        return @intToEnum(DRAW_EDGE_FLAGS,
-              (if (o.ADJUST == 1) @enumToInt(DRAW_EDGE_FLAGS.ADJUST) else 0)
-            | (if (o.BOTTOM == 1) @enumToInt(DRAW_EDGE_FLAGS.BOTTOM) else 0)
-            | (if (o.BOTTOMLEFT == 1) @enumToInt(DRAW_EDGE_FLAGS.BOTTOMLEFT) else 0)
-            | (if (o.BOTTOMRIGHT == 1) @enumToInt(DRAW_EDGE_FLAGS.BOTTOMRIGHT) else 0)
-            | (if (o.DIAGONAL == 1) @enumToInt(DRAW_EDGE_FLAGS.DIAGONAL) else 0)
-            | (if (o.DIAGONAL_ENDBOTTOMLEFT == 1) @enumToInt(DRAW_EDGE_FLAGS.DIAGONAL_ENDBOTTOMLEFT) else 0)
-            | (if (o.DIAGONAL_ENDBOTTOMRIGHT == 1) @enumToInt(DRAW_EDGE_FLAGS.DIAGONAL_ENDBOTTOMRIGHT) else 0)
-            | (if (o.DIAGONAL_ENDTOPLEFT == 1) @enumToInt(DRAW_EDGE_FLAGS.DIAGONAL_ENDTOPLEFT) else 0)
-            | (if (o.DIAGONAL_ENDTOPRIGHT == 1) @enumToInt(DRAW_EDGE_FLAGS.DIAGONAL_ENDTOPRIGHT) else 0)
-            | (if (o.FLAT == 1) @enumToInt(DRAW_EDGE_FLAGS.FLAT) else 0)
-            | (if (o.LEFT == 1) @enumToInt(DRAW_EDGE_FLAGS.LEFT) else 0)
-            | (if (o.MIDDLE == 1) @enumToInt(DRAW_EDGE_FLAGS.MIDDLE) else 0)
-            | (if (o.MONO == 1) @enumToInt(DRAW_EDGE_FLAGS.MONO) else 0)
-            | (if (o.RECT == 1) @enumToInt(DRAW_EDGE_FLAGS.RECT) else 0)
-            | (if (o.RIGHT == 1) @enumToInt(DRAW_EDGE_FLAGS.RIGHT) else 0)
-            | (if (o.SOFT == 1) @enumToInt(DRAW_EDGE_FLAGS.SOFT) else 0)
-            | (if (o.TOP == 1) @enumToInt(DRAW_EDGE_FLAGS.TOP) else 0)
-            | (if (o.TOPLEFT == 1) @enumToInt(DRAW_EDGE_FLAGS.TOPLEFT) else 0)
-            | (if (o.TOPRIGHT == 1) @enumToInt(DRAW_EDGE_FLAGS.TOPRIGHT) else 0)
-        );
+        return @enumFromInt(DRAW_EDGE_FLAGS, (if (o.ADJUST == 1) @intFromEnum(DRAW_EDGE_FLAGS.ADJUST) else 0) | (if (o.BOTTOM == 1) @intFromEnum(DRAW_EDGE_FLAGS.BOTTOM) else 0) | (if (o.BOTTOMLEFT == 1) @intFromEnum(DRAW_EDGE_FLAGS.BOTTOMLEFT) else 0) | (if (o.BOTTOMRIGHT == 1) @intFromEnum(DRAW_EDGE_FLAGS.BOTTOMRIGHT) else 0) | (if (o.DIAGONAL == 1) @intFromEnum(DRAW_EDGE_FLAGS.DIAGONAL) else 0) | (if (o.DIAGONAL_ENDBOTTOMLEFT == 1) @intFromEnum(DRAW_EDGE_FLAGS.DIAGONAL_ENDBOTTOMLEFT) else 0) | (if (o.DIAGONAL_ENDBOTTOMRIGHT == 1) @intFromEnum(DRAW_EDGE_FLAGS.DIAGONAL_ENDBOTTOMRIGHT) else 0) | (if (o.DIAGONAL_ENDTOPLEFT == 1) @intFromEnum(DRAW_EDGE_FLAGS.DIAGONAL_ENDTOPLEFT) else 0) | (if (o.DIAGONAL_ENDTOPRIGHT == 1) @intFromEnum(DRAW_EDGE_FLAGS.DIAGONAL_ENDTOPRIGHT) else 0) | (if (o.FLAT == 1) @intFromEnum(DRAW_EDGE_FLAGS.FLAT) else 0) | (if (o.LEFT == 1) @intFromEnum(DRAW_EDGE_FLAGS.LEFT) else 0) | (if (o.MIDDLE == 1) @intFromEnum(DRAW_EDGE_FLAGS.MIDDLE) else 0) | (if (o.MONO == 1) @intFromEnum(DRAW_EDGE_FLAGS.MONO) else 0) | (if (o.RECT == 1) @intFromEnum(DRAW_EDGE_FLAGS.RECT) else 0) | (if (o.RIGHT == 1) @intFromEnum(DRAW_EDGE_FLAGS.RIGHT) else 0) | (if (o.SOFT == 1) @intFromEnum(DRAW_EDGE_FLAGS.SOFT) else 0) | (if (o.TOP == 1) @intFromEnum(DRAW_EDGE_FLAGS.TOP) else 0) | (if (o.TOPLEFT == 1) @intFromEnum(DRAW_EDGE_FLAGS.TOPLEFT) else 0) | (if (o.TOPRIGHT == 1) @intFromEnum(DRAW_EDGE_FLAGS.TOPRIGHT) else 0));
     }
 };
 pub const BF_ADJUST = DRAW_EDGE_FLAGS.ADJUST;
@@ -2642,15 +2456,7 @@ pub const DRAW_CAPTION_FLAGS = enum(u32) {
         SMALLCAP: u1 = 0,
         TEXT: u1 = 0,
     }) DRAW_CAPTION_FLAGS {
-        return @intToEnum(DRAW_CAPTION_FLAGS,
-              (if (o.ACTIVE == 1) @enumToInt(DRAW_CAPTION_FLAGS.ACTIVE) else 0)
-            | (if (o.BUTTONS == 1) @enumToInt(DRAW_CAPTION_FLAGS.BUTTONS) else 0)
-            | (if (o.GRADIENT == 1) @enumToInt(DRAW_CAPTION_FLAGS.GRADIENT) else 0)
-            | (if (o.ICON == 1) @enumToInt(DRAW_CAPTION_FLAGS.ICON) else 0)
-            | (if (o.INBUTTON == 1) @enumToInt(DRAW_CAPTION_FLAGS.INBUTTON) else 0)
-            | (if (o.SMALLCAP == 1) @enumToInt(DRAW_CAPTION_FLAGS.SMALLCAP) else 0)
-            | (if (o.TEXT == 1) @enumToInt(DRAW_CAPTION_FLAGS.TEXT) else 0)
-        );
+        return @enumFromInt(DRAW_CAPTION_FLAGS, (if (o.ACTIVE == 1) @intFromEnum(DRAW_CAPTION_FLAGS.ACTIVE) else 0) | (if (o.BUTTONS == 1) @intFromEnum(DRAW_CAPTION_FLAGS.BUTTONS) else 0) | (if (o.GRADIENT == 1) @intFromEnum(DRAW_CAPTION_FLAGS.GRADIENT) else 0) | (if (o.ICON == 1) @intFromEnum(DRAW_CAPTION_FLAGS.ICON) else 0) | (if (o.INBUTTON == 1) @intFromEnum(DRAW_CAPTION_FLAGS.INBUTTON) else 0) | (if (o.SMALLCAP == 1) @intFromEnum(DRAW_CAPTION_FLAGS.SMALLCAP) else 0) | (if (o.TEXT == 1) @intFromEnum(DRAW_CAPTION_FLAGS.TEXT) else 0));
     }
 };
 pub const DC_ACTIVE = DRAW_CAPTION_FLAGS.ACTIVE;
@@ -2719,7 +2525,7 @@ pub const MM_TEXT = HDC_MAP_MODE.TEXT;
 pub const MM_TWIPS = HDC_MAP_MODE.TWIPS;
 
 // TODO: this type has a FreeFunc 'ReleaseDC', what can Zig do with this information?
-pub const HDC = *opaque{};
+pub const HDC = *opaque {};
 
 // TODO: this type has a FreeFunc 'DeleteDC', what can Zig do with this information?
 //TODO: type 'CreatedHDC' is "AlsoUsableFor" 'HDC' which means this type is implicitly
@@ -2758,10 +2564,10 @@ pub const HBRUSH = HGDIOBJ;
 pub const HFONT = HGDIOBJ;
 
 // TODO: this type has a FreeFunc 'DeleteMetaFile', what can Zig do with this information?
-pub const HMETAFILE = *opaque{};
+pub const HMETAFILE = *opaque {};
 
 // TODO: this type has a FreeFunc 'DeleteEnhMetaFile', what can Zig do with this information?
-pub const HENHMETAFILE = *opaque{};
+pub const HENHMETAFILE = *opaque {};
 
 // TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
 //TODO: type 'HPALETTE' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
@@ -2775,9 +2581,9 @@ pub const HdcMetdataFileHandle = isize;
 // TODO: this type has a FreeFunc 'DeleteEnhMetaFile', what can Zig do with this information?
 pub const HdcMetdataEnhFileHandle = isize;
 
-pub const HGDIOBJ = *opaque{};
+pub const HGDIOBJ = *opaque {};
 
-pub const HMONITOR = *opaque{};
+pub const HMONITOR = *opaque {};
 
 pub const XFORM = extern struct {
     eM11: f32,
@@ -3533,61 +3339,61 @@ pub const RASTERIZER_STATUS = extern struct {
 };
 
 pub const FONTENUMPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*const LOGFONTA,
         param1: ?*const TEXTMETRICA,
         param2: u32,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         param0: ?*const LOGFONTA,
         param1: ?*const TEXTMETRICA,
         param2: u32,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const FONTENUMPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*const LOGFONTW,
         param1: ?*const TEXTMETRICW,
         param2: u32,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         param0: ?*const LOGFONTW,
         param1: ?*const TEXTMETRICW,
         param2: u32,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const GOBJENUMPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*anyopaque,
         param1: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         param0: ?*anyopaque,
         param1: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const LINEDDAPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: i32,
         param1: i32,
         param2: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         param0: i32,
         param1: i32,
         param2: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const LPFNDEVMODE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?HWND,
         param1: ?HINSTANCE,
         param2: ?*DEVMODEA,
@@ -3597,7 +3403,7 @@ pub const LPFNDEVMODE = switch (@import("builtin").zig_backend) {
         param6: ?PSTR,
         param7: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         param0: ?HWND,
         param1: ?HINSTANCE,
         param2: ?*DEVMODEA,
@@ -3607,24 +3413,24 @@ pub const LPFNDEVMODE = switch (@import("builtin").zig_backend) {
         param6: ?PSTR,
         param7: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const LPFNDEVCAPS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?PSTR,
         param1: ?PSTR,
         param2: u32,
         param3: ?PSTR,
         param4: ?*DEVMODEA,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         param0: ?PSTR,
         param1: ?PSTR,
         param2: u32,
         param3: ?PSTR,
         param4: ?*DEVMODEA,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const WCRANGE = extern struct {
     wcLow: u16,
@@ -3707,38 +3513,38 @@ pub const BLENDFUNCTION = extern struct {
 };
 
 pub const MFENUMPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hdc: ?HDC,
         lpht: [*]HANDLETABLE,
         lpMR: ?*METARECORD,
         nObj: i32,
         param4: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         hdc: ?HDC,
         lpht: [*]HANDLETABLE,
         lpMR: ?*METARECORD,
         nObj: i32,
         param4: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const ENHMFENUMPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hdc: ?HDC,
         lpht: [*]HANDLETABLE,
         lpmr: ?*const ENHMETARECORD,
         nHandles: i32,
         data: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         hdc: ?HDC,
         lpht: [*]HANDLETABLE,
         lpmr: ?*const ENHMETARECORD,
         nHandles: i32,
         data: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const DIBSECTION = extern struct {
     dsBm: BITMAP,
@@ -4348,59 +4154,59 @@ pub const WGLSWAP = extern struct {
 };
 
 pub const CFP_ALLOCPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: usize,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-    else => *const fn(
+    else => *const fn (
         param0: usize,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-} ;
+};
 
 pub const CFP_REALLOCPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*anyopaque,
         param1: usize,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-    else => *const fn(
+    else => *const fn (
         param0: ?*anyopaque,
         param1: usize,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-} ;
+};
 
 pub const CFP_FREEPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         param0: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const READEMBEDPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*anyopaque,
         param1: ?*anyopaque,
         param2: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         param0: ?*anyopaque,
         param1: ?*anyopaque,
         param2: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const WRITEEMBEDPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*anyopaque,
         param1: ?*const anyopaque,
         param2: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         param0: ?*anyopaque,
         param1: ?*const anyopaque,
         param2: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const TTLOADINFO = extern struct {
     usStructSize: u16,
@@ -4435,34 +4241,34 @@ pub const TTVALIDATIONTESTSPARAMSEX = extern struct {
 };
 
 pub const GRAYSTRINGPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?HDC,
         param1: LPARAM,
         param2: i32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         param0: ?HDC,
         param1: LPARAM,
         param2: i32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const DRAWSTATEPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hdc: ?HDC,
         lData: LPARAM,
         wData: WPARAM,
         cx: i32,
         cy: i32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         hdc: ?HDC,
         lData: LPARAM,
         wData: WPARAM,
         cx: i32,
         cy: i32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const PAINTSTRUCT = extern struct {
     hdc: ?HDC,
@@ -4499,20 +4305,19 @@ pub const MONITORINFOEXW = extern struct {
 };
 
 pub const MONITORENUMPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?HMONITOR,
         param1: ?HDC,
         param2: ?*RECT,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         param0: ?HMONITOR,
         param1: ?HDC,
         param2: ?*RECT,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
+};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (394)
@@ -6746,8 +6551,7 @@ pub extern "gdi32" fn UnrealizeObject(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn GdiFlush(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "gdi32" fn GdiFlush() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn GdiSetBatchLimit(
@@ -6755,8 +6559,7 @@ pub extern "gdi32" fn GdiSetBatchLimit(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "gdi32" fn GdiGetBatchLimit(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "gdi32" fn GdiGetBatchLimit() callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "opengl32" fn wglSwapMultipleBuffers(
     param0: u32,
@@ -7477,7 +7280,6 @@ pub extern "user32" fn EnumDisplayMonitors(
     dwData: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (69)
 //--------------------------------------------------------------------------------
@@ -7626,75 +7428,75 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetMonitorInfo = thismodule.GetMonitorInfoW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const TEXTMETRIC = *opaque{};
-        pub const NEWTEXTMETRIC = *opaque{};
-        pub const LOGFONT = *opaque{};
-        pub const ENUMLOGFONT = *opaque{};
-        pub const ENUMLOGFONTEX = *opaque{};
-        pub const EXTLOGFONT = *opaque{};
-        pub const DEVMODE = *opaque{};
-        pub const DISPLAY_DEVICE = *opaque{};
-        pub const OUTLINETEXTMETRIC = *opaque{};
-        pub const POLYTEXT = *opaque{};
-        pub const GCP_RESULTS = *opaque{};
-        pub const FONTENUMPROC = *opaque{};
-        pub const AXISINFO = *opaque{};
-        pub const AXESLIST = *opaque{};
-        pub const ENUMLOGFONTEXDV = *opaque{};
-        pub const MONITORINFOEX = *opaque{};
-        pub const GetObject = *opaque{};
-        pub const AddFontResource = *opaque{};
-        pub const CopyMetaFile = *opaque{};
-        pub const CreateDC = *opaque{};
-        pub const CreateFontIndirect = *opaque{};
-        pub const CreateFont = *opaque{};
-        pub const CreateIC = *opaque{};
-        pub const CreateMetaFile = *opaque{};
-        pub const CreateScalableFontResource = *opaque{};
-        pub const EnumFontFamiliesEx = *opaque{};
-        pub const EnumFontFamilies = *opaque{};
-        pub const EnumFonts = *opaque{};
-        pub const GetCharWidth = *opaque{};
-        pub const GetCharWidth32 = *opaque{};
-        pub const GetCharWidthFloat = *opaque{};
-        pub const GetCharABCWidths = *opaque{};
-        pub const GetCharABCWidthsFloat = *opaque{};
-        pub const GetGlyphOutline = *opaque{};
-        pub const GetMetaFile = *opaque{};
-        pub const GetOutlineTextMetrics = *opaque{};
-        pub const GetTextExtentPoint = *opaque{};
-        pub const GetTextExtentPoint32 = *opaque{};
-        pub const GetTextExtentExPoint = *opaque{};
-        pub const GetCharacterPlacement = *opaque{};
-        pub const GetGlyphIndices = *opaque{};
-        pub const AddFontResourceEx = *opaque{};
-        pub const RemoveFontResourceEx = *opaque{};
-        pub const CreateFontIndirectEx = *opaque{};
-        pub const ResetDC = *opaque{};
-        pub const RemoveFontResource = *opaque{};
-        pub const CopyEnhMetaFile = *opaque{};
-        pub const CreateEnhMetaFile = *opaque{};
-        pub const GetEnhMetaFile = *opaque{};
-        pub const GetEnhMetaFileDescription = *opaque{};
-        pub const GetTextMetrics = *opaque{};
-        pub const TextOut = *opaque{};
-        pub const ExtTextOut = *opaque{};
-        pub const PolyTextOut = *opaque{};
-        pub const GetTextFace = *opaque{};
-        pub const GetKerningPairs = *opaque{};
-        pub const DrawText = *opaque{};
-        pub const DrawTextEx = *opaque{};
-        pub const GrayString = *opaque{};
-        pub const DrawState = *opaque{};
-        pub const TabbedTextOut = *opaque{};
-        pub const GetTabbedTextExtent = *opaque{};
-        pub const LoadBitmap = *opaque{};
-        pub const ChangeDisplaySettings = *opaque{};
-        pub const ChangeDisplaySettingsEx = *opaque{};
-        pub const EnumDisplaySettings = *opaque{};
-        pub const EnumDisplaySettingsEx = *opaque{};
-        pub const EnumDisplayDevices = *opaque{};
-        pub const GetMonitorInfo = *opaque{};
+        pub const TEXTMETRIC = *opaque {};
+        pub const NEWTEXTMETRIC = *opaque {};
+        pub const LOGFONT = *opaque {};
+        pub const ENUMLOGFONT = *opaque {};
+        pub const ENUMLOGFONTEX = *opaque {};
+        pub const EXTLOGFONT = *opaque {};
+        pub const DEVMODE = *opaque {};
+        pub const DISPLAY_DEVICE = *opaque {};
+        pub const OUTLINETEXTMETRIC = *opaque {};
+        pub const POLYTEXT = *opaque {};
+        pub const GCP_RESULTS = *opaque {};
+        pub const FONTENUMPROC = *opaque {};
+        pub const AXISINFO = *opaque {};
+        pub const AXESLIST = *opaque {};
+        pub const ENUMLOGFONTEXDV = *opaque {};
+        pub const MONITORINFOEX = *opaque {};
+        pub const GetObject = *opaque {};
+        pub const AddFontResource = *opaque {};
+        pub const CopyMetaFile = *opaque {};
+        pub const CreateDC = *opaque {};
+        pub const CreateFontIndirect = *opaque {};
+        pub const CreateFont = *opaque {};
+        pub const CreateIC = *opaque {};
+        pub const CreateMetaFile = *opaque {};
+        pub const CreateScalableFontResource = *opaque {};
+        pub const EnumFontFamiliesEx = *opaque {};
+        pub const EnumFontFamilies = *opaque {};
+        pub const EnumFonts = *opaque {};
+        pub const GetCharWidth = *opaque {};
+        pub const GetCharWidth32 = *opaque {};
+        pub const GetCharWidthFloat = *opaque {};
+        pub const GetCharABCWidths = *opaque {};
+        pub const GetCharABCWidthsFloat = *opaque {};
+        pub const GetGlyphOutline = *opaque {};
+        pub const GetMetaFile = *opaque {};
+        pub const GetOutlineTextMetrics = *opaque {};
+        pub const GetTextExtentPoint = *opaque {};
+        pub const GetTextExtentPoint32 = *opaque {};
+        pub const GetTextExtentExPoint = *opaque {};
+        pub const GetCharacterPlacement = *opaque {};
+        pub const GetGlyphIndices = *opaque {};
+        pub const AddFontResourceEx = *opaque {};
+        pub const RemoveFontResourceEx = *opaque {};
+        pub const CreateFontIndirectEx = *opaque {};
+        pub const ResetDC = *opaque {};
+        pub const RemoveFontResource = *opaque {};
+        pub const CopyEnhMetaFile = *opaque {};
+        pub const CreateEnhMetaFile = *opaque {};
+        pub const GetEnhMetaFile = *opaque {};
+        pub const GetEnhMetaFileDescription = *opaque {};
+        pub const GetTextMetrics = *opaque {};
+        pub const TextOut = *opaque {};
+        pub const ExtTextOut = *opaque {};
+        pub const PolyTextOut = *opaque {};
+        pub const GetTextFace = *opaque {};
+        pub const GetKerningPairs = *opaque {};
+        pub const DrawText = *opaque {};
+        pub const DrawTextEx = *opaque {};
+        pub const GrayString = *opaque {};
+        pub const DrawState = *opaque {};
+        pub const TabbedTextOut = *opaque {};
+        pub const GetTabbedTextExtent = *opaque {};
+        pub const LoadBitmap = *opaque {};
+        pub const ChangeDisplaySettings = *opaque {};
+        pub const ChangeDisplaySettingsEx = *opaque {};
+        pub const EnumDisplaySettings = *opaque {};
+        pub const EnumDisplaySettingsEx = *opaque {};
+        pub const EnumDisplayDevices = *opaque {};
+        pub const GetMonitorInfo = *opaque {};
     } else struct {
         pub const TEXTMETRIC = @compileError("'TEXTMETRIC' requires that UNICODE be set to true or false in the root module");
         pub const NEWTEXTMETRIC = @compileError("'NEWTEXTMETRIC' requires that UNICODE be set to true or false in the root module");
@@ -7788,26 +7590,56 @@ const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "FONTENUMPROCA")) { _ = FONTENUMPROCA; }
-    if (@hasDecl(@This(), "FONTENUMPROCW")) { _ = FONTENUMPROCW; }
-    if (@hasDecl(@This(), "GOBJENUMPROC")) { _ = GOBJENUMPROC; }
-    if (@hasDecl(@This(), "LINEDDAPROC")) { _ = LINEDDAPROC; }
-    if (@hasDecl(@This(), "LPFNDEVMODE")) { _ = LPFNDEVMODE; }
-    if (@hasDecl(@This(), "LPFNDEVCAPS")) { _ = LPFNDEVCAPS; }
-    if (@hasDecl(@This(), "MFENUMPROC")) { _ = MFENUMPROC; }
-    if (@hasDecl(@This(), "ENHMFENUMPROC")) { _ = ENHMFENUMPROC; }
-    if (@hasDecl(@This(), "CFP_ALLOCPROC")) { _ = CFP_ALLOCPROC; }
-    if (@hasDecl(@This(), "CFP_REALLOCPROC")) { _ = CFP_REALLOCPROC; }
-    if (@hasDecl(@This(), "CFP_FREEPROC")) { _ = CFP_FREEPROC; }
-    if (@hasDecl(@This(), "READEMBEDPROC")) { _ = READEMBEDPROC; }
-    if (@hasDecl(@This(), "WRITEEMBEDPROC")) { _ = WRITEEMBEDPROC; }
-    if (@hasDecl(@This(), "GRAYSTRINGPROC")) { _ = GRAYSTRINGPROC; }
-    if (@hasDecl(@This(), "DRAWSTATEPROC")) { _ = DRAWSTATEPROC; }
-    if (@hasDecl(@This(), "MONITORENUMPROC")) { _ = MONITORENUMPROC; }
+    if (@hasDecl(@This(), "FONTENUMPROCA")) {
+        _ = FONTENUMPROCA;
+    }
+    if (@hasDecl(@This(), "FONTENUMPROCW")) {
+        _ = FONTENUMPROCW;
+    }
+    if (@hasDecl(@This(), "GOBJENUMPROC")) {
+        _ = GOBJENUMPROC;
+    }
+    if (@hasDecl(@This(), "LINEDDAPROC")) {
+        _ = LINEDDAPROC;
+    }
+    if (@hasDecl(@This(), "LPFNDEVMODE")) {
+        _ = LPFNDEVMODE;
+    }
+    if (@hasDecl(@This(), "LPFNDEVCAPS")) {
+        _ = LPFNDEVCAPS;
+    }
+    if (@hasDecl(@This(), "MFENUMPROC")) {
+        _ = MFENUMPROC;
+    }
+    if (@hasDecl(@This(), "ENHMFENUMPROC")) {
+        _ = ENHMFENUMPROC;
+    }
+    if (@hasDecl(@This(), "CFP_ALLOCPROC")) {
+        _ = CFP_ALLOCPROC;
+    }
+    if (@hasDecl(@This(), "CFP_REALLOCPROC")) {
+        _ = CFP_REALLOCPROC;
+    }
+    if (@hasDecl(@This(), "CFP_FREEPROC")) {
+        _ = CFP_FREEPROC;
+    }
+    if (@hasDecl(@This(), "READEMBEDPROC")) {
+        _ = READEMBEDPROC;
+    }
+    if (@hasDecl(@This(), "WRITEEMBEDPROC")) {
+        _ = WRITEEMBEDPROC;
+    }
+    if (@hasDecl(@This(), "GRAYSTRINGPROC")) {
+        _ = GRAYSTRINGPROC;
+    }
+    if (@hasDecl(@This(), "DRAWSTATEPROC")) {
+        _ = DRAWSTATEPROC;
+    }
+    if (@hasDecl(@This(), "MONITORENUMPROC")) {
+        _ = MONITORENUMPROC;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

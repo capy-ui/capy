@@ -1030,15 +1030,15 @@ pub const BLUETOOTH_COD_PAIRS = extern struct {
 };
 
 pub const PFN_DEVICE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pvParam: ?*anyopaque,
         pDevice: ?*const BLUETOOTH_DEVICE_INFO,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         pvParam: ?*anyopaque,
         pDevice: ?*const BLUETOOTH_DEVICE_INFO,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const BLUETOOTH_SELECT_DEVICE_PARAMS = extern struct {
     dwSize: u32,
@@ -1077,26 +1077,26 @@ pub const BLUETOOTH_PASSKEY_INFO = extern struct {
 };
 
 pub const PFN_AUTHENTICATION_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pvParam: ?*anyopaque,
         pDevice: ?*BLUETOOTH_DEVICE_INFO,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         pvParam: ?*anyopaque,
         pDevice: ?*BLUETOOTH_DEVICE_INFO,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const PFN_AUTHENTICATION_CALLBACK_EX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pvParam: ?*anyopaque,
         pAuthCallbackParams: ?*BLUETOOTH_AUTHENTICATION_CALLBACK_PARAMS,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         pvParam: ?*anyopaque,
         pAuthCallbackParams: ?*BLUETOOTH_AUTHENTICATION_CALLBACK_PARAMS,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const BLUETOOTH_AUTHENTICATE_RESPONSE = extern struct {
     bthAddressRemote: BLUETOOTH_ADDRESS,
@@ -1154,21 +1154,21 @@ pub const SDP_STRING_TYPE_DATA = extern struct {
 };
 
 pub const PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         uAttribId: u32,
         // TODO: what to do with BytesParamIndex 2?
         pValueStream: ?*u8,
         cbStreamSize: u32,
         pvParam: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         uAttribId: u32,
         // TODO: what to do with BytesParamIndex 2?
         pValueStream: ?*u8,
         cbStreamSize: u32,
         pvParam: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const SOCKADDR_BTH = extern struct {
     addressFamily: u16 align(1),
@@ -1251,7 +1251,6 @@ pub const BTH_INFO_RSP = extern struct {
         data: [44]u8 align(1),
     } align(1),
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (34)
@@ -1486,19 +1485,14 @@ pub extern "bluetoothapis" fn BluetoothIsVersionAvailable(
     MinorVersion: u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
@@ -1513,14 +1507,20 @@ const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFN_DEVICE_CALLBACK")) { _ = PFN_DEVICE_CALLBACK; }
-    if (@hasDecl(@This(), "PFN_AUTHENTICATION_CALLBACK")) { _ = PFN_AUTHENTICATION_CALLBACK; }
-    if (@hasDecl(@This(), "PFN_AUTHENTICATION_CALLBACK_EX")) { _ = PFN_AUTHENTICATION_CALLBACK_EX; }
-    if (@hasDecl(@This(), "PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK")) { _ = PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK; }
+    if (@hasDecl(@This(), "PFN_DEVICE_CALLBACK")) {
+        _ = PFN_DEVICE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PFN_AUTHENTICATION_CALLBACK")) {
+        _ = PFN_AUTHENTICATION_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PFN_AUTHENTICATION_CALLBACK_EX")) {
+        _ = PFN_AUTHENTICATION_CALLBACK_EX;
+    }
+    if (@hasDecl(@This(), "PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK")) {
+        _ = PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

@@ -43,11 +43,7 @@ pub const SECURITY_INFO_PAGE_FLAGS = enum(u32) {
         EDIT_AUDITS: u1 = 0,
         EDIT_PROPERTIES: u1 = 0,
     }) SECURITY_INFO_PAGE_FLAGS {
-        return @intToEnum(SECURITY_INFO_PAGE_FLAGS,
-              (if (o.ADVANCED == 1) @enumToInt(SECURITY_INFO_PAGE_FLAGS.ADVANCED) else 0)
-            | (if (o.EDIT_AUDITS == 1) @enumToInt(SECURITY_INFO_PAGE_FLAGS.EDIT_AUDITS) else 0)
-            | (if (o.EDIT_PROPERTIES == 1) @enumToInt(SECURITY_INFO_PAGE_FLAGS.EDIT_PROPERTIES) else 0)
-        );
+        return @enumFromInt(SECURITY_INFO_PAGE_FLAGS, (if (o.ADVANCED == 1) @intFromEnum(SECURITY_INFO_PAGE_FLAGS.ADVANCED) else 0) | (if (o.EDIT_AUDITS == 1) @intFromEnum(SECURITY_INFO_PAGE_FLAGS.EDIT_AUDITS) else 0) | (if (o.EDIT_PROPERTIES == 1) @intFromEnum(SECURITY_INFO_PAGE_FLAGS.EDIT_PROPERTIES) else 0));
     }
 };
 pub const SI_ADVANCED = SECURITY_INFO_PAGE_FLAGS.ADVANCED;
@@ -86,22 +82,7 @@ pub const SI_OBJECT_INFO_FLAGS = enum(u32) {
         SCOPE_ELEVATION_REQUIRED: u1 = 0,
         VIEW_ONLY: u1 = 0,
     }) SI_OBJECT_INFO_FLAGS {
-        return @intToEnum(SI_OBJECT_INFO_FLAGS,
-              (if (o.AUDITS_ELEVATION_REQUIRED == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.AUDITS_ELEVATION_REQUIRED) else 0)
-            | (if (o.DISABLE_DENY_ACE == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.DISABLE_DENY_ACE) else 0)
-            | (if (o.EDIT_EFFECTIVE == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.EDIT_EFFECTIVE) else 0)
-            | (if (o.ENABLE_CENTRAL_POLICY == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.ENABLE_CENTRAL_POLICY) else 0)
-            | (if (o.ENABLE_EDIT_ATTRIBUTE_CONDITION == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.ENABLE_EDIT_ATTRIBUTE_CONDITION) else 0)
-            | (if (o.MAY_WRITE == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.MAY_WRITE) else 0)
-            | (if (o.NO_ADDITIONAL_PERMISSION == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.NO_ADDITIONAL_PERMISSION) else 0)
-            | (if (o.OWNER_ELEVATION_REQUIRED == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.OWNER_ELEVATION_REQUIRED) else 0)
-            | (if (o.PERMS_ELEVATION_REQUIRED == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.PERMS_ELEVATION_REQUIRED) else 0)
-            | (if (o.RESET_DACL == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.RESET_DACL) else 0)
-            | (if (o.RESET_OWNER == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.RESET_OWNER) else 0)
-            | (if (o.RESET_SACL == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.RESET_SACL) else 0)
-            | (if (o.SCOPE_ELEVATION_REQUIRED == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.SCOPE_ELEVATION_REQUIRED) else 0)
-            | (if (o.VIEW_ONLY == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.VIEW_ONLY) else 0)
-        );
+        return @enumFromInt(SI_OBJECT_INFO_FLAGS, (if (o.AUDITS_ELEVATION_REQUIRED == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.AUDITS_ELEVATION_REQUIRED) else 0) | (if (o.DISABLE_DENY_ACE == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.DISABLE_DENY_ACE) else 0) | (if (o.EDIT_EFFECTIVE == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.EDIT_EFFECTIVE) else 0) | (if (o.ENABLE_CENTRAL_POLICY == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.ENABLE_CENTRAL_POLICY) else 0) | (if (o.ENABLE_EDIT_ATTRIBUTE_CONDITION == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.ENABLE_EDIT_ATTRIBUTE_CONDITION) else 0) | (if (o.MAY_WRITE == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.MAY_WRITE) else 0) | (if (o.NO_ADDITIONAL_PERMISSION == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.NO_ADDITIONAL_PERMISSION) else 0) | (if (o.OWNER_ELEVATION_REQUIRED == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.OWNER_ELEVATION_REQUIRED) else 0) | (if (o.PERMS_ELEVATION_REQUIRED == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.PERMS_ELEVATION_REQUIRED) else 0) | (if (o.RESET_DACL == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.RESET_DACL) else 0) | (if (o.RESET_OWNER == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.RESET_OWNER) else 0) | (if (o.RESET_SACL == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.RESET_SACL) else 0) | (if (o.SCOPE_ELEVATION_REQUIRED == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.SCOPE_ELEVATION_REQUIRED) else 0) | (if (o.VIEW_ONLY == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.VIEW_ONLY) else 0));
     }
 };
 pub const SI_AUDITS_ELEVATION_REQUIRED = SI_OBJECT_INFO_FLAGS.AUDITS_ELEVATION_REQUIRED;
@@ -182,23 +163,23 @@ pub const ISecurityInformation = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetObjectInformation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISecurityInformation,
                 pObjectInfo: ?*SI_OBJECT_INFO,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISecurityInformation,
                 pObjectInfo: ?*SI_OBJECT_INFO,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSecurity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISecurityInformation,
                 RequestedInformation: OBJECT_SECURITY_INFORMATION,
                 ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
                 fDefault: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISecurityInformation,
                 RequestedInformation: OBJECT_SECURITY_INFORMATION,
                 ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
@@ -206,19 +187,19 @@ pub const ISecurityInformation = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetSecurity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISecurityInformation,
                 SecurityInformation: OBJECT_SECURITY_INFORMATION,
                 pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISecurityInformation,
                 SecurityInformation: OBJECT_SECURITY_INFORMATION,
                 pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAccessRights: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISecurityInformation,
                 pguidObjectType: ?*const Guid,
                 dwFlags: SECURITY_INFO_PAGE_FLAGS,
@@ -226,7 +207,7 @@ pub const ISecurityInformation = extern struct {
                 pcAccesses: ?*u32,
                 piDefaultAccess: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISecurityInformation,
                 pguidObjectType: ?*const Guid,
                 dwFlags: SECURITY_INFO_PAGE_FLAGS,
@@ -236,13 +217,13 @@ pub const ISecurityInformation = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         MapGeneric: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISecurityInformation,
                 pguidObjectType: ?*const Guid,
                 pAceFlags: ?*u8,
                 pMask: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISecurityInformation,
                 pguidObjectType: ?*const Guid,
                 pAceFlags: ?*u8,
@@ -250,25 +231,25 @@ pub const ISecurityInformation = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetInheritTypes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISecurityInformation,
                 ppInheritTypes: ?*?*SI_INHERIT_TYPE,
                 pcInheritTypes: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISecurityInformation,
                 ppInheritTypes: ?*?*SI_INHERIT_TYPE,
                 pcInheritTypes: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         PropertySheetPageCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISecurityInformation,
                 hwnd: ?HWND,
                 uMsg: PSPCB_MESSAGE,
                 uPage: SI_PAGE_TYPE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISecurityInformation,
                 hwnd: ?HWND,
                 uMsg: PSPCB_MESSAGE,
@@ -277,37 +258,39 @@ pub const ISecurityInformation = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation_GetObjectInformation(self: *const T, pObjectInfo: ?*SI_OBJECT_INFO) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISecurityInformation.VTable, self.vtable).GetObjectInformation(@ptrCast(*const ISecurityInformation, self), pObjectInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation_GetSecurity(self: *const T, RequestedInformation: OBJECT_SECURITY_INFORMATION, ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR, fDefault: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISecurityInformation.VTable, self.vtable).GetSecurity(@ptrCast(*const ISecurityInformation, self), RequestedInformation, ppSecurityDescriptor, fDefault);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation_SetSecurity(self: *const T, SecurityInformation: OBJECT_SECURITY_INFORMATION, pSecurityDescriptor: ?*SECURITY_DESCRIPTOR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISecurityInformation.VTable, self.vtable).SetSecurity(@ptrCast(*const ISecurityInformation, self), SecurityInformation, pSecurityDescriptor);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation_GetAccessRights(self: *const T, pguidObjectType: ?*const Guid, dwFlags: SECURITY_INFO_PAGE_FLAGS, ppAccess: ?*?*SI_ACCESS, pcAccesses: ?*u32, piDefaultAccess: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISecurityInformation.VTable, self.vtable).GetAccessRights(@ptrCast(*const ISecurityInformation, self), pguidObjectType, dwFlags, ppAccess, pcAccesses, piDefaultAccess);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation_MapGeneric(self: *const T, pguidObjectType: ?*const Guid, pAceFlags: ?*u8, pMask: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISecurityInformation.VTable, self.vtable).MapGeneric(@ptrCast(*const ISecurityInformation, self), pguidObjectType, pAceFlags, pMask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation_GetInheritTypes(self: *const T, ppInheritTypes: ?*?*SI_INHERIT_TYPE, pcInheritTypes: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISecurityInformation.VTable, self.vtable).GetInheritTypes(@ptrCast(*const ISecurityInformation, self), ppInheritTypes, pcInheritTypes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation_PropertySheetPageCallback(self: *const T, hwnd: ?HWND, uMsg: PSPCB_MESSAGE, uPage: SI_PAGE_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISecurityInformation.VTable, self.vtable).PropertySheetPageCallback(@ptrCast(*const ISecurityInformation, self), hwnd, uMsg, uPage);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISecurityInformation_GetObjectInformation(self: *const T, pObjectInfo: ?*SI_OBJECT_INFO) HRESULT {
+                return @ptrCast(*const ISecurityInformation.VTable, self.vtable).GetObjectInformation(@ptrCast(*const ISecurityInformation, self), pObjectInfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISecurityInformation_GetSecurity(self: *const T, RequestedInformation: OBJECT_SECURITY_INFORMATION, ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR, fDefault: BOOL) HRESULT {
+                return @ptrCast(*const ISecurityInformation.VTable, self.vtable).GetSecurity(@ptrCast(*const ISecurityInformation, self), RequestedInformation, ppSecurityDescriptor, fDefault);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISecurityInformation_SetSecurity(self: *const T, SecurityInformation: OBJECT_SECURITY_INFORMATION, pSecurityDescriptor: ?*SECURITY_DESCRIPTOR) HRESULT {
+                return @ptrCast(*const ISecurityInformation.VTable, self.vtable).SetSecurity(@ptrCast(*const ISecurityInformation, self), SecurityInformation, pSecurityDescriptor);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISecurityInformation_GetAccessRights(self: *const T, pguidObjectType: ?*const Guid, dwFlags: SECURITY_INFO_PAGE_FLAGS, ppAccess: ?*?*SI_ACCESS, pcAccesses: ?*u32, piDefaultAccess: ?*u32) HRESULT {
+                return @ptrCast(*const ISecurityInformation.VTable, self.vtable).GetAccessRights(@ptrCast(*const ISecurityInformation, self), pguidObjectType, dwFlags, ppAccess, pcAccesses, piDefaultAccess);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISecurityInformation_MapGeneric(self: *const T, pguidObjectType: ?*const Guid, pAceFlags: ?*u8, pMask: ?*u32) HRESULT {
+                return @ptrCast(*const ISecurityInformation.VTable, self.vtable).MapGeneric(@ptrCast(*const ISecurityInformation, self), pguidObjectType, pAceFlags, pMask);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISecurityInformation_GetInheritTypes(self: *const T, ppInheritTypes: ?*?*SI_INHERIT_TYPE, pcInheritTypes: ?*u32) HRESULT {
+                return @ptrCast(*const ISecurityInformation.VTable, self.vtable).GetInheritTypes(@ptrCast(*const ISecurityInformation, self), ppInheritTypes, pcInheritTypes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISecurityInformation_PropertySheetPageCallback(self: *const T, hwnd: ?HWND, uMsg: PSPCB_MESSAGE, uPage: SI_PAGE_TYPE) HRESULT {
+                return @ptrCast(*const ISecurityInformation.VTable, self.vtable).PropertySheetPageCallback(@ptrCast(*const ISecurityInformation, self), hwnd, uMsg, uPage);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -318,23 +301,23 @@ pub const ISecurityInformation2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         IsDaclCanonical: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISecurityInformation2,
                 pDacl: ?*ACL,
             ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISecurityInformation2,
                 pDacl: ?*ACL,
             ) callconv(@import("std").os.windows.WINAPI) BOOL,
         },
         LookupSids: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISecurityInformation2,
                 cSids: u32,
                 rgpSids: ?*?PSID,
                 ppdo: ?*?*IDataObject,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISecurityInformation2,
                 cSids: u32,
                 rgpSids: ?*?PSID,
@@ -343,17 +326,19 @@ pub const ISecurityInformation2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation2_IsDaclCanonical(self: *const T, pDacl: ?*ACL) callconv(.Inline) BOOL {
-            return @ptrCast(*const ISecurityInformation2.VTable, self.vtable).IsDaclCanonical(@ptrCast(*const ISecurityInformation2, self), pDacl);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation2_LookupSids(self: *const T, cSids: u32, rgpSids: ?*?PSID, ppdo: ?*?*IDataObject) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISecurityInformation2.VTable, self.vtable).LookupSids(@ptrCast(*const ISecurityInformation2, self), cSids, rgpSids, ppdo);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISecurityInformation2_IsDaclCanonical(self: *const T, pDacl: ?*ACL) BOOL {
+                return @ptrCast(*const ISecurityInformation2.VTable, self.vtable).IsDaclCanonical(@ptrCast(*const ISecurityInformation2, self), pDacl);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISecurityInformation2_LookupSids(self: *const T, cSids: u32, rgpSids: ?*?PSID, ppdo: ?*?*IDataObject) HRESULT {
+                return @ptrCast(*const ISecurityInformation2.VTable, self.vtable).LookupSids(@ptrCast(*const ISecurityInformation2, self), cSids, rgpSids, ppdo);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -376,7 +361,7 @@ pub const IEffectivePermission = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetEffectivePermission: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEffectivePermission,
                 pguidObjectType: ?*const Guid,
                 pUserSid: ?PSID,
@@ -387,7 +372,7 @@ pub const IEffectivePermission = extern struct {
                 ppGrantedAccessList: ?*?*u32,
                 pcGrantedAccessListLength: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEffectivePermission,
                 pguidObjectType: ?*const Guid,
                 pUserSid: ?PSID,
@@ -401,13 +386,15 @@ pub const IEffectivePermission = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEffectivePermission_GetEffectivePermission(self: *const T, pguidObjectType: ?*const Guid, pUserSid: ?PSID, pszServerName: ?[*:0]const u16, pSD: ?*SECURITY_DESCRIPTOR, ppObjectTypeList: ?*?*OBJECT_TYPE_LIST, pcObjectTypeListLength: ?*u32, ppGrantedAccessList: ?*?*u32, pcGrantedAccessListLength: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEffectivePermission.VTable, self.vtable).GetEffectivePermission(@ptrCast(*const IEffectivePermission, self), pguidObjectType, pUserSid, pszServerName, pSD, ppObjectTypeList, pcObjectTypeListLength, ppGrantedAccessList, pcGrantedAccessListLength);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEffectivePermission_GetEffectivePermission(self: *const T, pguidObjectType: ?*const Guid, pUserSid: ?PSID, pszServerName: ?[*:0]const u16, pSD: ?*SECURITY_DESCRIPTOR, ppObjectTypeList: ?*?*OBJECT_TYPE_LIST, pcObjectTypeListLength: ?*u32, ppGrantedAccessList: ?*?*u32, pcGrantedAccessListLength: ?*u32) HRESULT {
+                return @ptrCast(*const IEffectivePermission.VTable, self.vtable).GetEffectivePermission(@ptrCast(*const IEffectivePermission, self), pguidObjectType, pUserSid, pszServerName, pSD, ppObjectTypeList, pcObjectTypeListLength, ppGrantedAccessList, pcGrantedAccessListLength);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -418,13 +405,13 @@ pub const ISecurityObjectTypeInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetInheritSource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISecurityObjectTypeInfo,
                 si: u32,
                 pACL: ?*ACL,
                 ppInheritArray: ?*?*INHERITED_FROMA,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISecurityObjectTypeInfo,
                 si: u32,
                 pACL: ?*ACL,
@@ -433,13 +420,15 @@ pub const ISecurityObjectTypeInfo = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityObjectTypeInfo_GetInheritSource(self: *const T, si: u32, pACL: ?*ACL, ppInheritArray: ?*?*INHERITED_FROMA) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISecurityObjectTypeInfo.VTable, self.vtable).GetInheritSource(@ptrCast(*const ISecurityObjectTypeInfo, self), si, pACL, ppInheritArray);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISecurityObjectTypeInfo_GetInheritSource(self: *const T, si: u32, pACL: ?*ACL, ppInheritArray: ?*?*INHERITED_FROMA) HRESULT {
+                return @ptrCast(*const ISecurityObjectTypeInfo.VTable, self.vtable).GetInheritSource(@ptrCast(*const ISecurityObjectTypeInfo, self), si, pACL, ppInheritArray);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -450,22 +439,22 @@ pub const ISecurityInformation3 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetFullResourceName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISecurityInformation3,
                 ppszResourceName: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISecurityInformation3,
                 ppszResourceName: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OpenElevatedEditor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISecurityInformation3,
                 hWnd: ?HWND,
                 uPage: SI_PAGE_TYPE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISecurityInformation3,
                 hWnd: ?HWND,
                 uPage: SI_PAGE_TYPE,
@@ -473,17 +462,19 @@ pub const ISecurityInformation3 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation3_GetFullResourceName(self: *const T, ppszResourceName: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISecurityInformation3.VTable, self.vtable).GetFullResourceName(@ptrCast(*const ISecurityInformation3, self), ppszResourceName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation3_OpenElevatedEditor(self: *const T, hWnd: ?HWND, uPage: SI_PAGE_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISecurityInformation3.VTable, self.vtable).OpenElevatedEditor(@ptrCast(*const ISecurityInformation3, self), hWnd, uPage);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISecurityInformation3_GetFullResourceName(self: *const T, ppszResourceName: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const ISecurityInformation3.VTable, self.vtable).GetFullResourceName(@ptrCast(*const ISecurityInformation3, self), ppszResourceName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISecurityInformation3_OpenElevatedEditor(self: *const T, hWnd: ?HWND, uPage: SI_PAGE_TYPE) HRESULT {
+                return @ptrCast(*const ISecurityInformation3.VTable, self.vtable).OpenElevatedEditor(@ptrCast(*const ISecurityInformation3, self), hWnd, uPage);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -511,12 +502,12 @@ pub const ISecurityInformation4 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSecondarySecurity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ISecurityInformation4,
                 pSecurityObjects: ?*?*SECURITY_OBJECT,
                 pSecurityObjectCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ISecurityInformation4,
                 pSecurityObjects: ?*?*SECURITY_OBJECT,
                 pSecurityObjectCount: ?*u32,
@@ -524,13 +515,15 @@ pub const ISecurityInformation4 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation4_GetSecondarySecurity(self: *const T, pSecurityObjects: ?*?*SECURITY_OBJECT, pSecurityObjectCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISecurityInformation4.VTable, self.vtable).GetSecondarySecurity(@ptrCast(*const ISecurityInformation4, self), pSecurityObjects, pSecurityObjectCount);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ISecurityInformation4_GetSecondarySecurity(self: *const T, pSecurityObjects: ?*?*SECURITY_OBJECT, pSecurityObjectCount: ?*u32) HRESULT {
+                return @ptrCast(*const ISecurityInformation4.VTable, self.vtable).GetSecondarySecurity(@ptrCast(*const ISecurityInformation4, self), pSecurityObjects, pSecurityObjectCount);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -541,7 +534,7 @@ pub const IEffectivePermission2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ComputeEffectivePermissionWithSecondarySecurity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEffectivePermission2,
                 pSid: ?PSID,
                 pDeviceSid: ?PSID,
@@ -558,7 +551,7 @@ pub const IEffectivePermission2 = extern struct {
                 pAuthzDeviceClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
                 pEffpermResultLists: [*]EFFPERM_RESULT_LIST,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEffectivePermission2,
                 pSid: ?PSID,
                 pDeviceSid: ?PSID,
@@ -578,16 +571,17 @@ pub const IEffectivePermission2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEffectivePermission2_ComputeEffectivePermissionWithSecondarySecurity(self: *const T, pSid: ?PSID, pDeviceSid: ?PSID, pszServerName: ?[*:0]const u16, pSecurityObjects: [*]SECURITY_OBJECT, dwSecurityObjectCount: u32, pUserGroups: ?*TOKEN_GROUPS, pAuthzUserGroupsOperations: ?*AUTHZ_SID_OPERATION, pDeviceGroups: ?*TOKEN_GROUPS, pAuthzDeviceGroupsOperations: ?*AUTHZ_SID_OPERATION, pAuthzUserClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION, pAuthzUserClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION, pAuthzDeviceClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION, pAuthzDeviceClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION, pEffpermResultLists: [*]EFFPERM_RESULT_LIST) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEffectivePermission2.VTable, self.vtable).ComputeEffectivePermissionWithSecondarySecurity(@ptrCast(*const IEffectivePermission2, self), pSid, pDeviceSid, pszServerName, pSecurityObjects, dwSecurityObjectCount, pUserGroups, pAuthzUserGroupsOperations, pDeviceGroups, pAuthzDeviceGroupsOperations, pAuthzUserClaims, pAuthzUserClaimsOperations, pAuthzDeviceClaims, pAuthzDeviceClaimsOperations, pEffpermResultLists);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEffectivePermission2_ComputeEffectivePermissionWithSecondarySecurity(self: *const T, pSid: ?PSID, pDeviceSid: ?PSID, pszServerName: ?[*:0]const u16, pSecurityObjects: [*]SECURITY_OBJECT, dwSecurityObjectCount: u32, pUserGroups: ?*TOKEN_GROUPS, pAuthzUserGroupsOperations: ?*AUTHZ_SID_OPERATION, pDeviceGroups: ?*TOKEN_GROUPS, pAuthzDeviceGroupsOperations: ?*AUTHZ_SID_OPERATION, pAuthzUserClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION, pAuthzUserClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION, pAuthzDeviceClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION, pAuthzDeviceClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION, pEffpermResultLists: [*]EFFPERM_RESULT_LIST) HRESULT {
+                return @ptrCast(*const IEffectivePermission2.VTable, self.vtable).ComputeEffectivePermissionWithSecondarySecurity(@ptrCast(*const IEffectivePermission2, self), pSid, pDeviceSid, pszServerName, pSecurityObjects, dwSecurityObjectCount, pUserGroups, pAuthzUserGroupsOperations, pDeviceGroups, pAuthzDeviceGroupsOperations, pAuthzUserClaims, pAuthzUserClaimsOperations, pAuthzDeviceClaims, pAuthzDeviceClaimsOperations, pEffpermResultLists);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (3)
@@ -610,19 +604,14 @@ pub extern "aclui" fn EditSecurityAdvanced(
     uSIPage: SI_PAGE_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (22)
@@ -651,9 +640,7 @@ const SECURITY_DESCRIPTOR = @import("../../security.zig").SECURITY_DESCRIPTOR;
 const TOKEN_GROUPS = @import("../../security.zig").TOKEN_GROUPS;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

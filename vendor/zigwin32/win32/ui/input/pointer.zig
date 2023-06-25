@@ -48,27 +48,7 @@ pub const POINTER_FLAGS = enum(u32) {
         CAPTURECHANGED: u1 = 0,
         HASTRANSFORM: u1 = 0,
     }) POINTER_FLAGS {
-        return @intToEnum(POINTER_FLAGS,
-              (if (o.NONE == 1) @enumToInt(POINTER_FLAGS.NONE) else 0)
-            | (if (o.NEW == 1) @enumToInt(POINTER_FLAGS.NEW) else 0)
-            | (if (o.INRANGE == 1) @enumToInt(POINTER_FLAGS.INRANGE) else 0)
-            | (if (o.INCONTACT == 1) @enumToInt(POINTER_FLAGS.INCONTACT) else 0)
-            | (if (o.FIRSTBUTTON == 1) @enumToInt(POINTER_FLAGS.FIRSTBUTTON) else 0)
-            | (if (o.SECONDBUTTON == 1) @enumToInt(POINTER_FLAGS.SECONDBUTTON) else 0)
-            | (if (o.THIRDBUTTON == 1) @enumToInt(POINTER_FLAGS.THIRDBUTTON) else 0)
-            | (if (o.FOURTHBUTTON == 1) @enumToInt(POINTER_FLAGS.FOURTHBUTTON) else 0)
-            | (if (o.FIFTHBUTTON == 1) @enumToInt(POINTER_FLAGS.FIFTHBUTTON) else 0)
-            | (if (o.PRIMARY == 1) @enumToInt(POINTER_FLAGS.PRIMARY) else 0)
-            | (if (o.CONFIDENCE == 1) @enumToInt(POINTER_FLAGS.CONFIDENCE) else 0)
-            | (if (o.CANCELED == 1) @enumToInt(POINTER_FLAGS.CANCELED) else 0)
-            | (if (o.DOWN == 1) @enumToInt(POINTER_FLAGS.DOWN) else 0)
-            | (if (o.UPDATE == 1) @enumToInt(POINTER_FLAGS.UPDATE) else 0)
-            | (if (o.UP == 1) @enumToInt(POINTER_FLAGS.UP) else 0)
-            | (if (o.WHEEL == 1) @enumToInt(POINTER_FLAGS.WHEEL) else 0)
-            | (if (o.HWHEEL == 1) @enumToInt(POINTER_FLAGS.HWHEEL) else 0)
-            | (if (o.CAPTURECHANGED == 1) @enumToInt(POINTER_FLAGS.CAPTURECHANGED) else 0)
-            | (if (o.HASTRANSFORM == 1) @enumToInt(POINTER_FLAGS.HASTRANSFORM) else 0)
-        );
+        return @enumFromInt(POINTER_FLAGS, (if (o.NONE == 1) @intFromEnum(POINTER_FLAGS.NONE) else 0) | (if (o.NEW == 1) @intFromEnum(POINTER_FLAGS.NEW) else 0) | (if (o.INRANGE == 1) @intFromEnum(POINTER_FLAGS.INRANGE) else 0) | (if (o.INCONTACT == 1) @intFromEnum(POINTER_FLAGS.INCONTACT) else 0) | (if (o.FIRSTBUTTON == 1) @intFromEnum(POINTER_FLAGS.FIRSTBUTTON) else 0) | (if (o.SECONDBUTTON == 1) @intFromEnum(POINTER_FLAGS.SECONDBUTTON) else 0) | (if (o.THIRDBUTTON == 1) @intFromEnum(POINTER_FLAGS.THIRDBUTTON) else 0) | (if (o.FOURTHBUTTON == 1) @intFromEnum(POINTER_FLAGS.FOURTHBUTTON) else 0) | (if (o.FIFTHBUTTON == 1) @intFromEnum(POINTER_FLAGS.FIFTHBUTTON) else 0) | (if (o.PRIMARY == 1) @intFromEnum(POINTER_FLAGS.PRIMARY) else 0) | (if (o.CONFIDENCE == 1) @intFromEnum(POINTER_FLAGS.CONFIDENCE) else 0) | (if (o.CANCELED == 1) @intFromEnum(POINTER_FLAGS.CANCELED) else 0) | (if (o.DOWN == 1) @intFromEnum(POINTER_FLAGS.DOWN) else 0) | (if (o.UPDATE == 1) @intFromEnum(POINTER_FLAGS.UPDATE) else 0) | (if (o.UP == 1) @intFromEnum(POINTER_FLAGS.UP) else 0) | (if (o.WHEEL == 1) @intFromEnum(POINTER_FLAGS.WHEEL) else 0) | (if (o.HWHEEL == 1) @intFromEnum(POINTER_FLAGS.HWHEEL) else 0) | (if (o.CAPTURECHANGED == 1) @intFromEnum(POINTER_FLAGS.CAPTURECHANGED) else 0) | (if (o.HASTRANSFORM == 1) @intFromEnum(POINTER_FLAGS.HASTRANSFORM) else 0));
     }
 };
 pub const POINTER_FLAG_NONE = POINTER_FLAGS.NONE;
@@ -195,13 +175,11 @@ pub const INPUT_TRANSFORM = extern struct {
     },
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (28)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn GetUnpredictedMessagePos(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "user32" fn GetUnpredictedMessagePos() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "user32" fn InitializeTouchInjection(
@@ -329,8 +307,7 @@ pub extern "user32" fn EnableMouseInPointer(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn IsMouseInPointerEnabled(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "user32" fn IsMouseInPointerEnabled() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "user32" fn GetPointerInputTransform(
@@ -381,19 +358,14 @@ pub extern "user32" fn GetRawPointerDeviceData(
     pValues: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (11)
@@ -411,9 +383,7 @@ const POINTER_TYPE_INFO = @import("../../ui/controls.zig").POINTER_TYPE_INFO;
 const RECT = @import("../../foundation.zig").RECT;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

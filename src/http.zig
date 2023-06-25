@@ -79,8 +79,15 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
         pub const Reader = std.io.Reader(*HttpResponse, ReadError, read);
 
         pub fn isReady(self: *HttpResponse) bool {
-            self.request.wait() catch return true;
-            return true;
+            // self.request.wait() catch return true;
+            const buffered = &self.request.connection.data.buffered;
+            buffered.fill() catch return true;
+            if (buffered.read_end != 0) {
+                self.request.wait() catch {};
+                return true;
+            } else {
+                return false;
+            }
         }
 
         pub fn checkError(self: *HttpResponse) !void {

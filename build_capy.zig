@@ -129,6 +129,7 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
         .source_file = .{ .path = prefix ++ "/src/main.zig" },
         .dependencies = &.{
             .{ .name = "zigimg", .module = zigimg },
+            // TODO: do not put as dependency if target os isn't windows
             .{ .name = "zigwin32", .module = zigwin32 },
         },
     });

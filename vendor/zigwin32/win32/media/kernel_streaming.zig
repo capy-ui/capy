@@ -182,9 +182,9 @@ pub const KSDSOUND_BUFFER_CTRL_FREQUENCY = @as(u32, 2);
 pub const KSDSOUND_BUFFER_CTRL_PAN = @as(u32, 4);
 pub const KSDSOUND_BUFFER_CTRL_VOLUME = @as(u32, 8);
 pub const KSDSOUND_BUFFER_CTRL_POSITIONNOTIFY = @as(u32, 16);
-pub const DEVPKEY_KsAudio_PacketSize_Constraints = PROPERTYKEY { .fmtid = Guid.initString("13e004d6-b066-43bd-913b-a415cd13da87"), .pid = 2 };
-pub const DEVPKEY_KsAudio_Controller_DeviceInterface_Path = PROPERTYKEY { .fmtid = Guid.initString("13e004d6-b066-43bd-913b-a415cd13da87"), .pid = 3 };
-pub const DEVPKEY_KsAudio_PacketSize_Constraints2 = PROPERTYKEY { .fmtid = Guid.initString("9404f781-7191-409b-8b0b-80bf6ec229ae"), .pid = 2 };
+pub const DEVPKEY_KsAudio_PacketSize_Constraints = PROPERTYKEY{ .fmtid = Guid.initString("13e004d6-b066-43bd-913b-a415cd13da87"), .pid = 2 };
+pub const DEVPKEY_KsAudio_Controller_DeviceInterface_Path = PROPERTYKEY{ .fmtid = Guid.initString("13e004d6-b066-43bd-913b-a415cd13da87"), .pid = 3 };
+pub const DEVPKEY_KsAudio_PacketSize_Constraints2 = PROPERTYKEY{ .fmtid = Guid.initString("9404f781-7191-409b-8b0b-80bf6ec229ae"), .pid = 2 };
 pub const KSAUDIO_STEREO_SPEAKER_GEOMETRY_HEADPHONE = @as(i32, -1);
 pub const KSAUDIO_STEREO_SPEAKER_GEOMETRY_MIN = @as(u32, 5);
 pub const KSAUDIO_STEREO_SPEAKER_GEOMETRY_NARROW = @as(u32, 10);
@@ -658,7 +658,7 @@ pub const IKsControl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         KsProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IKsControl,
                 Property: ?*KSIDENTIFIER,
                 PropertyLength: u32,
@@ -666,7 +666,7 @@ pub const IKsControl = extern struct {
                 DataLength: u32,
                 BytesReturned: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IKsControl,
                 Property: ?*KSIDENTIFIER,
                 PropertyLength: u32,
@@ -676,7 +676,7 @@ pub const IKsControl = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         KsMethod: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IKsControl,
                 Method: ?*KSIDENTIFIER,
                 MethodLength: u32,
@@ -684,7 +684,7 @@ pub const IKsControl = extern struct {
                 DataLength: u32,
                 BytesReturned: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IKsControl,
                 Method: ?*KSIDENTIFIER,
                 MethodLength: u32,
@@ -694,7 +694,7 @@ pub const IKsControl = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         KsEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IKsControl,
                 Event: ?*KSIDENTIFIER,
                 EventLength: u32,
@@ -702,7 +702,7 @@ pub const IKsControl = extern struct {
                 DataLength: u32,
                 BytesReturned: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IKsControl,
                 Event: ?*KSIDENTIFIER,
                 EventLength: u32,
@@ -713,21 +713,23 @@ pub const IKsControl = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsControl_KsProperty(self: *const T, Property: ?*KSIDENTIFIER, PropertyLength: u32, PropertyData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IKsControl.VTable, self.vtable).KsProperty(@ptrCast(*const IKsControl, self), Property, PropertyLength, PropertyData, DataLength, BytesReturned);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsControl_KsMethod(self: *const T, Method: ?*KSIDENTIFIER, MethodLength: u32, MethodData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IKsControl.VTable, self.vtable).KsMethod(@ptrCast(*const IKsControl, self), Method, MethodLength, MethodData, DataLength, BytesReturned);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsControl_KsEvent(self: *const T, Event: ?*KSIDENTIFIER, EventLength: u32, EventData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IKsControl.VTable, self.vtable).KsEvent(@ptrCast(*const IKsControl, self), Event, EventLength, EventData, DataLength, BytesReturned);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IKsControl_KsProperty(self: *const T, Property: ?*KSIDENTIFIER, PropertyLength: u32, PropertyData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) HRESULT {
+                return @ptrCast(*const IKsControl.VTable, self.vtable).KsProperty(@ptrCast(*const IKsControl, self), Property, PropertyLength, PropertyData, DataLength, BytesReturned);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IKsControl_KsMethod(self: *const T, Method: ?*KSIDENTIFIER, MethodLength: u32, MethodData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) HRESULT {
+                return @ptrCast(*const IKsControl.VTable, self.vtable).KsMethod(@ptrCast(*const IKsControl, self), Method, MethodLength, MethodData, DataLength, BytesReturned);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IKsControl_KsEvent(self: *const T, Event: ?*KSIDENTIFIER, EventLength: u32, EventData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) HRESULT {
+                return @ptrCast(*const IKsControl.VTable, self.vtable).KsEvent(@ptrCast(*const IKsControl, self), Event, EventLength, EventData, DataLength, BytesReturned);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -738,13 +740,13 @@ pub const IKsFormatSupport = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         IsFormatSupported: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IKsFormatSupport,
                 pKsFormat: ?*KSDATAFORMAT,
                 cbFormat: u32,
                 pbSupported: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IKsFormatSupport,
                 pKsFormat: ?*KSDATAFORMAT,
                 cbFormat: u32,
@@ -752,28 +754,30 @@ pub const IKsFormatSupport = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDevicePreferredFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IKsFormatSupport,
                 ppKsFormat: ?*?*KSDATAFORMAT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IKsFormatSupport,
                 ppKsFormat: ?*?*KSDATAFORMAT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsFormatSupport_IsFormatSupported(self: *const T, pKsFormat: ?*KSDATAFORMAT, cbFormat: u32, pbSupported: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IKsFormatSupport.VTable, self.vtable).IsFormatSupported(@ptrCast(*const IKsFormatSupport, self), pKsFormat, cbFormat, pbSupported);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsFormatSupport_GetDevicePreferredFormat(self: *const T, ppKsFormat: ?*?*KSDATAFORMAT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IKsFormatSupport.VTable, self.vtable).GetDevicePreferredFormat(@ptrCast(*const IKsFormatSupport, self), ppKsFormat);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IKsFormatSupport_IsFormatSupported(self: *const T, pKsFormat: ?*KSDATAFORMAT, cbFormat: u32, pbSupported: ?*BOOL) HRESULT {
+                return @ptrCast(*const IKsFormatSupport.VTable, self.vtable).IsFormatSupported(@ptrCast(*const IKsFormatSupport, self), pKsFormat, cbFormat, pbSupported);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IKsFormatSupport_GetDevicePreferredFormat(self: *const T, ppKsFormat: ?*?*KSDATAFORMAT) HRESULT {
+                return @ptrCast(*const IKsFormatSupport.VTable, self.vtable).GetDevicePreferredFormat(@ptrCast(*const IKsFormatSupport, self), ppKsFormat);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -784,22 +788,22 @@ pub const IKsJackDescription = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetJackCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IKsJackDescription,
                 pcJacks: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IKsJackDescription,
                 pcJacks: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetJackDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IKsJackDescription,
                 nJack: u32,
                 pDescription: ?*KSJACK_DESCRIPTION,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IKsJackDescription,
                 nJack: u32,
                 pDescription: ?*KSJACK_DESCRIPTION,
@@ -807,17 +811,19 @@ pub const IKsJackDescription = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsJackDescription_GetJackCount(self: *const T, pcJacks: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IKsJackDescription.VTable, self.vtable).GetJackCount(@ptrCast(*const IKsJackDescription, self), pcJacks);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsJackDescription_GetJackDescription(self: *const T, nJack: u32, pDescription: ?*KSJACK_DESCRIPTION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IKsJackDescription.VTable, self.vtable).GetJackDescription(@ptrCast(*const IKsJackDescription, self), nJack, pDescription);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IKsJackDescription_GetJackCount(self: *const T, pcJacks: ?*u32) HRESULT {
+                return @ptrCast(*const IKsJackDescription.VTable, self.vtable).GetJackCount(@ptrCast(*const IKsJackDescription, self), pcJacks);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IKsJackDescription_GetJackDescription(self: *const T, nJack: u32, pDescription: ?*KSJACK_DESCRIPTION) HRESULT {
+                return @ptrCast(*const IKsJackDescription.VTable, self.vtable).GetJackDescription(@ptrCast(*const IKsJackDescription, self), nJack, pDescription);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -828,22 +834,22 @@ pub const IKsJackDescription2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetJackCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IKsJackDescription2,
                 pcJacks: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IKsJackDescription2,
                 pcJacks: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetJackDescription2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IKsJackDescription2,
                 nJack: u32,
                 pDescription2: ?*KSJACK_DESCRIPTION2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IKsJackDescription2,
                 nJack: u32,
                 pDescription2: ?*KSJACK_DESCRIPTION2,
@@ -851,17 +857,19 @@ pub const IKsJackDescription2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsJackDescription2_GetJackCount(self: *const T, pcJacks: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IKsJackDescription2.VTable, self.vtable).GetJackCount(@ptrCast(*const IKsJackDescription2, self), pcJacks);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsJackDescription2_GetJackDescription2(self: *const T, nJack: u32, pDescription2: ?*KSJACK_DESCRIPTION2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IKsJackDescription2.VTable, self.vtable).GetJackDescription2(@ptrCast(*const IKsJackDescription2, self), nJack, pDescription2);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IKsJackDescription2_GetJackCount(self: *const T, pcJacks: ?*u32) HRESULT {
+                return @ptrCast(*const IKsJackDescription2.VTable, self.vtable).GetJackCount(@ptrCast(*const IKsJackDescription2, self), pcJacks);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IKsJackDescription2_GetJackDescription2(self: *const T, nJack: u32, pDescription2: ?*KSJACK_DESCRIPTION2) HRESULT {
+                return @ptrCast(*const IKsJackDescription2.VTable, self.vtable).GetJackDescription2(@ptrCast(*const IKsJackDescription2, self), nJack, pDescription2);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -872,24 +880,26 @@ pub const IKsJackSinkInformation = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetJackSinkInformation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IKsJackSinkInformation,
                 pJackSinkInformation: ?*KSJACK_SINK_INFORMATION,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IKsJackSinkInformation,
                 pJackSinkInformation: ?*KSJACK_SINK_INFORMATION,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsJackSinkInformation_GetJackSinkInformation(self: *const T, pJackSinkInformation: ?*KSJACK_SINK_INFORMATION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IKsJackSinkInformation.VTable, self.vtable).GetJackSinkInformation(@ptrCast(*const IKsJackSinkInformation, self), pJackSinkInformation);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IKsJackSinkInformation_GetJackSinkInformation(self: *const T, pJackSinkInformation: ?*KSJACK_SINK_INFORMATION) HRESULT {
+                return @ptrCast(*const IKsJackSinkInformation.VTable, self.vtable).GetJackSinkInformation(@ptrCast(*const IKsJackSinkInformation, self), pJackSinkInformation);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -899,24 +909,26 @@ pub const IKsJackContainerId = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetJackContainerId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IKsJackContainerId,
                 pJackContainerId: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IKsJackContainerId,
                 pJackContainerId: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsJackContainerId_GetJackContainerId(self: *const T, pJackContainerId: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IKsJackContainerId.VTable, self.vtable).GetJackContainerId(@ptrCast(*const IKsJackContainerId, self), pJackContainerId);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IKsJackContainerId_GetJackContainerId(self: *const T, pJackContainerId: ?*Guid) HRESULT {
+                return @ptrCast(*const IKsJackContainerId.VTable, self.vtable).GetJackContainerId(@ptrCast(*const IKsJackContainerId, self), pJackContainerId);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1660,7 +1672,6 @@ pub const KSTIME = extern struct {
     Numerator: u32,
     Denominator: u32,
 };
-
 
 pub const KSSTREAM_METADATA_INFO = extern struct {
     BufferSize: u32,
@@ -3480,8 +3491,6 @@ pub const KSNODEPROPERTY_AUDIO_DEV_SPECIFIC = extern struct {
     DeviceInfo: u32,
     Length: u32,
 };
-
-
 
 const CLSID_KSDATAFORMAT_TYPE_MUSIC_Value = Guid.initString("e725d360-62cc-11cf-a5d6-28db04c10000");
 pub const CLSID_KSDATAFORMAT_TYPE_MUSIC = &CLSID_KSDATAFORMAT_TYPE_MUSIC_Value;
@@ -7194,7 +7203,7 @@ pub const IKsPropertySet = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Set: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IKsPropertySet,
                 PropSet: ?*const Guid,
                 Id: u32,
@@ -7205,7 +7214,7 @@ pub const IKsPropertySet = extern struct {
                 PropertyData: ?*anyopaque,
                 DataLength: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IKsPropertySet,
                 PropSet: ?*const Guid,
                 Id: u32,
@@ -7218,7 +7227,7 @@ pub const IKsPropertySet = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Get: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IKsPropertySet,
                 PropSet: ?*const Guid,
                 Id: u32,
@@ -7230,7 +7239,7 @@ pub const IKsPropertySet = extern struct {
                 DataLength: u32,
                 BytesReturned: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IKsPropertySet,
                 PropSet: ?*const Guid,
                 Id: u32,
@@ -7244,13 +7253,13 @@ pub const IKsPropertySet = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         QuerySupported: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IKsPropertySet,
                 PropSet: ?*const Guid,
                 Id: u32,
                 TypeSupport: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IKsPropertySet,
                 PropSet: ?*const Guid,
                 Id: u32,
@@ -7259,21 +7268,23 @@ pub const IKsPropertySet = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsPropertySet_Set(self: *const T, PropSet: ?*const Guid, Id: u32, InstanceData: ?*anyopaque, InstanceLength: u32, PropertyData: ?*anyopaque, DataLength: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IKsPropertySet.VTable, self.vtable).Set(@ptrCast(*const IKsPropertySet, self), PropSet, Id, InstanceData, InstanceLength, PropertyData, DataLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsPropertySet_Get(self: *const T, PropSet: ?*const Guid, Id: u32, InstanceData: ?*anyopaque, InstanceLength: u32, PropertyData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IKsPropertySet.VTable, self.vtable).Get(@ptrCast(*const IKsPropertySet, self), PropSet, Id, InstanceData, InstanceLength, PropertyData, DataLength, BytesReturned);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsPropertySet_QuerySupported(self: *const T, PropSet: ?*const Guid, Id: u32, TypeSupport: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IKsPropertySet.VTable, self.vtable).QuerySupported(@ptrCast(*const IKsPropertySet, self), PropSet, Id, TypeSupport);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IKsPropertySet_Set(self: *const T, PropSet: ?*const Guid, Id: u32, InstanceData: ?*anyopaque, InstanceLength: u32, PropertyData: ?*anyopaque, DataLength: u32) HRESULT {
+                return @ptrCast(*const IKsPropertySet.VTable, self.vtable).Set(@ptrCast(*const IKsPropertySet, self), PropSet, Id, InstanceData, InstanceLength, PropertyData, DataLength);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IKsPropertySet_Get(self: *const T, PropSet: ?*const Guid, Id: u32, InstanceData: ?*anyopaque, InstanceLength: u32, PropertyData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) HRESULT {
+                return @ptrCast(*const IKsPropertySet.VTable, self.vtable).Get(@ptrCast(*const IKsPropertySet, self), PropSet, Id, InstanceData, InstanceLength, PropertyData, DataLength, BytesReturned);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IKsPropertySet_QuerySupported(self: *const T, PropSet: ?*const Guid, Id: u32, TypeSupport: ?*u32) HRESULT {
+                return @ptrCast(*const IKsPropertySet.VTable, self.vtable).QuerySupported(@ptrCast(*const IKsPropertySet, self), PropSet, Id, TypeSupport);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7283,38 +7294,40 @@ pub const IKsAggregateControl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         KsAddAggregate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IKsAggregateControl,
                 AggregateClass: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IKsAggregateControl,
                 AggregateClass: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         KsRemoveAggregate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IKsAggregateControl,
                 AggregateClass: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IKsAggregateControl,
                 AggregateClass: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsAggregateControl_KsAddAggregate(self: *const T, AggregateClass: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IKsAggregateControl.VTable, self.vtable).KsAddAggregate(@ptrCast(*const IKsAggregateControl, self), AggregateClass);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsAggregateControl_KsRemoveAggregate(self: *const T, AggregateClass: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IKsAggregateControl.VTable, self.vtable).KsRemoveAggregate(@ptrCast(*const IKsAggregateControl, self), AggregateClass);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IKsAggregateControl_KsAddAggregate(self: *const T, AggregateClass: ?*const Guid) HRESULT {
+                return @ptrCast(*const IKsAggregateControl.VTable, self.vtable).KsAddAggregate(@ptrCast(*const IKsAggregateControl, self), AggregateClass);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IKsAggregateControl_KsRemoveAggregate(self: *const T, AggregateClass: ?*const Guid) HRESULT {
+                return @ptrCast(*const IKsAggregateControl.VTable, self.vtable).KsRemoveAggregate(@ptrCast(*const IKsAggregateControl, self), AggregateClass);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7324,7 +7337,7 @@ pub const IKsTopology = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateNodeInstance: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IKsTopology,
                 NodeId: u32,
                 Flags: u32,
@@ -7333,7 +7346,7 @@ pub const IKsTopology = extern struct {
                 InterfaceId: ?*const Guid,
                 Interface: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IKsTopology,
                 NodeId: u32,
                 Flags: u32,
@@ -7345,20 +7358,19 @@ pub const IKsTopology = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsTopology_CreateNodeInstance(self: *const T, NodeId: u32, Flags: u32, DesiredAccess: u32, UnkOuter: ?*IUnknown, InterfaceId: ?*const Guid, Interface: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IKsTopology.VTable, self.vtable).CreateNodeInstance(@ptrCast(*const IKsTopology, self), NodeId, Flags, DesiredAccess, UnkOuter, InterfaceId, Interface);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IKsTopology_CreateNodeInstance(self: *const T, NodeId: u32, Flags: u32, DesiredAccess: u32, UnkOuter: ?*IUnknown, InterfaceId: ?*const Guid, Interface: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IKsTopology.VTable, self.vtable).CreateNodeInstance(@ptrCast(*const IKsTopology, self), NodeId, Flags, DesiredAccess, UnkOuter, InterfaceId, Interface);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
-
-
-
-pub const KSSTREAM_HEADER = switch(@import("../zig.zig").arch) {
+pub const KSSTREAM_HEADER = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         Size: u32,
         TypeSpecificFlags: u32,
@@ -7381,7 +7393,7 @@ pub const KSSTREAM_HEADER = switch(@import("../zig.zig").arch) {
         OptionsFlags: u32,
     },
 };
-pub const KSNODEPROPERTY_AUDIO_3D_LISTENER = switch(@import("../zig.zig").arch) {
+pub const KSNODEPROPERTY_AUDIO_3D_LISTENER = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         NodeProperty: KSNODEPROPERTY,
         ListenerId: ?*anyopaque,
@@ -7392,7 +7404,7 @@ pub const KSNODEPROPERTY_AUDIO_3D_LISTENER = switch(@import("../zig.zig").arch) 
         Reserved: u32,
     },
 };
-pub const KSNODEPROPERTY_AUDIO_PROPERTY = switch(@import("../zig.zig").arch) {
+pub const KSNODEPROPERTY_AUDIO_PROPERTY = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         NodeProperty: KSNODEPROPERTY,
         AppContext: ?*anyopaque,
@@ -7461,19 +7473,14 @@ pub extern "ksuser" fn KsCreateTopologyNode2(
     NodeHandle: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (14)
@@ -7494,9 +7501,7 @@ const TIMECODE_SAMPLE = @import("../media.zig").TIMECODE_SAMPLE;
 const ULARGE_INTEGER = @import("../foundation.zig").ULARGE_INTEGER;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

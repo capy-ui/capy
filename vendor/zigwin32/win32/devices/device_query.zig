@@ -94,50 +94,7 @@ pub const DEVPROP_OPERATOR = enum(u32) {
         MASK_LOGICAL: u1 = 0,
         MASK_ARRAY: u1 = 0,
     }) DEVPROP_OPERATOR {
-        return @intToEnum(DEVPROP_OPERATOR,
-              (if (o.MODIFIER_NOT == 1) @enumToInt(DEVPROP_OPERATOR.MODIFIER_NOT) else 0)
-            | (if (o.MODIFIER_IGNORE_CASE == 1) @enumToInt(DEVPROP_OPERATOR.MODIFIER_IGNORE_CASE) else 0)
-            | (if (o.NONE == 1) @enumToInt(DEVPROP_OPERATOR.NONE) else 0)
-            | (if (o.EXISTS == 1) @enumToInt(DEVPROP_OPERATOR.EXISTS) else 0)
-            | (if (o.NOT_EXISTS == 1) @enumToInt(DEVPROP_OPERATOR.NOT_EXISTS) else 0)
-            | (if (o.EQUALS == 1) @enumToInt(DEVPROP_OPERATOR.EQUALS) else 0)
-            | (if (o.NOT_EQUALS == 1) @enumToInt(DEVPROP_OPERATOR.NOT_EQUALS) else 0)
-            | (if (o.GREATER_THAN == 1) @enumToInt(DEVPROP_OPERATOR.GREATER_THAN) else 0)
-            | (if (o.LESS_THAN == 1) @enumToInt(DEVPROP_OPERATOR.LESS_THAN) else 0)
-            | (if (o.GREATER_THAN_EQUALS == 1) @enumToInt(DEVPROP_OPERATOR.GREATER_THAN_EQUALS) else 0)
-            | (if (o.LESS_THAN_EQUALS == 1) @enumToInt(DEVPROP_OPERATOR.LESS_THAN_EQUALS) else 0)
-            | (if (o.EQUALS_IGNORE_CASE == 1) @enumToInt(DEVPROP_OPERATOR.EQUALS_IGNORE_CASE) else 0)
-            | (if (o.NOT_EQUALS_IGNORE_CASE == 1) @enumToInt(DEVPROP_OPERATOR.NOT_EQUALS_IGNORE_CASE) else 0)
-            | (if (o.BITWISE_AND == 1) @enumToInt(DEVPROP_OPERATOR.BITWISE_AND) else 0)
-            | (if (o.BITWISE_OR == 1) @enumToInt(DEVPROP_OPERATOR.BITWISE_OR) else 0)
-            | (if (o.BEGINS_WITH == 1) @enumToInt(DEVPROP_OPERATOR.BEGINS_WITH) else 0)
-            | (if (o.ENDS_WITH == 1) @enumToInt(DEVPROP_OPERATOR.ENDS_WITH) else 0)
-            | (if (o.CONTAINS == 1) @enumToInt(DEVPROP_OPERATOR.CONTAINS) else 0)
-            | (if (o.BEGINS_WITH_IGNORE_CASE == 1) @enumToInt(DEVPROP_OPERATOR.BEGINS_WITH_IGNORE_CASE) else 0)
-            | (if (o.ENDS_WITH_IGNORE_CASE == 1) @enumToInt(DEVPROP_OPERATOR.ENDS_WITH_IGNORE_CASE) else 0)
-            | (if (o.CONTAINS_IGNORE_CASE == 1) @enumToInt(DEVPROP_OPERATOR.CONTAINS_IGNORE_CASE) else 0)
-            | (if (o.LIST_CONTAINS == 1) @enumToInt(DEVPROP_OPERATOR.LIST_CONTAINS) else 0)
-            | (if (o.LIST_ELEMENT_BEGINS_WITH == 1) @enumToInt(DEVPROP_OPERATOR.LIST_ELEMENT_BEGINS_WITH) else 0)
-            | (if (o.LIST_ELEMENT_ENDS_WITH == 1) @enumToInt(DEVPROP_OPERATOR.LIST_ELEMENT_ENDS_WITH) else 0)
-            | (if (o.LIST_ELEMENT_CONTAINS == 1) @enumToInt(DEVPROP_OPERATOR.LIST_ELEMENT_CONTAINS) else 0)
-            | (if (o.LIST_CONTAINS_IGNORE_CASE == 1) @enumToInt(DEVPROP_OPERATOR.LIST_CONTAINS_IGNORE_CASE) else 0)
-            | (if (o.LIST_ELEMENT_BEGINS_WITH_IGNORE_CASE == 1) @enumToInt(DEVPROP_OPERATOR.LIST_ELEMENT_BEGINS_WITH_IGNORE_CASE) else 0)
-            | (if (o.LIST_ELEMENT_ENDS_WITH_IGNORE_CASE == 1) @enumToInt(DEVPROP_OPERATOR.LIST_ELEMENT_ENDS_WITH_IGNORE_CASE) else 0)
-            | (if (o.LIST_ELEMENT_CONTAINS_IGNORE_CASE == 1) @enumToInt(DEVPROP_OPERATOR.LIST_ELEMENT_CONTAINS_IGNORE_CASE) else 0)
-            | (if (o.AND_OPEN == 1) @enumToInt(DEVPROP_OPERATOR.AND_OPEN) else 0)
-            | (if (o.AND_CLOSE == 1) @enumToInt(DEVPROP_OPERATOR.AND_CLOSE) else 0)
-            | (if (o.OR_OPEN == 1) @enumToInt(DEVPROP_OPERATOR.OR_OPEN) else 0)
-            | (if (o.OR_CLOSE == 1) @enumToInt(DEVPROP_OPERATOR.OR_CLOSE) else 0)
-            | (if (o.NOT_OPEN == 1) @enumToInt(DEVPROP_OPERATOR.NOT_OPEN) else 0)
-            | (if (o.NOT_CLOSE == 1) @enumToInt(DEVPROP_OPERATOR.NOT_CLOSE) else 0)
-            | (if (o.ARRAY_CONTAINS == 1) @enumToInt(DEVPROP_OPERATOR.ARRAY_CONTAINS) else 0)
-            | (if (o.MASK_EVAL == 1) @enumToInt(DEVPROP_OPERATOR.MASK_EVAL) else 0)
-            | (if (o.MASK_LIST == 1) @enumToInt(DEVPROP_OPERATOR.MASK_LIST) else 0)
-            | (if (o.MASK_MODIFIER == 1) @enumToInt(DEVPROP_OPERATOR.MASK_MODIFIER) else 0)
-            | (if (o.MASK_NOT_LOGICAL == 1) @enumToInt(DEVPROP_OPERATOR.MASK_NOT_LOGICAL) else 0)
-            | (if (o.MASK_LOGICAL == 1) @enumToInt(DEVPROP_OPERATOR.MASK_LOGICAL) else 0)
-            | (if (o.MASK_ARRAY == 1) @enumToInt(DEVPROP_OPERATOR.MASK_ARRAY) else 0)
-        );
+        return @enumFromInt(DEVPROP_OPERATOR, (if (o.MODIFIER_NOT == 1) @intFromEnum(DEVPROP_OPERATOR.MODIFIER_NOT) else 0) | (if (o.MODIFIER_IGNORE_CASE == 1) @intFromEnum(DEVPROP_OPERATOR.MODIFIER_IGNORE_CASE) else 0) | (if (o.NONE == 1) @intFromEnum(DEVPROP_OPERATOR.NONE) else 0) | (if (o.EXISTS == 1) @intFromEnum(DEVPROP_OPERATOR.EXISTS) else 0) | (if (o.NOT_EXISTS == 1) @intFromEnum(DEVPROP_OPERATOR.NOT_EXISTS) else 0) | (if (o.EQUALS == 1) @intFromEnum(DEVPROP_OPERATOR.EQUALS) else 0) | (if (o.NOT_EQUALS == 1) @intFromEnum(DEVPROP_OPERATOR.NOT_EQUALS) else 0) | (if (o.GREATER_THAN == 1) @intFromEnum(DEVPROP_OPERATOR.GREATER_THAN) else 0) | (if (o.LESS_THAN == 1) @intFromEnum(DEVPROP_OPERATOR.LESS_THAN) else 0) | (if (o.GREATER_THAN_EQUALS == 1) @intFromEnum(DEVPROP_OPERATOR.GREATER_THAN_EQUALS) else 0) | (if (o.LESS_THAN_EQUALS == 1) @intFromEnum(DEVPROP_OPERATOR.LESS_THAN_EQUALS) else 0) | (if (o.EQUALS_IGNORE_CASE == 1) @intFromEnum(DEVPROP_OPERATOR.EQUALS_IGNORE_CASE) else 0) | (if (o.NOT_EQUALS_IGNORE_CASE == 1) @intFromEnum(DEVPROP_OPERATOR.NOT_EQUALS_IGNORE_CASE) else 0) | (if (o.BITWISE_AND == 1) @intFromEnum(DEVPROP_OPERATOR.BITWISE_AND) else 0) | (if (o.BITWISE_OR == 1) @intFromEnum(DEVPROP_OPERATOR.BITWISE_OR) else 0) | (if (o.BEGINS_WITH == 1) @intFromEnum(DEVPROP_OPERATOR.BEGINS_WITH) else 0) | (if (o.ENDS_WITH == 1) @intFromEnum(DEVPROP_OPERATOR.ENDS_WITH) else 0) | (if (o.CONTAINS == 1) @intFromEnum(DEVPROP_OPERATOR.CONTAINS) else 0) | (if (o.BEGINS_WITH_IGNORE_CASE == 1) @intFromEnum(DEVPROP_OPERATOR.BEGINS_WITH_IGNORE_CASE) else 0) | (if (o.ENDS_WITH_IGNORE_CASE == 1) @intFromEnum(DEVPROP_OPERATOR.ENDS_WITH_IGNORE_CASE) else 0) | (if (o.CONTAINS_IGNORE_CASE == 1) @intFromEnum(DEVPROP_OPERATOR.CONTAINS_IGNORE_CASE) else 0) | (if (o.LIST_CONTAINS == 1) @intFromEnum(DEVPROP_OPERATOR.LIST_CONTAINS) else 0) | (if (o.LIST_ELEMENT_BEGINS_WITH == 1) @intFromEnum(DEVPROP_OPERATOR.LIST_ELEMENT_BEGINS_WITH) else 0) | (if (o.LIST_ELEMENT_ENDS_WITH == 1) @intFromEnum(DEVPROP_OPERATOR.LIST_ELEMENT_ENDS_WITH) else 0) | (if (o.LIST_ELEMENT_CONTAINS == 1) @intFromEnum(DEVPROP_OPERATOR.LIST_ELEMENT_CONTAINS) else 0) | (if (o.LIST_CONTAINS_IGNORE_CASE == 1) @intFromEnum(DEVPROP_OPERATOR.LIST_CONTAINS_IGNORE_CASE) else 0) | (if (o.LIST_ELEMENT_BEGINS_WITH_IGNORE_CASE == 1) @intFromEnum(DEVPROP_OPERATOR.LIST_ELEMENT_BEGINS_WITH_IGNORE_CASE) else 0) | (if (o.LIST_ELEMENT_ENDS_WITH_IGNORE_CASE == 1) @intFromEnum(DEVPROP_OPERATOR.LIST_ELEMENT_ENDS_WITH_IGNORE_CASE) else 0) | (if (o.LIST_ELEMENT_CONTAINS_IGNORE_CASE == 1) @intFromEnum(DEVPROP_OPERATOR.LIST_ELEMENT_CONTAINS_IGNORE_CASE) else 0) | (if (o.AND_OPEN == 1) @intFromEnum(DEVPROP_OPERATOR.AND_OPEN) else 0) | (if (o.AND_CLOSE == 1) @intFromEnum(DEVPROP_OPERATOR.AND_CLOSE) else 0) | (if (o.OR_OPEN == 1) @intFromEnum(DEVPROP_OPERATOR.OR_OPEN) else 0) | (if (o.OR_CLOSE == 1) @intFromEnum(DEVPROP_OPERATOR.OR_CLOSE) else 0) | (if (o.NOT_OPEN == 1) @intFromEnum(DEVPROP_OPERATOR.NOT_OPEN) else 0) | (if (o.NOT_CLOSE == 1) @intFromEnum(DEVPROP_OPERATOR.NOT_CLOSE) else 0) | (if (o.ARRAY_CONTAINS == 1) @intFromEnum(DEVPROP_OPERATOR.ARRAY_CONTAINS) else 0) | (if (o.MASK_EVAL == 1) @intFromEnum(DEVPROP_OPERATOR.MASK_EVAL) else 0) | (if (o.MASK_LIST == 1) @intFromEnum(DEVPROP_OPERATOR.MASK_LIST) else 0) | (if (o.MASK_MODIFIER == 1) @intFromEnum(DEVPROP_OPERATOR.MASK_MODIFIER) else 0) | (if (o.MASK_NOT_LOGICAL == 1) @intFromEnum(DEVPROP_OPERATOR.MASK_NOT_LOGICAL) else 0) | (if (o.MASK_LOGICAL == 1) @intFromEnum(DEVPROP_OPERATOR.MASK_LOGICAL) else 0) | (if (o.MASK_ARRAY == 1) @intFromEnum(DEVPROP_OPERATOR.MASK_ARRAY) else 0));
     }
 };
 pub const DEVPROP_OPERATOR_MODIFIER_NOT = DEVPROP_OPERATOR.MODIFIER_NOT;
@@ -278,18 +235,17 @@ pub const HDEVQUERY__ = extern struct {
 };
 
 pub const PDEV_QUERY_RESULT_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hDevQuery: ?*HDEVQUERY__,
         pContext: ?*anyopaque,
         pActionData: ?*const DEV_QUERY_RESULT_ACTION_DATA,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         hDevQuery: ?*HDEVQUERY__,
         pContext: ?*anyopaque,
         pActionData: ?*const DEV_QUERY_RESULT_ACTION_DATA,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
-
+};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (14)
@@ -444,19 +400,14 @@ pub extern "api-ms-win-devices-query-l1-1-0" fn DevFindProperty(
     pProperties: ?[*]const DEVPROPERTY,
 ) callconv(@import("std").os.windows.WINAPI) ?*DEVPROPERTY;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
@@ -470,11 +421,11 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PDEV_QUERY_RESULT_CALLBACK")) { _ = PDEV_QUERY_RESULT_CALLBACK; }
+    if (@hasDecl(@This(), "PDEV_QUERY_RESULT_CALLBACK")) {
+        _ = PDEV_QUERY_RESULT_CALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

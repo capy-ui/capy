@@ -31,16 +31,7 @@ pub const FILE_MAP = enum(u32) {
         TARGETS_INVALID: u1 = 0,
         LARGE_PAGES: u1 = 0,
     }) FILE_MAP {
-        return @intToEnum(FILE_MAP,
-              (if (o.WRITE == 1) @enumToInt(FILE_MAP.WRITE) else 0)
-            | (if (o.READ == 1) @enumToInt(FILE_MAP.READ) else 0)
-            | (if (o.ALL_ACCESS == 1) @enumToInt(FILE_MAP.ALL_ACCESS) else 0)
-            | (if (o.EXECUTE == 1) @enumToInt(FILE_MAP.EXECUTE) else 0)
-            | (if (o.COPY == 1) @enumToInt(FILE_MAP.COPY) else 0)
-            | (if (o.RESERVE == 1) @enumToInt(FILE_MAP.RESERVE) else 0)
-            | (if (o.TARGETS_INVALID == 1) @enumToInt(FILE_MAP.TARGETS_INVALID) else 0)
-            | (if (o.LARGE_PAGES == 1) @enumToInt(FILE_MAP.LARGE_PAGES) else 0)
-        );
+        return @enumFromInt(FILE_MAP, (if (o.WRITE == 1) @intFromEnum(FILE_MAP.WRITE) else 0) | (if (o.READ == 1) @intFromEnum(FILE_MAP.READ) else 0) | (if (o.ALL_ACCESS == 1) @intFromEnum(FILE_MAP.ALL_ACCESS) else 0) | (if (o.EXECUTE == 1) @intFromEnum(FILE_MAP.EXECUTE) else 0) | (if (o.COPY == 1) @intFromEnum(FILE_MAP.COPY) else 0) | (if (o.RESERVE == 1) @intFromEnum(FILE_MAP.RESERVE) else 0) | (if (o.TARGETS_INVALID == 1) @intFromEnum(FILE_MAP.TARGETS_INVALID) else 0) | (if (o.LARGE_PAGES == 1) @intFromEnum(FILE_MAP.LARGE_PAGES) else 0));
     }
 };
 pub const FILE_MAP_WRITE = FILE_MAP.WRITE;
@@ -90,25 +81,7 @@ pub const HEAP_FLAGS = enum(u32) {
         CREATE_SEGMENT_HEAP: u1 = 0,
         CREATE_HARDENED: u1 = 0,
     }) HEAP_FLAGS {
-        return @intToEnum(HEAP_FLAGS,
-              (if (o.NONE == 1) @enumToInt(HEAP_FLAGS.NONE) else 0)
-            | (if (o.NO_SERIALIZE == 1) @enumToInt(HEAP_FLAGS.NO_SERIALIZE) else 0)
-            | (if (o.GROWABLE == 1) @enumToInt(HEAP_FLAGS.GROWABLE) else 0)
-            | (if (o.GENERATE_EXCEPTIONS == 1) @enumToInt(HEAP_FLAGS.GENERATE_EXCEPTIONS) else 0)
-            | (if (o.ZERO_MEMORY == 1) @enumToInt(HEAP_FLAGS.ZERO_MEMORY) else 0)
-            | (if (o.REALLOC_IN_PLACE_ONLY == 1) @enumToInt(HEAP_FLAGS.REALLOC_IN_PLACE_ONLY) else 0)
-            | (if (o.TAIL_CHECKING_ENABLED == 1) @enumToInt(HEAP_FLAGS.TAIL_CHECKING_ENABLED) else 0)
-            | (if (o.FREE_CHECKING_ENABLED == 1) @enumToInt(HEAP_FLAGS.FREE_CHECKING_ENABLED) else 0)
-            | (if (o.DISABLE_COALESCE_ON_FREE == 1) @enumToInt(HEAP_FLAGS.DISABLE_COALESCE_ON_FREE) else 0)
-            | (if (o.CREATE_ALIGN_16 == 1) @enumToInt(HEAP_FLAGS.CREATE_ALIGN_16) else 0)
-            | (if (o.CREATE_ENABLE_TRACING == 1) @enumToInt(HEAP_FLAGS.CREATE_ENABLE_TRACING) else 0)
-            | (if (o.CREATE_ENABLE_EXECUTE == 1) @enumToInt(HEAP_FLAGS.CREATE_ENABLE_EXECUTE) else 0)
-            | (if (o.MAXIMUM_TAG == 1) @enumToInt(HEAP_FLAGS.MAXIMUM_TAG) else 0)
-            | (if (o.PSEUDO_TAG_FLAG == 1) @enumToInt(HEAP_FLAGS.PSEUDO_TAG_FLAG) else 0)
-            | (if (o.TAG_SHIFT == 1) @enumToInt(HEAP_FLAGS.TAG_SHIFT) else 0)
-            | (if (o.CREATE_SEGMENT_HEAP == 1) @enumToInt(HEAP_FLAGS.CREATE_SEGMENT_HEAP) else 0)
-            | (if (o.CREATE_HARDENED == 1) @enumToInt(HEAP_FLAGS.CREATE_HARDENED) else 0)
-        );
+        return @enumFromInt(HEAP_FLAGS, (if (o.NONE == 1) @intFromEnum(HEAP_FLAGS.NONE) else 0) | (if (o.NO_SERIALIZE == 1) @intFromEnum(HEAP_FLAGS.NO_SERIALIZE) else 0) | (if (o.GROWABLE == 1) @intFromEnum(HEAP_FLAGS.GROWABLE) else 0) | (if (o.GENERATE_EXCEPTIONS == 1) @intFromEnum(HEAP_FLAGS.GENERATE_EXCEPTIONS) else 0) | (if (o.ZERO_MEMORY == 1) @intFromEnum(HEAP_FLAGS.ZERO_MEMORY) else 0) | (if (o.REALLOC_IN_PLACE_ONLY == 1) @intFromEnum(HEAP_FLAGS.REALLOC_IN_PLACE_ONLY) else 0) | (if (o.TAIL_CHECKING_ENABLED == 1) @intFromEnum(HEAP_FLAGS.TAIL_CHECKING_ENABLED) else 0) | (if (o.FREE_CHECKING_ENABLED == 1) @intFromEnum(HEAP_FLAGS.FREE_CHECKING_ENABLED) else 0) | (if (o.DISABLE_COALESCE_ON_FREE == 1) @intFromEnum(HEAP_FLAGS.DISABLE_COALESCE_ON_FREE) else 0) | (if (o.CREATE_ALIGN_16 == 1) @intFromEnum(HEAP_FLAGS.CREATE_ALIGN_16) else 0) | (if (o.CREATE_ENABLE_TRACING == 1) @intFromEnum(HEAP_FLAGS.CREATE_ENABLE_TRACING) else 0) | (if (o.CREATE_ENABLE_EXECUTE == 1) @intFromEnum(HEAP_FLAGS.CREATE_ENABLE_EXECUTE) else 0) | (if (o.MAXIMUM_TAG == 1) @intFromEnum(HEAP_FLAGS.MAXIMUM_TAG) else 0) | (if (o.PSEUDO_TAG_FLAG == 1) @intFromEnum(HEAP_FLAGS.PSEUDO_TAG_FLAG) else 0) | (if (o.TAG_SHIFT == 1) @intFromEnum(HEAP_FLAGS.TAG_SHIFT) else 0) | (if (o.CREATE_SEGMENT_HEAP == 1) @intFromEnum(HEAP_FLAGS.CREATE_SEGMENT_HEAP) else 0) | (if (o.CREATE_HARDENED == 1) @intFromEnum(HEAP_FLAGS.CREATE_HARDENED) else 0));
     }
 };
 pub const HEAP_NONE = HEAP_FLAGS.NONE;
@@ -204,40 +177,7 @@ pub const PAGE_PROTECTION_FLAGS = enum(u32) {
         SEC_COMMIT: u1 = 0,
         SEC_IMAGE_NO_EXECUTE: u1 = 0,
     }) PAGE_PROTECTION_FLAGS {
-        return @intToEnum(PAGE_PROTECTION_FLAGS,
-              (if (o.PAGE_NOACCESS == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_NOACCESS) else 0)
-            | (if (o.PAGE_READONLY == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_READONLY) else 0)
-            | (if (o.PAGE_READWRITE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_READWRITE) else 0)
-            | (if (o.PAGE_WRITECOPY == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_WRITECOPY) else 0)
-            | (if (o.PAGE_EXECUTE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_EXECUTE) else 0)
-            | (if (o.PAGE_EXECUTE_READ == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_EXECUTE_READ) else 0)
-            | (if (o.PAGE_EXECUTE_READWRITE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_EXECUTE_READWRITE) else 0)
-            | (if (o.PAGE_EXECUTE_WRITECOPY == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_EXECUTE_WRITECOPY) else 0)
-            | (if (o.PAGE_GUARD == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_GUARD) else 0)
-            | (if (o.PAGE_NOCACHE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_NOCACHE) else 0)
-            | (if (o.PAGE_WRITECOMBINE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_WRITECOMBINE) else 0)
-            | (if (o.PAGE_GRAPHICS_NOACCESS == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_NOACCESS) else 0)
-            | (if (o.PAGE_GRAPHICS_READONLY == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_READONLY) else 0)
-            | (if (o.PAGE_GRAPHICS_READWRITE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_READWRITE) else 0)
-            | (if (o.PAGE_GRAPHICS_EXECUTE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_EXECUTE) else 0)
-            | (if (o.PAGE_GRAPHICS_EXECUTE_READ == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_EXECUTE_READ) else 0)
-            | (if (o.PAGE_GRAPHICS_EXECUTE_READWRITE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_EXECUTE_READWRITE) else 0)
-            | (if (o.PAGE_GRAPHICS_COHERENT == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_COHERENT) else 0)
-            | (if (o.PAGE_GRAPHICS_NOCACHE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_NOCACHE) else 0)
-            | (if (o.PAGE_ENCLAVE_THREAD_CONTROL == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_ENCLAVE_THREAD_CONTROL) else 0)
-            | (if (o.PAGE_TARGETS_NO_UPDATE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_TARGETS_NO_UPDATE) else 0)
-            | (if (o.PAGE_ENCLAVE_UNVALIDATED == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_ENCLAVE_UNVALIDATED) else 0)
-            | (if (o.PAGE_ENCLAVE_MASK == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_ENCLAVE_MASK) else 0)
-            | (if (o.PAGE_ENCLAVE_SS_FIRST == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_ENCLAVE_SS_FIRST) else 0)
-            | (if (o.PAGE_ENCLAVE_SS_REST == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_ENCLAVE_SS_REST) else 0)
-            | (if (o.SEC_64K_PAGES == 1) @enumToInt(PAGE_PROTECTION_FLAGS.SEC_64K_PAGES) else 0)
-            | (if (o.SEC_FILE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.SEC_FILE) else 0)
-            | (if (o.SEC_IMAGE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.SEC_IMAGE) else 0)
-            | (if (o.SEC_PROTECTED_IMAGE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.SEC_PROTECTED_IMAGE) else 0)
-            | (if (o.SEC_RESERVE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.SEC_RESERVE) else 0)
-            | (if (o.SEC_COMMIT == 1) @enumToInt(PAGE_PROTECTION_FLAGS.SEC_COMMIT) else 0)
-            | (if (o.SEC_IMAGE_NO_EXECUTE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.SEC_IMAGE_NO_EXECUTE) else 0)
-        );
+        return @enumFromInt(PAGE_PROTECTION_FLAGS, (if (o.PAGE_NOACCESS == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_NOACCESS) else 0) | (if (o.PAGE_READONLY == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_READONLY) else 0) | (if (o.PAGE_READWRITE == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_READWRITE) else 0) | (if (o.PAGE_WRITECOPY == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_WRITECOPY) else 0) | (if (o.PAGE_EXECUTE == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_EXECUTE) else 0) | (if (o.PAGE_EXECUTE_READ == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_EXECUTE_READ) else 0) | (if (o.PAGE_EXECUTE_READWRITE == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_EXECUTE_READWRITE) else 0) | (if (o.PAGE_EXECUTE_WRITECOPY == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_EXECUTE_WRITECOPY) else 0) | (if (o.PAGE_GUARD == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_GUARD) else 0) | (if (o.PAGE_NOCACHE == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_NOCACHE) else 0) | (if (o.PAGE_WRITECOMBINE == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_WRITECOMBINE) else 0) | (if (o.PAGE_GRAPHICS_NOACCESS == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_NOACCESS) else 0) | (if (o.PAGE_GRAPHICS_READONLY == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_READONLY) else 0) | (if (o.PAGE_GRAPHICS_READWRITE == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_READWRITE) else 0) | (if (o.PAGE_GRAPHICS_EXECUTE == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_EXECUTE) else 0) | (if (o.PAGE_GRAPHICS_EXECUTE_READ == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_EXECUTE_READ) else 0) | (if (o.PAGE_GRAPHICS_EXECUTE_READWRITE == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_EXECUTE_READWRITE) else 0) | (if (o.PAGE_GRAPHICS_COHERENT == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_COHERENT) else 0) | (if (o.PAGE_GRAPHICS_NOCACHE == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_NOCACHE) else 0) | (if (o.PAGE_ENCLAVE_THREAD_CONTROL == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_ENCLAVE_THREAD_CONTROL) else 0) | (if (o.PAGE_TARGETS_NO_UPDATE == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_TARGETS_NO_UPDATE) else 0) | (if (o.PAGE_ENCLAVE_UNVALIDATED == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_ENCLAVE_UNVALIDATED) else 0) | (if (o.PAGE_ENCLAVE_MASK == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_ENCLAVE_MASK) else 0) | (if (o.PAGE_ENCLAVE_SS_FIRST == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_ENCLAVE_SS_FIRST) else 0) | (if (o.PAGE_ENCLAVE_SS_REST == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.PAGE_ENCLAVE_SS_REST) else 0) | (if (o.SEC_64K_PAGES == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.SEC_64K_PAGES) else 0) | (if (o.SEC_FILE == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.SEC_FILE) else 0) | (if (o.SEC_IMAGE == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.SEC_IMAGE) else 0) | (if (o.SEC_PROTECTED_IMAGE == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.SEC_PROTECTED_IMAGE) else 0) | (if (o.SEC_RESERVE == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.SEC_RESERVE) else 0) | (if (o.SEC_COMMIT == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.SEC_COMMIT) else 0) | (if (o.SEC_IMAGE_NO_EXECUTE == 1) @intFromEnum(PAGE_PROTECTION_FLAGS.SEC_IMAGE_NO_EXECUTE) else 0));
     }
 };
 pub const PAGE_NOACCESS = PAGE_PROTECTION_FLAGS.PAGE_NOACCESS;
@@ -316,16 +256,7 @@ pub const VIRTUAL_ALLOCATION_TYPE = enum(u32) {
         RESERVE_PLACEHOLDER: u1 = 0,
         FREE: u1 = 0,
     }) VIRTUAL_ALLOCATION_TYPE {
-        return @intToEnum(VIRTUAL_ALLOCATION_TYPE,
-              (if (o.COMMIT == 1) @enumToInt(VIRTUAL_ALLOCATION_TYPE.COMMIT) else 0)
-            | (if (o.RESERVE == 1) @enumToInt(VIRTUAL_ALLOCATION_TYPE.RESERVE) else 0)
-            | (if (o.RESET == 1) @enumToInt(VIRTUAL_ALLOCATION_TYPE.RESET) else 0)
-            | (if (o.RESET_UNDO == 1) @enumToInt(VIRTUAL_ALLOCATION_TYPE.RESET_UNDO) else 0)
-            | (if (o.REPLACE_PLACEHOLDER == 1) @enumToInt(VIRTUAL_ALLOCATION_TYPE.REPLACE_PLACEHOLDER) else 0)
-            | (if (o.LARGE_PAGES == 1) @enumToInt(VIRTUAL_ALLOCATION_TYPE.LARGE_PAGES) else 0)
-            | (if (o.RESERVE_PLACEHOLDER == 1) @enumToInt(VIRTUAL_ALLOCATION_TYPE.RESERVE_PLACEHOLDER) else 0)
-            | (if (o.FREE == 1) @enumToInt(VIRTUAL_ALLOCATION_TYPE.FREE) else 0)
-        );
+        return @enumFromInt(VIRTUAL_ALLOCATION_TYPE, (if (o.COMMIT == 1) @intFromEnum(VIRTUAL_ALLOCATION_TYPE.COMMIT) else 0) | (if (o.RESERVE == 1) @intFromEnum(VIRTUAL_ALLOCATION_TYPE.RESERVE) else 0) | (if (o.RESET == 1) @intFromEnum(VIRTUAL_ALLOCATION_TYPE.RESET) else 0) | (if (o.RESET_UNDO == 1) @intFromEnum(VIRTUAL_ALLOCATION_TYPE.RESET_UNDO) else 0) | (if (o.REPLACE_PLACEHOLDER == 1) @intFromEnum(VIRTUAL_ALLOCATION_TYPE.REPLACE_PLACEHOLDER) else 0) | (if (o.LARGE_PAGES == 1) @intFromEnum(VIRTUAL_ALLOCATION_TYPE.LARGE_PAGES) else 0) | (if (o.RESERVE_PLACEHOLDER == 1) @intFromEnum(VIRTUAL_ALLOCATION_TYPE.RESERVE_PLACEHOLDER) else 0) | (if (o.FREE == 1) @intFromEnum(VIRTUAL_ALLOCATION_TYPE.FREE) else 0));
     }
 };
 pub const MEM_COMMIT = VIRTUAL_ALLOCATION_TYPE.COMMIT;
@@ -352,12 +283,7 @@ pub const LOCAL_ALLOC_FLAGS = enum(u32) {
         LMEM_MOVEABLE: u1 = 0,
         LMEM_ZEROINIT: u1 = 0,
     }) LOCAL_ALLOC_FLAGS {
-        return @intToEnum(LOCAL_ALLOC_FLAGS,
-              (if (o.LHND == 1) @enumToInt(LOCAL_ALLOC_FLAGS.LHND) else 0)
-            | (if (o.LMEM_FIXED == 1) @enumToInt(LOCAL_ALLOC_FLAGS.LMEM_FIXED) else 0)
-            | (if (o.LMEM_MOVEABLE == 1) @enumToInt(LOCAL_ALLOC_FLAGS.LMEM_MOVEABLE) else 0)
-            | (if (o.LMEM_ZEROINIT == 1) @enumToInt(LOCAL_ALLOC_FLAGS.LMEM_ZEROINIT) else 0)
-        );
+        return @enumFromInt(LOCAL_ALLOC_FLAGS, (if (o.LHND == 1) @intFromEnum(LOCAL_ALLOC_FLAGS.LHND) else 0) | (if (o.LMEM_FIXED == 1) @intFromEnum(LOCAL_ALLOC_FLAGS.LMEM_FIXED) else 0) | (if (o.LMEM_MOVEABLE == 1) @intFromEnum(LOCAL_ALLOC_FLAGS.LMEM_MOVEABLE) else 0) | (if (o.LMEM_ZEROINIT == 1) @intFromEnum(LOCAL_ALLOC_FLAGS.LMEM_ZEROINIT) else 0));
     }
 };
 pub const LHND = LOCAL_ALLOC_FLAGS.LHND;
@@ -381,12 +307,7 @@ pub const GLOBAL_ALLOC_FLAGS = enum(u32) {
         MEM_MOVEABLE: u1 = 0,
         MEM_ZEROINIT: u1 = 0,
     }) GLOBAL_ALLOC_FLAGS {
-        return @intToEnum(GLOBAL_ALLOC_FLAGS,
-              (if (o.HND == 1) @enumToInt(GLOBAL_ALLOC_FLAGS.HND) else 0)
-            | (if (o.MEM_FIXED == 1) @enumToInt(GLOBAL_ALLOC_FLAGS.MEM_FIXED) else 0)
-            | (if (o.MEM_MOVEABLE == 1) @enumToInt(GLOBAL_ALLOC_FLAGS.MEM_MOVEABLE) else 0)
-            | (if (o.MEM_ZEROINIT == 1) @enumToInt(GLOBAL_ALLOC_FLAGS.MEM_ZEROINIT) else 0)
-        );
+        return @enumFromInt(GLOBAL_ALLOC_FLAGS, (if (o.HND == 1) @intFromEnum(GLOBAL_ALLOC_FLAGS.HND) else 0) | (if (o.MEM_FIXED == 1) @intFromEnum(GLOBAL_ALLOC_FLAGS.MEM_FIXED) else 0) | (if (o.MEM_MOVEABLE == 1) @intFromEnum(GLOBAL_ALLOC_FLAGS.MEM_MOVEABLE) else 0) | (if (o.MEM_ZEROINIT == 1) @intFromEnum(GLOBAL_ALLOC_FLAGS.MEM_ZEROINIT) else 0));
     }
 };
 pub const GHND = GLOBAL_ALLOC_FLAGS.HND;
@@ -405,11 +326,7 @@ pub const PAGE_TYPE = enum(u32) {
         MAPPED: u1 = 0,
         IMAGE: u1 = 0,
     }) PAGE_TYPE {
-        return @intToEnum(PAGE_TYPE,
-              (if (o.PRIVATE == 1) @enumToInt(PAGE_TYPE.PRIVATE) else 0)
-            | (if (o.MAPPED == 1) @enumToInt(PAGE_TYPE.MAPPED) else 0)
-            | (if (o.IMAGE == 1) @enumToInt(PAGE_TYPE.IMAGE) else 0)
-        );
+        return @enumFromInt(PAGE_TYPE, (if (o.PRIVATE == 1) @intFromEnum(PAGE_TYPE.PRIVATE) else 0) | (if (o.MAPPED == 1) @intFromEnum(PAGE_TYPE.MAPPED) else 0) | (if (o.IMAGE == 1) @intFromEnum(PAGE_TYPE.IMAGE) else 0));
     }
 };
 pub const MEM_PRIVATE = PAGE_TYPE.PRIVATE;
@@ -417,7 +334,7 @@ pub const MEM_MAPPED = PAGE_TYPE.MAPPED;
 pub const MEM_IMAGE = PAGE_TYPE.IMAGE;
 
 // TODO: this type has a FreeFunc 'HeapDestroy', what can Zig do with this information?
-pub const HeapHandle = *opaque{};
+pub const HeapHandle = *opaque {};
 
 pub const PROCESS_HEAP_ENTRY = extern struct {
     lpData: ?*anyopaque,
@@ -460,11 +377,9 @@ pub const WIN32_MEMORY_RANGE_ENTRY = extern struct {
 };
 
 pub const PBAD_MEMORY_CALLBACK_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 pub const OFFER_PRIORITY = enum(i32) {
     VeryLow = 1,
@@ -521,7 +436,6 @@ pub const WIN32_MEMORY_PARTITION_INFORMATION = extern struct {
     Reserved2: u64,
     PartitionId: u32,
 };
-
 
 pub const MEMORY_BASIC_INFORMATION32 = extern struct {
     BaseAddress: u32,
@@ -594,20 +508,19 @@ pub const HeapOptimizeResources = HEAP_INFORMATION_CLASS.OptimizeResources;
 pub const HeapTag = HEAP_INFORMATION_CLASS.Tag;
 
 pub const PSECURE_MEMORY_CACHE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         // TODO: what to do with BytesParamIndex 1?
         Addr: ?*anyopaque,
         Range: usize,
     ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
-    else => *const fn(
+    else => *const fn (
         // TODO: what to do with BytesParamIndex 1?
         Addr: ?*anyopaque,
         Range: usize,
     ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
-} ;
+};
 
-
-pub const MEMORY_BASIC_INFORMATION = switch(@import("../zig.zig").arch) {
+pub const MEMORY_BASIC_INFORMATION = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         BaseAddress: ?*anyopaque,
         AllocationBase: ?*anyopaque,
@@ -674,8 +587,7 @@ pub extern "kernel32" fn HeapSize(
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetProcessHeap(
-) callconv(@import("std").os.windows.WINAPI) ?HeapHandle;
+pub extern "kernel32" fn GetProcessHeap() callconv(@import("std").os.windows.WINAPI) ?HeapHandle;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn HeapCompact(
@@ -851,8 +763,7 @@ pub extern "kernel32" fn UnmapViewOfFile(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetLargePageMinimum(
-) callconv(@import("std").os.windows.WINAPI) usize;
+pub extern "kernel32" fn GetLargePageMinimum() callconv(@import("std").os.windows.WINAPI) usize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn GetProcessWorkingSetSizeEx(
@@ -1395,7 +1306,6 @@ pub extern "kernel32" fn RemoveSecureMemoryCacheCallback(
     pfnCallBack: ?PSECURE_MEMORY_CACHE_CALLBACK,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (4)
 //--------------------------------------------------------------------------------
@@ -1414,10 +1324,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const IsBadStringPtr = thismodule.IsBadStringPtrW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const CreateFileMapping = *opaque{};
-        pub const OpenFileMapping = *opaque{};
-        pub const CreateFileMappingNuma = *opaque{};
-        pub const IsBadStringPtr = *opaque{};
+        pub const CreateFileMapping = *opaque {};
+        pub const OpenFileMapping = *opaque {};
+        pub const CreateFileMappingNuma = *opaque {};
+        pub const IsBadStringPtr = *opaque {};
     } else struct {
         pub const CreateFileMapping = @compileError("'CreateFileMapping' requires that UNICODE be set to true or false in the root module");
         pub const OpenFileMapping = @compileError("'OpenFileMapping' requires that UNICODE be set to true or false in the root module");
@@ -1438,12 +1348,14 @@ const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PBAD_MEMORY_CALLBACK_ROUTINE")) { _ = PBAD_MEMORY_CALLBACK_ROUTINE; }
-    if (@hasDecl(@This(), "PSECURE_MEMORY_CACHE_CALLBACK")) { _ = PSECURE_MEMORY_CACHE_CALLBACK; }
+    if (@hasDecl(@This(), "PBAD_MEMORY_CALLBACK_ROUTINE")) {
+        _ = PBAD_MEMORY_CALLBACK_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PSECURE_MEMORY_CACHE_CALLBACK")) {
+        _ = PSECURE_MEMORY_CACHE_CALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

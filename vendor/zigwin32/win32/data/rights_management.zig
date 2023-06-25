@@ -199,20 +199,19 @@ pub const DRM_DISTRIBUTION_POINT_PUBLISHING = DRM_DISTRIBUTION_POINT_INFO.PUBLIS
 pub const DRM_DISTRIBUTION_POINT_REFERRAL_INFO = DRM_DISTRIBUTION_POINT_INFO.REFERRAL_INFO;
 
 pub const DRMCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: DRM_STATUS_MSG,
         param1: HRESULT,
         param2: ?*anyopaque,
         param3: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         param0: DRM_STATUS_MSG,
         param1: HRESULT,
         param2: ?*anyopaque,
         param3: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
-
+};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (84)
@@ -839,8 +838,7 @@ pub extern "msdrm" fn DRMGetIntervalTime(
     pcDays: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "msdrm" fn DRMRepair(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub extern "msdrm" fn DRMRepair() callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "msdrm" fn DRMRegisterProtectedWindow(
@@ -865,19 +863,14 @@ pub extern "msdrm" fn DRMAcquireIssuanceLicenseTemplate(
     pvContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
@@ -891,11 +884,11 @@ const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "DRMCALLBACK")) { _ = DRMCALLBACK; }
+    if (@hasDecl(@This(), "DRMCALLBACK")) {
+        _ = DRMCALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

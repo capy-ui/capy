@@ -452,10 +452,10 @@ fn callPaletteProcessors(options: *const ReaderOptions, palette: []color.Rgba32)
 
 fn defilter(current_row: []u8, prev_row: []u8, filter_stride: u8) Image.ReadError!void {
     const filter_byte = current_row[filter_stride - 1];
-    if (filter_byte > @enumToInt(png.FilterType.paeth)) {
+    if (filter_byte > @intFromEnum(png.FilterType.paeth)) {
         return Image.ReadError.InvalidData;
     }
-    const filter = @intToEnum(png.FilterType, filter_byte);
+    const filter = @enumFromInt(png.FilterType, filter_byte);
     current_row[filter_stride - 1] = 0;
 
     var x: u32 = filter_stride;
@@ -950,7 +950,7 @@ test "testDefilter" {
 
 fn testFilter(filter_type: png.FilterType, current_row: []u8, prev_row: []u8, filter_stride: u8, expected: []const u8) !void {
     const expectEqualSlices = std.testing.expectEqualSlices;
-    current_row[filter_stride - 1] = @enumToInt(filter_type);
+    current_row[filter_stride - 1] = @intFromEnum(filter_type);
     try defilter(current_row, prev_row, filter_stride);
     try expectEqualSlices(u8, expected, current_row);
 }

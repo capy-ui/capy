@@ -253,15 +253,7 @@ pub const DWM_SHOWCONTACT = enum(u32) {
         NONE: u1 = 0,
         ALL: u1 = 0,
     }) DWM_SHOWCONTACT {
-        return @intToEnum(DWM_SHOWCONTACT,
-              (if (o.DOWN == 1) @enumToInt(DWM_SHOWCONTACT.DOWN) else 0)
-            | (if (o.UP == 1) @enumToInt(DWM_SHOWCONTACT.UP) else 0)
-            | (if (o.DRAG == 1) @enumToInt(DWM_SHOWCONTACT.DRAG) else 0)
-            | (if (o.HOLD == 1) @enumToInt(DWM_SHOWCONTACT.HOLD) else 0)
-            | (if (o.PENBARREL == 1) @enumToInt(DWM_SHOWCONTACT.PENBARREL) else 0)
-            | (if (o.NONE == 1) @enumToInt(DWM_SHOWCONTACT.NONE) else 0)
-            | (if (o.ALL == 1) @enumToInt(DWM_SHOWCONTACT.ALL) else 0)
-        );
+        return @enumFromInt(DWM_SHOWCONTACT, (if (o.DOWN == 1) @intFromEnum(DWM_SHOWCONTACT.DOWN) else 0) | (if (o.UP == 1) @intFromEnum(DWM_SHOWCONTACT.UP) else 0) | (if (o.DRAG == 1) @intFromEnum(DWM_SHOWCONTACT.DRAG) else 0) | (if (o.HOLD == 1) @intFromEnum(DWM_SHOWCONTACT.HOLD) else 0) | (if (o.PENBARREL == 1) @intFromEnum(DWM_SHOWCONTACT.PENBARREL) else 0) | (if (o.NONE == 1) @intFromEnum(DWM_SHOWCONTACT.NONE) else 0) | (if (o.ALL == 1) @intFromEnum(DWM_SHOWCONTACT.ALL) else 0));
     }
 };
 pub const DWMSC_DOWN = DWM_SHOWCONTACT.DOWN;
@@ -298,19 +290,7 @@ pub const DWM_TAB_WINDOW_REQUIREMENTS = enum(u32) {
         GROUP_POLICY: u1 = 0,
         APP_COMPAT: u1 = 0,
     }) DWM_TAB_WINDOW_REQUIREMENTS {
-        return @intToEnum(DWM_TAB_WINDOW_REQUIREMENTS,
-              (if (o.NONE == 1) @enumToInt(DWM_TAB_WINDOW_REQUIREMENTS.NONE) else 0)
-            | (if (o.IMPLEMENTED_BY_SYSTEM == 1) @enumToInt(DWM_TAB_WINDOW_REQUIREMENTS.IMPLEMENTED_BY_SYSTEM) else 0)
-            | (if (o.WINDOW_RELATIONSHIP == 1) @enumToInt(DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_RELATIONSHIP) else 0)
-            | (if (o.WINDOW_STYLES == 1) @enumToInt(DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_STYLES) else 0)
-            | (if (o.WINDOW_REGION == 1) @enumToInt(DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_REGION) else 0)
-            | (if (o.WINDOW_DWM_ATTRIBUTES == 1) @enumToInt(DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_DWM_ATTRIBUTES) else 0)
-            | (if (o.WINDOW_MARGINS == 1) @enumToInt(DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_MARGINS) else 0)
-            | (if (o.TABBING_ENABLED == 1) @enumToInt(DWM_TAB_WINDOW_REQUIREMENTS.TABBING_ENABLED) else 0)
-            | (if (o.USER_POLICY == 1) @enumToInt(DWM_TAB_WINDOW_REQUIREMENTS.USER_POLICY) else 0)
-            | (if (o.GROUP_POLICY == 1) @enumToInt(DWM_TAB_WINDOW_REQUIREMENTS.GROUP_POLICY) else 0)
-            | (if (o.APP_COMPAT == 1) @enumToInt(DWM_TAB_WINDOW_REQUIREMENTS.APP_COMPAT) else 0)
-        );
+        return @enumFromInt(DWM_TAB_WINDOW_REQUIREMENTS, (if (o.NONE == 1) @intFromEnum(DWM_TAB_WINDOW_REQUIREMENTS.NONE) else 0) | (if (o.IMPLEMENTED_BY_SYSTEM == 1) @intFromEnum(DWM_TAB_WINDOW_REQUIREMENTS.IMPLEMENTED_BY_SYSTEM) else 0) | (if (o.WINDOW_RELATIONSHIP == 1) @intFromEnum(DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_RELATIONSHIP) else 0) | (if (o.WINDOW_STYLES == 1) @intFromEnum(DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_STYLES) else 0) | (if (o.WINDOW_REGION == 1) @intFromEnum(DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_REGION) else 0) | (if (o.WINDOW_DWM_ATTRIBUTES == 1) @intFromEnum(DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_DWM_ATTRIBUTES) else 0) | (if (o.WINDOW_MARGINS == 1) @intFromEnum(DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_MARGINS) else 0) | (if (o.TABBING_ENABLED == 1) @intFromEnum(DWM_TAB_WINDOW_REQUIREMENTS.TABBING_ENABLED) else 0) | (if (o.USER_POLICY == 1) @intFromEnum(DWM_TAB_WINDOW_REQUIREMENTS.USER_POLICY) else 0) | (if (o.GROUP_POLICY == 1) @intFromEnum(DWM_TAB_WINDOW_REQUIREMENTS.GROUP_POLICY) else 0) | (if (o.APP_COMPAT == 1) @intFromEnum(DWM_TAB_WINDOW_REQUIREMENTS.APP_COMPAT) else 0));
     }
 };
 pub const DWMTWR_NONE = DWM_TAB_WINDOW_REQUIREMENTS.NONE;
@@ -324,7 +304,6 @@ pub const DWMTWR_TABBING_ENABLED = DWM_TAB_WINDOW_REQUIREMENTS.TABBING_ENABLED;
 pub const DWMTWR_USER_POLICY = DWM_TAB_WINDOW_REQUIREMENTS.USER_POLICY;
 pub const DWMTWR_GROUP_POLICY = DWM_TAB_WINDOW_REQUIREMENTS.GROUP_POLICY;
 pub const DWMTWR_APP_COMPAT = DWM_TAB_WINDOW_REQUIREMENTS.APP_COMPAT;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (31)
@@ -469,8 +448,7 @@ pub extern "dwmapi" fn DwmDetachMilContent(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "dwmapi" fn DwmFlush(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub extern "dwmapi" fn DwmFlush() callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmGetGraphicsStreamTransformHint(
@@ -524,19 +502,14 @@ pub extern "dwmapi" fn DwmGetUnmetTabRequirements(
     value: ?*DWM_TAB_WINDOW_REQUIREMENTS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (13)
@@ -556,9 +529,7 @@ const SIZE = @import("../foundation.zig").SIZE;
 const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

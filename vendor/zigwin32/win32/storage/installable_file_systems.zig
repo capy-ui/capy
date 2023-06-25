@@ -93,7 +93,7 @@ pub const WNNC_NET_LANMAN = @as(u32, 131072);
 // Section: Types (21)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'FilterClose', what can Zig do with this information?
-pub const HFILTER = *opaque{};
+pub const HFILTER = *opaque {};
 
 // TODO: this type has a FreeFunc 'FilterInstanceClose', what can Zig do with this information?
 pub const HFILTER_INSTANCE = isize;
@@ -333,7 +333,6 @@ pub const FILTER_REPLY_HEADER = extern struct {
     MessageId: u64,
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (28)
 //--------------------------------------------------------------------------------
@@ -541,19 +540,14 @@ pub extern "fltlib" fn FilterGetDosName(
     dwDosNameBufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
@@ -566,9 +560,7 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

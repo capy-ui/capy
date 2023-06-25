@@ -41,7 +41,6 @@ pub extern "kernel32" fn SetMailslotInfo(
     lReadTimeout: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (1)
 //--------------------------------------------------------------------------------
@@ -54,7 +53,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const CreateMailslot = thismodule.CreateMailslotW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const CreateMailslot = *opaque{};
+        pub const CreateMailslot = *opaque {};
     } else struct {
         pub const CreateMailslot = @compileError("'CreateMailslot' requires that UNICODE be set to true or false in the root module");
     },
@@ -69,9 +68,7 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

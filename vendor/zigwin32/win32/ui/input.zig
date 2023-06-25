@@ -54,7 +54,7 @@ pub const RIDEV_APPKEYS = RAWINPUTDEVICE_FLAGS.APPKEYS;
 pub const RIDEV_EXINPUTSINK = RAWINPUTDEVICE_FLAGS.EXINPUTSINK;
 pub const RIDEV_DEVNOTIFY = RAWINPUTDEVICE_FLAGS.DEVNOTIFY;
 
-pub const HRAWINPUT = *opaque{};
+pub const HRAWINPUT = *opaque {};
 
 pub const RAWINPUTHEADER = extern struct {
     dwType: u32,
@@ -179,7 +179,6 @@ pub const INPUT_MESSAGE_SOURCE = extern struct {
     originId: INPUT_MESSAGE_ORIGIN_ID,
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (10)
 //--------------------------------------------------------------------------------
@@ -257,7 +256,6 @@ pub extern "user32" fn GetCIMSSM(
     inputMessageSource: ?*INPUT_MESSAGE_SOURCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (1)
 //--------------------------------------------------------------------------------
@@ -270,7 +268,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetRawInputDeviceInfo = thismodule.GetRawInputDeviceInfoW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const GetRawInputDeviceInfo = *opaque{};
+        pub const GetRawInputDeviceInfo = *opaque {};
     } else struct {
         pub const GetRawInputDeviceInfo = @compileError("'GetRawInputDeviceInfo' requires that UNICODE be set to true or false in the root module");
     },
@@ -285,9 +283,7 @@ const LRESULT = @import("../foundation.zig").LRESULT;
 const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

@@ -789,11 +789,7 @@ pub const RASIKEV_PROJECTION_INFO_FLAGS = enum(u32) {
         BEHIND_NAT: u1 = 0,
         SERVERBEHIND_NAT: u1 = 0,
     }) RASIKEV_PROJECTION_INFO_FLAGS {
-        return @intToEnum(RASIKEV_PROJECTION_INFO_FLAGS,
-              (if (o.MOBIKESUPPORTED == 1) @enumToInt(RASIKEV_PROJECTION_INFO_FLAGS.MOBIKESUPPORTED) else 0)
-            | (if (o.BEHIND_NAT == 1) @enumToInt(RASIKEV_PROJECTION_INFO_FLAGS.BEHIND_NAT) else 0)
-            | (if (o.SERVERBEHIND_NAT == 1) @enumToInt(RASIKEV_PROJECTION_INFO_FLAGS.SERVERBEHIND_NAT) else 0)
-        );
+        return @enumFromInt(RASIKEV_PROJECTION_INFO_FLAGS, (if (o.MOBIKESUPPORTED == 1) @intFromEnum(RASIKEV_PROJECTION_INFO_FLAGS.MOBIKESUPPORTED) else 0) | (if (o.BEHIND_NAT == 1) @intFromEnum(RASIKEV_PROJECTION_INFO_FLAGS.BEHIND_NAT) else 0) | (if (o.SERVERBEHIND_NAT == 1) @intFromEnum(RASIKEV_PROJECTION_INFO_FLAGS.SERVERBEHIND_NAT) else 0));
     }
 };
 pub const RASIKEv2_FLAGS_MOBIKESUPPORTED = RASIKEV_PROJECTION_INFO_FLAGS.MOBIKESUPPORTED;
@@ -822,7 +818,7 @@ pub const SECURITYMSG_SUCCESS = SECURITY_MESSAGE_MSG_ID.SUCCESS;
 pub const SECURITYMSG_FAILURE = SECURITY_MESSAGE_MSG_ID.FAILURE;
 pub const SECURITYMSG_ERROR = SECURITY_MESSAGE_MSG_ID.ERROR;
 
-pub const HRASCONN = *opaque{};
+pub const HRASCONN = *opaque {};
 
 pub const RASAPIVERSION = enum(i32) {
     @"500" = 1,
@@ -1266,37 +1262,37 @@ pub const RAS_PROJECTION_INFO = extern struct {
 };
 
 pub const RASDIALFUNC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: u32,
         param1: RASCONNSTATE,
         param2: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         param0: u32,
         param1: RASCONNSTATE,
         param2: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const RASDIALFUNC1 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?HRASCONN,
         param1: u32,
         param2: RASCONNSTATE,
         param3: u32,
         param4: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         param0: ?HRASCONN,
         param1: u32,
         param2: RASCONNSTATE,
         param3: u32,
         param4: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const RASDIALFUNC2 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: usize,
         param1: u32,
         param2: ?HRASCONN,
@@ -1305,7 +1301,7 @@ pub const RASDIALFUNC2 = switch (@import("builtin").zig_backend) {
         param5: u32,
         param6: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         param0: usize,
         param1: u32,
         param2: ?HRASCONN,
@@ -1314,7 +1310,7 @@ pub const RASDIALFUNC2 = switch (@import("builtin").zig_backend) {
         param5: u32,
         param6: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const RASDEVINFOW = extern struct {
     dwSize: u32,
@@ -1465,19 +1461,19 @@ pub const RASENTRYW = extern struct {
 };
 
 pub const ORASADFUNC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?HWND,
         param1: ?PSTR,
         param2: u32,
         param3: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         param0: ?HWND,
         param1: ?PSTR,
         param2: u32,
         param3: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const RASADPARAMS = extern struct {
     dwSize: u32 align(4),
@@ -1488,34 +1484,34 @@ pub const RASADPARAMS = extern struct {
 };
 
 pub const RASADFUNCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?PSTR,
         param1: ?PSTR,
         param2: ?*RASADPARAMS,
         param3: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         param0: ?PSTR,
         param1: ?PSTR,
         param2: ?*RASADPARAMS,
         param3: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const RASADFUNCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?PWSTR,
         param1: ?PWSTR,
         param2: ?*RASADPARAMS,
         param3: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         param0: ?PWSTR,
         param1: ?PWSTR,
         param2: ?*RASADPARAMS,
         param3: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const RASSUBENTRYA = extern struct {
     dwSize: u32,
@@ -1578,70 +1574,70 @@ pub const RASEAPUSERIDENTITYW = extern struct {
 };
 
 pub const PFNRASGETBUFFER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         ppBuffer: ?*?*u8,
         pdwSize: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         ppBuffer: ?*?*u8,
         pdwSize: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PFNRASFREEBUFFER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pBufer: ?*u8,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         pBufer: ?*u8,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PFNRASSENDBUFFER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hPort: ?HANDLE,
         pBuffer: ?*u8,
         dwSize: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hPort: ?HANDLE,
         pBuffer: ?*u8,
         dwSize: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PFNRASRECEIVEBUFFER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hPort: ?HANDLE,
         pBuffer: ?*u8,
         pdwSize: ?*u32,
         dwTimeOut: u32,
         hEvent: ?HANDLE,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hPort: ?HANDLE,
         pBuffer: ?*u8,
         pdwSize: ?*u32,
         dwTimeOut: u32,
         hEvent: ?HANDLE,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PFNRASRETRIEVEBUFFER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hPort: ?HANDLE,
         pBuffer: ?*u8,
         pdwSize: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hPort: ?HANDLE,
         pBuffer: ?*u8,
         pdwSize: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const RasCustomScriptExecuteFn = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hPort: ?HANDLE,
         lpszPhonebook: ?[*:0]const u16,
         lpszEntryName: ?[*:0]const u16,
@@ -1654,7 +1650,7 @@ pub const RasCustomScriptExecuteFn = switch (@import("builtin").zig_backend) {
         pRasDialParams: ?*RASDIALPARAMSA,
         pvReserved: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hPort: ?HANDLE,
         lpszPhonebook: ?[*:0]const u16,
         lpszEntryName: ?[*:0]const u16,
@@ -1667,7 +1663,7 @@ pub const RasCustomScriptExecuteFn = switch (@import("builtin").zig_backend) {
         pRasDialParams: ?*RASDIALPARAMSA,
         pvReserved: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const RASCOMMSETTINGS = extern struct {
     dwSize: u32,
@@ -1678,17 +1674,17 @@ pub const RASCOMMSETTINGS = extern struct {
 };
 
 pub const PFNRASSETCOMMSETTINGS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hPort: ?HANDLE,
         pRasCommSettings: ?*RASCOMMSETTINGS,
         pvReserved: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hPort: ?HANDLE,
         pRasCommSettings: ?*RASCOMMSETTINGS,
         pvReserved: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const RASCUSTOMSCRIPTEXTENSIONS = extern struct {
     dwSize: u32 align(4),
@@ -1714,16 +1710,16 @@ pub const RAS_STATS = extern struct {
 };
 
 pub const RasCustomHangUpFn = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hRasConn: ?HRASCONN,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hRasConn: ?HRASCONN,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const RasCustomDialFn = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hInstDll: ?HINSTANCE,
         lpRasDialExtensions: ?*RASDIALEXTENSIONS,
         lpszPhonebook: ?[*:0]const u16,
@@ -1733,7 +1729,7 @@ pub const RasCustomDialFn = switch (@import("builtin").zig_backend) {
         lphRasConn: ?*?HRASCONN,
         dwFlags: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hInstDll: ?HINSTANCE,
         lpRasDialExtensions: ?*RASDIALEXTENSIONS,
         lpszPhonebook: ?[*:0]const u16,
@@ -1743,20 +1739,20 @@ pub const RasCustomDialFn = switch (@import("builtin").zig_backend) {
         lphRasConn: ?*?HRASCONN,
         dwFlags: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const RasCustomDeleteEntryNotifyFn = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         lpszPhonebook: ?[*:0]const u16,
         lpszEntry: ?[*:0]const u16,
         dwFlags: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         lpszPhonebook: ?[*:0]const u16,
         lpszEntry: ?[*:0]const u16,
         dwFlags: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const RASUPDATECONN = extern struct {
     version: RASAPIVERSION,
@@ -1768,34 +1764,34 @@ pub const RASUPDATECONN = extern struct {
 };
 
 pub const RASPBDLGFUNCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: usize,
         param1: u32,
         param2: ?PWSTR,
         param3: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         param0: usize,
         param1: u32,
         param2: ?PWSTR,
         param3: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const RASPBDLGFUNCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: usize,
         param1: u32,
         param2: ?PSTR,
         param3: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         param0: usize,
         param1: u32,
         param2: ?PSTR,
         param3: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const RASNOUSERW = extern struct {
     dwSize: u32,
@@ -1878,7 +1874,7 @@ pub const RASDIALDLG = extern struct {
 };
 
 pub const RasCustomDialDlgFn = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hInstDll: ?HINSTANCE,
         dwFlags: u32,
         lpszPhonebook: ?PWSTR,
@@ -1887,7 +1883,7 @@ pub const RasCustomDialDlgFn = switch (@import("builtin").zig_backend) {
         lpInfo: ?*RASDIALDLG,
         pvInfo: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         hInstDll: ?HINSTANCE,
         dwFlags: u32,
         lpszPhonebook: ?PWSTR,
@@ -1896,24 +1892,24 @@ pub const RasCustomDialDlgFn = switch (@import("builtin").zig_backend) {
         lpInfo: ?*RASDIALDLG,
         pvInfo: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const RasCustomEntryDlgFn = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hInstDll: ?HINSTANCE,
         lpszPhonebook: ?PWSTR,
         lpszEntry: ?PWSTR,
         lpInfo: ?*RASENTRYDLGA,
         dwFlags: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         hInstDll: ?HINSTANCE,
         lpszPhonebook: ?PWSTR,
         lpszEntry: ?PWSTR,
         lpInfo: ?*RASENTRYDLGA,
         dwFlags: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const ROUTER_INTERFACE_TYPE = enum(i32) {
     CLIENT = 0,
@@ -2823,227 +2819,225 @@ pub const RAS_UPDATE_CONNECTION = extern struct {
 };
 
 pub const PMPRADMINGETIPADDRESSFORUSER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?PWSTR,
         param1: ?PWSTR,
         param2: ?*u32,
         param3: ?*BOOL,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         param0: ?PWSTR,
         param1: ?PWSTR,
         param2: ?*u32,
         param3: ?*BOOL,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PMPRADMINRELEASEIPADRESS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?PWSTR,
         param1: ?PWSTR,
         param2: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         param0: ?PWSTR,
         param1: ?PWSTR,
         param2: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PMPRADMINGETIPV6ADDRESSFORUSER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?PWSTR,
         param1: ?PWSTR,
         param2: ?*IN6_ADDR,
         param3: ?*BOOL,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         param0: ?PWSTR,
         param1: ?PWSTR,
         param2: ?*IN6_ADDR,
         param3: ?*BOOL,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PMPRADMINRELEASEIPV6ADDRESSFORUSER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?PWSTR,
         param1: ?PWSTR,
         param2: ?*IN6_ADDR,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         param0: ?PWSTR,
         param1: ?PWSTR,
         param2: ?*IN6_ADDR,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PMPRADMINACCEPTNEWCONNECTION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*RAS_CONNECTION_0,
         param1: ?*RAS_CONNECTION_1,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         param0: ?*RAS_CONNECTION_0,
         param1: ?*RAS_CONNECTION_1,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const PMPRADMINACCEPTNEWCONNECTION2 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*RAS_CONNECTION_0,
         param1: ?*RAS_CONNECTION_1,
         param2: ?*RAS_CONNECTION_2,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         param0: ?*RAS_CONNECTION_0,
         param1: ?*RAS_CONNECTION_1,
         param2: ?*RAS_CONNECTION_2,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const PMPRADMINACCEPTNEWCONNECTION3 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*RAS_CONNECTION_0,
         param1: ?*RAS_CONNECTION_1,
         param2: ?*RAS_CONNECTION_2,
         param3: ?*RAS_CONNECTION_3,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         param0: ?*RAS_CONNECTION_0,
         param1: ?*RAS_CONNECTION_1,
         param2: ?*RAS_CONNECTION_2,
         param3: ?*RAS_CONNECTION_3,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const PMPRADMINACCEPTNEWLINK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*RAS_PORT_0,
         param1: ?*RAS_PORT_1,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         param0: ?*RAS_PORT_0,
         param1: ?*RAS_PORT_1,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const PMPRADMINCONNECTIONHANGUPNOTIFICATION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*RAS_CONNECTION_0,
         param1: ?*RAS_CONNECTION_1,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         param0: ?*RAS_CONNECTION_0,
         param1: ?*RAS_CONNECTION_1,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PMPRADMINCONNECTIONHANGUPNOTIFICATION2 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*RAS_CONNECTION_0,
         param1: ?*RAS_CONNECTION_1,
         param2: ?*RAS_CONNECTION_2,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         param0: ?*RAS_CONNECTION_0,
         param1: ?*RAS_CONNECTION_1,
         param2: ?*RAS_CONNECTION_2,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PMPRADMINCONNECTIONHANGUPNOTIFICATION3 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*RAS_CONNECTION_0,
         param1: ?*RAS_CONNECTION_1,
         param2: ?*RAS_CONNECTION_2,
         param3: RAS_CONNECTION_3,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         param0: ?*RAS_CONNECTION_0,
         param1: ?*RAS_CONNECTION_1,
         param2: ?*RAS_CONNECTION_2,
         param3: RAS_CONNECTION_3,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PMPRADMINLINKHANGUPNOTIFICATION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*RAS_PORT_0,
         param1: ?*RAS_PORT_1,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         param0: ?*RAS_PORT_0,
         param1: ?*RAS_PORT_1,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PMPRADMINTERMINATEDLL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) u32,
+};
 
 pub const PMPRADMINACCEPTREAUTHENTICATION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*RAS_CONNECTION_0,
         param1: ?*RAS_CONNECTION_1,
         param2: ?*RAS_CONNECTION_2,
         param3: ?*RAS_CONNECTION_3,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         param0: ?*RAS_CONNECTION_0,
         param1: ?*RAS_CONNECTION_1,
         param2: ?*RAS_CONNECTION_2,
         param3: ?*RAS_CONNECTION_3,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const PMPRADMINACCEPTNEWCONNECTIONEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*RAS_CONNECTION_EX,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         param0: ?*RAS_CONNECTION_EX,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const PMPRADMINACCEPTREAUTHENTICATIONEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*RAS_CONNECTION_EX,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         param0: ?*RAS_CONNECTION_EX,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const PMPRADMINACCEPTTUNNELENDPOINTCHANGEEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*RAS_CONNECTION_EX,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         param0: ?*RAS_CONNECTION_EX,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const PMPRADMINCONNECTIONHANGUPNOTIFICATIONEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*RAS_CONNECTION_EX,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         param0: ?*RAS_CONNECTION_EX,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PMPRADMINRASVALIDATEPREAUTHENTICATEDCONNECTIONEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*AUTH_VALIDATION_EX,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         param0: ?*AUTH_VALIDATION_EX,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const MPRAPI_ADMIN_DLL_CALLBACKS = extern struct {
     revision: u8,
@@ -3076,11 +3070,9 @@ pub const RAS_SECURITY_INFO = extern struct {
 };
 
 pub const RASSECURITYPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) u32,
+};
 
 pub const MGM_IF_ENTRY = extern struct {
     dwIfIndex: u32,
@@ -3090,7 +3082,7 @@ pub const MGM_IF_ENTRY = extern struct {
 };
 
 pub const PMGM_RPF_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwSourceAddr: u32,
         dwSourceMask: u32,
         dwGroupAddr: u32,
@@ -3102,7 +3094,7 @@ pub const PMGM_RPF_CALLBACK = switch (@import("builtin").zig_backend) {
         pbPacketHdr: ?*u8,
         pbRoute: ?*u8,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         dwSourceAddr: u32,
         dwSourceMask: u32,
         dwGroupAddr: u32,
@@ -3114,10 +3106,10 @@ pub const PMGM_RPF_CALLBACK = switch (@import("builtin").zig_backend) {
         pbPacketHdr: ?*u8,
         pbRoute: ?*u8,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PMGM_CREATION_ALERT_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwSourceAddr: u32,
         dwSourceMask: u32,
         dwGroupAddr: u32,
@@ -3127,7 +3119,7 @@ pub const PMGM_CREATION_ALERT_CALLBACK = switch (@import("builtin").zig_backend)
         dwIfCount: u32,
         pmieOutIfList: ?*MGM_IF_ENTRY,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         dwSourceAddr: u32,
         dwSourceMask: u32,
         dwGroupAddr: u32,
@@ -3137,10 +3129,10 @@ pub const PMGM_CREATION_ALERT_CALLBACK = switch (@import("builtin").zig_backend)
         dwIfCount: u32,
         pmieOutIfList: ?*MGM_IF_ENTRY,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PMGM_PRUNE_ALERT_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwSourceAddr: u32,
         dwSourceMask: u32,
         dwGroupAddr: u32,
@@ -3150,7 +3142,7 @@ pub const PMGM_PRUNE_ALERT_CALLBACK = switch (@import("builtin").zig_backend) {
         bMemberDelete: BOOL,
         pdwTimeout: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         dwSourceAddr: u32,
         dwSourceMask: u32,
         dwGroupAddr: u32,
@@ -3160,27 +3152,27 @@ pub const PMGM_PRUNE_ALERT_CALLBACK = switch (@import("builtin").zig_backend) {
         bMemberDelete: BOOL,
         pdwTimeout: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PMGM_JOIN_ALERT_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwSourceAddr: u32,
         dwSourceMask: u32,
         dwGroupAddr: u32,
         dwGroupMask: u32,
         bMemberUpdate: BOOL,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         dwSourceAddr: u32,
         dwSourceMask: u32,
         dwGroupAddr: u32,
         dwGroupMask: u32,
         bMemberUpdate: BOOL,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PMGM_WRONG_IF_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwSourceAddr: u32,
         dwGroupAddr: u32,
         dwIfIndex: u32,
@@ -3188,7 +3180,7 @@ pub const PMGM_WRONG_IF_CALLBACK = switch (@import("builtin").zig_backend) {
         dwHdrSize: u32,
         pbPacketHdr: ?*u8,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         dwSourceAddr: u32,
         dwGroupAddr: u32,
         dwIfIndex: u32,
@@ -3196,10 +3188,10 @@ pub const PMGM_WRONG_IF_CALLBACK = switch (@import("builtin").zig_backend) {
         dwHdrSize: u32,
         pbPacketHdr: ?*u8,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PMGM_LOCAL_JOIN_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwSourceAddr: u32,
         dwSourceMask: u32,
         dwGroupAddr: u32,
@@ -3207,7 +3199,7 @@ pub const PMGM_LOCAL_JOIN_CALLBACK = switch (@import("builtin").zig_backend) {
         dwIfIndex: u32,
         dwIfNextHopAddr: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         dwSourceAddr: u32,
         dwSourceMask: u32,
         dwGroupAddr: u32,
@@ -3215,10 +3207,10 @@ pub const PMGM_LOCAL_JOIN_CALLBACK = switch (@import("builtin").zig_backend) {
         dwIfIndex: u32,
         dwIfNextHopAddr: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PMGM_LOCAL_LEAVE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwSourceAddr: u32,
         dwSourceMask: u32,
         dwGroupAddr: u32,
@@ -3226,7 +3218,7 @@ pub const PMGM_LOCAL_LEAVE_CALLBACK = switch (@import("builtin").zig_backend) {
         dwIfIndex: u32,
         dwIfNextHopAddr: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         dwSourceAddr: u32,
         dwSourceMask: u32,
         dwGroupAddr: u32,
@@ -3234,29 +3226,29 @@ pub const PMGM_LOCAL_LEAVE_CALLBACK = switch (@import("builtin").zig_backend) {
         dwIfIndex: u32,
         dwIfNextHopAddr: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PMGM_DISABLE_IGMP_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwIfIndex: u32,
         dwIfNextHopAddr: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         dwIfIndex: u32,
         dwIfNextHopAddr: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PMGM_ENABLE_IGMP_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwIfIndex: u32,
         dwIfNextHopAddr: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         dwIfIndex: u32,
         dwIfNextHopAddr: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const ROUTING_PROTOCOL_CONFIG = extern struct {
     dwCallbackFlags: u32,
@@ -3375,19 +3367,19 @@ pub const RTM_ROUTE_EXPIRED = RTM_EVENT_TYPE.ROUTE_EXPIRED;
 pub const RTM_CHANGE_NOTIFICATION = RTM_EVENT_TYPE.CHANGE_NOTIFICATION;
 
 pub const RTM_EVENT_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         RtmRegHandle: isize,
         EventType: RTM_EVENT_TYPE,
         Context1: ?*anyopaque,
         Context2: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         RtmRegHandle: isize,
         EventType: RTM_EVENT_TYPE,
         Context1: ?*anyopaque,
         Context2: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const RTM_ENTITY_METHOD_INPUT = extern struct {
     MethodType: u32,
@@ -3403,25 +3395,24 @@ pub const RTM_ENTITY_METHOD_OUTPUT = extern struct {
 };
 
 pub const RTM_ENTITY_EXPORT_METHOD = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         CallerHandle: isize,
         CalleeHandle: isize,
         Input: ?*RTM_ENTITY_METHOD_INPUT,
         Output: ?*RTM_ENTITY_METHOD_OUTPUT,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         CallerHandle: isize,
         CalleeHandle: isize,
         Input: ?*RTM_ENTITY_METHOD_INPUT,
         Output: ?*RTM_ENTITY_METHOD_OUTPUT,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const RTM_ENTITY_EXPORT_METHODS = extern struct {
     NumMethods: u32,
     Methods: [1]?RTM_ENTITY_EXPORT_METHOD,
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (277)
@@ -5562,7 +5553,6 @@ pub extern "rtm" fn RtmReferenceHandles(
     RtmHandles: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (60)
 //--------------------------------------------------------------------------------
@@ -5693,66 +5683,66 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const RasDialDlg = thismodule.RasDialDlgW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const RASCONN = *opaque{};
-        pub const RASCONNSTATUS = *opaque{};
-        pub const RASDIALPARAMS = *opaque{};
-        pub const RASENTRYNAME = *opaque{};
-        pub const RASAMB = *opaque{};
-        pub const RASPPPNBF = *opaque{};
-        pub const RASPPPIP = *opaque{};
-        pub const RASPPPLCP = *opaque{};
-        pub const RASDEVINFO = *opaque{};
-        pub const RASENTRY = *opaque{};
-        pub const RASADFUNC = *opaque{};
-        pub const RASSUBENTRY = *opaque{};
-        pub const RASCREDENTIALS = *opaque{};
-        pub const RASAUTODIALENTRY = *opaque{};
-        pub const RASEAPUSERIDENTITY = *opaque{};
-        pub const RASPBDLGFUNC = *opaque{};
-        pub const RASNOUSER = *opaque{};
-        pub const RASPBDLG = *opaque{};
-        pub const RASENTRYDLG = *opaque{};
-        pub const RasDial = *opaque{};
-        pub const RasEnumConnections = *opaque{};
-        pub const RasEnumEntries = *opaque{};
-        pub const RasGetConnectStatus = *opaque{};
-        pub const RasGetErrorString = *opaque{};
-        pub const RasHangUp = *opaque{};
-        pub const RasGetProjectionInfo = *opaque{};
-        pub const RasCreatePhonebookEntry = *opaque{};
-        pub const RasEditPhonebookEntry = *opaque{};
-        pub const RasSetEntryDialParams = *opaque{};
-        pub const RasGetEntryDialParams = *opaque{};
-        pub const RasEnumDevices = *opaque{};
-        pub const RasGetCountryInfo = *opaque{};
-        pub const RasGetEntryProperties = *opaque{};
-        pub const RasSetEntryProperties = *opaque{};
-        pub const RasRenameEntry = *opaque{};
-        pub const RasDeleteEntry = *opaque{};
-        pub const RasValidateEntryName = *opaque{};
-        pub const RasConnectionNotification = *opaque{};
-        pub const RasGetSubEntryHandle = *opaque{};
-        pub const RasGetCredentials = *opaque{};
-        pub const RasSetCredentials = *opaque{};
-        pub const RasGetSubEntryProperties = *opaque{};
-        pub const RasSetSubEntryProperties = *opaque{};
-        pub const RasGetAutodialAddress = *opaque{};
-        pub const RasSetAutodialAddress = *opaque{};
-        pub const RasEnumAutodialAddresses = *opaque{};
-        pub const RasGetAutodialEnable = *opaque{};
-        pub const RasSetAutodialEnable = *opaque{};
-        pub const RasGetAutodialParam = *opaque{};
-        pub const RasSetAutodialParam = *opaque{};
-        pub const RasGetEapUserData = *opaque{};
-        pub const RasSetEapUserData = *opaque{};
-        pub const RasGetCustomAuthData = *opaque{};
-        pub const RasSetCustomAuthData = *opaque{};
-        pub const RasGetEapUserIdentity = *opaque{};
-        pub const RasFreeEapUserIdentity = *opaque{};
-        pub const RasDeleteSubEntry = *opaque{};
-        pub const RasPhonebookDlg = *opaque{};
-        pub const RasEntryDlg = *opaque{};
-        pub const RasDialDlg = *opaque{};
+        pub const RASCONN = *opaque {};
+        pub const RASCONNSTATUS = *opaque {};
+        pub const RASDIALPARAMS = *opaque {};
+        pub const RASENTRYNAME = *opaque {};
+        pub const RASAMB = *opaque {};
+        pub const RASPPPNBF = *opaque {};
+        pub const RASPPPIP = *opaque {};
+        pub const RASPPPLCP = *opaque {};
+        pub const RASDEVINFO = *opaque {};
+        pub const RASENTRY = *opaque {};
+        pub const RASADFUNC = *opaque {};
+        pub const RASSUBENTRY = *opaque {};
+        pub const RASCREDENTIALS = *opaque {};
+        pub const RASAUTODIALENTRY = *opaque {};
+        pub const RASEAPUSERIDENTITY = *opaque {};
+        pub const RASPBDLGFUNC = *opaque {};
+        pub const RASNOUSER = *opaque {};
+        pub const RASPBDLG = *opaque {};
+        pub const RASENTRYDLG = *opaque {};
+        pub const RasDial = *opaque {};
+        pub const RasEnumConnections = *opaque {};
+        pub const RasEnumEntries = *opaque {};
+        pub const RasGetConnectStatus = *opaque {};
+        pub const RasGetErrorString = *opaque {};
+        pub const RasHangUp = *opaque {};
+        pub const RasGetProjectionInfo = *opaque {};
+        pub const RasCreatePhonebookEntry = *opaque {};
+        pub const RasEditPhonebookEntry = *opaque {};
+        pub const RasSetEntryDialParams = *opaque {};
+        pub const RasGetEntryDialParams = *opaque {};
+        pub const RasEnumDevices = *opaque {};
+        pub const RasGetCountryInfo = *opaque {};
+        pub const RasGetEntryProperties = *opaque {};
+        pub const RasSetEntryProperties = *opaque {};
+        pub const RasRenameEntry = *opaque {};
+        pub const RasDeleteEntry = *opaque {};
+        pub const RasValidateEntryName = *opaque {};
+        pub const RasConnectionNotification = *opaque {};
+        pub const RasGetSubEntryHandle = *opaque {};
+        pub const RasGetCredentials = *opaque {};
+        pub const RasSetCredentials = *opaque {};
+        pub const RasGetSubEntryProperties = *opaque {};
+        pub const RasSetSubEntryProperties = *opaque {};
+        pub const RasGetAutodialAddress = *opaque {};
+        pub const RasSetAutodialAddress = *opaque {};
+        pub const RasEnumAutodialAddresses = *opaque {};
+        pub const RasGetAutodialEnable = *opaque {};
+        pub const RasSetAutodialEnable = *opaque {};
+        pub const RasGetAutodialParam = *opaque {};
+        pub const RasSetAutodialParam = *opaque {};
+        pub const RasGetEapUserData = *opaque {};
+        pub const RasSetEapUserData = *opaque {};
+        pub const RasGetCustomAuthData = *opaque {};
+        pub const RasSetCustomAuthData = *opaque {};
+        pub const RasGetEapUserIdentity = *opaque {};
+        pub const RasFreeEapUserIdentity = *opaque {};
+        pub const RasDeleteSubEntry = *opaque {};
+        pub const RasPhonebookDlg = *opaque {};
+        pub const RasEntryDlg = *opaque {};
+        pub const RasDialDlg = *opaque {};
     } else struct {
         pub const RASCONN = @compileError("'RASCONN' requires that UNICODE be set to true or false in the root module");
         pub const RASCONNSTATUS = @compileError("'RASCONNSTATUS' requires that UNICODE be set to true or false in the root module");
@@ -5836,61 +5826,161 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "RASDIALFUNC")) { _ = RASDIALFUNC; }
-    if (@hasDecl(@This(), "RASDIALFUNC1")) { _ = RASDIALFUNC1; }
-    if (@hasDecl(@This(), "RASDIALFUNC2")) { _ = RASDIALFUNC2; }
-    if (@hasDecl(@This(), "ORASADFUNC")) { _ = ORASADFUNC; }
-    if (@hasDecl(@This(), "RASADFUNCA")) { _ = RASADFUNCA; }
-    if (@hasDecl(@This(), "RASADFUNCW")) { _ = RASADFUNCW; }
-    if (@hasDecl(@This(), "PFNRASGETBUFFER")) { _ = PFNRASGETBUFFER; }
-    if (@hasDecl(@This(), "PFNRASFREEBUFFER")) { _ = PFNRASFREEBUFFER; }
-    if (@hasDecl(@This(), "PFNRASSENDBUFFER")) { _ = PFNRASSENDBUFFER; }
-    if (@hasDecl(@This(), "PFNRASRECEIVEBUFFER")) { _ = PFNRASRECEIVEBUFFER; }
-    if (@hasDecl(@This(), "PFNRASRETRIEVEBUFFER")) { _ = PFNRASRETRIEVEBUFFER; }
-    if (@hasDecl(@This(), "RasCustomScriptExecuteFn")) { _ = RasCustomScriptExecuteFn; }
-    if (@hasDecl(@This(), "PFNRASSETCOMMSETTINGS")) { _ = PFNRASSETCOMMSETTINGS; }
-    if (@hasDecl(@This(), "RasCustomHangUpFn")) { _ = RasCustomHangUpFn; }
-    if (@hasDecl(@This(), "RasCustomDialFn")) { _ = RasCustomDialFn; }
-    if (@hasDecl(@This(), "RasCustomDeleteEntryNotifyFn")) { _ = RasCustomDeleteEntryNotifyFn; }
-    if (@hasDecl(@This(), "RASPBDLGFUNCW")) { _ = RASPBDLGFUNCW; }
-    if (@hasDecl(@This(), "RASPBDLGFUNCA")) { _ = RASPBDLGFUNCA; }
-    if (@hasDecl(@This(), "RasCustomDialDlgFn")) { _ = RasCustomDialDlgFn; }
-    if (@hasDecl(@This(), "RasCustomEntryDlgFn")) { _ = RasCustomEntryDlgFn; }
-    if (@hasDecl(@This(), "PMPRADMINGETIPADDRESSFORUSER")) { _ = PMPRADMINGETIPADDRESSFORUSER; }
-    if (@hasDecl(@This(), "PMPRADMINRELEASEIPADRESS")) { _ = PMPRADMINRELEASEIPADRESS; }
-    if (@hasDecl(@This(), "PMPRADMINGETIPV6ADDRESSFORUSER")) { _ = PMPRADMINGETIPV6ADDRESSFORUSER; }
-    if (@hasDecl(@This(), "PMPRADMINRELEASEIPV6ADDRESSFORUSER")) { _ = PMPRADMINRELEASEIPV6ADDRESSFORUSER; }
-    if (@hasDecl(@This(), "PMPRADMINACCEPTNEWCONNECTION")) { _ = PMPRADMINACCEPTNEWCONNECTION; }
-    if (@hasDecl(@This(), "PMPRADMINACCEPTNEWCONNECTION2")) { _ = PMPRADMINACCEPTNEWCONNECTION2; }
-    if (@hasDecl(@This(), "PMPRADMINACCEPTNEWCONNECTION3")) { _ = PMPRADMINACCEPTNEWCONNECTION3; }
-    if (@hasDecl(@This(), "PMPRADMINACCEPTNEWLINK")) { _ = PMPRADMINACCEPTNEWLINK; }
-    if (@hasDecl(@This(), "PMPRADMINCONNECTIONHANGUPNOTIFICATION")) { _ = PMPRADMINCONNECTIONHANGUPNOTIFICATION; }
-    if (@hasDecl(@This(), "PMPRADMINCONNECTIONHANGUPNOTIFICATION2")) { _ = PMPRADMINCONNECTIONHANGUPNOTIFICATION2; }
-    if (@hasDecl(@This(), "PMPRADMINCONNECTIONHANGUPNOTIFICATION3")) { _ = PMPRADMINCONNECTIONHANGUPNOTIFICATION3; }
-    if (@hasDecl(@This(), "PMPRADMINLINKHANGUPNOTIFICATION")) { _ = PMPRADMINLINKHANGUPNOTIFICATION; }
-    if (@hasDecl(@This(), "PMPRADMINTERMINATEDLL")) { _ = PMPRADMINTERMINATEDLL; }
-    if (@hasDecl(@This(), "PMPRADMINACCEPTREAUTHENTICATION")) { _ = PMPRADMINACCEPTREAUTHENTICATION; }
-    if (@hasDecl(@This(), "PMPRADMINACCEPTNEWCONNECTIONEX")) { _ = PMPRADMINACCEPTNEWCONNECTIONEX; }
-    if (@hasDecl(@This(), "PMPRADMINACCEPTREAUTHENTICATIONEX")) { _ = PMPRADMINACCEPTREAUTHENTICATIONEX; }
-    if (@hasDecl(@This(), "PMPRADMINACCEPTTUNNELENDPOINTCHANGEEX")) { _ = PMPRADMINACCEPTTUNNELENDPOINTCHANGEEX; }
-    if (@hasDecl(@This(), "PMPRADMINCONNECTIONHANGUPNOTIFICATIONEX")) { _ = PMPRADMINCONNECTIONHANGUPNOTIFICATIONEX; }
-    if (@hasDecl(@This(), "PMPRADMINRASVALIDATEPREAUTHENTICATEDCONNECTIONEX")) { _ = PMPRADMINRASVALIDATEPREAUTHENTICATEDCONNECTIONEX; }
-    if (@hasDecl(@This(), "RASSECURITYPROC")) { _ = RASSECURITYPROC; }
-    if (@hasDecl(@This(), "PMGM_RPF_CALLBACK")) { _ = PMGM_RPF_CALLBACK; }
-    if (@hasDecl(@This(), "PMGM_CREATION_ALERT_CALLBACK")) { _ = PMGM_CREATION_ALERT_CALLBACK; }
-    if (@hasDecl(@This(), "PMGM_PRUNE_ALERT_CALLBACK")) { _ = PMGM_PRUNE_ALERT_CALLBACK; }
-    if (@hasDecl(@This(), "PMGM_JOIN_ALERT_CALLBACK")) { _ = PMGM_JOIN_ALERT_CALLBACK; }
-    if (@hasDecl(@This(), "PMGM_WRONG_IF_CALLBACK")) { _ = PMGM_WRONG_IF_CALLBACK; }
-    if (@hasDecl(@This(), "PMGM_LOCAL_JOIN_CALLBACK")) { _ = PMGM_LOCAL_JOIN_CALLBACK; }
-    if (@hasDecl(@This(), "PMGM_LOCAL_LEAVE_CALLBACK")) { _ = PMGM_LOCAL_LEAVE_CALLBACK; }
-    if (@hasDecl(@This(), "PMGM_DISABLE_IGMP_CALLBACK")) { _ = PMGM_DISABLE_IGMP_CALLBACK; }
-    if (@hasDecl(@This(), "PMGM_ENABLE_IGMP_CALLBACK")) { _ = PMGM_ENABLE_IGMP_CALLBACK; }
-    if (@hasDecl(@This(), "RTM_EVENT_CALLBACK")) { _ = RTM_EVENT_CALLBACK; }
-    if (@hasDecl(@This(), "RTM_ENTITY_EXPORT_METHOD")) { _ = RTM_ENTITY_EXPORT_METHOD; }
+    if (@hasDecl(@This(), "RASDIALFUNC")) {
+        _ = RASDIALFUNC;
+    }
+    if (@hasDecl(@This(), "RASDIALFUNC1")) {
+        _ = RASDIALFUNC1;
+    }
+    if (@hasDecl(@This(), "RASDIALFUNC2")) {
+        _ = RASDIALFUNC2;
+    }
+    if (@hasDecl(@This(), "ORASADFUNC")) {
+        _ = ORASADFUNC;
+    }
+    if (@hasDecl(@This(), "RASADFUNCA")) {
+        _ = RASADFUNCA;
+    }
+    if (@hasDecl(@This(), "RASADFUNCW")) {
+        _ = RASADFUNCW;
+    }
+    if (@hasDecl(@This(), "PFNRASGETBUFFER")) {
+        _ = PFNRASGETBUFFER;
+    }
+    if (@hasDecl(@This(), "PFNRASFREEBUFFER")) {
+        _ = PFNRASFREEBUFFER;
+    }
+    if (@hasDecl(@This(), "PFNRASSENDBUFFER")) {
+        _ = PFNRASSENDBUFFER;
+    }
+    if (@hasDecl(@This(), "PFNRASRECEIVEBUFFER")) {
+        _ = PFNRASRECEIVEBUFFER;
+    }
+    if (@hasDecl(@This(), "PFNRASRETRIEVEBUFFER")) {
+        _ = PFNRASRETRIEVEBUFFER;
+    }
+    if (@hasDecl(@This(), "RasCustomScriptExecuteFn")) {
+        _ = RasCustomScriptExecuteFn;
+    }
+    if (@hasDecl(@This(), "PFNRASSETCOMMSETTINGS")) {
+        _ = PFNRASSETCOMMSETTINGS;
+    }
+    if (@hasDecl(@This(), "RasCustomHangUpFn")) {
+        _ = RasCustomHangUpFn;
+    }
+    if (@hasDecl(@This(), "RasCustomDialFn")) {
+        _ = RasCustomDialFn;
+    }
+    if (@hasDecl(@This(), "RasCustomDeleteEntryNotifyFn")) {
+        _ = RasCustomDeleteEntryNotifyFn;
+    }
+    if (@hasDecl(@This(), "RASPBDLGFUNCW")) {
+        _ = RASPBDLGFUNCW;
+    }
+    if (@hasDecl(@This(), "RASPBDLGFUNCA")) {
+        _ = RASPBDLGFUNCA;
+    }
+    if (@hasDecl(@This(), "RasCustomDialDlgFn")) {
+        _ = RasCustomDialDlgFn;
+    }
+    if (@hasDecl(@This(), "RasCustomEntryDlgFn")) {
+        _ = RasCustomEntryDlgFn;
+    }
+    if (@hasDecl(@This(), "PMPRADMINGETIPADDRESSFORUSER")) {
+        _ = PMPRADMINGETIPADDRESSFORUSER;
+    }
+    if (@hasDecl(@This(), "PMPRADMINRELEASEIPADRESS")) {
+        _ = PMPRADMINRELEASEIPADRESS;
+    }
+    if (@hasDecl(@This(), "PMPRADMINGETIPV6ADDRESSFORUSER")) {
+        _ = PMPRADMINGETIPV6ADDRESSFORUSER;
+    }
+    if (@hasDecl(@This(), "PMPRADMINRELEASEIPV6ADDRESSFORUSER")) {
+        _ = PMPRADMINRELEASEIPV6ADDRESSFORUSER;
+    }
+    if (@hasDecl(@This(), "PMPRADMINACCEPTNEWCONNECTION")) {
+        _ = PMPRADMINACCEPTNEWCONNECTION;
+    }
+    if (@hasDecl(@This(), "PMPRADMINACCEPTNEWCONNECTION2")) {
+        _ = PMPRADMINACCEPTNEWCONNECTION2;
+    }
+    if (@hasDecl(@This(), "PMPRADMINACCEPTNEWCONNECTION3")) {
+        _ = PMPRADMINACCEPTNEWCONNECTION3;
+    }
+    if (@hasDecl(@This(), "PMPRADMINACCEPTNEWLINK")) {
+        _ = PMPRADMINACCEPTNEWLINK;
+    }
+    if (@hasDecl(@This(), "PMPRADMINCONNECTIONHANGUPNOTIFICATION")) {
+        _ = PMPRADMINCONNECTIONHANGUPNOTIFICATION;
+    }
+    if (@hasDecl(@This(), "PMPRADMINCONNECTIONHANGUPNOTIFICATION2")) {
+        _ = PMPRADMINCONNECTIONHANGUPNOTIFICATION2;
+    }
+    if (@hasDecl(@This(), "PMPRADMINCONNECTIONHANGUPNOTIFICATION3")) {
+        _ = PMPRADMINCONNECTIONHANGUPNOTIFICATION3;
+    }
+    if (@hasDecl(@This(), "PMPRADMINLINKHANGUPNOTIFICATION")) {
+        _ = PMPRADMINLINKHANGUPNOTIFICATION;
+    }
+    if (@hasDecl(@This(), "PMPRADMINTERMINATEDLL")) {
+        _ = PMPRADMINTERMINATEDLL;
+    }
+    if (@hasDecl(@This(), "PMPRADMINACCEPTREAUTHENTICATION")) {
+        _ = PMPRADMINACCEPTREAUTHENTICATION;
+    }
+    if (@hasDecl(@This(), "PMPRADMINACCEPTNEWCONNECTIONEX")) {
+        _ = PMPRADMINACCEPTNEWCONNECTIONEX;
+    }
+    if (@hasDecl(@This(), "PMPRADMINACCEPTREAUTHENTICATIONEX")) {
+        _ = PMPRADMINACCEPTREAUTHENTICATIONEX;
+    }
+    if (@hasDecl(@This(), "PMPRADMINACCEPTTUNNELENDPOINTCHANGEEX")) {
+        _ = PMPRADMINACCEPTTUNNELENDPOINTCHANGEEX;
+    }
+    if (@hasDecl(@This(), "PMPRADMINCONNECTIONHANGUPNOTIFICATIONEX")) {
+        _ = PMPRADMINCONNECTIONHANGUPNOTIFICATIONEX;
+    }
+    if (@hasDecl(@This(), "PMPRADMINRASVALIDATEPREAUTHENTICATEDCONNECTIONEX")) {
+        _ = PMPRADMINRASVALIDATEPREAUTHENTICATEDCONNECTIONEX;
+    }
+    if (@hasDecl(@This(), "RASSECURITYPROC")) {
+        _ = RASSECURITYPROC;
+    }
+    if (@hasDecl(@This(), "PMGM_RPF_CALLBACK")) {
+        _ = PMGM_RPF_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PMGM_CREATION_ALERT_CALLBACK")) {
+        _ = PMGM_CREATION_ALERT_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PMGM_PRUNE_ALERT_CALLBACK")) {
+        _ = PMGM_PRUNE_ALERT_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PMGM_JOIN_ALERT_CALLBACK")) {
+        _ = PMGM_JOIN_ALERT_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PMGM_WRONG_IF_CALLBACK")) {
+        _ = PMGM_WRONG_IF_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PMGM_LOCAL_JOIN_CALLBACK")) {
+        _ = PMGM_LOCAL_JOIN_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PMGM_LOCAL_LEAVE_CALLBACK")) {
+        _ = PMGM_LOCAL_LEAVE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PMGM_DISABLE_IGMP_CALLBACK")) {
+        _ = PMGM_DISABLE_IGMP_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PMGM_ENABLE_IGMP_CALLBACK")) {
+        _ = PMGM_ENABLE_IGMP_CALLBACK;
+    }
+    if (@hasDecl(@This(), "RTM_EVENT_CALLBACK")) {
+        _ = RTM_EVENT_CALLBACK;
+    }
+    if (@hasDecl(@This(), "RTM_ENTITY_EXPORT_METHOD")) {
+        _ = RTM_ENTITY_EXPORT_METHOD;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

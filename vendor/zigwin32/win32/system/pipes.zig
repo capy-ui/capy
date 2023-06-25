@@ -29,13 +29,7 @@ pub const NAMED_PIPE_MODE = enum(u32) {
         TYPE_MESSAGE: u1 = 0,
         REJECT_REMOTE_CLIENTS: u1 = 0,
     }) NAMED_PIPE_MODE {
-        return @intToEnum(NAMED_PIPE_MODE,
-              (if (o.WAIT == 1) @enumToInt(NAMED_PIPE_MODE.WAIT) else 0)
-            | (if (o.NOWAIT == 1) @enumToInt(NAMED_PIPE_MODE.NOWAIT) else 0)
-            | (if (o.READMODE_MESSAGE == 1) @enumToInt(NAMED_PIPE_MODE.READMODE_MESSAGE) else 0)
-            | (if (o.TYPE_MESSAGE == 1) @enumToInt(NAMED_PIPE_MODE.TYPE_MESSAGE) else 0)
-            | (if (o.REJECT_REMOTE_CLIENTS == 1) @enumToInt(NAMED_PIPE_MODE.REJECT_REMOTE_CLIENTS) else 0)
-        );
+        return @enumFromInt(NAMED_PIPE_MODE, (if (o.WAIT == 1) @intFromEnum(NAMED_PIPE_MODE.WAIT) else 0) | (if (o.NOWAIT == 1) @intFromEnum(NAMED_PIPE_MODE.NOWAIT) else 0) | (if (o.READMODE_MESSAGE == 1) @intFromEnum(NAMED_PIPE_MODE.READMODE_MESSAGE) else 0) | (if (o.TYPE_MESSAGE == 1) @intFromEnum(NAMED_PIPE_MODE.TYPE_MESSAGE) else 0) | (if (o.REJECT_REMOTE_CLIENTS == 1) @intFromEnum(NAMED_PIPE_MODE.REJECT_REMOTE_CLIENTS) else 0));
     }
 };
 pub const PIPE_WAIT = NAMED_PIPE_MODE.WAIT;
@@ -48,7 +42,6 @@ pub const PIPE_TYPE_BYTE = NAMED_PIPE_MODE.WAIT;
 pub const PIPE_TYPE_MESSAGE = NAMED_PIPE_MODE.TYPE_MESSAGE;
 pub const PIPE_ACCEPT_REMOTE_CLIENTS = NAMED_PIPE_MODE.WAIT;
 pub const PIPE_REJECT_REMOTE_CLIENTS = NAMED_PIPE_MODE.REJECT_REMOTE_CLIENTS;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (22)
@@ -237,7 +230,6 @@ pub extern "kernel32" fn GetNamedPipeServerSessionId(
     ServerSessionId: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (5)
 //--------------------------------------------------------------------------------
@@ -258,11 +250,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const CallNamedPipe = thismodule.CallNamedPipeW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const CreateNamedPipe = *opaque{};
-        pub const WaitNamedPipe = *opaque{};
-        pub const GetNamedPipeClientComputerName = *opaque{};
-        pub const GetNamedPipeHandleState = *opaque{};
-        pub const CallNamedPipe = *opaque{};
+        pub const CreateNamedPipe = *opaque {};
+        pub const WaitNamedPipe = *opaque {};
+        pub const GetNamedPipeClientComputerName = *opaque {};
+        pub const GetNamedPipeHandleState = *opaque {};
+        pub const CallNamedPipe = *opaque {};
     } else struct {
         pub const CreateNamedPipe = @compileError("'CreateNamedPipe' requires that UNICODE be set to true or false in the root module");
         pub const WaitNamedPipe = @compileError("'WaitNamedPipe' requires that UNICODE be set to true or false in the root module");
@@ -283,9 +275,7 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

@@ -50,7 +50,6 @@ pub const COP_WORD_EQUAL = CONDITION_OPERATION.WORD_EQUAL;
 pub const COP_WORD_STARTSWITH = CONDITION_OPERATION.WORD_STARTSWITH;
 pub const COP_APPLICATION_SPECIFIC = CONDITION_OPERATION.APPLICATION_SPECIFIC;
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
 //--------------------------------------------------------------------------------
@@ -60,22 +59,16 @@ pub const COP_APPLICATION_SPECIFIC = CONDITION_OPERATION.APPLICATION_SPECIFIC;
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (0)
 //--------------------------------------------------------------------------------
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

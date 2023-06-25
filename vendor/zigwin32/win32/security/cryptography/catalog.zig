@@ -59,17 +59,7 @@ pub const CRYPTCAT_OPEN_FLAGS = enum(u32) {
         SORTED: u1 = 0,
         FLAGS_MASK: u1 = 0,
     }) CRYPTCAT_OPEN_FLAGS {
-        return @intToEnum(CRYPTCAT_OPEN_FLAGS,
-              (if (o.ALWAYS == 1) @enumToInt(CRYPTCAT_OPEN_FLAGS.ALWAYS) else 0)
-            | (if (o.CREATENEW == 1) @enumToInt(CRYPTCAT_OPEN_FLAGS.CREATENEW) else 0)
-            | (if (o.EXISTING == 1) @enumToInt(CRYPTCAT_OPEN_FLAGS.EXISTING) else 0)
-            | (if (o.EXCLUDE_PAGE_HASHES == 1) @enumToInt(CRYPTCAT_OPEN_FLAGS.EXCLUDE_PAGE_HASHES) else 0)
-            | (if (o.INCLUDE_PAGE_HASHES == 1) @enumToInt(CRYPTCAT_OPEN_FLAGS.INCLUDE_PAGE_HASHES) else 0)
-            | (if (o.VERIFYSIGHASH == 1) @enumToInt(CRYPTCAT_OPEN_FLAGS.VERIFYSIGHASH) else 0)
-            | (if (o.NO_CONTENT_HCRYPTMSG == 1) @enumToInt(CRYPTCAT_OPEN_FLAGS.NO_CONTENT_HCRYPTMSG) else 0)
-            | (if (o.SORTED == 1) @enumToInt(CRYPTCAT_OPEN_FLAGS.SORTED) else 0)
-            | (if (o.FLAGS_MASK == 1) @enumToInt(CRYPTCAT_OPEN_FLAGS.FLAGS_MASK) else 0)
-        );
+        return @enumFromInt(CRYPTCAT_OPEN_FLAGS, (if (o.ALWAYS == 1) @intFromEnum(CRYPTCAT_OPEN_FLAGS.ALWAYS) else 0) | (if (o.CREATENEW == 1) @intFromEnum(CRYPTCAT_OPEN_FLAGS.CREATENEW) else 0) | (if (o.EXISTING == 1) @intFromEnum(CRYPTCAT_OPEN_FLAGS.EXISTING) else 0) | (if (o.EXCLUDE_PAGE_HASHES == 1) @intFromEnum(CRYPTCAT_OPEN_FLAGS.EXCLUDE_PAGE_HASHES) else 0) | (if (o.INCLUDE_PAGE_HASHES == 1) @intFromEnum(CRYPTCAT_OPEN_FLAGS.INCLUDE_PAGE_HASHES) else 0) | (if (o.VERIFYSIGHASH == 1) @intFromEnum(CRYPTCAT_OPEN_FLAGS.VERIFYSIGHASH) else 0) | (if (o.NO_CONTENT_HCRYPTMSG == 1) @intFromEnum(CRYPTCAT_OPEN_FLAGS.NO_CONTENT_HCRYPTMSG) else 0) | (if (o.SORTED == 1) @intFromEnum(CRYPTCAT_OPEN_FLAGS.SORTED) else 0) | (if (o.FLAGS_MASK == 1) @intFromEnum(CRYPTCAT_OPEN_FLAGS.FLAGS_MASK) else 0));
     }
 };
 pub const CRYPTCAT_OPEN_ALWAYS = CRYPTCAT_OPEN_FLAGS.ALWAYS;
@@ -134,18 +124,17 @@ pub const CATALOG_INFO = extern struct {
 };
 
 pub const PFN_CDF_PARSE_ERROR_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwErrorArea: u32,
         dwLocalError: u32,
         pwszLine: ?PWSTR,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         dwErrorArea: u32,
         dwLocalError: u32,
         pwszLine: ?PWSTR,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
-
+};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (34)
@@ -386,19 +375,14 @@ pub extern "wintrust" fn CryptCATAdminPauseServiceForBackup(
     fResume: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
@@ -413,11 +397,11 @@ const SIP_INDIRECT_DATA = @import("../../security/cryptography/sip.zig").SIP_IND
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFN_CDF_PARSE_ERROR_CALLBACK")) { _ = PFN_CDF_PARSE_ERROR_CALLBACK; }
+    if (@hasDecl(@This(), "PFN_CDF_PARSE_ERROR_CALLBACK")) {
+        _ = PFN_CDF_PARSE_ERROR_CALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

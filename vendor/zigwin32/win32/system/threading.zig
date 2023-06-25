@@ -45,11 +45,7 @@ pub const THREAD_CREATION_FLAGS = enum(u32) {
         THREAD_CREATE_SUSPENDED: u1 = 0,
         STACK_SIZE_PARAM_IS_A_RESERVATION: u1 = 0,
     }) THREAD_CREATION_FLAGS {
-        return @intToEnum(THREAD_CREATION_FLAGS,
-              (if (o.THREAD_CREATE_RUN_IMMEDIATELY == 1) @enumToInt(THREAD_CREATION_FLAGS.THREAD_CREATE_RUN_IMMEDIATELY) else 0)
-            | (if (o.THREAD_CREATE_SUSPENDED == 1) @enumToInt(THREAD_CREATION_FLAGS.THREAD_CREATE_SUSPENDED) else 0)
-            | (if (o.STACK_SIZE_PARAM_IS_A_RESERVATION == 1) @enumToInt(THREAD_CREATION_FLAGS.STACK_SIZE_PARAM_IS_A_RESERVATION) else 0)
-        );
+        return @enumFromInt(THREAD_CREATION_FLAGS, (if (o.THREAD_CREATE_RUN_IMMEDIATELY == 1) @intFromEnum(THREAD_CREATION_FLAGS.THREAD_CREATE_RUN_IMMEDIATELY) else 0) | (if (o.THREAD_CREATE_SUSPENDED == 1) @intFromEnum(THREAD_CREATION_FLAGS.THREAD_CREATE_SUSPENDED) else 0) | (if (o.STACK_SIZE_PARAM_IS_A_RESERVATION == 1) @intFromEnum(THREAD_CREATION_FLAGS.STACK_SIZE_PARAM_IS_A_RESERVATION) else 0));
     }
 };
 pub const THREAD_CREATE_RUN_IMMEDIATELY = THREAD_CREATION_FLAGS.THREAD_CREATE_RUN_IMMEDIATELY;
@@ -99,16 +95,7 @@ pub const WORKER_THREAD_FLAGS = enum(u32) {
         TRANSFER_IMPERSONATION: u1 = 0,
         EXECUTEINTIMERTHREAD: u1 = 0,
     }) WORKER_THREAD_FLAGS {
-        return @intToEnum(WORKER_THREAD_FLAGS,
-              (if (o.EXECUTEDEFAULT == 1) @enumToInt(WORKER_THREAD_FLAGS.EXECUTEDEFAULT) else 0)
-            | (if (o.EXECUTEINIOTHREAD == 1) @enumToInt(WORKER_THREAD_FLAGS.EXECUTEINIOTHREAD) else 0)
-            | (if (o.EXECUTEINPERSISTENTTHREAD == 1) @enumToInt(WORKER_THREAD_FLAGS.EXECUTEINPERSISTENTTHREAD) else 0)
-            | (if (o.EXECUTEINWAITTHREAD == 1) @enumToInt(WORKER_THREAD_FLAGS.EXECUTEINWAITTHREAD) else 0)
-            | (if (o.EXECUTELONGFUNCTION == 1) @enumToInt(WORKER_THREAD_FLAGS.EXECUTELONGFUNCTION) else 0)
-            | (if (o.EXECUTEONLYONCE == 1) @enumToInt(WORKER_THREAD_FLAGS.EXECUTEONLYONCE) else 0)
-            | (if (o.TRANSFER_IMPERSONATION == 1) @enumToInt(WORKER_THREAD_FLAGS.TRANSFER_IMPERSONATION) else 0)
-            | (if (o.EXECUTEINTIMERTHREAD == 1) @enumToInt(WORKER_THREAD_FLAGS.EXECUTEINTIMERTHREAD) else 0)
-        );
+        return @enumFromInt(WORKER_THREAD_FLAGS, (if (o.EXECUTEDEFAULT == 1) @intFromEnum(WORKER_THREAD_FLAGS.EXECUTEDEFAULT) else 0) | (if (o.EXECUTEINIOTHREAD == 1) @intFromEnum(WORKER_THREAD_FLAGS.EXECUTEINIOTHREAD) else 0) | (if (o.EXECUTEINPERSISTENTTHREAD == 1) @intFromEnum(WORKER_THREAD_FLAGS.EXECUTEINPERSISTENTTHREAD) else 0) | (if (o.EXECUTEINWAITTHREAD == 1) @intFromEnum(WORKER_THREAD_FLAGS.EXECUTEINWAITTHREAD) else 0) | (if (o.EXECUTELONGFUNCTION == 1) @intFromEnum(WORKER_THREAD_FLAGS.EXECUTELONGFUNCTION) else 0) | (if (o.EXECUTEONLYONCE == 1) @intFromEnum(WORKER_THREAD_FLAGS.EXECUTEONLYONCE) else 0) | (if (o.TRANSFER_IMPERSONATION == 1) @intFromEnum(WORKER_THREAD_FLAGS.TRANSFER_IMPERSONATION) else 0) | (if (o.EXECUTEINTIMERTHREAD == 1) @intFromEnum(WORKER_THREAD_FLAGS.EXECUTEINTIMERTHREAD) else 0));
     }
 };
 pub const WT_EXECUTEDEFAULT = WORKER_THREAD_FLAGS.EXECUTEDEFAULT;
@@ -128,10 +115,7 @@ pub const CREATE_EVENT = enum(u32) {
         INITIAL_SET: u1 = 0,
         MANUAL_RESET: u1 = 0,
     }) CREATE_EVENT {
-        return @intToEnum(CREATE_EVENT,
-              (if (o.INITIAL_SET == 1) @enumToInt(CREATE_EVENT.INITIAL_SET) else 0)
-            | (if (o.MANUAL_RESET == 1) @enumToInt(CREATE_EVENT.MANUAL_RESET) else 0)
-        );
+        return @enumFromInt(CREATE_EVENT, (if (o.INITIAL_SET == 1) @intFromEnum(CREATE_EVENT.INITIAL_SET) else 0) | (if (o.MANUAL_RESET == 1) @intFromEnum(CREATE_EVENT.MANUAL_RESET) else 0));
     }
 };
 pub const CREATE_EVENT_INITIAL_SET = CREATE_EVENT.INITIAL_SET;
@@ -161,11 +145,7 @@ pub const PROCESS_DEP_FLAGS = enum(u32) {
         DISABLE_ATL_THUNK_EMULATION: u1 = 0,
         NONE: u1 = 0,
     }) PROCESS_DEP_FLAGS {
-        return @intToEnum(PROCESS_DEP_FLAGS,
-              (if (o.ENABLE == 1) @enumToInt(PROCESS_DEP_FLAGS.ENABLE) else 0)
-            | (if (o.DISABLE_ATL_THUNK_EMULATION == 1) @enumToInt(PROCESS_DEP_FLAGS.DISABLE_ATL_THUNK_EMULATION) else 0)
-            | (if (o.NONE == 1) @enumToInt(PROCESS_DEP_FLAGS.NONE) else 0)
-        );
+        return @enumFromInt(PROCESS_DEP_FLAGS, (if (o.ENABLE == 1) @intFromEnum(PROCESS_DEP_FLAGS.ENABLE) else 0) | (if (o.DISABLE_ATL_THUNK_EMULATION == 1) @intFromEnum(PROCESS_DEP_FLAGS.DISABLE_ATL_THUNK_EMULATION) else 0) | (if (o.NONE == 1) @intFromEnum(PROCESS_DEP_FLAGS.NONE) else 0));
     }
 };
 pub const PROCESS_DEP_ENABLE = PROCESS_DEP_FLAGS.ENABLE;
@@ -281,22 +261,7 @@ pub const STARTUPINFOW_FLAGS = enum(u32) {
         USESIZE: u1 = 0,
         USESTDHANDLES: u1 = 0,
     }) STARTUPINFOW_FLAGS {
-        return @intToEnum(STARTUPINFOW_FLAGS,
-              (if (o.FORCEONFEEDBACK == 1) @enumToInt(STARTUPINFOW_FLAGS.FORCEONFEEDBACK) else 0)
-            | (if (o.FORCEOFFFEEDBACK == 1) @enumToInt(STARTUPINFOW_FLAGS.FORCEOFFFEEDBACK) else 0)
-            | (if (o.PREVENTPINNING == 1) @enumToInt(STARTUPINFOW_FLAGS.PREVENTPINNING) else 0)
-            | (if (o.RUNFULLSCREEN == 1) @enumToInt(STARTUPINFOW_FLAGS.RUNFULLSCREEN) else 0)
-            | (if (o.TITLEISAPPID == 1) @enumToInt(STARTUPINFOW_FLAGS.TITLEISAPPID) else 0)
-            | (if (o.TITLEISLINKNAME == 1) @enumToInt(STARTUPINFOW_FLAGS.TITLEISLINKNAME) else 0)
-            | (if (o.UNTRUSTEDSOURCE == 1) @enumToInt(STARTUPINFOW_FLAGS.UNTRUSTEDSOURCE) else 0)
-            | (if (o.USECOUNTCHARS == 1) @enumToInt(STARTUPINFOW_FLAGS.USECOUNTCHARS) else 0)
-            | (if (o.USEFILLATTRIBUTE == 1) @enumToInt(STARTUPINFOW_FLAGS.USEFILLATTRIBUTE) else 0)
-            | (if (o.USEHOTKEY == 1) @enumToInt(STARTUPINFOW_FLAGS.USEHOTKEY) else 0)
-            | (if (o.USEPOSITION == 1) @enumToInt(STARTUPINFOW_FLAGS.USEPOSITION) else 0)
-            | (if (o.USESHOWWINDOW == 1) @enumToInt(STARTUPINFOW_FLAGS.USESHOWWINDOW) else 0)
-            | (if (o.USESIZE == 1) @enumToInt(STARTUPINFOW_FLAGS.USESIZE) else 0)
-            | (if (o.USESTDHANDLES == 1) @enumToInt(STARTUPINFOW_FLAGS.USESTDHANDLES) else 0)
-        );
+        return @enumFromInt(STARTUPINFOW_FLAGS, (if (o.FORCEONFEEDBACK == 1) @intFromEnum(STARTUPINFOW_FLAGS.FORCEONFEEDBACK) else 0) | (if (o.FORCEOFFFEEDBACK == 1) @intFromEnum(STARTUPINFOW_FLAGS.FORCEOFFFEEDBACK) else 0) | (if (o.PREVENTPINNING == 1) @intFromEnum(STARTUPINFOW_FLAGS.PREVENTPINNING) else 0) | (if (o.RUNFULLSCREEN == 1) @intFromEnum(STARTUPINFOW_FLAGS.RUNFULLSCREEN) else 0) | (if (o.TITLEISAPPID == 1) @intFromEnum(STARTUPINFOW_FLAGS.TITLEISAPPID) else 0) | (if (o.TITLEISLINKNAME == 1) @intFromEnum(STARTUPINFOW_FLAGS.TITLEISLINKNAME) else 0) | (if (o.UNTRUSTEDSOURCE == 1) @intFromEnum(STARTUPINFOW_FLAGS.UNTRUSTEDSOURCE) else 0) | (if (o.USECOUNTCHARS == 1) @intFromEnum(STARTUPINFOW_FLAGS.USECOUNTCHARS) else 0) | (if (o.USEFILLATTRIBUTE == 1) @intFromEnum(STARTUPINFOW_FLAGS.USEFILLATTRIBUTE) else 0) | (if (o.USEHOTKEY == 1) @intFromEnum(STARTUPINFOW_FLAGS.USEHOTKEY) else 0) | (if (o.USEPOSITION == 1) @intFromEnum(STARTUPINFOW_FLAGS.USEPOSITION) else 0) | (if (o.USESHOWWINDOW == 1) @intFromEnum(STARTUPINFOW_FLAGS.USESHOWWINDOW) else 0) | (if (o.USESIZE == 1) @intFromEnum(STARTUPINFOW_FLAGS.USESIZE) else 0) | (if (o.USESTDHANDLES == 1) @intFromEnum(STARTUPINFOW_FLAGS.USESTDHANDLES) else 0));
     }
 };
 pub const STARTF_FORCEONFEEDBACK = STARTUPINFOW_FLAGS.FORCEONFEEDBACK;
@@ -399,27 +364,7 @@ pub const THREAD_ACCESS_RIGHTS = enum(u32) {
         SYNCHRONIZE: u1 = 0,
         STANDARD_RIGHTS_REQUIRED: u1 = 0,
     }) THREAD_ACCESS_RIGHTS {
-        return @intToEnum(THREAD_ACCESS_RIGHTS,
-              (if (o.TERMINATE == 1) @enumToInt(THREAD_ACCESS_RIGHTS.TERMINATE) else 0)
-            | (if (o.SUSPEND_RESUME == 1) @enumToInt(THREAD_ACCESS_RIGHTS.SUSPEND_RESUME) else 0)
-            | (if (o.GET_CONTEXT == 1) @enumToInt(THREAD_ACCESS_RIGHTS.GET_CONTEXT) else 0)
-            | (if (o.SET_CONTEXT == 1) @enumToInt(THREAD_ACCESS_RIGHTS.SET_CONTEXT) else 0)
-            | (if (o.SET_INFORMATION == 1) @enumToInt(THREAD_ACCESS_RIGHTS.SET_INFORMATION) else 0)
-            | (if (o.QUERY_INFORMATION == 1) @enumToInt(THREAD_ACCESS_RIGHTS.QUERY_INFORMATION) else 0)
-            | (if (o.SET_THREAD_TOKEN == 1) @enumToInt(THREAD_ACCESS_RIGHTS.SET_THREAD_TOKEN) else 0)
-            | (if (o.IMPERSONATE == 1) @enumToInt(THREAD_ACCESS_RIGHTS.IMPERSONATE) else 0)
-            | (if (o.DIRECT_IMPERSONATION == 1) @enumToInt(THREAD_ACCESS_RIGHTS.DIRECT_IMPERSONATION) else 0)
-            | (if (o.SET_LIMITED_INFORMATION == 1) @enumToInt(THREAD_ACCESS_RIGHTS.SET_LIMITED_INFORMATION) else 0)
-            | (if (o.QUERY_LIMITED_INFORMATION == 1) @enumToInt(THREAD_ACCESS_RIGHTS.QUERY_LIMITED_INFORMATION) else 0)
-            | (if (o.RESUME == 1) @enumToInt(THREAD_ACCESS_RIGHTS.RESUME) else 0)
-            | (if (o.ALL_ACCESS == 1) @enumToInt(THREAD_ACCESS_RIGHTS.ALL_ACCESS) else 0)
-            | (if (o.DELETE == 1) @enumToInt(THREAD_ACCESS_RIGHTS.DELETE) else 0)
-            | (if (o.READ_CONTROL == 1) @enumToInt(THREAD_ACCESS_RIGHTS.READ_CONTROL) else 0)
-            | (if (o.WRITE_DAC == 1) @enumToInt(THREAD_ACCESS_RIGHTS.WRITE_DAC) else 0)
-            | (if (o.WRITE_OWNER == 1) @enumToInt(THREAD_ACCESS_RIGHTS.WRITE_OWNER) else 0)
-            | (if (o.SYNCHRONIZE == 1) @enumToInt(THREAD_ACCESS_RIGHTS.SYNCHRONIZE) else 0)
-            | (if (o.STANDARD_RIGHTS_REQUIRED == 1) @enumToInt(THREAD_ACCESS_RIGHTS.STANDARD_RIGHTS_REQUIRED) else 0)
-        );
+        return @enumFromInt(THREAD_ACCESS_RIGHTS, (if (o.TERMINATE == 1) @intFromEnum(THREAD_ACCESS_RIGHTS.TERMINATE) else 0) | (if (o.SUSPEND_RESUME == 1) @intFromEnum(THREAD_ACCESS_RIGHTS.SUSPEND_RESUME) else 0) | (if (o.GET_CONTEXT == 1) @intFromEnum(THREAD_ACCESS_RIGHTS.GET_CONTEXT) else 0) | (if (o.SET_CONTEXT == 1) @intFromEnum(THREAD_ACCESS_RIGHTS.SET_CONTEXT) else 0) | (if (o.SET_INFORMATION == 1) @intFromEnum(THREAD_ACCESS_RIGHTS.SET_INFORMATION) else 0) | (if (o.QUERY_INFORMATION == 1) @intFromEnum(THREAD_ACCESS_RIGHTS.QUERY_INFORMATION) else 0) | (if (o.SET_THREAD_TOKEN == 1) @intFromEnum(THREAD_ACCESS_RIGHTS.SET_THREAD_TOKEN) else 0) | (if (o.IMPERSONATE == 1) @intFromEnum(THREAD_ACCESS_RIGHTS.IMPERSONATE) else 0) | (if (o.DIRECT_IMPERSONATION == 1) @intFromEnum(THREAD_ACCESS_RIGHTS.DIRECT_IMPERSONATION) else 0) | (if (o.SET_LIMITED_INFORMATION == 1) @intFromEnum(THREAD_ACCESS_RIGHTS.SET_LIMITED_INFORMATION) else 0) | (if (o.QUERY_LIMITED_INFORMATION == 1) @intFromEnum(THREAD_ACCESS_RIGHTS.QUERY_LIMITED_INFORMATION) else 0) | (if (o.RESUME == 1) @intFromEnum(THREAD_ACCESS_RIGHTS.RESUME) else 0) | (if (o.ALL_ACCESS == 1) @intFromEnum(THREAD_ACCESS_RIGHTS.ALL_ACCESS) else 0) | (if (o.DELETE == 1) @intFromEnum(THREAD_ACCESS_RIGHTS.DELETE) else 0) | (if (o.READ_CONTROL == 1) @intFromEnum(THREAD_ACCESS_RIGHTS.READ_CONTROL) else 0) | (if (o.WRITE_DAC == 1) @intFromEnum(THREAD_ACCESS_RIGHTS.WRITE_DAC) else 0) | (if (o.WRITE_OWNER == 1) @intFromEnum(THREAD_ACCESS_RIGHTS.WRITE_OWNER) else 0) | (if (o.SYNCHRONIZE == 1) @intFromEnum(THREAD_ACCESS_RIGHTS.SYNCHRONIZE) else 0) | (if (o.STANDARD_RIGHTS_REQUIRED == 1) @intFromEnum(THREAD_ACCESS_RIGHTS.STANDARD_RIGHTS_REQUIRED) else 0));
     }
 };
 pub const THREAD_TERMINATE = THREAD_ACCESS_RIGHTS.TERMINATE;
@@ -508,39 +453,7 @@ pub const PROCESS_CREATION_FLAGS = enum(u32) {
         PROFILE_SERVER: u1 = 0,
         CREATE_IGNORE_SYSTEM_DEFAULT: u1 = 0,
     }) PROCESS_CREATION_FLAGS {
-        return @intToEnum(PROCESS_CREATION_FLAGS,
-              (if (o.DEBUG_PROCESS == 1) @enumToInt(PROCESS_CREATION_FLAGS.DEBUG_PROCESS) else 0)
-            | (if (o.DEBUG_ONLY_THIS_PROCESS == 1) @enumToInt(PROCESS_CREATION_FLAGS.DEBUG_ONLY_THIS_PROCESS) else 0)
-            | (if (o.CREATE_SUSPENDED == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_SUSPENDED) else 0)
-            | (if (o.DETACHED_PROCESS == 1) @enumToInt(PROCESS_CREATION_FLAGS.DETACHED_PROCESS) else 0)
-            | (if (o.CREATE_NEW_CONSOLE == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_NEW_CONSOLE) else 0)
-            | (if (o.NORMAL_PRIORITY_CLASS == 1) @enumToInt(PROCESS_CREATION_FLAGS.NORMAL_PRIORITY_CLASS) else 0)
-            | (if (o.IDLE_PRIORITY_CLASS == 1) @enumToInt(PROCESS_CREATION_FLAGS.IDLE_PRIORITY_CLASS) else 0)
-            | (if (o.HIGH_PRIORITY_CLASS == 1) @enumToInt(PROCESS_CREATION_FLAGS.HIGH_PRIORITY_CLASS) else 0)
-            | (if (o.REALTIME_PRIORITY_CLASS == 1) @enumToInt(PROCESS_CREATION_FLAGS.REALTIME_PRIORITY_CLASS) else 0)
-            | (if (o.CREATE_NEW_PROCESS_GROUP == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_NEW_PROCESS_GROUP) else 0)
-            | (if (o.CREATE_UNICODE_ENVIRONMENT == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_UNICODE_ENVIRONMENT) else 0)
-            | (if (o.CREATE_SEPARATE_WOW_VDM == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_SEPARATE_WOW_VDM) else 0)
-            | (if (o.CREATE_SHARED_WOW_VDM == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_SHARED_WOW_VDM) else 0)
-            | (if (o.CREATE_FORCEDOS == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_FORCEDOS) else 0)
-            | (if (o.BELOW_NORMAL_PRIORITY_CLASS == 1) @enumToInt(PROCESS_CREATION_FLAGS.BELOW_NORMAL_PRIORITY_CLASS) else 0)
-            | (if (o.ABOVE_NORMAL_PRIORITY_CLASS == 1) @enumToInt(PROCESS_CREATION_FLAGS.ABOVE_NORMAL_PRIORITY_CLASS) else 0)
-            | (if (o.INHERIT_PARENT_AFFINITY == 1) @enumToInt(PROCESS_CREATION_FLAGS.INHERIT_PARENT_AFFINITY) else 0)
-            | (if (o.INHERIT_CALLER_PRIORITY == 1) @enumToInt(PROCESS_CREATION_FLAGS.INHERIT_CALLER_PRIORITY) else 0)
-            | (if (o.CREATE_PROTECTED_PROCESS == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_PROTECTED_PROCESS) else 0)
-            | (if (o.EXTENDED_STARTUPINFO_PRESENT == 1) @enumToInt(PROCESS_CREATION_FLAGS.EXTENDED_STARTUPINFO_PRESENT) else 0)
-            | (if (o.PROCESS_MODE_BACKGROUND_BEGIN == 1) @enumToInt(PROCESS_CREATION_FLAGS.PROCESS_MODE_BACKGROUND_BEGIN) else 0)
-            | (if (o.PROCESS_MODE_BACKGROUND_END == 1) @enumToInt(PROCESS_CREATION_FLAGS.PROCESS_MODE_BACKGROUND_END) else 0)
-            | (if (o.CREATE_SECURE_PROCESS == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_SECURE_PROCESS) else 0)
-            | (if (o.CREATE_BREAKAWAY_FROM_JOB == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_BREAKAWAY_FROM_JOB) else 0)
-            | (if (o.CREATE_PRESERVE_CODE_AUTHZ_LEVEL == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_PRESERVE_CODE_AUTHZ_LEVEL) else 0)
-            | (if (o.CREATE_DEFAULT_ERROR_MODE == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_DEFAULT_ERROR_MODE) else 0)
-            | (if (o.CREATE_NO_WINDOW == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_NO_WINDOW) else 0)
-            | (if (o.PROFILE_USER == 1) @enumToInt(PROCESS_CREATION_FLAGS.PROFILE_USER) else 0)
-            | (if (o.PROFILE_KERNEL == 1) @enumToInt(PROCESS_CREATION_FLAGS.PROFILE_KERNEL) else 0)
-            | (if (o.PROFILE_SERVER == 1) @enumToInt(PROCESS_CREATION_FLAGS.PROFILE_SERVER) else 0)
-            | (if (o.CREATE_IGNORE_SYSTEM_DEFAULT == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_IGNORE_SYSTEM_DEFAULT) else 0)
-        );
+        return @enumFromInt(PROCESS_CREATION_FLAGS, (if (o.DEBUG_PROCESS == 1) @intFromEnum(PROCESS_CREATION_FLAGS.DEBUG_PROCESS) else 0) | (if (o.DEBUG_ONLY_THIS_PROCESS == 1) @intFromEnum(PROCESS_CREATION_FLAGS.DEBUG_ONLY_THIS_PROCESS) else 0) | (if (o.CREATE_SUSPENDED == 1) @intFromEnum(PROCESS_CREATION_FLAGS.CREATE_SUSPENDED) else 0) | (if (o.DETACHED_PROCESS == 1) @intFromEnum(PROCESS_CREATION_FLAGS.DETACHED_PROCESS) else 0) | (if (o.CREATE_NEW_CONSOLE == 1) @intFromEnum(PROCESS_CREATION_FLAGS.CREATE_NEW_CONSOLE) else 0) | (if (o.NORMAL_PRIORITY_CLASS == 1) @intFromEnum(PROCESS_CREATION_FLAGS.NORMAL_PRIORITY_CLASS) else 0) | (if (o.IDLE_PRIORITY_CLASS == 1) @intFromEnum(PROCESS_CREATION_FLAGS.IDLE_PRIORITY_CLASS) else 0) | (if (o.HIGH_PRIORITY_CLASS == 1) @intFromEnum(PROCESS_CREATION_FLAGS.HIGH_PRIORITY_CLASS) else 0) | (if (o.REALTIME_PRIORITY_CLASS == 1) @intFromEnum(PROCESS_CREATION_FLAGS.REALTIME_PRIORITY_CLASS) else 0) | (if (o.CREATE_NEW_PROCESS_GROUP == 1) @intFromEnum(PROCESS_CREATION_FLAGS.CREATE_NEW_PROCESS_GROUP) else 0) | (if (o.CREATE_UNICODE_ENVIRONMENT == 1) @intFromEnum(PROCESS_CREATION_FLAGS.CREATE_UNICODE_ENVIRONMENT) else 0) | (if (o.CREATE_SEPARATE_WOW_VDM == 1) @intFromEnum(PROCESS_CREATION_FLAGS.CREATE_SEPARATE_WOW_VDM) else 0) | (if (o.CREATE_SHARED_WOW_VDM == 1) @intFromEnum(PROCESS_CREATION_FLAGS.CREATE_SHARED_WOW_VDM) else 0) | (if (o.CREATE_FORCEDOS == 1) @intFromEnum(PROCESS_CREATION_FLAGS.CREATE_FORCEDOS) else 0) | (if (o.BELOW_NORMAL_PRIORITY_CLASS == 1) @intFromEnum(PROCESS_CREATION_FLAGS.BELOW_NORMAL_PRIORITY_CLASS) else 0) | (if (o.ABOVE_NORMAL_PRIORITY_CLASS == 1) @intFromEnum(PROCESS_CREATION_FLAGS.ABOVE_NORMAL_PRIORITY_CLASS) else 0) | (if (o.INHERIT_PARENT_AFFINITY == 1) @intFromEnum(PROCESS_CREATION_FLAGS.INHERIT_PARENT_AFFINITY) else 0) | (if (o.INHERIT_CALLER_PRIORITY == 1) @intFromEnum(PROCESS_CREATION_FLAGS.INHERIT_CALLER_PRIORITY) else 0) | (if (o.CREATE_PROTECTED_PROCESS == 1) @intFromEnum(PROCESS_CREATION_FLAGS.CREATE_PROTECTED_PROCESS) else 0) | (if (o.EXTENDED_STARTUPINFO_PRESENT == 1) @intFromEnum(PROCESS_CREATION_FLAGS.EXTENDED_STARTUPINFO_PRESENT) else 0) | (if (o.PROCESS_MODE_BACKGROUND_BEGIN == 1) @intFromEnum(PROCESS_CREATION_FLAGS.PROCESS_MODE_BACKGROUND_BEGIN) else 0) | (if (o.PROCESS_MODE_BACKGROUND_END == 1) @intFromEnum(PROCESS_CREATION_FLAGS.PROCESS_MODE_BACKGROUND_END) else 0) | (if (o.CREATE_SECURE_PROCESS == 1) @intFromEnum(PROCESS_CREATION_FLAGS.CREATE_SECURE_PROCESS) else 0) | (if (o.CREATE_BREAKAWAY_FROM_JOB == 1) @intFromEnum(PROCESS_CREATION_FLAGS.CREATE_BREAKAWAY_FROM_JOB) else 0) | (if (o.CREATE_PRESERVE_CODE_AUTHZ_LEVEL == 1) @intFromEnum(PROCESS_CREATION_FLAGS.CREATE_PRESERVE_CODE_AUTHZ_LEVEL) else 0) | (if (o.CREATE_DEFAULT_ERROR_MODE == 1) @intFromEnum(PROCESS_CREATION_FLAGS.CREATE_DEFAULT_ERROR_MODE) else 0) | (if (o.CREATE_NO_WINDOW == 1) @intFromEnum(PROCESS_CREATION_FLAGS.CREATE_NO_WINDOW) else 0) | (if (o.PROFILE_USER == 1) @intFromEnum(PROCESS_CREATION_FLAGS.PROFILE_USER) else 0) | (if (o.PROFILE_KERNEL == 1) @intFromEnum(PROCESS_CREATION_FLAGS.PROFILE_KERNEL) else 0) | (if (o.PROFILE_SERVER == 1) @intFromEnum(PROCESS_CREATION_FLAGS.PROFILE_SERVER) else 0) | (if (o.CREATE_IGNORE_SYSTEM_DEFAULT == 1) @intFromEnum(PROCESS_CREATION_FLAGS.CREATE_IGNORE_SYSTEM_DEFAULT) else 0));
     }
 };
 pub const DEBUG_PROCESS = PROCESS_CREATION_FLAGS.DEBUG_PROCESS;
@@ -621,29 +534,7 @@ pub const PROCESS_ACCESS_RIGHTS = enum(u32) {
         SYNCHRONIZE: u1 = 0,
         STANDARD_RIGHTS_REQUIRED: u1 = 0,
     }) PROCESS_ACCESS_RIGHTS {
-        return @intToEnum(PROCESS_ACCESS_RIGHTS,
-              (if (o.TERMINATE == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.TERMINATE) else 0)
-            | (if (o.CREATE_THREAD == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.CREATE_THREAD) else 0)
-            | (if (o.SET_SESSIONID == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.SET_SESSIONID) else 0)
-            | (if (o.VM_OPERATION == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.VM_OPERATION) else 0)
-            | (if (o.VM_READ == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.VM_READ) else 0)
-            | (if (o.VM_WRITE == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.VM_WRITE) else 0)
-            | (if (o.DUP_HANDLE == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.DUP_HANDLE) else 0)
-            | (if (o.CREATE_PROCESS == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.CREATE_PROCESS) else 0)
-            | (if (o.SET_QUOTA == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.SET_QUOTA) else 0)
-            | (if (o.SET_INFORMATION == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.SET_INFORMATION) else 0)
-            | (if (o.QUERY_INFORMATION == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.QUERY_INFORMATION) else 0)
-            | (if (o.SUSPEND_RESUME == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.SUSPEND_RESUME) else 0)
-            | (if (o.QUERY_LIMITED_INFORMATION == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.QUERY_LIMITED_INFORMATION) else 0)
-            | (if (o.SET_LIMITED_INFORMATION == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.SET_LIMITED_INFORMATION) else 0)
-            | (if (o.ALL_ACCESS == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.ALL_ACCESS) else 0)
-            | (if (o.DELETE == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.DELETE) else 0)
-            | (if (o.READ_CONTROL == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.READ_CONTROL) else 0)
-            | (if (o.WRITE_DAC == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.WRITE_DAC) else 0)
-            | (if (o.WRITE_OWNER == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.WRITE_OWNER) else 0)
-            | (if (o.SYNCHRONIZE == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.SYNCHRONIZE) else 0)
-            | (if (o.STANDARD_RIGHTS_REQUIRED == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.STANDARD_RIGHTS_REQUIRED) else 0)
-        );
+        return @enumFromInt(PROCESS_ACCESS_RIGHTS, (if (o.TERMINATE == 1) @intFromEnum(PROCESS_ACCESS_RIGHTS.TERMINATE) else 0) | (if (o.CREATE_THREAD == 1) @intFromEnum(PROCESS_ACCESS_RIGHTS.CREATE_THREAD) else 0) | (if (o.SET_SESSIONID == 1) @intFromEnum(PROCESS_ACCESS_RIGHTS.SET_SESSIONID) else 0) | (if (o.VM_OPERATION == 1) @intFromEnum(PROCESS_ACCESS_RIGHTS.VM_OPERATION) else 0) | (if (o.VM_READ == 1) @intFromEnum(PROCESS_ACCESS_RIGHTS.VM_READ) else 0) | (if (o.VM_WRITE == 1) @intFromEnum(PROCESS_ACCESS_RIGHTS.VM_WRITE) else 0) | (if (o.DUP_HANDLE == 1) @intFromEnum(PROCESS_ACCESS_RIGHTS.DUP_HANDLE) else 0) | (if (o.CREATE_PROCESS == 1) @intFromEnum(PROCESS_ACCESS_RIGHTS.CREATE_PROCESS) else 0) | (if (o.SET_QUOTA == 1) @intFromEnum(PROCESS_ACCESS_RIGHTS.SET_QUOTA) else 0) | (if (o.SET_INFORMATION == 1) @intFromEnum(PROCESS_ACCESS_RIGHTS.SET_INFORMATION) else 0) | (if (o.QUERY_INFORMATION == 1) @intFromEnum(PROCESS_ACCESS_RIGHTS.QUERY_INFORMATION) else 0) | (if (o.SUSPEND_RESUME == 1) @intFromEnum(PROCESS_ACCESS_RIGHTS.SUSPEND_RESUME) else 0) | (if (o.QUERY_LIMITED_INFORMATION == 1) @intFromEnum(PROCESS_ACCESS_RIGHTS.QUERY_LIMITED_INFORMATION) else 0) | (if (o.SET_LIMITED_INFORMATION == 1) @intFromEnum(PROCESS_ACCESS_RIGHTS.SET_LIMITED_INFORMATION) else 0) | (if (o.ALL_ACCESS == 1) @intFromEnum(PROCESS_ACCESS_RIGHTS.ALL_ACCESS) else 0) | (if (o.DELETE == 1) @intFromEnum(PROCESS_ACCESS_RIGHTS.DELETE) else 0) | (if (o.READ_CONTROL == 1) @intFromEnum(PROCESS_ACCESS_RIGHTS.READ_CONTROL) else 0) | (if (o.WRITE_DAC == 1) @intFromEnum(PROCESS_ACCESS_RIGHTS.WRITE_DAC) else 0) | (if (o.WRITE_OWNER == 1) @intFromEnum(PROCESS_ACCESS_RIGHTS.WRITE_OWNER) else 0) | (if (o.SYNCHRONIZE == 1) @intFromEnum(PROCESS_ACCESS_RIGHTS.SYNCHRONIZE) else 0) | (if (o.STANDARD_RIGHTS_REQUIRED == 1) @intFromEnum(PROCESS_ACCESS_RIGHTS.STANDARD_RIGHTS_REQUIRED) else 0));
     }
 };
 pub const PROCESS_TERMINATE = PROCESS_ACCESS_RIGHTS.TERMINATE;
@@ -717,39 +608,39 @@ pub const REASON_CONTEXT = extern struct {
 };
 
 pub const LPTHREAD_START_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         lpThreadParameter: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         lpThreadParameter: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PINIT_ONCE_FN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         InitOnce: ?*RTL_RUN_ONCE,
         Parameter: ?*anyopaque,
         Context: ?*?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         InitOnce: ?*RTL_RUN_ONCE,
         Parameter: ?*anyopaque,
         Context: ?*?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const PTIMERAPCROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         lpArgToCompletionRoutine: ?*anyopaque,
         dwTimerLowValue: u32,
         dwTimerHighValue: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         lpArgToCompletionRoutine: ?*anyopaque,
         dwTimerLowValue: u32,
         dwTimerHighValue: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PROCESS_INFORMATION = extern struct {
     hProcess: ?HANDLE,
@@ -872,11 +763,7 @@ pub const MACHINE_ATTRIBUTES = enum(u32) {
         KernelEnabled: u1 = 0,
         Wow64Container: u1 = 0,
     }) MACHINE_ATTRIBUTES {
-        return @intToEnum(MACHINE_ATTRIBUTES,
-              (if (o.UserEnabled == 1) @enumToInt(MACHINE_ATTRIBUTES.UserEnabled) else 0)
-            | (if (o.KernelEnabled == 1) @enumToInt(MACHINE_ATTRIBUTES.KernelEnabled) else 0)
-            | (if (o.Wow64Container == 1) @enumToInt(MACHINE_ATTRIBUTES.Wow64Container) else 0)
-        );
+        return @enumFromInt(MACHINE_ATTRIBUTES, (if (o.UserEnabled == 1) @intFromEnum(MACHINE_ATTRIBUTES.UserEnabled) else 0) | (if (o.KernelEnabled == 1) @intFromEnum(MACHINE_ATTRIBUTES.KernelEnabled) else 0) | (if (o.Wow64Container == 1) @intFromEnum(MACHINE_ATTRIBUTES.Wow64Container) else 0));
     }
 };
 pub const UserEnabled = MACHINE_ATTRIBUTES.UserEnabled;
@@ -919,7 +806,7 @@ pub const PROCESS_LEAP_SECOND_INFO = extern struct {
 };
 
 pub const PTP_WIN32_IO_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         Instance: ?*TP_CALLBACK_INSTANCE,
         Context: ?*anyopaque,
         Overlapped: ?*anyopaque,
@@ -927,7 +814,7 @@ pub const PTP_WIN32_IO_CALLBACK = switch (@import("builtin").zig_backend) {
         NumberOfBytesTransferred: usize,
         Io: ?*TP_IO,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         Instance: ?*TP_CALLBACK_INSTANCE,
         Context: ?*anyopaque,
         Overlapped: ?*anyopaque,
@@ -935,7 +822,7 @@ pub const PTP_WIN32_IO_CALLBACK = switch (@import("builtin").zig_backend) {
         NumberOfBytesTransferred: usize,
         Io: ?*TP_IO,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PROCESS_DYNAMIC_EH_CONTINUATION_TARGET = extern struct {
     TargetAddress: usize,
@@ -1042,17 +929,17 @@ pub const UmsThreadIsTerminated = RTL_UMS_THREAD_INFO_CLASS.IsTerminated;
 pub const UmsThreadMaxInfoClass = RTL_UMS_THREAD_INFO_CLASS.MaxInfoClass;
 
 pub const PRTL_UMS_SCHEDULER_ENTRY_POINT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         Reason: RTL_UMS_SCHEDULER_REASON,
         ActivationPayload: usize,
         SchedulerParam: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         Reason: RTL_UMS_SCHEDULER_REASON,
         ActivationPayload: usize,
         SchedulerParam: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const RTL_CRITICAL_SECTION_DEBUG = extern struct {
     Type: u16,
@@ -1084,35 +971,35 @@ pub const RTL_CONDITION_VARIABLE = extern struct {
 };
 
 pub const WAITORTIMERCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*anyopaque,
         param1: BOOLEAN,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         param0: ?*anyopaque,
         param1: BOOLEAN,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PFLS_CALLBACK_FUNCTION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         lpFlsData: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         lpFlsData: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PTP_SIMPLE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         Instance: ?*TP_CALLBACK_INSTANCE,
         Context: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         Instance: ?*TP_CALLBACK_INSTANCE,
         Context: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const TP_CALLBACK_PRIORITY = enum(i32) {
     HIGH = 0,
@@ -1133,15 +1020,15 @@ pub const TP_POOL_STACK_INFORMATION = extern struct {
 };
 
 pub const PTP_CLEANUP_GROUP_CANCEL_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         ObjectContext: ?*anyopaque,
         CleanupContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         ObjectContext: ?*anyopaque,
         CleanupContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const TP_CALLBACK_ENVIRON_V3 = extern struct {
     pub const _ACTIVATION_CONTEXT = extern struct {
@@ -1165,54 +1052,54 @@ pub const TP_CALLBACK_ENVIRON_V3 = extern struct {
 };
 
 pub const PTP_WORK_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         Instance: ?*TP_CALLBACK_INSTANCE,
         Context: ?*anyopaque,
         Work: ?*TP_WORK,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         Instance: ?*TP_CALLBACK_INSTANCE,
         Context: ?*anyopaque,
         Work: ?*TP_WORK,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PTP_TIMER_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         Instance: ?*TP_CALLBACK_INSTANCE,
         Context: ?*anyopaque,
         Timer: ?*TP_TIMER,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         Instance: ?*TP_CALLBACK_INSTANCE,
         Context: ?*anyopaque,
         Timer: ?*TP_TIMER,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PTP_WAIT_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         Instance: ?*TP_CALLBACK_INSTANCE,
         Context: ?*anyopaque,
         Wait: ?*TP_WAIT,
         WaitResult: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         Instance: ?*TP_CALLBACK_INSTANCE,
         Context: ?*anyopaque,
         Wait: ?*TP_WAIT,
         WaitResult: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const LPFIBER_START_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         lpFiberParameter: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         lpFiberParameter: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const UMS_SCHEDULER_STARTUP_INFO = extern struct {
     UmsVersion: u32,
@@ -1255,11 +1142,9 @@ pub const RTL_USER_PROCESS_PARAMETERS = extern struct {
 };
 
 pub const PPS_POST_PROCESS_INIT_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 pub const PEB = extern struct {
     Reserved1: [2]u8,
@@ -1311,7 +1196,6 @@ pub const THREADINFOCLASS = enum(i32) {
 pub const ThreadIsIoPending = THREADINFOCLASS.IsIoPending;
 pub const ThreadNameInformation = THREADINFOCLASS.NameInformation;
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (284)
 //--------------------------------------------------------------------------------
@@ -1351,8 +1235,7 @@ pub extern "kernel32" fn FlsFree(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn IsThreadAFiber(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "kernel32" fn IsThreadAFiber() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn InitializeSRWLock(
@@ -1806,12 +1689,10 @@ pub extern "kernel32" fn GetProcessTimes(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetCurrentProcess(
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+pub extern "kernel32" fn GetCurrentProcess() callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetCurrentProcessId(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "kernel32" fn GetCurrentProcessId() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn ExitProcess(
@@ -1831,8 +1712,7 @@ pub extern "kernel32" fn GetExitCodeProcess(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn SwitchToThread(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "kernel32" fn SwitchToThread() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn CreateThread(
@@ -1856,12 +1736,10 @@ pub extern "kernel32" fn CreateRemoteThread(
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetCurrentThread(
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+pub extern "kernel32" fn GetCurrentThread() callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn GetCurrentThreadId(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "kernel32" fn GetCurrentThreadId() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn OpenThread(
@@ -1921,8 +1799,7 @@ pub extern "kernel32" fn ResumeThread(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn TlsAlloc(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "kernel32" fn TlsAlloc() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn TlsGetValue(
@@ -2047,8 +1924,7 @@ pub extern "kernel32" fn GetThreadId(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn FlushProcessWriteBuffers(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "kernel32" fn FlushProcessWriteBuffers() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn GetProcessIdOfThread(
@@ -2169,8 +2045,7 @@ pub extern "kernel32" fn GetProcessHandleCount(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetCurrentProcessorNumber(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "kernel32" fn GetCurrentProcessorNumber() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "kernel32" fn SetThreadIdealProcessorEx(
@@ -2380,8 +2255,7 @@ pub extern "kernel32" fn UnregisterWaitEx(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn CreateTimerQueue(
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+pub extern "kernel32" fn CreateTimerQueue() callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn CreateTimerQueueTimer(
@@ -2455,8 +2329,7 @@ pub extern "kernel32" fn CloseThreadpool(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn CreateThreadpoolCleanupGroup(
-) callconv(@import("std").os.windows.WINAPI) isize;
+pub extern "kernel32" fn CreateThreadpoolCleanupGroup() callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn CloseThreadpoolCleanupGroupMembers(
@@ -2800,8 +2673,7 @@ pub extern "kernel32" fn DeleteFiber(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn ConvertFiberToThread(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "kernel32" fn ConvertFiberToThread() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn CreateFiberEx(
@@ -2864,8 +2736,7 @@ pub extern "kernel32" fn DeleteUmsCompletionList(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "kernel32" fn GetCurrentUmsThread(
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+pub extern "kernel32" fn GetCurrentUmsThread() callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "kernel32" fn GetNextUmsListItem(
@@ -3056,12 +2927,10 @@ pub extern "kernel32" fn AddIntegrityLabelToBoundaryDescriptor(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "kernel32" fn GetActiveProcessorGroupCount(
-) callconv(@import("std").os.windows.WINAPI) u16;
+pub extern "kernel32" fn GetActiveProcessorGroupCount() callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "kernel32" fn GetMaximumProcessorGroupCount(
-) callconv(@import("std").os.windows.WINAPI) u16;
+pub extern "kernel32" fn GetMaximumProcessorGroupCount() callconv(@import("std").os.windows.WINAPI) u16;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "kernel32" fn GetActiveProcessorCount(
@@ -3139,7 +3008,6 @@ pub extern "ntdll" fn NtSetInformationThread(
     ThreadInformationLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (16)
 //--------------------------------------------------------------------------------
@@ -3182,22 +3050,22 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const QueryFullProcessImageName = thismodule.QueryFullProcessImageNameW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const STARTUPINFO = *opaque{};
-        pub const STARTUPINFOEX = *opaque{};
-        pub const CreateMutex = *opaque{};
-        pub const CreateEvent = *opaque{};
-        pub const OpenEvent = *opaque{};
-        pub const CreateMutexEx = *opaque{};
-        pub const CreateEventEx = *opaque{};
-        pub const CreateSemaphoreEx = *opaque{};
-        pub const CreateSemaphore = *opaque{};
-        pub const CreateProcess = *opaque{};
-        pub const GetStartupInfo = *opaque{};
-        pub const CreateProcessAsUser = *opaque{};
-        pub const CreatePrivateNamespace = *opaque{};
-        pub const OpenPrivateNamespace = *opaque{};
-        pub const CreateBoundaryDescriptor = *opaque{};
-        pub const QueryFullProcessImageName = *opaque{};
+        pub const STARTUPINFO = *opaque {};
+        pub const STARTUPINFOEX = *opaque {};
+        pub const CreateMutex = *opaque {};
+        pub const CreateEvent = *opaque {};
+        pub const OpenEvent = *opaque {};
+        pub const CreateMutexEx = *opaque {};
+        pub const CreateEventEx = *opaque {};
+        pub const CreateSemaphoreEx = *opaque {};
+        pub const CreateSemaphore = *opaque {};
+        pub const CreateProcess = *opaque {};
+        pub const GetStartupInfo = *opaque {};
+        pub const CreateProcessAsUser = *opaque {};
+        pub const CreatePrivateNamespace = *opaque {};
+        pub const OpenPrivateNamespace = *opaque {};
+        pub const CreateBoundaryDescriptor = *opaque {};
+        pub const QueryFullProcessImageName = *opaque {};
     } else struct {
         pub const STARTUPINFO = @compileError("'STARTUPINFO' requires that UNICODE be set to true or false in the root module");
         pub const STARTUPINFOEX = @compileError("'STARTUPINFOEX' requires that UNICODE be set to true or false in the root module");
@@ -3245,24 +3113,50 @@ const UNICODE_STRING = @import("../foundation.zig").UNICODE_STRING;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "LPTHREAD_START_ROUTINE")) { _ = LPTHREAD_START_ROUTINE; }
-    if (@hasDecl(@This(), "PINIT_ONCE_FN")) { _ = PINIT_ONCE_FN; }
-    if (@hasDecl(@This(), "PTIMERAPCROUTINE")) { _ = PTIMERAPCROUTINE; }
-    if (@hasDecl(@This(), "PTP_WIN32_IO_CALLBACK")) { _ = PTP_WIN32_IO_CALLBACK; }
-    if (@hasDecl(@This(), "PRTL_UMS_SCHEDULER_ENTRY_POINT")) { _ = PRTL_UMS_SCHEDULER_ENTRY_POINT; }
-    if (@hasDecl(@This(), "WAITORTIMERCALLBACK")) { _ = WAITORTIMERCALLBACK; }
-    if (@hasDecl(@This(), "PFLS_CALLBACK_FUNCTION")) { _ = PFLS_CALLBACK_FUNCTION; }
-    if (@hasDecl(@This(), "PTP_SIMPLE_CALLBACK")) { _ = PTP_SIMPLE_CALLBACK; }
-    if (@hasDecl(@This(), "PTP_CLEANUP_GROUP_CANCEL_CALLBACK")) { _ = PTP_CLEANUP_GROUP_CANCEL_CALLBACK; }
-    if (@hasDecl(@This(), "PTP_WORK_CALLBACK")) { _ = PTP_WORK_CALLBACK; }
-    if (@hasDecl(@This(), "PTP_TIMER_CALLBACK")) { _ = PTP_TIMER_CALLBACK; }
-    if (@hasDecl(@This(), "PTP_WAIT_CALLBACK")) { _ = PTP_WAIT_CALLBACK; }
-    if (@hasDecl(@This(), "LPFIBER_START_ROUTINE")) { _ = LPFIBER_START_ROUTINE; }
-    if (@hasDecl(@This(), "PPS_POST_PROCESS_INIT_ROUTINE")) { _ = PPS_POST_PROCESS_INIT_ROUTINE; }
+    if (@hasDecl(@This(), "LPTHREAD_START_ROUTINE")) {
+        _ = LPTHREAD_START_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PINIT_ONCE_FN")) {
+        _ = PINIT_ONCE_FN;
+    }
+    if (@hasDecl(@This(), "PTIMERAPCROUTINE")) {
+        _ = PTIMERAPCROUTINE;
+    }
+    if (@hasDecl(@This(), "PTP_WIN32_IO_CALLBACK")) {
+        _ = PTP_WIN32_IO_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PRTL_UMS_SCHEDULER_ENTRY_POINT")) {
+        _ = PRTL_UMS_SCHEDULER_ENTRY_POINT;
+    }
+    if (@hasDecl(@This(), "WAITORTIMERCALLBACK")) {
+        _ = WAITORTIMERCALLBACK;
+    }
+    if (@hasDecl(@This(), "PFLS_CALLBACK_FUNCTION")) {
+        _ = PFLS_CALLBACK_FUNCTION;
+    }
+    if (@hasDecl(@This(), "PTP_SIMPLE_CALLBACK")) {
+        _ = PTP_SIMPLE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PTP_CLEANUP_GROUP_CANCEL_CALLBACK")) {
+        _ = PTP_CLEANUP_GROUP_CANCEL_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PTP_WORK_CALLBACK")) {
+        _ = PTP_WORK_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PTP_TIMER_CALLBACK")) {
+        _ = PTP_TIMER_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PTP_WAIT_CALLBACK")) {
+        _ = PTP_WAIT_CALLBACK;
+    }
+    if (@hasDecl(@This(), "LPFIBER_START_ROUTINE")) {
+        _ = LPFIBER_START_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PPS_POST_PROCESS_INIT_ROUTINE")) {
+        _ = PPS_POST_PROCESS_INIT_ROUTINE;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

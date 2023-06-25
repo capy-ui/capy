@@ -62,33 +62,7 @@ pub const JOB_OBJECT_LIMIT = enum(u32) {
         EXTENDED_LIMIT_VALID_FLAGS: u1 = 0,
         NOTIFICATION_LIMIT_VALID_FLAGS: u1 = 0,
     }) JOB_OBJECT_LIMIT {
-        return @intToEnum(JOB_OBJECT_LIMIT,
-              (if (o.LIMIT_WORKINGSET == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_WORKINGSET) else 0)
-            | (if (o.LIMIT_PROCESS_TIME == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_PROCESS_TIME) else 0)
-            | (if (o.LIMIT_JOB_TIME == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_JOB_TIME) else 0)
-            | (if (o.LIMIT_ACTIVE_PROCESS == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_ACTIVE_PROCESS) else 0)
-            | (if (o.LIMIT_AFFINITY == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_AFFINITY) else 0)
-            | (if (o.LIMIT_PRIORITY_CLASS == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_PRIORITY_CLASS) else 0)
-            | (if (o.LIMIT_PRESERVE_JOB_TIME == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_PRESERVE_JOB_TIME) else 0)
-            | (if (o.LIMIT_SCHEDULING_CLASS == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_SCHEDULING_CLASS) else 0)
-            | (if (o.LIMIT_PROCESS_MEMORY == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_PROCESS_MEMORY) else 0)
-            | (if (o.LIMIT_JOB_MEMORY == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_JOB_MEMORY) else 0)
-            | (if (o.LIMIT_DIE_ON_UNHANDLED_EXCEPTION == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_DIE_ON_UNHANDLED_EXCEPTION) else 0)
-            | (if (o.LIMIT_BREAKAWAY_OK == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_BREAKAWAY_OK) else 0)
-            | (if (o.LIMIT_SILENT_BREAKAWAY_OK == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_SILENT_BREAKAWAY_OK) else 0)
-            | (if (o.LIMIT_KILL_ON_JOB_CLOSE == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_KILL_ON_JOB_CLOSE) else 0)
-            | (if (o.LIMIT_SUBSET_AFFINITY == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_SUBSET_AFFINITY) else 0)
-            | (if (o.LIMIT_JOB_MEMORY_LOW == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_JOB_MEMORY_LOW) else 0)
-            | (if (o.LIMIT_JOB_READ_BYTES == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_JOB_READ_BYTES) else 0)
-            | (if (o.LIMIT_JOB_WRITE_BYTES == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_JOB_WRITE_BYTES) else 0)
-            | (if (o.LIMIT_RATE_CONTROL == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_RATE_CONTROL) else 0)
-            | (if (o.LIMIT_IO_RATE_CONTROL == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_IO_RATE_CONTROL) else 0)
-            | (if (o.LIMIT_NET_RATE_CONTROL == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_NET_RATE_CONTROL) else 0)
-            | (if (o.LIMIT_VALID_FLAGS == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_VALID_FLAGS) else 0)
-            | (if (o.BASIC_LIMIT_VALID_FLAGS == 1) @enumToInt(JOB_OBJECT_LIMIT.BASIC_LIMIT_VALID_FLAGS) else 0)
-            | (if (o.EXTENDED_LIMIT_VALID_FLAGS == 1) @enumToInt(JOB_OBJECT_LIMIT.EXTENDED_LIMIT_VALID_FLAGS) else 0)
-            | (if (o.NOTIFICATION_LIMIT_VALID_FLAGS == 1) @enumToInt(JOB_OBJECT_LIMIT.NOTIFICATION_LIMIT_VALID_FLAGS) else 0)
-        );
+        return @enumFromInt(JOB_OBJECT_LIMIT, (if (o.LIMIT_WORKINGSET == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_WORKINGSET) else 0) | (if (o.LIMIT_PROCESS_TIME == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_PROCESS_TIME) else 0) | (if (o.LIMIT_JOB_TIME == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_JOB_TIME) else 0) | (if (o.LIMIT_ACTIVE_PROCESS == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_ACTIVE_PROCESS) else 0) | (if (o.LIMIT_AFFINITY == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_AFFINITY) else 0) | (if (o.LIMIT_PRIORITY_CLASS == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_PRIORITY_CLASS) else 0) | (if (o.LIMIT_PRESERVE_JOB_TIME == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_PRESERVE_JOB_TIME) else 0) | (if (o.LIMIT_SCHEDULING_CLASS == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_SCHEDULING_CLASS) else 0) | (if (o.LIMIT_PROCESS_MEMORY == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_PROCESS_MEMORY) else 0) | (if (o.LIMIT_JOB_MEMORY == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_JOB_MEMORY) else 0) | (if (o.LIMIT_DIE_ON_UNHANDLED_EXCEPTION == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_DIE_ON_UNHANDLED_EXCEPTION) else 0) | (if (o.LIMIT_BREAKAWAY_OK == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_BREAKAWAY_OK) else 0) | (if (o.LIMIT_SILENT_BREAKAWAY_OK == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_SILENT_BREAKAWAY_OK) else 0) | (if (o.LIMIT_KILL_ON_JOB_CLOSE == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_KILL_ON_JOB_CLOSE) else 0) | (if (o.LIMIT_SUBSET_AFFINITY == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_SUBSET_AFFINITY) else 0) | (if (o.LIMIT_JOB_MEMORY_LOW == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_JOB_MEMORY_LOW) else 0) | (if (o.LIMIT_JOB_READ_BYTES == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_JOB_READ_BYTES) else 0) | (if (o.LIMIT_JOB_WRITE_BYTES == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_JOB_WRITE_BYTES) else 0) | (if (o.LIMIT_RATE_CONTROL == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_RATE_CONTROL) else 0) | (if (o.LIMIT_IO_RATE_CONTROL == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_IO_RATE_CONTROL) else 0) | (if (o.LIMIT_NET_RATE_CONTROL == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_NET_RATE_CONTROL) else 0) | (if (o.LIMIT_VALID_FLAGS == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_VALID_FLAGS) else 0) | (if (o.BASIC_LIMIT_VALID_FLAGS == 1) @intFromEnum(JOB_OBJECT_LIMIT.BASIC_LIMIT_VALID_FLAGS) else 0) | (if (o.EXTENDED_LIMIT_VALID_FLAGS == 1) @intFromEnum(JOB_OBJECT_LIMIT.EXTENDED_LIMIT_VALID_FLAGS) else 0) | (if (o.NOTIFICATION_LIMIT_VALID_FLAGS == 1) @intFromEnum(JOB_OBJECT_LIMIT.NOTIFICATION_LIMIT_VALID_FLAGS) else 0));
     }
 };
 pub const JOB_OBJECT_LIMIT_WORKINGSET = JOB_OBJECT_LIMIT.LIMIT_WORKINGSET;
@@ -141,17 +115,7 @@ pub const JOB_OBJECT_UILIMIT = enum(u32) {
         DESKTOP: u1 = 0,
         EXITWINDOWS: u1 = 0,
     }) JOB_OBJECT_UILIMIT {
-        return @intToEnum(JOB_OBJECT_UILIMIT,
-              (if (o.NONE == 1) @enumToInt(JOB_OBJECT_UILIMIT.NONE) else 0)
-            | (if (o.HANDLES == 1) @enumToInt(JOB_OBJECT_UILIMIT.HANDLES) else 0)
-            | (if (o.READCLIPBOARD == 1) @enumToInt(JOB_OBJECT_UILIMIT.READCLIPBOARD) else 0)
-            | (if (o.WRITECLIPBOARD == 1) @enumToInt(JOB_OBJECT_UILIMIT.WRITECLIPBOARD) else 0)
-            | (if (o.SYSTEMPARAMETERS == 1) @enumToInt(JOB_OBJECT_UILIMIT.SYSTEMPARAMETERS) else 0)
-            | (if (o.DISPLAYSETTINGS == 1) @enumToInt(JOB_OBJECT_UILIMIT.DISPLAYSETTINGS) else 0)
-            | (if (o.GLOBALATOMS == 1) @enumToInt(JOB_OBJECT_UILIMIT.GLOBALATOMS) else 0)
-            | (if (o.DESKTOP == 1) @enumToInt(JOB_OBJECT_UILIMIT.DESKTOP) else 0)
-            | (if (o.EXITWINDOWS == 1) @enumToInt(JOB_OBJECT_UILIMIT.EXITWINDOWS) else 0)
-        );
+        return @enumFromInt(JOB_OBJECT_UILIMIT, (if (o.NONE == 1) @intFromEnum(JOB_OBJECT_UILIMIT.NONE) else 0) | (if (o.HANDLES == 1) @intFromEnum(JOB_OBJECT_UILIMIT.HANDLES) else 0) | (if (o.READCLIPBOARD == 1) @intFromEnum(JOB_OBJECT_UILIMIT.READCLIPBOARD) else 0) | (if (o.WRITECLIPBOARD == 1) @intFromEnum(JOB_OBJECT_UILIMIT.WRITECLIPBOARD) else 0) | (if (o.SYSTEMPARAMETERS == 1) @intFromEnum(JOB_OBJECT_UILIMIT.SYSTEMPARAMETERS) else 0) | (if (o.DISPLAYSETTINGS == 1) @intFromEnum(JOB_OBJECT_UILIMIT.DISPLAYSETTINGS) else 0) | (if (o.GLOBALATOMS == 1) @intFromEnum(JOB_OBJECT_UILIMIT.GLOBALATOMS) else 0) | (if (o.DESKTOP == 1) @intFromEnum(JOB_OBJECT_UILIMIT.DESKTOP) else 0) | (if (o.EXITWINDOWS == 1) @intFromEnum(JOB_OBJECT_UILIMIT.EXITWINDOWS) else 0));
     }
 };
 pub const JOB_OBJECT_UILIMIT_NONE = JOB_OBJECT_UILIMIT.NONE;
@@ -178,13 +142,7 @@ pub const JOB_OBJECT_SECURITY = enum(u32) {
         FILTER_TOKENS: u1 = 0,
         VALID_FLAGS: u1 = 0,
     }) JOB_OBJECT_SECURITY {
-        return @intToEnum(JOB_OBJECT_SECURITY,
-              (if (o.NO_ADMIN == 1) @enumToInt(JOB_OBJECT_SECURITY.NO_ADMIN) else 0)
-            | (if (o.RESTRICTED_TOKEN == 1) @enumToInt(JOB_OBJECT_SECURITY.RESTRICTED_TOKEN) else 0)
-            | (if (o.ONLY_TOKEN == 1) @enumToInt(JOB_OBJECT_SECURITY.ONLY_TOKEN) else 0)
-            | (if (o.FILTER_TOKENS == 1) @enumToInt(JOB_OBJECT_SECURITY.FILTER_TOKENS) else 0)
-            | (if (o.VALID_FLAGS == 1) @enumToInt(JOB_OBJECT_SECURITY.VALID_FLAGS) else 0)
-        );
+        return @enumFromInt(JOB_OBJECT_SECURITY, (if (o.NO_ADMIN == 1) @intFromEnum(JOB_OBJECT_SECURITY.NO_ADMIN) else 0) | (if (o.RESTRICTED_TOKEN == 1) @intFromEnum(JOB_OBJECT_SECURITY.RESTRICTED_TOKEN) else 0) | (if (o.ONLY_TOKEN == 1) @intFromEnum(JOB_OBJECT_SECURITY.ONLY_TOKEN) else 0) | (if (o.FILTER_TOKENS == 1) @intFromEnum(JOB_OBJECT_SECURITY.FILTER_TOKENS) else 0) | (if (o.VALID_FLAGS == 1) @intFromEnum(JOB_OBJECT_SECURITY.VALID_FLAGS) else 0));
     }
 };
 pub const JOB_OBJECT_SECURITY_NO_ADMIN = JOB_OBJECT_SECURITY.NO_ADMIN;
@@ -601,7 +559,6 @@ pub const JobObjectReserved24Information = JOBOBJECTINFOCLASS.JobObjectReserved2
 pub const JobObjectReserved25Information = JOBOBJECTINFOCLASS.JobObjectReserved25Information;
 pub const MaxJobObjectInfoClass = JOBOBJECTINFOCLASS.MaxJobObjectInfoClass;
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (14)
 //--------------------------------------------------------------------------------
@@ -701,7 +658,6 @@ pub extern "kernel32" fn CreateJobSet(
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (2)
 //--------------------------------------------------------------------------------
@@ -716,8 +672,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const OpenJobObject = thismodule.OpenJobObjectW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const CreateJobObject = *opaque{};
-        pub const OpenJobObject = *opaque{};
+        pub const CreateJobObject = *opaque {};
+        pub const OpenJobObject = *opaque {};
     } else struct {
         pub const CreateJobObject = @compileError("'CreateJobObject' requires that UNICODE be set to true or false in the root module");
         pub const OpenJobObject = @compileError("'OpenJobObject' requires that UNICODE be set to true or false in the root module");
@@ -737,9 +693,7 @@ const TOKEN_GROUPS = @import("../security.zig").TOKEN_GROUPS;
 const TOKEN_PRIVILEGES = @import("../security.zig").TOKEN_PRIVILEGES;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

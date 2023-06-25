@@ -78,7 +78,6 @@ pub const STATEMGRSTATUS = extern struct {
     llSequenceNumber: i64 align(1),
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (2)
 //--------------------------------------------------------------------------------
@@ -94,7 +93,6 @@ pub extern "sfc" fn SRSetRestorePointW(
     pSMgrStatus: ?*STATEMGRSTATUS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (2)
 //--------------------------------------------------------------------------------
@@ -109,8 +107,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SRSetRestorePoint = thismodule.SRSetRestorePointW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const RESTOREPOINTINFO = *opaque{};
-        pub const SRSetRestorePoint = *opaque{};
+        pub const RESTOREPOINTINFO = *opaque {};
+        pub const SRSetRestorePoint = *opaque {};
     } else struct {
         pub const RESTOREPOINTINFO = @compileError("'RESTOREPOINTINFO' requires that UNICODE be set to true or false in the root module");
         pub const SRSetRestorePoint = @compileError("'SRSetRestorePoint' requires that UNICODE be set to true or false in the root module");
@@ -124,9 +122,7 @@ const CHAR = @import("../foundation.zig").CHAR;
 const FILETIME = @import("../foundation.zig").FILETIME;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

@@ -53,15 +53,15 @@ pub const HcsOperationTypeModifyProcess = HCS_OPERATION_TYPE.ModifyProcess;
 pub const HcsOperationTypeCrash = HCS_OPERATION_TYPE.Crash;
 
 pub const HCS_OPERATION_COMPLETION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         operation: HCS_OPERATION,
         context: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         operation: HCS_OPERATION,
         context: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const HCS_EVENT_TYPE = enum(i32) {
     Invalid = 0,
@@ -100,25 +100,22 @@ pub const HCS_EVENT_OPTIONS = enum(u32) {
         None: u1 = 0,
         EnableOperationCallbacks: u1 = 0,
     }) HCS_EVENT_OPTIONS {
-        return @intToEnum(HCS_EVENT_OPTIONS,
-              (if (o.None == 1) @enumToInt(HCS_EVENT_OPTIONS.None) else 0)
-            | (if (o.EnableOperationCallbacks == 1) @enumToInt(HCS_EVENT_OPTIONS.EnableOperationCallbacks) else 0)
-        );
+        return @enumFromInt(HCS_EVENT_OPTIONS, (if (o.None == 1) @intFromEnum(HCS_EVENT_OPTIONS.None) else 0) | (if (o.EnableOperationCallbacks == 1) @intFromEnum(HCS_EVENT_OPTIONS.EnableOperationCallbacks) else 0));
     }
 };
 pub const HcsEventOptionNone = HCS_EVENT_OPTIONS.None;
 pub const HcsEventOptionEnableOperationCallbacks = HCS_EVENT_OPTIONS.EnableOperationCallbacks;
 
 pub const HCS_EVENT_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         event: ?*HCS_EVENT,
         context: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         event: ?*HCS_EVENT,
         context: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const HCS_NOTIFICATION_FLAGS = enum(i32) {
     Success = 0,
@@ -173,19 +170,19 @@ pub const HcsNotificationServiceDisconnect = HCS_NOTIFICATIONS.ServiceDisconnect
 pub const HcsNotificationFlagsReserved = HCS_NOTIFICATIONS.FlagsReserved;
 
 pub const HCS_NOTIFICATION_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         notificationType: u32,
         context: ?*anyopaque,
         notificationStatus: HRESULT,
         notificationData: ?[*:0]const u16,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         notificationType: u32,
         context: ?*anyopaque,
         notificationStatus: HRESULT,
         notificationData: ?[*:0]const u16,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const HCS_PROCESS_INFORMATION = extern struct {
     ProcessId: u32,
@@ -208,7 +205,6 @@ pub const HCS_CREATE_OPTIONS_1 = extern struct {
     CallbackContext: ?*anyopaque,
     Callback: ?HCS_EVENT_CALLBACK,
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (64)
@@ -567,19 +563,14 @@ pub extern "computestorage" fn HcsSetupBaseOSVolume(
     options: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
@@ -591,13 +582,17 @@ const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "HCS_OPERATION_COMPLETION")) { _ = HCS_OPERATION_COMPLETION; }
-    if (@hasDecl(@This(), "HCS_EVENT_CALLBACK")) { _ = HCS_EVENT_CALLBACK; }
-    if (@hasDecl(@This(), "HCS_NOTIFICATION_CALLBACK")) { _ = HCS_NOTIFICATION_CALLBACK; }
+    if (@hasDecl(@This(), "HCS_OPERATION_COMPLETION")) {
+        _ = HCS_OPERATION_COMPLETION;
+    }
+    if (@hasDecl(@This(), "HCS_EVENT_CALLBACK")) {
+        _ = HCS_EVENT_CALLBACK;
+    }
+    if (@hasDecl(@This(), "HCS_NOTIFICATION_CALLBACK")) {
+        _ = HCS_NOTIFICATION_CALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

@@ -591,7 +591,7 @@ pub const _D3DHAL_GLOBALDRIVERDATA = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const HWINWATCH = *opaque{};
+pub const HWINWATCH = *opaque {};
 
 pub const FEATURE_STATE_CHANGE_SUBSCRIPTION = isize;
 
@@ -637,13 +637,13 @@ pub const CUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG = extern struct {
 };
 
 pub const PFIBER_CALLOUT_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         lpParameter: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-    else => *const fn(
+    else => *const fn (
         lpParameter: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-} ;
+};
 
 pub const JIT_DEBUG_INFO = extern struct {
     dwSize: u32,
@@ -737,7 +737,7 @@ pub const ACTIVATION_CONTEXT_BASIC_INFORMATION = extern struct {
 };
 
 pub const PQUERYACTCTXW_FUNC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwFlags: u32,
         hActCtx: ?HANDLE,
         pvSubInstance: ?*anyopaque,
@@ -747,7 +747,7 @@ pub const PQUERYACTCTXW_FUNC = switch (@import("builtin").zig_backend) {
         cbBuffer: usize,
         pcbWrittenOrRequired: ?*usize,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         dwFlags: u32,
         hActCtx: ?HANDLE,
         pvSubInstance: ?*anyopaque,
@@ -757,16 +757,16 @@ pub const PQUERYACTCTXW_FUNC = switch (@import("builtin").zig_backend) {
         cbBuffer: usize,
         pcbWrittenOrRequired: ?*usize,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const APPLICATION_RECOVERY_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pvParameter: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         pvParameter: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const FILE_CASE_SENSITIVE_INFO = extern struct {
     Flags: u32,
@@ -815,17 +815,17 @@ pub const IO_STATUS_BLOCK = extern struct {
 };
 
 pub const PIO_APC_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         ApcContext: ?*anyopaque,
         IoStatusBlock: ?*IO_STATUS_BLOCK,
         Reserved: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         ApcContext: ?*anyopaque,
         IoStatusBlock: ?*IO_STATUS_BLOCK,
         Reserved: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const SYSTEM_PROCESSOR_PERFORMANCE_INFORMATION = extern struct {
     IdleTime: LARGE_INTEGER,
@@ -1005,7 +1005,7 @@ pub const WINSTATIONINFORMATIONW = extern struct {
 };
 
 pub const PWINSTATIONQUERYINFORMATIONW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?HANDLE,
         param1: u32,
         param2: WINSTATIONINFOCLASS,
@@ -1013,7 +1013,7 @@ pub const PWINSTATIONQUERYINFORMATIONW = switch (@import("builtin").zig_backend)
         param4: u32,
         param5: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
-    else => *const fn(
+    else => *const fn (
         param0: ?HANDLE,
         param1: u32,
         param2: WINSTATIONINFOCLASS,
@@ -1021,7 +1021,7 @@ pub const PWINSTATIONQUERYINFORMATIONW = switch (@import("builtin").zig_backend)
         param4: u32,
         param5: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
-} ;
+};
 
 const CLSID_CameraUIControl_Value = Guid.initString("16d5a2be-b1c5-47b3-8eae-ccbcf452c7e8");
 pub const CLSID_CameraUIControl = &CLSID_CameraUIControl_Value;
@@ -1071,74 +1071,76 @@ pub const ICameraUIControlEventCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnStartupComplete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ICameraUIControlEventCallback,
             ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
+            else => *const fn (
                 self: *const ICameraUIControlEventCallback,
             ) callconv(@import("std").os.windows.WINAPI) void,
         },
         OnSuspendComplete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ICameraUIControlEventCallback,
             ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
+            else => *const fn (
                 self: *const ICameraUIControlEventCallback,
             ) callconv(@import("std").os.windows.WINAPI) void,
         },
         OnItemCaptured: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ICameraUIControlEventCallback,
                 pszPath: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
+            else => *const fn (
                 self: *const ICameraUIControlEventCallback,
                 pszPath: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) void,
         },
         OnItemDeleted: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ICameraUIControlEventCallback,
                 pszPath: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
+            else => *const fn (
                 self: *const ICameraUIControlEventCallback,
                 pszPath: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) void,
         },
         OnClosed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ICameraUIControlEventCallback,
             ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
+            else => *const fn (
                 self: *const ICameraUIControlEventCallback,
             ) callconv(@import("std").os.windows.WINAPI) void,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControlEventCallback_OnStartupComplete(self: *const T) callconv(.Inline) void {
-            return @ptrCast(*const ICameraUIControlEventCallback.VTable, self.vtable).OnStartupComplete(@ptrCast(*const ICameraUIControlEventCallback, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControlEventCallback_OnSuspendComplete(self: *const T) callconv(.Inline) void {
-            return @ptrCast(*const ICameraUIControlEventCallback.VTable, self.vtable).OnSuspendComplete(@ptrCast(*const ICameraUIControlEventCallback, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControlEventCallback_OnItemCaptured(self: *const T, pszPath: ?[*:0]const u16) callconv(.Inline) void {
-            return @ptrCast(*const ICameraUIControlEventCallback.VTable, self.vtable).OnItemCaptured(@ptrCast(*const ICameraUIControlEventCallback, self), pszPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControlEventCallback_OnItemDeleted(self: *const T, pszPath: ?[*:0]const u16) callconv(.Inline) void {
-            return @ptrCast(*const ICameraUIControlEventCallback.VTable, self.vtable).OnItemDeleted(@ptrCast(*const ICameraUIControlEventCallback, self), pszPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControlEventCallback_OnClosed(self: *const T) callconv(.Inline) void {
-            return @ptrCast(*const ICameraUIControlEventCallback.VTable, self.vtable).OnClosed(@ptrCast(*const ICameraUIControlEventCallback, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICameraUIControlEventCallback_OnStartupComplete(self: *const T) void {
+                return @ptrCast(*const ICameraUIControlEventCallback.VTable, self.vtable).OnStartupComplete(@ptrCast(*const ICameraUIControlEventCallback, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICameraUIControlEventCallback_OnSuspendComplete(self: *const T) void {
+                return @ptrCast(*const ICameraUIControlEventCallback.VTable, self.vtable).OnSuspendComplete(@ptrCast(*const ICameraUIControlEventCallback, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICameraUIControlEventCallback_OnItemCaptured(self: *const T, pszPath: ?[*:0]const u16) void {
+                return @ptrCast(*const ICameraUIControlEventCallback.VTable, self.vtable).OnItemCaptured(@ptrCast(*const ICameraUIControlEventCallback, self), pszPath);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICameraUIControlEventCallback_OnItemDeleted(self: *const T, pszPath: ?[*:0]const u16) void {
+                return @ptrCast(*const ICameraUIControlEventCallback.VTable, self.vtable).OnItemDeleted(@ptrCast(*const ICameraUIControlEventCallback, self), pszPath);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICameraUIControlEventCallback_OnClosed(self: *const T) void {
+                return @ptrCast(*const ICameraUIControlEventCallback.VTable, self.vtable).OnClosed(@ptrCast(*const ICameraUIControlEventCallback, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1149,7 +1151,7 @@ pub const ICameraUIControl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Show: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ICameraUIControl,
                 pWindow: ?*IUnknown,
                 mode: CameraUIControlMode,
@@ -1160,7 +1162,7 @@ pub const ICameraUIControl = extern struct {
                 bHasCloseButton: BOOL,
                 pEventCallback: ?*ICameraUIControlEventCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ICameraUIControl,
                 pWindow: ?*IUnknown,
                 mode: CameraUIControlMode,
@@ -1173,108 +1175,110 @@ pub const ICameraUIControl = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Close: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ICameraUIControl,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ICameraUIControl,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Suspend: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ICameraUIControl,
                 pbDeferralRequired: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ICameraUIControl,
                 pbDeferralRequired: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Resume: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ICameraUIControl,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ICameraUIControl,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCurrentViewType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ICameraUIControl,
                 pViewType: ?*CameraUIControlViewType,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ICameraUIControl,
                 pViewType: ?*CameraUIControlViewType,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetActiveItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ICameraUIControl,
                 pbstrActiveItemPath: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ICameraUIControl,
                 pbstrActiveItemPath: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSelectedItems: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ICameraUIControl,
                 ppSelectedItemPaths: ?*?*SAFEARRAY,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ICameraUIControl,
                 ppSelectedItemPaths: ?*?*SAFEARRAY,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RemoveCapturedItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ICameraUIControl,
                 pszPath: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ICameraUIControl,
                 pszPath: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControl_Show(self: *const T, pWindow: ?*IUnknown, mode: CameraUIControlMode, selectionMode: CameraUIControlLinearSelectionMode, captureMode: CameraUIControlCaptureMode, photoFormat: CameraUIControlPhotoFormat, videoFormat: CameraUIControlVideoFormat, bHasCloseButton: BOOL, pEventCallback: ?*ICameraUIControlEventCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICameraUIControl.VTable, self.vtable).Show(@ptrCast(*const ICameraUIControl, self), pWindow, mode, selectionMode, captureMode, photoFormat, videoFormat, bHasCloseButton, pEventCallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControl_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICameraUIControl.VTable, self.vtable).Close(@ptrCast(*const ICameraUIControl, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControl_Suspend(self: *const T, pbDeferralRequired: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICameraUIControl.VTable, self.vtable).Suspend(@ptrCast(*const ICameraUIControl, self), pbDeferralRequired);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControl_Resume(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICameraUIControl.VTable, self.vtable).Resume(@ptrCast(*const ICameraUIControl, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControl_GetCurrentViewType(self: *const T, pViewType: ?*CameraUIControlViewType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICameraUIControl.VTable, self.vtable).GetCurrentViewType(@ptrCast(*const ICameraUIControl, self), pViewType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControl_GetActiveItem(self: *const T, pbstrActiveItemPath: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICameraUIControl.VTable, self.vtable).GetActiveItem(@ptrCast(*const ICameraUIControl, self), pbstrActiveItemPath);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControl_GetSelectedItems(self: *const T, ppSelectedItemPaths: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICameraUIControl.VTable, self.vtable).GetSelectedItems(@ptrCast(*const ICameraUIControl, self), ppSelectedItemPaths);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICameraUIControl_RemoveCapturedItem(self: *const T, pszPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICameraUIControl.VTable, self.vtable).RemoveCapturedItem(@ptrCast(*const ICameraUIControl, self), pszPath);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICameraUIControl_Show(self: *const T, pWindow: ?*IUnknown, mode: CameraUIControlMode, selectionMode: CameraUIControlLinearSelectionMode, captureMode: CameraUIControlCaptureMode, photoFormat: CameraUIControlPhotoFormat, videoFormat: CameraUIControlVideoFormat, bHasCloseButton: BOOL, pEventCallback: ?*ICameraUIControlEventCallback) HRESULT {
+                return @ptrCast(*const ICameraUIControl.VTable, self.vtable).Show(@ptrCast(*const ICameraUIControl, self), pWindow, mode, selectionMode, captureMode, photoFormat, videoFormat, bHasCloseButton, pEventCallback);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICameraUIControl_Close(self: *const T) HRESULT {
+                return @ptrCast(*const ICameraUIControl.VTable, self.vtable).Close(@ptrCast(*const ICameraUIControl, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICameraUIControl_Suspend(self: *const T, pbDeferralRequired: ?*BOOL) HRESULT {
+                return @ptrCast(*const ICameraUIControl.VTable, self.vtable).Suspend(@ptrCast(*const ICameraUIControl, self), pbDeferralRequired);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICameraUIControl_Resume(self: *const T) HRESULT {
+                return @ptrCast(*const ICameraUIControl.VTable, self.vtable).Resume(@ptrCast(*const ICameraUIControl, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICameraUIControl_GetCurrentViewType(self: *const T, pViewType: ?*CameraUIControlViewType) HRESULT {
+                return @ptrCast(*const ICameraUIControl.VTable, self.vtable).GetCurrentViewType(@ptrCast(*const ICameraUIControl, self), pViewType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICameraUIControl_GetActiveItem(self: *const T, pbstrActiveItemPath: ?*?BSTR) HRESULT {
+                return @ptrCast(*const ICameraUIControl.VTable, self.vtable).GetActiveItem(@ptrCast(*const ICameraUIControl, self), pbstrActiveItemPath);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICameraUIControl_GetSelectedItems(self: *const T, ppSelectedItemPaths: ?*?*SAFEARRAY) HRESULT {
+                return @ptrCast(*const ICameraUIControl.VTable, self.vtable).GetSelectedItems(@ptrCast(*const ICameraUIControl, self), ppSelectedItemPaths);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICameraUIControl_RemoveCapturedItem(self: *const T, pszPath: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const ICameraUIControl.VTable, self.vtable).RemoveCapturedItem(@ptrCast(*const ICameraUIControl, self), pszPath);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1291,78 +1295,80 @@ pub const IEditionUpgradeHelper = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CanUpgrade: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEditionUpgradeHelper,
                 isAllowed: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEditionUpgradeHelper,
                 isAllowed: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         UpdateOperatingSystem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEditionUpgradeHelper,
                 contentId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEditionUpgradeHelper,
                 contentId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ShowProductKeyUI: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEditionUpgradeHelper,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEditionUpgradeHelper,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetOsProductContentId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEditionUpgradeHelper,
                 contentId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEditionUpgradeHelper,
                 contentId: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetGenuineLocalStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEditionUpgradeHelper,
                 isGenuine: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEditionUpgradeHelper,
                 isGenuine: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEditionUpgradeHelper_CanUpgrade(self: *const T, isAllowed: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEditionUpgradeHelper.VTable, self.vtable).CanUpgrade(@ptrCast(*const IEditionUpgradeHelper, self), isAllowed);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEditionUpgradeHelper_UpdateOperatingSystem(self: *const T, contentId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEditionUpgradeHelper.VTable, self.vtable).UpdateOperatingSystem(@ptrCast(*const IEditionUpgradeHelper, self), contentId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEditionUpgradeHelper_ShowProductKeyUI(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEditionUpgradeHelper.VTable, self.vtable).ShowProductKeyUI(@ptrCast(*const IEditionUpgradeHelper, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEditionUpgradeHelper_GetOsProductContentId(self: *const T, contentId: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEditionUpgradeHelper.VTable, self.vtable).GetOsProductContentId(@ptrCast(*const IEditionUpgradeHelper, self), contentId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEditionUpgradeHelper_GetGenuineLocalStatus(self: *const T, isGenuine: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEditionUpgradeHelper.VTable, self.vtable).GetGenuineLocalStatus(@ptrCast(*const IEditionUpgradeHelper, self), isGenuine);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEditionUpgradeHelper_CanUpgrade(self: *const T, isAllowed: ?*BOOL) HRESULT {
+                return @ptrCast(*const IEditionUpgradeHelper.VTable, self.vtable).CanUpgrade(@ptrCast(*const IEditionUpgradeHelper, self), isAllowed);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEditionUpgradeHelper_UpdateOperatingSystem(self: *const T, contentId: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IEditionUpgradeHelper.VTable, self.vtable).UpdateOperatingSystem(@ptrCast(*const IEditionUpgradeHelper, self), contentId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEditionUpgradeHelper_ShowProductKeyUI(self: *const T) HRESULT {
+                return @ptrCast(*const IEditionUpgradeHelper.VTable, self.vtable).ShowProductKeyUI(@ptrCast(*const IEditionUpgradeHelper, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEditionUpgradeHelper_GetOsProductContentId(self: *const T, contentId: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IEditionUpgradeHelper.VTable, self.vtable).GetOsProductContentId(@ptrCast(*const IEditionUpgradeHelper, self), contentId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEditionUpgradeHelper_GetGenuineLocalStatus(self: *const T, isGenuine: ?*BOOL) HRESULT {
+                return @ptrCast(*const IEditionUpgradeHelper.VTable, self.vtable).GetGenuineLocalStatus(@ptrCast(*const IEditionUpgradeHelper, self), isGenuine);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1372,24 +1378,26 @@ pub const IWindowsLockModeHelper = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWindowsLockModeHelper,
                 isSmode: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWindowsLockModeHelper,
                 isSmode: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWindowsLockModeHelper_GetSMode(self: *const T, isSmode: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWindowsLockModeHelper.VTable, self.vtable).GetSMode(@ptrCast(*const IWindowsLockModeHelper, self), isSmode);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWindowsLockModeHelper_GetSMode(self: *const T, isSmode: ?*BOOL) HRESULT {
+                return @ptrCast(*const IWindowsLockModeHelper.VTable, self.vtable).GetSMode(@ptrCast(*const IWindowsLockModeHelper, self), isSmode);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1399,62 +1407,64 @@ pub const IEditionUpgradeBroker = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         InitializeParentWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEditionUpgradeBroker,
                 parentHandle: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEditionUpgradeBroker,
                 parentHandle: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         UpdateOperatingSystem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEditionUpgradeBroker,
                 parameter: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEditionUpgradeBroker,
                 parameter: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ShowProductKeyUI: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEditionUpgradeBroker,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEditionUpgradeBroker,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CanUpgrade: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEditionUpgradeBroker,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEditionUpgradeBroker,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEditionUpgradeBroker_InitializeParentWindow(self: *const T, parentHandle: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEditionUpgradeBroker.VTable, self.vtable).InitializeParentWindow(@ptrCast(*const IEditionUpgradeBroker, self), parentHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEditionUpgradeBroker_UpdateOperatingSystem(self: *const T, parameter: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEditionUpgradeBroker.VTable, self.vtable).UpdateOperatingSystem(@ptrCast(*const IEditionUpgradeBroker, self), parameter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEditionUpgradeBroker_ShowProductKeyUI(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEditionUpgradeBroker.VTable, self.vtable).ShowProductKeyUI(@ptrCast(*const IEditionUpgradeBroker, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEditionUpgradeBroker_CanUpgrade(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEditionUpgradeBroker.VTable, self.vtable).CanUpgrade(@ptrCast(*const IEditionUpgradeBroker, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEditionUpgradeBroker_InitializeParentWindow(self: *const T, parentHandle: u32) HRESULT {
+                return @ptrCast(*const IEditionUpgradeBroker.VTable, self.vtable).InitializeParentWindow(@ptrCast(*const IEditionUpgradeBroker, self), parentHandle);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEditionUpgradeBroker_UpdateOperatingSystem(self: *const T, parameter: ?BSTR) HRESULT {
+                return @ptrCast(*const IEditionUpgradeBroker.VTable, self.vtable).UpdateOperatingSystem(@ptrCast(*const IEditionUpgradeBroker, self), parameter);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEditionUpgradeBroker_ShowProductKeyUI(self: *const T) HRESULT {
+                return @ptrCast(*const IEditionUpgradeBroker.VTable, self.vtable).ShowProductKeyUI(@ptrCast(*const IEditionUpgradeBroker, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEditionUpgradeBroker_CanUpgrade(self: *const T) HRESULT {
+                return @ptrCast(*const IEditionUpgradeBroker.VTable, self.vtable).CanUpgrade(@ptrCast(*const IEditionUpgradeBroker, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1464,24 +1474,26 @@ pub const IContainerActivationHelper = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CanActivateClientVM: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IContainerActivationHelper,
                 isAllowed: ?*i16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IContainerActivationHelper,
                 isAllowed: ?*i16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContainerActivationHelper_CanActivateClientVM(self: *const T, isAllowed: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IContainerActivationHelper.VTable, self.vtable).CanActivateClientVM(@ptrCast(*const IContainerActivationHelper, self), isAllowed);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IContainerActivationHelper_CanActivateClientVM(self: *const T, isAllowed: ?*i16) HRESULT {
+                return @ptrCast(*const IContainerActivationHelper.VTable, self.vtable).CanActivateClientVM(@ptrCast(*const IContainerActivationHelper, self), isAllowed);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1491,7 +1503,7 @@ pub const IClipServiceNotificationHelper = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ShowToast: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IClipServiceNotificationHelper,
                 titleText: ?BSTR,
                 bodyText: ?BSTR,
@@ -1499,7 +1511,7 @@ pub const IClipServiceNotificationHelper = extern struct {
                 appId: ?BSTR,
                 launchCommand: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IClipServiceNotificationHelper,
                 titleText: ?BSTR,
                 bodyText: ?BSTR,
@@ -1510,13 +1522,15 @@ pub const IClipServiceNotificationHelper = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IClipServiceNotificationHelper_ShowToast(self: *const T, titleText: ?BSTR, bodyText: ?BSTR, packageName: ?BSTR, appId: ?BSTR, launchCommand: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IClipServiceNotificationHelper.VTable, self.vtable).ShowToast(@ptrCast(*const IClipServiceNotificationHelper, self), titleText, bodyText, packageName, appId, launchCommand);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IClipServiceNotificationHelper_ShowToast(self: *const T, titleText: ?BSTR, bodyText: ?BSTR, packageName: ?BSTR, appId: ?BSTR, launchCommand: ?BSTR) HRESULT {
+                return @ptrCast(*const IClipServiceNotificationHelper.VTable, self.vtable).ShowToast(@ptrCast(*const IClipServiceNotificationHelper, self), titleText, bodyText, packageName, appId, launchCommand);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1558,13 +1572,13 @@ pub const FEATURE_ERROR = extern struct {
 };
 
 pub const PFEATURE_STATE_CHANGE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         context: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         context: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const DCICMD = extern struct {
     dwCommand: u32,
@@ -1606,15 +1620,15 @@ pub const DCISURFACEINFO = extern struct {
 };
 
 pub const ENUM_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         lpSurfaceInfo: ?*DCISURFACEINFO,
         lpContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         lpSurfaceInfo: ?*DCISURFACEINFO,
         lpContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const DCIENUMINPUT = extern struct {
     cmd: DCICMD,
@@ -1638,19 +1652,19 @@ pub const DCIOVERLAY = extern struct {
 };
 
 pub const WINWATCHNOTIFYPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hww: ?HWINWATCH,
         hwnd: ?HWND,
         code: u32,
         lParam: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         hww: ?HWINWATCH,
         hwnd: ?HWND,
         code: u32,
         lParam: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const STRENTRYA = extern struct {
     pszName: ?PSTR,
@@ -1673,17 +1687,17 @@ pub const STRTABLEW = extern struct {
 };
 
 pub const REGINSTALLA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hm: ?HINSTANCE,
         pszSection: ?[*:0]const u8,
         pstTable: ?*STRTABLEA,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         hm: ?HINSTANCE,
         pszSection: ?[*:0]const u8,
         pstTable: ?*STRTABLEA,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const CABINFOA = extern struct {
     pszCab: ?PSTR,
@@ -1817,7 +1831,6 @@ pub const tcp_request_query_information_ex_xp = extern struct {
     ID: TDIObjectID,
     Context: [2]usize,
 };
-
 
 pub const tcp_request_query_information_ex_w2k = extern struct {
     ID: TDIObjectID,
@@ -1967,142 +1980,138 @@ pub const WLDP_DEVICE_SECURITY_INFORMATION = extern struct {
 };
 
 pub const PWLDP_SETDYNAMICCODETRUST_API = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hFileHandle: ?HANDLE,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         hFileHandle: ?HANDLE,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PWLDP_ISDYNAMICCODEPOLICYENABLED_API = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pbEnabled: ?*BOOL,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         pbEnabled: ?*BOOL,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PWLDP_QUERYDYNAMICODETRUST_API = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         fileHandle: ?HANDLE,
         // TODO: what to do with BytesParamIndex 2?
         baseImage: ?*anyopaque,
         imageSize: u32,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         fileHandle: ?HANDLE,
         // TODO: what to do with BytesParamIndex 2?
         baseImage: ?*anyopaque,
         imageSize: u32,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PWLDP_QUERYWINDOWSLOCKDOWNMODE_API = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         lockdownMode: ?*WLDP_WINDOWS_LOCKDOWN_MODE,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         lockdownMode: ?*WLDP_WINDOWS_LOCKDOWN_MODE,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PWLDP_QUERYDEVICESECURITYINFORMATION_API = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         information: ?[*]WLDP_DEVICE_SECURITY_INFORMATION,
         informationLength: u32,
         returnLength: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         information: ?[*]WLDP_DEVICE_SECURITY_INFORMATION,
         informationLength: u32,
         returnLength: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PWLDP_QUERYWINDOWSLOCKDOWNRESTRICTION_API = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         LockdownRestriction: ?*WLDP_WINDOWS_LOCKDOWN_RESTRICTION,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         LockdownRestriction: ?*WLDP_WINDOWS_LOCKDOWN_RESTRICTION,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PWLDP_SETWINDOWSLOCKDOWNRESTRICTION_API = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         LockdownRestriction: WLDP_WINDOWS_LOCKDOWN_RESTRICTION,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         LockdownRestriction: WLDP_WINDOWS_LOCKDOWN_RESTRICTION,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PWLDP_ISAPPAPPROVEDBYPOLICY_API = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         PackageFamilyName: ?[*:0]const u16,
         PackageVersion: u64,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         PackageFamilyName: ?[*:0]const u16,
         PackageVersion: u64,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PWLDP_QUERYPOLICYSETTINGENABLED_API = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         Setting: WLDP_POLICY_SETTING,
         Enabled: ?*BOOL,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         Setting: WLDP_POLICY_SETTING,
         Enabled: ?*BOOL,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PWLDP_QUERYPOLICYSETTINGENABLED2_API = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         Setting: ?[*:0]const u16,
         Enabled: ?*BOOL,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         Setting: ?[*:0]const u16,
         Enabled: ?*BOOL,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PWLDP_ISWCOSPRODUCTIONCONFIGURATION_API = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         IsProductionConfiguration: ?*BOOL,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         IsProductionConfiguration: ?*BOOL,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PWLDP_RESETWCOSPRODUCTIONCONFIGURATION_API = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) HRESULT,
+};
 
 pub const PWLDP_ISPRODUCTIONCONFIGURATION_API = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         IsProductionConfiguration: ?*BOOL,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         IsProductionConfiguration: ?*BOOL,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PWLDP_RESETPRODUCTIONCONFIGURATION_API = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) HRESULT,
+};
 
 const CLSID_DefaultBrowserSyncSettings_Value = Guid.initString("3ac83423-3112-4aa6-9b5b-1feb23d0c5f9");
 pub const CLSID_DefaultBrowserSyncSettings = &CLSID_DefaultBrowserSyncSettings_Value;
@@ -2113,22 +2122,24 @@ pub const IDefaultBrowserSyncSettings = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         IsEnabled: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDefaultBrowserSyncSettings,
             ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDefaultBrowserSyncSettings,
             ) callconv(@import("std").os.windows.WINAPI) BOOL,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDefaultBrowserSyncSettings_IsEnabled(self: *const T) callconv(.Inline) BOOL {
-            return @ptrCast(*const IDefaultBrowserSyncSettings.VTable, self.vtable).IsEnabled(@ptrCast(*const IDefaultBrowserSyncSettings, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDefaultBrowserSyncSettings_IsEnabled(self: *const T) BOOL {
+                return @ptrCast(*const IDefaultBrowserSyncSettings.VTable, self.vtable).IsEnabled(@ptrCast(*const IDefaultBrowserSyncSettings, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2140,17 +2151,16 @@ pub const DELAYLOAD_PROC_DESCRIPTOR = extern struct {
     },
 };
 
-
 pub const PDELAYLOAD_FAILURE_DLL_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         NotificationReason: u32,
         DelayloadInfo: ?*DELAYLOAD_INFO,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-    else => *const fn(
+    else => *const fn (
         NotificationReason: u32,
         DelayloadInfo: ?*DELAYLOAD_INFO,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-} ;
+};
 
 const IID_IDeleteBrowsingHistory_Value = Guid.initString("cf38ed4b-2be7-4461-8b5e-9a466dc82ae3");
 pub const IID_IDeleteBrowsingHistory = &IID_IDeleteBrowsingHistory_Value;
@@ -2158,36 +2168,37 @@ pub const IDeleteBrowsingHistory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         DeleteBrowsingHistory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDeleteBrowsingHistory,
                 dwFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDeleteBrowsingHistory,
                 dwFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeleteBrowsingHistory_DeleteBrowsingHistory(self: *const T, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDeleteBrowsingHistory.VTable, self.vtable).DeleteBrowsingHistory(@ptrCast(*const IDeleteBrowsingHistory, self), dwFlags);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDeleteBrowsingHistory_DeleteBrowsingHistory(self: *const T, dwFlags: u32) HRESULT {
+                return @ptrCast(*const IDeleteBrowsingHistory.VTable, self.vtable).DeleteBrowsingHistory(@ptrCast(*const IDeleteBrowsingHistory, self), dwFlags);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
-
-pub const tcp_request_query_information_ex32_xp = switch(@import("../zig.zig").arch) {
+pub const tcp_request_query_information_ex32_xp = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         ID: TDIObjectID,
         Context: [4]u32,
     },
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-pub const DELAYLOAD_INFO = switch(@import("../zig.zig").arch) {
+pub const DELAYLOAD_INFO = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         Size: u32,
         DelayloadDescriptor: ?*IMAGE_DELAYLOAD_DESCRIPTOR,
@@ -2213,8 +2224,7 @@ pub const DELAYLOAD_INFO = switch(@import("../zig.zig").arch) {
 //--------------------------------------------------------------------------------
 // Section: Functions (227)
 //--------------------------------------------------------------------------------
-pub extern "ntdll" fn RtlGetReturnAddressHijackTarget(
-) callconv(@import("std").os.windows.WINAPI) usize;
+pub extern "ntdll" fn RtlGetReturnAddressHijackTarget() callconv(@import("std").os.windows.WINAPI) usize;
 
 pub extern "ntdll" fn RtlRaiseCustomSystemEventTrigger(
     TriggerConfig: ?*CUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG,
@@ -2817,103 +2827,102 @@ pub extern "kernel32" fn ReplacePartitionUnit(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86, .X64 => struct {
-
-pub extern "kernel32" fn GetThreadEnabledXStateFeatures(
-) callconv(@import("std").os.windows.WINAPI) u64;
-
-}, else => struct { } };
+    .X86, .X64 => struct {
+        pub extern "kernel32" fn GetThreadEnabledXStateFeatures() callconv(@import("std").os.windows.WINAPI) u64;
+    },
+    else => struct {},
+};
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86, .X64 => struct {
-
-pub extern "kernel32" fn EnableProcessOptionalXStateFeatures(
-    Features: u64,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-}, else => struct { } };
+    .X86, .X64 => struct {
+        pub extern "kernel32" fn EnableProcessOptionalXStateFeatures(
+            Features: u64,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL;
+    },
+    else => struct {},
+};
 
 pub extern "api-ms-win-core-backgroundtask-l1-1-0" fn RaiseCustomSystemEventTrigger(
     CustomSystemEventTriggerConfig: ?*CUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub extern "kernel32" fn uaw_lstrcmpW(
-    String1: ?*u16,
-    String2: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub extern "kernel32" fn uaw_lstrcmpiW(
-    String1: ?*u16,
-    String2: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-}, else => struct { } };
+    .X64, .Arm64 => struct {
+        pub extern "kernel32" fn uaw_lstrcmpW(
+            String1: ?*u16,
+            String2: ?*u16,
+        ) callconv(@import("std").os.windows.WINAPI) i32;
+    },
+    else => struct {},
+};
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub extern "kernel32" fn uaw_lstrlenW(
-    String: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub extern "kernel32" fn uaw_wcschr(
-    String: ?*u16,
-    Character: u16,
-) callconv(@import("std").os.windows.WINAPI) ?*u16;
-
-}, else => struct { } };
+    .X64, .Arm64 => struct {
+        pub extern "kernel32" fn uaw_lstrcmpiW(
+            String1: ?*u16,
+            String2: ?*u16,
+        ) callconv(@import("std").os.windows.WINAPI) i32;
+    },
+    else => struct {},
+};
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub extern "kernel32" fn uaw_wcscpy(
-    Destination: ?*u16,
-    Source: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) ?*u16;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub extern "kernel32" fn uaw_wcsicmp(
-    String1: ?*u16,
-    String2: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-}, else => struct { } };
+    .X64, .Arm64 => struct {
+        pub extern "kernel32" fn uaw_lstrlenW(
+            String: ?*u16,
+        ) callconv(@import("std").os.windows.WINAPI) i32;
+    },
+    else => struct {},
+};
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub extern "kernel32" fn uaw_wcslen(
-    String: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) usize;
-
-}, else => struct { } };
+    .X64, .Arm64 => struct {
+        pub extern "kernel32" fn uaw_wcschr(
+            String: ?*u16,
+            Character: u16,
+        ) callconv(@import("std").os.windows.WINAPI) ?*u16;
+    },
+    else => struct {},
+};
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+    .X64, .Arm64 => struct {
+        pub extern "kernel32" fn uaw_wcscpy(
+            Destination: ?*u16,
+            Source: ?*u16,
+        ) callconv(@import("std").os.windows.WINAPI) ?*u16;
+    },
+    else => struct {},
+};
 
-pub extern "kernel32" fn uaw_wcsrchr(
-    String: ?*u16,
-    Character: u16,
-) callconv(@import("std").os.windows.WINAPI) ?*u16;
+pub usingnamespace switch (@import("../zig.zig").arch) {
+    .X64, .Arm64 => struct {
+        pub extern "kernel32" fn uaw_wcsicmp(
+            String1: ?*u16,
+            String2: ?*u16,
+        ) callconv(@import("std").os.windows.WINAPI) i32;
+    },
+    else => struct {},
+};
 
-}, else => struct { } };
+pub usingnamespace switch (@import("../zig.zig").arch) {
+    .X64, .Arm64 => struct {
+        pub extern "kernel32" fn uaw_wcslen(
+            String: ?*u16,
+        ) callconv(@import("std").os.windows.WINAPI) usize;
+    },
+    else => struct {},
+};
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+    .X64, .Arm64 => struct {
+        pub extern "kernel32" fn uaw_wcsrchr(
+            String: ?*u16,
+            Character: u16,
+        ) callconv(@import("std").os.windows.WINAPI) ?*u16;
+    },
+    else => struct {},
+};
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ntdll" fn NtClose(
@@ -3147,8 +3156,7 @@ pub extern "api-ms-win-core-featurestaging-l1-1-1" fn GetFeatureVariant(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "dciman32" fn DCIOpenProvider(
-) callconv(@import("std").os.windows.WINAPI) ?HDC;
+pub extern "dciman32" fn DCIOpenProvider() callconv(@import("std").os.windows.WINAPI) ?HDC;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "dciman32" fn DCICloseProvider(
@@ -3266,8 +3274,7 @@ pub extern "dciman32" fn DCISetDestination(
     src: ?*RECT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "api-ms-win-dx-d3dkmt-l1-1-0" fn GdiEntry13(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "api-ms-win-dx-d3dkmt-l1-1-0" fn GdiEntry13() callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "advpack" fn RunSetupCommandA(
     hWnd: ?HWND,
@@ -3291,8 +3298,7 @@ pub extern "advpack" fn RunSetupCommandW(
     pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "advpack" fn NeedRebootInit(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "advpack" fn NeedRebootInit() callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "advpack" fn NeedReboot(
     dwRebootCheck: u32,
@@ -3740,7 +3746,6 @@ pub extern "wldp" fn WldpQueryDeviceSecurityInformation(
     returnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (52)
 //--------------------------------------------------------------------------------
@@ -3855,58 +3860,58 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const IMPSetIME = thismodule.IMPSetIMEW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const HW_PROFILE_INFO = *opaque{};
-        pub const STRENTRY = *opaque{};
-        pub const STRTABLE = *opaque{};
-        pub const CABINFO = *opaque{};
-        pub const PERUSERSECTION = *opaque{};
-        pub const IMEPRO = *opaque{};
-        pub const GetFirmwareEnvironmentVariable = *opaque{};
-        pub const GetFirmwareEnvironmentVariableEx = *opaque{};
-        pub const SetFirmwareEnvironmentVariable = *opaque{};
-        pub const SetFirmwareEnvironmentVariableEx = *opaque{};
-        pub const GetProfileInt = *opaque{};
-        pub const GetProfileString = *opaque{};
-        pub const WriteProfileString = *opaque{};
-        pub const GetProfileSection = *opaque{};
-        pub const WriteProfileSection = *opaque{};
-        pub const GetPrivateProfileInt = *opaque{};
-        pub const GetPrivateProfileString = *opaque{};
-        pub const WritePrivateProfileString = *opaque{};
-        pub const GetPrivateProfileSection = *opaque{};
-        pub const WritePrivateProfileSection = *opaque{};
-        pub const GetPrivateProfileSectionNames = *opaque{};
-        pub const GetPrivateProfileStruct = *opaque{};
-        pub const WritePrivateProfileStruct = *opaque{};
-        pub const GetComputerName = *opaque{};
-        pub const DnsHostnameToComputerName = *opaque{};
-        pub const GetUserName = *opaque{};
-        pub const GetCurrentHwProfile = *opaque{};
-        pub const RunSetupCommand = *opaque{};
-        pub const RebootCheckOnInstall = *opaque{};
-        pub const TranslateInfString = *opaque{};
-        pub const RegInstall = *opaque{};
-        pub const ExecuteCab = *opaque{};
-        pub const AdvInstallFile = *opaque{};
-        pub const RegSaveRestore = *opaque{};
-        pub const RegSaveRestoreOnINF = *opaque{};
-        pub const RegRestoreAll = *opaque{};
-        pub const FileSaveRestoreOnINF = *opaque{};
-        pub const AddDelBackupEntry = *opaque{};
-        pub const FileSaveMarkNotExist = *opaque{};
-        pub const GetVersionFromFile = *opaque{};
-        pub const GetVersionFromFileEx = *opaque{};
-        pub const DelNode = *opaque{};
-        pub const OpenINFEngine = *opaque{};
-        pub const TranslateInfStringEx = *opaque{};
-        pub const ExtractFiles = *opaque{};
-        pub const UserInstStubWrapper = *opaque{};
-        pub const UserUnInstStubWrapper = *opaque{};
-        pub const SetPerUserSecValues = *opaque{};
-        pub const SendIMEMessageEx = *opaque{};
-        pub const IMPGetIME = *opaque{};
-        pub const IMPQueryIME = *opaque{};
-        pub const IMPSetIME = *opaque{};
+        pub const HW_PROFILE_INFO = *opaque {};
+        pub const STRENTRY = *opaque {};
+        pub const STRTABLE = *opaque {};
+        pub const CABINFO = *opaque {};
+        pub const PERUSERSECTION = *opaque {};
+        pub const IMEPRO = *opaque {};
+        pub const GetFirmwareEnvironmentVariable = *opaque {};
+        pub const GetFirmwareEnvironmentVariableEx = *opaque {};
+        pub const SetFirmwareEnvironmentVariable = *opaque {};
+        pub const SetFirmwareEnvironmentVariableEx = *opaque {};
+        pub const GetProfileInt = *opaque {};
+        pub const GetProfileString = *opaque {};
+        pub const WriteProfileString = *opaque {};
+        pub const GetProfileSection = *opaque {};
+        pub const WriteProfileSection = *opaque {};
+        pub const GetPrivateProfileInt = *opaque {};
+        pub const GetPrivateProfileString = *opaque {};
+        pub const WritePrivateProfileString = *opaque {};
+        pub const GetPrivateProfileSection = *opaque {};
+        pub const WritePrivateProfileSection = *opaque {};
+        pub const GetPrivateProfileSectionNames = *opaque {};
+        pub const GetPrivateProfileStruct = *opaque {};
+        pub const WritePrivateProfileStruct = *opaque {};
+        pub const GetComputerName = *opaque {};
+        pub const DnsHostnameToComputerName = *opaque {};
+        pub const GetUserName = *opaque {};
+        pub const GetCurrentHwProfile = *opaque {};
+        pub const RunSetupCommand = *opaque {};
+        pub const RebootCheckOnInstall = *opaque {};
+        pub const TranslateInfString = *opaque {};
+        pub const RegInstall = *opaque {};
+        pub const ExecuteCab = *opaque {};
+        pub const AdvInstallFile = *opaque {};
+        pub const RegSaveRestore = *opaque {};
+        pub const RegSaveRestoreOnINF = *opaque {};
+        pub const RegRestoreAll = *opaque {};
+        pub const FileSaveRestoreOnINF = *opaque {};
+        pub const AddDelBackupEntry = *opaque {};
+        pub const FileSaveMarkNotExist = *opaque {};
+        pub const GetVersionFromFile = *opaque {};
+        pub const GetVersionFromFileEx = *opaque {};
+        pub const DelNode = *opaque {};
+        pub const OpenINFEngine = *opaque {};
+        pub const TranslateInfStringEx = *opaque {};
+        pub const ExtractFiles = *opaque {};
+        pub const UserInstStubWrapper = *opaque {};
+        pub const UserUnInstStubWrapper = *opaque {};
+        pub const SetPerUserSecValues = *opaque {};
+        pub const SendIMEMessageEx = *opaque {};
+        pub const IMPGetIME = *opaque {};
+        pub const IMPQueryIME = *opaque {};
+        pub const IMPSetIME = *opaque {};
     } else struct {
         pub const HW_PROFILE_INFO = @compileError("'HW_PROFILE_INFO' requires that UNICODE be set to true or false in the root module");
         pub const STRENTRY = @compileError("'STRENTRY' requires that UNICODE be set to true or false in the root module");
@@ -3995,34 +4000,80 @@ const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFIBER_CALLOUT_ROUTINE")) { _ = PFIBER_CALLOUT_ROUTINE; }
-    if (@hasDecl(@This(), "PQUERYACTCTXW_FUNC")) { _ = PQUERYACTCTXW_FUNC; }
-    if (@hasDecl(@This(), "APPLICATION_RECOVERY_CALLBACK")) { _ = APPLICATION_RECOVERY_CALLBACK; }
-    if (@hasDecl(@This(), "PIO_APC_ROUTINE")) { _ = PIO_APC_ROUTINE; }
-    if (@hasDecl(@This(), "PWINSTATIONQUERYINFORMATIONW")) { _ = PWINSTATIONQUERYINFORMATIONW; }
-    if (@hasDecl(@This(), "PFEATURE_STATE_CHANGE_CALLBACK")) { _ = PFEATURE_STATE_CHANGE_CALLBACK; }
-    if (@hasDecl(@This(), "ENUM_CALLBACK")) { _ = ENUM_CALLBACK; }
-    if (@hasDecl(@This(), "WINWATCHNOTIFYPROC")) { _ = WINWATCHNOTIFYPROC; }
-    if (@hasDecl(@This(), "REGINSTALLA")) { _ = REGINSTALLA; }
-    if (@hasDecl(@This(), "PWLDP_SETDYNAMICCODETRUST_API")) { _ = PWLDP_SETDYNAMICCODETRUST_API; }
-    if (@hasDecl(@This(), "PWLDP_ISDYNAMICCODEPOLICYENABLED_API")) { _ = PWLDP_ISDYNAMICCODEPOLICYENABLED_API; }
-    if (@hasDecl(@This(), "PWLDP_QUERYDYNAMICODETRUST_API")) { _ = PWLDP_QUERYDYNAMICODETRUST_API; }
-    if (@hasDecl(@This(), "PWLDP_QUERYWINDOWSLOCKDOWNMODE_API")) { _ = PWLDP_QUERYWINDOWSLOCKDOWNMODE_API; }
-    if (@hasDecl(@This(), "PWLDP_QUERYDEVICESECURITYINFORMATION_API")) { _ = PWLDP_QUERYDEVICESECURITYINFORMATION_API; }
-    if (@hasDecl(@This(), "PWLDP_QUERYWINDOWSLOCKDOWNRESTRICTION_API")) { _ = PWLDP_QUERYWINDOWSLOCKDOWNRESTRICTION_API; }
-    if (@hasDecl(@This(), "PWLDP_SETWINDOWSLOCKDOWNRESTRICTION_API")) { _ = PWLDP_SETWINDOWSLOCKDOWNRESTRICTION_API; }
-    if (@hasDecl(@This(), "PWLDP_ISAPPAPPROVEDBYPOLICY_API")) { _ = PWLDP_ISAPPAPPROVEDBYPOLICY_API; }
-    if (@hasDecl(@This(), "PWLDP_QUERYPOLICYSETTINGENABLED_API")) { _ = PWLDP_QUERYPOLICYSETTINGENABLED_API; }
-    if (@hasDecl(@This(), "PWLDP_QUERYPOLICYSETTINGENABLED2_API")) { _ = PWLDP_QUERYPOLICYSETTINGENABLED2_API; }
-    if (@hasDecl(@This(), "PWLDP_ISWCOSPRODUCTIONCONFIGURATION_API")) { _ = PWLDP_ISWCOSPRODUCTIONCONFIGURATION_API; }
-    if (@hasDecl(@This(), "PWLDP_RESETWCOSPRODUCTIONCONFIGURATION_API")) { _ = PWLDP_RESETWCOSPRODUCTIONCONFIGURATION_API; }
-    if (@hasDecl(@This(), "PWLDP_ISPRODUCTIONCONFIGURATION_API")) { _ = PWLDP_ISPRODUCTIONCONFIGURATION_API; }
-    if (@hasDecl(@This(), "PWLDP_RESETPRODUCTIONCONFIGURATION_API")) { _ = PWLDP_RESETPRODUCTIONCONFIGURATION_API; }
-    if (@hasDecl(@This(), "PDELAYLOAD_FAILURE_DLL_CALLBACK")) { _ = PDELAYLOAD_FAILURE_DLL_CALLBACK; }
+    if (@hasDecl(@This(), "PFIBER_CALLOUT_ROUTINE")) {
+        _ = PFIBER_CALLOUT_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PQUERYACTCTXW_FUNC")) {
+        _ = PQUERYACTCTXW_FUNC;
+    }
+    if (@hasDecl(@This(), "APPLICATION_RECOVERY_CALLBACK")) {
+        _ = APPLICATION_RECOVERY_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PIO_APC_ROUTINE")) {
+        _ = PIO_APC_ROUTINE;
+    }
+    if (@hasDecl(@This(), "PWINSTATIONQUERYINFORMATIONW")) {
+        _ = PWINSTATIONQUERYINFORMATIONW;
+    }
+    if (@hasDecl(@This(), "PFEATURE_STATE_CHANGE_CALLBACK")) {
+        _ = PFEATURE_STATE_CHANGE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "ENUM_CALLBACK")) {
+        _ = ENUM_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WINWATCHNOTIFYPROC")) {
+        _ = WINWATCHNOTIFYPROC;
+    }
+    if (@hasDecl(@This(), "REGINSTALLA")) {
+        _ = REGINSTALLA;
+    }
+    if (@hasDecl(@This(), "PWLDP_SETDYNAMICCODETRUST_API")) {
+        _ = PWLDP_SETDYNAMICCODETRUST_API;
+    }
+    if (@hasDecl(@This(), "PWLDP_ISDYNAMICCODEPOLICYENABLED_API")) {
+        _ = PWLDP_ISDYNAMICCODEPOLICYENABLED_API;
+    }
+    if (@hasDecl(@This(), "PWLDP_QUERYDYNAMICODETRUST_API")) {
+        _ = PWLDP_QUERYDYNAMICODETRUST_API;
+    }
+    if (@hasDecl(@This(), "PWLDP_QUERYWINDOWSLOCKDOWNMODE_API")) {
+        _ = PWLDP_QUERYWINDOWSLOCKDOWNMODE_API;
+    }
+    if (@hasDecl(@This(), "PWLDP_QUERYDEVICESECURITYINFORMATION_API")) {
+        _ = PWLDP_QUERYDEVICESECURITYINFORMATION_API;
+    }
+    if (@hasDecl(@This(), "PWLDP_QUERYWINDOWSLOCKDOWNRESTRICTION_API")) {
+        _ = PWLDP_QUERYWINDOWSLOCKDOWNRESTRICTION_API;
+    }
+    if (@hasDecl(@This(), "PWLDP_SETWINDOWSLOCKDOWNRESTRICTION_API")) {
+        _ = PWLDP_SETWINDOWSLOCKDOWNRESTRICTION_API;
+    }
+    if (@hasDecl(@This(), "PWLDP_ISAPPAPPROVEDBYPOLICY_API")) {
+        _ = PWLDP_ISAPPAPPROVEDBYPOLICY_API;
+    }
+    if (@hasDecl(@This(), "PWLDP_QUERYPOLICYSETTINGENABLED_API")) {
+        _ = PWLDP_QUERYPOLICYSETTINGENABLED_API;
+    }
+    if (@hasDecl(@This(), "PWLDP_QUERYPOLICYSETTINGENABLED2_API")) {
+        _ = PWLDP_QUERYPOLICYSETTINGENABLED2_API;
+    }
+    if (@hasDecl(@This(), "PWLDP_ISWCOSPRODUCTIONCONFIGURATION_API")) {
+        _ = PWLDP_ISWCOSPRODUCTIONCONFIGURATION_API;
+    }
+    if (@hasDecl(@This(), "PWLDP_RESETWCOSPRODUCTIONCONFIGURATION_API")) {
+        _ = PWLDP_RESETWCOSPRODUCTIONCONFIGURATION_API;
+    }
+    if (@hasDecl(@This(), "PWLDP_ISPRODUCTIONCONFIGURATION_API")) {
+        _ = PWLDP_ISPRODUCTIONCONFIGURATION_API;
+    }
+    if (@hasDecl(@This(), "PWLDP_RESETPRODUCTIONCONFIGURATION_API")) {
+        _ = PWLDP_RESETPRODUCTIONCONFIGURATION_API;
+    }
+    if (@hasDecl(@This(), "PDELAYLOAD_FAILURE_DLL_CALLBACK")) {
+        _ = PDELAYLOAD_FAILURE_DLL_CALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

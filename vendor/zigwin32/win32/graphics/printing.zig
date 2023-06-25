@@ -1913,13 +1913,13 @@ pub const CPSUICBPARAM = extern struct {
 };
 
 pub const _CPSUICALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pCPSUICBParam: ?*CPSUICBPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         pCPSUICBParam: ?*CPSUICBPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const DLGPAGE = extern struct {
     cbSize: u16,
@@ -1969,19 +1969,19 @@ pub const INSERTPSUIPAGE_INFO = extern struct {
 };
 
 pub const PFNCOMPROPSHEET = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hComPropSheet: ?HANDLE,
         Function: u32,
         lParam1: LPARAM,
         lParam2: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) isize,
-    else => *const fn(
+    else => *const fn (
         hComPropSheet: ?HANDLE,
         Function: u32,
         lParam1: LPARAM,
         lParam2: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) isize,
-} ;
+};
 
 pub const PSPINFO = extern struct {
     cbSize: u16,
@@ -2017,15 +2017,15 @@ pub const PROPSHEETUI_GETICON_INFO = extern struct {
 };
 
 pub const PFNPROPSHEETUI = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pPSUIInfo: ?*PROPSHEETUI_INFO,
         lParam: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         pPSUIInfo: ?*PROPSHEETUI_INFO,
         lParam: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const PROPSHEETUI_INFO_HEADER = extern struct {
     cbSize: u16,
@@ -3234,7 +3234,7 @@ pub const USERDATA = extern struct {
 };
 
 pub const PFN_DrvGetDriverSetting = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pdriverobj: ?*anyopaque,
         Feature: ?[*:0]const u8,
         // TODO: what to do with BytesParamIndex 3?
@@ -3243,7 +3243,7 @@ pub const PFN_DrvGetDriverSetting = switch (@import("builtin").zig_backend) {
         pcbNeeded: ?*u32,
         pdwOptionsReturned: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         pdriverobj: ?*anyopaque,
         Feature: ?[*:0]const u8,
         // TODO: what to do with BytesParamIndex 3?
@@ -3252,35 +3252,35 @@ pub const PFN_DrvGetDriverSetting = switch (@import("builtin").zig_backend) {
         pcbNeeded: ?*u32,
         pdwOptionsReturned: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const PFN_DrvUpgradeRegistrySetting = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hPrinter: ?HANDLE,
         pFeature: ?[*:0]const u8,
         pOption: ?[*:0]const u8,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         hPrinter: ?HANDLE,
         pFeature: ?[*:0]const u8,
         pOption: ?[*:0]const u8,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const PFN_DrvUpdateUISetting = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pdriverobj: ?*anyopaque,
         pOptItem: ?*anyopaque,
         dwPreviousSelection: u32,
         dwMode: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         pdriverobj: ?*anyopaque,
         pOptItem: ?*anyopaque,
         dwPreviousSelection: u32,
         dwMode: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const SIMULATE_CAPS_1 = extern struct {
     dwLevel: u32,
@@ -3301,7 +3301,10 @@ pub const OEMUIOBJ = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const OEMCUIPCALLBACK = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const OEMCUIPCALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 pub const OEMCUIPPARAM = extern struct {
     cbSize: u32,
@@ -3377,7 +3380,7 @@ pub const IPrintCoreHelper = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetOption: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreHelper,
                 // TODO: what to do with BytesParamIndex 1?
                 pDevmode: ?*const DEVMODEA,
@@ -3385,7 +3388,7 @@ pub const IPrintCoreHelper = extern struct {
                 pszFeatureRequested: ?[*:0]const u8,
                 ppszOption: ?*?PSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreHelper,
                 // TODO: what to do with BytesParamIndex 1?
                 pDevmode: ?*const DEVMODEA,
@@ -3395,7 +3398,7 @@ pub const IPrintCoreHelper = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetOptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreHelper,
                 pDevmode: ?*DEVMODEA,
                 cbSize: u32,
@@ -3405,7 +3408,7 @@ pub const IPrintCoreHelper = extern struct {
                 pcPairsWritten: ?*u32,
                 pdwResult: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreHelper,
                 pDevmode: ?*DEVMODEA,
                 cbSize: u32,
@@ -3417,7 +3420,7 @@ pub const IPrintCoreHelper = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumConstrainedOptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreHelper,
                 pDevmode: ?*const DEVMODEA,
                 cbSize: u32,
@@ -3425,7 +3428,7 @@ pub const IPrintCoreHelper = extern struct {
                 pConstrainedOptionList: ?*?*?*?PSTR,
                 pdwNumOptions: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreHelper,
                 pDevmode: ?*const DEVMODEA,
                 cbSize: u32,
@@ -3435,7 +3438,7 @@ pub const IPrintCoreHelper = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         WhyConstrained: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreHelper,
                 // TODO: what to do with BytesParamIndex 1?
                 pDevmode: ?*const DEVMODEA,
@@ -3445,7 +3448,7 @@ pub const IPrintCoreHelper = extern struct {
                 ppFOConstraints: ?*const ?*PRINT_FEATURE_OPTION,
                 pdwNumOptions: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreHelper,
                 // TODO: what to do with BytesParamIndex 1?
                 pDevmode: ?*const DEVMODEA,
@@ -3457,25 +3460,25 @@ pub const IPrintCoreHelper = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumFeatures: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreHelper,
                 pFeatureList: ?*?*?*?PSTR,
                 pdwNumFeatures: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreHelper,
                 pFeatureList: ?*?*?*?PSTR,
                 pdwNumFeatures: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumOptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreHelper,
                 pszFeatureKeyword: ?[*:0]const u8,
                 pOptionList: ?*?*?*?PSTR,
                 pdwNumOptions: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreHelper,
                 pszFeatureKeyword: ?[*:0]const u8,
                 pOptionList: ?*?*?*?PSTR,
@@ -3483,31 +3486,31 @@ pub const IPrintCoreHelper = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFontSubstitution: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreHelper,
                 pszTrueTypeFontName: ?[*:0]const u16,
                 ppszDevFontName: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreHelper,
                 pszTrueTypeFontName: ?[*:0]const u16,
                 ppszDevFontName: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetFontSubstitution: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreHelper,
                 pszTrueTypeFontName: ?[*:0]const u16,
                 pszDevFontName: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreHelper,
                 pszTrueTypeFontName: ?[*:0]const u16,
                 pszDevFontName: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateInstanceOfMSXMLObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreHelper,
                 rclsid: ?*const Guid,
                 pUnkOuter: ?*IUnknown,
@@ -3515,7 +3518,7 @@ pub const IPrintCoreHelper = extern struct {
                 riid: ?*const Guid,
                 ppv: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreHelper,
                 rclsid: ?*const Guid,
                 pUnkOuter: ?*IUnknown,
@@ -3526,45 +3529,47 @@ pub const IPrintCoreHelper = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreHelper_GetOption(self: *const T, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureRequested: ?[*:0]const u8, ppszOption: ?*?PSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).GetOption(@ptrCast(*const IPrintCoreHelper, self), pDevmode, cbSize, pszFeatureRequested, ppszOption);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreHelper_SetOptions(self: *const T, pDevmode: ?*DEVMODEA, cbSize: u32, bResolveConflicts: BOOL, pFOPairs: ?*const PRINT_FEATURE_OPTION, cPairs: u32, pcPairsWritten: ?*u32, pdwResult: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).SetOptions(@ptrCast(*const IPrintCoreHelper, self), pDevmode, cbSize, bResolveConflicts, pFOPairs, cPairs, pcPairsWritten, pdwResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreHelper_EnumConstrainedOptions(self: *const T, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureKeyword: ?[*:0]const u8, pConstrainedOptionList: ?*?*?*?PSTR, pdwNumOptions: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).EnumConstrainedOptions(@ptrCast(*const IPrintCoreHelper, self), pDevmode, cbSize, pszFeatureKeyword, pConstrainedOptionList, pdwNumOptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreHelper_WhyConstrained(self: *const T, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, ppFOConstraints: ?*const ?*PRINT_FEATURE_OPTION, pdwNumOptions: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).WhyConstrained(@ptrCast(*const IPrintCoreHelper, self), pDevmode, cbSize, pszFeatureKeyword, pszOptionKeyword, ppFOConstraints, pdwNumOptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreHelper_EnumFeatures(self: *const T, pFeatureList: ?*?*?*?PSTR, pdwNumFeatures: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).EnumFeatures(@ptrCast(*const IPrintCoreHelper, self), pFeatureList, pdwNumFeatures);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreHelper_EnumOptions(self: *const T, pszFeatureKeyword: ?[*:0]const u8, pOptionList: ?*?*?*?PSTR, pdwNumOptions: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).EnumOptions(@ptrCast(*const IPrintCoreHelper, self), pszFeatureKeyword, pOptionList, pdwNumOptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreHelper_GetFontSubstitution(self: *const T, pszTrueTypeFontName: ?[*:0]const u16, ppszDevFontName: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).GetFontSubstitution(@ptrCast(*const IPrintCoreHelper, self), pszTrueTypeFontName, ppszDevFontName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreHelper_SetFontSubstitution(self: *const T, pszTrueTypeFontName: ?[*:0]const u16, pszDevFontName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).SetFontSubstitution(@ptrCast(*const IPrintCoreHelper, self), pszTrueTypeFontName, pszDevFontName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreHelper_CreateInstanceOfMSXMLObject(self: *const T, rclsid: ?*const Guid, pUnkOuter: ?*IUnknown, dwClsContext: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).CreateInstanceOfMSXMLObject(@ptrCast(*const IPrintCoreHelper, self), rclsid, pUnkOuter, dwClsContext, riid, ppv);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreHelper_GetOption(self: *const T, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureRequested: ?[*:0]const u8, ppszOption: ?*?PSTR) HRESULT {
+                return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).GetOption(@ptrCast(*const IPrintCoreHelper, self), pDevmode, cbSize, pszFeatureRequested, ppszOption);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreHelper_SetOptions(self: *const T, pDevmode: ?*DEVMODEA, cbSize: u32, bResolveConflicts: BOOL, pFOPairs: ?*const PRINT_FEATURE_OPTION, cPairs: u32, pcPairsWritten: ?*u32, pdwResult: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).SetOptions(@ptrCast(*const IPrintCoreHelper, self), pDevmode, cbSize, bResolveConflicts, pFOPairs, cPairs, pcPairsWritten, pdwResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreHelper_EnumConstrainedOptions(self: *const T, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureKeyword: ?[*:0]const u8, pConstrainedOptionList: ?*?*?*?PSTR, pdwNumOptions: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).EnumConstrainedOptions(@ptrCast(*const IPrintCoreHelper, self), pDevmode, cbSize, pszFeatureKeyword, pConstrainedOptionList, pdwNumOptions);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreHelper_WhyConstrained(self: *const T, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, ppFOConstraints: ?*const ?*PRINT_FEATURE_OPTION, pdwNumOptions: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).WhyConstrained(@ptrCast(*const IPrintCoreHelper, self), pDevmode, cbSize, pszFeatureKeyword, pszOptionKeyword, ppFOConstraints, pdwNumOptions);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreHelper_EnumFeatures(self: *const T, pFeatureList: ?*?*?*?PSTR, pdwNumFeatures: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).EnumFeatures(@ptrCast(*const IPrintCoreHelper, self), pFeatureList, pdwNumFeatures);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreHelper_EnumOptions(self: *const T, pszFeatureKeyword: ?[*:0]const u8, pOptionList: ?*?*?*?PSTR, pdwNumOptions: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).EnumOptions(@ptrCast(*const IPrintCoreHelper, self), pszFeatureKeyword, pOptionList, pdwNumOptions);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreHelper_GetFontSubstitution(self: *const T, pszTrueTypeFontName: ?[*:0]const u16, ppszDevFontName: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).GetFontSubstitution(@ptrCast(*const IPrintCoreHelper, self), pszTrueTypeFontName, ppszDevFontName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreHelper_SetFontSubstitution(self: *const T, pszTrueTypeFontName: ?[*:0]const u16, pszDevFontName: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).SetFontSubstitution(@ptrCast(*const IPrintCoreHelper, self), pszTrueTypeFontName, pszDevFontName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreHelper_CreateInstanceOfMSXMLObject(self: *const T, rclsid: ?*const Guid, pUnkOuter: ?*IUnknown, dwClsContext: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).CreateInstanceOfMSXMLObject(@ptrCast(*const IPrintCoreHelper, self), rclsid, pUnkOuter, dwClsContext, riid, ppv);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3574,14 +3579,14 @@ pub const IPrintCoreHelperUni = extern struct {
     pub const VTable = extern struct {
         base: IPrintCoreHelper.VTable,
         CreateGDLSnapshot: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreHelperUni,
                 pDevmode: ?*DEVMODEA,
                 cbSize: u32,
                 dwFlags: u32,
                 ppSnapshotStream: ?*?*IStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreHelperUni,
                 pDevmode: ?*DEVMODEA,
                 cbSize: u32,
@@ -3590,12 +3595,12 @@ pub const IPrintCoreHelperUni = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateDefaultGDLSnapshot: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreHelperUni,
                 dwFlags: u32,
                 ppSnapshotStream: ?*?*IStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreHelperUni,
                 dwFlags: u32,
                 ppSnapshotStream: ?*?*IStream,
@@ -3603,17 +3608,19 @@ pub const IPrintCoreHelperUni = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintCoreHelper.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreHelperUni_CreateGDLSnapshot(self: *const T, pDevmode: ?*DEVMODEA, cbSize: u32, dwFlags: u32, ppSnapshotStream: ?*?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreHelperUni.VTable, self.vtable).CreateGDLSnapshot(@ptrCast(*const IPrintCoreHelperUni, self), pDevmode, cbSize, dwFlags, ppSnapshotStream);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreHelperUni_CreateDefaultGDLSnapshot(self: *const T, dwFlags: u32, ppSnapshotStream: ?*?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreHelperUni.VTable, self.vtable).CreateDefaultGDLSnapshot(@ptrCast(*const IPrintCoreHelperUni, self), dwFlags, ppSnapshotStream);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintCoreHelper.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreHelperUni_CreateGDLSnapshot(self: *const T, pDevmode: ?*DEVMODEA, cbSize: u32, dwFlags: u32, ppSnapshotStream: ?*?*IStream) HRESULT {
+                return @ptrCast(*const IPrintCoreHelperUni.VTable, self.vtable).CreateGDLSnapshot(@ptrCast(*const IPrintCoreHelperUni, self), pDevmode, cbSize, dwFlags, ppSnapshotStream);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreHelperUni_CreateDefaultGDLSnapshot(self: *const T, dwFlags: u32, ppSnapshotStream: ?*?*IStream) HRESULT {
+                return @ptrCast(*const IPrintCoreHelperUni.VTable, self.vtable).CreateDefaultGDLSnapshot(@ptrCast(*const IPrintCoreHelperUni, self), dwFlags, ppSnapshotStream);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3623,7 +3630,7 @@ pub const IPrintCoreHelperUni2 = extern struct {
     pub const VTable = extern struct {
         base: IPrintCoreHelperUni.VTable,
         GetNamedCommand: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreHelperUni2,
                 // TODO: what to do with BytesParamIndex 1?
                 pDevmode: ?*DEVMODEA,
@@ -3632,7 +3639,7 @@ pub const IPrintCoreHelperUni2 = extern struct {
                 ppCommandBytes: ?*?*u8,
                 pcbCommandSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreHelperUni2,
                 // TODO: what to do with BytesParamIndex 1?
                 pDevmode: ?*DEVMODEA,
@@ -3644,13 +3651,15 @@ pub const IPrintCoreHelperUni2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintCoreHelperUni.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreHelperUni2_GetNamedCommand(self: *const T, pDevmode: ?*DEVMODEA, cbSize: u32, pszCommandName: ?[*:0]const u16, ppCommandBytes: ?*?*u8, pcbCommandSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreHelperUni2.VTable, self.vtable).GetNamedCommand(@ptrCast(*const IPrintCoreHelperUni2, self), pDevmode, cbSize, pszCommandName, ppCommandBytes, pcbCommandSize);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintCoreHelperUni.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreHelperUni2_GetNamedCommand(self: *const T, pDevmode: ?*DEVMODEA, cbSize: u32, pszCommandName: ?[*:0]const u16, ppCommandBytes: ?*?*u8, pcbCommandSize: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintCoreHelperUni2.VTable, self.vtable).GetNamedCommand(@ptrCast(*const IPrintCoreHelperUni2, self), pDevmode, cbSize, pszCommandName, ppCommandBytes, pcbCommandSize);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3660,14 +3669,14 @@ pub const IPrintCoreHelperPS = extern struct {
     pub const VTable = extern struct {
         base: IPrintCoreHelper.VTable,
         GetGlobalAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreHelperPS,
                 pszAttribute: ?[*:0]const u8,
                 pdwDataType: ?*u32,
                 ppbData: ?*?*u8,
                 pcbSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreHelperPS,
                 pszAttribute: ?[*:0]const u8,
                 pdwDataType: ?*u32,
@@ -3676,7 +3685,7 @@ pub const IPrintCoreHelperPS = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFeatureAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreHelperPS,
                 pszFeatureKeyword: ?[*:0]const u8,
                 pszAttribute: ?[*:0]const u8,
@@ -3684,7 +3693,7 @@ pub const IPrintCoreHelperPS = extern struct {
                 ppbData: ?*?*u8,
                 pcbSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreHelperPS,
                 pszFeatureKeyword: ?[*:0]const u8,
                 pszAttribute: ?[*:0]const u8,
@@ -3694,7 +3703,7 @@ pub const IPrintCoreHelperPS = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetOptionAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreHelperPS,
                 pszFeatureKeyword: ?[*:0]const u8,
                 pszOptionKeyword: ?[*:0]const u8,
@@ -3703,7 +3712,7 @@ pub const IPrintCoreHelperPS = extern struct {
                 ppbData: ?*?*u8,
                 pcbSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreHelperPS,
                 pszFeatureKeyword: ?[*:0]const u8,
                 pszOptionKeyword: ?[*:0]const u8,
@@ -3715,21 +3724,23 @@ pub const IPrintCoreHelperPS = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintCoreHelper.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreHelperPS_GetGlobalAttribute(self: *const T, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, ppbData: ?*?*u8, pcbSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreHelperPS.VTable, self.vtable).GetGlobalAttribute(@ptrCast(*const IPrintCoreHelperPS, self), pszAttribute, pdwDataType, ppbData, pcbSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreHelperPS_GetFeatureAttribute(self: *const T, pszFeatureKeyword: ?[*:0]const u8, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, ppbData: ?*?*u8, pcbSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreHelperPS.VTable, self.vtable).GetFeatureAttribute(@ptrCast(*const IPrintCoreHelperPS, self), pszFeatureKeyword, pszAttribute, pdwDataType, ppbData, pcbSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreHelperPS_GetOptionAttribute(self: *const T, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, ppbData: ?*?*u8, pcbSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreHelperPS.VTable, self.vtable).GetOptionAttribute(@ptrCast(*const IPrintCoreHelperPS, self), pszFeatureKeyword, pszOptionKeyword, pszAttribute, pdwDataType, ppbData, pcbSize);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintCoreHelper.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreHelperPS_GetGlobalAttribute(self: *const T, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, ppbData: ?*?*u8, pcbSize: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintCoreHelperPS.VTable, self.vtable).GetGlobalAttribute(@ptrCast(*const IPrintCoreHelperPS, self), pszAttribute, pdwDataType, ppbData, pcbSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreHelperPS_GetFeatureAttribute(self: *const T, pszFeatureKeyword: ?[*:0]const u8, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, ppbData: ?*?*u8, pcbSize: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintCoreHelperPS.VTable, self.vtable).GetFeatureAttribute(@ptrCast(*const IPrintCoreHelperPS, self), pszFeatureKeyword, pszAttribute, pdwDataType, ppbData, pcbSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreHelperPS_GetOptionAttribute(self: *const T, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, ppbData: ?*?*u8, pcbSize: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintCoreHelperPS.VTable, self.vtable).GetOptionAttribute(@ptrCast(*const IPrintCoreHelperPS, self), pszFeatureKeyword, pszOptionKeyword, pszAttribute, pdwDataType, ppbData, pcbSize);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3739,7 +3750,7 @@ pub const IPrintOemCommon = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintOemCommon,
                 dwMode: u32,
                 // TODO: what to do with BytesParamIndex 2?
@@ -3747,7 +3758,7 @@ pub const IPrintOemCommon = extern struct {
                 cbSize: u32,
                 pcbNeeded: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintOemCommon,
                 dwMode: u32,
                 // TODO: what to do with BytesParamIndex 2?
@@ -3757,12 +3768,12 @@ pub const IPrintOemCommon = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DevMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintOemCommon,
                 dwMode: u32,
                 pOemDMParam: ?*OEMDMPARAM,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintOemCommon,
                 dwMode: u32,
                 pOemDMParam: ?*OEMDMPARAM,
@@ -3770,17 +3781,19 @@ pub const IPrintOemCommon = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemCommon_GetInfo(self: *const T, dwMode: u32, pBuffer: ?*anyopaque, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintOemCommon.VTable, self.vtable).GetInfo(@ptrCast(*const IPrintOemCommon, self), dwMode, pBuffer, cbSize, pcbNeeded);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemCommon_DevMode(self: *const T, dwMode: u32, pOemDMParam: ?*OEMDMPARAM) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintOemCommon.VTable, self.vtable).DevMode(@ptrCast(*const IPrintOemCommon, self), dwMode, pOemDMParam);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintOemCommon_GetInfo(self: *const T, dwMode: u32, pBuffer: ?*anyopaque, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintOemCommon.VTable, self.vtable).GetInfo(@ptrCast(*const IPrintOemCommon, self), dwMode, pBuffer, cbSize, pcbNeeded);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintOemCommon_DevMode(self: *const T, dwMode: u32, pOemDMParam: ?*OEMDMPARAM) HRESULT {
+                return @ptrCast(*const IPrintOemCommon.VTable, self.vtable).DevMode(@ptrCast(*const IPrintOemCommon, self), dwMode, pOemDMParam);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3790,60 +3803,60 @@ pub const IPrintOemUI = extern struct {
     pub const VTable = extern struct {
         base: IPrintOemCommon.VTable,
         PublishDriverInterface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintOemUI,
                 pIUnknown: ?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintOemUI,
                 pIUnknown: ?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CommonUIProp: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintOemUI,
                 dwMode: u32,
                 pOemCUIPParam: ?*OEMCUIPPARAM,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintOemUI,
                 dwMode: u32,
                 pOemCUIPParam: ?*OEMCUIPPARAM,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DocumentPropertySheets: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintOemUI,
                 pPSUIInfo: ?*PROPSHEETUI_INFO,
                 lParam: LPARAM,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintOemUI,
                 pPSUIInfo: ?*PROPSHEETUI_INFO,
                 lParam: LPARAM,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DevicePropertySheets: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintOemUI,
                 pPSUIInfo: ?*PROPSHEETUI_INFO,
                 lParam: LPARAM,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintOemUI,
                 pPSUIInfo: ?*PROPSHEETUI_INFO,
                 lParam: LPARAM,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DevQueryPrintEx: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintOemUI,
                 poemuiobj: ?*OEMUIOBJ,
                 pDQPInfo: ?*DEVQUERYPRINT_INFO,
                 pPublicDM: ?*DEVMODEA,
                 pOEMDM: ?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintOemUI,
                 poemuiobj: ?*OEMUIOBJ,
                 pDQPInfo: ?*DEVQUERYPRINT_INFO,
@@ -3852,7 +3865,7 @@ pub const IPrintOemUI = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DeviceCapabilitiesA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintOemUI,
                 poemuiobj: ?*OEMUIOBJ,
                 hPrinter: ?HANDLE,
@@ -3864,7 +3877,7 @@ pub const IPrintOemUI = extern struct {
                 dwOld: u32,
                 dwResult: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintOemUI,
                 poemuiobj: ?*OEMUIOBJ,
                 hPrinter: ?HANDLE,
@@ -3878,26 +3891,26 @@ pub const IPrintOemUI = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         UpgradePrinter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintOemUI,
                 dwLevel: u32,
                 pDriverUpgradeInfo: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintOemUI,
                 dwLevel: u32,
                 pDriverUpgradeInfo: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         PrinterEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintOemUI,
                 pPrinterName: ?PWSTR,
                 iDriverEvent: i32,
                 dwFlags: u32,
                 lParam: LPARAM,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintOemUI,
                 pPrinterName: ?PWSTR,
                 iDriverEvent: i32,
@@ -3906,14 +3919,14 @@ pub const IPrintOemUI = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DriverEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintOemUI,
                 dwDriverEvent: u32,
                 dwLevel: u32,
                 pDriverInfo: ?*u8,
                 lParam: LPARAM,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintOemUI,
                 dwDriverEvent: u32,
                 dwLevel: u32,
@@ -3922,7 +3935,7 @@ pub const IPrintOemUI = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         QueryColorProfile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintOemUI,
                 hPrinter: ?HANDLE,
                 poemuiobj: ?*OEMUIOBJ,
@@ -3933,7 +3946,7 @@ pub const IPrintOemUI = extern struct {
                 pcbProfileData: ?*u32,
                 pflProfileData: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintOemUI,
                 hPrinter: ?HANDLE,
                 poemuiobj: ?*OEMUIOBJ,
@@ -3946,14 +3959,14 @@ pub const IPrintOemUI = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FontInstallerDlgProc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintOemUI,
                 hWnd: ?HWND,
                 usMsg: u32,
                 wParam: WPARAM,
                 lParam: LPARAM,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintOemUI,
                 hWnd: ?HWND,
                 usMsg: u32,
@@ -3962,13 +3975,13 @@ pub const IPrintOemUI = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         UpdateExternalFonts: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintOemUI,
                 hPrinter: ?HANDLE,
                 hHeap: ?HANDLE,
                 pwstrCartridges: ?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintOemUI,
                 hPrinter: ?HANDLE,
                 hHeap: ?HANDLE,
@@ -3977,57 +3990,59 @@ pub const IPrintOemUI = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintOemCommon.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUI_PublishDriverInterface(self: *const T, pIUnknown: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintOemUI.VTable, self.vtable).PublishDriverInterface(@ptrCast(*const IPrintOemUI, self), pIUnknown);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUI_CommonUIProp(self: *const T, dwMode: u32, pOemCUIPParam: ?*OEMCUIPPARAM) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintOemUI.VTable, self.vtable).CommonUIProp(@ptrCast(*const IPrintOemUI, self), dwMode, pOemCUIPParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUI_DocumentPropertySheets(self: *const T, pPSUIInfo: ?*PROPSHEETUI_INFO, lParam: LPARAM) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintOemUI.VTable, self.vtable).DocumentPropertySheets(@ptrCast(*const IPrintOemUI, self), pPSUIInfo, lParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUI_DevicePropertySheets(self: *const T, pPSUIInfo: ?*PROPSHEETUI_INFO, lParam: LPARAM) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintOemUI.VTable, self.vtable).DevicePropertySheets(@ptrCast(*const IPrintOemUI, self), pPSUIInfo, lParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUI_DevQueryPrintEx(self: *const T, poemuiobj: ?*OEMUIOBJ, pDQPInfo: ?*DEVQUERYPRINT_INFO, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintOemUI.VTable, self.vtable).DevQueryPrintEx(@ptrCast(*const IPrintOemUI, self), poemuiobj, pDQPInfo, pPublicDM, pOEMDM);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUI_DeviceCapabilitiesA(self: *const T, poemuiobj: ?*OEMUIOBJ, hPrinter: ?HANDLE, pDeviceName: ?PWSTR, wCapability: u16, pOutput: ?*anyopaque, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque, dwOld: u32, dwResult: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintOemUI.VTable, self.vtable).DeviceCapabilitiesA(@ptrCast(*const IPrintOemUI, self), poemuiobj, hPrinter, pDeviceName, wCapability, pOutput, pPublicDM, pOEMDM, dwOld, dwResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUI_UpgradePrinter(self: *const T, dwLevel: u32, pDriverUpgradeInfo: ?*u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintOemUI.VTable, self.vtable).UpgradePrinter(@ptrCast(*const IPrintOemUI, self), dwLevel, pDriverUpgradeInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUI_PrinterEvent(self: *const T, pPrinterName: ?PWSTR, iDriverEvent: i32, dwFlags: u32, lParam: LPARAM) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintOemUI.VTable, self.vtable).PrinterEvent(@ptrCast(*const IPrintOemUI, self), pPrinterName, iDriverEvent, dwFlags, lParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUI_DriverEvent(self: *const T, dwDriverEvent: u32, dwLevel: u32, pDriverInfo: ?*u8, lParam: LPARAM) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintOemUI.VTable, self.vtable).DriverEvent(@ptrCast(*const IPrintOemUI, self), dwDriverEvent, dwLevel, pDriverInfo, lParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUI_QueryColorProfile(self: *const T, hPrinter: ?HANDLE, poemuiobj: ?*OEMUIOBJ, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque, ulQueryMode: u32, pvProfileData: [*]u8, pcbProfileData: ?*u32, pflProfileData: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintOemUI.VTable, self.vtable).QueryColorProfile(@ptrCast(*const IPrintOemUI, self), hPrinter, poemuiobj, pPublicDM, pOEMDM, ulQueryMode, pvProfileData, pcbProfileData, pflProfileData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUI_FontInstallerDlgProc(self: *const T, hWnd: ?HWND, usMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintOemUI.VTable, self.vtable).FontInstallerDlgProc(@ptrCast(*const IPrintOemUI, self), hWnd, usMsg, wParam, lParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUI_UpdateExternalFonts(self: *const T, hPrinter: ?HANDLE, hHeap: ?HANDLE, pwstrCartridges: ?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintOemUI.VTable, self.vtable).UpdateExternalFonts(@ptrCast(*const IPrintOemUI, self), hPrinter, hHeap, pwstrCartridges);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintOemCommon.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintOemUI_PublishDriverInterface(self: *const T, pIUnknown: ?*IUnknown) HRESULT {
+                return @ptrCast(*const IPrintOemUI.VTable, self.vtable).PublishDriverInterface(@ptrCast(*const IPrintOemUI, self), pIUnknown);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintOemUI_CommonUIProp(self: *const T, dwMode: u32, pOemCUIPParam: ?*OEMCUIPPARAM) HRESULT {
+                return @ptrCast(*const IPrintOemUI.VTable, self.vtable).CommonUIProp(@ptrCast(*const IPrintOemUI, self), dwMode, pOemCUIPParam);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintOemUI_DocumentPropertySheets(self: *const T, pPSUIInfo: ?*PROPSHEETUI_INFO, lParam: LPARAM) HRESULT {
+                return @ptrCast(*const IPrintOemUI.VTable, self.vtable).DocumentPropertySheets(@ptrCast(*const IPrintOemUI, self), pPSUIInfo, lParam);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintOemUI_DevicePropertySheets(self: *const T, pPSUIInfo: ?*PROPSHEETUI_INFO, lParam: LPARAM) HRESULT {
+                return @ptrCast(*const IPrintOemUI.VTable, self.vtable).DevicePropertySheets(@ptrCast(*const IPrintOemUI, self), pPSUIInfo, lParam);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintOemUI_DevQueryPrintEx(self: *const T, poemuiobj: ?*OEMUIOBJ, pDQPInfo: ?*DEVQUERYPRINT_INFO, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque) HRESULT {
+                return @ptrCast(*const IPrintOemUI.VTable, self.vtable).DevQueryPrintEx(@ptrCast(*const IPrintOemUI, self), poemuiobj, pDQPInfo, pPublicDM, pOEMDM);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintOemUI_DeviceCapabilitiesA(self: *const T, poemuiobj: ?*OEMUIOBJ, hPrinter: ?HANDLE, pDeviceName: ?PWSTR, wCapability: u16, pOutput: ?*anyopaque, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque, dwOld: u32, dwResult: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintOemUI.VTable, self.vtable).DeviceCapabilitiesA(@ptrCast(*const IPrintOemUI, self), poemuiobj, hPrinter, pDeviceName, wCapability, pOutput, pPublicDM, pOEMDM, dwOld, dwResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintOemUI_UpgradePrinter(self: *const T, dwLevel: u32, pDriverUpgradeInfo: ?*u8) HRESULT {
+                return @ptrCast(*const IPrintOemUI.VTable, self.vtable).UpgradePrinter(@ptrCast(*const IPrintOemUI, self), dwLevel, pDriverUpgradeInfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintOemUI_PrinterEvent(self: *const T, pPrinterName: ?PWSTR, iDriverEvent: i32, dwFlags: u32, lParam: LPARAM) HRESULT {
+                return @ptrCast(*const IPrintOemUI.VTable, self.vtable).PrinterEvent(@ptrCast(*const IPrintOemUI, self), pPrinterName, iDriverEvent, dwFlags, lParam);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintOemUI_DriverEvent(self: *const T, dwDriverEvent: u32, dwLevel: u32, pDriverInfo: ?*u8, lParam: LPARAM) HRESULT {
+                return @ptrCast(*const IPrintOemUI.VTable, self.vtable).DriverEvent(@ptrCast(*const IPrintOemUI, self), dwDriverEvent, dwLevel, pDriverInfo, lParam);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintOemUI_QueryColorProfile(self: *const T, hPrinter: ?HANDLE, poemuiobj: ?*OEMUIOBJ, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque, ulQueryMode: u32, pvProfileData: [*]u8, pcbProfileData: ?*u32, pflProfileData: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintOemUI.VTable, self.vtable).QueryColorProfile(@ptrCast(*const IPrintOemUI, self), hPrinter, poemuiobj, pPublicDM, pOEMDM, ulQueryMode, pvProfileData, pcbProfileData, pflProfileData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintOemUI_FontInstallerDlgProc(self: *const T, hWnd: ?HWND, usMsg: u32, wParam: WPARAM, lParam: LPARAM) HRESULT {
+                return @ptrCast(*const IPrintOemUI.VTable, self.vtable).FontInstallerDlgProc(@ptrCast(*const IPrintOemUI, self), hWnd, usMsg, wParam, lParam);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintOemUI_UpdateExternalFonts(self: *const T, hPrinter: ?HANDLE, hHeap: ?HANDLE, pwstrCartridges: ?PWSTR) HRESULT {
+                return @ptrCast(*const IPrintOemUI.VTable, self.vtable).UpdateExternalFonts(@ptrCast(*const IPrintOemUI, self), hPrinter, hHeap, pwstrCartridges);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4037,14 +4052,14 @@ pub const IPrintOemUI2 = extern struct {
     pub const VTable = extern struct {
         base: IPrintOemUI.VTable,
         QueryJobAttributes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintOemUI2,
                 hPrinter: ?HANDLE,
                 pDevmode: ?*DEVMODEA,
                 dwLevel: u32,
                 lpAttributeInfo: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintOemUI2,
                 hPrinter: ?HANDLE,
                 pDevmode: ?*DEVMODEA,
@@ -4053,17 +4068,17 @@ pub const IPrintOemUI2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         HideStandardUI: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintOemUI2,
                 dwMode: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintOemUI2,
                 dwMode: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DocumentEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintOemUI2,
                 hPrinter: ?HANDLE,
                 hdc: ?HDC,
@@ -4074,7 +4089,7 @@ pub const IPrintOemUI2 = extern struct {
                 pvOut: ?*anyopaque,
                 piResult: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintOemUI2,
                 hPrinter: ?HANDLE,
                 hdc: ?HDC,
@@ -4088,21 +4103,23 @@ pub const IPrintOemUI2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintOemUI.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUI2_QueryJobAttributes(self: *const T, hPrinter: ?HANDLE, pDevmode: ?*DEVMODEA, dwLevel: u32, lpAttributeInfo: ?*u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintOemUI2.VTable, self.vtable).QueryJobAttributes(@ptrCast(*const IPrintOemUI2, self), hPrinter, pDevmode, dwLevel, lpAttributeInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUI2_HideStandardUI(self: *const T, dwMode: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintOemUI2.VTable, self.vtable).HideStandardUI(@ptrCast(*const IPrintOemUI2, self), dwMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUI2_DocumentEvent(self: *const T, hPrinter: ?HANDLE, hdc: ?HDC, iEsc: i32, cbIn: u32, pvIn: ?*anyopaque, cbOut: u32, pvOut: ?*anyopaque, piResult: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintOemUI2.VTable, self.vtable).DocumentEvent(@ptrCast(*const IPrintOemUI2, self), hPrinter, hdc, iEsc, cbIn, pvIn, cbOut, pvOut, piResult);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintOemUI.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintOemUI2_QueryJobAttributes(self: *const T, hPrinter: ?HANDLE, pDevmode: ?*DEVMODEA, dwLevel: u32, lpAttributeInfo: ?*u8) HRESULT {
+                return @ptrCast(*const IPrintOemUI2.VTable, self.vtable).QueryJobAttributes(@ptrCast(*const IPrintOemUI2, self), hPrinter, pDevmode, dwLevel, lpAttributeInfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintOemUI2_HideStandardUI(self: *const T, dwMode: u32) HRESULT {
+                return @ptrCast(*const IPrintOemUI2.VTable, self.vtable).HideStandardUI(@ptrCast(*const IPrintOemUI2, self), dwMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintOemUI2_DocumentEvent(self: *const T, hPrinter: ?HANDLE, hdc: ?HDC, iEsc: i32, cbIn: u32, pvIn: ?*anyopaque, cbOut: u32, pvOut: ?*anyopaque, piResult: ?*i32) HRESULT {
+                return @ptrCast(*const IPrintOemUI2.VTable, self.vtable).DocumentEvent(@ptrCast(*const IPrintOemUI2, self), hPrinter, hdc, iEsc, cbIn, pvIn, cbOut, pvOut, piResult);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4112,7 +4129,7 @@ pub const IPrintOemUIMXDC = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AdjustImageableArea: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintOemUIMXDC,
                 hPrinter: ?HANDLE,
                 cbDevMode: u32,
@@ -4121,7 +4138,7 @@ pub const IPrintOemUIMXDC = extern struct {
                 pOEMDM: ?*const anyopaque,
                 prclImageableArea: ?*RECTL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintOemUIMXDC,
                 hPrinter: ?HANDLE,
                 cbDevMode: u32,
@@ -4132,7 +4149,7 @@ pub const IPrintOemUIMXDC = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AdjustImageCompression: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintOemUIMXDC,
                 hPrinter: ?HANDLE,
                 cbDevMode: u32,
@@ -4141,7 +4158,7 @@ pub const IPrintOemUIMXDC = extern struct {
                 pOEMDM: ?*const anyopaque,
                 pCompressionMode: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintOemUIMXDC,
                 hPrinter: ?HANDLE,
                 cbDevMode: u32,
@@ -4152,7 +4169,7 @@ pub const IPrintOemUIMXDC = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AdjustDPI: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintOemUIMXDC,
                 hPrinter: ?HANDLE,
                 cbDevMode: u32,
@@ -4161,7 +4178,7 @@ pub const IPrintOemUIMXDC = extern struct {
                 pOEMDM: ?*const anyopaque,
                 pDPI: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintOemUIMXDC,
                 hPrinter: ?HANDLE,
                 cbDevMode: u32,
@@ -4173,21 +4190,23 @@ pub const IPrintOemUIMXDC = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUIMXDC_AdjustImageableArea(self: *const T, hPrinter: ?HANDLE, cbDevMode: u32, pDevMode: ?*const DEVMODEA, cbOEMDM: u32, pOEMDM: ?*const anyopaque, prclImageableArea: ?*RECTL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintOemUIMXDC.VTable, self.vtable).AdjustImageableArea(@ptrCast(*const IPrintOemUIMXDC, self), hPrinter, cbDevMode, pDevMode, cbOEMDM, pOEMDM, prclImageableArea);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUIMXDC_AdjustImageCompression(self: *const T, hPrinter: ?HANDLE, cbDevMode: u32, pDevMode: ?*const DEVMODEA, cbOEMDM: u32, pOEMDM: ?*const anyopaque, pCompressionMode: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintOemUIMXDC.VTable, self.vtable).AdjustImageCompression(@ptrCast(*const IPrintOemUIMXDC, self), hPrinter, cbDevMode, pDevMode, cbOEMDM, pOEMDM, pCompressionMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUIMXDC_AdjustDPI(self: *const T, hPrinter: ?HANDLE, cbDevMode: u32, pDevMode: ?*const DEVMODEA, cbOEMDM: u32, pOEMDM: ?*const anyopaque, pDPI: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintOemUIMXDC.VTable, self.vtable).AdjustDPI(@ptrCast(*const IPrintOemUIMXDC, self), hPrinter, cbDevMode, pDevMode, cbOEMDM, pOEMDM, pDPI);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintOemUIMXDC_AdjustImageableArea(self: *const T, hPrinter: ?HANDLE, cbDevMode: u32, pDevMode: ?*const DEVMODEA, cbOEMDM: u32, pOEMDM: ?*const anyopaque, prclImageableArea: ?*RECTL) HRESULT {
+                return @ptrCast(*const IPrintOemUIMXDC.VTable, self.vtable).AdjustImageableArea(@ptrCast(*const IPrintOemUIMXDC, self), hPrinter, cbDevMode, pDevMode, cbOEMDM, pOEMDM, prclImageableArea);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintOemUIMXDC_AdjustImageCompression(self: *const T, hPrinter: ?HANDLE, cbDevMode: u32, pDevMode: ?*const DEVMODEA, cbOEMDM: u32, pOEMDM: ?*const anyopaque, pCompressionMode: ?*i32) HRESULT {
+                return @ptrCast(*const IPrintOemUIMXDC.VTable, self.vtable).AdjustImageCompression(@ptrCast(*const IPrintOemUIMXDC, self), hPrinter, cbDevMode, pDevMode, cbOEMDM, pOEMDM, pCompressionMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintOemUIMXDC_AdjustDPI(self: *const T, hPrinter: ?HANDLE, cbDevMode: u32, pDevMode: ?*const DEVMODEA, cbOEMDM: u32, pOEMDM: ?*const anyopaque, pDPI: ?*i32) HRESULT {
+                return @ptrCast(*const IPrintOemUIMXDC.VTable, self.vtable).AdjustDPI(@ptrCast(*const IPrintOemUIMXDC, self), hPrinter, cbDevMode, pDevMode, cbOEMDM, pOEMDM, pDPI);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4197,7 +4216,7 @@ pub const IPrintOemDriverUI = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         DrvGetDriverSetting: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintOemDriverUI,
                 pci: ?*anyopaque,
                 Feature: ?[*:0]const u8,
@@ -4206,7 +4225,7 @@ pub const IPrintOemDriverUI = extern struct {
                 pcbNeeded: ?*u32,
                 pdwOptionsReturned: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintOemDriverUI,
                 pci: ?*anyopaque,
                 Feature: ?[*:0]const u8,
@@ -4217,13 +4236,13 @@ pub const IPrintOemDriverUI = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DrvUpgradeRegistrySetting: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintOemDriverUI,
                 hPrinter: ?HANDLE,
                 pFeature: ?[*:0]const u8,
                 pOption: ?[*:0]const u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintOemDriverUI,
                 hPrinter: ?HANDLE,
                 pFeature: ?[*:0]const u8,
@@ -4231,14 +4250,14 @@ pub const IPrintOemDriverUI = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DrvUpdateUISetting: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintOemDriverUI,
                 pci: ?*anyopaque,
                 pOptItem: ?*anyopaque,
                 dwPreviousSelection: u32,
                 dwMode: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintOemDriverUI,
                 pci: ?*anyopaque,
                 pOptItem: ?*anyopaque,
@@ -4248,21 +4267,23 @@ pub const IPrintOemDriverUI = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemDriverUI_DrvGetDriverSetting(self: *const T, pci: ?*anyopaque, Feature: ?[*:0]const u8, pOutput: ?*anyopaque, cbSize: u32, pcbNeeded: ?*u32, pdwOptionsReturned: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintOemDriverUI.VTable, self.vtable).DrvGetDriverSetting(@ptrCast(*const IPrintOemDriverUI, self), pci, Feature, pOutput, cbSize, pcbNeeded, pdwOptionsReturned);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemDriverUI_DrvUpgradeRegistrySetting(self: *const T, hPrinter: ?HANDLE, pFeature: ?[*:0]const u8, pOption: ?[*:0]const u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintOemDriverUI.VTable, self.vtable).DrvUpgradeRegistrySetting(@ptrCast(*const IPrintOemDriverUI, self), hPrinter, pFeature, pOption);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemDriverUI_DrvUpdateUISetting(self: *const T, pci: ?*anyopaque, pOptItem: ?*anyopaque, dwPreviousSelection: u32, dwMode: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintOemDriverUI.VTable, self.vtable).DrvUpdateUISetting(@ptrCast(*const IPrintOemDriverUI, self), pci, pOptItem, dwPreviousSelection, dwMode);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintOemDriverUI_DrvGetDriverSetting(self: *const T, pci: ?*anyopaque, Feature: ?[*:0]const u8, pOutput: ?*anyopaque, cbSize: u32, pcbNeeded: ?*u32, pdwOptionsReturned: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintOemDriverUI.VTable, self.vtable).DrvGetDriverSetting(@ptrCast(*const IPrintOemDriverUI, self), pci, Feature, pOutput, cbSize, pcbNeeded, pdwOptionsReturned);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintOemDriverUI_DrvUpgradeRegistrySetting(self: *const T, hPrinter: ?HANDLE, pFeature: ?[*:0]const u8, pOption: ?[*:0]const u8) HRESULT {
+                return @ptrCast(*const IPrintOemDriverUI.VTable, self.vtable).DrvUpgradeRegistrySetting(@ptrCast(*const IPrintOemDriverUI, self), hPrinter, pFeature, pOption);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintOemDriverUI_DrvUpdateUISetting(self: *const T, pci: ?*anyopaque, pOptItem: ?*anyopaque, dwPreviousSelection: u32, dwMode: u32) HRESULT {
+                return @ptrCast(*const IPrintOemDriverUI.VTable, self.vtable).DrvUpdateUISetting(@ptrCast(*const IPrintOemDriverUI, self), pci, pOptItem, dwPreviousSelection, dwMode);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4272,7 +4293,7 @@ pub const IPrintCoreUI2 = extern struct {
     pub const VTable = extern struct {
         base: IPrintOemDriverUI.VTable,
         GetOptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreUI2,
                 poemuiobj: ?*OEMUIOBJ,
                 dwFlags: u32,
@@ -4284,7 +4305,7 @@ pub const IPrintCoreUI2 = extern struct {
                 cbSize: u32,
                 pcbNeeded: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreUI2,
                 poemuiobj: ?*OEMUIOBJ,
                 dwFlags: u32,
@@ -4298,7 +4319,7 @@ pub const IPrintCoreUI2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetOptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreUI2,
                 poemuiobj: ?*OEMUIOBJ,
                 dwFlags: u32,
@@ -4307,7 +4328,7 @@ pub const IPrintCoreUI2 = extern struct {
                 cbIn: u32,
                 pdwResult: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreUI2,
                 poemuiobj: ?*OEMUIOBJ,
                 dwFlags: u32,
@@ -4318,7 +4339,7 @@ pub const IPrintCoreUI2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumConstrainedOptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreUI2,
                 poemuiobj: ?*OEMUIOBJ,
                 dwFlags: u32,
@@ -4328,7 +4349,7 @@ pub const IPrintCoreUI2 = extern struct {
                 cbSize: u32,
                 pcbNeeded: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreUI2,
                 poemuiobj: ?*OEMUIOBJ,
                 dwFlags: u32,
@@ -4340,7 +4361,7 @@ pub const IPrintCoreUI2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         WhyConstrained: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreUI2,
                 poemuiobj: ?*OEMUIOBJ,
                 dwFlags: u32,
@@ -4351,7 +4372,7 @@ pub const IPrintCoreUI2 = extern struct {
                 cbSize: u32,
                 pcbNeeded: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreUI2,
                 poemuiobj: ?*OEMUIOBJ,
                 dwFlags: u32,
@@ -4364,7 +4385,7 @@ pub const IPrintCoreUI2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetGlobalAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreUI2,
                 poemuiobj: ?*OEMUIOBJ,
                 dwFlags: u32,
@@ -4375,7 +4396,7 @@ pub const IPrintCoreUI2 = extern struct {
                 cbSize: u32,
                 pcbNeeded: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreUI2,
                 poemuiobj: ?*OEMUIOBJ,
                 dwFlags: u32,
@@ -4388,7 +4409,7 @@ pub const IPrintCoreUI2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFeatureAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreUI2,
                 poemuiobj: ?*OEMUIOBJ,
                 dwFlags: u32,
@@ -4400,7 +4421,7 @@ pub const IPrintCoreUI2 = extern struct {
                 cbSize: u32,
                 pcbNeeded: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreUI2,
                 poemuiobj: ?*OEMUIOBJ,
                 dwFlags: u32,
@@ -4414,7 +4435,7 @@ pub const IPrintCoreUI2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetOptionAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreUI2,
                 poemuiobj: ?*OEMUIOBJ,
                 dwFlags: u32,
@@ -4427,7 +4448,7 @@ pub const IPrintCoreUI2 = extern struct {
                 cbSize: u32,
                 pcbNeeded: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreUI2,
                 poemuiobj: ?*OEMUIOBJ,
                 dwFlags: u32,
@@ -4442,7 +4463,7 @@ pub const IPrintCoreUI2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumFeatures: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreUI2,
                 poemuiobj: ?*OEMUIOBJ,
                 dwFlags: u32,
@@ -4451,7 +4472,7 @@ pub const IPrintCoreUI2 = extern struct {
                 cbSize: u32,
                 pcbNeeded: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreUI2,
                 poemuiobj: ?*OEMUIOBJ,
                 dwFlags: u32,
@@ -4462,7 +4483,7 @@ pub const IPrintCoreUI2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumOptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreUI2,
                 poemuiobj: ?*OEMUIOBJ,
                 dwFlags: u32,
@@ -4472,7 +4493,7 @@ pub const IPrintCoreUI2 = extern struct {
                 cbSize: u32,
                 pcbNeeded: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreUI2,
                 poemuiobj: ?*OEMUIOBJ,
                 dwFlags: u32,
@@ -4484,7 +4505,7 @@ pub const IPrintCoreUI2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         QuerySimulationSupport: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintCoreUI2,
                 hPrinter: ?HANDLE,
                 dwLevel: u32,
@@ -4493,7 +4514,7 @@ pub const IPrintCoreUI2 = extern struct {
                 cbSize: u32,
                 pcbNeeded: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintCoreUI2,
                 hPrinter: ?HANDLE,
                 dwLevel: u32,
@@ -4505,49 +4526,51 @@ pub const IPrintCoreUI2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintOemDriverUI.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreUI2_GetOptions(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pmszFeaturesRequested: ?*i8, cbIn: u32, pmszFeatureOptionBuf: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).GetOptions(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pmszFeaturesRequested, cbIn, pmszFeatureOptionBuf, cbSize, pcbNeeded);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreUI2_SetOptions(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pmszFeatureOptionBuf: ?*i8, cbIn: u32, pdwResult: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).SetOptions(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pmszFeatureOptionBuf, cbIn, pdwResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreUI2_EnumConstrainedOptions(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pmszConstrainedOptionList: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).EnumConstrainedOptions(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pszFeatureKeyword, pmszConstrainedOptionList, cbSize, pcbNeeded);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreUI2_WhyConstrained(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, pmszReasonList: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).WhyConstrained(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pszFeatureKeyword, pszOptionKeyword, pmszReasonList, cbSize, pcbNeeded);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreUI2_GetGlobalAttribute(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, pbData: ?*u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).GetGlobalAttribute(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pszAttribute, pdwDataType, pbData, cbSize, pcbNeeded);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreUI2_GetFeatureAttribute(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, pbData: ?*u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).GetFeatureAttribute(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pszFeatureKeyword, pszAttribute, pdwDataType, pbData, cbSize, pcbNeeded);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreUI2_GetOptionAttribute(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, pbData: ?*u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).GetOptionAttribute(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pszFeatureKeyword, pszOptionKeyword, pszAttribute, pdwDataType, pbData, cbSize, pcbNeeded);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreUI2_EnumFeatures(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pmszFeatureList: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).EnumFeatures(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pmszFeatureList, cbSize, pcbNeeded);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreUI2_EnumOptions(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pmszOptionList: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).EnumOptions(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pszFeatureKeyword, pmszOptionList, cbSize, pcbNeeded);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreUI2_QuerySimulationSupport(self: *const T, hPrinter: ?HANDLE, dwLevel: u32, pCaps: ?*u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).QuerySimulationSupport(@ptrCast(*const IPrintCoreUI2, self), hPrinter, dwLevel, pCaps, cbSize, pcbNeeded);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintOemDriverUI.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreUI2_GetOptions(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pmszFeaturesRequested: ?*i8, cbIn: u32, pmszFeatureOptionBuf: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).GetOptions(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pmszFeaturesRequested, cbIn, pmszFeatureOptionBuf, cbSize, pcbNeeded);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreUI2_SetOptions(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pmszFeatureOptionBuf: ?*i8, cbIn: u32, pdwResult: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).SetOptions(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pmszFeatureOptionBuf, cbIn, pdwResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreUI2_EnumConstrainedOptions(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pmszConstrainedOptionList: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).EnumConstrainedOptions(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pszFeatureKeyword, pmszConstrainedOptionList, cbSize, pcbNeeded);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreUI2_WhyConstrained(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, pmszReasonList: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).WhyConstrained(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pszFeatureKeyword, pszOptionKeyword, pmszReasonList, cbSize, pcbNeeded);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreUI2_GetGlobalAttribute(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, pbData: ?*u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).GetGlobalAttribute(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pszAttribute, pdwDataType, pbData, cbSize, pcbNeeded);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreUI2_GetFeatureAttribute(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, pbData: ?*u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).GetFeatureAttribute(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pszFeatureKeyword, pszAttribute, pdwDataType, pbData, cbSize, pcbNeeded);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreUI2_GetOptionAttribute(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, pbData: ?*u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).GetOptionAttribute(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pszFeatureKeyword, pszOptionKeyword, pszAttribute, pdwDataType, pbData, cbSize, pcbNeeded);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreUI2_EnumFeatures(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pmszFeatureList: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).EnumFeatures(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pmszFeatureList, cbSize, pcbNeeded);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreUI2_EnumOptions(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pmszOptionList: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).EnumOptions(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pszFeatureKeyword, pmszOptionList, cbSize, pcbNeeded);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintCoreUI2_QuerySimulationSupport(self: *const T, hPrinter: ?HANDLE, dwLevel: u32, pCaps: ?*u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).QuerySimulationSupport(@ptrCast(*const IPrintCoreUI2, self), hPrinter, dwLevel, pCaps, cbSize, pcbNeeded);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4564,13 +4587,13 @@ pub const IPrintTicketProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSupportedVersions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintTicketProvider,
                 hPrinter: ?HANDLE,
                 ppVersions: ?*?*i32,
                 cVersions: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintTicketProvider,
                 hPrinter: ?HANDLE,
                 ppVersions: ?*?*i32,
@@ -4578,7 +4601,7 @@ pub const IPrintTicketProvider = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         BindPrinter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintTicketProvider,
                 hPrinter: ?HANDLE,
                 version: i32,
@@ -4587,7 +4610,7 @@ pub const IPrintTicketProvider = extern struct {
                 cNamespaces: ?*i32,
                 ppNamespaces: ?*?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintTicketProvider,
                 hPrinter: ?HANDLE,
                 version: i32,
@@ -4598,17 +4621,17 @@ pub const IPrintTicketProvider = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         QueryDeviceNamespace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintTicketProvider,
                 pDefaultNamespace: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintTicketProvider,
                 pDefaultNamespace: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ConvertPrintTicketToDevMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintTicketProvider,
                 pPrintTicket: ?*IXMLDOMDocument2,
                 cbDevmodeIn: u32,
@@ -4616,7 +4639,7 @@ pub const IPrintTicketProvider = extern struct {
                 pcbDevmodeOut: ?*u32,
                 ppDevmodeOut: ?*?*DEVMODEA,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintTicketProvider,
                 pPrintTicket: ?*IXMLDOMDocument2,
                 cbDevmodeIn: u32,
@@ -4626,13 +4649,13 @@ pub const IPrintTicketProvider = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ConvertDevModeToPrintTicket: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintTicketProvider,
                 cbDevmode: u32,
                 pDevmode: ?*DEVMODEA,
                 pPrintTicket: ?*IXMLDOMDocument2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintTicketProvider,
                 cbDevmode: u32,
                 pDevmode: ?*DEVMODEA,
@@ -4640,60 +4663,62 @@ pub const IPrintTicketProvider = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPrintCapabilities: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintTicketProvider,
                 pPrintTicket: ?*IXMLDOMDocument2,
                 ppCapabilities: ?*?*IXMLDOMDocument2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintTicketProvider,
                 pPrintTicket: ?*IXMLDOMDocument2,
                 ppCapabilities: ?*?*IXMLDOMDocument2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ValidatePrintTicket: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintTicketProvider,
                 pBaseTicket: ?*IXMLDOMDocument2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintTicketProvider,
                 pBaseTicket: ?*IXMLDOMDocument2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintTicketProvider_GetSupportedVersions(self: *const T, hPrinter: ?HANDLE, ppVersions: ?*?*i32, cVersions: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintTicketProvider.VTable, self.vtable).GetSupportedVersions(@ptrCast(*const IPrintTicketProvider, self), hPrinter, ppVersions, cVersions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintTicketProvider_BindPrinter(self: *const T, hPrinter: ?HANDLE, version: i32, pOptions: ?*SHIMOPTS, pDevModeFlags: ?*u32, cNamespaces: ?*i32, ppNamespaces: ?*?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintTicketProvider.VTable, self.vtable).BindPrinter(@ptrCast(*const IPrintTicketProvider, self), hPrinter, version, pOptions, pDevModeFlags, cNamespaces, ppNamespaces);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintTicketProvider_QueryDeviceNamespace(self: *const T, pDefaultNamespace: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintTicketProvider.VTable, self.vtable).QueryDeviceNamespace(@ptrCast(*const IPrintTicketProvider, self), pDefaultNamespace);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintTicketProvider_ConvertPrintTicketToDevMode(self: *const T, pPrintTicket: ?*IXMLDOMDocument2, cbDevmodeIn: u32, pDevmodeIn: ?*DEVMODEA, pcbDevmodeOut: ?*u32, ppDevmodeOut: ?*?*DEVMODEA) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintTicketProvider.VTable, self.vtable).ConvertPrintTicketToDevMode(@ptrCast(*const IPrintTicketProvider, self), pPrintTicket, cbDevmodeIn, pDevmodeIn, pcbDevmodeOut, ppDevmodeOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintTicketProvider_ConvertDevModeToPrintTicket(self: *const T, cbDevmode: u32, pDevmode: ?*DEVMODEA, pPrintTicket: ?*IXMLDOMDocument2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintTicketProvider.VTable, self.vtable).ConvertDevModeToPrintTicket(@ptrCast(*const IPrintTicketProvider, self), cbDevmode, pDevmode, pPrintTicket);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintTicketProvider_GetPrintCapabilities(self: *const T, pPrintTicket: ?*IXMLDOMDocument2, ppCapabilities: ?*?*IXMLDOMDocument2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintTicketProvider.VTable, self.vtable).GetPrintCapabilities(@ptrCast(*const IPrintTicketProvider, self), pPrintTicket, ppCapabilities);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintTicketProvider_ValidatePrintTicket(self: *const T, pBaseTicket: ?*IXMLDOMDocument2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintTicketProvider.VTable, self.vtable).ValidatePrintTicket(@ptrCast(*const IPrintTicketProvider, self), pBaseTicket);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintTicketProvider_GetSupportedVersions(self: *const T, hPrinter: ?HANDLE, ppVersions: ?*?*i32, cVersions: ?*i32) HRESULT {
+                return @ptrCast(*const IPrintTicketProvider.VTable, self.vtable).GetSupportedVersions(@ptrCast(*const IPrintTicketProvider, self), hPrinter, ppVersions, cVersions);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintTicketProvider_BindPrinter(self: *const T, hPrinter: ?HANDLE, version: i32, pOptions: ?*SHIMOPTS, pDevModeFlags: ?*u32, cNamespaces: ?*i32, ppNamespaces: ?*?*?BSTR) HRESULT {
+                return @ptrCast(*const IPrintTicketProvider.VTable, self.vtable).BindPrinter(@ptrCast(*const IPrintTicketProvider, self), hPrinter, version, pOptions, pDevModeFlags, cNamespaces, ppNamespaces);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintTicketProvider_QueryDeviceNamespace(self: *const T, pDefaultNamespace: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IPrintTicketProvider.VTable, self.vtable).QueryDeviceNamespace(@ptrCast(*const IPrintTicketProvider, self), pDefaultNamespace);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintTicketProvider_ConvertPrintTicketToDevMode(self: *const T, pPrintTicket: ?*IXMLDOMDocument2, cbDevmodeIn: u32, pDevmodeIn: ?*DEVMODEA, pcbDevmodeOut: ?*u32, ppDevmodeOut: ?*?*DEVMODEA) HRESULT {
+                return @ptrCast(*const IPrintTicketProvider.VTable, self.vtable).ConvertPrintTicketToDevMode(@ptrCast(*const IPrintTicketProvider, self), pPrintTicket, cbDevmodeIn, pDevmodeIn, pcbDevmodeOut, ppDevmodeOut);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintTicketProvider_ConvertDevModeToPrintTicket(self: *const T, cbDevmode: u32, pDevmode: ?*DEVMODEA, pPrintTicket: ?*IXMLDOMDocument2) HRESULT {
+                return @ptrCast(*const IPrintTicketProvider.VTable, self.vtable).ConvertDevModeToPrintTicket(@ptrCast(*const IPrintTicketProvider, self), cbDevmode, pDevmode, pPrintTicket);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintTicketProvider_GetPrintCapabilities(self: *const T, pPrintTicket: ?*IXMLDOMDocument2, ppCapabilities: ?*?*IXMLDOMDocument2) HRESULT {
+                return @ptrCast(*const IPrintTicketProvider.VTable, self.vtable).GetPrintCapabilities(@ptrCast(*const IPrintTicketProvider, self), pPrintTicket, ppCapabilities);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintTicketProvider_ValidatePrintTicket(self: *const T, pBaseTicket: ?*IXMLDOMDocument2) HRESULT {
+                return @ptrCast(*const IPrintTicketProvider.VTable, self.vtable).ValidatePrintTicket(@ptrCast(*const IPrintTicketProvider, self), pBaseTicket);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4703,25 +4728,25 @@ pub const IPrintTicketProvider2 = extern struct {
     pub const VTable = extern struct {
         base: IPrintTicketProvider.VTable,
         GetPrintDeviceCapabilities: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintTicketProvider2,
                 pPrintTicket: ?*IXMLDOMDocument2,
                 ppDeviceCapabilities: ?*?*IXMLDOMDocument2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintTicketProvider2,
                 pPrintTicket: ?*IXMLDOMDocument2,
                 ppDeviceCapabilities: ?*?*IXMLDOMDocument2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPrintDeviceResources: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintTicketProvider2,
                 pszLocaleName: ?[*:0]const u16,
                 pPrintTicket: ?*IXMLDOMDocument2,
                 ppDeviceResources: ?*?*IXMLDOMDocument2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintTicketProvider2,
                 pszLocaleName: ?[*:0]const u16,
                 pPrintTicket: ?*IXMLDOMDocument2,
@@ -4730,17 +4755,19 @@ pub const IPrintTicketProvider2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintTicketProvider.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintTicketProvider2_GetPrintDeviceCapabilities(self: *const T, pPrintTicket: ?*IXMLDOMDocument2, ppDeviceCapabilities: ?*?*IXMLDOMDocument2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintTicketProvider2.VTable, self.vtable).GetPrintDeviceCapabilities(@ptrCast(*const IPrintTicketProvider2, self), pPrintTicket, ppDeviceCapabilities);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintTicketProvider2_GetPrintDeviceResources(self: *const T, pszLocaleName: ?[*:0]const u16, pPrintTicket: ?*IXMLDOMDocument2, ppDeviceResources: ?*?*IXMLDOMDocument2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintTicketProvider2.VTable, self.vtable).GetPrintDeviceResources(@ptrCast(*const IPrintTicketProvider2, self), pszLocaleName, pPrintTicket, ppDeviceResources);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintTicketProvider.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintTicketProvider2_GetPrintDeviceCapabilities(self: *const T, pPrintTicket: ?*IXMLDOMDocument2, ppDeviceCapabilities: ?*?*IXMLDOMDocument2) HRESULT {
+                return @ptrCast(*const IPrintTicketProvider2.VTable, self.vtable).GetPrintDeviceCapabilities(@ptrCast(*const IPrintTicketProvider2, self), pPrintTicket, ppDeviceCapabilities);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintTicketProvider2_GetPrintDeviceResources(self: *const T, pszLocaleName: ?[*:0]const u16, pPrintTicket: ?*IXMLDOMDocument2, ppDeviceResources: ?*?*IXMLDOMDocument2) HRESULT {
+                return @ptrCast(*const IPrintTicketProvider2.VTable, self.vtable).GetPrintDeviceResources(@ptrCast(*const IPrintTicketProvider2, self), pszLocaleName, pPrintTicket, ppDeviceResources);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4764,12 +4791,12 @@ pub const IPrintSchemaElement = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_XmlNode: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaElement,
                 ppXmlNode: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaElement,
                 ppXmlNode: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -4777,12 +4804,12 @@ pub const IPrintSchemaElement = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaElement,
                 pbstrName: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaElement,
                 pbstrName: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -4790,33 +4817,35 @@ pub const IPrintSchemaElement = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NamespaceUri: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaElement,
                 pbstrNamespaceUri: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaElement,
                 pbstrNamespaceUri: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaElement_get_XmlNode(self: *const T, ppXmlNode: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaElement.VTable, self.vtable).get_XmlNode(@ptrCast(*const IPrintSchemaElement, self), ppXmlNode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaElement_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaElement.VTable, self.vtable).get_Name(@ptrCast(*const IPrintSchemaElement, self), pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaElement_get_NamespaceUri(self: *const T, pbstrNamespaceUri: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaElement.VTable, self.vtable).get_NamespaceUri(@ptrCast(*const IPrintSchemaElement, self), pbstrNamespaceUri);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaElement_get_XmlNode(self: *const T, ppXmlNode: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const IPrintSchemaElement.VTable, self.vtable).get_XmlNode(@ptrCast(*const IPrintSchemaElement, self), ppXmlNode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaElement_get_Name(self: *const T, pbstrName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IPrintSchemaElement.VTable, self.vtable).get_Name(@ptrCast(*const IPrintSchemaElement, self), pbstrName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaElement_get_NamespaceUri(self: *const T, pbstrNamespaceUri: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IPrintSchemaElement.VTable, self.vtable).get_NamespaceUri(@ptrCast(*const IPrintSchemaElement, self), pbstrNamespaceUri);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4828,25 +4857,27 @@ pub const IPrintSchemaDisplayableElement = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayName: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaDisplayableElement,
                 pbstrDisplayName: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaDisplayableElement,
                 pbstrDisplayName: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintSchemaElement.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaDisplayableElement_get_DisplayName(self: *const T, pbstrDisplayName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaDisplayableElement.VTable, self.vtable).get_DisplayName(@ptrCast(*const IPrintSchemaDisplayableElement, self), pbstrDisplayName);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintSchemaElement.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaDisplayableElement_get_DisplayName(self: *const T, pbstrDisplayName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IPrintSchemaDisplayableElement.VTable, self.vtable).get_DisplayName(@ptrCast(*const IPrintSchemaDisplayableElement, self), pbstrDisplayName);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4869,12 +4900,12 @@ pub const IPrintSchemaOption = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Selected: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaOption,
                 pbIsSelected: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaOption,
                 pbIsSelected: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -4882,24 +4913,24 @@ pub const IPrintSchemaOption = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Constrained: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaOption,
                 pSetting: ?*PrintSchemaConstrainedSetting,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaOption,
                 pSetting: ?*PrintSchemaConstrainedSetting,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPropertyValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaOption,
                 bstrName: ?BSTR,
                 bstrNamespaceUri: ?BSTR,
                 ppXmlValueNode: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaOption,
                 bstrName: ?BSTR,
                 bstrNamespaceUri: ?BSTR,
@@ -4908,21 +4939,23 @@ pub const IPrintSchemaOption = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintSchemaDisplayableElement.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaOption_get_Selected(self: *const T, pbIsSelected: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaOption.VTable, self.vtable).get_Selected(@ptrCast(*const IPrintSchemaOption, self), pbIsSelected);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaOption_get_Constrained(self: *const T, pSetting: ?*PrintSchemaConstrainedSetting) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaOption.VTable, self.vtable).get_Constrained(@ptrCast(*const IPrintSchemaOption, self), pSetting);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaOption_GetPropertyValue(self: *const T, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppXmlValueNode: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaOption.VTable, self.vtable).GetPropertyValue(@ptrCast(*const IPrintSchemaOption, self), bstrName, bstrNamespaceUri, ppXmlValueNode);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintSchemaDisplayableElement.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaOption_get_Selected(self: *const T, pbIsSelected: ?*BOOL) HRESULT {
+                return @ptrCast(*const IPrintSchemaOption.VTable, self.vtable).get_Selected(@ptrCast(*const IPrintSchemaOption, self), pbIsSelected);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaOption_get_Constrained(self: *const T, pSetting: ?*PrintSchemaConstrainedSetting) HRESULT {
+                return @ptrCast(*const IPrintSchemaOption.VTable, self.vtable).get_Constrained(@ptrCast(*const IPrintSchemaOption, self), pSetting);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaOption_GetPropertyValue(self: *const T, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppXmlValueNode: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const IPrintSchemaOption.VTable, self.vtable).GetPropertyValue(@ptrCast(*const IPrintSchemaOption, self), bstrName, bstrNamespaceUri, ppXmlValueNode);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4934,12 +4967,12 @@ pub const IPrintSchemaPageMediaSizeOption = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WidthInMicrons: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaPageMediaSizeOption,
                 pulWidth: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaPageMediaSizeOption,
                 pulWidth: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -4947,29 +4980,31 @@ pub const IPrintSchemaPageMediaSizeOption = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HeightInMicrons: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaPageMediaSizeOption,
                 pulHeight: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaPageMediaSizeOption,
                 pulHeight: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintSchemaOption.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaPageMediaSizeOption_get_WidthInMicrons(self: *const T, pulWidth: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaPageMediaSizeOption.VTable, self.vtable).get_WidthInMicrons(@ptrCast(*const IPrintSchemaPageMediaSizeOption, self), pulWidth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaPageMediaSizeOption_get_HeightInMicrons(self: *const T, pulHeight: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaPageMediaSizeOption.VTable, self.vtable).get_HeightInMicrons(@ptrCast(*const IPrintSchemaPageMediaSizeOption, self), pulHeight);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintSchemaOption.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaPageMediaSizeOption_get_WidthInMicrons(self: *const T, pulWidth: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintSchemaPageMediaSizeOption.VTable, self.vtable).get_WidthInMicrons(@ptrCast(*const IPrintSchemaPageMediaSizeOption, self), pulWidth);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaPageMediaSizeOption_get_HeightInMicrons(self: *const T, pulHeight: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintSchemaPageMediaSizeOption.VTable, self.vtable).get_HeightInMicrons(@ptrCast(*const IPrintSchemaPageMediaSizeOption, self), pulHeight);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4981,25 +5016,27 @@ pub const IPrintSchemaNUpOption = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PagesPerSheet: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaNUpOption,
                 pulPagesPerSheet: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaNUpOption,
                 pulPagesPerSheet: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintSchemaOption.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaNUpOption_get_PagesPerSheet(self: *const T, pulPagesPerSheet: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaNUpOption.VTable, self.vtable).get_PagesPerSheet(@ptrCast(*const IPrintSchemaNUpOption, self), pulPagesPerSheet);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintSchemaOption.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaNUpOption_get_PagesPerSheet(self: *const T, pulPagesPerSheet: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintSchemaNUpOption.VTable, self.vtable).get_PagesPerSheet(@ptrCast(*const IPrintSchemaNUpOption, self), pulPagesPerSheet);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5018,23 +5055,23 @@ pub const IPrintSchemaOptionCollection = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaOptionCollection,
                 pulCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaOptionCollection,
                 pulCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaOptionCollection,
                 ulIndex: u32,
                 ppOption: ?*?*IPrintSchemaOption,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaOptionCollection,
                 ulIndex: u32,
                 ppOption: ?*?*IPrintSchemaOption,
@@ -5043,33 +5080,35 @@ pub const IPrintSchemaOptionCollection = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaOptionCollection,
                 ppUnk: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaOptionCollection,
                 ppUnk: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaOptionCollection_get_Count(self: *const T, pulCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaOptionCollection.VTable, self.vtable).get_Count(@ptrCast(*const IPrintSchemaOptionCollection, self), pulCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaOptionCollection_GetAt(self: *const T, ulIndex: u32, ppOption: ?*?*IPrintSchemaOption) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaOptionCollection.VTable, self.vtable).GetAt(@ptrCast(*const IPrintSchemaOptionCollection, self), ulIndex, ppOption);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaOptionCollection_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaOptionCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IPrintSchemaOptionCollection, self), ppUnk);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaOptionCollection_get_Count(self: *const T, pulCount: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintSchemaOptionCollection.VTable, self.vtable).get_Count(@ptrCast(*const IPrintSchemaOptionCollection, self), pulCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaOptionCollection_GetAt(self: *const T, ulIndex: u32, ppOption: ?*?*IPrintSchemaOption) HRESULT {
+                return @ptrCast(*const IPrintSchemaOptionCollection.VTable, self.vtable).GetAt(@ptrCast(*const IPrintSchemaOptionCollection, self), ulIndex, ppOption);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaOptionCollection_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const IPrintSchemaOptionCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IPrintSchemaOptionCollection, self), ppUnk);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5081,12 +5120,12 @@ pub const IPrintSchemaFeature = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelectedOption: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaFeature,
                 ppOption: ?*?*IPrintSchemaOption,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaFeature,
                 ppOption: ?*?*IPrintSchemaOption,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -5094,12 +5133,12 @@ pub const IPrintSchemaFeature = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SelectedOption: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaFeature,
                 pOption: ?*IPrintSchemaOption,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaFeature,
                 pOption: ?*IPrintSchemaOption,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -5107,24 +5146,24 @@ pub const IPrintSchemaFeature = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelectionType: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaFeature,
                 pSelectionType: ?*PrintSchemaSelectionType,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaFeature,
                 pSelectionType: ?*PrintSchemaSelectionType,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetOption: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaFeature,
                 bstrName: ?BSTR,
                 bstrNamespaceUri: ?BSTR,
                 ppOption: ?*?*IPrintSchemaOption,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaFeature,
                 bstrName: ?BSTR,
                 bstrNamespaceUri: ?BSTR,
@@ -5134,41 +5173,43 @@ pub const IPrintSchemaFeature = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayUI: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaFeature,
                 pbShow: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaFeature,
                 pbShow: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintSchemaDisplayableElement.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaFeature_get_SelectedOption(self: *const T, ppOption: ?*?*IPrintSchemaOption) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaFeature.VTable, self.vtable).get_SelectedOption(@ptrCast(*const IPrintSchemaFeature, self), ppOption);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaFeature_put_SelectedOption(self: *const T, pOption: ?*IPrintSchemaOption) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaFeature.VTable, self.vtable).put_SelectedOption(@ptrCast(*const IPrintSchemaFeature, self), pOption);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaFeature_get_SelectionType(self: *const T, pSelectionType: ?*PrintSchemaSelectionType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaFeature.VTable, self.vtable).get_SelectionType(@ptrCast(*const IPrintSchemaFeature, self), pSelectionType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaFeature_GetOption(self: *const T, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppOption: ?*?*IPrintSchemaOption) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaFeature.VTable, self.vtable).GetOption(@ptrCast(*const IPrintSchemaFeature, self), bstrName, bstrNamespaceUri, ppOption);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaFeature_get_DisplayUI(self: *const T, pbShow: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaFeature.VTable, self.vtable).get_DisplayUI(@ptrCast(*const IPrintSchemaFeature, self), pbShow);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintSchemaDisplayableElement.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaFeature_get_SelectedOption(self: *const T, ppOption: ?*?*IPrintSchemaOption) HRESULT {
+                return @ptrCast(*const IPrintSchemaFeature.VTable, self.vtable).get_SelectedOption(@ptrCast(*const IPrintSchemaFeature, self), ppOption);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaFeature_put_SelectedOption(self: *const T, pOption: ?*IPrintSchemaOption) HRESULT {
+                return @ptrCast(*const IPrintSchemaFeature.VTable, self.vtable).put_SelectedOption(@ptrCast(*const IPrintSchemaFeature, self), pOption);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaFeature_get_SelectionType(self: *const T, pSelectionType: ?*PrintSchemaSelectionType) HRESULT {
+                return @ptrCast(*const IPrintSchemaFeature.VTable, self.vtable).get_SelectionType(@ptrCast(*const IPrintSchemaFeature, self), pSelectionType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaFeature_GetOption(self: *const T, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppOption: ?*?*IPrintSchemaOption) HRESULT {
+                return @ptrCast(*const IPrintSchemaFeature.VTable, self.vtable).GetOption(@ptrCast(*const IPrintSchemaFeature, self), bstrName, bstrNamespaceUri, ppOption);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaFeature_get_DisplayUI(self: *const T, pbShow: ?*BOOL) HRESULT {
+                return @ptrCast(*const IPrintSchemaFeature.VTable, self.vtable).get_DisplayUI(@ptrCast(*const IPrintSchemaFeature, self), pbShow);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5180,12 +5221,12 @@ pub const IPrintSchemaPageImageableSize = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ImageableSizeWidthInMicrons: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaPageImageableSize,
                 pulImageableSizeWidth: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaPageImageableSize,
                 pulImageableSizeWidth: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -5193,12 +5234,12 @@ pub const IPrintSchemaPageImageableSize = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ImageableSizeHeightInMicrons: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaPageImageableSize,
                 pulImageableSizeHeight: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaPageImageableSize,
                 pulImageableSizeHeight: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -5206,12 +5247,12 @@ pub const IPrintSchemaPageImageableSize = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OriginWidthInMicrons: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaPageImageableSize,
                 pulOriginWidth: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaPageImageableSize,
                 pulOriginWidth: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -5219,12 +5260,12 @@ pub const IPrintSchemaPageImageableSize = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OriginHeightInMicrons: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaPageImageableSize,
                 pulOriginHeight: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaPageImageableSize,
                 pulOriginHeight: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -5232,12 +5273,12 @@ pub const IPrintSchemaPageImageableSize = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExtentWidthInMicrons: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaPageImageableSize,
                 pulExtentWidth: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaPageImageableSize,
                 pulExtentWidth: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -5245,45 +5286,47 @@ pub const IPrintSchemaPageImageableSize = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExtentHeightInMicrons: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaPageImageableSize,
                 pulExtentHeight: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaPageImageableSize,
                 pulExtentHeight: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintSchemaElement.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaPageImageableSize_get_ImageableSizeWidthInMicrons(self: *const T, pulImageableSizeWidth: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaPageImageableSize.VTable, self.vtable).get_ImageableSizeWidthInMicrons(@ptrCast(*const IPrintSchemaPageImageableSize, self), pulImageableSizeWidth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaPageImageableSize_get_ImageableSizeHeightInMicrons(self: *const T, pulImageableSizeHeight: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaPageImageableSize.VTable, self.vtable).get_ImageableSizeHeightInMicrons(@ptrCast(*const IPrintSchemaPageImageableSize, self), pulImageableSizeHeight);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaPageImageableSize_get_OriginWidthInMicrons(self: *const T, pulOriginWidth: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaPageImageableSize.VTable, self.vtable).get_OriginWidthInMicrons(@ptrCast(*const IPrintSchemaPageImageableSize, self), pulOriginWidth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaPageImageableSize_get_OriginHeightInMicrons(self: *const T, pulOriginHeight: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaPageImageableSize.VTable, self.vtable).get_OriginHeightInMicrons(@ptrCast(*const IPrintSchemaPageImageableSize, self), pulOriginHeight);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaPageImageableSize_get_ExtentWidthInMicrons(self: *const T, pulExtentWidth: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaPageImageableSize.VTable, self.vtable).get_ExtentWidthInMicrons(@ptrCast(*const IPrintSchemaPageImageableSize, self), pulExtentWidth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaPageImageableSize_get_ExtentHeightInMicrons(self: *const T, pulExtentHeight: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaPageImageableSize.VTable, self.vtable).get_ExtentHeightInMicrons(@ptrCast(*const IPrintSchemaPageImageableSize, self), pulExtentHeight);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintSchemaElement.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaPageImageableSize_get_ImageableSizeWidthInMicrons(self: *const T, pulImageableSizeWidth: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintSchemaPageImageableSize.VTable, self.vtable).get_ImageableSizeWidthInMicrons(@ptrCast(*const IPrintSchemaPageImageableSize, self), pulImageableSizeWidth);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaPageImageableSize_get_ImageableSizeHeightInMicrons(self: *const T, pulImageableSizeHeight: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintSchemaPageImageableSize.VTable, self.vtable).get_ImageableSizeHeightInMicrons(@ptrCast(*const IPrintSchemaPageImageableSize, self), pulImageableSizeHeight);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaPageImageableSize_get_OriginWidthInMicrons(self: *const T, pulOriginWidth: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintSchemaPageImageableSize.VTable, self.vtable).get_OriginWidthInMicrons(@ptrCast(*const IPrintSchemaPageImageableSize, self), pulOriginWidth);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaPageImageableSize_get_OriginHeightInMicrons(self: *const T, pulOriginHeight: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintSchemaPageImageableSize.VTable, self.vtable).get_OriginHeightInMicrons(@ptrCast(*const IPrintSchemaPageImageableSize, self), pulOriginHeight);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaPageImageableSize_get_ExtentWidthInMicrons(self: *const T, pulExtentWidth: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintSchemaPageImageableSize.VTable, self.vtable).get_ExtentWidthInMicrons(@ptrCast(*const IPrintSchemaPageImageableSize, self), pulExtentWidth);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaPageImageableSize_get_ExtentHeightInMicrons(self: *const T, pulExtentHeight: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintSchemaPageImageableSize.VTable, self.vtable).get_ExtentHeightInMicrons(@ptrCast(*const IPrintSchemaPageImageableSize, self), pulExtentHeight);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5304,12 +5347,12 @@ pub const IPrintSchemaParameterDefinition = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserInputRequired: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaParameterDefinition,
                 pbIsRequired: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaParameterDefinition,
                 pbIsRequired: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -5317,12 +5360,12 @@ pub const IPrintSchemaParameterDefinition = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UnitType: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaParameterDefinition,
                 pbstrUnitType: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaParameterDefinition,
                 pbstrUnitType: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -5330,12 +5373,12 @@ pub const IPrintSchemaParameterDefinition = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DataType: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaParameterDefinition,
                 pDataType: ?*PrintSchemaParameterDataType,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaParameterDefinition,
                 pDataType: ?*PrintSchemaParameterDataType,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -5343,12 +5386,12 @@ pub const IPrintSchemaParameterDefinition = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RangeMin: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaParameterDefinition,
                 pRangeMin: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaParameterDefinition,
                 pRangeMin: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -5356,41 +5399,43 @@ pub const IPrintSchemaParameterDefinition = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RangeMax: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaParameterDefinition,
                 pRangeMax: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaParameterDefinition,
                 pRangeMax: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintSchemaDisplayableElement.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaParameterDefinition_get_UserInputRequired(self: *const T, pbIsRequired: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaParameterDefinition.VTable, self.vtable).get_UserInputRequired(@ptrCast(*const IPrintSchemaParameterDefinition, self), pbIsRequired);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaParameterDefinition_get_UnitType(self: *const T, pbstrUnitType: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaParameterDefinition.VTable, self.vtable).get_UnitType(@ptrCast(*const IPrintSchemaParameterDefinition, self), pbstrUnitType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaParameterDefinition_get_DataType(self: *const T, pDataType: ?*PrintSchemaParameterDataType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaParameterDefinition.VTable, self.vtable).get_DataType(@ptrCast(*const IPrintSchemaParameterDefinition, self), pDataType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaParameterDefinition_get_RangeMin(self: *const T, pRangeMin: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaParameterDefinition.VTable, self.vtable).get_RangeMin(@ptrCast(*const IPrintSchemaParameterDefinition, self), pRangeMin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaParameterDefinition_get_RangeMax(self: *const T, pRangeMax: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaParameterDefinition.VTable, self.vtable).get_RangeMax(@ptrCast(*const IPrintSchemaParameterDefinition, self), pRangeMax);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintSchemaDisplayableElement.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaParameterDefinition_get_UserInputRequired(self: *const T, pbIsRequired: ?*BOOL) HRESULT {
+                return @ptrCast(*const IPrintSchemaParameterDefinition.VTable, self.vtable).get_UserInputRequired(@ptrCast(*const IPrintSchemaParameterDefinition, self), pbIsRequired);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaParameterDefinition_get_UnitType(self: *const T, pbstrUnitType: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IPrintSchemaParameterDefinition.VTable, self.vtable).get_UnitType(@ptrCast(*const IPrintSchemaParameterDefinition, self), pbstrUnitType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaParameterDefinition_get_DataType(self: *const T, pDataType: ?*PrintSchemaParameterDataType) HRESULT {
+                return @ptrCast(*const IPrintSchemaParameterDefinition.VTable, self.vtable).get_DataType(@ptrCast(*const IPrintSchemaParameterDefinition, self), pDataType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaParameterDefinition_get_RangeMin(self: *const T, pRangeMin: ?*i32) HRESULT {
+                return @ptrCast(*const IPrintSchemaParameterDefinition.VTable, self.vtable).get_RangeMin(@ptrCast(*const IPrintSchemaParameterDefinition, self), pRangeMin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaParameterDefinition_get_RangeMax(self: *const T, pRangeMax: ?*i32) HRESULT {
+                return @ptrCast(*const IPrintSchemaParameterDefinition.VTable, self.vtable).get_RangeMax(@ptrCast(*const IPrintSchemaParameterDefinition, self), pRangeMax);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5402,12 +5447,12 @@ pub const IPrintSchemaParameterInitializer = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaParameterInitializer,
                 pVar: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaParameterInitializer,
                 pVar: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -5415,29 +5460,31 @@ pub const IPrintSchemaParameterInitializer = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Value: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaParameterInitializer,
                 pVar: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaParameterInitializer,
                 pVar: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintSchemaElement.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaParameterInitializer_get_Value(self: *const T, pVar: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaParameterInitializer.VTable, self.vtable).get_Value(@ptrCast(*const IPrintSchemaParameterInitializer, self), pVar);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaParameterInitializer_put_Value(self: *const T, pVar: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaParameterInitializer.VTable, self.vtable).put_Value(@ptrCast(*const IPrintSchemaParameterInitializer, self), pVar);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintSchemaElement.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaParameterInitializer_get_Value(self: *const T, pVar: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IPrintSchemaParameterInitializer.VTable, self.vtable).get_Value(@ptrCast(*const IPrintSchemaParameterInitializer, self), pVar);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaParameterInitializer_put_Value(self: *const T, pVar: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IPrintSchemaParameterInitializer.VTable, self.vtable).put_Value(@ptrCast(*const IPrintSchemaParameterInitializer, self), pVar);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5447,25 +5494,25 @@ pub const IPrintSchemaCapabilities = extern struct {
     pub const VTable = extern struct {
         base: IPrintSchemaElement.VTable,
         GetFeatureByKeyName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaCapabilities,
                 bstrKeyName: ?BSTR,
                 ppFeature: ?*?*IPrintSchemaFeature,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaCapabilities,
                 bstrKeyName: ?BSTR,
                 ppFeature: ?*?*IPrintSchemaFeature,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFeature: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaCapabilities,
                 bstrName: ?BSTR,
                 bstrNamespaceUri: ?BSTR,
                 ppFeature: ?*?*IPrintSchemaFeature,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaCapabilities,
                 bstrName: ?BSTR,
                 bstrNamespaceUri: ?BSTR,
@@ -5475,12 +5522,12 @@ pub const IPrintSchemaCapabilities = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PageImageableSize: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaCapabilities,
                 ppPageImageableSize: ?*?*IPrintSchemaPageImageableSize,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaCapabilities,
                 ppPageImageableSize: ?*?*IPrintSchemaPageImageableSize,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -5488,12 +5535,12 @@ pub const IPrintSchemaCapabilities = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_JobCopiesAllDocumentsMinValue: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaCapabilities,
                 pulJobCopiesAllDocumentsMinValue: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaCapabilities,
                 pulJobCopiesAllDocumentsMinValue: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -5501,35 +5548,35 @@ pub const IPrintSchemaCapabilities = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_JobCopiesAllDocumentsMaxValue: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaCapabilities,
                 pulJobCopiesAllDocumentsMaxValue: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaCapabilities,
                 pulJobCopiesAllDocumentsMaxValue: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSelectedOptionInPrintTicket: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaCapabilities,
                 pFeature: ?*IPrintSchemaFeature,
                 ppOption: ?*?*IPrintSchemaOption,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaCapabilities,
                 pFeature: ?*IPrintSchemaFeature,
                 ppOption: ?*?*IPrintSchemaOption,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetOptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaCapabilities,
                 pFeature: ?*IPrintSchemaFeature,
                 ppOptionCollection: ?*?*IPrintSchemaOptionCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaCapabilities,
                 pFeature: ?*IPrintSchemaFeature,
                 ppOptionCollection: ?*?*IPrintSchemaOptionCollection,
@@ -5537,37 +5584,39 @@ pub const IPrintSchemaCapabilities = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintSchemaElement.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaCapabilities_GetFeatureByKeyName(self: *const T, bstrKeyName: ?BSTR, ppFeature: ?*?*IPrintSchemaFeature) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaCapabilities.VTable, self.vtable).GetFeatureByKeyName(@ptrCast(*const IPrintSchemaCapabilities, self), bstrKeyName, ppFeature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaCapabilities_GetFeature(self: *const T, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppFeature: ?*?*IPrintSchemaFeature) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaCapabilities.VTable, self.vtable).GetFeature(@ptrCast(*const IPrintSchemaCapabilities, self), bstrName, bstrNamespaceUri, ppFeature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaCapabilities_get_PageImageableSize(self: *const T, ppPageImageableSize: ?*?*IPrintSchemaPageImageableSize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaCapabilities.VTable, self.vtable).get_PageImageableSize(@ptrCast(*const IPrintSchemaCapabilities, self), ppPageImageableSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaCapabilities_get_JobCopiesAllDocumentsMinValue(self: *const T, pulJobCopiesAllDocumentsMinValue: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaCapabilities.VTable, self.vtable).get_JobCopiesAllDocumentsMinValue(@ptrCast(*const IPrintSchemaCapabilities, self), pulJobCopiesAllDocumentsMinValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaCapabilities_get_JobCopiesAllDocumentsMaxValue(self: *const T, pulJobCopiesAllDocumentsMaxValue: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaCapabilities.VTable, self.vtable).get_JobCopiesAllDocumentsMaxValue(@ptrCast(*const IPrintSchemaCapabilities, self), pulJobCopiesAllDocumentsMaxValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaCapabilities_GetSelectedOptionInPrintTicket(self: *const T, pFeature: ?*IPrintSchemaFeature, ppOption: ?*?*IPrintSchemaOption) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaCapabilities.VTable, self.vtable).GetSelectedOptionInPrintTicket(@ptrCast(*const IPrintSchemaCapabilities, self), pFeature, ppOption);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaCapabilities_GetOptions(self: *const T, pFeature: ?*IPrintSchemaFeature, ppOptionCollection: ?*?*IPrintSchemaOptionCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaCapabilities.VTable, self.vtable).GetOptions(@ptrCast(*const IPrintSchemaCapabilities, self), pFeature, ppOptionCollection);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintSchemaElement.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaCapabilities_GetFeatureByKeyName(self: *const T, bstrKeyName: ?BSTR, ppFeature: ?*?*IPrintSchemaFeature) HRESULT {
+                return @ptrCast(*const IPrintSchemaCapabilities.VTable, self.vtable).GetFeatureByKeyName(@ptrCast(*const IPrintSchemaCapabilities, self), bstrKeyName, ppFeature);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaCapabilities_GetFeature(self: *const T, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppFeature: ?*?*IPrintSchemaFeature) HRESULT {
+                return @ptrCast(*const IPrintSchemaCapabilities.VTable, self.vtable).GetFeature(@ptrCast(*const IPrintSchemaCapabilities, self), bstrName, bstrNamespaceUri, ppFeature);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaCapabilities_get_PageImageableSize(self: *const T, ppPageImageableSize: ?*?*IPrintSchemaPageImageableSize) HRESULT {
+                return @ptrCast(*const IPrintSchemaCapabilities.VTable, self.vtable).get_PageImageableSize(@ptrCast(*const IPrintSchemaCapabilities, self), ppPageImageableSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaCapabilities_get_JobCopiesAllDocumentsMinValue(self: *const T, pulJobCopiesAllDocumentsMinValue: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintSchemaCapabilities.VTable, self.vtable).get_JobCopiesAllDocumentsMinValue(@ptrCast(*const IPrintSchemaCapabilities, self), pulJobCopiesAllDocumentsMinValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaCapabilities_get_JobCopiesAllDocumentsMaxValue(self: *const T, pulJobCopiesAllDocumentsMaxValue: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintSchemaCapabilities.VTable, self.vtable).get_JobCopiesAllDocumentsMaxValue(@ptrCast(*const IPrintSchemaCapabilities, self), pulJobCopiesAllDocumentsMaxValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaCapabilities_GetSelectedOptionInPrintTicket(self: *const T, pFeature: ?*IPrintSchemaFeature, ppOption: ?*?*IPrintSchemaOption) HRESULT {
+                return @ptrCast(*const IPrintSchemaCapabilities.VTable, self.vtable).GetSelectedOptionInPrintTicket(@ptrCast(*const IPrintSchemaCapabilities, self), pFeature, ppOption);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaCapabilities_GetOptions(self: *const T, pFeature: ?*IPrintSchemaFeature, ppOptionCollection: ?*?*IPrintSchemaOptionCollection) HRESULT {
+                return @ptrCast(*const IPrintSchemaCapabilities.VTable, self.vtable).GetOptions(@ptrCast(*const IPrintSchemaCapabilities, self), pFeature, ppOptionCollection);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5577,13 +5626,13 @@ pub const IPrintSchemaCapabilities2 = extern struct {
     pub const VTable = extern struct {
         base: IPrintSchemaCapabilities.VTable,
         GetParameterDefinition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaCapabilities2,
                 bstrName: ?BSTR,
                 bstrNamespaceUri: ?BSTR,
                 ppParameterDefinition: ?*?*IPrintSchemaParameterDefinition,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaCapabilities2,
                 bstrName: ?BSTR,
                 bstrNamespaceUri: ?BSTR,
@@ -5592,13 +5641,15 @@ pub const IPrintSchemaCapabilities2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintSchemaCapabilities.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaCapabilities2_GetParameterDefinition(self: *const T, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppParameterDefinition: ?*?*IPrintSchemaParameterDefinition) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaCapabilities2.VTable, self.vtable).GetParameterDefinition(@ptrCast(*const IPrintSchemaCapabilities2, self), bstrName, bstrNamespaceUri, ppParameterDefinition);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintSchemaCapabilities.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaCapabilities2_GetParameterDefinition(self: *const T, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppParameterDefinition: ?*?*IPrintSchemaParameterDefinition) HRESULT {
+                return @ptrCast(*const IPrintSchemaCapabilities2.VTable, self.vtable).GetParameterDefinition(@ptrCast(*const IPrintSchemaCapabilities2, self), bstrName, bstrNamespaceUri, ppParameterDefinition);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5608,34 +5659,36 @@ pub const IPrintSchemaAsyncOperation = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         Start: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaAsyncOperation,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaAsyncOperation,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaAsyncOperation,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaAsyncOperation,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaAsyncOperation_Start(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaAsyncOperation.VTable, self.vtable).Start(@ptrCast(*const IPrintSchemaAsyncOperation, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaAsyncOperation_Cancel(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaAsyncOperation.VTable, self.vtable).Cancel(@ptrCast(*const IPrintSchemaAsyncOperation, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaAsyncOperation_Start(self: *const T) HRESULT {
+                return @ptrCast(*const IPrintSchemaAsyncOperation.VTable, self.vtable).Start(@ptrCast(*const IPrintSchemaAsyncOperation, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaAsyncOperation_Cancel(self: *const T) HRESULT {
+                return @ptrCast(*const IPrintSchemaAsyncOperation.VTable, self.vtable).Cancel(@ptrCast(*const IPrintSchemaAsyncOperation, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5645,25 +5698,25 @@ pub const IPrintSchemaTicket = extern struct {
     pub const VTable = extern struct {
         base: IPrintSchemaElement.VTable,
         GetFeatureByKeyName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaTicket,
                 bstrKeyName: ?BSTR,
                 ppFeature: ?*?*IPrintSchemaFeature,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaTicket,
                 bstrKeyName: ?BSTR,
                 ppFeature: ?*?*IPrintSchemaFeature,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFeature: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaTicket,
                 bstrName: ?BSTR,
                 bstrNamespaceUri: ?BSTR,
                 ppFeature: ?*?*IPrintSchemaFeature,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaTicket,
                 bstrName: ?BSTR,
                 bstrNamespaceUri: ?BSTR,
@@ -5671,41 +5724,41 @@ pub const IPrintSchemaTicket = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ValidateAsync: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaTicket,
                 ppAsyncOperation: ?*?*IPrintSchemaAsyncOperation,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaTicket,
                 ppAsyncOperation: ?*?*IPrintSchemaAsyncOperation,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CommitAsync: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaTicket,
                 pPrintTicketCommit: ?*IPrintSchemaTicket,
                 ppAsyncOperation: ?*?*IPrintSchemaAsyncOperation,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaTicket,
                 pPrintTicketCommit: ?*IPrintSchemaTicket,
                 ppAsyncOperation: ?*?*IPrintSchemaAsyncOperation,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         NotifyXmlChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaTicket,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaTicket,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCapabilities: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaTicket,
                 ppCapabilities: ?*?*IPrintSchemaCapabilities,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaTicket,
                 ppCapabilities: ?*?*IPrintSchemaCapabilities,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -5713,12 +5766,12 @@ pub const IPrintSchemaTicket = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_JobCopiesAllDocuments: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaTicket,
                 pulJobCopiesAllDocuments: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaTicket,
                 pulJobCopiesAllDocuments: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -5726,53 +5779,55 @@ pub const IPrintSchemaTicket = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_JobCopiesAllDocuments: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaTicket,
                 ulJobCopiesAllDocuments: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaTicket,
                 ulJobCopiesAllDocuments: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintSchemaElement.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaTicket_GetFeatureByKeyName(self: *const T, bstrKeyName: ?BSTR, ppFeature: ?*?*IPrintSchemaFeature) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaTicket.VTable, self.vtable).GetFeatureByKeyName(@ptrCast(*const IPrintSchemaTicket, self), bstrKeyName, ppFeature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaTicket_GetFeature(self: *const T, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppFeature: ?*?*IPrintSchemaFeature) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaTicket.VTable, self.vtable).GetFeature(@ptrCast(*const IPrintSchemaTicket, self), bstrName, bstrNamespaceUri, ppFeature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaTicket_ValidateAsync(self: *const T, ppAsyncOperation: ?*?*IPrintSchemaAsyncOperation) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaTicket.VTable, self.vtable).ValidateAsync(@ptrCast(*const IPrintSchemaTicket, self), ppAsyncOperation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaTicket_CommitAsync(self: *const T, pPrintTicketCommit: ?*IPrintSchemaTicket, ppAsyncOperation: ?*?*IPrintSchemaAsyncOperation) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaTicket.VTable, self.vtable).CommitAsync(@ptrCast(*const IPrintSchemaTicket, self), pPrintTicketCommit, ppAsyncOperation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaTicket_NotifyXmlChanged(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaTicket.VTable, self.vtable).NotifyXmlChanged(@ptrCast(*const IPrintSchemaTicket, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaTicket_GetCapabilities(self: *const T, ppCapabilities: ?*?*IPrintSchemaCapabilities) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaTicket.VTable, self.vtable).GetCapabilities(@ptrCast(*const IPrintSchemaTicket, self), ppCapabilities);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaTicket_get_JobCopiesAllDocuments(self: *const T, pulJobCopiesAllDocuments: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaTicket.VTable, self.vtable).get_JobCopiesAllDocuments(@ptrCast(*const IPrintSchemaTicket, self), pulJobCopiesAllDocuments);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaTicket_put_JobCopiesAllDocuments(self: *const T, ulJobCopiesAllDocuments: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaTicket.VTable, self.vtable).put_JobCopiesAllDocuments(@ptrCast(*const IPrintSchemaTicket, self), ulJobCopiesAllDocuments);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintSchemaElement.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaTicket_GetFeatureByKeyName(self: *const T, bstrKeyName: ?BSTR, ppFeature: ?*?*IPrintSchemaFeature) HRESULT {
+                return @ptrCast(*const IPrintSchemaTicket.VTable, self.vtable).GetFeatureByKeyName(@ptrCast(*const IPrintSchemaTicket, self), bstrKeyName, ppFeature);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaTicket_GetFeature(self: *const T, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppFeature: ?*?*IPrintSchemaFeature) HRESULT {
+                return @ptrCast(*const IPrintSchemaTicket.VTable, self.vtable).GetFeature(@ptrCast(*const IPrintSchemaTicket, self), bstrName, bstrNamespaceUri, ppFeature);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaTicket_ValidateAsync(self: *const T, ppAsyncOperation: ?*?*IPrintSchemaAsyncOperation) HRESULT {
+                return @ptrCast(*const IPrintSchemaTicket.VTable, self.vtable).ValidateAsync(@ptrCast(*const IPrintSchemaTicket, self), ppAsyncOperation);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaTicket_CommitAsync(self: *const T, pPrintTicketCommit: ?*IPrintSchemaTicket, ppAsyncOperation: ?*?*IPrintSchemaAsyncOperation) HRESULT {
+                return @ptrCast(*const IPrintSchemaTicket.VTable, self.vtable).CommitAsync(@ptrCast(*const IPrintSchemaTicket, self), pPrintTicketCommit, ppAsyncOperation);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaTicket_NotifyXmlChanged(self: *const T) HRESULT {
+                return @ptrCast(*const IPrintSchemaTicket.VTable, self.vtable).NotifyXmlChanged(@ptrCast(*const IPrintSchemaTicket, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaTicket_GetCapabilities(self: *const T, ppCapabilities: ?*?*IPrintSchemaCapabilities) HRESULT {
+                return @ptrCast(*const IPrintSchemaTicket.VTable, self.vtable).GetCapabilities(@ptrCast(*const IPrintSchemaTicket, self), ppCapabilities);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaTicket_get_JobCopiesAllDocuments(self: *const T, pulJobCopiesAllDocuments: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintSchemaTicket.VTable, self.vtable).get_JobCopiesAllDocuments(@ptrCast(*const IPrintSchemaTicket, self), pulJobCopiesAllDocuments);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaTicket_put_JobCopiesAllDocuments(self: *const T, ulJobCopiesAllDocuments: u32) HRESULT {
+                return @ptrCast(*const IPrintSchemaTicket.VTable, self.vtable).put_JobCopiesAllDocuments(@ptrCast(*const IPrintSchemaTicket, self), ulJobCopiesAllDocuments);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5782,13 +5837,13 @@ pub const IPrintSchemaTicket2 = extern struct {
     pub const VTable = extern struct {
         base: IPrintSchemaTicket.VTable,
         GetParameterInitializer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaTicket2,
                 bstrName: ?BSTR,
                 bstrNamespaceUri: ?BSTR,
                 ppParameterInitializer: ?*?*IPrintSchemaParameterInitializer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaTicket2,
                 bstrName: ?BSTR,
                 bstrNamespaceUri: ?BSTR,
@@ -5797,13 +5852,15 @@ pub const IPrintSchemaTicket2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintSchemaTicket.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaTicket2_GetParameterInitializer(self: *const T, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppParameterInitializer: ?*?*IPrintSchemaParameterInitializer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaTicket2.VTable, self.vtable).GetParameterInitializer(@ptrCast(*const IPrintSchemaTicket2, self), bstrName, bstrNamespaceUri, ppParameterInitializer);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintSchemaTicket.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaTicket2_GetParameterInitializer(self: *const T, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppParameterInitializer: ?*?*IPrintSchemaParameterInitializer) HRESULT {
+                return @ptrCast(*const IPrintSchemaTicket2.VTable, self.vtable).GetParameterInitializer(@ptrCast(*const IPrintSchemaTicket2, self), bstrName, bstrNamespaceUri, ppParameterInitializer);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5813,12 +5870,12 @@ pub const IPrintSchemaAsyncOperationEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         Completed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintSchemaAsyncOperationEvent,
                 pTicket: ?*IPrintSchemaTicket,
                 hrOperation: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintSchemaAsyncOperationEvent,
                 pTicket: ?*IPrintSchemaTicket,
                 hrOperation: HRESULT,
@@ -5826,13 +5883,15 @@ pub const IPrintSchemaAsyncOperationEvent = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintSchemaAsyncOperationEvent_Completed(self: *const T, pTicket: ?*IPrintSchemaTicket, hrOperation: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintSchemaAsyncOperationEvent.VTable, self.vtable).Completed(@ptrCast(*const IPrintSchemaAsyncOperationEvent, self), pTicket, hrOperation);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintSchemaAsyncOperationEvent_Completed(self: *const T, pTicket: ?*IPrintSchemaTicket, hrOperation: HRESULT) HRESULT {
+                return @ptrCast(*const IPrintSchemaAsyncOperationEvent.VTable, self.vtable).Completed(@ptrCast(*const IPrintSchemaAsyncOperationEvent, self), pTicket, hrOperation);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5842,24 +5901,24 @@ pub const IPrinterScriptableSequentialStream = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         Read: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterScriptableSequentialStream,
                 cbRead: i32,
                 ppArray: ?*?*IDispatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterScriptableSequentialStream,
                 cbRead: i32,
                 ppArray: ?*?*IDispatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Write: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterScriptableSequentialStream,
                 pArray: ?*IDispatch,
                 pcbWritten: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterScriptableSequentialStream,
                 pArray: ?*IDispatch,
                 pcbWritten: ?*i32,
@@ -5867,17 +5926,19 @@ pub const IPrinterScriptableSequentialStream = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterScriptableSequentialStream_Read(self: *const T, cbRead: i32, ppArray: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterScriptableSequentialStream.VTable, self.vtable).Read(@ptrCast(*const IPrinterScriptableSequentialStream, self), cbRead, ppArray);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterScriptableSequentialStream_Write(self: *const T, pArray: ?*IDispatch, pcbWritten: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterScriptableSequentialStream.VTable, self.vtable).Write(@ptrCast(*const IPrinterScriptableSequentialStream, self), pArray, pcbWritten);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterScriptableSequentialStream_Read(self: *const T, cbRead: i32, ppArray: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IPrinterScriptableSequentialStream.VTable, self.vtable).Read(@ptrCast(*const IPrinterScriptableSequentialStream, self), cbRead, ppArray);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterScriptableSequentialStream_Write(self: *const T, pArray: ?*IDispatch, pcbWritten: ?*i32) HRESULT {
+                return @ptrCast(*const IPrinterScriptableSequentialStream.VTable, self.vtable).Write(@ptrCast(*const IPrinterScriptableSequentialStream, self), pArray, pcbWritten);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5887,21 +5948,21 @@ pub const IPrinterScriptableStream = extern struct {
     pub const VTable = extern struct {
         base: IPrinterScriptableSequentialStream.VTable,
         Commit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterScriptableStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterScriptableStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Seek: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterScriptableStream,
                 lOffset: i32,
                 streamSeek: STREAM_SEEK,
                 plPosition: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterScriptableStream,
                 lOffset: i32,
                 streamSeek: STREAM_SEEK,
@@ -5909,32 +5970,34 @@ pub const IPrinterScriptableStream = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterScriptableStream,
                 lSize: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterScriptableStream,
                 lSize: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrinterScriptableSequentialStream.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterScriptableStream_Commit(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterScriptableStream.VTable, self.vtable).Commit(@ptrCast(*const IPrinterScriptableStream, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterScriptableStream_Seek(self: *const T, lOffset: i32, streamSeek: STREAM_SEEK, plPosition: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterScriptableStream.VTable, self.vtable).Seek(@ptrCast(*const IPrinterScriptableStream, self), lOffset, streamSeek, plPosition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterScriptableStream_SetSize(self: *const T, lSize: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterScriptableStream.VTable, self.vtable).SetSize(@ptrCast(*const IPrinterScriptableStream, self), lSize);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrinterScriptableSequentialStream.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterScriptableStream_Commit(self: *const T) HRESULT {
+                return @ptrCast(*const IPrinterScriptableStream.VTable, self.vtable).Commit(@ptrCast(*const IPrinterScriptableStream, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterScriptableStream_Seek(self: *const T, lOffset: i32, streamSeek: STREAM_SEEK, plPosition: ?*i32) HRESULT {
+                return @ptrCast(*const IPrinterScriptableStream.VTable, self.vtable).Seek(@ptrCast(*const IPrinterScriptableStream, self), lOffset, streamSeek, plPosition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterScriptableStream_SetSize(self: *const T, lSize: i32) HRESULT {
+                return @ptrCast(*const IPrinterScriptableStream.VTable, self.vtable).SetSize(@ptrCast(*const IPrinterScriptableStream, self), lSize);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -5944,85 +6007,85 @@ pub const IPrinterPropertyBag = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         GetBool: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterPropertyBag,
                 bstrName: ?BSTR,
                 pbValue: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterPropertyBag,
                 bstrName: ?BSTR,
                 pbValue: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetBool: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterPropertyBag,
                 bstrName: ?BSTR,
                 bValue: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterPropertyBag,
                 bstrName: ?BSTR,
                 bValue: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetInt32: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterPropertyBag,
                 bstrName: ?BSTR,
                 pnValue: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterPropertyBag,
                 bstrName: ?BSTR,
                 pnValue: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetInt32: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterPropertyBag,
                 bstrName: ?BSTR,
                 nValue: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterPropertyBag,
                 bstrName: ?BSTR,
                 nValue: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterPropertyBag,
                 bstrName: ?BSTR,
                 pbstrValue: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterPropertyBag,
                 bstrName: ?BSTR,
                 pbstrValue: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterPropertyBag,
                 bstrName: ?BSTR,
                 bstrValue: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterPropertyBag,
                 bstrName: ?BSTR,
                 bstrValue: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetBytes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterPropertyBag,
                 bstrName: ?BSTR,
                 pcbValue: ?*u32,
                 ppValue: [*]?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterPropertyBag,
                 bstrName: ?BSTR,
                 pcbValue: ?*u32,
@@ -6030,13 +6093,13 @@ pub const IPrinterPropertyBag = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetBytes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterPropertyBag,
                 bstrName: ?BSTR,
                 cbValue: u32,
                 pValue: [*:0]u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterPropertyBag,
                 bstrName: ?BSTR,
                 cbValue: u32,
@@ -6044,24 +6107,24 @@ pub const IPrinterPropertyBag = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetReadStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterPropertyBag,
                 bstrName: ?BSTR,
                 ppValue: ?*?*IStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterPropertyBag,
                 bstrName: ?BSTR,
                 ppValue: ?*?*IStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetWriteStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterPropertyBag,
                 bstrName: ?BSTR,
                 ppValue: ?*?*IStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterPropertyBag,
                 bstrName: ?BSTR,
                 ppValue: ?*?*IStream,
@@ -6069,49 +6132,51 @@ pub const IPrinterPropertyBag = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterPropertyBag_GetBool(self: *const T, bstrName: ?BSTR, pbValue: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).GetBool(@ptrCast(*const IPrinterPropertyBag, self), bstrName, pbValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterPropertyBag_SetBool(self: *const T, bstrName: ?BSTR, bValue: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).SetBool(@ptrCast(*const IPrinterPropertyBag, self), bstrName, bValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterPropertyBag_GetInt32(self: *const T, bstrName: ?BSTR, pnValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).GetInt32(@ptrCast(*const IPrinterPropertyBag, self), bstrName, pnValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterPropertyBag_SetInt32(self: *const T, bstrName: ?BSTR, nValue: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).SetInt32(@ptrCast(*const IPrinterPropertyBag, self), bstrName, nValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterPropertyBag_GetString(self: *const T, bstrName: ?BSTR, pbstrValue: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).GetString(@ptrCast(*const IPrinterPropertyBag, self), bstrName, pbstrValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterPropertyBag_SetString(self: *const T, bstrName: ?BSTR, bstrValue: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).SetString(@ptrCast(*const IPrinterPropertyBag, self), bstrName, bstrValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterPropertyBag_GetBytes(self: *const T, bstrName: ?BSTR, pcbValue: ?*u32, ppValue: [*]?*u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).GetBytes(@ptrCast(*const IPrinterPropertyBag, self), bstrName, pcbValue, ppValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterPropertyBag_SetBytes(self: *const T, bstrName: ?BSTR, cbValue: u32, pValue: [*:0]u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).SetBytes(@ptrCast(*const IPrinterPropertyBag, self), bstrName, cbValue, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterPropertyBag_GetReadStream(self: *const T, bstrName: ?BSTR, ppValue: ?*?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).GetReadStream(@ptrCast(*const IPrinterPropertyBag, self), bstrName, ppValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterPropertyBag_GetWriteStream(self: *const T, bstrName: ?BSTR, ppValue: ?*?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).GetWriteStream(@ptrCast(*const IPrinterPropertyBag, self), bstrName, ppValue);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterPropertyBag_GetBool(self: *const T, bstrName: ?BSTR, pbValue: ?*BOOL) HRESULT {
+                return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).GetBool(@ptrCast(*const IPrinterPropertyBag, self), bstrName, pbValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterPropertyBag_SetBool(self: *const T, bstrName: ?BSTR, bValue: BOOL) HRESULT {
+                return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).SetBool(@ptrCast(*const IPrinterPropertyBag, self), bstrName, bValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterPropertyBag_GetInt32(self: *const T, bstrName: ?BSTR, pnValue: ?*i32) HRESULT {
+                return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).GetInt32(@ptrCast(*const IPrinterPropertyBag, self), bstrName, pnValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterPropertyBag_SetInt32(self: *const T, bstrName: ?BSTR, nValue: i32) HRESULT {
+                return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).SetInt32(@ptrCast(*const IPrinterPropertyBag, self), bstrName, nValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterPropertyBag_GetString(self: *const T, bstrName: ?BSTR, pbstrValue: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).GetString(@ptrCast(*const IPrinterPropertyBag, self), bstrName, pbstrValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterPropertyBag_SetString(self: *const T, bstrName: ?BSTR, bstrValue: ?BSTR) HRESULT {
+                return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).SetString(@ptrCast(*const IPrinterPropertyBag, self), bstrName, bstrValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterPropertyBag_GetBytes(self: *const T, bstrName: ?BSTR, pcbValue: ?*u32, ppValue: [*]?*u8) HRESULT {
+                return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).GetBytes(@ptrCast(*const IPrinterPropertyBag, self), bstrName, pcbValue, ppValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterPropertyBag_SetBytes(self: *const T, bstrName: ?BSTR, cbValue: u32, pValue: [*:0]u8) HRESULT {
+                return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).SetBytes(@ptrCast(*const IPrinterPropertyBag, self), bstrName, cbValue, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterPropertyBag_GetReadStream(self: *const T, bstrName: ?BSTR, ppValue: ?*?*IStream) HRESULT {
+                return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).GetReadStream(@ptrCast(*const IPrinterPropertyBag, self), bstrName, ppValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterPropertyBag_GetWriteStream(self: *const T, bstrName: ?BSTR, ppValue: ?*?*IStream) HRESULT {
+                return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).GetWriteStream(@ptrCast(*const IPrinterPropertyBag, self), bstrName, ppValue);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6121,120 +6186,120 @@ pub const IPrinterScriptablePropertyBag = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         GetBool: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterScriptablePropertyBag,
                 bstrName: ?BSTR,
                 pbValue: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterScriptablePropertyBag,
                 bstrName: ?BSTR,
                 pbValue: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetBool: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterScriptablePropertyBag,
                 bstrName: ?BSTR,
                 bValue: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterScriptablePropertyBag,
                 bstrName: ?BSTR,
                 bValue: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetInt32: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterScriptablePropertyBag,
                 bstrName: ?BSTR,
                 pnValue: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterScriptablePropertyBag,
                 bstrName: ?BSTR,
                 pnValue: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetInt32: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterScriptablePropertyBag,
                 bstrName: ?BSTR,
                 nValue: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterScriptablePropertyBag,
                 bstrName: ?BSTR,
                 nValue: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterScriptablePropertyBag,
                 bstrName: ?BSTR,
                 pbstrValue: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterScriptablePropertyBag,
                 bstrName: ?BSTR,
                 pbstrValue: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterScriptablePropertyBag,
                 bstrName: ?BSTR,
                 bstrValue: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterScriptablePropertyBag,
                 bstrName: ?BSTR,
                 bstrValue: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetBytes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterScriptablePropertyBag,
                 bstrName: ?BSTR,
                 ppArray: ?*?*IDispatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterScriptablePropertyBag,
                 bstrName: ?BSTR,
                 ppArray: ?*?*IDispatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetBytes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterScriptablePropertyBag,
                 bstrName: ?BSTR,
                 pArray: ?*IDispatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterScriptablePropertyBag,
                 bstrName: ?BSTR,
                 pArray: ?*IDispatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetReadStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterScriptablePropertyBag,
                 bstrName: ?BSTR,
                 ppStream: ?*?*IPrinterScriptableStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterScriptablePropertyBag,
                 bstrName: ?BSTR,
                 ppStream: ?*?*IPrinterScriptableStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetWriteStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterScriptablePropertyBag,
                 bstrName: ?BSTR,
                 ppStream: ?*?*IPrinterScriptableStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterScriptablePropertyBag,
                 bstrName: ?BSTR,
                 ppStream: ?*?*IPrinterScriptableStream,
@@ -6242,49 +6307,51 @@ pub const IPrinterScriptablePropertyBag = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterScriptablePropertyBag_GetBool(self: *const T, bstrName: ?BSTR, pbValue: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).GetBool(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, pbValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterScriptablePropertyBag_SetBool(self: *const T, bstrName: ?BSTR, bValue: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).SetBool(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, bValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterScriptablePropertyBag_GetInt32(self: *const T, bstrName: ?BSTR, pnValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).GetInt32(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, pnValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterScriptablePropertyBag_SetInt32(self: *const T, bstrName: ?BSTR, nValue: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).SetInt32(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, nValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterScriptablePropertyBag_GetString(self: *const T, bstrName: ?BSTR, pbstrValue: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).GetString(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, pbstrValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterScriptablePropertyBag_SetString(self: *const T, bstrName: ?BSTR, bstrValue: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).SetString(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, bstrValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterScriptablePropertyBag_GetBytes(self: *const T, bstrName: ?BSTR, ppArray: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).GetBytes(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, ppArray);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterScriptablePropertyBag_SetBytes(self: *const T, bstrName: ?BSTR, pArray: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).SetBytes(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, pArray);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterScriptablePropertyBag_GetReadStream(self: *const T, bstrName: ?BSTR, ppStream: ?*?*IPrinterScriptableStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).GetReadStream(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, ppStream);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterScriptablePropertyBag_GetWriteStream(self: *const T, bstrName: ?BSTR, ppStream: ?*?*IPrinterScriptableStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).GetWriteStream(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, ppStream);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterScriptablePropertyBag_GetBool(self: *const T, bstrName: ?BSTR, pbValue: ?*BOOL) HRESULT {
+                return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).GetBool(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, pbValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterScriptablePropertyBag_SetBool(self: *const T, bstrName: ?BSTR, bValue: BOOL) HRESULT {
+                return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).SetBool(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, bValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterScriptablePropertyBag_GetInt32(self: *const T, bstrName: ?BSTR, pnValue: ?*i32) HRESULT {
+                return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).GetInt32(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, pnValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterScriptablePropertyBag_SetInt32(self: *const T, bstrName: ?BSTR, nValue: i32) HRESULT {
+                return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).SetInt32(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, nValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterScriptablePropertyBag_GetString(self: *const T, bstrName: ?BSTR, pbstrValue: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).GetString(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, pbstrValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterScriptablePropertyBag_SetString(self: *const T, bstrName: ?BSTR, bstrValue: ?BSTR) HRESULT {
+                return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).SetString(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, bstrValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterScriptablePropertyBag_GetBytes(self: *const T, bstrName: ?BSTR, ppArray: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).GetBytes(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, ppArray);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterScriptablePropertyBag_SetBytes(self: *const T, bstrName: ?BSTR, pArray: ?*IDispatch) HRESULT {
+                return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).SetBytes(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, pArray);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterScriptablePropertyBag_GetReadStream(self: *const T, bstrName: ?BSTR, ppStream: ?*?*IPrinterScriptableStream) HRESULT {
+                return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).GetReadStream(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, ppStream);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterScriptablePropertyBag_GetWriteStream(self: *const T, bstrName: ?BSTR, ppStream: ?*?*IPrinterScriptableStream) HRESULT {
+                return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).GetWriteStream(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, ppStream);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6294,12 +6361,12 @@ pub const IPrinterScriptablePropertyBag2 = extern struct {
     pub const VTable = extern struct {
         base: IPrinterScriptablePropertyBag.VTable,
         GetReadStreamAsXML: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterScriptablePropertyBag2,
                 bstrName: ?BSTR,
                 ppXmlNode: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterScriptablePropertyBag2,
                 bstrName: ?BSTR,
                 ppXmlNode: ?*?*IUnknown,
@@ -6307,13 +6374,15 @@ pub const IPrinterScriptablePropertyBag2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrinterScriptablePropertyBag.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterScriptablePropertyBag2_GetReadStreamAsXML(self: *const T, bstrName: ?BSTR, ppXmlNode: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterScriptablePropertyBag2.VTable, self.vtable).GetReadStreamAsXML(@ptrCast(*const IPrinterScriptablePropertyBag2, self), bstrName, ppXmlNode);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrinterScriptablePropertyBag.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterScriptablePropertyBag2_GetReadStreamAsXML(self: *const T, bstrName: ?BSTR, ppXmlNode: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const IPrinterScriptablePropertyBag2.VTable, self.vtable).GetReadStreamAsXML(@ptrCast(*const IPrinterScriptablePropertyBag2, self), bstrName, ppXmlNode);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6325,12 +6394,12 @@ pub const IPrinterQueue = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Handle: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterQueue,
                 phPrinter: ?*?HANDLE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterQueue,
                 phPrinter: ?*?HANDLE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -6338,57 +6407,59 @@ pub const IPrinterQueue = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterQueue,
                 pbstrName: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterQueue,
                 pbstrName: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SendBidiQuery: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterQueue,
                 bstrBidiQuery: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterQueue,
                 bstrBidiQuery: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterQueue,
                 ppPropertyBag: ?*?*IPrinterPropertyBag,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterQueue,
                 ppPropertyBag: ?*?*IPrinterPropertyBag,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterQueue_get_Handle(self: *const T, phPrinter: ?*?HANDLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterQueue.VTable, self.vtable).get_Handle(@ptrCast(*const IPrinterQueue, self), phPrinter);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterQueue_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterQueue.VTable, self.vtable).get_Name(@ptrCast(*const IPrinterQueue, self), pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterQueue_SendBidiQuery(self: *const T, bstrBidiQuery: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterQueue.VTable, self.vtable).SendBidiQuery(@ptrCast(*const IPrinterQueue, self), bstrBidiQuery);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterQueue_GetProperties(self: *const T, ppPropertyBag: ?*?*IPrinterPropertyBag) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterQueue.VTable, self.vtable).GetProperties(@ptrCast(*const IPrinterQueue, self), ppPropertyBag);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterQueue_get_Handle(self: *const T, phPrinter: ?*?HANDLE) HRESULT {
+                return @ptrCast(*const IPrinterQueue.VTable, self.vtable).get_Handle(@ptrCast(*const IPrinterQueue, self), phPrinter);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterQueue_get_Name(self: *const T, pbstrName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IPrinterQueue.VTable, self.vtable).get_Name(@ptrCast(*const IPrinterQueue, self), pbstrName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterQueue_SendBidiQuery(self: *const T, bstrBidiQuery: ?BSTR) HRESULT {
+                return @ptrCast(*const IPrinterQueue.VTable, self.vtable).SendBidiQuery(@ptrCast(*const IPrinterQueue, self), bstrBidiQuery);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterQueue_GetProperties(self: *const T, ppPropertyBag: ?*?*IPrinterPropertyBag) HRESULT {
+                return @ptrCast(*const IPrinterQueue.VTable, self.vtable).GetProperties(@ptrCast(*const IPrinterQueue, self), ppPropertyBag);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6431,12 +6502,12 @@ pub const IPrintJob = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintJob,
                 pbstrName: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintJob,
                 pbstrName: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -6444,12 +6515,12 @@ pub const IPrintJob = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintJob,
                 pulID: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintJob,
                 pulID: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -6457,12 +6528,12 @@ pub const IPrintJob = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrintedPages: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintJob,
                 pulPages: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintJob,
                 pulPages: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -6470,12 +6541,12 @@ pub const IPrintJob = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TotalPages: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintJob,
                 pulPages: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintJob,
                 pulPages: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -6483,12 +6554,12 @@ pub const IPrintJob = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintJob,
                 pStatus: ?*PrintJobStatus,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintJob,
                 pStatus: ?*PrintJobStatus,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -6496,57 +6567,59 @@ pub const IPrintJob = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SubmissionTime: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintJob,
                 pSubmissionTime: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintJob,
                 pSubmissionTime: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RequestCancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintJob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintJob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintJob_get_Name(self: *const T, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintJob.VTable, self.vtable).get_Name(@ptrCast(*const IPrintJob, self), pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintJob_get_Id(self: *const T, pulID: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintJob.VTable, self.vtable).get_Id(@ptrCast(*const IPrintJob, self), pulID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintJob_get_PrintedPages(self: *const T, pulPages: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintJob.VTable, self.vtable).get_PrintedPages(@ptrCast(*const IPrintJob, self), pulPages);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintJob_get_TotalPages(self: *const T, pulPages: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintJob.VTable, self.vtable).get_TotalPages(@ptrCast(*const IPrintJob, self), pulPages);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintJob_get_Status(self: *const T, pStatus: ?*PrintJobStatus) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintJob.VTable, self.vtable).get_Status(@ptrCast(*const IPrintJob, self), pStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintJob_get_SubmissionTime(self: *const T, pSubmissionTime: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintJob.VTable, self.vtable).get_SubmissionTime(@ptrCast(*const IPrintJob, self), pSubmissionTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintJob_RequestCancel(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintJob.VTable, self.vtable).RequestCancel(@ptrCast(*const IPrintJob, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintJob_get_Name(self: *const T, pbstrName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IPrintJob.VTable, self.vtable).get_Name(@ptrCast(*const IPrintJob, self), pbstrName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintJob_get_Id(self: *const T, pulID: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintJob.VTable, self.vtable).get_Id(@ptrCast(*const IPrintJob, self), pulID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintJob_get_PrintedPages(self: *const T, pulPages: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintJob.VTable, self.vtable).get_PrintedPages(@ptrCast(*const IPrintJob, self), pulPages);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintJob_get_TotalPages(self: *const T, pulPages: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintJob.VTable, self.vtable).get_TotalPages(@ptrCast(*const IPrintJob, self), pulPages);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintJob_get_Status(self: *const T, pStatus: ?*PrintJobStatus) HRESULT {
+                return @ptrCast(*const IPrintJob.VTable, self.vtable).get_Status(@ptrCast(*const IPrintJob, self), pStatus);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintJob_get_SubmissionTime(self: *const T, pSubmissionTime: ?*f64) HRESULT {
+                return @ptrCast(*const IPrintJob.VTable, self.vtable).get_SubmissionTime(@ptrCast(*const IPrintJob, self), pSubmissionTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintJob_RequestCancel(self: *const T) HRESULT {
+                return @ptrCast(*const IPrintJob.VTable, self.vtable).RequestCancel(@ptrCast(*const IPrintJob, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6558,23 +6631,23 @@ pub const IPrintJobCollection = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintJobCollection,
                 pulCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintJobCollection,
                 pulCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintJobCollection,
                 ulIndex: u32,
                 ppJob: ?*?*IPrintJob,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintJobCollection,
                 ulIndex: u32,
                 ppJob: ?*?*IPrintJob,
@@ -6583,33 +6656,35 @@ pub const IPrintJobCollection = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintJobCollection,
                 ppUnk: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintJobCollection,
                 ppUnk: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintJobCollection_get_Count(self: *const T, pulCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintJobCollection.VTable, self.vtable).get_Count(@ptrCast(*const IPrintJobCollection, self), pulCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintJobCollection_GetAt(self: *const T, ulIndex: u32, ppJob: ?*?*IPrintJob) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintJobCollection.VTable, self.vtable).GetAt(@ptrCast(*const IPrintJobCollection, self), ulIndex, ppJob);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintJobCollection_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintJobCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IPrintJobCollection, self), ppUnk);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintJobCollection_get_Count(self: *const T, pulCount: ?*u32) HRESULT {
+                return @ptrCast(*const IPrintJobCollection.VTable, self.vtable).get_Count(@ptrCast(*const IPrintJobCollection, self), pulCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintJobCollection_GetAt(self: *const T, ulIndex: u32, ppJob: ?*?*IPrintJob) HRESULT {
+                return @ptrCast(*const IPrintJobCollection.VTable, self.vtable).GetAt(@ptrCast(*const IPrintJobCollection, self), ulIndex, ppJob);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintJobCollection_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const IPrintJobCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IPrintJobCollection, self), ppUnk);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6619,14 +6694,14 @@ pub const IPrinterQueueViewEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         OnChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterQueueViewEvent,
                 pCollection: ?*IPrintJobCollection,
                 ulViewOffset: u32,
                 ulViewSize: u32,
                 ulCountJobsInPrintQueue: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterQueueViewEvent,
                 pCollection: ?*IPrintJobCollection,
                 ulViewOffset: u32,
@@ -6636,13 +6711,15 @@ pub const IPrinterQueueViewEvent = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterQueueViewEvent_OnChanged(self: *const T, pCollection: ?*IPrintJobCollection, ulViewOffset: u32, ulViewSize: u32, ulCountJobsInPrintQueue: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterQueueViewEvent.VTable, self.vtable).OnChanged(@ptrCast(*const IPrinterQueueViewEvent, self), pCollection, ulViewOffset, ulViewSize, ulCountJobsInPrintQueue);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterQueueViewEvent_OnChanged(self: *const T, pCollection: ?*IPrintJobCollection, ulViewOffset: u32, ulViewSize: u32, ulCountJobsInPrintQueue: u32) HRESULT {
+                return @ptrCast(*const IPrinterQueueViewEvent.VTable, self.vtable).OnChanged(@ptrCast(*const IPrinterQueueViewEvent, self), pCollection, ulViewOffset, ulViewSize, ulCountJobsInPrintQueue);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6652,12 +6729,12 @@ pub const IPrinterQueueView = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         SetViewRange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterQueueView,
                 ulViewOffset: u32,
                 ulViewSize: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterQueueView,
                 ulViewOffset: u32,
                 ulViewSize: u32,
@@ -6665,13 +6742,15 @@ pub const IPrinterQueueView = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterQueueView_SetViewRange(self: *const T, ulViewOffset: u32, ulViewSize: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterQueueView.VTable, self.vtable).SetViewRange(@ptrCast(*const IPrinterQueueView, self), ulViewOffset, ulViewSize);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterQueueView_SetViewRange(self: *const T, ulViewOffset: u32, ulViewSize: u32) HRESULT {
+                return @ptrCast(*const IPrinterQueueView.VTable, self.vtable).SetViewRange(@ptrCast(*const IPrinterQueueView, self), ulViewOffset, ulViewSize);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6681,12 +6760,12 @@ pub const IPrinterQueueEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         OnBidiResponseReceived: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterQueueEvent,
                 bstrResponse: ?BSTR,
                 hrStatus: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterQueueEvent,
                 bstrResponse: ?BSTR,
                 hrStatus: HRESULT,
@@ -6694,13 +6773,15 @@ pub const IPrinterQueueEvent = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterQueueEvent_OnBidiResponseReceived(self: *const T, bstrResponse: ?BSTR, hrStatus: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterQueueEvent.VTable, self.vtable).OnBidiResponseReceived(@ptrCast(*const IPrinterQueueEvent, self), bstrResponse, hrStatus);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterQueueEvent_OnBidiResponseReceived(self: *const T, bstrResponse: ?BSTR, hrStatus: HRESULT) HRESULT {
+                return @ptrCast(*const IPrinterQueueEvent.VTable, self.vtable).OnBidiResponseReceived(@ptrCast(*const IPrinterQueueEvent, self), bstrResponse, hrStatus);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6710,12 +6791,12 @@ pub const IPrinterBidiSetRequestCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Completed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterBidiSetRequestCallback,
                 bstrResponse: ?BSTR,
                 hrStatus: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterBidiSetRequestCallback,
                 bstrResponse: ?BSTR,
                 hrStatus: HRESULT,
@@ -6723,13 +6804,15 @@ pub const IPrinterBidiSetRequestCallback = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterBidiSetRequestCallback_Completed(self: *const T, bstrResponse: ?BSTR, hrStatus: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterBidiSetRequestCallback.VTable, self.vtable).Completed(@ptrCast(*const IPrinterBidiSetRequestCallback, self), bstrResponse, hrStatus);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterBidiSetRequestCallback_Completed(self: *const T, bstrResponse: ?BSTR, hrStatus: HRESULT) HRESULT {
+                return @ptrCast(*const IPrinterBidiSetRequestCallback.VTable, self.vtable).Completed(@ptrCast(*const IPrinterBidiSetRequestCallback, self), bstrResponse, hrStatus);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6739,22 +6822,24 @@ pub const IPrinterExtensionAsyncOperation = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterExtensionAsyncOperation,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterExtensionAsyncOperation,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterExtensionAsyncOperation_Cancel(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterExtensionAsyncOperation.VTable, self.vtable).Cancel(@ptrCast(*const IPrinterExtensionAsyncOperation, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterExtensionAsyncOperation_Cancel(self: *const T) HRESULT {
+                return @ptrCast(*const IPrinterExtensionAsyncOperation.VTable, self.vtable).Cancel(@ptrCast(*const IPrinterExtensionAsyncOperation, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6764,13 +6849,13 @@ pub const IPrinterQueue2 = extern struct {
     pub const VTable = extern struct {
         base: IPrinterQueue.VTable,
         SendBidiSetRequestAsync: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterQueue2,
                 bstrBidiRequest: ?BSTR,
                 pCallback: ?*IPrinterBidiSetRequestCallback,
                 ppAsyncOperation: ?*?*IPrinterExtensionAsyncOperation,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterQueue2,
                 bstrBidiRequest: ?BSTR,
                 pCallback: ?*IPrinterBidiSetRequestCallback,
@@ -6778,13 +6863,13 @@ pub const IPrinterQueue2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPrinterQueueView: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterQueue2,
                 ulViewOffset: u32,
                 ulViewSize: u32,
                 ppJobView: ?*?*IPrinterQueueView,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterQueue2,
                 ulViewOffset: u32,
                 ulViewSize: u32,
@@ -6793,17 +6878,19 @@ pub const IPrinterQueue2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrinterQueue.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterQueue2_SendBidiSetRequestAsync(self: *const T, bstrBidiRequest: ?BSTR, pCallback: ?*IPrinterBidiSetRequestCallback, ppAsyncOperation: ?*?*IPrinterExtensionAsyncOperation) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterQueue2.VTable, self.vtable).SendBidiSetRequestAsync(@ptrCast(*const IPrinterQueue2, self), bstrBidiRequest, pCallback, ppAsyncOperation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterQueue2_GetPrinterQueueView(self: *const T, ulViewOffset: u32, ulViewSize: u32, ppJobView: ?*?*IPrinterQueueView) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterQueue2.VTable, self.vtable).GetPrinterQueueView(@ptrCast(*const IPrinterQueue2, self), ulViewOffset, ulViewSize, ppJobView);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrinterQueue.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterQueue2_SendBidiSetRequestAsync(self: *const T, bstrBidiRequest: ?BSTR, pCallback: ?*IPrinterBidiSetRequestCallback, ppAsyncOperation: ?*?*IPrinterExtensionAsyncOperation) HRESULT {
+                return @ptrCast(*const IPrinterQueue2.VTable, self.vtable).SendBidiSetRequestAsync(@ptrCast(*const IPrinterQueue2, self), bstrBidiRequest, pCallback, ppAsyncOperation);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterQueue2_GetPrinterQueueView(self: *const T, ulViewOffset: u32, ulViewSize: u32, ppJobView: ?*?*IPrinterQueueView) HRESULT {
+                return @ptrCast(*const IPrinterQueue2.VTable, self.vtable).GetPrinterQueueView(@ptrCast(*const IPrinterQueue2, self), ulViewOffset, ulViewSize, ppJobView);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6815,12 +6902,12 @@ pub const IPrinterExtensionContext = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrinterQueue: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterExtensionContext,
                 ppQueue: ?*?*IPrinterQueue,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterExtensionContext,
                 ppQueue: ?*?*IPrinterQueue,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -6828,12 +6915,12 @@ pub const IPrinterExtensionContext = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrintSchemaTicket: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterExtensionContext,
                 ppTicket: ?*?*IPrintSchemaTicket,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterExtensionContext,
                 ppTicket: ?*?*IPrintSchemaTicket,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -6841,12 +6928,12 @@ pub const IPrinterExtensionContext = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DriverProperties: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterExtensionContext,
                 ppPropertyBag: ?*?*IPrinterPropertyBag,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterExtensionContext,
                 ppPropertyBag: ?*?*IPrinterPropertyBag,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -6854,37 +6941,39 @@ pub const IPrinterExtensionContext = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserProperties: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterExtensionContext,
                 ppPropertyBag: ?*?*IPrinterPropertyBag,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterExtensionContext,
                 ppPropertyBag: ?*?*IPrinterPropertyBag,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterExtensionContext_get_PrinterQueue(self: *const T, ppQueue: ?*?*IPrinterQueue) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterExtensionContext.VTable, self.vtable).get_PrinterQueue(@ptrCast(*const IPrinterExtensionContext, self), ppQueue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterExtensionContext_get_PrintSchemaTicket(self: *const T, ppTicket: ?*?*IPrintSchemaTicket) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterExtensionContext.VTable, self.vtable).get_PrintSchemaTicket(@ptrCast(*const IPrinterExtensionContext, self), ppTicket);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterExtensionContext_get_DriverProperties(self: *const T, ppPropertyBag: ?*?*IPrinterPropertyBag) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterExtensionContext.VTable, self.vtable).get_DriverProperties(@ptrCast(*const IPrinterExtensionContext, self), ppPropertyBag);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterExtensionContext_get_UserProperties(self: *const T, ppPropertyBag: ?*?*IPrinterPropertyBag) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterExtensionContext.VTable, self.vtable).get_UserProperties(@ptrCast(*const IPrinterExtensionContext, self), ppPropertyBag);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterExtensionContext_get_PrinterQueue(self: *const T, ppQueue: ?*?*IPrinterQueue) HRESULT {
+                return @ptrCast(*const IPrinterExtensionContext.VTable, self.vtable).get_PrinterQueue(@ptrCast(*const IPrinterExtensionContext, self), ppQueue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterExtensionContext_get_PrintSchemaTicket(self: *const T, ppTicket: ?*?*IPrintSchemaTicket) HRESULT {
+                return @ptrCast(*const IPrinterExtensionContext.VTable, self.vtable).get_PrintSchemaTicket(@ptrCast(*const IPrinterExtensionContext, self), ppTicket);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterExtensionContext_get_DriverProperties(self: *const T, ppPropertyBag: ?*?*IPrinterPropertyBag) HRESULT {
+                return @ptrCast(*const IPrinterExtensionContext.VTable, self.vtable).get_DriverProperties(@ptrCast(*const IPrinterExtensionContext, self), ppPropertyBag);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterExtensionContext_get_UserProperties(self: *const T, ppPropertyBag: ?*?*IPrinterPropertyBag) HRESULT {
+                return @ptrCast(*const IPrinterExtensionContext.VTable, self.vtable).get_UserProperties(@ptrCast(*const IPrinterExtensionContext, self), ppPropertyBag);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6894,38 +6983,40 @@ pub const IPrinterExtensionRequest = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterExtensionRequest,
                 hrStatus: HRESULT,
                 bstrLogMessage: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterExtensionRequest,
                 hrStatus: HRESULT,
                 bstrLogMessage: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Complete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterExtensionRequest,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterExtensionRequest,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterExtensionRequest_Cancel(self: *const T, hrStatus: HRESULT, bstrLogMessage: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterExtensionRequest.VTable, self.vtable).Cancel(@ptrCast(*const IPrinterExtensionRequest, self), hrStatus, bstrLogMessage);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterExtensionRequest_Complete(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterExtensionRequest.VTable, self.vtable).Complete(@ptrCast(*const IPrinterExtensionRequest, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterExtensionRequest_Cancel(self: *const T, hrStatus: HRESULT, bstrLogMessage: ?BSTR) HRESULT {
+                return @ptrCast(*const IPrinterExtensionRequest.VTable, self.vtable).Cancel(@ptrCast(*const IPrinterExtensionRequest, self), hrStatus, bstrLogMessage);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterExtensionRequest_Complete(self: *const T) HRESULT {
+                return @ptrCast(*const IPrinterExtensionRequest.VTable, self.vtable).Complete(@ptrCast(*const IPrinterExtensionRequest, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -6937,12 +7028,12 @@ pub const IPrinterExtensionEventArgs = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BidiNotification: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterExtensionEventArgs,
                 pbstrBidiNotification: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterExtensionEventArgs,
                 pbstrBidiNotification: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -6950,12 +7041,12 @@ pub const IPrinterExtensionEventArgs = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReasonId: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterExtensionEventArgs,
                 pReasonId: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterExtensionEventArgs,
                 pReasonId: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -6963,12 +7054,12 @@ pub const IPrinterExtensionEventArgs = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Request: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterExtensionEventArgs,
                 ppRequest: ?*?*IPrinterExtensionRequest,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterExtensionEventArgs,
                 ppRequest: ?*?*IPrinterExtensionRequest,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -6976,12 +7067,12 @@ pub const IPrinterExtensionEventArgs = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SourceApplication: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterExtensionEventArgs,
                 pbstrApplication: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterExtensionEventArgs,
                 pbstrApplication: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -6989,12 +7080,12 @@ pub const IPrinterExtensionEventArgs = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DetailedReasonId: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterExtensionEventArgs,
                 pDetailedReasonId: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterExtensionEventArgs,
                 pDetailedReasonId: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -7002,12 +7093,12 @@ pub const IPrinterExtensionEventArgs = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WindowModal: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterExtensionEventArgs,
                 pbModal: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterExtensionEventArgs,
                 pbModal: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -7015,49 +7106,51 @@ pub const IPrinterExtensionEventArgs = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WindowParent: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterExtensionEventArgs,
                 phwndParent: ?*?HANDLE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterExtensionEventArgs,
                 phwndParent: ?*?HANDLE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrinterExtensionContext.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterExtensionEventArgs_get_BidiNotification(self: *const T, pbstrBidiNotification: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterExtensionEventArgs.VTable, self.vtable).get_BidiNotification(@ptrCast(*const IPrinterExtensionEventArgs, self), pbstrBidiNotification);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterExtensionEventArgs_get_ReasonId(self: *const T, pReasonId: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterExtensionEventArgs.VTable, self.vtable).get_ReasonId(@ptrCast(*const IPrinterExtensionEventArgs, self), pReasonId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterExtensionEventArgs_get_Request(self: *const T, ppRequest: ?*?*IPrinterExtensionRequest) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterExtensionEventArgs.VTable, self.vtable).get_Request(@ptrCast(*const IPrinterExtensionEventArgs, self), ppRequest);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterExtensionEventArgs_get_SourceApplication(self: *const T, pbstrApplication: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterExtensionEventArgs.VTable, self.vtable).get_SourceApplication(@ptrCast(*const IPrinterExtensionEventArgs, self), pbstrApplication);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterExtensionEventArgs_get_DetailedReasonId(self: *const T, pDetailedReasonId: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterExtensionEventArgs.VTable, self.vtable).get_DetailedReasonId(@ptrCast(*const IPrinterExtensionEventArgs, self), pDetailedReasonId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterExtensionEventArgs_get_WindowModal(self: *const T, pbModal: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterExtensionEventArgs.VTable, self.vtable).get_WindowModal(@ptrCast(*const IPrinterExtensionEventArgs, self), pbModal);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterExtensionEventArgs_get_WindowParent(self: *const T, phwndParent: ?*?HANDLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterExtensionEventArgs.VTable, self.vtable).get_WindowParent(@ptrCast(*const IPrinterExtensionEventArgs, self), phwndParent);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrinterExtensionContext.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterExtensionEventArgs_get_BidiNotification(self: *const T, pbstrBidiNotification: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IPrinterExtensionEventArgs.VTable, self.vtable).get_BidiNotification(@ptrCast(*const IPrinterExtensionEventArgs, self), pbstrBidiNotification);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterExtensionEventArgs_get_ReasonId(self: *const T, pReasonId: ?*Guid) HRESULT {
+                return @ptrCast(*const IPrinterExtensionEventArgs.VTable, self.vtable).get_ReasonId(@ptrCast(*const IPrinterExtensionEventArgs, self), pReasonId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterExtensionEventArgs_get_Request(self: *const T, ppRequest: ?*?*IPrinterExtensionRequest) HRESULT {
+                return @ptrCast(*const IPrinterExtensionEventArgs.VTable, self.vtable).get_Request(@ptrCast(*const IPrinterExtensionEventArgs, self), ppRequest);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterExtensionEventArgs_get_SourceApplication(self: *const T, pbstrApplication: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IPrinterExtensionEventArgs.VTable, self.vtable).get_SourceApplication(@ptrCast(*const IPrinterExtensionEventArgs, self), pbstrApplication);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterExtensionEventArgs_get_DetailedReasonId(self: *const T, pDetailedReasonId: ?*Guid) HRESULT {
+                return @ptrCast(*const IPrinterExtensionEventArgs.VTable, self.vtable).get_DetailedReasonId(@ptrCast(*const IPrinterExtensionEventArgs, self), pDetailedReasonId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterExtensionEventArgs_get_WindowModal(self: *const T, pbModal: ?*BOOL) HRESULT {
+                return @ptrCast(*const IPrinterExtensionEventArgs.VTable, self.vtable).get_WindowModal(@ptrCast(*const IPrinterExtensionEventArgs, self), pbModal);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterExtensionEventArgs_get_WindowParent(self: *const T, phwndParent: ?*?HANDLE) HRESULT {
+                return @ptrCast(*const IPrinterExtensionEventArgs.VTable, self.vtable).get_WindowParent(@ptrCast(*const IPrinterExtensionEventArgs, self), phwndParent);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7069,23 +7162,23 @@ pub const IPrinterExtensionContextCollection = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterExtensionContextCollection,
                 pulCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterExtensionContextCollection,
                 pulCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterExtensionContextCollection,
                 ulIndex: u32,
                 ppContext: ?*?*IPrinterExtensionContext,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterExtensionContextCollection,
                 ulIndex: u32,
                 ppContext: ?*?*IPrinterExtensionContext,
@@ -7094,33 +7187,35 @@ pub const IPrinterExtensionContextCollection = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterExtensionContextCollection,
                 ppUnk: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterExtensionContextCollection,
                 ppUnk: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterExtensionContextCollection_get_Count(self: *const T, pulCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterExtensionContextCollection.VTable, self.vtable).get_Count(@ptrCast(*const IPrinterExtensionContextCollection, self), pulCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterExtensionContextCollection_GetAt(self: *const T, ulIndex: u32, ppContext: ?*?*IPrinterExtensionContext) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterExtensionContextCollection.VTable, self.vtable).GetAt(@ptrCast(*const IPrinterExtensionContextCollection, self), ulIndex, ppContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterExtensionContextCollection_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterExtensionContextCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IPrinterExtensionContextCollection, self), ppUnk);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterExtensionContextCollection_get_Count(self: *const T, pulCount: ?*u32) HRESULT {
+                return @ptrCast(*const IPrinterExtensionContextCollection.VTable, self.vtable).get_Count(@ptrCast(*const IPrinterExtensionContextCollection, self), pulCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterExtensionContextCollection_GetAt(self: *const T, ulIndex: u32, ppContext: ?*?*IPrinterExtensionContext) HRESULT {
+                return @ptrCast(*const IPrinterExtensionContextCollection.VTable, self.vtable).GetAt(@ptrCast(*const IPrinterExtensionContextCollection, self), ulIndex, ppContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterExtensionContextCollection_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const IPrinterExtensionContextCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IPrinterExtensionContextCollection, self), ppUnk);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7130,38 +7225,40 @@ pub const IPrinterExtensionEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         OnDriverEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterExtensionEvent,
                 pEventArgs: ?*IPrinterExtensionEventArgs,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterExtensionEvent,
                 pEventArgs: ?*IPrinterExtensionEventArgs,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnPrinterQueuesEnumerated: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterExtensionEvent,
                 pContextCollection: ?*IPrinterExtensionContextCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterExtensionEvent,
                 pContextCollection: ?*IPrinterExtensionContextCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterExtensionEvent_OnDriverEvent(self: *const T, pEventArgs: ?*IPrinterExtensionEventArgs) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterExtensionEvent.VTable, self.vtable).OnDriverEvent(@ptrCast(*const IPrinterExtensionEvent, self), pEventArgs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterExtensionEvent_OnPrinterQueuesEnumerated(self: *const T, pContextCollection: ?*IPrinterExtensionContextCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterExtensionEvent.VTable, self.vtable).OnPrinterQueuesEnumerated(@ptrCast(*const IPrinterExtensionEvent, self), pContextCollection);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterExtensionEvent_OnDriverEvent(self: *const T, pEventArgs: ?*IPrinterExtensionEventArgs) HRESULT {
+                return @ptrCast(*const IPrinterExtensionEvent.VTable, self.vtable).OnDriverEvent(@ptrCast(*const IPrinterExtensionEvent, self), pEventArgs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterExtensionEvent_OnPrinterQueuesEnumerated(self: *const T, pContextCollection: ?*IPrinterExtensionContextCollection) HRESULT {
+                return @ptrCast(*const IPrinterExtensionEvent.VTable, self.vtable).OnPrinterQueuesEnumerated(@ptrCast(*const IPrinterExtensionEvent, self), pContextCollection);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7171,36 +7268,38 @@ pub const IPrinterExtensionManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         EnableEvents: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterExtensionManager,
                 printerDriverId: Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterExtensionManager,
                 printerDriverId: Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DisableEvents: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterExtensionManager,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterExtensionManager,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterExtensionManager_EnableEvents(self: *const T, printerDriverId: Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterExtensionManager.VTable, self.vtable).EnableEvents(@ptrCast(*const IPrinterExtensionManager, self), printerDriverId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterExtensionManager_DisableEvents(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterExtensionManager.VTable, self.vtable).DisableEvents(@ptrCast(*const IPrinterExtensionManager, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterExtensionManager_EnableEvents(self: *const T, printerDriverId: Guid) HRESULT {
+                return @ptrCast(*const IPrinterExtensionManager.VTable, self.vtable).EnableEvents(@ptrCast(*const IPrinterExtensionManager, self), printerDriverId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterExtensionManager_DisableEvents(self: *const T) HRESULT {
+                return @ptrCast(*const IPrinterExtensionManager.VTable, self.vtable).DisableEvents(@ptrCast(*const IPrinterExtensionManager, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7212,12 +7311,12 @@ pub const IPrinterScriptContext = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DriverProperties: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterScriptContext,
                 ppPropertyBag: ?*?*IPrinterScriptablePropertyBag,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterScriptContext,
                 ppPropertyBag: ?*?*IPrinterScriptablePropertyBag,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -7225,12 +7324,12 @@ pub const IPrinterScriptContext = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QueueProperties: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterScriptContext,
                 ppPropertyBag: ?*?*IPrinterScriptablePropertyBag,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterScriptContext,
                 ppPropertyBag: ?*?*IPrinterScriptablePropertyBag,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -7238,33 +7337,35 @@ pub const IPrinterScriptContext = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserProperties: switch (@import("builtin").zig_backend) {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrinterScriptContext,
                 ppPropertyBag: ?*?*IPrinterScriptablePropertyBag,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrinterScriptContext,
                 ppPropertyBag: ?*?*IPrinterScriptablePropertyBag,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterScriptContext_get_DriverProperties(self: *const T, ppPropertyBag: ?*?*IPrinterScriptablePropertyBag) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterScriptContext.VTable, self.vtable).get_DriverProperties(@ptrCast(*const IPrinterScriptContext, self), ppPropertyBag);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterScriptContext_get_QueueProperties(self: *const T, ppPropertyBag: ?*?*IPrinterScriptablePropertyBag) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterScriptContext.VTable, self.vtable).get_QueueProperties(@ptrCast(*const IPrinterScriptContext, self), ppPropertyBag);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinterScriptContext_get_UserProperties(self: *const T, ppPropertyBag: ?*?*IPrinterScriptablePropertyBag) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrinterScriptContext.VTable, self.vtable).get_UserProperties(@ptrCast(*const IPrinterScriptContext, self), ppPropertyBag);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterScriptContext_get_DriverProperties(self: *const T, ppPropertyBag: ?*?*IPrinterScriptablePropertyBag) HRESULT {
+                return @ptrCast(*const IPrinterScriptContext.VTable, self.vtable).get_DriverProperties(@ptrCast(*const IPrinterScriptContext, self), ppPropertyBag);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterScriptContext_get_QueueProperties(self: *const T, ppPropertyBag: ?*?*IPrinterScriptablePropertyBag) HRESULT {
+                return @ptrCast(*const IPrinterScriptContext.VTable, self.vtable).get_QueueProperties(@ptrCast(*const IPrinterScriptContext, self), ppPropertyBag);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrinterScriptContext_get_UserProperties(self: *const T, ppPropertyBag: ?*?*IPrinterScriptablePropertyBag) HRESULT {
+                return @ptrCast(*const IPrinterScriptContext.VTable, self.vtable).get_UserProperties(@ptrCast(*const IPrinterScriptContext, self), ppPropertyBag);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7289,13 +7390,13 @@ pub const IPrintAsyncNotifyDataObject = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AcquireData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintAsyncNotifyDataObject,
                 ppNotificationData: ?*?*u8,
                 pSize: ?*u32,
                 ppSchema: ?*?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintAsyncNotifyDataObject,
                 ppNotificationData: ?*?*u8,
                 pSize: ?*u32,
@@ -7303,26 +7404,28 @@ pub const IPrintAsyncNotifyDataObject = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ReleaseData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintAsyncNotifyDataObject,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintAsyncNotifyDataObject,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintAsyncNotifyDataObject_AcquireData(self: *const T, ppNotificationData: ?*?*u8, pSize: ?*u32, ppSchema: ?*?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintAsyncNotifyDataObject.VTable, self.vtable).AcquireData(@ptrCast(*const IPrintAsyncNotifyDataObject, self), ppNotificationData, pSize, ppSchema);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintAsyncNotifyDataObject_ReleaseData(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintAsyncNotifyDataObject.VTable, self.vtable).ReleaseData(@ptrCast(*const IPrintAsyncNotifyDataObject, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintAsyncNotifyDataObject_AcquireData(self: *const T, ppNotificationData: ?*?*u8, pSize: ?*u32, ppSchema: ?*?*Guid) HRESULT {
+                return @ptrCast(*const IPrintAsyncNotifyDataObject.VTable, self.vtable).AcquireData(@ptrCast(*const IPrintAsyncNotifyDataObject, self), ppNotificationData, pSize, ppSchema);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintAsyncNotifyDataObject_ReleaseData(self: *const T) HRESULT {
+                return @ptrCast(*const IPrintAsyncNotifyDataObject.VTable, self.vtable).ReleaseData(@ptrCast(*const IPrintAsyncNotifyDataObject, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7333,38 +7436,40 @@ pub const IPrintAsyncNotifyChannel = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SendNotification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintAsyncNotifyChannel,
                 pData: ?*IPrintAsyncNotifyDataObject,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintAsyncNotifyChannel,
                 pData: ?*IPrintAsyncNotifyDataObject,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CloseChannel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintAsyncNotifyChannel,
                 pData: ?*IPrintAsyncNotifyDataObject,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintAsyncNotifyChannel,
                 pData: ?*IPrintAsyncNotifyDataObject,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintAsyncNotifyChannel_SendNotification(self: *const T, pData: ?*IPrintAsyncNotifyDataObject) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintAsyncNotifyChannel.VTable, self.vtable).SendNotification(@ptrCast(*const IPrintAsyncNotifyChannel, self), pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintAsyncNotifyChannel_CloseChannel(self: *const T, pData: ?*IPrintAsyncNotifyDataObject) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintAsyncNotifyChannel.VTable, self.vtable).CloseChannel(@ptrCast(*const IPrintAsyncNotifyChannel, self), pData);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintAsyncNotifyChannel_SendNotification(self: *const T, pData: ?*IPrintAsyncNotifyDataObject) HRESULT {
+                return @ptrCast(*const IPrintAsyncNotifyChannel.VTable, self.vtable).SendNotification(@ptrCast(*const IPrintAsyncNotifyChannel, self), pData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintAsyncNotifyChannel_CloseChannel(self: *const T, pData: ?*IPrintAsyncNotifyDataObject) HRESULT {
+                return @ptrCast(*const IPrintAsyncNotifyChannel.VTable, self.vtable).CloseChannel(@ptrCast(*const IPrintAsyncNotifyChannel, self), pData);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7375,24 +7480,24 @@ pub const IPrintAsyncNotifyCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnEventNotify: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintAsyncNotifyCallback,
                 pChannel: ?*IPrintAsyncNotifyChannel,
                 pData: ?*IPrintAsyncNotifyDataObject,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintAsyncNotifyCallback,
                 pChannel: ?*IPrintAsyncNotifyChannel,
                 pData: ?*IPrintAsyncNotifyDataObject,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ChannelClosed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintAsyncNotifyCallback,
                 pChannel: ?*IPrintAsyncNotifyChannel,
                 pData: ?*IPrintAsyncNotifyDataObject,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintAsyncNotifyCallback,
                 pChannel: ?*IPrintAsyncNotifyChannel,
                 pData: ?*IPrintAsyncNotifyDataObject,
@@ -7400,17 +7505,19 @@ pub const IPrintAsyncNotifyCallback = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintAsyncNotifyCallback_OnEventNotify(self: *const T, pChannel: ?*IPrintAsyncNotifyChannel, pData: ?*IPrintAsyncNotifyDataObject) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintAsyncNotifyCallback.VTable, self.vtable).OnEventNotify(@ptrCast(*const IPrintAsyncNotifyCallback, self), pChannel, pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintAsyncNotifyCallback_ChannelClosed(self: *const T, pChannel: ?*IPrintAsyncNotifyChannel, pData: ?*IPrintAsyncNotifyDataObject) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintAsyncNotifyCallback.VTable, self.vtable).ChannelClosed(@ptrCast(*const IPrintAsyncNotifyCallback, self), pChannel, pData);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintAsyncNotifyCallback_OnEventNotify(self: *const T, pChannel: ?*IPrintAsyncNotifyChannel, pData: ?*IPrintAsyncNotifyDataObject) HRESULT {
+                return @ptrCast(*const IPrintAsyncNotifyCallback.VTable, self.vtable).OnEventNotify(@ptrCast(*const IPrintAsyncNotifyCallback, self), pChannel, pData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintAsyncNotifyCallback_ChannelClosed(self: *const T, pChannel: ?*IPrintAsyncNotifyChannel, pData: ?*IPrintAsyncNotifyDataObject) HRESULT {
+                return @ptrCast(*const IPrintAsyncNotifyCallback.VTable, self.vtable).ChannelClosed(@ptrCast(*const IPrintAsyncNotifyCallback, self), pChannel, pData);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7471,34 +7578,36 @@ pub const IPrintAsyncNotifyRegistration = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         RegisterForNotifications: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintAsyncNotifyRegistration,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintAsyncNotifyRegistration,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         UnregisterForNotifications: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintAsyncNotifyRegistration,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintAsyncNotifyRegistration,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintAsyncNotifyRegistration_RegisterForNotifications(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintAsyncNotifyRegistration.VTable, self.vtable).RegisterForNotifications(@ptrCast(*const IPrintAsyncNotifyRegistration, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintAsyncNotifyRegistration_UnregisterForNotifications(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintAsyncNotifyRegistration.VTable, self.vtable).UnregisterForNotifications(@ptrCast(*const IPrintAsyncNotifyRegistration, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintAsyncNotifyRegistration_RegisterForNotifications(self: *const T) HRESULT {
+                return @ptrCast(*const IPrintAsyncNotifyRegistration.VTable, self.vtable).RegisterForNotifications(@ptrCast(*const IPrintAsyncNotifyRegistration, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintAsyncNotifyRegistration_UnregisterForNotifications(self: *const T) HRESULT {
+                return @ptrCast(*const IPrintAsyncNotifyRegistration.VTable, self.vtable).UnregisterForNotifications(@ptrCast(*const IPrintAsyncNotifyRegistration, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7508,7 +7617,7 @@ pub const IPrintAsyncNotify = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreatePrintAsyncNotifyChannel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintAsyncNotify,
                 param0: u32,
                 param1: ?*Guid,
@@ -7517,7 +7626,7 @@ pub const IPrintAsyncNotify = extern struct {
                 param4: ?*IPrintAsyncNotifyCallback,
                 param5: ?*?*IPrintAsyncNotifyChannel,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintAsyncNotify,
                 param0: u32,
                 param1: ?*Guid,
@@ -7528,7 +7637,7 @@ pub const IPrintAsyncNotify = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreatePrintAsyncNotifyRegistration: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintAsyncNotify,
                 param0: ?*Guid,
                 param1: PrintAsyncNotifyUserFilter,
@@ -7536,7 +7645,7 @@ pub const IPrintAsyncNotify = extern struct {
                 param3: ?*IPrintAsyncNotifyCallback,
                 param4: ?*?*IPrintAsyncNotifyRegistration,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintAsyncNotify,
                 param0: ?*Guid,
                 param1: PrintAsyncNotifyUserFilter,
@@ -7547,17 +7656,19 @@ pub const IPrintAsyncNotify = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintAsyncNotify_CreatePrintAsyncNotifyChannel(self: *const T, param0: u32, param1: ?*Guid, param2: PrintAsyncNotifyUserFilter, param3: PrintAsyncNotifyConversationStyle, param4: ?*IPrintAsyncNotifyCallback, param5: ?*?*IPrintAsyncNotifyChannel) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintAsyncNotify.VTable, self.vtable).CreatePrintAsyncNotifyChannel(@ptrCast(*const IPrintAsyncNotify, self), param0, param1, param2, param3, param4, param5);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintAsyncNotify_CreatePrintAsyncNotifyRegistration(self: *const T, param0: ?*Guid, param1: PrintAsyncNotifyUserFilter, param2: PrintAsyncNotifyConversationStyle, param3: ?*IPrintAsyncNotifyCallback, param4: ?*?*IPrintAsyncNotifyRegistration) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintAsyncNotify.VTable, self.vtable).CreatePrintAsyncNotifyRegistration(@ptrCast(*const IPrintAsyncNotify, self), param0, param1, param2, param3, param4);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintAsyncNotify_CreatePrintAsyncNotifyChannel(self: *const T, param0: u32, param1: ?*Guid, param2: PrintAsyncNotifyUserFilter, param3: PrintAsyncNotifyConversationStyle, param4: ?*IPrintAsyncNotifyCallback, param5: ?*?*IPrintAsyncNotifyChannel) HRESULT {
+                return @ptrCast(*const IPrintAsyncNotify.VTable, self.vtable).CreatePrintAsyncNotifyChannel(@ptrCast(*const IPrintAsyncNotify, self), param0, param1, param2, param3, param4, param5);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintAsyncNotify_CreatePrintAsyncNotifyRegistration(self: *const T, param0: ?*Guid, param1: PrintAsyncNotifyUserFilter, param2: PrintAsyncNotifyConversationStyle, param3: ?*IPrintAsyncNotifyCallback, param4: ?*?*IPrintAsyncNotifyRegistration) HRESULT {
+                return @ptrCast(*const IPrintAsyncNotify.VTable, self.vtable).CreatePrintAsyncNotifyRegistration(@ptrCast(*const IPrintAsyncNotify, self), param0, param1, param2, param3, param4);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7565,38 +7676,40 @@ pub const IPrintAsyncCookie = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         FinishAsyncCall: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintAsyncCookie,
                 param0: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintAsyncCookie,
                 param0: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CancelAsyncCall: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintAsyncCookie,
                 param0: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintAsyncCookie,
                 param0: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintAsyncCookie_FinishAsyncCall(self: *const T, param0: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintAsyncCookie.VTable, self.vtable).FinishAsyncCall(@ptrCast(*const IPrintAsyncCookie, self), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintAsyncCookie_CancelAsyncCall(self: *const T, param0: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintAsyncCookie.VTable, self.vtable).CancelAsyncCall(@ptrCast(*const IPrintAsyncCookie, self), param0);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintAsyncCookie_FinishAsyncCall(self: *const T, param0: HRESULT) HRESULT {
+                return @ptrCast(*const IPrintAsyncCookie.VTable, self.vtable).FinishAsyncCall(@ptrCast(*const IPrintAsyncCookie, self), param0);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintAsyncCookie_CancelAsyncCall(self: *const T, param0: HRESULT) HRESULT {
+                return @ptrCast(*const IPrintAsyncCookie.VTable, self.vtable).CancelAsyncCall(@ptrCast(*const IPrintAsyncCookie, self), param0);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7604,12 +7717,12 @@ pub const IPrintAsyncNewChannelCookie = extern struct {
     pub const VTable = extern struct {
         base: IPrintAsyncCookie.VTable,
         FinishAsyncCallWithData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintAsyncNewChannelCookie,
                 param0: ?*?*IPrintAsyncNotifyChannel,
                 param1: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintAsyncNewChannelCookie,
                 param0: ?*?*IPrintAsyncNotifyChannel,
                 param1: u32,
@@ -7617,13 +7730,15 @@ pub const IPrintAsyncNewChannelCookie = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintAsyncCookie.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintAsyncNewChannelCookie_FinishAsyncCallWithData(self: *const T, param0: ?*?*IPrintAsyncNotifyChannel, param1: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintAsyncNewChannelCookie.VTable, self.vtable).FinishAsyncCallWithData(@ptrCast(*const IPrintAsyncNewChannelCookie, self), param0, param1);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintAsyncCookie.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintAsyncNewChannelCookie_FinishAsyncCallWithData(self: *const T, param0: ?*?*IPrintAsyncNotifyChannel, param1: u32) HRESULT {
+                return @ptrCast(*const IPrintAsyncNewChannelCookie.VTable, self.vtable).FinishAsyncCallWithData(@ptrCast(*const IPrintAsyncNewChannelCookie, self), param0, param1);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7631,12 +7746,12 @@ pub const IAsyncGetSendNotificationCookie = extern struct {
     pub const VTable = extern struct {
         base: IPrintAsyncCookie.VTable,
         FinishAsyncCallWithData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAsyncGetSendNotificationCookie,
                 param0: ?*IPrintAsyncNotifyDataObject,
                 param1: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAsyncGetSendNotificationCookie,
                 param0: ?*IPrintAsyncNotifyDataObject,
                 param1: BOOL,
@@ -7644,13 +7759,15 @@ pub const IAsyncGetSendNotificationCookie = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintAsyncCookie.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAsyncGetSendNotificationCookie_FinishAsyncCallWithData(self: *const T, param0: ?*IPrintAsyncNotifyDataObject, param1: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAsyncGetSendNotificationCookie.VTable, self.vtable).FinishAsyncCallWithData(@ptrCast(*const IAsyncGetSendNotificationCookie, self), param0, param1);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintAsyncCookie.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAsyncGetSendNotificationCookie_FinishAsyncCallWithData(self: *const T, param0: ?*IPrintAsyncNotifyDataObject, param1: BOOL) HRESULT {
+                return @ptrCast(*const IAsyncGetSendNotificationCookie.VTable, self.vtable).FinishAsyncCallWithData(@ptrCast(*const IAsyncGetSendNotificationCookie, self), param0, param1);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7658,52 +7775,54 @@ pub const IAsyncGetSrvReferralCookie = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         FinishAsyncCall: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAsyncGetSrvReferralCookie,
                 param0: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAsyncGetSrvReferralCookie,
                 param0: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CancelAsyncCall: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAsyncGetSrvReferralCookie,
                 param0: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAsyncGetSrvReferralCookie,
                 param0: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FinishAsyncCallWithData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IAsyncGetSrvReferralCookie,
                 param0: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IAsyncGetSrvReferralCookie,
                 param0: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAsyncGetSrvReferralCookie_FinishAsyncCall(self: *const T, param0: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAsyncGetSrvReferralCookie.VTable, self.vtable).FinishAsyncCall(@ptrCast(*const IAsyncGetSrvReferralCookie, self), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAsyncGetSrvReferralCookie_CancelAsyncCall(self: *const T, param0: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAsyncGetSrvReferralCookie.VTable, self.vtable).CancelAsyncCall(@ptrCast(*const IAsyncGetSrvReferralCookie, self), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAsyncGetSrvReferralCookie_FinishAsyncCallWithData(self: *const T, param0: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAsyncGetSrvReferralCookie.VTable, self.vtable).FinishAsyncCallWithData(@ptrCast(*const IAsyncGetSrvReferralCookie, self), param0);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAsyncGetSrvReferralCookie_FinishAsyncCall(self: *const T, param0: HRESULT) HRESULT {
+                return @ptrCast(*const IAsyncGetSrvReferralCookie.VTable, self.vtable).FinishAsyncCall(@ptrCast(*const IAsyncGetSrvReferralCookie, self), param0);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAsyncGetSrvReferralCookie_CancelAsyncCall(self: *const T, param0: HRESULT) HRESULT {
+                return @ptrCast(*const IAsyncGetSrvReferralCookie.VTable, self.vtable).CancelAsyncCall(@ptrCast(*const IAsyncGetSrvReferralCookie, self), param0);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IAsyncGetSrvReferralCookie_FinishAsyncCallWithData(self: *const T, param0: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IAsyncGetSrvReferralCookie.VTable, self.vtable).FinishAsyncCallWithData(@ptrCast(*const IAsyncGetSrvReferralCookie, self), param0);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7711,24 +7830,26 @@ pub const IPrintBidiAsyncNotifyRegistration = extern struct {
     pub const VTable = extern struct {
         base: IPrintAsyncNotifyRegistration.VTable,
         AsyncGetNewChannel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintBidiAsyncNotifyRegistration,
                 param0: ?*IPrintAsyncNewChannelCookie,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintBidiAsyncNotifyRegistration,
                 param0: ?*IPrintAsyncNewChannelCookie,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintAsyncNotifyRegistration.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintBidiAsyncNotifyRegistration_AsyncGetNewChannel(self: *const T, param0: ?*IPrintAsyncNewChannelCookie) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintBidiAsyncNotifyRegistration.VTable, self.vtable).AsyncGetNewChannel(@ptrCast(*const IPrintBidiAsyncNotifyRegistration, self), param0);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintAsyncNotifyRegistration.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintBidiAsyncNotifyRegistration_AsyncGetNewChannel(self: *const T, param0: ?*IPrintAsyncNewChannelCookie) HRESULT {
+                return @ptrCast(*const IPrintBidiAsyncNotifyRegistration.VTable, self.vtable).AsyncGetNewChannel(@ptrCast(*const IPrintBidiAsyncNotifyRegistration, self), param0);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7736,24 +7857,26 @@ pub const IPrintUnidiAsyncNotifyRegistration = extern struct {
     pub const VTable = extern struct {
         base: IPrintAsyncNotifyRegistration.VTable,
         AsyncGetNotification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintUnidiAsyncNotifyRegistration,
                 param0: ?*IAsyncGetSendNotificationCookie,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintUnidiAsyncNotifyRegistration,
                 param0: ?*IAsyncGetSendNotificationCookie,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintAsyncNotifyRegistration.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintUnidiAsyncNotifyRegistration_AsyncGetNotification(self: *const T, param0: ?*IAsyncGetSendNotificationCookie) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintUnidiAsyncNotifyRegistration.VTable, self.vtable).AsyncGetNotification(@ptrCast(*const IPrintUnidiAsyncNotifyRegistration, self), param0);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintAsyncNotifyRegistration.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintUnidiAsyncNotifyRegistration_AsyncGetNotification(self: *const T, param0: ?*IAsyncGetSendNotificationCookie) HRESULT {
+                return @ptrCast(*const IPrintUnidiAsyncNotifyRegistration.VTable, self.vtable).AsyncGetNotification(@ptrCast(*const IPrintUnidiAsyncNotifyRegistration, self), param0);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7761,52 +7884,54 @@ pub const IPrintAsyncNotifyServerReferral = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetServerReferral: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintAsyncNotifyServerReferral,
                 param0: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintAsyncNotifyServerReferral,
                 param0: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AsyncGetServerReferral: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintAsyncNotifyServerReferral,
                 param0: ?*IAsyncGetSrvReferralCookie,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintAsyncNotifyServerReferral,
                 param0: ?*IAsyncGetSrvReferralCookie,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetServerReferral: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintAsyncNotifyServerReferral,
                 pRmtServerReferral: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintAsyncNotifyServerReferral,
                 pRmtServerReferral: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintAsyncNotifyServerReferral_GetServerReferral(self: *const T, param0: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintAsyncNotifyServerReferral.VTable, self.vtable).GetServerReferral(@ptrCast(*const IPrintAsyncNotifyServerReferral, self), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintAsyncNotifyServerReferral_AsyncGetServerReferral(self: *const T, param0: ?*IAsyncGetSrvReferralCookie) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintAsyncNotifyServerReferral.VTable, self.vtable).AsyncGetServerReferral(@ptrCast(*const IPrintAsyncNotifyServerReferral, self), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintAsyncNotifyServerReferral_SetServerReferral(self: *const T, pRmtServerReferral: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintAsyncNotifyServerReferral.VTable, self.vtable).SetServerReferral(@ptrCast(*const IPrintAsyncNotifyServerReferral, self), pRmtServerReferral);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintAsyncNotifyServerReferral_GetServerReferral(self: *const T, param0: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IPrintAsyncNotifyServerReferral.VTable, self.vtable).GetServerReferral(@ptrCast(*const IPrintAsyncNotifyServerReferral, self), param0);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintAsyncNotifyServerReferral_AsyncGetServerReferral(self: *const T, param0: ?*IAsyncGetSrvReferralCookie) HRESULT {
+                return @ptrCast(*const IPrintAsyncNotifyServerReferral.VTable, self.vtable).AsyncGetServerReferral(@ptrCast(*const IPrintAsyncNotifyServerReferral, self), param0);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintAsyncNotifyServerReferral_SetServerReferral(self: *const T, pRmtServerReferral: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPrintAsyncNotifyServerReferral.VTable, self.vtable).SetServerReferral(@ptrCast(*const IPrintAsyncNotifyServerReferral, self), pRmtServerReferral);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -7816,52 +7941,52 @@ pub const IBidiAsyncNotifyChannel = extern struct {
     pub const VTable = extern struct {
         base: IPrintAsyncNotifyChannel.VTable,
         CreateNotificationChannel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IBidiAsyncNotifyChannel,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IBidiAsyncNotifyChannel,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPrintName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IBidiAsyncNotifyChannel,
                 param0: ?*?*IPrintAsyncNotifyDataObject,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IBidiAsyncNotifyChannel,
                 param0: ?*?*IPrintAsyncNotifyDataObject,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetChannelNotificationType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IBidiAsyncNotifyChannel,
                 param0: ?*?*IPrintAsyncNotifyDataObject,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IBidiAsyncNotifyChannel,
                 param0: ?*?*IPrintAsyncNotifyDataObject,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AsyncGetNotificationSendResponse: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IBidiAsyncNotifyChannel,
                 param0: ?*IPrintAsyncNotifyDataObject,
                 param1: ?*IAsyncGetSendNotificationCookie,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IBidiAsyncNotifyChannel,
                 param0: ?*IPrintAsyncNotifyDataObject,
                 param1: ?*IAsyncGetSendNotificationCookie,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AsyncCloseChannel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IBidiAsyncNotifyChannel,
                 param0: ?*IPrintAsyncNotifyDataObject,
                 param1: ?*IPrintAsyncCookie,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IBidiAsyncNotifyChannel,
                 param0: ?*IPrintAsyncNotifyDataObject,
                 param1: ?*IPrintAsyncCookie,
@@ -7869,29 +7994,31 @@ pub const IBidiAsyncNotifyChannel = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPrintAsyncNotifyChannel.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBidiAsyncNotifyChannel_CreateNotificationChannel(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBidiAsyncNotifyChannel.VTable, self.vtable).CreateNotificationChannel(@ptrCast(*const IBidiAsyncNotifyChannel, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBidiAsyncNotifyChannel_GetPrintName(self: *const T, param0: ?*?*IPrintAsyncNotifyDataObject) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBidiAsyncNotifyChannel.VTable, self.vtable).GetPrintName(@ptrCast(*const IBidiAsyncNotifyChannel, self), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBidiAsyncNotifyChannel_GetChannelNotificationType(self: *const T, param0: ?*?*IPrintAsyncNotifyDataObject) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBidiAsyncNotifyChannel.VTable, self.vtable).GetChannelNotificationType(@ptrCast(*const IBidiAsyncNotifyChannel, self), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBidiAsyncNotifyChannel_AsyncGetNotificationSendResponse(self: *const T, param0: ?*IPrintAsyncNotifyDataObject, param1: ?*IAsyncGetSendNotificationCookie) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBidiAsyncNotifyChannel.VTable, self.vtable).AsyncGetNotificationSendResponse(@ptrCast(*const IBidiAsyncNotifyChannel, self), param0, param1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBidiAsyncNotifyChannel_AsyncCloseChannel(self: *const T, param0: ?*IPrintAsyncNotifyDataObject, param1: ?*IPrintAsyncCookie) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBidiAsyncNotifyChannel.VTable, self.vtable).AsyncCloseChannel(@ptrCast(*const IBidiAsyncNotifyChannel, self), param0, param1);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPrintAsyncNotifyChannel.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IBidiAsyncNotifyChannel_CreateNotificationChannel(self: *const T) HRESULT {
+                return @ptrCast(*const IBidiAsyncNotifyChannel.VTable, self.vtable).CreateNotificationChannel(@ptrCast(*const IBidiAsyncNotifyChannel, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IBidiAsyncNotifyChannel_GetPrintName(self: *const T, param0: ?*?*IPrintAsyncNotifyDataObject) HRESULT {
+                return @ptrCast(*const IBidiAsyncNotifyChannel.VTable, self.vtable).GetPrintName(@ptrCast(*const IBidiAsyncNotifyChannel, self), param0);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IBidiAsyncNotifyChannel_GetChannelNotificationType(self: *const T, param0: ?*?*IPrintAsyncNotifyDataObject) HRESULT {
+                return @ptrCast(*const IBidiAsyncNotifyChannel.VTable, self.vtable).GetChannelNotificationType(@ptrCast(*const IBidiAsyncNotifyChannel, self), param0);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IBidiAsyncNotifyChannel_AsyncGetNotificationSendResponse(self: *const T, param0: ?*IPrintAsyncNotifyDataObject, param1: ?*IAsyncGetSendNotificationCookie) HRESULT {
+                return @ptrCast(*const IBidiAsyncNotifyChannel.VTable, self.vtable).AsyncGetNotificationSendResponse(@ptrCast(*const IBidiAsyncNotifyChannel, self), param0, param1);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IBidiAsyncNotifyChannel_AsyncCloseChannel(self: *const T, param0: ?*IPrintAsyncNotifyDataObject, param1: ?*IPrintAsyncCookie) HRESULT {
+                return @ptrCast(*const IBidiAsyncNotifyChannel.VTable, self.vtable).AsyncCloseChannel(@ptrCast(*const IBidiAsyncNotifyChannel, self), param0, param1);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -8175,17 +8302,17 @@ pub const CONFIG_INFO_DATA_1 = extern struct {
 };
 
 pub const EMFPLAYPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?HDC,
         param1: i32,
         param2: ?HANDLE,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         param0: ?HDC,
         param1: i32,
         param2: ?HANDLE,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const EBranchOfficeJobEventType = enum(i32) {
     InvalidJobState = 0,
@@ -8284,7 +8411,6 @@ pub const SPLCLIENT_INFO_1 = extern struct {
 pub const _SPLCLIENT_INFO_2_V1 = extern struct {
     hSplPrinter: usize,
 };
-
 
 pub const _SPLCLIENT_INFO_2_V3 = extern struct {
     hSplPrinter: u64,
@@ -8504,7 +8630,7 @@ pub const MONITORUI = extern struct {
 };
 
 pub const ROUTER_NOTIFY_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         dwCommand: u32,
         pContext: ?*anyopaque,
         dwColor: u32,
@@ -8512,7 +8638,7 @@ pub const ROUTER_NOTIFY_CALLBACK = switch (@import("builtin").zig_backend) {
         fdwFlags: u32,
         pdwResult: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         dwCommand: u32,
         pContext: ?*anyopaque,
         dwColor: u32,
@@ -8520,7 +8646,7 @@ pub const ROUTER_NOTIFY_CALLBACK = switch (@import("builtin").zig_backend) {
         fdwFlags: u32,
         pdwResult: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const NOTIFICATION_CALLBACK_COMMANDS = enum(i32) {
     NOTIFY = 0,
@@ -8574,22 +8700,24 @@ pub const IXpsRasterizerNotificationCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Continue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IXpsRasterizerNotificationCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IXpsRasterizerNotificationCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXpsRasterizerNotificationCallback_Continue(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IXpsRasterizerNotificationCallback.VTable, self.vtable).Continue(@ptrCast(*const IXpsRasterizerNotificationCallback, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IXpsRasterizerNotificationCallback_Continue(self: *const T) HRESULT {
+                return @ptrCast(*const IXpsRasterizerNotificationCallback.VTable, self.vtable).Continue(@ptrCast(*const IXpsRasterizerNotificationCallback, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -8606,7 +8734,7 @@ pub const IXpsRasterizer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         RasterizeRect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IXpsRasterizer,
                 x: i32,
                 y: i32,
@@ -8615,7 +8743,7 @@ pub const IXpsRasterizer = extern struct {
                 notificationCallback: ?*IXpsRasterizerNotificationCallback,
                 bitmap: ?*?*IWICBitmap,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IXpsRasterizer,
                 x: i32,
                 y: i32,
@@ -8626,28 +8754,30 @@ pub const IXpsRasterizer = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetMinimalLineWidth: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IXpsRasterizer,
                 width: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IXpsRasterizer,
                 width: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXpsRasterizer_RasterizeRect(self: *const T, x: i32, y: i32, width: i32, height: i32, notificationCallback: ?*IXpsRasterizerNotificationCallback, bitmap: ?*?*IWICBitmap) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IXpsRasterizer.VTable, self.vtable).RasterizeRect(@ptrCast(*const IXpsRasterizer, self), x, y, width, height, notificationCallback, bitmap);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXpsRasterizer_SetMinimalLineWidth(self: *const T, width: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IXpsRasterizer.VTable, self.vtable).SetMinimalLineWidth(@ptrCast(*const IXpsRasterizer, self), width);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IXpsRasterizer_RasterizeRect(self: *const T, x: i32, y: i32, width: i32, height: i32, notificationCallback: ?*IXpsRasterizerNotificationCallback, bitmap: ?*?*IWICBitmap) HRESULT {
+                return @ptrCast(*const IXpsRasterizer.VTable, self.vtable).RasterizeRect(@ptrCast(*const IXpsRasterizer, self), x, y, width, height, notificationCallback, bitmap);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IXpsRasterizer_SetMinimalLineWidth(self: *const T, width: i32) HRESULT {
+                return @ptrCast(*const IXpsRasterizer.VTable, self.vtable).SetMinimalLineWidth(@ptrCast(*const IXpsRasterizer, self), width);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -8657,7 +8787,7 @@ pub const IXpsRasterizationFactory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateRasterizer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IXpsRasterizationFactory,
                 xpsPage: ?*IXpsOMPage,
                 DPI: f32,
@@ -8665,7 +8795,7 @@ pub const IXpsRasterizationFactory = extern struct {
                 textRenderingMode: XPSRAS_RENDERING_MODE,
                 ppIXPSRasterizer: ?*?*IXpsRasterizer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IXpsRasterizationFactory,
                 xpsPage: ?*IXpsOMPage,
                 DPI: f32,
@@ -8676,13 +8806,15 @@ pub const IXpsRasterizationFactory = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXpsRasterizationFactory_CreateRasterizer(self: *const T, xpsPage: ?*IXpsOMPage, DPI: f32, nonTextRenderingMode: XPSRAS_RENDERING_MODE, textRenderingMode: XPSRAS_RENDERING_MODE, ppIXPSRasterizer: ?*?*IXpsRasterizer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IXpsRasterizationFactory.VTable, self.vtable).CreateRasterizer(@ptrCast(*const IXpsRasterizationFactory, self), xpsPage, DPI, nonTextRenderingMode, textRenderingMode, ppIXPSRasterizer);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IXpsRasterizationFactory_CreateRasterizer(self: *const T, xpsPage: ?*IXpsOMPage, DPI: f32, nonTextRenderingMode: XPSRAS_RENDERING_MODE, textRenderingMode: XPSRAS_RENDERING_MODE, ppIXPSRasterizer: ?*?*IXpsRasterizer) HRESULT {
+                return @ptrCast(*const IXpsRasterizationFactory.VTable, self.vtable).CreateRasterizer(@ptrCast(*const IXpsRasterizationFactory, self), xpsPage, DPI, nonTextRenderingMode, textRenderingMode, ppIXPSRasterizer);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -8701,7 +8833,7 @@ pub const IXpsRasterizationFactory1 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateRasterizer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IXpsRasterizationFactory1,
                 xpsPage: ?*IXpsOMPage,
                 DPI: f32,
@@ -8710,7 +8842,7 @@ pub const IXpsRasterizationFactory1 = extern struct {
                 pixelFormat: XPSRAS_PIXEL_FORMAT,
                 ppIXPSRasterizer: ?*?*IXpsRasterizer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IXpsRasterizationFactory1,
                 xpsPage: ?*IXpsOMPage,
                 DPI: f32,
@@ -8722,13 +8854,15 @@ pub const IXpsRasterizationFactory1 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXpsRasterizationFactory1_CreateRasterizer(self: *const T, xpsPage: ?*IXpsOMPage, DPI: f32, nonTextRenderingMode: XPSRAS_RENDERING_MODE, textRenderingMode: XPSRAS_RENDERING_MODE, pixelFormat: XPSRAS_PIXEL_FORMAT, ppIXPSRasterizer: ?*?*IXpsRasterizer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IXpsRasterizationFactory1.VTable, self.vtable).CreateRasterizer(@ptrCast(*const IXpsRasterizationFactory1, self), xpsPage, DPI, nonTextRenderingMode, textRenderingMode, pixelFormat, ppIXPSRasterizer);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IXpsRasterizationFactory1_CreateRasterizer(self: *const T, xpsPage: ?*IXpsOMPage, DPI: f32, nonTextRenderingMode: XPSRAS_RENDERING_MODE, textRenderingMode: XPSRAS_RENDERING_MODE, pixelFormat: XPSRAS_PIXEL_FORMAT, ppIXPSRasterizer: ?*?*IXpsRasterizer) HRESULT {
+                return @ptrCast(*const IXpsRasterizationFactory1.VTable, self.vtable).CreateRasterizer(@ptrCast(*const IXpsRasterizationFactory1, self), xpsPage, DPI, nonTextRenderingMode, textRenderingMode, pixelFormat, ppIXPSRasterizer);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -8745,7 +8879,7 @@ pub const IXpsRasterizationFactory2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateRasterizer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IXpsRasterizationFactory2,
                 xpsPage: ?*IXpsOMPage,
                 DPIX: f32,
@@ -8756,7 +8890,7 @@ pub const IXpsRasterizationFactory2 = extern struct {
                 backgroundColor: XPSRAS_BACKGROUND_COLOR,
                 ppIXpsRasterizer: ?*?*IXpsRasterizer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IXpsRasterizationFactory2,
                 xpsPage: ?*IXpsOMPage,
                 DPIX: f32,
@@ -8770,13 +8904,15 @@ pub const IXpsRasterizationFactory2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXpsRasterizationFactory2_CreateRasterizer(self: *const T, xpsPage: ?*IXpsOMPage, DPIX: f32, DPIY: f32, nonTextRenderingMode: XPSRAS_RENDERING_MODE, textRenderingMode: XPSRAS_RENDERING_MODE, pixelFormat: XPSRAS_PIXEL_FORMAT, backgroundColor: XPSRAS_BACKGROUND_COLOR, ppIXpsRasterizer: ?*?*IXpsRasterizer) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IXpsRasterizationFactory2.VTable, self.vtable).CreateRasterizer(@ptrCast(*const IXpsRasterizationFactory2, self), xpsPage, DPIX, DPIY, nonTextRenderingMode, textRenderingMode, pixelFormat, backgroundColor, ppIXpsRasterizer);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IXpsRasterizationFactory2_CreateRasterizer(self: *const T, xpsPage: ?*IXpsOMPage, DPIX: f32, DPIY: f32, nonTextRenderingMode: XPSRAS_RENDERING_MODE, textRenderingMode: XPSRAS_RENDERING_MODE, pixelFormat: XPSRAS_PIXEL_FORMAT, backgroundColor: XPSRAS_BACKGROUND_COLOR, ppIXpsRasterizer: ?*?*IXpsRasterizer) HRESULT {
+                return @ptrCast(*const IXpsRasterizationFactory2.VTable, self.vtable).CreateRasterizer(@ptrCast(*const IXpsRasterizationFactory2, self), xpsPage, DPIX, DPIY, nonTextRenderingMode, textRenderingMode, pixelFormat, backgroundColor, ppIXpsRasterizer);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -8793,26 +8929,26 @@ pub const IPrintPreviewDxgiPackageTarget = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetJobPageCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintPreviewDxgiPackageTarget,
                 countType: PageCountType,
                 count: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintPreviewDxgiPackageTarget,
                 countType: PageCountType,
                 count: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DrawPage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintPreviewDxgiPackageTarget,
                 jobPageNumber: u32,
                 pageImage: ?*IDXGISurface,
                 dpiX: f32,
                 dpiY: f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintPreviewDxgiPackageTarget,
                 jobPageNumber: u32,
                 pageImage: ?*IDXGISurface,
@@ -8821,35 +8957,36 @@ pub const IPrintPreviewDxgiPackageTarget = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         InvalidatePreview: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPrintPreviewDxgiPackageTarget,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPrintPreviewDxgiPackageTarget,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintPreviewDxgiPackageTarget_SetJobPageCount(self: *const T, countType: PageCountType, count: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintPreviewDxgiPackageTarget.VTable, self.vtable).SetJobPageCount(@ptrCast(*const IPrintPreviewDxgiPackageTarget, self), countType, count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintPreviewDxgiPackageTarget_DrawPage(self: *const T, jobPageNumber: u32, pageImage: ?*IDXGISurface, dpiX: f32, dpiY: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintPreviewDxgiPackageTarget.VTable, self.vtable).DrawPage(@ptrCast(*const IPrintPreviewDxgiPackageTarget, self), jobPageNumber, pageImage, dpiX, dpiY);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintPreviewDxgiPackageTarget_InvalidatePreview(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintPreviewDxgiPackageTarget.VTable, self.vtable).InvalidatePreview(@ptrCast(*const IPrintPreviewDxgiPackageTarget, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintPreviewDxgiPackageTarget_SetJobPageCount(self: *const T, countType: PageCountType, count: u32) HRESULT {
+                return @ptrCast(*const IPrintPreviewDxgiPackageTarget.VTable, self.vtable).SetJobPageCount(@ptrCast(*const IPrintPreviewDxgiPackageTarget, self), countType, count);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintPreviewDxgiPackageTarget_DrawPage(self: *const T, jobPageNumber: u32, pageImage: ?*IDXGISurface, dpiX: f32, dpiY: f32) HRESULT {
+                return @ptrCast(*const IPrintPreviewDxgiPackageTarget.VTable, self.vtable).DrawPage(@ptrCast(*const IPrintPreviewDxgiPackageTarget, self), jobPageNumber, pageImage, dpiX, dpiY);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPrintPreviewDxgiPackageTarget_InvalidatePreview(self: *const T) HRESULT {
+                return @ptrCast(*const IPrintPreviewDxgiPackageTarget.VTable, self.vtable).InvalidatePreview(@ptrCast(*const IPrintPreviewDxgiPackageTarget, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
-
-pub const _SPLCLIENT_INFO_2_V2 = switch(@import("../zig.zig").arch) {
+pub const _SPLCLIENT_INFO_2_V2 = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         hSplPrinter: u64,
     },
@@ -9965,10 +10102,14 @@ pub extern "winspool" fn GetCorePrinterDriversW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // This function from dll 'WINSPOOL' is being skipped because it has some sort of issue
-pub fn CorePrinterDriverInstalledA() void { @panic("this function is not working"); }
+pub fn CorePrinterDriverInstalledA() void {
+    @panic("this function is not working");
+}
 
 // This function from dll 'WINSPOOL' is being skipped because it has some sort of issue
-pub fn CorePrinterDriverInstalledW() void { @panic("this function is not working"); }
+pub fn CorePrinterDriverInstalledW() void {
+    @panic("this function is not working");
+}
 
 pub extern "winspool" fn GetPrinterDriverPackagePathA(
     pszServer: ?[*:0]const u8,
@@ -10210,8 +10351,7 @@ pub extern "winspool" fn DevQueryPrint(
     pResID: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub extern "spoolss" fn RevertToPrinterSelf(
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+pub extern "spoolss" fn RevertToPrinterSelf() callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub extern "spoolss" fn ImpersonatePrinterClient(
     hToken: ?HANDLE,
@@ -10365,7 +10505,6 @@ pub extern "spoolss" fn UpdatePrintDeviceObject(
 pub extern "spoolss" fn RemovePrintDeviceObject(
     hDeviceObject: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (103)
@@ -10583,109 +10722,109 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetPrinterDriver2 = thismodule.GetPrinterDriver2W;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const PRINTER_INFO_1 = *opaque{};
-        pub const PRINTER_INFO_2 = *opaque{};
-        pub const PRINTER_INFO_4 = *opaque{};
-        pub const PRINTER_INFO_5 = *opaque{};
-        pub const PRINTER_INFO_7 = *opaque{};
-        pub const PRINTER_INFO_8 = *opaque{};
-        pub const PRINTER_INFO_9 = *opaque{};
-        pub const JOB_INFO_1 = *opaque{};
-        pub const JOB_INFO_2 = *opaque{};
-        pub const JOB_INFO_4 = *opaque{};
-        pub const ADDJOB_INFO_1 = *opaque{};
-        pub const DRIVER_INFO_1 = *opaque{};
-        pub const DRIVER_INFO_2 = *opaque{};
-        pub const DRIVER_INFO_3 = *opaque{};
-        pub const DRIVER_INFO_4 = *opaque{};
-        pub const DRIVER_INFO_5 = *opaque{};
-        pub const DRIVER_INFO_6 = *opaque{};
-        pub const DRIVER_INFO_8 = *opaque{};
-        pub const DOC_INFO_1 = *opaque{};
-        pub const FORM_INFO_1 = *opaque{};
-        pub const FORM_INFO_2 = *opaque{};
-        pub const DOC_INFO_2 = *opaque{};
-        pub const DOC_INFO_3 = *opaque{};
-        pub const PRINTPROCESSOR_INFO_1 = *opaque{};
-        pub const PORT_INFO_1 = *opaque{};
-        pub const PORT_INFO_2 = *opaque{};
-        pub const PORT_INFO_3 = *opaque{};
-        pub const MONITOR_INFO_1 = *opaque{};
-        pub const MONITOR_INFO_2 = *opaque{};
-        pub const DATATYPES_INFO_1 = *opaque{};
-        pub const PRINTER_DEFAULTS = *opaque{};
-        pub const PRINTER_ENUM_VALUES = *opaque{};
-        pub const PROVIDOR_INFO_1 = *opaque{};
-        pub const PROVIDOR_INFO_2 = *opaque{};
-        pub const PRINTER_OPTIONS = *opaque{};
-        pub const PRINTER_CONNECTION_INFO_1 = *opaque{};
-        pub const CORE_PRINTER_DRIVER = *opaque{};
-        pub const CommonPropertySheetUI = *opaque{};
-        pub const EnumPrinters = *opaque{};
-        pub const OpenPrinter = *opaque{};
-        pub const ResetPrinter = *opaque{};
-        pub const SetJob = *opaque{};
-        pub const GetJob = *opaque{};
-        pub const EnumJobs = *opaque{};
-        pub const AddPrinter = *opaque{};
-        pub const SetPrinter = *opaque{};
-        pub const GetPrinter = *opaque{};
-        pub const AddPrinterDriver = *opaque{};
-        pub const AddPrinterDriverEx = *opaque{};
-        pub const EnumPrinterDrivers = *opaque{};
-        pub const GetPrinterDriver = *opaque{};
-        pub const GetPrinterDriverDirectory = *opaque{};
-        pub const DeletePrinterDriver = *opaque{};
-        pub const DeletePrinterDriverEx = *opaque{};
-        pub const AddPrintProcessor = *opaque{};
-        pub const EnumPrintProcessors = *opaque{};
-        pub const GetPrintProcessorDirectory = *opaque{};
-        pub const EnumPrintProcessorDatatypes = *opaque{};
-        pub const DeletePrintProcessor = *opaque{};
-        pub const StartDocPrinter = *opaque{};
-        pub const AddJob = *opaque{};
-        pub const DocumentProperties = *opaque{};
-        pub const AdvancedDocumentProperties = *opaque{};
-        pub const GetPrinterData = *opaque{};
-        pub const GetPrinterDataEx = *opaque{};
-        pub const EnumPrinterData = *opaque{};
-        pub const EnumPrinterDataEx = *opaque{};
-        pub const EnumPrinterKey = *opaque{};
-        pub const SetPrinterData = *opaque{};
-        pub const SetPrinterDataEx = *opaque{};
-        pub const DeletePrinterData = *opaque{};
-        pub const DeletePrinterDataEx = *opaque{};
-        pub const DeletePrinterKey = *opaque{};
-        pub const PrinterMessageBox = *opaque{};
-        pub const AddForm = *opaque{};
-        pub const DeleteForm = *opaque{};
-        pub const GetForm = *opaque{};
-        pub const SetForm = *opaque{};
-        pub const EnumForms = *opaque{};
-        pub const EnumMonitors = *opaque{};
-        pub const AddMonitor = *opaque{};
-        pub const DeleteMonitor = *opaque{};
-        pub const EnumPorts = *opaque{};
-        pub const AddPort = *opaque{};
-        pub const ConfigurePort = *opaque{};
-        pub const DeletePort = *opaque{};
-        pub const GetDefaultPrinter = *opaque{};
-        pub const SetDefaultPrinter = *opaque{};
-        pub const SetPort = *opaque{};
-        pub const AddPrinterConnection = *opaque{};
-        pub const DeletePrinterConnection = *opaque{};
-        pub const AddPrintProvidor = *opaque{};
-        pub const DeletePrintProvidor = *opaque{};
-        pub const IsValidDevmode = *opaque{};
-        pub const OpenPrinter2 = *opaque{};
-        pub const AddPrinterConnection2 = *opaque{};
-        pub const InstallPrinterDriverFromPackage = *opaque{};
-        pub const UploadPrinterDriverPackage = *opaque{};
-        pub const GetCorePrinterDrivers = *opaque{};
-        pub const CorePrinterDriverInstalled = *opaque{};
-        pub const GetPrinterDriverPackagePath = *opaque{};
-        pub const DeletePrinterDriverPackage = *opaque{};
-        pub const GetPrinterDriver2 = *opaque{};
+        pub const PRINTER_INFO_1 = *opaque {};
+        pub const PRINTER_INFO_2 = *opaque {};
+        pub const PRINTER_INFO_4 = *opaque {};
+        pub const PRINTER_INFO_5 = *opaque {};
+        pub const PRINTER_INFO_7 = *opaque {};
+        pub const PRINTER_INFO_8 = *opaque {};
+        pub const PRINTER_INFO_9 = *opaque {};
+        pub const JOB_INFO_1 = *opaque {};
+        pub const JOB_INFO_2 = *opaque {};
+        pub const JOB_INFO_4 = *opaque {};
+        pub const ADDJOB_INFO_1 = *opaque {};
+        pub const DRIVER_INFO_1 = *opaque {};
+        pub const DRIVER_INFO_2 = *opaque {};
+        pub const DRIVER_INFO_3 = *opaque {};
+        pub const DRIVER_INFO_4 = *opaque {};
+        pub const DRIVER_INFO_5 = *opaque {};
+        pub const DRIVER_INFO_6 = *opaque {};
+        pub const DRIVER_INFO_8 = *opaque {};
+        pub const DOC_INFO_1 = *opaque {};
+        pub const FORM_INFO_1 = *opaque {};
+        pub const FORM_INFO_2 = *opaque {};
+        pub const DOC_INFO_2 = *opaque {};
+        pub const DOC_INFO_3 = *opaque {};
+        pub const PRINTPROCESSOR_INFO_1 = *opaque {};
+        pub const PORT_INFO_1 = *opaque {};
+        pub const PORT_INFO_2 = *opaque {};
+        pub const PORT_INFO_3 = *opaque {};
+        pub const MONITOR_INFO_1 = *opaque {};
+        pub const MONITOR_INFO_2 = *opaque {};
+        pub const DATATYPES_INFO_1 = *opaque {};
+        pub const PRINTER_DEFAULTS = *opaque {};
+        pub const PRINTER_ENUM_VALUES = *opaque {};
+        pub const PROVIDOR_INFO_1 = *opaque {};
+        pub const PROVIDOR_INFO_2 = *opaque {};
+        pub const PRINTER_OPTIONS = *opaque {};
+        pub const PRINTER_CONNECTION_INFO_1 = *opaque {};
+        pub const CORE_PRINTER_DRIVER = *opaque {};
+        pub const CommonPropertySheetUI = *opaque {};
+        pub const EnumPrinters = *opaque {};
+        pub const OpenPrinter = *opaque {};
+        pub const ResetPrinter = *opaque {};
+        pub const SetJob = *opaque {};
+        pub const GetJob = *opaque {};
+        pub const EnumJobs = *opaque {};
+        pub const AddPrinter = *opaque {};
+        pub const SetPrinter = *opaque {};
+        pub const GetPrinter = *opaque {};
+        pub const AddPrinterDriver = *opaque {};
+        pub const AddPrinterDriverEx = *opaque {};
+        pub const EnumPrinterDrivers = *opaque {};
+        pub const GetPrinterDriver = *opaque {};
+        pub const GetPrinterDriverDirectory = *opaque {};
+        pub const DeletePrinterDriver = *opaque {};
+        pub const DeletePrinterDriverEx = *opaque {};
+        pub const AddPrintProcessor = *opaque {};
+        pub const EnumPrintProcessors = *opaque {};
+        pub const GetPrintProcessorDirectory = *opaque {};
+        pub const EnumPrintProcessorDatatypes = *opaque {};
+        pub const DeletePrintProcessor = *opaque {};
+        pub const StartDocPrinter = *opaque {};
+        pub const AddJob = *opaque {};
+        pub const DocumentProperties = *opaque {};
+        pub const AdvancedDocumentProperties = *opaque {};
+        pub const GetPrinterData = *opaque {};
+        pub const GetPrinterDataEx = *opaque {};
+        pub const EnumPrinterData = *opaque {};
+        pub const EnumPrinterDataEx = *opaque {};
+        pub const EnumPrinterKey = *opaque {};
+        pub const SetPrinterData = *opaque {};
+        pub const SetPrinterDataEx = *opaque {};
+        pub const DeletePrinterData = *opaque {};
+        pub const DeletePrinterDataEx = *opaque {};
+        pub const DeletePrinterKey = *opaque {};
+        pub const PrinterMessageBox = *opaque {};
+        pub const AddForm = *opaque {};
+        pub const DeleteForm = *opaque {};
+        pub const GetForm = *opaque {};
+        pub const SetForm = *opaque {};
+        pub const EnumForms = *opaque {};
+        pub const EnumMonitors = *opaque {};
+        pub const AddMonitor = *opaque {};
+        pub const DeleteMonitor = *opaque {};
+        pub const EnumPorts = *opaque {};
+        pub const AddPort = *opaque {};
+        pub const ConfigurePort = *opaque {};
+        pub const DeletePort = *opaque {};
+        pub const GetDefaultPrinter = *opaque {};
+        pub const SetDefaultPrinter = *opaque {};
+        pub const SetPort = *opaque {};
+        pub const AddPrinterConnection = *opaque {};
+        pub const DeletePrinterConnection = *opaque {};
+        pub const AddPrintProvidor = *opaque {};
+        pub const DeletePrintProvidor = *opaque {};
+        pub const IsValidDevmode = *opaque {};
+        pub const OpenPrinter2 = *opaque {};
+        pub const AddPrinterConnection2 = *opaque {};
+        pub const InstallPrinterDriverFromPackage = *opaque {};
+        pub const UploadPrinterDriverPackage = *opaque {};
+        pub const GetCorePrinterDrivers = *opaque {};
+        pub const CorePrinterDriverInstalled = *opaque {};
+        pub const GetPrinterDriverPackagePath = *opaque {};
+        pub const DeletePrinterDriverPackage = *opaque {};
+        pub const GetPrinterDriver2 = *opaque {};
     } else struct {
         pub const PRINTER_INFO_1 = @compileError("'PRINTER_INFO_1' requires that UNICODE be set to true or false in the root module");
         pub const PRINTER_INFO_2 = @compileError("'PRINTER_INFO_2' requires that UNICODE be set to true or false in the root module");
@@ -10837,18 +10976,32 @@ const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "_CPSUICALLBACK")) { _ = _CPSUICALLBACK; }
-    if (@hasDecl(@This(), "PFNCOMPROPSHEET")) { _ = PFNCOMPROPSHEET; }
-    if (@hasDecl(@This(), "PFNPROPSHEETUI")) { _ = PFNPROPSHEETUI; }
-    if (@hasDecl(@This(), "PFN_DrvGetDriverSetting")) { _ = PFN_DrvGetDriverSetting; }
-    if (@hasDecl(@This(), "PFN_DrvUpgradeRegistrySetting")) { _ = PFN_DrvUpgradeRegistrySetting; }
-    if (@hasDecl(@This(), "PFN_DrvUpdateUISetting")) { _ = PFN_DrvUpdateUISetting; }
-    if (@hasDecl(@This(), "EMFPLAYPROC")) { _ = EMFPLAYPROC; }
-    if (@hasDecl(@This(), "ROUTER_NOTIFY_CALLBACK")) { _ = ROUTER_NOTIFY_CALLBACK; }
+    if (@hasDecl(@This(), "_CPSUICALLBACK")) {
+        _ = _CPSUICALLBACK;
+    }
+    if (@hasDecl(@This(), "PFNCOMPROPSHEET")) {
+        _ = PFNCOMPROPSHEET;
+    }
+    if (@hasDecl(@This(), "PFNPROPSHEETUI")) {
+        _ = PFNPROPSHEETUI;
+    }
+    if (@hasDecl(@This(), "PFN_DrvGetDriverSetting")) {
+        _ = PFN_DrvGetDriverSetting;
+    }
+    if (@hasDecl(@This(), "PFN_DrvUpgradeRegistrySetting")) {
+        _ = PFN_DrvUpgradeRegistrySetting;
+    }
+    if (@hasDecl(@This(), "PFN_DrvUpdateUISetting")) {
+        _ = PFN_DrvUpdateUISetting;
+    }
+    if (@hasDecl(@This(), "EMFPLAYPROC")) {
+        _ = EMFPLAYPROC;
+    }
+    if (@hasDecl(@This(), "ROUTER_NOTIFY_CALLBACK")) {
+        _ = ROUTER_NOTIFY_CALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

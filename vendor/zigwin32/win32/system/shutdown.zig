@@ -121,55 +121,7 @@ pub const SHUTDOWN_REASON = enum(u32) {
         LEGACY_API: u1 = 0,
         VALID_BIT_MASK: u1 = 0,
     }) SHUTDOWN_REASON {
-        return @intToEnum(SHUTDOWN_REASON,
-              (if (o.NONE == 1) @enumToInt(SHUTDOWN_REASON.NONE) else 0)
-            | (if (o.FLAG_COMMENT_REQUIRED == 1) @enumToInt(SHUTDOWN_REASON.FLAG_COMMENT_REQUIRED) else 0)
-            | (if (o.FLAG_DIRTY_PROBLEM_ID_REQUIRED == 1) @enumToInt(SHUTDOWN_REASON.FLAG_DIRTY_PROBLEM_ID_REQUIRED) else 0)
-            | (if (o.FLAG_CLEAN_UI == 1) @enumToInt(SHUTDOWN_REASON.FLAG_CLEAN_UI) else 0)
-            | (if (o.FLAG_DIRTY_UI == 1) @enumToInt(SHUTDOWN_REASON.FLAG_DIRTY_UI) else 0)
-            | (if (o.FLAG_MOBILE_UI_RESERVED == 1) @enumToInt(SHUTDOWN_REASON.FLAG_MOBILE_UI_RESERVED) else 0)
-            | (if (o.FLAG_USER_DEFINED == 1) @enumToInt(SHUTDOWN_REASON.FLAG_USER_DEFINED) else 0)
-            | (if (o.FLAG_PLANNED == 1) @enumToInt(SHUTDOWN_REASON.FLAG_PLANNED) else 0)
-            | (if (o.MAJOR_HARDWARE == 1) @enumToInt(SHUTDOWN_REASON.MAJOR_HARDWARE) else 0)
-            | (if (o.MAJOR_OPERATINGSYSTEM == 1) @enumToInt(SHUTDOWN_REASON.MAJOR_OPERATINGSYSTEM) else 0)
-            | (if (o.MAJOR_SOFTWARE == 1) @enumToInt(SHUTDOWN_REASON.MAJOR_SOFTWARE) else 0)
-            | (if (o.MAJOR_APPLICATION == 1) @enumToInt(SHUTDOWN_REASON.MAJOR_APPLICATION) else 0)
-            | (if (o.MAJOR_SYSTEM == 1) @enumToInt(SHUTDOWN_REASON.MAJOR_SYSTEM) else 0)
-            | (if (o.MAJOR_POWER == 1) @enumToInt(SHUTDOWN_REASON.MAJOR_POWER) else 0)
-            | (if (o.MAJOR_LEGACY_API == 1) @enumToInt(SHUTDOWN_REASON.MAJOR_LEGACY_API) else 0)
-            | (if (o.MINOR_NONE == 1) @enumToInt(SHUTDOWN_REASON.MINOR_NONE) else 0)
-            | (if (o.MINOR_MAINTENANCE == 1) @enumToInt(SHUTDOWN_REASON.MINOR_MAINTENANCE) else 0)
-            | (if (o.MINOR_INSTALLATION == 1) @enumToInt(SHUTDOWN_REASON.MINOR_INSTALLATION) else 0)
-            | (if (o.MINOR_UPGRADE == 1) @enumToInt(SHUTDOWN_REASON.MINOR_UPGRADE) else 0)
-            | (if (o.MINOR_RECONFIG == 1) @enumToInt(SHUTDOWN_REASON.MINOR_RECONFIG) else 0)
-            | (if (o.MINOR_HUNG == 1) @enumToInt(SHUTDOWN_REASON.MINOR_HUNG) else 0)
-            | (if (o.MINOR_UNSTABLE == 1) @enumToInt(SHUTDOWN_REASON.MINOR_UNSTABLE) else 0)
-            | (if (o.MINOR_DISK == 1) @enumToInt(SHUTDOWN_REASON.MINOR_DISK) else 0)
-            | (if (o.MINOR_PROCESSOR == 1) @enumToInt(SHUTDOWN_REASON.MINOR_PROCESSOR) else 0)
-            | (if (o.MINOR_NETWORKCARD == 1) @enumToInt(SHUTDOWN_REASON.MINOR_NETWORKCARD) else 0)
-            | (if (o.MINOR_POWER_SUPPLY == 1) @enumToInt(SHUTDOWN_REASON.MINOR_POWER_SUPPLY) else 0)
-            | (if (o.MINOR_CORDUNPLUGGED == 1) @enumToInt(SHUTDOWN_REASON.MINOR_CORDUNPLUGGED) else 0)
-            | (if (o.MINOR_ENVIRONMENT == 1) @enumToInt(SHUTDOWN_REASON.MINOR_ENVIRONMENT) else 0)
-            | (if (o.MINOR_HARDWARE_DRIVER == 1) @enumToInt(SHUTDOWN_REASON.MINOR_HARDWARE_DRIVER) else 0)
-            | (if (o.MINOR_OTHERDRIVER == 1) @enumToInt(SHUTDOWN_REASON.MINOR_OTHERDRIVER) else 0)
-            | (if (o.MINOR_BLUESCREEN == 1) @enumToInt(SHUTDOWN_REASON.MINOR_BLUESCREEN) else 0)
-            | (if (o.MINOR_SERVICEPACK == 1) @enumToInt(SHUTDOWN_REASON.MINOR_SERVICEPACK) else 0)
-            | (if (o.MINOR_HOTFIX == 1) @enumToInt(SHUTDOWN_REASON.MINOR_HOTFIX) else 0)
-            | (if (o.MINOR_SECURITYFIX == 1) @enumToInt(SHUTDOWN_REASON.MINOR_SECURITYFIX) else 0)
-            | (if (o.MINOR_SECURITY == 1) @enumToInt(SHUTDOWN_REASON.MINOR_SECURITY) else 0)
-            | (if (o.MINOR_NETWORK_CONNECTIVITY == 1) @enumToInt(SHUTDOWN_REASON.MINOR_NETWORK_CONNECTIVITY) else 0)
-            | (if (o.MINOR_WMI == 1) @enumToInt(SHUTDOWN_REASON.MINOR_WMI) else 0)
-            | (if (o.MINOR_SERVICEPACK_UNINSTALL == 1) @enumToInt(SHUTDOWN_REASON.MINOR_SERVICEPACK_UNINSTALL) else 0)
-            | (if (o.MINOR_HOTFIX_UNINSTALL == 1) @enumToInt(SHUTDOWN_REASON.MINOR_HOTFIX_UNINSTALL) else 0)
-            | (if (o.MINOR_SECURITYFIX_UNINSTALL == 1) @enumToInt(SHUTDOWN_REASON.MINOR_SECURITYFIX_UNINSTALL) else 0)
-            | (if (o.MINOR_MMC == 1) @enumToInt(SHUTDOWN_REASON.MINOR_MMC) else 0)
-            | (if (o.MINOR_SYSTEMRESTORE == 1) @enumToInt(SHUTDOWN_REASON.MINOR_SYSTEMRESTORE) else 0)
-            | (if (o.MINOR_TERMSRV == 1) @enumToInt(SHUTDOWN_REASON.MINOR_TERMSRV) else 0)
-            | (if (o.MINOR_DC_PROMOTION == 1) @enumToInt(SHUTDOWN_REASON.MINOR_DC_PROMOTION) else 0)
-            | (if (o.MINOR_DC_DEMOTION == 1) @enumToInt(SHUTDOWN_REASON.MINOR_DC_DEMOTION) else 0)
-            | (if (o.LEGACY_API == 1) @enumToInt(SHUTDOWN_REASON.LEGACY_API) else 0)
-            | (if (o.VALID_BIT_MASK == 1) @enumToInt(SHUTDOWN_REASON.VALID_BIT_MASK) else 0)
-        );
+        return @enumFromInt(SHUTDOWN_REASON, (if (o.NONE == 1) @intFromEnum(SHUTDOWN_REASON.NONE) else 0) | (if (o.FLAG_COMMENT_REQUIRED == 1) @intFromEnum(SHUTDOWN_REASON.FLAG_COMMENT_REQUIRED) else 0) | (if (o.FLAG_DIRTY_PROBLEM_ID_REQUIRED == 1) @intFromEnum(SHUTDOWN_REASON.FLAG_DIRTY_PROBLEM_ID_REQUIRED) else 0) | (if (o.FLAG_CLEAN_UI == 1) @intFromEnum(SHUTDOWN_REASON.FLAG_CLEAN_UI) else 0) | (if (o.FLAG_DIRTY_UI == 1) @intFromEnum(SHUTDOWN_REASON.FLAG_DIRTY_UI) else 0) | (if (o.FLAG_MOBILE_UI_RESERVED == 1) @intFromEnum(SHUTDOWN_REASON.FLAG_MOBILE_UI_RESERVED) else 0) | (if (o.FLAG_USER_DEFINED == 1) @intFromEnum(SHUTDOWN_REASON.FLAG_USER_DEFINED) else 0) | (if (o.FLAG_PLANNED == 1) @intFromEnum(SHUTDOWN_REASON.FLAG_PLANNED) else 0) | (if (o.MAJOR_HARDWARE == 1) @intFromEnum(SHUTDOWN_REASON.MAJOR_HARDWARE) else 0) | (if (o.MAJOR_OPERATINGSYSTEM == 1) @intFromEnum(SHUTDOWN_REASON.MAJOR_OPERATINGSYSTEM) else 0) | (if (o.MAJOR_SOFTWARE == 1) @intFromEnum(SHUTDOWN_REASON.MAJOR_SOFTWARE) else 0) | (if (o.MAJOR_APPLICATION == 1) @intFromEnum(SHUTDOWN_REASON.MAJOR_APPLICATION) else 0) | (if (o.MAJOR_SYSTEM == 1) @intFromEnum(SHUTDOWN_REASON.MAJOR_SYSTEM) else 0) | (if (o.MAJOR_POWER == 1) @intFromEnum(SHUTDOWN_REASON.MAJOR_POWER) else 0) | (if (o.MAJOR_LEGACY_API == 1) @intFromEnum(SHUTDOWN_REASON.MAJOR_LEGACY_API) else 0) | (if (o.MINOR_NONE == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_NONE) else 0) | (if (o.MINOR_MAINTENANCE == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_MAINTENANCE) else 0) | (if (o.MINOR_INSTALLATION == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_INSTALLATION) else 0) | (if (o.MINOR_UPGRADE == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_UPGRADE) else 0) | (if (o.MINOR_RECONFIG == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_RECONFIG) else 0) | (if (o.MINOR_HUNG == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_HUNG) else 0) | (if (o.MINOR_UNSTABLE == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_UNSTABLE) else 0) | (if (o.MINOR_DISK == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_DISK) else 0) | (if (o.MINOR_PROCESSOR == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_PROCESSOR) else 0) | (if (o.MINOR_NETWORKCARD == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_NETWORKCARD) else 0) | (if (o.MINOR_POWER_SUPPLY == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_POWER_SUPPLY) else 0) | (if (o.MINOR_CORDUNPLUGGED == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_CORDUNPLUGGED) else 0) | (if (o.MINOR_ENVIRONMENT == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_ENVIRONMENT) else 0) | (if (o.MINOR_HARDWARE_DRIVER == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_HARDWARE_DRIVER) else 0) | (if (o.MINOR_OTHERDRIVER == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_OTHERDRIVER) else 0) | (if (o.MINOR_BLUESCREEN == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_BLUESCREEN) else 0) | (if (o.MINOR_SERVICEPACK == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_SERVICEPACK) else 0) | (if (o.MINOR_HOTFIX == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_HOTFIX) else 0) | (if (o.MINOR_SECURITYFIX == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_SECURITYFIX) else 0) | (if (o.MINOR_SECURITY == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_SECURITY) else 0) | (if (o.MINOR_NETWORK_CONNECTIVITY == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_NETWORK_CONNECTIVITY) else 0) | (if (o.MINOR_WMI == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_WMI) else 0) | (if (o.MINOR_SERVICEPACK_UNINSTALL == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_SERVICEPACK_UNINSTALL) else 0) | (if (o.MINOR_HOTFIX_UNINSTALL == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_HOTFIX_UNINSTALL) else 0) | (if (o.MINOR_SECURITYFIX_UNINSTALL == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_SECURITYFIX_UNINSTALL) else 0) | (if (o.MINOR_MMC == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_MMC) else 0) | (if (o.MINOR_SYSTEMRESTORE == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_SYSTEMRESTORE) else 0) | (if (o.MINOR_TERMSRV == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_TERMSRV) else 0) | (if (o.MINOR_DC_PROMOTION == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_DC_PROMOTION) else 0) | (if (o.MINOR_DC_DEMOTION == 1) @intFromEnum(SHUTDOWN_REASON.MINOR_DC_DEMOTION) else 0) | (if (o.LEGACY_API == 1) @intFromEnum(SHUTDOWN_REASON.LEGACY_API) else 0) | (if (o.VALID_BIT_MASK == 1) @intFromEnum(SHUTDOWN_REASON.VALID_BIT_MASK) else 0));
     }
 };
 pub const SHTDN_REASON_NONE = SHUTDOWN_REASON.NONE;
@@ -262,25 +214,7 @@ pub const SHUTDOWN_FLAGS = enum(u32) {
         VAIL_CONTAINER: u1 = 0,
         SYSTEM_INITIATED: u1 = 0,
     }) SHUTDOWN_FLAGS {
-        return @intToEnum(SHUTDOWN_FLAGS,
-              (if (o.FORCE_OTHERS == 1) @enumToInt(SHUTDOWN_FLAGS.FORCE_OTHERS) else 0)
-            | (if (o.FORCE_SELF == 1) @enumToInt(SHUTDOWN_FLAGS.FORCE_SELF) else 0)
-            | (if (o.RESTART == 1) @enumToInt(SHUTDOWN_FLAGS.RESTART) else 0)
-            | (if (o.POWEROFF == 1) @enumToInt(SHUTDOWN_FLAGS.POWEROFF) else 0)
-            | (if (o.NOREBOOT == 1) @enumToInt(SHUTDOWN_FLAGS.NOREBOOT) else 0)
-            | (if (o.GRACE_OVERRIDE == 1) @enumToInt(SHUTDOWN_FLAGS.GRACE_OVERRIDE) else 0)
-            | (if (o.INSTALL_UPDATES == 1) @enumToInt(SHUTDOWN_FLAGS.INSTALL_UPDATES) else 0)
-            | (if (o.RESTARTAPPS == 1) @enumToInt(SHUTDOWN_FLAGS.RESTARTAPPS) else 0)
-            | (if (o.SKIP_SVC_PRESHUTDOWN == 1) @enumToInt(SHUTDOWN_FLAGS.SKIP_SVC_PRESHUTDOWN) else 0)
-            | (if (o.HYBRID == 1) @enumToInt(SHUTDOWN_FLAGS.HYBRID) else 0)
-            | (if (o.RESTART_BOOTOPTIONS == 1) @enumToInt(SHUTDOWN_FLAGS.RESTART_BOOTOPTIONS) else 0)
-            | (if (o.SOFT_REBOOT == 1) @enumToInt(SHUTDOWN_FLAGS.SOFT_REBOOT) else 0)
-            | (if (o.MOBILE_UI == 1) @enumToInt(SHUTDOWN_FLAGS.MOBILE_UI) else 0)
-            | (if (o.ARSO == 1) @enumToInt(SHUTDOWN_FLAGS.ARSO) else 0)
-            | (if (o.CHECK_SAFE_FOR_SERVER == 1) @enumToInt(SHUTDOWN_FLAGS.CHECK_SAFE_FOR_SERVER) else 0)
-            | (if (o.VAIL_CONTAINER == 1) @enumToInt(SHUTDOWN_FLAGS.VAIL_CONTAINER) else 0)
-            | (if (o.SYSTEM_INITIATED == 1) @enumToInt(SHUTDOWN_FLAGS.SYSTEM_INITIATED) else 0)
-        );
+        return @enumFromInt(SHUTDOWN_FLAGS, (if (o.FORCE_OTHERS == 1) @intFromEnum(SHUTDOWN_FLAGS.FORCE_OTHERS) else 0) | (if (o.FORCE_SELF == 1) @intFromEnum(SHUTDOWN_FLAGS.FORCE_SELF) else 0) | (if (o.RESTART == 1) @intFromEnum(SHUTDOWN_FLAGS.RESTART) else 0) | (if (o.POWEROFF == 1) @intFromEnum(SHUTDOWN_FLAGS.POWEROFF) else 0) | (if (o.NOREBOOT == 1) @intFromEnum(SHUTDOWN_FLAGS.NOREBOOT) else 0) | (if (o.GRACE_OVERRIDE == 1) @intFromEnum(SHUTDOWN_FLAGS.GRACE_OVERRIDE) else 0) | (if (o.INSTALL_UPDATES == 1) @intFromEnum(SHUTDOWN_FLAGS.INSTALL_UPDATES) else 0) | (if (o.RESTARTAPPS == 1) @intFromEnum(SHUTDOWN_FLAGS.RESTARTAPPS) else 0) | (if (o.SKIP_SVC_PRESHUTDOWN == 1) @intFromEnum(SHUTDOWN_FLAGS.SKIP_SVC_PRESHUTDOWN) else 0) | (if (o.HYBRID == 1) @intFromEnum(SHUTDOWN_FLAGS.HYBRID) else 0) | (if (o.RESTART_BOOTOPTIONS == 1) @intFromEnum(SHUTDOWN_FLAGS.RESTART_BOOTOPTIONS) else 0) | (if (o.SOFT_REBOOT == 1) @intFromEnum(SHUTDOWN_FLAGS.SOFT_REBOOT) else 0) | (if (o.MOBILE_UI == 1) @intFromEnum(SHUTDOWN_FLAGS.MOBILE_UI) else 0) | (if (o.ARSO == 1) @intFromEnum(SHUTDOWN_FLAGS.ARSO) else 0) | (if (o.CHECK_SAFE_FOR_SERVER == 1) @intFromEnum(SHUTDOWN_FLAGS.CHECK_SAFE_FOR_SERVER) else 0) | (if (o.VAIL_CONTAINER == 1) @intFromEnum(SHUTDOWN_FLAGS.VAIL_CONTAINER) else 0) | (if (o.SYSTEM_INITIATED == 1) @intFromEnum(SHUTDOWN_FLAGS.SYSTEM_INITIATED) else 0));
     }
 };
 pub const SHUTDOWN_FORCE_OTHERS = SHUTDOWN_FLAGS.FORCE_OTHERS;
@@ -315,7 +249,6 @@ pub const EWX_POWEROFF = EXIT_WINDOWS_FLAGS.POWEROFF;
 pub const EWX_REBOOT = EXIT_WINDOWS_FLAGS.REBOOT;
 pub const EWX_RESTARTAPPS = EXIT_WINDOWS_FLAGS.RESTARTAPPS;
 pub const EWX_SHUTDOWN = EXIT_WINDOWS_FLAGS.SHUTDOWN;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (14)
@@ -398,8 +331,7 @@ pub extern "user32" fn ExitWindowsEx(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "user32" fn LockWorkStation(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "user32" fn LockWorkStation() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn ShutdownBlockReasonCreate(
@@ -419,7 +351,6 @@ pub extern "user32" fn ShutdownBlockReasonDestroy(
     hWnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (4)
 //--------------------------------------------------------------------------------
@@ -438,10 +369,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const InitiateShutdown = thismodule.InitiateShutdownW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const InitiateSystemShutdown = *opaque{};
-        pub const AbortSystemShutdown = *opaque{};
-        pub const InitiateSystemShutdownEx = *opaque{};
-        pub const InitiateShutdown = *opaque{};
+        pub const InitiateSystemShutdown = *opaque {};
+        pub const AbortSystemShutdown = *opaque {};
+        pub const InitiateSystemShutdownEx = *opaque {};
+        pub const InitiateShutdown = *opaque {};
     } else struct {
         pub const InitiateSystemShutdown = @compileError("'InitiateSystemShutdown' requires that UNICODE be set to true or false in the root module");
         pub const AbortSystemShutdown = @compileError("'AbortSystemShutdown' requires that UNICODE be set to true or false in the root module");
@@ -459,9 +390,7 @@ const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

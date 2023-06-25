@@ -52,7 +52,6 @@ pub const MCAST_LEASE_RESPONSE = extern struct {
     pAddrBuf: ?*u8,
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (7)
 //--------------------------------------------------------------------------------
@@ -62,8 +61,7 @@ pub extern "dhcpcsvc" fn McastApiStartup(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "dhcpcsvc" fn McastApiCleanup(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "dhcpcsvc" fn McastApiCleanup() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "dhcpcsvc" fn McastGenUID(
@@ -103,19 +101,14 @@ pub extern "dhcpcsvc" fn McastReleaseAddress(
     pReleaseRequest: ?*MCAST_LEASE_REQUEST,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (2)
@@ -124,9 +117,7 @@ const BOOL = @import("../foundation.zig").BOOL;
 const UNICODE_STRING = @import("../foundation.zig").UNICODE_STRING;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

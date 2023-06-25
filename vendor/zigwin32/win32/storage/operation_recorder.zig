@@ -12,9 +12,7 @@ pub const OPERATION_START_FLAGS = enum(u32) {
     pub fn initFlags(o: struct {
         D: u1 = 0,
     }) OPERATION_START_FLAGS {
-        return @intToEnum(OPERATION_START_FLAGS,
-              (if (o.D == 1) @enumToInt(OPERATION_START_FLAGS.D) else 0)
-        );
+        return @enumFromInt(OPERATION_START_FLAGS, (if (o.D == 1) @intFromEnum(OPERATION_START_FLAGS.D) else 0));
     }
 };
 pub const OPERATION_START_TRACE_CURRENT_THREAD = OPERATION_START_FLAGS.D;
@@ -25,9 +23,7 @@ pub const OPERATION_END_PARAMETERS_FLAGS = enum(u32) {
     pub fn initFlags(o: struct {
         D: u1 = 0,
     }) OPERATION_END_PARAMETERS_FLAGS {
-        return @intToEnum(OPERATION_END_PARAMETERS_FLAGS,
-              (if (o.D == 1) @enumToInt(OPERATION_END_PARAMETERS_FLAGS.D) else 0)
-        );
+        return @enumFromInt(OPERATION_END_PARAMETERS_FLAGS, (if (o.D == 1) @intFromEnum(OPERATION_END_PARAMETERS_FLAGS.D) else 0));
     }
 };
 pub const OPERATION_END_DISCARD = OPERATION_END_PARAMETERS_FLAGS.D;
@@ -44,7 +40,6 @@ pub const OPERATION_END_PARAMETERS = extern struct {
     Flags: OPERATION_END_PARAMETERS_FLAGS,
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (2)
 //--------------------------------------------------------------------------------
@@ -58,19 +53,14 @@ pub extern "advapi32" fn OperationEnd(
     OperationEndParams: ?*OPERATION_END_PARAMETERS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (1)
@@ -78,9 +68,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const BOOL = @import("../foundation.zig").BOOL;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

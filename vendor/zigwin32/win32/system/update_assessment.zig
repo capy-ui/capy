@@ -73,27 +73,28 @@ pub const IWaaSAssessor = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetOSUpdateAssessment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWaaSAssessor,
                 result: ?*OSUpdateAssessment,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWaaSAssessor,
                 result: ?*OSUpdateAssessment,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWaaSAssessor_GetOSUpdateAssessment(self: *const T, result: ?*OSUpdateAssessment) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWaaSAssessor.VTable, self.vtable).GetOSUpdateAssessment(@ptrCast(*const IWaaSAssessor, self), result);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWaaSAssessor_GetOSUpdateAssessment(self: *const T, result: ?*OSUpdateAssessment) HRESULT {
+                return @ptrCast(*const IWaaSAssessor.VTable, self.vtable).GetOSUpdateAssessment(@ptrCast(*const IWaaSAssessor, self), result);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -104,13 +105,9 @@ pub const IWaaSAssessor = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
@@ -123,9 +120,7 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

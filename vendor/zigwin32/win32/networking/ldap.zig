@@ -400,13 +400,13 @@ pub const LDAPAPIFeatureInfoW = extern struct {
 };
 
 pub const DBGPRINT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         Format: ?[*]const u8,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         Format: ?[*]const u8,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const ldapsearch = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -436,7 +436,7 @@ pub const ldapvlvinfo = extern struct {
 };
 
 pub const QUERYFORCONNECTION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         PrimaryConnection: ?*ldap,
         ReferralFromConnection: ?*ldap,
         NewDN: ?[*]u16,
@@ -446,7 +446,7 @@ pub const QUERYFORCONNECTION = switch (@import("builtin").zig_backend) {
         CurrentUserToken: ?*anyopaque,
         ConnectionToUse: ?*?*ldap,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         PrimaryConnection: ?*ldap,
         ReferralFromConnection: ?*ldap,
         NewDN: ?[*]u16,
@@ -456,10 +456,10 @@ pub const QUERYFORCONNECTION = switch (@import("builtin").zig_backend) {
         CurrentUserToken: ?*anyopaque,
         ConnectionToUse: ?*?*ldap,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const NOTIFYOFNEWCONNECTION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         PrimaryConnection: ?*ldap,
         ReferralFromConnection: ?*ldap,
         NewDN: ?[*]u16,
@@ -470,7 +470,7 @@ pub const NOTIFYOFNEWCONNECTION = switch (@import("builtin").zig_backend) {
         CurrentUser: ?*anyopaque,
         ErrorCodeFromBind: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
-    else => *const fn(
+    else => *const fn (
         PrimaryConnection: ?*ldap,
         ReferralFromConnection: ?*ldap,
         NewDN: ?[*]u16,
@@ -481,18 +481,18 @@ pub const NOTIFYOFNEWCONNECTION = switch (@import("builtin").zig_backend) {
         CurrentUser: ?*anyopaque,
         ErrorCodeFromBind: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
-} ;
+};
 
 pub const DEREFERENCECONNECTION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         PrimaryConnection: ?*ldap,
         ConnectionToDereference: ?*ldap,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         PrimaryConnection: ?*ldap,
         ConnectionToDereference: ?*ldap,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const LDAP_REFERRAL_CALLBACK = extern struct {
     SizeOfCallbacks: u32,
@@ -502,29 +502,28 @@ pub const LDAP_REFERRAL_CALLBACK = extern struct {
 };
 
 pub const QUERYCLIENTCERT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         Connection: ?*ldap,
         trusted_CAs: ?*SecPkgContext_IssuerListInfoEx,
         ppCertificate: ?*?*CERT_CONTEXT,
     ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
-    else => *const fn(
+    else => *const fn (
         Connection: ?*ldap,
         trusted_CAs: ?*SecPkgContext_IssuerListInfoEx,
         ppCertificate: ?*?*CERT_CONTEXT,
     ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
-} ;
+};
 
 pub const VERIFYSERVERCERT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         Connection: ?*ldap,
         pServerCert: ?*?*CERT_CONTEXT,
     ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
-    else => *const fn(
+    else => *const fn (
         Connection: ?*ldap,
         pServerCert: ?*?*CERT_CONTEXT,
     ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
-} ;
-
+};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (243)
@@ -2335,8 +2334,7 @@ pub extern "wldap32" fn ldap_close_extended_op(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "wldap32" fn LdapGetLastError(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "wldap32" fn LdapGetLastError() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn LdapMapErrorToWin32(
@@ -2419,7 +2417,6 @@ pub extern "wldap32" fn ber_scanf(
     fmt: ?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (14)
 //--------------------------------------------------------------------------------
@@ -2458,20 +2455,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const ldap_extended_operation_s = thismodule.ldap_extended_operation_sW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const ldapcontrol = *opaque{};
-        pub const ldapmod = *opaque{};
-        pub const ldapapiinfo = *opaque{};
-        pub const LDAPAPIFeatureInfo = *opaque{};
-        pub const ldapsortkey = *opaque{};
-        pub const ldap_sasl_bind = *opaque{};
-        pub const ldap_sasl_bind_s = *opaque{};
-        pub const ldap_check_filter = *opaque{};
-        pub const ldap_parse_extended_result = *opaque{};
-        pub const ldap_encode_sort_control = *opaque{};
-        pub const ldap_create_vlv_control = *opaque{};
-        pub const ldap_parse_vlv_control = *opaque{};
-        pub const ldap_start_tls_s = *opaque{};
-        pub const ldap_extended_operation_s = *opaque{};
+        pub const ldapcontrol = *opaque {};
+        pub const ldapmod = *opaque {};
+        pub const ldapapiinfo = *opaque {};
+        pub const LDAPAPIFeatureInfo = *opaque {};
+        pub const ldapsortkey = *opaque {};
+        pub const ldap_sasl_bind = *opaque {};
+        pub const ldap_sasl_bind_s = *opaque {};
+        pub const ldap_check_filter = *opaque {};
+        pub const ldap_parse_extended_result = *opaque {};
+        pub const ldap_encode_sort_control = *opaque {};
+        pub const ldap_create_vlv_control = *opaque {};
+        pub const ldap_parse_vlv_control = *opaque {};
+        pub const ldap_start_tls_s = *opaque {};
+        pub const ldap_extended_operation_s = *opaque {};
     } else struct {
         pub const ldapcontrol = @compileError("'ldapcontrol' requires that UNICODE be set to true or false in the root module");
         pub const ldapmod = @compileError("'ldapmod' requires that UNICODE be set to true or false in the root module");
@@ -2502,16 +2499,26 @@ const SecPkgContext_IssuerListInfoEx = @import("../security/authentication/ident
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "DBGPRINT")) { _ = DBGPRINT; }
-    if (@hasDecl(@This(), "QUERYFORCONNECTION")) { _ = QUERYFORCONNECTION; }
-    if (@hasDecl(@This(), "NOTIFYOFNEWCONNECTION")) { _ = NOTIFYOFNEWCONNECTION; }
-    if (@hasDecl(@This(), "DEREFERENCECONNECTION")) { _ = DEREFERENCECONNECTION; }
-    if (@hasDecl(@This(), "QUERYCLIENTCERT")) { _ = QUERYCLIENTCERT; }
-    if (@hasDecl(@This(), "VERIFYSERVERCERT")) { _ = VERIFYSERVERCERT; }
+    if (@hasDecl(@This(), "DBGPRINT")) {
+        _ = DBGPRINT;
+    }
+    if (@hasDecl(@This(), "QUERYFORCONNECTION")) {
+        _ = QUERYFORCONNECTION;
+    }
+    if (@hasDecl(@This(), "NOTIFYOFNEWCONNECTION")) {
+        _ = NOTIFYOFNEWCONNECTION;
+    }
+    if (@hasDecl(@This(), "DEREFERENCECONNECTION")) {
+        _ = DEREFERENCECONNECTION;
+    }
+    if (@hasDecl(@This(), "QUERYCLIENTCERT")) {
+        _ = QUERYCLIENTCERT;
+    }
+    if (@hasDecl(@This(), "VERIFYSERVERCERT")) {
+        _ = VERIFYSERVERCERT;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

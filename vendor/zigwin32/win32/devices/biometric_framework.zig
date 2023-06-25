@@ -665,33 +665,33 @@ pub const WINBIO_ASYNC_RESULT = extern struct {
 };
 
 pub const PWINBIO_ASYNC_COMPLETION_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         AsyncResult: ?*WINBIO_ASYNC_RESULT,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         AsyncResult: ?*WINBIO_ASYNC_RESULT,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PWINBIO_VERIFY_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         VerifyCallbackContext: ?*anyopaque,
         OperationStatus: HRESULT,
         UnitId: u32,
         Match: BOOLEAN,
         RejectDetail: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         VerifyCallbackContext: ?*anyopaque,
         OperationStatus: HRESULT,
         UnitId: u32,
         Match: BOOLEAN,
         RejectDetail: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PWINBIO_IDENTIFY_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         IdentifyCallbackContext: ?*anyopaque,
         OperationStatus: HRESULT,
         UnitId: u32,
@@ -699,7 +699,7 @@ pub const PWINBIO_IDENTIFY_CALLBACK = switch (@import("builtin").zig_backend) {
         SubFactor: u8,
         RejectDetail: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         IdentifyCallbackContext: ?*anyopaque,
         OperationStatus: HRESULT,
         UnitId: u32,
@@ -707,49 +707,49 @@ pub const PWINBIO_IDENTIFY_CALLBACK = switch (@import("builtin").zig_backend) {
         SubFactor: u8,
         RejectDetail: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PWINBIO_LOCATE_SENSOR_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         LocateCallbackContext: ?*anyopaque,
         OperationStatus: HRESULT,
         UnitId: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         LocateCallbackContext: ?*anyopaque,
         OperationStatus: HRESULT,
         UnitId: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PWINBIO_ENROLL_CAPTURE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         EnrollCallbackContext: ?*anyopaque,
         OperationStatus: HRESULT,
         RejectDetail: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         EnrollCallbackContext: ?*anyopaque,
         OperationStatus: HRESULT,
         RejectDetail: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PWINBIO_EVENT_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         EventCallbackContext: ?*anyopaque,
         OperationStatus: HRESULT,
         Event: ?*WINBIO_EVENT,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         EventCallbackContext: ?*anyopaque,
         OperationStatus: HRESULT,
         Event: ?*WINBIO_EVENT,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PWINBIO_CAPTURE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         CaptureCallbackContext: ?*anyopaque,
         OperationStatus: HRESULT,
         UnitId: u32,
@@ -758,7 +758,7 @@ pub const PWINBIO_CAPTURE_CALLBACK = switch (@import("builtin").zig_backend) {
         SampleSize: usize,
         RejectDetail: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         CaptureCallbackContext: ?*anyopaque,
         OperationStatus: HRESULT,
         UnitId: u32,
@@ -767,7 +767,7 @@ pub const PWINBIO_CAPTURE_CALLBACK = switch (@import("builtin").zig_backend) {
         SampleSize: usize,
         RejectDetail: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const _WINIBIO_SENSOR_CONTEXT = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -811,97 +811,190 @@ pub const WINBIO_ADAPTER_INTERFACE_VERSION = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_ATTACH_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_ATTACH_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_DETACH_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_DETACH_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_CLEAR_CONTEXT_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_CLEAR_CONTEXT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_QUERY_STATUS_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_QUERY_STATUS_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_RESET_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_RESET_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_SET_MODE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_SET_MODE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_SET_INDICATOR_STATUS_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_SET_INDICATOR_STATUS_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_GET_INDICATOR_STATUS_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_GET_INDICATOR_STATUS_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_START_CAPTURE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_START_CAPTURE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_FINISH_CAPTURE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_FINISH_CAPTURE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_EXPORT_SENSOR_DATA_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_EXPORT_SENSOR_DATA_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_CANCEL_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_CANCEL_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_PUSH_DATA_TO_ENGINE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_PUSH_DATA_TO_ENGINE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_CONTROL_UNIT_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_CONTROL_UNIT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_CONTROL_UNIT_PRIVILEGED_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_CONTROL_UNIT_PRIVILEGED_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_NOTIFY_POWER_CHANGE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_NOTIFY_POWER_CHANGE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_PIPELINE_INIT_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_PIPELINE_INIT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_PIPELINE_CLEANUP_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_PIPELINE_CLEANUP_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_ACTIVATE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_ACTIVATE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_DEACTIVATE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_DEACTIVATE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_QUERY_EXTENDED_INFO_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_QUERY_EXTENDED_INFO_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_QUERY_CALIBRATION_FORMATS_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_QUERY_CALIBRATION_FORMATS_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_SET_CALIBRATION_FORMAT_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_SET_CALIBRATION_FORMAT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_ACCEPT_CALIBRATION_DATA_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_ACCEPT_CALIBRATION_DATA_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_ASYNC_IMPORT_RAW_BUFFER_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_ASYNC_IMPORT_RAW_BUFFER_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_ASYNC_IMPORT_SECURE_BUFFER_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_ASYNC_IMPORT_SECURE_BUFFER_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_QUERY_PRIVATE_SENSOR_TYPE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_QUERY_PRIVATE_SENSOR_TYPE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_CONNECT_SECURE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_CONNECT_SECURE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_START_CAPTURE_EX_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_START_CAPTURE_EX_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_START_NOTIFY_WAKE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_START_NOTIFY_WAKE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_FINISH_NOTIFY_WAKE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_SENSOR_FINISH_NOTIFY_WAKE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 pub const WINBIO_SENSOR_INTERFACE = extern struct {
     Version: WINBIO_ADAPTER_INTERFACE_VERSION,
@@ -942,136 +1035,259 @@ pub const WINBIO_SENSOR_INTERFACE = extern struct {
 };
 
 pub const PWINBIO_QUERY_SENSOR_INTERFACE_FN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         SensorInterface: ?*?*WINBIO_SENSOR_INTERFACE,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         SensorInterface: ?*?*WINBIO_SENSOR_INTERFACE,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_ATTACH_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_ATTACH_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_DETACH_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_DETACH_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_CLEAR_CONTEXT_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_CLEAR_CONTEXT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_QUERY_PREFERRED_FORMAT_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_QUERY_PREFERRED_FORMAT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_QUERY_INDEX_VECTOR_SIZE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_QUERY_INDEX_VECTOR_SIZE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_QUERY_HASH_ALGORITHMS_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_QUERY_HASH_ALGORITHMS_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_SET_HASH_ALGORITHM_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_SET_HASH_ALGORITHM_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_QUERY_SAMPLE_HINT_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_QUERY_SAMPLE_HINT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_ACCEPT_SAMPLE_DATA_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_ACCEPT_SAMPLE_DATA_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_EXPORT_ENGINE_DATA_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_EXPORT_ENGINE_DATA_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_VERIFY_FEATURE_SET_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_VERIFY_FEATURE_SET_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_IDENTIFY_FEATURE_SET_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_IDENTIFY_FEATURE_SET_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_CREATE_ENROLLMENT_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_CREATE_ENROLLMENT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_UPDATE_ENROLLMENT_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_UPDATE_ENROLLMENT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_GET_ENROLLMENT_STATUS_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_GET_ENROLLMENT_STATUS_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_GET_ENROLLMENT_HASH_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_GET_ENROLLMENT_HASH_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_CHECK_FOR_DUPLICATE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_CHECK_FOR_DUPLICATE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_COMMIT_ENROLLMENT_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_COMMIT_ENROLLMENT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_DISCARD_ENROLLMENT_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_DISCARD_ENROLLMENT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_CONTROL_UNIT_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_CONTROL_UNIT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_CONTROL_UNIT_PRIVILEGED_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_CONTROL_UNIT_PRIVILEGED_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_NOTIFY_POWER_CHANGE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_NOTIFY_POWER_CHANGE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_RESERVED_1_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_RESERVED_1_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_PIPELINE_INIT_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_PIPELINE_INIT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_PIPELINE_CLEANUP_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_PIPELINE_CLEANUP_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_ACTIVATE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_ACTIVATE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_DEACTIVATE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_DEACTIVATE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_QUERY_EXTENDED_INFO_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_QUERY_EXTENDED_INFO_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_IDENTIFY_ALL_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_IDENTIFY_ALL_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_SET_ENROLLMENT_SELECTOR_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_SET_ENROLLMENT_SELECTOR_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_SET_ENROLLMENT_PARAMETERS_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_SET_ENROLLMENT_PARAMETERS_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_QUERY_EXTENDED_ENROLLMENT_STATUS_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_QUERY_EXTENDED_ENROLLMENT_STATUS_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_REFRESH_CACHE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_REFRESH_CACHE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_SELECT_CALIBRATION_FORMAT_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_SELECT_CALIBRATION_FORMAT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_QUERY_CALIBRATION_DATA_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_QUERY_CALIBRATION_DATA_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_SET_ACCOUNT_POLICY_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_SET_ACCOUNT_POLICY_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_CREATE_KEY_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_CREATE_KEY_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_IDENTIFY_FEATURE_SET_SECURE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_IDENTIFY_FEATURE_SET_SECURE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_ACCEPT_PRIVATE_SENSOR_TYPE_INFO_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_ACCEPT_PRIVATE_SENSOR_TYPE_INFO_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_CREATE_ENROLLMENT_AUTHENTICATED_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_CREATE_ENROLLMENT_AUTHENTICATED_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_IDENTIFY_FEATURE_SET_AUTHENTICATED_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_ENGINE_IDENTIFY_FEATURE_SET_AUTHENTICATED_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 pub const WINBIO_ENGINE_INTERFACE = extern struct {
     Version: WINBIO_ADAPTER_INTERFACE_VERSION,
@@ -1122,103 +1338,193 @@ pub const WINBIO_ENGINE_INTERFACE = extern struct {
 };
 
 pub const PWINBIO_QUERY_ENGINE_INTERFACE_FN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         EngineInterface: ?*?*WINBIO_ENGINE_INTERFACE,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         EngineInterface: ?*?*WINBIO_ENGINE_INTERFACE,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_ATTACH_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_ATTACH_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_DETACH_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_DETACH_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_CLEAR_CONTEXT_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_CLEAR_CONTEXT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_CREATE_DATABASE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_CREATE_DATABASE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_ERASE_DATABASE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_ERASE_DATABASE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_OPEN_DATABASE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_OPEN_DATABASE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_CLOSE_DATABASE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_CLOSE_DATABASE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_GET_DATA_FORMAT_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_GET_DATA_FORMAT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_GET_DATABASE_SIZE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_GET_DATABASE_SIZE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_ADD_RECORD_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_ADD_RECORD_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_DELETE_RECORD_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_DELETE_RECORD_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_QUERY_BY_SUBJECT_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_QUERY_BY_SUBJECT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_QUERY_BY_CONTENT_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_QUERY_BY_CONTENT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_GET_RECORD_COUNT_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_GET_RECORD_COUNT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_FIRST_RECORD_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_FIRST_RECORD_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_NEXT_RECORD_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_NEXT_RECORD_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_GET_CURRENT_RECORD_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_GET_CURRENT_RECORD_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_CONTROL_UNIT_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_CONTROL_UNIT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_CONTROL_UNIT_PRIVILEGED_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_CONTROL_UNIT_PRIVILEGED_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_NOTIFY_POWER_CHANGE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_NOTIFY_POWER_CHANGE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_PIPELINE_INIT_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_PIPELINE_INIT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_PIPELINE_CLEANUP_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_PIPELINE_CLEANUP_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_ACTIVATE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_ACTIVATE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_DEACTIVATE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_DEACTIVATE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_QUERY_EXTENDED_INFO_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_QUERY_EXTENDED_INFO_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_NOTIFY_DATABASE_CHANGE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_NOTIFY_DATABASE_CHANGE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_RESERVED_1_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_RESERVED_1_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_RESERVED_2_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_RESERVED_2_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_UPDATE_RECORD_BEGIN_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_UPDATE_RECORD_BEGIN_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_UPDATE_RECORD_COMMIT_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_STORAGE_UPDATE_RECORD_COMMIT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 pub const WINBIO_STORAGE_INTERFACE = extern struct {
     Version: WINBIO_ADAPTER_INTERFACE_VERSION,
@@ -1258,67 +1564,121 @@ pub const WINBIO_STORAGE_INTERFACE = extern struct {
 };
 
 pub const PWINBIO_QUERY_STORAGE_INTERFACE_FN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         StorageInterface: ?*?*WINBIO_STORAGE_INTERFACE,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         StorageInterface: ?*?*WINBIO_STORAGE_INTERFACE,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_SET_UNIT_STATUS_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_FRAMEWORK_SET_UNIT_STATUS_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_VSM_CACHE_CLEAR_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_FRAMEWORK_VSM_CACHE_CLEAR_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_BEGIN_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_BEGIN_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_NEXT_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_NEXT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_END_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_END_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_BEGIN_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_BEGIN_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_NEXT_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_NEXT_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_END_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_END_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_1_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_1_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_2_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_2_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_3_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_3_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_ALLOCATE_MEMORY_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_FRAMEWORK_ALLOCATE_MEMORY_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_FREE_MEMORY_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_FRAMEWORK_FREE_MEMORY_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_GET_PROPERTY_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_FRAMEWORK_GET_PROPERTY_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_LOCK_AND_VALIDATE_SECURE_BUFFER_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_FRAMEWORK_LOCK_AND_VALIDATE_SECURE_BUFFER_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_RELEASE_SECURE_BUFFER_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_FRAMEWORK_RELEASE_SECURE_BUFFER_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_VSM_QUERY_AUTHORIZED_ENROLLMENTS_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_FRAMEWORK_VSM_QUERY_AUTHORIZED_ENROLLMENTS_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_VSM_DECRYPT_SAMPLE_FN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIBIO_FRAMEWORK_VSM_DECRYPT_SAMPLE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 pub const WINBIO_FRAMEWORK_INTERFACE = extern struct {
     Version: WINBIO_ADAPTER_INTERFACE_VERSION,
@@ -1468,7 +1828,6 @@ pub const WINBIO_NOTIFY_WAKE = extern struct {
     WinBioHresult: HRESULT,
     Reason: u32,
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (54)
@@ -1818,12 +2177,10 @@ pub extern "winbio" fn WinBioRemoveCredential(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "winbio" fn WinBioRemoveAllCredentials(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub extern "winbio" fn WinBioRemoveAllCredentials() callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "winbio" fn WinBioRemoveAllDomainCredentials(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub extern "winbio" fn WinBioRemoveAllDomainCredentials() callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioGetCredentialState(
@@ -1862,26 +2219,19 @@ pub extern "winbio" fn WinBioGetDomainLogonSetting(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "winbio" fn WinBioAcquireFocus(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub extern "winbio" fn WinBioAcquireFocus() callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
-pub extern "winbio" fn WinBioReleaseFocus(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
+pub extern "winbio" fn WinBioReleaseFocus() callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (9)
@@ -1898,20 +2248,38 @@ const RECT = @import("../foundation.zig").RECT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PWINBIO_ASYNC_COMPLETION_CALLBACK")) { _ = PWINBIO_ASYNC_COMPLETION_CALLBACK; }
-    if (@hasDecl(@This(), "PWINBIO_VERIFY_CALLBACK")) { _ = PWINBIO_VERIFY_CALLBACK; }
-    if (@hasDecl(@This(), "PWINBIO_IDENTIFY_CALLBACK")) { _ = PWINBIO_IDENTIFY_CALLBACK; }
-    if (@hasDecl(@This(), "PWINBIO_LOCATE_SENSOR_CALLBACK")) { _ = PWINBIO_LOCATE_SENSOR_CALLBACK; }
-    if (@hasDecl(@This(), "PWINBIO_ENROLL_CAPTURE_CALLBACK")) { _ = PWINBIO_ENROLL_CAPTURE_CALLBACK; }
-    if (@hasDecl(@This(), "PWINBIO_EVENT_CALLBACK")) { _ = PWINBIO_EVENT_CALLBACK; }
-    if (@hasDecl(@This(), "PWINBIO_CAPTURE_CALLBACK")) { _ = PWINBIO_CAPTURE_CALLBACK; }
-    if (@hasDecl(@This(), "PWINBIO_QUERY_SENSOR_INTERFACE_FN")) { _ = PWINBIO_QUERY_SENSOR_INTERFACE_FN; }
-    if (@hasDecl(@This(), "PWINBIO_QUERY_ENGINE_INTERFACE_FN")) { _ = PWINBIO_QUERY_ENGINE_INTERFACE_FN; }
-    if (@hasDecl(@This(), "PWINBIO_QUERY_STORAGE_INTERFACE_FN")) { _ = PWINBIO_QUERY_STORAGE_INTERFACE_FN; }
+    if (@hasDecl(@This(), "PWINBIO_ASYNC_COMPLETION_CALLBACK")) {
+        _ = PWINBIO_ASYNC_COMPLETION_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PWINBIO_VERIFY_CALLBACK")) {
+        _ = PWINBIO_VERIFY_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PWINBIO_IDENTIFY_CALLBACK")) {
+        _ = PWINBIO_IDENTIFY_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PWINBIO_LOCATE_SENSOR_CALLBACK")) {
+        _ = PWINBIO_LOCATE_SENSOR_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PWINBIO_ENROLL_CAPTURE_CALLBACK")) {
+        _ = PWINBIO_ENROLL_CAPTURE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PWINBIO_EVENT_CALLBACK")) {
+        _ = PWINBIO_EVENT_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PWINBIO_CAPTURE_CALLBACK")) {
+        _ = PWINBIO_CAPTURE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PWINBIO_QUERY_SENSOR_INTERFACE_FN")) {
+        _ = PWINBIO_QUERY_SENSOR_INTERFACE_FN;
+    }
+    if (@hasDecl(@This(), "PWINBIO_QUERY_ENGINE_INTERFACE_FN")) {
+        _ = PWINBIO_QUERY_ENGINE_INTERFACE_FN;
+    }
+    if (@hasDecl(@This(), "PWINBIO_QUERY_STORAGE_INTERFACE_FN")) {
+        _ = PWINBIO_QUERY_STORAGE_INTERFACE_FN;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

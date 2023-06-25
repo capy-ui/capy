@@ -54,10 +54,7 @@ pub const WER_FILE = enum(u32) {
         ANONYMOUS_DATA: u1 = 0,
         DELETE_WHEN_DONE: u1 = 0,
     }) WER_FILE {
-        return @intToEnum(WER_FILE,
-              (if (o.ANONYMOUS_DATA == 1) @enumToInt(WER_FILE.ANONYMOUS_DATA) else 0)
-            | (if (o.DELETE_WHEN_DONE == 1) @enumToInt(WER_FILE.DELETE_WHEN_DONE) else 0)
-        );
+        return @enumFromInt(WER_FILE, (if (o.ANONYMOUS_DATA == 1) @intFromEnum(WER_FILE.ANONYMOUS_DATA) else 0) | (if (o.DELETE_WHEN_DONE == 1) @intFromEnum(WER_FILE.DELETE_WHEN_DONE) else 0));
     }
 };
 pub const WER_FILE_ANONYMOUS_DATA = WER_FILE.ANONYMOUS_DATA;
@@ -95,22 +92,7 @@ pub const WER_SUBMIT_FLAGS = enum(u32) {
         ARCHIVE_PARAMETERS_ONLY: u1 = 0,
         REPORT_MACHINE_ID: u1 = 0,
     }) WER_SUBMIT_FLAGS {
-        return @intToEnum(WER_SUBMIT_FLAGS,
-              (if (o.ADD_REGISTERED_DATA == 1) @enumToInt(WER_SUBMIT_FLAGS.ADD_REGISTERED_DATA) else 0)
-            | (if (o.HONOR_RECOVERY == 1) @enumToInt(WER_SUBMIT_FLAGS.HONOR_RECOVERY) else 0)
-            | (if (o.HONOR_RESTART == 1) @enumToInt(WER_SUBMIT_FLAGS.HONOR_RESTART) else 0)
-            | (if (o.NO_ARCHIVE == 1) @enumToInt(WER_SUBMIT_FLAGS.NO_ARCHIVE) else 0)
-            | (if (o.NO_CLOSE_UI == 1) @enumToInt(WER_SUBMIT_FLAGS.NO_CLOSE_UI) else 0)
-            | (if (o.NO_QUEUE == 1) @enumToInt(WER_SUBMIT_FLAGS.NO_QUEUE) else 0)
-            | (if (o.OUTOFPROCESS == 1) @enumToInt(WER_SUBMIT_FLAGS.OUTOFPROCESS) else 0)
-            | (if (o.OUTOFPROCESS_ASYNC == 1) @enumToInt(WER_SUBMIT_FLAGS.OUTOFPROCESS_ASYNC) else 0)
-            | (if (o.QUEUE == 1) @enumToInt(WER_SUBMIT_FLAGS.QUEUE) else 0)
-            | (if (o.SHOW_DEBUG == 1) @enumToInt(WER_SUBMIT_FLAGS.SHOW_DEBUG) else 0)
-            | (if (o.START_MINIMIZED == 1) @enumToInt(WER_SUBMIT_FLAGS.START_MINIMIZED) else 0)
-            | (if (o.BYPASS_DATA_THROTTLING == 1) @enumToInt(WER_SUBMIT_FLAGS.BYPASS_DATA_THROTTLING) else 0)
-            | (if (o.ARCHIVE_PARAMETERS_ONLY == 1) @enumToInt(WER_SUBMIT_FLAGS.ARCHIVE_PARAMETERS_ONLY) else 0)
-            | (if (o.REPORT_MACHINE_ID == 1) @enumToInt(WER_SUBMIT_FLAGS.REPORT_MACHINE_ID) else 0)
-        );
+        return @enumFromInt(WER_SUBMIT_FLAGS, (if (o.ADD_REGISTERED_DATA == 1) @intFromEnum(WER_SUBMIT_FLAGS.ADD_REGISTERED_DATA) else 0) | (if (o.HONOR_RECOVERY == 1) @intFromEnum(WER_SUBMIT_FLAGS.HONOR_RECOVERY) else 0) | (if (o.HONOR_RESTART == 1) @intFromEnum(WER_SUBMIT_FLAGS.HONOR_RESTART) else 0) | (if (o.NO_ARCHIVE == 1) @intFromEnum(WER_SUBMIT_FLAGS.NO_ARCHIVE) else 0) | (if (o.NO_CLOSE_UI == 1) @intFromEnum(WER_SUBMIT_FLAGS.NO_CLOSE_UI) else 0) | (if (o.NO_QUEUE == 1) @intFromEnum(WER_SUBMIT_FLAGS.NO_QUEUE) else 0) | (if (o.OUTOFPROCESS == 1) @intFromEnum(WER_SUBMIT_FLAGS.OUTOFPROCESS) else 0) | (if (o.OUTOFPROCESS_ASYNC == 1) @intFromEnum(WER_SUBMIT_FLAGS.OUTOFPROCESS_ASYNC) else 0) | (if (o.QUEUE == 1) @intFromEnum(WER_SUBMIT_FLAGS.QUEUE) else 0) | (if (o.SHOW_DEBUG == 1) @intFromEnum(WER_SUBMIT_FLAGS.SHOW_DEBUG) else 0) | (if (o.START_MINIMIZED == 1) @intFromEnum(WER_SUBMIT_FLAGS.START_MINIMIZED) else 0) | (if (o.BYPASS_DATA_THROTTLING == 1) @intFromEnum(WER_SUBMIT_FLAGS.BYPASS_DATA_THROTTLING) else 0) | (if (o.ARCHIVE_PARAMETERS_ONLY == 1) @intFromEnum(WER_SUBMIT_FLAGS.ARCHIVE_PARAMETERS_ONLY) else 0) | (if (o.REPORT_MACHINE_ID == 1) @intFromEnum(WER_SUBMIT_FLAGS.REPORT_MACHINE_ID) else 0));
     }
 };
 pub const WER_SUBMIT_ADD_REGISTERED_DATA = WER_SUBMIT_FLAGS.ADD_REGISTERED_DATA;
@@ -142,13 +124,7 @@ pub const WER_FAULT_REPORTING = enum(u32) {
         FLAG_QUEUE_UPLOAD: u1 = 0,
         ALWAYS_SHOW_UI: u1 = 0,
     }) WER_FAULT_REPORTING {
-        return @intToEnum(WER_FAULT_REPORTING,
-              (if (o.FLAG_DISABLE_THREAD_SUSPENSION == 1) @enumToInt(WER_FAULT_REPORTING.FLAG_DISABLE_THREAD_SUSPENSION) else 0)
-            | (if (o.FLAG_NOHEAP == 1) @enumToInt(WER_FAULT_REPORTING.FLAG_NOHEAP) else 0)
-            | (if (o.FLAG_QUEUE == 1) @enumToInt(WER_FAULT_REPORTING.FLAG_QUEUE) else 0)
-            | (if (o.FLAG_QUEUE_UPLOAD == 1) @enumToInt(WER_FAULT_REPORTING.FLAG_QUEUE_UPLOAD) else 0)
-            | (if (o.ALWAYS_SHOW_UI == 1) @enumToInt(WER_FAULT_REPORTING.ALWAYS_SHOW_UI) else 0)
-        );
+        return @enumFromInt(WER_FAULT_REPORTING, (if (o.FLAG_DISABLE_THREAD_SUSPENSION == 1) @intFromEnum(WER_FAULT_REPORTING.FLAG_DISABLE_THREAD_SUSPENSION) else 0) | (if (o.FLAG_NOHEAP == 1) @intFromEnum(WER_FAULT_REPORTING.FLAG_NOHEAP) else 0) | (if (o.FLAG_QUEUE == 1) @intFromEnum(WER_FAULT_REPORTING.FLAG_QUEUE) else 0) | (if (o.FLAG_QUEUE_UPLOAD == 1) @intFromEnum(WER_FAULT_REPORTING.FLAG_QUEUE_UPLOAD) else 0) | (if (o.ALWAYS_SHOW_UI == 1) @intFromEnum(WER_FAULT_REPORTING.ALWAYS_SHOW_UI) else 0));
     }
 };
 pub const WER_FAULT_REPORTING_FLAG_DISABLE_THREAD_SUSPENSION = WER_FAULT_REPORTING.FLAG_DISABLE_THREAD_SUSPENSION;
@@ -415,7 +391,7 @@ pub const WER_RUNTIME_EXCEPTION_INFORMATION = extern struct {
 };
 
 pub const PFN_WER_RUNTIME_EXCEPTION_EVENT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pContext: ?*anyopaque,
         pExceptionInformation: ?*const WER_RUNTIME_EXCEPTION_INFORMATION,
         pbOwnershipClaimed: ?*BOOL,
@@ -423,7 +399,7 @@ pub const PFN_WER_RUNTIME_EXCEPTION_EVENT = switch (@import("builtin").zig_backe
         pchSize: ?*u32,
         pdwSignatureCount: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         pContext: ?*anyopaque,
         pExceptionInformation: ?*const WER_RUNTIME_EXCEPTION_INFORMATION,
         pbOwnershipClaimed: ?*BOOL,
@@ -431,10 +407,10 @@ pub const PFN_WER_RUNTIME_EXCEPTION_EVENT = switch (@import("builtin").zig_backe
         pchSize: ?*u32,
         pdwSignatureCount: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PFN_WER_RUNTIME_EXCEPTION_EVENT_SIGNATURE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pContext: ?*anyopaque,
         pExceptionInformation: ?*const WER_RUNTIME_EXCEPTION_INFORMATION,
         dwIndex: u32,
@@ -443,7 +419,7 @@ pub const PFN_WER_RUNTIME_EXCEPTION_EVENT_SIGNATURE = switch (@import("builtin")
         pwszValue: [*:0]u16,
         pchValue: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         pContext: ?*anyopaque,
         pExceptionInformation: ?*const WER_RUNTIME_EXCEPTION_INFORMATION,
         dwIndex: u32,
@@ -452,10 +428,10 @@ pub const PFN_WER_RUNTIME_EXCEPTION_EVENT_SIGNATURE = switch (@import("builtin")
         pwszValue: [*:0]u16,
         pchValue: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const PFN_WER_RUNTIME_EXCEPTION_DEBUGGER_LAUNCH = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pContext: ?*anyopaque,
         pExceptionInformation: ?*const WER_RUNTIME_EXCEPTION_INFORMATION,
         pbIsCustomDebugger: ?*BOOL,
@@ -463,7 +439,7 @@ pub const PFN_WER_RUNTIME_EXCEPTION_DEBUGGER_LAUNCH = switch (@import("builtin")
         pchDebuggerLaunch: ?*u32,
         pbIsDebuggerAutolaunch: ?*BOOL,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         pContext: ?*anyopaque,
         pExceptionInformation: ?*const WER_RUNTIME_EXCEPTION_INFORMATION,
         pbIsCustomDebugger: ?*BOOL,
@@ -471,7 +447,7 @@ pub const PFN_WER_RUNTIME_EXCEPTION_DEBUGGER_LAUNCH = switch (@import("builtin")
         pchDebuggerLaunch: ?*u32,
         pbIsDebuggerAutolaunch: ?*BOOL,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const REPORT_STORE_TYPES = enum(i32) {
     USER_ARCHIVE = 0,
@@ -564,34 +540,33 @@ pub const frrvErrNoMemory = EFaultRepRetVal.ErrNoMemory;
 pub const frrvErrDoubleFault = EFaultRepRetVal.ErrDoubleFault;
 
 pub const pfn_REPORTFAULT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*EXCEPTION_POINTERS,
         param1: u32,
     ) callconv(@import("std").os.windows.WINAPI) EFaultRepRetVal,
-    else => *const fn(
+    else => *const fn (
         param0: ?*EXCEPTION_POINTERS,
         param1: u32,
     ) callconv(@import("std").os.windows.WINAPI) EFaultRepRetVal,
-} ;
+};
 
 pub const pfn_ADDEREXCLUDEDAPPLICATIONA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?[*:0]const u8,
     ) callconv(@import("std").os.windows.WINAPI) EFaultRepRetVal,
-    else => *const fn(
+    else => *const fn (
         param0: ?[*:0]const u8,
     ) callconv(@import("std").os.windows.WINAPI) EFaultRepRetVal,
-} ;
+};
 
 pub const pfn_ADDEREXCLUDEDAPPLICATIONW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?[*:0]const u16,
     ) callconv(@import("std").os.windows.WINAPI) EFaultRepRetVal,
-    else => *const fn(
+    else => *const fn (
         param0: ?[*:0]const u16,
     ) callconv(@import("std").os.windows.WINAPI) EFaultRepRetVal,
-} ;
-
+};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (41)
@@ -713,8 +688,7 @@ pub extern "kernel32" fn WerRegisterAppLocalDump(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
-pub extern "kernel32" fn WerUnregisterAppLocalDump(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub extern "kernel32" fn WerUnregisterAppLocalDump() callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn WerSetFlags(
@@ -792,8 +766,7 @@ pub extern "wer" fn WerFreeString(
     pwszStr: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "wer" fn WerStorePurge(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub extern "wer" fn WerStorePurge() callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "wer" fn WerStoreGetReportCount(
     hReportStore: HREPORTSTORE,
@@ -840,7 +813,6 @@ pub extern "faultrep" fn WerReportHang(
     pwzHungApplicationName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (2)
 //--------------------------------------------------------------------------------
@@ -855,8 +827,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AddERExcludedApplication = thismodule.AddERExcludedApplicationW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const pfn_ADDEREXCLUDEDAPPLICATION = *opaque{};
-        pub const AddERExcludedApplication = *opaque{};
+        pub const pfn_ADDEREXCLUDEDAPPLICATION = *opaque {};
+        pub const AddERExcludedApplication = *opaque {};
     } else struct {
         pub const pfn_ADDEREXCLUDEDAPPLICATION = @compileError("'pfn_ADDEREXCLUDEDAPPLICATION' requires that UNICODE be set to true or false in the root module");
         pub const AddERExcludedApplication = @compileError("'AddERExcludedApplication' requires that UNICODE be set to true or false in the root module");
@@ -879,16 +851,26 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFN_WER_RUNTIME_EXCEPTION_EVENT")) { _ = PFN_WER_RUNTIME_EXCEPTION_EVENT; }
-    if (@hasDecl(@This(), "PFN_WER_RUNTIME_EXCEPTION_EVENT_SIGNATURE")) { _ = PFN_WER_RUNTIME_EXCEPTION_EVENT_SIGNATURE; }
-    if (@hasDecl(@This(), "PFN_WER_RUNTIME_EXCEPTION_DEBUGGER_LAUNCH")) { _ = PFN_WER_RUNTIME_EXCEPTION_DEBUGGER_LAUNCH; }
-    if (@hasDecl(@This(), "pfn_REPORTFAULT")) { _ = pfn_REPORTFAULT; }
-    if (@hasDecl(@This(), "pfn_ADDEREXCLUDEDAPPLICATIONA")) { _ = pfn_ADDEREXCLUDEDAPPLICATIONA; }
-    if (@hasDecl(@This(), "pfn_ADDEREXCLUDEDAPPLICATIONW")) { _ = pfn_ADDEREXCLUDEDAPPLICATIONW; }
+    if (@hasDecl(@This(), "PFN_WER_RUNTIME_EXCEPTION_EVENT")) {
+        _ = PFN_WER_RUNTIME_EXCEPTION_EVENT;
+    }
+    if (@hasDecl(@This(), "PFN_WER_RUNTIME_EXCEPTION_EVENT_SIGNATURE")) {
+        _ = PFN_WER_RUNTIME_EXCEPTION_EVENT_SIGNATURE;
+    }
+    if (@hasDecl(@This(), "PFN_WER_RUNTIME_EXCEPTION_DEBUGGER_LAUNCH")) {
+        _ = PFN_WER_RUNTIME_EXCEPTION_DEBUGGER_LAUNCH;
+    }
+    if (@hasDecl(@This(), "pfn_REPORTFAULT")) {
+        _ = pfn_REPORTFAULT;
+    }
+    if (@hasDecl(@This(), "pfn_ADDEREXCLUDEDAPPLICATIONA")) {
+        _ = pfn_ADDEREXCLUDEDAPPLICATIONA;
+    }
+    if (@hasDecl(@This(), "pfn_ADDEREXCLUDEDAPPLICATIONW")) {
+        _ = pfn_ADDEREXCLUDEDAPPLICATIONW;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

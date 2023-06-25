@@ -153,18 +153,7 @@ pub const CRED_FLAGS = enum(u32) {
         VALID_FLAGS: u1 = 0,
         VALID_INPUT_FLAGS: u1 = 0,
     }) CRED_FLAGS {
-        return @intToEnum(CRED_FLAGS,
-              (if (o.PASSWORD_FOR_CERT == 1) @enumToInt(CRED_FLAGS.PASSWORD_FOR_CERT) else 0)
-            | (if (o.PROMPT_NOW == 1) @enumToInt(CRED_FLAGS.PROMPT_NOW) else 0)
-            | (if (o.USERNAME_TARGET == 1) @enumToInt(CRED_FLAGS.USERNAME_TARGET) else 0)
-            | (if (o.OWF_CRED_BLOB == 1) @enumToInt(CRED_FLAGS.OWF_CRED_BLOB) else 0)
-            | (if (o.REQUIRE_CONFIRMATION == 1) @enumToInt(CRED_FLAGS.REQUIRE_CONFIRMATION) else 0)
-            | (if (o.WILDCARD_MATCH == 1) @enumToInt(CRED_FLAGS.WILDCARD_MATCH) else 0)
-            | (if (o.VSM_PROTECTED == 1) @enumToInt(CRED_FLAGS.VSM_PROTECTED) else 0)
-            | (if (o.NGC_CERT == 1) @enumToInt(CRED_FLAGS.NGC_CERT) else 0)
-            | (if (o.VALID_FLAGS == 1) @enumToInt(CRED_FLAGS.VALID_FLAGS) else 0)
-            | (if (o.VALID_INPUT_FLAGS == 1) @enumToInt(CRED_FLAGS.VALID_INPUT_FLAGS) else 0)
-        );
+        return @enumFromInt(CRED_FLAGS, (if (o.PASSWORD_FOR_CERT == 1) @intFromEnum(CRED_FLAGS.PASSWORD_FOR_CERT) else 0) | (if (o.PROMPT_NOW == 1) @intFromEnum(CRED_FLAGS.PROMPT_NOW) else 0) | (if (o.USERNAME_TARGET == 1) @intFromEnum(CRED_FLAGS.USERNAME_TARGET) else 0) | (if (o.OWF_CRED_BLOB == 1) @intFromEnum(CRED_FLAGS.OWF_CRED_BLOB) else 0) | (if (o.REQUIRE_CONFIRMATION == 1) @intFromEnum(CRED_FLAGS.REQUIRE_CONFIRMATION) else 0) | (if (o.WILDCARD_MATCH == 1) @intFromEnum(CRED_FLAGS.WILDCARD_MATCH) else 0) | (if (o.VSM_PROTECTED == 1) @intFromEnum(CRED_FLAGS.VSM_PROTECTED) else 0) | (if (o.NGC_CERT == 1) @intFromEnum(CRED_FLAGS.NGC_CERT) else 0) | (if (o.VALID_FLAGS == 1) @intFromEnum(CRED_FLAGS.VALID_FLAGS) else 0) | (if (o.VALID_INPUT_FLAGS == 1) @intFromEnum(CRED_FLAGS.VALID_INPUT_FLAGS) else 0));
     }
 };
 pub const CRED_FLAGS_PASSWORD_FOR_CERT = CRED_FLAGS.PASSWORD_FOR_CERT;
@@ -246,25 +235,7 @@ pub const CREDUI_FLAGS = enum(u32) {
         USERNAME_TARGET_CREDENTIALS: u1 = 0,
         VALIDATE_USERNAME: u1 = 0,
     }) CREDUI_FLAGS {
-        return @intToEnum(CREDUI_FLAGS,
-              (if (o.ALWAYS_SHOW_UI == 1) @enumToInt(CREDUI_FLAGS.ALWAYS_SHOW_UI) else 0)
-            | (if (o.COMPLETE_USERNAME == 1) @enumToInt(CREDUI_FLAGS.COMPLETE_USERNAME) else 0)
-            | (if (o.DO_NOT_PERSIST == 1) @enumToInt(CREDUI_FLAGS.DO_NOT_PERSIST) else 0)
-            | (if (o.EXCLUDE_CERTIFICATES == 1) @enumToInt(CREDUI_FLAGS.EXCLUDE_CERTIFICATES) else 0)
-            | (if (o.EXPECT_CONFIRMATION == 1) @enumToInt(CREDUI_FLAGS.EXPECT_CONFIRMATION) else 0)
-            | (if (o.GENERIC_CREDENTIALS == 1) @enumToInt(CREDUI_FLAGS.GENERIC_CREDENTIALS) else 0)
-            | (if (o.INCORRECT_PASSWORD == 1) @enumToInt(CREDUI_FLAGS.INCORRECT_PASSWORD) else 0)
-            | (if (o.KEEP_USERNAME == 1) @enumToInt(CREDUI_FLAGS.KEEP_USERNAME) else 0)
-            | (if (o.PASSWORD_ONLY_OK == 1) @enumToInt(CREDUI_FLAGS.PASSWORD_ONLY_OK) else 0)
-            | (if (o.PERSIST == 1) @enumToInt(CREDUI_FLAGS.PERSIST) else 0)
-            | (if (o.REQUEST_ADMINISTRATOR == 1) @enumToInt(CREDUI_FLAGS.REQUEST_ADMINISTRATOR) else 0)
-            | (if (o.REQUIRE_CERTIFICATE == 1) @enumToInt(CREDUI_FLAGS.REQUIRE_CERTIFICATE) else 0)
-            | (if (o.REQUIRE_SMARTCARD == 1) @enumToInt(CREDUI_FLAGS.REQUIRE_SMARTCARD) else 0)
-            | (if (o.SERVER_CREDENTIAL == 1) @enumToInt(CREDUI_FLAGS.SERVER_CREDENTIAL) else 0)
-            | (if (o.SHOW_SAVE_CHECK_BOX == 1) @enumToInt(CREDUI_FLAGS.SHOW_SAVE_CHECK_BOX) else 0)
-            | (if (o.USERNAME_TARGET_CREDENTIALS == 1) @enumToInt(CREDUI_FLAGS.USERNAME_TARGET_CREDENTIALS) else 0)
-            | (if (o.VALIDATE_USERNAME == 1) @enumToInt(CREDUI_FLAGS.VALIDATE_USERNAME) else 0)
-        );
+        return @enumFromInt(CREDUI_FLAGS, (if (o.ALWAYS_SHOW_UI == 1) @intFromEnum(CREDUI_FLAGS.ALWAYS_SHOW_UI) else 0) | (if (o.COMPLETE_USERNAME == 1) @intFromEnum(CREDUI_FLAGS.COMPLETE_USERNAME) else 0) | (if (o.DO_NOT_PERSIST == 1) @intFromEnum(CREDUI_FLAGS.DO_NOT_PERSIST) else 0) | (if (o.EXCLUDE_CERTIFICATES == 1) @intFromEnum(CREDUI_FLAGS.EXCLUDE_CERTIFICATES) else 0) | (if (o.EXPECT_CONFIRMATION == 1) @intFromEnum(CREDUI_FLAGS.EXPECT_CONFIRMATION) else 0) | (if (o.GENERIC_CREDENTIALS == 1) @intFromEnum(CREDUI_FLAGS.GENERIC_CREDENTIALS) else 0) | (if (o.INCORRECT_PASSWORD == 1) @intFromEnum(CREDUI_FLAGS.INCORRECT_PASSWORD) else 0) | (if (o.KEEP_USERNAME == 1) @intFromEnum(CREDUI_FLAGS.KEEP_USERNAME) else 0) | (if (o.PASSWORD_ONLY_OK == 1) @intFromEnum(CREDUI_FLAGS.PASSWORD_ONLY_OK) else 0) | (if (o.PERSIST == 1) @intFromEnum(CREDUI_FLAGS.PERSIST) else 0) | (if (o.REQUEST_ADMINISTRATOR == 1) @intFromEnum(CREDUI_FLAGS.REQUEST_ADMINISTRATOR) else 0) | (if (o.REQUIRE_CERTIFICATE == 1) @intFromEnum(CREDUI_FLAGS.REQUIRE_CERTIFICATE) else 0) | (if (o.REQUIRE_SMARTCARD == 1) @intFromEnum(CREDUI_FLAGS.REQUIRE_SMARTCARD) else 0) | (if (o.SERVER_CREDENTIAL == 1) @intFromEnum(CREDUI_FLAGS.SERVER_CREDENTIAL) else 0) | (if (o.SHOW_SAVE_CHECK_BOX == 1) @intFromEnum(CREDUI_FLAGS.SHOW_SAVE_CHECK_BOX) else 0) | (if (o.USERNAME_TARGET_CREDENTIALS == 1) @intFromEnum(CREDUI_FLAGS.USERNAME_TARGET_CREDENTIALS) else 0) | (if (o.VALIDATE_USERNAME == 1) @intFromEnum(CREDUI_FLAGS.VALIDATE_USERNAME) else 0));
     }
 };
 pub const CREDUI_FLAGS_ALWAYS_SHOW_UI = CREDUI_FLAGS.ALWAYS_SHOW_UI;
@@ -298,9 +269,7 @@ pub const CRED_ENUMERATE_FLAGS = enum(u32) {
     pub fn initFlags(o: struct {
         S: u1 = 0,
     }) CRED_ENUMERATE_FLAGS {
-        return @intToEnum(CRED_ENUMERATE_FLAGS,
-              (if (o.S == 1) @enumToInt(CRED_ENUMERATE_FLAGS.S) else 0)
-        );
+        return @enumFromInt(CRED_ENUMERATE_FLAGS, (if (o.S == 1) @intFromEnum(CRED_ENUMERATE_FLAGS.S) else 0));
     }
 };
 pub const CRED_ENUMERATE_ALL_CREDENTIALS = CRED_ENUMERATE_FLAGS.S;
@@ -327,17 +296,7 @@ pub const CREDUIWIN_FLAGS = enum(u32) {
         PREPROMPTING: u1 = 0,
         PACK_32_WOW: u1 = 0,
     }) CREDUIWIN_FLAGS {
-        return @intToEnum(CREDUIWIN_FLAGS,
-              (if (o.GENERIC == 1) @enumToInt(CREDUIWIN_FLAGS.GENERIC) else 0)
-            | (if (o.CHECKBOX == 1) @enumToInt(CREDUIWIN_FLAGS.CHECKBOX) else 0)
-            | (if (o.AUTHPACKAGE_ONLY == 1) @enumToInt(CREDUIWIN_FLAGS.AUTHPACKAGE_ONLY) else 0)
-            | (if (o.IN_CRED_ONLY == 1) @enumToInt(CREDUIWIN_FLAGS.IN_CRED_ONLY) else 0)
-            | (if (o.ENUMERATE_ADMINS == 1) @enumToInt(CREDUIWIN_FLAGS.ENUMERATE_ADMINS) else 0)
-            | (if (o.ENUMERATE_CURRENT_USER == 1) @enumToInt(CREDUIWIN_FLAGS.ENUMERATE_CURRENT_USER) else 0)
-            | (if (o.SECURE_PROMPT == 1) @enumToInt(CREDUIWIN_FLAGS.SECURE_PROMPT) else 0)
-            | (if (o.PREPROMPTING == 1) @enumToInt(CREDUIWIN_FLAGS.PREPROMPTING) else 0)
-            | (if (o.PACK_32_WOW == 1) @enumToInt(CREDUIWIN_FLAGS.PACK_32_WOW) else 0)
-        );
+        return @enumFromInt(CREDUIWIN_FLAGS, (if (o.GENERIC == 1) @intFromEnum(CREDUIWIN_FLAGS.GENERIC) else 0) | (if (o.CHECKBOX == 1) @intFromEnum(CREDUIWIN_FLAGS.CHECKBOX) else 0) | (if (o.AUTHPACKAGE_ONLY == 1) @intFromEnum(CREDUIWIN_FLAGS.AUTHPACKAGE_ONLY) else 0) | (if (o.IN_CRED_ONLY == 1) @intFromEnum(CREDUIWIN_FLAGS.IN_CRED_ONLY) else 0) | (if (o.ENUMERATE_ADMINS == 1) @intFromEnum(CREDUIWIN_FLAGS.ENUMERATE_ADMINS) else 0) | (if (o.ENUMERATE_CURRENT_USER == 1) @intFromEnum(CREDUIWIN_FLAGS.ENUMERATE_CURRENT_USER) else 0) | (if (o.SECURE_PROMPT == 1) @intFromEnum(CREDUIWIN_FLAGS.SECURE_PROMPT) else 0) | (if (o.PREPROMPTING == 1) @intFromEnum(CREDUIWIN_FLAGS.PREPROMPTING) else 0) | (if (o.PACK_32_WOW == 1) @intFromEnum(CREDUIWIN_FLAGS.PACK_32_WOW) else 0));
     }
 };
 pub const CREDUIWIN_GENERIC = CREDUIWIN_FLAGS.GENERIC;
@@ -387,12 +346,7 @@ pub const CRED_PACK_FLAGS = enum(u32) {
         GENERIC_CREDENTIALS: u1 = 0,
         ID_PROVIDER_CREDENTIALS: u1 = 0,
     }) CRED_PACK_FLAGS {
-        return @intToEnum(CRED_PACK_FLAGS,
-              (if (o.PROTECTED_CREDENTIALS == 1) @enumToInt(CRED_PACK_FLAGS.PROTECTED_CREDENTIALS) else 0)
-            | (if (o.WOW_BUFFER == 1) @enumToInt(CRED_PACK_FLAGS.WOW_BUFFER) else 0)
-            | (if (o.GENERIC_CREDENTIALS == 1) @enumToInt(CRED_PACK_FLAGS.GENERIC_CREDENTIALS) else 0)
-            | (if (o.ID_PROVIDER_CREDENTIALS == 1) @enumToInt(CRED_PACK_FLAGS.ID_PROVIDER_CREDENTIALS) else 0)
-        );
+        return @enumFromInt(CRED_PACK_FLAGS, (if (o.PROTECTED_CREDENTIALS == 1) @intFromEnum(CRED_PACK_FLAGS.PROTECTED_CREDENTIALS) else 0) | (if (o.WOW_BUFFER == 1) @intFromEnum(CRED_PACK_FLAGS.WOW_BUFFER) else 0) | (if (o.GENERIC_CREDENTIALS == 1) @intFromEnum(CRED_PACK_FLAGS.GENERIC_CREDENTIALS) else 0) | (if (o.ID_PROVIDER_CREDENTIALS == 1) @intFromEnum(CRED_PACK_FLAGS.ID_PROVIDER_CREDENTIALS) else 0));
     }
 };
 pub const CRED_PACK_PROTECTED_CREDENTIALS = CRED_PACK_FLAGS.PROTECTED_CREDENTIALS;
@@ -420,16 +374,7 @@ pub const KeyCredentialManagerOperationErrorStates = enum(u32) {
         HardwareFailure: u1 = 0,
         PinExistsFailure: u1 = 0,
     }) KeyCredentialManagerOperationErrorStates {
-        return @intToEnum(KeyCredentialManagerOperationErrorStates,
-              (if (o.None == 1) @enumToInt(KeyCredentialManagerOperationErrorStates.None) else 0)
-            | (if (o.DeviceJoinFailure == 1) @enumToInt(KeyCredentialManagerOperationErrorStates.DeviceJoinFailure) else 0)
-            | (if (o.TokenFailure == 1) @enumToInt(KeyCredentialManagerOperationErrorStates.TokenFailure) else 0)
-            | (if (o.CertificateFailure == 1) @enumToInt(KeyCredentialManagerOperationErrorStates.CertificateFailure) else 0)
-            | (if (o.RemoteSessionFailure == 1) @enumToInt(KeyCredentialManagerOperationErrorStates.RemoteSessionFailure) else 0)
-            | (if (o.PolicyFailure == 1) @enumToInt(KeyCredentialManagerOperationErrorStates.PolicyFailure) else 0)
-            | (if (o.HardwareFailure == 1) @enumToInt(KeyCredentialManagerOperationErrorStates.HardwareFailure) else 0)
-            | (if (o.PinExistsFailure == 1) @enumToInt(KeyCredentialManagerOperationErrorStates.PinExistsFailure) else 0)
-        );
+        return @enumFromInt(KeyCredentialManagerOperationErrorStates, (if (o.None == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.None) else 0) | (if (o.DeviceJoinFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.DeviceJoinFailure) else 0) | (if (o.TokenFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.TokenFailure) else 0) | (if (o.CertificateFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.CertificateFailure) else 0) | (if (o.RemoteSessionFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.RemoteSessionFailure) else 0) | (if (o.PolicyFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.PolicyFailure) else 0) | (if (o.HardwareFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.HardwareFailure) else 0) | (if (o.PinExistsFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.PinExistsFailure) else 0));
     }
 };
 pub const KeyCredentialManagerOperationErrorStateNone = KeyCredentialManagerOperationErrorStates.None;
@@ -635,60 +580,60 @@ pub const SCARD_ATRMASK = extern struct {
 };
 
 pub const LPOCNCONNPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: usize,
         param1: ?PSTR,
         param2: ?PSTR,
         param3: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) usize,
-    else => *const fn(
+    else => *const fn (
         param0: usize,
         param1: ?PSTR,
         param2: ?PSTR,
         param3: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) usize,
-} ;
+};
 
 pub const LPOCNCONNPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: usize,
         param1: ?PWSTR,
         param2: ?PWSTR,
         param3: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) usize,
-    else => *const fn(
+    else => *const fn (
         param0: usize,
         param1: ?PWSTR,
         param2: ?PWSTR,
         param3: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) usize,
-} ;
+};
 
 pub const LPOCNCHKPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: usize,
         param1: usize,
         param2: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         param0: usize,
         param1: usize,
         param2: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const LPOCNDSCPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: usize,
         param1: usize,
         param2: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         param0: usize,
         param1: usize,
         param2: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const OPENCARD_SEARCH_CRITERIAA = extern struct {
     dwStructSize: u32,
@@ -886,7 +831,6 @@ pub const CREDSSP_CRED_EX = extern struct {
     Reserved: u32,
     Cred: CREDSSP_CRED,
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (127)
@@ -1572,12 +1516,10 @@ pub extern "winscard" fn SCardFreeMemory(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardAccessStartedEvent(
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+pub extern "winscard" fn SCardAccessStartedEvent() callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "winscard" fn SCardReleaseStartedEvent(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "winscard" fn SCardReleaseStartedEvent() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "winscard" fn SCardLocateCardsA(
@@ -1781,8 +1723,7 @@ pub extern "scarddlg" fn GetOpenCardNameW(
     param0: ?*OPENCARDNAMEW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "scarddlg" fn SCardDlgExtendedError(
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub extern "scarddlg" fn SCardDlgExtendedError() callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "winscard" fn SCardReadCacheA(
@@ -1897,7 +1838,6 @@ pub extern "winscard" fn SCardAudit(
     hContext: usize,
     dwEvent: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (59)
@@ -2027,65 +1967,65 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SCardListReadersWithDeviceInstanceId = thismodule.SCardListReadersWithDeviceInstanceIdW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const CREDENTIAL_ATTRIBUTE = *opaque{};
-        pub const CREDENTIAL = *opaque{};
-        pub const CREDENTIAL_TARGET_INFORMATION = *opaque{};
-        pub const CREDUI_INFO = *opaque{};
-        pub const SCARD_READERSTATE = *opaque{};
-        pub const LPOCNCONNPROC = *opaque{};
-        pub const OPENCARD_SEARCH_CRITERIA = *opaque{};
-        pub const OPENCARDNAME_EX = *opaque{};
-        pub const OPENCARDNAME = *opaque{};
-        pub const CredWrite = *opaque{};
-        pub const CredRead = *opaque{};
-        pub const CredEnumerate = *opaque{};
-        pub const CredWriteDomainCredentials = *opaque{};
-        pub const CredReadDomainCredentials = *opaque{};
-        pub const CredDelete = *opaque{};
-        pub const CredRename = *opaque{};
-        pub const CredGetTargetInfo = *opaque{};
-        pub const CredMarshalCredential = *opaque{};
-        pub const CredUnmarshalCredential = *opaque{};
-        pub const CredIsMarshaledCredential = *opaque{};
-        pub const CredUnPackAuthenticationBuffer = *opaque{};
-        pub const CredPackAuthenticationBuffer = *opaque{};
-        pub const CredProtect = *opaque{};
-        pub const CredUnprotect = *opaque{};
-        pub const CredIsProtected = *opaque{};
-        pub const CredFindBestCredential = *opaque{};
-        pub const CredUIPromptForCredentials = *opaque{};
-        pub const CredUIPromptForWindowsCredentials = *opaque{};
-        pub const CredUIParseUserName = *opaque{};
-        pub const CredUICmdLinePromptForCredentials = *opaque{};
-        pub const CredUIConfirmCredentials = *opaque{};
-        pub const SCardListReaderGroups = *opaque{};
-        pub const SCardListReaders = *opaque{};
-        pub const SCardListCards = *opaque{};
-        pub const SCardListInterfaces = *opaque{};
-        pub const SCardGetProviderId = *opaque{};
-        pub const SCardGetCardTypeProviderName = *opaque{};
-        pub const SCardIntroduceReaderGroup = *opaque{};
-        pub const SCardForgetReaderGroup = *opaque{};
-        pub const SCardIntroduceReader = *opaque{};
-        pub const SCardForgetReader = *opaque{};
-        pub const SCardAddReaderToGroup = *opaque{};
-        pub const SCardRemoveReaderFromGroup = *opaque{};
-        pub const SCardIntroduceCardType = *opaque{};
-        pub const SCardSetCardTypeProviderName = *opaque{};
-        pub const SCardForgetCardType = *opaque{};
-        pub const SCardLocateCards = *opaque{};
-        pub const SCardLocateCardsByATR = *opaque{};
-        pub const SCardGetStatusChange = *opaque{};
-        pub const SCardConnect = *opaque{};
-        pub const SCardStatus = *opaque{};
-        pub const SCardUIDlgSelectCard = *opaque{};
-        pub const GetOpenCardName = *opaque{};
-        pub const SCardReadCache = *opaque{};
-        pub const SCardWriteCache = *opaque{};
-        pub const SCardGetReaderIcon = *opaque{};
-        pub const SCardGetDeviceTypeId = *opaque{};
-        pub const SCardGetReaderDeviceInstanceId = *opaque{};
-        pub const SCardListReadersWithDeviceInstanceId = *opaque{};
+        pub const CREDENTIAL_ATTRIBUTE = *opaque {};
+        pub const CREDENTIAL = *opaque {};
+        pub const CREDENTIAL_TARGET_INFORMATION = *opaque {};
+        pub const CREDUI_INFO = *opaque {};
+        pub const SCARD_READERSTATE = *opaque {};
+        pub const LPOCNCONNPROC = *opaque {};
+        pub const OPENCARD_SEARCH_CRITERIA = *opaque {};
+        pub const OPENCARDNAME_EX = *opaque {};
+        pub const OPENCARDNAME = *opaque {};
+        pub const CredWrite = *opaque {};
+        pub const CredRead = *opaque {};
+        pub const CredEnumerate = *opaque {};
+        pub const CredWriteDomainCredentials = *opaque {};
+        pub const CredReadDomainCredentials = *opaque {};
+        pub const CredDelete = *opaque {};
+        pub const CredRename = *opaque {};
+        pub const CredGetTargetInfo = *opaque {};
+        pub const CredMarshalCredential = *opaque {};
+        pub const CredUnmarshalCredential = *opaque {};
+        pub const CredIsMarshaledCredential = *opaque {};
+        pub const CredUnPackAuthenticationBuffer = *opaque {};
+        pub const CredPackAuthenticationBuffer = *opaque {};
+        pub const CredProtect = *opaque {};
+        pub const CredUnprotect = *opaque {};
+        pub const CredIsProtected = *opaque {};
+        pub const CredFindBestCredential = *opaque {};
+        pub const CredUIPromptForCredentials = *opaque {};
+        pub const CredUIPromptForWindowsCredentials = *opaque {};
+        pub const CredUIParseUserName = *opaque {};
+        pub const CredUICmdLinePromptForCredentials = *opaque {};
+        pub const CredUIConfirmCredentials = *opaque {};
+        pub const SCardListReaderGroups = *opaque {};
+        pub const SCardListReaders = *opaque {};
+        pub const SCardListCards = *opaque {};
+        pub const SCardListInterfaces = *opaque {};
+        pub const SCardGetProviderId = *opaque {};
+        pub const SCardGetCardTypeProviderName = *opaque {};
+        pub const SCardIntroduceReaderGroup = *opaque {};
+        pub const SCardForgetReaderGroup = *opaque {};
+        pub const SCardIntroduceReader = *opaque {};
+        pub const SCardForgetReader = *opaque {};
+        pub const SCardAddReaderToGroup = *opaque {};
+        pub const SCardRemoveReaderFromGroup = *opaque {};
+        pub const SCardIntroduceCardType = *opaque {};
+        pub const SCardSetCardTypeProviderName = *opaque {};
+        pub const SCardForgetCardType = *opaque {};
+        pub const SCardLocateCards = *opaque {};
+        pub const SCardLocateCardsByATR = *opaque {};
+        pub const SCardGetStatusChange = *opaque {};
+        pub const SCardConnect = *opaque {};
+        pub const SCardStatus = *opaque {};
+        pub const SCardUIDlgSelectCard = *opaque {};
+        pub const GetOpenCardName = *opaque {};
+        pub const SCardReadCache = *opaque {};
+        pub const SCardWriteCache = *opaque {};
+        pub const SCardGetReaderIcon = *opaque {};
+        pub const SCardGetDeviceTypeId = *opaque {};
+        pub const SCardGetReaderDeviceInstanceId = *opaque {};
+        pub const SCardListReadersWithDeviceInstanceId = *opaque {};
     } else struct {
         pub const CREDENTIAL_ATTRIBUTE = @compileError("'CREDENTIAL_ATTRIBUTE' requires that UNICODE be set to true or false in the root module");
         pub const CREDENTIAL = @compileError("'CREDENTIAL' requires that UNICODE be set to true or false in the root module");
@@ -2165,14 +2105,20 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "LPOCNCONNPROCA")) { _ = LPOCNCONNPROCA; }
-    if (@hasDecl(@This(), "LPOCNCONNPROCW")) { _ = LPOCNCONNPROCW; }
-    if (@hasDecl(@This(), "LPOCNCHKPROC")) { _ = LPOCNCHKPROC; }
-    if (@hasDecl(@This(), "LPOCNDSCPROC")) { _ = LPOCNDSCPROC; }
+    if (@hasDecl(@This(), "LPOCNCONNPROCA")) {
+        _ = LPOCNCONNPROCA;
+    }
+    if (@hasDecl(@This(), "LPOCNCONNPROCW")) {
+        _ = LPOCNCONNPROCW;
+    }
+    if (@hasDecl(@This(), "LPOCNCHKPROC")) {
+        _ = LPOCNCHKPROC;
+    }
+    if (@hasDecl(@This(), "LPOCNDSCPROC")) {
+        _ = LPOCNDSCPROC;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

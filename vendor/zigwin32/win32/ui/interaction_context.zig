@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (25)
 //--------------------------------------------------------------------------------
-pub const HINTERACTIONCONTEXT = *opaque{};
+pub const HINTERACTIONCONTEXT = *opaque {};
 
 pub const INTERACTION_ID = enum(i32) {
     NONE = 0,
@@ -43,14 +43,7 @@ pub const INTERACTION_FLAGS = enum(u32) {
         INERTIA: u1 = 0,
         MAX: u1 = 0,
     }) INTERACTION_FLAGS {
-        return @intToEnum(INTERACTION_FLAGS,
-              (if (o.NONE == 1) @enumToInt(INTERACTION_FLAGS.NONE) else 0)
-            | (if (o.BEGIN == 1) @enumToInt(INTERACTION_FLAGS.BEGIN) else 0)
-            | (if (o.END == 1) @enumToInt(INTERACTION_FLAGS.END) else 0)
-            | (if (o.CANCEL == 1) @enumToInt(INTERACTION_FLAGS.CANCEL) else 0)
-            | (if (o.INERTIA == 1) @enumToInt(INTERACTION_FLAGS.INERTIA) else 0)
-            | (if (o.MAX == 1) @enumToInt(INTERACTION_FLAGS.MAX) else 0)
-        );
+        return @enumFromInt(INTERACTION_FLAGS, (if (o.NONE == 1) @intFromEnum(INTERACTION_FLAGS.NONE) else 0) | (if (o.BEGIN == 1) @intFromEnum(INTERACTION_FLAGS.BEGIN) else 0) | (if (o.END == 1) @intFromEnum(INTERACTION_FLAGS.END) else 0) | (if (o.CANCEL == 1) @intFromEnum(INTERACTION_FLAGS.CANCEL) else 0) | (if (o.INERTIA == 1) @intFromEnum(INTERACTION_FLAGS.INERTIA) else 0) | (if (o.MAX == 1) @intFromEnum(INTERACTION_FLAGS.MAX) else 0));
     }
 };
 pub const INTERACTION_FLAG_NONE = INTERACTION_FLAGS.NONE;
@@ -106,22 +99,7 @@ pub const INTERACTION_CONFIGURATION_FLAGS = enum(u32) {
         MANIPULATION_MULTIPLE_FINGER_PANNING: u1 = 0,
         MAX: u1 = 0,
     }) INTERACTION_CONFIGURATION_FLAGS {
-        return @intToEnum(INTERACTION_CONFIGURATION_FLAGS,
-              (if (o.NONE == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.NONE) else 0)
-            | (if (o.MANIPULATION == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION) else 0)
-            | (if (o.MANIPULATION_TRANSLATION_X == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_TRANSLATION_X) else 0)
-            | (if (o.MANIPULATION_TRANSLATION_Y == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_TRANSLATION_Y) else 0)
-            | (if (o.MANIPULATION_ROTATION == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_ROTATION) else 0)
-            | (if (o.MANIPULATION_SCALING == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_SCALING) else 0)
-            | (if (o.MANIPULATION_TRANSLATION_INERTIA == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_TRANSLATION_INERTIA) else 0)
-            | (if (o.MANIPULATION_ROTATION_INERTIA == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_ROTATION_INERTIA) else 0)
-            | (if (o.MANIPULATION_SCALING_INERTIA == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_SCALING_INERTIA) else 0)
-            | (if (o.MANIPULATION_RAILS_X == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_RAILS_X) else 0)
-            | (if (o.MANIPULATION_RAILS_Y == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_RAILS_Y) else 0)
-            | (if (o.MANIPULATION_EXACT == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_EXACT) else 0)
-            | (if (o.MANIPULATION_MULTIPLE_FINGER_PANNING == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_MULTIPLE_FINGER_PANNING) else 0)
-            | (if (o.MAX == 1) @enumToInt(INTERACTION_CONFIGURATION_FLAGS.MAX) else 0)
-        );
+        return @enumFromInt(INTERACTION_CONFIGURATION_FLAGS, (if (o.NONE == 1) @intFromEnum(INTERACTION_CONFIGURATION_FLAGS.NONE) else 0) | (if (o.MANIPULATION == 1) @intFromEnum(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION) else 0) | (if (o.MANIPULATION_TRANSLATION_X == 1) @intFromEnum(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_TRANSLATION_X) else 0) | (if (o.MANIPULATION_TRANSLATION_Y == 1) @intFromEnum(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_TRANSLATION_Y) else 0) | (if (o.MANIPULATION_ROTATION == 1) @intFromEnum(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_ROTATION) else 0) | (if (o.MANIPULATION_SCALING == 1) @intFromEnum(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_SCALING) else 0) | (if (o.MANIPULATION_TRANSLATION_INERTIA == 1) @intFromEnum(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_TRANSLATION_INERTIA) else 0) | (if (o.MANIPULATION_ROTATION_INERTIA == 1) @intFromEnum(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_ROTATION_INERTIA) else 0) | (if (o.MANIPULATION_SCALING_INERTIA == 1) @intFromEnum(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_SCALING_INERTIA) else 0) | (if (o.MANIPULATION_RAILS_X == 1) @intFromEnum(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_RAILS_X) else 0) | (if (o.MANIPULATION_RAILS_Y == 1) @intFromEnum(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_RAILS_Y) else 0) | (if (o.MANIPULATION_EXACT == 1) @intFromEnum(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_EXACT) else 0) | (if (o.MANIPULATION_MULTIPLE_FINGER_PANNING == 1) @intFromEnum(INTERACTION_CONFIGURATION_FLAGS.MANIPULATION_MULTIPLE_FINGER_PANNING) else 0) | (if (o.MAX == 1) @intFromEnum(INTERACTION_CONFIGURATION_FLAGS.MAX) else 0));
     }
 };
 pub const INTERACTION_CONFIGURATION_FLAG_NONE = INTERACTION_CONFIGURATION_FLAGS.NONE;
@@ -221,13 +199,7 @@ pub const CROSS_SLIDE_FLAGS = enum(u32) {
         REARRANGE: u1 = 0,
         MAX: u1 = 0,
     }) CROSS_SLIDE_FLAGS {
-        return @intToEnum(CROSS_SLIDE_FLAGS,
-              (if (o.NONE == 1) @enumToInt(CROSS_SLIDE_FLAGS.NONE) else 0)
-            | (if (o.SELECT == 1) @enumToInt(CROSS_SLIDE_FLAGS.SELECT) else 0)
-            | (if (o.SPEED_BUMP == 1) @enumToInt(CROSS_SLIDE_FLAGS.SPEED_BUMP) else 0)
-            | (if (o.REARRANGE == 1) @enumToInt(CROSS_SLIDE_FLAGS.REARRANGE) else 0)
-            | (if (o.MAX == 1) @enumToInt(CROSS_SLIDE_FLAGS.MAX) else 0)
-        );
+        return @enumFromInt(CROSS_SLIDE_FLAGS, (if (o.NONE == 1) @intFromEnum(CROSS_SLIDE_FLAGS.NONE) else 0) | (if (o.SELECT == 1) @intFromEnum(CROSS_SLIDE_FLAGS.SELECT) else 0) | (if (o.SPEED_BUMP == 1) @intFromEnum(CROSS_SLIDE_FLAGS.SPEED_BUMP) else 0) | (if (o.REARRANGE == 1) @intFromEnum(CROSS_SLIDE_FLAGS.REARRANGE) else 0) | (if (o.MAX == 1) @intFromEnum(CROSS_SLIDE_FLAGS.MAX) else 0));
     }
 };
 pub const CROSS_SLIDE_FLAGS_NONE = CROSS_SLIDE_FLAGS.NONE;
@@ -364,27 +336,26 @@ pub const CROSS_SLIDE_PARAMETER = extern struct {
 };
 
 pub const INTERACTION_CONTEXT_OUTPUT_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         clientData: ?*anyopaque,
         output: ?*const INTERACTION_CONTEXT_OUTPUT,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         clientData: ?*anyopaque,
         output: ?*const INTERACTION_CONTEXT_OUTPUT,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const INTERACTION_CONTEXT_OUTPUT_CALLBACK2 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         clientData: ?*anyopaque,
         output: ?*const INTERACTION_CONTEXT_OUTPUT2,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         clientData: ?*anyopaque,
         output: ?*const INTERACTION_CONTEXT_OUTPUT2,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
-
+};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (30)
@@ -580,19 +551,14 @@ pub extern "ninput" fn SetPivotInteractionContext(
     radius: f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (3)
@@ -603,12 +569,14 @@ const POINTER_INPUT_TYPE = @import("../ui/windows_and_messaging.zig").POINTER_IN
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "INTERACTION_CONTEXT_OUTPUT_CALLBACK")) { _ = INTERACTION_CONTEXT_OUTPUT_CALLBACK; }
-    if (@hasDecl(@This(), "INTERACTION_CONTEXT_OUTPUT_CALLBACK2")) { _ = INTERACTION_CONTEXT_OUTPUT_CALLBACK2; }
+    if (@hasDecl(@This(), "INTERACTION_CONTEXT_OUTPUT_CALLBACK")) {
+        _ = INTERACTION_CONTEXT_OUTPUT_CALLBACK;
+    }
+    if (@hasDecl(@This(), "INTERACTION_CONTEXT_OUTPUT_CALLBACK2")) {
+        _ = INTERACTION_CONTEXT_OUTPUT_CALLBACK2;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

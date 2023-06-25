@@ -51,7 +51,7 @@ pub const D3D_COMPRESS_SHADER_KEEP_ALL_PARTS = @as(u32, 1);
 // Section: Types (6)
 //--------------------------------------------------------------------------------
 pub const pD3DCompile = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pSrcData: ?*const anyopaque,
         SrcDataSize: usize,
         pFileName: ?[*:0]const u8,
@@ -64,7 +64,7 @@ pub const pD3DCompile = switch (@import("builtin").zig_backend) {
         ppCode: ?*?*ID3DBlob,
         ppErrorMsgs: ?*?*ID3DBlob,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         pSrcData: ?*const anyopaque,
         SrcDataSize: usize,
         pFileName: ?[*:0]const u8,
@@ -77,10 +77,10 @@ pub const pD3DCompile = switch (@import("builtin").zig_backend) {
         ppCode: ?*?*ID3DBlob,
         ppErrorMsgs: ?*?*ID3DBlob,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const pD3DPreprocess = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pSrcData: ?*const anyopaque,
         SrcDataSize: usize,
         pFileName: ?[*:0]const u8,
@@ -89,7 +89,7 @@ pub const pD3DPreprocess = switch (@import("builtin").zig_backend) {
         ppCodeText: ?*?*ID3DBlob,
         ppErrorMsgs: ?*?*ID3DBlob,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         pSrcData: ?*const anyopaque,
         SrcDataSize: usize,
         pFileName: ?[*:0]const u8,
@@ -98,10 +98,10 @@ pub const pD3DPreprocess = switch (@import("builtin").zig_backend) {
         ppCodeText: ?*?*ID3DBlob,
         ppErrorMsgs: ?*?*ID3DBlob,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const pD3DDisassemble = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         // TODO: what to do with BytesParamIndex 1?
         pSrcData: ?*const anyopaque,
         SrcDataSize: usize,
@@ -109,7 +109,7 @@ pub const pD3DDisassemble = switch (@import("builtin").zig_backend) {
         szComments: ?[*:0]const u8,
         ppDisassembly: ?*?*ID3DBlob,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
+    else => *const fn (
         // TODO: what to do with BytesParamIndex 1?
         pSrcData: ?*const anyopaque,
         SrcDataSize: usize,
@@ -117,7 +117,7 @@ pub const pD3DDisassemble = switch (@import("builtin").zig_backend) {
         szComments: ?[*:0]const u8,
         ppDisassembly: ?*?*ID3DBlob,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+};
 
 pub const D3DCOMPILER_STRIP_FLAGS = enum(i32) {
     REFLECTION_DATA = 1,
@@ -175,7 +175,6 @@ pub const D3D_SHADER_DATA = extern struct {
     pBytecode: ?*const anyopaque,
     BytecodeLength: usize,
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (25)
@@ -398,19 +397,14 @@ pub extern "d3dcompiler_47" fn D3DDisassemble10Effect(
     ppDisassembly: ?*?*ID3DBlob,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (12)
@@ -430,13 +424,17 @@ const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "pD3DCompile")) { _ = pD3DCompile; }
-    if (@hasDecl(@This(), "pD3DPreprocess")) { _ = pD3DPreprocess; }
-    if (@hasDecl(@This(), "pD3DDisassemble")) { _ = pD3DDisassemble; }
+    if (@hasDecl(@This(), "pD3DCompile")) {
+        _ = pD3DCompile;
+    }
+    if (@hasDecl(@This(), "pD3DPreprocess")) {
+        _ = pD3DPreprocess;
+    }
+    if (@hasDecl(@This(), "pD3DDisassemble")) {
+        _ = pD3DDisassemble;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

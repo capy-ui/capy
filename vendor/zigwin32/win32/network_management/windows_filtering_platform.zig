@@ -699,18 +699,7 @@ pub const IPSEC_SA_BUNDLE_FLAGS = enum(u32) {
         SUPPRESS_DUPLICATE_DELETION: u1 = 0,
         PEER_SUPPORTS_GUARANTEE_ENCRYPTION: u1 = 0,
     }) IPSEC_SA_BUNDLE_FLAGS {
-        return @intToEnum(IPSEC_SA_BUNDLE_FLAGS,
-              (if (o.ND_SECURE == 1) @enumToInt(IPSEC_SA_BUNDLE_FLAGS.ND_SECURE) else 0)
-            | (if (o.ND_BOUNDARY == 1) @enumToInt(IPSEC_SA_BUNDLE_FLAGS.ND_BOUNDARY) else 0)
-            | (if (o.ND_PEER_NAT_BOUNDARY == 1) @enumToInt(IPSEC_SA_BUNDLE_FLAGS.ND_PEER_NAT_BOUNDARY) else 0)
-            | (if (o.GUARANTEE_ENCRYPTION == 1) @enumToInt(IPSEC_SA_BUNDLE_FLAGS.GUARANTEE_ENCRYPTION) else 0)
-            | (if (o.ALLOW_NULL_TARGET_NAME_MATCH == 1) @enumToInt(IPSEC_SA_BUNDLE_FLAGS.ALLOW_NULL_TARGET_NAME_MATCH) else 0)
-            | (if (o.CLEAR_DF_ON_TUNNEL == 1) @enumToInt(IPSEC_SA_BUNDLE_FLAGS.CLEAR_DF_ON_TUNNEL) else 0)
-            | (if (o.ASSUME_UDP_CONTEXT_OUTBOUND == 1) @enumToInt(IPSEC_SA_BUNDLE_FLAGS.ASSUME_UDP_CONTEXT_OUTBOUND) else 0)
-            | (if (o.ND_PEER_BOUNDARY == 1) @enumToInt(IPSEC_SA_BUNDLE_FLAGS.ND_PEER_BOUNDARY) else 0)
-            | (if (o.SUPPRESS_DUPLICATE_DELETION == 1) @enumToInt(IPSEC_SA_BUNDLE_FLAGS.SUPPRESS_DUPLICATE_DELETION) else 0)
-            | (if (o.PEER_SUPPORTS_GUARANTEE_ENCRYPTION == 1) @enumToInt(IPSEC_SA_BUNDLE_FLAGS.PEER_SUPPORTS_GUARANTEE_ENCRYPTION) else 0)
-        );
+        return @enumFromInt(IPSEC_SA_BUNDLE_FLAGS, (if (o.ND_SECURE == 1) @intFromEnum(IPSEC_SA_BUNDLE_FLAGS.ND_SECURE) else 0) | (if (o.ND_BOUNDARY == 1) @intFromEnum(IPSEC_SA_BUNDLE_FLAGS.ND_BOUNDARY) else 0) | (if (o.ND_PEER_NAT_BOUNDARY == 1) @intFromEnum(IPSEC_SA_BUNDLE_FLAGS.ND_PEER_NAT_BOUNDARY) else 0) | (if (o.GUARANTEE_ENCRYPTION == 1) @intFromEnum(IPSEC_SA_BUNDLE_FLAGS.GUARANTEE_ENCRYPTION) else 0) | (if (o.ALLOW_NULL_TARGET_NAME_MATCH == 1) @intFromEnum(IPSEC_SA_BUNDLE_FLAGS.ALLOW_NULL_TARGET_NAME_MATCH) else 0) | (if (o.CLEAR_DF_ON_TUNNEL == 1) @intFromEnum(IPSEC_SA_BUNDLE_FLAGS.CLEAR_DF_ON_TUNNEL) else 0) | (if (o.ASSUME_UDP_CONTEXT_OUTBOUND == 1) @intFromEnum(IPSEC_SA_BUNDLE_FLAGS.ASSUME_UDP_CONTEXT_OUTBOUND) else 0) | (if (o.ND_PEER_BOUNDARY == 1) @intFromEnum(IPSEC_SA_BUNDLE_FLAGS.ND_PEER_BOUNDARY) else 0) | (if (o.SUPPRESS_DUPLICATE_DELETION == 1) @intFromEnum(IPSEC_SA_BUNDLE_FLAGS.SUPPRESS_DUPLICATE_DELETION) else 0) | (if (o.PEER_SUPPORTS_GUARANTEE_ENCRYPTION == 1) @intFromEnum(IPSEC_SA_BUNDLE_FLAGS.PEER_SUPPORTS_GUARANTEE_ENCRYPTION) else 0));
     }
 };
 pub const IPSEC_SA_BUNDLE_FLAG_ND_SECURE = IPSEC_SA_BUNDLE_FLAGS.ND_SECURE;
@@ -754,21 +743,7 @@ pub const IPSEC_POLICY_FLAG = enum(u32) {
         TUNNEL_BYPASS_ICMPV6: u1 = 0,
         KEY_MANAGER_ALLOW_DICTATE_KEY: u1 = 0,
     }) IPSEC_POLICY_FLAG {
-        return @intToEnum(IPSEC_POLICY_FLAG,
-              (if (o.ND_SECURE == 1) @enumToInt(IPSEC_POLICY_FLAG.ND_SECURE) else 0)
-            | (if (o.ND_BOUNDARY == 1) @enumToInt(IPSEC_POLICY_FLAG.ND_BOUNDARY) else 0)
-            | (if (o.NAT_ENCAP_ALLOW_PEER_BEHIND_NAT == 1) @enumToInt(IPSEC_POLICY_FLAG.NAT_ENCAP_ALLOW_PEER_BEHIND_NAT) else 0)
-            | (if (o.NAT_ENCAP_ALLOW_GENERAL_NAT_TRAVERSAL == 1) @enumToInt(IPSEC_POLICY_FLAG.NAT_ENCAP_ALLOW_GENERAL_NAT_TRAVERSAL) else 0)
-            | (if (o.DONT_NEGOTIATE_SECOND_LIFETIME == 1) @enumToInt(IPSEC_POLICY_FLAG.DONT_NEGOTIATE_SECOND_LIFETIME) else 0)
-            | (if (o.DONT_NEGOTIATE_BYTE_LIFETIME == 1) @enumToInt(IPSEC_POLICY_FLAG.DONT_NEGOTIATE_BYTE_LIFETIME) else 0)
-            | (if (o.CLEAR_DF_ON_TUNNEL == 1) @enumToInt(IPSEC_POLICY_FLAG.CLEAR_DF_ON_TUNNEL) else 0)
-            | (if (o.ENABLE_V6_IN_V4_TUNNELING == 1) @enumToInt(IPSEC_POLICY_FLAG.ENABLE_V6_IN_V4_TUNNELING) else 0)
-            | (if (o.ENABLE_SERVER_ADDR_ASSIGNMENT == 1) @enumToInt(IPSEC_POLICY_FLAG.ENABLE_SERVER_ADDR_ASSIGNMENT) else 0)
-            | (if (o.TUNNEL_ALLOW_OUTBOUND_CLEAR_CONNECTION == 1) @enumToInt(IPSEC_POLICY_FLAG.TUNNEL_ALLOW_OUTBOUND_CLEAR_CONNECTION) else 0)
-            | (if (o.TUNNEL_BYPASS_ALREADY_SECURE_CONNECTION == 1) @enumToInt(IPSEC_POLICY_FLAG.TUNNEL_BYPASS_ALREADY_SECURE_CONNECTION) else 0)
-            | (if (o.TUNNEL_BYPASS_ICMPV6 == 1) @enumToInt(IPSEC_POLICY_FLAG.TUNNEL_BYPASS_ICMPV6) else 0)
-            | (if (o.KEY_MANAGER_ALLOW_DICTATE_KEY == 1) @enumToInt(IPSEC_POLICY_FLAG.KEY_MANAGER_ALLOW_DICTATE_KEY) else 0)
-        );
+        return @enumFromInt(IPSEC_POLICY_FLAG, (if (o.ND_SECURE == 1) @intFromEnum(IPSEC_POLICY_FLAG.ND_SECURE) else 0) | (if (o.ND_BOUNDARY == 1) @intFromEnum(IPSEC_POLICY_FLAG.ND_BOUNDARY) else 0) | (if (o.NAT_ENCAP_ALLOW_PEER_BEHIND_NAT == 1) @intFromEnum(IPSEC_POLICY_FLAG.NAT_ENCAP_ALLOW_PEER_BEHIND_NAT) else 0) | (if (o.NAT_ENCAP_ALLOW_GENERAL_NAT_TRAVERSAL == 1) @intFromEnum(IPSEC_POLICY_FLAG.NAT_ENCAP_ALLOW_GENERAL_NAT_TRAVERSAL) else 0) | (if (o.DONT_NEGOTIATE_SECOND_LIFETIME == 1) @intFromEnum(IPSEC_POLICY_FLAG.DONT_NEGOTIATE_SECOND_LIFETIME) else 0) | (if (o.DONT_NEGOTIATE_BYTE_LIFETIME == 1) @intFromEnum(IPSEC_POLICY_FLAG.DONT_NEGOTIATE_BYTE_LIFETIME) else 0) | (if (o.CLEAR_DF_ON_TUNNEL == 1) @intFromEnum(IPSEC_POLICY_FLAG.CLEAR_DF_ON_TUNNEL) else 0) | (if (o.ENABLE_V6_IN_V4_TUNNELING == 1) @intFromEnum(IPSEC_POLICY_FLAG.ENABLE_V6_IN_V4_TUNNELING) else 0) | (if (o.ENABLE_SERVER_ADDR_ASSIGNMENT == 1) @intFromEnum(IPSEC_POLICY_FLAG.ENABLE_SERVER_ADDR_ASSIGNMENT) else 0) | (if (o.TUNNEL_ALLOW_OUTBOUND_CLEAR_CONNECTION == 1) @intFromEnum(IPSEC_POLICY_FLAG.TUNNEL_ALLOW_OUTBOUND_CLEAR_CONNECTION) else 0) | (if (o.TUNNEL_BYPASS_ALREADY_SECURE_CONNECTION == 1) @intFromEnum(IPSEC_POLICY_FLAG.TUNNEL_BYPASS_ALREADY_SECURE_CONNECTION) else 0) | (if (o.TUNNEL_BYPASS_ICMPV6 == 1) @intFromEnum(IPSEC_POLICY_FLAG.TUNNEL_BYPASS_ICMPV6) else 0) | (if (o.KEY_MANAGER_ALLOW_DICTATE_KEY == 1) @intFromEnum(IPSEC_POLICY_FLAG.KEY_MANAGER_ALLOW_DICTATE_KEY) else 0));
     }
 };
 pub const IPSEC_POLICY_FLAG_ND_SECURE = IPSEC_POLICY_FLAG.ND_SECURE;
@@ -799,13 +774,7 @@ pub const IKEEXT_CERT_AUTH = enum(u32) {
         ALLOW_HTTP_CERT_LOOKUP: u1 = 0,
         URL_CONTAINS_BUNDLE: u1 = 0,
     }) IKEEXT_CERT_AUTH {
-        return @intToEnum(IKEEXT_CERT_AUTH,
-              (if (o.FLAG_SSL_ONE_WAY == 1) @enumToInt(IKEEXT_CERT_AUTH.FLAG_SSL_ONE_WAY) else 0)
-            | (if (o.ENABLE_CRL_CHECK_STRONG == 1) @enumToInt(IKEEXT_CERT_AUTH.ENABLE_CRL_CHECK_STRONG) else 0)
-            | (if (o.DISABLE_SSL_CERT_VALIDATION == 1) @enumToInt(IKEEXT_CERT_AUTH.DISABLE_SSL_CERT_VALIDATION) else 0)
-            | (if (o.ALLOW_HTTP_CERT_LOOKUP == 1) @enumToInt(IKEEXT_CERT_AUTH.ALLOW_HTTP_CERT_LOOKUP) else 0)
-            | (if (o.URL_CONTAINS_BUNDLE == 1) @enumToInt(IKEEXT_CERT_AUTH.URL_CONTAINS_BUNDLE) else 0)
-        );
+        return @enumFromInt(IKEEXT_CERT_AUTH, (if (o.FLAG_SSL_ONE_WAY == 1) @intFromEnum(IKEEXT_CERT_AUTH.FLAG_SSL_ONE_WAY) else 0) | (if (o.ENABLE_CRL_CHECK_STRONG == 1) @intFromEnum(IKEEXT_CERT_AUTH.ENABLE_CRL_CHECK_STRONG) else 0) | (if (o.DISABLE_SSL_CERT_VALIDATION == 1) @intFromEnum(IKEEXT_CERT_AUTH.DISABLE_SSL_CERT_VALIDATION) else 0) | (if (o.ALLOW_HTTP_CERT_LOOKUP == 1) @intFromEnum(IKEEXT_CERT_AUTH.ALLOW_HTTP_CERT_LOOKUP) else 0) | (if (o.URL_CONTAINS_BUNDLE == 1) @intFromEnum(IKEEXT_CERT_AUTH.URL_CONTAINS_BUNDLE) else 0));
     }
 };
 pub const IKEEXT_CERT_AUTH_FLAG_SSL_ONE_WAY = IKEEXT_CERT_AUTH.FLAG_SSL_ONE_WAY;
@@ -822,10 +791,7 @@ pub const IKEEXT_PRESHARED_KEY_AUTHENTICATION_FLAGS = enum(u32) {
         LOCAL_AUTH_ONLY: u1 = 0,
         REMOTE_AUTH_ONLY: u1 = 0,
     }) IKEEXT_PRESHARED_KEY_AUTHENTICATION_FLAGS {
-        return @intToEnum(IKEEXT_PRESHARED_KEY_AUTHENTICATION_FLAGS,
-              (if (o.LOCAL_AUTH_ONLY == 1) @enumToInt(IKEEXT_PRESHARED_KEY_AUTHENTICATION_FLAGS.LOCAL_AUTH_ONLY) else 0)
-            | (if (o.REMOTE_AUTH_ONLY == 1) @enumToInt(IKEEXT_PRESHARED_KEY_AUTHENTICATION_FLAGS.REMOTE_AUTH_ONLY) else 0)
-        );
+        return @enumFromInt(IKEEXT_PRESHARED_KEY_AUTHENTICATION_FLAGS, (if (o.LOCAL_AUTH_ONLY == 1) @intFromEnum(IKEEXT_PRESHARED_KEY_AUTHENTICATION_FLAGS.LOCAL_AUTH_ONLY) else 0) | (if (o.REMOTE_AUTH_ONLY == 1) @intFromEnum(IKEEXT_PRESHARED_KEY_AUTHENTICATION_FLAGS.REMOTE_AUTH_ONLY) else 0));
     }
 };
 pub const IKEEXT_PSK_FLAG_LOCAL_AUTH_ONLY = IKEEXT_PRESHARED_KEY_AUTHENTICATION_FLAGS.LOCAL_AUTH_ONLY;
@@ -843,12 +809,7 @@ pub const IKEEXT_POLICY_FLAG = enum(u32) {
         NO_IMPERSONATION_LUID_VERIFY: u1 = 0,
         ENABLE_OPTIONAL_DH: u1 = 0,
     }) IKEEXT_POLICY_FLAG {
-        return @intToEnum(IKEEXT_POLICY_FLAG,
-              (if (o.DISABLE_DIAGNOSTICS == 1) @enumToInt(IKEEXT_POLICY_FLAG.DISABLE_DIAGNOSTICS) else 0)
-            | (if (o.NO_MACHINE_LUID_VERIFY == 1) @enumToInt(IKEEXT_POLICY_FLAG.NO_MACHINE_LUID_VERIFY) else 0)
-            | (if (o.NO_IMPERSONATION_LUID_VERIFY == 1) @enumToInt(IKEEXT_POLICY_FLAG.NO_IMPERSONATION_LUID_VERIFY) else 0)
-            | (if (o.ENABLE_OPTIONAL_DH == 1) @enumToInt(IKEEXT_POLICY_FLAG.ENABLE_OPTIONAL_DH) else 0)
-        );
+        return @enumFromInt(IKEEXT_POLICY_FLAG, (if (o.DISABLE_DIAGNOSTICS == 1) @intFromEnum(IKEEXT_POLICY_FLAG.DISABLE_DIAGNOSTICS) else 0) | (if (o.NO_MACHINE_LUID_VERIFY == 1) @intFromEnum(IKEEXT_POLICY_FLAG.NO_MACHINE_LUID_VERIFY) else 0) | (if (o.NO_IMPERSONATION_LUID_VERIFY == 1) @intFromEnum(IKEEXT_POLICY_FLAG.NO_IMPERSONATION_LUID_VERIFY) else 0) | (if (o.ENABLE_OPTIONAL_DH == 1) @intFromEnum(IKEEXT_POLICY_FLAG.ENABLE_OPTIONAL_DH) else 0));
     }
 };
 pub const IKEEXT_POLICY_FLAG_DISABLE_DIAGNOSTICS = IKEEXT_POLICY_FLAG.DISABLE_DIAGNOSTICS;
@@ -885,17 +846,7 @@ pub const IKEEXT_CERT_FLAGS = enum(u32) {
         VERIFY_NAP_CERTIFICATE: u1 = 0,
         FOLLOW_RENEWAL_CERTIFICATE: u1 = 0,
     }) IKEEXT_CERT_FLAGS {
-        return @intToEnum(IKEEXT_CERT_FLAGS,
-              (if (o.ENABLE_ACCOUNT_MAPPING == 1) @enumToInt(IKEEXT_CERT_FLAGS.ENABLE_ACCOUNT_MAPPING) else 0)
-            | (if (o.DISABLE_REQUEST_PAYLOAD == 1) @enumToInt(IKEEXT_CERT_FLAGS.DISABLE_REQUEST_PAYLOAD) else 0)
-            | (if (o.USE_NAP_CERTIFICATE == 1) @enumToInt(IKEEXT_CERT_FLAGS.USE_NAP_CERTIFICATE) else 0)
-            | (if (o.INTERMEDIATE_CA == 1) @enumToInt(IKEEXT_CERT_FLAGS.INTERMEDIATE_CA) else 0)
-            | (if (o.IGNORE_INIT_CERT_MAP_FAILURE == 1) @enumToInt(IKEEXT_CERT_FLAGS.IGNORE_INIT_CERT_MAP_FAILURE) else 0)
-            | (if (o.PREFER_NAP_CERTIFICATE_OUTBOUND == 1) @enumToInt(IKEEXT_CERT_FLAGS.PREFER_NAP_CERTIFICATE_OUTBOUND) else 0)
-            | (if (o.SELECT_NAP_CERTIFICATE == 1) @enumToInt(IKEEXT_CERT_FLAGS.SELECT_NAP_CERTIFICATE) else 0)
-            | (if (o.VERIFY_NAP_CERTIFICATE == 1) @enumToInt(IKEEXT_CERT_FLAGS.VERIFY_NAP_CERTIFICATE) else 0)
-            | (if (o.FOLLOW_RENEWAL_CERTIFICATE == 1) @enumToInt(IKEEXT_CERT_FLAGS.FOLLOW_RENEWAL_CERTIFICATE) else 0)
-        );
+        return @enumFromInt(IKEEXT_CERT_FLAGS, (if (o.ENABLE_ACCOUNT_MAPPING == 1) @intFromEnum(IKEEXT_CERT_FLAGS.ENABLE_ACCOUNT_MAPPING) else 0) | (if (o.DISABLE_REQUEST_PAYLOAD == 1) @intFromEnum(IKEEXT_CERT_FLAGS.DISABLE_REQUEST_PAYLOAD) else 0) | (if (o.USE_NAP_CERTIFICATE == 1) @intFromEnum(IKEEXT_CERT_FLAGS.USE_NAP_CERTIFICATE) else 0) | (if (o.INTERMEDIATE_CA == 1) @intFromEnum(IKEEXT_CERT_FLAGS.INTERMEDIATE_CA) else 0) | (if (o.IGNORE_INIT_CERT_MAP_FAILURE == 1) @intFromEnum(IKEEXT_CERT_FLAGS.IGNORE_INIT_CERT_MAP_FAILURE) else 0) | (if (o.PREFER_NAP_CERTIFICATE_OUTBOUND == 1) @intFromEnum(IKEEXT_CERT_FLAGS.PREFER_NAP_CERTIFICATE_OUTBOUND) else 0) | (if (o.SELECT_NAP_CERTIFICATE == 1) @intFromEnum(IKEEXT_CERT_FLAGS.SELECT_NAP_CERTIFICATE) else 0) | (if (o.VERIFY_NAP_CERTIFICATE == 1) @intFromEnum(IKEEXT_CERT_FLAGS.VERIFY_NAP_CERTIFICATE) else 0) | (if (o.FOLLOW_RENEWAL_CERTIFICATE == 1) @intFromEnum(IKEEXT_CERT_FLAGS.FOLLOW_RENEWAL_CERTIFICATE) else 0));
     }
 };
 pub const IKEEXT_CERT_FLAG_ENABLE_ACCOUNT_MAPPING = IKEEXT_CERT_FLAGS.ENABLE_ACCOUNT_MAPPING;
@@ -924,14 +875,7 @@ pub const IPSEC_DOSP_FLAGS = enum(u32) {
         FILTER_BLOCK: u1 = 0,
         FILTER_EXEMPT: u1 = 0,
     }) IPSEC_DOSP_FLAGS {
-        return @intToEnum(IPSEC_DOSP_FLAGS,
-              (if (o.ENABLE_IKEV1 == 1) @enumToInt(IPSEC_DOSP_FLAGS.ENABLE_IKEV1) else 0)
-            | (if (o.ENABLE_IKEV2 == 1) @enumToInt(IPSEC_DOSP_FLAGS.ENABLE_IKEV2) else 0)
-            | (if (o.DISABLE_AUTHIP == 1) @enumToInt(IPSEC_DOSP_FLAGS.DISABLE_AUTHIP) else 0)
-            | (if (o.DISABLE_DEFAULT_BLOCK == 1) @enumToInt(IPSEC_DOSP_FLAGS.DISABLE_DEFAULT_BLOCK) else 0)
-            | (if (o.FILTER_BLOCK == 1) @enumToInt(IPSEC_DOSP_FLAGS.FILTER_BLOCK) else 0)
-            | (if (o.FILTER_EXEMPT == 1) @enumToInt(IPSEC_DOSP_FLAGS.FILTER_EXEMPT) else 0)
-        );
+        return @enumFromInt(IPSEC_DOSP_FLAGS, (if (o.ENABLE_IKEV1 == 1) @intFromEnum(IPSEC_DOSP_FLAGS.ENABLE_IKEV1) else 0) | (if (o.ENABLE_IKEV2 == 1) @intFromEnum(IPSEC_DOSP_FLAGS.ENABLE_IKEV2) else 0) | (if (o.DISABLE_AUTHIP == 1) @intFromEnum(IPSEC_DOSP_FLAGS.DISABLE_AUTHIP) else 0) | (if (o.DISABLE_DEFAULT_BLOCK == 1) @intFromEnum(IPSEC_DOSP_FLAGS.DISABLE_DEFAULT_BLOCK) else 0) | (if (o.FILTER_BLOCK == 1) @intFromEnum(IPSEC_DOSP_FLAGS.FILTER_BLOCK) else 0) | (if (o.FILTER_EXEMPT == 1) @intFromEnum(IPSEC_DOSP_FLAGS.FILTER_EXEMPT) else 0));
     }
 };
 pub const IPSEC_DOSP_FLAG_ENABLE_IKEV1 = IPSEC_DOSP_FLAGS.ENABLE_IKEV1;
@@ -949,10 +893,7 @@ pub const IKEEXT_KERBEROS_AUTHENTICATION_FLAGS = enum(u32) {
         ISABLE_INITIATOR_TOKEN_GENERATION: u1 = 0,
         ONT_ACCEPT_EXPLICIT_CREDENTIALS: u1 = 0,
     }) IKEEXT_KERBEROS_AUTHENTICATION_FLAGS {
-        return @intToEnum(IKEEXT_KERBEROS_AUTHENTICATION_FLAGS,
-              (if (o.ISABLE_INITIATOR_TOKEN_GENERATION == 1) @enumToInt(IKEEXT_KERBEROS_AUTHENTICATION_FLAGS.ISABLE_INITIATOR_TOKEN_GENERATION) else 0)
-            | (if (o.ONT_ACCEPT_EXPLICIT_CREDENTIALS == 1) @enumToInt(IKEEXT_KERBEROS_AUTHENTICATION_FLAGS.ONT_ACCEPT_EXPLICIT_CREDENTIALS) else 0)
-        );
+        return @enumFromInt(IKEEXT_KERBEROS_AUTHENTICATION_FLAGS, (if (o.ISABLE_INITIATOR_TOKEN_GENERATION == 1) @intFromEnum(IKEEXT_KERBEROS_AUTHENTICATION_FLAGS.ISABLE_INITIATOR_TOKEN_GENERATION) else 0) | (if (o.ONT_ACCEPT_EXPLICIT_CREDENTIALS == 1) @intFromEnum(IKEEXT_KERBEROS_AUTHENTICATION_FLAGS.ONT_ACCEPT_EXPLICIT_CREDENTIALS) else 0));
     }
 };
 pub const IKEEXT_KERB_AUTH_DISABLE_INITIATOR_TOKEN_GENERATION = IKEEXT_KERBEROS_AUTHENTICATION_FLAGS.ISABLE_INITIATOR_TOKEN_GENERATION;
@@ -964,9 +905,7 @@ pub const IKEEXT_RESERVED_AUTHENTICATION_FLAGS = enum(u32) {
     pub fn initFlags(o: struct {
         N: u1 = 0,
     }) IKEEXT_RESERVED_AUTHENTICATION_FLAGS {
-        return @intToEnum(IKEEXT_RESERVED_AUTHENTICATION_FLAGS,
-              (if (o.N == 1) @enumToInt(IKEEXT_RESERVED_AUTHENTICATION_FLAGS.N) else 0)
-        );
+        return @enumFromInt(IKEEXT_RESERVED_AUTHENTICATION_FLAGS, (if (o.N == 1) @intFromEnum(IKEEXT_RESERVED_AUTHENTICATION_FLAGS.N) else 0));
     }
 };
 pub const IKEEXT_RESERVED_AUTH_DISABLE_INITIATOR_TOKEN_GENERATION = IKEEXT_RESERVED_AUTHENTICATION_FLAGS.N;
@@ -979,10 +918,7 @@ pub const IKEEXT_EAP_AUTHENTICATION_FLAGS = enum(u32) {
         LOCAL_AUTH_ONLY: u1 = 0,
         REMOTE_AUTH_ONLY: u1 = 0,
     }) IKEEXT_EAP_AUTHENTICATION_FLAGS {
-        return @intToEnum(IKEEXT_EAP_AUTHENTICATION_FLAGS,
-              (if (o.LOCAL_AUTH_ONLY == 1) @enumToInt(IKEEXT_EAP_AUTHENTICATION_FLAGS.LOCAL_AUTH_ONLY) else 0)
-            | (if (o.REMOTE_AUTH_ONLY == 1) @enumToInt(IKEEXT_EAP_AUTHENTICATION_FLAGS.REMOTE_AUTH_ONLY) else 0)
-        );
+        return @enumFromInt(IKEEXT_EAP_AUTHENTICATION_FLAGS, (if (o.LOCAL_AUTH_ONLY == 1) @intFromEnum(IKEEXT_EAP_AUTHENTICATION_FLAGS.LOCAL_AUTH_ONLY) else 0) | (if (o.REMOTE_AUTH_ONLY == 1) @intFromEnum(IKEEXT_EAP_AUTHENTICATION_FLAGS.REMOTE_AUTH_ONLY) else 0));
     }
 };
 pub const IKEEXT_EAP_FLAG_LOCAL_AUTH_ONLY = IKEEXT_EAP_AUTHENTICATION_FLAGS.LOCAL_AUTH_ONLY;
@@ -1008,16 +944,7 @@ pub const FWPM_FILTER_FLAGS = enum(u32) {
         DISABLED: u1 = 0,
         INDEXED: u1 = 0,
     }) FWPM_FILTER_FLAGS {
-        return @intToEnum(FWPM_FILTER_FLAGS,
-              (if (o.NONE == 1) @enumToInt(FWPM_FILTER_FLAGS.NONE) else 0)
-            | (if (o.PERSISTENT == 1) @enumToInt(FWPM_FILTER_FLAGS.PERSISTENT) else 0)
-            | (if (o.BOOTTIME == 1) @enumToInt(FWPM_FILTER_FLAGS.BOOTTIME) else 0)
-            | (if (o.HAS_PROVIDER_CONTEXT == 1) @enumToInt(FWPM_FILTER_FLAGS.HAS_PROVIDER_CONTEXT) else 0)
-            | (if (o.CLEAR_ACTION_RIGHT == 1) @enumToInt(FWPM_FILTER_FLAGS.CLEAR_ACTION_RIGHT) else 0)
-            | (if (o.PERMIT_IF_CALLOUT_UNREGISTERED == 1) @enumToInt(FWPM_FILTER_FLAGS.PERMIT_IF_CALLOUT_UNREGISTERED) else 0)
-            | (if (o.DISABLED == 1) @enumToInt(FWPM_FILTER_FLAGS.DISABLED) else 0)
-            | (if (o.INDEXED == 1) @enumToInt(FWPM_FILTER_FLAGS.INDEXED) else 0)
-        );
+        return @enumFromInt(FWPM_FILTER_FLAGS, (if (o.NONE == 1) @intFromEnum(FWPM_FILTER_FLAGS.NONE) else 0) | (if (o.PERSISTENT == 1) @intFromEnum(FWPM_FILTER_FLAGS.PERSISTENT) else 0) | (if (o.BOOTTIME == 1) @intFromEnum(FWPM_FILTER_FLAGS.BOOTTIME) else 0) | (if (o.HAS_PROVIDER_CONTEXT == 1) @intFromEnum(FWPM_FILTER_FLAGS.HAS_PROVIDER_CONTEXT) else 0) | (if (o.CLEAR_ACTION_RIGHT == 1) @intFromEnum(FWPM_FILTER_FLAGS.CLEAR_ACTION_RIGHT) else 0) | (if (o.PERMIT_IF_CALLOUT_UNREGISTERED == 1) @intFromEnum(FWPM_FILTER_FLAGS.PERMIT_IF_CALLOUT_UNREGISTERED) else 0) | (if (o.DISABLED == 1) @intFromEnum(FWPM_FILTER_FLAGS.DISABLED) else 0) | (if (o.INDEXED == 1) @intFromEnum(FWPM_FILTER_FLAGS.INDEXED) else 0));
     }
 };
 pub const FWPM_FILTER_FLAG_NONE = FWPM_FILTER_FLAGS.NONE;
@@ -3670,107 +3597,107 @@ pub const FWPM_VSWITCH_EVENT_SUBSCRIPTION0 = extern struct {
 };
 
 pub const FWPM_PROVIDER_CHANGE_CALLBACK0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         context: ?*anyopaque,
         change: ?*const FWPM_PROVIDER_CHANGE0,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         context: ?*anyopaque,
         change: ?*const FWPM_PROVIDER_CHANGE0,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const FWPM_PROVIDER_CONTEXT_CHANGE_CALLBACK0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         context: ?*anyopaque,
         change: ?*const FWPM_PROVIDER_CONTEXT_CHANGE0,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         context: ?*anyopaque,
         change: ?*const FWPM_PROVIDER_CONTEXT_CHANGE0,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const FWPM_SUBLAYER_CHANGE_CALLBACK0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         context: ?*anyopaque,
         change: ?*const FWPM_SUBLAYER_CHANGE0,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         context: ?*anyopaque,
         change: ?*const FWPM_SUBLAYER_CHANGE0,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const FWPM_CALLOUT_CHANGE_CALLBACK0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         context: ?*anyopaque,
         change: ?*const FWPM_CALLOUT_CHANGE0,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         context: ?*anyopaque,
         change: ?*const FWPM_CALLOUT_CHANGE0,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const FWPM_FILTER_CHANGE_CALLBACK0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         context: ?*anyopaque,
         change: ?*const FWPM_FILTER_CHANGE0,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         context: ?*anyopaque,
         change: ?*const FWPM_FILTER_CHANGE0,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const IPSEC_SA_CONTEXT_CALLBACK0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         context: ?*anyopaque,
         change: ?*const IPSEC_SA_CONTEXT_CHANGE0,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         context: ?*anyopaque,
         change: ?*const IPSEC_SA_CONTEXT_CHANGE0,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const IPSEC_KEY_MANAGER_KEY_DICTATION_CHECK0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         ikeTraffic: ?*const IKEEXT_TRAFFIC0,
         willDictateKey: ?*BOOL,
         weight: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         ikeTraffic: ?*const IKEEXT_TRAFFIC0,
         willDictateKey: ?*BOOL,
         weight: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const IPSEC_KEY_MANAGER_DICTATE_KEY0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         inboundSaDetails: ?*IPSEC_SA_DETAILS1,
         outboundSaDetails: ?*IPSEC_SA_DETAILS1,
         keyingModuleGenKey: ?*BOOL,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         inboundSaDetails: ?*IPSEC_SA_DETAILS1,
         outboundSaDetails: ?*IPSEC_SA_DETAILS1,
         keyingModuleGenKey: ?*BOOL,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const IPSEC_KEY_MANAGER_NOTIFY_KEY0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         inboundSa: ?*const IPSEC_SA_DETAILS1,
         outboundSa: ?*const IPSEC_SA_DETAILS1,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         inboundSa: ?*const IPSEC_SA_DETAILS1,
         outboundSa: ?*const IPSEC_SA_DETAILS1,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const IPSEC_KEY_MANAGER_CALLBACKS0 = extern struct {
     reserved: Guid,
@@ -3781,105 +3708,105 @@ pub const IPSEC_KEY_MANAGER_CALLBACKS0 = extern struct {
 };
 
 pub const FWPM_NET_EVENT_CALLBACK0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         context: ?*anyopaque,
         event: ?*const FWPM_NET_EVENT1,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         context: ?*anyopaque,
         event: ?*const FWPM_NET_EVENT1,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const FWPM_NET_EVENT_CALLBACK1 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         context: ?*anyopaque,
         event: ?*const FWPM_NET_EVENT2,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         context: ?*anyopaque,
         event: ?*const FWPM_NET_EVENT2,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const FWPM_NET_EVENT_CALLBACK2 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         context: ?*anyopaque,
         event: ?*const FWPM_NET_EVENT3,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         context: ?*anyopaque,
         event: ?*const FWPM_NET_EVENT3,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const FWPM_NET_EVENT_CALLBACK3 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         context: ?*anyopaque,
         event: ?*const FWPM_NET_EVENT4_,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         context: ?*anyopaque,
         event: ?*const FWPM_NET_EVENT4_,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const FWPM_NET_EVENT_CALLBACK4 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         context: ?*anyopaque,
         event: ?*const FWPM_NET_EVENT5_,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         context: ?*anyopaque,
         event: ?*const FWPM_NET_EVENT5_,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const FWPM_DYNAMIC_KEYWORD_CALLBACK0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         notification: ?*anyopaque,
         context: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         notification: ?*anyopaque,
         context: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const FWPM_SYSTEM_PORTS_CALLBACK0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         context: ?*anyopaque,
         sysPorts: ?*const FWPM_SYSTEM_PORTS0,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         context: ?*anyopaque,
         sysPorts: ?*const FWPM_SYSTEM_PORTS0,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const FWPM_CONNECTION_CALLBACK0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         context: ?*anyopaque,
         eventType: FWPM_CONNECTION_EVENT_TYPE,
         connection: ?*const FWPM_CONNECTION0,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         context: ?*anyopaque,
         eventType: FWPM_CONNECTION_EVENT_TYPE,
         connection: ?*const FWPM_CONNECTION0,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const FWPM_VSWITCH_EVENT_CALLBACK0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         context: ?*anyopaque,
         vSwitchEvent: ?*const FWPM_VSWITCH_EVENT0,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         context: ?*anyopaque,
         vSwitchEvent: ?*const FWPM_VSWITCH_EVENT0,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const DL_OUI = extern union {
     Byte: [3]u8,
@@ -4575,7 +4502,6 @@ pub const FALLBACK_INDEX = enum(i32) {
 };
 pub const FallbackIndexTcpFastopen = FALLBACK_INDEX.TcpFastopen;
 pub const FallbackIndexMax = FALLBACK_INDEX.Max;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (186)
@@ -6044,19 +5970,14 @@ pub extern "fwpuclnt" fn FwpmvSwitchEventsSetSecurityInfo0(
     sacl: ?*const ACL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (17)
@@ -6081,28 +6002,62 @@ const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "FWPM_PROVIDER_CHANGE_CALLBACK0")) { _ = FWPM_PROVIDER_CHANGE_CALLBACK0; }
-    if (@hasDecl(@This(), "FWPM_PROVIDER_CONTEXT_CHANGE_CALLBACK0")) { _ = FWPM_PROVIDER_CONTEXT_CHANGE_CALLBACK0; }
-    if (@hasDecl(@This(), "FWPM_SUBLAYER_CHANGE_CALLBACK0")) { _ = FWPM_SUBLAYER_CHANGE_CALLBACK0; }
-    if (@hasDecl(@This(), "FWPM_CALLOUT_CHANGE_CALLBACK0")) { _ = FWPM_CALLOUT_CHANGE_CALLBACK0; }
-    if (@hasDecl(@This(), "FWPM_FILTER_CHANGE_CALLBACK0")) { _ = FWPM_FILTER_CHANGE_CALLBACK0; }
-    if (@hasDecl(@This(), "IPSEC_SA_CONTEXT_CALLBACK0")) { _ = IPSEC_SA_CONTEXT_CALLBACK0; }
-    if (@hasDecl(@This(), "IPSEC_KEY_MANAGER_KEY_DICTATION_CHECK0")) { _ = IPSEC_KEY_MANAGER_KEY_DICTATION_CHECK0; }
-    if (@hasDecl(@This(), "IPSEC_KEY_MANAGER_DICTATE_KEY0")) { _ = IPSEC_KEY_MANAGER_DICTATE_KEY0; }
-    if (@hasDecl(@This(), "IPSEC_KEY_MANAGER_NOTIFY_KEY0")) { _ = IPSEC_KEY_MANAGER_NOTIFY_KEY0; }
-    if (@hasDecl(@This(), "FWPM_NET_EVENT_CALLBACK0")) { _ = FWPM_NET_EVENT_CALLBACK0; }
-    if (@hasDecl(@This(), "FWPM_NET_EVENT_CALLBACK1")) { _ = FWPM_NET_EVENT_CALLBACK1; }
-    if (@hasDecl(@This(), "FWPM_NET_EVENT_CALLBACK2")) { _ = FWPM_NET_EVENT_CALLBACK2; }
-    if (@hasDecl(@This(), "FWPM_NET_EVENT_CALLBACK3")) { _ = FWPM_NET_EVENT_CALLBACK3; }
-    if (@hasDecl(@This(), "FWPM_NET_EVENT_CALLBACK4")) { _ = FWPM_NET_EVENT_CALLBACK4; }
-    if (@hasDecl(@This(), "FWPM_DYNAMIC_KEYWORD_CALLBACK0")) { _ = FWPM_DYNAMIC_KEYWORD_CALLBACK0; }
-    if (@hasDecl(@This(), "FWPM_SYSTEM_PORTS_CALLBACK0")) { _ = FWPM_SYSTEM_PORTS_CALLBACK0; }
-    if (@hasDecl(@This(), "FWPM_CONNECTION_CALLBACK0")) { _ = FWPM_CONNECTION_CALLBACK0; }
-    if (@hasDecl(@This(), "FWPM_VSWITCH_EVENT_CALLBACK0")) { _ = FWPM_VSWITCH_EVENT_CALLBACK0; }
+    if (@hasDecl(@This(), "FWPM_PROVIDER_CHANGE_CALLBACK0")) {
+        _ = FWPM_PROVIDER_CHANGE_CALLBACK0;
+    }
+    if (@hasDecl(@This(), "FWPM_PROVIDER_CONTEXT_CHANGE_CALLBACK0")) {
+        _ = FWPM_PROVIDER_CONTEXT_CHANGE_CALLBACK0;
+    }
+    if (@hasDecl(@This(), "FWPM_SUBLAYER_CHANGE_CALLBACK0")) {
+        _ = FWPM_SUBLAYER_CHANGE_CALLBACK0;
+    }
+    if (@hasDecl(@This(), "FWPM_CALLOUT_CHANGE_CALLBACK0")) {
+        _ = FWPM_CALLOUT_CHANGE_CALLBACK0;
+    }
+    if (@hasDecl(@This(), "FWPM_FILTER_CHANGE_CALLBACK0")) {
+        _ = FWPM_FILTER_CHANGE_CALLBACK0;
+    }
+    if (@hasDecl(@This(), "IPSEC_SA_CONTEXT_CALLBACK0")) {
+        _ = IPSEC_SA_CONTEXT_CALLBACK0;
+    }
+    if (@hasDecl(@This(), "IPSEC_KEY_MANAGER_KEY_DICTATION_CHECK0")) {
+        _ = IPSEC_KEY_MANAGER_KEY_DICTATION_CHECK0;
+    }
+    if (@hasDecl(@This(), "IPSEC_KEY_MANAGER_DICTATE_KEY0")) {
+        _ = IPSEC_KEY_MANAGER_DICTATE_KEY0;
+    }
+    if (@hasDecl(@This(), "IPSEC_KEY_MANAGER_NOTIFY_KEY0")) {
+        _ = IPSEC_KEY_MANAGER_NOTIFY_KEY0;
+    }
+    if (@hasDecl(@This(), "FWPM_NET_EVENT_CALLBACK0")) {
+        _ = FWPM_NET_EVENT_CALLBACK0;
+    }
+    if (@hasDecl(@This(), "FWPM_NET_EVENT_CALLBACK1")) {
+        _ = FWPM_NET_EVENT_CALLBACK1;
+    }
+    if (@hasDecl(@This(), "FWPM_NET_EVENT_CALLBACK2")) {
+        _ = FWPM_NET_EVENT_CALLBACK2;
+    }
+    if (@hasDecl(@This(), "FWPM_NET_EVENT_CALLBACK3")) {
+        _ = FWPM_NET_EVENT_CALLBACK3;
+    }
+    if (@hasDecl(@This(), "FWPM_NET_EVENT_CALLBACK4")) {
+        _ = FWPM_NET_EVENT_CALLBACK4;
+    }
+    if (@hasDecl(@This(), "FWPM_DYNAMIC_KEYWORD_CALLBACK0")) {
+        _ = FWPM_DYNAMIC_KEYWORD_CALLBACK0;
+    }
+    if (@hasDecl(@This(), "FWPM_SYSTEM_PORTS_CALLBACK0")) {
+        _ = FWPM_SYSTEM_PORTS_CALLBACK0;
+    }
+    if (@hasDecl(@This(), "FWPM_CONNECTION_CALLBACK0")) {
+        _ = FWPM_CONNECTION_CALLBACK0;
+    }
+    if (@hasDecl(@This(), "FWPM_VSWITCH_EVENT_CALLBACK0")) {
+        _ = FWPM_VSWITCH_EVENT_CALLBACK0;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

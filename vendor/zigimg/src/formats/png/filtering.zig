@@ -47,7 +47,7 @@ pub fn filter(writer: anytype, pixels: color.PixelStorage, filter_choice: Filter
             .specified => |f| f,
         };
 
-        try writer.writeByte(@enumToInt(filter_type));
+        try writer.writeByte(@intFromEnum(filter_type));
 
         for (scanline, 0..) |sample, i| {
             const previous: u8 = if (i >= pixel_len) scanline[i - pixel_len] else 0;

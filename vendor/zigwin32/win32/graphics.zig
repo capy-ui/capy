@@ -23,7 +23,6 @@ pub const D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE_ANISOTROPIC = D2D1_2DAFFINET
 pub const D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE_HIGH_QUALITY_CUBIC = D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE.HIGH_QUALITY_CUBIC;
 pub const D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE_FORCE_DWORD = D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE.FORCE_DWORD;
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
 //--------------------------------------------------------------------------------
@@ -33,22 +32,16 @@ pub const D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE_FORCE_DWORD = D2D1_2DAFFINET
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (0)
 //--------------------------------------------------------------------------------
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

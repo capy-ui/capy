@@ -78,18 +78,7 @@ pub const VIRTUAL_DISK_ACCESS_MASK = enum(u32) {
         ALL: u1 = 0,
         WRITABLE: u1 = 0,
     }) VIRTUAL_DISK_ACCESS_MASK {
-        return @intToEnum(VIRTUAL_DISK_ACCESS_MASK,
-              (if (o.NONE == 1) @enumToInt(VIRTUAL_DISK_ACCESS_MASK.NONE) else 0)
-            | (if (o.ATTACH_RO == 1) @enumToInt(VIRTUAL_DISK_ACCESS_MASK.ATTACH_RO) else 0)
-            | (if (o.ATTACH_RW == 1) @enumToInt(VIRTUAL_DISK_ACCESS_MASK.ATTACH_RW) else 0)
-            | (if (o.DETACH == 1) @enumToInt(VIRTUAL_DISK_ACCESS_MASK.DETACH) else 0)
-            | (if (o.GET_INFO == 1) @enumToInt(VIRTUAL_DISK_ACCESS_MASK.GET_INFO) else 0)
-            | (if (o.CREATE == 1) @enumToInt(VIRTUAL_DISK_ACCESS_MASK.CREATE) else 0)
-            | (if (o.METAOPS == 1) @enumToInt(VIRTUAL_DISK_ACCESS_MASK.METAOPS) else 0)
-            | (if (o.READ == 1) @enumToInt(VIRTUAL_DISK_ACCESS_MASK.READ) else 0)
-            | (if (o.ALL == 1) @enumToInt(VIRTUAL_DISK_ACCESS_MASK.ALL) else 0)
-            | (if (o.WRITABLE == 1) @enumToInt(VIRTUAL_DISK_ACCESS_MASK.WRITABLE) else 0)
-        );
+        return @enumFromInt(VIRTUAL_DISK_ACCESS_MASK, (if (o.NONE == 1) @intFromEnum(VIRTUAL_DISK_ACCESS_MASK.NONE) else 0) | (if (o.ATTACH_RO == 1) @intFromEnum(VIRTUAL_DISK_ACCESS_MASK.ATTACH_RO) else 0) | (if (o.ATTACH_RW == 1) @intFromEnum(VIRTUAL_DISK_ACCESS_MASK.ATTACH_RW) else 0) | (if (o.DETACH == 1) @intFromEnum(VIRTUAL_DISK_ACCESS_MASK.DETACH) else 0) | (if (o.GET_INFO == 1) @intFromEnum(VIRTUAL_DISK_ACCESS_MASK.GET_INFO) else 0) | (if (o.CREATE == 1) @intFromEnum(VIRTUAL_DISK_ACCESS_MASK.CREATE) else 0) | (if (o.METAOPS == 1) @intFromEnum(VIRTUAL_DISK_ACCESS_MASK.METAOPS) else 0) | (if (o.READ == 1) @intFromEnum(VIRTUAL_DISK_ACCESS_MASK.READ) else 0) | (if (o.ALL == 1) @intFromEnum(VIRTUAL_DISK_ACCESS_MASK.ALL) else 0) | (if (o.WRITABLE == 1) @intFromEnum(VIRTUAL_DISK_ACCESS_MASK.WRITABLE) else 0));
     }
 };
 pub const VIRTUAL_DISK_ACCESS_NONE = VIRTUAL_DISK_ACCESS_MASK.NONE;
@@ -133,21 +122,7 @@ pub const OPEN_VIRTUAL_DISK_FLAG = enum(u32) {
         SUPPORT_SPARSE_FILES_ANY_FS: u1 = 0,
         SUPPORT_ENCRYPTED_FILES: u1 = 0,
     }) OPEN_VIRTUAL_DISK_FLAG {
-        return @intToEnum(OPEN_VIRTUAL_DISK_FLAG,
-              (if (o.NONE == 1) @enumToInt(OPEN_VIRTUAL_DISK_FLAG.NONE) else 0)
-            | (if (o.NO_PARENTS == 1) @enumToInt(OPEN_VIRTUAL_DISK_FLAG.NO_PARENTS) else 0)
-            | (if (o.BLANK_FILE == 1) @enumToInt(OPEN_VIRTUAL_DISK_FLAG.BLANK_FILE) else 0)
-            | (if (o.BOOT_DRIVE == 1) @enumToInt(OPEN_VIRTUAL_DISK_FLAG.BOOT_DRIVE) else 0)
-            | (if (o.CACHED_IO == 1) @enumToInt(OPEN_VIRTUAL_DISK_FLAG.CACHED_IO) else 0)
-            | (if (o.CUSTOM_DIFF_CHAIN == 1) @enumToInt(OPEN_VIRTUAL_DISK_FLAG.CUSTOM_DIFF_CHAIN) else 0)
-            | (if (o.PARENT_CACHED_IO == 1) @enumToInt(OPEN_VIRTUAL_DISK_FLAG.PARENT_CACHED_IO) else 0)
-            | (if (o.VHDSET_FILE_ONLY == 1) @enumToInt(OPEN_VIRTUAL_DISK_FLAG.VHDSET_FILE_ONLY) else 0)
-            | (if (o.IGNORE_RELATIVE_PARENT_LOCATOR == 1) @enumToInt(OPEN_VIRTUAL_DISK_FLAG.IGNORE_RELATIVE_PARENT_LOCATOR) else 0)
-            | (if (o.NO_WRITE_HARDENING == 1) @enumToInt(OPEN_VIRTUAL_DISK_FLAG.NO_WRITE_HARDENING) else 0)
-            | (if (o.SUPPORT_COMPRESSED_VOLUMES == 1) @enumToInt(OPEN_VIRTUAL_DISK_FLAG.SUPPORT_COMPRESSED_VOLUMES) else 0)
-            | (if (o.SUPPORT_SPARSE_FILES_ANY_FS == 1) @enumToInt(OPEN_VIRTUAL_DISK_FLAG.SUPPORT_SPARSE_FILES_ANY_FS) else 0)
-            | (if (o.SUPPORT_ENCRYPTED_FILES == 1) @enumToInt(OPEN_VIRTUAL_DISK_FLAG.SUPPORT_ENCRYPTED_FILES) else 0)
-        );
+        return @enumFromInt(OPEN_VIRTUAL_DISK_FLAG, (if (o.NONE == 1) @intFromEnum(OPEN_VIRTUAL_DISK_FLAG.NONE) else 0) | (if (o.NO_PARENTS == 1) @intFromEnum(OPEN_VIRTUAL_DISK_FLAG.NO_PARENTS) else 0) | (if (o.BLANK_FILE == 1) @intFromEnum(OPEN_VIRTUAL_DISK_FLAG.BLANK_FILE) else 0) | (if (o.BOOT_DRIVE == 1) @intFromEnum(OPEN_VIRTUAL_DISK_FLAG.BOOT_DRIVE) else 0) | (if (o.CACHED_IO == 1) @intFromEnum(OPEN_VIRTUAL_DISK_FLAG.CACHED_IO) else 0) | (if (o.CUSTOM_DIFF_CHAIN == 1) @intFromEnum(OPEN_VIRTUAL_DISK_FLAG.CUSTOM_DIFF_CHAIN) else 0) | (if (o.PARENT_CACHED_IO == 1) @intFromEnum(OPEN_VIRTUAL_DISK_FLAG.PARENT_CACHED_IO) else 0) | (if (o.VHDSET_FILE_ONLY == 1) @intFromEnum(OPEN_VIRTUAL_DISK_FLAG.VHDSET_FILE_ONLY) else 0) | (if (o.IGNORE_RELATIVE_PARENT_LOCATOR == 1) @intFromEnum(OPEN_VIRTUAL_DISK_FLAG.IGNORE_RELATIVE_PARENT_LOCATOR) else 0) | (if (o.NO_WRITE_HARDENING == 1) @intFromEnum(OPEN_VIRTUAL_DISK_FLAG.NO_WRITE_HARDENING) else 0) | (if (o.SUPPORT_COMPRESSED_VOLUMES == 1) @intFromEnum(OPEN_VIRTUAL_DISK_FLAG.SUPPORT_COMPRESSED_VOLUMES) else 0) | (if (o.SUPPORT_SPARSE_FILES_ANY_FS == 1) @intFromEnum(OPEN_VIRTUAL_DISK_FLAG.SUPPORT_SPARSE_FILES_ANY_FS) else 0) | (if (o.SUPPORT_ENCRYPTED_FILES == 1) @intFromEnum(OPEN_VIRTUAL_DISK_FLAG.SUPPORT_ENCRYPTED_FILES) else 0));
     }
 };
 pub const OPEN_VIRTUAL_DISK_FLAG_NONE = OPEN_VIRTUAL_DISK_FLAG.NONE;
@@ -264,20 +239,7 @@ pub const CREATE_VIRTUAL_DISK_FLAG = enum(u32) {
         SUPPORT_COMPRESSED_VOLUMES: u1 = 0,
         SUPPORT_SPARSE_FILES_ANY_FS: u1 = 0,
     }) CREATE_VIRTUAL_DISK_FLAG {
-        return @intToEnum(CREATE_VIRTUAL_DISK_FLAG,
-              (if (o.NONE == 1) @enumToInt(CREATE_VIRTUAL_DISK_FLAG.NONE) else 0)
-            | (if (o.FULL_PHYSICAL_ALLOCATION == 1) @enumToInt(CREATE_VIRTUAL_DISK_FLAG.FULL_PHYSICAL_ALLOCATION) else 0)
-            | (if (o.PREVENT_WRITES_TO_SOURCE_DISK == 1) @enumToInt(CREATE_VIRTUAL_DISK_FLAG.PREVENT_WRITES_TO_SOURCE_DISK) else 0)
-            | (if (o.DO_NOT_COPY_METADATA_FROM_PARENT == 1) @enumToInt(CREATE_VIRTUAL_DISK_FLAG.DO_NOT_COPY_METADATA_FROM_PARENT) else 0)
-            | (if (o.CREATE_BACKING_STORAGE == 1) @enumToInt(CREATE_VIRTUAL_DISK_FLAG.CREATE_BACKING_STORAGE) else 0)
-            | (if (o.USE_CHANGE_TRACKING_SOURCE_LIMIT == 1) @enumToInt(CREATE_VIRTUAL_DISK_FLAG.USE_CHANGE_TRACKING_SOURCE_LIMIT) else 0)
-            | (if (o.PRESERVE_PARENT_CHANGE_TRACKING_STATE == 1) @enumToInt(CREATE_VIRTUAL_DISK_FLAG.PRESERVE_PARENT_CHANGE_TRACKING_STATE) else 0)
-            | (if (o.VHD_SET_USE_ORIGINAL_BACKING_STORAGE == 1) @enumToInt(CREATE_VIRTUAL_DISK_FLAG.VHD_SET_USE_ORIGINAL_BACKING_STORAGE) else 0)
-            | (if (o.SPARSE_FILE == 1) @enumToInt(CREATE_VIRTUAL_DISK_FLAG.SPARSE_FILE) else 0)
-            | (if (o.PMEM_COMPATIBLE == 1) @enumToInt(CREATE_VIRTUAL_DISK_FLAG.PMEM_COMPATIBLE) else 0)
-            | (if (o.SUPPORT_COMPRESSED_VOLUMES == 1) @enumToInt(CREATE_VIRTUAL_DISK_FLAG.SUPPORT_COMPRESSED_VOLUMES) else 0)
-            | (if (o.SUPPORT_SPARSE_FILES_ANY_FS == 1) @enumToInt(CREATE_VIRTUAL_DISK_FLAG.SUPPORT_SPARSE_FILES_ANY_FS) else 0)
-        );
+        return @enumFromInt(CREATE_VIRTUAL_DISK_FLAG, (if (o.NONE == 1) @intFromEnum(CREATE_VIRTUAL_DISK_FLAG.NONE) else 0) | (if (o.FULL_PHYSICAL_ALLOCATION == 1) @intFromEnum(CREATE_VIRTUAL_DISK_FLAG.FULL_PHYSICAL_ALLOCATION) else 0) | (if (o.PREVENT_WRITES_TO_SOURCE_DISK == 1) @intFromEnum(CREATE_VIRTUAL_DISK_FLAG.PREVENT_WRITES_TO_SOURCE_DISK) else 0) | (if (o.DO_NOT_COPY_METADATA_FROM_PARENT == 1) @intFromEnum(CREATE_VIRTUAL_DISK_FLAG.DO_NOT_COPY_METADATA_FROM_PARENT) else 0) | (if (o.CREATE_BACKING_STORAGE == 1) @intFromEnum(CREATE_VIRTUAL_DISK_FLAG.CREATE_BACKING_STORAGE) else 0) | (if (o.USE_CHANGE_TRACKING_SOURCE_LIMIT == 1) @intFromEnum(CREATE_VIRTUAL_DISK_FLAG.USE_CHANGE_TRACKING_SOURCE_LIMIT) else 0) | (if (o.PRESERVE_PARENT_CHANGE_TRACKING_STATE == 1) @intFromEnum(CREATE_VIRTUAL_DISK_FLAG.PRESERVE_PARENT_CHANGE_TRACKING_STATE) else 0) | (if (o.VHD_SET_USE_ORIGINAL_BACKING_STORAGE == 1) @intFromEnum(CREATE_VIRTUAL_DISK_FLAG.VHD_SET_USE_ORIGINAL_BACKING_STORAGE) else 0) | (if (o.SPARSE_FILE == 1) @intFromEnum(CREATE_VIRTUAL_DISK_FLAG.SPARSE_FILE) else 0) | (if (o.PMEM_COMPATIBLE == 1) @intFromEnum(CREATE_VIRTUAL_DISK_FLAG.PMEM_COMPATIBLE) else 0) | (if (o.SUPPORT_COMPRESSED_VOLUMES == 1) @intFromEnum(CREATE_VIRTUAL_DISK_FLAG.SUPPORT_COMPRESSED_VOLUMES) else 0) | (if (o.SUPPORT_SPARSE_FILES_ANY_FS == 1) @intFromEnum(CREATE_VIRTUAL_DISK_FLAG.SUPPORT_SPARSE_FILES_ANY_FS) else 0));
     }
 };
 pub const CREATE_VIRTUAL_DISK_FLAG_NONE = CREATE_VIRTUAL_DISK_FLAG.NONE;
@@ -341,19 +303,7 @@ pub const ATTACH_VIRTUAL_DISK_FLAG = enum(u32) {
         SINGLE_PARTITION: u1 = 0,
         REGISTER_VOLUME: u1 = 0,
     }) ATTACH_VIRTUAL_DISK_FLAG {
-        return @intToEnum(ATTACH_VIRTUAL_DISK_FLAG,
-              (if (o.NONE == 1) @enumToInt(ATTACH_VIRTUAL_DISK_FLAG.NONE) else 0)
-            | (if (o.READ_ONLY == 1) @enumToInt(ATTACH_VIRTUAL_DISK_FLAG.READ_ONLY) else 0)
-            | (if (o.NO_DRIVE_LETTER == 1) @enumToInt(ATTACH_VIRTUAL_DISK_FLAG.NO_DRIVE_LETTER) else 0)
-            | (if (o.PERMANENT_LIFETIME == 1) @enumToInt(ATTACH_VIRTUAL_DISK_FLAG.PERMANENT_LIFETIME) else 0)
-            | (if (o.NO_LOCAL_HOST == 1) @enumToInt(ATTACH_VIRTUAL_DISK_FLAG.NO_LOCAL_HOST) else 0)
-            | (if (o.NO_SECURITY_DESCRIPTOR == 1) @enumToInt(ATTACH_VIRTUAL_DISK_FLAG.NO_SECURITY_DESCRIPTOR) else 0)
-            | (if (o.BYPASS_DEFAULT_ENCRYPTION_POLICY == 1) @enumToInt(ATTACH_VIRTUAL_DISK_FLAG.BYPASS_DEFAULT_ENCRYPTION_POLICY) else 0)
-            | (if (o.NON_PNP == 1) @enumToInt(ATTACH_VIRTUAL_DISK_FLAG.NON_PNP) else 0)
-            | (if (o.RESTRICTED_RANGE == 1) @enumToInt(ATTACH_VIRTUAL_DISK_FLAG.RESTRICTED_RANGE) else 0)
-            | (if (o.SINGLE_PARTITION == 1) @enumToInt(ATTACH_VIRTUAL_DISK_FLAG.SINGLE_PARTITION) else 0)
-            | (if (o.REGISTER_VOLUME == 1) @enumToInt(ATTACH_VIRTUAL_DISK_FLAG.REGISTER_VOLUME) else 0)
-        );
+        return @enumFromInt(ATTACH_VIRTUAL_DISK_FLAG, (if (o.NONE == 1) @intFromEnum(ATTACH_VIRTUAL_DISK_FLAG.NONE) else 0) | (if (o.READ_ONLY == 1) @intFromEnum(ATTACH_VIRTUAL_DISK_FLAG.READ_ONLY) else 0) | (if (o.NO_DRIVE_LETTER == 1) @intFromEnum(ATTACH_VIRTUAL_DISK_FLAG.NO_DRIVE_LETTER) else 0) | (if (o.PERMANENT_LIFETIME == 1) @intFromEnum(ATTACH_VIRTUAL_DISK_FLAG.PERMANENT_LIFETIME) else 0) | (if (o.NO_LOCAL_HOST == 1) @intFromEnum(ATTACH_VIRTUAL_DISK_FLAG.NO_LOCAL_HOST) else 0) | (if (o.NO_SECURITY_DESCRIPTOR == 1) @intFromEnum(ATTACH_VIRTUAL_DISK_FLAG.NO_SECURITY_DESCRIPTOR) else 0) | (if (o.BYPASS_DEFAULT_ENCRYPTION_POLICY == 1) @intFromEnum(ATTACH_VIRTUAL_DISK_FLAG.BYPASS_DEFAULT_ENCRYPTION_POLICY) else 0) | (if (o.NON_PNP == 1) @intFromEnum(ATTACH_VIRTUAL_DISK_FLAG.NON_PNP) else 0) | (if (o.RESTRICTED_RANGE == 1) @intFromEnum(ATTACH_VIRTUAL_DISK_FLAG.RESTRICTED_RANGE) else 0) | (if (o.SINGLE_PARTITION == 1) @intFromEnum(ATTACH_VIRTUAL_DISK_FLAG.SINGLE_PARTITION) else 0) | (if (o.REGISTER_VOLUME == 1) @intFromEnum(ATTACH_VIRTUAL_DISK_FLAG.REGISTER_VOLUME) else 0));
     }
 };
 pub const ATTACH_VIRTUAL_DISK_FLAG_NONE = ATTACH_VIRTUAL_DISK_FLAG.NONE;
@@ -374,9 +324,7 @@ pub const DETACH_VIRTUAL_DISK_FLAG = enum(u32) {
     pub fn initFlags(o: struct {
         E: u1 = 0,
     }) DETACH_VIRTUAL_DISK_FLAG {
-        return @intToEnum(DETACH_VIRTUAL_DISK_FLAG,
-              (if (o.E == 1) @enumToInt(DETACH_VIRTUAL_DISK_FLAG.E) else 0)
-        );
+        return @enumFromInt(DETACH_VIRTUAL_DISK_FLAG, (if (o.E == 1) @intFromEnum(DETACH_VIRTUAL_DISK_FLAG.E) else 0));
     }
 };
 pub const DETACH_VIRTUAL_DISK_FLAG_NONE = DETACH_VIRTUAL_DISK_FLAG.E;
@@ -415,23 +363,7 @@ pub const DEPENDENT_DISK_FLAG = enum(u32) {
         ALWAYS_ALLOW_SPARSE: u1 = 0,
         SUPPORT_ENCRYPTED_FILES: u1 = 0,
     }) DEPENDENT_DISK_FLAG {
-        return @intToEnum(DEPENDENT_DISK_FLAG,
-              (if (o.NONE == 1) @enumToInt(DEPENDENT_DISK_FLAG.NONE) else 0)
-            | (if (o.MULT_BACKING_FILES == 1) @enumToInt(DEPENDENT_DISK_FLAG.MULT_BACKING_FILES) else 0)
-            | (if (o.FULLY_ALLOCATED == 1) @enumToInt(DEPENDENT_DISK_FLAG.FULLY_ALLOCATED) else 0)
-            | (if (o.READ_ONLY == 1) @enumToInt(DEPENDENT_DISK_FLAG.READ_ONLY) else 0)
-            | (if (o.REMOTE == 1) @enumToInt(DEPENDENT_DISK_FLAG.REMOTE) else 0)
-            | (if (o.SYSTEM_VOLUME == 1) @enumToInt(DEPENDENT_DISK_FLAG.SYSTEM_VOLUME) else 0)
-            | (if (o.SYSTEM_VOLUME_PARENT == 1) @enumToInt(DEPENDENT_DISK_FLAG.SYSTEM_VOLUME_PARENT) else 0)
-            | (if (o.REMOVABLE == 1) @enumToInt(DEPENDENT_DISK_FLAG.REMOVABLE) else 0)
-            | (if (o.NO_DRIVE_LETTER == 1) @enumToInt(DEPENDENT_DISK_FLAG.NO_DRIVE_LETTER) else 0)
-            | (if (o.PARENT == 1) @enumToInt(DEPENDENT_DISK_FLAG.PARENT) else 0)
-            | (if (o.NO_HOST_DISK == 1) @enumToInt(DEPENDENT_DISK_FLAG.NO_HOST_DISK) else 0)
-            | (if (o.PERMANENT_LIFETIME == 1) @enumToInt(DEPENDENT_DISK_FLAG.PERMANENT_LIFETIME) else 0)
-            | (if (o.SUPPORT_COMPRESSED_VOLUMES == 1) @enumToInt(DEPENDENT_DISK_FLAG.SUPPORT_COMPRESSED_VOLUMES) else 0)
-            | (if (o.ALWAYS_ALLOW_SPARSE == 1) @enumToInt(DEPENDENT_DISK_FLAG.ALWAYS_ALLOW_SPARSE) else 0)
-            | (if (o.SUPPORT_ENCRYPTED_FILES == 1) @enumToInt(DEPENDENT_DISK_FLAG.SUPPORT_ENCRYPTED_FILES) else 0)
-        );
+        return @enumFromInt(DEPENDENT_DISK_FLAG, (if (o.NONE == 1) @intFromEnum(DEPENDENT_DISK_FLAG.NONE) else 0) | (if (o.MULT_BACKING_FILES == 1) @intFromEnum(DEPENDENT_DISK_FLAG.MULT_BACKING_FILES) else 0) | (if (o.FULLY_ALLOCATED == 1) @intFromEnum(DEPENDENT_DISK_FLAG.FULLY_ALLOCATED) else 0) | (if (o.READ_ONLY == 1) @intFromEnum(DEPENDENT_DISK_FLAG.READ_ONLY) else 0) | (if (o.REMOTE == 1) @intFromEnum(DEPENDENT_DISK_FLAG.REMOTE) else 0) | (if (o.SYSTEM_VOLUME == 1) @intFromEnum(DEPENDENT_DISK_FLAG.SYSTEM_VOLUME) else 0) | (if (o.SYSTEM_VOLUME_PARENT == 1) @intFromEnum(DEPENDENT_DISK_FLAG.SYSTEM_VOLUME_PARENT) else 0) | (if (o.REMOVABLE == 1) @intFromEnum(DEPENDENT_DISK_FLAG.REMOVABLE) else 0) | (if (o.NO_DRIVE_LETTER == 1) @intFromEnum(DEPENDENT_DISK_FLAG.NO_DRIVE_LETTER) else 0) | (if (o.PARENT == 1) @intFromEnum(DEPENDENT_DISK_FLAG.PARENT) else 0) | (if (o.NO_HOST_DISK == 1) @intFromEnum(DEPENDENT_DISK_FLAG.NO_HOST_DISK) else 0) | (if (o.PERMANENT_LIFETIME == 1) @intFromEnum(DEPENDENT_DISK_FLAG.PERMANENT_LIFETIME) else 0) | (if (o.SUPPORT_COMPRESSED_VOLUMES == 1) @intFromEnum(DEPENDENT_DISK_FLAG.SUPPORT_COMPRESSED_VOLUMES) else 0) | (if (o.ALWAYS_ALLOW_SPARSE == 1) @intFromEnum(DEPENDENT_DISK_FLAG.ALWAYS_ALLOW_SPARSE) else 0) | (if (o.SUPPORT_ENCRYPTED_FILES == 1) @intFromEnum(DEPENDENT_DISK_FLAG.SUPPORT_ENCRYPTED_FILES) else 0));
     }
 };
 pub const DEPENDENT_DISK_FLAG_NONE = DEPENDENT_DISK_FLAG.NONE;
@@ -495,11 +427,7 @@ pub const GET_STORAGE_DEPENDENCY_FLAG = enum(u32) {
         HOST_VOLUMES: u1 = 0,
         DISK_HANDLE: u1 = 0,
     }) GET_STORAGE_DEPENDENCY_FLAG {
-        return @intToEnum(GET_STORAGE_DEPENDENCY_FLAG,
-              (if (o.NONE == 1) @enumToInt(GET_STORAGE_DEPENDENCY_FLAG.NONE) else 0)
-            | (if (o.HOST_VOLUMES == 1) @enumToInt(GET_STORAGE_DEPENDENCY_FLAG.HOST_VOLUMES) else 0)
-            | (if (o.DISK_HANDLE == 1) @enumToInt(GET_STORAGE_DEPENDENCY_FLAG.DISK_HANDLE) else 0)
-        );
+        return @enumFromInt(GET_STORAGE_DEPENDENCY_FLAG, (if (o.NONE == 1) @intFromEnum(GET_STORAGE_DEPENDENCY_FLAG.NONE) else 0) | (if (o.HOST_VOLUMES == 1) @intFromEnum(GET_STORAGE_DEPENDENCY_FLAG.HOST_VOLUMES) else 0) | (if (o.DISK_HANDLE == 1) @intFromEnum(GET_STORAGE_DEPENDENCY_FLAG.DISK_HANDLE) else 0));
     }
 };
 pub const GET_STORAGE_DEPENDENCY_FLAG_NONE = GET_STORAGE_DEPENDENCY_FLAG.NONE;
@@ -648,11 +576,7 @@ pub const COMPACT_VIRTUAL_DISK_FLAG = enum(u32) {
         _ZERO_SCAN: u1 = 0,
         _BLOCK_MOVES: u1 = 0,
     }) COMPACT_VIRTUAL_DISK_FLAG {
-        return @intToEnum(COMPACT_VIRTUAL_DISK_FLAG,
-              (if (o.NE == 1) @enumToInt(COMPACT_VIRTUAL_DISK_FLAG.NE) else 0)
-            | (if (o._ZERO_SCAN == 1) @enumToInt(COMPACT_VIRTUAL_DISK_FLAG._ZERO_SCAN) else 0)
-            | (if (o._BLOCK_MOVES == 1) @enumToInt(COMPACT_VIRTUAL_DISK_FLAG._BLOCK_MOVES) else 0)
-        );
+        return @enumFromInt(COMPACT_VIRTUAL_DISK_FLAG, (if (o.NE == 1) @intFromEnum(COMPACT_VIRTUAL_DISK_FLAG.NE) else 0) | (if (o._ZERO_SCAN == 1) @intFromEnum(COMPACT_VIRTUAL_DISK_FLAG._ZERO_SCAN) else 0) | (if (o._BLOCK_MOVES == 1) @intFromEnum(COMPACT_VIRTUAL_DISK_FLAG._BLOCK_MOVES) else 0));
     }
 };
 pub const COMPACT_VIRTUAL_DISK_FLAG_NONE = COMPACT_VIRTUAL_DISK_FLAG.NE;
@@ -687,9 +611,7 @@ pub const MERGE_VIRTUAL_DISK_FLAG = enum(u32) {
     pub fn initFlags(o: struct {
         E: u1 = 0,
     }) MERGE_VIRTUAL_DISK_FLAG {
-        return @intToEnum(MERGE_VIRTUAL_DISK_FLAG,
-              (if (o.E == 1) @enumToInt(MERGE_VIRTUAL_DISK_FLAG.E) else 0)
-        );
+        return @enumFromInt(MERGE_VIRTUAL_DISK_FLAG, (if (o.E == 1) @intFromEnum(MERGE_VIRTUAL_DISK_FLAG.E) else 0));
     }
 };
 pub const MERGE_VIRTUAL_DISK_FLAG_NONE = MERGE_VIRTUAL_DISK_FLAG.E;
@@ -718,10 +640,7 @@ pub const EXPAND_VIRTUAL_DISK_FLAG = enum(u32) {
         NE: u1 = 0,
         TIFY_CHANGE: u1 = 0,
     }) EXPAND_VIRTUAL_DISK_FLAG {
-        return @intToEnum(EXPAND_VIRTUAL_DISK_FLAG,
-              (if (o.NE == 1) @enumToInt(EXPAND_VIRTUAL_DISK_FLAG.NE) else 0)
-            | (if (o.TIFY_CHANGE == 1) @enumToInt(EXPAND_VIRTUAL_DISK_FLAG.TIFY_CHANGE) else 0)
-        );
+        return @enumFromInt(EXPAND_VIRTUAL_DISK_FLAG, (if (o.NE == 1) @intFromEnum(EXPAND_VIRTUAL_DISK_FLAG.NE) else 0) | (if (o.TIFY_CHANGE == 1) @intFromEnum(EXPAND_VIRTUAL_DISK_FLAG.TIFY_CHANGE) else 0));
     }
 };
 pub const EXPAND_VIRTUAL_DISK_FLAG_NONE = EXPAND_VIRTUAL_DISK_FLAG.NE;
@@ -753,11 +672,7 @@ pub const RESIZE_VIRTUAL_DISK_FLAG = enum(u32) {
         ALLOW_UNSAFE_VIRTUAL_SIZE: u1 = 0,
         RESIZE_TO_SMALLEST_SAFE_VIRTUAL_SIZE: u1 = 0,
     }) RESIZE_VIRTUAL_DISK_FLAG {
-        return @intToEnum(RESIZE_VIRTUAL_DISK_FLAG,
-              (if (o.NONE == 1) @enumToInt(RESIZE_VIRTUAL_DISK_FLAG.NONE) else 0)
-            | (if (o.ALLOW_UNSAFE_VIRTUAL_SIZE == 1) @enumToInt(RESIZE_VIRTUAL_DISK_FLAG.ALLOW_UNSAFE_VIRTUAL_SIZE) else 0)
-            | (if (o.RESIZE_TO_SMALLEST_SAFE_VIRTUAL_SIZE == 1) @enumToInt(RESIZE_VIRTUAL_DISK_FLAG.RESIZE_TO_SMALLEST_SAFE_VIRTUAL_SIZE) else 0)
-        );
+        return @enumFromInt(RESIZE_VIRTUAL_DISK_FLAG, (if (o.NONE == 1) @intFromEnum(RESIZE_VIRTUAL_DISK_FLAG.NONE) else 0) | (if (o.ALLOW_UNSAFE_VIRTUAL_SIZE == 1) @intFromEnum(RESIZE_VIRTUAL_DISK_FLAG.ALLOW_UNSAFE_VIRTUAL_SIZE) else 0) | (if (o.RESIZE_TO_SMALLEST_SAFE_VIRTUAL_SIZE == 1) @intFromEnum(RESIZE_VIRTUAL_DISK_FLAG.RESIZE_TO_SMALLEST_SAFE_VIRTUAL_SIZE) else 0));
     }
 };
 pub const RESIZE_VIRTUAL_DISK_FLAG_NONE = RESIZE_VIRTUAL_DISK_FLAG.NONE;
@@ -794,13 +709,7 @@ pub const MIRROR_VIRTUAL_DISK_FLAG = enum(u32) {
         ENABLE_SMB_COMPRESSION: u1 = 0,
         IS_LIVE_MIGRATION: u1 = 0,
     }) MIRROR_VIRTUAL_DISK_FLAG {
-        return @intToEnum(MIRROR_VIRTUAL_DISK_FLAG,
-              (if (o.NONE == 1) @enumToInt(MIRROR_VIRTUAL_DISK_FLAG.NONE) else 0)
-            | (if (o.EXISTING_FILE == 1) @enumToInt(MIRROR_VIRTUAL_DISK_FLAG.EXISTING_FILE) else 0)
-            | (if (o.SKIP_MIRROR_ACTIVATION == 1) @enumToInt(MIRROR_VIRTUAL_DISK_FLAG.SKIP_MIRROR_ACTIVATION) else 0)
-            | (if (o.ENABLE_SMB_COMPRESSION == 1) @enumToInt(MIRROR_VIRTUAL_DISK_FLAG.ENABLE_SMB_COMPRESSION) else 0)
-            | (if (o.IS_LIVE_MIGRATION == 1) @enumToInt(MIRROR_VIRTUAL_DISK_FLAG.IS_LIVE_MIGRATION) else 0)
-        );
+        return @enumFromInt(MIRROR_VIRTUAL_DISK_FLAG, (if (o.NONE == 1) @intFromEnum(MIRROR_VIRTUAL_DISK_FLAG.NONE) else 0) | (if (o.EXISTING_FILE == 1) @intFromEnum(MIRROR_VIRTUAL_DISK_FLAG.EXISTING_FILE) else 0) | (if (o.SKIP_MIRROR_ACTIVATION == 1) @intFromEnum(MIRROR_VIRTUAL_DISK_FLAG.SKIP_MIRROR_ACTIVATION) else 0) | (if (o.ENABLE_SMB_COMPRESSION == 1) @intFromEnum(MIRROR_VIRTUAL_DISK_FLAG.ENABLE_SMB_COMPRESSION) else 0) | (if (o.IS_LIVE_MIGRATION == 1) @intFromEnum(MIRROR_VIRTUAL_DISK_FLAG.IS_LIVE_MIGRATION) else 0));
     }
 };
 pub const MIRROR_VIRTUAL_DISK_FLAG_NONE = MIRROR_VIRTUAL_DISK_FLAG.NONE;
@@ -821,9 +730,7 @@ pub const QUERY_CHANGES_VIRTUAL_DISK_FLAG = enum(u32) {
     pub fn initFlags(o: struct {
         E: u1 = 0,
     }) QUERY_CHANGES_VIRTUAL_DISK_FLAG {
-        return @intToEnum(QUERY_CHANGES_VIRTUAL_DISK_FLAG,
-              (if (o.E == 1) @enumToInt(QUERY_CHANGES_VIRTUAL_DISK_FLAG.E) else 0)
-        );
+        return @enumFromInt(QUERY_CHANGES_VIRTUAL_DISK_FLAG, (if (o.E == 1) @intFromEnum(QUERY_CHANGES_VIRTUAL_DISK_FLAG.E) else 0));
     }
 };
 pub const QUERY_CHANGES_VIRTUAL_DISK_FLAG_NONE = QUERY_CHANGES_VIRTUAL_DISK_FLAG.E;
@@ -836,10 +743,7 @@ pub const TAKE_SNAPSHOT_VHDSET_FLAG = enum(u32) {
         NONE: u1 = 0,
         WRITEABLE: u1 = 0,
     }) TAKE_SNAPSHOT_VHDSET_FLAG {
-        return @intToEnum(TAKE_SNAPSHOT_VHDSET_FLAG,
-              (if (o.NONE == 1) @enumToInt(TAKE_SNAPSHOT_VHDSET_FLAG.NONE) else 0)
-            | (if (o.WRITEABLE == 1) @enumToInt(TAKE_SNAPSHOT_VHDSET_FLAG.WRITEABLE) else 0)
-        );
+        return @enumFromInt(TAKE_SNAPSHOT_VHDSET_FLAG, (if (o.NONE == 1) @intFromEnum(TAKE_SNAPSHOT_VHDSET_FLAG.NONE) else 0) | (if (o.WRITEABLE == 1) @intFromEnum(TAKE_SNAPSHOT_VHDSET_FLAG.WRITEABLE) else 0));
     }
 };
 pub const TAKE_SNAPSHOT_VHDSET_FLAG_NONE = TAKE_SNAPSHOT_VHDSET_FLAG.NONE;
@@ -869,10 +773,7 @@ pub const DELETE_SNAPSHOT_VHDSET_FLAG = enum(u32) {
         NONE: u1 = 0,
         PERSIST_RCT: u1 = 0,
     }) DELETE_SNAPSHOT_VHDSET_FLAG {
-        return @intToEnum(DELETE_SNAPSHOT_VHDSET_FLAG,
-              (if (o.NONE == 1) @enumToInt(DELETE_SNAPSHOT_VHDSET_FLAG.NONE) else 0)
-            | (if (o.PERSIST_RCT == 1) @enumToInt(DELETE_SNAPSHOT_VHDSET_FLAG.PERSIST_RCT) else 0)
-        );
+        return @enumFromInt(DELETE_SNAPSHOT_VHDSET_FLAG, (if (o.NONE == 1) @intFromEnum(DELETE_SNAPSHOT_VHDSET_FLAG.NONE) else 0) | (if (o.PERSIST_RCT == 1) @intFromEnum(DELETE_SNAPSHOT_VHDSET_FLAG.PERSIST_RCT) else 0));
     }
 };
 pub const DELETE_SNAPSHOT_VHDSET_FLAG_NONE = DELETE_SNAPSHOT_VHDSET_FLAG.NONE;
@@ -913,10 +814,7 @@ pub const MODIFY_VHDSET_FLAG = enum(u32) {
         NONE: u1 = 0,
         WRITEABLE_SNAPSHOT: u1 = 0,
     }) MODIFY_VHDSET_FLAG {
-        return @intToEnum(MODIFY_VHDSET_FLAG,
-              (if (o.NONE == 1) @enumToInt(MODIFY_VHDSET_FLAG.NONE) else 0)
-            | (if (o.WRITEABLE_SNAPSHOT == 1) @enumToInt(MODIFY_VHDSET_FLAG.WRITEABLE_SNAPSHOT) else 0)
-        );
+        return @enumFromInt(MODIFY_VHDSET_FLAG, (if (o.NONE == 1) @intFromEnum(MODIFY_VHDSET_FLAG.NONE) else 0) | (if (o.WRITEABLE_SNAPSHOT == 1) @intFromEnum(MODIFY_VHDSET_FLAG.WRITEABLE_SNAPSHOT) else 0));
     }
 };
 pub const MODIFY_VHDSET_FLAG_NONE = MODIFY_VHDSET_FLAG.NONE;
@@ -942,10 +840,7 @@ pub const APPLY_SNAPSHOT_VHDSET_FLAG = enum(u32) {
         NONE: u1 = 0,
         WRITEABLE: u1 = 0,
     }) APPLY_SNAPSHOT_VHDSET_FLAG {
-        return @intToEnum(APPLY_SNAPSHOT_VHDSET_FLAG,
-              (if (o.NONE == 1) @enumToInt(APPLY_SNAPSHOT_VHDSET_FLAG.NONE) else 0)
-            | (if (o.WRITEABLE == 1) @enumToInt(APPLY_SNAPSHOT_VHDSET_FLAG.WRITEABLE) else 0)
-        );
+        return @enumFromInt(APPLY_SNAPSHOT_VHDSET_FLAG, (if (o.NONE == 1) @intFromEnum(APPLY_SNAPSHOT_VHDSET_FLAG.NONE) else 0) | (if (o.WRITEABLE == 1) @intFromEnum(APPLY_SNAPSHOT_VHDSET_FLAG.WRITEABLE) else 0));
     }
 };
 pub const APPLY_SNAPSHOT_VHDSET_FLAG_NONE = APPLY_SNAPSHOT_VHDSET_FLAG.NONE;
@@ -974,9 +869,7 @@ pub const RAW_SCSI_VIRTUAL_DISK_FLAG = enum(u32) {
     pub fn initFlags(o: struct {
         E: u1 = 0,
     }) RAW_SCSI_VIRTUAL_DISK_FLAG {
-        return @intToEnum(RAW_SCSI_VIRTUAL_DISK_FLAG,
-              (if (o.E == 1) @enumToInt(RAW_SCSI_VIRTUAL_DISK_FLAG.E) else 0)
-        );
+        return @enumFromInt(RAW_SCSI_VIRTUAL_DISK_FLAG, (if (o.E == 1) @intFromEnum(RAW_SCSI_VIRTUAL_DISK_FLAG.E) else 0));
     }
 };
 pub const RAW_SCSI_VIRTUAL_DISK_FLAG_NONE = RAW_SCSI_VIRTUAL_DISK_FLAG.E;
@@ -1040,15 +933,11 @@ pub const FORK_VIRTUAL_DISK_FLAG = enum(u32) {
         NONE: u1 = 0,
         EXISTING_FILE: u1 = 0,
     }) FORK_VIRTUAL_DISK_FLAG {
-        return @intToEnum(FORK_VIRTUAL_DISK_FLAG,
-              (if (o.NONE == 1) @enumToInt(FORK_VIRTUAL_DISK_FLAG.NONE) else 0)
-            | (if (o.EXISTING_FILE == 1) @enumToInt(FORK_VIRTUAL_DISK_FLAG.EXISTING_FILE) else 0)
-        );
+        return @enumFromInt(FORK_VIRTUAL_DISK_FLAG, (if (o.NONE == 1) @intFromEnum(FORK_VIRTUAL_DISK_FLAG.NONE) else 0) | (if (o.EXISTING_FILE == 1) @intFromEnum(FORK_VIRTUAL_DISK_FLAG.EXISTING_FILE) else 0));
     }
 };
 pub const FORK_VIRTUAL_DISK_FLAG_NONE = FORK_VIRTUAL_DISK_FLAG.NONE;
 pub const FORK_VIRTUAL_DISK_FLAG_EXISTING_FILE = FORK_VIRTUAL_DISK_FLAG.EXISTING_FILE;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (29)
@@ -1279,19 +1168,14 @@ pub extern "virtdisk" fn CompleteForkVirtualDisk(
     VirtualDiskHandle: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
@@ -1304,9 +1188,7 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

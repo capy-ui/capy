@@ -90,7 +90,7 @@ pub fn stepEventLoop(stepType: EventLoopStep) bool {
             if (now.since(item.started.?) >= item.duration) {
                 // TODO: tick timer
                 item.started = now;
-                std.log.info("tick", .{});
+                item.tick();
             }
         }
         return backend.runStep(.Asynchronous);

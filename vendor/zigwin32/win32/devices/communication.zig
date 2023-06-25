@@ -110,12 +110,7 @@ pub const MODEM_STATUS_FLAGS = enum(u32) {
         RING_ON: u1 = 0,
         RLSD_ON: u1 = 0,
     }) MODEM_STATUS_FLAGS {
-        return @intToEnum(MODEM_STATUS_FLAGS,
-              (if (o.CTS_ON == 1) @enumToInt(MODEM_STATUS_FLAGS.CTS_ON) else 0)
-            | (if (o.DSR_ON == 1) @enumToInt(MODEM_STATUS_FLAGS.DSR_ON) else 0)
-            | (if (o.RING_ON == 1) @enumToInt(MODEM_STATUS_FLAGS.RING_ON) else 0)
-            | (if (o.RLSD_ON == 1) @enumToInt(MODEM_STATUS_FLAGS.RLSD_ON) else 0)
-        );
+        return @enumFromInt(MODEM_STATUS_FLAGS, (if (o.CTS_ON == 1) @intFromEnum(MODEM_STATUS_FLAGS.CTS_ON) else 0) | (if (o.DSR_ON == 1) @intFromEnum(MODEM_STATUS_FLAGS.DSR_ON) else 0) | (if (o.RING_ON == 1) @intFromEnum(MODEM_STATUS_FLAGS.RING_ON) else 0) | (if (o.RLSD_ON == 1) @intFromEnum(MODEM_STATUS_FLAGS.RLSD_ON) else 0));
     }
 };
 pub const MS_CTS_ON = MODEM_STATUS_FLAGS.CTS_ON;
@@ -137,13 +132,7 @@ pub const CLEAR_COMM_ERROR_FLAGS = enum(u32) {
         RXOVER: u1 = 0,
         RXPARITY: u1 = 0,
     }) CLEAR_COMM_ERROR_FLAGS {
-        return @intToEnum(CLEAR_COMM_ERROR_FLAGS,
-              (if (o.BREAK == 1) @enumToInt(CLEAR_COMM_ERROR_FLAGS.BREAK) else 0)
-            | (if (o.FRAME == 1) @enumToInt(CLEAR_COMM_ERROR_FLAGS.FRAME) else 0)
-            | (if (o.OVERRUN == 1) @enumToInt(CLEAR_COMM_ERROR_FLAGS.OVERRUN) else 0)
-            | (if (o.RXOVER == 1) @enumToInt(CLEAR_COMM_ERROR_FLAGS.RXOVER) else 0)
-            | (if (o.RXPARITY == 1) @enumToInt(CLEAR_COMM_ERROR_FLAGS.RXPARITY) else 0)
-        );
+        return @enumFromInt(CLEAR_COMM_ERROR_FLAGS, (if (o.BREAK == 1) @intFromEnum(CLEAR_COMM_ERROR_FLAGS.BREAK) else 0) | (if (o.FRAME == 1) @intFromEnum(CLEAR_COMM_ERROR_FLAGS.FRAME) else 0) | (if (o.OVERRUN == 1) @intFromEnum(CLEAR_COMM_ERROR_FLAGS.OVERRUN) else 0) | (if (o.RXOVER == 1) @intFromEnum(CLEAR_COMM_ERROR_FLAGS.RXOVER) else 0) | (if (o.RXPARITY == 1) @intFromEnum(CLEAR_COMM_ERROR_FLAGS.RXPARITY) else 0));
     }
 };
 pub const CE_BREAK = CLEAR_COMM_ERROR_FLAGS.BREAK;
@@ -164,12 +153,7 @@ pub const PURGE_COMM_FLAGS = enum(u32) {
         TXABORT: u1 = 0,
         TXCLEAR: u1 = 0,
     }) PURGE_COMM_FLAGS {
-        return @intToEnum(PURGE_COMM_FLAGS,
-              (if (o.RXABORT == 1) @enumToInt(PURGE_COMM_FLAGS.RXABORT) else 0)
-            | (if (o.RXCLEAR == 1) @enumToInt(PURGE_COMM_FLAGS.RXCLEAR) else 0)
-            | (if (o.TXABORT == 1) @enumToInt(PURGE_COMM_FLAGS.TXABORT) else 0)
-            | (if (o.TXCLEAR == 1) @enumToInt(PURGE_COMM_FLAGS.TXCLEAR) else 0)
-        );
+        return @enumFromInt(PURGE_COMM_FLAGS, (if (o.RXABORT == 1) @intFromEnum(PURGE_COMM_FLAGS.RXABORT) else 0) | (if (o.RXCLEAR == 1) @intFromEnum(PURGE_COMM_FLAGS.RXCLEAR) else 0) | (if (o.TXABORT == 1) @intFromEnum(PURGE_COMM_FLAGS.TXABORT) else 0) | (if (o.TXCLEAR == 1) @intFromEnum(PURGE_COMM_FLAGS.TXCLEAR) else 0));
     }
 };
 pub const PURGE_RXABORT = PURGE_COMM_FLAGS.RXABORT;
@@ -207,21 +191,7 @@ pub const COMM_EVENT_MASK = enum(u32) {
         RXFLAG: u1 = 0,
         TXEMPTY: u1 = 0,
     }) COMM_EVENT_MASK {
-        return @intToEnum(COMM_EVENT_MASK,
-              (if (o.BREAK == 1) @enumToInt(COMM_EVENT_MASK.BREAK) else 0)
-            | (if (o.CTS == 1) @enumToInt(COMM_EVENT_MASK.CTS) else 0)
-            | (if (o.DSR == 1) @enumToInt(COMM_EVENT_MASK.DSR) else 0)
-            | (if (o.ERR == 1) @enumToInt(COMM_EVENT_MASK.ERR) else 0)
-            | (if (o.EVENT1 == 1) @enumToInt(COMM_EVENT_MASK.EVENT1) else 0)
-            | (if (o.EVENT2 == 1) @enumToInt(COMM_EVENT_MASK.EVENT2) else 0)
-            | (if (o.PERR == 1) @enumToInt(COMM_EVENT_MASK.PERR) else 0)
-            | (if (o.RING == 1) @enumToInt(COMM_EVENT_MASK.RING) else 0)
-            | (if (o.RLSD == 1) @enumToInt(COMM_EVENT_MASK.RLSD) else 0)
-            | (if (o.RX80FULL == 1) @enumToInt(COMM_EVENT_MASK.RX80FULL) else 0)
-            | (if (o.RXCHAR == 1) @enumToInt(COMM_EVENT_MASK.RXCHAR) else 0)
-            | (if (o.RXFLAG == 1) @enumToInt(COMM_EVENT_MASK.RXFLAG) else 0)
-            | (if (o.TXEMPTY == 1) @enumToInt(COMM_EVENT_MASK.TXEMPTY) else 0)
-        );
+        return @enumFromInt(COMM_EVENT_MASK, (if (o.BREAK == 1) @intFromEnum(COMM_EVENT_MASK.BREAK) else 0) | (if (o.CTS == 1) @intFromEnum(COMM_EVENT_MASK.CTS) else 0) | (if (o.DSR == 1) @intFromEnum(COMM_EVENT_MASK.DSR) else 0) | (if (o.ERR == 1) @intFromEnum(COMM_EVENT_MASK.ERR) else 0) | (if (o.EVENT1 == 1) @intFromEnum(COMM_EVENT_MASK.EVENT1) else 0) | (if (o.EVENT2 == 1) @intFromEnum(COMM_EVENT_MASK.EVENT2) else 0) | (if (o.PERR == 1) @intFromEnum(COMM_EVENT_MASK.PERR) else 0) | (if (o.RING == 1) @intFromEnum(COMM_EVENT_MASK.RING) else 0) | (if (o.RLSD == 1) @intFromEnum(COMM_EVENT_MASK.RLSD) else 0) | (if (o.RX80FULL == 1) @intFromEnum(COMM_EVENT_MASK.RX80FULL) else 0) | (if (o.RXCHAR == 1) @intFromEnum(COMM_EVENT_MASK.RXCHAR) else 0) | (if (o.RXFLAG == 1) @intFromEnum(COMM_EVENT_MASK.RXFLAG) else 0) | (if (o.TXEMPTY == 1) @intFromEnum(COMM_EVENT_MASK.TXEMPTY) else 0));
     }
 };
 pub const EV_BREAK = COMM_EVENT_MASK.BREAK;
@@ -267,11 +237,7 @@ pub const MODEMDEVCAPS_DIAL_OPTIONS = enum(u32) {
         DIALTONE: u1 = 0,
         QUIET: u1 = 0,
     }) MODEMDEVCAPS_DIAL_OPTIONS {
-        return @intToEnum(MODEMDEVCAPS_DIAL_OPTIONS,
-              (if (o.BILLING == 1) @enumToInt(MODEMDEVCAPS_DIAL_OPTIONS.BILLING) else 0)
-            | (if (o.DIALTONE == 1) @enumToInt(MODEMDEVCAPS_DIAL_OPTIONS.DIALTONE) else 0)
-            | (if (o.QUIET == 1) @enumToInt(MODEMDEVCAPS_DIAL_OPTIONS.QUIET) else 0)
-        );
+        return @enumFromInt(MODEMDEVCAPS_DIAL_OPTIONS, (if (o.BILLING == 1) @intFromEnum(MODEMDEVCAPS_DIAL_OPTIONS.BILLING) else 0) | (if (o.DIALTONE == 1) @intFromEnum(MODEMDEVCAPS_DIAL_OPTIONS.DIALTONE) else 0) | (if (o.QUIET == 1) @intFromEnum(MODEMDEVCAPS_DIAL_OPTIONS.QUIET) else 0));
     }
 };
 pub const DIALOPTION_BILLING = MODEMDEVCAPS_DIAL_OPTIONS.BILLING;
@@ -309,16 +275,7 @@ pub const COMMPROP_STOP_PARITY = enum(u16) {
         PARITY_MARK: u1 = 0,
         PARITY_SPACE: u1 = 0,
     }) COMMPROP_STOP_PARITY {
-        return @intToEnum(COMMPROP_STOP_PARITY,
-              (if (o.STOPBITS_10 == 1) @enumToInt(COMMPROP_STOP_PARITY.STOPBITS_10) else 0)
-            | (if (o.STOPBITS_15 == 1) @enumToInt(COMMPROP_STOP_PARITY.STOPBITS_15) else 0)
-            | (if (o.STOPBITS_20 == 1) @enumToInt(COMMPROP_STOP_PARITY.STOPBITS_20) else 0)
-            | (if (o.PARITY_NONE == 1) @enumToInt(COMMPROP_STOP_PARITY.PARITY_NONE) else 0)
-            | (if (o.PARITY_ODD == 1) @enumToInt(COMMPROP_STOP_PARITY.PARITY_ODD) else 0)
-            | (if (o.PARITY_EVEN == 1) @enumToInt(COMMPROP_STOP_PARITY.PARITY_EVEN) else 0)
-            | (if (o.PARITY_MARK == 1) @enumToInt(COMMPROP_STOP_PARITY.PARITY_MARK) else 0)
-            | (if (o.PARITY_SPACE == 1) @enumToInt(COMMPROP_STOP_PARITY.PARITY_SPACE) else 0)
-        );
+        return @enumFromInt(COMMPROP_STOP_PARITY, (if (o.STOPBITS_10 == 1) @intFromEnum(COMMPROP_STOP_PARITY.STOPBITS_10) else 0) | (if (o.STOPBITS_15 == 1) @intFromEnum(COMMPROP_STOP_PARITY.STOPBITS_15) else 0) | (if (o.STOPBITS_20 == 1) @intFromEnum(COMMPROP_STOP_PARITY.STOPBITS_20) else 0) | (if (o.PARITY_NONE == 1) @intFromEnum(COMMPROP_STOP_PARITY.PARITY_NONE) else 0) | (if (o.PARITY_ODD == 1) @intFromEnum(COMMPROP_STOP_PARITY.PARITY_ODD) else 0) | (if (o.PARITY_EVEN == 1) @intFromEnum(COMMPROP_STOP_PARITY.PARITY_EVEN) else 0) | (if (o.PARITY_MARK == 1) @intFromEnum(COMMPROP_STOP_PARITY.PARITY_MARK) else 0) | (if (o.PARITY_SPACE == 1) @intFromEnum(COMMPROP_STOP_PARITY.PARITY_SPACE) else 0));
     }
 };
 pub const STOPBITS_10 = COMMPROP_STOP_PARITY.STOPBITS_10;
@@ -349,11 +306,7 @@ pub const MODEMDEVCAPS_SPEAKER_VOLUME = enum(u32) {
         LOW: u1 = 0,
         MEDIUM: u1 = 0,
     }) MODEMDEVCAPS_SPEAKER_VOLUME {
-        return @intToEnum(MODEMDEVCAPS_SPEAKER_VOLUME,
-              (if (o.HIGH == 1) @enumToInt(MODEMDEVCAPS_SPEAKER_VOLUME.HIGH) else 0)
-            | (if (o.LOW == 1) @enumToInt(MODEMDEVCAPS_SPEAKER_VOLUME.LOW) else 0)
-            | (if (o.MEDIUM == 1) @enumToInt(MODEMDEVCAPS_SPEAKER_VOLUME.MEDIUM) else 0)
-        );
+        return @enumFromInt(MODEMDEVCAPS_SPEAKER_VOLUME, (if (o.HIGH == 1) @intFromEnum(MODEMDEVCAPS_SPEAKER_VOLUME.HIGH) else 0) | (if (o.LOW == 1) @intFromEnum(MODEMDEVCAPS_SPEAKER_VOLUME.LOW) else 0) | (if (o.MEDIUM == 1) @intFromEnum(MODEMDEVCAPS_SPEAKER_VOLUME.MEDIUM) else 0));
     }
 };
 pub const MDMVOLFLAG_HIGH = MODEMDEVCAPS_SPEAKER_VOLUME.HIGH;
@@ -372,12 +325,7 @@ pub const MODEMDEVCAPS_SPEAKER_MODE = enum(u32) {
         OFF: u1 = 0,
         ON: u1 = 0,
     }) MODEMDEVCAPS_SPEAKER_MODE {
-        return @intToEnum(MODEMDEVCAPS_SPEAKER_MODE,
-              (if (o.CALLSETUP == 1) @enumToInt(MODEMDEVCAPS_SPEAKER_MODE.CALLSETUP) else 0)
-            | (if (o.DIAL == 1) @enumToInt(MODEMDEVCAPS_SPEAKER_MODE.DIAL) else 0)
-            | (if (o.OFF == 1) @enumToInt(MODEMDEVCAPS_SPEAKER_MODE.OFF) else 0)
-            | (if (o.ON == 1) @enumToInt(MODEMDEVCAPS_SPEAKER_MODE.ON) else 0)
-        );
+        return @enumFromInt(MODEMDEVCAPS_SPEAKER_MODE, (if (o.CALLSETUP == 1) @intFromEnum(MODEMDEVCAPS_SPEAKER_MODE.CALLSETUP) else 0) | (if (o.DIAL == 1) @intFromEnum(MODEMDEVCAPS_SPEAKER_MODE.DIAL) else 0) | (if (o.OFF == 1) @intFromEnum(MODEMDEVCAPS_SPEAKER_MODE.OFF) else 0) | (if (o.ON == 1) @intFromEnum(MODEMDEVCAPS_SPEAKER_MODE.ON) else 0));
     }
 };
 pub const MDMSPKRFLAG_CALLSETUP = MODEMDEVCAPS_SPEAKER_MODE.CALLSETUP;
@@ -486,7 +434,6 @@ pub const COMMCONFIG = extern struct {
     dwProviderSize: u32,
     wcProviderData: [1]u16,
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (30)
@@ -690,7 +637,6 @@ pub extern "kernel32" fn SetDefaultCommConfigW(
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (5)
 //--------------------------------------------------------------------------------
@@ -711,11 +657,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SetDefaultCommConfig = thismodule.SetDefaultCommConfigW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const BuildCommDCB = *opaque{};
-        pub const BuildCommDCBAndTimeouts = *opaque{};
-        pub const CommConfigDialog = *opaque{};
-        pub const GetDefaultCommConfig = *opaque{};
-        pub const SetDefaultCommConfig = *opaque{};
+        pub const BuildCommDCB = *opaque {};
+        pub const BuildCommDCBAndTimeouts = *opaque {};
+        pub const CommConfigDialog = *opaque {};
+        pub const GetDefaultCommConfig = *opaque {};
+        pub const SetDefaultCommConfig = *opaque {};
     } else struct {
         pub const BuildCommDCB = @compileError("'BuildCommDCB' requires that UNICODE be set to true or false in the root module");
         pub const BuildCommDCBAndTimeouts = @compileError("'BuildCommDCBAndTimeouts' requires that UNICODE be set to true or false in the root module");
@@ -737,9 +683,7 @@ const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

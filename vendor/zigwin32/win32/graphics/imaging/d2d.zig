@@ -13,13 +13,13 @@ pub const IWICImageEncoder = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         WriteFrame: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWICImageEncoder,
                 pImage: ?*ID2D1Image,
                 pFrameEncode: ?*IWICBitmapFrameEncode,
                 pImageParameters: ?*const WICImageParameters,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWICImageEncoder,
                 pImage: ?*ID2D1Image,
                 pFrameEncode: ?*IWICBitmapFrameEncode,
@@ -27,13 +27,13 @@ pub const IWICImageEncoder = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         WriteFrameThumbnail: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWICImageEncoder,
                 pImage: ?*ID2D1Image,
                 pFrameEncode: ?*IWICBitmapFrameEncode,
                 pImageParameters: ?*const WICImageParameters,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWICImageEncoder,
                 pImage: ?*ID2D1Image,
                 pFrameEncode: ?*IWICBitmapFrameEncode,
@@ -41,13 +41,13 @@ pub const IWICImageEncoder = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         WriteThumbnail: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWICImageEncoder,
                 pImage: ?*ID2D1Image,
                 pEncoder: ?*IWICBitmapEncoder,
                 pImageParameters: ?*const WICImageParameters,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWICImageEncoder,
                 pImage: ?*ID2D1Image,
                 pEncoder: ?*IWICBitmapEncoder,
@@ -56,21 +56,23 @@ pub const IWICImageEncoder = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImageEncoder_WriteFrame(self: *const T, pImage: ?*ID2D1Image, pFrameEncode: ?*IWICBitmapFrameEncode, pImageParameters: ?*const WICImageParameters) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImageEncoder.VTable, self.vtable).WriteFrame(@ptrCast(*const IWICImageEncoder, self), pImage, pFrameEncode, pImageParameters);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImageEncoder_WriteFrameThumbnail(self: *const T, pImage: ?*ID2D1Image, pFrameEncode: ?*IWICBitmapFrameEncode, pImageParameters: ?*const WICImageParameters) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImageEncoder.VTable, self.vtable).WriteFrameThumbnail(@ptrCast(*const IWICImageEncoder, self), pImage, pFrameEncode, pImageParameters);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImageEncoder_WriteThumbnail(self: *const T, pImage: ?*ID2D1Image, pEncoder: ?*IWICBitmapEncoder, pImageParameters: ?*const WICImageParameters) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImageEncoder.VTable, self.vtable).WriteThumbnail(@ptrCast(*const IWICImageEncoder, self), pImage, pEncoder, pImageParameters);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImageEncoder_WriteFrame(self: *const T, pImage: ?*ID2D1Image, pFrameEncode: ?*IWICBitmapFrameEncode, pImageParameters: ?*const WICImageParameters) HRESULT {
+                return @ptrCast(*const IWICImageEncoder.VTable, self.vtable).WriteFrame(@ptrCast(*const IWICImageEncoder, self), pImage, pFrameEncode, pImageParameters);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImageEncoder_WriteFrameThumbnail(self: *const T, pImage: ?*ID2D1Image, pFrameEncode: ?*IWICBitmapFrameEncode, pImageParameters: ?*const WICImageParameters) HRESULT {
+                return @ptrCast(*const IWICImageEncoder.VTable, self.vtable).WriteFrameThumbnail(@ptrCast(*const IWICImageEncoder, self), pImage, pFrameEncode, pImageParameters);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImageEncoder_WriteThumbnail(self: *const T, pImage: ?*ID2D1Image, pEncoder: ?*IWICBitmapEncoder, pImageParameters: ?*const WICImageParameters) HRESULT {
+                return @ptrCast(*const IWICImageEncoder.VTable, self.vtable).WriteThumbnail(@ptrCast(*const IWICImageEncoder, self), pImage, pEncoder, pImageParameters);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -81,12 +83,12 @@ pub const IWICImagingFactory2 = extern struct {
     pub const VTable = extern struct {
         base: IWICImagingFactory.VTable,
         CreateImageEncoder: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWICImagingFactory2,
                 pD2DDevice: ?*ID2D1Device,
                 ppWICImageEncoder: ?*?*IWICImageEncoder,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWICImagingFactory2,
                 pD2DDevice: ?*ID2D1Device,
                 ppWICImageEncoder: ?*?*IWICImageEncoder,
@@ -94,16 +96,17 @@ pub const IWICImagingFactory2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IWICImagingFactory.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICImagingFactory2_CreateImageEncoder(self: *const T, pD2DDevice: ?*ID2D1Device, ppWICImageEncoder: ?*?*IWICImageEncoder) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWICImagingFactory2.VTable, self.vtable).CreateImageEncoder(@ptrCast(*const IWICImagingFactory2, self), pD2DDevice, ppWICImageEncoder);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IWICImagingFactory.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWICImagingFactory2_CreateImageEncoder(self: *const T, pD2DDevice: ?*ID2D1Device, ppWICImageEncoder: ?*?*IWICImageEncoder) HRESULT {
+                return @ptrCast(*const IWICImagingFactory2.VTable, self.vtable).CreateImageEncoder(@ptrCast(*const IWICImagingFactory2, self), pD2DDevice, ppWICImageEncoder);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -114,13 +117,9 @@ pub const IWICImagingFactory2 = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (9)
@@ -136,9 +135,7 @@ const IWICImagingFactory = @import("../../graphics/imaging.zig").IWICImagingFact
 const WICImageParameters = @import("../../graphics/imaging.zig").WICImageParameters;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

@@ -759,45 +759,45 @@ pub const WLAN_UI_API_INITIAL_VERSION = @as(u32, 1);
 pub const GUID_DEVINTERFACE_WIFIDIRECT_DEVICE = Guid.initString("439b20af-8955-405b-99f0-a62af0c68d43");
 pub const GUID_AEPSERVICE_WIFIDIRECT_DEVICE = Guid.initString("cc29827c-9caf-4928-99a9-18f7c2381389");
 pub const GUID_DEVINTERFACE_ASP_INFRA_DEVICE = Guid.initString("ff823995-7a72-4c80-8757-c67ee13d1a49");
-pub const DEVPKEY_WiFiDirect_DeviceAddress = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 1 };
-pub const DEVPKEY_WiFiDirect_InterfaceAddress = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 2 };
-pub const DEVPKEY_WiFiDirect_InterfaceGuid = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 3 };
-pub const DEVPKEY_WiFiDirect_GroupId = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 4 };
-pub const DEVPKEY_WiFiDirect_IsConnected = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 5 };
-pub const DEVPKEY_WiFiDirect_IsVisible = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 6 };
-pub const DEVPKEY_WiFiDirect_IsLegacyDevice = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 7 };
-pub const DEVPKEY_WiFiDirect_MiracastVersion = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 8 };
-pub const DEVPKEY_WiFiDirect_IsMiracastLCPSupported = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 9 };
-pub const DEVPKEY_WiFiDirect_Services = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 10 };
-pub const DEVPKEY_WiFiDirect_SupportedChannelList = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 11 };
-pub const DEVPKEY_WiFiDirect_InformationElements = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 12 };
-pub const DEVPKEY_WiFiDirect_DeviceAddressCopy = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 13 };
-pub const DEVPKEY_WiFiDirect_IsRecentlyAssociated = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 14 };
-pub const DEVPKEY_WiFiDirect_Service_Aeps = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 15 };
-pub const DEVPKEY_WiFiDirect_NoMiracastAutoProject = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 16 };
-pub const DEVPKEY_InfraCast_Supported = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 17 };
-pub const DEVPKEY_InfraCast_StreamSecuritySupported = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 18 };
-pub const DEVPKEY_InfraCast_AccessPointBssid = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 19 };
-pub const DEVPKEY_InfraCast_SinkHostName = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 20 };
-pub const DEVPKEY_InfraCast_ChallengeAep = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 21 };
-pub const DEVPKEY_WiFiDirect_IsDMGCapable = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 22 };
-pub const DEVPKEY_InfraCast_DevnodeAep = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 23 };
-pub const DEVPKEY_WiFiDirect_FoundWsbService = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 24 };
-pub const DEVPKEY_InfraCast_HostName_ResolutionMode = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 25 };
-pub const DEVPKEY_InfraCast_SinkIpAddress = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 26 };
-pub const DEVPKEY_WiFiDirect_TransientAssociation = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 27 };
-pub const DEVPKEY_WiFiDirect_LinkQuality = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 28 };
-pub const DEVPKEY_InfraCast_PinSupported = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 29 };
-pub const DEVPKEY_InfraCast_RtspTcpConnectionParametersSupported = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 30 };
-pub const DEVPKEY_WiFiDirect_Miracast_SessionMgmtControlPort = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 31 };
-pub const DEVPKEY_WiFiDirect_RtspTcpConnectionParametersSupported = PROPERTYKEY { .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 32 };
-pub const DEVPKEY_WiFiDirectServices_ServiceAddress = PROPERTYKEY { .fmtid = Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 2 };
-pub const DEVPKEY_WiFiDirectServices_ServiceName = PROPERTYKEY { .fmtid = Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 3 };
-pub const DEVPKEY_WiFiDirectServices_ServiceInformation = PROPERTYKEY { .fmtid = Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 4 };
-pub const DEVPKEY_WiFiDirectServices_AdvertisementId = PROPERTYKEY { .fmtid = Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 5 };
-pub const DEVPKEY_WiFiDirectServices_ServiceConfigMethods = PROPERTYKEY { .fmtid = Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 6 };
-pub const DEVPKEY_WiFiDirectServices_RequestServiceInformation = PROPERTYKEY { .fmtid = Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 7 };
-pub const DEVPKEY_WiFi_InterfaceGuid = PROPERTYKEY { .fmtid = Guid.initString("ef1167eb-cbfc-4341-a568-a7c91a68982c"), .pid = 2 };
+pub const DEVPKEY_WiFiDirect_DeviceAddress = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 1 };
+pub const DEVPKEY_WiFiDirect_InterfaceAddress = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 2 };
+pub const DEVPKEY_WiFiDirect_InterfaceGuid = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 3 };
+pub const DEVPKEY_WiFiDirect_GroupId = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 4 };
+pub const DEVPKEY_WiFiDirect_IsConnected = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 5 };
+pub const DEVPKEY_WiFiDirect_IsVisible = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 6 };
+pub const DEVPKEY_WiFiDirect_IsLegacyDevice = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 7 };
+pub const DEVPKEY_WiFiDirect_MiracastVersion = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 8 };
+pub const DEVPKEY_WiFiDirect_IsMiracastLCPSupported = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 9 };
+pub const DEVPKEY_WiFiDirect_Services = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 10 };
+pub const DEVPKEY_WiFiDirect_SupportedChannelList = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 11 };
+pub const DEVPKEY_WiFiDirect_InformationElements = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 12 };
+pub const DEVPKEY_WiFiDirect_DeviceAddressCopy = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 13 };
+pub const DEVPKEY_WiFiDirect_IsRecentlyAssociated = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 14 };
+pub const DEVPKEY_WiFiDirect_Service_Aeps = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 15 };
+pub const DEVPKEY_WiFiDirect_NoMiracastAutoProject = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 16 };
+pub const DEVPKEY_InfraCast_Supported = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 17 };
+pub const DEVPKEY_InfraCast_StreamSecuritySupported = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 18 };
+pub const DEVPKEY_InfraCast_AccessPointBssid = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 19 };
+pub const DEVPKEY_InfraCast_SinkHostName = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 20 };
+pub const DEVPKEY_InfraCast_ChallengeAep = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 21 };
+pub const DEVPKEY_WiFiDirect_IsDMGCapable = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 22 };
+pub const DEVPKEY_InfraCast_DevnodeAep = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 23 };
+pub const DEVPKEY_WiFiDirect_FoundWsbService = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 24 };
+pub const DEVPKEY_InfraCast_HostName_ResolutionMode = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 25 };
+pub const DEVPKEY_InfraCast_SinkIpAddress = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 26 };
+pub const DEVPKEY_WiFiDirect_TransientAssociation = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 27 };
+pub const DEVPKEY_WiFiDirect_LinkQuality = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 28 };
+pub const DEVPKEY_InfraCast_PinSupported = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 29 };
+pub const DEVPKEY_InfraCast_RtspTcpConnectionParametersSupported = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 30 };
+pub const DEVPKEY_WiFiDirect_Miracast_SessionMgmtControlPort = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 31 };
+pub const DEVPKEY_WiFiDirect_RtspTcpConnectionParametersSupported = PROPERTYKEY{ .fmtid = Guid.initString("1506935d-e3e7-450f-8637-82233ebe5f6e"), .pid = 32 };
+pub const DEVPKEY_WiFiDirectServices_ServiceAddress = PROPERTYKEY{ .fmtid = Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 2 };
+pub const DEVPKEY_WiFiDirectServices_ServiceName = PROPERTYKEY{ .fmtid = Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 3 };
+pub const DEVPKEY_WiFiDirectServices_ServiceInformation = PROPERTYKEY{ .fmtid = Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 4 };
+pub const DEVPKEY_WiFiDirectServices_AdvertisementId = PROPERTYKEY{ .fmtid = Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 5 };
+pub const DEVPKEY_WiFiDirectServices_ServiceConfigMethods = PROPERTYKEY{ .fmtid = Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 6 };
+pub const DEVPKEY_WiFiDirectServices_RequestServiceInformation = PROPERTYKEY{ .fmtid = Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 7 };
+pub const DEVPKEY_WiFi_InterfaceGuid = PROPERTYKEY{ .fmtid = Guid.initString("ef1167eb-cbfc-4341-a568-a7c91a68982c"), .pid = 2 };
 
 //--------------------------------------------------------------------------------
 // Section: Types (330)
@@ -3391,15 +3391,15 @@ pub const wlan_notification_security_start = WLAN_NOTIFICATION_SECURITY.start;
 pub const wlan_notification_security_end = WLAN_NOTIFICATION_SECURITY.end;
 
 pub const WLAN_NOTIFICATION_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*L2_NOTIFICATION_DATA,
         param1: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         param0: ?*L2_NOTIFICATION_DATA,
         param1: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const WLAN_OPCODE_VALUE_TYPE = enum(i32) {
     query_only = 0,
@@ -3766,21 +3766,21 @@ pub const WLAN_HOSTED_NETWORK_STATUS = extern struct {
 };
 
 pub const WFD_OPEN_SESSION_COMPLETE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hSessionHandle: ?HANDLE,
         pvContext: ?*anyopaque,
         guidSessionInterface: Guid,
         dwError: u32,
         dwReasonCode: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         hSessionHandle: ?HANDLE,
         pvContext: ?*anyopaque,
         guidSessionInterface: Guid,
         dwError: u32,
         dwReasonCode: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const ONEX_AUTH_IDENTITY = enum(i32) {
     None = 0,
@@ -4007,7 +4007,7 @@ pub const IDot11AdHocManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateNetwork: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocManager,
                 Name: ?[*:0]const u16,
                 Password: ?[*:0]const u16,
@@ -4017,7 +4017,7 @@ pub const IDot11AdHocManager = extern struct {
                 pContextGuid: ?*Guid,
                 pIAdHoc: ?*?*IDot11AdHocNetwork,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocManager,
                 Name: ?[*:0]const u16,
                 Password: ?[*:0]const u16,
@@ -4029,13 +4029,13 @@ pub const IDot11AdHocManager = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CommitCreatedNetwork: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocManager,
                 pIAdHoc: ?*IDot11AdHocNetwork,
                 fSaveProfile: BOOLEAN,
                 fMakeSavedProfileUserSpecific: BOOLEAN,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocManager,
                 pIAdHoc: ?*IDot11AdHocNetwork,
                 fSaveProfile: BOOLEAN,
@@ -4043,34 +4043,34 @@ pub const IDot11AdHocManager = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetIEnumDot11AdHocNetworks: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocManager,
                 pContextGuid: ?*Guid,
                 ppEnum: ?*?*IEnumDot11AdHocNetworks,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocManager,
                 pContextGuid: ?*Guid,
                 ppEnum: ?*?*IEnumDot11AdHocNetworks,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetIEnumDot11AdHocInterfaces: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocManager,
                 ppEnum: ?*?*IEnumDot11AdHocInterfaces,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocManager,
                 ppEnum: ?*?*IEnumDot11AdHocInterfaces,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetNetwork: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocManager,
                 NetworkSignature: ?*Guid,
                 pNetwork: ?*?*IDot11AdHocNetwork,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocManager,
                 NetworkSignature: ?*Guid,
                 pNetwork: ?*?*IDot11AdHocNetwork,
@@ -4078,29 +4078,31 @@ pub const IDot11AdHocManager = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManager_CreateNetwork(self: *const T, Name: ?[*:0]const u16, Password: ?[*:0]const u16, GeographicalId: i32, pInterface: ?*IDot11AdHocInterface, pSecurity: ?*IDot11AdHocSecuritySettings, pContextGuid: ?*Guid, pIAdHoc: ?*?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocManager.VTable, self.vtable).CreateNetwork(@ptrCast(*const IDot11AdHocManager, self), Name, Password, GeographicalId, pInterface, pSecurity, pContextGuid, pIAdHoc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManager_CommitCreatedNetwork(self: *const T, pIAdHoc: ?*IDot11AdHocNetwork, fSaveProfile: BOOLEAN, fMakeSavedProfileUserSpecific: BOOLEAN) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocManager.VTable, self.vtable).CommitCreatedNetwork(@ptrCast(*const IDot11AdHocManager, self), pIAdHoc, fSaveProfile, fMakeSavedProfileUserSpecific);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManager_GetIEnumDot11AdHocNetworks(self: *const T, pContextGuid: ?*Guid, ppEnum: ?*?*IEnumDot11AdHocNetworks) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocManager.VTable, self.vtable).GetIEnumDot11AdHocNetworks(@ptrCast(*const IDot11AdHocManager, self), pContextGuid, ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManager_GetIEnumDot11AdHocInterfaces(self: *const T, ppEnum: ?*?*IEnumDot11AdHocInterfaces) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocManager.VTable, self.vtable).GetIEnumDot11AdHocInterfaces(@ptrCast(*const IDot11AdHocManager, self), ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManager_GetNetwork(self: *const T, NetworkSignature: ?*Guid, pNetwork: ?*?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocManager.VTable, self.vtable).GetNetwork(@ptrCast(*const IDot11AdHocManager, self), NetworkSignature, pNetwork);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocManager_CreateNetwork(self: *const T, Name: ?[*:0]const u16, Password: ?[*:0]const u16, GeographicalId: i32, pInterface: ?*IDot11AdHocInterface, pSecurity: ?*IDot11AdHocSecuritySettings, pContextGuid: ?*Guid, pIAdHoc: ?*?*IDot11AdHocNetwork) HRESULT {
+                return @ptrCast(*const IDot11AdHocManager.VTable, self.vtable).CreateNetwork(@ptrCast(*const IDot11AdHocManager, self), Name, Password, GeographicalId, pInterface, pSecurity, pContextGuid, pIAdHoc);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocManager_CommitCreatedNetwork(self: *const T, pIAdHoc: ?*IDot11AdHocNetwork, fSaveProfile: BOOLEAN, fMakeSavedProfileUserSpecific: BOOLEAN) HRESULT {
+                return @ptrCast(*const IDot11AdHocManager.VTable, self.vtable).CommitCreatedNetwork(@ptrCast(*const IDot11AdHocManager, self), pIAdHoc, fSaveProfile, fMakeSavedProfileUserSpecific);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocManager_GetIEnumDot11AdHocNetworks(self: *const T, pContextGuid: ?*Guid, ppEnum: ?*?*IEnumDot11AdHocNetworks) HRESULT {
+                return @ptrCast(*const IDot11AdHocManager.VTable, self.vtable).GetIEnumDot11AdHocNetworks(@ptrCast(*const IDot11AdHocManager, self), pContextGuid, ppEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocManager_GetIEnumDot11AdHocInterfaces(self: *const T, ppEnum: ?*?*IEnumDot11AdHocInterfaces) HRESULT {
+                return @ptrCast(*const IDot11AdHocManager.VTable, self.vtable).GetIEnumDot11AdHocInterfaces(@ptrCast(*const IDot11AdHocManager, self), ppEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocManager_GetNetwork(self: *const T, NetworkSignature: ?*Guid, pNetwork: ?*?*IDot11AdHocNetwork) HRESULT {
+                return @ptrCast(*const IDot11AdHocManager.VTable, self.vtable).GetNetwork(@ptrCast(*const IDot11AdHocManager, self), NetworkSignature, pNetwork);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4111,66 +4113,68 @@ pub const IDot11AdHocManagerNotificationSink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnNetworkAdd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocManagerNotificationSink,
                 pIAdHocNetwork: ?*IDot11AdHocNetwork,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocManagerNotificationSink,
                 pIAdHocNetwork: ?*IDot11AdHocNetwork,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnNetworkRemove: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocManagerNotificationSink,
                 Signature: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocManagerNotificationSink,
                 Signature: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnInterfaceAdd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocManagerNotificationSink,
                 pIAdHocInterface: ?*IDot11AdHocInterface,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocManagerNotificationSink,
                 pIAdHocInterface: ?*IDot11AdHocInterface,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnInterfaceRemove: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocManagerNotificationSink,
                 Signature: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocManagerNotificationSink,
                 Signature: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManagerNotificationSink_OnNetworkAdd(self: *const T, pIAdHocNetwork: ?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocManagerNotificationSink.VTable, self.vtable).OnNetworkAdd(@ptrCast(*const IDot11AdHocManagerNotificationSink, self), pIAdHocNetwork);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManagerNotificationSink_OnNetworkRemove(self: *const T, Signature: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocManagerNotificationSink.VTable, self.vtable).OnNetworkRemove(@ptrCast(*const IDot11AdHocManagerNotificationSink, self), Signature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManagerNotificationSink_OnInterfaceAdd(self: *const T, pIAdHocInterface: ?*IDot11AdHocInterface) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocManagerNotificationSink.VTable, self.vtable).OnInterfaceAdd(@ptrCast(*const IDot11AdHocManagerNotificationSink, self), pIAdHocInterface);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocManagerNotificationSink_OnInterfaceRemove(self: *const T, Signature: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocManagerNotificationSink.VTable, self.vtable).OnInterfaceRemove(@ptrCast(*const IDot11AdHocManagerNotificationSink, self), Signature);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocManagerNotificationSink_OnNetworkAdd(self: *const T, pIAdHocNetwork: ?*IDot11AdHocNetwork) HRESULT {
+                return @ptrCast(*const IDot11AdHocManagerNotificationSink.VTable, self.vtable).OnNetworkAdd(@ptrCast(*const IDot11AdHocManagerNotificationSink, self), pIAdHocNetwork);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocManagerNotificationSink_OnNetworkRemove(self: *const T, Signature: ?*Guid) HRESULT {
+                return @ptrCast(*const IDot11AdHocManagerNotificationSink.VTable, self.vtable).OnNetworkRemove(@ptrCast(*const IDot11AdHocManagerNotificationSink, self), Signature);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocManagerNotificationSink_OnInterfaceAdd(self: *const T, pIAdHocInterface: ?*IDot11AdHocInterface) HRESULT {
+                return @ptrCast(*const IDot11AdHocManagerNotificationSink.VTable, self.vtable).OnInterfaceAdd(@ptrCast(*const IDot11AdHocManagerNotificationSink, self), pIAdHocInterface);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocManagerNotificationSink_OnInterfaceRemove(self: *const T, Signature: ?*Guid) HRESULT {
+                return @ptrCast(*const IDot11AdHocManagerNotificationSink.VTable, self.vtable).OnInterfaceRemove(@ptrCast(*const IDot11AdHocManagerNotificationSink, self), Signature);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4181,13 +4185,13 @@ pub const IEnumDot11AdHocNetworks = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumDot11AdHocNetworks,
                 cElt: u32,
                 rgElt: [*]?*IDot11AdHocNetwork,
                 pcEltFetched: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumDot11AdHocNetworks,
                 cElt: u32,
                 rgElt: [*]?*IDot11AdHocNetwork,
@@ -4195,54 +4199,56 @@ pub const IEnumDot11AdHocNetworks = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumDot11AdHocNetworks,
                 cElt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumDot11AdHocNetworks,
                 cElt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumDot11AdHocNetworks,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumDot11AdHocNetworks,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumDot11AdHocNetworks,
                 ppEnum: ?*?*IEnumDot11AdHocNetworks,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumDot11AdHocNetworks,
                 ppEnum: ?*?*IEnumDot11AdHocNetworks,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocNetworks_Next(self: *const T, cElt: u32, rgElt: [*]?*IDot11AdHocNetwork, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDot11AdHocNetworks.VTable, self.vtable).Next(@ptrCast(*const IEnumDot11AdHocNetworks, self), cElt, rgElt, pcEltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocNetworks_Skip(self: *const T, cElt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDot11AdHocNetworks.VTable, self.vtable).Skip(@ptrCast(*const IEnumDot11AdHocNetworks, self), cElt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocNetworks_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDot11AdHocNetworks.VTable, self.vtable).Reset(@ptrCast(*const IEnumDot11AdHocNetworks, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocNetworks_Clone(self: *const T, ppEnum: ?*?*IEnumDot11AdHocNetworks) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDot11AdHocNetworks.VTable, self.vtable).Clone(@ptrCast(*const IEnumDot11AdHocNetworks, self), ppEnum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumDot11AdHocNetworks_Next(self: *const T, cElt: u32, rgElt: [*]?*IDot11AdHocNetwork, pcEltFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumDot11AdHocNetworks.VTable, self.vtable).Next(@ptrCast(*const IEnumDot11AdHocNetworks, self), cElt, rgElt, pcEltFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumDot11AdHocNetworks_Skip(self: *const T, cElt: u32) HRESULT {
+                return @ptrCast(*const IEnumDot11AdHocNetworks.VTable, self.vtable).Skip(@ptrCast(*const IEnumDot11AdHocNetworks, self), cElt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumDot11AdHocNetworks_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumDot11AdHocNetworks.VTable, self.vtable).Reset(@ptrCast(*const IEnumDot11AdHocNetworks, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumDot11AdHocNetworks_Clone(self: *const T, ppEnum: ?*?*IEnumDot11AdHocNetworks) HRESULT {
+                return @ptrCast(*const IEnumDot11AdHocNetworks.VTable, self.vtable).Clone(@ptrCast(*const IEnumDot11AdHocNetworks, self), ppEnum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4253,114 +4259,114 @@ pub const IDot11AdHocNetwork = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocNetwork,
                 eStatus: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocNetwork,
                 eStatus: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSSID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocNetwork,
                 ppszwSSID: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocNetwork,
                 ppszwSSID: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         HasProfile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocNetwork,
                 pf11d: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocNetwork,
                 pf11d: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetProfileName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocNetwork,
                 ppszwProfileName: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocNetwork,
                 ppszwProfileName: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DeleteProfile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocNetwork,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocNetwork,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSignalQuality: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocNetwork,
                 puStrengthValue: ?*u32,
                 puStrengthMax: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocNetwork,
                 puStrengthValue: ?*u32,
                 puStrengthMax: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSecuritySetting: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocNetwork,
                 pAdHocSecuritySetting: ?*?*IDot11AdHocSecuritySettings,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocNetwork,
                 pAdHocSecuritySetting: ?*?*IDot11AdHocSecuritySettings,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetContextGuid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocNetwork,
                 pContextGuid: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocNetwork,
                 pContextGuid: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSignature: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocNetwork,
                 pSignature: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocNetwork,
                 pSignature: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetInterface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocNetwork,
                 pAdHocInterface: ?*?*IDot11AdHocInterface,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocNetwork,
                 pAdHocInterface: ?*?*IDot11AdHocInterface,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Connect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocNetwork,
                 Passphrase: ?[*:0]const u16,
                 GeographicalId: i32,
                 fSaveProfile: BOOLEAN,
                 fMakeSavedProfileUserSpecific: BOOLEAN,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocNetwork,
                 Passphrase: ?[*:0]const u16,
                 GeographicalId: i32,
@@ -4369,66 +4375,68 @@ pub const IDot11AdHocNetwork = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Disconnect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocNetwork,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocNetwork,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_GetStatus(self: *const T, eStatus: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetStatus(@ptrCast(*const IDot11AdHocNetwork, self), eStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_GetSSID(self: *const T, ppszwSSID: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetSSID(@ptrCast(*const IDot11AdHocNetwork, self), ppszwSSID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_HasProfile(self: *const T, pf11d: ?*u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).HasProfile(@ptrCast(*const IDot11AdHocNetwork, self), pf11d);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_GetProfileName(self: *const T, ppszwProfileName: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetProfileName(@ptrCast(*const IDot11AdHocNetwork, self), ppszwProfileName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_DeleteProfile(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).DeleteProfile(@ptrCast(*const IDot11AdHocNetwork, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_GetSignalQuality(self: *const T, puStrengthValue: ?*u32, puStrengthMax: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetSignalQuality(@ptrCast(*const IDot11AdHocNetwork, self), puStrengthValue, puStrengthMax);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_GetSecuritySetting(self: *const T, pAdHocSecuritySetting: ?*?*IDot11AdHocSecuritySettings) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetSecuritySetting(@ptrCast(*const IDot11AdHocNetwork, self), pAdHocSecuritySetting);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_GetContextGuid(self: *const T, pContextGuid: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetContextGuid(@ptrCast(*const IDot11AdHocNetwork, self), pContextGuid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_GetSignature(self: *const T, pSignature: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetSignature(@ptrCast(*const IDot11AdHocNetwork, self), pSignature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_GetInterface(self: *const T, pAdHocInterface: ?*?*IDot11AdHocInterface) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetInterface(@ptrCast(*const IDot11AdHocNetwork, self), pAdHocInterface);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_Connect(self: *const T, Passphrase: ?[*:0]const u16, GeographicalId: i32, fSaveProfile: BOOLEAN, fMakeSavedProfileUserSpecific: BOOLEAN) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).Connect(@ptrCast(*const IDot11AdHocNetwork, self), Passphrase, GeographicalId, fSaveProfile, fMakeSavedProfileUserSpecific);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetwork_Disconnect(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).Disconnect(@ptrCast(*const IDot11AdHocNetwork, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocNetwork_GetStatus(self: *const T, eStatus: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS) HRESULT {
+                return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetStatus(@ptrCast(*const IDot11AdHocNetwork, self), eStatus);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocNetwork_GetSSID(self: *const T, ppszwSSID: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetSSID(@ptrCast(*const IDot11AdHocNetwork, self), ppszwSSID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocNetwork_HasProfile(self: *const T, pf11d: ?*u8) HRESULT {
+                return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).HasProfile(@ptrCast(*const IDot11AdHocNetwork, self), pf11d);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocNetwork_GetProfileName(self: *const T, ppszwProfileName: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetProfileName(@ptrCast(*const IDot11AdHocNetwork, self), ppszwProfileName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocNetwork_DeleteProfile(self: *const T) HRESULT {
+                return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).DeleteProfile(@ptrCast(*const IDot11AdHocNetwork, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocNetwork_GetSignalQuality(self: *const T, puStrengthValue: ?*u32, puStrengthMax: ?*u32) HRESULT {
+                return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetSignalQuality(@ptrCast(*const IDot11AdHocNetwork, self), puStrengthValue, puStrengthMax);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocNetwork_GetSecuritySetting(self: *const T, pAdHocSecuritySetting: ?*?*IDot11AdHocSecuritySettings) HRESULT {
+                return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetSecuritySetting(@ptrCast(*const IDot11AdHocNetwork, self), pAdHocSecuritySetting);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocNetwork_GetContextGuid(self: *const T, pContextGuid: ?*Guid) HRESULT {
+                return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetContextGuid(@ptrCast(*const IDot11AdHocNetwork, self), pContextGuid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocNetwork_GetSignature(self: *const T, pSignature: ?*Guid) HRESULT {
+                return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetSignature(@ptrCast(*const IDot11AdHocNetwork, self), pSignature);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocNetwork_GetInterface(self: *const T, pAdHocInterface: ?*?*IDot11AdHocInterface) HRESULT {
+                return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).GetInterface(@ptrCast(*const IDot11AdHocNetwork, self), pAdHocInterface);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocNetwork_Connect(self: *const T, Passphrase: ?[*:0]const u16, GeographicalId: i32, fSaveProfile: BOOLEAN, fMakeSavedProfileUserSpecific: BOOLEAN) HRESULT {
+                return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).Connect(@ptrCast(*const IDot11AdHocNetwork, self), Passphrase, GeographicalId, fSaveProfile, fMakeSavedProfileUserSpecific);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocNetwork_Disconnect(self: *const T) HRESULT {
+                return @ptrCast(*const IDot11AdHocNetwork.VTable, self.vtable).Disconnect(@ptrCast(*const IDot11AdHocNetwork, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4439,38 +4447,40 @@ pub const IDot11AdHocNetworkNotificationSink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnStatusChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocNetworkNotificationSink,
                 eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocNetworkNotificationSink,
                 eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnConnectFail: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocNetworkNotificationSink,
                 eFailReason: DOT11_ADHOC_CONNECT_FAIL_REASON,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocNetworkNotificationSink,
                 eFailReason: DOT11_ADHOC_CONNECT_FAIL_REASON,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetworkNotificationSink_OnStatusChange(self: *const T, eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocNetworkNotificationSink.VTable, self.vtable).OnStatusChange(@ptrCast(*const IDot11AdHocNetworkNotificationSink, self), eStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocNetworkNotificationSink_OnConnectFail(self: *const T, eFailReason: DOT11_ADHOC_CONNECT_FAIL_REASON) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocNetworkNotificationSink.VTable, self.vtable).OnConnectFail(@ptrCast(*const IDot11AdHocNetworkNotificationSink, self), eFailReason);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocNetworkNotificationSink_OnStatusChange(self: *const T, eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS) HRESULT {
+                return @ptrCast(*const IDot11AdHocNetworkNotificationSink.VTable, self.vtable).OnStatusChange(@ptrCast(*const IDot11AdHocNetworkNotificationSink, self), eStatus);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocNetworkNotificationSink_OnConnectFail(self: *const T, eFailReason: DOT11_ADHOC_CONNECT_FAIL_REASON) HRESULT {
+                return @ptrCast(*const IDot11AdHocNetworkNotificationSink.VTable, self.vtable).OnConnectFail(@ptrCast(*const IDot11AdHocNetworkNotificationSink, self), eFailReason);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4481,138 +4491,140 @@ pub const IDot11AdHocInterface = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDeviceSignature: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocInterface,
                 pSignature: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocInterface,
                 pSignature: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFriendlyName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocInterface,
                 ppszName: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocInterface,
                 ppszName: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         IsDot11d: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocInterface,
                 pf11d: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocInterface,
                 pf11d: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         IsAdHocCapable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocInterface,
                 pfAdHocCapable: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocInterface,
                 pfAdHocCapable: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         IsRadioOn: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocInterface,
                 pfIsRadioOn: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocInterface,
                 pfIsRadioOn: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetActiveNetwork: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocInterface,
                 ppNetwork: ?*?*IDot11AdHocNetwork,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocInterface,
                 ppNetwork: ?*?*IDot11AdHocNetwork,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetIEnumSecuritySettings: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocInterface,
                 ppEnum: ?*?*IEnumDot11AdHocSecuritySettings,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocInterface,
                 ppEnum: ?*?*IEnumDot11AdHocSecuritySettings,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetIEnumDot11AdHocNetworks: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocInterface,
                 pFilterGuid: ?*Guid,
                 ppEnum: ?*?*IEnumDot11AdHocNetworks,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocInterface,
                 pFilterGuid: ?*Guid,
                 ppEnum: ?*?*IEnumDot11AdHocNetworks,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocInterface,
                 pState: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocInterface,
                 pState: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_GetDeviceSignature(self: *const T, pSignature: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).GetDeviceSignature(@ptrCast(*const IDot11AdHocInterface, self), pSignature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_GetFriendlyName(self: *const T, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).GetFriendlyName(@ptrCast(*const IDot11AdHocInterface, self), ppszName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_IsDot11d(self: *const T, pf11d: ?*u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).IsDot11d(@ptrCast(*const IDot11AdHocInterface, self), pf11d);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_IsAdHocCapable(self: *const T, pfAdHocCapable: ?*u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).IsAdHocCapable(@ptrCast(*const IDot11AdHocInterface, self), pfAdHocCapable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_IsRadioOn(self: *const T, pfIsRadioOn: ?*u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).IsRadioOn(@ptrCast(*const IDot11AdHocInterface, self), pfIsRadioOn);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_GetActiveNetwork(self: *const T, ppNetwork: ?*?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).GetActiveNetwork(@ptrCast(*const IDot11AdHocInterface, self), ppNetwork);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_GetIEnumSecuritySettings(self: *const T, ppEnum: ?*?*IEnumDot11AdHocSecuritySettings) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).GetIEnumSecuritySettings(@ptrCast(*const IDot11AdHocInterface, self), ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_GetIEnumDot11AdHocNetworks(self: *const T, pFilterGuid: ?*Guid, ppEnum: ?*?*IEnumDot11AdHocNetworks) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).GetIEnumDot11AdHocNetworks(@ptrCast(*const IDot11AdHocInterface, self), pFilterGuid, ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterface_GetStatus(self: *const T, pState: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).GetStatus(@ptrCast(*const IDot11AdHocInterface, self), pState);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocInterface_GetDeviceSignature(self: *const T, pSignature: ?*Guid) HRESULT {
+                return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).GetDeviceSignature(@ptrCast(*const IDot11AdHocInterface, self), pSignature);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocInterface_GetFriendlyName(self: *const T, ppszName: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).GetFriendlyName(@ptrCast(*const IDot11AdHocInterface, self), ppszName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocInterface_IsDot11d(self: *const T, pf11d: ?*u8) HRESULT {
+                return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).IsDot11d(@ptrCast(*const IDot11AdHocInterface, self), pf11d);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocInterface_IsAdHocCapable(self: *const T, pfAdHocCapable: ?*u8) HRESULT {
+                return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).IsAdHocCapable(@ptrCast(*const IDot11AdHocInterface, self), pfAdHocCapable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocInterface_IsRadioOn(self: *const T, pfIsRadioOn: ?*u8) HRESULT {
+                return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).IsRadioOn(@ptrCast(*const IDot11AdHocInterface, self), pfIsRadioOn);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocInterface_GetActiveNetwork(self: *const T, ppNetwork: ?*?*IDot11AdHocNetwork) HRESULT {
+                return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).GetActiveNetwork(@ptrCast(*const IDot11AdHocInterface, self), ppNetwork);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocInterface_GetIEnumSecuritySettings(self: *const T, ppEnum: ?*?*IEnumDot11AdHocSecuritySettings) HRESULT {
+                return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).GetIEnumSecuritySettings(@ptrCast(*const IDot11AdHocInterface, self), ppEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocInterface_GetIEnumDot11AdHocNetworks(self: *const T, pFilterGuid: ?*Guid, ppEnum: ?*?*IEnumDot11AdHocNetworks) HRESULT {
+                return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).GetIEnumDot11AdHocNetworks(@ptrCast(*const IDot11AdHocInterface, self), pFilterGuid, ppEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocInterface_GetStatus(self: *const T, pState: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS) HRESULT {
+                return @ptrCast(*const IDot11AdHocInterface.VTable, self.vtable).GetStatus(@ptrCast(*const IDot11AdHocInterface, self), pState);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4623,13 +4635,13 @@ pub const IEnumDot11AdHocInterfaces = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumDot11AdHocInterfaces,
                 cElt: u32,
                 rgElt: [*]?*IDot11AdHocInterface,
                 pcEltFetched: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumDot11AdHocInterfaces,
                 cElt: u32,
                 rgElt: [*]?*IDot11AdHocInterface,
@@ -4637,54 +4649,56 @@ pub const IEnumDot11AdHocInterfaces = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumDot11AdHocInterfaces,
                 cElt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumDot11AdHocInterfaces,
                 cElt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumDot11AdHocInterfaces,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumDot11AdHocInterfaces,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumDot11AdHocInterfaces,
                 ppEnum: ?*?*IEnumDot11AdHocInterfaces,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumDot11AdHocInterfaces,
                 ppEnum: ?*?*IEnumDot11AdHocInterfaces,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocInterfaces_Next(self: *const T, cElt: u32, rgElt: [*]?*IDot11AdHocInterface, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDot11AdHocInterfaces.VTable, self.vtable).Next(@ptrCast(*const IEnumDot11AdHocInterfaces, self), cElt, rgElt, pcEltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocInterfaces_Skip(self: *const T, cElt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDot11AdHocInterfaces.VTable, self.vtable).Skip(@ptrCast(*const IEnumDot11AdHocInterfaces, self), cElt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocInterfaces_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDot11AdHocInterfaces.VTable, self.vtable).Reset(@ptrCast(*const IEnumDot11AdHocInterfaces, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocInterfaces_Clone(self: *const T, ppEnum: ?*?*IEnumDot11AdHocInterfaces) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDot11AdHocInterfaces.VTable, self.vtable).Clone(@ptrCast(*const IEnumDot11AdHocInterfaces, self), ppEnum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumDot11AdHocInterfaces_Next(self: *const T, cElt: u32, rgElt: [*]?*IDot11AdHocInterface, pcEltFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumDot11AdHocInterfaces.VTable, self.vtable).Next(@ptrCast(*const IEnumDot11AdHocInterfaces, self), cElt, rgElt, pcEltFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumDot11AdHocInterfaces_Skip(self: *const T, cElt: u32) HRESULT {
+                return @ptrCast(*const IEnumDot11AdHocInterfaces.VTable, self.vtable).Skip(@ptrCast(*const IEnumDot11AdHocInterfaces, self), cElt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumDot11AdHocInterfaces_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumDot11AdHocInterfaces.VTable, self.vtable).Reset(@ptrCast(*const IEnumDot11AdHocInterfaces, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumDot11AdHocInterfaces_Clone(self: *const T, ppEnum: ?*?*IEnumDot11AdHocInterfaces) HRESULT {
+                return @ptrCast(*const IEnumDot11AdHocInterfaces.VTable, self.vtable).Clone(@ptrCast(*const IEnumDot11AdHocInterfaces, self), ppEnum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4695,13 +4709,13 @@ pub const IEnumDot11AdHocSecuritySettings = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumDot11AdHocSecuritySettings,
                 cElt: u32,
                 rgElt: [*]?*IDot11AdHocSecuritySettings,
                 pcEltFetched: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumDot11AdHocSecuritySettings,
                 cElt: u32,
                 rgElt: [*]?*IDot11AdHocSecuritySettings,
@@ -4709,54 +4723,56 @@ pub const IEnumDot11AdHocSecuritySettings = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumDot11AdHocSecuritySettings,
                 cElt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumDot11AdHocSecuritySettings,
                 cElt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumDot11AdHocSecuritySettings,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumDot11AdHocSecuritySettings,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumDot11AdHocSecuritySettings,
                 ppEnum: ?*?*IEnumDot11AdHocSecuritySettings,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumDot11AdHocSecuritySettings,
                 ppEnum: ?*?*IEnumDot11AdHocSecuritySettings,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocSecuritySettings_Next(self: *const T, cElt: u32, rgElt: [*]?*IDot11AdHocSecuritySettings, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDot11AdHocSecuritySettings.VTable, self.vtable).Next(@ptrCast(*const IEnumDot11AdHocSecuritySettings, self), cElt, rgElt, pcEltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocSecuritySettings_Skip(self: *const T, cElt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDot11AdHocSecuritySettings.VTable, self.vtable).Skip(@ptrCast(*const IEnumDot11AdHocSecuritySettings, self), cElt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocSecuritySettings_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDot11AdHocSecuritySettings.VTable, self.vtable).Reset(@ptrCast(*const IEnumDot11AdHocSecuritySettings, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDot11AdHocSecuritySettings_Clone(self: *const T, ppEnum: ?*?*IEnumDot11AdHocSecuritySettings) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDot11AdHocSecuritySettings.VTable, self.vtable).Clone(@ptrCast(*const IEnumDot11AdHocSecuritySettings, self), ppEnum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumDot11AdHocSecuritySettings_Next(self: *const T, cElt: u32, rgElt: [*]?*IDot11AdHocSecuritySettings, pcEltFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumDot11AdHocSecuritySettings.VTable, self.vtable).Next(@ptrCast(*const IEnumDot11AdHocSecuritySettings, self), cElt, rgElt, pcEltFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumDot11AdHocSecuritySettings_Skip(self: *const T, cElt: u32) HRESULT {
+                return @ptrCast(*const IEnumDot11AdHocSecuritySettings.VTable, self.vtable).Skip(@ptrCast(*const IEnumDot11AdHocSecuritySettings, self), cElt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumDot11AdHocSecuritySettings_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumDot11AdHocSecuritySettings.VTable, self.vtable).Reset(@ptrCast(*const IEnumDot11AdHocSecuritySettings, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumDot11AdHocSecuritySettings_Clone(self: *const T, ppEnum: ?*?*IEnumDot11AdHocSecuritySettings) HRESULT {
+                return @ptrCast(*const IEnumDot11AdHocSecuritySettings.VTable, self.vtable).Clone(@ptrCast(*const IEnumDot11AdHocSecuritySettings, self), ppEnum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4767,38 +4783,40 @@ pub const IDot11AdHocSecuritySettings = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDot11AuthAlgorithm: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocSecuritySettings,
                 pAuth: ?*DOT11_ADHOC_AUTH_ALGORITHM,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocSecuritySettings,
                 pAuth: ?*DOT11_ADHOC_AUTH_ALGORITHM,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDot11CipherAlgorithm: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocSecuritySettings,
                 pCipher: ?*DOT11_ADHOC_CIPHER_ALGORITHM,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocSecuritySettings,
                 pCipher: ?*DOT11_ADHOC_CIPHER_ALGORITHM,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocSecuritySettings_GetDot11AuthAlgorithm(self: *const T, pAuth: ?*DOT11_ADHOC_AUTH_ALGORITHM) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocSecuritySettings.VTable, self.vtable).GetDot11AuthAlgorithm(@ptrCast(*const IDot11AdHocSecuritySettings, self), pAuth);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocSecuritySettings_GetDot11CipherAlgorithm(self: *const T, pCipher: ?*DOT11_ADHOC_CIPHER_ALGORITHM) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocSecuritySettings.VTable, self.vtable).GetDot11CipherAlgorithm(@ptrCast(*const IDot11AdHocSecuritySettings, self), pCipher);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocSecuritySettings_GetDot11AuthAlgorithm(self: *const T, pAuth: ?*DOT11_ADHOC_AUTH_ALGORITHM) HRESULT {
+                return @ptrCast(*const IDot11AdHocSecuritySettings.VTable, self.vtable).GetDot11AuthAlgorithm(@ptrCast(*const IDot11AdHocSecuritySettings, self), pAuth);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocSecuritySettings_GetDot11CipherAlgorithm(self: *const T, pCipher: ?*DOT11_ADHOC_CIPHER_ALGORITHM) HRESULT {
+                return @ptrCast(*const IDot11AdHocSecuritySettings.VTable, self.vtable).GetDot11CipherAlgorithm(@ptrCast(*const IDot11AdHocSecuritySettings, self), pCipher);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4809,27 +4827,28 @@ pub const IDot11AdHocInterfaceNotificationSink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnConnectionStatusChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDot11AdHocInterfaceNotificationSink,
                 eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDot11AdHocInterfaceNotificationSink,
                 eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDot11AdHocInterfaceNotificationSink_OnConnectionStatusChange(self: *const T, eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDot11AdHocInterfaceNotificationSink.VTable, self.vtable).OnConnectionStatusChange(@ptrCast(*const IDot11AdHocInterfaceNotificationSink, self), eStatus);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDot11AdHocInterfaceNotificationSink_OnConnectionStatusChange(self: *const T, eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS) HRESULT {
+                return @ptrCast(*const IDot11AdHocInterfaceNotificationSink.VTable, self.vtable).OnConnectionStatusChange(@ptrCast(*const IDot11AdHocInterfaceNotificationSink, self), eStatus);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (61)
@@ -5359,19 +5378,14 @@ pub extern "wlanapi" fn WFDUpdateDeviceVisibility(
     pDeviceAddress: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (12)
@@ -5391,12 +5405,14 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "WLAN_NOTIFICATION_CALLBACK")) { _ = WLAN_NOTIFICATION_CALLBACK; }
-    if (@hasDecl(@This(), "WFD_OPEN_SESSION_COMPLETE_CALLBACK")) { _ = WFD_OPEN_SESSION_COMPLETE_CALLBACK; }
+    if (@hasDecl(@This(), "WLAN_NOTIFICATION_CALLBACK")) {
+        _ = WLAN_NOTIFICATION_CALLBACK;
+    }
+    if (@hasDecl(@This(), "WFD_OPEN_SESSION_COMPLETE_CALLBACK")) {
+        _ = WFD_OPEN_SESSION_COMPLETE_CALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

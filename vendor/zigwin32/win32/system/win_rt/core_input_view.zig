@@ -12,13 +12,13 @@ pub const ICoreFrameworkInputViewInterop = extern struct {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
         GetForWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ICoreFrameworkInputViewInterop,
                 appWindow: ?HWND,
                 riid: ?*const Guid,
                 coreFrameworkInputView: ?*?*anyopaque,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ICoreFrameworkInputViewInterop,
                 appWindow: ?HWND,
                 riid: ?*const Guid,
@@ -27,16 +27,17 @@ pub const ICoreFrameworkInputViewInterop = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IInspectable.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoreFrameworkInputViewInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, coreFrameworkInputView: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICoreFrameworkInputViewInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const ICoreFrameworkInputViewInterop, self), appWindow, riid, coreFrameworkInputView);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IInspectable.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ICoreFrameworkInputViewInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, coreFrameworkInputView: ?*?*anyopaque) HRESULT {
+                return @ptrCast(*const ICoreFrameworkInputViewInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const ICoreFrameworkInputViewInterop, self), appWindow, riid, coreFrameworkInputView);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -47,13 +48,9 @@ pub const ICoreFrameworkInputViewInterop = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
@@ -64,9 +61,7 @@ const HWND = @import("../../foundation.zig").HWND;
 const IInspectable = @import("../../system/win_rt.zig").IInspectable;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

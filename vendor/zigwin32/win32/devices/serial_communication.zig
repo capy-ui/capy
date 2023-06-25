@@ -10,8 +10,7 @@ pub const CDB_REPORT_BYTES = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (1)
 //--------------------------------------------------------------------------------
-pub const HCOMDB = *opaque{};
-
+pub const HCOMDB = *opaque {};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (7)
@@ -55,19 +54,14 @@ pub extern "msports" fn ComDBResizeDatabase(
     NewSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (1)
@@ -75,9 +69,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const BOOL = @import("../foundation.zig").BOOL;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

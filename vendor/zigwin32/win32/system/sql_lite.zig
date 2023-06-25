@@ -434,19 +434,19 @@ pub const Fts5Tokenizer = extern struct {
 };
 
 pub const sqlite3_callback = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*anyopaque,
         param1: i32,
         param2: ?*?*i8,
         param3: ?*?*i8,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         param0: ?*anyopaque,
         param1: i32,
         param2: ?*?*i8,
         param3: ?*?*i8,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const sqlite3_file = extern struct {
     pMethods: ?*const sqlite3_io_methods,
@@ -475,11 +475,9 @@ pub const sqlite3_io_methods = extern struct {
 };
 
 pub const sqlite3_syscall_ptr = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
+};
 
 pub const sqlite3_vfs = extern struct {
     iVersion: i32,
@@ -518,13 +516,13 @@ pub const sqlite3_mem_methods = extern struct {
 };
 
 pub const sqlite3_destructor_type = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         param0: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const sqlite3_module = extern struct {
     iVersion: i32,
@@ -672,21 +670,21 @@ pub const sqlite3_rtree_query_info = extern struct {
 };
 
 pub const fts5_extension_function = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pApi: ?*const Fts5ExtensionApi,
         pFts: ?*Fts5Context,
         pCtx: ?*sqlite3_context,
         nVal: i32,
         apVal: ?*?*sqlite3_value,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         pApi: ?*const Fts5ExtensionApi,
         pFts: ?*Fts5Context,
         pCtx: ?*sqlite3_context,
         nVal: i32,
         apVal: ?*?*sqlite3_value,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const Fts5PhraseIter = extern struct {
     a: ?*const u8,
@@ -729,22 +727,20 @@ pub const fts5_api = extern struct {
     xCreateFunction: isize,
 };
 
-
 pub const sqlite3_loadext_entry = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         db: ?*sqlite3,
         pzErrMsg: ?*?*i8,
         pThunk: ?*const sqlite3_api_routines,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         db: ?*sqlite3,
         pzErrMsg: ?*?*i8,
         pThunk: ?*const sqlite3_api_routines,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
-
-pub const sqlite3_api_routines = switch(@import("../zig.zig").arch) {
+pub const sqlite3_api_routines = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         aggregate_context: isize,
         aggregate_count: isize,
@@ -1260,14 +1256,11 @@ pub const sqlite3_api_routines = switch(@import("../zig.zig").arch) {
 //--------------------------------------------------------------------------------
 // Section: Functions (265)
 //--------------------------------------------------------------------------------
-pub extern "winsqlite3" fn sqlite3_libversion(
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+pub extern "winsqlite3" fn sqlite3_libversion() callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
-pub extern "winsqlite3" fn sqlite3_sourceid(
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+pub extern "winsqlite3" fn sqlite3_sourceid() callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
-pub extern "winsqlite3" fn sqlite3_libversion_number(
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub extern "winsqlite3" fn sqlite3_libversion_number() callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "winsqlite3" fn sqlite3_compileoption_used(
     zOptName: ?[*:0]const u8,
@@ -1277,8 +1270,7 @@ pub extern "winsqlite3" fn sqlite3_compileoption_get(
     N: i32,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
-pub extern "winsqlite3" fn sqlite3_threadsafe(
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub extern "winsqlite3" fn sqlite3_threadsafe() callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "winsqlite3" fn sqlite3_close(
     param0: ?*sqlite3,
@@ -1296,17 +1288,13 @@ pub extern "winsqlite3" fn sqlite3_exec(
     errmsg: ?*?*i8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "winsqlite3" fn sqlite3_initialize(
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub extern "winsqlite3" fn sqlite3_initialize() callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "winsqlite3" fn sqlite3_shutdown(
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub extern "winsqlite3" fn sqlite3_shutdown() callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "winsqlite3" fn sqlite3_os_init(
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub extern "winsqlite3" fn sqlite3_os_init() callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "winsqlite3" fn sqlite3_os_end(
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub extern "winsqlite3" fn sqlite3_os_end() callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "winsqlite3" fn sqlite3_config(
     param0: i32,
@@ -1423,8 +1411,7 @@ pub extern "winsqlite3" fn sqlite3_msize(
     param0: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u64;
 
-pub extern "winsqlite3" fn sqlite3_memory_used(
-) callconv(@import("std").os.windows.WINAPI) i64;
+pub extern "winsqlite3" fn sqlite3_memory_used() callconv(@import("std").os.windows.WINAPI) i64;
 
 pub extern "winsqlite3" fn sqlite3_memory_highwater(
     resetFlag: i32,
@@ -1918,11 +1905,9 @@ pub extern "winsqlite3" fn sqlite3_transfer_bindings(
     param1: ?*sqlite3_stmt,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "winsqlite3" fn sqlite3_global_recover(
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub extern "winsqlite3" fn sqlite3_global_recover() callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "winsqlite3" fn sqlite3_thread_cleanup(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "winsqlite3" fn sqlite3_thread_cleanup() callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "winsqlite3" fn sqlite3_memory_alarm(
     param0: isize,
@@ -2307,8 +2292,7 @@ pub extern "winsqlite3" fn sqlite3_cancel_auto_extension(
     xEntryPoint: isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "winsqlite3" fn sqlite3_reset_auto_extension(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "winsqlite3" fn sqlite3_reset_auto_extension() callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "winsqlite3" fn sqlite3_create_module(
     db: ?*sqlite3,
@@ -2426,8 +2410,7 @@ pub extern "winsqlite3" fn sqlite3_test_control(
     op: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "winsqlite3" fn sqlite3_keyword_count(
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub extern "winsqlite3" fn sqlite3_keyword_count() callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "winsqlite3" fn sqlite3_keyword_name(
     param0: i32,
@@ -2652,19 +2635,14 @@ pub extern "winsqlite3" fn sqlite3_rtree_query_callback(
     xDestructor: isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (2)
@@ -2674,15 +2652,23 @@ const PSTR = @import("../foundation.zig").PSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "sqlite3_callback")) { _ = sqlite3_callback; }
-    if (@hasDecl(@This(), "sqlite3_syscall_ptr")) { _ = sqlite3_syscall_ptr; }
-    if (@hasDecl(@This(), "sqlite3_destructor_type")) { _ = sqlite3_destructor_type; }
-    if (@hasDecl(@This(), "fts5_extension_function")) { _ = fts5_extension_function; }
-    if (@hasDecl(@This(), "sqlite3_loadext_entry")) { _ = sqlite3_loadext_entry; }
+    if (@hasDecl(@This(), "sqlite3_callback")) {
+        _ = sqlite3_callback;
+    }
+    if (@hasDecl(@This(), "sqlite3_syscall_ptr")) {
+        _ = sqlite3_syscall_ptr;
+    }
+    if (@hasDecl(@This(), "sqlite3_destructor_type")) {
+        _ = sqlite3_destructor_type;
+    }
+    if (@hasDecl(@This(), "fts5_extension_function")) {
+        _ = fts5_extension_function;
+    }
+    if (@hasDecl(@This(), "sqlite3_loadext_entry")) {
+        _ = sqlite3_loadext_entry;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

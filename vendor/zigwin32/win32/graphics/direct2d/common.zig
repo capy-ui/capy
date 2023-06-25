@@ -220,12 +220,7 @@ pub const D2D1_PATH_SEGMENT = enum(u32) {
         FORCE_ROUND_LINE_JOIN: u1 = 0,
         FORCE_DWORD: u1 = 0,
     }) D2D1_PATH_SEGMENT {
-        return @intToEnum(D2D1_PATH_SEGMENT,
-              (if (o.NONE == 1) @enumToInt(D2D1_PATH_SEGMENT.NONE) else 0)
-            | (if (o.FORCE_UNSTROKED == 1) @enumToInt(D2D1_PATH_SEGMENT.FORCE_UNSTROKED) else 0)
-            | (if (o.FORCE_ROUND_LINE_JOIN == 1) @enumToInt(D2D1_PATH_SEGMENT.FORCE_ROUND_LINE_JOIN) else 0)
-            | (if (o.FORCE_DWORD == 1) @enumToInt(D2D1_PATH_SEGMENT.FORCE_DWORD) else 0)
-        );
+        return @enumFromInt(D2D1_PATH_SEGMENT, (if (o.NONE == 1) @intFromEnum(D2D1_PATH_SEGMENT.NONE) else 0) | (if (o.FORCE_UNSTROKED == 1) @intFromEnum(D2D1_PATH_SEGMENT.FORCE_UNSTROKED) else 0) | (if (o.FORCE_ROUND_LINE_JOIN == 1) @intFromEnum(D2D1_PATH_SEGMENT.FORCE_ROUND_LINE_JOIN) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_PATH_SEGMENT.FORCE_DWORD) else 0));
     }
 };
 pub const D2D1_PATH_SEGMENT_NONE = D2D1_PATH_SEGMENT.NONE;
@@ -249,112 +244,114 @@ pub const ID2D1SimplifiedGeometrySink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetFillMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ID2D1SimplifiedGeometrySink,
                 fillMode: D2D1_FILL_MODE,
             ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
+            else => *const fn (
                 self: *const ID2D1SimplifiedGeometrySink,
                 fillMode: D2D1_FILL_MODE,
             ) callconv(@import("std").os.windows.WINAPI) void,
         },
         SetSegmentFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ID2D1SimplifiedGeometrySink,
                 vertexFlags: D2D1_PATH_SEGMENT,
             ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
+            else => *const fn (
                 self: *const ID2D1SimplifiedGeometrySink,
                 vertexFlags: D2D1_PATH_SEGMENT,
             ) callconv(@import("std").os.windows.WINAPI) void,
         },
         BeginFigure: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ID2D1SimplifiedGeometrySink,
                 startPoint: D2D_POINT_2F,
                 figureBegin: D2D1_FIGURE_BEGIN,
             ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
+            else => *const fn (
                 self: *const ID2D1SimplifiedGeometrySink,
                 startPoint: D2D_POINT_2F,
                 figureBegin: D2D1_FIGURE_BEGIN,
             ) callconv(@import("std").os.windows.WINAPI) void,
         },
         AddLines: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ID2D1SimplifiedGeometrySink,
                 points: [*]const D2D_POINT_2F,
                 pointsCount: u32,
             ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
+            else => *const fn (
                 self: *const ID2D1SimplifiedGeometrySink,
                 points: [*]const D2D_POINT_2F,
                 pointsCount: u32,
             ) callconv(@import("std").os.windows.WINAPI) void,
         },
         AddBeziers: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ID2D1SimplifiedGeometrySink,
                 beziers: [*]const D2D1_BEZIER_SEGMENT,
                 beziersCount: u32,
             ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
+            else => *const fn (
                 self: *const ID2D1SimplifiedGeometrySink,
                 beziers: [*]const D2D1_BEZIER_SEGMENT,
                 beziersCount: u32,
             ) callconv(@import("std").os.windows.WINAPI) void,
         },
         EndFigure: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ID2D1SimplifiedGeometrySink,
                 figureEnd: D2D1_FIGURE_END,
             ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
+            else => *const fn (
                 self: *const ID2D1SimplifiedGeometrySink,
                 figureEnd: D2D1_FIGURE_END,
             ) callconv(@import("std").os.windows.WINAPI) void,
         },
         Close: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ID2D1SimplifiedGeometrySink,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ID2D1SimplifiedGeometrySink,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SimplifiedGeometrySink_SetFillMode(self: *const T, fillMode: D2D1_FILL_MODE) callconv(.Inline) void {
-            return @ptrCast(*const ID2D1SimplifiedGeometrySink.VTable, self.vtable).SetFillMode(@ptrCast(*const ID2D1SimplifiedGeometrySink, self), fillMode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SimplifiedGeometrySink_SetSegmentFlags(self: *const T, vertexFlags: D2D1_PATH_SEGMENT) callconv(.Inline) void {
-            return @ptrCast(*const ID2D1SimplifiedGeometrySink.VTable, self.vtable).SetSegmentFlags(@ptrCast(*const ID2D1SimplifiedGeometrySink, self), vertexFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SimplifiedGeometrySink_BeginFigure(self: *const T, startPoint: D2D_POINT_2F, figureBegin: D2D1_FIGURE_BEGIN) callconv(.Inline) void {
-            return @ptrCast(*const ID2D1SimplifiedGeometrySink.VTable, self.vtable).BeginFigure(@ptrCast(*const ID2D1SimplifiedGeometrySink, self), startPoint, figureBegin);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SimplifiedGeometrySink_AddLines(self: *const T, points: [*]const D2D_POINT_2F, pointsCount: u32) callconv(.Inline) void {
-            return @ptrCast(*const ID2D1SimplifiedGeometrySink.VTable, self.vtable).AddLines(@ptrCast(*const ID2D1SimplifiedGeometrySink, self), points, pointsCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SimplifiedGeometrySink_AddBeziers(self: *const T, beziers: [*]const D2D1_BEZIER_SEGMENT, beziersCount: u32) callconv(.Inline) void {
-            return @ptrCast(*const ID2D1SimplifiedGeometrySink.VTable, self.vtable).AddBeziers(@ptrCast(*const ID2D1SimplifiedGeometrySink, self), beziers, beziersCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SimplifiedGeometrySink_EndFigure(self: *const T, figureEnd: D2D1_FIGURE_END) callconv(.Inline) void {
-            return @ptrCast(*const ID2D1SimplifiedGeometrySink.VTable, self.vtable).EndFigure(@ptrCast(*const ID2D1SimplifiedGeometrySink, self), figureEnd);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID2D1SimplifiedGeometrySink_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ID2D1SimplifiedGeometrySink.VTable, self.vtable).Close(@ptrCast(*const ID2D1SimplifiedGeometrySink, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ID2D1SimplifiedGeometrySink_SetFillMode(self: *const T, fillMode: D2D1_FILL_MODE) void {
+                return @ptrCast(*const ID2D1SimplifiedGeometrySink.VTable, self.vtable).SetFillMode(@ptrCast(*const ID2D1SimplifiedGeometrySink, self), fillMode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ID2D1SimplifiedGeometrySink_SetSegmentFlags(self: *const T, vertexFlags: D2D1_PATH_SEGMENT) void {
+                return @ptrCast(*const ID2D1SimplifiedGeometrySink.VTable, self.vtable).SetSegmentFlags(@ptrCast(*const ID2D1SimplifiedGeometrySink, self), vertexFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ID2D1SimplifiedGeometrySink_BeginFigure(self: *const T, startPoint: D2D_POINT_2F, figureBegin: D2D1_FIGURE_BEGIN) void {
+                return @ptrCast(*const ID2D1SimplifiedGeometrySink.VTable, self.vtable).BeginFigure(@ptrCast(*const ID2D1SimplifiedGeometrySink, self), startPoint, figureBegin);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ID2D1SimplifiedGeometrySink_AddLines(self: *const T, points: [*]const D2D_POINT_2F, pointsCount: u32) void {
+                return @ptrCast(*const ID2D1SimplifiedGeometrySink.VTable, self.vtable).AddLines(@ptrCast(*const ID2D1SimplifiedGeometrySink, self), points, pointsCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ID2D1SimplifiedGeometrySink_AddBeziers(self: *const T, beziers: [*]const D2D1_BEZIER_SEGMENT, beziersCount: u32) void {
+                return @ptrCast(*const ID2D1SimplifiedGeometrySink.VTable, self.vtable).AddBeziers(@ptrCast(*const ID2D1SimplifiedGeometrySink, self), beziers, beziersCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ID2D1SimplifiedGeometrySink_EndFigure(self: *const T, figureEnd: D2D1_FIGURE_END) void {
+                return @ptrCast(*const ID2D1SimplifiedGeometrySink.VTable, self.vtable).EndFigure(@ptrCast(*const ID2D1SimplifiedGeometrySink, self), figureEnd);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ID2D1SimplifiedGeometrySink_Close(self: *const T) HRESULT {
+                return @ptrCast(*const ID2D1SimplifiedGeometrySink.VTable, self.vtable).Close(@ptrCast(*const ID2D1SimplifiedGeometrySink, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -473,7 +470,6 @@ pub const D2D1_COMPOSITE_MODE_BOUNDED_SOURCE_COPY = D2D1_COMPOSITE_MODE.BOUNDED_
 pub const D2D1_COMPOSITE_MODE_MASK_INVERT = D2D1_COMPOSITE_MODE.MASK_INVERT;
 pub const D2D1_COMPOSITE_MODE_FORCE_DWORD = D2D1_COMPOSITE_MODE.FORCE_DWORD;
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
 //--------------------------------------------------------------------------------
@@ -483,13 +479,9 @@ pub const D2D1_COMPOSITE_MODE_FORCE_DWORD = D2D1_COMPOSITE_MODE.FORCE_DWORD;
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
@@ -500,9 +492,7 @@ const HRESULT = @import("../../foundation.zig").HRESULT;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

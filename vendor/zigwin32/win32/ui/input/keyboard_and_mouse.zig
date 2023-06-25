@@ -153,13 +153,7 @@ pub const HOT_KEY_MODIFIERS = enum(u32) {
         SHIFT: u1 = 0,
         WIN: u1 = 0,
     }) HOT_KEY_MODIFIERS {
-        return @intToEnum(HOT_KEY_MODIFIERS,
-              (if (o.ALT == 1) @enumToInt(HOT_KEY_MODIFIERS.ALT) else 0)
-            | (if (o.CONTROL == 1) @enumToInt(HOT_KEY_MODIFIERS.CONTROL) else 0)
-            | (if (o.NOREPEAT == 1) @enumToInt(HOT_KEY_MODIFIERS.NOREPEAT) else 0)
-            | (if (o.SHIFT == 1) @enumToInt(HOT_KEY_MODIFIERS.SHIFT) else 0)
-            | (if (o.WIN == 1) @enumToInt(HOT_KEY_MODIFIERS.WIN) else 0)
-        );
+        return @enumFromInt(HOT_KEY_MODIFIERS, (if (o.ALT == 1) @intFromEnum(HOT_KEY_MODIFIERS.ALT) else 0) | (if (o.CONTROL == 1) @intFromEnum(HOT_KEY_MODIFIERS.CONTROL) else 0) | (if (o.NOREPEAT == 1) @intFromEnum(HOT_KEY_MODIFIERS.NOREPEAT) else 0) | (if (o.SHIFT == 1) @intFromEnum(HOT_KEY_MODIFIERS.SHIFT) else 0) | (if (o.WIN == 1) @intFromEnum(HOT_KEY_MODIFIERS.WIN) else 0));
     }
 };
 pub const MOD_ALT = HOT_KEY_MODIFIERS.ALT;
@@ -206,12 +200,7 @@ pub const KEYBD_EVENT_FLAGS = enum(u32) {
         SCANCODE: u1 = 0,
         UNICODE: u1 = 0,
     }) KEYBD_EVENT_FLAGS {
-        return @intToEnum(KEYBD_EVENT_FLAGS,
-              (if (o.EXTENDEDKEY == 1) @enumToInt(KEYBD_EVENT_FLAGS.EXTENDEDKEY) else 0)
-            | (if (o.KEYUP == 1) @enumToInt(KEYBD_EVENT_FLAGS.KEYUP) else 0)
-            | (if (o.SCANCODE == 1) @enumToInt(KEYBD_EVENT_FLAGS.SCANCODE) else 0)
-            | (if (o.UNICODE == 1) @enumToInt(KEYBD_EVENT_FLAGS.UNICODE) else 0)
-        );
+        return @enumFromInt(KEYBD_EVENT_FLAGS, (if (o.EXTENDEDKEY == 1) @intFromEnum(KEYBD_EVENT_FLAGS.EXTENDEDKEY) else 0) | (if (o.KEYUP == 1) @intFromEnum(KEYBD_EVENT_FLAGS.KEYUP) else 0) | (if (o.SCANCODE == 1) @intFromEnum(KEYBD_EVENT_FLAGS.SCANCODE) else 0) | (if (o.UNICODE == 1) @intFromEnum(KEYBD_EVENT_FLAGS.UNICODE) else 0));
     }
 };
 pub const KEYEVENTF_EXTENDEDKEY = KEYBD_EVENT_FLAGS.EXTENDEDKEY;
@@ -251,22 +240,7 @@ pub const MOUSE_EVENT_FLAGS = enum(u32) {
         MOVE_NOCOALESCE: u1 = 0,
         VIRTUALDESK: u1 = 0,
     }) MOUSE_EVENT_FLAGS {
-        return @intToEnum(MOUSE_EVENT_FLAGS,
-              (if (o.ABSOLUTE == 1) @enumToInt(MOUSE_EVENT_FLAGS.ABSOLUTE) else 0)
-            | (if (o.LEFTDOWN == 1) @enumToInt(MOUSE_EVENT_FLAGS.LEFTDOWN) else 0)
-            | (if (o.LEFTUP == 1) @enumToInt(MOUSE_EVENT_FLAGS.LEFTUP) else 0)
-            | (if (o.MIDDLEDOWN == 1) @enumToInt(MOUSE_EVENT_FLAGS.MIDDLEDOWN) else 0)
-            | (if (o.MIDDLEUP == 1) @enumToInt(MOUSE_EVENT_FLAGS.MIDDLEUP) else 0)
-            | (if (o.MOVE == 1) @enumToInt(MOUSE_EVENT_FLAGS.MOVE) else 0)
-            | (if (o.RIGHTDOWN == 1) @enumToInt(MOUSE_EVENT_FLAGS.RIGHTDOWN) else 0)
-            | (if (o.RIGHTUP == 1) @enumToInt(MOUSE_EVENT_FLAGS.RIGHTUP) else 0)
-            | (if (o.WHEEL == 1) @enumToInt(MOUSE_EVENT_FLAGS.WHEEL) else 0)
-            | (if (o.XDOWN == 1) @enumToInt(MOUSE_EVENT_FLAGS.XDOWN) else 0)
-            | (if (o.XUP == 1) @enumToInt(MOUSE_EVENT_FLAGS.XUP) else 0)
-            | (if (o.HWHEEL == 1) @enumToInt(MOUSE_EVENT_FLAGS.HWHEEL) else 0)
-            | (if (o.MOVE_NOCOALESCE == 1) @enumToInt(MOUSE_EVENT_FLAGS.MOVE_NOCOALESCE) else 0)
-            | (if (o.VIRTUALDESK == 1) @enumToInt(MOUSE_EVENT_FLAGS.VIRTUALDESK) else 0)
-        );
+        return @enumFromInt(MOUSE_EVENT_FLAGS, (if (o.ABSOLUTE == 1) @intFromEnum(MOUSE_EVENT_FLAGS.ABSOLUTE) else 0) | (if (o.LEFTDOWN == 1) @intFromEnum(MOUSE_EVENT_FLAGS.LEFTDOWN) else 0) | (if (o.LEFTUP == 1) @intFromEnum(MOUSE_EVENT_FLAGS.LEFTUP) else 0) | (if (o.MIDDLEDOWN == 1) @intFromEnum(MOUSE_EVENT_FLAGS.MIDDLEDOWN) else 0) | (if (o.MIDDLEUP == 1) @intFromEnum(MOUSE_EVENT_FLAGS.MIDDLEUP) else 0) | (if (o.MOVE == 1) @intFromEnum(MOUSE_EVENT_FLAGS.MOVE) else 0) | (if (o.RIGHTDOWN == 1) @intFromEnum(MOUSE_EVENT_FLAGS.RIGHTDOWN) else 0) | (if (o.RIGHTUP == 1) @intFromEnum(MOUSE_EVENT_FLAGS.RIGHTUP) else 0) | (if (o.WHEEL == 1) @intFromEnum(MOUSE_EVENT_FLAGS.WHEEL) else 0) | (if (o.XDOWN == 1) @intFromEnum(MOUSE_EVENT_FLAGS.XDOWN) else 0) | (if (o.XUP == 1) @intFromEnum(MOUSE_EVENT_FLAGS.XUP) else 0) | (if (o.HWHEEL == 1) @intFromEnum(MOUSE_EVENT_FLAGS.HWHEEL) else 0) | (if (o.MOVE_NOCOALESCE == 1) @intFromEnum(MOUSE_EVENT_FLAGS.MOVE_NOCOALESCE) else 0) | (if (o.VIRTUALDESK == 1) @intFromEnum(MOUSE_EVENT_FLAGS.VIRTUALDESK) else 0));
     }
 };
 pub const MOUSEEVENTF_ABSOLUTE = MOUSE_EVENT_FLAGS.ABSOLUTE;
@@ -307,13 +281,7 @@ pub const TRACKMOUSEEVENT_FLAGS = enum(u32) {
         NONCLIENT: u1 = 0,
         QUERY: u1 = 0,
     }) TRACKMOUSEEVENT_FLAGS {
-        return @intToEnum(TRACKMOUSEEVENT_FLAGS,
-              (if (o.CANCEL == 1) @enumToInt(TRACKMOUSEEVENT_FLAGS.CANCEL) else 0)
-            | (if (o.HOVER == 1) @enumToInt(TRACKMOUSEEVENT_FLAGS.HOVER) else 0)
-            | (if (o.LEAVE == 1) @enumToInt(TRACKMOUSEEVENT_FLAGS.LEAVE) else 0)
-            | (if (o.NONCLIENT == 1) @enumToInt(TRACKMOUSEEVENT_FLAGS.NONCLIENT) else 0)
-            | (if (o.QUERY == 1) @enumToInt(TRACKMOUSEEVENT_FLAGS.QUERY) else 0)
-        );
+        return @enumFromInt(TRACKMOUSEEVENT_FLAGS, (if (o.CANCEL == 1) @intFromEnum(TRACKMOUSEEVENT_FLAGS.CANCEL) else 0) | (if (o.HOVER == 1) @intFromEnum(TRACKMOUSEEVENT_FLAGS.HOVER) else 0) | (if (o.LEAVE == 1) @intFromEnum(TRACKMOUSEEVENT_FLAGS.LEAVE) else 0) | (if (o.NONCLIENT == 1) @intFromEnum(TRACKMOUSEEVENT_FLAGS.NONCLIENT) else 0) | (if (o.QUERY == 1) @intFromEnum(TRACKMOUSEEVENT_FLAGS.QUERY) else 0));
     }
 };
 pub const TME_CANCEL = TRACKMOUSEEVENT_FLAGS.CANCEL;
@@ -1023,7 +991,6 @@ pub const LASTINPUTINFO = extern struct {
     dwTime: u32,
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (52)
 //--------------------------------------------------------------------------------
@@ -1121,8 +1088,7 @@ pub extern "user32" fn SwapMouseButton(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetDoubleClickTime(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "user32" fn GetDoubleClickTime() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetDoubleClickTime(
@@ -1135,16 +1101,13 @@ pub extern "user32" fn SetFocus(
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetActiveWindow(
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+pub extern "user32" fn GetActiveWindow() callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetFocus(
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+pub extern "user32" fn GetFocus() callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetKBCodePage(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "user32" fn GetKBCodePage() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetKeyState(
@@ -1297,8 +1260,7 @@ pub extern "user32" fn MapVirtualKeyExW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetCapture(
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+pub extern "user32" fn GetCapture() callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetCapture(
@@ -1306,8 +1268,7 @@ pub extern "user32" fn SetCapture(
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn ReleaseCapture(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "user32" fn ReleaseCapture() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn EnableWindow(
@@ -1336,7 +1297,6 @@ pub extern "user32" fn BlockInput(
     fBlockIt: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (7)
 //--------------------------------------------------------------------------------
@@ -1361,13 +1321,13 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
         pub const MapVirtualKeyEx = thismodule.MapVirtualKeyExW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const LoadKeyboardLayout = *opaque{};
-        pub const GetKeyboardLayoutName = *opaque{};
-        pub const GetKeyNameText = *opaque{};
-        pub const VkKeyScan = *opaque{};
-        pub const VkKeyScanEx = *opaque{};
-        pub const MapVirtualKey = *opaque{};
-        pub const MapVirtualKeyEx = *opaque{};
+        pub const LoadKeyboardLayout = *opaque {};
+        pub const GetKeyboardLayoutName = *opaque {};
+        pub const GetKeyNameText = *opaque {};
+        pub const VkKeyScan = *opaque {};
+        pub const VkKeyScanEx = *opaque {};
+        pub const MapVirtualKey = *opaque {};
+        pub const MapVirtualKeyEx = *opaque {};
     } else struct {
         pub const LoadKeyboardLayout = @compileError("'LoadKeyboardLayout' requires that UNICODE be set to true or false in the root module");
         pub const GetKeyboardLayoutName = @compileError("'GetKeyboardLayoutName' requires that UNICODE be set to true or false in the root module");
@@ -1390,9 +1350,7 @@ const PSTR = @import("../../foundation.zig").PSTR;
 const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

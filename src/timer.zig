@@ -8,6 +8,7 @@ pub const Timer = struct {
     single_shot: bool = false,
     started: ?std.time.Instant = null,
     duration: u64 = 0,
+    tick: *const fn () void,
 
     // TODO: timeout events
     pub fn init() !*Timer {

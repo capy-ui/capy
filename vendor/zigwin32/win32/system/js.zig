@@ -100,46 +100,46 @@ pub const JsMemoryFree = JsMemoryEventType.Free;
 pub const JsMemoryFailure = JsMemoryEventType.Failure;
 
 pub const JsMemoryAllocationCallback = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         callbackState: ?*anyopaque,
         allocationEvent: JsMemoryEventType,
         allocationSize: usize,
     ) callconv(@import("std").os.windows.WINAPI) bool,
-    else => *const fn(
+    else => *const fn (
         callbackState: ?*anyopaque,
         allocationEvent: JsMemoryEventType,
         allocationSize: usize,
     ) callconv(@import("std").os.windows.WINAPI) bool,
-} ;
+};
 
 pub const JsBeforeCollectCallback = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         callbackState: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         callbackState: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const JsBackgroundWorkItemCallback = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         callbackState: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         callbackState: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const JsThreadServiceCallback = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         callback: ?JsBackgroundWorkItemCallback,
         callbackState: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) bool,
-    else => *const fn(
+    else => *const fn (
         callback: ?JsBackgroundWorkItemCallback,
         callbackState: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) bool,
-} ;
+};
 
 pub const JsValueType = enum(i32) {
     Undefined = 0,
@@ -163,31 +163,30 @@ pub const JsError = JsValueType.Error;
 pub const JsArray = JsValueType.Array;
 
 pub const JsFinalizeCallback = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         data: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         data: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const JsNativeFunction = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         callee: ?*anyopaque,
         isConstructCall: bool,
         arguments: ?*?*anyopaque,
         argumentCount: u16,
         callbackState: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-    else => *const fn(
+    else => *const fn (
         callee: ?*anyopaque,
         isConstructCall: bool,
         arguments: ?*?*anyopaque,
         argumentCount: u16,
         callbackState: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-} ;
-
+};
 
 //--------------------------------------------------------------------------------
 // Section: Functions (87)
@@ -245,15 +244,15 @@ pub extern "chakra" fn JsRelease(
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub extern "chakra" fn JsCreateContext(
-    runtime: ?*anyopaque,
-    debugApplication: ?*IDebugApplication64,
-    newContext: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
-
-}, else => struct { } };
+    .X64, .Arm64 => struct {
+        pub extern "chakra" fn JsCreateContext(
+            runtime: ?*anyopaque,
+            debugApplication: ?*IDebugApplication64,
+            newContext: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
+    },
+    else => struct {},
+};
 
 pub extern "chakra" fn JsGetCurrentContext(
     currentContext: ?*?*anyopaque,
@@ -269,13 +268,13 @@ pub extern "chakra" fn JsGetRuntime(
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub extern "chakra" fn JsStartDebugging(
-    debugApplication: ?*IDebugApplication64,
-) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
-
-}, else => struct { } };
+    .X64, .Arm64 => struct {
+        pub extern "chakra" fn JsStartDebugging(
+            debugApplication: ?*IDebugApplication64,
+        ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
+    },
+    else => struct {},
+};
 
 pub extern "chakra" fn JsIdle(
     nextIdleTick: ?*u32,
@@ -646,38 +645,33 @@ pub extern "chakra" fn JsIsEnumeratingHeap(
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "chakra" fn JsCreateContext(
-    runtime: ?*anyopaque,
-    debugApplication: ?*IDebugApplication32,
-    newContext: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
-
-}, else => struct { } };
+    .X86 => struct {
+        pub extern "chakra" fn JsCreateContext(
+            runtime: ?*anyopaque,
+            debugApplication: ?*IDebugApplication32,
+            newContext: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
+    },
+    else => struct {},
+};
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub extern "chakra" fn JsStartDebugging(
-    debugApplication: ?*IDebugApplication32,
-) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
-
-}, else => struct { } };
-
+    .X86 => struct {
+        pub extern "chakra" fn JsStartDebugging(
+            debugApplication: ?*IDebugApplication32,
+        ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
+    },
+    else => struct {},
+};
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (8)
@@ -689,27 +683,37 @@ const PROFILER_EVENT_MASK = @import("../system/diagnostics/debug.zig").PROFILER_
 const PWSTR = @import("../foundation.zig").PWSTR;
 const VARIANT = @import("../system/com.zig").VARIANT;
 // 2 arch-specific imports
-const IDebugApplication32 = switch(@import("../zig.zig").arch) {
+const IDebugApplication32 = switch (@import("../zig.zig").arch) {
     .X86 => @import("../system/diagnostics/debug.zig").IDebugApplication32,
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-const IDebugApplication64 = switch(@import("../zig.zig").arch) {
+const IDebugApplication64 = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => @import("../system/diagnostics/debug.zig").IDebugApplication64,
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "JsMemoryAllocationCallback")) { _ = JsMemoryAllocationCallback; }
-    if (@hasDecl(@This(), "JsBeforeCollectCallback")) { _ = JsBeforeCollectCallback; }
-    if (@hasDecl(@This(), "JsBackgroundWorkItemCallback")) { _ = JsBackgroundWorkItemCallback; }
-    if (@hasDecl(@This(), "JsThreadServiceCallback")) { _ = JsThreadServiceCallback; }
-    if (@hasDecl(@This(), "JsFinalizeCallback")) { _ = JsFinalizeCallback; }
-    if (@hasDecl(@This(), "JsNativeFunction")) { _ = JsNativeFunction; }
+    if (@hasDecl(@This(), "JsMemoryAllocationCallback")) {
+        _ = JsMemoryAllocationCallback;
+    }
+    if (@hasDecl(@This(), "JsBeforeCollectCallback")) {
+        _ = JsBeforeCollectCallback;
+    }
+    if (@hasDecl(@This(), "JsBackgroundWorkItemCallback")) {
+        _ = JsBackgroundWorkItemCallback;
+    }
+    if (@hasDecl(@This(), "JsThreadServiceCallback")) {
+        _ = JsThreadServiceCallback;
+    }
+    if (@hasDecl(@This(), "JsFinalizeCallback")) {
+        _ = JsFinalizeCallback;
+    }
+    if (@hasDecl(@This(), "JsNativeFunction")) {
+        _ = JsNativeFunction;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

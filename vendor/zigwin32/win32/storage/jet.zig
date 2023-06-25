@@ -950,21 +950,20 @@ pub const JET_OSSNAPID = usize;
 
 pub const JET_LS = usize;
 
-
 pub const JET_PFNSTATUS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         sesid: ?JET_SESID,
         snp: u32,
         snt: u32,
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         sesid: ?JET_SESID,
         snp: u32,
         snt: u32,
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const JET_RSTMAP_A = extern struct {
     szDatabaseName: ?PSTR,
@@ -997,7 +996,7 @@ pub const CONVERT_W = extern struct {
 };
 
 pub const JET_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         sesid: ?JET_SESID,
         dbid: u32,
         tableid: JET_TABLEID,
@@ -1007,7 +1006,7 @@ pub const JET_CALLBACK = switch (@import("builtin").zig_backend) {
         pvContext: ?*anyopaque,
         ulUnused: JET_API_PTR,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         sesid: ?JET_SESID,
         dbid: u32,
         tableid: JET_TABLEID,
@@ -1017,7 +1016,7 @@ pub const JET_CALLBACK = switch (@import("builtin").zig_backend) {
         pvContext: ?*anyopaque,
         ulUnused: JET_API_PTR,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const JET_SNPROG = extern struct {
     cbStruct: u32,
@@ -1039,7 +1038,6 @@ pub const JET_DBINFOUPGRADE = extern struct {
         },
     },
 };
-
 
 pub const JET_OBJECTLIST = extern struct {
     cbStruct: u32,
@@ -1800,7 +1798,6 @@ pub const JET_THREADSTATS = extern struct {
     cbLogRecord: u32,
 };
 
-
 pub const JET_RSTINFO_A = extern struct {
     cbStruct: u32,
     rgrstmap: ?*JET_RSTMAP_A,
@@ -1867,21 +1864,18 @@ pub const JET_ERRINFOBASIC_W = extern struct {
     rgszSourceFile: [64]u16,
 };
 
-
 pub const JET_PFNDURABLECOMMITCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         instance: JET_INSTANCE,
         pCommitIdSeen: ?*JET_COMMIT_ID,
         grbit: u32,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         instance: JET_INSTANCE,
         pCommitIdSeen: ?*JET_COMMIT_ID,
         grbit: u32,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
-
-
+};
 
 pub const JET_INDEXCHECKING = enum(i32) {
     Off = 0,
@@ -1967,19 +1961,17 @@ pub const JET_ENUMCOLUMN = extern struct {
 };
 
 pub const JET_PFNREALLOC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pvContext: ?*anyopaque,
         pv: ?*anyopaque,
         cb: u32,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-    else => *const fn(
+    else => *const fn (
         pvContext: ?*anyopaque,
         pv: ?*anyopaque,
         cb: u32,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-} ;
-
-
+};
 
 pub const JET_LOGINFO_A = extern struct {
     cbSize: u32,
@@ -2013,15 +2005,7 @@ pub const JET_INSTANCE_INFO_W = extern struct {
     szDatabaseSLVFileName_Obsolete: ?*?*u16,
 };
 
-
-
-
-
-
-
-
-
-pub const JET_INDEXID = switch(@import("../zig.zig").arch) {
+pub const JET_INDEXID = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         cbStruct: u32,
         rgbIndexId: [16]u8,
@@ -2031,7 +2015,7 @@ pub const JET_INDEXID = switch(@import("../zig.zig").arch) {
         rgbIndexId: [12]u8,
     },
 };
-pub const JET_OBJECTINFO = switch(@import("../zig.zig").arch) {
+pub const JET_OBJECTINFO = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         cbStruct: u32,
         objtyp: u32,
@@ -2053,7 +2037,7 @@ pub const JET_OBJECTINFO = switch(@import("../zig.zig").arch) {
         cPage: u32 align(4),
     },
 };
-pub const JET_THREADSTATS2 = switch(@import("../zig.zig").arch) {
+pub const JET_THREADSTATS2 = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         cbStruct: u32,
         cPageReferenced: u32,
@@ -2079,7 +2063,7 @@ pub const JET_THREADSTATS2 = switch(@import("../zig.zig").arch) {
         cPageCacheMiss: u32 align(4),
     },
 };
-pub const JET_COMMIT_ID = switch(@import("../zig.zig").arch) {
+pub const JET_COMMIT_ID = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         signLog: JET_SIGNATURE,
         reserved: i32,
@@ -2091,7 +2075,7 @@ pub const JET_COMMIT_ID = switch(@import("../zig.zig").arch) {
         commitId: i64 align(4),
     },
 };
-pub const JET_RBSINFOMISC = switch(@import("../zig.zig").arch) {
+pub const JET_RBSINFOMISC = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         lRBSGeneration: i32,
         logtimeCreate: JET_LOGTIME,
@@ -2109,7 +2093,7 @@ pub const JET_RBSINFOMISC = switch(@import("../zig.zig").arch) {
         cbLogicalFileSize: u64 align(4),
     },
 };
-pub const JET_RBSREVERTINFOMISC = switch(@import("../zig.zig").arch) {
+pub const JET_RBSREVERTINFOMISC = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         lGenMinRevertStart: i32,
         lGenMaxRevertStart: i32,
@@ -2129,7 +2113,7 @@ pub const JET_RBSREVERTINFOMISC = switch(@import("../zig.zig").arch) {
         cPagesReverted: u64 align(4),
     },
 };
-pub const JET_RECSIZE = switch(@import("../zig.zig").arch) {
+pub const JET_RECSIZE = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         cbData: u64,
         cbLongValueData: u64,
@@ -2151,7 +2135,7 @@ pub const JET_RECSIZE = switch(@import("../zig.zig").arch) {
         cMultiValues: u64 align(4),
     },
 };
-pub const JET_RECSIZE2 = switch(@import("../zig.zig").arch) {
+pub const JET_RECSIZE2 = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         cbData: u64,
         cbLongValueData: u64,
@@ -2245,8 +2229,7 @@ pub extern "esent" fn JetTerm2(
     grbit: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "esent" fn JetStopService(
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub extern "esent" fn JetStopService() callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "esent" fn JetStopServiceInstance(
     instance: JET_INSTANCE,
@@ -2257,18 +2240,21 @@ pub extern "esent" fn JetStopServiceInstance2(
     grbit: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "esent" fn JetStopBackup(
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub extern "esent" fn JetStopBackup() callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "esent" fn JetStopBackupInstance(
     instance: JET_INSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // This function from dll 'ESENT' is being skipped because it has some sort of issue
-pub fn JetSetSystemParameterA() void { @panic("this function is not working"); }
+pub fn JetSetSystemParameterA() void {
+    @panic("this function is not working");
+}
 
 // This function from dll 'ESENT' is being skipped because it has some sort of issue
-pub fn JetSetSystemParameterW() void { @panic("this function is not working"); }
+pub fn JetSetSystemParameterW() void {
+    @panic("this function is not working");
+}
 
 pub extern "esent" fn JetGetSystemParameterA(
     instance: JET_INSTANCE,
@@ -3655,15 +3641,13 @@ pub extern "esent" fn JetGetTruncateLogInfoInstanceW(
     pcbActual: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "esent" fn JetTruncateLog(
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub extern "esent" fn JetTruncateLog() callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "esent" fn JetTruncateLogInstance(
     instance: JET_INSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "esent" fn JetEndExternalBackup(
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub extern "esent" fn JetEndExternalBackup() callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "esent" fn JetEndExternalBackupInstance(
     instance: JET_INSTANCE,
@@ -3860,7 +3844,6 @@ pub extern "esent" fn JetGetSessionParameter(
     pcbParamActual: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (85)
 //--------------------------------------------------------------------------------
@@ -4041,91 +4024,91 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const JetOSSnapshotGetFreezeInfo = thismodule.JetOSSnapshotGetFreezeInfoW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const JET_RSTMAP_ = *opaque{};
-        pub const CONVERT_ = *opaque{};
-        pub const JET_COLUMNBASE_ = *opaque{};
-        pub const JET_COLUMNCREATE_ = *opaque{};
-        pub const JET_USERDEFINEDDEFAULT_ = *opaque{};
-        pub const JET_CONDITIONALCOLUMN_ = *opaque{};
-        pub const JET_INDEXCREATE_ = *opaque{};
-        pub const JET_INDEXCREATE2_ = *opaque{};
-        pub const JET_INDEXCREATE3_ = *opaque{};
-        pub const JET_TABLECREATE_ = *opaque{};
-        pub const JET_TABLECREATE2_ = *opaque{};
-        pub const JET_TABLECREATE3_ = *opaque{};
-        pub const JET_TABLECREATE4_ = *opaque{};
-        pub const JET_RSTINFO_ = *opaque{};
-        pub const JET_SETSYSPARAM_ = *opaque{};
-        pub const JET_LOGINFO_ = *opaque{};
-        pub const JET_INSTANCE_INFO_ = *opaque{};
-        pub const JetInit3 = *opaque{};
-        pub const JetCreateInstance = *opaque{};
-        pub const JetCreateInstance2 = *opaque{};
-        pub const JetSetSystemParameter = *opaque{};
-        pub const JetGetSystemParameter = *opaque{};
-        pub const JetEnableMultiInstance = *opaque{};
-        pub const JetBeginSession = *opaque{};
-        pub const JetCreateDatabase = *opaque{};
-        pub const JetCreateDatabase2 = *opaque{};
-        pub const JetAttachDatabase = *opaque{};
-        pub const JetAttachDatabase2 = *opaque{};
-        pub const JetDetachDatabase = *opaque{};
-        pub const JetDetachDatabase2 = *opaque{};
-        pub const JetGetObjectInfo = *opaque{};
-        pub const JetGetTableInfo = *opaque{};
-        pub const JetCreateTable = *opaque{};
-        pub const JetCreateTableColumnIndex = *opaque{};
-        pub const JetCreateTableColumnIndex2 = *opaque{};
-        pub const JetCreateTableColumnIndex3 = *opaque{};
-        pub const JetCreateTableColumnIndex4 = *opaque{};
-        pub const JetDeleteTable = *opaque{};
-        pub const JetRenameTable = *opaque{};
-        pub const JetGetTableColumnInfo = *opaque{};
-        pub const JetGetColumnInfo = *opaque{};
-        pub const JetAddColumn = *opaque{};
-        pub const JetDeleteColumn = *opaque{};
-        pub const JetDeleteColumn2 = *opaque{};
-        pub const JetRenameColumn = *opaque{};
-        pub const JetSetColumnDefaultValue = *opaque{};
-        pub const JetGetTableIndexInfo = *opaque{};
-        pub const JetGetIndexInfo = *opaque{};
-        pub const JetCreateIndex = *opaque{};
-        pub const JetCreateIndex2 = *opaque{};
-        pub const JetCreateIndex3 = *opaque{};
-        pub const JetCreateIndex4 = *opaque{};
-        pub const JetDeleteIndex = *opaque{};
-        pub const JetGetDatabaseInfo = *opaque{};
-        pub const JetGetDatabaseFileInfo = *opaque{};
-        pub const JetOpenDatabase = *opaque{};
-        pub const JetOpenTable = *opaque{};
-        pub const JetGetCurrentIndex = *opaque{};
-        pub const JetSetCurrentIndex = *opaque{};
-        pub const JetSetCurrentIndex2 = *opaque{};
-        pub const JetSetCurrentIndex3 = *opaque{};
-        pub const JetSetCurrentIndex4 = *opaque{};
-        pub const JetCompact = *opaque{};
-        pub const JetDefragment = *opaque{};
-        pub const JetDefragment2 = *opaque{};
-        pub const JetDefragment3 = *opaque{};
-        pub const JetSetDatabaseSize = *opaque{};
-        pub const JetBackup = *opaque{};
-        pub const JetBackupInstance = *opaque{};
-        pub const JetRestore = *opaque{};
-        pub const JetRestore2 = *opaque{};
-        pub const JetRestoreInstance = *opaque{};
-        pub const JetGetAttachInfo = *opaque{};
-        pub const JetGetAttachInfoInstance = *opaque{};
-        pub const JetOpenFile = *opaque{};
-        pub const JetOpenFileInstance = *opaque{};
-        pub const JetGetLogInfo = *opaque{};
-        pub const JetGetLogInfoInstance = *opaque{};
-        pub const JetGetLogInfoInstance2 = *opaque{};
-        pub const JetGetTruncateLogInfoInstance = *opaque{};
-        pub const JetExternalRestore = *opaque{};
-        pub const JetExternalRestore2 = *opaque{};
-        pub const JetGetInstanceInfo = *opaque{};
-        pub const JetOSSnapshotFreeze = *opaque{};
-        pub const JetOSSnapshotGetFreezeInfo = *opaque{};
+        pub const JET_RSTMAP_ = *opaque {};
+        pub const CONVERT_ = *opaque {};
+        pub const JET_COLUMNBASE_ = *opaque {};
+        pub const JET_COLUMNCREATE_ = *opaque {};
+        pub const JET_USERDEFINEDDEFAULT_ = *opaque {};
+        pub const JET_CONDITIONALCOLUMN_ = *opaque {};
+        pub const JET_INDEXCREATE_ = *opaque {};
+        pub const JET_INDEXCREATE2_ = *opaque {};
+        pub const JET_INDEXCREATE3_ = *opaque {};
+        pub const JET_TABLECREATE_ = *opaque {};
+        pub const JET_TABLECREATE2_ = *opaque {};
+        pub const JET_TABLECREATE3_ = *opaque {};
+        pub const JET_TABLECREATE4_ = *opaque {};
+        pub const JET_RSTINFO_ = *opaque {};
+        pub const JET_SETSYSPARAM_ = *opaque {};
+        pub const JET_LOGINFO_ = *opaque {};
+        pub const JET_INSTANCE_INFO_ = *opaque {};
+        pub const JetInit3 = *opaque {};
+        pub const JetCreateInstance = *opaque {};
+        pub const JetCreateInstance2 = *opaque {};
+        pub const JetSetSystemParameter = *opaque {};
+        pub const JetGetSystemParameter = *opaque {};
+        pub const JetEnableMultiInstance = *opaque {};
+        pub const JetBeginSession = *opaque {};
+        pub const JetCreateDatabase = *opaque {};
+        pub const JetCreateDatabase2 = *opaque {};
+        pub const JetAttachDatabase = *opaque {};
+        pub const JetAttachDatabase2 = *opaque {};
+        pub const JetDetachDatabase = *opaque {};
+        pub const JetDetachDatabase2 = *opaque {};
+        pub const JetGetObjectInfo = *opaque {};
+        pub const JetGetTableInfo = *opaque {};
+        pub const JetCreateTable = *opaque {};
+        pub const JetCreateTableColumnIndex = *opaque {};
+        pub const JetCreateTableColumnIndex2 = *opaque {};
+        pub const JetCreateTableColumnIndex3 = *opaque {};
+        pub const JetCreateTableColumnIndex4 = *opaque {};
+        pub const JetDeleteTable = *opaque {};
+        pub const JetRenameTable = *opaque {};
+        pub const JetGetTableColumnInfo = *opaque {};
+        pub const JetGetColumnInfo = *opaque {};
+        pub const JetAddColumn = *opaque {};
+        pub const JetDeleteColumn = *opaque {};
+        pub const JetDeleteColumn2 = *opaque {};
+        pub const JetRenameColumn = *opaque {};
+        pub const JetSetColumnDefaultValue = *opaque {};
+        pub const JetGetTableIndexInfo = *opaque {};
+        pub const JetGetIndexInfo = *opaque {};
+        pub const JetCreateIndex = *opaque {};
+        pub const JetCreateIndex2 = *opaque {};
+        pub const JetCreateIndex3 = *opaque {};
+        pub const JetCreateIndex4 = *opaque {};
+        pub const JetDeleteIndex = *opaque {};
+        pub const JetGetDatabaseInfo = *opaque {};
+        pub const JetGetDatabaseFileInfo = *opaque {};
+        pub const JetOpenDatabase = *opaque {};
+        pub const JetOpenTable = *opaque {};
+        pub const JetGetCurrentIndex = *opaque {};
+        pub const JetSetCurrentIndex = *opaque {};
+        pub const JetSetCurrentIndex2 = *opaque {};
+        pub const JetSetCurrentIndex3 = *opaque {};
+        pub const JetSetCurrentIndex4 = *opaque {};
+        pub const JetCompact = *opaque {};
+        pub const JetDefragment = *opaque {};
+        pub const JetDefragment2 = *opaque {};
+        pub const JetDefragment3 = *opaque {};
+        pub const JetSetDatabaseSize = *opaque {};
+        pub const JetBackup = *opaque {};
+        pub const JetBackupInstance = *opaque {};
+        pub const JetRestore = *opaque {};
+        pub const JetRestore2 = *opaque {};
+        pub const JetRestoreInstance = *opaque {};
+        pub const JetGetAttachInfo = *opaque {};
+        pub const JetGetAttachInfoInstance = *opaque {};
+        pub const JetOpenFile = *opaque {};
+        pub const JetOpenFileInstance = *opaque {};
+        pub const JetGetLogInfo = *opaque {};
+        pub const JetGetLogInfoInstance = *opaque {};
+        pub const JetGetLogInfoInstance2 = *opaque {};
+        pub const JetGetTruncateLogInfoInstance = *opaque {};
+        pub const JetExternalRestore = *opaque {};
+        pub const JetExternalRestore2 = *opaque {};
+        pub const JetGetInstanceInfo = *opaque {};
+        pub const JetOSSnapshotFreeze = *opaque {};
+        pub const JetOSSnapshotGetFreezeInfo = *opaque {};
     } else struct {
         pub const JET_RSTMAP_ = @compileError("'JET_RSTMAP_' requires that UNICODE be set to true or false in the root module");
         pub const CONVERT_ = @compileError("'CONVERT_' requires that UNICODE be set to true or false in the root module");
@@ -4228,14 +4211,20 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "JET_PFNSTATUS")) { _ = JET_PFNSTATUS; }
-    if (@hasDecl(@This(), "JET_CALLBACK")) { _ = JET_CALLBACK; }
-    if (@hasDecl(@This(), "JET_PFNDURABLECOMMITCALLBACK")) { _ = JET_PFNDURABLECOMMITCALLBACK; }
-    if (@hasDecl(@This(), "JET_PFNREALLOC")) { _ = JET_PFNREALLOC; }
+    if (@hasDecl(@This(), "JET_PFNSTATUS")) {
+        _ = JET_PFNSTATUS;
+    }
+    if (@hasDecl(@This(), "JET_CALLBACK")) {
+        _ = JET_CALLBACK;
+    }
+    if (@hasDecl(@This(), "JET_PFNDURABLECOMMITCALLBACK")) {
+        _ = JET_PFNDURABLECOMMITCALLBACK;
+    }
+    if (@hasDecl(@This(), "JET_PFNREALLOC")) {
+        _ = JET_PFNREALLOC;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

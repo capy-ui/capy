@@ -2,7 +2,7 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (868)
 //--------------------------------------------------------------------------------
-pub const DEVPKEY_MTPBTH_IsConnected = PROPERTYKEY { .fmtid = Guid.initString("ea1237fa-589d-4472-84e4-0abe36fd62ef"), .pid = 2 };
+pub const DEVPKEY_MTPBTH_IsConnected = PROPERTYKEY{ .fmtid = Guid.initString("ea1237fa-589d-4472-84e4-0abe36fd62ef"), .pid = 2 };
 pub const GUID_DEVINTERFACE_WPD = Guid.initString("6ac27878-a6fa-4155-ba85-f98f491d4f33");
 pub const GUID_DEVINTERFACE_WPD_PRIVATE = Guid.initString("ba0c718f-4ded-49b7-bdd3-fabe28661211");
 pub const GUID_DEVINTERFACE_WPD_SERVICE = Guid.initString("9ef44f80-3d64-4246-a6aa-206f328d1edc");
@@ -81,413 +81,413 @@ pub const WPD_OBJECT_FORMAT_3GPA = Guid.initString("e5172730-f971-41ef-a10b-2271
 pub const WPD_OBJECT_FORMAT_3G2A = Guid.initString("1a11202d-8759-4e34-ba5e-b1211087eee4");
 pub const WPD_OBJECT_FORMAT_ALL = Guid.initString("c1f62eb2-4bb3-479c-9cfa-05b5f3a57b22");
 pub const WPD_CATEGORY_NULL = Guid.initString("00000000-0000-0000-0000-000000000000");
-pub const WPD_PROPERTY_NULL = PROPERTYKEY { .fmtid = Guid.initString("00000000-0000-0000-0000-000000000000"), .pid = 0 };
+pub const WPD_PROPERTY_NULL = PROPERTYKEY{ .fmtid = Guid.initString("00000000-0000-0000-0000-000000000000"), .pid = 0 };
 pub const WPD_OBJECT_PROPERTIES_V1 = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c");
-pub const WPD_OBJECT_CONTENT_TYPE = PROPERTYKEY { .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 7 };
-pub const WPD_OBJECT_REFERENCES = PROPERTYKEY { .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 14 };
-pub const WPD_OBJECT_CONTAINER_FUNCTIONAL_OBJECT_ID = PROPERTYKEY { .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 23 };
-pub const WPD_OBJECT_GENERATE_THUMBNAIL_FROM_RESOURCE = PROPERTYKEY { .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 24 };
-pub const WPD_OBJECT_HINT_LOCATION_DISPLAY_NAME = PROPERTYKEY { .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 25 };
+pub const WPD_OBJECT_CONTENT_TYPE = PROPERTYKEY{ .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 7 };
+pub const WPD_OBJECT_REFERENCES = PROPERTYKEY{ .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 14 };
+pub const WPD_OBJECT_CONTAINER_FUNCTIONAL_OBJECT_ID = PROPERTYKEY{ .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 23 };
+pub const WPD_OBJECT_GENERATE_THUMBNAIL_FROM_RESOURCE = PROPERTYKEY{ .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 24 };
+pub const WPD_OBJECT_HINT_LOCATION_DISPLAY_NAME = PROPERTYKEY{ .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 25 };
 pub const WPD_OBJECT_PROPERTIES_V2 = Guid.initString("0373cd3d-4a46-40d7-b4d8-73e8da74e775");
-pub const WPD_OBJECT_SUPPORTED_UNITS = PROPERTYKEY { .fmtid = Guid.initString("0373cd3d-4a46-40d7-b4d8-73e8da74e775"), .pid = 2 };
+pub const WPD_OBJECT_SUPPORTED_UNITS = PROPERTYKEY{ .fmtid = Guid.initString("0373cd3d-4a46-40d7-b4d8-73e8da74e775"), .pid = 2 };
 pub const WPD_FUNCTIONAL_OBJECT_PROPERTIES_V1 = Guid.initString("8f052d93-abca-4fc5-a5ac-b01df4dbe598");
-pub const WPD_FUNCTIONAL_OBJECT_CATEGORY = PROPERTYKEY { .fmtid = Guid.initString("8f052d93-abca-4fc5-a5ac-b01df4dbe598"), .pid = 2 };
+pub const WPD_FUNCTIONAL_OBJECT_CATEGORY = PROPERTYKEY{ .fmtid = Guid.initString("8f052d93-abca-4fc5-a5ac-b01df4dbe598"), .pid = 2 };
 pub const WPD_STORAGE_OBJECT_PROPERTIES_V1 = Guid.initString("01a3057a-74d6-4e80-bea7-dc4c212ce50a");
-pub const WPD_STORAGE_TYPE = PROPERTYKEY { .fmtid = Guid.initString("01a3057a-74d6-4e80-bea7-dc4c212ce50a"), .pid = 2 };
-pub const WPD_STORAGE_FILE_SYSTEM_TYPE = PROPERTYKEY { .fmtid = Guid.initString("01a3057a-74d6-4e80-bea7-dc4c212ce50a"), .pid = 3 };
-pub const WPD_STORAGE_CAPACITY = PROPERTYKEY { .fmtid = Guid.initString("01a3057a-74d6-4e80-bea7-dc4c212ce50a"), .pid = 4 };
-pub const WPD_STORAGE_FREE_SPACE_IN_BYTES = PROPERTYKEY { .fmtid = Guid.initString("01a3057a-74d6-4e80-bea7-dc4c212ce50a"), .pid = 5 };
-pub const WPD_STORAGE_FREE_SPACE_IN_OBJECTS = PROPERTYKEY { .fmtid = Guid.initString("01a3057a-74d6-4e80-bea7-dc4c212ce50a"), .pid = 6 };
-pub const WPD_STORAGE_DESCRIPTION = PROPERTYKEY { .fmtid = Guid.initString("01a3057a-74d6-4e80-bea7-dc4c212ce50a"), .pid = 7 };
-pub const WPD_STORAGE_SERIAL_NUMBER = PROPERTYKEY { .fmtid = Guid.initString("01a3057a-74d6-4e80-bea7-dc4c212ce50a"), .pid = 8 };
-pub const WPD_STORAGE_MAX_OBJECT_SIZE = PROPERTYKEY { .fmtid = Guid.initString("01a3057a-74d6-4e80-bea7-dc4c212ce50a"), .pid = 9 };
-pub const WPD_STORAGE_CAPACITY_IN_OBJECTS = PROPERTYKEY { .fmtid = Guid.initString("01a3057a-74d6-4e80-bea7-dc4c212ce50a"), .pid = 10 };
-pub const WPD_STORAGE_ACCESS_CAPABILITY = PROPERTYKEY { .fmtid = Guid.initString("01a3057a-74d6-4e80-bea7-dc4c212ce50a"), .pid = 11 };
+pub const WPD_STORAGE_TYPE = PROPERTYKEY{ .fmtid = Guid.initString("01a3057a-74d6-4e80-bea7-dc4c212ce50a"), .pid = 2 };
+pub const WPD_STORAGE_FILE_SYSTEM_TYPE = PROPERTYKEY{ .fmtid = Guid.initString("01a3057a-74d6-4e80-bea7-dc4c212ce50a"), .pid = 3 };
+pub const WPD_STORAGE_CAPACITY = PROPERTYKEY{ .fmtid = Guid.initString("01a3057a-74d6-4e80-bea7-dc4c212ce50a"), .pid = 4 };
+pub const WPD_STORAGE_FREE_SPACE_IN_BYTES = PROPERTYKEY{ .fmtid = Guid.initString("01a3057a-74d6-4e80-bea7-dc4c212ce50a"), .pid = 5 };
+pub const WPD_STORAGE_FREE_SPACE_IN_OBJECTS = PROPERTYKEY{ .fmtid = Guid.initString("01a3057a-74d6-4e80-bea7-dc4c212ce50a"), .pid = 6 };
+pub const WPD_STORAGE_DESCRIPTION = PROPERTYKEY{ .fmtid = Guid.initString("01a3057a-74d6-4e80-bea7-dc4c212ce50a"), .pid = 7 };
+pub const WPD_STORAGE_SERIAL_NUMBER = PROPERTYKEY{ .fmtid = Guid.initString("01a3057a-74d6-4e80-bea7-dc4c212ce50a"), .pid = 8 };
+pub const WPD_STORAGE_MAX_OBJECT_SIZE = PROPERTYKEY{ .fmtid = Guid.initString("01a3057a-74d6-4e80-bea7-dc4c212ce50a"), .pid = 9 };
+pub const WPD_STORAGE_CAPACITY_IN_OBJECTS = PROPERTYKEY{ .fmtid = Guid.initString("01a3057a-74d6-4e80-bea7-dc4c212ce50a"), .pid = 10 };
+pub const WPD_STORAGE_ACCESS_CAPABILITY = PROPERTYKEY{ .fmtid = Guid.initString("01a3057a-74d6-4e80-bea7-dc4c212ce50a"), .pid = 11 };
 pub const WPD_NETWORK_ASSOCIATION_PROPERTIES_V1 = Guid.initString("e4c93c1f-b203-43f1-a100-5a07d11b0274");
-pub const WPD_NETWORK_ASSOCIATION_HOST_NETWORK_IDENTIFIERS = PROPERTYKEY { .fmtid = Guid.initString("e4c93c1f-b203-43f1-a100-5a07d11b0274"), .pid = 2 };
-pub const WPD_NETWORK_ASSOCIATION_X509V3SEQUENCE = PROPERTYKEY { .fmtid = Guid.initString("e4c93c1f-b203-43f1-a100-5a07d11b0274"), .pid = 3 };
+pub const WPD_NETWORK_ASSOCIATION_HOST_NETWORK_IDENTIFIERS = PROPERTYKEY{ .fmtid = Guid.initString("e4c93c1f-b203-43f1-a100-5a07d11b0274"), .pid = 2 };
+pub const WPD_NETWORK_ASSOCIATION_X509V3SEQUENCE = PROPERTYKEY{ .fmtid = Guid.initString("e4c93c1f-b203-43f1-a100-5a07d11b0274"), .pid = 3 };
 pub const WPD_STILL_IMAGE_CAPTURE_OBJECT_PROPERTIES_V1 = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260");
-pub const WPD_STILL_IMAGE_CAPTURE_RESOLUTION = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 2 };
-pub const WPD_STILL_IMAGE_CAPTURE_FORMAT = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 3 };
-pub const WPD_STILL_IMAGE_COMPRESSION_SETTING = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 4 };
-pub const WPD_STILL_IMAGE_WHITE_BALANCE = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 5 };
-pub const WPD_STILL_IMAGE_RGB_GAIN = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 6 };
-pub const WPD_STILL_IMAGE_FNUMBER = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 7 };
-pub const WPD_STILL_IMAGE_FOCAL_LENGTH = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 8 };
-pub const WPD_STILL_IMAGE_FOCUS_DISTANCE = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 9 };
-pub const WPD_STILL_IMAGE_FOCUS_MODE = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 10 };
-pub const WPD_STILL_IMAGE_EXPOSURE_METERING_MODE = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 11 };
-pub const WPD_STILL_IMAGE_FLASH_MODE = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 12 };
-pub const WPD_STILL_IMAGE_EXPOSURE_TIME = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 13 };
-pub const WPD_STILL_IMAGE_EXPOSURE_PROGRAM_MODE = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 14 };
-pub const WPD_STILL_IMAGE_EXPOSURE_INDEX = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 15 };
-pub const WPD_STILL_IMAGE_EXPOSURE_BIAS_COMPENSATION = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 16 };
-pub const WPD_STILL_IMAGE_CAPTURE_DELAY = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 17 };
-pub const WPD_STILL_IMAGE_CAPTURE_MODE = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 18 };
-pub const WPD_STILL_IMAGE_CONTRAST = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 19 };
-pub const WPD_STILL_IMAGE_SHARPNESS = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 20 };
-pub const WPD_STILL_IMAGE_DIGITAL_ZOOM = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 21 };
-pub const WPD_STILL_IMAGE_EFFECT_MODE = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 22 };
-pub const WPD_STILL_IMAGE_BURST_NUMBER = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 23 };
-pub const WPD_STILL_IMAGE_BURST_INTERVAL = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 24 };
-pub const WPD_STILL_IMAGE_TIMELAPSE_NUMBER = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 25 };
-pub const WPD_STILL_IMAGE_TIMELAPSE_INTERVAL = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 26 };
-pub const WPD_STILL_IMAGE_FOCUS_METERING_MODE = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 27 };
-pub const WPD_STILL_IMAGE_UPLOAD_URL = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 28 };
-pub const WPD_STILL_IMAGE_ARTIST = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 29 };
-pub const WPD_STILL_IMAGE_CAMERA_MODEL = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 30 };
-pub const WPD_STILL_IMAGE_CAMERA_MANUFACTURER = PROPERTYKEY { .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 31 };
+pub const WPD_STILL_IMAGE_CAPTURE_RESOLUTION = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 2 };
+pub const WPD_STILL_IMAGE_CAPTURE_FORMAT = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 3 };
+pub const WPD_STILL_IMAGE_COMPRESSION_SETTING = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 4 };
+pub const WPD_STILL_IMAGE_WHITE_BALANCE = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 5 };
+pub const WPD_STILL_IMAGE_RGB_GAIN = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 6 };
+pub const WPD_STILL_IMAGE_FNUMBER = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 7 };
+pub const WPD_STILL_IMAGE_FOCAL_LENGTH = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 8 };
+pub const WPD_STILL_IMAGE_FOCUS_DISTANCE = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 9 };
+pub const WPD_STILL_IMAGE_FOCUS_MODE = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 10 };
+pub const WPD_STILL_IMAGE_EXPOSURE_METERING_MODE = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 11 };
+pub const WPD_STILL_IMAGE_FLASH_MODE = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 12 };
+pub const WPD_STILL_IMAGE_EXPOSURE_TIME = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 13 };
+pub const WPD_STILL_IMAGE_EXPOSURE_PROGRAM_MODE = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 14 };
+pub const WPD_STILL_IMAGE_EXPOSURE_INDEX = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 15 };
+pub const WPD_STILL_IMAGE_EXPOSURE_BIAS_COMPENSATION = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 16 };
+pub const WPD_STILL_IMAGE_CAPTURE_DELAY = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 17 };
+pub const WPD_STILL_IMAGE_CAPTURE_MODE = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 18 };
+pub const WPD_STILL_IMAGE_CONTRAST = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 19 };
+pub const WPD_STILL_IMAGE_SHARPNESS = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 20 };
+pub const WPD_STILL_IMAGE_DIGITAL_ZOOM = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 21 };
+pub const WPD_STILL_IMAGE_EFFECT_MODE = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 22 };
+pub const WPD_STILL_IMAGE_BURST_NUMBER = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 23 };
+pub const WPD_STILL_IMAGE_BURST_INTERVAL = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 24 };
+pub const WPD_STILL_IMAGE_TIMELAPSE_NUMBER = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 25 };
+pub const WPD_STILL_IMAGE_TIMELAPSE_INTERVAL = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 26 };
+pub const WPD_STILL_IMAGE_FOCUS_METERING_MODE = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 27 };
+pub const WPD_STILL_IMAGE_UPLOAD_URL = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 28 };
+pub const WPD_STILL_IMAGE_ARTIST = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 29 };
+pub const WPD_STILL_IMAGE_CAMERA_MODEL = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 30 };
+pub const WPD_STILL_IMAGE_CAMERA_MANUFACTURER = PROPERTYKEY{ .fmtid = Guid.initString("58c571ec-1bcb-42a7-8ac5-bb291573a260"), .pid = 31 };
 pub const WPD_RENDERING_INFORMATION_OBJECT_PROPERTIES_V1 = Guid.initString("c53d039f-ee23-4a31-8590-7639879870b4");
-pub const WPD_RENDERING_INFORMATION_PROFILES = PROPERTYKEY { .fmtid = Guid.initString("c53d039f-ee23-4a31-8590-7639879870b4"), .pid = 2 };
-pub const WPD_RENDERING_INFORMATION_PROFILE_ENTRY_TYPE = PROPERTYKEY { .fmtid = Guid.initString("c53d039f-ee23-4a31-8590-7639879870b4"), .pid = 3 };
-pub const WPD_RENDERING_INFORMATION_PROFILE_ENTRY_CREATABLE_RESOURCES = PROPERTYKEY { .fmtid = Guid.initString("c53d039f-ee23-4a31-8590-7639879870b4"), .pid = 4 };
+pub const WPD_RENDERING_INFORMATION_PROFILES = PROPERTYKEY{ .fmtid = Guid.initString("c53d039f-ee23-4a31-8590-7639879870b4"), .pid = 2 };
+pub const WPD_RENDERING_INFORMATION_PROFILE_ENTRY_TYPE = PROPERTYKEY{ .fmtid = Guid.initString("c53d039f-ee23-4a31-8590-7639879870b4"), .pid = 3 };
+pub const WPD_RENDERING_INFORMATION_PROFILE_ENTRY_CREATABLE_RESOURCES = PROPERTYKEY{ .fmtid = Guid.initString("c53d039f-ee23-4a31-8590-7639879870b4"), .pid = 4 };
 pub const WPD_CLIENT_INFORMATION_PROPERTIES_V1 = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859");
-pub const WPD_CLIENT_NAME = PROPERTYKEY { .fmtid = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859"), .pid = 2 };
-pub const WPD_CLIENT_MAJOR_VERSION = PROPERTYKEY { .fmtid = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859"), .pid = 3 };
-pub const WPD_CLIENT_MINOR_VERSION = PROPERTYKEY { .fmtid = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859"), .pid = 4 };
-pub const WPD_CLIENT_REVISION = PROPERTYKEY { .fmtid = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859"), .pid = 5 };
-pub const WPD_CLIENT_WMDRM_APPLICATION_PRIVATE_KEY = PROPERTYKEY { .fmtid = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859"), .pid = 6 };
-pub const WPD_CLIENT_WMDRM_APPLICATION_CERTIFICATE = PROPERTYKEY { .fmtid = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859"), .pid = 7 };
-pub const WPD_CLIENT_SECURITY_QUALITY_OF_SERVICE = PROPERTYKEY { .fmtid = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859"), .pid = 8 };
-pub const WPD_CLIENT_DESIRED_ACCESS = PROPERTYKEY { .fmtid = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859"), .pid = 9 };
-pub const WPD_CLIENT_SHARE_MODE = PROPERTYKEY { .fmtid = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859"), .pid = 10 };
-pub const WPD_CLIENT_EVENT_COOKIE = PROPERTYKEY { .fmtid = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859"), .pid = 11 };
-pub const WPD_CLIENT_MINIMUM_RESULTS_BUFFER_SIZE = PROPERTYKEY { .fmtid = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859"), .pid = 12 };
-pub const WPD_CLIENT_MANUAL_CLOSE_ON_DISCONNECT = PROPERTYKEY { .fmtid = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859"), .pid = 13 };
+pub const WPD_CLIENT_NAME = PROPERTYKEY{ .fmtid = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859"), .pid = 2 };
+pub const WPD_CLIENT_MAJOR_VERSION = PROPERTYKEY{ .fmtid = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859"), .pid = 3 };
+pub const WPD_CLIENT_MINOR_VERSION = PROPERTYKEY{ .fmtid = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859"), .pid = 4 };
+pub const WPD_CLIENT_REVISION = PROPERTYKEY{ .fmtid = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859"), .pid = 5 };
+pub const WPD_CLIENT_WMDRM_APPLICATION_PRIVATE_KEY = PROPERTYKEY{ .fmtid = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859"), .pid = 6 };
+pub const WPD_CLIENT_WMDRM_APPLICATION_CERTIFICATE = PROPERTYKEY{ .fmtid = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859"), .pid = 7 };
+pub const WPD_CLIENT_SECURITY_QUALITY_OF_SERVICE = PROPERTYKEY{ .fmtid = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859"), .pid = 8 };
+pub const WPD_CLIENT_DESIRED_ACCESS = PROPERTYKEY{ .fmtid = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859"), .pid = 9 };
+pub const WPD_CLIENT_SHARE_MODE = PROPERTYKEY{ .fmtid = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859"), .pid = 10 };
+pub const WPD_CLIENT_EVENT_COOKIE = PROPERTYKEY{ .fmtid = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859"), .pid = 11 };
+pub const WPD_CLIENT_MINIMUM_RESULTS_BUFFER_SIZE = PROPERTYKEY{ .fmtid = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859"), .pid = 12 };
+pub const WPD_CLIENT_MANUAL_CLOSE_ON_DISCONNECT = PROPERTYKEY{ .fmtid = Guid.initString("204d9f0c-2292-4080-9f42-40664e70f859"), .pid = 13 };
 pub const WPD_PROPERTY_ATTRIBUTES_V1 = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37");
-pub const WPD_PROPERTY_ATTRIBUTE_FORM = PROPERTYKEY { .fmtid = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37"), .pid = 2 };
-pub const WPD_PROPERTY_ATTRIBUTE_CAN_READ = PROPERTYKEY { .fmtid = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37"), .pid = 3 };
-pub const WPD_PROPERTY_ATTRIBUTE_CAN_WRITE = PROPERTYKEY { .fmtid = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37"), .pid = 4 };
-pub const WPD_PROPERTY_ATTRIBUTE_CAN_DELETE = PROPERTYKEY { .fmtid = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37"), .pid = 5 };
-pub const WPD_PROPERTY_ATTRIBUTE_DEFAULT_VALUE = PROPERTYKEY { .fmtid = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37"), .pid = 6 };
-pub const WPD_PROPERTY_ATTRIBUTE_FAST_PROPERTY = PROPERTYKEY { .fmtid = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37"), .pid = 7 };
-pub const WPD_PROPERTY_ATTRIBUTE_RANGE_MIN = PROPERTYKEY { .fmtid = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37"), .pid = 8 };
-pub const WPD_PROPERTY_ATTRIBUTE_RANGE_MAX = PROPERTYKEY { .fmtid = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37"), .pid = 9 };
-pub const WPD_PROPERTY_ATTRIBUTE_RANGE_STEP = PROPERTYKEY { .fmtid = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37"), .pid = 10 };
-pub const WPD_PROPERTY_ATTRIBUTE_ENUMERATION_ELEMENTS = PROPERTYKEY { .fmtid = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37"), .pid = 11 };
-pub const WPD_PROPERTY_ATTRIBUTE_REGULAR_EXPRESSION = PROPERTYKEY { .fmtid = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37"), .pid = 12 };
-pub const WPD_PROPERTY_ATTRIBUTE_MAX_SIZE = PROPERTYKEY { .fmtid = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37"), .pid = 13 };
+pub const WPD_PROPERTY_ATTRIBUTE_FORM = PROPERTYKEY{ .fmtid = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37"), .pid = 2 };
+pub const WPD_PROPERTY_ATTRIBUTE_CAN_READ = PROPERTYKEY{ .fmtid = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37"), .pid = 3 };
+pub const WPD_PROPERTY_ATTRIBUTE_CAN_WRITE = PROPERTYKEY{ .fmtid = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37"), .pid = 4 };
+pub const WPD_PROPERTY_ATTRIBUTE_CAN_DELETE = PROPERTYKEY{ .fmtid = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37"), .pid = 5 };
+pub const WPD_PROPERTY_ATTRIBUTE_DEFAULT_VALUE = PROPERTYKEY{ .fmtid = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37"), .pid = 6 };
+pub const WPD_PROPERTY_ATTRIBUTE_FAST_PROPERTY = PROPERTYKEY{ .fmtid = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37"), .pid = 7 };
+pub const WPD_PROPERTY_ATTRIBUTE_RANGE_MIN = PROPERTYKEY{ .fmtid = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37"), .pid = 8 };
+pub const WPD_PROPERTY_ATTRIBUTE_RANGE_MAX = PROPERTYKEY{ .fmtid = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37"), .pid = 9 };
+pub const WPD_PROPERTY_ATTRIBUTE_RANGE_STEP = PROPERTYKEY{ .fmtid = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37"), .pid = 10 };
+pub const WPD_PROPERTY_ATTRIBUTE_ENUMERATION_ELEMENTS = PROPERTYKEY{ .fmtid = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37"), .pid = 11 };
+pub const WPD_PROPERTY_ATTRIBUTE_REGULAR_EXPRESSION = PROPERTYKEY{ .fmtid = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37"), .pid = 12 };
+pub const WPD_PROPERTY_ATTRIBUTE_MAX_SIZE = PROPERTYKEY{ .fmtid = Guid.initString("ab7943d8-6332-445f-a00d-8d5ef1e96f37"), .pid = 13 };
 pub const WPD_PROPERTY_ATTRIBUTES_V2 = Guid.initString("5d9da160-74ae-43cc-85a9-fe555a80798e");
-pub const WPD_PROPERTY_ATTRIBUTE_NAME = PROPERTYKEY { .fmtid = Guid.initString("5d9da160-74ae-43cc-85a9-fe555a80798e"), .pid = 2 };
-pub const WPD_PROPERTY_ATTRIBUTE_VARTYPE = PROPERTYKEY { .fmtid = Guid.initString("5d9da160-74ae-43cc-85a9-fe555a80798e"), .pid = 3 };
+pub const WPD_PROPERTY_ATTRIBUTE_NAME = PROPERTYKEY{ .fmtid = Guid.initString("5d9da160-74ae-43cc-85a9-fe555a80798e"), .pid = 2 };
+pub const WPD_PROPERTY_ATTRIBUTE_VARTYPE = PROPERTYKEY{ .fmtid = Guid.initString("5d9da160-74ae-43cc-85a9-fe555a80798e"), .pid = 3 };
 pub const WPD_CLASS_EXTENSION_OPTIONS_V1 = Guid.initString("6309ffef-a87c-4ca7-8434-797576e40a96");
-pub const WPD_CLASS_EXTENSION_OPTIONS_SUPPORTED_CONTENT_TYPES = PROPERTYKEY { .fmtid = Guid.initString("6309ffef-a87c-4ca7-8434-797576e40a96"), .pid = 2 };
-pub const WPD_CLASS_EXTENSION_OPTIONS_DONT_REGISTER_WPD_DEVICE_INTERFACE = PROPERTYKEY { .fmtid = Guid.initString("6309ffef-a87c-4ca7-8434-797576e40a96"), .pid = 3 };
-pub const WPD_CLASS_EXTENSION_OPTIONS_REGISTER_WPD_PRIVATE_DEVICE_INTERFACE = PROPERTYKEY { .fmtid = Guid.initString("6309ffef-a87c-4ca7-8434-797576e40a96"), .pid = 4 };
+pub const WPD_CLASS_EXTENSION_OPTIONS_SUPPORTED_CONTENT_TYPES = PROPERTYKEY{ .fmtid = Guid.initString("6309ffef-a87c-4ca7-8434-797576e40a96"), .pid = 2 };
+pub const WPD_CLASS_EXTENSION_OPTIONS_DONT_REGISTER_WPD_DEVICE_INTERFACE = PROPERTYKEY{ .fmtid = Guid.initString("6309ffef-a87c-4ca7-8434-797576e40a96"), .pid = 3 };
+pub const WPD_CLASS_EXTENSION_OPTIONS_REGISTER_WPD_PRIVATE_DEVICE_INTERFACE = PROPERTYKEY{ .fmtid = Guid.initString("6309ffef-a87c-4ca7-8434-797576e40a96"), .pid = 4 };
 pub const WPD_CLASS_EXTENSION_OPTIONS_V2 = Guid.initString("3e3595da-4d71-49fe-a0b4-d4406c3ae93f");
-pub const WPD_CLASS_EXTENSION_OPTIONS_MULTITRANSPORT_MODE = PROPERTYKEY { .fmtid = Guid.initString("3e3595da-4d71-49fe-a0b4-d4406c3ae93f"), .pid = 2 };
-pub const WPD_CLASS_EXTENSION_OPTIONS_DEVICE_IDENTIFICATION_VALUES = PROPERTYKEY { .fmtid = Guid.initString("3e3595da-4d71-49fe-a0b4-d4406c3ae93f"), .pid = 3 };
-pub const WPD_CLASS_EXTENSION_OPTIONS_TRANSPORT_BANDWIDTH = PROPERTYKEY { .fmtid = Guid.initString("3e3595da-4d71-49fe-a0b4-d4406c3ae93f"), .pid = 4 };
+pub const WPD_CLASS_EXTENSION_OPTIONS_MULTITRANSPORT_MODE = PROPERTYKEY{ .fmtid = Guid.initString("3e3595da-4d71-49fe-a0b4-d4406c3ae93f"), .pid = 2 };
+pub const WPD_CLASS_EXTENSION_OPTIONS_DEVICE_IDENTIFICATION_VALUES = PROPERTYKEY{ .fmtid = Guid.initString("3e3595da-4d71-49fe-a0b4-d4406c3ae93f"), .pid = 3 };
+pub const WPD_CLASS_EXTENSION_OPTIONS_TRANSPORT_BANDWIDTH = PROPERTYKEY{ .fmtid = Guid.initString("3e3595da-4d71-49fe-a0b4-d4406c3ae93f"), .pid = 4 };
 pub const WPD_CLASS_EXTENSION_OPTIONS_V3 = Guid.initString("65c160f8-1367-4ce2-939d-8310839f0d30");
-pub const WPD_CLASS_EXTENSION_OPTIONS_SILENCE_AUTOPLAY = PROPERTYKEY { .fmtid = Guid.initString("65c160f8-1367-4ce2-939d-8310839f0d30"), .pid = 2 };
+pub const WPD_CLASS_EXTENSION_OPTIONS_SILENCE_AUTOPLAY = PROPERTYKEY{ .fmtid = Guid.initString("65c160f8-1367-4ce2-939d-8310839f0d30"), .pid = 2 };
 pub const WPD_RESOURCE_ATTRIBUTES_V1 = Guid.initString("1eb6f604-9278-429f-93cc-5bb8c06656b6");
-pub const WPD_RESOURCE_ATTRIBUTE_TOTAL_SIZE = PROPERTYKEY { .fmtid = Guid.initString("1eb6f604-9278-429f-93cc-5bb8c06656b6"), .pid = 2 };
-pub const WPD_RESOURCE_ATTRIBUTE_CAN_READ = PROPERTYKEY { .fmtid = Guid.initString("1eb6f604-9278-429f-93cc-5bb8c06656b6"), .pid = 3 };
-pub const WPD_RESOURCE_ATTRIBUTE_CAN_WRITE = PROPERTYKEY { .fmtid = Guid.initString("1eb6f604-9278-429f-93cc-5bb8c06656b6"), .pid = 4 };
-pub const WPD_RESOURCE_ATTRIBUTE_CAN_DELETE = PROPERTYKEY { .fmtid = Guid.initString("1eb6f604-9278-429f-93cc-5bb8c06656b6"), .pid = 5 };
-pub const WPD_RESOURCE_ATTRIBUTE_OPTIMAL_READ_BUFFER_SIZE = PROPERTYKEY { .fmtid = Guid.initString("1eb6f604-9278-429f-93cc-5bb8c06656b6"), .pid = 6 };
-pub const WPD_RESOURCE_ATTRIBUTE_OPTIMAL_WRITE_BUFFER_SIZE = PROPERTYKEY { .fmtid = Guid.initString("1eb6f604-9278-429f-93cc-5bb8c06656b6"), .pid = 7 };
-pub const WPD_RESOURCE_ATTRIBUTE_FORMAT = PROPERTYKEY { .fmtid = Guid.initString("1eb6f604-9278-429f-93cc-5bb8c06656b6"), .pid = 8 };
-pub const WPD_RESOURCE_ATTRIBUTE_RESOURCE_KEY = PROPERTYKEY { .fmtid = Guid.initString("1eb6f604-9278-429f-93cc-5bb8c06656b6"), .pid = 9 };
+pub const WPD_RESOURCE_ATTRIBUTE_TOTAL_SIZE = PROPERTYKEY{ .fmtid = Guid.initString("1eb6f604-9278-429f-93cc-5bb8c06656b6"), .pid = 2 };
+pub const WPD_RESOURCE_ATTRIBUTE_CAN_READ = PROPERTYKEY{ .fmtid = Guid.initString("1eb6f604-9278-429f-93cc-5bb8c06656b6"), .pid = 3 };
+pub const WPD_RESOURCE_ATTRIBUTE_CAN_WRITE = PROPERTYKEY{ .fmtid = Guid.initString("1eb6f604-9278-429f-93cc-5bb8c06656b6"), .pid = 4 };
+pub const WPD_RESOURCE_ATTRIBUTE_CAN_DELETE = PROPERTYKEY{ .fmtid = Guid.initString("1eb6f604-9278-429f-93cc-5bb8c06656b6"), .pid = 5 };
+pub const WPD_RESOURCE_ATTRIBUTE_OPTIMAL_READ_BUFFER_SIZE = PROPERTYKEY{ .fmtid = Guid.initString("1eb6f604-9278-429f-93cc-5bb8c06656b6"), .pid = 6 };
+pub const WPD_RESOURCE_ATTRIBUTE_OPTIMAL_WRITE_BUFFER_SIZE = PROPERTYKEY{ .fmtid = Guid.initString("1eb6f604-9278-429f-93cc-5bb8c06656b6"), .pid = 7 };
+pub const WPD_RESOURCE_ATTRIBUTE_FORMAT = PROPERTYKEY{ .fmtid = Guid.initString("1eb6f604-9278-429f-93cc-5bb8c06656b6"), .pid = 8 };
+pub const WPD_RESOURCE_ATTRIBUTE_RESOURCE_KEY = PROPERTYKEY{ .fmtid = Guid.initString("1eb6f604-9278-429f-93cc-5bb8c06656b6"), .pid = 9 };
 pub const WPD_DEVICE_PROPERTIES_V1 = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc");
-pub const WPD_DEVICE_SYNC_PARTNER = PROPERTYKEY { .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 2 };
-pub const WPD_DEVICE_FIRMWARE_VERSION = PROPERTYKEY { .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 3 };
-pub const WPD_DEVICE_POWER_LEVEL = PROPERTYKEY { .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 4 };
-pub const WPD_DEVICE_POWER_SOURCE = PROPERTYKEY { .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 5 };
-pub const WPD_DEVICE_PROTOCOL = PROPERTYKEY { .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 6 };
-pub const WPD_DEVICE_MANUFACTURER = PROPERTYKEY { .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 7 };
-pub const WPD_DEVICE_MODEL = PROPERTYKEY { .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 8 };
-pub const WPD_DEVICE_SERIAL_NUMBER = PROPERTYKEY { .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 9 };
-pub const WPD_DEVICE_SUPPORTS_NON_CONSUMABLE = PROPERTYKEY { .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 10 };
-pub const WPD_DEVICE_DATETIME = PROPERTYKEY { .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 11 };
-pub const WPD_DEVICE_FRIENDLY_NAME = PROPERTYKEY { .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 12 };
-pub const WPD_DEVICE_SUPPORTED_DRM_SCHEMES = PROPERTYKEY { .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 13 };
-pub const WPD_DEVICE_SUPPORTED_FORMATS_ARE_ORDERED = PROPERTYKEY { .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 14 };
-pub const WPD_DEVICE_TYPE = PROPERTYKEY { .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 15 };
-pub const WPD_DEVICE_NETWORK_IDENTIFIER = PROPERTYKEY { .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 16 };
+pub const WPD_DEVICE_SYNC_PARTNER = PROPERTYKEY{ .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 2 };
+pub const WPD_DEVICE_FIRMWARE_VERSION = PROPERTYKEY{ .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 3 };
+pub const WPD_DEVICE_POWER_LEVEL = PROPERTYKEY{ .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 4 };
+pub const WPD_DEVICE_POWER_SOURCE = PROPERTYKEY{ .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 5 };
+pub const WPD_DEVICE_PROTOCOL = PROPERTYKEY{ .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 6 };
+pub const WPD_DEVICE_MANUFACTURER = PROPERTYKEY{ .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 7 };
+pub const WPD_DEVICE_MODEL = PROPERTYKEY{ .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 8 };
+pub const WPD_DEVICE_SERIAL_NUMBER = PROPERTYKEY{ .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 9 };
+pub const WPD_DEVICE_SUPPORTS_NON_CONSUMABLE = PROPERTYKEY{ .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 10 };
+pub const WPD_DEVICE_DATETIME = PROPERTYKEY{ .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 11 };
+pub const WPD_DEVICE_FRIENDLY_NAME = PROPERTYKEY{ .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 12 };
+pub const WPD_DEVICE_SUPPORTED_DRM_SCHEMES = PROPERTYKEY{ .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 13 };
+pub const WPD_DEVICE_SUPPORTED_FORMATS_ARE_ORDERED = PROPERTYKEY{ .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 14 };
+pub const WPD_DEVICE_TYPE = PROPERTYKEY{ .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 15 };
+pub const WPD_DEVICE_NETWORK_IDENTIFIER = PROPERTYKEY{ .fmtid = Guid.initString("26d4979a-e643-4626-9e2b-736dc0c92fdc"), .pid = 16 };
 pub const WPD_DEVICE_PROPERTIES_V2 = Guid.initString("463dd662-7fc4-4291-911c-7f4c9cca9799");
-pub const WPD_DEVICE_FUNCTIONAL_UNIQUE_ID = PROPERTYKEY { .fmtid = Guid.initString("463dd662-7fc4-4291-911c-7f4c9cca9799"), .pid = 2 };
-pub const WPD_DEVICE_MODEL_UNIQUE_ID = PROPERTYKEY { .fmtid = Guid.initString("463dd662-7fc4-4291-911c-7f4c9cca9799"), .pid = 3 };
-pub const WPD_DEVICE_TRANSPORT = PROPERTYKEY { .fmtid = Guid.initString("463dd662-7fc4-4291-911c-7f4c9cca9799"), .pid = 4 };
-pub const WPD_DEVICE_USE_DEVICE_STAGE = PROPERTYKEY { .fmtid = Guid.initString("463dd662-7fc4-4291-911c-7f4c9cca9799"), .pid = 5 };
+pub const WPD_DEVICE_FUNCTIONAL_UNIQUE_ID = PROPERTYKEY{ .fmtid = Guid.initString("463dd662-7fc4-4291-911c-7f4c9cca9799"), .pid = 2 };
+pub const WPD_DEVICE_MODEL_UNIQUE_ID = PROPERTYKEY{ .fmtid = Guid.initString("463dd662-7fc4-4291-911c-7f4c9cca9799"), .pid = 3 };
+pub const WPD_DEVICE_TRANSPORT = PROPERTYKEY{ .fmtid = Guid.initString("463dd662-7fc4-4291-911c-7f4c9cca9799"), .pid = 4 };
+pub const WPD_DEVICE_USE_DEVICE_STAGE = PROPERTYKEY{ .fmtid = Guid.initString("463dd662-7fc4-4291-911c-7f4c9cca9799"), .pid = 5 };
 pub const WPD_DEVICE_PROPERTIES_V3 = Guid.initString("6c2b878c-c2ec-490d-b425-d7a75e23e5ed");
-pub const WPD_DEVICE_EDP_IDENTITY = PROPERTYKEY { .fmtid = Guid.initString("6c2b878c-c2ec-490d-b425-d7a75e23e5ed"), .pid = 1 };
+pub const WPD_DEVICE_EDP_IDENTITY = PROPERTYKEY{ .fmtid = Guid.initString("6c2b878c-c2ec-490d-b425-d7a75e23e5ed"), .pid = 1 };
 pub const WPD_SERVICE_PROPERTIES_V1 = Guid.initString("7510698a-cb54-481c-b8db-0d75c93f1c06");
-pub const WPD_SERVICE_VERSION = PROPERTYKEY { .fmtid = Guid.initString("7510698a-cb54-481c-b8db-0d75c93f1c06"), .pid = 2 };
+pub const WPD_SERVICE_VERSION = PROPERTYKEY{ .fmtid = Guid.initString("7510698a-cb54-481c-b8db-0d75c93f1c06"), .pid = 2 };
 pub const WPD_EVENT_PROPERTIES_V1 = Guid.initString("15ab1953-f817-4fef-a921-5676e838f6e0");
-pub const WPD_EVENT_PARAMETER_PNP_DEVICE_ID = PROPERTYKEY { .fmtid = Guid.initString("15ab1953-f817-4fef-a921-5676e838f6e0"), .pid = 2 };
-pub const WPD_EVENT_PARAMETER_EVENT_ID = PROPERTYKEY { .fmtid = Guid.initString("15ab1953-f817-4fef-a921-5676e838f6e0"), .pid = 3 };
-pub const WPD_EVENT_PARAMETER_OPERATION_STATE = PROPERTYKEY { .fmtid = Guid.initString("15ab1953-f817-4fef-a921-5676e838f6e0"), .pid = 4 };
-pub const WPD_EVENT_PARAMETER_OPERATION_PROGRESS = PROPERTYKEY { .fmtid = Guid.initString("15ab1953-f817-4fef-a921-5676e838f6e0"), .pid = 5 };
-pub const WPD_EVENT_PARAMETER_OBJECT_PARENT_PERSISTENT_UNIQUE_ID = PROPERTYKEY { .fmtid = Guid.initString("15ab1953-f817-4fef-a921-5676e838f6e0"), .pid = 6 };
-pub const WPD_EVENT_PARAMETER_OBJECT_CREATION_COOKIE = PROPERTYKEY { .fmtid = Guid.initString("15ab1953-f817-4fef-a921-5676e838f6e0"), .pid = 7 };
-pub const WPD_EVENT_PARAMETER_CHILD_HIERARCHY_CHANGED = PROPERTYKEY { .fmtid = Guid.initString("15ab1953-f817-4fef-a921-5676e838f6e0"), .pid = 8 };
+pub const WPD_EVENT_PARAMETER_PNP_DEVICE_ID = PROPERTYKEY{ .fmtid = Guid.initString("15ab1953-f817-4fef-a921-5676e838f6e0"), .pid = 2 };
+pub const WPD_EVENT_PARAMETER_EVENT_ID = PROPERTYKEY{ .fmtid = Guid.initString("15ab1953-f817-4fef-a921-5676e838f6e0"), .pid = 3 };
+pub const WPD_EVENT_PARAMETER_OPERATION_STATE = PROPERTYKEY{ .fmtid = Guid.initString("15ab1953-f817-4fef-a921-5676e838f6e0"), .pid = 4 };
+pub const WPD_EVENT_PARAMETER_OPERATION_PROGRESS = PROPERTYKEY{ .fmtid = Guid.initString("15ab1953-f817-4fef-a921-5676e838f6e0"), .pid = 5 };
+pub const WPD_EVENT_PARAMETER_OBJECT_PARENT_PERSISTENT_UNIQUE_ID = PROPERTYKEY{ .fmtid = Guid.initString("15ab1953-f817-4fef-a921-5676e838f6e0"), .pid = 6 };
+pub const WPD_EVENT_PARAMETER_OBJECT_CREATION_COOKIE = PROPERTYKEY{ .fmtid = Guid.initString("15ab1953-f817-4fef-a921-5676e838f6e0"), .pid = 7 };
+pub const WPD_EVENT_PARAMETER_CHILD_HIERARCHY_CHANGED = PROPERTYKEY{ .fmtid = Guid.initString("15ab1953-f817-4fef-a921-5676e838f6e0"), .pid = 8 };
 pub const WPD_EVENT_PROPERTIES_V2 = Guid.initString("52807b8a-4914-4323-9b9a-74f654b2b846");
-pub const WPD_EVENT_PARAMETER_SERVICE_METHOD_CONTEXT = PROPERTYKEY { .fmtid = Guid.initString("52807b8a-4914-4323-9b9a-74f654b2b846"), .pid = 2 };
+pub const WPD_EVENT_PARAMETER_SERVICE_METHOD_CONTEXT = PROPERTYKEY{ .fmtid = Guid.initString("52807b8a-4914-4323-9b9a-74f654b2b846"), .pid = 2 };
 pub const WPD_EVENT_OPTIONS_V1 = Guid.initString("b3d8dad7-a361-4b83-8a48-5b02ce10713b");
-pub const WPD_EVENT_OPTION_IS_BROADCAST_EVENT = PROPERTYKEY { .fmtid = Guid.initString("b3d8dad7-a361-4b83-8a48-5b02ce10713b"), .pid = 2 };
-pub const WPD_EVENT_OPTION_IS_AUTOPLAY_EVENT = PROPERTYKEY { .fmtid = Guid.initString("b3d8dad7-a361-4b83-8a48-5b02ce10713b"), .pid = 3 };
+pub const WPD_EVENT_OPTION_IS_BROADCAST_EVENT = PROPERTYKEY{ .fmtid = Guid.initString("b3d8dad7-a361-4b83-8a48-5b02ce10713b"), .pid = 2 };
+pub const WPD_EVENT_OPTION_IS_AUTOPLAY_EVENT = PROPERTYKEY{ .fmtid = Guid.initString("b3d8dad7-a361-4b83-8a48-5b02ce10713b"), .pid = 3 };
 pub const WPD_EVENT_ATTRIBUTES_V1 = Guid.initString("10c96578-2e81-4111-adde-e08ca6138f6d");
-pub const WPD_EVENT_ATTRIBUTE_NAME = PROPERTYKEY { .fmtid = Guid.initString("10c96578-2e81-4111-adde-e08ca6138f6d"), .pid = 2 };
-pub const WPD_EVENT_ATTRIBUTE_PARAMETERS = PROPERTYKEY { .fmtid = Guid.initString("10c96578-2e81-4111-adde-e08ca6138f6d"), .pid = 3 };
-pub const WPD_EVENT_ATTRIBUTE_OPTIONS = PROPERTYKEY { .fmtid = Guid.initString("10c96578-2e81-4111-adde-e08ca6138f6d"), .pid = 4 };
+pub const WPD_EVENT_ATTRIBUTE_NAME = PROPERTYKEY{ .fmtid = Guid.initString("10c96578-2e81-4111-adde-e08ca6138f6d"), .pid = 2 };
+pub const WPD_EVENT_ATTRIBUTE_PARAMETERS = PROPERTYKEY{ .fmtid = Guid.initString("10c96578-2e81-4111-adde-e08ca6138f6d"), .pid = 3 };
+pub const WPD_EVENT_ATTRIBUTE_OPTIONS = PROPERTYKEY{ .fmtid = Guid.initString("10c96578-2e81-4111-adde-e08ca6138f6d"), .pid = 4 };
 pub const WPD_API_OPTIONS_V1 = Guid.initString("10e54a3e-052d-4777-a13c-de7614be2bc4");
-pub const WPD_API_OPTION_USE_CLEAR_DATA_STREAM = PROPERTYKEY { .fmtid = Guid.initString("10e54a3e-052d-4777-a13c-de7614be2bc4"), .pid = 2 };
-pub const WPD_API_OPTION_IOCTL_ACCESS = PROPERTYKEY { .fmtid = Guid.initString("10e54a3e-052d-4777-a13c-de7614be2bc4"), .pid = 3 };
+pub const WPD_API_OPTION_USE_CLEAR_DATA_STREAM = PROPERTYKEY{ .fmtid = Guid.initString("10e54a3e-052d-4777-a13c-de7614be2bc4"), .pid = 2 };
+pub const WPD_API_OPTION_IOCTL_ACCESS = PROPERTYKEY{ .fmtid = Guid.initString("10e54a3e-052d-4777-a13c-de7614be2bc4"), .pid = 3 };
 pub const WPD_FORMAT_ATTRIBUTES_V1 = Guid.initString("a0a02000-bcaf-4be8-b3f5-233f231cf58f");
-pub const WPD_FORMAT_ATTRIBUTE_NAME = PROPERTYKEY { .fmtid = Guid.initString("a0a02000-bcaf-4be8-b3f5-233f231cf58f"), .pid = 2 };
-pub const WPD_FORMAT_ATTRIBUTE_MIMETYPE = PROPERTYKEY { .fmtid = Guid.initString("a0a02000-bcaf-4be8-b3f5-233f231cf58f"), .pid = 3 };
+pub const WPD_FORMAT_ATTRIBUTE_NAME = PROPERTYKEY{ .fmtid = Guid.initString("a0a02000-bcaf-4be8-b3f5-233f231cf58f"), .pid = 2 };
+pub const WPD_FORMAT_ATTRIBUTE_MIMETYPE = PROPERTYKEY{ .fmtid = Guid.initString("a0a02000-bcaf-4be8-b3f5-233f231cf58f"), .pid = 3 };
 pub const WPD_METHOD_ATTRIBUTES_V1 = Guid.initString("f17a5071-f039-44af-8efe-432cf32e432a");
-pub const WPD_METHOD_ATTRIBUTE_NAME = PROPERTYKEY { .fmtid = Guid.initString("f17a5071-f039-44af-8efe-432cf32e432a"), .pid = 2 };
-pub const WPD_METHOD_ATTRIBUTE_ASSOCIATED_FORMAT = PROPERTYKEY { .fmtid = Guid.initString("f17a5071-f039-44af-8efe-432cf32e432a"), .pid = 3 };
-pub const WPD_METHOD_ATTRIBUTE_ACCESS = PROPERTYKEY { .fmtid = Guid.initString("f17a5071-f039-44af-8efe-432cf32e432a"), .pid = 4 };
-pub const WPD_METHOD_ATTRIBUTE_PARAMETERS = PROPERTYKEY { .fmtid = Guid.initString("f17a5071-f039-44af-8efe-432cf32e432a"), .pid = 5 };
+pub const WPD_METHOD_ATTRIBUTE_NAME = PROPERTYKEY{ .fmtid = Guid.initString("f17a5071-f039-44af-8efe-432cf32e432a"), .pid = 2 };
+pub const WPD_METHOD_ATTRIBUTE_ASSOCIATED_FORMAT = PROPERTYKEY{ .fmtid = Guid.initString("f17a5071-f039-44af-8efe-432cf32e432a"), .pid = 3 };
+pub const WPD_METHOD_ATTRIBUTE_ACCESS = PROPERTYKEY{ .fmtid = Guid.initString("f17a5071-f039-44af-8efe-432cf32e432a"), .pid = 4 };
+pub const WPD_METHOD_ATTRIBUTE_PARAMETERS = PROPERTYKEY{ .fmtid = Guid.initString("f17a5071-f039-44af-8efe-432cf32e432a"), .pid = 5 };
 pub const WPD_PARAMETER_ATTRIBUTES_V1 = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58");
-pub const WPD_PARAMETER_ATTRIBUTE_ORDER = PROPERTYKEY { .fmtid = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58"), .pid = 2 };
-pub const WPD_PARAMETER_ATTRIBUTE_USAGE = PROPERTYKEY { .fmtid = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58"), .pid = 3 };
-pub const WPD_PARAMETER_ATTRIBUTE_FORM = PROPERTYKEY { .fmtid = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58"), .pid = 4 };
-pub const WPD_PARAMETER_ATTRIBUTE_DEFAULT_VALUE = PROPERTYKEY { .fmtid = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58"), .pid = 5 };
-pub const WPD_PARAMETER_ATTRIBUTE_RANGE_MIN = PROPERTYKEY { .fmtid = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58"), .pid = 6 };
-pub const WPD_PARAMETER_ATTRIBUTE_RANGE_MAX = PROPERTYKEY { .fmtid = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58"), .pid = 7 };
-pub const WPD_PARAMETER_ATTRIBUTE_RANGE_STEP = PROPERTYKEY { .fmtid = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58"), .pid = 8 };
-pub const WPD_PARAMETER_ATTRIBUTE_ENUMERATION_ELEMENTS = PROPERTYKEY { .fmtid = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58"), .pid = 9 };
-pub const WPD_PARAMETER_ATTRIBUTE_REGULAR_EXPRESSION = PROPERTYKEY { .fmtid = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58"), .pid = 10 };
-pub const WPD_PARAMETER_ATTRIBUTE_MAX_SIZE = PROPERTYKEY { .fmtid = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58"), .pid = 11 };
-pub const WPD_PARAMETER_ATTRIBUTE_VARTYPE = PROPERTYKEY { .fmtid = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58"), .pid = 12 };
-pub const WPD_PARAMETER_ATTRIBUTE_NAME = PROPERTYKEY { .fmtid = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58"), .pid = 13 };
+pub const WPD_PARAMETER_ATTRIBUTE_ORDER = PROPERTYKEY{ .fmtid = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58"), .pid = 2 };
+pub const WPD_PARAMETER_ATTRIBUTE_USAGE = PROPERTYKEY{ .fmtid = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58"), .pid = 3 };
+pub const WPD_PARAMETER_ATTRIBUTE_FORM = PROPERTYKEY{ .fmtid = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58"), .pid = 4 };
+pub const WPD_PARAMETER_ATTRIBUTE_DEFAULT_VALUE = PROPERTYKEY{ .fmtid = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58"), .pid = 5 };
+pub const WPD_PARAMETER_ATTRIBUTE_RANGE_MIN = PROPERTYKEY{ .fmtid = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58"), .pid = 6 };
+pub const WPD_PARAMETER_ATTRIBUTE_RANGE_MAX = PROPERTYKEY{ .fmtid = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58"), .pid = 7 };
+pub const WPD_PARAMETER_ATTRIBUTE_RANGE_STEP = PROPERTYKEY{ .fmtid = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58"), .pid = 8 };
+pub const WPD_PARAMETER_ATTRIBUTE_ENUMERATION_ELEMENTS = PROPERTYKEY{ .fmtid = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58"), .pid = 9 };
+pub const WPD_PARAMETER_ATTRIBUTE_REGULAR_EXPRESSION = PROPERTYKEY{ .fmtid = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58"), .pid = 10 };
+pub const WPD_PARAMETER_ATTRIBUTE_MAX_SIZE = PROPERTYKEY{ .fmtid = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58"), .pid = 11 };
+pub const WPD_PARAMETER_ATTRIBUTE_VARTYPE = PROPERTYKEY{ .fmtid = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58"), .pid = 12 };
+pub const WPD_PARAMETER_ATTRIBUTE_NAME = PROPERTYKEY{ .fmtid = Guid.initString("e6864dd7-f325-45ea-a1d5-97cf73b6ca58"), .pid = 13 };
 pub const WPD_CATEGORY_COMMON = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a");
-pub const WPD_COMMAND_COMMON_RESET_DEVICE = PROPERTYKEY { .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 2 };
-pub const WPD_COMMAND_COMMON_GET_OBJECT_IDS_FROM_PERSISTENT_UNIQUE_IDS = PROPERTYKEY { .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 3 };
-pub const WPD_COMMAND_COMMON_SAVE_CLIENT_INFORMATION = PROPERTYKEY { .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 4 };
-pub const WPD_PROPERTY_COMMON_COMMAND_CATEGORY = PROPERTYKEY { .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 1001 };
-pub const WPD_PROPERTY_COMMON_COMMAND_ID = PROPERTYKEY { .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 1002 };
-pub const WPD_PROPERTY_COMMON_HRESULT = PROPERTYKEY { .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 1003 };
-pub const WPD_PROPERTY_COMMON_DRIVER_ERROR_CODE = PROPERTYKEY { .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 1004 };
-pub const WPD_PROPERTY_COMMON_COMMAND_TARGET = PROPERTYKEY { .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 1006 };
-pub const WPD_PROPERTY_COMMON_PERSISTENT_UNIQUE_IDS = PROPERTYKEY { .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 1007 };
-pub const WPD_PROPERTY_COMMON_OBJECT_IDS = PROPERTYKEY { .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 1008 };
-pub const WPD_PROPERTY_COMMON_CLIENT_INFORMATION = PROPERTYKEY { .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 1009 };
-pub const WPD_PROPERTY_COMMON_CLIENT_INFORMATION_CONTEXT = PROPERTYKEY { .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 1010 };
-pub const WPD_PROPERTY_COMMON_ACTIVITY_ID = PROPERTYKEY { .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 1011 };
-pub const WPD_OPTION_VALID_OBJECT_IDS = PROPERTYKEY { .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 5001 };
+pub const WPD_COMMAND_COMMON_RESET_DEVICE = PROPERTYKEY{ .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 2 };
+pub const WPD_COMMAND_COMMON_GET_OBJECT_IDS_FROM_PERSISTENT_UNIQUE_IDS = PROPERTYKEY{ .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 3 };
+pub const WPD_COMMAND_COMMON_SAVE_CLIENT_INFORMATION = PROPERTYKEY{ .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 4 };
+pub const WPD_PROPERTY_COMMON_COMMAND_CATEGORY = PROPERTYKEY{ .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 1001 };
+pub const WPD_PROPERTY_COMMON_COMMAND_ID = PROPERTYKEY{ .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 1002 };
+pub const WPD_PROPERTY_COMMON_HRESULT = PROPERTYKEY{ .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 1003 };
+pub const WPD_PROPERTY_COMMON_DRIVER_ERROR_CODE = PROPERTYKEY{ .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 1004 };
+pub const WPD_PROPERTY_COMMON_COMMAND_TARGET = PROPERTYKEY{ .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 1006 };
+pub const WPD_PROPERTY_COMMON_PERSISTENT_UNIQUE_IDS = PROPERTYKEY{ .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 1007 };
+pub const WPD_PROPERTY_COMMON_OBJECT_IDS = PROPERTYKEY{ .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 1008 };
+pub const WPD_PROPERTY_COMMON_CLIENT_INFORMATION = PROPERTYKEY{ .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 1009 };
+pub const WPD_PROPERTY_COMMON_CLIENT_INFORMATION_CONTEXT = PROPERTYKEY{ .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 1010 };
+pub const WPD_PROPERTY_COMMON_ACTIVITY_ID = PROPERTYKEY{ .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 1011 };
+pub const WPD_OPTION_VALID_OBJECT_IDS = PROPERTYKEY{ .fmtid = Guid.initString("f0422a9c-5dc8-4440-b5bd-5df28835658a"), .pid = 5001 };
 pub const WPD_CATEGORY_OBJECT_ENUMERATION = Guid.initString("b7474e91-e7f8-4ad9-b400-ad1a4b58eeec");
-pub const WPD_COMMAND_OBJECT_ENUMERATION_START_FIND = PROPERTYKEY { .fmtid = Guid.initString("b7474e91-e7f8-4ad9-b400-ad1a4b58eeec"), .pid = 2 };
-pub const WPD_COMMAND_OBJECT_ENUMERATION_FIND_NEXT = PROPERTYKEY { .fmtid = Guid.initString("b7474e91-e7f8-4ad9-b400-ad1a4b58eeec"), .pid = 3 };
-pub const WPD_COMMAND_OBJECT_ENUMERATION_END_FIND = PROPERTYKEY { .fmtid = Guid.initString("b7474e91-e7f8-4ad9-b400-ad1a4b58eeec"), .pid = 4 };
-pub const WPD_PROPERTY_OBJECT_ENUMERATION_PARENT_ID = PROPERTYKEY { .fmtid = Guid.initString("b7474e91-e7f8-4ad9-b400-ad1a4b58eeec"), .pid = 1001 };
-pub const WPD_PROPERTY_OBJECT_ENUMERATION_FILTER = PROPERTYKEY { .fmtid = Guid.initString("b7474e91-e7f8-4ad9-b400-ad1a4b58eeec"), .pid = 1002 };
-pub const WPD_PROPERTY_OBJECT_ENUMERATION_OBJECT_IDS = PROPERTYKEY { .fmtid = Guid.initString("b7474e91-e7f8-4ad9-b400-ad1a4b58eeec"), .pid = 1003 };
-pub const WPD_PROPERTY_OBJECT_ENUMERATION_CONTEXT = PROPERTYKEY { .fmtid = Guid.initString("b7474e91-e7f8-4ad9-b400-ad1a4b58eeec"), .pid = 1004 };
-pub const WPD_PROPERTY_OBJECT_ENUMERATION_NUM_OBJECTS_REQUESTED = PROPERTYKEY { .fmtid = Guid.initString("b7474e91-e7f8-4ad9-b400-ad1a4b58eeec"), .pid = 1005 };
+pub const WPD_COMMAND_OBJECT_ENUMERATION_START_FIND = PROPERTYKEY{ .fmtid = Guid.initString("b7474e91-e7f8-4ad9-b400-ad1a4b58eeec"), .pid = 2 };
+pub const WPD_COMMAND_OBJECT_ENUMERATION_FIND_NEXT = PROPERTYKEY{ .fmtid = Guid.initString("b7474e91-e7f8-4ad9-b400-ad1a4b58eeec"), .pid = 3 };
+pub const WPD_COMMAND_OBJECT_ENUMERATION_END_FIND = PROPERTYKEY{ .fmtid = Guid.initString("b7474e91-e7f8-4ad9-b400-ad1a4b58eeec"), .pid = 4 };
+pub const WPD_PROPERTY_OBJECT_ENUMERATION_PARENT_ID = PROPERTYKEY{ .fmtid = Guid.initString("b7474e91-e7f8-4ad9-b400-ad1a4b58eeec"), .pid = 1001 };
+pub const WPD_PROPERTY_OBJECT_ENUMERATION_FILTER = PROPERTYKEY{ .fmtid = Guid.initString("b7474e91-e7f8-4ad9-b400-ad1a4b58eeec"), .pid = 1002 };
+pub const WPD_PROPERTY_OBJECT_ENUMERATION_OBJECT_IDS = PROPERTYKEY{ .fmtid = Guid.initString("b7474e91-e7f8-4ad9-b400-ad1a4b58eeec"), .pid = 1003 };
+pub const WPD_PROPERTY_OBJECT_ENUMERATION_CONTEXT = PROPERTYKEY{ .fmtid = Guid.initString("b7474e91-e7f8-4ad9-b400-ad1a4b58eeec"), .pid = 1004 };
+pub const WPD_PROPERTY_OBJECT_ENUMERATION_NUM_OBJECTS_REQUESTED = PROPERTYKEY{ .fmtid = Guid.initString("b7474e91-e7f8-4ad9-b400-ad1a4b58eeec"), .pid = 1005 };
 pub const WPD_CATEGORY_OBJECT_PROPERTIES = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804");
-pub const WPD_COMMAND_OBJECT_PROPERTIES_GET_SUPPORTED = PROPERTYKEY { .fmtid = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804"), .pid = 2 };
-pub const WPD_COMMAND_OBJECT_PROPERTIES_GET_ATTRIBUTES = PROPERTYKEY { .fmtid = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804"), .pid = 3 };
-pub const WPD_COMMAND_OBJECT_PROPERTIES_GET = PROPERTYKEY { .fmtid = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804"), .pid = 4 };
-pub const WPD_COMMAND_OBJECT_PROPERTIES_SET = PROPERTYKEY { .fmtid = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804"), .pid = 5 };
-pub const WPD_COMMAND_OBJECT_PROPERTIES_GET_ALL = PROPERTYKEY { .fmtid = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804"), .pid = 6 };
-pub const WPD_COMMAND_OBJECT_PROPERTIES_DELETE = PROPERTYKEY { .fmtid = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804"), .pid = 7 };
-pub const WPD_PROPERTY_OBJECT_PROPERTIES_OBJECT_ID = PROPERTYKEY { .fmtid = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804"), .pid = 1001 };
-pub const WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_KEYS = PROPERTYKEY { .fmtid = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804"), .pid = 1002 };
-pub const WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_ATTRIBUTES = PROPERTYKEY { .fmtid = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804"), .pid = 1003 };
-pub const WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_VALUES = PROPERTYKEY { .fmtid = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804"), .pid = 1004 };
-pub const WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_WRITE_RESULTS = PROPERTYKEY { .fmtid = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804"), .pid = 1005 };
-pub const WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_DELETE_RESULTS = PROPERTYKEY { .fmtid = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804"), .pid = 1006 };
+pub const WPD_COMMAND_OBJECT_PROPERTIES_GET_SUPPORTED = PROPERTYKEY{ .fmtid = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804"), .pid = 2 };
+pub const WPD_COMMAND_OBJECT_PROPERTIES_GET_ATTRIBUTES = PROPERTYKEY{ .fmtid = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804"), .pid = 3 };
+pub const WPD_COMMAND_OBJECT_PROPERTIES_GET = PROPERTYKEY{ .fmtid = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804"), .pid = 4 };
+pub const WPD_COMMAND_OBJECT_PROPERTIES_SET = PROPERTYKEY{ .fmtid = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804"), .pid = 5 };
+pub const WPD_COMMAND_OBJECT_PROPERTIES_GET_ALL = PROPERTYKEY{ .fmtid = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804"), .pid = 6 };
+pub const WPD_COMMAND_OBJECT_PROPERTIES_DELETE = PROPERTYKEY{ .fmtid = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804"), .pid = 7 };
+pub const WPD_PROPERTY_OBJECT_PROPERTIES_OBJECT_ID = PROPERTYKEY{ .fmtid = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804"), .pid = 1001 };
+pub const WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_KEYS = PROPERTYKEY{ .fmtid = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804"), .pid = 1002 };
+pub const WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_ATTRIBUTES = PROPERTYKEY{ .fmtid = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804"), .pid = 1003 };
+pub const WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_VALUES = PROPERTYKEY{ .fmtid = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804"), .pid = 1004 };
+pub const WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_WRITE_RESULTS = PROPERTYKEY{ .fmtid = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804"), .pid = 1005 };
+pub const WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_DELETE_RESULTS = PROPERTYKEY{ .fmtid = Guid.initString("9e5582e4-0814-44e6-981a-b2998d583804"), .pid = 1006 };
 pub const WPD_CATEGORY_OBJECT_PROPERTIES_BULK = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e");
-pub const WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_LIST_START = PROPERTYKEY { .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 2 };
-pub const WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_LIST_NEXT = PROPERTYKEY { .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 3 };
-pub const WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_LIST_END = PROPERTYKEY { .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 4 };
-pub const WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_FORMAT_START = PROPERTYKEY { .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 5 };
-pub const WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_FORMAT_NEXT = PROPERTYKEY { .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 6 };
-pub const WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_FORMAT_END = PROPERTYKEY { .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 7 };
-pub const WPD_COMMAND_OBJECT_PROPERTIES_BULK_SET_VALUES_BY_OBJECT_LIST_START = PROPERTYKEY { .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 8 };
-pub const WPD_COMMAND_OBJECT_PROPERTIES_BULK_SET_VALUES_BY_OBJECT_LIST_NEXT = PROPERTYKEY { .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 9 };
-pub const WPD_COMMAND_OBJECT_PROPERTIES_BULK_SET_VALUES_BY_OBJECT_LIST_END = PROPERTYKEY { .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 10 };
-pub const WPD_PROPERTY_OBJECT_PROPERTIES_BULK_OBJECT_IDS = PROPERTYKEY { .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 1001 };
-pub const WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT = PROPERTYKEY { .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 1002 };
-pub const WPD_PROPERTY_OBJECT_PROPERTIES_BULK_VALUES = PROPERTYKEY { .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 1003 };
-pub const WPD_PROPERTY_OBJECT_PROPERTIES_BULK_PROPERTY_KEYS = PROPERTYKEY { .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 1004 };
-pub const WPD_PROPERTY_OBJECT_PROPERTIES_BULK_DEPTH = PROPERTYKEY { .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 1005 };
-pub const WPD_PROPERTY_OBJECT_PROPERTIES_BULK_PARENT_OBJECT_ID = PROPERTYKEY { .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 1006 };
-pub const WPD_PROPERTY_OBJECT_PROPERTIES_BULK_OBJECT_FORMAT = PROPERTYKEY { .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 1007 };
-pub const WPD_PROPERTY_OBJECT_PROPERTIES_BULK_WRITE_RESULTS = PROPERTYKEY { .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 1008 };
+pub const WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_LIST_START = PROPERTYKEY{ .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 2 };
+pub const WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_LIST_NEXT = PROPERTYKEY{ .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 3 };
+pub const WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_LIST_END = PROPERTYKEY{ .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 4 };
+pub const WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_FORMAT_START = PROPERTYKEY{ .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 5 };
+pub const WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_FORMAT_NEXT = PROPERTYKEY{ .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 6 };
+pub const WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_FORMAT_END = PROPERTYKEY{ .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 7 };
+pub const WPD_COMMAND_OBJECT_PROPERTIES_BULK_SET_VALUES_BY_OBJECT_LIST_START = PROPERTYKEY{ .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 8 };
+pub const WPD_COMMAND_OBJECT_PROPERTIES_BULK_SET_VALUES_BY_OBJECT_LIST_NEXT = PROPERTYKEY{ .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 9 };
+pub const WPD_COMMAND_OBJECT_PROPERTIES_BULK_SET_VALUES_BY_OBJECT_LIST_END = PROPERTYKEY{ .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 10 };
+pub const WPD_PROPERTY_OBJECT_PROPERTIES_BULK_OBJECT_IDS = PROPERTYKEY{ .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 1001 };
+pub const WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT = PROPERTYKEY{ .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 1002 };
+pub const WPD_PROPERTY_OBJECT_PROPERTIES_BULK_VALUES = PROPERTYKEY{ .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 1003 };
+pub const WPD_PROPERTY_OBJECT_PROPERTIES_BULK_PROPERTY_KEYS = PROPERTYKEY{ .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 1004 };
+pub const WPD_PROPERTY_OBJECT_PROPERTIES_BULK_DEPTH = PROPERTYKEY{ .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 1005 };
+pub const WPD_PROPERTY_OBJECT_PROPERTIES_BULK_PARENT_OBJECT_ID = PROPERTYKEY{ .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 1006 };
+pub const WPD_PROPERTY_OBJECT_PROPERTIES_BULK_OBJECT_FORMAT = PROPERTYKEY{ .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 1007 };
+pub const WPD_PROPERTY_OBJECT_PROPERTIES_BULK_WRITE_RESULTS = PROPERTYKEY{ .fmtid = Guid.initString("11c824dd-04cd-4e4e-8c7b-f6efb794d84e"), .pid = 1008 };
 pub const WPD_CATEGORY_OBJECT_RESOURCES = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a");
-pub const WPD_COMMAND_OBJECT_RESOURCES_GET_SUPPORTED = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 2 };
-pub const WPD_COMMAND_OBJECT_RESOURCES_GET_ATTRIBUTES = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 3 };
-pub const WPD_COMMAND_OBJECT_RESOURCES_OPEN = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 4 };
-pub const WPD_COMMAND_OBJECT_RESOURCES_READ = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 5 };
-pub const WPD_COMMAND_OBJECT_RESOURCES_WRITE = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 6 };
-pub const WPD_COMMAND_OBJECT_RESOURCES_CLOSE = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 7 };
-pub const WPD_COMMAND_OBJECT_RESOURCES_DELETE = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 8 };
-pub const WPD_COMMAND_OBJECT_RESOURCES_CREATE_RESOURCE = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 9 };
-pub const WPD_COMMAND_OBJECT_RESOURCES_REVERT = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 10 };
-pub const WPD_COMMAND_OBJECT_RESOURCES_SEEK = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 11 };
-pub const WPD_COMMAND_OBJECT_RESOURCES_COMMIT = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 12 };
-pub const WPD_COMMAND_OBJECT_RESOURCES_SEEK_IN_UNITS = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 13 };
-pub const WPD_PROPERTY_OBJECT_RESOURCES_OBJECT_ID = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1001 };
-pub const WPD_PROPERTY_OBJECT_RESOURCES_ACCESS_MODE = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1002 };
-pub const WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_KEYS = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1003 };
-pub const WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_ATTRIBUTES = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1004 };
-pub const WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1005 };
-pub const WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_TO_READ = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1006 };
-pub const WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_READ = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1007 };
-pub const WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_TO_WRITE = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1008 };
-pub const WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_WRITTEN = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1009 };
-pub const WPD_PROPERTY_OBJECT_RESOURCES_DATA = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1010 };
-pub const WPD_PROPERTY_OBJECT_RESOURCES_OPTIMAL_TRANSFER_BUFFER_SIZE = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1011 };
-pub const WPD_PROPERTY_OBJECT_RESOURCES_SEEK_OFFSET = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1012 };
-pub const WPD_PROPERTY_OBJECT_RESOURCES_SEEK_ORIGIN_FLAG = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1013 };
-pub const WPD_PROPERTY_OBJECT_RESOURCES_POSITION_FROM_START = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1014 };
-pub const WPD_PROPERTY_OBJECT_RESOURCES_SUPPORTS_UNITS = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1015 };
-pub const WPD_PROPERTY_OBJECT_RESOURCES_STREAM_UNITS = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1016 };
-pub const WPD_OPTION_OBJECT_RESOURCES_SEEK_ON_READ_SUPPORTED = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 5001 };
-pub const WPD_OPTION_OBJECT_RESOURCES_SEEK_ON_WRITE_SUPPORTED = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 5002 };
-pub const WPD_OPTION_OBJECT_RESOURCES_NO_INPUT_BUFFER_ON_READ = PROPERTYKEY { .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 5003 };
+pub const WPD_COMMAND_OBJECT_RESOURCES_GET_SUPPORTED = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 2 };
+pub const WPD_COMMAND_OBJECT_RESOURCES_GET_ATTRIBUTES = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 3 };
+pub const WPD_COMMAND_OBJECT_RESOURCES_OPEN = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 4 };
+pub const WPD_COMMAND_OBJECT_RESOURCES_READ = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 5 };
+pub const WPD_COMMAND_OBJECT_RESOURCES_WRITE = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 6 };
+pub const WPD_COMMAND_OBJECT_RESOURCES_CLOSE = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 7 };
+pub const WPD_COMMAND_OBJECT_RESOURCES_DELETE = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 8 };
+pub const WPD_COMMAND_OBJECT_RESOURCES_CREATE_RESOURCE = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 9 };
+pub const WPD_COMMAND_OBJECT_RESOURCES_REVERT = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 10 };
+pub const WPD_COMMAND_OBJECT_RESOURCES_SEEK = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 11 };
+pub const WPD_COMMAND_OBJECT_RESOURCES_COMMIT = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 12 };
+pub const WPD_COMMAND_OBJECT_RESOURCES_SEEK_IN_UNITS = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 13 };
+pub const WPD_PROPERTY_OBJECT_RESOURCES_OBJECT_ID = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1001 };
+pub const WPD_PROPERTY_OBJECT_RESOURCES_ACCESS_MODE = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1002 };
+pub const WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_KEYS = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1003 };
+pub const WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_ATTRIBUTES = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1004 };
+pub const WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1005 };
+pub const WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_TO_READ = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1006 };
+pub const WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_READ = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1007 };
+pub const WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_TO_WRITE = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1008 };
+pub const WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_WRITTEN = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1009 };
+pub const WPD_PROPERTY_OBJECT_RESOURCES_DATA = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1010 };
+pub const WPD_PROPERTY_OBJECT_RESOURCES_OPTIMAL_TRANSFER_BUFFER_SIZE = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1011 };
+pub const WPD_PROPERTY_OBJECT_RESOURCES_SEEK_OFFSET = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1012 };
+pub const WPD_PROPERTY_OBJECT_RESOURCES_SEEK_ORIGIN_FLAG = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1013 };
+pub const WPD_PROPERTY_OBJECT_RESOURCES_POSITION_FROM_START = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1014 };
+pub const WPD_PROPERTY_OBJECT_RESOURCES_SUPPORTS_UNITS = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1015 };
+pub const WPD_PROPERTY_OBJECT_RESOURCES_STREAM_UNITS = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 1016 };
+pub const WPD_OPTION_OBJECT_RESOURCES_SEEK_ON_READ_SUPPORTED = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 5001 };
+pub const WPD_OPTION_OBJECT_RESOURCES_SEEK_ON_WRITE_SUPPORTED = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 5002 };
+pub const WPD_OPTION_OBJECT_RESOURCES_NO_INPUT_BUFFER_ON_READ = PROPERTYKEY{ .fmtid = Guid.initString("b3a2b22d-a595-4108-be0a-fc3c965f3d4a"), .pid = 5003 };
 pub const WPD_CATEGORY_OBJECT_MANAGEMENT = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089");
-pub const WPD_COMMAND_OBJECT_MANAGEMENT_CREATE_OBJECT_WITH_PROPERTIES_ONLY = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 2 };
-pub const WPD_COMMAND_OBJECT_MANAGEMENT_CREATE_OBJECT_WITH_PROPERTIES_AND_DATA = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 3 };
-pub const WPD_COMMAND_OBJECT_MANAGEMENT_WRITE_OBJECT_DATA = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 4 };
-pub const WPD_COMMAND_OBJECT_MANAGEMENT_COMMIT_OBJECT = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 5 };
-pub const WPD_COMMAND_OBJECT_MANAGEMENT_REVERT_OBJECT = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 6 };
-pub const WPD_COMMAND_OBJECT_MANAGEMENT_DELETE_OBJECTS = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 7 };
-pub const WPD_COMMAND_OBJECT_MANAGEMENT_MOVE_OBJECTS = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 8 };
-pub const WPD_COMMAND_OBJECT_MANAGEMENT_COPY_OBJECTS = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 9 };
-pub const WPD_COMMAND_OBJECT_MANAGEMENT_UPDATE_OBJECT_WITH_PROPERTIES_AND_DATA = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 10 };
-pub const WPD_PROPERTY_OBJECT_MANAGEMENT_CREATION_PROPERTIES = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1001 };
-pub const WPD_PROPERTY_OBJECT_MANAGEMENT_CONTEXT = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1002 };
-pub const WPD_PROPERTY_OBJECT_MANAGEMENT_NUM_BYTES_TO_WRITE = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1003 };
-pub const WPD_PROPERTY_OBJECT_MANAGEMENT_NUM_BYTES_WRITTEN = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1004 };
-pub const WPD_PROPERTY_OBJECT_MANAGEMENT_DATA = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1005 };
-pub const WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_ID = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1006 };
-pub const WPD_PROPERTY_OBJECT_MANAGEMENT_DELETE_OPTIONS = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1007 };
-pub const WPD_PROPERTY_OBJECT_MANAGEMENT_OPTIMAL_TRANSFER_BUFFER_SIZE = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1008 };
-pub const WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_IDS = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1009 };
-pub const WPD_PROPERTY_OBJECT_MANAGEMENT_DELETE_RESULTS = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1010 };
-pub const WPD_PROPERTY_OBJECT_MANAGEMENT_DESTINATION_FOLDER_OBJECT_ID = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1011 };
-pub const WPD_PROPERTY_OBJECT_MANAGEMENT_MOVE_RESULTS = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1012 };
-pub const WPD_PROPERTY_OBJECT_MANAGEMENT_COPY_RESULTS = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1013 };
-pub const WPD_PROPERTY_OBJECT_MANAGEMENT_UPDATE_PROPERTIES = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1014 };
-pub const WPD_PROPERTY_OBJECT_MANAGEMENT_PROPERTY_KEYS = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1015 };
-pub const WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_FORMAT = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1016 };
-pub const WPD_OPTION_OBJECT_MANAGEMENT_RECURSIVE_DELETE_SUPPORTED = PROPERTYKEY { .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 5001 };
+pub const WPD_COMMAND_OBJECT_MANAGEMENT_CREATE_OBJECT_WITH_PROPERTIES_ONLY = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 2 };
+pub const WPD_COMMAND_OBJECT_MANAGEMENT_CREATE_OBJECT_WITH_PROPERTIES_AND_DATA = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 3 };
+pub const WPD_COMMAND_OBJECT_MANAGEMENT_WRITE_OBJECT_DATA = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 4 };
+pub const WPD_COMMAND_OBJECT_MANAGEMENT_COMMIT_OBJECT = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 5 };
+pub const WPD_COMMAND_OBJECT_MANAGEMENT_REVERT_OBJECT = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 6 };
+pub const WPD_COMMAND_OBJECT_MANAGEMENT_DELETE_OBJECTS = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 7 };
+pub const WPD_COMMAND_OBJECT_MANAGEMENT_MOVE_OBJECTS = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 8 };
+pub const WPD_COMMAND_OBJECT_MANAGEMENT_COPY_OBJECTS = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 9 };
+pub const WPD_COMMAND_OBJECT_MANAGEMENT_UPDATE_OBJECT_WITH_PROPERTIES_AND_DATA = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 10 };
+pub const WPD_PROPERTY_OBJECT_MANAGEMENT_CREATION_PROPERTIES = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1001 };
+pub const WPD_PROPERTY_OBJECT_MANAGEMENT_CONTEXT = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1002 };
+pub const WPD_PROPERTY_OBJECT_MANAGEMENT_NUM_BYTES_TO_WRITE = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1003 };
+pub const WPD_PROPERTY_OBJECT_MANAGEMENT_NUM_BYTES_WRITTEN = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1004 };
+pub const WPD_PROPERTY_OBJECT_MANAGEMENT_DATA = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1005 };
+pub const WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_ID = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1006 };
+pub const WPD_PROPERTY_OBJECT_MANAGEMENT_DELETE_OPTIONS = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1007 };
+pub const WPD_PROPERTY_OBJECT_MANAGEMENT_OPTIMAL_TRANSFER_BUFFER_SIZE = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1008 };
+pub const WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_IDS = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1009 };
+pub const WPD_PROPERTY_OBJECT_MANAGEMENT_DELETE_RESULTS = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1010 };
+pub const WPD_PROPERTY_OBJECT_MANAGEMENT_DESTINATION_FOLDER_OBJECT_ID = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1011 };
+pub const WPD_PROPERTY_OBJECT_MANAGEMENT_MOVE_RESULTS = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1012 };
+pub const WPD_PROPERTY_OBJECT_MANAGEMENT_COPY_RESULTS = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1013 };
+pub const WPD_PROPERTY_OBJECT_MANAGEMENT_UPDATE_PROPERTIES = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1014 };
+pub const WPD_PROPERTY_OBJECT_MANAGEMENT_PROPERTY_KEYS = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1015 };
+pub const WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_FORMAT = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 1016 };
+pub const WPD_OPTION_OBJECT_MANAGEMENT_RECURSIVE_DELETE_SUPPORTED = PROPERTYKEY{ .fmtid = Guid.initString("ef1e43dd-a9ed-4341-8bcc-186192aea089"), .pid = 5001 };
 pub const WPD_CATEGORY_CAPABILITIES = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356");
-pub const WPD_COMMAND_CAPABILITIES_GET_SUPPORTED_COMMANDS = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 2 };
-pub const WPD_COMMAND_CAPABILITIES_GET_COMMAND_OPTIONS = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 3 };
-pub const WPD_COMMAND_CAPABILITIES_GET_SUPPORTED_FUNCTIONAL_CATEGORIES = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 4 };
-pub const WPD_COMMAND_CAPABILITIES_GET_FUNCTIONAL_OBJECTS = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 5 };
-pub const WPD_COMMAND_CAPABILITIES_GET_SUPPORTED_CONTENT_TYPES = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 6 };
-pub const WPD_COMMAND_CAPABILITIES_GET_SUPPORTED_FORMATS = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 7 };
-pub const WPD_COMMAND_CAPABILITIES_GET_SUPPORTED_FORMAT_PROPERTIES = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 8 };
-pub const WPD_COMMAND_CAPABILITIES_GET_FIXED_PROPERTY_ATTRIBUTES = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 9 };
-pub const WPD_COMMAND_CAPABILITIES_GET_SUPPORTED_EVENTS = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 10 };
-pub const WPD_COMMAND_CAPABILITIES_GET_EVENT_OPTIONS = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 11 };
-pub const WPD_PROPERTY_CAPABILITIES_SUPPORTED_COMMANDS = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1001 };
-pub const WPD_PROPERTY_CAPABILITIES_COMMAND = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1002 };
-pub const WPD_PROPERTY_CAPABILITIES_COMMAND_OPTIONS = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1003 };
-pub const WPD_PROPERTY_CAPABILITIES_FUNCTIONAL_CATEGORIES = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1004 };
-pub const WPD_PROPERTY_CAPABILITIES_FUNCTIONAL_CATEGORY = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1005 };
-pub const WPD_PROPERTY_CAPABILITIES_FUNCTIONAL_OBJECTS = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1006 };
-pub const WPD_PROPERTY_CAPABILITIES_CONTENT_TYPES = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1007 };
-pub const WPD_PROPERTY_CAPABILITIES_CONTENT_TYPE = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1008 };
-pub const WPD_PROPERTY_CAPABILITIES_FORMATS = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1009 };
-pub const WPD_PROPERTY_CAPABILITIES_FORMAT = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1010 };
-pub const WPD_PROPERTY_CAPABILITIES_PROPERTY_KEYS = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1011 };
-pub const WPD_PROPERTY_CAPABILITIES_PROPERTY_ATTRIBUTES = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1012 };
-pub const WPD_PROPERTY_CAPABILITIES_SUPPORTED_EVENTS = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1013 };
-pub const WPD_PROPERTY_CAPABILITIES_EVENT = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1014 };
-pub const WPD_PROPERTY_CAPABILITIES_EVENT_OPTIONS = PROPERTYKEY { .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1015 };
+pub const WPD_COMMAND_CAPABILITIES_GET_SUPPORTED_COMMANDS = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 2 };
+pub const WPD_COMMAND_CAPABILITIES_GET_COMMAND_OPTIONS = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 3 };
+pub const WPD_COMMAND_CAPABILITIES_GET_SUPPORTED_FUNCTIONAL_CATEGORIES = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 4 };
+pub const WPD_COMMAND_CAPABILITIES_GET_FUNCTIONAL_OBJECTS = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 5 };
+pub const WPD_COMMAND_CAPABILITIES_GET_SUPPORTED_CONTENT_TYPES = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 6 };
+pub const WPD_COMMAND_CAPABILITIES_GET_SUPPORTED_FORMATS = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 7 };
+pub const WPD_COMMAND_CAPABILITIES_GET_SUPPORTED_FORMAT_PROPERTIES = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 8 };
+pub const WPD_COMMAND_CAPABILITIES_GET_FIXED_PROPERTY_ATTRIBUTES = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 9 };
+pub const WPD_COMMAND_CAPABILITIES_GET_SUPPORTED_EVENTS = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 10 };
+pub const WPD_COMMAND_CAPABILITIES_GET_EVENT_OPTIONS = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 11 };
+pub const WPD_PROPERTY_CAPABILITIES_SUPPORTED_COMMANDS = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1001 };
+pub const WPD_PROPERTY_CAPABILITIES_COMMAND = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1002 };
+pub const WPD_PROPERTY_CAPABILITIES_COMMAND_OPTIONS = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1003 };
+pub const WPD_PROPERTY_CAPABILITIES_FUNCTIONAL_CATEGORIES = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1004 };
+pub const WPD_PROPERTY_CAPABILITIES_FUNCTIONAL_CATEGORY = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1005 };
+pub const WPD_PROPERTY_CAPABILITIES_FUNCTIONAL_OBJECTS = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1006 };
+pub const WPD_PROPERTY_CAPABILITIES_CONTENT_TYPES = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1007 };
+pub const WPD_PROPERTY_CAPABILITIES_CONTENT_TYPE = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1008 };
+pub const WPD_PROPERTY_CAPABILITIES_FORMATS = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1009 };
+pub const WPD_PROPERTY_CAPABILITIES_FORMAT = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1010 };
+pub const WPD_PROPERTY_CAPABILITIES_PROPERTY_KEYS = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1011 };
+pub const WPD_PROPERTY_CAPABILITIES_PROPERTY_ATTRIBUTES = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1012 };
+pub const WPD_PROPERTY_CAPABILITIES_SUPPORTED_EVENTS = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1013 };
+pub const WPD_PROPERTY_CAPABILITIES_EVENT = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1014 };
+pub const WPD_PROPERTY_CAPABILITIES_EVENT_OPTIONS = PROPERTYKEY{ .fmtid = Guid.initString("0cabec78-6b74-41c6-9216-2639d1fce356"), .pid = 1015 };
 pub const WPD_CATEGORY_STORAGE = Guid.initString("d8f907a6-34cc-45fa-97fb-d007fa47ec94");
-pub const WPD_COMMAND_STORAGE_FORMAT = PROPERTYKEY { .fmtid = Guid.initString("d8f907a6-34cc-45fa-97fb-d007fa47ec94"), .pid = 2 };
-pub const WPD_COMMAND_STORAGE_EJECT = PROPERTYKEY { .fmtid = Guid.initString("d8f907a6-34cc-45fa-97fb-d007fa47ec94"), .pid = 4 };
-pub const WPD_PROPERTY_STORAGE_OBJECT_ID = PROPERTYKEY { .fmtid = Guid.initString("d8f907a6-34cc-45fa-97fb-d007fa47ec94"), .pid = 1001 };
-pub const WPD_PROPERTY_STORAGE_DESTINATION_OBJECT_ID = PROPERTYKEY { .fmtid = Guid.initString("d8f907a6-34cc-45fa-97fb-d007fa47ec94"), .pid = 1002 };
+pub const WPD_COMMAND_STORAGE_FORMAT = PROPERTYKEY{ .fmtid = Guid.initString("d8f907a6-34cc-45fa-97fb-d007fa47ec94"), .pid = 2 };
+pub const WPD_COMMAND_STORAGE_EJECT = PROPERTYKEY{ .fmtid = Guid.initString("d8f907a6-34cc-45fa-97fb-d007fa47ec94"), .pid = 4 };
+pub const WPD_PROPERTY_STORAGE_OBJECT_ID = PROPERTYKEY{ .fmtid = Guid.initString("d8f907a6-34cc-45fa-97fb-d007fa47ec94"), .pid = 1001 };
+pub const WPD_PROPERTY_STORAGE_DESTINATION_OBJECT_ID = PROPERTYKEY{ .fmtid = Guid.initString("d8f907a6-34cc-45fa-97fb-d007fa47ec94"), .pid = 1002 };
 pub const WPD_CATEGORY_SMS = Guid.initString("afc25d66-fe0d-4114-9097-970c93e920d1");
-pub const WPD_COMMAND_SMS_SEND = PROPERTYKEY { .fmtid = Guid.initString("afc25d66-fe0d-4114-9097-970c93e920d1"), .pid = 2 };
-pub const WPD_PROPERTY_SMS_RECIPIENT = PROPERTYKEY { .fmtid = Guid.initString("afc25d66-fe0d-4114-9097-970c93e920d1"), .pid = 1001 };
-pub const WPD_PROPERTY_SMS_MESSAGE_TYPE = PROPERTYKEY { .fmtid = Guid.initString("afc25d66-fe0d-4114-9097-970c93e920d1"), .pid = 1002 };
-pub const WPD_PROPERTY_SMS_TEXT_MESSAGE = PROPERTYKEY { .fmtid = Guid.initString("afc25d66-fe0d-4114-9097-970c93e920d1"), .pid = 1003 };
-pub const WPD_PROPERTY_SMS_BINARY_MESSAGE = PROPERTYKEY { .fmtid = Guid.initString("afc25d66-fe0d-4114-9097-970c93e920d1"), .pid = 1004 };
-pub const WPD_OPTION_SMS_BINARY_MESSAGE_SUPPORTED = PROPERTYKEY { .fmtid = Guid.initString("afc25d66-fe0d-4114-9097-970c93e920d1"), .pid = 5001 };
+pub const WPD_COMMAND_SMS_SEND = PROPERTYKEY{ .fmtid = Guid.initString("afc25d66-fe0d-4114-9097-970c93e920d1"), .pid = 2 };
+pub const WPD_PROPERTY_SMS_RECIPIENT = PROPERTYKEY{ .fmtid = Guid.initString("afc25d66-fe0d-4114-9097-970c93e920d1"), .pid = 1001 };
+pub const WPD_PROPERTY_SMS_MESSAGE_TYPE = PROPERTYKEY{ .fmtid = Guid.initString("afc25d66-fe0d-4114-9097-970c93e920d1"), .pid = 1002 };
+pub const WPD_PROPERTY_SMS_TEXT_MESSAGE = PROPERTYKEY{ .fmtid = Guid.initString("afc25d66-fe0d-4114-9097-970c93e920d1"), .pid = 1003 };
+pub const WPD_PROPERTY_SMS_BINARY_MESSAGE = PROPERTYKEY{ .fmtid = Guid.initString("afc25d66-fe0d-4114-9097-970c93e920d1"), .pid = 1004 };
+pub const WPD_OPTION_SMS_BINARY_MESSAGE_SUPPORTED = PROPERTYKEY{ .fmtid = Guid.initString("afc25d66-fe0d-4114-9097-970c93e920d1"), .pid = 5001 };
 pub const WPD_CATEGORY_STILL_IMAGE_CAPTURE = Guid.initString("4fcd6982-22a2-4b05-a48b-62d38bf27b32");
-pub const WPD_COMMAND_STILL_IMAGE_CAPTURE_INITIATE = PROPERTYKEY { .fmtid = Guid.initString("4fcd6982-22a2-4b05-a48b-62d38bf27b32"), .pid = 2 };
+pub const WPD_COMMAND_STILL_IMAGE_CAPTURE_INITIATE = PROPERTYKEY{ .fmtid = Guid.initString("4fcd6982-22a2-4b05-a48b-62d38bf27b32"), .pid = 2 };
 pub const WPD_CATEGORY_MEDIA_CAPTURE = Guid.initString("59b433ba-fe44-4d8d-808c-6bcb9b0f15e8");
-pub const WPD_COMMAND_MEDIA_CAPTURE_START = PROPERTYKEY { .fmtid = Guid.initString("59b433ba-fe44-4d8d-808c-6bcb9b0f15e8"), .pid = 2 };
-pub const WPD_COMMAND_MEDIA_CAPTURE_STOP = PROPERTYKEY { .fmtid = Guid.initString("59b433ba-fe44-4d8d-808c-6bcb9b0f15e8"), .pid = 3 };
-pub const WPD_COMMAND_MEDIA_CAPTURE_PAUSE = PROPERTYKEY { .fmtid = Guid.initString("59b433ba-fe44-4d8d-808c-6bcb9b0f15e8"), .pid = 4 };
+pub const WPD_COMMAND_MEDIA_CAPTURE_START = PROPERTYKEY{ .fmtid = Guid.initString("59b433ba-fe44-4d8d-808c-6bcb9b0f15e8"), .pid = 2 };
+pub const WPD_COMMAND_MEDIA_CAPTURE_STOP = PROPERTYKEY{ .fmtid = Guid.initString("59b433ba-fe44-4d8d-808c-6bcb9b0f15e8"), .pid = 3 };
+pub const WPD_COMMAND_MEDIA_CAPTURE_PAUSE = PROPERTYKEY{ .fmtid = Guid.initString("59b433ba-fe44-4d8d-808c-6bcb9b0f15e8"), .pid = 4 };
 pub const WPD_CATEGORY_DEVICE_HINTS = Guid.initString("0d5fb92b-cb46-4c4f-8343-0bc3d3f17c84");
-pub const WPD_COMMAND_DEVICE_HINTS_GET_CONTENT_LOCATION = PROPERTYKEY { .fmtid = Guid.initString("0d5fb92b-cb46-4c4f-8343-0bc3d3f17c84"), .pid = 2 };
-pub const WPD_PROPERTY_DEVICE_HINTS_CONTENT_TYPE = PROPERTYKEY { .fmtid = Guid.initString("0d5fb92b-cb46-4c4f-8343-0bc3d3f17c84"), .pid = 1001 };
-pub const WPD_PROPERTY_DEVICE_HINTS_CONTENT_LOCATIONS = PROPERTYKEY { .fmtid = Guid.initString("0d5fb92b-cb46-4c4f-8343-0bc3d3f17c84"), .pid = 1002 };
+pub const WPD_COMMAND_DEVICE_HINTS_GET_CONTENT_LOCATION = PROPERTYKEY{ .fmtid = Guid.initString("0d5fb92b-cb46-4c4f-8343-0bc3d3f17c84"), .pid = 2 };
+pub const WPD_PROPERTY_DEVICE_HINTS_CONTENT_TYPE = PROPERTYKEY{ .fmtid = Guid.initString("0d5fb92b-cb46-4c4f-8343-0bc3d3f17c84"), .pid = 1001 };
+pub const WPD_PROPERTY_DEVICE_HINTS_CONTENT_LOCATIONS = PROPERTYKEY{ .fmtid = Guid.initString("0d5fb92b-cb46-4c4f-8343-0bc3d3f17c84"), .pid = 1002 };
 pub const WPD_CLASS_EXTENSION_V1 = Guid.initString("33fb0d11-64a3-4fac-b4c7-3dfeaa99b051");
-pub const WPD_COMMAND_CLASS_EXTENSION_WRITE_DEVICE_INFORMATION = PROPERTYKEY { .fmtid = Guid.initString("33fb0d11-64a3-4fac-b4c7-3dfeaa99b051"), .pid = 2 };
-pub const WPD_PROPERTY_CLASS_EXTENSION_DEVICE_INFORMATION_VALUES = PROPERTYKEY { .fmtid = Guid.initString("33fb0d11-64a3-4fac-b4c7-3dfeaa99b051"), .pid = 1001 };
-pub const WPD_PROPERTY_CLASS_EXTENSION_DEVICE_INFORMATION_WRITE_RESULTS = PROPERTYKEY { .fmtid = Guid.initString("33fb0d11-64a3-4fac-b4c7-3dfeaa99b051"), .pid = 1002 };
+pub const WPD_COMMAND_CLASS_EXTENSION_WRITE_DEVICE_INFORMATION = PROPERTYKEY{ .fmtid = Guid.initString("33fb0d11-64a3-4fac-b4c7-3dfeaa99b051"), .pid = 2 };
+pub const WPD_PROPERTY_CLASS_EXTENSION_DEVICE_INFORMATION_VALUES = PROPERTYKEY{ .fmtid = Guid.initString("33fb0d11-64a3-4fac-b4c7-3dfeaa99b051"), .pid = 1001 };
+pub const WPD_PROPERTY_CLASS_EXTENSION_DEVICE_INFORMATION_WRITE_RESULTS = PROPERTYKEY{ .fmtid = Guid.initString("33fb0d11-64a3-4fac-b4c7-3dfeaa99b051"), .pid = 1002 };
 pub const WPD_CLASS_EXTENSION_V2 = Guid.initString("7f0779b5-fa2b-4766-9cb2-f73ba30b6758");
-pub const WPD_COMMAND_CLASS_EXTENSION_REGISTER_SERVICE_INTERFACES = PROPERTYKEY { .fmtid = Guid.initString("7f0779b5-fa2b-4766-9cb2-f73ba30b6758"), .pid = 2 };
-pub const WPD_COMMAND_CLASS_EXTENSION_UNREGISTER_SERVICE_INTERFACES = PROPERTYKEY { .fmtid = Guid.initString("7f0779b5-fa2b-4766-9cb2-f73ba30b6758"), .pid = 3 };
-pub const WPD_PROPERTY_CLASS_EXTENSION_SERVICE_OBJECT_ID = PROPERTYKEY { .fmtid = Guid.initString("7f0779b5-fa2b-4766-9cb2-f73ba30b6758"), .pid = 1001 };
-pub const WPD_PROPERTY_CLASS_EXTENSION_SERVICE_INTERFACES = PROPERTYKEY { .fmtid = Guid.initString("7f0779b5-fa2b-4766-9cb2-f73ba30b6758"), .pid = 1002 };
-pub const WPD_PROPERTY_CLASS_EXTENSION_SERVICE_REGISTRATION_RESULTS = PROPERTYKEY { .fmtid = Guid.initString("7f0779b5-fa2b-4766-9cb2-f73ba30b6758"), .pid = 1003 };
+pub const WPD_COMMAND_CLASS_EXTENSION_REGISTER_SERVICE_INTERFACES = PROPERTYKEY{ .fmtid = Guid.initString("7f0779b5-fa2b-4766-9cb2-f73ba30b6758"), .pid = 2 };
+pub const WPD_COMMAND_CLASS_EXTENSION_UNREGISTER_SERVICE_INTERFACES = PROPERTYKEY{ .fmtid = Guid.initString("7f0779b5-fa2b-4766-9cb2-f73ba30b6758"), .pid = 3 };
+pub const WPD_PROPERTY_CLASS_EXTENSION_SERVICE_OBJECT_ID = PROPERTYKEY{ .fmtid = Guid.initString("7f0779b5-fa2b-4766-9cb2-f73ba30b6758"), .pid = 1001 };
+pub const WPD_PROPERTY_CLASS_EXTENSION_SERVICE_INTERFACES = PROPERTYKEY{ .fmtid = Guid.initString("7f0779b5-fa2b-4766-9cb2-f73ba30b6758"), .pid = 1002 };
+pub const WPD_PROPERTY_CLASS_EXTENSION_SERVICE_REGISTRATION_RESULTS = PROPERTYKEY{ .fmtid = Guid.initString("7f0779b5-fa2b-4766-9cb2-f73ba30b6758"), .pid = 1003 };
 pub const WPD_CATEGORY_NETWORK_CONFIGURATION = Guid.initString("78f9c6fc-79b8-473c-9060-6bd23dd072c4");
-pub const WPD_COMMAND_GENERATE_KEYPAIR = PROPERTYKEY { .fmtid = Guid.initString("78f9c6fc-79b8-473c-9060-6bd23dd072c4"), .pid = 2 };
-pub const WPD_COMMAND_COMMIT_KEYPAIR = PROPERTYKEY { .fmtid = Guid.initString("78f9c6fc-79b8-473c-9060-6bd23dd072c4"), .pid = 3 };
-pub const WPD_COMMAND_PROCESS_WIRELESS_PROFILE = PROPERTYKEY { .fmtid = Guid.initString("78f9c6fc-79b8-473c-9060-6bd23dd072c4"), .pid = 4 };
-pub const WPD_PROPERTY_PUBLIC_KEY = PROPERTYKEY { .fmtid = Guid.initString("78f9c6fc-79b8-473c-9060-6bd23dd072c4"), .pid = 1001 };
+pub const WPD_COMMAND_GENERATE_KEYPAIR = PROPERTYKEY{ .fmtid = Guid.initString("78f9c6fc-79b8-473c-9060-6bd23dd072c4"), .pid = 2 };
+pub const WPD_COMMAND_COMMIT_KEYPAIR = PROPERTYKEY{ .fmtid = Guid.initString("78f9c6fc-79b8-473c-9060-6bd23dd072c4"), .pid = 3 };
+pub const WPD_COMMAND_PROCESS_WIRELESS_PROFILE = PROPERTYKEY{ .fmtid = Guid.initString("78f9c6fc-79b8-473c-9060-6bd23dd072c4"), .pid = 4 };
+pub const WPD_PROPERTY_PUBLIC_KEY = PROPERTYKEY{ .fmtid = Guid.initString("78f9c6fc-79b8-473c-9060-6bd23dd072c4"), .pid = 1001 };
 pub const WPD_CATEGORY_SERVICE_COMMON = Guid.initString("322f071d-36ef-477f-b4b5-6f52d734baee");
-pub const WPD_COMMAND_SERVICE_COMMON_GET_SERVICE_OBJECT_ID = PROPERTYKEY { .fmtid = Guid.initString("322f071d-36ef-477f-b4b5-6f52d734baee"), .pid = 2 };
-pub const WPD_PROPERTY_SERVICE_OBJECT_ID = PROPERTYKEY { .fmtid = Guid.initString("322f071d-36ef-477f-b4b5-6f52d734baee"), .pid = 1001 };
+pub const WPD_COMMAND_SERVICE_COMMON_GET_SERVICE_OBJECT_ID = PROPERTYKEY{ .fmtid = Guid.initString("322f071d-36ef-477f-b4b5-6f52d734baee"), .pid = 2 };
+pub const WPD_PROPERTY_SERVICE_OBJECT_ID = PROPERTYKEY{ .fmtid = Guid.initString("322f071d-36ef-477f-b4b5-6f52d734baee"), .pid = 1001 };
 pub const WPD_CATEGORY_SERVICE_CAPABILITIES = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89");
-pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_METHODS = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 2 };
-pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_METHODS_BY_FORMAT = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 3 };
-pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_METHOD_ATTRIBUTES = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 4 };
-pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_METHOD_PARAMETER_ATTRIBUTES = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 5 };
-pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_FORMATS = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 6 };
-pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_FORMAT_ATTRIBUTES = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 7 };
-pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_FORMAT_PROPERTIES = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 8 };
-pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_FORMAT_PROPERTY_ATTRIBUTES = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 9 };
-pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_EVENTS = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 10 };
-pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_EVENT_ATTRIBUTES = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 11 };
-pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_EVENT_PARAMETER_ATTRIBUTES = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 12 };
-pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_INHERITED_SERVICES = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 13 };
-pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_FORMAT_RENDERING_PROFILES = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 14 };
-pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_COMMANDS = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 15 };
-pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_COMMAND_OPTIONS = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 16 };
-pub const WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_METHODS = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1001 };
-pub const WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1002 };
-pub const WPD_PROPERTY_SERVICE_CAPABILITIES_METHOD = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1003 };
-pub const WPD_PROPERTY_SERVICE_CAPABILITIES_METHOD_ATTRIBUTES = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1004 };
-pub const WPD_PROPERTY_SERVICE_CAPABILITIES_PARAMETER = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1005 };
-pub const WPD_PROPERTY_SERVICE_CAPABILITIES_PARAMETER_ATTRIBUTES = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1006 };
-pub const WPD_PROPERTY_SERVICE_CAPABILITIES_FORMATS = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1007 };
-pub const WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT_ATTRIBUTES = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1008 };
-pub const WPD_PROPERTY_SERVICE_CAPABILITIES_PROPERTY_KEYS = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1009 };
-pub const WPD_PROPERTY_SERVICE_CAPABILITIES_PROPERTY_ATTRIBUTES = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1010 };
-pub const WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_EVENTS = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1011 };
-pub const WPD_PROPERTY_SERVICE_CAPABILITIES_EVENT = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1012 };
-pub const WPD_PROPERTY_SERVICE_CAPABILITIES_EVENT_ATTRIBUTES = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1013 };
-pub const WPD_PROPERTY_SERVICE_CAPABILITIES_INHERITANCE_TYPE = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1014 };
-pub const WPD_PROPERTY_SERVICE_CAPABILITIES_INHERITED_SERVICES = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1015 };
-pub const WPD_PROPERTY_SERVICE_CAPABILITIES_RENDERING_PROFILES = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1016 };
-pub const WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_COMMANDS = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1017 };
-pub const WPD_PROPERTY_SERVICE_CAPABILITIES_COMMAND = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1018 };
-pub const WPD_PROPERTY_SERVICE_CAPABILITIES_COMMAND_OPTIONS = PROPERTYKEY { .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1019 };
+pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_METHODS = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 2 };
+pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_METHODS_BY_FORMAT = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 3 };
+pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_METHOD_ATTRIBUTES = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 4 };
+pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_METHOD_PARAMETER_ATTRIBUTES = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 5 };
+pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_FORMATS = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 6 };
+pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_FORMAT_ATTRIBUTES = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 7 };
+pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_FORMAT_PROPERTIES = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 8 };
+pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_FORMAT_PROPERTY_ATTRIBUTES = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 9 };
+pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_EVENTS = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 10 };
+pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_EVENT_ATTRIBUTES = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 11 };
+pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_EVENT_PARAMETER_ATTRIBUTES = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 12 };
+pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_INHERITED_SERVICES = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 13 };
+pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_FORMAT_RENDERING_PROFILES = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 14 };
+pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_COMMANDS = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 15 };
+pub const WPD_COMMAND_SERVICE_CAPABILITIES_GET_COMMAND_OPTIONS = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 16 };
+pub const WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_METHODS = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1001 };
+pub const WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1002 };
+pub const WPD_PROPERTY_SERVICE_CAPABILITIES_METHOD = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1003 };
+pub const WPD_PROPERTY_SERVICE_CAPABILITIES_METHOD_ATTRIBUTES = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1004 };
+pub const WPD_PROPERTY_SERVICE_CAPABILITIES_PARAMETER = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1005 };
+pub const WPD_PROPERTY_SERVICE_CAPABILITIES_PARAMETER_ATTRIBUTES = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1006 };
+pub const WPD_PROPERTY_SERVICE_CAPABILITIES_FORMATS = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1007 };
+pub const WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT_ATTRIBUTES = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1008 };
+pub const WPD_PROPERTY_SERVICE_CAPABILITIES_PROPERTY_KEYS = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1009 };
+pub const WPD_PROPERTY_SERVICE_CAPABILITIES_PROPERTY_ATTRIBUTES = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1010 };
+pub const WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_EVENTS = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1011 };
+pub const WPD_PROPERTY_SERVICE_CAPABILITIES_EVENT = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1012 };
+pub const WPD_PROPERTY_SERVICE_CAPABILITIES_EVENT_ATTRIBUTES = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1013 };
+pub const WPD_PROPERTY_SERVICE_CAPABILITIES_INHERITANCE_TYPE = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1014 };
+pub const WPD_PROPERTY_SERVICE_CAPABILITIES_INHERITED_SERVICES = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1015 };
+pub const WPD_PROPERTY_SERVICE_CAPABILITIES_RENDERING_PROFILES = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1016 };
+pub const WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_COMMANDS = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1017 };
+pub const WPD_PROPERTY_SERVICE_CAPABILITIES_COMMAND = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1018 };
+pub const WPD_PROPERTY_SERVICE_CAPABILITIES_COMMAND_OPTIONS = PROPERTYKEY{ .fmtid = Guid.initString("24457e74-2e9f-44f9-8c57-1d1bcb170b89"), .pid = 1019 };
 pub const WPD_CATEGORY_SERVICE_METHODS = Guid.initString("2d521ca8-c1b0-4268-a342-cf19321569bc");
-pub const WPD_COMMAND_SERVICE_METHODS_START_INVOKE = PROPERTYKEY { .fmtid = Guid.initString("2d521ca8-c1b0-4268-a342-cf19321569bc"), .pid = 2 };
-pub const WPD_COMMAND_SERVICE_METHODS_CANCEL_INVOKE = PROPERTYKEY { .fmtid = Guid.initString("2d521ca8-c1b0-4268-a342-cf19321569bc"), .pid = 3 };
-pub const WPD_COMMAND_SERVICE_METHODS_END_INVOKE = PROPERTYKEY { .fmtid = Guid.initString("2d521ca8-c1b0-4268-a342-cf19321569bc"), .pid = 4 };
-pub const WPD_PROPERTY_SERVICE_METHOD = PROPERTYKEY { .fmtid = Guid.initString("2d521ca8-c1b0-4268-a342-cf19321569bc"), .pid = 1001 };
-pub const WPD_PROPERTY_SERVICE_METHOD_PARAMETER_VALUES = PROPERTYKEY { .fmtid = Guid.initString("2d521ca8-c1b0-4268-a342-cf19321569bc"), .pid = 1002 };
-pub const WPD_PROPERTY_SERVICE_METHOD_RESULT_VALUES = PROPERTYKEY { .fmtid = Guid.initString("2d521ca8-c1b0-4268-a342-cf19321569bc"), .pid = 1003 };
-pub const WPD_PROPERTY_SERVICE_METHOD_CONTEXT = PROPERTYKEY { .fmtid = Guid.initString("2d521ca8-c1b0-4268-a342-cf19321569bc"), .pid = 1004 };
-pub const WPD_PROPERTY_SERVICE_METHOD_HRESULT = PROPERTYKEY { .fmtid = Guid.initString("2d521ca8-c1b0-4268-a342-cf19321569bc"), .pid = 1005 };
-pub const WPD_RESOURCE_DEFAULT = PROPERTYKEY { .fmtid = Guid.initString("e81e79be-34f0-41bf-b53f-f1a06ae87842"), .pid = 0 };
-pub const WPD_RESOURCE_CONTACT_PHOTO = PROPERTYKEY { .fmtid = Guid.initString("2c4d6803-80ea-4580-af9a-5be1a23eddcb"), .pid = 0 };
-pub const WPD_RESOURCE_THUMBNAIL = PROPERTYKEY { .fmtid = Guid.initString("c7c407ba-98fa-46b5-9960-23fec124cfde"), .pid = 0 };
-pub const WPD_RESOURCE_ICON = PROPERTYKEY { .fmtid = Guid.initString("f195fed8-aa28-4ee3-b153-e182dd5edc39"), .pid = 0 };
-pub const WPD_RESOURCE_AUDIO_CLIP = PROPERTYKEY { .fmtid = Guid.initString("3bc13982-85b1-48e0-95a6-8d3ad06be117"), .pid = 0 };
-pub const WPD_RESOURCE_ALBUM_ART = PROPERTYKEY { .fmtid = Guid.initString("f02aa354-2300-4e2d-a1b9-3b6730f7fa21"), .pid = 0 };
-pub const WPD_RESOURCE_GENERIC = PROPERTYKEY { .fmtid = Guid.initString("b9b9f515-ba70-4647-94dc-fa4925e95a07"), .pid = 0 };
-pub const WPD_RESOURCE_VIDEO_CLIP = PROPERTYKEY { .fmtid = Guid.initString("b566ee42-6368-4290-8662-70182fb79f20"), .pid = 0 };
-pub const WPD_RESOURCE_BRANDING_ART = PROPERTYKEY { .fmtid = Guid.initString("b633b1ae-6caf-4a87-9589-22ded6dd5899"), .pid = 0 };
+pub const WPD_COMMAND_SERVICE_METHODS_START_INVOKE = PROPERTYKEY{ .fmtid = Guid.initString("2d521ca8-c1b0-4268-a342-cf19321569bc"), .pid = 2 };
+pub const WPD_COMMAND_SERVICE_METHODS_CANCEL_INVOKE = PROPERTYKEY{ .fmtid = Guid.initString("2d521ca8-c1b0-4268-a342-cf19321569bc"), .pid = 3 };
+pub const WPD_COMMAND_SERVICE_METHODS_END_INVOKE = PROPERTYKEY{ .fmtid = Guid.initString("2d521ca8-c1b0-4268-a342-cf19321569bc"), .pid = 4 };
+pub const WPD_PROPERTY_SERVICE_METHOD = PROPERTYKEY{ .fmtid = Guid.initString("2d521ca8-c1b0-4268-a342-cf19321569bc"), .pid = 1001 };
+pub const WPD_PROPERTY_SERVICE_METHOD_PARAMETER_VALUES = PROPERTYKEY{ .fmtid = Guid.initString("2d521ca8-c1b0-4268-a342-cf19321569bc"), .pid = 1002 };
+pub const WPD_PROPERTY_SERVICE_METHOD_RESULT_VALUES = PROPERTYKEY{ .fmtid = Guid.initString("2d521ca8-c1b0-4268-a342-cf19321569bc"), .pid = 1003 };
+pub const WPD_PROPERTY_SERVICE_METHOD_CONTEXT = PROPERTYKEY{ .fmtid = Guid.initString("2d521ca8-c1b0-4268-a342-cf19321569bc"), .pid = 1004 };
+pub const WPD_PROPERTY_SERVICE_METHOD_HRESULT = PROPERTYKEY{ .fmtid = Guid.initString("2d521ca8-c1b0-4268-a342-cf19321569bc"), .pid = 1005 };
+pub const WPD_RESOURCE_DEFAULT = PROPERTYKEY{ .fmtid = Guid.initString("e81e79be-34f0-41bf-b53f-f1a06ae87842"), .pid = 0 };
+pub const WPD_RESOURCE_CONTACT_PHOTO = PROPERTYKEY{ .fmtid = Guid.initString("2c4d6803-80ea-4580-af9a-5be1a23eddcb"), .pid = 0 };
+pub const WPD_RESOURCE_THUMBNAIL = PROPERTYKEY{ .fmtid = Guid.initString("c7c407ba-98fa-46b5-9960-23fec124cfde"), .pid = 0 };
+pub const WPD_RESOURCE_ICON = PROPERTYKEY{ .fmtid = Guid.initString("f195fed8-aa28-4ee3-b153-e182dd5edc39"), .pid = 0 };
+pub const WPD_RESOURCE_AUDIO_CLIP = PROPERTYKEY{ .fmtid = Guid.initString("3bc13982-85b1-48e0-95a6-8d3ad06be117"), .pid = 0 };
+pub const WPD_RESOURCE_ALBUM_ART = PROPERTYKEY{ .fmtid = Guid.initString("f02aa354-2300-4e2d-a1b9-3b6730f7fa21"), .pid = 0 };
+pub const WPD_RESOURCE_GENERIC = PROPERTYKEY{ .fmtid = Guid.initString("b9b9f515-ba70-4647-94dc-fa4925e95a07"), .pid = 0 };
+pub const WPD_RESOURCE_VIDEO_CLIP = PROPERTYKEY{ .fmtid = Guid.initString("b566ee42-6368-4290-8662-70182fb79f20"), .pid = 0 };
+pub const WPD_RESOURCE_BRANDING_ART = PROPERTYKEY{ .fmtid = Guid.initString("b633b1ae-6caf-4a87-9589-22ded6dd5899"), .pid = 0 };
 pub const WPD_OBJECT_FORMAT_PROPERTIES_ONLY = Guid.initString("30010000-ae6c-4804-98ba-c57b46965fe7");
 pub const WPD_OBJECT_FORMAT_UNSPECIFIED = Guid.initString("30000000-ae6c-4804-98ba-c57b46965fe7");
 pub const WPD_OBJECT_FORMAT_SCRIPT = Guid.initString("30020000-ae6c-4804-98ba-c57b46965fe7");
@@ -551,203 +551,203 @@ pub const WPD_OBJECT_FORMAT_AVCHD = Guid.initString("b9860000-ae6c-4804-98ba-c57
 pub const WPD_OBJECT_FORMAT_ATSCTS = Guid.initString("b9870000-ae6c-4804-98ba-c57b46965fe7");
 pub const WPD_OBJECT_FORMAT_DVBTS = Guid.initString("b9880000-ae6c-4804-98ba-c57b46965fe7");
 pub const WPD_OBJECT_FORMAT_MKV = Guid.initString("b9900000-ae6c-4804-98ba-c57b46965fe7");
-pub const WPD_OBJECT_ID = PROPERTYKEY { .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 2 };
-pub const WPD_OBJECT_PARENT_ID = PROPERTYKEY { .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 3 };
-pub const WPD_OBJECT_NAME = PROPERTYKEY { .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 4 };
-pub const WPD_OBJECT_PERSISTENT_UNIQUE_ID = PROPERTYKEY { .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 5 };
-pub const WPD_OBJECT_FORMAT = PROPERTYKEY { .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 6 };
-pub const WPD_OBJECT_ISHIDDEN = PROPERTYKEY { .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 9 };
-pub const WPD_OBJECT_ISSYSTEM = PROPERTYKEY { .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 10 };
-pub const WPD_OBJECT_SIZE = PROPERTYKEY { .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 11 };
-pub const WPD_OBJECT_ORIGINAL_FILE_NAME = PROPERTYKEY { .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 12 };
-pub const WPD_OBJECT_NON_CONSUMABLE = PROPERTYKEY { .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 13 };
-pub const WPD_OBJECT_KEYWORDS = PROPERTYKEY { .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 15 };
-pub const WPD_OBJECT_SYNC_ID = PROPERTYKEY { .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 16 };
-pub const WPD_OBJECT_IS_DRM_PROTECTED = PROPERTYKEY { .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 17 };
-pub const WPD_OBJECT_DATE_CREATED = PROPERTYKEY { .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 18 };
-pub const WPD_OBJECT_DATE_MODIFIED = PROPERTYKEY { .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 19 };
-pub const WPD_OBJECT_DATE_AUTHORED = PROPERTYKEY { .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 20 };
-pub const WPD_OBJECT_BACK_REFERENCES = PROPERTYKEY { .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 21 };
-pub const WPD_OBJECT_CAN_DELETE = PROPERTYKEY { .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 26 };
-pub const WPD_OBJECT_LANGUAGE_LOCALE = PROPERTYKEY { .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 27 };
+pub const WPD_OBJECT_ID = PROPERTYKEY{ .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 2 };
+pub const WPD_OBJECT_PARENT_ID = PROPERTYKEY{ .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 3 };
+pub const WPD_OBJECT_NAME = PROPERTYKEY{ .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 4 };
+pub const WPD_OBJECT_PERSISTENT_UNIQUE_ID = PROPERTYKEY{ .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 5 };
+pub const WPD_OBJECT_FORMAT = PROPERTYKEY{ .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 6 };
+pub const WPD_OBJECT_ISHIDDEN = PROPERTYKEY{ .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 9 };
+pub const WPD_OBJECT_ISSYSTEM = PROPERTYKEY{ .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 10 };
+pub const WPD_OBJECT_SIZE = PROPERTYKEY{ .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 11 };
+pub const WPD_OBJECT_ORIGINAL_FILE_NAME = PROPERTYKEY{ .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 12 };
+pub const WPD_OBJECT_NON_CONSUMABLE = PROPERTYKEY{ .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 13 };
+pub const WPD_OBJECT_KEYWORDS = PROPERTYKEY{ .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 15 };
+pub const WPD_OBJECT_SYNC_ID = PROPERTYKEY{ .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 16 };
+pub const WPD_OBJECT_IS_DRM_PROTECTED = PROPERTYKEY{ .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 17 };
+pub const WPD_OBJECT_DATE_CREATED = PROPERTYKEY{ .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 18 };
+pub const WPD_OBJECT_DATE_MODIFIED = PROPERTYKEY{ .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 19 };
+pub const WPD_OBJECT_DATE_AUTHORED = PROPERTYKEY{ .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 20 };
+pub const WPD_OBJECT_BACK_REFERENCES = PROPERTYKEY{ .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 21 };
+pub const WPD_OBJECT_CAN_DELETE = PROPERTYKEY{ .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 26 };
+pub const WPD_OBJECT_LANGUAGE_LOCALE = PROPERTYKEY{ .fmtid = Guid.initString("ef6b490d-5cd8-437a-affc-da8b60ee4a3c"), .pid = 27 };
 pub const WPD_FOLDER_OBJECT_PROPERTIES_V1 = Guid.initString("7e9a7abf-e568-4b34-aa2f-13bb12ab177d");
-pub const WPD_FOLDER_CONTENT_TYPES_ALLOWED = PROPERTYKEY { .fmtid = Guid.initString("7e9a7abf-e568-4b34-aa2f-13bb12ab177d"), .pid = 2 };
+pub const WPD_FOLDER_CONTENT_TYPES_ALLOWED = PROPERTYKEY{ .fmtid = Guid.initString("7e9a7abf-e568-4b34-aa2f-13bb12ab177d"), .pid = 2 };
 pub const WPD_IMAGE_OBJECT_PROPERTIES_V1 = Guid.initString("63d64908-9fa1-479f-85ba-9952216447db");
-pub const WPD_IMAGE_BITDEPTH = PROPERTYKEY { .fmtid = Guid.initString("63d64908-9fa1-479f-85ba-9952216447db"), .pid = 3 };
-pub const WPD_IMAGE_CROPPED_STATUS = PROPERTYKEY { .fmtid = Guid.initString("63d64908-9fa1-479f-85ba-9952216447db"), .pid = 4 };
-pub const WPD_IMAGE_COLOR_CORRECTED_STATUS = PROPERTYKEY { .fmtid = Guid.initString("63d64908-9fa1-479f-85ba-9952216447db"), .pid = 5 };
-pub const WPD_IMAGE_FNUMBER = PROPERTYKEY { .fmtid = Guid.initString("63d64908-9fa1-479f-85ba-9952216447db"), .pid = 6 };
-pub const WPD_IMAGE_EXPOSURE_TIME = PROPERTYKEY { .fmtid = Guid.initString("63d64908-9fa1-479f-85ba-9952216447db"), .pid = 7 };
-pub const WPD_IMAGE_EXPOSURE_INDEX = PROPERTYKEY { .fmtid = Guid.initString("63d64908-9fa1-479f-85ba-9952216447db"), .pid = 8 };
-pub const WPD_IMAGE_HORIZONTAL_RESOLUTION = PROPERTYKEY { .fmtid = Guid.initString("63d64908-9fa1-479f-85ba-9952216447db"), .pid = 9 };
-pub const WPD_IMAGE_VERTICAL_RESOLUTION = PROPERTYKEY { .fmtid = Guid.initString("63d64908-9fa1-479f-85ba-9952216447db"), .pid = 10 };
+pub const WPD_IMAGE_BITDEPTH = PROPERTYKEY{ .fmtid = Guid.initString("63d64908-9fa1-479f-85ba-9952216447db"), .pid = 3 };
+pub const WPD_IMAGE_CROPPED_STATUS = PROPERTYKEY{ .fmtid = Guid.initString("63d64908-9fa1-479f-85ba-9952216447db"), .pid = 4 };
+pub const WPD_IMAGE_COLOR_CORRECTED_STATUS = PROPERTYKEY{ .fmtid = Guid.initString("63d64908-9fa1-479f-85ba-9952216447db"), .pid = 5 };
+pub const WPD_IMAGE_FNUMBER = PROPERTYKEY{ .fmtid = Guid.initString("63d64908-9fa1-479f-85ba-9952216447db"), .pid = 6 };
+pub const WPD_IMAGE_EXPOSURE_TIME = PROPERTYKEY{ .fmtid = Guid.initString("63d64908-9fa1-479f-85ba-9952216447db"), .pid = 7 };
+pub const WPD_IMAGE_EXPOSURE_INDEX = PROPERTYKEY{ .fmtid = Guid.initString("63d64908-9fa1-479f-85ba-9952216447db"), .pid = 8 };
+pub const WPD_IMAGE_HORIZONTAL_RESOLUTION = PROPERTYKEY{ .fmtid = Guid.initString("63d64908-9fa1-479f-85ba-9952216447db"), .pid = 9 };
+pub const WPD_IMAGE_VERTICAL_RESOLUTION = PROPERTYKEY{ .fmtid = Guid.initString("63d64908-9fa1-479f-85ba-9952216447db"), .pid = 10 };
 pub const WPD_DOCUMENT_OBJECT_PROPERTIES_V1 = Guid.initString("0b110203-eb95-4f02-93e0-97c631493ad5");
 pub const WPD_MEDIA_PROPERTIES_V1 = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8");
-pub const WPD_MEDIA_TOTAL_BITRATE = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 2 };
-pub const WPD_MEDIA_BITRATE_TYPE = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 3 };
-pub const WPD_MEDIA_COPYRIGHT = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 4 };
-pub const WPD_MEDIA_SUBSCRIPTION_CONTENT_ID = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 5 };
-pub const WPD_MEDIA_USE_COUNT = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 6 };
-pub const WPD_MEDIA_SKIP_COUNT = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 7 };
-pub const WPD_MEDIA_LAST_ACCESSED_TIME = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 8 };
-pub const WPD_MEDIA_PARENTAL_RATING = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 9 };
-pub const WPD_MEDIA_META_GENRE = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 10 };
-pub const WPD_MEDIA_COMPOSER = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 11 };
-pub const WPD_MEDIA_EFFECTIVE_RATING = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 12 };
-pub const WPD_MEDIA_SUB_TITLE = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 13 };
-pub const WPD_MEDIA_RELEASE_DATE = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 14 };
-pub const WPD_MEDIA_SAMPLE_RATE = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 15 };
-pub const WPD_MEDIA_STAR_RATING = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 16 };
-pub const WPD_MEDIA_USER_EFFECTIVE_RATING = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 17 };
-pub const WPD_MEDIA_TITLE = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 18 };
-pub const WPD_MEDIA_DURATION = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 19 };
-pub const WPD_MEDIA_BUY_NOW = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 20 };
-pub const WPD_MEDIA_ENCODING_PROFILE = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 21 };
-pub const WPD_MEDIA_WIDTH = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 22 };
-pub const WPD_MEDIA_HEIGHT = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 23 };
-pub const WPD_MEDIA_ARTIST = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 24 };
-pub const WPD_MEDIA_ALBUM_ARTIST = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 25 };
-pub const WPD_MEDIA_OWNER = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 26 };
-pub const WPD_MEDIA_MANAGING_EDITOR = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 27 };
-pub const WPD_MEDIA_WEBMASTER = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 28 };
-pub const WPD_MEDIA_SOURCE_URL = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 29 };
-pub const WPD_MEDIA_DESTINATION_URL = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 30 };
-pub const WPD_MEDIA_DESCRIPTION = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 31 };
-pub const WPD_MEDIA_GENRE = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 32 };
-pub const WPD_MEDIA_TIME_BOOKMARK = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 33 };
-pub const WPD_MEDIA_OBJECT_BOOKMARK = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 34 };
-pub const WPD_MEDIA_LAST_BUILD_DATE = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 35 };
-pub const WPD_MEDIA_BYTE_BOOKMARK = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 36 };
-pub const WPD_MEDIA_TIME_TO_LIVE = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 37 };
-pub const WPD_MEDIA_GUID = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 38 };
-pub const WPD_MEDIA_SUB_DESCRIPTION = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 39 };
-pub const WPD_MEDIA_AUDIO_ENCODING_PROFILE = PROPERTYKEY { .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 49 };
+pub const WPD_MEDIA_TOTAL_BITRATE = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 2 };
+pub const WPD_MEDIA_BITRATE_TYPE = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 3 };
+pub const WPD_MEDIA_COPYRIGHT = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 4 };
+pub const WPD_MEDIA_SUBSCRIPTION_CONTENT_ID = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 5 };
+pub const WPD_MEDIA_USE_COUNT = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 6 };
+pub const WPD_MEDIA_SKIP_COUNT = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 7 };
+pub const WPD_MEDIA_LAST_ACCESSED_TIME = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 8 };
+pub const WPD_MEDIA_PARENTAL_RATING = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 9 };
+pub const WPD_MEDIA_META_GENRE = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 10 };
+pub const WPD_MEDIA_COMPOSER = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 11 };
+pub const WPD_MEDIA_EFFECTIVE_RATING = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 12 };
+pub const WPD_MEDIA_SUB_TITLE = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 13 };
+pub const WPD_MEDIA_RELEASE_DATE = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 14 };
+pub const WPD_MEDIA_SAMPLE_RATE = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 15 };
+pub const WPD_MEDIA_STAR_RATING = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 16 };
+pub const WPD_MEDIA_USER_EFFECTIVE_RATING = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 17 };
+pub const WPD_MEDIA_TITLE = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 18 };
+pub const WPD_MEDIA_DURATION = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 19 };
+pub const WPD_MEDIA_BUY_NOW = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 20 };
+pub const WPD_MEDIA_ENCODING_PROFILE = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 21 };
+pub const WPD_MEDIA_WIDTH = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 22 };
+pub const WPD_MEDIA_HEIGHT = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 23 };
+pub const WPD_MEDIA_ARTIST = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 24 };
+pub const WPD_MEDIA_ALBUM_ARTIST = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 25 };
+pub const WPD_MEDIA_OWNER = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 26 };
+pub const WPD_MEDIA_MANAGING_EDITOR = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 27 };
+pub const WPD_MEDIA_WEBMASTER = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 28 };
+pub const WPD_MEDIA_SOURCE_URL = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 29 };
+pub const WPD_MEDIA_DESTINATION_URL = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 30 };
+pub const WPD_MEDIA_DESCRIPTION = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 31 };
+pub const WPD_MEDIA_GENRE = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 32 };
+pub const WPD_MEDIA_TIME_BOOKMARK = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 33 };
+pub const WPD_MEDIA_OBJECT_BOOKMARK = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 34 };
+pub const WPD_MEDIA_LAST_BUILD_DATE = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 35 };
+pub const WPD_MEDIA_BYTE_BOOKMARK = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 36 };
+pub const WPD_MEDIA_TIME_TO_LIVE = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 37 };
+pub const WPD_MEDIA_GUID = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 38 };
+pub const WPD_MEDIA_SUB_DESCRIPTION = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 39 };
+pub const WPD_MEDIA_AUDIO_ENCODING_PROFILE = PROPERTYKEY{ .fmtid = Guid.initString("2ed8ba05-0ad3-42dc-b0d0-bc95ac396ac8"), .pid = 49 };
 pub const WPD_CONTACT_OBJECT_PROPERTIES_V1 = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b");
-pub const WPD_CONTACT_DISPLAY_NAME = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 2 };
-pub const WPD_CONTACT_FIRST_NAME = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 3 };
-pub const WPD_CONTACT_MIDDLE_NAMES = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 4 };
-pub const WPD_CONTACT_LAST_NAME = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 5 };
-pub const WPD_CONTACT_PREFIX = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 6 };
-pub const WPD_CONTACT_SUFFIX = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 7 };
-pub const WPD_CONTACT_PHONETIC_FIRST_NAME = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 8 };
-pub const WPD_CONTACT_PHONETIC_LAST_NAME = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 9 };
-pub const WPD_CONTACT_PERSONAL_FULL_POSTAL_ADDRESS = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 10 };
-pub const WPD_CONTACT_PERSONAL_POSTAL_ADDRESS_LINE1 = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 11 };
-pub const WPD_CONTACT_PERSONAL_POSTAL_ADDRESS_LINE2 = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 12 };
-pub const WPD_CONTACT_PERSONAL_POSTAL_ADDRESS_CITY = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 13 };
-pub const WPD_CONTACT_PERSONAL_POSTAL_ADDRESS_REGION = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 14 };
-pub const WPD_CONTACT_PERSONAL_POSTAL_ADDRESS_POSTAL_CODE = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 15 };
-pub const WPD_CONTACT_PERSONAL_POSTAL_ADDRESS_COUNTRY = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 16 };
-pub const WPD_CONTACT_BUSINESS_FULL_POSTAL_ADDRESS = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 17 };
-pub const WPD_CONTACT_BUSINESS_POSTAL_ADDRESS_LINE1 = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 18 };
-pub const WPD_CONTACT_BUSINESS_POSTAL_ADDRESS_LINE2 = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 19 };
-pub const WPD_CONTACT_BUSINESS_POSTAL_ADDRESS_CITY = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 20 };
-pub const WPD_CONTACT_BUSINESS_POSTAL_ADDRESS_REGION = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 21 };
-pub const WPD_CONTACT_BUSINESS_POSTAL_ADDRESS_POSTAL_CODE = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 22 };
-pub const WPD_CONTACT_BUSINESS_POSTAL_ADDRESS_COUNTRY = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 23 };
-pub const WPD_CONTACT_OTHER_FULL_POSTAL_ADDRESS = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 24 };
-pub const WPD_CONTACT_OTHER_POSTAL_ADDRESS_LINE1 = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 25 };
-pub const WPD_CONTACT_OTHER_POSTAL_ADDRESS_LINE2 = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 26 };
-pub const WPD_CONTACT_OTHER_POSTAL_ADDRESS_CITY = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 27 };
-pub const WPD_CONTACT_OTHER_POSTAL_ADDRESS_REGION = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 28 };
-pub const WPD_CONTACT_OTHER_POSTAL_ADDRESS_POSTAL_CODE = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 29 };
-pub const WPD_CONTACT_OTHER_POSTAL_ADDRESS_POSTAL_COUNTRY = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 30 };
-pub const WPD_CONTACT_PRIMARY_EMAIL_ADDRESS = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 31 };
-pub const WPD_CONTACT_PERSONAL_EMAIL = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 32 };
-pub const WPD_CONTACT_PERSONAL_EMAIL2 = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 33 };
-pub const WPD_CONTACT_BUSINESS_EMAIL = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 34 };
-pub const WPD_CONTACT_BUSINESS_EMAIL2 = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 35 };
-pub const WPD_CONTACT_OTHER_EMAILS = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 36 };
-pub const WPD_CONTACT_PRIMARY_PHONE = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 37 };
-pub const WPD_CONTACT_PERSONAL_PHONE = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 38 };
-pub const WPD_CONTACT_PERSONAL_PHONE2 = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 39 };
-pub const WPD_CONTACT_BUSINESS_PHONE = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 40 };
-pub const WPD_CONTACT_BUSINESS_PHONE2 = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 41 };
-pub const WPD_CONTACT_MOBILE_PHONE = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 42 };
-pub const WPD_CONTACT_MOBILE_PHONE2 = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 43 };
-pub const WPD_CONTACT_PERSONAL_FAX = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 44 };
-pub const WPD_CONTACT_BUSINESS_FAX = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 45 };
-pub const WPD_CONTACT_PAGER = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 46 };
-pub const WPD_CONTACT_OTHER_PHONES = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 47 };
-pub const WPD_CONTACT_PRIMARY_WEB_ADDRESS = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 48 };
-pub const WPD_CONTACT_PERSONAL_WEB_ADDRESS = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 49 };
-pub const WPD_CONTACT_BUSINESS_WEB_ADDRESS = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 50 };
-pub const WPD_CONTACT_INSTANT_MESSENGER = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 51 };
-pub const WPD_CONTACT_INSTANT_MESSENGER2 = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 52 };
-pub const WPD_CONTACT_INSTANT_MESSENGER3 = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 53 };
-pub const WPD_CONTACT_COMPANY_NAME = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 54 };
-pub const WPD_CONTACT_PHONETIC_COMPANY_NAME = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 55 };
-pub const WPD_CONTACT_ROLE = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 56 };
-pub const WPD_CONTACT_BIRTHDATE = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 57 };
-pub const WPD_CONTACT_PRIMARY_FAX = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 58 };
-pub const WPD_CONTACT_SPOUSE = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 59 };
-pub const WPD_CONTACT_CHILDREN = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 60 };
-pub const WPD_CONTACT_ASSISTANT = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 61 };
-pub const WPD_CONTACT_ANNIVERSARY_DATE = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 62 };
-pub const WPD_CONTACT_RINGTONE = PROPERTYKEY { .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 63 };
+pub const WPD_CONTACT_DISPLAY_NAME = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 2 };
+pub const WPD_CONTACT_FIRST_NAME = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 3 };
+pub const WPD_CONTACT_MIDDLE_NAMES = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 4 };
+pub const WPD_CONTACT_LAST_NAME = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 5 };
+pub const WPD_CONTACT_PREFIX = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 6 };
+pub const WPD_CONTACT_SUFFIX = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 7 };
+pub const WPD_CONTACT_PHONETIC_FIRST_NAME = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 8 };
+pub const WPD_CONTACT_PHONETIC_LAST_NAME = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 9 };
+pub const WPD_CONTACT_PERSONAL_FULL_POSTAL_ADDRESS = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 10 };
+pub const WPD_CONTACT_PERSONAL_POSTAL_ADDRESS_LINE1 = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 11 };
+pub const WPD_CONTACT_PERSONAL_POSTAL_ADDRESS_LINE2 = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 12 };
+pub const WPD_CONTACT_PERSONAL_POSTAL_ADDRESS_CITY = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 13 };
+pub const WPD_CONTACT_PERSONAL_POSTAL_ADDRESS_REGION = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 14 };
+pub const WPD_CONTACT_PERSONAL_POSTAL_ADDRESS_POSTAL_CODE = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 15 };
+pub const WPD_CONTACT_PERSONAL_POSTAL_ADDRESS_COUNTRY = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 16 };
+pub const WPD_CONTACT_BUSINESS_FULL_POSTAL_ADDRESS = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 17 };
+pub const WPD_CONTACT_BUSINESS_POSTAL_ADDRESS_LINE1 = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 18 };
+pub const WPD_CONTACT_BUSINESS_POSTAL_ADDRESS_LINE2 = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 19 };
+pub const WPD_CONTACT_BUSINESS_POSTAL_ADDRESS_CITY = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 20 };
+pub const WPD_CONTACT_BUSINESS_POSTAL_ADDRESS_REGION = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 21 };
+pub const WPD_CONTACT_BUSINESS_POSTAL_ADDRESS_POSTAL_CODE = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 22 };
+pub const WPD_CONTACT_BUSINESS_POSTAL_ADDRESS_COUNTRY = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 23 };
+pub const WPD_CONTACT_OTHER_FULL_POSTAL_ADDRESS = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 24 };
+pub const WPD_CONTACT_OTHER_POSTAL_ADDRESS_LINE1 = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 25 };
+pub const WPD_CONTACT_OTHER_POSTAL_ADDRESS_LINE2 = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 26 };
+pub const WPD_CONTACT_OTHER_POSTAL_ADDRESS_CITY = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 27 };
+pub const WPD_CONTACT_OTHER_POSTAL_ADDRESS_REGION = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 28 };
+pub const WPD_CONTACT_OTHER_POSTAL_ADDRESS_POSTAL_CODE = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 29 };
+pub const WPD_CONTACT_OTHER_POSTAL_ADDRESS_POSTAL_COUNTRY = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 30 };
+pub const WPD_CONTACT_PRIMARY_EMAIL_ADDRESS = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 31 };
+pub const WPD_CONTACT_PERSONAL_EMAIL = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 32 };
+pub const WPD_CONTACT_PERSONAL_EMAIL2 = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 33 };
+pub const WPD_CONTACT_BUSINESS_EMAIL = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 34 };
+pub const WPD_CONTACT_BUSINESS_EMAIL2 = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 35 };
+pub const WPD_CONTACT_OTHER_EMAILS = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 36 };
+pub const WPD_CONTACT_PRIMARY_PHONE = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 37 };
+pub const WPD_CONTACT_PERSONAL_PHONE = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 38 };
+pub const WPD_CONTACT_PERSONAL_PHONE2 = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 39 };
+pub const WPD_CONTACT_BUSINESS_PHONE = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 40 };
+pub const WPD_CONTACT_BUSINESS_PHONE2 = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 41 };
+pub const WPD_CONTACT_MOBILE_PHONE = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 42 };
+pub const WPD_CONTACT_MOBILE_PHONE2 = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 43 };
+pub const WPD_CONTACT_PERSONAL_FAX = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 44 };
+pub const WPD_CONTACT_BUSINESS_FAX = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 45 };
+pub const WPD_CONTACT_PAGER = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 46 };
+pub const WPD_CONTACT_OTHER_PHONES = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 47 };
+pub const WPD_CONTACT_PRIMARY_WEB_ADDRESS = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 48 };
+pub const WPD_CONTACT_PERSONAL_WEB_ADDRESS = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 49 };
+pub const WPD_CONTACT_BUSINESS_WEB_ADDRESS = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 50 };
+pub const WPD_CONTACT_INSTANT_MESSENGER = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 51 };
+pub const WPD_CONTACT_INSTANT_MESSENGER2 = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 52 };
+pub const WPD_CONTACT_INSTANT_MESSENGER3 = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 53 };
+pub const WPD_CONTACT_COMPANY_NAME = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 54 };
+pub const WPD_CONTACT_PHONETIC_COMPANY_NAME = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 55 };
+pub const WPD_CONTACT_ROLE = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 56 };
+pub const WPD_CONTACT_BIRTHDATE = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 57 };
+pub const WPD_CONTACT_PRIMARY_FAX = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 58 };
+pub const WPD_CONTACT_SPOUSE = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 59 };
+pub const WPD_CONTACT_CHILDREN = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 60 };
+pub const WPD_CONTACT_ASSISTANT = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 61 };
+pub const WPD_CONTACT_ANNIVERSARY_DATE = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 62 };
+pub const WPD_CONTACT_RINGTONE = PROPERTYKEY{ .fmtid = Guid.initString("fbd4fdab-987d-4777-b3f9-726185a9312b"), .pid = 63 };
 pub const WPD_MUSIC_OBJECT_PROPERTIES_V1 = Guid.initString("b324f56a-dc5d-46e5-b6df-d2ea414888c6");
-pub const WPD_MUSIC_ALBUM = PROPERTYKEY { .fmtid = Guid.initString("b324f56a-dc5d-46e5-b6df-d2ea414888c6"), .pid = 3 };
-pub const WPD_MUSIC_TRACK = PROPERTYKEY { .fmtid = Guid.initString("b324f56a-dc5d-46e5-b6df-d2ea414888c6"), .pid = 4 };
-pub const WPD_MUSIC_LYRICS = PROPERTYKEY { .fmtid = Guid.initString("b324f56a-dc5d-46e5-b6df-d2ea414888c6"), .pid = 6 };
-pub const WPD_MUSIC_MOOD = PROPERTYKEY { .fmtid = Guid.initString("b324f56a-dc5d-46e5-b6df-d2ea414888c6"), .pid = 8 };
-pub const WPD_AUDIO_BITRATE = PROPERTYKEY { .fmtid = Guid.initString("b324f56a-dc5d-46e5-b6df-d2ea414888c6"), .pid = 9 };
-pub const WPD_AUDIO_CHANNEL_COUNT = PROPERTYKEY { .fmtid = Guid.initString("b324f56a-dc5d-46e5-b6df-d2ea414888c6"), .pid = 10 };
-pub const WPD_AUDIO_FORMAT_CODE = PROPERTYKEY { .fmtid = Guid.initString("b324f56a-dc5d-46e5-b6df-d2ea414888c6"), .pid = 11 };
-pub const WPD_AUDIO_BIT_DEPTH = PROPERTYKEY { .fmtid = Guid.initString("b324f56a-dc5d-46e5-b6df-d2ea414888c6"), .pid = 12 };
-pub const WPD_AUDIO_BLOCK_ALIGNMENT = PROPERTYKEY { .fmtid = Guid.initString("b324f56a-dc5d-46e5-b6df-d2ea414888c6"), .pid = 13 };
+pub const WPD_MUSIC_ALBUM = PROPERTYKEY{ .fmtid = Guid.initString("b324f56a-dc5d-46e5-b6df-d2ea414888c6"), .pid = 3 };
+pub const WPD_MUSIC_TRACK = PROPERTYKEY{ .fmtid = Guid.initString("b324f56a-dc5d-46e5-b6df-d2ea414888c6"), .pid = 4 };
+pub const WPD_MUSIC_LYRICS = PROPERTYKEY{ .fmtid = Guid.initString("b324f56a-dc5d-46e5-b6df-d2ea414888c6"), .pid = 6 };
+pub const WPD_MUSIC_MOOD = PROPERTYKEY{ .fmtid = Guid.initString("b324f56a-dc5d-46e5-b6df-d2ea414888c6"), .pid = 8 };
+pub const WPD_AUDIO_BITRATE = PROPERTYKEY{ .fmtid = Guid.initString("b324f56a-dc5d-46e5-b6df-d2ea414888c6"), .pid = 9 };
+pub const WPD_AUDIO_CHANNEL_COUNT = PROPERTYKEY{ .fmtid = Guid.initString("b324f56a-dc5d-46e5-b6df-d2ea414888c6"), .pid = 10 };
+pub const WPD_AUDIO_FORMAT_CODE = PROPERTYKEY{ .fmtid = Guid.initString("b324f56a-dc5d-46e5-b6df-d2ea414888c6"), .pid = 11 };
+pub const WPD_AUDIO_BIT_DEPTH = PROPERTYKEY{ .fmtid = Guid.initString("b324f56a-dc5d-46e5-b6df-d2ea414888c6"), .pid = 12 };
+pub const WPD_AUDIO_BLOCK_ALIGNMENT = PROPERTYKEY{ .fmtid = Guid.initString("b324f56a-dc5d-46e5-b6df-d2ea414888c6"), .pid = 13 };
 pub const WPD_VIDEO_OBJECT_PROPERTIES_V1 = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a");
-pub const WPD_VIDEO_AUTHOR = PROPERTYKEY { .fmtid = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a"), .pid = 2 };
-pub const WPD_VIDEO_RECORDEDTV_STATION_NAME = PROPERTYKEY { .fmtid = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a"), .pid = 4 };
-pub const WPD_VIDEO_RECORDEDTV_CHANNEL_NUMBER = PROPERTYKEY { .fmtid = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a"), .pid = 5 };
-pub const WPD_VIDEO_RECORDEDTV_REPEAT = PROPERTYKEY { .fmtid = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a"), .pid = 7 };
-pub const WPD_VIDEO_BUFFER_SIZE = PROPERTYKEY { .fmtid = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a"), .pid = 8 };
-pub const WPD_VIDEO_CREDITS = PROPERTYKEY { .fmtid = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a"), .pid = 9 };
-pub const WPD_VIDEO_KEY_FRAME_DISTANCE = PROPERTYKEY { .fmtid = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a"), .pid = 10 };
-pub const WPD_VIDEO_QUALITY_SETTING = PROPERTYKEY { .fmtid = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a"), .pid = 11 };
-pub const WPD_VIDEO_SCAN_TYPE = PROPERTYKEY { .fmtid = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a"), .pid = 12 };
-pub const WPD_VIDEO_BITRATE = PROPERTYKEY { .fmtid = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a"), .pid = 13 };
-pub const WPD_VIDEO_FOURCC_CODE = PROPERTYKEY { .fmtid = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a"), .pid = 14 };
-pub const WPD_VIDEO_FRAMERATE = PROPERTYKEY { .fmtid = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a"), .pid = 15 };
+pub const WPD_VIDEO_AUTHOR = PROPERTYKEY{ .fmtid = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a"), .pid = 2 };
+pub const WPD_VIDEO_RECORDEDTV_STATION_NAME = PROPERTYKEY{ .fmtid = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a"), .pid = 4 };
+pub const WPD_VIDEO_RECORDEDTV_CHANNEL_NUMBER = PROPERTYKEY{ .fmtid = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a"), .pid = 5 };
+pub const WPD_VIDEO_RECORDEDTV_REPEAT = PROPERTYKEY{ .fmtid = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a"), .pid = 7 };
+pub const WPD_VIDEO_BUFFER_SIZE = PROPERTYKEY{ .fmtid = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a"), .pid = 8 };
+pub const WPD_VIDEO_CREDITS = PROPERTYKEY{ .fmtid = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a"), .pid = 9 };
+pub const WPD_VIDEO_KEY_FRAME_DISTANCE = PROPERTYKEY{ .fmtid = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a"), .pid = 10 };
+pub const WPD_VIDEO_QUALITY_SETTING = PROPERTYKEY{ .fmtid = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a"), .pid = 11 };
+pub const WPD_VIDEO_SCAN_TYPE = PROPERTYKEY{ .fmtid = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a"), .pid = 12 };
+pub const WPD_VIDEO_BITRATE = PROPERTYKEY{ .fmtid = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a"), .pid = 13 };
+pub const WPD_VIDEO_FOURCC_CODE = PROPERTYKEY{ .fmtid = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a"), .pid = 14 };
+pub const WPD_VIDEO_FRAMERATE = PROPERTYKEY{ .fmtid = Guid.initString("346f2163-f998-4146-8b01-d19b4c00de9a"), .pid = 15 };
 pub const WPD_COMMON_INFORMATION_OBJECT_PROPERTIES_V1 = Guid.initString("b28ae94b-05a4-4e8e-be01-72cc7e099d8f");
-pub const WPD_COMMON_INFORMATION_SUBJECT = PROPERTYKEY { .fmtid = Guid.initString("b28ae94b-05a4-4e8e-be01-72cc7e099d8f"), .pid = 2 };
-pub const WPD_COMMON_INFORMATION_BODY_TEXT = PROPERTYKEY { .fmtid = Guid.initString("b28ae94b-05a4-4e8e-be01-72cc7e099d8f"), .pid = 3 };
-pub const WPD_COMMON_INFORMATION_PRIORITY = PROPERTYKEY { .fmtid = Guid.initString("b28ae94b-05a4-4e8e-be01-72cc7e099d8f"), .pid = 4 };
-pub const WPD_COMMON_INFORMATION_START_DATETIME = PROPERTYKEY { .fmtid = Guid.initString("b28ae94b-05a4-4e8e-be01-72cc7e099d8f"), .pid = 5 };
-pub const WPD_COMMON_INFORMATION_END_DATETIME = PROPERTYKEY { .fmtid = Guid.initString("b28ae94b-05a4-4e8e-be01-72cc7e099d8f"), .pid = 6 };
-pub const WPD_COMMON_INFORMATION_NOTES = PROPERTYKEY { .fmtid = Guid.initString("b28ae94b-05a4-4e8e-be01-72cc7e099d8f"), .pid = 7 };
+pub const WPD_COMMON_INFORMATION_SUBJECT = PROPERTYKEY{ .fmtid = Guid.initString("b28ae94b-05a4-4e8e-be01-72cc7e099d8f"), .pid = 2 };
+pub const WPD_COMMON_INFORMATION_BODY_TEXT = PROPERTYKEY{ .fmtid = Guid.initString("b28ae94b-05a4-4e8e-be01-72cc7e099d8f"), .pid = 3 };
+pub const WPD_COMMON_INFORMATION_PRIORITY = PROPERTYKEY{ .fmtid = Guid.initString("b28ae94b-05a4-4e8e-be01-72cc7e099d8f"), .pid = 4 };
+pub const WPD_COMMON_INFORMATION_START_DATETIME = PROPERTYKEY{ .fmtid = Guid.initString("b28ae94b-05a4-4e8e-be01-72cc7e099d8f"), .pid = 5 };
+pub const WPD_COMMON_INFORMATION_END_DATETIME = PROPERTYKEY{ .fmtid = Guid.initString("b28ae94b-05a4-4e8e-be01-72cc7e099d8f"), .pid = 6 };
+pub const WPD_COMMON_INFORMATION_NOTES = PROPERTYKEY{ .fmtid = Guid.initString("b28ae94b-05a4-4e8e-be01-72cc7e099d8f"), .pid = 7 };
 pub const WPD_MEMO_OBJECT_PROPERTIES_V1 = Guid.initString("5ffbfc7b-7483-41ad-afb9-da3f4e592b8d");
 pub const WPD_EMAIL_OBJECT_PROPERTIES_V1 = Guid.initString("41f8f65a-5484-4782-b13d-4740dd7c37c5");
-pub const WPD_EMAIL_TO_LINE = PROPERTYKEY { .fmtid = Guid.initString("41f8f65a-5484-4782-b13d-4740dd7c37c5"), .pid = 2 };
-pub const WPD_EMAIL_CC_LINE = PROPERTYKEY { .fmtid = Guid.initString("41f8f65a-5484-4782-b13d-4740dd7c37c5"), .pid = 3 };
-pub const WPD_EMAIL_BCC_LINE = PROPERTYKEY { .fmtid = Guid.initString("41f8f65a-5484-4782-b13d-4740dd7c37c5"), .pid = 4 };
-pub const WPD_EMAIL_HAS_BEEN_READ = PROPERTYKEY { .fmtid = Guid.initString("41f8f65a-5484-4782-b13d-4740dd7c37c5"), .pid = 7 };
-pub const WPD_EMAIL_RECEIVED_TIME = PROPERTYKEY { .fmtid = Guid.initString("41f8f65a-5484-4782-b13d-4740dd7c37c5"), .pid = 8 };
-pub const WPD_EMAIL_HAS_ATTACHMENTS = PROPERTYKEY { .fmtid = Guid.initString("41f8f65a-5484-4782-b13d-4740dd7c37c5"), .pid = 9 };
-pub const WPD_EMAIL_SENDER_ADDRESS = PROPERTYKEY { .fmtid = Guid.initString("41f8f65a-5484-4782-b13d-4740dd7c37c5"), .pid = 10 };
+pub const WPD_EMAIL_TO_LINE = PROPERTYKEY{ .fmtid = Guid.initString("41f8f65a-5484-4782-b13d-4740dd7c37c5"), .pid = 2 };
+pub const WPD_EMAIL_CC_LINE = PROPERTYKEY{ .fmtid = Guid.initString("41f8f65a-5484-4782-b13d-4740dd7c37c5"), .pid = 3 };
+pub const WPD_EMAIL_BCC_LINE = PROPERTYKEY{ .fmtid = Guid.initString("41f8f65a-5484-4782-b13d-4740dd7c37c5"), .pid = 4 };
+pub const WPD_EMAIL_HAS_BEEN_READ = PROPERTYKEY{ .fmtid = Guid.initString("41f8f65a-5484-4782-b13d-4740dd7c37c5"), .pid = 7 };
+pub const WPD_EMAIL_RECEIVED_TIME = PROPERTYKEY{ .fmtid = Guid.initString("41f8f65a-5484-4782-b13d-4740dd7c37c5"), .pid = 8 };
+pub const WPD_EMAIL_HAS_ATTACHMENTS = PROPERTYKEY{ .fmtid = Guid.initString("41f8f65a-5484-4782-b13d-4740dd7c37c5"), .pid = 9 };
+pub const WPD_EMAIL_SENDER_ADDRESS = PROPERTYKEY{ .fmtid = Guid.initString("41f8f65a-5484-4782-b13d-4740dd7c37c5"), .pid = 10 };
 pub const WPD_APPOINTMENT_OBJECT_PROPERTIES_V1 = Guid.initString("f99efd03-431d-40d8-a1c9-4e220d9c88d3");
-pub const WPD_APPOINTMENT_LOCATION = PROPERTYKEY { .fmtid = Guid.initString("f99efd03-431d-40d8-a1c9-4e220d9c88d3"), .pid = 3 };
-pub const WPD_APPOINTMENT_TYPE = PROPERTYKEY { .fmtid = Guid.initString("f99efd03-431d-40d8-a1c9-4e220d9c88d3"), .pid = 7 };
-pub const WPD_APPOINTMENT_REQUIRED_ATTENDEES = PROPERTYKEY { .fmtid = Guid.initString("f99efd03-431d-40d8-a1c9-4e220d9c88d3"), .pid = 8 };
-pub const WPD_APPOINTMENT_OPTIONAL_ATTENDEES = PROPERTYKEY { .fmtid = Guid.initString("f99efd03-431d-40d8-a1c9-4e220d9c88d3"), .pid = 9 };
-pub const WPD_APPOINTMENT_ACCEPTED_ATTENDEES = PROPERTYKEY { .fmtid = Guid.initString("f99efd03-431d-40d8-a1c9-4e220d9c88d3"), .pid = 10 };
-pub const WPD_APPOINTMENT_RESOURCES = PROPERTYKEY { .fmtid = Guid.initString("f99efd03-431d-40d8-a1c9-4e220d9c88d3"), .pid = 11 };
-pub const WPD_APPOINTMENT_TENTATIVE_ATTENDEES = PROPERTYKEY { .fmtid = Guid.initString("f99efd03-431d-40d8-a1c9-4e220d9c88d3"), .pid = 12 };
-pub const WPD_APPOINTMENT_DECLINED_ATTENDEES = PROPERTYKEY { .fmtid = Guid.initString("f99efd03-431d-40d8-a1c9-4e220d9c88d3"), .pid = 13 };
+pub const WPD_APPOINTMENT_LOCATION = PROPERTYKEY{ .fmtid = Guid.initString("f99efd03-431d-40d8-a1c9-4e220d9c88d3"), .pid = 3 };
+pub const WPD_APPOINTMENT_TYPE = PROPERTYKEY{ .fmtid = Guid.initString("f99efd03-431d-40d8-a1c9-4e220d9c88d3"), .pid = 7 };
+pub const WPD_APPOINTMENT_REQUIRED_ATTENDEES = PROPERTYKEY{ .fmtid = Guid.initString("f99efd03-431d-40d8-a1c9-4e220d9c88d3"), .pid = 8 };
+pub const WPD_APPOINTMENT_OPTIONAL_ATTENDEES = PROPERTYKEY{ .fmtid = Guid.initString("f99efd03-431d-40d8-a1c9-4e220d9c88d3"), .pid = 9 };
+pub const WPD_APPOINTMENT_ACCEPTED_ATTENDEES = PROPERTYKEY{ .fmtid = Guid.initString("f99efd03-431d-40d8-a1c9-4e220d9c88d3"), .pid = 10 };
+pub const WPD_APPOINTMENT_RESOURCES = PROPERTYKEY{ .fmtid = Guid.initString("f99efd03-431d-40d8-a1c9-4e220d9c88d3"), .pid = 11 };
+pub const WPD_APPOINTMENT_TENTATIVE_ATTENDEES = PROPERTYKEY{ .fmtid = Guid.initString("f99efd03-431d-40d8-a1c9-4e220d9c88d3"), .pid = 12 };
+pub const WPD_APPOINTMENT_DECLINED_ATTENDEES = PROPERTYKEY{ .fmtid = Guid.initString("f99efd03-431d-40d8-a1c9-4e220d9c88d3"), .pid = 13 };
 pub const WPD_TASK_OBJECT_PROPERTIES_V1 = Guid.initString("e354e95e-d8a0-4637-a03a-0cb26838dbc7");
-pub const WPD_TASK_STATUS = PROPERTYKEY { .fmtid = Guid.initString("e354e95e-d8a0-4637-a03a-0cb26838dbc7"), .pid = 6 };
-pub const WPD_TASK_PERCENT_COMPLETE = PROPERTYKEY { .fmtid = Guid.initString("e354e95e-d8a0-4637-a03a-0cb26838dbc7"), .pid = 8 };
-pub const WPD_TASK_REMINDER_DATE = PROPERTYKEY { .fmtid = Guid.initString("e354e95e-d8a0-4637-a03a-0cb26838dbc7"), .pid = 10 };
-pub const WPD_TASK_OWNER = PROPERTYKEY { .fmtid = Guid.initString("e354e95e-d8a0-4637-a03a-0cb26838dbc7"), .pid = 11 };
+pub const WPD_TASK_STATUS = PROPERTYKEY{ .fmtid = Guid.initString("e354e95e-d8a0-4637-a03a-0cb26838dbc7"), .pid = 6 };
+pub const WPD_TASK_PERCENT_COMPLETE = PROPERTYKEY{ .fmtid = Guid.initString("e354e95e-d8a0-4637-a03a-0cb26838dbc7"), .pid = 8 };
+pub const WPD_TASK_REMINDER_DATE = PROPERTYKEY{ .fmtid = Guid.initString("e354e95e-d8a0-4637-a03a-0cb26838dbc7"), .pid = 10 };
+pub const WPD_TASK_OWNER = PROPERTYKEY{ .fmtid = Guid.initString("e354e95e-d8a0-4637-a03a-0cb26838dbc7"), .pid = 11 };
 pub const WPD_SMS_OBJECT_PROPERTIES_V1 = Guid.initString("7e1074cc-50ff-4dd1-a742-53be6f093a0d");
-pub const WPD_SMS_PROVIDER = PROPERTYKEY { .fmtid = Guid.initString("7e1074cc-50ff-4dd1-a742-53be6f093a0d"), .pid = 2 };
-pub const WPD_SMS_TIMEOUT = PROPERTYKEY { .fmtid = Guid.initString("7e1074cc-50ff-4dd1-a742-53be6f093a0d"), .pid = 3 };
-pub const WPD_SMS_MAX_PAYLOAD = PROPERTYKEY { .fmtid = Guid.initString("7e1074cc-50ff-4dd1-a742-53be6f093a0d"), .pid = 4 };
-pub const WPD_SMS_ENCODING = PROPERTYKEY { .fmtid = Guid.initString("7e1074cc-50ff-4dd1-a742-53be6f093a0d"), .pid = 5 };
+pub const WPD_SMS_PROVIDER = PROPERTYKEY{ .fmtid = Guid.initString("7e1074cc-50ff-4dd1-a742-53be6f093a0d"), .pid = 2 };
+pub const WPD_SMS_TIMEOUT = PROPERTYKEY{ .fmtid = Guid.initString("7e1074cc-50ff-4dd1-a742-53be6f093a0d"), .pid = 3 };
+pub const WPD_SMS_MAX_PAYLOAD = PROPERTYKEY{ .fmtid = Guid.initString("7e1074cc-50ff-4dd1-a742-53be6f093a0d"), .pid = 4 };
+pub const WPD_SMS_ENCODING = PROPERTYKEY{ .fmtid = Guid.initString("7e1074cc-50ff-4dd1-a742-53be6f093a0d"), .pid = 5 };
 pub const WPD_SECTION_OBJECT_PROPERTIES_V1 = Guid.initString("516afd2b-c64e-44f0-98dc-bee1c88f7d66");
-pub const WPD_SECTION_DATA_OFFSET = PROPERTYKEY { .fmtid = Guid.initString("516afd2b-c64e-44f0-98dc-bee1c88f7d66"), .pid = 2 };
-pub const WPD_SECTION_DATA_LENGTH = PROPERTYKEY { .fmtid = Guid.initString("516afd2b-c64e-44f0-98dc-bee1c88f7d66"), .pid = 3 };
-pub const WPD_SECTION_DATA_UNITS = PROPERTYKEY { .fmtid = Guid.initString("516afd2b-c64e-44f0-98dc-bee1c88f7d66"), .pid = 4 };
-pub const WPD_SECTION_DATA_REFERENCED_OBJECT_RESOURCE = PROPERTYKEY { .fmtid = Guid.initString("516afd2b-c64e-44f0-98dc-bee1c88f7d66"), .pid = 5 };
+pub const WPD_SECTION_DATA_OFFSET = PROPERTYKEY{ .fmtid = Guid.initString("516afd2b-c64e-44f0-98dc-bee1c88f7d66"), .pid = 2 };
+pub const WPD_SECTION_DATA_LENGTH = PROPERTYKEY{ .fmtid = Guid.initString("516afd2b-c64e-44f0-98dc-bee1c88f7d66"), .pid = 3 };
+pub const WPD_SECTION_DATA_UNITS = PROPERTYKEY{ .fmtid = Guid.initString("516afd2b-c64e-44f0-98dc-bee1c88f7d66"), .pid = 4 };
+pub const WPD_SECTION_DATA_REFERENCED_OBJECT_RESOURCE = PROPERTYKEY{ .fmtid = Guid.initString("516afd2b-c64e-44f0-98dc-bee1c88f7d66"), .pid = 5 };
 pub const DEVSVC_SERVICEINFO_VERSION = @as(u32, 100);
 pub const DEVSVCTYPE_DEFAULT = @as(u32, 0);
 pub const DEVSVCTYPE_ABSTRACT = @as(u32, 1);
@@ -818,40 +818,40 @@ pub const TYPE_TasksSvc = @as(u32, 0);
 pub const ENUM_TaskObj_CompleteFalse = @as(u32, 0);
 pub const ENUM_TaskObj_CompleteTrue = @as(u32, 255);
 pub const WPD_CATEGORY_MTP_EXT_VENDOR_OPERATIONS = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56");
-pub const WPD_COMMAND_MTP_EXT_GET_SUPPORTED_VENDOR_OPCODES = PROPERTYKEY { .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 11 };
-pub const WPD_COMMAND_MTP_EXT_EXECUTE_COMMAND_WITHOUT_DATA_PHASE = PROPERTYKEY { .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 12 };
-pub const WPD_COMMAND_MTP_EXT_EXECUTE_COMMAND_WITH_DATA_TO_READ = PROPERTYKEY { .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 13 };
-pub const WPD_COMMAND_MTP_EXT_EXECUTE_COMMAND_WITH_DATA_TO_WRITE = PROPERTYKEY { .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 14 };
-pub const WPD_COMMAND_MTP_EXT_READ_DATA = PROPERTYKEY { .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 15 };
-pub const WPD_COMMAND_MTP_EXT_WRITE_DATA = PROPERTYKEY { .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 16 };
-pub const WPD_COMMAND_MTP_EXT_END_DATA_TRANSFER = PROPERTYKEY { .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 17 };
-pub const WPD_COMMAND_MTP_EXT_GET_VENDOR_EXTENSION_DESCRIPTION = PROPERTYKEY { .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 18 };
-pub const WPD_PROPERTY_MTP_EXT_OPERATION_CODE = PROPERTYKEY { .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1001 };
-pub const WPD_PROPERTY_MTP_EXT_OPERATION_PARAMS = PROPERTYKEY { .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1002 };
-pub const WPD_PROPERTY_MTP_EXT_RESPONSE_CODE = PROPERTYKEY { .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1003 };
-pub const WPD_PROPERTY_MTP_EXT_RESPONSE_PARAMS = PROPERTYKEY { .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1004 };
-pub const WPD_PROPERTY_MTP_EXT_VENDOR_OPERATION_CODES = PROPERTYKEY { .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1005 };
-pub const WPD_PROPERTY_MTP_EXT_TRANSFER_CONTEXT = PROPERTYKEY { .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1006 };
-pub const WPD_PROPERTY_MTP_EXT_TRANSFER_TOTAL_DATA_SIZE = PROPERTYKEY { .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1007 };
-pub const WPD_PROPERTY_MTP_EXT_TRANSFER_NUM_BYTES_TO_READ = PROPERTYKEY { .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1008 };
-pub const WPD_PROPERTY_MTP_EXT_TRANSFER_NUM_BYTES_READ = PROPERTYKEY { .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1009 };
-pub const WPD_PROPERTY_MTP_EXT_TRANSFER_NUM_BYTES_TO_WRITE = PROPERTYKEY { .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1010 };
-pub const WPD_PROPERTY_MTP_EXT_TRANSFER_NUM_BYTES_WRITTEN = PROPERTYKEY { .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1011 };
-pub const WPD_PROPERTY_MTP_EXT_TRANSFER_DATA = PROPERTYKEY { .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1012 };
-pub const WPD_PROPERTY_MTP_EXT_OPTIMAL_TRANSFER_BUFFER_SIZE = PROPERTYKEY { .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1013 };
-pub const WPD_PROPERTY_MTP_EXT_VENDOR_EXTENSION_DESCRIPTION = PROPERTYKEY { .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1014 };
+pub const WPD_COMMAND_MTP_EXT_GET_SUPPORTED_VENDOR_OPCODES = PROPERTYKEY{ .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 11 };
+pub const WPD_COMMAND_MTP_EXT_EXECUTE_COMMAND_WITHOUT_DATA_PHASE = PROPERTYKEY{ .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 12 };
+pub const WPD_COMMAND_MTP_EXT_EXECUTE_COMMAND_WITH_DATA_TO_READ = PROPERTYKEY{ .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 13 };
+pub const WPD_COMMAND_MTP_EXT_EXECUTE_COMMAND_WITH_DATA_TO_WRITE = PROPERTYKEY{ .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 14 };
+pub const WPD_COMMAND_MTP_EXT_READ_DATA = PROPERTYKEY{ .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 15 };
+pub const WPD_COMMAND_MTP_EXT_WRITE_DATA = PROPERTYKEY{ .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 16 };
+pub const WPD_COMMAND_MTP_EXT_END_DATA_TRANSFER = PROPERTYKEY{ .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 17 };
+pub const WPD_COMMAND_MTP_EXT_GET_VENDOR_EXTENSION_DESCRIPTION = PROPERTYKEY{ .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 18 };
+pub const WPD_PROPERTY_MTP_EXT_OPERATION_CODE = PROPERTYKEY{ .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1001 };
+pub const WPD_PROPERTY_MTP_EXT_OPERATION_PARAMS = PROPERTYKEY{ .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1002 };
+pub const WPD_PROPERTY_MTP_EXT_RESPONSE_CODE = PROPERTYKEY{ .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1003 };
+pub const WPD_PROPERTY_MTP_EXT_RESPONSE_PARAMS = PROPERTYKEY{ .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1004 };
+pub const WPD_PROPERTY_MTP_EXT_VENDOR_OPERATION_CODES = PROPERTYKEY{ .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1005 };
+pub const WPD_PROPERTY_MTP_EXT_TRANSFER_CONTEXT = PROPERTYKEY{ .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1006 };
+pub const WPD_PROPERTY_MTP_EXT_TRANSFER_TOTAL_DATA_SIZE = PROPERTYKEY{ .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1007 };
+pub const WPD_PROPERTY_MTP_EXT_TRANSFER_NUM_BYTES_TO_READ = PROPERTYKEY{ .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1008 };
+pub const WPD_PROPERTY_MTP_EXT_TRANSFER_NUM_BYTES_READ = PROPERTYKEY{ .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1009 };
+pub const WPD_PROPERTY_MTP_EXT_TRANSFER_NUM_BYTES_TO_WRITE = PROPERTYKEY{ .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1010 };
+pub const WPD_PROPERTY_MTP_EXT_TRANSFER_NUM_BYTES_WRITTEN = PROPERTYKEY{ .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1011 };
+pub const WPD_PROPERTY_MTP_EXT_TRANSFER_DATA = PROPERTYKEY{ .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1012 };
+pub const WPD_PROPERTY_MTP_EXT_OPTIMAL_TRANSFER_BUFFER_SIZE = PROPERTYKEY{ .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1013 };
+pub const WPD_PROPERTY_MTP_EXT_VENDOR_EXTENSION_DESCRIPTION = PROPERTYKEY{ .fmtid = Guid.initString("4d545058-1a2e-4106-a357-771e0819fc56"), .pid = 1014 };
 pub const WPD_PROPERTIES_MTP_VENDOR_EXTENDED_OBJECT_PROPS = Guid.initString("4d545058-4fce-4578-95c8-8698a9bc0f49");
 pub const WPD_PROPERTIES_MTP_VENDOR_EXTENDED_DEVICE_PROPS = Guid.initString("4d545058-8900-40b3-8f1d-dc246e1e8370");
 pub const WPD_EVENT_MTP_VENDOR_EXTENDED_EVENTS = Guid.initString("00000000-5738-4ff2-8445-be3126691059");
-pub const WPD_PROPERTY_MTP_EXT_EVENT_PARAMS = PROPERTYKEY { .fmtid = Guid.initString("4d545058-ef88-4e4d-95c3-4f327f728a96"), .pid = 1011 };
+pub const WPD_PROPERTY_MTP_EXT_EVENT_PARAMS = PROPERTYKEY{ .fmtid = Guid.initString("4d545058-ef88-4e4d-95c3-4f327f728a96"), .pid = 1011 };
 pub const CLSID_WPD_NAMESPACE_EXTENSION = Guid.initString("35786d3c-b075-49b9-88dd-029876e11c01");
 pub const WPDNSE_OBJECT_PROPERTIES_V1 = Guid.initString("34d71409-4b47-4d80-aaac-3a28a4a3b3e6");
-pub const WPDNSE_OBJECT_HAS_CONTACT_PHOTO = PROPERTYKEY { .fmtid = Guid.initString("34d71409-4b47-4d80-aaac-3a28a4a3b3e6"), .pid = 2 };
-pub const WPDNSE_OBJECT_HAS_THUMBNAIL = PROPERTYKEY { .fmtid = Guid.initString("34d71409-4b47-4d80-aaac-3a28a4a3b3e6"), .pid = 3 };
-pub const WPDNSE_OBJECT_HAS_ICON = PROPERTYKEY { .fmtid = Guid.initString("34d71409-4b47-4d80-aaac-3a28a4a3b3e6"), .pid = 4 };
-pub const WPDNSE_OBJECT_HAS_AUDIO_CLIP = PROPERTYKEY { .fmtid = Guid.initString("34d71409-4b47-4d80-aaac-3a28a4a3b3e6"), .pid = 5 };
-pub const WPDNSE_OBJECT_HAS_ALBUM_ART = PROPERTYKEY { .fmtid = Guid.initString("34d71409-4b47-4d80-aaac-3a28a4a3b3e6"), .pid = 6 };
-pub const WPDNSE_OBJECT_OPTIMAL_READ_BLOCK_SIZE = PROPERTYKEY { .fmtid = Guid.initString("34d71409-4b47-4d80-aaac-3a28a4a3b3e6"), .pid = 7 };
+pub const WPDNSE_OBJECT_HAS_CONTACT_PHOTO = PROPERTYKEY{ .fmtid = Guid.initString("34d71409-4b47-4d80-aaac-3a28a4a3b3e6"), .pid = 2 };
+pub const WPDNSE_OBJECT_HAS_THUMBNAIL = PROPERTYKEY{ .fmtid = Guid.initString("34d71409-4b47-4d80-aaac-3a28a4a3b3e6"), .pid = 3 };
+pub const WPDNSE_OBJECT_HAS_ICON = PROPERTYKEY{ .fmtid = Guid.initString("34d71409-4b47-4d80-aaac-3a28a4a3b3e6"), .pid = 4 };
+pub const WPDNSE_OBJECT_HAS_AUDIO_CLIP = PROPERTYKEY{ .fmtid = Guid.initString("34d71409-4b47-4d80-aaac-3a28a4a3b3e6"), .pid = 5 };
+pub const WPDNSE_OBJECT_HAS_ALBUM_ART = PROPERTYKEY{ .fmtid = Guid.initString("34d71409-4b47-4d80-aaac-3a28a4a3b3e6"), .pid = 6 };
+pub const WPDNSE_OBJECT_OPTIMAL_READ_BLOCK_SIZE = PROPERTYKEY{ .fmtid = Guid.initString("34d71409-4b47-4d80-aaac-3a28a4a3b3e6"), .pid = 7 };
 pub const WPDNSE_PROPSHEET_DEVICE_GENERAL = @as(u32, 1);
 pub const WPDNSE_PROPSHEET_STORAGE_GENERAL = @as(u32, 2);
 pub const WPDNSE_PROPSHEET_CONTENT_GENERAL = @as(u32, 4);
@@ -1279,13 +1279,13 @@ pub const IWpdSerializer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetIPortableDeviceValuesFromBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWpdSerializer,
                 pBuffer: [*:0]u8,
                 dwInputBufferLength: u32,
                 ppParams: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWpdSerializer,
                 pBuffer: [*:0]u8,
                 dwInputBufferLength: u32,
@@ -1293,14 +1293,14 @@ pub const IWpdSerializer = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         WriteIPortableDeviceValuesToBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWpdSerializer,
                 dwOutputBufferLength: u32,
                 pResults: ?*IPortableDeviceValues,
                 pBuffer: [*:0]u8,
                 pdwBytesWritten: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWpdSerializer,
                 dwOutputBufferLength: u32,
                 pResults: ?*IPortableDeviceValues,
@@ -1309,13 +1309,13 @@ pub const IWpdSerializer = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetBufferFromIPortableDeviceValues: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWpdSerializer,
                 pSource: ?*IPortableDeviceValues,
                 ppBuffer: [*]?*u8,
                 pdwBufferSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWpdSerializer,
                 pSource: ?*IPortableDeviceValues,
                 ppBuffer: [*]?*u8,
@@ -1323,12 +1323,12 @@ pub const IWpdSerializer = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSerializedSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IWpdSerializer,
                 pSource: ?*IPortableDeviceValues,
                 pdwSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IWpdSerializer,
                 pSource: ?*IPortableDeviceValues,
                 pdwSize: ?*u32,
@@ -1336,25 +1336,27 @@ pub const IWpdSerializer = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWpdSerializer_GetIPortableDeviceValuesFromBuffer(self: *const T, pBuffer: [*:0]u8, dwInputBufferLength: u32, ppParams: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWpdSerializer.VTable, self.vtable).GetIPortableDeviceValuesFromBuffer(@ptrCast(*const IWpdSerializer, self), pBuffer, dwInputBufferLength, ppParams);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWpdSerializer_WriteIPortableDeviceValuesToBuffer(self: *const T, dwOutputBufferLength: u32, pResults: ?*IPortableDeviceValues, pBuffer: [*:0]u8, pdwBytesWritten: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWpdSerializer.VTable, self.vtable).WriteIPortableDeviceValuesToBuffer(@ptrCast(*const IWpdSerializer, self), dwOutputBufferLength, pResults, pBuffer, pdwBytesWritten);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWpdSerializer_GetBufferFromIPortableDeviceValues(self: *const T, pSource: ?*IPortableDeviceValues, ppBuffer: [*]?*u8, pdwBufferSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWpdSerializer.VTable, self.vtable).GetBufferFromIPortableDeviceValues(@ptrCast(*const IWpdSerializer, self), pSource, ppBuffer, pdwBufferSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWpdSerializer_GetSerializedSize(self: *const T, pSource: ?*IPortableDeviceValues, pdwSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWpdSerializer.VTable, self.vtable).GetSerializedSize(@ptrCast(*const IWpdSerializer, self), pSource, pdwSize);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWpdSerializer_GetIPortableDeviceValuesFromBuffer(self: *const T, pBuffer: [*:0]u8, dwInputBufferLength: u32, ppParams: ?*?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IWpdSerializer.VTable, self.vtable).GetIPortableDeviceValuesFromBuffer(@ptrCast(*const IWpdSerializer, self), pBuffer, dwInputBufferLength, ppParams);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWpdSerializer_WriteIPortableDeviceValuesToBuffer(self: *const T, dwOutputBufferLength: u32, pResults: ?*IPortableDeviceValues, pBuffer: [*:0]u8, pdwBytesWritten: ?*u32) HRESULT {
+                return @ptrCast(*const IWpdSerializer.VTable, self.vtable).WriteIPortableDeviceValuesToBuffer(@ptrCast(*const IWpdSerializer, self), dwOutputBufferLength, pResults, pBuffer, pdwBytesWritten);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWpdSerializer_GetBufferFromIPortableDeviceValues(self: *const T, pSource: ?*IPortableDeviceValues, ppBuffer: [*]?*u8, pdwBufferSize: ?*u32) HRESULT {
+                return @ptrCast(*const IWpdSerializer.VTable, self.vtable).GetBufferFromIPortableDeviceValues(@ptrCast(*const IWpdSerializer, self), pSource, ppBuffer, pdwBufferSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IWpdSerializer_GetSerializedSize(self: *const T, pSource: ?*IPortableDeviceValues, pdwSize: ?*u32) HRESULT {
+                return @ptrCast(*const IWpdSerializer.VTable, self.vtable).GetSerializedSize(@ptrCast(*const IWpdSerializer, self), pSource, pdwSize);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1364,23 +1366,23 @@ pub const IPortableDeviceValues = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 pcelt: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 pcelt: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 index: u32,
                 pKey: ?*PROPERTYKEY,
                 pValue: ?*PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 index: u32,
                 pKey: ?*PROPERTYKEY,
@@ -1388,301 +1390,301 @@ pub const IPortableDeviceValues = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*const PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*const PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetStringValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 Value: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 Value: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetStringValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetUnsignedIntegerValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 Value: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 Value: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetUnsignedIntegerValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetSignedIntegerValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 Value: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 Value: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSignedIntegerValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetUnsignedLargeIntegerValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 Value: u64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 Value: u64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetUnsignedLargeIntegerValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*u64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*u64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetSignedLargeIntegerValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 Value: i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 Value: i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSignedLargeIntegerValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*i64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetFloatValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 Value: f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 Value: f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFloatValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetErrorValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 Value: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 Value: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetErrorValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetKeyValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 Value: ?*const PROPERTYKEY,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 Value: ?*const PROPERTYKEY,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetKeyValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*PROPERTYKEY,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*PROPERTYKEY,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetBoolValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 Value: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 Value: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetBoolValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetIUnknownValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetIUnknownValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 ppValue: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 ppValue: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetGuidValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 Value: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 Value: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetGuidValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetBufferValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: [*:0]u8,
                 cbValue: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: [*:0]u8,
@@ -1690,13 +1692,13 @@ pub const IPortableDeviceValues = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetBufferValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 ppValue: [*]?*u8,
                 pcbValue: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 ppValue: [*]?*u8,
@@ -1704,304 +1706,306 @@ pub const IPortableDeviceValues = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetIPortableDeviceValuesValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetIPortableDeviceValuesValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 ppValue: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 ppValue: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetIPortableDevicePropVariantCollectionValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetIPortableDevicePropVariantCollectionValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 ppValue: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 ppValue: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetIPortableDeviceKeyCollectionValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*IPortableDeviceKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*IPortableDeviceKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetIPortableDeviceKeyCollectionValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 ppValue: ?*?*IPortableDeviceKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 ppValue: ?*?*IPortableDeviceKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetIPortableDeviceValuesCollectionValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*IPortableDeviceValuesCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 pValue: ?*IPortableDeviceValuesCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetIPortableDeviceValuesCollectionValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 ppValue: ?*?*IPortableDeviceValuesCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
                 ppValue: ?*?*IPortableDeviceValuesCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RemoveValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 key: ?*const PROPERTYKEY,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CopyValuesFromPropertyStore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 pStore: ?*IPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 pStore: ?*IPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CopyValuesToPropertyStore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
                 pStore: ?*IPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
                 pStore: ?*IPropertyStore,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clear: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetCount(self: *const T, pcelt: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetCount(@ptrCast(*const IPortableDeviceValues, self), pcelt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetAt(self: *const T, index: u32, pKey: ?*PROPERTYKEY, pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetAt(@ptrCast(*const IPortableDeviceValues, self), index, pKey, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetStringValue(self: *const T, key: ?*const PROPERTYKEY, Value: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetStringValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetStringValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetStringValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetUnsignedIntegerValue(self: *const T, key: ?*const PROPERTYKEY, Value: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetUnsignedIntegerValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetUnsignedIntegerValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetUnsignedIntegerValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetSignedIntegerValue(self: *const T, key: ?*const PROPERTYKEY, Value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetSignedIntegerValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetSignedIntegerValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetSignedIntegerValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetUnsignedLargeIntegerValue(self: *const T, key: ?*const PROPERTYKEY, Value: u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetUnsignedLargeIntegerValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetUnsignedLargeIntegerValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetUnsignedLargeIntegerValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetSignedLargeIntegerValue(self: *const T, key: ?*const PROPERTYKEY, Value: i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetSignedLargeIntegerValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetSignedLargeIntegerValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetSignedLargeIntegerValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetFloatValue(self: *const T, key: ?*const PROPERTYKEY, Value: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetFloatValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetFloatValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetFloatValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetErrorValue(self: *const T, key: ?*const PROPERTYKEY, Value: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetErrorValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetErrorValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetErrorValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetKeyValue(self: *const T, key: ?*const PROPERTYKEY, Value: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetKeyValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetKeyValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*PROPERTYKEY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetKeyValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetBoolValue(self: *const T, key: ?*const PROPERTYKEY, Value: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetBoolValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetBoolValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetBoolValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetIUnknownValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetIUnknownValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetIUnknownValue(self: *const T, key: ?*const PROPERTYKEY, ppValue: ?*?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetIUnknownValue(@ptrCast(*const IPortableDeviceValues, self), key, ppValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetGuidValue(self: *const T, key: ?*const PROPERTYKEY, Value: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetGuidValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetGuidValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetGuidValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetBufferValue(self: *const T, key: ?*const PROPERTYKEY, pValue: [*:0]u8, cbValue: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetBufferValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue, cbValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetBufferValue(self: *const T, key: ?*const PROPERTYKEY, ppValue: [*]?*u8, pcbValue: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetBufferValue(@ptrCast(*const IPortableDeviceValues, self), key, ppValue, pcbValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetIPortableDeviceValuesValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetIPortableDeviceValuesValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetIPortableDeviceValuesValue(self: *const T, key: ?*const PROPERTYKEY, ppValue: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetIPortableDeviceValuesValue(@ptrCast(*const IPortableDeviceValues, self), key, ppValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetIPortableDevicePropVariantCollectionValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetIPortableDevicePropVariantCollectionValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetIPortableDevicePropVariantCollectionValue(self: *const T, key: ?*const PROPERTYKEY, ppValue: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetIPortableDevicePropVariantCollectionValue(@ptrCast(*const IPortableDeviceValues, self), key, ppValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetIPortableDeviceKeyCollectionValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetIPortableDeviceKeyCollectionValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetIPortableDeviceKeyCollectionValue(self: *const T, key: ?*const PROPERTYKEY, ppValue: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetIPortableDeviceKeyCollectionValue(@ptrCast(*const IPortableDeviceValues, self), key, ppValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_SetIPortableDeviceValuesCollectionValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*IPortableDeviceValuesCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetIPortableDeviceValuesCollectionValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_GetIPortableDeviceValuesCollectionValue(self: *const T, key: ?*const PROPERTYKEY, ppValue: ?*?*IPortableDeviceValuesCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetIPortableDeviceValuesCollectionValue(@ptrCast(*const IPortableDeviceValues, self), key, ppValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_RemoveValue(self: *const T, key: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).RemoveValue(@ptrCast(*const IPortableDeviceValues, self), key);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_CopyValuesFromPropertyStore(self: *const T, pStore: ?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).CopyValuesFromPropertyStore(@ptrCast(*const IPortableDeviceValues, self), pStore);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_CopyValuesToPropertyStore(self: *const T, pStore: ?*IPropertyStore) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).CopyValuesToPropertyStore(@ptrCast(*const IPortableDeviceValues, self), pStore);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValues_Clear(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).Clear(@ptrCast(*const IPortableDeviceValues, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_GetCount(self: *const T, pcelt: ?*u32) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetCount(@ptrCast(*const IPortableDeviceValues, self), pcelt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_GetAt(self: *const T, index: u32, pKey: ?*PROPERTYKEY, pValue: ?*PROPVARIANT) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetAt(@ptrCast(*const IPortableDeviceValues, self), index, pKey, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_SetValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*const PROPVARIANT) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_GetValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*PROPVARIANT) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_SetStringValue(self: *const T, key: ?*const PROPERTYKEY, Value: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetStringValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_GetStringValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetStringValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_SetUnsignedIntegerValue(self: *const T, key: ?*const PROPERTYKEY, Value: u32) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetUnsignedIntegerValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_GetUnsignedIntegerValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*u32) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetUnsignedIntegerValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_SetSignedIntegerValue(self: *const T, key: ?*const PROPERTYKEY, Value: i32) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetSignedIntegerValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_GetSignedIntegerValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*i32) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetSignedIntegerValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_SetUnsignedLargeIntegerValue(self: *const T, key: ?*const PROPERTYKEY, Value: u64) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetUnsignedLargeIntegerValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_GetUnsignedLargeIntegerValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*u64) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetUnsignedLargeIntegerValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_SetSignedLargeIntegerValue(self: *const T, key: ?*const PROPERTYKEY, Value: i64) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetSignedLargeIntegerValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_GetSignedLargeIntegerValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*i64) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetSignedLargeIntegerValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_SetFloatValue(self: *const T, key: ?*const PROPERTYKEY, Value: f32) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetFloatValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_GetFloatValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*f32) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetFloatValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_SetErrorValue(self: *const T, key: ?*const PROPERTYKEY, Value: HRESULT) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetErrorValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_GetErrorValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*HRESULT) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetErrorValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_SetKeyValue(self: *const T, key: ?*const PROPERTYKEY, Value: ?*const PROPERTYKEY) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetKeyValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_GetKeyValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*PROPERTYKEY) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetKeyValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_SetBoolValue(self: *const T, key: ?*const PROPERTYKEY, Value: BOOL) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetBoolValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_GetBoolValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*BOOL) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetBoolValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_SetIUnknownValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*IUnknown) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetIUnknownValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_GetIUnknownValue(self: *const T, key: ?*const PROPERTYKEY, ppValue: ?*?*IUnknown) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetIUnknownValue(@ptrCast(*const IPortableDeviceValues, self), key, ppValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_SetGuidValue(self: *const T, key: ?*const PROPERTYKEY, Value: ?*const Guid) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetGuidValue(@ptrCast(*const IPortableDeviceValues, self), key, Value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_GetGuidValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*Guid) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetGuidValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_SetBufferValue(self: *const T, key: ?*const PROPERTYKEY, pValue: [*:0]u8, cbValue: u32) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetBufferValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue, cbValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_GetBufferValue(self: *const T, key: ?*const PROPERTYKEY, ppValue: [*]?*u8, pcbValue: ?*u32) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetBufferValue(@ptrCast(*const IPortableDeviceValues, self), key, ppValue, pcbValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_SetIPortableDeviceValuesValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetIPortableDeviceValuesValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_GetIPortableDeviceValuesValue(self: *const T, key: ?*const PROPERTYKEY, ppValue: ?*?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetIPortableDeviceValuesValue(@ptrCast(*const IPortableDeviceValues, self), key, ppValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_SetIPortableDevicePropVariantCollectionValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*IPortableDevicePropVariantCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetIPortableDevicePropVariantCollectionValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_GetIPortableDevicePropVariantCollectionValue(self: *const T, key: ?*const PROPERTYKEY, ppValue: ?*?*IPortableDevicePropVariantCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetIPortableDevicePropVariantCollectionValue(@ptrCast(*const IPortableDeviceValues, self), key, ppValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_SetIPortableDeviceKeyCollectionValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*IPortableDeviceKeyCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetIPortableDeviceKeyCollectionValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_GetIPortableDeviceKeyCollectionValue(self: *const T, key: ?*const PROPERTYKEY, ppValue: ?*?*IPortableDeviceKeyCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetIPortableDeviceKeyCollectionValue(@ptrCast(*const IPortableDeviceValues, self), key, ppValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_SetIPortableDeviceValuesCollectionValue(self: *const T, key: ?*const PROPERTYKEY, pValue: ?*IPortableDeviceValuesCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).SetIPortableDeviceValuesCollectionValue(@ptrCast(*const IPortableDeviceValues, self), key, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_GetIPortableDeviceValuesCollectionValue(self: *const T, key: ?*const PROPERTYKEY, ppValue: ?*?*IPortableDeviceValuesCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).GetIPortableDeviceValuesCollectionValue(@ptrCast(*const IPortableDeviceValues, self), key, ppValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_RemoveValue(self: *const T, key: ?*const PROPERTYKEY) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).RemoveValue(@ptrCast(*const IPortableDeviceValues, self), key);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_CopyValuesFromPropertyStore(self: *const T, pStore: ?*IPropertyStore) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).CopyValuesFromPropertyStore(@ptrCast(*const IPortableDeviceValues, self), pStore);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_CopyValuesToPropertyStore(self: *const T, pStore: ?*IPropertyStore) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).CopyValuesToPropertyStore(@ptrCast(*const IPortableDeviceValues, self), pStore);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValues_Clear(self: *const T) HRESULT {
+                return @ptrCast(*const IPortableDeviceValues.VTable, self.vtable).Clear(@ptrCast(*const IPortableDeviceValues, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2011,80 +2015,82 @@ pub const IPortableDeviceKeyCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceKeyCollection,
                 pcElems: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceKeyCollection,
                 pcElems: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceKeyCollection,
                 dwIndex: u32,
                 pKey: ?*PROPERTYKEY,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceKeyCollection,
                 dwIndex: u32,
                 pKey: ?*PROPERTYKEY,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Add: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceKeyCollection,
                 Key: ?*const PROPERTYKEY,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceKeyCollection,
                 Key: ?*const PROPERTYKEY,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clear: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RemoveAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceKeyCollection,
                 dwIndex: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceKeyCollection,
                 dwIndex: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceKeyCollection_GetCount(self: *const T, pcElems: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceKeyCollection.VTable, self.vtable).GetCount(@ptrCast(*const IPortableDeviceKeyCollection, self), pcElems);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceKeyCollection_GetAt(self: *const T, dwIndex: u32, pKey: ?*PROPERTYKEY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceKeyCollection.VTable, self.vtable).GetAt(@ptrCast(*const IPortableDeviceKeyCollection, self), dwIndex, pKey);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceKeyCollection_Add(self: *const T, Key: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceKeyCollection.VTable, self.vtable).Add(@ptrCast(*const IPortableDeviceKeyCollection, self), Key);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceKeyCollection_Clear(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceKeyCollection.VTable, self.vtable).Clear(@ptrCast(*const IPortableDeviceKeyCollection, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceKeyCollection_RemoveAt(self: *const T, dwIndex: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceKeyCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const IPortableDeviceKeyCollection, self), dwIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceKeyCollection_GetCount(self: *const T, pcElems: ?*u32) HRESULT {
+                return @ptrCast(*const IPortableDeviceKeyCollection.VTable, self.vtable).GetCount(@ptrCast(*const IPortableDeviceKeyCollection, self), pcElems);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceKeyCollection_GetAt(self: *const T, dwIndex: u32, pKey: ?*PROPERTYKEY) HRESULT {
+                return @ptrCast(*const IPortableDeviceKeyCollection.VTable, self.vtable).GetAt(@ptrCast(*const IPortableDeviceKeyCollection, self), dwIndex, pKey);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceKeyCollection_Add(self: *const T, Key: ?*const PROPERTYKEY) HRESULT {
+                return @ptrCast(*const IPortableDeviceKeyCollection.VTable, self.vtable).Add(@ptrCast(*const IPortableDeviceKeyCollection, self), Key);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceKeyCollection_Clear(self: *const T) HRESULT {
+                return @ptrCast(*const IPortableDeviceKeyCollection.VTable, self.vtable).Clear(@ptrCast(*const IPortableDeviceKeyCollection, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceKeyCollection_RemoveAt(self: *const T, dwIndex: u32) HRESULT {
+                return @ptrCast(*const IPortableDeviceKeyCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const IPortableDeviceKeyCollection, self), dwIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2094,108 +2100,110 @@ pub const IPortableDevicePropVariantCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDevicePropVariantCollection,
                 pcElems: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDevicePropVariantCollection,
                 pcElems: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDevicePropVariantCollection,
                 dwIndex: u32,
                 pValue: ?*PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDevicePropVariantCollection,
                 dwIndex: u32,
                 pValue: ?*PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Add: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDevicePropVariantCollection,
                 pValue: ?*const PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDevicePropVariantCollection,
                 pValue: ?*const PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDevicePropVariantCollection,
                 pvt: ?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDevicePropVariantCollection,
                 pvt: ?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ChangeType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDevicePropVariantCollection,
                 vt: u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDevicePropVariantCollection,
                 vt: u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clear: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RemoveAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDevicePropVariantCollection,
                 dwIndex: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDevicePropVariantCollection,
                 dwIndex: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropVariantCollection_GetCount(self: *const T, pcElems: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDevicePropVariantCollection.VTable, self.vtable).GetCount(@ptrCast(*const IPortableDevicePropVariantCollection, self), pcElems);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropVariantCollection_GetAt(self: *const T, dwIndex: u32, pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDevicePropVariantCollection.VTable, self.vtable).GetAt(@ptrCast(*const IPortableDevicePropVariantCollection, self), dwIndex, pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropVariantCollection_Add(self: *const T, pValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDevicePropVariantCollection.VTable, self.vtable).Add(@ptrCast(*const IPortableDevicePropVariantCollection, self), pValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropVariantCollection_GetType(self: *const T, pvt: ?*u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDevicePropVariantCollection.VTable, self.vtable).GetType(@ptrCast(*const IPortableDevicePropVariantCollection, self), pvt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropVariantCollection_ChangeType(self: *const T, vt: u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDevicePropVariantCollection.VTable, self.vtable).ChangeType(@ptrCast(*const IPortableDevicePropVariantCollection, self), vt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropVariantCollection_Clear(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDevicePropVariantCollection.VTable, self.vtable).Clear(@ptrCast(*const IPortableDevicePropVariantCollection, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropVariantCollection_RemoveAt(self: *const T, dwIndex: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDevicePropVariantCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const IPortableDevicePropVariantCollection, self), dwIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDevicePropVariantCollection_GetCount(self: *const T, pcElems: ?*u32) HRESULT {
+                return @ptrCast(*const IPortableDevicePropVariantCollection.VTable, self.vtable).GetCount(@ptrCast(*const IPortableDevicePropVariantCollection, self), pcElems);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDevicePropVariantCollection_GetAt(self: *const T, dwIndex: u32, pValue: ?*PROPVARIANT) HRESULT {
+                return @ptrCast(*const IPortableDevicePropVariantCollection.VTable, self.vtable).GetAt(@ptrCast(*const IPortableDevicePropVariantCollection, self), dwIndex, pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDevicePropVariantCollection_Add(self: *const T, pValue: ?*const PROPVARIANT) HRESULT {
+                return @ptrCast(*const IPortableDevicePropVariantCollection.VTable, self.vtable).Add(@ptrCast(*const IPortableDevicePropVariantCollection, self), pValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDevicePropVariantCollection_GetType(self: *const T, pvt: ?*u16) HRESULT {
+                return @ptrCast(*const IPortableDevicePropVariantCollection.VTable, self.vtable).GetType(@ptrCast(*const IPortableDevicePropVariantCollection, self), pvt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDevicePropVariantCollection_ChangeType(self: *const T, vt: u16) HRESULT {
+                return @ptrCast(*const IPortableDevicePropVariantCollection.VTable, self.vtable).ChangeType(@ptrCast(*const IPortableDevicePropVariantCollection, self), vt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDevicePropVariantCollection_Clear(self: *const T) HRESULT {
+                return @ptrCast(*const IPortableDevicePropVariantCollection.VTable, self.vtable).Clear(@ptrCast(*const IPortableDevicePropVariantCollection, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDevicePropVariantCollection_RemoveAt(self: *const T, dwIndex: u32) HRESULT {
+                return @ptrCast(*const IPortableDevicePropVariantCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const IPortableDevicePropVariantCollection, self), dwIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2205,80 +2213,82 @@ pub const IPortableDeviceValuesCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValuesCollection,
                 pcElems: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValuesCollection,
                 pcElems: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValuesCollection,
                 dwIndex: u32,
                 ppValues: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValuesCollection,
                 dwIndex: u32,
                 ppValues: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Add: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValuesCollection,
                 pValues: ?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValuesCollection,
                 pValues: ?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clear: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValuesCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValuesCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RemoveAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceValuesCollection,
                 dwIndex: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceValuesCollection,
                 dwIndex: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValuesCollection_GetCount(self: *const T, pcElems: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValuesCollection.VTable, self.vtable).GetCount(@ptrCast(*const IPortableDeviceValuesCollection, self), pcElems);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValuesCollection_GetAt(self: *const T, dwIndex: u32, ppValues: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValuesCollection.VTable, self.vtable).GetAt(@ptrCast(*const IPortableDeviceValuesCollection, self), dwIndex, ppValues);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValuesCollection_Add(self: *const T, pValues: ?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValuesCollection.VTable, self.vtable).Add(@ptrCast(*const IPortableDeviceValuesCollection, self), pValues);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValuesCollection_Clear(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValuesCollection.VTable, self.vtable).Clear(@ptrCast(*const IPortableDeviceValuesCollection, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceValuesCollection_RemoveAt(self: *const T, dwIndex: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceValuesCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const IPortableDeviceValuesCollection, self), dwIndex);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValuesCollection_GetCount(self: *const T, pcElems: ?*u32) HRESULT {
+                return @ptrCast(*const IPortableDeviceValuesCollection.VTable, self.vtable).GetCount(@ptrCast(*const IPortableDeviceValuesCollection, self), pcElems);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValuesCollection_GetAt(self: *const T, dwIndex: u32, ppValues: ?*?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDeviceValuesCollection.VTable, self.vtable).GetAt(@ptrCast(*const IPortableDeviceValuesCollection, self), dwIndex, ppValues);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValuesCollection_Add(self: *const T, pValues: ?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDeviceValuesCollection.VTable, self.vtable).Add(@ptrCast(*const IPortableDeviceValuesCollection, self), pValues);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValuesCollection_Clear(self: *const T) HRESULT {
+                return @ptrCast(*const IPortableDeviceValuesCollection.VTable, self.vtable).Clear(@ptrCast(*const IPortableDeviceValuesCollection, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceValuesCollection_RemoveAt(self: *const T, dwIndex: u32) HRESULT {
+                return @ptrCast(*const IPortableDeviceValuesCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const IPortableDeviceValuesCollection, self), dwIndex);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2309,33 +2319,33 @@ pub const IPortableDeviceManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDevices: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceManager,
                 pPnPDeviceIDs: ?*?PWSTR,
                 pcPnPDeviceIDs: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceManager,
                 pPnPDeviceIDs: ?*?PWSTR,
                 pcPnPDeviceIDs: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RefreshDeviceList: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceManager,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceManager,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDeviceFriendlyName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceManager,
                 pszPnPDeviceID: ?[*:0]const u16,
                 pDeviceFriendlyName: ?PWSTR,
                 pcchDeviceFriendlyName: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceManager,
                 pszPnPDeviceID: ?[*:0]const u16,
                 pDeviceFriendlyName: ?PWSTR,
@@ -2343,13 +2353,13 @@ pub const IPortableDeviceManager = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDeviceDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceManager,
                 pszPnPDeviceID: ?[*:0]const u16,
                 pDeviceDescription: ?PWSTR,
                 pcchDeviceDescription: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceManager,
                 pszPnPDeviceID: ?[*:0]const u16,
                 pDeviceDescription: ?PWSTR,
@@ -2357,13 +2367,13 @@ pub const IPortableDeviceManager = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDeviceManufacturer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceManager,
                 pszPnPDeviceID: ?[*:0]const u16,
                 pDeviceManufacturer: ?PWSTR,
                 pcchDeviceManufacturer: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceManager,
                 pszPnPDeviceID: ?[*:0]const u16,
                 pDeviceManufacturer: ?PWSTR,
@@ -2371,7 +2381,7 @@ pub const IPortableDeviceManager = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDeviceProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceManager,
                 pszPnPDeviceID: ?[*:0]const u16,
                 pszDevicePropertyName: ?[*:0]const u16,
@@ -2379,7 +2389,7 @@ pub const IPortableDeviceManager = extern struct {
                 pcbData: ?*u32,
                 pdwType: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceManager,
                 pszPnPDeviceID: ?[*:0]const u16,
                 pszDevicePropertyName: ?[*:0]const u16,
@@ -2389,12 +2399,12 @@ pub const IPortableDeviceManager = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPrivateDevices: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceManager,
                 pPnPDeviceIDs: ?*?PWSTR,
                 pcPnPDeviceIDs: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceManager,
                 pPnPDeviceIDs: ?*?PWSTR,
                 pcPnPDeviceIDs: ?*u32,
@@ -2402,37 +2412,39 @@ pub const IPortableDeviceManager = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceManager_GetDevices(self: *const T, pPnPDeviceIDs: ?*?PWSTR, pcPnPDeviceIDs: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceManager.VTable, self.vtable).GetDevices(@ptrCast(*const IPortableDeviceManager, self), pPnPDeviceIDs, pcPnPDeviceIDs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceManager_RefreshDeviceList(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceManager.VTable, self.vtable).RefreshDeviceList(@ptrCast(*const IPortableDeviceManager, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceManager_GetDeviceFriendlyName(self: *const T, pszPnPDeviceID: ?[*:0]const u16, pDeviceFriendlyName: ?PWSTR, pcchDeviceFriendlyName: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceManager.VTable, self.vtable).GetDeviceFriendlyName(@ptrCast(*const IPortableDeviceManager, self), pszPnPDeviceID, pDeviceFriendlyName, pcchDeviceFriendlyName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceManager_GetDeviceDescription(self: *const T, pszPnPDeviceID: ?[*:0]const u16, pDeviceDescription: ?PWSTR, pcchDeviceDescription: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceManager.VTable, self.vtable).GetDeviceDescription(@ptrCast(*const IPortableDeviceManager, self), pszPnPDeviceID, pDeviceDescription, pcchDeviceDescription);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceManager_GetDeviceManufacturer(self: *const T, pszPnPDeviceID: ?[*:0]const u16, pDeviceManufacturer: ?PWSTR, pcchDeviceManufacturer: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceManager.VTable, self.vtable).GetDeviceManufacturer(@ptrCast(*const IPortableDeviceManager, self), pszPnPDeviceID, pDeviceManufacturer, pcchDeviceManufacturer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceManager_GetDeviceProperty(self: *const T, pszPnPDeviceID: ?[*:0]const u16, pszDevicePropertyName: ?[*:0]const u16, pData: ?*u8, pcbData: ?*u32, pdwType: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceManager.VTable, self.vtable).GetDeviceProperty(@ptrCast(*const IPortableDeviceManager, self), pszPnPDeviceID, pszDevicePropertyName, pData, pcbData, pdwType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceManager_GetPrivateDevices(self: *const T, pPnPDeviceIDs: ?*?PWSTR, pcPnPDeviceIDs: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceManager.VTable, self.vtable).GetPrivateDevices(@ptrCast(*const IPortableDeviceManager, self), pPnPDeviceIDs, pcPnPDeviceIDs);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceManager_GetDevices(self: *const T, pPnPDeviceIDs: ?*?PWSTR, pcPnPDeviceIDs: ?*u32) HRESULT {
+                return @ptrCast(*const IPortableDeviceManager.VTable, self.vtable).GetDevices(@ptrCast(*const IPortableDeviceManager, self), pPnPDeviceIDs, pcPnPDeviceIDs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceManager_RefreshDeviceList(self: *const T) HRESULT {
+                return @ptrCast(*const IPortableDeviceManager.VTable, self.vtable).RefreshDeviceList(@ptrCast(*const IPortableDeviceManager, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceManager_GetDeviceFriendlyName(self: *const T, pszPnPDeviceID: ?[*:0]const u16, pDeviceFriendlyName: ?PWSTR, pcchDeviceFriendlyName: ?*u32) HRESULT {
+                return @ptrCast(*const IPortableDeviceManager.VTable, self.vtable).GetDeviceFriendlyName(@ptrCast(*const IPortableDeviceManager, self), pszPnPDeviceID, pDeviceFriendlyName, pcchDeviceFriendlyName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceManager_GetDeviceDescription(self: *const T, pszPnPDeviceID: ?[*:0]const u16, pDeviceDescription: ?PWSTR, pcchDeviceDescription: ?*u32) HRESULT {
+                return @ptrCast(*const IPortableDeviceManager.VTable, self.vtable).GetDeviceDescription(@ptrCast(*const IPortableDeviceManager, self), pszPnPDeviceID, pDeviceDescription, pcchDeviceDescription);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceManager_GetDeviceManufacturer(self: *const T, pszPnPDeviceID: ?[*:0]const u16, pDeviceManufacturer: ?PWSTR, pcchDeviceManufacturer: ?*u32) HRESULT {
+                return @ptrCast(*const IPortableDeviceManager.VTable, self.vtable).GetDeviceManufacturer(@ptrCast(*const IPortableDeviceManager, self), pszPnPDeviceID, pDeviceManufacturer, pcchDeviceManufacturer);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceManager_GetDeviceProperty(self: *const T, pszPnPDeviceID: ?[*:0]const u16, pszDevicePropertyName: ?[*:0]const u16, pData: ?*u8, pcbData: ?*u32, pdwType: ?*u32) HRESULT {
+                return @ptrCast(*const IPortableDeviceManager.VTable, self.vtable).GetDeviceProperty(@ptrCast(*const IPortableDeviceManager, self), pszPnPDeviceID, pszDevicePropertyName, pData, pcbData, pdwType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceManager_GetPrivateDevices(self: *const T, pPnPDeviceIDs: ?*?PWSTR, pcPnPDeviceIDs: ?*u32) HRESULT {
+                return @ptrCast(*const IPortableDeviceManager.VTable, self.vtable).GetPrivateDevices(@ptrCast(*const IPortableDeviceManager, self), pPnPDeviceIDs, pcPnPDeviceIDs);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2442,25 +2454,25 @@ pub const IPortableDevice = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Open: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDevice,
                 pszPnPDeviceID: ?[*:0]const u16,
                 pClientInfo: ?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDevice,
                 pszPnPDeviceID: ?[*:0]const u16,
                 pClientInfo: ?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SendCommand: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDevice,
                 dwFlags: u32,
                 pParameters: ?*IPortableDeviceValues,
                 ppResults: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDevice,
                 dwFlags: u32,
                 pParameters: ?*IPortableDeviceValues,
@@ -2468,50 +2480,50 @@ pub const IPortableDevice = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Content: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDevice,
                 ppContent: ?*?*IPortableDeviceContent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDevice,
                 ppContent: ?*?*IPortableDeviceContent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Capabilities: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDevice,
                 ppCapabilities: ?*?*IPortableDeviceCapabilities,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDevice,
                 ppCapabilities: ?*?*IPortableDeviceCapabilities,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDevice,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDevice,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Close: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDevice,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDevice,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Advise: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDevice,
                 dwFlags: u32,
                 pCallback: ?*IPortableDeviceEventCallback,
                 pParameters: ?*IPortableDeviceValues,
                 ppszCookie: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDevice,
                 dwFlags: u32,
                 pCallback: ?*IPortableDeviceEventCallback,
@@ -2520,66 +2532,68 @@ pub const IPortableDevice = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Unadvise: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDevice,
                 pszCookie: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDevice,
                 pszCookie: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPnPDeviceID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDevice,
                 ppszPnPDeviceID: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDevice,
                 ppszPnPDeviceID: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevice_Open(self: *const T, pszPnPDeviceID: ?[*:0]const u16, pClientInfo: ?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDevice.VTable, self.vtable).Open(@ptrCast(*const IPortableDevice, self), pszPnPDeviceID, pClientInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevice_SendCommand(self: *const T, dwFlags: u32, pParameters: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDevice.VTable, self.vtable).SendCommand(@ptrCast(*const IPortableDevice, self), dwFlags, pParameters, ppResults);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevice_Content(self: *const T, ppContent: ?*?*IPortableDeviceContent) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDevice.VTable, self.vtable).Content(@ptrCast(*const IPortableDevice, self), ppContent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevice_Capabilities(self: *const T, ppCapabilities: ?*?*IPortableDeviceCapabilities) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDevice.VTable, self.vtable).Capabilities(@ptrCast(*const IPortableDevice, self), ppCapabilities);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevice_Cancel(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDevice.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDevice, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevice_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDevice.VTable, self.vtable).Close(@ptrCast(*const IPortableDevice, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevice_Advise(self: *const T, dwFlags: u32, pCallback: ?*IPortableDeviceEventCallback, pParameters: ?*IPortableDeviceValues, ppszCookie: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDevice.VTable, self.vtable).Advise(@ptrCast(*const IPortableDevice, self), dwFlags, pCallback, pParameters, ppszCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevice_Unadvise(self: *const T, pszCookie: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDevice.VTable, self.vtable).Unadvise(@ptrCast(*const IPortableDevice, self), pszCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevice_GetPnPDeviceID(self: *const T, ppszPnPDeviceID: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDevice.VTable, self.vtable).GetPnPDeviceID(@ptrCast(*const IPortableDevice, self), ppszPnPDeviceID);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDevice_Open(self: *const T, pszPnPDeviceID: ?[*:0]const u16, pClientInfo: ?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDevice.VTable, self.vtable).Open(@ptrCast(*const IPortableDevice, self), pszPnPDeviceID, pClientInfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDevice_SendCommand(self: *const T, dwFlags: u32, pParameters: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDevice.VTable, self.vtable).SendCommand(@ptrCast(*const IPortableDevice, self), dwFlags, pParameters, ppResults);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDevice_Content(self: *const T, ppContent: ?*?*IPortableDeviceContent) HRESULT {
+                return @ptrCast(*const IPortableDevice.VTable, self.vtable).Content(@ptrCast(*const IPortableDevice, self), ppContent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDevice_Capabilities(self: *const T, ppCapabilities: ?*?*IPortableDeviceCapabilities) HRESULT {
+                return @ptrCast(*const IPortableDevice.VTable, self.vtable).Capabilities(@ptrCast(*const IPortableDevice, self), ppCapabilities);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDevice_Cancel(self: *const T) HRESULT {
+                return @ptrCast(*const IPortableDevice.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDevice, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDevice_Close(self: *const T) HRESULT {
+                return @ptrCast(*const IPortableDevice.VTable, self.vtable).Close(@ptrCast(*const IPortableDevice, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDevice_Advise(self: *const T, dwFlags: u32, pCallback: ?*IPortableDeviceEventCallback, pParameters: ?*IPortableDeviceValues, ppszCookie: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IPortableDevice.VTable, self.vtable).Advise(@ptrCast(*const IPortableDevice, self), dwFlags, pCallback, pParameters, ppszCookie);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDevice_Unadvise(self: *const T, pszCookie: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPortableDevice.VTable, self.vtable).Unadvise(@ptrCast(*const IPortableDevice, self), pszCookie);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDevice_GetPnPDeviceID(self: *const T, ppszPnPDeviceID: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IPortableDevice.VTable, self.vtable).GetPnPDeviceID(@ptrCast(*const IPortableDevice, self), ppszPnPDeviceID);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2589,14 +2603,14 @@ pub const IPortableDeviceContent = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         EnumObjects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceContent,
                 dwFlags: u32,
                 pszParentObjectID: ?[*:0]const u16,
                 pFilter: ?*IPortableDeviceValues,
                 ppEnum: ?*?*IEnumPortableDeviceObjectIDs,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceContent,
                 dwFlags: u32,
                 pszParentObjectID: ?[*:0]const u16,
@@ -2605,46 +2619,46 @@ pub const IPortableDeviceContent = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Properties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceContent,
                 ppProperties: ?*?*IPortableDeviceProperties,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceContent,
                 ppProperties: ?*?*IPortableDeviceProperties,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Transfer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceContent,
                 ppResources: ?*?*IPortableDeviceResources,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceContent,
                 ppResources: ?*?*IPortableDeviceResources,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateObjectWithPropertiesOnly: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceContent,
                 pValues: ?*IPortableDeviceValues,
                 ppszObjectID: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceContent,
                 pValues: ?*IPortableDeviceValues,
                 ppszObjectID: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateObjectWithPropertiesAndData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceContent,
                 pValues: ?*IPortableDeviceValues,
                 ppData: ?*?*IStream,
                 pdwOptimalWriteBufferSize: ?*u32,
                 ppszCookie: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceContent,
                 pValues: ?*IPortableDeviceValues,
                 ppData: ?*?*IStream,
@@ -2653,13 +2667,13 @@ pub const IPortableDeviceContent = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceContent,
                 dwOptions: u32,
                 pObjectIDs: ?*IPortableDevicePropVariantCollection,
                 ppResults: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceContent,
                 dwOptions: u32,
                 pObjectIDs: ?*IPortableDevicePropVariantCollection,
@@ -2667,33 +2681,33 @@ pub const IPortableDeviceContent = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetObjectIDsFromPersistentUniqueIDs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceContent,
                 pPersistentUniqueIDs: ?*IPortableDevicePropVariantCollection,
                 ppObjectIDs: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceContent,
                 pPersistentUniqueIDs: ?*IPortableDevicePropVariantCollection,
                 ppObjectIDs: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceContent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceContent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Move: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceContent,
                 pObjectIDs: ?*IPortableDevicePropVariantCollection,
                 pszDestinationFolderObjectID: ?[*:0]const u16,
                 ppResults: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceContent,
                 pObjectIDs: ?*IPortableDevicePropVariantCollection,
                 pszDestinationFolderObjectID: ?[*:0]const u16,
@@ -2701,13 +2715,13 @@ pub const IPortableDeviceContent = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Copy: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceContent,
                 pObjectIDs: ?*IPortableDevicePropVariantCollection,
                 pszDestinationFolderObjectID: ?[*:0]const u16,
                 ppResults: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceContent,
                 pObjectIDs: ?*IPortableDevicePropVariantCollection,
                 pszDestinationFolderObjectID: ?[*:0]const u16,
@@ -2716,49 +2730,51 @@ pub const IPortableDeviceContent = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceContent_EnumObjects(self: *const T, dwFlags: u32, pszParentObjectID: ?[*:0]const u16, pFilter: ?*IPortableDeviceValues, ppEnum: ?*?*IEnumPortableDeviceObjectIDs) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).EnumObjects(@ptrCast(*const IPortableDeviceContent, self), dwFlags, pszParentObjectID, pFilter, ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceContent_Properties(self: *const T, ppProperties: ?*?*IPortableDeviceProperties) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).Properties(@ptrCast(*const IPortableDeviceContent, self), ppProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceContent_Transfer(self: *const T, ppResources: ?*?*IPortableDeviceResources) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).Transfer(@ptrCast(*const IPortableDeviceContent, self), ppResources);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceContent_CreateObjectWithPropertiesOnly(self: *const T, pValues: ?*IPortableDeviceValues, ppszObjectID: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).CreateObjectWithPropertiesOnly(@ptrCast(*const IPortableDeviceContent, self), pValues, ppszObjectID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceContent_CreateObjectWithPropertiesAndData(self: *const T, pValues: ?*IPortableDeviceValues, ppData: ?*?*IStream, pdwOptimalWriteBufferSize: ?*u32, ppszCookie: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).CreateObjectWithPropertiesAndData(@ptrCast(*const IPortableDeviceContent, self), pValues, ppData, pdwOptimalWriteBufferSize, ppszCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceContent_Delete(self: *const T, dwOptions: u32, pObjectIDs: ?*IPortableDevicePropVariantCollection, ppResults: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).Delete(@ptrCast(*const IPortableDeviceContent, self), dwOptions, pObjectIDs, ppResults);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceContent_GetObjectIDsFromPersistentUniqueIDs(self: *const T, pPersistentUniqueIDs: ?*IPortableDevicePropVariantCollection, ppObjectIDs: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).GetObjectIDsFromPersistentUniqueIDs(@ptrCast(*const IPortableDeviceContent, self), pPersistentUniqueIDs, ppObjectIDs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceContent_Cancel(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceContent, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceContent_Move(self: *const T, pObjectIDs: ?*IPortableDevicePropVariantCollection, pszDestinationFolderObjectID: ?[*:0]const u16, ppResults: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).Move(@ptrCast(*const IPortableDeviceContent, self), pObjectIDs, pszDestinationFolderObjectID, ppResults);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceContent_Copy(self: *const T, pObjectIDs: ?*IPortableDevicePropVariantCollection, pszDestinationFolderObjectID: ?[*:0]const u16, ppResults: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).Copy(@ptrCast(*const IPortableDeviceContent, self), pObjectIDs, pszDestinationFolderObjectID, ppResults);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceContent_EnumObjects(self: *const T, dwFlags: u32, pszParentObjectID: ?[*:0]const u16, pFilter: ?*IPortableDeviceValues, ppEnum: ?*?*IEnumPortableDeviceObjectIDs) HRESULT {
+                return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).EnumObjects(@ptrCast(*const IPortableDeviceContent, self), dwFlags, pszParentObjectID, pFilter, ppEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceContent_Properties(self: *const T, ppProperties: ?*?*IPortableDeviceProperties) HRESULT {
+                return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).Properties(@ptrCast(*const IPortableDeviceContent, self), ppProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceContent_Transfer(self: *const T, ppResources: ?*?*IPortableDeviceResources) HRESULT {
+                return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).Transfer(@ptrCast(*const IPortableDeviceContent, self), ppResources);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceContent_CreateObjectWithPropertiesOnly(self: *const T, pValues: ?*IPortableDeviceValues, ppszObjectID: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).CreateObjectWithPropertiesOnly(@ptrCast(*const IPortableDeviceContent, self), pValues, ppszObjectID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceContent_CreateObjectWithPropertiesAndData(self: *const T, pValues: ?*IPortableDeviceValues, ppData: ?*?*IStream, pdwOptimalWriteBufferSize: ?*u32, ppszCookie: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).CreateObjectWithPropertiesAndData(@ptrCast(*const IPortableDeviceContent, self), pValues, ppData, pdwOptimalWriteBufferSize, ppszCookie);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceContent_Delete(self: *const T, dwOptions: u32, pObjectIDs: ?*IPortableDevicePropVariantCollection, ppResults: ?*?*IPortableDevicePropVariantCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).Delete(@ptrCast(*const IPortableDeviceContent, self), dwOptions, pObjectIDs, ppResults);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceContent_GetObjectIDsFromPersistentUniqueIDs(self: *const T, pPersistentUniqueIDs: ?*IPortableDevicePropVariantCollection, ppObjectIDs: ?*?*IPortableDevicePropVariantCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).GetObjectIDsFromPersistentUniqueIDs(@ptrCast(*const IPortableDeviceContent, self), pPersistentUniqueIDs, ppObjectIDs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceContent_Cancel(self: *const T) HRESULT {
+                return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceContent, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceContent_Move(self: *const T, pObjectIDs: ?*IPortableDevicePropVariantCollection, pszDestinationFolderObjectID: ?[*:0]const u16, ppResults: ?*?*IPortableDevicePropVariantCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).Move(@ptrCast(*const IPortableDeviceContent, self), pObjectIDs, pszDestinationFolderObjectID, ppResults);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceContent_Copy(self: *const T, pObjectIDs: ?*IPortableDevicePropVariantCollection, pszDestinationFolderObjectID: ?[*:0]const u16, ppResults: ?*?*IPortableDevicePropVariantCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceContent.VTable, self.vtable).Copy(@ptrCast(*const IPortableDeviceContent, self), pObjectIDs, pszDestinationFolderObjectID, ppResults);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2769,14 +2785,14 @@ pub const IPortableDeviceContent2 = extern struct {
     pub const VTable = extern struct {
         base: IPortableDeviceContent.VTable,
         UpdateObjectWithPropertiesAndData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceContent2,
                 pszObjectID: ?[*:0]const u16,
                 pProperties: ?*IPortableDeviceValues,
                 ppData: ?*?*IStream,
                 pdwOptimalWriteBufferSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceContent2,
                 pszObjectID: ?[*:0]const u16,
                 pProperties: ?*IPortableDeviceValues,
@@ -2786,13 +2802,15 @@ pub const IPortableDeviceContent2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPortableDeviceContent.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceContent2_UpdateObjectWithPropertiesAndData(self: *const T, pszObjectID: ?[*:0]const u16, pProperties: ?*IPortableDeviceValues, ppData: ?*?*IStream, pdwOptimalWriteBufferSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceContent2.VTable, self.vtable).UpdateObjectWithPropertiesAndData(@ptrCast(*const IPortableDeviceContent2, self), pszObjectID, pProperties, ppData, pdwOptimalWriteBufferSize);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPortableDeviceContent.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceContent2_UpdateObjectWithPropertiesAndData(self: *const T, pszObjectID: ?[*:0]const u16, pProperties: ?*IPortableDeviceValues, ppData: ?*?*IStream, pdwOptimalWriteBufferSize: ?*u32) HRESULT {
+                return @ptrCast(*const IPortableDeviceContent2.VTable, self.vtable).UpdateObjectWithPropertiesAndData(@ptrCast(*const IPortableDeviceContent2, self), pszObjectID, pProperties, ppData, pdwOptimalWriteBufferSize);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2802,13 +2820,13 @@ pub const IEnumPortableDeviceObjectIDs = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumPortableDeviceObjectIDs,
                 cObjects: u32,
                 pObjIDs: [*]?PWSTR,
                 pcFetched: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumPortableDeviceObjectIDs,
                 cObjects: u32,
                 pObjIDs: [*]?PWSTR,
@@ -2816,66 +2834,68 @@ pub const IEnumPortableDeviceObjectIDs = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumPortableDeviceObjectIDs,
                 cObjects: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumPortableDeviceObjectIDs,
                 cObjects: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumPortableDeviceObjectIDs,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumPortableDeviceObjectIDs,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumPortableDeviceObjectIDs,
                 ppEnum: ?*?*IEnumPortableDeviceObjectIDs,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumPortableDeviceObjectIDs,
                 ppEnum: ?*?*IEnumPortableDeviceObjectIDs,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumPortableDeviceObjectIDs,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumPortableDeviceObjectIDs,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumPortableDeviceObjectIDs_Next(self: *const T, cObjects: u32, pObjIDs: [*]?PWSTR, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumPortableDeviceObjectIDs.VTable, self.vtable).Next(@ptrCast(*const IEnumPortableDeviceObjectIDs, self), cObjects, pObjIDs, pcFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumPortableDeviceObjectIDs_Skip(self: *const T, cObjects: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumPortableDeviceObjectIDs.VTable, self.vtable).Skip(@ptrCast(*const IEnumPortableDeviceObjectIDs, self), cObjects);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumPortableDeviceObjectIDs_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumPortableDeviceObjectIDs.VTable, self.vtable).Reset(@ptrCast(*const IEnumPortableDeviceObjectIDs, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumPortableDeviceObjectIDs_Clone(self: *const T, ppEnum: ?*?*IEnumPortableDeviceObjectIDs) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumPortableDeviceObjectIDs.VTable, self.vtable).Clone(@ptrCast(*const IEnumPortableDeviceObjectIDs, self), ppEnum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumPortableDeviceObjectIDs_Cancel(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumPortableDeviceObjectIDs.VTable, self.vtable).Cancel(@ptrCast(*const IEnumPortableDeviceObjectIDs, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumPortableDeviceObjectIDs_Next(self: *const T, cObjects: u32, pObjIDs: [*]?PWSTR, pcFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumPortableDeviceObjectIDs.VTable, self.vtable).Next(@ptrCast(*const IEnumPortableDeviceObjectIDs, self), cObjects, pObjIDs, pcFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumPortableDeviceObjectIDs_Skip(self: *const T, cObjects: u32) HRESULT {
+                return @ptrCast(*const IEnumPortableDeviceObjectIDs.VTable, self.vtable).Skip(@ptrCast(*const IEnumPortableDeviceObjectIDs, self), cObjects);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumPortableDeviceObjectIDs_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumPortableDeviceObjectIDs.VTable, self.vtable).Reset(@ptrCast(*const IEnumPortableDeviceObjectIDs, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumPortableDeviceObjectIDs_Clone(self: *const T, ppEnum: ?*?*IEnumPortableDeviceObjectIDs) HRESULT {
+                return @ptrCast(*const IEnumPortableDeviceObjectIDs.VTable, self.vtable).Clone(@ptrCast(*const IEnumPortableDeviceObjectIDs, self), ppEnum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumPortableDeviceObjectIDs_Cancel(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumPortableDeviceObjectIDs.VTable, self.vtable).Cancel(@ptrCast(*const IEnumPortableDeviceObjectIDs, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2885,25 +2905,25 @@ pub const IPortableDeviceProperties = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSupportedProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceProperties,
                 pszObjectID: ?[*:0]const u16,
                 ppKeys: ?*?*IPortableDeviceKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceProperties,
                 pszObjectID: ?[*:0]const u16,
                 ppKeys: ?*?*IPortableDeviceKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPropertyAttributes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceProperties,
                 pszObjectID: ?[*:0]const u16,
                 Key: ?*const PROPERTYKEY,
                 ppAttributes: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceProperties,
                 pszObjectID: ?[*:0]const u16,
                 Key: ?*const PROPERTYKEY,
@@ -2911,13 +2931,13 @@ pub const IPortableDeviceProperties = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetValues: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceProperties,
                 pszObjectID: ?[*:0]const u16,
                 pKeys: ?*IPortableDeviceKeyCollection,
                 ppValues: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceProperties,
                 pszObjectID: ?[*:0]const u16,
                 pKeys: ?*IPortableDeviceKeyCollection,
@@ -2925,13 +2945,13 @@ pub const IPortableDeviceProperties = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetValues: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceProperties,
                 pszObjectID: ?[*:0]const u16,
                 pValues: ?*IPortableDeviceValues,
                 ppResults: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceProperties,
                 pszObjectID: ?[*:0]const u16,
                 pValues: ?*IPortableDeviceValues,
@@ -2939,54 +2959,56 @@ pub const IPortableDeviceProperties = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceProperties,
                 pszObjectID: ?[*:0]const u16,
                 pKeys: ?*IPortableDeviceKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceProperties,
                 pszObjectID: ?[*:0]const u16,
                 pKeys: ?*IPortableDeviceKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceProperties,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceProperties,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceProperties_GetSupportedProperties(self: *const T, pszObjectID: ?[*:0]const u16, ppKeys: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceProperties.VTable, self.vtable).GetSupportedProperties(@ptrCast(*const IPortableDeviceProperties, self), pszObjectID, ppKeys);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceProperties_GetPropertyAttributes(self: *const T, pszObjectID: ?[*:0]const u16, Key: ?*const PROPERTYKEY, ppAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceProperties.VTable, self.vtable).GetPropertyAttributes(@ptrCast(*const IPortableDeviceProperties, self), pszObjectID, Key, ppAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceProperties_GetValues(self: *const T, pszObjectID: ?[*:0]const u16, pKeys: ?*IPortableDeviceKeyCollection, ppValues: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceProperties.VTable, self.vtable).GetValues(@ptrCast(*const IPortableDeviceProperties, self), pszObjectID, pKeys, ppValues);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceProperties_SetValues(self: *const T, pszObjectID: ?[*:0]const u16, pValues: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceProperties.VTable, self.vtable).SetValues(@ptrCast(*const IPortableDeviceProperties, self), pszObjectID, pValues, ppResults);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceProperties_Delete(self: *const T, pszObjectID: ?[*:0]const u16, pKeys: ?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceProperties.VTable, self.vtable).Delete(@ptrCast(*const IPortableDeviceProperties, self), pszObjectID, pKeys);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceProperties_Cancel(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceProperties.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceProperties, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceProperties_GetSupportedProperties(self: *const T, pszObjectID: ?[*:0]const u16, ppKeys: ?*?*IPortableDeviceKeyCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceProperties.VTable, self.vtable).GetSupportedProperties(@ptrCast(*const IPortableDeviceProperties, self), pszObjectID, ppKeys);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceProperties_GetPropertyAttributes(self: *const T, pszObjectID: ?[*:0]const u16, Key: ?*const PROPERTYKEY, ppAttributes: ?*?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDeviceProperties.VTable, self.vtable).GetPropertyAttributes(@ptrCast(*const IPortableDeviceProperties, self), pszObjectID, Key, ppAttributes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceProperties_GetValues(self: *const T, pszObjectID: ?[*:0]const u16, pKeys: ?*IPortableDeviceKeyCollection, ppValues: ?*?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDeviceProperties.VTable, self.vtable).GetValues(@ptrCast(*const IPortableDeviceProperties, self), pszObjectID, pKeys, ppValues);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceProperties_SetValues(self: *const T, pszObjectID: ?[*:0]const u16, pValues: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDeviceProperties.VTable, self.vtable).SetValues(@ptrCast(*const IPortableDeviceProperties, self), pszObjectID, pValues, ppResults);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceProperties_Delete(self: *const T, pszObjectID: ?[*:0]const u16, pKeys: ?*IPortableDeviceKeyCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceProperties.VTable, self.vtable).Delete(@ptrCast(*const IPortableDeviceProperties, self), pszObjectID, pKeys);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceProperties_Cancel(self: *const T) HRESULT {
+                return @ptrCast(*const IPortableDeviceProperties.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceProperties, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2996,25 +3018,25 @@ pub const IPortableDeviceResources = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSupportedResources: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceResources,
                 pszObjectID: ?[*:0]const u16,
                 ppKeys: ?*?*IPortableDeviceKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceResources,
                 pszObjectID: ?[*:0]const u16,
                 ppKeys: ?*?*IPortableDeviceKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetResourceAttributes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceResources,
                 pszObjectID: ?[*:0]const u16,
                 Key: ?*const PROPERTYKEY,
                 ppResourceAttributes: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceResources,
                 pszObjectID: ?[*:0]const u16,
                 Key: ?*const PROPERTYKEY,
@@ -3022,7 +3044,7 @@ pub const IPortableDeviceResources = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceResources,
                 pszObjectID: ?[*:0]const u16,
                 Key: ?*const PROPERTYKEY,
@@ -3030,7 +3052,7 @@ pub const IPortableDeviceResources = extern struct {
                 pdwOptimalBufferSize: ?*u32,
                 ppStream: ?*?*IStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceResources,
                 pszObjectID: ?[*:0]const u16,
                 Key: ?*const PROPERTYKEY,
@@ -3040,34 +3062,34 @@ pub const IPortableDeviceResources = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceResources,
                 pszObjectID: ?[*:0]const u16,
                 pKeys: ?*IPortableDeviceKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceResources,
                 pszObjectID: ?[*:0]const u16,
                 pKeys: ?*IPortableDeviceKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceResources,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceResources,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceResources,
                 pResourceAttributes: ?*IPortableDeviceValues,
                 ppData: ?*?*IStream,
                 pdwOptimalWriteBufferSize: ?*u32,
                 ppszCookie: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceResources,
                 pResourceAttributes: ?*IPortableDeviceValues,
                 ppData: ?*?*IStream,
@@ -3077,33 +3099,35 @@ pub const IPortableDeviceResources = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceResources_GetSupportedResources(self: *const T, pszObjectID: ?[*:0]const u16, ppKeys: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceResources.VTable, self.vtable).GetSupportedResources(@ptrCast(*const IPortableDeviceResources, self), pszObjectID, ppKeys);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceResources_GetResourceAttributes(self: *const T, pszObjectID: ?[*:0]const u16, Key: ?*const PROPERTYKEY, ppResourceAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceResources.VTable, self.vtable).GetResourceAttributes(@ptrCast(*const IPortableDeviceResources, self), pszObjectID, Key, ppResourceAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceResources_GetStream(self: *const T, pszObjectID: ?[*:0]const u16, Key: ?*const PROPERTYKEY, dwMode: u32, pdwOptimalBufferSize: ?*u32, ppStream: ?*?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceResources.VTable, self.vtable).GetStream(@ptrCast(*const IPortableDeviceResources, self), pszObjectID, Key, dwMode, pdwOptimalBufferSize, ppStream);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceResources_Delete(self: *const T, pszObjectID: ?[*:0]const u16, pKeys: ?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceResources.VTable, self.vtable).Delete(@ptrCast(*const IPortableDeviceResources, self), pszObjectID, pKeys);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceResources_Cancel(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceResources.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceResources, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceResources_CreateResource(self: *const T, pResourceAttributes: ?*IPortableDeviceValues, ppData: ?*?*IStream, pdwOptimalWriteBufferSize: ?*u32, ppszCookie: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceResources.VTable, self.vtable).CreateResource(@ptrCast(*const IPortableDeviceResources, self), pResourceAttributes, ppData, pdwOptimalWriteBufferSize, ppszCookie);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceResources_GetSupportedResources(self: *const T, pszObjectID: ?[*:0]const u16, ppKeys: ?*?*IPortableDeviceKeyCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceResources.VTable, self.vtable).GetSupportedResources(@ptrCast(*const IPortableDeviceResources, self), pszObjectID, ppKeys);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceResources_GetResourceAttributes(self: *const T, pszObjectID: ?[*:0]const u16, Key: ?*const PROPERTYKEY, ppResourceAttributes: ?*?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDeviceResources.VTable, self.vtable).GetResourceAttributes(@ptrCast(*const IPortableDeviceResources, self), pszObjectID, Key, ppResourceAttributes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceResources_GetStream(self: *const T, pszObjectID: ?[*:0]const u16, Key: ?*const PROPERTYKEY, dwMode: u32, pdwOptimalBufferSize: ?*u32, ppStream: ?*?*IStream) HRESULT {
+                return @ptrCast(*const IPortableDeviceResources.VTable, self.vtable).GetStream(@ptrCast(*const IPortableDeviceResources, self), pszObjectID, Key, dwMode, pdwOptimalBufferSize, ppStream);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceResources_Delete(self: *const T, pszObjectID: ?[*:0]const u16, pKeys: ?*IPortableDeviceKeyCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceResources.VTable, self.vtable).Delete(@ptrCast(*const IPortableDeviceResources, self), pszObjectID, pKeys);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceResources_Cancel(self: *const T) HRESULT {
+                return @ptrCast(*const IPortableDeviceResources.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceResources, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceResources_CreateResource(self: *const T, pResourceAttributes: ?*IPortableDeviceValues, ppData: ?*?*IStream, pdwOptimalWriteBufferSize: ?*u32, ppszCookie: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IPortableDeviceResources.VTable, self.vtable).CreateResource(@ptrCast(*const IPortableDeviceResources, self), pResourceAttributes, ppData, pdwOptimalWriteBufferSize, ppszCookie);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3113,93 +3137,93 @@ pub const IPortableDeviceCapabilities = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSupportedCommands: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceCapabilities,
                 ppCommands: ?*?*IPortableDeviceKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceCapabilities,
                 ppCommands: ?*?*IPortableDeviceKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCommandOptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceCapabilities,
                 Command: ?*const PROPERTYKEY,
                 ppOptions: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceCapabilities,
                 Command: ?*const PROPERTYKEY,
                 ppOptions: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFunctionalCategories: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceCapabilities,
                 ppCategories: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceCapabilities,
                 ppCategories: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFunctionalObjects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceCapabilities,
                 Category: ?*const Guid,
                 ppObjectIDs: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceCapabilities,
                 Category: ?*const Guid,
                 ppObjectIDs: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSupportedContentTypes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceCapabilities,
                 Category: ?*const Guid,
                 ppContentTypes: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceCapabilities,
                 Category: ?*const Guid,
                 ppContentTypes: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSupportedFormats: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceCapabilities,
                 ContentType: ?*const Guid,
                 ppFormats: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceCapabilities,
                 ContentType: ?*const Guid,
                 ppFormats: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSupportedFormatProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceCapabilities,
                 Format: ?*const Guid,
                 ppKeys: ?*?*IPortableDeviceKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceCapabilities,
                 Format: ?*const Guid,
                 ppKeys: ?*?*IPortableDeviceKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFixedPropertyAttributes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceCapabilities,
                 Format: ?*const Guid,
                 Key: ?*const PROPERTYKEY,
                 ppAttributes: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceCapabilities,
                 Format: ?*const Guid,
                 Key: ?*const PROPERTYKEY,
@@ -3207,30 +3231,30 @@ pub const IPortableDeviceCapabilities = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceCapabilities,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceCapabilities,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSupportedEvents: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceCapabilities,
                 ppEvents: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceCapabilities,
                 ppEvents: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetEventOptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceCapabilities,
                 Event: ?*const Guid,
                 ppOptions: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceCapabilities,
                 Event: ?*const Guid,
                 ppOptions: ?*?*IPortableDeviceValues,
@@ -3238,53 +3262,55 @@ pub const IPortableDeviceCapabilities = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceCapabilities_GetSupportedCommands(self: *const T, ppCommands: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetSupportedCommands(@ptrCast(*const IPortableDeviceCapabilities, self), ppCommands);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceCapabilities_GetCommandOptions(self: *const T, Command: ?*const PROPERTYKEY, ppOptions: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetCommandOptions(@ptrCast(*const IPortableDeviceCapabilities, self), Command, ppOptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceCapabilities_GetFunctionalCategories(self: *const T, ppCategories: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetFunctionalCategories(@ptrCast(*const IPortableDeviceCapabilities, self), ppCategories);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceCapabilities_GetFunctionalObjects(self: *const T, Category: ?*const Guid, ppObjectIDs: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetFunctionalObjects(@ptrCast(*const IPortableDeviceCapabilities, self), Category, ppObjectIDs);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceCapabilities_GetSupportedContentTypes(self: *const T, Category: ?*const Guid, ppContentTypes: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetSupportedContentTypes(@ptrCast(*const IPortableDeviceCapabilities, self), Category, ppContentTypes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceCapabilities_GetSupportedFormats(self: *const T, ContentType: ?*const Guid, ppFormats: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetSupportedFormats(@ptrCast(*const IPortableDeviceCapabilities, self), ContentType, ppFormats);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceCapabilities_GetSupportedFormatProperties(self: *const T, Format: ?*const Guid, ppKeys: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetSupportedFormatProperties(@ptrCast(*const IPortableDeviceCapabilities, self), Format, ppKeys);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceCapabilities_GetFixedPropertyAttributes(self: *const T, Format: ?*const Guid, Key: ?*const PROPERTYKEY, ppAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetFixedPropertyAttributes(@ptrCast(*const IPortableDeviceCapabilities, self), Format, Key, ppAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceCapabilities_Cancel(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceCapabilities, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceCapabilities_GetSupportedEvents(self: *const T, ppEvents: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetSupportedEvents(@ptrCast(*const IPortableDeviceCapabilities, self), ppEvents);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceCapabilities_GetEventOptions(self: *const T, Event: ?*const Guid, ppOptions: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetEventOptions(@ptrCast(*const IPortableDeviceCapabilities, self), Event, ppOptions);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceCapabilities_GetSupportedCommands(self: *const T, ppCommands: ?*?*IPortableDeviceKeyCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetSupportedCommands(@ptrCast(*const IPortableDeviceCapabilities, self), ppCommands);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceCapabilities_GetCommandOptions(self: *const T, Command: ?*const PROPERTYKEY, ppOptions: ?*?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetCommandOptions(@ptrCast(*const IPortableDeviceCapabilities, self), Command, ppOptions);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceCapabilities_GetFunctionalCategories(self: *const T, ppCategories: ?*?*IPortableDevicePropVariantCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetFunctionalCategories(@ptrCast(*const IPortableDeviceCapabilities, self), ppCategories);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceCapabilities_GetFunctionalObjects(self: *const T, Category: ?*const Guid, ppObjectIDs: ?*?*IPortableDevicePropVariantCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetFunctionalObjects(@ptrCast(*const IPortableDeviceCapabilities, self), Category, ppObjectIDs);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceCapabilities_GetSupportedContentTypes(self: *const T, Category: ?*const Guid, ppContentTypes: ?*?*IPortableDevicePropVariantCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetSupportedContentTypes(@ptrCast(*const IPortableDeviceCapabilities, self), Category, ppContentTypes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceCapabilities_GetSupportedFormats(self: *const T, ContentType: ?*const Guid, ppFormats: ?*?*IPortableDevicePropVariantCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetSupportedFormats(@ptrCast(*const IPortableDeviceCapabilities, self), ContentType, ppFormats);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceCapabilities_GetSupportedFormatProperties(self: *const T, Format: ?*const Guid, ppKeys: ?*?*IPortableDeviceKeyCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetSupportedFormatProperties(@ptrCast(*const IPortableDeviceCapabilities, self), Format, ppKeys);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceCapabilities_GetFixedPropertyAttributes(self: *const T, Format: ?*const Guid, Key: ?*const PROPERTYKEY, ppAttributes: ?*?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetFixedPropertyAttributes(@ptrCast(*const IPortableDeviceCapabilities, self), Format, Key, ppAttributes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceCapabilities_Cancel(self: *const T) HRESULT {
+                return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceCapabilities, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceCapabilities_GetSupportedEvents(self: *const T, ppEvents: ?*?*IPortableDevicePropVariantCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetSupportedEvents(@ptrCast(*const IPortableDeviceCapabilities, self), ppEvents);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceCapabilities_GetEventOptions(self: *const T, Event: ?*const Guid, ppOptions: ?*?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDeviceCapabilities.VTable, self.vtable).GetEventOptions(@ptrCast(*const IPortableDeviceCapabilities, self), Event, ppOptions);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3294,24 +3320,26 @@ pub const IPortableDeviceEventCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceEventCallback,
                 pEventParameters: ?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceEventCallback,
                 pEventParameters: ?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceEventCallback_OnEvent(self: *const T, pEventParameters: ?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceEventCallback.VTable, self.vtable).OnEvent(@ptrCast(*const IPortableDeviceEventCallback, self), pEventParameters);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceEventCallback_OnEvent(self: *const T, pEventParameters: ?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDeviceEventCallback.VTable, self.vtable).OnEvent(@ptrCast(*const IPortableDeviceEventCallback, self), pEventParameters);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3321,36 +3349,38 @@ pub const IPortableDeviceDataStream = extern struct {
     pub const VTable = extern struct {
         base: IStream.VTable,
         GetObjectID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceDataStream,
                 ppszObjectID: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceDataStream,
                 ppszObjectID: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceDataStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceDataStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IStream.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceDataStream_GetObjectID(self: *const T, ppszObjectID: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceDataStream.VTable, self.vtable).GetObjectID(@ptrCast(*const IPortableDeviceDataStream, self), ppszObjectID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceDataStream_Cancel(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceDataStream.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceDataStream, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IStream.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceDataStream_GetObjectID(self: *const T, ppszObjectID: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IPortableDeviceDataStream.VTable, self.vtable).GetObjectID(@ptrCast(*const IPortableDeviceDataStream, self), ppszObjectID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceDataStream_Cancel(self: *const T) HRESULT {
+                return @ptrCast(*const IPortableDeviceDataStream.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceDataStream, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3361,14 +3391,14 @@ pub const IPortableDeviceUnitsStream = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SeekInUnits: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceUnitsStream,
                 dlibMove: LARGE_INTEGER,
                 units: WPD_STREAM_UNITS,
                 dwOrigin: u32,
                 plibNewPosition: ?*ULARGE_INTEGER,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceUnitsStream,
                 dlibMove: LARGE_INTEGER,
                 units: WPD_STREAM_UNITS,
@@ -3377,26 +3407,28 @@ pub const IPortableDeviceUnitsStream = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceUnitsStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceUnitsStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceUnitsStream_SeekInUnits(self: *const T, dlibMove: LARGE_INTEGER, units: WPD_STREAM_UNITS, dwOrigin: u32, plibNewPosition: ?*ULARGE_INTEGER) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceUnitsStream.VTable, self.vtable).SeekInUnits(@ptrCast(*const IPortableDeviceUnitsStream, self), dlibMove, units, dwOrigin, plibNewPosition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceUnitsStream_Cancel(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceUnitsStream.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceUnitsStream, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceUnitsStream_SeekInUnits(self: *const T, dlibMove: LARGE_INTEGER, units: WPD_STREAM_UNITS, dwOrigin: u32, plibNewPosition: ?*ULARGE_INTEGER) HRESULT {
+                return @ptrCast(*const IPortableDeviceUnitsStream.VTable, self.vtable).SeekInUnits(@ptrCast(*const IPortableDeviceUnitsStream, self), dlibMove, units, dwOrigin, plibNewPosition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceUnitsStream_Cancel(self: *const T) HRESULT {
+                return @ptrCast(*const IPortableDeviceUnitsStream.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceUnitsStream, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3406,14 +3438,14 @@ pub const IPortableDevicePropertiesBulk = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         QueueGetValuesByObjectList: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDevicePropertiesBulk,
                 pObjectIDs: ?*IPortableDevicePropVariantCollection,
                 pKeys: ?*IPortableDeviceKeyCollection,
                 pCallback: ?*IPortableDevicePropertiesBulkCallback,
                 pContext: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDevicePropertiesBulk,
                 pObjectIDs: ?*IPortableDevicePropVariantCollection,
                 pKeys: ?*IPortableDeviceKeyCollection,
@@ -3422,7 +3454,7 @@ pub const IPortableDevicePropertiesBulk = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         QueueGetValuesByObjectFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDevicePropertiesBulk,
                 pguidObjectFormat: ?*const Guid,
                 pszParentObjectID: ?[*:0]const u16,
@@ -3431,7 +3463,7 @@ pub const IPortableDevicePropertiesBulk = extern struct {
                 pCallback: ?*IPortableDevicePropertiesBulkCallback,
                 pContext: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDevicePropertiesBulk,
                 pguidObjectFormat: ?*const Guid,
                 pszParentObjectID: ?[*:0]const u16,
@@ -3442,13 +3474,13 @@ pub const IPortableDevicePropertiesBulk = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         QueueSetValuesByObjectList: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDevicePropertiesBulk,
                 pObjectValues: ?*IPortableDeviceValuesCollection,
                 pCallback: ?*IPortableDevicePropertiesBulkCallback,
                 pContext: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDevicePropertiesBulk,
                 pObjectValues: ?*IPortableDeviceValuesCollection,
                 pCallback: ?*IPortableDevicePropertiesBulkCallback,
@@ -3456,50 +3488,52 @@ pub const IPortableDevicePropertiesBulk = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Start: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDevicePropertiesBulk,
                 pContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDevicePropertiesBulk,
                 pContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDevicePropertiesBulk,
                 pContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDevicePropertiesBulk,
                 pContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropertiesBulk_QueueGetValuesByObjectList(self: *const T, pObjectIDs: ?*IPortableDevicePropVariantCollection, pKeys: ?*IPortableDeviceKeyCollection, pCallback: ?*IPortableDevicePropertiesBulkCallback, pContext: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDevicePropertiesBulk.VTable, self.vtable).QueueGetValuesByObjectList(@ptrCast(*const IPortableDevicePropertiesBulk, self), pObjectIDs, pKeys, pCallback, pContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropertiesBulk_QueueGetValuesByObjectFormat(self: *const T, pguidObjectFormat: ?*const Guid, pszParentObjectID: ?[*:0]const u16, dwDepth: u32, pKeys: ?*IPortableDeviceKeyCollection, pCallback: ?*IPortableDevicePropertiesBulkCallback, pContext: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDevicePropertiesBulk.VTable, self.vtable).QueueGetValuesByObjectFormat(@ptrCast(*const IPortableDevicePropertiesBulk, self), pguidObjectFormat, pszParentObjectID, dwDepth, pKeys, pCallback, pContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropertiesBulk_QueueSetValuesByObjectList(self: *const T, pObjectValues: ?*IPortableDeviceValuesCollection, pCallback: ?*IPortableDevicePropertiesBulkCallback, pContext: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDevicePropertiesBulk.VTable, self.vtable).QueueSetValuesByObjectList(@ptrCast(*const IPortableDevicePropertiesBulk, self), pObjectValues, pCallback, pContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropertiesBulk_Start(self: *const T, pContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDevicePropertiesBulk.VTable, self.vtable).Start(@ptrCast(*const IPortableDevicePropertiesBulk, self), pContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropertiesBulk_Cancel(self: *const T, pContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDevicePropertiesBulk.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDevicePropertiesBulk, self), pContext);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDevicePropertiesBulk_QueueGetValuesByObjectList(self: *const T, pObjectIDs: ?*IPortableDevicePropVariantCollection, pKeys: ?*IPortableDeviceKeyCollection, pCallback: ?*IPortableDevicePropertiesBulkCallback, pContext: ?*Guid) HRESULT {
+                return @ptrCast(*const IPortableDevicePropertiesBulk.VTable, self.vtable).QueueGetValuesByObjectList(@ptrCast(*const IPortableDevicePropertiesBulk, self), pObjectIDs, pKeys, pCallback, pContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDevicePropertiesBulk_QueueGetValuesByObjectFormat(self: *const T, pguidObjectFormat: ?*const Guid, pszParentObjectID: ?[*:0]const u16, dwDepth: u32, pKeys: ?*IPortableDeviceKeyCollection, pCallback: ?*IPortableDevicePropertiesBulkCallback, pContext: ?*Guid) HRESULT {
+                return @ptrCast(*const IPortableDevicePropertiesBulk.VTable, self.vtable).QueueGetValuesByObjectFormat(@ptrCast(*const IPortableDevicePropertiesBulk, self), pguidObjectFormat, pszParentObjectID, dwDepth, pKeys, pCallback, pContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDevicePropertiesBulk_QueueSetValuesByObjectList(self: *const T, pObjectValues: ?*IPortableDeviceValuesCollection, pCallback: ?*IPortableDevicePropertiesBulkCallback, pContext: ?*Guid) HRESULT {
+                return @ptrCast(*const IPortableDevicePropertiesBulk.VTable, self.vtable).QueueSetValuesByObjectList(@ptrCast(*const IPortableDevicePropertiesBulk, self), pObjectValues, pCallback, pContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDevicePropertiesBulk_Start(self: *const T, pContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const IPortableDevicePropertiesBulk.VTable, self.vtable).Start(@ptrCast(*const IPortableDevicePropertiesBulk, self), pContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDevicePropertiesBulk_Cancel(self: *const T, pContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const IPortableDevicePropertiesBulk.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDevicePropertiesBulk, self), pContext);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3509,34 +3543,34 @@ pub const IPortableDevicePropertiesBulkCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnStart: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDevicePropertiesBulkCallback,
                 pContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDevicePropertiesBulkCallback,
                 pContext: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnProgress: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDevicePropertiesBulkCallback,
                 pContext: ?*const Guid,
                 pResults: ?*IPortableDeviceValuesCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDevicePropertiesBulkCallback,
                 pContext: ?*const Guid,
                 pResults: ?*IPortableDeviceValuesCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnEnd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDevicePropertiesBulkCallback,
                 pContext: ?*const Guid,
                 hrStatus: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDevicePropertiesBulkCallback,
                 pContext: ?*const Guid,
                 hrStatus: HRESULT,
@@ -3544,21 +3578,23 @@ pub const IPortableDevicePropertiesBulkCallback = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropertiesBulkCallback_OnStart(self: *const T, pContext: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDevicePropertiesBulkCallback.VTable, self.vtable).OnStart(@ptrCast(*const IPortableDevicePropertiesBulkCallback, self), pContext);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropertiesBulkCallback_OnProgress(self: *const T, pContext: ?*const Guid, pResults: ?*IPortableDeviceValuesCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDevicePropertiesBulkCallback.VTable, self.vtable).OnProgress(@ptrCast(*const IPortableDevicePropertiesBulkCallback, self), pContext, pResults);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDevicePropertiesBulkCallback_OnEnd(self: *const T, pContext: ?*const Guid, hrStatus: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDevicePropertiesBulkCallback.VTable, self.vtable).OnEnd(@ptrCast(*const IPortableDevicePropertiesBulkCallback, self), pContext, hrStatus);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDevicePropertiesBulkCallback_OnStart(self: *const T, pContext: ?*const Guid) HRESULT {
+                return @ptrCast(*const IPortableDevicePropertiesBulkCallback.VTable, self.vtable).OnStart(@ptrCast(*const IPortableDevicePropertiesBulkCallback, self), pContext);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDevicePropertiesBulkCallback_OnProgress(self: *const T, pContext: ?*const Guid, pResults: ?*IPortableDeviceValuesCollection) HRESULT {
+                return @ptrCast(*const IPortableDevicePropertiesBulkCallback.VTable, self.vtable).OnProgress(@ptrCast(*const IPortableDevicePropertiesBulkCallback, self), pContext, pResults);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDevicePropertiesBulkCallback_OnEnd(self: *const T, pContext: ?*const Guid, hrStatus: HRESULT) HRESULT {
+                return @ptrCast(*const IPortableDevicePropertiesBulkCallback.VTable, self.vtable).OnEnd(@ptrCast(*const IPortableDevicePropertiesBulkCallback, self), pContext, hrStatus);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3569,14 +3605,14 @@ pub const IPortableDeviceServiceManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDeviceServices: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceManager,
                 pszPnPDeviceID: ?[*:0]const u16,
                 guidServiceCategory: ?*const Guid,
                 pServices: ?*?PWSTR,
                 pcServices: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceManager,
                 pszPnPDeviceID: ?[*:0]const u16,
                 guidServiceCategory: ?*const Guid,
@@ -3585,12 +3621,12 @@ pub const IPortableDeviceServiceManager = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDeviceForService: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceManager,
                 pszPnPServiceID: ?[*:0]const u16,
                 ppszPnPDeviceID: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceManager,
                 pszPnPServiceID: ?[*:0]const u16,
                 ppszPnPDeviceID: ?*?PWSTR,
@@ -3598,17 +3634,19 @@ pub const IPortableDeviceServiceManager = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceManager_GetDeviceServices(self: *const T, pszPnPDeviceID: ?[*:0]const u16, guidServiceCategory: ?*const Guid, pServices: ?*?PWSTR, pcServices: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceManager.VTable, self.vtable).GetDeviceServices(@ptrCast(*const IPortableDeviceServiceManager, self), pszPnPDeviceID, guidServiceCategory, pServices, pcServices);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceManager_GetDeviceForService(self: *const T, pszPnPServiceID: ?[*:0]const u16, ppszPnPDeviceID: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceManager.VTable, self.vtable).GetDeviceForService(@ptrCast(*const IPortableDeviceServiceManager, self), pszPnPServiceID, ppszPnPDeviceID);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceManager_GetDeviceServices(self: *const T, pszPnPDeviceID: ?[*:0]const u16, guidServiceCategory: ?*const Guid, pServices: ?*?PWSTR, pcServices: ?*u32) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceManager.VTable, self.vtable).GetDeviceServices(@ptrCast(*const IPortableDeviceServiceManager, self), pszPnPDeviceID, guidServiceCategory, pServices, pcServices);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceManager_GetDeviceForService(self: *const T, pszPnPServiceID: ?[*:0]const u16, ppszPnPDeviceID: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceManager.VTable, self.vtable).GetDeviceForService(@ptrCast(*const IPortableDeviceServiceManager, self), pszPnPServiceID, ppszPnPDeviceID);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3619,92 +3657,92 @@ pub const IPortableDeviceService = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Open: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceService,
                 pszPnPServiceID: ?[*:0]const u16,
                 pClientInfo: ?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceService,
                 pszPnPServiceID: ?[*:0]const u16,
                 pClientInfo: ?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Capabilities: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceService,
                 ppCapabilities: ?*?*IPortableDeviceServiceCapabilities,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceService,
                 ppCapabilities: ?*?*IPortableDeviceServiceCapabilities,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Content: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceService,
                 ppContent: ?*?*IPortableDeviceContent2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceService,
                 ppContent: ?*?*IPortableDeviceContent2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Methods: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceService,
                 ppMethods: ?*?*IPortableDeviceServiceMethods,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceService,
                 ppMethods: ?*?*IPortableDeviceServiceMethods,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceService,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceService,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Close: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceService,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceService,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetServiceObjectID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceService,
                 ppszServiceObjectID: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceService,
                 ppszServiceObjectID: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPnPServiceID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceService,
                 ppszPnPServiceID: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceService,
                 ppszPnPServiceID: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Advise: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceService,
                 dwFlags: u32,
                 pCallback: ?*IPortableDeviceEventCallback,
                 pParameters: ?*IPortableDeviceValues,
                 ppszCookie: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceService,
                 dwFlags: u32,
                 pCallback: ?*IPortableDeviceEventCallback,
@@ -3713,23 +3751,23 @@ pub const IPortableDeviceService = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Unadvise: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceService,
                 pszCookie: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceService,
                 pszCookie: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SendCommand: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceService,
                 dwFlags: u32,
                 pParameters: ?*IPortableDeviceValues,
                 ppResults: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceService,
                 dwFlags: u32,
                 pParameters: ?*IPortableDeviceValues,
@@ -3738,53 +3776,55 @@ pub const IPortableDeviceService = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceService_Open(self: *const T, pszPnPServiceID: ?[*:0]const u16, pClientInfo: ?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).Open(@ptrCast(*const IPortableDeviceService, self), pszPnPServiceID, pClientInfo);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceService_Capabilities(self: *const T, ppCapabilities: ?*?*IPortableDeviceServiceCapabilities) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).Capabilities(@ptrCast(*const IPortableDeviceService, self), ppCapabilities);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceService_Content(self: *const T, ppContent: ?*?*IPortableDeviceContent2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).Content(@ptrCast(*const IPortableDeviceService, self), ppContent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceService_Methods(self: *const T, ppMethods: ?*?*IPortableDeviceServiceMethods) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).Methods(@ptrCast(*const IPortableDeviceService, self), ppMethods);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceService_Cancel(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceService, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceService_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).Close(@ptrCast(*const IPortableDeviceService, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceService_GetServiceObjectID(self: *const T, ppszServiceObjectID: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).GetServiceObjectID(@ptrCast(*const IPortableDeviceService, self), ppszServiceObjectID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceService_GetPnPServiceID(self: *const T, ppszPnPServiceID: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).GetPnPServiceID(@ptrCast(*const IPortableDeviceService, self), ppszPnPServiceID);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceService_Advise(self: *const T, dwFlags: u32, pCallback: ?*IPortableDeviceEventCallback, pParameters: ?*IPortableDeviceValues, ppszCookie: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).Advise(@ptrCast(*const IPortableDeviceService, self), dwFlags, pCallback, pParameters, ppszCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceService_Unadvise(self: *const T, pszCookie: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).Unadvise(@ptrCast(*const IPortableDeviceService, self), pszCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceService_SendCommand(self: *const T, dwFlags: u32, pParameters: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).SendCommand(@ptrCast(*const IPortableDeviceService, self), dwFlags, pParameters, ppResults);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceService_Open(self: *const T, pszPnPServiceID: ?[*:0]const u16, pClientInfo: ?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).Open(@ptrCast(*const IPortableDeviceService, self), pszPnPServiceID, pClientInfo);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceService_Capabilities(self: *const T, ppCapabilities: ?*?*IPortableDeviceServiceCapabilities) HRESULT {
+                return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).Capabilities(@ptrCast(*const IPortableDeviceService, self), ppCapabilities);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceService_Content(self: *const T, ppContent: ?*?*IPortableDeviceContent2) HRESULT {
+                return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).Content(@ptrCast(*const IPortableDeviceService, self), ppContent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceService_Methods(self: *const T, ppMethods: ?*?*IPortableDeviceServiceMethods) HRESULT {
+                return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).Methods(@ptrCast(*const IPortableDeviceService, self), ppMethods);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceService_Cancel(self: *const T) HRESULT {
+                return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceService, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceService_Close(self: *const T) HRESULT {
+                return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).Close(@ptrCast(*const IPortableDeviceService, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceService_GetServiceObjectID(self: *const T, ppszServiceObjectID: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).GetServiceObjectID(@ptrCast(*const IPortableDeviceService, self), ppszServiceObjectID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceService_GetPnPServiceID(self: *const T, ppszPnPServiceID: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).GetPnPServiceID(@ptrCast(*const IPortableDeviceService, self), ppszPnPServiceID);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceService_Advise(self: *const T, dwFlags: u32, pCallback: ?*IPortableDeviceEventCallback, pParameters: ?*IPortableDeviceValues, ppszCookie: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).Advise(@ptrCast(*const IPortableDeviceService, self), dwFlags, pCallback, pParameters, ppszCookie);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceService_Unadvise(self: *const T, pszCookie: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).Unadvise(@ptrCast(*const IPortableDeviceService, self), pszCookie);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceService_SendCommand(self: *const T, dwFlags: u32, pParameters: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDeviceService.VTable, self.vtable).SendCommand(@ptrCast(*const IPortableDeviceService, self), dwFlags, pParameters, ppResults);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3795,47 +3835,47 @@ pub const IPortableDeviceServiceCapabilities = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSupportedMethods: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 ppMethods: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 ppMethods: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSupportedMethodsByFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 Format: ?*const Guid,
                 ppMethods: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 Format: ?*const Guid,
                 ppMethods: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetMethodAttributes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 Method: ?*const Guid,
                 ppAttributes: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 Method: ?*const Guid,
                 ppAttributes: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetMethodParameterAttributes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 Method: ?*const Guid,
                 Parameter: ?*const PROPERTYKEY,
                 ppAttributes: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 Method: ?*const Guid,
                 Parameter: ?*const PROPERTYKEY,
@@ -3843,47 +3883,47 @@ pub const IPortableDeviceServiceCapabilities = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSupportedFormats: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 ppFormats: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 ppFormats: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFormatAttributes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 Format: ?*const Guid,
                 ppAttributes: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 Format: ?*const Guid,
                 ppAttributes: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSupportedFormatProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 Format: ?*const Guid,
                 ppKeys: ?*?*IPortableDeviceKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 Format: ?*const Guid,
                 ppKeys: ?*?*IPortableDeviceKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFormatPropertyAttributes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 Format: ?*const Guid,
                 Property: ?*const PROPERTYKEY,
                 ppAttributes: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 Format: ?*const Guid,
                 Property: ?*const PROPERTYKEY,
@@ -3891,35 +3931,35 @@ pub const IPortableDeviceServiceCapabilities = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSupportedEvents: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 ppEvents: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 ppEvents: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetEventAttributes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 Event: ?*const Guid,
                 ppAttributes: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 Event: ?*const Guid,
                 ppAttributes: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetEventParameterAttributes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 Event: ?*const Guid,
                 Parameter: ?*const PROPERTYKEY,
                 ppAttributes: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 Event: ?*const Guid,
                 Parameter: ?*const PROPERTYKEY,
@@ -3927,128 +3967,130 @@ pub const IPortableDeviceServiceCapabilities = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetInheritedServices: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 dwInheritanceType: u32,
                 ppServices: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 dwInheritanceType: u32,
                 ppServices: ?*?*IPortableDevicePropVariantCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFormatRenderingProfiles: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 Format: ?*const Guid,
                 ppRenderingProfiles: ?*?*IPortableDeviceValuesCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 Format: ?*const Guid,
                 ppRenderingProfiles: ?*?*IPortableDeviceValuesCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetSupportedCommands: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 ppCommands: ?*?*IPortableDeviceKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 ppCommands: ?*?*IPortableDeviceKeyCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCommandOptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 Command: ?*const PROPERTYKEY,
                 ppOptions: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceCapabilities,
                 Command: ?*const PROPERTYKEY,
                 ppOptions: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceCapabilities,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceCapabilities,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetSupportedMethods(self: *const T, ppMethods: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetSupportedMethods(@ptrCast(*const IPortableDeviceServiceCapabilities, self), ppMethods);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetSupportedMethodsByFormat(self: *const T, Format: ?*const Guid, ppMethods: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetSupportedMethodsByFormat(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Format, ppMethods);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetMethodAttributes(self: *const T, Method: ?*const Guid, ppAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetMethodAttributes(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Method, ppAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetMethodParameterAttributes(self: *const T, Method: ?*const Guid, Parameter: ?*const PROPERTYKEY, ppAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetMethodParameterAttributes(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Method, Parameter, ppAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetSupportedFormats(self: *const T, ppFormats: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetSupportedFormats(@ptrCast(*const IPortableDeviceServiceCapabilities, self), ppFormats);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetFormatAttributes(self: *const T, Format: ?*const Guid, ppAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetFormatAttributes(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Format, ppAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetSupportedFormatProperties(self: *const T, Format: ?*const Guid, ppKeys: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetSupportedFormatProperties(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Format, ppKeys);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetFormatPropertyAttributes(self: *const T, Format: ?*const Guid, Property: ?*const PROPERTYKEY, ppAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetFormatPropertyAttributes(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Format, Property, ppAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetSupportedEvents(self: *const T, ppEvents: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetSupportedEvents(@ptrCast(*const IPortableDeviceServiceCapabilities, self), ppEvents);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetEventAttributes(self: *const T, Event: ?*const Guid, ppAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetEventAttributes(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Event, ppAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetEventParameterAttributes(self: *const T, Event: ?*const Guid, Parameter: ?*const PROPERTYKEY, ppAttributes: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetEventParameterAttributes(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Event, Parameter, ppAttributes);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetInheritedServices(self: *const T, dwInheritanceType: u32, ppServices: ?*?*IPortableDevicePropVariantCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetInheritedServices(@ptrCast(*const IPortableDeviceServiceCapabilities, self), dwInheritanceType, ppServices);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetFormatRenderingProfiles(self: *const T, Format: ?*const Guid, ppRenderingProfiles: ?*?*IPortableDeviceValuesCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetFormatRenderingProfiles(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Format, ppRenderingProfiles);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetSupportedCommands(self: *const T, ppCommands: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetSupportedCommands(@ptrCast(*const IPortableDeviceServiceCapabilities, self), ppCommands);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_GetCommandOptions(self: *const T, Command: ?*const PROPERTYKEY, ppOptions: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetCommandOptions(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Command, ppOptions);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceCapabilities_Cancel(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceServiceCapabilities, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceCapabilities_GetSupportedMethods(self: *const T, ppMethods: ?*?*IPortableDevicePropVariantCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetSupportedMethods(@ptrCast(*const IPortableDeviceServiceCapabilities, self), ppMethods);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceCapabilities_GetSupportedMethodsByFormat(self: *const T, Format: ?*const Guid, ppMethods: ?*?*IPortableDevicePropVariantCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetSupportedMethodsByFormat(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Format, ppMethods);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceCapabilities_GetMethodAttributes(self: *const T, Method: ?*const Guid, ppAttributes: ?*?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetMethodAttributes(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Method, ppAttributes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceCapabilities_GetMethodParameterAttributes(self: *const T, Method: ?*const Guid, Parameter: ?*const PROPERTYKEY, ppAttributes: ?*?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetMethodParameterAttributes(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Method, Parameter, ppAttributes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceCapabilities_GetSupportedFormats(self: *const T, ppFormats: ?*?*IPortableDevicePropVariantCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetSupportedFormats(@ptrCast(*const IPortableDeviceServiceCapabilities, self), ppFormats);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceCapabilities_GetFormatAttributes(self: *const T, Format: ?*const Guid, ppAttributes: ?*?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetFormatAttributes(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Format, ppAttributes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceCapabilities_GetSupportedFormatProperties(self: *const T, Format: ?*const Guid, ppKeys: ?*?*IPortableDeviceKeyCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetSupportedFormatProperties(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Format, ppKeys);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceCapabilities_GetFormatPropertyAttributes(self: *const T, Format: ?*const Guid, Property: ?*const PROPERTYKEY, ppAttributes: ?*?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetFormatPropertyAttributes(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Format, Property, ppAttributes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceCapabilities_GetSupportedEvents(self: *const T, ppEvents: ?*?*IPortableDevicePropVariantCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetSupportedEvents(@ptrCast(*const IPortableDeviceServiceCapabilities, self), ppEvents);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceCapabilities_GetEventAttributes(self: *const T, Event: ?*const Guid, ppAttributes: ?*?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetEventAttributes(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Event, ppAttributes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceCapabilities_GetEventParameterAttributes(self: *const T, Event: ?*const Guid, Parameter: ?*const PROPERTYKEY, ppAttributes: ?*?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetEventParameterAttributes(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Event, Parameter, ppAttributes);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceCapabilities_GetInheritedServices(self: *const T, dwInheritanceType: u32, ppServices: ?*?*IPortableDevicePropVariantCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetInheritedServices(@ptrCast(*const IPortableDeviceServiceCapabilities, self), dwInheritanceType, ppServices);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceCapabilities_GetFormatRenderingProfiles(self: *const T, Format: ?*const Guid, ppRenderingProfiles: ?*?*IPortableDeviceValuesCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetFormatRenderingProfiles(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Format, ppRenderingProfiles);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceCapabilities_GetSupportedCommands(self: *const T, ppCommands: ?*?*IPortableDeviceKeyCollection) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetSupportedCommands(@ptrCast(*const IPortableDeviceServiceCapabilities, self), ppCommands);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceCapabilities_GetCommandOptions(self: *const T, Command: ?*const PROPERTYKEY, ppOptions: ?*?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).GetCommandOptions(@ptrCast(*const IPortableDeviceServiceCapabilities, self), Command, ppOptions);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceCapabilities_Cancel(self: *const T) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceCapabilities.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceServiceCapabilities, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4059,13 +4101,13 @@ pub const IPortableDeviceServiceMethods = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Invoke: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceMethods,
                 Method: ?*const Guid,
                 pParameters: ?*IPortableDeviceValues,
                 ppResults: ?*?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceMethods,
                 Method: ?*const Guid,
                 pParameters: ?*IPortableDeviceValues,
@@ -4073,13 +4115,13 @@ pub const IPortableDeviceServiceMethods = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         InvokeAsync: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceMethods,
                 Method: ?*const Guid,
                 pParameters: ?*IPortableDeviceValues,
                 pCallback: ?*IPortableDeviceServiceMethodCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceMethods,
                 Method: ?*const Guid,
                 pParameters: ?*IPortableDeviceValues,
@@ -4087,32 +4129,34 @@ pub const IPortableDeviceServiceMethods = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceMethods,
                 pCallback: ?*IPortableDeviceServiceMethodCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceMethods,
                 pCallback: ?*IPortableDeviceServiceMethodCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceMethods_Invoke(self: *const T, Method: ?*const Guid, pParameters: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceMethods.VTable, self.vtable).Invoke(@ptrCast(*const IPortableDeviceServiceMethods, self), Method, pParameters, ppResults);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceMethods_InvokeAsync(self: *const T, Method: ?*const Guid, pParameters: ?*IPortableDeviceValues, pCallback: ?*IPortableDeviceServiceMethodCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceMethods.VTable, self.vtable).InvokeAsync(@ptrCast(*const IPortableDeviceServiceMethods, self), Method, pParameters, pCallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceMethods_Cancel(self: *const T, pCallback: ?*IPortableDeviceServiceMethodCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceMethods.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceServiceMethods, self), pCallback);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceMethods_Invoke(self: *const T, Method: ?*const Guid, pParameters: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceMethods.VTable, self.vtable).Invoke(@ptrCast(*const IPortableDeviceServiceMethods, self), Method, pParameters, ppResults);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceMethods_InvokeAsync(self: *const T, Method: ?*const Guid, pParameters: ?*IPortableDeviceValues, pCallback: ?*IPortableDeviceServiceMethodCallback) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceMethods.VTable, self.vtable).InvokeAsync(@ptrCast(*const IPortableDeviceServiceMethods, self), Method, pParameters, pCallback);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceMethods_Cancel(self: *const T, pCallback: ?*IPortableDeviceServiceMethodCallback) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceMethods.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceServiceMethods, self), pCallback);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4123,12 +4167,12 @@ pub const IPortableDeviceServiceMethodCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnComplete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceMethodCallback,
                 hrStatus: HRESULT,
                 pResults: ?*IPortableDeviceValues,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceMethodCallback,
                 hrStatus: HRESULT,
                 pResults: ?*IPortableDeviceValues,
@@ -4136,13 +4180,15 @@ pub const IPortableDeviceServiceMethodCallback = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceMethodCallback_OnComplete(self: *const T, hrStatus: HRESULT, pResults: ?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceMethodCallback.VTable, self.vtable).OnComplete(@ptrCast(*const IPortableDeviceServiceMethodCallback, self), hrStatus, pResults);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceMethodCallback_OnComplete(self: *const T, hrStatus: HRESULT, pResults: ?*IPortableDeviceValues) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceMethodCallback.VTable, self.vtable).OnComplete(@ptrCast(*const IPortableDeviceServiceMethodCallback, self), hrStatus, pResults);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4152,13 +4198,13 @@ pub const IPortableDeviceServiceActivation = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OpenAsync: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceActivation,
                 pszPnPServiceID: ?[*:0]const u16,
                 pClientInfo: ?*IPortableDeviceValues,
                 pCallback: ?*IPortableDeviceServiceOpenCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceActivation,
                 pszPnPServiceID: ?[*:0]const u16,
                 pClientInfo: ?*IPortableDeviceValues,
@@ -4166,26 +4212,28 @@ pub const IPortableDeviceServiceActivation = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CancelOpenAsync: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceActivation,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceActivation,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceActivation_OpenAsync(self: *const T, pszPnPServiceID: ?[*:0]const u16, pClientInfo: ?*IPortableDeviceValues, pCallback: ?*IPortableDeviceServiceOpenCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceActivation.VTable, self.vtable).OpenAsync(@ptrCast(*const IPortableDeviceServiceActivation, self), pszPnPServiceID, pClientInfo, pCallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceActivation_CancelOpenAsync(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceActivation.VTable, self.vtable).CancelOpenAsync(@ptrCast(*const IPortableDeviceServiceActivation, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceActivation_OpenAsync(self: *const T, pszPnPServiceID: ?[*:0]const u16, pClientInfo: ?*IPortableDeviceValues, pCallback: ?*IPortableDeviceServiceOpenCallback) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceActivation.VTable, self.vtable).OpenAsync(@ptrCast(*const IPortableDeviceServiceActivation, self), pszPnPServiceID, pClientInfo, pCallback);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceActivation_CancelOpenAsync(self: *const T) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceActivation.VTable, self.vtable).CancelOpenAsync(@ptrCast(*const IPortableDeviceServiceActivation, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4195,24 +4243,26 @@ pub const IPortableDeviceServiceOpenCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnComplete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceServiceOpenCallback,
                 hrStatus: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceServiceOpenCallback,
                 hrStatus: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceServiceOpenCallback_OnComplete(self: *const T, hrStatus: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceServiceOpenCallback.VTable, self.vtable).OnComplete(@ptrCast(*const IPortableDeviceServiceOpenCallback, self), hrStatus);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceServiceOpenCallback_OnComplete(self: *const T, hrStatus: HRESULT) HRESULT {
+                return @ptrCast(*const IPortableDeviceServiceOpenCallback.VTable, self.vtable).OnComplete(@ptrCast(*const IPortableDeviceServiceOpenCallback, self), hrStatus);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4223,12 +4273,12 @@ pub const IPortableDeviceDispatchFactory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDeviceDispatch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceDispatchFactory,
                 pszPnPDeviceID: ?[*:0]const u16,
                 ppDeviceDispatch: ?*?*IDispatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceDispatchFactory,
                 pszPnPDeviceID: ?[*:0]const u16,
                 ppDeviceDispatch: ?*?*IDispatch,
@@ -4236,13 +4286,15 @@ pub const IPortableDeviceDispatchFactory = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceDispatchFactory_GetDeviceDispatch(self: *const T, pszPnPDeviceID: ?[*:0]const u16, ppDeviceDispatch: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceDispatchFactory.VTable, self.vtable).GetDeviceDispatch(@ptrCast(*const IPortableDeviceDispatchFactory, self), pszPnPDeviceID, ppDeviceDispatch);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceDispatchFactory_GetDeviceDispatch(self: *const T, pszPnPDeviceID: ?[*:0]const u16, ppDeviceDispatch: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IPortableDeviceDispatchFactory.VTable, self.vtable).GetDeviceDispatch(@ptrCast(*const IPortableDeviceDispatchFactory, self), pszPnPDeviceID, ppDeviceDispatch);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4253,25 +4305,25 @@ pub const IPortableDeviceWebControl = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         GetDeviceFromId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceWebControl,
                 deviceId: ?BSTR,
                 ppDevice: ?*?*IDispatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceWebControl,
                 deviceId: ?BSTR,
                 ppDevice: ?*?*IDispatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDeviceFromIdAsync: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceWebControl,
                 deviceId: ?BSTR,
                 pCompletionHandler: ?*IDispatch,
                 pErrorHandler: ?*IDispatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceWebControl,
                 deviceId: ?BSTR,
                 pCompletionHandler: ?*IDispatch,
@@ -4280,17 +4332,19 @@ pub const IPortableDeviceWebControl = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceWebControl_GetDeviceFromId(self: *const T, deviceId: ?BSTR, ppDevice: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceWebControl.VTable, self.vtable).GetDeviceFromId(@ptrCast(*const IPortableDeviceWebControl, self), deviceId, ppDevice);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceWebControl_GetDeviceFromIdAsync(self: *const T, deviceId: ?BSTR, pCompletionHandler: ?*IDispatch, pErrorHandler: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceWebControl.VTable, self.vtable).GetDeviceFromIdAsync(@ptrCast(*const IPortableDeviceWebControl, self), deviceId, pCompletionHandler, pErrorHandler);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IDispatch.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceWebControl_GetDeviceFromId(self: *const T, deviceId: ?BSTR, ppDevice: ?*?*IDispatch) HRESULT {
+                return @ptrCast(*const IPortableDeviceWebControl.VTable, self.vtable).GetDeviceFromId(@ptrCast(*const IPortableDeviceWebControl, self), deviceId, ppDevice);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceWebControl_GetDeviceFromIdAsync(self: *const T, deviceId: ?BSTR, pCompletionHandler: ?*IDispatch, pErrorHandler: ?*IDispatch) HRESULT {
+                return @ptrCast(*const IPortableDeviceWebControl.VTable, self.vtable).GetDeviceFromIdAsync(@ptrCast(*const IPortableDeviceWebControl, self), deviceId, pCompletionHandler, pErrorHandler);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4303,13 +4357,13 @@ pub const IEnumPortableDeviceConnectors = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumPortableDeviceConnectors,
                 cRequested: u32,
                 pConnectors: [*]?*IPortableDeviceConnector,
                 pcFetched: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumPortableDeviceConnectors,
                 cRequested: u32,
                 pConnectors: [*]?*IPortableDeviceConnector,
@@ -4317,54 +4371,56 @@ pub const IEnumPortableDeviceConnectors = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumPortableDeviceConnectors,
                 cConnectors: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumPortableDeviceConnectors,
                 cConnectors: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumPortableDeviceConnectors,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumPortableDeviceConnectors,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumPortableDeviceConnectors,
                 ppEnum: ?*?*IEnumPortableDeviceConnectors,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumPortableDeviceConnectors,
                 ppEnum: ?*?*IEnumPortableDeviceConnectors,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumPortableDeviceConnectors_Next(self: *const T, cRequested: u32, pConnectors: [*]?*IPortableDeviceConnector, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumPortableDeviceConnectors.VTable, self.vtable).Next(@ptrCast(*const IEnumPortableDeviceConnectors, self), cRequested, pConnectors, pcFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumPortableDeviceConnectors_Skip(self: *const T, cConnectors: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumPortableDeviceConnectors.VTable, self.vtable).Skip(@ptrCast(*const IEnumPortableDeviceConnectors, self), cConnectors);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumPortableDeviceConnectors_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumPortableDeviceConnectors.VTable, self.vtable).Reset(@ptrCast(*const IEnumPortableDeviceConnectors, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumPortableDeviceConnectors_Clone(self: *const T, ppEnum: ?*?*IEnumPortableDeviceConnectors) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumPortableDeviceConnectors.VTable, self.vtable).Clone(@ptrCast(*const IEnumPortableDeviceConnectors, self), ppEnum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumPortableDeviceConnectors_Next(self: *const T, cRequested: u32, pConnectors: [*]?*IPortableDeviceConnector, pcFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumPortableDeviceConnectors.VTable, self.vtable).Next(@ptrCast(*const IEnumPortableDeviceConnectors, self), cRequested, pConnectors, pcFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumPortableDeviceConnectors_Skip(self: *const T, cConnectors: u32) HRESULT {
+                return @ptrCast(*const IEnumPortableDeviceConnectors.VTable, self.vtable).Skip(@ptrCast(*const IEnumPortableDeviceConnectors, self), cConnectors);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumPortableDeviceConnectors_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumPortableDeviceConnectors.VTable, self.vtable).Reset(@ptrCast(*const IEnumPortableDeviceConnectors, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumPortableDeviceConnectors_Clone(self: *const T, ppEnum: ?*?*IEnumPortableDeviceConnectors) HRESULT {
+                return @ptrCast(*const IEnumPortableDeviceConnectors.VTable, self.vtable).Clone(@ptrCast(*const IEnumPortableDeviceConnectors, self), ppEnum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4375,44 +4431,44 @@ pub const IPortableDeviceConnector = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Connect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceConnector,
                 pCallback: ?*IConnectionRequestCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceConnector,
                 pCallback: ?*IConnectionRequestCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Disconnect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceConnector,
                 pCallback: ?*IConnectionRequestCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceConnector,
                 pCallback: ?*IConnectionRequestCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceConnector,
                 pCallback: ?*IConnectionRequestCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceConnector,
                 pCallback: ?*IConnectionRequestCallback,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceConnector,
                 pPropertyKey: ?*const DEVPROPKEY,
                 pPropertyType: ?*u32,
                 ppData: [*]?*u8,
                 pcbData: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceConnector,
                 pPropertyKey: ?*const DEVPROPKEY,
                 pPropertyType: ?*u32,
@@ -4421,14 +4477,14 @@ pub const IPortableDeviceConnector = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceConnector,
                 pPropertyKey: ?*const DEVPROPKEY,
                 PropertyType: u32,
                 pData: [*:0]const u8,
                 cbData: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceConnector,
                 pPropertyKey: ?*const DEVPROPKEY,
                 PropertyType: u32,
@@ -4437,44 +4493,46 @@ pub const IPortableDeviceConnector = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPnPID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPortableDeviceConnector,
                 ppwszPnPID: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPortableDeviceConnector,
                 ppwszPnPID: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceConnector_Connect(self: *const T, pCallback: ?*IConnectionRequestCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceConnector.VTable, self.vtable).Connect(@ptrCast(*const IPortableDeviceConnector, self), pCallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceConnector_Disconnect(self: *const T, pCallback: ?*IConnectionRequestCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceConnector.VTable, self.vtable).Disconnect(@ptrCast(*const IPortableDeviceConnector, self), pCallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceConnector_Cancel(self: *const T, pCallback: ?*IConnectionRequestCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceConnector.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceConnector, self), pCallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceConnector_GetProperty(self: *const T, pPropertyKey: ?*const DEVPROPKEY, pPropertyType: ?*u32, ppData: [*]?*u8, pcbData: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceConnector.VTable, self.vtable).GetProperty(@ptrCast(*const IPortableDeviceConnector, self), pPropertyKey, pPropertyType, ppData, pcbData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceConnector_SetProperty(self: *const T, pPropertyKey: ?*const DEVPROPKEY, PropertyType: u32, pData: [*:0]const u8, cbData: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceConnector.VTable, self.vtable).SetProperty(@ptrCast(*const IPortableDeviceConnector, self), pPropertyKey, PropertyType, pData, cbData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPortableDeviceConnector_GetPnPID(self: *const T, ppwszPnPID: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPortableDeviceConnector.VTable, self.vtable).GetPnPID(@ptrCast(*const IPortableDeviceConnector, self), ppwszPnPID);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceConnector_Connect(self: *const T, pCallback: ?*IConnectionRequestCallback) HRESULT {
+                return @ptrCast(*const IPortableDeviceConnector.VTable, self.vtable).Connect(@ptrCast(*const IPortableDeviceConnector, self), pCallback);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceConnector_Disconnect(self: *const T, pCallback: ?*IConnectionRequestCallback) HRESULT {
+                return @ptrCast(*const IPortableDeviceConnector.VTable, self.vtable).Disconnect(@ptrCast(*const IPortableDeviceConnector, self), pCallback);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceConnector_Cancel(self: *const T, pCallback: ?*IConnectionRequestCallback) HRESULT {
+                return @ptrCast(*const IPortableDeviceConnector.VTable, self.vtable).Cancel(@ptrCast(*const IPortableDeviceConnector, self), pCallback);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceConnector_GetProperty(self: *const T, pPropertyKey: ?*const DEVPROPKEY, pPropertyType: ?*u32, ppData: [*]?*u8, pcbData: ?*u32) HRESULT {
+                return @ptrCast(*const IPortableDeviceConnector.VTable, self.vtable).GetProperty(@ptrCast(*const IPortableDeviceConnector, self), pPropertyKey, pPropertyType, ppData, pcbData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceConnector_SetProperty(self: *const T, pPropertyKey: ?*const DEVPROPKEY, PropertyType: u32, pData: [*:0]const u8, cbData: u32) HRESULT {
+                return @ptrCast(*const IPortableDeviceConnector.VTable, self.vtable).SetProperty(@ptrCast(*const IPortableDeviceConnector, self), pPropertyKey, PropertyType, pData, cbData);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPortableDeviceConnector_GetPnPID(self: *const T, ppwszPnPID: ?*?PWSTR) HRESULT {
+                return @ptrCast(*const IPortableDeviceConnector.VTable, self.vtable).GetPnPID(@ptrCast(*const IPortableDeviceConnector, self), ppwszPnPID);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4484,24 +4542,26 @@ pub const IConnectionRequestCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnComplete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IConnectionRequestCallback,
                 hrStatus: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IConnectionRequestCallback,
                 hrStatus: HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IConnectionRequestCallback_OnComplete(self: *const T, hrStatus: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IConnectionRequestCallback.VTable, self.vtable).OnComplete(@ptrCast(*const IConnectionRequestCallback, self), hrStatus);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IConnectionRequestCallback_OnComplete(self: *const T, hrStatus: HRESULT) HRESULT {
+                return @ptrCast(*const IConnectionRequestCallback.VTable, self.vtable).OnComplete(@ptrCast(*const IConnectionRequestCallback, self), hrStatus);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4537,22 +4597,22 @@ pub const IMediaRadioManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetRadioInstances: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMediaRadioManager,
                 ppCollection: ?*?*IRadioInstanceCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMediaRadioManager,
                 ppCollection: ?*?*IRadioInstanceCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnSystemRadioStateChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMediaRadioManager,
                 sysRadioState: SYSTEM_RADIO_STATE,
                 uTimeoutSec: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMediaRadioManager,
                 sysRadioState: SYSTEM_RADIO_STATE,
                 uTimeoutSec: u32,
@@ -4560,17 +4620,19 @@ pub const IMediaRadioManager = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaRadioManager_GetRadioInstances(self: *const T, ppCollection: ?*?*IRadioInstanceCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaRadioManager.VTable, self.vtable).GetRadioInstances(@ptrCast(*const IMediaRadioManager, self), ppCollection);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaRadioManager_OnSystemRadioStateChange(self: *const T, sysRadioState: SYSTEM_RADIO_STATE, uTimeoutSec: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaRadioManager.VTable, self.vtable).OnSystemRadioStateChange(@ptrCast(*const IMediaRadioManager, self), sysRadioState, uTimeoutSec);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMediaRadioManager_GetRadioInstances(self: *const T, ppCollection: ?*?*IRadioInstanceCollection) HRESULT {
+                return @ptrCast(*const IMediaRadioManager.VTable, self.vtable).GetRadioInstances(@ptrCast(*const IMediaRadioManager, self), ppCollection);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMediaRadioManager_OnSystemRadioStateChange(self: *const T, sysRadioState: SYSTEM_RADIO_STATE, uTimeoutSec: u32) HRESULT {
+                return @ptrCast(*const IMediaRadioManager.VTable, self.vtable).OnSystemRadioStateChange(@ptrCast(*const IMediaRadioManager, self), sysRadioState, uTimeoutSec);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4580,22 +4642,22 @@ pub const IRadioInstanceCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IRadioInstanceCollection,
                 pcInstance: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IRadioInstanceCollection,
                 pcInstance: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IRadioInstanceCollection,
                 uIndex: u32,
                 ppRadioInstance: ?*?*IRadioInstance,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IRadioInstanceCollection,
                 uIndex: u32,
                 ppRadioInstance: ?*?*IRadioInstance,
@@ -4603,17 +4665,19 @@ pub const IRadioInstanceCollection = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRadioInstanceCollection_GetCount(self: *const T, pcInstance: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRadioInstanceCollection.VTable, self.vtable).GetCount(@ptrCast(*const IRadioInstanceCollection, self), pcInstance);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRadioInstanceCollection_GetAt(self: *const T, uIndex: u32, ppRadioInstance: ?*?*IRadioInstance) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRadioInstanceCollection.VTable, self.vtable).GetAt(@ptrCast(*const IRadioInstanceCollection, self), uIndex, ppRadioInstance);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRadioInstanceCollection_GetCount(self: *const T, pcInstance: ?*u32) HRESULT {
+                return @ptrCast(*const IRadioInstanceCollection.VTable, self.vtable).GetCount(@ptrCast(*const IRadioInstanceCollection, self), pcInstance);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRadioInstanceCollection_GetAt(self: *const T, uIndex: u32, ppRadioInstance: ?*?*IRadioInstance) HRESULT {
+                return @ptrCast(*const IRadioInstanceCollection.VTable, self.vtable).GetAt(@ptrCast(*const IRadioInstanceCollection, self), uIndex, ppRadioInstance);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4623,108 +4687,110 @@ pub const IRadioInstance = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetRadioManagerSignature: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IRadioInstance,
                 pguidSignature: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IRadioInstance,
                 pguidSignature: ?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetInstanceSignature: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IRadioInstance,
                 pbstrId: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IRadioInstance,
                 pbstrId: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFriendlyName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IRadioInstance,
                 lcid: u32,
                 pbstrName: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IRadioInstance,
                 lcid: u32,
                 pbstrName: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetRadioState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IRadioInstance,
                 pRadioState: ?*DEVICE_RADIO_STATE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IRadioInstance,
                 pRadioState: ?*DEVICE_RADIO_STATE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetRadioState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IRadioInstance,
                 radioState: DEVICE_RADIO_STATE,
                 uTimeoutSec: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IRadioInstance,
                 radioState: DEVICE_RADIO_STATE,
                 uTimeoutSec: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         IsMultiComm: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IRadioInstance,
             ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
+            else => *const fn (
                 self: *const IRadioInstance,
             ) callconv(@import("std").os.windows.WINAPI) BOOL,
         },
         IsAssociatingDevice: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IRadioInstance,
             ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
+            else => *const fn (
                 self: *const IRadioInstance,
             ) callconv(@import("std").os.windows.WINAPI) BOOL,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRadioInstance_GetRadioManagerSignature(self: *const T, pguidSignature: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRadioInstance.VTable, self.vtable).GetRadioManagerSignature(@ptrCast(*const IRadioInstance, self), pguidSignature);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRadioInstance_GetInstanceSignature(self: *const T, pbstrId: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRadioInstance.VTable, self.vtable).GetInstanceSignature(@ptrCast(*const IRadioInstance, self), pbstrId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRadioInstance_GetFriendlyName(self: *const T, lcid: u32, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRadioInstance.VTable, self.vtable).GetFriendlyName(@ptrCast(*const IRadioInstance, self), lcid, pbstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRadioInstance_GetRadioState(self: *const T, pRadioState: ?*DEVICE_RADIO_STATE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRadioInstance.VTable, self.vtable).GetRadioState(@ptrCast(*const IRadioInstance, self), pRadioState);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRadioInstance_SetRadioState(self: *const T, radioState: DEVICE_RADIO_STATE, uTimeoutSec: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRadioInstance.VTable, self.vtable).SetRadioState(@ptrCast(*const IRadioInstance, self), radioState, uTimeoutSec);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRadioInstance_IsMultiComm(self: *const T) callconv(.Inline) BOOL {
-            return @ptrCast(*const IRadioInstance.VTable, self.vtable).IsMultiComm(@ptrCast(*const IRadioInstance, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRadioInstance_IsAssociatingDevice(self: *const T) callconv(.Inline) BOOL {
-            return @ptrCast(*const IRadioInstance.VTable, self.vtable).IsAssociatingDevice(@ptrCast(*const IRadioInstance, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRadioInstance_GetRadioManagerSignature(self: *const T, pguidSignature: ?*Guid) HRESULT {
+                return @ptrCast(*const IRadioInstance.VTable, self.vtable).GetRadioManagerSignature(@ptrCast(*const IRadioInstance, self), pguidSignature);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRadioInstance_GetInstanceSignature(self: *const T, pbstrId: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IRadioInstance.VTable, self.vtable).GetInstanceSignature(@ptrCast(*const IRadioInstance, self), pbstrId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRadioInstance_GetFriendlyName(self: *const T, lcid: u32, pbstrName: ?*?BSTR) HRESULT {
+                return @ptrCast(*const IRadioInstance.VTable, self.vtable).GetFriendlyName(@ptrCast(*const IRadioInstance, self), lcid, pbstrName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRadioInstance_GetRadioState(self: *const T, pRadioState: ?*DEVICE_RADIO_STATE) HRESULT {
+                return @ptrCast(*const IRadioInstance.VTable, self.vtable).GetRadioState(@ptrCast(*const IRadioInstance, self), pRadioState);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRadioInstance_SetRadioState(self: *const T, radioState: DEVICE_RADIO_STATE, uTimeoutSec: u32) HRESULT {
+                return @ptrCast(*const IRadioInstance.VTable, self.vtable).SetRadioState(@ptrCast(*const IRadioInstance, self), radioState, uTimeoutSec);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRadioInstance_IsMultiComm(self: *const T) BOOL {
+                return @ptrCast(*const IRadioInstance.VTable, self.vtable).IsMultiComm(@ptrCast(*const IRadioInstance, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRadioInstance_IsAssociatingDevice(self: *const T) BOOL {
+                return @ptrCast(*const IRadioInstance.VTable, self.vtable).IsAssociatingDevice(@ptrCast(*const IRadioInstance, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -4734,32 +4800,32 @@ pub const IMediaRadioManagerNotifySink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnInstanceAdd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMediaRadioManagerNotifySink,
                 pRadioInstance: ?*IRadioInstance,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMediaRadioManagerNotifySink,
                 pRadioInstance: ?*IRadioInstance,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnInstanceRemove: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMediaRadioManagerNotifySink,
                 bstrRadioInstanceId: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMediaRadioManagerNotifySink,
                 bstrRadioInstanceId: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnInstanceRadioChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IMediaRadioManagerNotifySink,
                 bstrRadioInstanceId: ?BSTR,
                 radioState: DEVICE_RADIO_STATE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IMediaRadioManagerNotifySink,
                 bstrRadioInstanceId: ?BSTR,
                 radioState: DEVICE_RADIO_STATE,
@@ -4767,24 +4833,25 @@ pub const IMediaRadioManagerNotifySink = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaRadioManagerNotifySink_OnInstanceAdd(self: *const T, pRadioInstance: ?*IRadioInstance) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaRadioManagerNotifySink.VTable, self.vtable).OnInstanceAdd(@ptrCast(*const IMediaRadioManagerNotifySink, self), pRadioInstance);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaRadioManagerNotifySink_OnInstanceRemove(self: *const T, bstrRadioInstanceId: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaRadioManagerNotifySink.VTable, self.vtable).OnInstanceRemove(@ptrCast(*const IMediaRadioManagerNotifySink, self), bstrRadioInstanceId);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaRadioManagerNotifySink_OnInstanceRadioChange(self: *const T, bstrRadioInstanceId: ?BSTR, radioState: DEVICE_RADIO_STATE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaRadioManagerNotifySink.VTable, self.vtable).OnInstanceRadioChange(@ptrCast(*const IMediaRadioManagerNotifySink, self), bstrRadioInstanceId, radioState);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMediaRadioManagerNotifySink_OnInstanceAdd(self: *const T, pRadioInstance: ?*IRadioInstance) HRESULT {
+                return @ptrCast(*const IMediaRadioManagerNotifySink.VTable, self.vtable).OnInstanceAdd(@ptrCast(*const IMediaRadioManagerNotifySink, self), pRadioInstance);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMediaRadioManagerNotifySink_OnInstanceRemove(self: *const T, bstrRadioInstanceId: ?BSTR) HRESULT {
+                return @ptrCast(*const IMediaRadioManagerNotifySink.VTable, self.vtable).OnInstanceRemove(@ptrCast(*const IMediaRadioManagerNotifySink, self), bstrRadioInstanceId);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IMediaRadioManagerNotifySink_OnInstanceRadioChange(self: *const T, bstrRadioInstanceId: ?BSTR, radioState: DEVICE_RADIO_STATE) HRESULT {
+                return @ptrCast(*const IMediaRadioManagerNotifySink.VTable, self.vtable).OnInstanceRadioChange(@ptrCast(*const IMediaRadioManagerNotifySink, self), bstrRadioInstanceId, radioState);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (1)
@@ -4796,19 +4863,14 @@ pub extern "dmprocessxmlfiltered" fn DMProcessConfigXMLFiltered(
     pbstrXmlOut: ?*?BSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (14)
@@ -4829,9 +4891,7 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const ULARGE_INTEGER = @import("../foundation.zig").ULARGE_INTEGER;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

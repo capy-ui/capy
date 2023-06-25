@@ -71,25 +71,25 @@ pub const IUIAnimationManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateAnimationVariable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager,
                 initialValue: f64,
                 variable: ?*?*IUIAnimationVariable,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager,
                 initialValue: f64,
                 variable: ?*?*IUIAnimationVariable,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ScheduleTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager,
                 variable: ?*IUIAnimationVariable,
                 transition: ?*IUIAnimationTransition,
                 timeNow: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager,
                 variable: ?*IUIAnimationVariable,
                 transition: ?*IUIAnimationTransition,
@@ -97,53 +97,53 @@ pub const IUIAnimationManager = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateStoryboard: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager,
                 storyboard: ?*?*IUIAnimationStoryboard,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager,
                 storyboard: ?*?*IUIAnimationStoryboard,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FinishAllStoryboards: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager,
                 completionDeadline: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager,
                 completionDeadline: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AbandonAllStoryboards: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Update: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager,
                 timeNow: f64,
                 updateResult: ?*UI_ANIMATION_UPDATE_RESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager,
                 timeNow: f64,
                 updateResult: ?*UI_ANIMATION_UPDATE_RESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetVariableFromTag: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager,
                 object: ?*IUnknown,
                 id: u32,
                 variable: ?*?*IUIAnimationVariable,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager,
                 object: ?*IUnknown,
                 id: u32,
@@ -151,13 +151,13 @@ pub const IUIAnimationManager = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetStoryboardFromTag: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager,
                 object: ?*IUnknown,
                 id: u32,
                 storyboard: ?*?*IUIAnimationStoryboard,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager,
                 object: ?*IUnknown,
                 id: u32,
@@ -165,190 +165,192 @@ pub const IUIAnimationManager = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager,
                 status: ?*UI_ANIMATION_MANAGER_STATUS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager,
                 status: ?*UI_ANIMATION_MANAGER_STATUS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetAnimationMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager,
                 mode: UI_ANIMATION_MODE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager,
                 mode: UI_ANIMATION_MODE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Pause: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Resume: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetManagerEventHandler: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager,
                 handler: ?*IUIAnimationManagerEventHandler,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager,
                 handler: ?*IUIAnimationManagerEventHandler,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetCancelPriorityComparison: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager,
                 comparison: ?*IUIAnimationPriorityComparison,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager,
                 comparison: ?*IUIAnimationPriorityComparison,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetTrimPriorityComparison: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager,
                 comparison: ?*IUIAnimationPriorityComparison,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager,
                 comparison: ?*IUIAnimationPriorityComparison,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetCompressPriorityComparison: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager,
                 comparison: ?*IUIAnimationPriorityComparison,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager,
                 comparison: ?*IUIAnimationPriorityComparison,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetConcludePriorityComparison: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager,
                 comparison: ?*IUIAnimationPriorityComparison,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager,
                 comparison: ?*IUIAnimationPriorityComparison,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetDefaultLongestAcceptableDelay: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager,
                 delay: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager,
                 delay: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Shutdown: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager_CreateAnimationVariable(self: *const T, initialValue: f64, variable: ?*?*IUIAnimationVariable) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).CreateAnimationVariable(@ptrCast(*const IUIAnimationManager, self), initialValue, variable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager_ScheduleTransition(self: *const T, variable: ?*IUIAnimationVariable, transition: ?*IUIAnimationTransition, timeNow: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).ScheduleTransition(@ptrCast(*const IUIAnimationManager, self), variable, transition, timeNow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager_CreateStoryboard(self: *const T, storyboard: ?*?*IUIAnimationStoryboard) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).CreateStoryboard(@ptrCast(*const IUIAnimationManager, self), storyboard);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager_FinishAllStoryboards(self: *const T, completionDeadline: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).FinishAllStoryboards(@ptrCast(*const IUIAnimationManager, self), completionDeadline);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager_AbandonAllStoryboards(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).AbandonAllStoryboards(@ptrCast(*const IUIAnimationManager, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager_Update(self: *const T, timeNow: f64, updateResult: ?*UI_ANIMATION_UPDATE_RESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).Update(@ptrCast(*const IUIAnimationManager, self), timeNow, updateResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager_GetVariableFromTag(self: *const T, object: ?*IUnknown, id: u32, variable: ?*?*IUIAnimationVariable) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).GetVariableFromTag(@ptrCast(*const IUIAnimationManager, self), object, id, variable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager_GetStoryboardFromTag(self: *const T, object: ?*IUnknown, id: u32, storyboard: ?*?*IUIAnimationStoryboard) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).GetStoryboardFromTag(@ptrCast(*const IUIAnimationManager, self), object, id, storyboard);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager_GetStatus(self: *const T, status: ?*UI_ANIMATION_MANAGER_STATUS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).GetStatus(@ptrCast(*const IUIAnimationManager, self), status);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager_SetAnimationMode(self: *const T, mode: UI_ANIMATION_MODE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).SetAnimationMode(@ptrCast(*const IUIAnimationManager, self), mode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager_Pause(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).Pause(@ptrCast(*const IUIAnimationManager, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager_Resume(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).Resume(@ptrCast(*const IUIAnimationManager, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager_SetManagerEventHandler(self: *const T, handler: ?*IUIAnimationManagerEventHandler) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).SetManagerEventHandler(@ptrCast(*const IUIAnimationManager, self), handler);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager_SetCancelPriorityComparison(self: *const T, comparison: ?*IUIAnimationPriorityComparison) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).SetCancelPriorityComparison(@ptrCast(*const IUIAnimationManager, self), comparison);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager_SetTrimPriorityComparison(self: *const T, comparison: ?*IUIAnimationPriorityComparison) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).SetTrimPriorityComparison(@ptrCast(*const IUIAnimationManager, self), comparison);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager_SetCompressPriorityComparison(self: *const T, comparison: ?*IUIAnimationPriorityComparison) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).SetCompressPriorityComparison(@ptrCast(*const IUIAnimationManager, self), comparison);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager_SetConcludePriorityComparison(self: *const T, comparison: ?*IUIAnimationPriorityComparison) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).SetConcludePriorityComparison(@ptrCast(*const IUIAnimationManager, self), comparison);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager_SetDefaultLongestAcceptableDelay(self: *const T, delay: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).SetDefaultLongestAcceptableDelay(@ptrCast(*const IUIAnimationManager, self), delay);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager_Shutdown(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).Shutdown(@ptrCast(*const IUIAnimationManager, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager_CreateAnimationVariable(self: *const T, initialValue: f64, variable: ?*?*IUIAnimationVariable) HRESULT {
+                return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).CreateAnimationVariable(@ptrCast(*const IUIAnimationManager, self), initialValue, variable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager_ScheduleTransition(self: *const T, variable: ?*IUIAnimationVariable, transition: ?*IUIAnimationTransition, timeNow: f64) HRESULT {
+                return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).ScheduleTransition(@ptrCast(*const IUIAnimationManager, self), variable, transition, timeNow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager_CreateStoryboard(self: *const T, storyboard: ?*?*IUIAnimationStoryboard) HRESULT {
+                return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).CreateStoryboard(@ptrCast(*const IUIAnimationManager, self), storyboard);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager_FinishAllStoryboards(self: *const T, completionDeadline: f64) HRESULT {
+                return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).FinishAllStoryboards(@ptrCast(*const IUIAnimationManager, self), completionDeadline);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager_AbandonAllStoryboards(self: *const T) HRESULT {
+                return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).AbandonAllStoryboards(@ptrCast(*const IUIAnimationManager, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager_Update(self: *const T, timeNow: f64, updateResult: ?*UI_ANIMATION_UPDATE_RESULT) HRESULT {
+                return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).Update(@ptrCast(*const IUIAnimationManager, self), timeNow, updateResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager_GetVariableFromTag(self: *const T, object: ?*IUnknown, id: u32, variable: ?*?*IUIAnimationVariable) HRESULT {
+                return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).GetVariableFromTag(@ptrCast(*const IUIAnimationManager, self), object, id, variable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager_GetStoryboardFromTag(self: *const T, object: ?*IUnknown, id: u32, storyboard: ?*?*IUIAnimationStoryboard) HRESULT {
+                return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).GetStoryboardFromTag(@ptrCast(*const IUIAnimationManager, self), object, id, storyboard);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager_GetStatus(self: *const T, status: ?*UI_ANIMATION_MANAGER_STATUS) HRESULT {
+                return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).GetStatus(@ptrCast(*const IUIAnimationManager, self), status);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager_SetAnimationMode(self: *const T, mode: UI_ANIMATION_MODE) HRESULT {
+                return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).SetAnimationMode(@ptrCast(*const IUIAnimationManager, self), mode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager_Pause(self: *const T) HRESULT {
+                return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).Pause(@ptrCast(*const IUIAnimationManager, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager_Resume(self: *const T) HRESULT {
+                return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).Resume(@ptrCast(*const IUIAnimationManager, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager_SetManagerEventHandler(self: *const T, handler: ?*IUIAnimationManagerEventHandler) HRESULT {
+                return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).SetManagerEventHandler(@ptrCast(*const IUIAnimationManager, self), handler);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager_SetCancelPriorityComparison(self: *const T, comparison: ?*IUIAnimationPriorityComparison) HRESULT {
+                return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).SetCancelPriorityComparison(@ptrCast(*const IUIAnimationManager, self), comparison);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager_SetTrimPriorityComparison(self: *const T, comparison: ?*IUIAnimationPriorityComparison) HRESULT {
+                return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).SetTrimPriorityComparison(@ptrCast(*const IUIAnimationManager, self), comparison);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager_SetCompressPriorityComparison(self: *const T, comparison: ?*IUIAnimationPriorityComparison) HRESULT {
+                return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).SetCompressPriorityComparison(@ptrCast(*const IUIAnimationManager, self), comparison);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager_SetConcludePriorityComparison(self: *const T, comparison: ?*IUIAnimationPriorityComparison) HRESULT {
+                return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).SetConcludePriorityComparison(@ptrCast(*const IUIAnimationManager, self), comparison);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager_SetDefaultLongestAcceptableDelay(self: *const T, delay: f64) HRESULT {
+                return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).SetDefaultLongestAcceptableDelay(@ptrCast(*const IUIAnimationManager, self), delay);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager_Shutdown(self: *const T) HRESULT {
+                return @ptrCast(*const IUIAnimationManager.VTable, self.vtable).Shutdown(@ptrCast(*const IUIAnimationManager, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -368,210 +370,212 @@ pub const IUIAnimationVariable = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable,
                 value: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable,
                 value: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFinalValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable,
                 finalValue: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable,
                 finalValue: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPreviousValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable,
                 previousValue: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable,
                 previousValue: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetIntegerValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable,
                 value: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable,
                 value: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFinalIntegerValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable,
                 finalValue: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable,
                 finalValue: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPreviousIntegerValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable,
                 previousValue: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable,
                 previousValue: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCurrentStoryboard: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable,
                 storyboard: ?*?*IUIAnimationStoryboard,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable,
                 storyboard: ?*?*IUIAnimationStoryboard,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetLowerBound: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable,
                 bound: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable,
                 bound: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetUpperBound: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable,
                 bound: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable,
                 bound: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetRoundingMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable,
                 mode: UI_ANIMATION_ROUNDING_MODE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable,
                 mode: UI_ANIMATION_ROUNDING_MODE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetTag: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable,
                 object: ?*IUnknown,
                 id: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable,
                 object: ?*IUnknown,
                 id: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetTag: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable,
                 object: ?*?*IUnknown,
                 id: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable,
                 object: ?*?*IUnknown,
                 id: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetVariableChangeHandler: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable,
                 handler: ?*IUIAnimationVariableChangeHandler,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable,
                 handler: ?*IUIAnimationVariableChangeHandler,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetVariableIntegerChangeHandler: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable,
                 handler: ?*IUIAnimationVariableIntegerChangeHandler,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable,
                 handler: ?*IUIAnimationVariableIntegerChangeHandler,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable_GetValue(self: *const T, value: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).GetValue(@ptrCast(*const IUIAnimationVariable, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable_GetFinalValue(self: *const T, finalValue: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).GetFinalValue(@ptrCast(*const IUIAnimationVariable, self), finalValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable_GetPreviousValue(self: *const T, previousValue: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).GetPreviousValue(@ptrCast(*const IUIAnimationVariable, self), previousValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable_GetIntegerValue(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).GetIntegerValue(@ptrCast(*const IUIAnimationVariable, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable_GetFinalIntegerValue(self: *const T, finalValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).GetFinalIntegerValue(@ptrCast(*const IUIAnimationVariable, self), finalValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable_GetPreviousIntegerValue(self: *const T, previousValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).GetPreviousIntegerValue(@ptrCast(*const IUIAnimationVariable, self), previousValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable_GetCurrentStoryboard(self: *const T, storyboard: ?*?*IUIAnimationStoryboard) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).GetCurrentStoryboard(@ptrCast(*const IUIAnimationVariable, self), storyboard);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable_SetLowerBound(self: *const T, bound: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).SetLowerBound(@ptrCast(*const IUIAnimationVariable, self), bound);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable_SetUpperBound(self: *const T, bound: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).SetUpperBound(@ptrCast(*const IUIAnimationVariable, self), bound);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable_SetRoundingMode(self: *const T, mode: UI_ANIMATION_ROUNDING_MODE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).SetRoundingMode(@ptrCast(*const IUIAnimationVariable, self), mode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable_SetTag(self: *const T, object: ?*IUnknown, id: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).SetTag(@ptrCast(*const IUIAnimationVariable, self), object, id);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable_GetTag(self: *const T, object: ?*?*IUnknown, id: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).GetTag(@ptrCast(*const IUIAnimationVariable, self), object, id);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable_SetVariableChangeHandler(self: *const T, handler: ?*IUIAnimationVariableChangeHandler) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).SetVariableChangeHandler(@ptrCast(*const IUIAnimationVariable, self), handler);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable_SetVariableIntegerChangeHandler(self: *const T, handler: ?*IUIAnimationVariableIntegerChangeHandler) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).SetVariableIntegerChangeHandler(@ptrCast(*const IUIAnimationVariable, self), handler);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable_GetValue(self: *const T, value: ?*f64) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).GetValue(@ptrCast(*const IUIAnimationVariable, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable_GetFinalValue(self: *const T, finalValue: ?*f64) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).GetFinalValue(@ptrCast(*const IUIAnimationVariable, self), finalValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable_GetPreviousValue(self: *const T, previousValue: ?*f64) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).GetPreviousValue(@ptrCast(*const IUIAnimationVariable, self), previousValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable_GetIntegerValue(self: *const T, value: ?*i32) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).GetIntegerValue(@ptrCast(*const IUIAnimationVariable, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable_GetFinalIntegerValue(self: *const T, finalValue: ?*i32) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).GetFinalIntegerValue(@ptrCast(*const IUIAnimationVariable, self), finalValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable_GetPreviousIntegerValue(self: *const T, previousValue: ?*i32) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).GetPreviousIntegerValue(@ptrCast(*const IUIAnimationVariable, self), previousValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable_GetCurrentStoryboard(self: *const T, storyboard: ?*?*IUIAnimationStoryboard) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).GetCurrentStoryboard(@ptrCast(*const IUIAnimationVariable, self), storyboard);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable_SetLowerBound(self: *const T, bound: f64) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).SetLowerBound(@ptrCast(*const IUIAnimationVariable, self), bound);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable_SetUpperBound(self: *const T, bound: f64) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).SetUpperBound(@ptrCast(*const IUIAnimationVariable, self), bound);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable_SetRoundingMode(self: *const T, mode: UI_ANIMATION_ROUNDING_MODE) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).SetRoundingMode(@ptrCast(*const IUIAnimationVariable, self), mode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable_SetTag(self: *const T, object: ?*IUnknown, id: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).SetTag(@ptrCast(*const IUIAnimationVariable, self), object, id);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable_GetTag(self: *const T, object: ?*?*IUnknown, id: ?*u32) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).GetTag(@ptrCast(*const IUIAnimationVariable, self), object, id);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable_SetVariableChangeHandler(self: *const T, handler: ?*IUIAnimationVariableChangeHandler) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).SetVariableChangeHandler(@ptrCast(*const IUIAnimationVariable, self), handler);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable_SetVariableIntegerChangeHandler(self: *const T, handler: ?*IUIAnimationVariableIntegerChangeHandler) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable.VTable, self.vtable).SetVariableIntegerChangeHandler(@ptrCast(*const IUIAnimationVariable, self), handler);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -614,25 +618,25 @@ pub const IUIAnimationStoryboard = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard,
                 variable: ?*IUIAnimationVariable,
                 transition: ?*IUIAnimationTransition,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard,
                 variable: ?*IUIAnimationVariable,
                 transition: ?*IUIAnimationTransition,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AddKeyframeAtOffset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard,
                 existingKeyframe: UI_ANIMATION_KEYFRAME,
                 offset: f64,
                 keyframe: ?*UI_ANIMATION_KEYFRAME,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard,
                 existingKeyframe: UI_ANIMATION_KEYFRAME,
                 offset: f64,
@@ -640,25 +644,25 @@ pub const IUIAnimationStoryboard = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AddKeyframeAfterTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard,
                 transition: ?*IUIAnimationTransition,
                 keyframe: ?*UI_ANIMATION_KEYFRAME,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard,
                 transition: ?*IUIAnimationTransition,
                 keyframe: ?*UI_ANIMATION_KEYFRAME,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AddTransitionAtKeyframe: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard,
                 variable: ?*IUIAnimationVariable,
                 transition: ?*IUIAnimationTransition,
                 startKeyframe: UI_ANIMATION_KEYFRAME,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard,
                 variable: ?*IUIAnimationVariable,
                 transition: ?*IUIAnimationTransition,
@@ -666,14 +670,14 @@ pub const IUIAnimationStoryboard = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AddTransitionBetweenKeyframes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard,
                 variable: ?*IUIAnimationVariable,
                 transition: ?*IUIAnimationTransition,
                 startKeyframe: UI_ANIMATION_KEYFRAME,
                 endKeyframe: UI_ANIMATION_KEYFRAME,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard,
                 variable: ?*IUIAnimationVariable,
                 transition: ?*IUIAnimationTransition,
@@ -682,13 +686,13 @@ pub const IUIAnimationStoryboard = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RepeatBetweenKeyframes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard,
                 startKeyframe: UI_ANIMATION_KEYFRAME,
                 endKeyframe: UI_ANIMATION_KEYFRAME,
                 repetitionCount: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard,
                 startKeyframe: UI_ANIMATION_KEYFRAME,
                 endKeyframe: UI_ANIMATION_KEYFRAME,
@@ -696,190 +700,192 @@ pub const IUIAnimationStoryboard = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         HoldVariable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard,
                 variable: ?*IUIAnimationVariable,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard,
                 variable: ?*IUIAnimationVariable,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetLongestAcceptableDelay: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard,
                 delay: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard,
                 delay: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Schedule: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard,
                 timeNow: f64,
                 schedulingResult: ?*UI_ANIMATION_SCHEDULING_RESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard,
                 timeNow: f64,
                 schedulingResult: ?*UI_ANIMATION_SCHEDULING_RESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Conclude: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Finish: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard,
                 completionDeadline: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard,
                 completionDeadline: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Abandon: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetTag: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard,
                 object: ?*IUnknown,
                 id: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard,
                 object: ?*IUnknown,
                 id: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetTag: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard,
                 object: ?*?*IUnknown,
                 id: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard,
                 object: ?*?*IUnknown,
                 id: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard,
                 status: ?*UI_ANIMATION_STORYBOARD_STATUS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard,
                 status: ?*UI_ANIMATION_STORYBOARD_STATUS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetElapsedTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard,
                 elapsedTime: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard,
                 elapsedTime: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetStoryboardEventHandler: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard,
                 handler: ?*IUIAnimationStoryboardEventHandler,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard,
                 handler: ?*IUIAnimationStoryboardEventHandler,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard_AddTransition(self: *const T, variable: ?*IUIAnimationVariable, transition: ?*IUIAnimationTransition) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).AddTransition(@ptrCast(*const IUIAnimationStoryboard, self), variable, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard_AddKeyframeAtOffset(self: *const T, existingKeyframe: UI_ANIMATION_KEYFRAME, offset: f64, keyframe: ?*UI_ANIMATION_KEYFRAME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).AddKeyframeAtOffset(@ptrCast(*const IUIAnimationStoryboard, self), existingKeyframe, offset, keyframe);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard_AddKeyframeAfterTransition(self: *const T, transition: ?*IUIAnimationTransition, keyframe: ?*UI_ANIMATION_KEYFRAME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).AddKeyframeAfterTransition(@ptrCast(*const IUIAnimationStoryboard, self), transition, keyframe);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard_AddTransitionAtKeyframe(self: *const T, variable: ?*IUIAnimationVariable, transition: ?*IUIAnimationTransition, startKeyframe: UI_ANIMATION_KEYFRAME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).AddTransitionAtKeyframe(@ptrCast(*const IUIAnimationStoryboard, self), variable, transition, startKeyframe);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard_AddTransitionBetweenKeyframes(self: *const T, variable: ?*IUIAnimationVariable, transition: ?*IUIAnimationTransition, startKeyframe: UI_ANIMATION_KEYFRAME, endKeyframe: UI_ANIMATION_KEYFRAME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).AddTransitionBetweenKeyframes(@ptrCast(*const IUIAnimationStoryboard, self), variable, transition, startKeyframe, endKeyframe);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard_RepeatBetweenKeyframes(self: *const T, startKeyframe: UI_ANIMATION_KEYFRAME, endKeyframe: UI_ANIMATION_KEYFRAME, repetitionCount: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).RepeatBetweenKeyframes(@ptrCast(*const IUIAnimationStoryboard, self), startKeyframe, endKeyframe, repetitionCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard_HoldVariable(self: *const T, variable: ?*IUIAnimationVariable) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).HoldVariable(@ptrCast(*const IUIAnimationStoryboard, self), variable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard_SetLongestAcceptableDelay(self: *const T, delay: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).SetLongestAcceptableDelay(@ptrCast(*const IUIAnimationStoryboard, self), delay);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard_Schedule(self: *const T, timeNow: f64, schedulingResult: ?*UI_ANIMATION_SCHEDULING_RESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).Schedule(@ptrCast(*const IUIAnimationStoryboard, self), timeNow, schedulingResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard_Conclude(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).Conclude(@ptrCast(*const IUIAnimationStoryboard, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard_Finish(self: *const T, completionDeadline: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).Finish(@ptrCast(*const IUIAnimationStoryboard, self), completionDeadline);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard_Abandon(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).Abandon(@ptrCast(*const IUIAnimationStoryboard, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard_SetTag(self: *const T, object: ?*IUnknown, id: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).SetTag(@ptrCast(*const IUIAnimationStoryboard, self), object, id);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard_GetTag(self: *const T, object: ?*?*IUnknown, id: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).GetTag(@ptrCast(*const IUIAnimationStoryboard, self), object, id);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard_GetStatus(self: *const T, status: ?*UI_ANIMATION_STORYBOARD_STATUS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).GetStatus(@ptrCast(*const IUIAnimationStoryboard, self), status);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard_GetElapsedTime(self: *const T, elapsedTime: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).GetElapsedTime(@ptrCast(*const IUIAnimationStoryboard, self), elapsedTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard_SetStoryboardEventHandler(self: *const T, handler: ?*IUIAnimationStoryboardEventHandler) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).SetStoryboardEventHandler(@ptrCast(*const IUIAnimationStoryboard, self), handler);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard_AddTransition(self: *const T, variable: ?*IUIAnimationVariable, transition: ?*IUIAnimationTransition) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).AddTransition(@ptrCast(*const IUIAnimationStoryboard, self), variable, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard_AddKeyframeAtOffset(self: *const T, existingKeyframe: UI_ANIMATION_KEYFRAME, offset: f64, keyframe: ?*UI_ANIMATION_KEYFRAME) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).AddKeyframeAtOffset(@ptrCast(*const IUIAnimationStoryboard, self), existingKeyframe, offset, keyframe);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard_AddKeyframeAfterTransition(self: *const T, transition: ?*IUIAnimationTransition, keyframe: ?*UI_ANIMATION_KEYFRAME) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).AddKeyframeAfterTransition(@ptrCast(*const IUIAnimationStoryboard, self), transition, keyframe);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard_AddTransitionAtKeyframe(self: *const T, variable: ?*IUIAnimationVariable, transition: ?*IUIAnimationTransition, startKeyframe: UI_ANIMATION_KEYFRAME) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).AddTransitionAtKeyframe(@ptrCast(*const IUIAnimationStoryboard, self), variable, transition, startKeyframe);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard_AddTransitionBetweenKeyframes(self: *const T, variable: ?*IUIAnimationVariable, transition: ?*IUIAnimationTransition, startKeyframe: UI_ANIMATION_KEYFRAME, endKeyframe: UI_ANIMATION_KEYFRAME) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).AddTransitionBetweenKeyframes(@ptrCast(*const IUIAnimationStoryboard, self), variable, transition, startKeyframe, endKeyframe);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard_RepeatBetweenKeyframes(self: *const T, startKeyframe: UI_ANIMATION_KEYFRAME, endKeyframe: UI_ANIMATION_KEYFRAME, repetitionCount: i32) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).RepeatBetweenKeyframes(@ptrCast(*const IUIAnimationStoryboard, self), startKeyframe, endKeyframe, repetitionCount);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard_HoldVariable(self: *const T, variable: ?*IUIAnimationVariable) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).HoldVariable(@ptrCast(*const IUIAnimationStoryboard, self), variable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard_SetLongestAcceptableDelay(self: *const T, delay: f64) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).SetLongestAcceptableDelay(@ptrCast(*const IUIAnimationStoryboard, self), delay);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard_Schedule(self: *const T, timeNow: f64, schedulingResult: ?*UI_ANIMATION_SCHEDULING_RESULT) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).Schedule(@ptrCast(*const IUIAnimationStoryboard, self), timeNow, schedulingResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard_Conclude(self: *const T) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).Conclude(@ptrCast(*const IUIAnimationStoryboard, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard_Finish(self: *const T, completionDeadline: f64) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).Finish(@ptrCast(*const IUIAnimationStoryboard, self), completionDeadline);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard_Abandon(self: *const T) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).Abandon(@ptrCast(*const IUIAnimationStoryboard, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard_SetTag(self: *const T, object: ?*IUnknown, id: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).SetTag(@ptrCast(*const IUIAnimationStoryboard, self), object, id);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard_GetTag(self: *const T, object: ?*?*IUnknown, id: ?*u32) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).GetTag(@ptrCast(*const IUIAnimationStoryboard, self), object, id);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard_GetStatus(self: *const T, status: ?*UI_ANIMATION_STORYBOARD_STATUS) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).GetStatus(@ptrCast(*const IUIAnimationStoryboard, self), status);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard_GetElapsedTime(self: *const T, elapsedTime: ?*f64) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).GetElapsedTime(@ptrCast(*const IUIAnimationStoryboard, self), elapsedTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard_SetStoryboardEventHandler(self: *const T, handler: ?*IUIAnimationStoryboardEventHandler) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard.VTable, self.vtable).SetStoryboardEventHandler(@ptrCast(*const IUIAnimationStoryboard, self), handler);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -890,64 +896,66 @@ pub const IUIAnimationTransition = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetInitialValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransition,
                 value: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransition,
                 value: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetInitialVelocity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransition,
                 velocity: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransition,
                 velocity: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         IsDurationKnown: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransition,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransition,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDuration: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransition,
                 duration: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransition,
                 duration: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransition_SetInitialValue(self: *const T, value: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransition.VTable, self.vtable).SetInitialValue(@ptrCast(*const IUIAnimationTransition, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransition_SetInitialVelocity(self: *const T, velocity: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransition.VTable, self.vtable).SetInitialVelocity(@ptrCast(*const IUIAnimationTransition, self), velocity);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransition_IsDurationKnown(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransition.VTable, self.vtable).IsDurationKnown(@ptrCast(*const IUIAnimationTransition, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransition_GetDuration(self: *const T, duration: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransition.VTable, self.vtable).GetDuration(@ptrCast(*const IUIAnimationTransition, self), duration);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransition_SetInitialValue(self: *const T, value: f64) HRESULT {
+                return @ptrCast(*const IUIAnimationTransition.VTable, self.vtable).SetInitialValue(@ptrCast(*const IUIAnimationTransition, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransition_SetInitialVelocity(self: *const T, velocity: f64) HRESULT {
+                return @ptrCast(*const IUIAnimationTransition.VTable, self.vtable).SetInitialVelocity(@ptrCast(*const IUIAnimationTransition, self), velocity);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransition_IsDurationKnown(self: *const T) HRESULT {
+                return @ptrCast(*const IUIAnimationTransition.VTable, self.vtable).IsDurationKnown(@ptrCast(*const IUIAnimationTransition, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransition_GetDuration(self: *const T, duration: ?*f64) HRESULT {
+                return @ptrCast(*const IUIAnimationTransition.VTable, self.vtable).GetDuration(@ptrCast(*const IUIAnimationTransition, self), duration);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -958,12 +966,12 @@ pub const IUIAnimationManagerEventHandler = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnManagerStatusChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManagerEventHandler,
                 newStatus: UI_ANIMATION_MANAGER_STATUS,
                 previousStatus: UI_ANIMATION_MANAGER_STATUS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManagerEventHandler,
                 newStatus: UI_ANIMATION_MANAGER_STATUS,
                 previousStatus: UI_ANIMATION_MANAGER_STATUS,
@@ -971,13 +979,15 @@ pub const IUIAnimationManagerEventHandler = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManagerEventHandler_OnManagerStatusChanged(self: *const T, newStatus: UI_ANIMATION_MANAGER_STATUS, previousStatus: UI_ANIMATION_MANAGER_STATUS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManagerEventHandler.VTable, self.vtable).OnManagerStatusChanged(@ptrCast(*const IUIAnimationManagerEventHandler, self), newStatus, previousStatus);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManagerEventHandler_OnManagerStatusChanged(self: *const T, newStatus: UI_ANIMATION_MANAGER_STATUS, previousStatus: UI_ANIMATION_MANAGER_STATUS) HRESULT {
+                return @ptrCast(*const IUIAnimationManagerEventHandler.VTable, self.vtable).OnManagerStatusChanged(@ptrCast(*const IUIAnimationManagerEventHandler, self), newStatus, previousStatus);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -988,14 +998,14 @@ pub const IUIAnimationVariableChangeHandler = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnValueChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariableChangeHandler,
                 storyboard: ?*IUIAnimationStoryboard,
                 variable: ?*IUIAnimationVariable,
                 newValue: f64,
                 previousValue: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariableChangeHandler,
                 storyboard: ?*IUIAnimationStoryboard,
                 variable: ?*IUIAnimationVariable,
@@ -1005,13 +1015,15 @@ pub const IUIAnimationVariableChangeHandler = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariableChangeHandler_OnValueChanged(self: *const T, storyboard: ?*IUIAnimationStoryboard, variable: ?*IUIAnimationVariable, newValue: f64, previousValue: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariableChangeHandler.VTable, self.vtable).OnValueChanged(@ptrCast(*const IUIAnimationVariableChangeHandler, self), storyboard, variable, newValue, previousValue);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariableChangeHandler_OnValueChanged(self: *const T, storyboard: ?*IUIAnimationStoryboard, variable: ?*IUIAnimationVariable, newValue: f64, previousValue: f64) HRESULT {
+                return @ptrCast(*const IUIAnimationVariableChangeHandler.VTable, self.vtable).OnValueChanged(@ptrCast(*const IUIAnimationVariableChangeHandler, self), storyboard, variable, newValue, previousValue);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1022,14 +1034,14 @@ pub const IUIAnimationVariableIntegerChangeHandler = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnIntegerValueChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariableIntegerChangeHandler,
                 storyboard: ?*IUIAnimationStoryboard,
                 variable: ?*IUIAnimationVariable,
                 newValue: i32,
                 previousValue: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariableIntegerChangeHandler,
                 storyboard: ?*IUIAnimationStoryboard,
                 variable: ?*IUIAnimationVariable,
@@ -1039,13 +1051,15 @@ pub const IUIAnimationVariableIntegerChangeHandler = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariableIntegerChangeHandler_OnIntegerValueChanged(self: *const T, storyboard: ?*IUIAnimationStoryboard, variable: ?*IUIAnimationVariable, newValue: i32, previousValue: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariableIntegerChangeHandler.VTable, self.vtable).OnIntegerValueChanged(@ptrCast(*const IUIAnimationVariableIntegerChangeHandler, self), storyboard, variable, newValue, previousValue);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariableIntegerChangeHandler_OnIntegerValueChanged(self: *const T, storyboard: ?*IUIAnimationStoryboard, variable: ?*IUIAnimationVariable, newValue: i32, previousValue: i32) HRESULT {
+                return @ptrCast(*const IUIAnimationVariableIntegerChangeHandler.VTable, self.vtable).OnIntegerValueChanged(@ptrCast(*const IUIAnimationVariableIntegerChangeHandler, self), storyboard, variable, newValue, previousValue);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1056,13 +1070,13 @@ pub const IUIAnimationStoryboardEventHandler = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnStoryboardStatusChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboardEventHandler,
                 storyboard: ?*IUIAnimationStoryboard,
                 newStatus: UI_ANIMATION_STORYBOARD_STATUS,
                 previousStatus: UI_ANIMATION_STORYBOARD_STATUS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboardEventHandler,
                 storyboard: ?*IUIAnimationStoryboard,
                 newStatus: UI_ANIMATION_STORYBOARD_STATUS,
@@ -1070,28 +1084,30 @@ pub const IUIAnimationStoryboardEventHandler = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnStoryboardUpdated: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboardEventHandler,
                 storyboard: ?*IUIAnimationStoryboard,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboardEventHandler,
                 storyboard: ?*IUIAnimationStoryboard,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboardEventHandler_OnStoryboardStatusChanged(self: *const T, storyboard: ?*IUIAnimationStoryboard, newStatus: UI_ANIMATION_STORYBOARD_STATUS, previousStatus: UI_ANIMATION_STORYBOARD_STATUS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboardEventHandler.VTable, self.vtable).OnStoryboardStatusChanged(@ptrCast(*const IUIAnimationStoryboardEventHandler, self), storyboard, newStatus, previousStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboardEventHandler_OnStoryboardUpdated(self: *const T, storyboard: ?*IUIAnimationStoryboard) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboardEventHandler.VTable, self.vtable).OnStoryboardUpdated(@ptrCast(*const IUIAnimationStoryboardEventHandler, self), storyboard);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboardEventHandler_OnStoryboardStatusChanged(self: *const T, storyboard: ?*IUIAnimationStoryboard, newStatus: UI_ANIMATION_STORYBOARD_STATUS, previousStatus: UI_ANIMATION_STORYBOARD_STATUS) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboardEventHandler.VTable, self.vtable).OnStoryboardStatusChanged(@ptrCast(*const IUIAnimationStoryboardEventHandler, self), storyboard, newStatus, previousStatus);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboardEventHandler_OnStoryboardUpdated(self: *const T, storyboard: ?*IUIAnimationStoryboard) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboardEventHandler.VTable, self.vtable).OnStoryboardUpdated(@ptrCast(*const IUIAnimationStoryboardEventHandler, self), storyboard);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1109,13 +1125,13 @@ pub const IUIAnimationPriorityComparison = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         HasPriority: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationPriorityComparison,
                 scheduledStoryboard: ?*IUIAnimationStoryboard,
                 newStoryboard: ?*IUIAnimationStoryboard,
                 priorityEffect: UI_ANIMATION_PRIORITY_EFFECT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationPriorityComparison,
                 scheduledStoryboard: ?*IUIAnimationStoryboard,
                 newStoryboard: ?*IUIAnimationStoryboard,
@@ -1124,13 +1140,15 @@ pub const IUIAnimationPriorityComparison = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationPriorityComparison_HasPriority(self: *const T, scheduledStoryboard: ?*IUIAnimationStoryboard, newStoryboard: ?*IUIAnimationStoryboard, priorityEffect: UI_ANIMATION_PRIORITY_EFFECT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationPriorityComparison.VTable, self.vtable).HasPriority(@ptrCast(*const IUIAnimationPriorityComparison, self), scheduledStoryboard, newStoryboard, priorityEffect);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationPriorityComparison_HasPriority(self: *const T, scheduledStoryboard: ?*IUIAnimationStoryboard, newStoryboard: ?*IUIAnimationStoryboard, priorityEffect: UI_ANIMATION_PRIORITY_EFFECT) HRESULT {
+                return @ptrCast(*const IUIAnimationPriorityComparison.VTable, self.vtable).HasPriority(@ptrCast(*const IUIAnimationPriorityComparison, self), scheduledStoryboard, newStoryboard, priorityEffect);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1148,38 +1166,38 @@ pub const IUIAnimationTransitionLibrary = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateInstantaneousTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary,
                 finalValue: f64,
                 transition: ?*?*IUIAnimationTransition,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary,
                 finalValue: f64,
                 transition: ?*?*IUIAnimationTransition,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateConstantTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary,
                 duration: f64,
                 transition: ?*?*IUIAnimationTransition,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary,
                 duration: f64,
                 transition: ?*?*IUIAnimationTransition,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateDiscreteTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary,
                 delay: f64,
                 finalValue: f64,
                 hold: f64,
                 transition: ?*?*IUIAnimationTransition,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary,
                 delay: f64,
                 finalValue: f64,
@@ -1188,13 +1206,13 @@ pub const IUIAnimationTransitionLibrary = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateLinearTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary,
                 duration: f64,
                 finalValue: f64,
                 transition: ?*?*IUIAnimationTransition,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary,
                 duration: f64,
                 finalValue: f64,
@@ -1202,13 +1220,13 @@ pub const IUIAnimationTransitionLibrary = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateLinearTransitionFromSpeed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary,
                 speed: f64,
                 finalValue: f64,
                 transition: ?*?*IUIAnimationTransition,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary,
                 speed: f64,
                 finalValue: f64,
@@ -1216,13 +1234,13 @@ pub const IUIAnimationTransitionLibrary = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateSinusoidalTransitionFromVelocity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary,
                 duration: f64,
                 period: f64,
                 transition: ?*?*IUIAnimationTransition,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary,
                 duration: f64,
                 period: f64,
@@ -1230,7 +1248,7 @@ pub const IUIAnimationTransitionLibrary = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateSinusoidalTransitionFromRange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary,
                 duration: f64,
                 minimumValue: f64,
@@ -1239,7 +1257,7 @@ pub const IUIAnimationTransitionLibrary = extern struct {
                 slope: UI_ANIMATION_SLOPE,
                 transition: ?*?*IUIAnimationTransition,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary,
                 duration: f64,
                 minimumValue: f64,
@@ -1250,7 +1268,7 @@ pub const IUIAnimationTransitionLibrary = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateAccelerateDecelerateTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary,
                 duration: f64,
                 finalValue: f64,
@@ -1258,7 +1276,7 @@ pub const IUIAnimationTransitionLibrary = extern struct {
                 decelerationRatio: f64,
                 transition: ?*?*IUIAnimationTransition,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary,
                 duration: f64,
                 finalValue: f64,
@@ -1268,26 +1286,26 @@ pub const IUIAnimationTransitionLibrary = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateReversalTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary,
                 duration: f64,
                 transition: ?*?*IUIAnimationTransition,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary,
                 duration: f64,
                 transition: ?*?*IUIAnimationTransition,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateCubicTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary,
                 duration: f64,
                 finalValue: f64,
                 finalVelocity: f64,
                 transition: ?*?*IUIAnimationTransition,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary,
                 duration: f64,
                 finalValue: f64,
@@ -1296,13 +1314,13 @@ pub const IUIAnimationTransitionLibrary = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateSmoothStopTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary,
                 maximumDuration: f64,
                 finalValue: f64,
                 transition: ?*?*IUIAnimationTransition,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary,
                 maximumDuration: f64,
                 finalValue: f64,
@@ -1310,14 +1328,14 @@ pub const IUIAnimationTransitionLibrary = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateParabolicTransitionFromAcceleration: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary,
                 finalValue: f64,
                 finalVelocity: f64,
                 acceleration: f64,
                 transition: ?*?*IUIAnimationTransition,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary,
                 finalValue: f64,
                 finalVelocity: f64,
@@ -1327,57 +1345,59 @@ pub const IUIAnimationTransitionLibrary = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary_CreateInstantaneousTransition(self: *const T, finalValue: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary.VTable, self.vtable).CreateInstantaneousTransition(@ptrCast(*const IUIAnimationTransitionLibrary, self), finalValue, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary_CreateConstantTransition(self: *const T, duration: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary.VTable, self.vtable).CreateConstantTransition(@ptrCast(*const IUIAnimationTransitionLibrary, self), duration, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary_CreateDiscreteTransition(self: *const T, delay: f64, finalValue: f64, hold: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary.VTable, self.vtable).CreateDiscreteTransition(@ptrCast(*const IUIAnimationTransitionLibrary, self), delay, finalValue, hold, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary_CreateLinearTransition(self: *const T, duration: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary.VTable, self.vtable).CreateLinearTransition(@ptrCast(*const IUIAnimationTransitionLibrary, self), duration, finalValue, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary_CreateLinearTransitionFromSpeed(self: *const T, speed: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary.VTable, self.vtable).CreateLinearTransitionFromSpeed(@ptrCast(*const IUIAnimationTransitionLibrary, self), speed, finalValue, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary_CreateSinusoidalTransitionFromVelocity(self: *const T, duration: f64, period: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary.VTable, self.vtable).CreateSinusoidalTransitionFromVelocity(@ptrCast(*const IUIAnimationTransitionLibrary, self), duration, period, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary_CreateSinusoidalTransitionFromRange(self: *const T, duration: f64, minimumValue: f64, maximumValue: f64, period: f64, slope: UI_ANIMATION_SLOPE, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary.VTable, self.vtable).CreateSinusoidalTransitionFromRange(@ptrCast(*const IUIAnimationTransitionLibrary, self), duration, minimumValue, maximumValue, period, slope, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary_CreateAccelerateDecelerateTransition(self: *const T, duration: f64, finalValue: f64, accelerationRatio: f64, decelerationRatio: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary.VTable, self.vtable).CreateAccelerateDecelerateTransition(@ptrCast(*const IUIAnimationTransitionLibrary, self), duration, finalValue, accelerationRatio, decelerationRatio, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary_CreateReversalTransition(self: *const T, duration: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary.VTable, self.vtable).CreateReversalTransition(@ptrCast(*const IUIAnimationTransitionLibrary, self), duration, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary_CreateCubicTransition(self: *const T, duration: f64, finalValue: f64, finalVelocity: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary.VTable, self.vtable).CreateCubicTransition(@ptrCast(*const IUIAnimationTransitionLibrary, self), duration, finalValue, finalVelocity, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary_CreateSmoothStopTransition(self: *const T, maximumDuration: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary.VTable, self.vtable).CreateSmoothStopTransition(@ptrCast(*const IUIAnimationTransitionLibrary, self), maximumDuration, finalValue, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary_CreateParabolicTransitionFromAcceleration(self: *const T, finalValue: f64, finalVelocity: f64, acceleration: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary.VTable, self.vtable).CreateParabolicTransitionFromAcceleration(@ptrCast(*const IUIAnimationTransitionLibrary, self), finalValue, finalVelocity, acceleration, transition);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary_CreateInstantaneousTransition(self: *const T, finalValue: f64, transition: ?*?*IUIAnimationTransition) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary.VTable, self.vtable).CreateInstantaneousTransition(@ptrCast(*const IUIAnimationTransitionLibrary, self), finalValue, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary_CreateConstantTransition(self: *const T, duration: f64, transition: ?*?*IUIAnimationTransition) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary.VTable, self.vtable).CreateConstantTransition(@ptrCast(*const IUIAnimationTransitionLibrary, self), duration, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary_CreateDiscreteTransition(self: *const T, delay: f64, finalValue: f64, hold: f64, transition: ?*?*IUIAnimationTransition) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary.VTable, self.vtable).CreateDiscreteTransition(@ptrCast(*const IUIAnimationTransitionLibrary, self), delay, finalValue, hold, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary_CreateLinearTransition(self: *const T, duration: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary.VTable, self.vtable).CreateLinearTransition(@ptrCast(*const IUIAnimationTransitionLibrary, self), duration, finalValue, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary_CreateLinearTransitionFromSpeed(self: *const T, speed: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary.VTable, self.vtable).CreateLinearTransitionFromSpeed(@ptrCast(*const IUIAnimationTransitionLibrary, self), speed, finalValue, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary_CreateSinusoidalTransitionFromVelocity(self: *const T, duration: f64, period: f64, transition: ?*?*IUIAnimationTransition) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary.VTable, self.vtable).CreateSinusoidalTransitionFromVelocity(@ptrCast(*const IUIAnimationTransitionLibrary, self), duration, period, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary_CreateSinusoidalTransitionFromRange(self: *const T, duration: f64, minimumValue: f64, maximumValue: f64, period: f64, slope: UI_ANIMATION_SLOPE, transition: ?*?*IUIAnimationTransition) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary.VTable, self.vtable).CreateSinusoidalTransitionFromRange(@ptrCast(*const IUIAnimationTransitionLibrary, self), duration, minimumValue, maximumValue, period, slope, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary_CreateAccelerateDecelerateTransition(self: *const T, duration: f64, finalValue: f64, accelerationRatio: f64, decelerationRatio: f64, transition: ?*?*IUIAnimationTransition) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary.VTable, self.vtable).CreateAccelerateDecelerateTransition(@ptrCast(*const IUIAnimationTransitionLibrary, self), duration, finalValue, accelerationRatio, decelerationRatio, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary_CreateReversalTransition(self: *const T, duration: f64, transition: ?*?*IUIAnimationTransition) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary.VTable, self.vtable).CreateReversalTransition(@ptrCast(*const IUIAnimationTransitionLibrary, self), duration, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary_CreateCubicTransition(self: *const T, duration: f64, finalValue: f64, finalVelocity: f64, transition: ?*?*IUIAnimationTransition) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary.VTable, self.vtable).CreateCubicTransition(@ptrCast(*const IUIAnimationTransitionLibrary, self), duration, finalValue, finalVelocity, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary_CreateSmoothStopTransition(self: *const T, maximumDuration: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary.VTable, self.vtable).CreateSmoothStopTransition(@ptrCast(*const IUIAnimationTransitionLibrary, self), maximumDuration, finalValue, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary_CreateParabolicTransitionFromAcceleration(self: *const T, finalValue: f64, finalVelocity: f64, acceleration: f64, transition: ?*?*IUIAnimationTransition) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary.VTable, self.vtable).CreateParabolicTransitionFromAcceleration(@ptrCast(*const IUIAnimationTransitionLibrary, self), finalValue, finalVelocity, acceleration, transition);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1395,13 +1415,7 @@ pub const UI_ANIMATION_DEPENDENCIES = enum(u32) {
         FINAL_VELOCITY: u1 = 0,
         DURATION: u1 = 0,
     }) UI_ANIMATION_DEPENDENCIES {
-        return @intToEnum(UI_ANIMATION_DEPENDENCIES,
-              (if (o.NONE == 1) @enumToInt(UI_ANIMATION_DEPENDENCIES.NONE) else 0)
-            | (if (o.INTERMEDIATE_VALUES == 1) @enumToInt(UI_ANIMATION_DEPENDENCIES.INTERMEDIATE_VALUES) else 0)
-            | (if (o.FINAL_VALUE == 1) @enumToInt(UI_ANIMATION_DEPENDENCIES.FINAL_VALUE) else 0)
-            | (if (o.FINAL_VELOCITY == 1) @enumToInt(UI_ANIMATION_DEPENDENCIES.FINAL_VELOCITY) else 0)
-            | (if (o.DURATION == 1) @enumToInt(UI_ANIMATION_DEPENDENCIES.DURATION) else 0)
-        );
+        return @enumFromInt(UI_ANIMATION_DEPENDENCIES, (if (o.NONE == 1) @intFromEnum(UI_ANIMATION_DEPENDENCIES.NONE) else 0) | (if (o.INTERMEDIATE_VALUES == 1) @intFromEnum(UI_ANIMATION_DEPENDENCIES.INTERMEDIATE_VALUES) else 0) | (if (o.FINAL_VALUE == 1) @intFromEnum(UI_ANIMATION_DEPENDENCIES.FINAL_VALUE) else 0) | (if (o.FINAL_VELOCITY == 1) @intFromEnum(UI_ANIMATION_DEPENDENCIES.FINAL_VELOCITY) else 0) | (if (o.DURATION == 1) @intFromEnum(UI_ANIMATION_DEPENDENCIES.DURATION) else 0));
     }
 };
 pub const UI_ANIMATION_DEPENDENCY_NONE = UI_ANIMATION_DEPENDENCIES.NONE;
@@ -1417,79 +1431,79 @@ pub const IUIAnimationInterpolator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetInitialValueAndVelocity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationInterpolator,
                 initialValue: f64,
                 initialVelocity: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationInterpolator,
                 initialValue: f64,
                 initialVelocity: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetDuration: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationInterpolator,
                 duration: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationInterpolator,
                 duration: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDuration: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationInterpolator,
                 duration: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationInterpolator,
                 duration: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFinalValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationInterpolator,
                 value: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationInterpolator,
                 value: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         InterpolateValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationInterpolator,
                 offset: f64,
                 value: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationInterpolator,
                 offset: f64,
                 value: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         InterpolateVelocity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationInterpolator,
                 offset: f64,
                 velocity: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationInterpolator,
                 offset: f64,
                 velocity: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDependencies: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationInterpolator,
                 initialValueDependencies: ?*UI_ANIMATION_DEPENDENCIES,
                 initialVelocityDependencies: ?*UI_ANIMATION_DEPENDENCIES,
                 durationDependencies: ?*UI_ANIMATION_DEPENDENCIES,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationInterpolator,
                 initialValueDependencies: ?*UI_ANIMATION_DEPENDENCIES,
                 initialVelocityDependencies: ?*UI_ANIMATION_DEPENDENCIES,
@@ -1498,37 +1512,39 @@ pub const IUIAnimationInterpolator = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationInterpolator_SetInitialValueAndVelocity(self: *const T, initialValue: f64, initialVelocity: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationInterpolator.VTable, self.vtable).SetInitialValueAndVelocity(@ptrCast(*const IUIAnimationInterpolator, self), initialValue, initialVelocity);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationInterpolator_SetDuration(self: *const T, duration: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationInterpolator.VTable, self.vtable).SetDuration(@ptrCast(*const IUIAnimationInterpolator, self), duration);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationInterpolator_GetDuration(self: *const T, duration: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationInterpolator.VTable, self.vtable).GetDuration(@ptrCast(*const IUIAnimationInterpolator, self), duration);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationInterpolator_GetFinalValue(self: *const T, value: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationInterpolator.VTable, self.vtable).GetFinalValue(@ptrCast(*const IUIAnimationInterpolator, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationInterpolator_InterpolateValue(self: *const T, offset: f64, value: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationInterpolator.VTable, self.vtable).InterpolateValue(@ptrCast(*const IUIAnimationInterpolator, self), offset, value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationInterpolator_InterpolateVelocity(self: *const T, offset: f64, velocity: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationInterpolator.VTable, self.vtable).InterpolateVelocity(@ptrCast(*const IUIAnimationInterpolator, self), offset, velocity);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationInterpolator_GetDependencies(self: *const T, initialValueDependencies: ?*UI_ANIMATION_DEPENDENCIES, initialVelocityDependencies: ?*UI_ANIMATION_DEPENDENCIES, durationDependencies: ?*UI_ANIMATION_DEPENDENCIES) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationInterpolator.VTable, self.vtable).GetDependencies(@ptrCast(*const IUIAnimationInterpolator, self), initialValueDependencies, initialVelocityDependencies, durationDependencies);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationInterpolator_SetInitialValueAndVelocity(self: *const T, initialValue: f64, initialVelocity: f64) HRESULT {
+                return @ptrCast(*const IUIAnimationInterpolator.VTable, self.vtable).SetInitialValueAndVelocity(@ptrCast(*const IUIAnimationInterpolator, self), initialValue, initialVelocity);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationInterpolator_SetDuration(self: *const T, duration: f64) HRESULT {
+                return @ptrCast(*const IUIAnimationInterpolator.VTable, self.vtable).SetDuration(@ptrCast(*const IUIAnimationInterpolator, self), duration);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationInterpolator_GetDuration(self: *const T, duration: ?*f64) HRESULT {
+                return @ptrCast(*const IUIAnimationInterpolator.VTable, self.vtable).GetDuration(@ptrCast(*const IUIAnimationInterpolator, self), duration);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationInterpolator_GetFinalValue(self: *const T, value: ?*f64) HRESULT {
+                return @ptrCast(*const IUIAnimationInterpolator.VTable, self.vtable).GetFinalValue(@ptrCast(*const IUIAnimationInterpolator, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationInterpolator_InterpolateValue(self: *const T, offset: f64, value: ?*f64) HRESULT {
+                return @ptrCast(*const IUIAnimationInterpolator.VTable, self.vtable).InterpolateValue(@ptrCast(*const IUIAnimationInterpolator, self), offset, value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationInterpolator_InterpolateVelocity(self: *const T, offset: f64, velocity: ?*f64) HRESULT {
+                return @ptrCast(*const IUIAnimationInterpolator.VTable, self.vtable).InterpolateVelocity(@ptrCast(*const IUIAnimationInterpolator, self), offset, velocity);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationInterpolator_GetDependencies(self: *const T, initialValueDependencies: ?*UI_ANIMATION_DEPENDENCIES, initialVelocityDependencies: ?*UI_ANIMATION_DEPENDENCIES, durationDependencies: ?*UI_ANIMATION_DEPENDENCIES) HRESULT {
+                return @ptrCast(*const IUIAnimationInterpolator.VTable, self.vtable).GetDependencies(@ptrCast(*const IUIAnimationInterpolator, self), initialValueDependencies, initialVelocityDependencies, durationDependencies);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1539,12 +1555,12 @@ pub const IUIAnimationTransitionFactory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionFactory,
                 interpolator: ?*IUIAnimationInterpolator,
                 transition: ?*?*IUIAnimationTransition,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionFactory,
                 interpolator: ?*IUIAnimationInterpolator,
                 transition: ?*?*IUIAnimationTransition,
@@ -1552,13 +1568,15 @@ pub const IUIAnimationTransitionFactory = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionFactory_CreateTransition(self: *const T, interpolator: ?*IUIAnimationInterpolator, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionFactory.VTable, self.vtable).CreateTransition(@ptrCast(*const IUIAnimationTransitionFactory, self), interpolator, transition);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionFactory_CreateTransition(self: *const T, interpolator: ?*IUIAnimationInterpolator, transition: ?*?*IUIAnimationTransition) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionFactory.VTable, self.vtable).CreateTransition(@ptrCast(*const IUIAnimationTransitionFactory, self), interpolator, transition);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1576,104 +1594,106 @@ pub const IUIAnimationTimer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetTimerUpdateHandler: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTimer,
                 updateHandler: ?*IUIAnimationTimerUpdateHandler,
                 idleBehavior: UI_ANIMATION_IDLE_BEHAVIOR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTimer,
                 updateHandler: ?*IUIAnimationTimerUpdateHandler,
                 idleBehavior: UI_ANIMATION_IDLE_BEHAVIOR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetTimerEventHandler: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTimer,
                 handler: ?*IUIAnimationTimerEventHandler,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTimer,
                 handler: ?*IUIAnimationTimerEventHandler,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Enable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTimer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTimer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Disable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTimer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTimer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         IsEnabled: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTimer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTimer,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTimer,
                 seconds: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTimer,
                 seconds: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetFrameRateThreshold: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTimer,
                 framesPerSecond: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTimer,
                 framesPerSecond: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTimer_SetTimerUpdateHandler(self: *const T, updateHandler: ?*IUIAnimationTimerUpdateHandler, idleBehavior: UI_ANIMATION_IDLE_BEHAVIOR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTimer.VTable, self.vtable).SetTimerUpdateHandler(@ptrCast(*const IUIAnimationTimer, self), updateHandler, idleBehavior);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTimer_SetTimerEventHandler(self: *const T, handler: ?*IUIAnimationTimerEventHandler) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTimer.VTable, self.vtable).SetTimerEventHandler(@ptrCast(*const IUIAnimationTimer, self), handler);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTimer_Enable(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTimer.VTable, self.vtable).Enable(@ptrCast(*const IUIAnimationTimer, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTimer_Disable(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTimer.VTable, self.vtable).Disable(@ptrCast(*const IUIAnimationTimer, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTimer_IsEnabled(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTimer.VTable, self.vtable).IsEnabled(@ptrCast(*const IUIAnimationTimer, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTimer_GetTime(self: *const T, seconds: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTimer.VTable, self.vtable).GetTime(@ptrCast(*const IUIAnimationTimer, self), seconds);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTimer_SetFrameRateThreshold(self: *const T, framesPerSecond: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTimer.VTable, self.vtable).SetFrameRateThreshold(@ptrCast(*const IUIAnimationTimer, self), framesPerSecond);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTimer_SetTimerUpdateHandler(self: *const T, updateHandler: ?*IUIAnimationTimerUpdateHandler, idleBehavior: UI_ANIMATION_IDLE_BEHAVIOR) HRESULT {
+                return @ptrCast(*const IUIAnimationTimer.VTable, self.vtable).SetTimerUpdateHandler(@ptrCast(*const IUIAnimationTimer, self), updateHandler, idleBehavior);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTimer_SetTimerEventHandler(self: *const T, handler: ?*IUIAnimationTimerEventHandler) HRESULT {
+                return @ptrCast(*const IUIAnimationTimer.VTable, self.vtable).SetTimerEventHandler(@ptrCast(*const IUIAnimationTimer, self), handler);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTimer_Enable(self: *const T) HRESULT {
+                return @ptrCast(*const IUIAnimationTimer.VTable, self.vtable).Enable(@ptrCast(*const IUIAnimationTimer, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTimer_Disable(self: *const T) HRESULT {
+                return @ptrCast(*const IUIAnimationTimer.VTable, self.vtable).Disable(@ptrCast(*const IUIAnimationTimer, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTimer_IsEnabled(self: *const T) HRESULT {
+                return @ptrCast(*const IUIAnimationTimer.VTable, self.vtable).IsEnabled(@ptrCast(*const IUIAnimationTimer, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTimer_GetTime(self: *const T, seconds: ?*f64) HRESULT {
+                return @ptrCast(*const IUIAnimationTimer.VTable, self.vtable).GetTime(@ptrCast(*const IUIAnimationTimer, self), seconds);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTimer_SetFrameRateThreshold(self: *const T, framesPerSecond: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationTimer.VTable, self.vtable).SetFrameRateThreshold(@ptrCast(*const IUIAnimationTimer, self), framesPerSecond);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1684,52 +1704,54 @@ pub const IUIAnimationTimerUpdateHandler = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnUpdate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTimerUpdateHandler,
                 timeNow: f64,
                 result: ?*UI_ANIMATION_UPDATE_RESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTimerUpdateHandler,
                 timeNow: f64,
                 result: ?*UI_ANIMATION_UPDATE_RESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetTimerClientEventHandler: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTimerUpdateHandler,
                 handler: ?*IUIAnimationTimerClientEventHandler,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTimerUpdateHandler,
                 handler: ?*IUIAnimationTimerClientEventHandler,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ClearTimerClientEventHandler: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTimerUpdateHandler,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTimerUpdateHandler,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTimerUpdateHandler_OnUpdate(self: *const T, timeNow: f64, result: ?*UI_ANIMATION_UPDATE_RESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTimerUpdateHandler.VTable, self.vtable).OnUpdate(@ptrCast(*const IUIAnimationTimerUpdateHandler, self), timeNow, result);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTimerUpdateHandler_SetTimerClientEventHandler(self: *const T, handler: ?*IUIAnimationTimerClientEventHandler) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTimerUpdateHandler.VTable, self.vtable).SetTimerClientEventHandler(@ptrCast(*const IUIAnimationTimerUpdateHandler, self), handler);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTimerUpdateHandler_ClearTimerClientEventHandler(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTimerUpdateHandler.VTable, self.vtable).ClearTimerClientEventHandler(@ptrCast(*const IUIAnimationTimerUpdateHandler, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTimerUpdateHandler_OnUpdate(self: *const T, timeNow: f64, result: ?*UI_ANIMATION_UPDATE_RESULT) HRESULT {
+                return @ptrCast(*const IUIAnimationTimerUpdateHandler.VTable, self.vtable).OnUpdate(@ptrCast(*const IUIAnimationTimerUpdateHandler, self), timeNow, result);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTimerUpdateHandler_SetTimerClientEventHandler(self: *const T, handler: ?*IUIAnimationTimerClientEventHandler) HRESULT {
+                return @ptrCast(*const IUIAnimationTimerUpdateHandler.VTable, self.vtable).SetTimerClientEventHandler(@ptrCast(*const IUIAnimationTimerUpdateHandler, self), handler);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTimerUpdateHandler_ClearTimerClientEventHandler(self: *const T) HRESULT {
+                return @ptrCast(*const IUIAnimationTimerUpdateHandler.VTable, self.vtable).ClearTimerClientEventHandler(@ptrCast(*const IUIAnimationTimerUpdateHandler, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1747,12 +1769,12 @@ pub const IUIAnimationTimerClientEventHandler = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnTimerClientStatusChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTimerClientEventHandler,
                 newStatus: UI_ANIMATION_TIMER_CLIENT_STATUS,
                 previousStatus: UI_ANIMATION_TIMER_CLIENT_STATUS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTimerClientEventHandler,
                 newStatus: UI_ANIMATION_TIMER_CLIENT_STATUS,
                 previousStatus: UI_ANIMATION_TIMER_CLIENT_STATUS,
@@ -1760,13 +1782,15 @@ pub const IUIAnimationTimerClientEventHandler = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTimerClientEventHandler_OnTimerClientStatusChanged(self: *const T, newStatus: UI_ANIMATION_TIMER_CLIENT_STATUS, previousStatus: UI_ANIMATION_TIMER_CLIENT_STATUS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTimerClientEventHandler.VTable, self.vtable).OnTimerClientStatusChanged(@ptrCast(*const IUIAnimationTimerClientEventHandler, self), newStatus, previousStatus);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTimerClientEventHandler_OnTimerClientStatusChanged(self: *const T, newStatus: UI_ANIMATION_TIMER_CLIENT_STATUS, previousStatus: UI_ANIMATION_TIMER_CLIENT_STATUS) HRESULT {
+                return @ptrCast(*const IUIAnimationTimerClientEventHandler.VTable, self.vtable).OnTimerClientStatusChanged(@ptrCast(*const IUIAnimationTimerClientEventHandler, self), newStatus, previousStatus);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1777,48 +1801,50 @@ pub const IUIAnimationTimerEventHandler = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnPreUpdate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTimerEventHandler,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTimerEventHandler,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnPostUpdate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTimerEventHandler,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTimerEventHandler,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnRenderingTooSlow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTimerEventHandler,
                 framesPerSecond: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTimerEventHandler,
                 framesPerSecond: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTimerEventHandler_OnPreUpdate(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTimerEventHandler.VTable, self.vtable).OnPreUpdate(@ptrCast(*const IUIAnimationTimerEventHandler, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTimerEventHandler_OnPostUpdate(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTimerEventHandler.VTable, self.vtable).OnPostUpdate(@ptrCast(*const IUIAnimationTimerEventHandler, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTimerEventHandler_OnRenderingTooSlow(self: *const T, framesPerSecond: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTimerEventHandler.VTable, self.vtable).OnRenderingTooSlow(@ptrCast(*const IUIAnimationTimerEventHandler, self), framesPerSecond);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTimerEventHandler_OnPreUpdate(self: *const T) HRESULT {
+                return @ptrCast(*const IUIAnimationTimerEventHandler.VTable, self.vtable).OnPreUpdate(@ptrCast(*const IUIAnimationTimerEventHandler, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTimerEventHandler_OnPostUpdate(self: *const T) HRESULT {
+                return @ptrCast(*const IUIAnimationTimerEventHandler.VTable, self.vtable).OnPostUpdate(@ptrCast(*const IUIAnimationTimerEventHandler, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTimerEventHandler_OnRenderingTooSlow(self: *const T, framesPerSecond: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationTimerEventHandler.VTable, self.vtable).OnRenderingTooSlow(@ptrCast(*const IUIAnimationTimerEventHandler, self), framesPerSecond);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1829,13 +1855,13 @@ pub const IUIAnimationManager2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateAnimationVectorVariable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager2,
                 initialValue: [*]const f64,
                 cDimension: u32,
                 variable: ?*?*IUIAnimationVariable2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager2,
                 initialValue: [*]const f64,
                 cDimension: u32,
@@ -1843,25 +1869,25 @@ pub const IUIAnimationManager2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateAnimationVariable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager2,
                 initialValue: f64,
                 variable: ?*?*IUIAnimationVariable2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager2,
                 initialValue: f64,
                 variable: ?*?*IUIAnimationVariable2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ScheduleTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager2,
                 variable: ?*IUIAnimationVariable2,
                 transition: ?*IUIAnimationTransition2,
                 timeNow: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager2,
                 variable: ?*IUIAnimationVariable2,
                 transition: ?*IUIAnimationTransition2,
@@ -1869,53 +1895,53 @@ pub const IUIAnimationManager2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateStoryboard: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager2,
                 storyboard: ?*?*IUIAnimationStoryboard2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager2,
                 storyboard: ?*?*IUIAnimationStoryboard2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FinishAllStoryboards: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager2,
                 completionDeadline: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager2,
                 completionDeadline: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AbandonAllStoryboards: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Update: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager2,
                 timeNow: f64,
                 updateResult: ?*UI_ANIMATION_UPDATE_RESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager2,
                 timeNow: f64,
                 updateResult: ?*UI_ANIMATION_UPDATE_RESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetVariableFromTag: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager2,
                 object: ?*IUnknown,
                 id: u32,
                 variable: ?*?*IUIAnimationVariable2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager2,
                 object: ?*IUnknown,
                 id: u32,
@@ -1923,13 +1949,13 @@ pub const IUIAnimationManager2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetStoryboardFromTag: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager2,
                 object: ?*IUnknown,
                 id: u32,
                 storyboard: ?*?*IUIAnimationStoryboard2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager2,
                 object: ?*IUnknown,
                 id: u32,
@@ -1937,210 +1963,212 @@ pub const IUIAnimationManager2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EstimateNextEventTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager2,
                 seconds: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager2,
                 seconds: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager2,
                 status: ?*UI_ANIMATION_MANAGER_STATUS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager2,
                 status: ?*UI_ANIMATION_MANAGER_STATUS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetAnimationMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager2,
                 mode: UI_ANIMATION_MODE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager2,
                 mode: UI_ANIMATION_MODE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Pause: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Resume: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetManagerEventHandler: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager2,
                 handler: ?*IUIAnimationManagerEventHandler2,
                 fRegisterForNextAnimationEvent: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager2,
                 handler: ?*IUIAnimationManagerEventHandler2,
                 fRegisterForNextAnimationEvent: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetCancelPriorityComparison: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager2,
                 comparison: ?*IUIAnimationPriorityComparison2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager2,
                 comparison: ?*IUIAnimationPriorityComparison2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetTrimPriorityComparison: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager2,
                 comparison: ?*IUIAnimationPriorityComparison2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager2,
                 comparison: ?*IUIAnimationPriorityComparison2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetCompressPriorityComparison: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager2,
                 comparison: ?*IUIAnimationPriorityComparison2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager2,
                 comparison: ?*IUIAnimationPriorityComparison2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetConcludePriorityComparison: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager2,
                 comparison: ?*IUIAnimationPriorityComparison2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager2,
                 comparison: ?*IUIAnimationPriorityComparison2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetDefaultLongestAcceptableDelay: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager2,
                 delay: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager2,
                 delay: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Shutdown: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManager2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManager2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager2_CreateAnimationVectorVariable(self: *const T, initialValue: [*]const f64, cDimension: u32, variable: ?*?*IUIAnimationVariable2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).CreateAnimationVectorVariable(@ptrCast(*const IUIAnimationManager2, self), initialValue, cDimension, variable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager2_CreateAnimationVariable(self: *const T, initialValue: f64, variable: ?*?*IUIAnimationVariable2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).CreateAnimationVariable(@ptrCast(*const IUIAnimationManager2, self), initialValue, variable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager2_ScheduleTransition(self: *const T, variable: ?*IUIAnimationVariable2, transition: ?*IUIAnimationTransition2, timeNow: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).ScheduleTransition(@ptrCast(*const IUIAnimationManager2, self), variable, transition, timeNow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager2_CreateStoryboard(self: *const T, storyboard: ?*?*IUIAnimationStoryboard2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).CreateStoryboard(@ptrCast(*const IUIAnimationManager2, self), storyboard);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager2_FinishAllStoryboards(self: *const T, completionDeadline: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).FinishAllStoryboards(@ptrCast(*const IUIAnimationManager2, self), completionDeadline);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager2_AbandonAllStoryboards(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).AbandonAllStoryboards(@ptrCast(*const IUIAnimationManager2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager2_Update(self: *const T, timeNow: f64, updateResult: ?*UI_ANIMATION_UPDATE_RESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).Update(@ptrCast(*const IUIAnimationManager2, self), timeNow, updateResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager2_GetVariableFromTag(self: *const T, object: ?*IUnknown, id: u32, variable: ?*?*IUIAnimationVariable2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).GetVariableFromTag(@ptrCast(*const IUIAnimationManager2, self), object, id, variable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager2_GetStoryboardFromTag(self: *const T, object: ?*IUnknown, id: u32, storyboard: ?*?*IUIAnimationStoryboard2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).GetStoryboardFromTag(@ptrCast(*const IUIAnimationManager2, self), object, id, storyboard);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager2_EstimateNextEventTime(self: *const T, seconds: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).EstimateNextEventTime(@ptrCast(*const IUIAnimationManager2, self), seconds);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager2_GetStatus(self: *const T, status: ?*UI_ANIMATION_MANAGER_STATUS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).GetStatus(@ptrCast(*const IUIAnimationManager2, self), status);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager2_SetAnimationMode(self: *const T, mode: UI_ANIMATION_MODE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).SetAnimationMode(@ptrCast(*const IUIAnimationManager2, self), mode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager2_Pause(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).Pause(@ptrCast(*const IUIAnimationManager2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager2_Resume(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).Resume(@ptrCast(*const IUIAnimationManager2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager2_SetManagerEventHandler(self: *const T, handler: ?*IUIAnimationManagerEventHandler2, fRegisterForNextAnimationEvent: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).SetManagerEventHandler(@ptrCast(*const IUIAnimationManager2, self), handler, fRegisterForNextAnimationEvent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager2_SetCancelPriorityComparison(self: *const T, comparison: ?*IUIAnimationPriorityComparison2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).SetCancelPriorityComparison(@ptrCast(*const IUIAnimationManager2, self), comparison);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager2_SetTrimPriorityComparison(self: *const T, comparison: ?*IUIAnimationPriorityComparison2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).SetTrimPriorityComparison(@ptrCast(*const IUIAnimationManager2, self), comparison);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager2_SetCompressPriorityComparison(self: *const T, comparison: ?*IUIAnimationPriorityComparison2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).SetCompressPriorityComparison(@ptrCast(*const IUIAnimationManager2, self), comparison);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager2_SetConcludePriorityComparison(self: *const T, comparison: ?*IUIAnimationPriorityComparison2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).SetConcludePriorityComparison(@ptrCast(*const IUIAnimationManager2, self), comparison);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager2_SetDefaultLongestAcceptableDelay(self: *const T, delay: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).SetDefaultLongestAcceptableDelay(@ptrCast(*const IUIAnimationManager2, self), delay);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManager2_Shutdown(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).Shutdown(@ptrCast(*const IUIAnimationManager2, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager2_CreateAnimationVectorVariable(self: *const T, initialValue: [*]const f64, cDimension: u32, variable: ?*?*IUIAnimationVariable2) HRESULT {
+                return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).CreateAnimationVectorVariable(@ptrCast(*const IUIAnimationManager2, self), initialValue, cDimension, variable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager2_CreateAnimationVariable(self: *const T, initialValue: f64, variable: ?*?*IUIAnimationVariable2) HRESULT {
+                return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).CreateAnimationVariable(@ptrCast(*const IUIAnimationManager2, self), initialValue, variable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager2_ScheduleTransition(self: *const T, variable: ?*IUIAnimationVariable2, transition: ?*IUIAnimationTransition2, timeNow: f64) HRESULT {
+                return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).ScheduleTransition(@ptrCast(*const IUIAnimationManager2, self), variable, transition, timeNow);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager2_CreateStoryboard(self: *const T, storyboard: ?*?*IUIAnimationStoryboard2) HRESULT {
+                return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).CreateStoryboard(@ptrCast(*const IUIAnimationManager2, self), storyboard);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager2_FinishAllStoryboards(self: *const T, completionDeadline: f64) HRESULT {
+                return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).FinishAllStoryboards(@ptrCast(*const IUIAnimationManager2, self), completionDeadline);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager2_AbandonAllStoryboards(self: *const T) HRESULT {
+                return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).AbandonAllStoryboards(@ptrCast(*const IUIAnimationManager2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager2_Update(self: *const T, timeNow: f64, updateResult: ?*UI_ANIMATION_UPDATE_RESULT) HRESULT {
+                return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).Update(@ptrCast(*const IUIAnimationManager2, self), timeNow, updateResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager2_GetVariableFromTag(self: *const T, object: ?*IUnknown, id: u32, variable: ?*?*IUIAnimationVariable2) HRESULT {
+                return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).GetVariableFromTag(@ptrCast(*const IUIAnimationManager2, self), object, id, variable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager2_GetStoryboardFromTag(self: *const T, object: ?*IUnknown, id: u32, storyboard: ?*?*IUIAnimationStoryboard2) HRESULT {
+                return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).GetStoryboardFromTag(@ptrCast(*const IUIAnimationManager2, self), object, id, storyboard);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager2_EstimateNextEventTime(self: *const T, seconds: ?*f64) HRESULT {
+                return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).EstimateNextEventTime(@ptrCast(*const IUIAnimationManager2, self), seconds);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager2_GetStatus(self: *const T, status: ?*UI_ANIMATION_MANAGER_STATUS) HRESULT {
+                return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).GetStatus(@ptrCast(*const IUIAnimationManager2, self), status);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager2_SetAnimationMode(self: *const T, mode: UI_ANIMATION_MODE) HRESULT {
+                return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).SetAnimationMode(@ptrCast(*const IUIAnimationManager2, self), mode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager2_Pause(self: *const T) HRESULT {
+                return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).Pause(@ptrCast(*const IUIAnimationManager2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager2_Resume(self: *const T) HRESULT {
+                return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).Resume(@ptrCast(*const IUIAnimationManager2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager2_SetManagerEventHandler(self: *const T, handler: ?*IUIAnimationManagerEventHandler2, fRegisterForNextAnimationEvent: BOOL) HRESULT {
+                return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).SetManagerEventHandler(@ptrCast(*const IUIAnimationManager2, self), handler, fRegisterForNextAnimationEvent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager2_SetCancelPriorityComparison(self: *const T, comparison: ?*IUIAnimationPriorityComparison2) HRESULT {
+                return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).SetCancelPriorityComparison(@ptrCast(*const IUIAnimationManager2, self), comparison);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager2_SetTrimPriorityComparison(self: *const T, comparison: ?*IUIAnimationPriorityComparison2) HRESULT {
+                return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).SetTrimPriorityComparison(@ptrCast(*const IUIAnimationManager2, self), comparison);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager2_SetCompressPriorityComparison(self: *const T, comparison: ?*IUIAnimationPriorityComparison2) HRESULT {
+                return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).SetCompressPriorityComparison(@ptrCast(*const IUIAnimationManager2, self), comparison);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager2_SetConcludePriorityComparison(self: *const T, comparison: ?*IUIAnimationPriorityComparison2) HRESULT {
+                return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).SetConcludePriorityComparison(@ptrCast(*const IUIAnimationManager2, self), comparison);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager2_SetDefaultLongestAcceptableDelay(self: *const T, delay: f64) HRESULT {
+                return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).SetDefaultLongestAcceptableDelay(@ptrCast(*const IUIAnimationManager2, self), delay);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManager2_Shutdown(self: *const T) HRESULT {
+                return @ptrCast(*const IUIAnimationManager2.VTable, self.vtable).Shutdown(@ptrCast(*const IUIAnimationManager2, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2151,400 +2179,402 @@ pub const IUIAnimationVariable2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDimension: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 dimension: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 dimension: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 value: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 value: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetVectorValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 value: [*]f64,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 value: [*]f64,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCurve: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 animation: ?*IDCompositionAnimation,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 animation: ?*IDCompositionAnimation,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetVectorCurve: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 animation: [*]?*IDCompositionAnimation,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 animation: [*]?*IDCompositionAnimation,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFinalValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 finalValue: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 finalValue: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFinalVectorValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 finalValue: [*]f64,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 finalValue: [*]f64,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPreviousValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 previousValue: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 previousValue: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPreviousVectorValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 previousValue: [*]f64,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 previousValue: [*]f64,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetIntegerValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 value: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 value: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetIntegerVectorValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 value: [*]i32,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 value: [*]i32,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFinalIntegerValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 finalValue: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 finalValue: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFinalIntegerVectorValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 finalValue: [*]i32,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 finalValue: [*]i32,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPreviousIntegerValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 previousValue: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 previousValue: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPreviousIntegerVectorValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 previousValue: [*]i32,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 previousValue: [*]i32,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetCurrentStoryboard: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 storyboard: ?*?*IUIAnimationStoryboard2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 storyboard: ?*?*IUIAnimationStoryboard2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetLowerBound: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 bound: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 bound: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetLowerBoundVector: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 bound: [*]const f64,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 bound: [*]const f64,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetUpperBound: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 bound: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 bound: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetUpperBoundVector: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 bound: [*]const f64,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 bound: [*]const f64,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetRoundingMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 mode: UI_ANIMATION_ROUNDING_MODE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 mode: UI_ANIMATION_ROUNDING_MODE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetTag: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 object: ?*IUnknown,
                 id: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 object: ?*IUnknown,
                 id: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetTag: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 object: ?*?*IUnknown,
                 id: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 object: ?*?*IUnknown,
                 id: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetVariableChangeHandler: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 handler: ?*IUIAnimationVariableChangeHandler2,
                 fRegisterForNextAnimationEvent: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 handler: ?*IUIAnimationVariableChangeHandler2,
                 fRegisterForNextAnimationEvent: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetVariableIntegerChangeHandler: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 handler: ?*IUIAnimationVariableIntegerChangeHandler2,
                 fRegisterForNextAnimationEvent: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 handler: ?*IUIAnimationVariableIntegerChangeHandler2,
                 fRegisterForNextAnimationEvent: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetVariableCurveChangeHandler: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariable2,
                 handler: ?*IUIAnimationVariableCurveChangeHandler2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariable2,
                 handler: ?*IUIAnimationVariableCurveChangeHandler2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_GetDimension(self: *const T, dimension: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetDimension(@ptrCast(*const IUIAnimationVariable2, self), dimension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_GetValue(self: *const T, value: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetValue(@ptrCast(*const IUIAnimationVariable2, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_GetVectorValue(self: *const T, value: [*]f64, cDimension: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetVectorValue(@ptrCast(*const IUIAnimationVariable2, self), value, cDimension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_GetCurve(self: *const T, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetCurve(@ptrCast(*const IUIAnimationVariable2, self), animation);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_GetVectorCurve(self: *const T, animation: [*]?*IDCompositionAnimation, cDimension: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetVectorCurve(@ptrCast(*const IUIAnimationVariable2, self), animation, cDimension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_GetFinalValue(self: *const T, finalValue: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetFinalValue(@ptrCast(*const IUIAnimationVariable2, self), finalValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_GetFinalVectorValue(self: *const T, finalValue: [*]f64, cDimension: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetFinalVectorValue(@ptrCast(*const IUIAnimationVariable2, self), finalValue, cDimension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_GetPreviousValue(self: *const T, previousValue: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetPreviousValue(@ptrCast(*const IUIAnimationVariable2, self), previousValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_GetPreviousVectorValue(self: *const T, previousValue: [*]f64, cDimension: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetPreviousVectorValue(@ptrCast(*const IUIAnimationVariable2, self), previousValue, cDimension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_GetIntegerValue(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetIntegerValue(@ptrCast(*const IUIAnimationVariable2, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_GetIntegerVectorValue(self: *const T, value: [*]i32, cDimension: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetIntegerVectorValue(@ptrCast(*const IUIAnimationVariable2, self), value, cDimension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_GetFinalIntegerValue(self: *const T, finalValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetFinalIntegerValue(@ptrCast(*const IUIAnimationVariable2, self), finalValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_GetFinalIntegerVectorValue(self: *const T, finalValue: [*]i32, cDimension: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetFinalIntegerVectorValue(@ptrCast(*const IUIAnimationVariable2, self), finalValue, cDimension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_GetPreviousIntegerValue(self: *const T, previousValue: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetPreviousIntegerValue(@ptrCast(*const IUIAnimationVariable2, self), previousValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_GetPreviousIntegerVectorValue(self: *const T, previousValue: [*]i32, cDimension: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetPreviousIntegerVectorValue(@ptrCast(*const IUIAnimationVariable2, self), previousValue, cDimension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_GetCurrentStoryboard(self: *const T, storyboard: ?*?*IUIAnimationStoryboard2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetCurrentStoryboard(@ptrCast(*const IUIAnimationVariable2, self), storyboard);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_SetLowerBound(self: *const T, bound: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).SetLowerBound(@ptrCast(*const IUIAnimationVariable2, self), bound);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_SetLowerBoundVector(self: *const T, bound: [*]const f64, cDimension: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).SetLowerBoundVector(@ptrCast(*const IUIAnimationVariable2, self), bound, cDimension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_SetUpperBound(self: *const T, bound: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).SetUpperBound(@ptrCast(*const IUIAnimationVariable2, self), bound);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_SetUpperBoundVector(self: *const T, bound: [*]const f64, cDimension: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).SetUpperBoundVector(@ptrCast(*const IUIAnimationVariable2, self), bound, cDimension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_SetRoundingMode(self: *const T, mode: UI_ANIMATION_ROUNDING_MODE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).SetRoundingMode(@ptrCast(*const IUIAnimationVariable2, self), mode);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_SetTag(self: *const T, object: ?*IUnknown, id: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).SetTag(@ptrCast(*const IUIAnimationVariable2, self), object, id);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_GetTag(self: *const T, object: ?*?*IUnknown, id: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetTag(@ptrCast(*const IUIAnimationVariable2, self), object, id);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_SetVariableChangeHandler(self: *const T, handler: ?*IUIAnimationVariableChangeHandler2, fRegisterForNextAnimationEvent: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).SetVariableChangeHandler(@ptrCast(*const IUIAnimationVariable2, self), handler, fRegisterForNextAnimationEvent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_SetVariableIntegerChangeHandler(self: *const T, handler: ?*IUIAnimationVariableIntegerChangeHandler2, fRegisterForNextAnimationEvent: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).SetVariableIntegerChangeHandler(@ptrCast(*const IUIAnimationVariable2, self), handler, fRegisterForNextAnimationEvent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariable2_SetVariableCurveChangeHandler(self: *const T, handler: ?*IUIAnimationVariableCurveChangeHandler2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).SetVariableCurveChangeHandler(@ptrCast(*const IUIAnimationVariable2, self), handler);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_GetDimension(self: *const T, dimension: ?*u32) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetDimension(@ptrCast(*const IUIAnimationVariable2, self), dimension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_GetValue(self: *const T, value: ?*f64) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetValue(@ptrCast(*const IUIAnimationVariable2, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_GetVectorValue(self: *const T, value: [*]f64, cDimension: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetVectorValue(@ptrCast(*const IUIAnimationVariable2, self), value, cDimension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_GetCurve(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetCurve(@ptrCast(*const IUIAnimationVariable2, self), animation);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_GetVectorCurve(self: *const T, animation: [*]?*IDCompositionAnimation, cDimension: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetVectorCurve(@ptrCast(*const IUIAnimationVariable2, self), animation, cDimension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_GetFinalValue(self: *const T, finalValue: ?*f64) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetFinalValue(@ptrCast(*const IUIAnimationVariable2, self), finalValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_GetFinalVectorValue(self: *const T, finalValue: [*]f64, cDimension: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetFinalVectorValue(@ptrCast(*const IUIAnimationVariable2, self), finalValue, cDimension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_GetPreviousValue(self: *const T, previousValue: ?*f64) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetPreviousValue(@ptrCast(*const IUIAnimationVariable2, self), previousValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_GetPreviousVectorValue(self: *const T, previousValue: [*]f64, cDimension: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetPreviousVectorValue(@ptrCast(*const IUIAnimationVariable2, self), previousValue, cDimension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_GetIntegerValue(self: *const T, value: ?*i32) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetIntegerValue(@ptrCast(*const IUIAnimationVariable2, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_GetIntegerVectorValue(self: *const T, value: [*]i32, cDimension: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetIntegerVectorValue(@ptrCast(*const IUIAnimationVariable2, self), value, cDimension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_GetFinalIntegerValue(self: *const T, finalValue: ?*i32) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetFinalIntegerValue(@ptrCast(*const IUIAnimationVariable2, self), finalValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_GetFinalIntegerVectorValue(self: *const T, finalValue: [*]i32, cDimension: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetFinalIntegerVectorValue(@ptrCast(*const IUIAnimationVariable2, self), finalValue, cDimension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_GetPreviousIntegerValue(self: *const T, previousValue: ?*i32) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetPreviousIntegerValue(@ptrCast(*const IUIAnimationVariable2, self), previousValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_GetPreviousIntegerVectorValue(self: *const T, previousValue: [*]i32, cDimension: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetPreviousIntegerVectorValue(@ptrCast(*const IUIAnimationVariable2, self), previousValue, cDimension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_GetCurrentStoryboard(self: *const T, storyboard: ?*?*IUIAnimationStoryboard2) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetCurrentStoryboard(@ptrCast(*const IUIAnimationVariable2, self), storyboard);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_SetLowerBound(self: *const T, bound: f64) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).SetLowerBound(@ptrCast(*const IUIAnimationVariable2, self), bound);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_SetLowerBoundVector(self: *const T, bound: [*]const f64, cDimension: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).SetLowerBoundVector(@ptrCast(*const IUIAnimationVariable2, self), bound, cDimension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_SetUpperBound(self: *const T, bound: f64) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).SetUpperBound(@ptrCast(*const IUIAnimationVariable2, self), bound);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_SetUpperBoundVector(self: *const T, bound: [*]const f64, cDimension: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).SetUpperBoundVector(@ptrCast(*const IUIAnimationVariable2, self), bound, cDimension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_SetRoundingMode(self: *const T, mode: UI_ANIMATION_ROUNDING_MODE) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).SetRoundingMode(@ptrCast(*const IUIAnimationVariable2, self), mode);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_SetTag(self: *const T, object: ?*IUnknown, id: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).SetTag(@ptrCast(*const IUIAnimationVariable2, self), object, id);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_GetTag(self: *const T, object: ?*?*IUnknown, id: ?*u32) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).GetTag(@ptrCast(*const IUIAnimationVariable2, self), object, id);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_SetVariableChangeHandler(self: *const T, handler: ?*IUIAnimationVariableChangeHandler2, fRegisterForNextAnimationEvent: BOOL) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).SetVariableChangeHandler(@ptrCast(*const IUIAnimationVariable2, self), handler, fRegisterForNextAnimationEvent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_SetVariableIntegerChangeHandler(self: *const T, handler: ?*IUIAnimationVariableIntegerChangeHandler2, fRegisterForNextAnimationEvent: BOOL) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).SetVariableIntegerChangeHandler(@ptrCast(*const IUIAnimationVariable2, self), handler, fRegisterForNextAnimationEvent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariable2_SetVariableCurveChangeHandler(self: *const T, handler: ?*IUIAnimationVariableCurveChangeHandler2) HRESULT {
+                return @ptrCast(*const IUIAnimationVariable2.VTable, self.vtable).SetVariableCurveChangeHandler(@ptrCast(*const IUIAnimationVariable2, self), handler);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2555,110 +2585,112 @@ pub const IUIAnimationTransition2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDimension: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransition2,
                 dimension: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransition2,
                 dimension: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetInitialValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransition2,
                 value: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransition2,
                 value: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetInitialVectorValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransition2,
                 value: [*]const f64,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransition2,
                 value: [*]const f64,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetInitialVelocity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransition2,
                 velocity: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransition2,
                 velocity: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetInitialVectorVelocity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransition2,
                 velocity: [*]const f64,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransition2,
                 velocity: [*]const f64,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         IsDurationKnown: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDuration: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransition2,
                 duration: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransition2,
                 duration: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransition2_GetDimension(self: *const T, dimension: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransition2.VTable, self.vtable).GetDimension(@ptrCast(*const IUIAnimationTransition2, self), dimension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransition2_SetInitialValue(self: *const T, value: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransition2.VTable, self.vtable).SetInitialValue(@ptrCast(*const IUIAnimationTransition2, self), value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransition2_SetInitialVectorValue(self: *const T, value: [*]const f64, cDimension: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransition2.VTable, self.vtable).SetInitialVectorValue(@ptrCast(*const IUIAnimationTransition2, self), value, cDimension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransition2_SetInitialVelocity(self: *const T, velocity: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransition2.VTable, self.vtable).SetInitialVelocity(@ptrCast(*const IUIAnimationTransition2, self), velocity);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransition2_SetInitialVectorVelocity(self: *const T, velocity: [*]const f64, cDimension: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransition2.VTable, self.vtable).SetInitialVectorVelocity(@ptrCast(*const IUIAnimationTransition2, self), velocity, cDimension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransition2_IsDurationKnown(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransition2.VTable, self.vtable).IsDurationKnown(@ptrCast(*const IUIAnimationTransition2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransition2_GetDuration(self: *const T, duration: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransition2.VTable, self.vtable).GetDuration(@ptrCast(*const IUIAnimationTransition2, self), duration);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransition2_GetDimension(self: *const T, dimension: ?*u32) HRESULT {
+                return @ptrCast(*const IUIAnimationTransition2.VTable, self.vtable).GetDimension(@ptrCast(*const IUIAnimationTransition2, self), dimension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransition2_SetInitialValue(self: *const T, value: f64) HRESULT {
+                return @ptrCast(*const IUIAnimationTransition2.VTable, self.vtable).SetInitialValue(@ptrCast(*const IUIAnimationTransition2, self), value);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransition2_SetInitialVectorValue(self: *const T, value: [*]const f64, cDimension: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationTransition2.VTable, self.vtable).SetInitialVectorValue(@ptrCast(*const IUIAnimationTransition2, self), value, cDimension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransition2_SetInitialVelocity(self: *const T, velocity: f64) HRESULT {
+                return @ptrCast(*const IUIAnimationTransition2.VTable, self.vtable).SetInitialVelocity(@ptrCast(*const IUIAnimationTransition2, self), velocity);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransition2_SetInitialVectorVelocity(self: *const T, velocity: [*]const f64, cDimension: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationTransition2.VTable, self.vtable).SetInitialVectorVelocity(@ptrCast(*const IUIAnimationTransition2, self), velocity, cDimension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransition2_IsDurationKnown(self: *const T) HRESULT {
+                return @ptrCast(*const IUIAnimationTransition2.VTable, self.vtable).IsDurationKnown(@ptrCast(*const IUIAnimationTransition2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransition2_GetDuration(self: *const T, duration: ?*f64) HRESULT {
+                return @ptrCast(*const IUIAnimationTransition2.VTable, self.vtable).GetDuration(@ptrCast(*const IUIAnimationTransition2, self), duration);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2669,12 +2701,12 @@ pub const IUIAnimationManagerEventHandler2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnManagerStatusChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationManagerEventHandler2,
                 newStatus: UI_ANIMATION_MANAGER_STATUS,
                 previousStatus: UI_ANIMATION_MANAGER_STATUS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationManagerEventHandler2,
                 newStatus: UI_ANIMATION_MANAGER_STATUS,
                 previousStatus: UI_ANIMATION_MANAGER_STATUS,
@@ -2682,13 +2714,15 @@ pub const IUIAnimationManagerEventHandler2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationManagerEventHandler2_OnManagerStatusChanged(self: *const T, newStatus: UI_ANIMATION_MANAGER_STATUS, previousStatus: UI_ANIMATION_MANAGER_STATUS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationManagerEventHandler2.VTable, self.vtable).OnManagerStatusChanged(@ptrCast(*const IUIAnimationManagerEventHandler2, self), newStatus, previousStatus);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationManagerEventHandler2_OnManagerStatusChanged(self: *const T, newStatus: UI_ANIMATION_MANAGER_STATUS, previousStatus: UI_ANIMATION_MANAGER_STATUS) HRESULT {
+                return @ptrCast(*const IUIAnimationManagerEventHandler2.VTable, self.vtable).OnManagerStatusChanged(@ptrCast(*const IUIAnimationManagerEventHandler2, self), newStatus, previousStatus);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2699,7 +2733,7 @@ pub const IUIAnimationVariableChangeHandler2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnValueChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariableChangeHandler2,
                 storyboard: ?*IUIAnimationStoryboard2,
                 variable: ?*IUIAnimationVariable2,
@@ -2707,7 +2741,7 @@ pub const IUIAnimationVariableChangeHandler2 = extern struct {
                 previousValue: [*]f64,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariableChangeHandler2,
                 storyboard: ?*IUIAnimationStoryboard2,
                 variable: ?*IUIAnimationVariable2,
@@ -2718,13 +2752,15 @@ pub const IUIAnimationVariableChangeHandler2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariableChangeHandler2_OnValueChanged(self: *const T, storyboard: ?*IUIAnimationStoryboard2, variable: ?*IUIAnimationVariable2, newValue: [*]f64, previousValue: [*]f64, cDimension: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariableChangeHandler2.VTable, self.vtable).OnValueChanged(@ptrCast(*const IUIAnimationVariableChangeHandler2, self), storyboard, variable, newValue, previousValue, cDimension);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariableChangeHandler2_OnValueChanged(self: *const T, storyboard: ?*IUIAnimationStoryboard2, variable: ?*IUIAnimationVariable2, newValue: [*]f64, previousValue: [*]f64, cDimension: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationVariableChangeHandler2.VTable, self.vtable).OnValueChanged(@ptrCast(*const IUIAnimationVariableChangeHandler2, self), storyboard, variable, newValue, previousValue, cDimension);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2735,7 +2771,7 @@ pub const IUIAnimationVariableIntegerChangeHandler2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnIntegerValueChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariableIntegerChangeHandler2,
                 storyboard: ?*IUIAnimationStoryboard2,
                 variable: ?*IUIAnimationVariable2,
@@ -2743,7 +2779,7 @@ pub const IUIAnimationVariableIntegerChangeHandler2 = extern struct {
                 previousValue: [*]i32,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariableIntegerChangeHandler2,
                 storyboard: ?*IUIAnimationStoryboard2,
                 variable: ?*IUIAnimationVariable2,
@@ -2754,13 +2790,15 @@ pub const IUIAnimationVariableIntegerChangeHandler2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariableIntegerChangeHandler2_OnIntegerValueChanged(self: *const T, storyboard: ?*IUIAnimationStoryboard2, variable: ?*IUIAnimationVariable2, newValue: [*]i32, previousValue: [*]i32, cDimension: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariableIntegerChangeHandler2.VTable, self.vtable).OnIntegerValueChanged(@ptrCast(*const IUIAnimationVariableIntegerChangeHandler2, self), storyboard, variable, newValue, previousValue, cDimension);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariableIntegerChangeHandler2_OnIntegerValueChanged(self: *const T, storyboard: ?*IUIAnimationStoryboard2, variable: ?*IUIAnimationVariable2, newValue: [*]i32, previousValue: [*]i32, cDimension: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationVariableIntegerChangeHandler2.VTable, self.vtable).OnIntegerValueChanged(@ptrCast(*const IUIAnimationVariableIntegerChangeHandler2, self), storyboard, variable, newValue, previousValue, cDimension);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2771,24 +2809,26 @@ pub const IUIAnimationVariableCurveChangeHandler2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnCurveChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationVariableCurveChangeHandler2,
                 variable: ?*IUIAnimationVariable2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationVariableCurveChangeHandler2,
                 variable: ?*IUIAnimationVariable2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationVariableCurveChangeHandler2_OnCurveChanged(self: *const T, variable: ?*IUIAnimationVariable2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationVariableCurveChangeHandler2.VTable, self.vtable).OnCurveChanged(@ptrCast(*const IUIAnimationVariableCurveChangeHandler2, self), variable);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationVariableCurveChangeHandler2_OnCurveChanged(self: *const T, variable: ?*IUIAnimationVariable2) HRESULT {
+                return @ptrCast(*const IUIAnimationVariableCurveChangeHandler2.VTable, self.vtable).OnCurveChanged(@ptrCast(*const IUIAnimationVariableCurveChangeHandler2, self), variable);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2799,13 +2839,13 @@ pub const IUIAnimationStoryboardEventHandler2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnStoryboardStatusChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboardEventHandler2,
                 storyboard: ?*IUIAnimationStoryboard2,
                 newStatus: UI_ANIMATION_STORYBOARD_STATUS,
                 previousStatus: UI_ANIMATION_STORYBOARD_STATUS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboardEventHandler2,
                 storyboard: ?*IUIAnimationStoryboard2,
                 newStatus: UI_ANIMATION_STORYBOARD_STATUS,
@@ -2813,28 +2853,30 @@ pub const IUIAnimationStoryboardEventHandler2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OnStoryboardUpdated: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboardEventHandler2,
                 storyboard: ?*IUIAnimationStoryboard2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboardEventHandler2,
                 storyboard: ?*IUIAnimationStoryboard2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboardEventHandler2_OnStoryboardStatusChanged(self: *const T, storyboard: ?*IUIAnimationStoryboard2, newStatus: UI_ANIMATION_STORYBOARD_STATUS, previousStatus: UI_ANIMATION_STORYBOARD_STATUS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboardEventHandler2.VTable, self.vtable).OnStoryboardStatusChanged(@ptrCast(*const IUIAnimationStoryboardEventHandler2, self), storyboard, newStatus, previousStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboardEventHandler2_OnStoryboardUpdated(self: *const T, storyboard: ?*IUIAnimationStoryboard2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboardEventHandler2.VTable, self.vtable).OnStoryboardUpdated(@ptrCast(*const IUIAnimationStoryboardEventHandler2, self), storyboard);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboardEventHandler2_OnStoryboardStatusChanged(self: *const T, storyboard: ?*IUIAnimationStoryboard2, newStatus: UI_ANIMATION_STORYBOARD_STATUS, previousStatus: UI_ANIMATION_STORYBOARD_STATUS) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboardEventHandler2.VTable, self.vtable).OnStoryboardStatusChanged(@ptrCast(*const IUIAnimationStoryboardEventHandler2, self), storyboard, newStatus, previousStatus);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboardEventHandler2_OnStoryboardUpdated(self: *const T, storyboard: ?*IUIAnimationStoryboard2) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboardEventHandler2.VTable, self.vtable).OnStoryboardUpdated(@ptrCast(*const IUIAnimationStoryboardEventHandler2, self), storyboard);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2845,14 +2887,14 @@ pub const IUIAnimationLoopIterationChangeHandler2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnLoopIterationChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationLoopIterationChangeHandler2,
                 storyboard: ?*IUIAnimationStoryboard2,
                 id: usize,
                 newIterationCount: u32,
                 oldIterationCount: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationLoopIterationChangeHandler2,
                 storyboard: ?*IUIAnimationStoryboard2,
                 id: usize,
@@ -2862,13 +2904,15 @@ pub const IUIAnimationLoopIterationChangeHandler2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationLoopIterationChangeHandler2_OnLoopIterationChanged(self: *const T, storyboard: ?*IUIAnimationStoryboard2, id: usize, newIterationCount: u32, oldIterationCount: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationLoopIterationChangeHandler2.VTable, self.vtable).OnLoopIterationChanged(@ptrCast(*const IUIAnimationLoopIterationChangeHandler2, self), storyboard, id, newIterationCount, oldIterationCount);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationLoopIterationChangeHandler2_OnLoopIterationChanged(self: *const T, storyboard: ?*IUIAnimationStoryboard2, id: usize, newIterationCount: u32, oldIterationCount: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationLoopIterationChangeHandler2.VTable, self.vtable).OnLoopIterationChanged(@ptrCast(*const IUIAnimationLoopIterationChangeHandler2, self), storyboard, id, newIterationCount, oldIterationCount);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2879,13 +2923,13 @@ pub const IUIAnimationPriorityComparison2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         HasPriority: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationPriorityComparison2,
                 scheduledStoryboard: ?*IUIAnimationStoryboard2,
                 newStoryboard: ?*IUIAnimationStoryboard2,
                 priorityEffect: UI_ANIMATION_PRIORITY_EFFECT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationPriorityComparison2,
                 scheduledStoryboard: ?*IUIAnimationStoryboard2,
                 newStoryboard: ?*IUIAnimationStoryboard2,
@@ -2894,13 +2938,15 @@ pub const IUIAnimationPriorityComparison2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationPriorityComparison2_HasPriority(self: *const T, scheduledStoryboard: ?*IUIAnimationStoryboard2, newStoryboard: ?*IUIAnimationStoryboard2, priorityEffect: UI_ANIMATION_PRIORITY_EFFECT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationPriorityComparison2.VTable, self.vtable).HasPriority(@ptrCast(*const IUIAnimationPriorityComparison2, self), scheduledStoryboard, newStoryboard, priorityEffect);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationPriorityComparison2_HasPriority(self: *const T, scheduledStoryboard: ?*IUIAnimationStoryboard2, newStoryboard: ?*IUIAnimationStoryboard2, priorityEffect: UI_ANIMATION_PRIORITY_EFFECT) HRESULT {
+                return @ptrCast(*const IUIAnimationPriorityComparison2.VTable, self.vtable).HasPriority(@ptrCast(*const IUIAnimationPriorityComparison2, self), scheduledStoryboard, newStoryboard, priorityEffect);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2911,25 +2957,25 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateInstantaneousTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 finalValue: f64,
                 transition: ?*?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 finalValue: f64,
                 transition: ?*?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateInstantaneousVectorTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 finalValue: [*]const f64,
                 cDimension: u32,
                 transition: ?*?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 finalValue: [*]const f64,
                 cDimension: u32,
@@ -2937,26 +2983,26 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateConstantTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 duration: f64,
                 transition: ?*?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 duration: f64,
                 transition: ?*?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateDiscreteTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 delay: f64,
                 finalValue: f64,
                 hold: f64,
                 transition: ?*?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 delay: f64,
                 finalValue: f64,
@@ -2965,7 +3011,7 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateDiscreteVectorTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 delay: f64,
                 finalValue: [*]const f64,
@@ -2973,7 +3019,7 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
                 hold: f64,
                 transition: ?*?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 delay: f64,
                 finalValue: [*]const f64,
@@ -2983,13 +3029,13 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateLinearTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 duration: f64,
                 finalValue: f64,
                 transition: ?*?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 duration: f64,
                 finalValue: f64,
@@ -2997,14 +3043,14 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateLinearVectorTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 duration: f64,
                 finalValue: [*]const f64,
                 cDimension: u32,
                 transition: ?*?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 duration: f64,
                 finalValue: [*]const f64,
@@ -3013,13 +3059,13 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateLinearTransitionFromSpeed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 speed: f64,
                 finalValue: f64,
                 transition: ?*?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 speed: f64,
                 finalValue: f64,
@@ -3027,14 +3073,14 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateLinearVectorTransitionFromSpeed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 speed: f64,
                 finalValue: [*]const f64,
                 cDimension: u32,
                 transition: ?*?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 speed: f64,
                 finalValue: [*]const f64,
@@ -3043,13 +3089,13 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateSinusoidalTransitionFromVelocity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 duration: f64,
                 period: f64,
                 transition: ?*?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 duration: f64,
                 period: f64,
@@ -3057,7 +3103,7 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateSinusoidalTransitionFromRange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 duration: f64,
                 minimumValue: f64,
@@ -3066,7 +3112,7 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
                 slope: UI_ANIMATION_SLOPE,
                 transition: ?*?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 duration: f64,
                 minimumValue: f64,
@@ -3077,7 +3123,7 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateAccelerateDecelerateTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 duration: f64,
                 finalValue: f64,
@@ -3085,7 +3131,7 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
                 decelerationRatio: f64,
                 transition: ?*?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 duration: f64,
                 finalValue: f64,
@@ -3095,26 +3141,26 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateReversalTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 duration: f64,
                 transition: ?*?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 duration: f64,
                 transition: ?*?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateCubicTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 duration: f64,
                 finalValue: f64,
                 finalVelocity: f64,
                 transition: ?*?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 duration: f64,
                 finalValue: f64,
@@ -3123,7 +3169,7 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateCubicVectorTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 duration: f64,
                 finalValue: [*]const f64,
@@ -3131,7 +3177,7 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
                 cDimension: u32,
                 transition: ?*?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 duration: f64,
                 finalValue: [*]const f64,
@@ -3141,13 +3187,13 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateSmoothStopTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 maximumDuration: f64,
                 finalValue: f64,
                 transition: ?*?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 maximumDuration: f64,
                 finalValue: f64,
@@ -3155,14 +3201,14 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateParabolicTransitionFromAcceleration: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 finalValue: f64,
                 finalVelocity: f64,
                 acceleration: f64,
                 transition: ?*?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 finalValue: f64,
                 finalVelocity: f64,
@@ -3171,7 +3217,7 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateCubicBezierLinearTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 duration: f64,
                 finalValue: f64,
@@ -3181,7 +3227,7 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
                 y2: f64,
                 ppTransition: ?*?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 duration: f64,
                 finalValue: f64,
@@ -3193,7 +3239,7 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateCubicBezierLinearVectorTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 duration: f64,
                 finalValue: [*]const f64,
@@ -3204,7 +3250,7 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
                 y2: f64,
                 ppTransition: ?*?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionLibrary2,
                 duration: f64,
                 finalValue: [*]const f64,
@@ -3218,85 +3264,87 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary2_CreateInstantaneousTransition(self: *const T, finalValue: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateInstantaneousTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), finalValue, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary2_CreateInstantaneousVectorTransition(self: *const T, finalValue: [*]const f64, cDimension: u32, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateInstantaneousVectorTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), finalValue, cDimension, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary2_CreateConstantTransition(self: *const T, duration: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateConstantTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), duration, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary2_CreateDiscreteTransition(self: *const T, delay: f64, finalValue: f64, hold: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateDiscreteTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), delay, finalValue, hold, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary2_CreateDiscreteVectorTransition(self: *const T, delay: f64, finalValue: [*]const f64, cDimension: u32, hold: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateDiscreteVectorTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), delay, finalValue, cDimension, hold, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary2_CreateLinearTransition(self: *const T, duration: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateLinearTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), duration, finalValue, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary2_CreateLinearVectorTransition(self: *const T, duration: f64, finalValue: [*]const f64, cDimension: u32, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateLinearVectorTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), duration, finalValue, cDimension, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary2_CreateLinearTransitionFromSpeed(self: *const T, speed: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateLinearTransitionFromSpeed(@ptrCast(*const IUIAnimationTransitionLibrary2, self), speed, finalValue, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary2_CreateLinearVectorTransitionFromSpeed(self: *const T, speed: f64, finalValue: [*]const f64, cDimension: u32, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateLinearVectorTransitionFromSpeed(@ptrCast(*const IUIAnimationTransitionLibrary2, self), speed, finalValue, cDimension, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary2_CreateSinusoidalTransitionFromVelocity(self: *const T, duration: f64, period: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateSinusoidalTransitionFromVelocity(@ptrCast(*const IUIAnimationTransitionLibrary2, self), duration, period, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary2_CreateSinusoidalTransitionFromRange(self: *const T, duration: f64, minimumValue: f64, maximumValue: f64, period: f64, slope: UI_ANIMATION_SLOPE, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateSinusoidalTransitionFromRange(@ptrCast(*const IUIAnimationTransitionLibrary2, self), duration, minimumValue, maximumValue, period, slope, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary2_CreateAccelerateDecelerateTransition(self: *const T, duration: f64, finalValue: f64, accelerationRatio: f64, decelerationRatio: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateAccelerateDecelerateTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), duration, finalValue, accelerationRatio, decelerationRatio, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary2_CreateReversalTransition(self: *const T, duration: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateReversalTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), duration, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary2_CreateCubicTransition(self: *const T, duration: f64, finalValue: f64, finalVelocity: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateCubicTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), duration, finalValue, finalVelocity, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary2_CreateCubicVectorTransition(self: *const T, duration: f64, finalValue: [*]const f64, finalVelocity: [*]const f64, cDimension: u32, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateCubicVectorTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), duration, finalValue, finalVelocity, cDimension, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary2_CreateSmoothStopTransition(self: *const T, maximumDuration: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateSmoothStopTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), maximumDuration, finalValue, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary2_CreateParabolicTransitionFromAcceleration(self: *const T, finalValue: f64, finalVelocity: f64, acceleration: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateParabolicTransitionFromAcceleration(@ptrCast(*const IUIAnimationTransitionLibrary2, self), finalValue, finalVelocity, acceleration, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary2_CreateCubicBezierLinearTransition(self: *const T, duration: f64, finalValue: f64, x1: f64, y1: f64, x2: f64, y2: f64, ppTransition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateCubicBezierLinearTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), duration, finalValue, x1, y1, x2, y2, ppTransition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionLibrary2_CreateCubicBezierLinearVectorTransition(self: *const T, duration: f64, finalValue: [*]const f64, cDimension: u32, x1: f64, y1: f64, x2: f64, y2: f64, ppTransition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateCubicBezierLinearVectorTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), duration, finalValue, cDimension, x1, y1, x2, y2, ppTransition);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary2_CreateInstantaneousTransition(self: *const T, finalValue: f64, transition: ?*?*IUIAnimationTransition2) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateInstantaneousTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), finalValue, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary2_CreateInstantaneousVectorTransition(self: *const T, finalValue: [*]const f64, cDimension: u32, transition: ?*?*IUIAnimationTransition2) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateInstantaneousVectorTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), finalValue, cDimension, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary2_CreateConstantTransition(self: *const T, duration: f64, transition: ?*?*IUIAnimationTransition2) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateConstantTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), duration, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary2_CreateDiscreteTransition(self: *const T, delay: f64, finalValue: f64, hold: f64, transition: ?*?*IUIAnimationTransition2) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateDiscreteTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), delay, finalValue, hold, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary2_CreateDiscreteVectorTransition(self: *const T, delay: f64, finalValue: [*]const f64, cDimension: u32, hold: f64, transition: ?*?*IUIAnimationTransition2) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateDiscreteVectorTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), delay, finalValue, cDimension, hold, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary2_CreateLinearTransition(self: *const T, duration: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition2) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateLinearTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), duration, finalValue, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary2_CreateLinearVectorTransition(self: *const T, duration: f64, finalValue: [*]const f64, cDimension: u32, transition: ?*?*IUIAnimationTransition2) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateLinearVectorTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), duration, finalValue, cDimension, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary2_CreateLinearTransitionFromSpeed(self: *const T, speed: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition2) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateLinearTransitionFromSpeed(@ptrCast(*const IUIAnimationTransitionLibrary2, self), speed, finalValue, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary2_CreateLinearVectorTransitionFromSpeed(self: *const T, speed: f64, finalValue: [*]const f64, cDimension: u32, transition: ?*?*IUIAnimationTransition2) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateLinearVectorTransitionFromSpeed(@ptrCast(*const IUIAnimationTransitionLibrary2, self), speed, finalValue, cDimension, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary2_CreateSinusoidalTransitionFromVelocity(self: *const T, duration: f64, period: f64, transition: ?*?*IUIAnimationTransition2) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateSinusoidalTransitionFromVelocity(@ptrCast(*const IUIAnimationTransitionLibrary2, self), duration, period, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary2_CreateSinusoidalTransitionFromRange(self: *const T, duration: f64, minimumValue: f64, maximumValue: f64, period: f64, slope: UI_ANIMATION_SLOPE, transition: ?*?*IUIAnimationTransition2) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateSinusoidalTransitionFromRange(@ptrCast(*const IUIAnimationTransitionLibrary2, self), duration, minimumValue, maximumValue, period, slope, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary2_CreateAccelerateDecelerateTransition(self: *const T, duration: f64, finalValue: f64, accelerationRatio: f64, decelerationRatio: f64, transition: ?*?*IUIAnimationTransition2) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateAccelerateDecelerateTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), duration, finalValue, accelerationRatio, decelerationRatio, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary2_CreateReversalTransition(self: *const T, duration: f64, transition: ?*?*IUIAnimationTransition2) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateReversalTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), duration, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary2_CreateCubicTransition(self: *const T, duration: f64, finalValue: f64, finalVelocity: f64, transition: ?*?*IUIAnimationTransition2) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateCubicTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), duration, finalValue, finalVelocity, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary2_CreateCubicVectorTransition(self: *const T, duration: f64, finalValue: [*]const f64, finalVelocity: [*]const f64, cDimension: u32, transition: ?*?*IUIAnimationTransition2) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateCubicVectorTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), duration, finalValue, finalVelocity, cDimension, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary2_CreateSmoothStopTransition(self: *const T, maximumDuration: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition2) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateSmoothStopTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), maximumDuration, finalValue, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary2_CreateParabolicTransitionFromAcceleration(self: *const T, finalValue: f64, finalVelocity: f64, acceleration: f64, transition: ?*?*IUIAnimationTransition2) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateParabolicTransitionFromAcceleration(@ptrCast(*const IUIAnimationTransitionLibrary2, self), finalValue, finalVelocity, acceleration, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary2_CreateCubicBezierLinearTransition(self: *const T, duration: f64, finalValue: f64, x1: f64, y1: f64, x2: f64, y2: f64, ppTransition: ?*?*IUIAnimationTransition2) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateCubicBezierLinearTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), duration, finalValue, x1, y1, x2, y2, ppTransition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionLibrary2_CreateCubicBezierLinearVectorTransition(self: *const T, duration: f64, finalValue: [*]const f64, cDimension: u32, x1: f64, y1: f64, x2: f64, y2: f64, ppTransition: ?*?*IUIAnimationTransition2) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionLibrary2.VTable, self.vtable).CreateCubicBezierLinearVectorTransition(@ptrCast(*const IUIAnimationTransitionLibrary2, self), duration, finalValue, cDimension, x1, y1, x2, y2, ppTransition);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3307,7 +3355,7 @@ pub const IUIAnimationPrimitiveInterpolation = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddCubic: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationPrimitiveInterpolation,
                 dimension: u32,
                 beginOffset: f64,
@@ -3316,7 +3364,7 @@ pub const IUIAnimationPrimitiveInterpolation = extern struct {
                 quadraticCoefficient: f32,
                 cubicCoefficient: f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationPrimitiveInterpolation,
                 dimension: u32,
                 beginOffset: f64,
@@ -3327,7 +3375,7 @@ pub const IUIAnimationPrimitiveInterpolation = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AddSinusoidal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationPrimitiveInterpolation,
                 dimension: u32,
                 beginOffset: f64,
@@ -3336,7 +3384,7 @@ pub const IUIAnimationPrimitiveInterpolation = extern struct {
                 frequency: f32,
                 phase: f32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationPrimitiveInterpolation,
                 dimension: u32,
                 beginOffset: f64,
@@ -3348,17 +3396,19 @@ pub const IUIAnimationPrimitiveInterpolation = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationPrimitiveInterpolation_AddCubic(self: *const T, dimension: u32, beginOffset: f64, constantCoefficient: f32, linearCoefficient: f32, quadraticCoefficient: f32, cubicCoefficient: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationPrimitiveInterpolation.VTable, self.vtable).AddCubic(@ptrCast(*const IUIAnimationPrimitiveInterpolation, self), dimension, beginOffset, constantCoefficient, linearCoefficient, quadraticCoefficient, cubicCoefficient);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationPrimitiveInterpolation_AddSinusoidal(self: *const T, dimension: u32, beginOffset: f64, bias: f32, amplitude: f32, frequency: f32, phase: f32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationPrimitiveInterpolation.VTable, self.vtable).AddSinusoidal(@ptrCast(*const IUIAnimationPrimitiveInterpolation, self), dimension, beginOffset, bias, amplitude, frequency, phase);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationPrimitiveInterpolation_AddCubic(self: *const T, dimension: u32, beginOffset: f64, constantCoefficient: f32, linearCoefficient: f32, quadraticCoefficient: f32, cubicCoefficient: f32) HRESULT {
+                return @ptrCast(*const IUIAnimationPrimitiveInterpolation.VTable, self.vtable).AddCubic(@ptrCast(*const IUIAnimationPrimitiveInterpolation, self), dimension, beginOffset, constantCoefficient, linearCoefficient, quadraticCoefficient, cubicCoefficient);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationPrimitiveInterpolation_AddSinusoidal(self: *const T, dimension: u32, beginOffset: f64, bias: f32, amplitude: f32, frequency: f32, phase: f32) HRESULT {
+                return @ptrCast(*const IUIAnimationPrimitiveInterpolation.VTable, self.vtable).AddSinusoidal(@ptrCast(*const IUIAnimationPrimitiveInterpolation, self), dimension, beginOffset, bias, amplitude, frequency, phase);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3369,23 +3419,23 @@ pub const IUIAnimationInterpolator2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDimension: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationInterpolator2,
                 dimension: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationInterpolator2,
                 dimension: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetInitialValueAndVelocity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationInterpolator2,
                 initialValue: [*]f64,
                 initialVelocity: [*]f64,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationInterpolator2,
                 initialValue: [*]f64,
                 initialVelocity: [*]f64,
@@ -3393,45 +3443,45 @@ pub const IUIAnimationInterpolator2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetDuration: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationInterpolator2,
                 duration: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationInterpolator2,
                 duration: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDuration: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationInterpolator2,
                 duration: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationInterpolator2,
                 duration: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFinalValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationInterpolator2,
                 value: [*]f64,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationInterpolator2,
                 value: [*]f64,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         InterpolateValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationInterpolator2,
                 offset: f64,
                 value: [*]f64,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationInterpolator2,
                 offset: f64,
                 value: [*]f64,
@@ -3439,13 +3489,13 @@ pub const IUIAnimationInterpolator2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         InterpolateVelocity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationInterpolator2,
                 offset: f64,
                 velocity: [*]f64,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationInterpolator2,
                 offset: f64,
                 velocity: [*]f64,
@@ -3453,25 +3503,25 @@ pub const IUIAnimationInterpolator2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPrimitiveInterpolation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationInterpolator2,
                 interpolation: ?*IUIAnimationPrimitiveInterpolation,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationInterpolator2,
                 interpolation: ?*IUIAnimationPrimitiveInterpolation,
                 cDimension: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDependencies: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationInterpolator2,
                 initialValueDependencies: ?*UI_ANIMATION_DEPENDENCIES,
                 initialVelocityDependencies: ?*UI_ANIMATION_DEPENDENCIES,
                 durationDependencies: ?*UI_ANIMATION_DEPENDENCIES,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationInterpolator2,
                 initialValueDependencies: ?*UI_ANIMATION_DEPENDENCIES,
                 initialVelocityDependencies: ?*UI_ANIMATION_DEPENDENCIES,
@@ -3480,45 +3530,47 @@ pub const IUIAnimationInterpolator2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationInterpolator2_GetDimension(self: *const T, dimension: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationInterpolator2.VTable, self.vtable).GetDimension(@ptrCast(*const IUIAnimationInterpolator2, self), dimension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationInterpolator2_SetInitialValueAndVelocity(self: *const T, initialValue: [*]f64, initialVelocity: [*]f64, cDimension: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationInterpolator2.VTable, self.vtable).SetInitialValueAndVelocity(@ptrCast(*const IUIAnimationInterpolator2, self), initialValue, initialVelocity, cDimension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationInterpolator2_SetDuration(self: *const T, duration: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationInterpolator2.VTable, self.vtable).SetDuration(@ptrCast(*const IUIAnimationInterpolator2, self), duration);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationInterpolator2_GetDuration(self: *const T, duration: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationInterpolator2.VTable, self.vtable).GetDuration(@ptrCast(*const IUIAnimationInterpolator2, self), duration);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationInterpolator2_GetFinalValue(self: *const T, value: [*]f64, cDimension: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationInterpolator2.VTable, self.vtable).GetFinalValue(@ptrCast(*const IUIAnimationInterpolator2, self), value, cDimension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationInterpolator2_InterpolateValue(self: *const T, offset: f64, value: [*]f64, cDimension: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationInterpolator2.VTable, self.vtable).InterpolateValue(@ptrCast(*const IUIAnimationInterpolator2, self), offset, value, cDimension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationInterpolator2_InterpolateVelocity(self: *const T, offset: f64, velocity: [*]f64, cDimension: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationInterpolator2.VTable, self.vtable).InterpolateVelocity(@ptrCast(*const IUIAnimationInterpolator2, self), offset, velocity, cDimension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationInterpolator2_GetPrimitiveInterpolation(self: *const T, interpolation: ?*IUIAnimationPrimitiveInterpolation, cDimension: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationInterpolator2.VTable, self.vtable).GetPrimitiveInterpolation(@ptrCast(*const IUIAnimationInterpolator2, self), interpolation, cDimension);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationInterpolator2_GetDependencies(self: *const T, initialValueDependencies: ?*UI_ANIMATION_DEPENDENCIES, initialVelocityDependencies: ?*UI_ANIMATION_DEPENDENCIES, durationDependencies: ?*UI_ANIMATION_DEPENDENCIES) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationInterpolator2.VTable, self.vtable).GetDependencies(@ptrCast(*const IUIAnimationInterpolator2, self), initialValueDependencies, initialVelocityDependencies, durationDependencies);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationInterpolator2_GetDimension(self: *const T, dimension: ?*u32) HRESULT {
+                return @ptrCast(*const IUIAnimationInterpolator2.VTable, self.vtable).GetDimension(@ptrCast(*const IUIAnimationInterpolator2, self), dimension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationInterpolator2_SetInitialValueAndVelocity(self: *const T, initialValue: [*]f64, initialVelocity: [*]f64, cDimension: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationInterpolator2.VTable, self.vtable).SetInitialValueAndVelocity(@ptrCast(*const IUIAnimationInterpolator2, self), initialValue, initialVelocity, cDimension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationInterpolator2_SetDuration(self: *const T, duration: f64) HRESULT {
+                return @ptrCast(*const IUIAnimationInterpolator2.VTable, self.vtable).SetDuration(@ptrCast(*const IUIAnimationInterpolator2, self), duration);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationInterpolator2_GetDuration(self: *const T, duration: ?*f64) HRESULT {
+                return @ptrCast(*const IUIAnimationInterpolator2.VTable, self.vtable).GetDuration(@ptrCast(*const IUIAnimationInterpolator2, self), duration);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationInterpolator2_GetFinalValue(self: *const T, value: [*]f64, cDimension: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationInterpolator2.VTable, self.vtable).GetFinalValue(@ptrCast(*const IUIAnimationInterpolator2, self), value, cDimension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationInterpolator2_InterpolateValue(self: *const T, offset: f64, value: [*]f64, cDimension: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationInterpolator2.VTable, self.vtable).InterpolateValue(@ptrCast(*const IUIAnimationInterpolator2, self), offset, value, cDimension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationInterpolator2_InterpolateVelocity(self: *const T, offset: f64, velocity: [*]f64, cDimension: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationInterpolator2.VTable, self.vtable).InterpolateVelocity(@ptrCast(*const IUIAnimationInterpolator2, self), offset, velocity, cDimension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationInterpolator2_GetPrimitiveInterpolation(self: *const T, interpolation: ?*IUIAnimationPrimitiveInterpolation, cDimension: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationInterpolator2.VTable, self.vtable).GetPrimitiveInterpolation(@ptrCast(*const IUIAnimationInterpolator2, self), interpolation, cDimension);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationInterpolator2_GetDependencies(self: *const T, initialValueDependencies: ?*UI_ANIMATION_DEPENDENCIES, initialVelocityDependencies: ?*UI_ANIMATION_DEPENDENCIES, durationDependencies: ?*UI_ANIMATION_DEPENDENCIES) HRESULT {
+                return @ptrCast(*const IUIAnimationInterpolator2.VTable, self.vtable).GetDependencies(@ptrCast(*const IUIAnimationInterpolator2, self), initialValueDependencies, initialVelocityDependencies, durationDependencies);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3529,12 +3581,12 @@ pub const IUIAnimationTransitionFactory2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationTransitionFactory2,
                 interpolator: ?*IUIAnimationInterpolator2,
                 transition: ?*?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationTransitionFactory2,
                 interpolator: ?*IUIAnimationInterpolator2,
                 transition: ?*?*IUIAnimationTransition2,
@@ -3542,13 +3594,15 @@ pub const IUIAnimationTransitionFactory2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationTransitionFactory2_CreateTransition(self: *const T, interpolator: ?*IUIAnimationInterpolator2, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationTransitionFactory2.VTable, self.vtable).CreateTransition(@ptrCast(*const IUIAnimationTransitionFactory2, self), interpolator, transition);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationTransitionFactory2_CreateTransition(self: *const T, interpolator: ?*IUIAnimationInterpolator2, transition: ?*?*IUIAnimationTransition2) HRESULT {
+                return @ptrCast(*const IUIAnimationTransitionFactory2.VTable, self.vtable).CreateTransition(@ptrCast(*const IUIAnimationTransitionFactory2, self), interpolator, transition);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -3558,25 +3612,25 @@ pub const IUIAnimationStoryboard2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard2,
                 variable: ?*IUIAnimationVariable2,
                 transition: ?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard2,
                 variable: ?*IUIAnimationVariable2,
                 transition: ?*IUIAnimationTransition2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AddKeyframeAtOffset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard2,
                 existingKeyframe: UI_ANIMATION_KEYFRAME,
                 offset: f64,
                 keyframe: ?*UI_ANIMATION_KEYFRAME,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard2,
                 existingKeyframe: UI_ANIMATION_KEYFRAME,
                 offset: f64,
@@ -3584,25 +3638,25 @@ pub const IUIAnimationStoryboard2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AddKeyframeAfterTransition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard2,
                 transition: ?*IUIAnimationTransition2,
                 keyframe: ?*UI_ANIMATION_KEYFRAME,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard2,
                 transition: ?*IUIAnimationTransition2,
                 keyframe: ?*UI_ANIMATION_KEYFRAME,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AddTransitionAtKeyframe: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard2,
                 variable: ?*IUIAnimationVariable2,
                 transition: ?*IUIAnimationTransition2,
                 startKeyframe: UI_ANIMATION_KEYFRAME,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard2,
                 variable: ?*IUIAnimationVariable2,
                 transition: ?*IUIAnimationTransition2,
@@ -3610,14 +3664,14 @@ pub const IUIAnimationStoryboard2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AddTransitionBetweenKeyframes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard2,
                 variable: ?*IUIAnimationVariable2,
                 transition: ?*IUIAnimationTransition2,
                 startKeyframe: UI_ANIMATION_KEYFRAME,
                 endKeyframe: UI_ANIMATION_KEYFRAME,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard2,
                 variable: ?*IUIAnimationVariable2,
                 transition: ?*IUIAnimationTransition2,
@@ -3626,7 +3680,7 @@ pub const IUIAnimationStoryboard2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RepeatBetweenKeyframes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard2,
                 startKeyframe: UI_ANIMATION_KEYFRAME,
                 endKeyframe: UI_ANIMATION_KEYFRAME,
@@ -3636,7 +3690,7 @@ pub const IUIAnimationStoryboard2 = extern struct {
                 id: usize,
                 fRegisterForNextAnimationEvent: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard2,
                 startKeyframe: UI_ANIMATION_KEYFRAME,
                 endKeyframe: UI_ANIMATION_KEYFRAME,
@@ -3648,125 +3702,125 @@ pub const IUIAnimationStoryboard2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         HoldVariable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard2,
                 variable: ?*IUIAnimationVariable2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard2,
                 variable: ?*IUIAnimationVariable2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetLongestAcceptableDelay: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard2,
                 delay: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard2,
                 delay: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetSkipDuration: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard2,
                 secondsDuration: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard2,
                 secondsDuration: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Schedule: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard2,
                 timeNow: f64,
                 schedulingResult: ?*UI_ANIMATION_SCHEDULING_RESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard2,
                 timeNow: f64,
                 schedulingResult: ?*UI_ANIMATION_SCHEDULING_RESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Conclude: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Finish: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard2,
                 completionDeadline: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard2,
                 completionDeadline: f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Abandon: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetTag: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard2,
                 object: ?*IUnknown,
                 id: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard2,
                 object: ?*IUnknown,
                 id: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetTag: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard2,
                 object: ?*?*IUnknown,
                 id: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard2,
                 object: ?*?*IUnknown,
                 id: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard2,
                 status: ?*UI_ANIMATION_STORYBOARD_STATUS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard2,
                 status: ?*UI_ANIMATION_STORYBOARD_STATUS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetElapsedTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard2,
                 elapsedTime: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard2,
                 elapsedTime: ?*f64,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetStoryboardEventHandler: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IUIAnimationStoryboard2,
                 handler: ?*IUIAnimationStoryboardEventHandler2,
                 fRegisterStatusChangeForNextAnimationEvent: BOOL,
                 fRegisterUpdateForNextAnimationEvent: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IUIAnimationStoryboard2,
                 handler: ?*IUIAnimationStoryboardEventHandler2,
                 fRegisterStatusChangeForNextAnimationEvent: BOOL,
@@ -3775,84 +3829,85 @@ pub const IUIAnimationStoryboard2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard2_AddTransition(self: *const T, variable: ?*IUIAnimationVariable2, transition: ?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).AddTransition(@ptrCast(*const IUIAnimationStoryboard2, self), variable, transition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard2_AddKeyframeAtOffset(self: *const T, existingKeyframe: UI_ANIMATION_KEYFRAME, offset: f64, keyframe: ?*UI_ANIMATION_KEYFRAME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).AddKeyframeAtOffset(@ptrCast(*const IUIAnimationStoryboard2, self), existingKeyframe, offset, keyframe);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard2_AddKeyframeAfterTransition(self: *const T, transition: ?*IUIAnimationTransition2, keyframe: ?*UI_ANIMATION_KEYFRAME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).AddKeyframeAfterTransition(@ptrCast(*const IUIAnimationStoryboard2, self), transition, keyframe);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard2_AddTransitionAtKeyframe(self: *const T, variable: ?*IUIAnimationVariable2, transition: ?*IUIAnimationTransition2, startKeyframe: UI_ANIMATION_KEYFRAME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).AddTransitionAtKeyframe(@ptrCast(*const IUIAnimationStoryboard2, self), variable, transition, startKeyframe);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard2_AddTransitionBetweenKeyframes(self: *const T, variable: ?*IUIAnimationVariable2, transition: ?*IUIAnimationTransition2, startKeyframe: UI_ANIMATION_KEYFRAME, endKeyframe: UI_ANIMATION_KEYFRAME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).AddTransitionBetweenKeyframes(@ptrCast(*const IUIAnimationStoryboard2, self), variable, transition, startKeyframe, endKeyframe);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard2_RepeatBetweenKeyframes(self: *const T, startKeyframe: UI_ANIMATION_KEYFRAME, endKeyframe: UI_ANIMATION_KEYFRAME, cRepetition: f64, repeatMode: UI_ANIMATION_REPEAT_MODE, pIterationChangeHandler: ?*IUIAnimationLoopIterationChangeHandler2, id: usize, fRegisterForNextAnimationEvent: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).RepeatBetweenKeyframes(@ptrCast(*const IUIAnimationStoryboard2, self), startKeyframe, endKeyframe, cRepetition, repeatMode, pIterationChangeHandler, id, fRegisterForNextAnimationEvent);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard2_HoldVariable(self: *const T, variable: ?*IUIAnimationVariable2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).HoldVariable(@ptrCast(*const IUIAnimationStoryboard2, self), variable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard2_SetLongestAcceptableDelay(self: *const T, delay: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).SetLongestAcceptableDelay(@ptrCast(*const IUIAnimationStoryboard2, self), delay);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard2_SetSkipDuration(self: *const T, secondsDuration: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).SetSkipDuration(@ptrCast(*const IUIAnimationStoryboard2, self), secondsDuration);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard2_Schedule(self: *const T, timeNow: f64, schedulingResult: ?*UI_ANIMATION_SCHEDULING_RESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).Schedule(@ptrCast(*const IUIAnimationStoryboard2, self), timeNow, schedulingResult);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard2_Conclude(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).Conclude(@ptrCast(*const IUIAnimationStoryboard2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard2_Finish(self: *const T, completionDeadline: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).Finish(@ptrCast(*const IUIAnimationStoryboard2, self), completionDeadline);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard2_Abandon(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).Abandon(@ptrCast(*const IUIAnimationStoryboard2, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard2_SetTag(self: *const T, object: ?*IUnknown, id: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).SetTag(@ptrCast(*const IUIAnimationStoryboard2, self), object, id);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard2_GetTag(self: *const T, object: ?*?*IUnknown, id: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).GetTag(@ptrCast(*const IUIAnimationStoryboard2, self), object, id);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard2_GetStatus(self: *const T, status: ?*UI_ANIMATION_STORYBOARD_STATUS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).GetStatus(@ptrCast(*const IUIAnimationStoryboard2, self), status);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard2_GetElapsedTime(self: *const T, elapsedTime: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).GetElapsedTime(@ptrCast(*const IUIAnimationStoryboard2, self), elapsedTime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAnimationStoryboard2_SetStoryboardEventHandler(self: *const T, handler: ?*IUIAnimationStoryboardEventHandler2, fRegisterStatusChangeForNextAnimationEvent: BOOL, fRegisterUpdateForNextAnimationEvent: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).SetStoryboardEventHandler(@ptrCast(*const IUIAnimationStoryboard2, self), handler, fRegisterStatusChangeForNextAnimationEvent, fRegisterUpdateForNextAnimationEvent);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard2_AddTransition(self: *const T, variable: ?*IUIAnimationVariable2, transition: ?*IUIAnimationTransition2) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).AddTransition(@ptrCast(*const IUIAnimationStoryboard2, self), variable, transition);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard2_AddKeyframeAtOffset(self: *const T, existingKeyframe: UI_ANIMATION_KEYFRAME, offset: f64, keyframe: ?*UI_ANIMATION_KEYFRAME) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).AddKeyframeAtOffset(@ptrCast(*const IUIAnimationStoryboard2, self), existingKeyframe, offset, keyframe);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard2_AddKeyframeAfterTransition(self: *const T, transition: ?*IUIAnimationTransition2, keyframe: ?*UI_ANIMATION_KEYFRAME) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).AddKeyframeAfterTransition(@ptrCast(*const IUIAnimationStoryboard2, self), transition, keyframe);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard2_AddTransitionAtKeyframe(self: *const T, variable: ?*IUIAnimationVariable2, transition: ?*IUIAnimationTransition2, startKeyframe: UI_ANIMATION_KEYFRAME) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).AddTransitionAtKeyframe(@ptrCast(*const IUIAnimationStoryboard2, self), variable, transition, startKeyframe);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard2_AddTransitionBetweenKeyframes(self: *const T, variable: ?*IUIAnimationVariable2, transition: ?*IUIAnimationTransition2, startKeyframe: UI_ANIMATION_KEYFRAME, endKeyframe: UI_ANIMATION_KEYFRAME) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).AddTransitionBetweenKeyframes(@ptrCast(*const IUIAnimationStoryboard2, self), variable, transition, startKeyframe, endKeyframe);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard2_RepeatBetweenKeyframes(self: *const T, startKeyframe: UI_ANIMATION_KEYFRAME, endKeyframe: UI_ANIMATION_KEYFRAME, cRepetition: f64, repeatMode: UI_ANIMATION_REPEAT_MODE, pIterationChangeHandler: ?*IUIAnimationLoopIterationChangeHandler2, id: usize, fRegisterForNextAnimationEvent: BOOL) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).RepeatBetweenKeyframes(@ptrCast(*const IUIAnimationStoryboard2, self), startKeyframe, endKeyframe, cRepetition, repeatMode, pIterationChangeHandler, id, fRegisterForNextAnimationEvent);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard2_HoldVariable(self: *const T, variable: ?*IUIAnimationVariable2) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).HoldVariable(@ptrCast(*const IUIAnimationStoryboard2, self), variable);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard2_SetLongestAcceptableDelay(self: *const T, delay: f64) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).SetLongestAcceptableDelay(@ptrCast(*const IUIAnimationStoryboard2, self), delay);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard2_SetSkipDuration(self: *const T, secondsDuration: f64) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).SetSkipDuration(@ptrCast(*const IUIAnimationStoryboard2, self), secondsDuration);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard2_Schedule(self: *const T, timeNow: f64, schedulingResult: ?*UI_ANIMATION_SCHEDULING_RESULT) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).Schedule(@ptrCast(*const IUIAnimationStoryboard2, self), timeNow, schedulingResult);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard2_Conclude(self: *const T) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).Conclude(@ptrCast(*const IUIAnimationStoryboard2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard2_Finish(self: *const T, completionDeadline: f64) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).Finish(@ptrCast(*const IUIAnimationStoryboard2, self), completionDeadline);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard2_Abandon(self: *const T) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).Abandon(@ptrCast(*const IUIAnimationStoryboard2, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard2_SetTag(self: *const T, object: ?*IUnknown, id: u32) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).SetTag(@ptrCast(*const IUIAnimationStoryboard2, self), object, id);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard2_GetTag(self: *const T, object: ?*?*IUnknown, id: ?*u32) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).GetTag(@ptrCast(*const IUIAnimationStoryboard2, self), object, id);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard2_GetStatus(self: *const T, status: ?*UI_ANIMATION_STORYBOARD_STATUS) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).GetStatus(@ptrCast(*const IUIAnimationStoryboard2, self), status);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard2_GetElapsedTime(self: *const T, elapsedTime: ?*f64) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).GetElapsedTime(@ptrCast(*const IUIAnimationStoryboard2, self), elapsedTime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IUIAnimationStoryboard2_SetStoryboardEventHandler(self: *const T, handler: ?*IUIAnimationStoryboardEventHandler2, fRegisterStatusChangeForNextAnimationEvent: BOOL, fRegisterUpdateForNextAnimationEvent: BOOL) HRESULT {
+                return @ptrCast(*const IUIAnimationStoryboard2.VTable, self.vtable).SetStoryboardEventHandler(@ptrCast(*const IUIAnimationStoryboard2, self), handler, fRegisterStatusChangeForNextAnimationEvent, fRegisterUpdateForNextAnimationEvent);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -3863,13 +3918,9 @@ pub const IUIAnimationStoryboard2 = extern struct {
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
@@ -3881,9 +3932,7 @@ const IDCompositionAnimation = @import("../graphics/direct_composition.zig").IDC
 const IUnknown = @import("../system/com.zig").IUnknown;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

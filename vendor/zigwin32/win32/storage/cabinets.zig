@@ -68,149 +68,149 @@ pub const CCAB = extern struct {
 };
 
 pub const PFNFCIALLOC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         cb: u32,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-    else => *const fn(
+    else => *const fn (
         cb: u32,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-} ;
+};
 
 pub const PFNFCIFREE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         memory: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         memory: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PFNFCIOPEN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pszFile: ?PSTR,
         oflag: i32,
         pmode: i32,
         err: ?*i32,
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) isize,
-    else => *const fn(
+    else => *const fn (
         pszFile: ?PSTR,
         oflag: i32,
         pmode: i32,
         err: ?*i32,
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) isize,
-} ;
+};
 
 pub const PFNFCIREAD = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hf: isize,
         memory: ?*anyopaque,
         cb: u32,
         err: ?*i32,
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hf: isize,
         memory: ?*anyopaque,
         cb: u32,
         err: ?*i32,
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PFNFCIWRITE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hf: isize,
         memory: ?*anyopaque,
         cb: u32,
         err: ?*i32,
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hf: isize,
         memory: ?*anyopaque,
         cb: u32,
         err: ?*i32,
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PFNFCICLOSE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hf: isize,
         err: ?*i32,
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         hf: isize,
         err: ?*i32,
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const PFNFCISEEK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hf: isize,
         dist: i32,
         seektype: i32,
         err: ?*i32,
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         hf: isize,
         dist: i32,
         seektype: i32,
         err: ?*i32,
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const PFNFCIDELETE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pszFile: ?PSTR,
         err: ?*i32,
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         pszFile: ?PSTR,
         err: ?*i32,
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const PFNFCIGETNEXTCABINET = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pccab: ?*CCAB,
         cbPrevCab: u32,
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         pccab: ?*CCAB,
         cbPrevCab: u32,
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const PFNFCIFILEPLACED = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pccab: ?*CCAB,
         pszFile: ?PSTR,
         cbFile: i32,
         fContinuation: BOOL,
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         pccab: ?*CCAB,
         pszFile: ?PSTR,
         cbFile: i32,
         fContinuation: BOOL,
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const PFNFCIGETOPENINFO = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pszName: ?PSTR,
         pdate: ?*u16,
         ptime: ?*u16,
@@ -218,7 +218,7 @@ pub const PFNFCIGETOPENINFO = switch (@import("builtin").zig_backend) {
         err: ?*i32,
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) isize,
-    else => *const fn(
+    else => *const fn (
         pszName: ?PSTR,
         pdate: ?*u16,
         ptime: ?*u16,
@@ -226,37 +226,37 @@ pub const PFNFCIGETOPENINFO = switch (@import("builtin").zig_backend) {
         err: ?*i32,
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) isize,
-} ;
+};
 
 pub const PFNFCISTATUS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         typeStatus: u32,
         cb1: u32,
         cb2: u32,
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         typeStatus: u32,
         cb1: u32,
         cb2: u32,
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const PFNFCIGETTEMPFILE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         // TODO: what to do with BytesParamIndex 1?
         pszTempName: ?PSTR,
         cbTempName: i32,
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
+    else => *const fn (
         // TODO: what to do with BytesParamIndex 1?
         pszTempName: ?PSTR,
         cbTempName: i32,
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+};
 
 pub const FDIERROR = enum(i32) {
     NONE = 0,
@@ -334,96 +334,96 @@ pub const FDIDECRYPT = extern struct {
 };
 
 pub const PFNALLOC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         cb: u32,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-    else => *const fn(
+    else => *const fn (
         cb: u32,
     ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-} ;
+};
 
 pub const PFNFREE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         pv: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PFNOPEN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pszFile: ?PSTR,
         oflag: i32,
         pmode: i32,
     ) callconv(@import("std").os.windows.WINAPI) isize,
-    else => *const fn(
+    else => *const fn (
         pszFile: ?PSTR,
         oflag: i32,
         pmode: i32,
     ) callconv(@import("std").os.windows.WINAPI) isize,
-} ;
+};
 
 pub const PFNREAD = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hf: isize,
         // TODO: what to do with BytesParamIndex 2?
         pv: ?*anyopaque,
         cb: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hf: isize,
         // TODO: what to do with BytesParamIndex 2?
         pv: ?*anyopaque,
         cb: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PFNWRITE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hf: isize,
         // TODO: what to do with BytesParamIndex 2?
         pv: ?*anyopaque,
         cb: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         hf: isize,
         // TODO: what to do with BytesParamIndex 2?
         pv: ?*anyopaque,
         cb: u32,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const PFNCLOSE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hf: isize,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         hf: isize,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const PFNSEEK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         hf: isize,
         dist: i32,
         seektype: i32,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         hf: isize,
         dist: i32,
         seektype: i32,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const PFNFDIDECRYPT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         pfdid: ?*FDIDECRYPT,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
+    else => *const fn (
         pfdid: ?*FDIDECRYPT,
     ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+};
 
 pub const FDINOTIFICATION = extern struct {
     cb: i32,
@@ -457,19 +457,17 @@ pub const fdintNEXT_CABINET = FDINOTIFICATIONTYPE.NEXT_CABINET;
 pub const fdintENUMERATE = FDINOTIFICATIONTYPE.ENUMERATE;
 
 pub const PFNFDINOTIFY = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         fdint: FDINOTIFICATIONTYPE,
         pfdin: ?*FDINOTIFICATION,
     ) callconv(@import("std").os.windows.WINAPI) isize,
-    else => *const fn(
+    else => *const fn (
         fdint: FDINOTIFICATIONTYPE,
         pfdin: ?*FDINOTIFICATION,
     ) callconv(@import("std").os.windows.WINAPI) isize,
-} ;
+};
 
-
-
-pub const FDISPILLFILE = switch(@import("../zig.zig").arch) {
+pub const FDISPILLFILE = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         ach: [2]CHAR,
         cbFile: i32,
@@ -569,19 +567,14 @@ pub extern "cabinet" fn FDITruncateCabinet(
     iFolderToDelete: u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (3)
@@ -592,32 +585,74 @@ const PSTR = @import("../foundation.zig").PSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFNFCIALLOC")) { _ = PFNFCIALLOC; }
-    if (@hasDecl(@This(), "PFNFCIFREE")) { _ = PFNFCIFREE; }
-    if (@hasDecl(@This(), "PFNFCIOPEN")) { _ = PFNFCIOPEN; }
-    if (@hasDecl(@This(), "PFNFCIREAD")) { _ = PFNFCIREAD; }
-    if (@hasDecl(@This(), "PFNFCIWRITE")) { _ = PFNFCIWRITE; }
-    if (@hasDecl(@This(), "PFNFCICLOSE")) { _ = PFNFCICLOSE; }
-    if (@hasDecl(@This(), "PFNFCISEEK")) { _ = PFNFCISEEK; }
-    if (@hasDecl(@This(), "PFNFCIDELETE")) { _ = PFNFCIDELETE; }
-    if (@hasDecl(@This(), "PFNFCIGETNEXTCABINET")) { _ = PFNFCIGETNEXTCABINET; }
-    if (@hasDecl(@This(), "PFNFCIFILEPLACED")) { _ = PFNFCIFILEPLACED; }
-    if (@hasDecl(@This(), "PFNFCIGETOPENINFO")) { _ = PFNFCIGETOPENINFO; }
-    if (@hasDecl(@This(), "PFNFCISTATUS")) { _ = PFNFCISTATUS; }
-    if (@hasDecl(@This(), "PFNFCIGETTEMPFILE")) { _ = PFNFCIGETTEMPFILE; }
-    if (@hasDecl(@This(), "PFNALLOC")) { _ = PFNALLOC; }
-    if (@hasDecl(@This(), "PFNFREE")) { _ = PFNFREE; }
-    if (@hasDecl(@This(), "PFNOPEN")) { _ = PFNOPEN; }
-    if (@hasDecl(@This(), "PFNREAD")) { _ = PFNREAD; }
-    if (@hasDecl(@This(), "PFNWRITE")) { _ = PFNWRITE; }
-    if (@hasDecl(@This(), "PFNCLOSE")) { _ = PFNCLOSE; }
-    if (@hasDecl(@This(), "PFNSEEK")) { _ = PFNSEEK; }
-    if (@hasDecl(@This(), "PFNFDIDECRYPT")) { _ = PFNFDIDECRYPT; }
-    if (@hasDecl(@This(), "PFNFDINOTIFY")) { _ = PFNFDINOTIFY; }
+    if (@hasDecl(@This(), "PFNFCIALLOC")) {
+        _ = PFNFCIALLOC;
+    }
+    if (@hasDecl(@This(), "PFNFCIFREE")) {
+        _ = PFNFCIFREE;
+    }
+    if (@hasDecl(@This(), "PFNFCIOPEN")) {
+        _ = PFNFCIOPEN;
+    }
+    if (@hasDecl(@This(), "PFNFCIREAD")) {
+        _ = PFNFCIREAD;
+    }
+    if (@hasDecl(@This(), "PFNFCIWRITE")) {
+        _ = PFNFCIWRITE;
+    }
+    if (@hasDecl(@This(), "PFNFCICLOSE")) {
+        _ = PFNFCICLOSE;
+    }
+    if (@hasDecl(@This(), "PFNFCISEEK")) {
+        _ = PFNFCISEEK;
+    }
+    if (@hasDecl(@This(), "PFNFCIDELETE")) {
+        _ = PFNFCIDELETE;
+    }
+    if (@hasDecl(@This(), "PFNFCIGETNEXTCABINET")) {
+        _ = PFNFCIGETNEXTCABINET;
+    }
+    if (@hasDecl(@This(), "PFNFCIFILEPLACED")) {
+        _ = PFNFCIFILEPLACED;
+    }
+    if (@hasDecl(@This(), "PFNFCIGETOPENINFO")) {
+        _ = PFNFCIGETOPENINFO;
+    }
+    if (@hasDecl(@This(), "PFNFCISTATUS")) {
+        _ = PFNFCISTATUS;
+    }
+    if (@hasDecl(@This(), "PFNFCIGETTEMPFILE")) {
+        _ = PFNFCIGETTEMPFILE;
+    }
+    if (@hasDecl(@This(), "PFNALLOC")) {
+        _ = PFNALLOC;
+    }
+    if (@hasDecl(@This(), "PFNFREE")) {
+        _ = PFNFREE;
+    }
+    if (@hasDecl(@This(), "PFNOPEN")) {
+        _ = PFNOPEN;
+    }
+    if (@hasDecl(@This(), "PFNREAD")) {
+        _ = PFNREAD;
+    }
+    if (@hasDecl(@This(), "PFNWRITE")) {
+        _ = PFNWRITE;
+    }
+    if (@hasDecl(@This(), "PFNCLOSE")) {
+        _ = PFNCLOSE;
+    }
+    if (@hasDecl(@This(), "PFNSEEK")) {
+        _ = PFNSEEK;
+    }
+    if (@hasDecl(@This(), "PFNFDIDECRYPT")) {
+        _ = PFNFDIDECRYPT;
+    }
+    if (@hasDecl(@This(), "PFNFDINOTIFY")) {
+        _ = PFNFDINOTIFY;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

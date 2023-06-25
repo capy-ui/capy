@@ -416,7 +416,6 @@ pub const DXGI_ALPHA_MODE_STRAIGHT = DXGI_ALPHA_MODE.STRAIGHT;
 pub const DXGI_ALPHA_MODE_IGNORE = DXGI_ALPHA_MODE.IGNORE;
 pub const DXGI_ALPHA_MODE_FORCE_DWORD = DXGI_ALPHA_MODE.FORCE_DWORD;
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
 //--------------------------------------------------------------------------------
@@ -426,13 +425,9 @@ pub const DXGI_ALPHA_MODE_FORCE_DWORD = DXGI_ALPHA_MODE.FORCE_DWORD;
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (1)
@@ -440,9 +435,7 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 const BOOL = @import("../../foundation.zig").BOOL;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

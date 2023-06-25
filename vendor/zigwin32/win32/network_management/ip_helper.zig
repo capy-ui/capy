@@ -509,19 +509,7 @@ pub const GET_ADAPTERS_ADDRESSES_FLAGS = enum(u32) {
         INCLUDE_ALL_COMPARTMENTS: u1 = 0,
         INCLUDE_TUNNEL_BINDINGORDER: u1 = 0,
     }) GET_ADAPTERS_ADDRESSES_FLAGS {
-        return @intToEnum(GET_ADAPTERS_ADDRESSES_FLAGS,
-              (if (o.SKIP_UNICAST == 1) @enumToInt(GET_ADAPTERS_ADDRESSES_FLAGS.SKIP_UNICAST) else 0)
-            | (if (o.SKIP_ANYCAST == 1) @enumToInt(GET_ADAPTERS_ADDRESSES_FLAGS.SKIP_ANYCAST) else 0)
-            | (if (o.SKIP_MULTICAST == 1) @enumToInt(GET_ADAPTERS_ADDRESSES_FLAGS.SKIP_MULTICAST) else 0)
-            | (if (o.SKIP_DNS_SERVER == 1) @enumToInt(GET_ADAPTERS_ADDRESSES_FLAGS.SKIP_DNS_SERVER) else 0)
-            | (if (o.INCLUDE_PREFIX == 1) @enumToInt(GET_ADAPTERS_ADDRESSES_FLAGS.INCLUDE_PREFIX) else 0)
-            | (if (o.SKIP_FRIENDLY_NAME == 1) @enumToInt(GET_ADAPTERS_ADDRESSES_FLAGS.SKIP_FRIENDLY_NAME) else 0)
-            | (if (o.INCLUDE_WINS_INFO == 1) @enumToInt(GET_ADAPTERS_ADDRESSES_FLAGS.INCLUDE_WINS_INFO) else 0)
-            | (if (o.INCLUDE_GATEWAYS == 1) @enumToInt(GET_ADAPTERS_ADDRESSES_FLAGS.INCLUDE_GATEWAYS) else 0)
-            | (if (o.INCLUDE_ALL_INTERFACES == 1) @enumToInt(GET_ADAPTERS_ADDRESSES_FLAGS.INCLUDE_ALL_INTERFACES) else 0)
-            | (if (o.INCLUDE_ALL_COMPARTMENTS == 1) @enumToInt(GET_ADAPTERS_ADDRESSES_FLAGS.INCLUDE_ALL_COMPARTMENTS) else 0)
-            | (if (o.INCLUDE_TUNNEL_BINDINGORDER == 1) @enumToInt(GET_ADAPTERS_ADDRESSES_FLAGS.INCLUDE_TUNNEL_BINDINGORDER) else 0)
-        );
+        return @enumFromInt(GET_ADAPTERS_ADDRESSES_FLAGS, (if (o.SKIP_UNICAST == 1) @intFromEnum(GET_ADAPTERS_ADDRESSES_FLAGS.SKIP_UNICAST) else 0) | (if (o.SKIP_ANYCAST == 1) @intFromEnum(GET_ADAPTERS_ADDRESSES_FLAGS.SKIP_ANYCAST) else 0) | (if (o.SKIP_MULTICAST == 1) @intFromEnum(GET_ADAPTERS_ADDRESSES_FLAGS.SKIP_MULTICAST) else 0) | (if (o.SKIP_DNS_SERVER == 1) @intFromEnum(GET_ADAPTERS_ADDRESSES_FLAGS.SKIP_DNS_SERVER) else 0) | (if (o.INCLUDE_PREFIX == 1) @intFromEnum(GET_ADAPTERS_ADDRESSES_FLAGS.INCLUDE_PREFIX) else 0) | (if (o.SKIP_FRIENDLY_NAME == 1) @intFromEnum(GET_ADAPTERS_ADDRESSES_FLAGS.SKIP_FRIENDLY_NAME) else 0) | (if (o.INCLUDE_WINS_INFO == 1) @intFromEnum(GET_ADAPTERS_ADDRESSES_FLAGS.INCLUDE_WINS_INFO) else 0) | (if (o.INCLUDE_GATEWAYS == 1) @intFromEnum(GET_ADAPTERS_ADDRESSES_FLAGS.INCLUDE_GATEWAYS) else 0) | (if (o.INCLUDE_ALL_INTERFACES == 1) @intFromEnum(GET_ADAPTERS_ADDRESSES_FLAGS.INCLUDE_ALL_INTERFACES) else 0) | (if (o.INCLUDE_ALL_COMPARTMENTS == 1) @intFromEnum(GET_ADAPTERS_ADDRESSES_FLAGS.INCLUDE_ALL_COMPARTMENTS) else 0) | (if (o.INCLUDE_TUNNEL_BINDINGORDER == 1) @intFromEnum(GET_ADAPTERS_ADDRESSES_FLAGS.INCLUDE_TUNNEL_BINDINGORDER) else 0));
     }
 };
 pub const GAA_FLAG_SKIP_UNICAST = GET_ADAPTERS_ADDRESSES_FLAGS.SKIP_UNICAST;
@@ -539,7 +527,7 @@ pub const GAA_FLAG_INCLUDE_TUNNEL_BINDINGORDER = GET_ADAPTERS_ADDRESSES_FLAGS.IN
 // TODO: this type has a FreeFunc 'IcmpCloseHandle', what can Zig do with this information?
 pub const IcmpHandle = isize;
 
-pub const HIFTIMESTAMPCHANGE = *opaque{};
+pub const HIFTIMESTAMPCHANGE = *opaque {};
 
 pub const ip_option_information = extern struct {
     Ttl: u8,
@@ -548,7 +536,6 @@ pub const ip_option_information = extern struct {
     OptionsSize: u8,
     OptionsData: ?*u8,
 };
-
 
 pub const icmp_echo_reply = extern struct {
     Address: u32,
@@ -559,7 +546,6 @@ pub const icmp_echo_reply = extern struct {
     Data: ?*anyopaque,
     Options: ip_option_information,
 };
-
 
 pub const IPV6_ADDRESS_EX = extern struct {
     sin6_port: u16 align(1),
@@ -983,17 +969,17 @@ pub const MIB_INVERTEDIFSTACK_TABLE = extern struct {
 };
 
 pub const PIPINTERFACE_CHANGE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         CallerContext: ?*anyopaque,
         Row: ?*MIB_IPINTERFACE_ROW,
         NotificationType: MIB_NOTIFICATION_TYPE,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         CallerContext: ?*anyopaque,
         Row: ?*MIB_IPINTERFACE_ROW,
         NotificationType: MIB_NOTIFICATION_TYPE,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const MIB_IP_NETWORK_CONNECTION_BANDWIDTH_ESTIMATES = extern struct {
     InboundBandwidthInformation: NL_BANDWIDTH_INFORMATION,
@@ -1021,28 +1007,28 @@ pub const MIB_UNICASTIPADDRESS_TABLE = extern struct {
 };
 
 pub const PUNICAST_IPADDRESS_CHANGE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         CallerContext: ?*anyopaque,
         Row: ?*MIB_UNICASTIPADDRESS_ROW,
         NotificationType: MIB_NOTIFICATION_TYPE,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         CallerContext: ?*anyopaque,
         Row: ?*MIB_UNICASTIPADDRESS_ROW,
         NotificationType: MIB_NOTIFICATION_TYPE,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const PSTABLE_UNICAST_IPADDRESS_TABLE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         CallerContext: ?*anyopaque,
         AddressTable: ?*MIB_UNICASTIPADDRESS_TABLE,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         CallerContext: ?*anyopaque,
         AddressTable: ?*MIB_UNICASTIPADDRESS_TABLE,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const MIB_ANYCASTIPADDRESS_ROW = extern struct {
     Address: SOCKADDR_INET,
@@ -1097,17 +1083,17 @@ pub const MIB_IPFORWARD_TABLE2 = extern struct {
 };
 
 pub const PIPFORWARD_CHANGE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         CallerContext: ?*anyopaque,
         Row: ?*MIB_IPFORWARD_ROW2,
         NotificationType: MIB_NOTIFICATION_TYPE,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         CallerContext: ?*anyopaque,
         Row: ?*MIB_IPFORWARD_ROW2,
         NotificationType: MIB_NOTIFICATION_TYPE,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const MIB_IPPATH_ROW = extern struct {
     Source: SOCKADDR_INET,
@@ -1157,17 +1143,17 @@ pub const MIB_IPNET_TABLE2 = extern struct {
 };
 
 pub const PTEREDO_PORT_CHANGE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         CallerContext: ?*anyopaque,
         Port: u16,
         NotificationType: MIB_NOTIFICATION_TYPE,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         CallerContext: ?*anyopaque,
         Port: u16,
         NotificationType: MIB_NOTIFICATION_TYPE,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const DNS_SETTINGS = extern struct {
     Version: u32,
@@ -1248,15 +1234,15 @@ pub const DNS_INTERFACE_SETTINGS3 = extern struct {
 };
 
 pub const PNETWORK_CONNECTIVITY_HINT_CHANGE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         CallerContext: ?*anyopaque,
         ConnectivityHint: NL_NETWORK_CONNECTIVITY_HINT,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         CallerContext: ?*anyopaque,
         ConnectivityHint: NL_NETWORK_CONNECTIVITY_HINT,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const MIB_OPAQUE_QUERY = extern struct {
     dwVarId: u32,
@@ -2710,13 +2696,13 @@ pub const INTERFACE_HARDWARE_CROSSTIMESTAMP = extern struct {
 };
 
 pub const PINTERFACE_TIMESTAMP_CONFIG_CHANGE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         CallerContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         CallerContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const NET_ADDRESS_FORMAT = enum(i32) {
     FORMAT_UNSPECIFIED = 0,
@@ -2819,7 +2805,7 @@ pub const PFLOGFRAME = extern struct {
     bPacketData: [1]u8,
 };
 
-pub const ip_option_information32 = switch(@import("../zig.zig").arch) {
+pub const ip_option_information32 = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         Ttl: u8,
         Tos: u8,
@@ -2829,7 +2815,7 @@ pub const ip_option_information32 = switch(@import("../zig.zig").arch) {
     },
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-pub const icmp_echo_reply32 = switch(@import("../zig.zig").arch) {
+pub const icmp_echo_reply32 = switch (@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         Address: u32,
         Status: u32,
@@ -3218,8 +3204,7 @@ pub extern "iphlpapi" fn if_indextoname(
     InterfaceName: *[256]u8,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
 
-pub extern "iphlpapi" fn GetCurrentThreadCompartmentId(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "iphlpapi" fn GetCurrentThreadCompartmentId() callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "iphlpapi" fn SetCurrentThreadCompartmentId(
     CompartmentId: u32,
@@ -3253,8 +3238,7 @@ pub extern "iphlpapi" fn SetSessionCompartmentId(
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "iphlpapi" fn GetDefaultCompartmentId(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "iphlpapi" fn GetDefaultCompartmentId() callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "iphlpapi" fn GetNetworkInformation(
     NetworkGuid: ?*const Guid,
@@ -3328,12 +3312,10 @@ pub extern "iphlpapi" fn NotifyNetworkConnectivityHintChange(
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "iphlpapi" fn IcmpCreateFile(
-) callconv(@import("std").os.windows.WINAPI) IcmpHandle;
+pub extern "iphlpapi" fn IcmpCreateFile() callconv(@import("std").os.windows.WINAPI) IcmpHandle;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "iphlpapi" fn Icmp6CreateFile(
-) callconv(@import("std").os.windows.WINAPI) IcmpHandle;
+pub extern "iphlpapi" fn Icmp6CreateFile() callconv(@import("std").os.windows.WINAPI) IcmpHandle;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "iphlpapi" fn IcmpCloseHandle(
@@ -3860,8 +3842,7 @@ pub extern "iphlpapi" fn GetAdaptersInfo(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "iphlpapi" fn GetAdapterOrderMap(
-) callconv(@import("std").os.windows.WINAPI) ?*IP_ADAPTER_ORDER_MAP;
+pub extern "iphlpapi" fn GetAdapterOrderMap() callconv(@import("std").os.windows.WINAPI) ?*IP_ADAPTER_ORDER_MAP;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "iphlpapi" fn GetAdaptersAddresses(
@@ -4099,8 +4080,7 @@ pub extern "iphlpapi" fn PfSetLogBuffer(
     pdwSizeUsed: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "iphlpapi" fn PfDeleteLog(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "iphlpapi" fn PfDeleteLog() callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "iphlpapi" fn PfGetInterfaceStatistics(
     pInterface: ?*anyopaque,
@@ -4117,7 +4097,6 @@ pub extern "iphlpapi" fn PfTestPacket(
     ppAction: ?*PFFORWARD_ACTION,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (2)
 //--------------------------------------------------------------------------------
@@ -4132,8 +4111,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const ConvertInterfaceLuidToName = thismodule.ConvertInterfaceLuidToNameW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const ConvertInterfaceNameToLuid = *opaque{};
-        pub const ConvertInterfaceLuidToName = *opaque{};
+        pub const ConvertInterfaceNameToLuid = *opaque {};
+        pub const ConvertInterfaceLuidToName = *opaque {};
     } else struct {
         pub const ConvertInterfaceNameToLuid = @compileError("'ConvertInterfaceNameToLuid' requires that UNICODE be set to true or false in the root module");
         pub const ConvertInterfaceLuidToName = @compileError("'ConvertInterfaceLuidToName' requires that UNICODE be set to true or false in the root module");
@@ -4177,17 +4156,29 @@ const WIN32_ERROR = @import("../foundation.zig").WIN32_ERROR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PIPINTERFACE_CHANGE_CALLBACK")) { _ = PIPINTERFACE_CHANGE_CALLBACK; }
-    if (@hasDecl(@This(), "PUNICAST_IPADDRESS_CHANGE_CALLBACK")) { _ = PUNICAST_IPADDRESS_CHANGE_CALLBACK; }
-    if (@hasDecl(@This(), "PSTABLE_UNICAST_IPADDRESS_TABLE_CALLBACK")) { _ = PSTABLE_UNICAST_IPADDRESS_TABLE_CALLBACK; }
-    if (@hasDecl(@This(), "PIPFORWARD_CHANGE_CALLBACK")) { _ = PIPFORWARD_CHANGE_CALLBACK; }
-    if (@hasDecl(@This(), "PTEREDO_PORT_CHANGE_CALLBACK")) { _ = PTEREDO_PORT_CHANGE_CALLBACK; }
-    if (@hasDecl(@This(), "PNETWORK_CONNECTIVITY_HINT_CHANGE_CALLBACK")) { _ = PNETWORK_CONNECTIVITY_HINT_CHANGE_CALLBACK; }
-    if (@hasDecl(@This(), "PINTERFACE_TIMESTAMP_CONFIG_CHANGE_CALLBACK")) { _ = PINTERFACE_TIMESTAMP_CONFIG_CHANGE_CALLBACK; }
+    if (@hasDecl(@This(), "PIPINTERFACE_CHANGE_CALLBACK")) {
+        _ = PIPINTERFACE_CHANGE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PUNICAST_IPADDRESS_CHANGE_CALLBACK")) {
+        _ = PUNICAST_IPADDRESS_CHANGE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PSTABLE_UNICAST_IPADDRESS_TABLE_CALLBACK")) {
+        _ = PSTABLE_UNICAST_IPADDRESS_TABLE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PIPFORWARD_CHANGE_CALLBACK")) {
+        _ = PIPFORWARD_CHANGE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PTEREDO_PORT_CHANGE_CALLBACK")) {
+        _ = PTEREDO_PORT_CHANGE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PNETWORK_CONNECTIVITY_HINT_CHANGE_CALLBACK")) {
+        _ = PNETWORK_CONNECTIVITY_HINT_CHANGE_CALLBACK;
+    }
+    if (@hasDecl(@This(), "PINTERFACE_TIMESTAMP_CONFIG_CHANGE_CALLBACK")) {
+        _ = PINTERFACE_TIMESTAMP_CONFIG_CHANGE_CALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

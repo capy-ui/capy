@@ -127,13 +127,13 @@ pub const WCM_DATAPLAN_STATUS = extern struct {
 };
 
 pub const ONDEMAND_NOTIFICATION_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         param0: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
+    else => *const fn (
         param0: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+};
 
 pub const NET_INTERFACE_CONTEXT = extern struct {
     InterfaceIndex: u32,
@@ -145,7 +145,6 @@ pub const NET_INTERFACE_CONTEXT_TABLE = extern struct {
     NumberOfEntries: u32,
     InterfaceContextArray: ?*NET_INTERFACE_CONTEXT,
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (10)
@@ -223,19 +222,14 @@ pub extern "ondemandconnroutehelper" fn FreeInterfaceContextTable(
     InterfaceContextTable: ?*NET_INTERFACE_CONTEXT_TABLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
@@ -249,11 +243,11 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "ONDEMAND_NOTIFICATION_CALLBACK")) { _ = ONDEMAND_NOTIFICATION_CALLBACK; }
+    if (@hasDecl(@This(), "ONDEMAND_NOTIFICATION_CALLBACK")) {
+        _ = ONDEMAND_NOTIFICATION_CALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

@@ -161,13 +161,13 @@ pub const IEnumSTATSTG = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumSTATSTG,
                 celt: u32,
                 rgelt: [*]STATSTG,
                 pceltFetched: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumSTATSTG,
                 celt: u32,
                 rgelt: [*]STATSTG,
@@ -175,54 +175,56 @@ pub const IEnumSTATSTG = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumSTATSTG,
                 celt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumSTATSTG,
                 celt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumSTATSTG,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumSTATSTG,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumSTATSTG,
                 ppenum: ?*?*IEnumSTATSTG,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumSTATSTG,
                 ppenum: ?*?*IEnumSTATSTG,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSTATSTG_Next(self: *const T, celt: u32, rgelt: [*]STATSTG, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumSTATSTG.VTable, self.vtable).Next(@ptrCast(*const IEnumSTATSTG, self), celt, rgelt, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSTATSTG_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumSTATSTG.VTable, self.vtable).Skip(@ptrCast(*const IEnumSTATSTG, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSTATSTG_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumSTATSTG.VTable, self.vtable).Reset(@ptrCast(*const IEnumSTATSTG, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSTATSTG_Clone(self: *const T, ppenum: ?*?*IEnumSTATSTG) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumSTATSTG.VTable, self.vtable).Clone(@ptrCast(*const IEnumSTATSTG, self), ppenum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumSTATSTG_Next(self: *const T, celt: u32, rgelt: [*]STATSTG, pceltFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumSTATSTG.VTable, self.vtable).Next(@ptrCast(*const IEnumSTATSTG, self), celt, rgelt, pceltFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumSTATSTG_Skip(self: *const T, celt: u32) HRESULT {
+                return @ptrCast(*const IEnumSTATSTG.VTable, self.vtable).Skip(@ptrCast(*const IEnumSTATSTG, self), celt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumSTATSTG_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumSTATSTG.VTable, self.vtable).Reset(@ptrCast(*const IEnumSTATSTG, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumSTATSTG_Clone(self: *const T, ppenum: ?*?*IEnumSTATSTG) HRESULT {
+                return @ptrCast(*const IEnumSTATSTG.VTable, self.vtable).Clone(@ptrCast(*const IEnumSTATSTG, self), ppenum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -239,7 +241,7 @@ pub const IStorage = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IStorage,
                 pwcsName: ?[*:0]const u16,
                 grfMode: u32,
@@ -247,7 +249,7 @@ pub const IStorage = extern struct {
                 reserved2: u32,
                 ppstm: ?*?*IStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IStorage,
                 pwcsName: ?[*:0]const u16,
                 grfMode: u32,
@@ -257,7 +259,7 @@ pub const IStorage = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OpenStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IStorage,
                 pwcsName: ?[*:0]const u16,
                 reserved1: ?*anyopaque,
@@ -265,7 +267,7 @@ pub const IStorage = extern struct {
                 reserved2: u32,
                 ppstm: ?*?*IStream,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IStorage,
                 pwcsName: ?[*:0]const u16,
                 reserved1: ?*anyopaque,
@@ -275,7 +277,7 @@ pub const IStorage = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateStorage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IStorage,
                 pwcsName: ?[*:0]const u16,
                 grfMode: u32,
@@ -283,7 +285,7 @@ pub const IStorage = extern struct {
                 reserved2: u32,
                 ppstg: ?*?*IStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IStorage,
                 pwcsName: ?[*:0]const u16,
                 grfMode: u32,
@@ -293,7 +295,7 @@ pub const IStorage = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         OpenStorage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IStorage,
                 pwcsName: ?[*:0]const u16,
                 pstgPriority: ?*IStorage,
@@ -302,7 +304,7 @@ pub const IStorage = extern struct {
                 reserved: u32,
                 ppstg: ?*?*IStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IStorage,
                 pwcsName: ?[*:0]const u16,
                 pstgPriority: ?*IStorage,
@@ -313,14 +315,14 @@ pub const IStorage = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CopyTo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IStorage,
                 ciidExclude: u32,
                 rgiidExclude: ?[*]const Guid,
                 snbExclude: ?*?*u16,
                 pstgDest: ?*IStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IStorage,
                 ciidExclude: u32,
                 rgiidExclude: ?[*]const Guid,
@@ -329,14 +331,14 @@ pub const IStorage = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         MoveElementTo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IStorage,
                 pwcsName: ?[*:0]const u16,
                 pstgDest: ?*IStorage,
                 pwcsNewName: ?[*:0]const u16,
                 grfFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IStorage,
                 pwcsName: ?[*:0]const u16,
                 pstgDest: ?*IStorage,
@@ -345,32 +347,32 @@ pub const IStorage = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Commit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IStorage,
                 grfCommitFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IStorage,
                 grfCommitFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Revert: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnumElements: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IStorage,
                 reserved1: u32,
                 reserved2: ?*anyopaque,
                 reserved3: u32,
                 ppenum: ?*?*IEnumSTATSTG,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IStorage,
                 reserved1: u32,
                 reserved2: ?*anyopaque,
@@ -379,36 +381,36 @@ pub const IStorage = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DestroyElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IStorage,
                 pwcsName: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IStorage,
                 pwcsName: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RenameElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IStorage,
                 pwcsOldName: ?[*:0]const u16,
                 pwcsNewName: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IStorage,
                 pwcsOldName: ?[*:0]const u16,
                 pwcsNewName: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetElementTimes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IStorage,
                 pwcsName: ?[*:0]const u16,
                 pctime: ?*const FILETIME,
                 patime: ?*const FILETIME,
                 pmtime: ?*const FILETIME,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IStorage,
                 pwcsName: ?[*:0]const u16,
                 pctime: ?*const FILETIME,
@@ -417,34 +419,34 @@ pub const IStorage = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetClass: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IStorage,
                 clsid: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IStorage,
                 clsid: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetStateBits: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IStorage,
                 grfStateBits: u32,
                 grfMask: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IStorage,
                 grfStateBits: u32,
                 grfMask: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Stat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IStorage,
                 pstatstg: ?*STATSTG,
                 grfStatFlag: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IStorage,
                 pstatstg: ?*STATSTG,
                 grfStatFlag: u32,
@@ -452,69 +454,71 @@ pub const IStorage = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStorage_CreateStream(self: *const T, pwcsName: ?[*:0]const u16, grfMode: u32, reserved1: u32, reserved2: u32, ppstm: ?*?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStorage.VTable, self.vtable).CreateStream(@ptrCast(*const IStorage, self), pwcsName, grfMode, reserved1, reserved2, ppstm);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStorage_OpenStream(self: *const T, pwcsName: ?[*:0]const u16, reserved1: ?*anyopaque, grfMode: u32, reserved2: u32, ppstm: ?*?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStorage.VTable, self.vtable).OpenStream(@ptrCast(*const IStorage, self), pwcsName, reserved1, grfMode, reserved2, ppstm);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStorage_CreateStorage(self: *const T, pwcsName: ?[*:0]const u16, grfMode: u32, reserved1: u32, reserved2: u32, ppstg: ?*?*IStorage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStorage.VTable, self.vtable).CreateStorage(@ptrCast(*const IStorage, self), pwcsName, grfMode, reserved1, reserved2, ppstg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStorage_OpenStorage(self: *const T, pwcsName: ?[*:0]const u16, pstgPriority: ?*IStorage, grfMode: u32, snbExclude: ?*?*u16, reserved: u32, ppstg: ?*?*IStorage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStorage.VTable, self.vtable).OpenStorage(@ptrCast(*const IStorage, self), pwcsName, pstgPriority, grfMode, snbExclude, reserved, ppstg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStorage_CopyTo(self: *const T, ciidExclude: u32, rgiidExclude: ?[*]const Guid, snbExclude: ?*?*u16, pstgDest: ?*IStorage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStorage.VTable, self.vtable).CopyTo(@ptrCast(*const IStorage, self), ciidExclude, rgiidExclude, snbExclude, pstgDest);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStorage_MoveElementTo(self: *const T, pwcsName: ?[*:0]const u16, pstgDest: ?*IStorage, pwcsNewName: ?[*:0]const u16, grfFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStorage.VTable, self.vtable).MoveElementTo(@ptrCast(*const IStorage, self), pwcsName, pstgDest, pwcsNewName, grfFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStorage_Commit(self: *const T, grfCommitFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStorage.VTable, self.vtable).Commit(@ptrCast(*const IStorage, self), grfCommitFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStorage_Revert(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStorage.VTable, self.vtable).Revert(@ptrCast(*const IStorage, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStorage_EnumElements(self: *const T, reserved1: u32, reserved2: ?*anyopaque, reserved3: u32, ppenum: ?*?*IEnumSTATSTG) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStorage.VTable, self.vtable).EnumElements(@ptrCast(*const IStorage, self), reserved1, reserved2, reserved3, ppenum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStorage_DestroyElement(self: *const T, pwcsName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStorage.VTable, self.vtable).DestroyElement(@ptrCast(*const IStorage, self), pwcsName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStorage_RenameElement(self: *const T, pwcsOldName: ?[*:0]const u16, pwcsNewName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStorage.VTable, self.vtable).RenameElement(@ptrCast(*const IStorage, self), pwcsOldName, pwcsNewName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStorage_SetElementTimes(self: *const T, pwcsName: ?[*:0]const u16, pctime: ?*const FILETIME, patime: ?*const FILETIME, pmtime: ?*const FILETIME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStorage.VTable, self.vtable).SetElementTimes(@ptrCast(*const IStorage, self), pwcsName, pctime, patime, pmtime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStorage_SetClass(self: *const T, clsid: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStorage.VTable, self.vtable).SetClass(@ptrCast(*const IStorage, self), clsid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStorage_SetStateBits(self: *const T, grfStateBits: u32, grfMask: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStorage.VTable, self.vtable).SetStateBits(@ptrCast(*const IStorage, self), grfStateBits, grfMask);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStorage_Stat(self: *const T, pstatstg: ?*STATSTG, grfStatFlag: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStorage.VTable, self.vtable).Stat(@ptrCast(*const IStorage, self), pstatstg, grfStatFlag);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStorage_CreateStream(self: *const T, pwcsName: ?[*:0]const u16, grfMode: u32, reserved1: u32, reserved2: u32, ppstm: ?*?*IStream) HRESULT {
+                return @ptrCast(*const IStorage.VTable, self.vtable).CreateStream(@ptrCast(*const IStorage, self), pwcsName, grfMode, reserved1, reserved2, ppstm);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStorage_OpenStream(self: *const T, pwcsName: ?[*:0]const u16, reserved1: ?*anyopaque, grfMode: u32, reserved2: u32, ppstm: ?*?*IStream) HRESULT {
+                return @ptrCast(*const IStorage.VTable, self.vtable).OpenStream(@ptrCast(*const IStorage, self), pwcsName, reserved1, grfMode, reserved2, ppstm);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStorage_CreateStorage(self: *const T, pwcsName: ?[*:0]const u16, grfMode: u32, reserved1: u32, reserved2: u32, ppstg: ?*?*IStorage) HRESULT {
+                return @ptrCast(*const IStorage.VTable, self.vtable).CreateStorage(@ptrCast(*const IStorage, self), pwcsName, grfMode, reserved1, reserved2, ppstg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStorage_OpenStorage(self: *const T, pwcsName: ?[*:0]const u16, pstgPriority: ?*IStorage, grfMode: u32, snbExclude: ?*?*u16, reserved: u32, ppstg: ?*?*IStorage) HRESULT {
+                return @ptrCast(*const IStorage.VTable, self.vtable).OpenStorage(@ptrCast(*const IStorage, self), pwcsName, pstgPriority, grfMode, snbExclude, reserved, ppstg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStorage_CopyTo(self: *const T, ciidExclude: u32, rgiidExclude: ?[*]const Guid, snbExclude: ?*?*u16, pstgDest: ?*IStorage) HRESULT {
+                return @ptrCast(*const IStorage.VTable, self.vtable).CopyTo(@ptrCast(*const IStorage, self), ciidExclude, rgiidExclude, snbExclude, pstgDest);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStorage_MoveElementTo(self: *const T, pwcsName: ?[*:0]const u16, pstgDest: ?*IStorage, pwcsNewName: ?[*:0]const u16, grfFlags: u32) HRESULT {
+                return @ptrCast(*const IStorage.VTable, self.vtable).MoveElementTo(@ptrCast(*const IStorage, self), pwcsName, pstgDest, pwcsNewName, grfFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStorage_Commit(self: *const T, grfCommitFlags: u32) HRESULT {
+                return @ptrCast(*const IStorage.VTable, self.vtable).Commit(@ptrCast(*const IStorage, self), grfCommitFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStorage_Revert(self: *const T) HRESULT {
+                return @ptrCast(*const IStorage.VTable, self.vtable).Revert(@ptrCast(*const IStorage, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStorage_EnumElements(self: *const T, reserved1: u32, reserved2: ?*anyopaque, reserved3: u32, ppenum: ?*?*IEnumSTATSTG) HRESULT {
+                return @ptrCast(*const IStorage.VTable, self.vtable).EnumElements(@ptrCast(*const IStorage, self), reserved1, reserved2, reserved3, ppenum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStorage_DestroyElement(self: *const T, pwcsName: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IStorage.VTable, self.vtable).DestroyElement(@ptrCast(*const IStorage, self), pwcsName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStorage_RenameElement(self: *const T, pwcsOldName: ?[*:0]const u16, pwcsNewName: ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IStorage.VTable, self.vtable).RenameElement(@ptrCast(*const IStorage, self), pwcsOldName, pwcsNewName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStorage_SetElementTimes(self: *const T, pwcsName: ?[*:0]const u16, pctime: ?*const FILETIME, patime: ?*const FILETIME, pmtime: ?*const FILETIME) HRESULT {
+                return @ptrCast(*const IStorage.VTable, self.vtable).SetElementTimes(@ptrCast(*const IStorage, self), pwcsName, pctime, patime, pmtime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStorage_SetClass(self: *const T, clsid: ?*const Guid) HRESULT {
+                return @ptrCast(*const IStorage.VTable, self.vtable).SetClass(@ptrCast(*const IStorage, self), clsid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStorage_SetStateBits(self: *const T, grfStateBits: u32, grfMask: u32) HRESULT {
+                return @ptrCast(*const IStorage.VTable, self.vtable).SetStateBits(@ptrCast(*const IStorage, self), grfStateBits, grfMask);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IStorage_Stat(self: *const T, pstatstg: ?*STATSTG, grfStatFlag: u32) HRESULT {
+                return @ptrCast(*const IStorage.VTable, self.vtable).Stat(@ptrCast(*const IStorage, self), pstatstg, grfStatFlag);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -525,92 +529,94 @@ pub const IPersistStorage = extern struct {
     pub const VTable = extern struct {
         base: IPersist.VTable,
         IsDirty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPersistStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPersistStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         InitNew: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPersistStorage,
                 pStg: ?*IStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPersistStorage,
                 pStg: ?*IStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Load: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPersistStorage,
                 pStg: ?*IStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPersistStorage,
                 pStg: ?*IStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Save: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPersistStorage,
                 pStgSave: ?*IStorage,
                 fSameAsLoad: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPersistStorage,
                 pStgSave: ?*IStorage,
                 fSameAsLoad: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SaveCompleted: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPersistStorage,
                 pStgNew: ?*IStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPersistStorage,
                 pStgNew: ?*IStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         HandsOffStorage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPersistStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPersistStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPersist.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistStorage_IsDirty(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPersistStorage.VTable, self.vtable).IsDirty(@ptrCast(*const IPersistStorage, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistStorage_InitNew(self: *const T, pStg: ?*IStorage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPersistStorage.VTable, self.vtable).InitNew(@ptrCast(*const IPersistStorage, self), pStg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistStorage_Load(self: *const T, pStg: ?*IStorage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPersistStorage.VTable, self.vtable).Load(@ptrCast(*const IPersistStorage, self), pStg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistStorage_Save(self: *const T, pStgSave: ?*IStorage, fSameAsLoad: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPersistStorage.VTable, self.vtable).Save(@ptrCast(*const IPersistStorage, self), pStgSave, fSameAsLoad);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistStorage_SaveCompleted(self: *const T, pStgNew: ?*IStorage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPersistStorage.VTable, self.vtable).SaveCompleted(@ptrCast(*const IPersistStorage, self), pStgNew);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistStorage_HandsOffStorage(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPersistStorage.VTable, self.vtable).HandsOffStorage(@ptrCast(*const IPersistStorage, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IPersist.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPersistStorage_IsDirty(self: *const T) HRESULT {
+                return @ptrCast(*const IPersistStorage.VTable, self.vtable).IsDirty(@ptrCast(*const IPersistStorage, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPersistStorage_InitNew(self: *const T, pStg: ?*IStorage) HRESULT {
+                return @ptrCast(*const IPersistStorage.VTable, self.vtable).InitNew(@ptrCast(*const IPersistStorage, self), pStg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPersistStorage_Load(self: *const T, pStg: ?*IStorage) HRESULT {
+                return @ptrCast(*const IPersistStorage.VTable, self.vtable).Load(@ptrCast(*const IPersistStorage, self), pStg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPersistStorage_Save(self: *const T, pStgSave: ?*IStorage, fSameAsLoad: BOOL) HRESULT {
+                return @ptrCast(*const IPersistStorage.VTable, self.vtable).Save(@ptrCast(*const IPersistStorage, self), pStgSave, fSameAsLoad);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPersistStorage_SaveCompleted(self: *const T, pStgNew: ?*IStorage) HRESULT {
+                return @ptrCast(*const IPersistStorage.VTable, self.vtable).SaveCompleted(@ptrCast(*const IPersistStorage, self), pStgNew);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPersistStorage_HandsOffStorage(self: *const T) HRESULT {
+                return @ptrCast(*const IPersistStorage.VTable, self.vtable).HandsOffStorage(@ptrCast(*const IPersistStorage, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -621,7 +627,7 @@ pub const ILockBytes = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ReadAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ILockBytes,
                 ulOffset: ULARGE_INTEGER,
                 // TODO: what to do with BytesParamIndex 2?
@@ -629,7 +635,7 @@ pub const ILockBytes = extern struct {
                 cb: u32,
                 pcbRead: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ILockBytes,
                 ulOffset: ULARGE_INTEGER,
                 // TODO: what to do with BytesParamIndex 2?
@@ -639,7 +645,7 @@ pub const ILockBytes = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         WriteAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ILockBytes,
                 ulOffset: ULARGE_INTEGER,
                 // TODO: what to do with BytesParamIndex 2?
@@ -647,7 +653,7 @@ pub const ILockBytes = extern struct {
                 cb: u32,
                 pcbWritten: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ILockBytes,
                 ulOffset: ULARGE_INTEGER,
                 // TODO: what to do with BytesParamIndex 2?
@@ -657,31 +663,31 @@ pub const ILockBytes = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Flush: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ILockBytes,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ILockBytes,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ILockBytes,
                 cb: ULARGE_INTEGER,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ILockBytes,
                 cb: ULARGE_INTEGER,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         LockRegion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ILockBytes,
                 libOffset: ULARGE_INTEGER,
                 cb: ULARGE_INTEGER,
                 dwLockType: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ILockBytes,
                 libOffset: ULARGE_INTEGER,
                 cb: ULARGE_INTEGER,
@@ -689,13 +695,13 @@ pub const ILockBytes = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         UnlockRegion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ILockBytes,
                 libOffset: ULARGE_INTEGER,
                 cb: ULARGE_INTEGER,
                 dwLockType: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ILockBytes,
                 libOffset: ULARGE_INTEGER,
                 cb: ULARGE_INTEGER,
@@ -703,12 +709,12 @@ pub const ILockBytes = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Stat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ILockBytes,
                 pstatstg: ?*STATSTG,
                 grfStatFlag: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ILockBytes,
                 pstatstg: ?*STATSTG,
                 grfStatFlag: u32,
@@ -716,37 +722,39 @@ pub const ILockBytes = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILockBytes_ReadAt(self: *const T, ulOffset: ULARGE_INTEGER, pv: ?*anyopaque, cb: u32, pcbRead: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ILockBytes.VTable, self.vtable).ReadAt(@ptrCast(*const ILockBytes, self), ulOffset, pv, cb, pcbRead);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILockBytes_WriteAt(self: *const T, ulOffset: ULARGE_INTEGER, pv: ?*const anyopaque, cb: u32, pcbWritten: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ILockBytes.VTable, self.vtable).WriteAt(@ptrCast(*const ILockBytes, self), ulOffset, pv, cb, pcbWritten);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILockBytes_Flush(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ILockBytes.VTable, self.vtable).Flush(@ptrCast(*const ILockBytes, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILockBytes_SetSize(self: *const T, cb: ULARGE_INTEGER) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ILockBytes.VTable, self.vtable).SetSize(@ptrCast(*const ILockBytes, self), cb);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILockBytes_LockRegion(self: *const T, libOffset: ULARGE_INTEGER, cb: ULARGE_INTEGER, dwLockType: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ILockBytes.VTable, self.vtable).LockRegion(@ptrCast(*const ILockBytes, self), libOffset, cb, dwLockType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILockBytes_UnlockRegion(self: *const T, libOffset: ULARGE_INTEGER, cb: ULARGE_INTEGER, dwLockType: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ILockBytes.VTable, self.vtable).UnlockRegion(@ptrCast(*const ILockBytes, self), libOffset, cb, dwLockType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILockBytes_Stat(self: *const T, pstatstg: ?*STATSTG, grfStatFlag: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ILockBytes.VTable, self.vtable).Stat(@ptrCast(*const ILockBytes, self), pstatstg, grfStatFlag);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ILockBytes_ReadAt(self: *const T, ulOffset: ULARGE_INTEGER, pv: ?*anyopaque, cb: u32, pcbRead: ?*u32) HRESULT {
+                return @ptrCast(*const ILockBytes.VTable, self.vtable).ReadAt(@ptrCast(*const ILockBytes, self), ulOffset, pv, cb, pcbRead);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ILockBytes_WriteAt(self: *const T, ulOffset: ULARGE_INTEGER, pv: ?*const anyopaque, cb: u32, pcbWritten: ?*u32) HRESULT {
+                return @ptrCast(*const ILockBytes.VTable, self.vtable).WriteAt(@ptrCast(*const ILockBytes, self), ulOffset, pv, cb, pcbWritten);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ILockBytes_Flush(self: *const T) HRESULT {
+                return @ptrCast(*const ILockBytes.VTable, self.vtable).Flush(@ptrCast(*const ILockBytes, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ILockBytes_SetSize(self: *const T, cb: ULARGE_INTEGER) HRESULT {
+                return @ptrCast(*const ILockBytes.VTable, self.vtable).SetSize(@ptrCast(*const ILockBytes, self), cb);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ILockBytes_LockRegion(self: *const T, libOffset: ULARGE_INTEGER, cb: ULARGE_INTEGER, dwLockType: u32) HRESULT {
+                return @ptrCast(*const ILockBytes.VTable, self.vtable).LockRegion(@ptrCast(*const ILockBytes, self), libOffset, cb, dwLockType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ILockBytes_UnlockRegion(self: *const T, libOffset: ULARGE_INTEGER, cb: ULARGE_INTEGER, dwLockType: u32) HRESULT {
+                return @ptrCast(*const ILockBytes.VTable, self.vtable).UnlockRegion(@ptrCast(*const ILockBytes, self), libOffset, cb, dwLockType);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ILockBytes_Stat(self: *const T, pstatstg: ?*STATSTG, grfStatFlag: u32) HRESULT {
+                return @ptrCast(*const ILockBytes.VTable, self.vtable).Stat(@ptrCast(*const ILockBytes, self), pstatstg, grfStatFlag);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -757,24 +765,26 @@ pub const IRootStorage = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SwitchToFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IRootStorage,
                 pszFile: ?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IRootStorage,
                 pszFile: ?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRootStorage_SwitchToFile(self: *const T, pszFile: ?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRootStorage.VTable, self.vtable).SwitchToFile(@ptrCast(*const IRootStorage, self), pszFile);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IRootStorage_SwitchToFile(self: *const T, pszFile: ?PWSTR) HRESULT {
+                return @ptrCast(*const IRootStorage.VTable, self.vtable).SwitchToFile(@ptrCast(*const IRootStorage, self), pszFile);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -785,14 +795,14 @@ pub const IFillLockBytes = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         FillAppend: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFillLockBytes,
                 // TODO: what to do with BytesParamIndex 1?
                 pv: ?*const anyopaque,
                 cb: u32,
                 pcbWritten: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFillLockBytes,
                 // TODO: what to do with BytesParamIndex 1?
                 pv: ?*const anyopaque,
@@ -801,7 +811,7 @@ pub const IFillLockBytes = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         FillAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFillLockBytes,
                 ulOffset: ULARGE_INTEGER,
                 // TODO: what to do with BytesParamIndex 2?
@@ -809,7 +819,7 @@ pub const IFillLockBytes = extern struct {
                 cb: u32,
                 pcbWritten: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFillLockBytes,
                 ulOffset: ULARGE_INTEGER,
                 // TODO: what to do with BytesParamIndex 2?
@@ -819,46 +829,48 @@ pub const IFillLockBytes = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetFillSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFillLockBytes,
                 ulSize: ULARGE_INTEGER,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFillLockBytes,
                 ulSize: ULARGE_INTEGER,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Terminate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IFillLockBytes,
                 bCanceled: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IFillLockBytes,
                 bCanceled: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFillLockBytes_FillAppend(self: *const T, pv: ?*const anyopaque, cb: u32, pcbWritten: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFillLockBytes.VTable, self.vtable).FillAppend(@ptrCast(*const IFillLockBytes, self), pv, cb, pcbWritten);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFillLockBytes_FillAt(self: *const T, ulOffset: ULARGE_INTEGER, pv: ?*const anyopaque, cb: u32, pcbWritten: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFillLockBytes.VTable, self.vtable).FillAt(@ptrCast(*const IFillLockBytes, self), ulOffset, pv, cb, pcbWritten);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFillLockBytes_SetFillSize(self: *const T, ulSize: ULARGE_INTEGER) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFillLockBytes.VTable, self.vtable).SetFillSize(@ptrCast(*const IFillLockBytes, self), ulSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFillLockBytes_Terminate(self: *const T, bCanceled: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFillLockBytes.VTable, self.vtable).Terminate(@ptrCast(*const IFillLockBytes, self), bCanceled);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFillLockBytes_FillAppend(self: *const T, pv: ?*const anyopaque, cb: u32, pcbWritten: ?*u32) HRESULT {
+                return @ptrCast(*const IFillLockBytes.VTable, self.vtable).FillAppend(@ptrCast(*const IFillLockBytes, self), pv, cb, pcbWritten);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFillLockBytes_FillAt(self: *const T, ulOffset: ULARGE_INTEGER, pv: ?*const anyopaque, cb: u32, pcbWritten: ?*u32) HRESULT {
+                return @ptrCast(*const IFillLockBytes.VTable, self.vtable).FillAt(@ptrCast(*const IFillLockBytes, self), ulOffset, pv, cb, pcbWritten);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFillLockBytes_SetFillSize(self: *const T, ulSize: ULARGE_INTEGER) HRESULT {
+                return @ptrCast(*const IFillLockBytes.VTable, self.vtable).SetFillSize(@ptrCast(*const IFillLockBytes, self), ulSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IFillLockBytes_Terminate(self: *const T, bCanceled: BOOL) HRESULT {
+                return @ptrCast(*const IFillLockBytes.VTable, self.vtable).Terminate(@ptrCast(*const IFillLockBytes, self), bCanceled);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -869,13 +881,13 @@ pub const ILayoutStorage = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         LayoutScript: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ILayoutStorage,
                 pStorageLayout: [*]StorageLayout,
                 nEntries: u32,
                 glfInterleavedFlag: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ILayoutStorage,
                 pStorageLayout: [*]StorageLayout,
                 nEntries: u32,
@@ -883,66 +895,68 @@ pub const ILayoutStorage = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         BeginMonitor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ILayoutStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ILayoutStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EndMonitor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ILayoutStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ILayoutStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ReLayoutDocfile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ILayoutStorage,
                 pwcsNewDfName: ?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ILayoutStorage,
                 pwcsNewDfName: ?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ReLayoutDocfileOnILockBytes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const ILayoutStorage,
                 pILockBytes: ?*ILockBytes,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const ILayoutStorage,
                 pILockBytes: ?*ILockBytes,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILayoutStorage_LayoutScript(self: *const T, pStorageLayout: [*]StorageLayout, nEntries: u32, glfInterleavedFlag: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ILayoutStorage.VTable, self.vtable).LayoutScript(@ptrCast(*const ILayoutStorage, self), pStorageLayout, nEntries, glfInterleavedFlag);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILayoutStorage_BeginMonitor(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ILayoutStorage.VTable, self.vtable).BeginMonitor(@ptrCast(*const ILayoutStorage, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILayoutStorage_EndMonitor(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ILayoutStorage.VTable, self.vtable).EndMonitor(@ptrCast(*const ILayoutStorage, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILayoutStorage_ReLayoutDocfile(self: *const T, pwcsNewDfName: ?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ILayoutStorage.VTable, self.vtable).ReLayoutDocfile(@ptrCast(*const ILayoutStorage, self), pwcsNewDfName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ILayoutStorage_ReLayoutDocfileOnILockBytes(self: *const T, pILockBytes: ?*ILockBytes) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ILayoutStorage.VTable, self.vtable).ReLayoutDocfileOnILockBytes(@ptrCast(*const ILayoutStorage, self), pILockBytes);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ILayoutStorage_LayoutScript(self: *const T, pStorageLayout: [*]StorageLayout, nEntries: u32, glfInterleavedFlag: u32) HRESULT {
+                return @ptrCast(*const ILayoutStorage.VTable, self.vtable).LayoutScript(@ptrCast(*const ILayoutStorage, self), pStorageLayout, nEntries, glfInterleavedFlag);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ILayoutStorage_BeginMonitor(self: *const T) HRESULT {
+                return @ptrCast(*const ILayoutStorage.VTable, self.vtable).BeginMonitor(@ptrCast(*const ILayoutStorage, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ILayoutStorage_EndMonitor(self: *const T) HRESULT {
+                return @ptrCast(*const ILayoutStorage.VTable, self.vtable).EndMonitor(@ptrCast(*const ILayoutStorage, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ILayoutStorage_ReLayoutDocfile(self: *const T, pwcsNewDfName: ?PWSTR) HRESULT {
+                return @ptrCast(*const ILayoutStorage.VTable, self.vtable).ReLayoutDocfile(@ptrCast(*const ILayoutStorage, self), pwcsNewDfName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn ILayoutStorage_ReLayoutDocfileOnILockBytes(self: *const T, pILockBytes: ?*ILockBytes) HRESULT {
+                return @ptrCast(*const ILayoutStorage.VTable, self.vtable).ReLayoutDocfileOnILockBytes(@ptrCast(*const ILayoutStorage, self), pILockBytes);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -953,48 +967,50 @@ pub const IDirectWriterLock = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         WaitForWriteAccess: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectWriterLock,
                 dwTimeout: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectWriterLock,
                 dwTimeout: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ReleaseWriteAccess: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectWriterLock,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectWriterLock,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         HaveWriteAccess: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IDirectWriterLock,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IDirectWriterLock,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectWriterLock_WaitForWriteAccess(self: *const T, dwTimeout: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectWriterLock.VTable, self.vtable).WaitForWriteAccess(@ptrCast(*const IDirectWriterLock, self), dwTimeout);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectWriterLock_ReleaseWriteAccess(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectWriterLock.VTable, self.vtable).ReleaseWriteAccess(@ptrCast(*const IDirectWriterLock, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectWriterLock_HaveWriteAccess(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectWriterLock.VTable, self.vtable).HaveWriteAccess(@ptrCast(*const IDirectWriterLock, self));
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectWriterLock_WaitForWriteAccess(self: *const T, dwTimeout: u32) HRESULT {
+                return @ptrCast(*const IDirectWriterLock.VTable, self.vtable).WaitForWriteAccess(@ptrCast(*const IDirectWriterLock, self), dwTimeout);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectWriterLock_ReleaseWriteAccess(self: *const T) HRESULT {
+                return @ptrCast(*const IDirectWriterLock.VTable, self.vtable).ReleaseWriteAccess(@ptrCast(*const IDirectWriterLock, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IDirectWriterLock_HaveWriteAccess(self: *const T) HRESULT {
+                return @ptrCast(*const IDirectWriterLock.VTable, self.vtable).HaveWriteAccess(@ptrCast(*const IDirectWriterLock, self));
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1231,13 +1247,13 @@ pub const IPropertyStorage = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ReadMultiple: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyStorage,
                 cpspec: u32,
                 rgpspec: [*]const PROPSPEC,
                 rgpropvar: [*]PROPVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyStorage,
                 cpspec: u32,
                 rgpspec: [*]const PROPSPEC,
@@ -1245,14 +1261,14 @@ pub const IPropertyStorage = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         WriteMultiple: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyStorage,
                 cpspec: u32,
                 rgpspec: [*]const PROPSPEC,
                 rgpropvar: [*]const PROPVARIANT,
                 propidNameFirst: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyStorage,
                 cpspec: u32,
                 rgpspec: [*]const PROPSPEC,
@@ -1261,25 +1277,25 @@ pub const IPropertyStorage = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DeleteMultiple: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyStorage,
                 cpspec: u32,
                 rgpspec: [*]const PROPSPEC,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyStorage,
                 cpspec: u32,
                 rgpspec: [*]const PROPSPEC,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         ReadPropertyNames: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyStorage,
                 cpropid: u32,
                 rgpropid: [*]const u32,
                 rglpwstrName: [*]?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyStorage,
                 cpropid: u32,
                 rgpropid: [*]const u32,
@@ -1287,13 +1303,13 @@ pub const IPropertyStorage = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         WritePropertyNames: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyStorage,
                 cpropid: u32,
                 rgpropid: [*]const u32,
                 rglpwstrName: [*]const ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyStorage,
                 cpropid: u32,
                 rgpropid: [*]const u32,
@@ -1301,53 +1317,53 @@ pub const IPropertyStorage = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         DeletePropertyNames: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyStorage,
                 cpropid: u32,
                 rgpropid: [*]const u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyStorage,
                 cpropid: u32,
                 rgpropid: [*]const u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Commit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyStorage,
                 grfCommitFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyStorage,
                 grfCommitFlags: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Revert: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Enum: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyStorage,
                 ppenum: ?*?*IEnumSTATPROPSTG,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyStorage,
                 ppenum: ?*?*IEnumSTATPROPSTG,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetTimes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyStorage,
                 pctime: ?*const FILETIME,
                 patime: ?*const FILETIME,
                 pmtime: ?*const FILETIME,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyStorage,
                 pctime: ?*const FILETIME,
                 patime: ?*const FILETIME,
@@ -1355,78 +1371,80 @@ pub const IPropertyStorage = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetClass: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyStorage,
                 clsid: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyStorage,
                 clsid: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Stat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyStorage,
                 pstatpsstg: ?*STATPROPSETSTG,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyStorage,
                 pstatpsstg: ?*STATPROPSETSTG,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStorage_ReadMultiple(self: *const T, cpspec: u32, rgpspec: [*]const PROPSPEC, rgpropvar: [*]PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).ReadMultiple(@ptrCast(*const IPropertyStorage, self), cpspec, rgpspec, rgpropvar);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStorage_WriteMultiple(self: *const T, cpspec: u32, rgpspec: [*]const PROPSPEC, rgpropvar: [*]const PROPVARIANT, propidNameFirst: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).WriteMultiple(@ptrCast(*const IPropertyStorage, self), cpspec, rgpspec, rgpropvar, propidNameFirst);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStorage_DeleteMultiple(self: *const T, cpspec: u32, rgpspec: [*]const PROPSPEC) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).DeleteMultiple(@ptrCast(*const IPropertyStorage, self), cpspec, rgpspec);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStorage_ReadPropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).ReadPropertyNames(@ptrCast(*const IPropertyStorage, self), cpropid, rgpropid, rglpwstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStorage_WritePropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]const ?[*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).WritePropertyNames(@ptrCast(*const IPropertyStorage, self), cpropid, rgpropid, rglpwstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStorage_DeletePropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).DeletePropertyNames(@ptrCast(*const IPropertyStorage, self), cpropid, rgpropid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStorage_Commit(self: *const T, grfCommitFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).Commit(@ptrCast(*const IPropertyStorage, self), grfCommitFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStorage_Revert(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).Revert(@ptrCast(*const IPropertyStorage, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStorage_Enum(self: *const T, ppenum: ?*?*IEnumSTATPROPSTG) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).Enum(@ptrCast(*const IPropertyStorage, self), ppenum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStorage_SetTimes(self: *const T, pctime: ?*const FILETIME, patime: ?*const FILETIME, pmtime: ?*const FILETIME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).SetTimes(@ptrCast(*const IPropertyStorage, self), pctime, patime, pmtime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStorage_SetClass(self: *const T, clsid: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).SetClass(@ptrCast(*const IPropertyStorage, self), clsid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStorage_Stat(self: *const T, pstatpsstg: ?*STATPROPSETSTG) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).Stat(@ptrCast(*const IPropertyStorage, self), pstatpsstg);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyStorage_ReadMultiple(self: *const T, cpspec: u32, rgpspec: [*]const PROPSPEC, rgpropvar: [*]PROPVARIANT) HRESULT {
+                return @ptrCast(*const IPropertyStorage.VTable, self.vtable).ReadMultiple(@ptrCast(*const IPropertyStorage, self), cpspec, rgpspec, rgpropvar);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyStorage_WriteMultiple(self: *const T, cpspec: u32, rgpspec: [*]const PROPSPEC, rgpropvar: [*]const PROPVARIANT, propidNameFirst: u32) HRESULT {
+                return @ptrCast(*const IPropertyStorage.VTable, self.vtable).WriteMultiple(@ptrCast(*const IPropertyStorage, self), cpspec, rgpspec, rgpropvar, propidNameFirst);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyStorage_DeleteMultiple(self: *const T, cpspec: u32, rgpspec: [*]const PROPSPEC) HRESULT {
+                return @ptrCast(*const IPropertyStorage.VTable, self.vtable).DeleteMultiple(@ptrCast(*const IPropertyStorage, self), cpspec, rgpspec);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyStorage_ReadPropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]?PWSTR) HRESULT {
+                return @ptrCast(*const IPropertyStorage.VTable, self.vtable).ReadPropertyNames(@ptrCast(*const IPropertyStorage, self), cpropid, rgpropid, rglpwstrName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyStorage_WritePropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]const ?[*:0]const u16) HRESULT {
+                return @ptrCast(*const IPropertyStorage.VTable, self.vtable).WritePropertyNames(@ptrCast(*const IPropertyStorage, self), cpropid, rgpropid, rglpwstrName);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyStorage_DeletePropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32) HRESULT {
+                return @ptrCast(*const IPropertyStorage.VTable, self.vtable).DeletePropertyNames(@ptrCast(*const IPropertyStorage, self), cpropid, rgpropid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyStorage_Commit(self: *const T, grfCommitFlags: u32) HRESULT {
+                return @ptrCast(*const IPropertyStorage.VTable, self.vtable).Commit(@ptrCast(*const IPropertyStorage, self), grfCommitFlags);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyStorage_Revert(self: *const T) HRESULT {
+                return @ptrCast(*const IPropertyStorage.VTable, self.vtable).Revert(@ptrCast(*const IPropertyStorage, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyStorage_Enum(self: *const T, ppenum: ?*?*IEnumSTATPROPSTG) HRESULT {
+                return @ptrCast(*const IPropertyStorage.VTable, self.vtable).Enum(@ptrCast(*const IPropertyStorage, self), ppenum);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyStorage_SetTimes(self: *const T, pctime: ?*const FILETIME, patime: ?*const FILETIME, pmtime: ?*const FILETIME) HRESULT {
+                return @ptrCast(*const IPropertyStorage.VTable, self.vtable).SetTimes(@ptrCast(*const IPropertyStorage, self), pctime, patime, pmtime);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyStorage_SetClass(self: *const T, clsid: ?*const Guid) HRESULT {
+                return @ptrCast(*const IPropertyStorage.VTable, self.vtable).SetClass(@ptrCast(*const IPropertyStorage, self), clsid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyStorage_Stat(self: *const T, pstatpsstg: ?*STATPROPSETSTG) HRESULT {
+                return @ptrCast(*const IPropertyStorage.VTable, self.vtable).Stat(@ptrCast(*const IPropertyStorage, self), pstatpsstg);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1437,7 +1455,7 @@ pub const IPropertySetStorage = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Create: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertySetStorage,
                 rfmtid: ?*const Guid,
                 pclsid: ?*const Guid,
@@ -1445,7 +1463,7 @@ pub const IPropertySetStorage = extern struct {
                 grfMode: u32,
                 ppprstg: ?*?*IPropertyStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertySetStorage,
                 rfmtid: ?*const Guid,
                 pclsid: ?*const Guid,
@@ -1455,13 +1473,13 @@ pub const IPropertySetStorage = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Open: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertySetStorage,
                 rfmtid: ?*const Guid,
                 grfMode: u32,
                 ppprstg: ?*?*IPropertyStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertySetStorage,
                 rfmtid: ?*const Guid,
                 grfMode: u32,
@@ -1469,46 +1487,48 @@ pub const IPropertySetStorage = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertySetStorage,
                 rfmtid: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertySetStorage,
                 rfmtid: ?*const Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Enum: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertySetStorage,
                 ppenum: ?*?*IEnumSTATPROPSETSTG,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertySetStorage,
                 ppenum: ?*?*IEnumSTATPROPSETSTG,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertySetStorage_Create(self: *const T, rfmtid: ?*const Guid, pclsid: ?*const Guid, grfFlags: u32, grfMode: u32, ppprstg: ?*?*IPropertyStorage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertySetStorage.VTable, self.vtable).Create(@ptrCast(*const IPropertySetStorage, self), rfmtid, pclsid, grfFlags, grfMode, ppprstg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertySetStorage_Open(self: *const T, rfmtid: ?*const Guid, grfMode: u32, ppprstg: ?*?*IPropertyStorage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertySetStorage.VTable, self.vtable).Open(@ptrCast(*const IPropertySetStorage, self), rfmtid, grfMode, ppprstg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertySetStorage_Delete(self: *const T, rfmtid: ?*const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertySetStorage.VTable, self.vtable).Delete(@ptrCast(*const IPropertySetStorage, self), rfmtid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertySetStorage_Enum(self: *const T, ppenum: ?*?*IEnumSTATPROPSETSTG) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertySetStorage.VTable, self.vtable).Enum(@ptrCast(*const IPropertySetStorage, self), ppenum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertySetStorage_Create(self: *const T, rfmtid: ?*const Guid, pclsid: ?*const Guid, grfFlags: u32, grfMode: u32, ppprstg: ?*?*IPropertyStorage) HRESULT {
+                return @ptrCast(*const IPropertySetStorage.VTable, self.vtable).Create(@ptrCast(*const IPropertySetStorage, self), rfmtid, pclsid, grfFlags, grfMode, ppprstg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertySetStorage_Open(self: *const T, rfmtid: ?*const Guid, grfMode: u32, ppprstg: ?*?*IPropertyStorage) HRESULT {
+                return @ptrCast(*const IPropertySetStorage.VTable, self.vtable).Open(@ptrCast(*const IPropertySetStorage, self), rfmtid, grfMode, ppprstg);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertySetStorage_Delete(self: *const T, rfmtid: ?*const Guid) HRESULT {
+                return @ptrCast(*const IPropertySetStorage.VTable, self.vtable).Delete(@ptrCast(*const IPropertySetStorage, self), rfmtid);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertySetStorage_Enum(self: *const T, ppenum: ?*?*IEnumSTATPROPSETSTG) HRESULT {
+                return @ptrCast(*const IPropertySetStorage.VTable, self.vtable).Enum(@ptrCast(*const IPropertySetStorage, self), ppenum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1519,13 +1539,13 @@ pub const IEnumSTATPROPSTG = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumSTATPROPSTG,
                 celt: u32,
                 rgelt: [*]STATPROPSTG,
                 pceltFetched: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumSTATPROPSTG,
                 celt: u32,
                 rgelt: [*]STATPROPSTG,
@@ -1533,54 +1553,56 @@ pub const IEnumSTATPROPSTG = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumSTATPROPSTG,
                 celt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumSTATPROPSTG,
                 celt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumSTATPROPSTG,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumSTATPROPSTG,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumSTATPROPSTG,
                 ppenum: ?*?*IEnumSTATPROPSTG,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumSTATPROPSTG,
                 ppenum: ?*?*IEnumSTATPROPSTG,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSTATPROPSTG_Next(self: *const T, celt: u32, rgelt: [*]STATPROPSTG, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumSTATPROPSTG.VTable, self.vtable).Next(@ptrCast(*const IEnumSTATPROPSTG, self), celt, rgelt, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSTATPROPSTG_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumSTATPROPSTG.VTable, self.vtable).Skip(@ptrCast(*const IEnumSTATPROPSTG, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSTATPROPSTG_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumSTATPROPSTG.VTable, self.vtable).Reset(@ptrCast(*const IEnumSTATPROPSTG, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSTATPROPSTG_Clone(self: *const T, ppenum: ?*?*IEnumSTATPROPSTG) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumSTATPROPSTG.VTable, self.vtable).Clone(@ptrCast(*const IEnumSTATPROPSTG, self), ppenum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumSTATPROPSTG_Next(self: *const T, celt: u32, rgelt: [*]STATPROPSTG, pceltFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumSTATPROPSTG.VTable, self.vtable).Next(@ptrCast(*const IEnumSTATPROPSTG, self), celt, rgelt, pceltFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumSTATPROPSTG_Skip(self: *const T, celt: u32) HRESULT {
+                return @ptrCast(*const IEnumSTATPROPSTG.VTable, self.vtable).Skip(@ptrCast(*const IEnumSTATPROPSTG, self), celt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumSTATPROPSTG_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumSTATPROPSTG.VTable, self.vtable).Reset(@ptrCast(*const IEnumSTATPROPSTG, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumSTATPROPSTG_Clone(self: *const T, ppenum: ?*?*IEnumSTATPROPSTG) HRESULT {
+                return @ptrCast(*const IEnumSTATPROPSTG.VTable, self.vtable).Clone(@ptrCast(*const IEnumSTATPROPSTG, self), ppenum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1591,13 +1613,13 @@ pub const IEnumSTATPROPSETSTG = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumSTATPROPSETSTG,
                 celt: u32,
                 rgelt: [*]STATPROPSETSTG,
                 pceltFetched: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumSTATPROPSETSTG,
                 celt: u32,
                 rgelt: [*]STATPROPSETSTG,
@@ -1605,54 +1627,56 @@ pub const IEnumSTATPROPSETSTG = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumSTATPROPSETSTG,
                 celt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumSTATPROPSETSTG,
                 celt: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumSTATPROPSETSTG,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumSTATPROPSETSTG,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IEnumSTATPROPSETSTG,
                 ppenum: ?*?*IEnumSTATPROPSETSTG,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IEnumSTATPROPSETSTG,
                 ppenum: ?*?*IEnumSTATPROPSETSTG,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSTATPROPSETSTG_Next(self: *const T, celt: u32, rgelt: [*]STATPROPSETSTG, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumSTATPROPSETSTG.VTable, self.vtable).Next(@ptrCast(*const IEnumSTATPROPSETSTG, self), celt, rgelt, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSTATPROPSETSTG_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumSTATPROPSETSTG.VTable, self.vtable).Skip(@ptrCast(*const IEnumSTATPROPSETSTG, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSTATPROPSETSTG_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumSTATPROPSETSTG.VTable, self.vtable).Reset(@ptrCast(*const IEnumSTATPROPSETSTG, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSTATPROPSETSTG_Clone(self: *const T, ppenum: ?*?*IEnumSTATPROPSETSTG) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumSTATPROPSETSTG.VTable, self.vtable).Clone(@ptrCast(*const IEnumSTATPROPSETSTG, self), ppenum);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumSTATPROPSETSTG_Next(self: *const T, celt: u32, rgelt: [*]STATPROPSETSTG, pceltFetched: ?*u32) HRESULT {
+                return @ptrCast(*const IEnumSTATPROPSETSTG.VTable, self.vtable).Next(@ptrCast(*const IEnumSTATPROPSETSTG, self), celt, rgelt, pceltFetched);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumSTATPROPSETSTG_Skip(self: *const T, celt: u32) HRESULT {
+                return @ptrCast(*const IEnumSTATPROPSETSTG.VTable, self.vtable).Skip(@ptrCast(*const IEnumSTATPROPSETSTG, self), celt);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumSTATPROPSETSTG_Reset(self: *const T) HRESULT {
+                return @ptrCast(*const IEnumSTATPROPSETSTG.VTable, self.vtable).Reset(@ptrCast(*const IEnumSTATPROPSETSTG, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IEnumSTATPROPSETSTG_Clone(self: *const T, ppenum: ?*?*IEnumSTATPROPSETSTG) HRESULT {
+                return @ptrCast(*const IEnumSTATPROPSETSTG.VTable, self.vtable).Clone(@ptrCast(*const IEnumSTATPROPSETSTG, self), ppenum);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1701,13 +1725,13 @@ pub const IPropertyBag = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Read: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyBag,
                 pszPropName: ?[*:0]const u16,
                 pVar: ?*VARIANT,
                 pErrorLog: ?*IErrorLog,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyBag,
                 pszPropName: ?[*:0]const u16,
                 pVar: ?*VARIANT,
@@ -1715,12 +1739,12 @@ pub const IPropertyBag = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Write: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyBag,
                 pszPropName: ?[*:0]const u16,
                 pVar: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyBag,
                 pszPropName: ?[*:0]const u16,
                 pVar: ?*VARIANT,
@@ -1728,17 +1752,19 @@ pub const IPropertyBag = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyBag_Read(self: *const T, pszPropName: ?[*:0]const u16, pVar: ?*VARIANT, pErrorLog: ?*IErrorLog) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyBag.VTable, self.vtable).Read(@ptrCast(*const IPropertyBag, self), pszPropName, pVar, pErrorLog);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyBag_Write(self: *const T, pszPropName: ?[*:0]const u16, pVar: ?*VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyBag.VTable, self.vtable).Write(@ptrCast(*const IPropertyBag, self), pszPropName, pVar);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyBag_Read(self: *const T, pszPropName: ?[*:0]const u16, pVar: ?*VARIANT, pErrorLog: ?*IErrorLog) HRESULT {
+                return @ptrCast(*const IPropertyBag.VTable, self.vtable).Read(@ptrCast(*const IPropertyBag, self), pszPropName, pVar, pErrorLog);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyBag_Write(self: *const T, pszPropName: ?[*:0]const u16, pVar: ?*VARIANT) HRESULT {
+                return @ptrCast(*const IPropertyBag.VTable, self.vtable).Write(@ptrCast(*const IPropertyBag, self), pszPropName, pVar);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -1766,7 +1792,7 @@ pub const IPropertyBag2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Read: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyBag2,
                 cProperties: u32,
                 pPropBag: [*]PROPBAG2,
@@ -1774,7 +1800,7 @@ pub const IPropertyBag2 = extern struct {
                 pvarValue: [*]VARIANT,
                 phrError: [*]HRESULT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyBag2,
                 cProperties: u32,
                 pPropBag: [*]PROPBAG2,
@@ -1784,13 +1810,13 @@ pub const IPropertyBag2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Write: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyBag2,
                 cProperties: u32,
                 pPropBag: [*]PROPBAG2,
                 pvarValue: [*]VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyBag2,
                 cProperties: u32,
                 pPropBag: [*]PROPBAG2,
@@ -1798,24 +1824,24 @@ pub const IPropertyBag2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CountProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyBag2,
                 pcProperties: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyBag2,
                 pcProperties: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPropertyInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyBag2,
                 iProperty: u32,
                 cProperties: u32,
                 pPropBag: [*]PROPBAG2,
                 pcProperties: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyBag2,
                 iProperty: u32,
                 cProperties: u32,
@@ -1824,14 +1850,14 @@ pub const IPropertyBag2 = extern struct {
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         LoadObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
+            .stage1 => fn (
                 self: *const IPropertyBag2,
                 pstrName: ?[*:0]const u16,
                 dwHint: u32,
                 pUnkObject: ?*IUnknown,
                 pErrLog: ?*IErrorLog,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
+            else => *const fn (
                 self: *const IPropertyBag2,
                 pstrName: ?[*:0]const u16,
                 dwHint: u32,
@@ -1841,32 +1867,33 @@ pub const IPropertyBag2 = extern struct {
         },
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyBag2_Read(self: *const T, cProperties: u32, pPropBag: [*]PROPBAG2, pErrLog: ?*IErrorLog, pvarValue: [*]VARIANT, phrError: [*]HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyBag2.VTable, self.vtable).Read(@ptrCast(*const IPropertyBag2, self), cProperties, pPropBag, pErrLog, pvarValue, phrError);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyBag2_Write(self: *const T, cProperties: u32, pPropBag: [*]PROPBAG2, pvarValue: [*]VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyBag2.VTable, self.vtable).Write(@ptrCast(*const IPropertyBag2, self), cProperties, pPropBag, pvarValue);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyBag2_CountProperties(self: *const T, pcProperties: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyBag2.VTable, self.vtable).CountProperties(@ptrCast(*const IPropertyBag2, self), pcProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyBag2_GetPropertyInfo(self: *const T, iProperty: u32, cProperties: u32, pPropBag: [*]PROPBAG2, pcProperties: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyBag2.VTable, self.vtable).GetPropertyInfo(@ptrCast(*const IPropertyBag2, self), iProperty, cProperties, pPropBag, pcProperties);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyBag2_LoadObject(self: *const T, pstrName: ?[*:0]const u16, dwHint: u32, pUnkObject: ?*IUnknown, pErrLog: ?*IErrorLog) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyBag2.VTable, self.vtable).LoadObject(@ptrCast(*const IPropertyBag2, self), pstrName, dwHint, pUnkObject, pErrLog);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyBag2_Read(self: *const T, cProperties: u32, pPropBag: [*]PROPBAG2, pErrLog: ?*IErrorLog, pvarValue: [*]VARIANT, phrError: [*]HRESULT) HRESULT {
+                return @ptrCast(*const IPropertyBag2.VTable, self.vtable).Read(@ptrCast(*const IPropertyBag2, self), cProperties, pPropBag, pErrLog, pvarValue, phrError);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyBag2_Write(self: *const T, cProperties: u32, pPropBag: [*]PROPBAG2, pvarValue: [*]VARIANT) HRESULT {
+                return @ptrCast(*const IPropertyBag2.VTable, self.vtable).Write(@ptrCast(*const IPropertyBag2, self), cProperties, pPropBag, pvarValue);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyBag2_CountProperties(self: *const T, pcProperties: ?*u32) HRESULT {
+                return @ptrCast(*const IPropertyBag2.VTable, self.vtable).CountProperties(@ptrCast(*const IPropertyBag2, self), pcProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyBag2_GetPropertyInfo(self: *const T, iProperty: u32, cProperties: u32, pPropBag: [*]PROPBAG2, pcProperties: ?*u32) HRESULT {
+                return @ptrCast(*const IPropertyBag2.VTable, self.vtable).GetPropertyInfo(@ptrCast(*const IPropertyBag2, self), iProperty, cProperties, pPropBag, pcProperties);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub inline fn IPropertyBag2_LoadObject(self: *const T, pstrName: ?[*:0]const u16, dwHint: u32, pUnkObject: ?*IUnknown, pErrLog: ?*IErrorLog) HRESULT {
+                return @ptrCast(*const IPropertyBag2.VTable, self.vtable).LoadObject(@ptrCast(*const IPropertyBag2, self), pstrName, dwHint, pUnkObject, pErrLog);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (45)
@@ -2211,19 +2238,14 @@ pub extern "propsys" fn StgDeserializePropVariant(
     ppropvar: ?*PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (29)
@@ -2259,9 +2281,7 @@ const ULARGE_INTEGER = @import("../../foundation.zig").ULARGE_INTEGER;
 const VARIANT = @import("../../system/com.zig").VARIANT;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

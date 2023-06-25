@@ -30,11 +30,11 @@ pub const PixelFormat = enum(u32) {
     const Self = @This();
 
     pub fn isJustGrayscale(self: Self) bool {
-        return @enumToInt(self) & 0xf00 == 0x100;
+        return @intFromEnum(self) & 0xf00 == 0x100;
     }
 
     pub fn isIndex(self: Self) bool {
-        return @enumToInt(self) <= @enumToInt(PixelFormat.indexed16);
+        return @intFromEnum(self) <= @intFromEnum(PixelFormat.indexed16);
     }
 
     pub fn isStandardRgb(self: Self) bool {
@@ -46,7 +46,7 @@ pub const PixelFormat = enum(u32) {
     }
 
     pub fn is16Bit(self: Self) bool {
-        return @enumToInt(self) & 0xff == 0x10;
+        return @intFromEnum(self) & 0xff == 0x10;
     }
 
     pub fn pixelStride(self: Self) u8 {

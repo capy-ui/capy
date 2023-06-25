@@ -19,12 +19,7 @@ pub const TOKEN_PRIVILEGES_ATTRIBUTES = enum(u32) {
         REMOVED: u1 = 0,
         USED_FOR_ACCESS: u1 = 0,
     }) TOKEN_PRIVILEGES_ATTRIBUTES {
-        return @intToEnum(TOKEN_PRIVILEGES_ATTRIBUTES,
-              (if (o.ENABLED == 1) @enumToInt(TOKEN_PRIVILEGES_ATTRIBUTES.ENABLED) else 0)
-            | (if (o.ENABLED_BY_DEFAULT == 1) @enumToInt(TOKEN_PRIVILEGES_ATTRIBUTES.ENABLED_BY_DEFAULT) else 0)
-            | (if (o.REMOVED == 1) @enumToInt(TOKEN_PRIVILEGES_ATTRIBUTES.REMOVED) else 0)
-            | (if (o.USED_FOR_ACCESS == 1) @enumToInt(TOKEN_PRIVILEGES_ATTRIBUTES.USED_FOR_ACCESS) else 0)
-        );
+        return @enumFromInt(TOKEN_PRIVILEGES_ATTRIBUTES, (if (o.ENABLED == 1) @intFromEnum(TOKEN_PRIVILEGES_ATTRIBUTES.ENABLED) else 0) | (if (o.ENABLED_BY_DEFAULT == 1) @intFromEnum(TOKEN_PRIVILEGES_ATTRIBUTES.ENABLED_BY_DEFAULT) else 0) | (if (o.REMOVED == 1) @intFromEnum(TOKEN_PRIVILEGES_ATTRIBUTES.REMOVED) else 0) | (if (o.USED_FOR_ACCESS == 1) @intFromEnum(TOKEN_PRIVILEGES_ATTRIBUTES.USED_FOR_ACCESS) else 0));
     }
 };
 pub const SE_PRIVILEGE_ENABLED = TOKEN_PRIVILEGES_ATTRIBUTES.ENABLED;
@@ -53,12 +48,7 @@ pub const CREATE_RESTRICTED_TOKEN_FLAGS = enum(u32) {
         LUA_TOKEN: u1 = 0,
         WRITE_RESTRICTED: u1 = 0,
     }) CREATE_RESTRICTED_TOKEN_FLAGS {
-        return @intToEnum(CREATE_RESTRICTED_TOKEN_FLAGS,
-              (if (o.DISABLE_MAX_PRIVILEGE == 1) @enumToInt(CREATE_RESTRICTED_TOKEN_FLAGS.DISABLE_MAX_PRIVILEGE) else 0)
-            | (if (o.SANDBOX_INERT == 1) @enumToInt(CREATE_RESTRICTED_TOKEN_FLAGS.SANDBOX_INERT) else 0)
-            | (if (o.LUA_TOKEN == 1) @enumToInt(CREATE_RESTRICTED_TOKEN_FLAGS.LUA_TOKEN) else 0)
-            | (if (o.WRITE_RESTRICTED == 1) @enumToInt(CREATE_RESTRICTED_TOKEN_FLAGS.WRITE_RESTRICTED) else 0)
-        );
+        return @enumFromInt(CREATE_RESTRICTED_TOKEN_FLAGS, (if (o.DISABLE_MAX_PRIVILEGE == 1) @intFromEnum(CREATE_RESTRICTED_TOKEN_FLAGS.DISABLE_MAX_PRIVILEGE) else 0) | (if (o.SANDBOX_INERT == 1) @intFromEnum(CREATE_RESTRICTED_TOKEN_FLAGS.SANDBOX_INERT) else 0) | (if (o.LUA_TOKEN == 1) @intFromEnum(CREATE_RESTRICTED_TOKEN_FLAGS.LUA_TOKEN) else 0) | (if (o.WRITE_RESTRICTED == 1) @intFromEnum(CREATE_RESTRICTED_TOKEN_FLAGS.WRITE_RESTRICTED) else 0));
     }
 };
 pub const DISABLE_MAX_PRIVILEGE = CREATE_RESTRICTED_TOKEN_FLAGS.DISABLE_MAX_PRIVILEGE;
@@ -110,17 +100,7 @@ pub const ACE_FLAGS = enum(u32) {
         SUB_CONTAINERS_AND_OBJECTS_INHERIT: u1 = 0,
         NO_INHERITANCE: u1 = 0,
     }) ACE_FLAGS {
-        return @intToEnum(ACE_FLAGS,
-              (if (o.CONTAINER_INHERIT_ACE == 1) @enumToInt(ACE_FLAGS.CONTAINER_INHERIT_ACE) else 0)
-            | (if (o.FAILED_ACCESS_ACE_FLAG == 1) @enumToInt(ACE_FLAGS.FAILED_ACCESS_ACE_FLAG) else 0)
-            | (if (o.INHERIT_ONLY_ACE == 1) @enumToInt(ACE_FLAGS.INHERIT_ONLY_ACE) else 0)
-            | (if (o.INHERITED_ACE == 1) @enumToInt(ACE_FLAGS.INHERITED_ACE) else 0)
-            | (if (o.NO_PROPAGATE_INHERIT_ACE == 1) @enumToInt(ACE_FLAGS.NO_PROPAGATE_INHERIT_ACE) else 0)
-            | (if (o.OBJECT_INHERIT_ACE == 1) @enumToInt(ACE_FLAGS.OBJECT_INHERIT_ACE) else 0)
-            | (if (o.SUCCESSFUL_ACCESS_ACE_FLAG == 1) @enumToInt(ACE_FLAGS.SUCCESSFUL_ACCESS_ACE_FLAG) else 0)
-            | (if (o.SUB_CONTAINERS_AND_OBJECTS_INHERIT == 1) @enumToInt(ACE_FLAGS.SUB_CONTAINERS_AND_OBJECTS_INHERIT) else 0)
-            | (if (o.NO_INHERITANCE == 1) @enumToInt(ACE_FLAGS.NO_INHERITANCE) else 0)
-        );
+        return @enumFromInt(ACE_FLAGS, (if (o.CONTAINER_INHERIT_ACE == 1) @intFromEnum(ACE_FLAGS.CONTAINER_INHERIT_ACE) else 0) | (if (o.FAILED_ACCESS_ACE_FLAG == 1) @intFromEnum(ACE_FLAGS.FAILED_ACCESS_ACE_FLAG) else 0) | (if (o.INHERIT_ONLY_ACE == 1) @intFromEnum(ACE_FLAGS.INHERIT_ONLY_ACE) else 0) | (if (o.INHERITED_ACE == 1) @intFromEnum(ACE_FLAGS.INHERITED_ACE) else 0) | (if (o.NO_PROPAGATE_INHERIT_ACE == 1) @intFromEnum(ACE_FLAGS.NO_PROPAGATE_INHERIT_ACE) else 0) | (if (o.OBJECT_INHERIT_ACE == 1) @intFromEnum(ACE_FLAGS.OBJECT_INHERIT_ACE) else 0) | (if (o.SUCCESSFUL_ACCESS_ACE_FLAG == 1) @intFromEnum(ACE_FLAGS.SUCCESSFUL_ACCESS_ACE_FLAG) else 0) | (if (o.SUB_CONTAINERS_AND_OBJECTS_INHERIT == 1) @intFromEnum(ACE_FLAGS.SUB_CONTAINERS_AND_OBJECTS_INHERIT) else 0) | (if (o.NO_INHERITANCE == 1) @intFromEnum(ACE_FLAGS.NO_INHERITANCE) else 0));
     }
 };
 pub const CONTAINER_INHERIT_ACE = ACE_FLAGS.CONTAINER_INHERIT_ACE;
@@ -166,20 +146,7 @@ pub const OBJECT_SECURITY_INFORMATION = enum(u32) {
         UNPROTECTED_DACL_SECURITY_INFORMATION: u1 = 0,
         UNPROTECTED_SACL_SECURITY_INFORMATION: u1 = 0,
     }) OBJECT_SECURITY_INFORMATION {
-        return @intToEnum(OBJECT_SECURITY_INFORMATION,
-              (if (o.ATTRIBUTE_SECURITY_INFORMATION == 1) @enumToInt(OBJECT_SECURITY_INFORMATION.ATTRIBUTE_SECURITY_INFORMATION) else 0)
-            | (if (o.BACKUP_SECURITY_INFORMATION == 1) @enumToInt(OBJECT_SECURITY_INFORMATION.BACKUP_SECURITY_INFORMATION) else 0)
-            | (if (o.DACL_SECURITY_INFORMATION == 1) @enumToInt(OBJECT_SECURITY_INFORMATION.DACL_SECURITY_INFORMATION) else 0)
-            | (if (o.GROUP_SECURITY_INFORMATION == 1) @enumToInt(OBJECT_SECURITY_INFORMATION.GROUP_SECURITY_INFORMATION) else 0)
-            | (if (o.LABEL_SECURITY_INFORMATION == 1) @enumToInt(OBJECT_SECURITY_INFORMATION.LABEL_SECURITY_INFORMATION) else 0)
-            | (if (o.OWNER_SECURITY_INFORMATION == 1) @enumToInt(OBJECT_SECURITY_INFORMATION.OWNER_SECURITY_INFORMATION) else 0)
-            | (if (o.PROTECTED_DACL_SECURITY_INFORMATION == 1) @enumToInt(OBJECT_SECURITY_INFORMATION.PROTECTED_DACL_SECURITY_INFORMATION) else 0)
-            | (if (o.PROTECTED_SACL_SECURITY_INFORMATION == 1) @enumToInt(OBJECT_SECURITY_INFORMATION.PROTECTED_SACL_SECURITY_INFORMATION) else 0)
-            | (if (o.SACL_SECURITY_INFORMATION == 1) @enumToInt(OBJECT_SECURITY_INFORMATION.SACL_SECURITY_INFORMATION) else 0)
-            | (if (o.SCOPE_SECURITY_INFORMATION == 1) @enumToInt(OBJECT_SECURITY_INFORMATION.SCOPE_SECURITY_INFORMATION) else 0)
-            | (if (o.UNPROTECTED_DACL_SECURITY_INFORMATION == 1) @enumToInt(OBJECT_SECURITY_INFORMATION.UNPROTECTED_DACL_SECURITY_INFORMATION) else 0)
-            | (if (o.UNPROTECTED_SACL_SECURITY_INFORMATION == 1) @enumToInt(OBJECT_SECURITY_INFORMATION.UNPROTECTED_SACL_SECURITY_INFORMATION) else 0)
-        );
+        return @enumFromInt(OBJECT_SECURITY_INFORMATION, (if (o.ATTRIBUTE_SECURITY_INFORMATION == 1) @intFromEnum(OBJECT_SECURITY_INFORMATION.ATTRIBUTE_SECURITY_INFORMATION) else 0) | (if (o.BACKUP_SECURITY_INFORMATION == 1) @intFromEnum(OBJECT_SECURITY_INFORMATION.BACKUP_SECURITY_INFORMATION) else 0) | (if (o.DACL_SECURITY_INFORMATION == 1) @intFromEnum(OBJECT_SECURITY_INFORMATION.DACL_SECURITY_INFORMATION) else 0) | (if (o.GROUP_SECURITY_INFORMATION == 1) @intFromEnum(OBJECT_SECURITY_INFORMATION.GROUP_SECURITY_INFORMATION) else 0) | (if (o.LABEL_SECURITY_INFORMATION == 1) @intFromEnum(OBJECT_SECURITY_INFORMATION.LABEL_SECURITY_INFORMATION) else 0) | (if (o.OWNER_SECURITY_INFORMATION == 1) @intFromEnum(OBJECT_SECURITY_INFORMATION.OWNER_SECURITY_INFORMATION) else 0) | (if (o.PROTECTED_DACL_SECURITY_INFORMATION == 1) @intFromEnum(OBJECT_SECURITY_INFORMATION.PROTECTED_DACL_SECURITY_INFORMATION) else 0) | (if (o.PROTECTED_SACL_SECURITY_INFORMATION == 1) @intFromEnum(OBJECT_SECURITY_INFORMATION.PROTECTED_SACL_SECURITY_INFORMATION) else 0) | (if (o.SACL_SECURITY_INFORMATION == 1) @intFromEnum(OBJECT_SECURITY_INFORMATION.SACL_SECURITY_INFORMATION) else 0) | (if (o.SCOPE_SECURITY_INFORMATION == 1) @intFromEnum(OBJECT_SECURITY_INFORMATION.SCOPE_SECURITY_INFORMATION) else 0) | (if (o.UNPROTECTED_DACL_SECURITY_INFORMATION == 1) @intFromEnum(OBJECT_SECURITY_INFORMATION.UNPROTECTED_DACL_SECURITY_INFORMATION) else 0) | (if (o.UNPROTECTED_SACL_SECURITY_INFORMATION == 1) @intFromEnum(OBJECT_SECURITY_INFORMATION.UNPROTECTED_SACL_SECURITY_INFORMATION) else 0));
     }
 };
 pub const ATTRIBUTE_SECURITY_INFORMATION = OBJECT_SECURITY_INFORMATION.ATTRIBUTE_SECURITY_INFORMATION;
@@ -221,19 +188,7 @@ pub const SECURITY_AUTO_INHERIT_FLAGS = enum(u32) {
         MACL_NO_WRITE_UP: u1 = 0,
         SACL_AUTO_INHERIT: u1 = 0,
     }) SECURITY_AUTO_INHERIT_FLAGS {
-        return @intToEnum(SECURITY_AUTO_INHERIT_FLAGS,
-              (if (o.AVOID_OWNER_CHECK == 1) @enumToInt(SECURITY_AUTO_INHERIT_FLAGS.AVOID_OWNER_CHECK) else 0)
-            | (if (o.AVOID_OWNER_RESTRICTION == 1) @enumToInt(SECURITY_AUTO_INHERIT_FLAGS.AVOID_OWNER_RESTRICTION) else 0)
-            | (if (o.AVOID_PRIVILEGE_CHECK == 1) @enumToInt(SECURITY_AUTO_INHERIT_FLAGS.AVOID_PRIVILEGE_CHECK) else 0)
-            | (if (o.DACL_AUTO_INHERIT == 1) @enumToInt(SECURITY_AUTO_INHERIT_FLAGS.DACL_AUTO_INHERIT) else 0)
-            | (if (o.DEFAULT_DESCRIPTOR_FOR_OBJECT == 1) @enumToInt(SECURITY_AUTO_INHERIT_FLAGS.DEFAULT_DESCRIPTOR_FOR_OBJECT) else 0)
-            | (if (o.DEFAULT_GROUP_FROM_PARENT == 1) @enumToInt(SECURITY_AUTO_INHERIT_FLAGS.DEFAULT_GROUP_FROM_PARENT) else 0)
-            | (if (o.DEFAULT_OWNER_FROM_PARENT == 1) @enumToInt(SECURITY_AUTO_INHERIT_FLAGS.DEFAULT_OWNER_FROM_PARENT) else 0)
-            | (if (o.MACL_NO_EXECUTE_UP == 1) @enumToInt(SECURITY_AUTO_INHERIT_FLAGS.MACL_NO_EXECUTE_UP) else 0)
-            | (if (o.MACL_NO_READ_UP == 1) @enumToInt(SECURITY_AUTO_INHERIT_FLAGS.MACL_NO_READ_UP) else 0)
-            | (if (o.MACL_NO_WRITE_UP == 1) @enumToInt(SECURITY_AUTO_INHERIT_FLAGS.MACL_NO_WRITE_UP) else 0)
-            | (if (o.SACL_AUTO_INHERIT == 1) @enumToInt(SECURITY_AUTO_INHERIT_FLAGS.SACL_AUTO_INHERIT) else 0)
-        );
+        return @enumFromInt(SECURITY_AUTO_INHERIT_FLAGS, (if (o.AVOID_OWNER_CHECK == 1) @intFromEnum(SECURITY_AUTO_INHERIT_FLAGS.AVOID_OWNER_CHECK) else 0) | (if (o.AVOID_OWNER_RESTRICTION == 1) @intFromEnum(SECURITY_AUTO_INHERIT_FLAGS.AVOID_OWNER_RESTRICTION) else 0) | (if (o.AVOID_PRIVILEGE_CHECK == 1) @intFromEnum(SECURITY_AUTO_INHERIT_FLAGS.AVOID_PRIVILEGE_CHECK) else 0) | (if (o.DACL_AUTO_INHERIT == 1) @intFromEnum(SECURITY_AUTO_INHERIT_FLAGS.DACL_AUTO_INHERIT) else 0) | (if (o.DEFAULT_DESCRIPTOR_FOR_OBJECT == 1) @intFromEnum(SECURITY_AUTO_INHERIT_FLAGS.DEFAULT_DESCRIPTOR_FOR_OBJECT) else 0) | (if (o.DEFAULT_GROUP_FROM_PARENT == 1) @intFromEnum(SECURITY_AUTO_INHERIT_FLAGS.DEFAULT_GROUP_FROM_PARENT) else 0) | (if (o.DEFAULT_OWNER_FROM_PARENT == 1) @intFromEnum(SECURITY_AUTO_INHERIT_FLAGS.DEFAULT_OWNER_FROM_PARENT) else 0) | (if (o.MACL_NO_EXECUTE_UP == 1) @intFromEnum(SECURITY_AUTO_INHERIT_FLAGS.MACL_NO_EXECUTE_UP) else 0) | (if (o.MACL_NO_READ_UP == 1) @intFromEnum(SECURITY_AUTO_INHERIT_FLAGS.MACL_NO_READ_UP) else 0) | (if (o.MACL_NO_WRITE_UP == 1) @intFromEnum(SECURITY_AUTO_INHERIT_FLAGS.MACL_NO_WRITE_UP) else 0) | (if (o.SACL_AUTO_INHERIT == 1) @intFromEnum(SECURITY_AUTO_INHERIT_FLAGS.SACL_AUTO_INHERIT) else 0));
     }
 };
 pub const SEF_AVOID_OWNER_CHECK = SECURITY_AUTO_INHERIT_FLAGS.AVOID_OWNER_CHECK;
@@ -274,10 +229,7 @@ pub const SYSTEM_AUDIT_OBJECT_ACE_FLAGS = enum(u32) {
         OBJECT_TYPE_PRESENT: u1 = 0,
         INHERITED_OBJECT_TYPE_PRESENT: u1 = 0,
     }) SYSTEM_AUDIT_OBJECT_ACE_FLAGS {
-        return @intToEnum(SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
-              (if (o.OBJECT_TYPE_PRESENT == 1) @enumToInt(SYSTEM_AUDIT_OBJECT_ACE_FLAGS.OBJECT_TYPE_PRESENT) else 0)
-            | (if (o.INHERITED_OBJECT_TYPE_PRESENT == 1) @enumToInt(SYSTEM_AUDIT_OBJECT_ACE_FLAGS.INHERITED_OBJECT_TYPE_PRESENT) else 0)
-        );
+        return @enumFromInt(SYSTEM_AUDIT_OBJECT_ACE_FLAGS, (if (o.OBJECT_TYPE_PRESENT == 1) @intFromEnum(SYSTEM_AUDIT_OBJECT_ACE_FLAGS.OBJECT_TYPE_PRESENT) else 0) | (if (o.INHERITED_OBJECT_TYPE_PRESENT == 1) @intFromEnum(SYSTEM_AUDIT_OBJECT_ACE_FLAGS.INHERITED_OBJECT_TYPE_PRESENT) else 0));
     }
 };
 pub const ACE_OBJECT_TYPE_PRESENT = SYSTEM_AUDIT_OBJECT_ACE_FLAGS.OBJECT_TYPE_PRESENT;
@@ -299,14 +251,7 @@ pub const CLAIM_SECURITY_ATTRIBUTE_FLAGS = enum(u32) {
         DISABLED: u1 = 0,
         MANDATORY: u1 = 0,
     }) CLAIM_SECURITY_ATTRIBUTE_FLAGS {
-        return @intToEnum(CLAIM_SECURITY_ATTRIBUTE_FLAGS,
-              (if (o.NON_INHERITABLE == 1) @enumToInt(CLAIM_SECURITY_ATTRIBUTE_FLAGS.NON_INHERITABLE) else 0)
-            | (if (o.VALUE_CASE_SENSITIVE == 1) @enumToInt(CLAIM_SECURITY_ATTRIBUTE_FLAGS.VALUE_CASE_SENSITIVE) else 0)
-            | (if (o.USE_FOR_DENY_ONLY == 1) @enumToInt(CLAIM_SECURITY_ATTRIBUTE_FLAGS.USE_FOR_DENY_ONLY) else 0)
-            | (if (o.DISABLED_BY_DEFAULT == 1) @enumToInt(CLAIM_SECURITY_ATTRIBUTE_FLAGS.DISABLED_BY_DEFAULT) else 0)
-            | (if (o.DISABLED == 1) @enumToInt(CLAIM_SECURITY_ATTRIBUTE_FLAGS.DISABLED) else 0)
-            | (if (o.MANDATORY == 1) @enumToInt(CLAIM_SECURITY_ATTRIBUTE_FLAGS.MANDATORY) else 0)
-        );
+        return @enumFromInt(CLAIM_SECURITY_ATTRIBUTE_FLAGS, (if (o.NON_INHERITABLE == 1) @intFromEnum(CLAIM_SECURITY_ATTRIBUTE_FLAGS.NON_INHERITABLE) else 0) | (if (o.VALUE_CASE_SENSITIVE == 1) @intFromEnum(CLAIM_SECURITY_ATTRIBUTE_FLAGS.VALUE_CASE_SENSITIVE) else 0) | (if (o.USE_FOR_DENY_ONLY == 1) @intFromEnum(CLAIM_SECURITY_ATTRIBUTE_FLAGS.USE_FOR_DENY_ONLY) else 0) | (if (o.DISABLED_BY_DEFAULT == 1) @intFromEnum(CLAIM_SECURITY_ATTRIBUTE_FLAGS.DISABLED_BY_DEFAULT) else 0) | (if (o.DISABLED == 1) @intFromEnum(CLAIM_SECURITY_ATTRIBUTE_FLAGS.DISABLED) else 0) | (if (o.MANDATORY == 1) @intFromEnum(CLAIM_SECURITY_ATTRIBUTE_FLAGS.MANDATORY) else 0));
     }
 };
 pub const CLAIM_SECURITY_ATTRIBUTE_NON_INHERITABLE = CLAIM_SECURITY_ATTRIBUTE_FLAGS.NON_INHERITABLE;
@@ -334,7 +279,7 @@ pub const CLAIM_SECURITY_ATTRIBUTE_TYPE_SID = CLAIM_SECURITY_ATTRIBUTE_VALUE_TYP
 pub const CLAIM_SECURITY_ATTRIBUTE_TYPE_BOOLEAN = CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE.BOOLEAN;
 
 pub const PLSA_AP_CALL_PACKAGE_UNTRUSTED = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         ClientRequest: ?*?*anyopaque,
         // TODO: what to do with BytesParamIndex 3?
         ProtocolSubmitBuffer: ?*anyopaque,
@@ -344,7 +289,7 @@ pub const PLSA_AP_CALL_PACKAGE_UNTRUSTED = switch (@import("builtin").zig_backen
         ReturnBufferLength: ?*u32,
         ProtocolStatus: ?*i32,
     ) callconv(@import("std").os.windows.WINAPI) NTSTATUS,
-    else => *const fn(
+    else => *const fn (
         ClientRequest: ?*?*anyopaque,
         // TODO: what to do with BytesParamIndex 3?
         ProtocolSubmitBuffer: ?*anyopaque,
@@ -354,16 +299,16 @@ pub const PLSA_AP_CALL_PACKAGE_UNTRUSTED = switch (@import("builtin").zig_backen
         ReturnBufferLength: ?*u32,
         ProtocolStatus: ?*i32,
     ) callconv(@import("std").os.windows.WINAPI) NTSTATUS,
-} ;
+};
 
 pub const SEC_THREAD_START = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
+    .stage1 => fn (
         lpThreadParameter: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
+    else => *const fn (
         lpThreadParameter: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+};
 
 pub const TOKEN_ACCESS_MASK = enum(u32) {
     DELETE = 65536,
@@ -399,23 +344,7 @@ pub const TOKEN_ACCESS_MASK = enum(u32) {
         ADJUST_SESSIONID: u1 = 0,
         ALL_ACCESS: u1 = 0,
     }) TOKEN_ACCESS_MASK {
-        return @intToEnum(TOKEN_ACCESS_MASK,
-              (if (o.DELETE == 1) @enumToInt(TOKEN_ACCESS_MASK.DELETE) else 0)
-            | (if (o.READ_CONTROL == 1) @enumToInt(TOKEN_ACCESS_MASK.READ_CONTROL) else 0)
-            | (if (o.WRITE_DAC == 1) @enumToInt(TOKEN_ACCESS_MASK.WRITE_DAC) else 0)
-            | (if (o.WRITE_OWNER == 1) @enumToInt(TOKEN_ACCESS_MASK.WRITE_OWNER) else 0)
-            | (if (o.ACCESS_SYSTEM_SECURITY == 1) @enumToInt(TOKEN_ACCESS_MASK.ACCESS_SYSTEM_SECURITY) else 0)
-            | (if (o.ASSIGN_PRIMARY == 1) @enumToInt(TOKEN_ACCESS_MASK.ASSIGN_PRIMARY) else 0)
-            | (if (o.DUPLICATE == 1) @enumToInt(TOKEN_ACCESS_MASK.DUPLICATE) else 0)
-            | (if (o.IMPERSONATE == 1) @enumToInt(TOKEN_ACCESS_MASK.IMPERSONATE) else 0)
-            | (if (o.QUERY == 1) @enumToInt(TOKEN_ACCESS_MASK.QUERY) else 0)
-            | (if (o.QUERY_SOURCE == 1) @enumToInt(TOKEN_ACCESS_MASK.QUERY_SOURCE) else 0)
-            | (if (o.ADJUST_PRIVILEGES == 1) @enumToInt(TOKEN_ACCESS_MASK.ADJUST_PRIVILEGES) else 0)
-            | (if (o.ADJUST_GROUPS == 1) @enumToInt(TOKEN_ACCESS_MASK.ADJUST_GROUPS) else 0)
-            | (if (o.ADJUST_DEFAULT == 1) @enumToInt(TOKEN_ACCESS_MASK.ADJUST_DEFAULT) else 0)
-            | (if (o.ADJUST_SESSIONID == 1) @enumToInt(TOKEN_ACCESS_MASK.ADJUST_SESSIONID) else 0)
-            | (if (o.ALL_ACCESS == 1) @enumToInt(TOKEN_ACCESS_MASK.ALL_ACCESS) else 0)
-        );
+        return @enumFromInt(TOKEN_ACCESS_MASK, (if (o.DELETE == 1) @intFromEnum(TOKEN_ACCESS_MASK.DELETE) else 0) | (if (o.READ_CONTROL == 1) @intFromEnum(TOKEN_ACCESS_MASK.READ_CONTROL) else 0) | (if (o.WRITE_DAC == 1) @intFromEnum(TOKEN_ACCESS_MASK.WRITE_DAC) else 0) | (if (o.WRITE_OWNER == 1) @intFromEnum(TOKEN_ACCESS_MASK.WRITE_OWNER) else 0) | (if (o.ACCESS_SYSTEM_SECURITY == 1) @intFromEnum(TOKEN_ACCESS_MASK.ACCESS_SYSTEM_SECURITY) else 0) | (if (o.ASSIGN_PRIMARY == 1) @intFromEnum(TOKEN_ACCESS_MASK.ASSIGN_PRIMARY) else 0) | (if (o.DUPLICATE == 1) @intFromEnum(TOKEN_ACCESS_MASK.DUPLICATE) else 0) | (if (o.IMPERSONATE == 1) @intFromEnum(TOKEN_ACCESS_MASK.IMPERSONATE) else 0) | (if (o.QUERY == 1) @intFromEnum(TOKEN_ACCESS_MASK.QUERY) else 0) | (if (o.QUERY_SOURCE == 1) @intFromEnum(TOKEN_ACCESS_MASK.QUERY_SOURCE) else 0) | (if (o.ADJUST_PRIVILEGES == 1) @intFromEnum(TOKEN_ACCESS_MASK.ADJUST_PRIVILEGES) else 0) | (if (o.ADJUST_GROUPS == 1) @intFromEnum(TOKEN_ACCESS_MASK.ADJUST_GROUPS) else 0) | (if (o.ADJUST_DEFAULT == 1) @intFromEnum(TOKEN_ACCESS_MASK.ADJUST_DEFAULT) else 0) | (if (o.ADJUST_SESSIONID == 1) @intFromEnum(TOKEN_ACCESS_MASK.ADJUST_SESSIONID) else 0) | (if (o.ALL_ACCESS == 1) @intFromEnum(TOKEN_ACCESS_MASK.ALL_ACCESS) else 0));
     }
 };
 pub const TOKEN_DELETE = TOKEN_ACCESS_MASK.DELETE;
@@ -1371,7 +1300,6 @@ pub const QUOTA_LIMITS = extern struct {
     TimeLimit: LARGE_INTEGER,
 };
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (133)
 //--------------------------------------------------------------------------------
@@ -2128,8 +2056,7 @@ pub extern "advapi32" fn QuerySecurityAccessMask(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "advapi32" fn RevertToSelf(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "advapi32" fn RevertToSelf() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn SetAclInformation(
@@ -2585,7 +2512,6 @@ pub extern "ntdll" fn RtlConvertSidToUnicodeString(
     AllocateDestinationString: BOOLEAN,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (18)
 //--------------------------------------------------------------------------------
@@ -2632,24 +2558,24 @@ pub usingnamespace switch (@import("zig.zig").unicode_mode) {
         pub const LogonUserEx = thismodule.LogonUserExW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const AccessCheckAndAuditAlarm = *opaque{};
-        pub const AccessCheckByTypeAndAuditAlarm = *opaque{};
-        pub const AccessCheckByTypeResultListAndAuditAlarm = *opaque{};
-        pub const AccessCheckByTypeResultListAndAuditAlarmByHandle = *opaque{};
-        pub const GetFileSecurity = *opaque{};
-        pub const ObjectCloseAuditAlarm = *opaque{};
-        pub const ObjectDeleteAuditAlarm = *opaque{};
-        pub const ObjectOpenAuditAlarm = *opaque{};
-        pub const ObjectPrivilegeAuditAlarm = *opaque{};
-        pub const PrivilegedServiceAuditAlarm = *opaque{};
-        pub const SetFileSecurity = *opaque{};
-        pub const LookupAccountSid = *opaque{};
-        pub const LookupAccountName = *opaque{};
-        pub const LookupPrivilegeValue = *opaque{};
-        pub const LookupPrivilegeName = *opaque{};
-        pub const LookupPrivilegeDisplayName = *opaque{};
-        pub const LogonUser = *opaque{};
-        pub const LogonUserEx = *opaque{};
+        pub const AccessCheckAndAuditAlarm = *opaque {};
+        pub const AccessCheckByTypeAndAuditAlarm = *opaque {};
+        pub const AccessCheckByTypeResultListAndAuditAlarm = *opaque {};
+        pub const AccessCheckByTypeResultListAndAuditAlarmByHandle = *opaque {};
+        pub const GetFileSecurity = *opaque {};
+        pub const ObjectCloseAuditAlarm = *opaque {};
+        pub const ObjectDeleteAuditAlarm = *opaque {};
+        pub const ObjectOpenAuditAlarm = *opaque {};
+        pub const ObjectPrivilegeAuditAlarm = *opaque {};
+        pub const PrivilegedServiceAuditAlarm = *opaque {};
+        pub const SetFileSecurity = *opaque {};
+        pub const LookupAccountSid = *opaque {};
+        pub const LookupAccountName = *opaque {};
+        pub const LookupPrivilegeValue = *opaque {};
+        pub const LookupPrivilegeName = *opaque {};
+        pub const LookupPrivilegeDisplayName = *opaque {};
+        pub const LogonUser = *opaque {};
+        pub const LogonUserEx = *opaque {};
     } else struct {
         pub const AccessCheckAndAuditAlarm = @compileError("'AccessCheckAndAuditAlarm' requires that UNICODE be set to true or false in the root module");
         pub const AccessCheckByTypeAndAuditAlarm = @compileError("'AccessCheckByTypeAndAuditAlarm' requires that UNICODE be set to true or false in the root module");
@@ -2690,12 +2616,14 @@ const UNICODE_STRING = @import("foundation.zig").UNICODE_STRING;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PLSA_AP_CALL_PACKAGE_UNTRUSTED")) { _ = PLSA_AP_CALL_PACKAGE_UNTRUSTED; }
-    if (@hasDecl(@This(), "SEC_THREAD_START")) { _ = SEC_THREAD_START; }
+    if (@hasDecl(@This(), "PLSA_AP_CALL_PACKAGE_UNTRUSTED")) {
+        _ = PLSA_AP_CALL_PACKAGE_UNTRUSTED;
+    }
+    if (@hasDecl(@This(), "SEC_THREAD_START")) {
+        _ = SEC_THREAD_START;
+    }
 
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;

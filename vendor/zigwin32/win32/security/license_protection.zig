@@ -19,7 +19,6 @@ pub const LicenseKeyUnprotected = LicenseProtectionStatus.LicenseKeyUnprotected;
 pub const LicenseKeyCorrupted = LicenseProtectionStatus.LicenseKeyCorrupted;
 pub const LicenseKeyAlreadyExists = LicenseProtectionStatus.LicenseKeyAlreadyExists;
 
-
 //--------------------------------------------------------------------------------
 // Section: Functions (2)
 //--------------------------------------------------------------------------------
@@ -36,19 +35,14 @@ pub extern "licenseprotection" fn ValidateLicenseKeyProtection(
     status: ?*LicenseProtectionStatus,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
 const thismodule = @This();
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-    },
-    .wide => struct {
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-    } else struct {
-    },
+    .ansi => struct {},
+    .wide => struct {},
+    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (3)
@@ -58,9 +52,7 @@ const HRESULT = @import("../foundation.zig").HRESULT;
 const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(
-        comptime @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
