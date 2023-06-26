@@ -270,6 +270,7 @@ pub fn GenerateConfigStruct(comptime T: type) type {
         iterateFields(&config_fields, T);
 
         const default_value: ?T.Callback = null;
+        const default_draw_value: ?T.DrawCallback = null;
         config_fields = config_fields ++ &[1]std.builtin.Type.StructField{.{
             .name = "onclick",
             .type = ?T.Callback,
@@ -280,7 +281,7 @@ pub fn GenerateConfigStruct(comptime T: type) type {
         config_fields = config_fields ++ &[1]std.builtin.Type.StructField{.{
             .name = "ondraw",
             .type = ?T.DrawCallback,
-            .default_value = @ptrCast(?*const anyopaque, &default_value),
+            .default_value = @ptrCast(?*const anyopaque, &default_draw_value),
             .is_comptime = false,
             .alignment = @alignOf(?T.DrawCallback),
         }};
