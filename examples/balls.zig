@@ -208,8 +208,8 @@ fn simulationThread(window: *capy.Window) !void {
             ball.velX *= 1 - friction;
             ball.velY *= 1 - friction;
 
-            ball.velX = std.math.min(1000, ball.velX);
-            ball.velY = std.math.min(1000, ball.velY);
+            ball.velX = @min(1000, ball.velX);
+            ball.velY = @min(1000, ball.velY);
         }
 
         var total: f32 = 0; // count total energy

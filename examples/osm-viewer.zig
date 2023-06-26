@@ -112,11 +112,10 @@ pub const MapViewer_Impl = struct {
                 const contents = try response.reader().readAllAlloc(capy.internal.scratch_allocator, std.math.maxInt(usize));
                 defer capy.internal.scratch_allocator.free(contents);
 
-                var parser = std.json.Parser.init(capy.internal.scratch_allocator, .alloc_if_needed);
-                defer parser.deinit();
+                const value = try std.json.parseFromSlice(std.json.Value, capy.internal.scratch_allocator, contents, .{});
+                defer value.deinit();
 
-                const valueTree = try parser.parse(contents);
-                const root = valueTree.root.array;
+                const root = value.value.array;
                 if (root.items.len > 0) { // if there's at least one result
                     const firstResult = root.items[0].object;
                     const lon = try std.fmt.parseFloat(f32, firstResult.get("lon").?.string);

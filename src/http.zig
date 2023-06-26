@@ -80,9 +80,10 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
 
         pub fn isReady(self: *HttpResponse) bool {
             // self.request.wait() catch return true;
-            const buffered = &self.request.connection.data.buffered;
-            buffered.fill() catch return true;
-            if (buffered.read_end != 0) {
+            if (self.request.connection == null) return true;
+            const connection = &self.request.connection.?.data;
+            connection.fill() catch return true;
+            if (connection.read_end != 0) {
                 self.request.wait() catch {};
                 return true;
             } else {

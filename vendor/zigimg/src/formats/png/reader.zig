@@ -283,7 +283,7 @@ fn readAllData(
     errdefer result.deinit(allocator);
     var idat_chunks_reader = IDatChunksReader.init(stream, options.processors, chunk_process_data);
     var idat_reader: IDATReader = .{ .context = &idat_chunks_reader };
-    var decompress_stream = std.compress.zlib.zlibStream(options.temp_allocator, idat_reader) catch return Image.ReadError.InvalidData;
+    var decompress_stream = std.compress.zlib.decompressStream(options.temp_allocator, idat_reader) catch return Image.ReadError.InvalidData;
 
     if (palette.len > 0) {
         var destination_palette = if (result.getPalette()) |result_palette|

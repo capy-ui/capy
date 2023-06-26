@@ -29,8 +29,8 @@ pub const LineGraph_Impl = struct {
         var maxValue: f32 = 0;
         while (x < 10) : (x += 0.1) {
             const value = self.dataFn(x);
-            maxValue = std.math.max(maxValue, value);
-            minValue = std.math.min(minValue, value);
+            maxValue = @max(maxValue, value);
+            minValue = @min(minValue, value);
         }
         maxValue += maxValue / 10;
         minValue += minValue / 10;

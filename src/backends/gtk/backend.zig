@@ -887,7 +887,7 @@ pub const Canvas = struct {
             }
             var matrix: c.cairo_matrix_t = undefined;
             c.cairo_get_matrix(self.cr, &matrix);
-            const scale = @floatFromInt(f32, std.math.max(w, h)) / 2;
+            const scale = @floatFromInt(f32, @max(w, h)) / 2;
             c.cairo_scale(self.cr, @floatFromInt(f32, w / 2) / scale, @floatFromInt(f32, h / 2) / scale);
             c.cairo_arc(self.cr, @floatFromInt(f32, w / 2), @floatFromInt(f32, h / 2), scale, 0, 2 * std.math.pi);
             c.cairo_set_matrix(self.cr, &matrix);
