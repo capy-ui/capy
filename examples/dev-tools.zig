@@ -59,7 +59,7 @@ pub fn main() !void {
 }
 
 fn onConnect(widget: *anyopaque) !void {
-    const button = @as(*capy.Button_Impl, @ptrCast(@alignCast(@alignOf(capy.Button_Impl), widget)));
+    const button = @as(*capy.Button_Impl, @ptrCast(@alignCast(widget)));
     const parent = button.getParent().?.getParent().?.as(capy.Container_Impl);
     const root = button.getRoot().?.as(capy.Navigation_Impl);
 

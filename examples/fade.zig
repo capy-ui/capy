@@ -6,7 +6,7 @@ var opacity = capy.Atom(f32).of(1.0);
 
 // TODO: switch back to *capy.Button_Impl when ziglang/zig#12325 is fixed
 fn startAnimation(button_: *anyopaque) !void {
-    const button = @as(*capy.Button_Impl, @ptrCast(@alignCast(@alignOf(capy.Button_Impl), button_)));
+    const button = @as(*capy.Button_Impl, @ptrCast(@alignCast(button_)));
 
     // Ensure the current animation is done before starting another
     if (!opacity.hasAnimation()) {

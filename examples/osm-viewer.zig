@@ -272,7 +272,7 @@ pub fn main() !void {
 }
 
 fn onGo(self_ptr: *anyopaque) !void {
-    const self = @as(*capy.Button_Impl, @ptrCast(@alignCast(@alignOf(capy.Button_Impl), self_ptr))); // due to ZIG BUG
+    const self = @as(*capy.Button_Impl, @ptrCast(@alignCast(self_ptr))); // due to ZIG BUG
     const root = self.getRoot().?.as(capy.Container_Impl);
     const viewer = root.getChildAs(MapViewer_Impl, "map-viewer").?;
     const input = root.getChildAs(capy.TextField_Impl, "location-input").?;
